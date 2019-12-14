@@ -1,9 +1,6 @@
-// https://github.com/nxrmrz/mainservice/blob/master/models/User.js
-// https://mongoosejs.com/
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt-nodejs");
+const bcrypt = require("bcrypt");
 
 // Database Configuration
 const mongoURI = require("../config/database").mongoURI;
