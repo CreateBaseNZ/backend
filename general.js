@@ -1,5 +1,6 @@
 // requiring the necessary modules
 const http = require('http');
+const bcrypt = require('bcrypt');
 
 const mongoose = require("mongoose");
 
@@ -16,10 +17,9 @@ server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-
 // load User and UserProfile Models
-const User = require("../models/User");
-const UserInfo = require("../models/UserInfo");
+const User = require("./models/User");
+const UserInfo = require("./models/UserInfo");
 
 mongoose.connect('mongodb://localhost:27017/creaftdb', {useNewUrlParser:true});
 
@@ -27,7 +27,7 @@ var db = mongoose.connection;
 
 db.once('open', function(){
     console.log('Database connection established')
-    
+
     User.find({ username: 'nixramirez'}, function (error, documents){
         console.log(documents)
     })

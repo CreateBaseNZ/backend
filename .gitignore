@@ -1,4 +1,2 @@
 # Dont track content of these files
 node_modules
-package.json
-package-lock.json
