@@ -5,13 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Homepage | Creaft</title>
+    <!------------------------------
+    Default CSS
+    ------------------------------->
     <link rel="stylesheet" href="./global.css" />
     <link rel="stylesheet" href="./notification.css" />
+    <link rel="stylesheet" href="./menu.css" />
+    <!------------------------------
+    Default JavaScript
+    ------------------------------->
     <script src="./index.js"></script>
     <script src="./notification.js"></script>
     <script src="./moment.js"></script>
   </head>
   <body>
+    <!------------------------------
+    Header Navigation Bar (Default)
+    ------------------------------->
     <nav class="nav-bar nav-bar-top bgd-clr-1">
       <div class="menu-btn">
         <div class="menu-dash menu-dash-1"></div>
@@ -22,9 +32,54 @@
       <div class="user-menu-btn"></div>
     </nav>
     <div class="content">
-      <div class="sd-bar menu cntt-untgl-lft sd-bar-nav-bar-hide">Menu</div>
+      <!------------------------------
+      Menu (Type: Default)
+      ------------------------------->
+      <div class="sd-bar menu cntt-untgl-lft sd-bar-nav-bar-hide">
+        <div class="menu-grp">
+          <header class="menu-grp-hdr">
+            <div class="menu-grp-hdr-bar"></div>
+            <h3 class="menu-grp-hdng hdng-2 txt-clr-1">Services</h3>
+          </header>
+          <div class="menu-opts">
+            <a class="rmv-link-css menu-opt" href="http://">
+              <div class="icn-1"></div>
+              <p class="menu-opt-txt txt-3 txt-clr-1">3D Printing</p>
+            </a>
+            <a class="rmv-link-css menu-opt" href="http://">
+              <div class="icn-1"></div>
+              <p class="menu-opt-txt txt-3 txt-clr-1">Marketplace</p>
+            </a>
+          </div>
+        </div>
+        <div class="menu-grp">
+          <header class="menu-grp-hdr">
+            <div class="menu-grp-hdr-bar"></div>
+            <h3 class="menu-grp-hdng hdng-2 txt-clr-1">Creaft</h3>
+          </header>
+          <div class="menu-opts">
+            <a class="rmv-link-css menu-opt" href="http://">
+              <div class="icn-1"></div>
+              <p class="menu-opt-txt txt-3 txt-clr-1">Our Story</p>
+            </a>
+            <a class="rmv-link-css menu-opt" href="http://">
+              <div class="icn-1"></div>
+              <p class="menu-opt-txt txt-3 txt-clr-1">Our Team</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!------------------------------
+      Page (Type: Dynamic)
+      ------------------------------->
       <div class="page">Page</div>
+      <!------------------------------
+      User Menu (Type: Default)
+      ------------------------------->
       <div class="sd-bar user-menu cntt-untgl-rght sd-bar-nav-bar-hide">
+        <!------------------------------
+        User Menu - When user is logged in (Type: Default)
+        ------------------------------->
         <div class="user-menu-opts user-menu-log-in  user-menu-opts-hide">
           <a class="rmv-link-css txt-2 txt-clr-1 user-menu-opt" href="http://"
             >Dashboard</a
@@ -39,6 +94,9 @@
             >Logout</a
           >
         </div>
+        <!------------------------------
+        User Menu - When user is logged out (Type: Default)
+        ------------------------------->
         <div class="user-menu-opts user-menu-log-out">
           <a class="rmv-link-css txt-2 txt-clr-1 user-menu-opt" href="http://"
             >Login</a
@@ -48,8 +106,22 @@
           >
         </div>
       </div>
-      <div class="sd-bar msgs cntt-untgl-bot sd-bar-nav-bar-hide">Messages</div>
+      <!------------------------------
+      Messages (Type: Semi-Default)
+      ------------------------------->
+      <div class="sd-bar msgs cntt-untgl-bot sd-bar-nav-bar-hide">
+        <header class="msgs-hdr">
+          <h3 class="hdng-1 txt-clr-1">Messages</h3>
+          <p class="msgs-cmps txt-1 txt-clr-2">+ Compose</p>
+        </header>
+      </div>
+      <!------------------------------
+      Notifications (Type: Semi-Default)
+      ------------------------------->
       <div class="sd-bar ntfs cntt-untgl-bot sd-bar-nav-bar-hide">
+        <!------------------------------
+        Notifications - Notification Header (Type: Default)
+        ------------------------------->
         <header class="ntfs-header">
           <h3 class="hdng-1 txt-clr-1">Notifications</h3>
           <a
@@ -64,15 +136,18 @@
         <div class="ntfs-cntt"></div>
       </div>
     </div>
+    <!------------------------------
+    Footer Navigation Bar (Default)
+    ------------------------------->
     <nav class="nav-bar nav-bar-btm bgd-clr-1 nav-bar-hide">
-      <div class="nav-btn make-btn nav-btn-untgl">
+      <a class="rmv-link-css nav-btn make-btn nav-btn-untgl" href="http://">
         <div class="nav-icn"></div>
         <div class="nav-txt txt-1">Make</div>
-      </div>
-      <div class="nav-btn shop-btn nav-btn-untgl">
+      </a>
+      <a class="rmv-link-css nav-btn shop-btn nav-btn-untgl" href="http://">
         <div class="nav-icn"></div>
         <div class="nav-txt txt-1">Shop</div>
-      </div>
+      </a>
       <div class="nav-btn msg-btn nav-btn-untgl">
         <div class="nav-icn"></div>
         <div class="nav-txt txt-1">Message</div>

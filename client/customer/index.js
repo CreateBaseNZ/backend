@@ -157,5 +157,5 @@ let dateObjToMmnt = dateObj => {
 };
 
 /* -------------------------------
-FUNCTIONS
+FUNCTIONS - Menu
 ------------------------------- */
