@@ -1,0 +1,131 @@
+.ntfs {
+  background-color: #f0f0ff;
+  opacity: 1;
+}
+
+.ntfs-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1vw 4vw;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-style: none none solid none;
+  border-color: gainsboro;
+}
+
+.ntfs-cntt {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ntf {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 14vmax;
+  width: 100%;
+  border-style: none none solid none;
+  border-color: #e6e6e6;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ntf-unrd {
+  background-color: #dcdcff;
+}
+
+.ntf-cntn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 14vmax;
+}
+
+.ntf-logo-cntn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 14vmax;
+  width: 14vmax;
+}
+
+.ntf-dtls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 14vmax;
+  padding: 1vmax 2vmax;
+}
+
+.ntf-stng {
+  width: 6vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.ntf-msg {
+  height: 65%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+}
+
+.ntf-date {
+  height: 35%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+}
+
+.ntf-stng-rd {
+  height: 1.6vmax;
+  width: 1.6vmax;
+  border-radius: 0.8vmax;
+  border-style: solid;
+  border-width: 0.3vmax;
+  border-color: gainsboro;
+}
+
+.ntf-stng-unrd {
+  background-color: gainsboro;
+}
+/*# sourceMappingURL=notification.css.map */

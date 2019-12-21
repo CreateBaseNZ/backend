@@ -1,0 +1,98 @@
+$clr-1: rgb(100, 100, 255);
+$clr-2: rgb(240, 240, 255);
+$clr-3: rgb(220, 220, 255);
+$clr-4: rgb(220, 220, 220);
+$clr-5: rgb(230, 230, 230);
+$transition-1: all 0.5s ease-out;
+$fnt-1: Arial, Helvetica, sans-serif;
+$ntf-height: 14vmax;
+
+.ntfs {
+  background-color: $clr-2;
+  opacity: 1;
+}
+
+.ntfs-header {
+  width: 100%;
+  display: flex;
+  padding: 1vw 4vw;
+  justify-content: space-between;
+  align-items: center;
+  border-style: none none solid none;
+  border-color: $clr-4;
+}
+
+.ntfs-cntt {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ntf {
+  display: flex;
+  height: $ntf-height;
+  width: 100%;
+  border-style: none none solid none;
+  border-color: $clr-5;
+  justify-content: space-between;
+}
+
+.ntf-unrd {
+  background-color: $clr-3;
+}
+
+.ntf-cntn {
+  display: flex;
+  height: $ntf-height;
+}
+
+.ntf-logo-cntn {
+  display: flex;
+  height: $ntf-height;
+  width: $ntf-height;
+}
+
+.ntf-dtls {
+  display: flex;
+  flex-wrap: wrap;
+  height: $ntf-height;
+  padding: 1vmax 2vmax;
+}
+
+.ntf-stng {
+  width: 6vmax;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.ntf-msg {
+  height: 65%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.ntf-date {
+  height: 35%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.ntf-stng-rd {
+  height: 1.6vmax;
+  width: 1.6vmax;
+  border-radius: 0.8vmax;
+  border-style: solid;
+  border-width: 0.3vmax;
+  border-color: $clr-4;
+}
+
+.ntf-stng-unrd {
+  background-color: $clr-4;
+}
