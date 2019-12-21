@@ -73,7 +73,7 @@ let navSysLogIn = () => {
 
 let auth = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve(true);
+    resolve(false);
   }, 1000);
 });
 
