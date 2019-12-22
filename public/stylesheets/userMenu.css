@@ -1,0 +1,36 @@
+.user-menu-btn {
+  height: 5vmax;
+  width: 5vmax;
+  border-radius: 2.5vmax;
+  background-color: gainsboro;
+}
+
+.user-menu {
+  background-color: #dcdcff;
+  opacity: 1;
+  padding: 3vmax;
+}
+
+.user-menu-opts {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  overflow: hidden;
+}
+
+.user-menu-opt {
+  padding: 3vmax;
+}
+
+.user-menu-opts-hide {
+  height: 0;
+}
+/*# sourceMappingURL=userMenu.css.map */

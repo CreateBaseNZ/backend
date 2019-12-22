@@ -27,6 +27,18 @@ window.onload = () => {
   menuTglEvt = document
     .querySelector(".menu-btn")
     .addEventListener("click", menuTgl);
+  menuHvrEvt1 = document
+    .querySelector(".menu")
+    .addEventListener("mouseenter", menuHvr);
+  menuHvrEvt2 = document
+    .querySelector(".menu")
+    .addEventListener("mouseleave", menuHvr);
+  menuHvrEvt3 = document
+    .querySelector(".menu-btn-dktp")
+    .addEventListener("mouseenter", menuHvr);
+  menuHvrEvt4 = document
+    .querySelector(".menu-btn-dktp")
+    .addEventListener("mouseleave", menuHvr);
   userMenuTglEvt = document
     .querySelector(".user-menu-btn")
     .addEventListener("click", userMenuTgl);
@@ -89,6 +101,14 @@ let menuTgl = () => {
   document.querySelector(".menu-dash-3").classList.toggle("menu-dash-tgl");
   document.querySelector(".menu").classList.toggle("cntt-untgl-lft");
   document.querySelector(".menu-btn").classList.toggle("nav-btn-untgl");
+};
+
+// Hover menu
+let menuHvr = () => {
+  document.querySelector(".menu-dash-1-dktp").classList.toggle("menu-dash-tgl");
+  document.querySelector(".menu-dash-2-dktp").classList.toggle("menu-dash-tgl");
+  document.querySelector(".menu-dash-3-dktp").classList.toggle("menu-dash-tgl");
+  document.querySelector(".menu").classList.toggle("menu-dktp-hvr");
 };
 
 // Toggle the user menu page

@@ -1,0 +1,172 @@
+$clr-1: rgb(100, 100, 255);
+$clr-2: rgb(240, 240, 255);
+$clr-3: rgb(220, 220, 255);
+$clr-4: rgb(220, 220, 220);
+$clr-5: rgb(230, 230, 230);
+$clr-6: rgb(120, 120, 120);
+$nav-bar-hght: 8vmax;
+$nav-bar-hght-dktp: 4vmax;
+$transition-1: all 0.5s ease-out;
+$fnt-1: Arial, Helvetica, sans-serif;
+
+.menu {
+  padding: 3vmax;
+  background-color: $clr-3;
+  opacity: 1;
+}
+
+.menu-btn {
+  height: 6vmax;
+  width: 6vmax;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 1vmax;
+}
+
+.menu-dash {
+  height: 0.4vmax;
+  border-radius: 0.2vmax;
+  border-width: 0vmax;
+  background-color: $clr-4;
+  transition: $transition-1;
+}
+
+.menu-dash-1 {
+  width: 40%;
+}
+
+.menu-dash-2 {
+  width: 80%;
+}
+
+.menu-dash-3 {
+  width: 60%;
+}
+
+.menu-dash-tgl {
+  width: 100%;
+}
+
+/*
+Set parent element to position: relative, and child 
+as position: absolute to create overlapping elements
+*/
+.menu-grp-hdr {
+  height: 6vmax;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-grp-hdr-bar {
+  height: 0.2vmax;
+  width: 100%;
+  border-radius: 0.1vmax;
+  border-width: 0vmax;
+  background-color: $clr-6;
+}
+
+.menu-grp-hdng {
+  position: absolute;
+  margin: 0;
+  padding: 1vmax;
+  background-color: $clr-3;
+}
+
+.menu-opts {
+  display: flex;
+  padding: 4vmax 2vmax;
+  flex-wrap: wrap;
+}
+
+.menu-opt {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-opt-txt {
+  padding: 2vmax;
+}
+
+@media only screen and (min-width: 850px) {
+  .menu {
+    padding: 1vmax;
+    background-color: $clr-1;
+  }
+
+  .menu-btn {
+    height: 3.5vmax;
+    width: 3.5vmax;
+    padding: 0 0.5vmax;
+  }
+
+  .menu-dash {
+    height: 0.2vmax;
+    border-radius: 0.1vmax;
+    border-width: 0vmax;
+  }
+
+  .menu-dktp {
+    height: calc(100% - 4vmax);
+    width: 5vmax;
+    top: $nav-bar-hght-dktp;
+    left: 0;
+    transform: translateX(0);
+    overflow: hidden;
+  }
+
+  .menu-dktp-hvr {
+    width: 18vmax;
+  }
+
+  .menu-dktp-opts {
+    width: 20vmax;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .menu-grp-hdr {
+    height: 3vmax;
+    width: 16vmax;
+  }
+
+  .menu-grp-hdng {
+    padding: 0.5vmax;
+    background-color: $clr-1;
+    color: $clr-2;
+  }
+
+  .menu-grp-hdr-bar {
+    height: 0.1vmax;
+    border-radius: 0.05vmax;
+    background-color: $clr-2;
+  }
+
+  .menu-grp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-opts {
+    width: 15vmax;
+    padding: 1vmax 0;
+  }
+
+  .menu-opt {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 1vmax 0;
+  }
+
+  .menu-opt-txt {
+    padding: 1vmax;
+    color: $clr-2;
+  }
+}

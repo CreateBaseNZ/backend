@@ -5,6 +5,7 @@ $clr-4: rgb(220, 220, 220);
 $clr-5: rgb(230, 230, 230);
 $clr-6: rgb(120, 120, 120);
 $nav-bar-hght: 8vmax;
+$nav-bar-hght-dktp: 4vmax;
 $transition-1: all 0.5s ease-out;
 $fnt-1: Arial, Helvetica, sans-serif;
 
@@ -88,99 +89,6 @@ body {
   background-color: $clr-2;
 }
 
-.nav-bar {
-  height: $nav-bar-hght;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 5;
-  overflow: hidden;
-}
-
-.nav-bar-hide {
-  height: 0;
-}
-
-.nav-bar-top {
-  position: fixed;
-  top: 0;
-  padding: 1vmax;
-}
-
-.nav-bar-btm {
-  position: fixed;
-  bottom: 0;
-}
-
-.nav-btn {
-  height: 100%;
-  width: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: $clr-2;
-  color: $clr-1;
-  transition: $transition-1;
-}
-
-.nav-btn-untgl {
-  background-color: $clr-1;
-  color: $clr-2;
-}
-
-.nav-icn {
-  height: 3.5vmax;
-  width: 3.5vmax;
-  background-color: rgb(200, 200, 200);
-}
-
-.nav-txt {
-  padding: 0.5vmax 0 0 0;
-  letter-spacing: 0.05vmax;
-}
-
-.user-menu-btn {
-  height: 5vmax;
-  width: 5vmax;
-  border-radius: 2.5vmax;
-  background-color: $clr-4;
-}
-
-.menu-btn {
-  height: 6vmax;
-  width: 6vmax;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 0 1vmax;
-}
-
-.menu-dash {
-  height: 0.4vmax;
-  border-radius: 0.2vmax;
-  border-width: 0vmax;
-  background-color: $clr-4;
-  transition: $transition-1;
-}
-
-.menu-dash-1 {
-  width: 40%;
-}
-
-.menu-dash-2 {
-  width: 80%;
-}
-
-.menu-dash-3 {
-  width: 60%;
-}
-
-.menu-dash-tgl {
-  width: 100%;
-}
-
 .content {
   height: 100%;
   padding: $nav-bar-hght 0;
@@ -189,28 +97,6 @@ body {
 .msgs {
   background-color: $clr-2;
   opacity: 1;
-}
-
-.user-menu {
-  background-color: $clr-3;
-  opacity: 1;
-  padding: 3vmax;
-}
-
-.user-menu-opts {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  overflow: hidden;
-}
-
-.user-menu-opt {
-  padding: 3vmax;
-}
-
-.user-menu-opts-hide {
-  height: 0;
 }
 
 .sd-bar {
@@ -268,4 +154,28 @@ MESSAGES
 }
 
 @media only screen and (min-width: 850px) {
+  .sd-bar {
+    height: calc(100% - 8vmax);
+  }
+
+  .content {
+    padding: 4vmax 0 0 5vmax;
+  }
+
+  .hdng-2 {
+    font-size: 1.3vmax;
+    margin: 0;
+    letter-spacing: 0.15vmax;
+  }
+
+  .txt-3 {
+    font-size: 1.2vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  .icn-1 {
+    height: 3vmax;
+    width: 3vmax;
+    border-radius: 1.5vmax;
+  }
 }

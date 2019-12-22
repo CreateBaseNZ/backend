@@ -1,0 +1,190 @@
+.menu {
+  padding: 3vmax;
+  background-color: #dcdcff;
+  opacity: 1;
+}
+
+.menu-btn {
+  height: 6vmax;
+  width: 6vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 0 1vmax;
+}
+
+.menu-dash {
+  height: 0.4vmax;
+  border-radius: 0.2vmax;
+  border-width: 0vmax;
+  background-color: gainsboro;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.menu-dash-1 {
+  width: 40%;
+}
+
+.menu-dash-2 {
+  width: 80%;
+}
+
+.menu-dash-3 {
+  width: 60%;
+}
+
+.menu-dash-tgl {
+  width: 100%;
+}
+
+/*
+Set parent element to position: relative, and child 
+as position: absolute to create overlapping elements
+*/
+.menu-grp-hdr {
+  height: 6vmax;
+  width: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.menu-grp-hdr-bar {
+  height: 0.2vmax;
+  width: 100%;
+  border-radius: 0.1vmax;
+  border-width: 0vmax;
+  background-color: #787878;
+}
+
+.menu-grp-hdng {
+  position: absolute;
+  margin: 0;
+  padding: 1vmax;
+  background-color: #dcdcff;
+}
+
+.menu-opts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 4vmax 2vmax;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.menu-opt {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.menu-opt-txt {
+  padding: 2vmax;
+}
+
+@media only screen and (min-width: 850px) {
+  .menu {
+    padding: 1vmax;
+    background-color: #6464ff;
+  }
+  .menu-btn {
+    height: 3.5vmax;
+    width: 3.5vmax;
+    padding: 0 0.5vmax;
+  }
+  .menu-dash {
+    height: 0.2vmax;
+    border-radius: 0.1vmax;
+    border-width: 0vmax;
+  }
+  .menu-dktp {
+    height: calc(100% - 4vmax);
+    width: 5vmax;
+    top: 4vmax;
+    left: 0;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    overflow: hidden;
+  }
+  .menu-dktp-hvr {
+    width: 18vmax;
+  }
+  .menu-dktp-opts {
+    width: 20vmax;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .menu-grp-hdr {
+    height: 3vmax;
+    width: 16vmax;
+  }
+  .menu-grp-hdng {
+    padding: 0.5vmax;
+    background-color: #6464ff;
+    color: #f0f0ff;
+  }
+  .menu-grp-hdr-bar {
+    height: 0.1vmax;
+    border-radius: 0.05vmax;
+    background-color: #f0f0ff;
+  }
+  .menu-grp {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .menu-opts {
+    width: 15vmax;
+    padding: 1vmax 0;
+  }
+  .menu-opt {
+    width: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 1vmax 0;
+  }
+  .menu-opt-txt {
+    padding: 1vmax;
+    color: #f0f0ff;
+  }
+}
+/*# sourceMappingURL=menu.css.map */
