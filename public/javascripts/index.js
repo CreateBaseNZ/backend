@@ -42,6 +42,9 @@ window.onload = () => {
   userMenuTglEvt = document
     .querySelector(".user-menu-btn")
     .addEventListener("click", userMenuTgl);
+  userMenuTglEvtDktp = document
+    .querySelector(".user-menu-btn-dktp")
+    .addEventListener("click", userMenuTgl);
   // Load Initial Classes
   auth
     .then(authStts => {
@@ -72,12 +75,24 @@ let navSysLogIn = () => {
   document
     .querySelector(".user-menu-log-out")
     .classList.toggle("user-menu-opts-hide");
+  document
+    .querySelector("#nav-btns-log-in-dktp")
+    .classList.toggle("nav-btns-dktp-hide");
+  document
+    .querySelector("#nav-btns-log-out-dktp")
+    .classList.toggle("nav-btns-dktp-hide");
   // Click Event Listeners
   msgsTglEvt = document
     .querySelector(".msg-btn")
     .addEventListener("click", msgsTgl);
+  msgsTglEvtDktp = document
+    .querySelector(".msg-btn-dktp")
+    .addEventListener("click", msgsTgl);
   ntfsTglEvt = document
     .querySelector(".ntf-btn")
+    .addEventListener("click", ntfsTgl);
+  ntfsTglEvtDktp = document
+    .querySelector(".ntf-btn-dktp")
     .addEventListener("click", ntfsTgl);
 };
 
@@ -85,7 +100,7 @@ let navSysLogIn = () => {
 
 let auth = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve(true);
+    resolve(false);
   }, 1000);
 });
 
@@ -99,7 +114,7 @@ let menuTgl = () => {
   document.querySelector(".menu-dash-1").classList.toggle("menu-dash-tgl");
   document.querySelector(".menu-dash-2").classList.toggle("menu-dash-tgl");
   document.querySelector(".menu-dash-3").classList.toggle("menu-dash-tgl");
-  document.querySelector(".menu").classList.toggle("cntt-untgl-lft");
+  document.querySelector(".menu").classList.toggle("menu-untgl");
   document.querySelector(".menu-btn").classList.toggle("nav-btn-untgl");
 };
 
@@ -118,7 +133,7 @@ let userMenuTgl = () => {
   if (msgsTglBool) msgsTgl();
   if (ntfsTglBool) ntfsTgl();
   userMenuTglBool = userMenuTglBool ? false : true;
-  document.querySelector(".user-menu").classList.toggle("cntt-untgl-rght");
+  document.querySelector(".user-menu").classList.toggle("user-menu-untgl");
 };
 
 // Toggle the messages page
@@ -128,7 +143,7 @@ let msgsTgl = () => {
   if (userMenuTglBool) userMenuTgl();
   if (ntfsTglBool) ntfsTgl();
   msgsTglBool = msgsTglBool ? false : true;
-  document.querySelector(".msgs").classList.toggle("cntt-untgl-bot");
+  document.querySelector(".msgs").classList.toggle("msgs-untgl");
   document.querySelector(".msg-btn").classList.toggle("nav-btn-untgl");
 };
 
@@ -139,7 +154,7 @@ let ntfsTgl = () => {
   if (userMenuTglBool) userMenuTgl();
   if (msgsTglBool) msgsTgl();
   ntfsTglBool = ntfsTglBool ? false : true;
-  document.querySelector(".ntfs").classList.toggle("cntt-untgl-bot");
+  document.querySelector(".ntfs").classList.toggle("ntfs-untgl");
   document.querySelector(".ntf-btn").classList.toggle("nav-btn-untgl");
 };
 

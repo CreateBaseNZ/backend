@@ -1,3 +1,7 @@
+/*
+VARIABLES
+*/
+
 $clr-1: rgb(100, 100, 255);
 $clr-2: rgb(240, 240, 255);
 $clr-3: rgb(220, 220, 255);
@@ -8,6 +12,10 @@ $nav-bar-hght: 8vmax;
 $nav-bar-hght-dktp: 4vmax;
 $transition-1: all 0.5s ease-out;
 $fnt-1: Arial, Helvetica, sans-serif;
+
+/*
+MOBILE CSS
+*/
 
 .nav-bar {
   height: $nav-bar-hght;
@@ -67,6 +75,12 @@ $fnt-1: Arial, Helvetica, sans-serif;
   padding: 0;
 }
 
+.nav-cntt {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
 @media only screen and (min-width: 850px) {
   /* Mobile CSS Reset */
   .nav-bar-mbl {
@@ -74,9 +88,35 @@ $fnt-1: Arial, Helvetica, sans-serif;
     padding: 0;
   }
 
+  .nav-btns-dktp {
+    width: 20vmax;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+  }
+
   /* Desktop CSS */
   .nav-bar-dktp {
     max-height: $nav-bar-hght-dktp;
     padding: 0.5vmax 1vmax;
+  }
+
+  .nav-btns-dktp-hide {
+    width: 0;
+  }
+
+  .nav-btn-log-out-dktp {
+    height: 3vmax;
+    width: 10vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #nav-btn-signup {
+    border-style: solid;
+    border-width: 0.2vmax;
+    border-radius: 0.5vmax;
   }
 }

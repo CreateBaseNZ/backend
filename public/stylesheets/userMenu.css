@@ -1,3 +1,16 @@
+/*
+VARIABLES
+*/
+/*
+MOBILE CSS
+*/
+.user-menu-untgl {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  z-index: 3;
+  opacity: 0;
+}
+
 .user-menu-btn {
   height: 5vmax;
   width: 5vmax;
@@ -6,6 +19,7 @@
 }
 
 .user-menu {
+  width: 100%;
   background-color: #dcdcff;
   opacity: 1;
   padding: 3vmax;
@@ -32,5 +46,29 @@
 
 .user-menu-opts-hide {
   height: 0;
+}
+
+/*
+DESKTOP CSS
+*/
+@media only screen and (min-width: 850px) {
+  .user-menu-untgl {
+    -webkit-transform: translateY(-15.2vmax);
+            transform: translateY(-15.2vmax);
+  }
+  .user-menu {
+    height: 15vmax;
+    width: 12vmax;
+    top: 4.2vmax;
+    right: 0.2vmax;
+    padding: 1vmax;
+    overflow: overlay;
+    border-radius: 0.2vmax;
+  }
+  .user-menu-opt {
+    font-size: 1.2vmax;
+    padding: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
 }
 /*# sourceMappingURL=userMenu.css.map */

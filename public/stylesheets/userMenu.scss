@@ -1,3 +1,7 @@
+/*
+VARIABLES
+*/
+
 $clr-1: rgb(100, 100, 255);
 $clr-2: rgb(240, 240, 255);
 $clr-3: rgb(220, 220, 255);
@@ -9,6 +13,16 @@ $nav-bar-hght-dktp: 4vmax;
 $transition-1: all 0.5s ease-out;
 $fnt-1: Arial, Helvetica, sans-serif;
 
+/*
+MOBILE CSS
+*/
+
+.user-menu-untgl {
+  transform: translateX(100%);
+  z-index: 3;
+  opacity: 0;
+}
+
 .user-menu-btn {
   height: 5vmax;
   width: 5vmax;
@@ -17,6 +31,7 @@ $fnt-1: Arial, Helvetica, sans-serif;
 }
 
 .user-menu {
+  width: 100%;
   background-color: $clr-3;
   opacity: 1;
   padding: 3vmax;
@@ -38,5 +53,28 @@ $fnt-1: Arial, Helvetica, sans-serif;
   height: 0;
 }
 
+/*
+DESKTOP CSS
+*/
+
 @media only screen and (min-width: 850px) {
+  .user-menu-untgl {
+    transform: translateY(-15.2vmax);
+  }
+
+  .user-menu {
+    height: 15vmax;
+    width: 12vmax;
+    top: 4.2vmax;
+    right: 0.2vmax;
+    padding: 1vmax;
+    overflow: overlay;
+    border-radius: 0.2vmax;
+  }
+
+  .user-menu-opt {
+    font-size: 1.2vmax;
+    padding: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
 }

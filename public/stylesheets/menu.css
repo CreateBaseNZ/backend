@@ -1,4 +1,18 @@
+/*
+VARIABLES
+*/
+/*
+MOBILE CSS
+*/
+.menu-untgl {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  z-index: 3;
+  opacity: 0;
+}
+
 .menu {
+  width: 100%;
   padding: 3vmax;
   background-color: #dcdcff;
   opacity: 1;
@@ -107,9 +121,17 @@ as position: absolute to create overlapping elements
 }
 
 @media only screen and (min-width: 850px) {
+  .menu-untgl {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
   .menu {
+    height: calc(100% - 4vmax);
+    width: 5vmax;
+    left: 0;
     padding: 1vmax;
     background-color: #6464ff;
+    overflow: hidden;
   }
   .menu-btn {
     height: 3.5vmax;
@@ -121,25 +143,8 @@ as position: absolute to create overlapping elements
     border-radius: 0.1vmax;
     border-width: 0vmax;
   }
-  .menu-dktp {
-    height: calc(100% - 4vmax);
-    width: 5vmax;
-    top: 4vmax;
-    left: 0;
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-    overflow: hidden;
-  }
   .menu-dktp-hvr {
     width: 18vmax;
-  }
-  .menu-dktp-opts {
-    width: 20vmax;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
   }
   .menu-grp-hdr {
     height: 3vmax;

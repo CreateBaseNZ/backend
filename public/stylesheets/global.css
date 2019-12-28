@@ -1,3 +1,9 @@
+/*
+VARIABLES
+*/
+/*
+MOBILE CSS
+*/
 .bgd-clr-1 {
   background-color: #6464ff;
 }
@@ -55,6 +61,10 @@ TEXT-COLOR
   color: #787878;
 }
 
+.txt-clr-3 {
+  color: #f0f0ff;
+}
+
 .rmv-link-css {
   text-decoration: none;
 }
@@ -83,47 +93,6 @@ body {
   padding: 8vmax 0;
 }
 
-.msgs {
-  background-color: #f0f0ff;
-  opacity: 1;
-}
-
-.sd-bar {
-  height: calc(100% - 16vmax);
-  width: 100%;
-  top: 8vmax;
-  position: fixed;
-  overflow-y: scroll;
-  -webkit-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
-  z-index: 4;
-}
-
-.sd-bar-nav-bar-hide {
-  height: calc(100% - 8vmax);
-}
-
-.cntt-untgl-lft {
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-  z-index: 3;
-  opacity: 0;
-}
-
-.cntt-untgl-rght {
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
-  z-index: 3;
-  opacity: 0;
-}
-
-.cntt-untgl-bot {
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
-  z-index: 3;
-  opacity: 0;
-}
-
 .page {
   position: fixed;
   height: 100%;
@@ -132,40 +101,33 @@ body {
   z-index: 1;
 }
 
-/* -------------------------------
-MESSAGES
-------------------------------- */
-.msgs-hdr {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 1vw 4vw;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-style: none none solid none;
-  border-color: gainsboro;
-}
-
 @media only screen and (min-width: 850px) {
-  .sd-bar {
-    height: calc(100% - 8vmax);
-  }
   .content {
     padding: 4vmax 0 0 5vmax;
   }
+  /* -------------------------------
+TEXT
+------------------------------- */
+  .hdng-1 {
+    font-size: 1vmax;
+  }
   .hdng-2 {
     font-size: 1.3vmax;
-    margin: 0;
+    letter-spacing: 0.15vmax;
+  }
+  .txt-1 {
+    font-size: 1vmax;
+  }
+  .txt-2 {
+    font-size: 2.25vmax;
     letter-spacing: 0.15vmax;
   }
   .txt-3 {
     font-size: 1.2vmax;
     letter-spacing: 0.1vmax;
+  }
+  .sbtl-1 {
+    font-size: 0.9vmax;
   }
   .icn-1 {
     height: 3vmax;
