@@ -1,9 +1,22 @@
-/*
+/*-----------------------------------------
 VARIABLES
-*/
-/*
+-----------------------------------------*/
+/* -------------------------------
+RESET DEFAULT CSS
+------------------------------- */
+.rmv-p-css {
+  display: inline;
+  margin: 0;
+}
+
+.rmv-link-css {
+  text-decoration: none;
+  color: black;
+}
+
+/* -------------------------------
 MOBILE CSS
-*/
+------------------------------- */
 .bgd-clr-1 {
   background-color: #6464ff;
 }
@@ -63,10 +76,6 @@ TEXT-COLOR
 
 .txt-clr-3 {
   color: #f0f0ff;
-}
-
-.rmv-link-css {
-  text-decoration: none;
 }
 
 body {

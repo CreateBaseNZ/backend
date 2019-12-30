@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Homepage | Creaft</title>
+    <title>Index | Creaft</title>
     <!------------------------------
     Default CSS
     ------------------------------->
     <link rel="stylesheet" href="../../public/stylesheets/global.css" />
+    <link rel="stylesheet" href="../../public/stylesheets/navigation.css" />
     <link rel="stylesheet" href="../../public/stylesheets/sideBar.css" />
     <link rel="stylesheet" href="../../public/stylesheets/notification.css" />
     <link rel="stylesheet" href="../../public/stylesheets/message.css" />
     <link rel="stylesheet" href="../../public/stylesheets/menu.css" />
     <link rel="stylesheet" href="../../public/stylesheets/userMenu.css" />
-    <link rel="stylesheet" href="../../public/stylesheets/navigation.css" />
-
+    <link rel="stylesheet" href="../../public/stylesheets/services.css" />
     <!------------------------------
     Default JavaScript
     ------------------------------->
@@ -111,15 +111,16 @@
           </div>
         </div>
       </div>
-      <!------------------------------
+      <!-----------------------------------------------------------------------------------
       Page (Type: Dynamic)
       THIS IS WHERE YOU ADD THE PAGE
-      ------------------------------->
+      ------------------------------------------------------------------------------------>
       <div class="page">
+        <h3>Welcome Back! Please login to your account</h3>
         <form class="log-in-form" action="http://" method="post">
           <div class="log-in-fld">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="log-in-user-name" />
+            <label for="email">Email</label>
+            <input type="email" name="email" id="log-in-eml" />
           </div>
           <div class="log-in-fld">
             <label for="password">Password</label>
@@ -129,7 +130,13 @@
             <button type="submit">Login</button>
           </div>
         </form>
+        <div>
+          <p class="rmv-p-css">New to Creaft?</p>
+          <a class="rmv-link-css" href="http://">Create Account</a>
+        </div>
       </div>
+      <!-----------------------------------------------------------------------------------
+      ------------------------------------------------------------------------------------>
       <!------------------------------
       User Menu (Type: Default)
       ------------------------------->
@@ -192,6 +199,19 @@
           </a>
         </header>
         <div class="ntfs-cntt"></div>
+      </div>
+      <!------------------------------
+      Services (Type: Default)
+      ------------------------------->
+      <div class="srvs srvs-untgl">
+        <a class="rmv-link-css srv" href="http://">
+          <div class="icn-1 srv-icn"></div>
+          <p class="rmv-p-css txt-3 srv-txt">Make</p>
+        </a>
+        <a class="rmv-link-css srv" href="http://">
+          <div class="icn-1 srv-icn"></div>
+          <p class="rmv-p-css txt-3 srv-txt">Shop</p>
+        </a>
       </div>
     </div>
     <!------------------------------

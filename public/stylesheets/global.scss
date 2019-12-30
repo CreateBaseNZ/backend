@@ -1,6 +1,6 @@
-/*
+/*-----------------------------------------
 VARIABLES
-*/
+-----------------------------------------*/
 
 $clr-1: rgb(100, 100, 255);
 $clr-2: rgb(240, 240, 255);
@@ -13,9 +13,23 @@ $nav-bar-hght-dktp: 4vmax;
 $transition-1: all 0.5s ease-out;
 $fnt-1: Arial, Helvetica, sans-serif;
 
-/*
+/* -------------------------------
+RESET DEFAULT CSS
+------------------------------- */
+
+.rmv-p-css {
+  display: inline;
+  margin: 0;
+}
+
+.rmv-link-css {
+  text-decoration: none;
+  color: black;
+}
+
+/* -------------------------------
 MOBILE CSS
-*/
+------------------------------- */
 
 .bgd-clr-1 {
   background-color: $clr-1;
@@ -78,10 +92,6 @@ TEXT-COLOR
 
 .txt-clr-3 {
   color: $clr-2;
-}
-
-.rmv-link-css {
-  text-decoration: none;
 }
 
 body {

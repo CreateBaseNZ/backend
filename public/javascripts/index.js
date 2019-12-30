@@ -10,10 +10,18 @@ let menuTglBool;
 let userMenuTglBool;
 let msgsTglBool;
 let ntfsTglBool;
+let srvsTglBool;
 let menuTglEvt;
+let menuHvrEvt1;
+let menuHvrEvt2;
+let menuHvrEvt3;
+let menuHvrEvt4;
 let userMenuTglEvt;
+let userMenuTglEvtDktp;
 let msgsTglEvt;
+let msgsTglEvtDktp;
 let ntfsTglEvt;
+let srvsTglEvtDktp;
 
 /* -------------------------------
 INITIALISE
@@ -24,6 +32,7 @@ window.onload = () => {
   userMenuTglBool = false;
   msgsTglBool = false;
   ntfsTglBool = false;
+  srvsTglBool = false;
   menuTglEvt = document
     .querySelector(".menu-btn")
     .addEventListener("click", menuTgl);
@@ -94,13 +103,16 @@ let navSysLogIn = () => {
   ntfsTglEvtDktp = document
     .querySelector(".ntf-btn-dktp")
     .addEventListener("click", ntfsTgl);
+  srvsTglEvtDktp = document
+    .querySelector(".srvs-btn-dktp")
+    .addEventListener("click", srvsTgl);
 };
 
 // Check Authentication (TEMP)
 
 let auth = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve(false);
+    resolve(true);
   }, 1000);
 });
 
@@ -110,6 +122,7 @@ let menuTgl = () => {
   if (userMenuTglBool) userMenuTgl();
   if (msgsTglBool) msgsTgl();
   if (ntfsTglBool) ntfsTgl();
+  if (srvsTglBool) srvsTgl();
   menuTglBool = menuTglBool ? false : true;
   document.querySelector(".menu-dash-1").classList.toggle("menu-dash-tgl");
   document.querySelector(".menu-dash-2").classList.toggle("menu-dash-tgl");
@@ -132,6 +145,7 @@ let userMenuTgl = () => {
   if (menuTglBool) menuTgl();
   if (msgsTglBool) msgsTgl();
   if (ntfsTglBool) ntfsTgl();
+  if (srvsTglBool) srvsTgl();
   userMenuTglBool = userMenuTglBool ? false : true;
   document.querySelector(".user-menu").classList.toggle("user-menu-untgl");
 };
@@ -142,6 +156,7 @@ let msgsTgl = () => {
   if (menuTglBool) menuTgl();
   if (userMenuTglBool) userMenuTgl();
   if (ntfsTglBool) ntfsTgl();
+  if (srvsTglBool) srvsTgl();
   msgsTglBool = msgsTglBool ? false : true;
   document.querySelector(".msgs").classList.toggle("msgs-untgl");
   document.querySelector(".msg-btn").classList.toggle("nav-btn-untgl");
@@ -153,9 +168,21 @@ let ntfsTgl = () => {
   if (menuTglBool) menuTgl();
   if (userMenuTglBool) userMenuTgl();
   if (msgsTglBool) msgsTgl();
+  if (srvsTglBool) srvsTgl();
   ntfsTglBool = ntfsTglBool ? false : true;
   document.querySelector(".ntfs").classList.toggle("ntfs-untgl");
   document.querySelector(".ntf-btn").classList.toggle("nav-btn-untgl");
+};
+
+// Toggle the services icon
+
+let srvsTgl = () => {
+  if (menuTglBool) menuTgl();
+  if (userMenuTglBool) userMenuTgl();
+  if (msgsTglBool) msgsTgl();
+  if (ntfsTglBool) ntfsTgl();
+  srvsTglBool = srvsTglBool ? false : true;
+  document.querySelector(".srvs").classList.toggle("srvs-untgl");
 };
 
 // Date difference object
