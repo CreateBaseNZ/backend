@@ -13,19 +13,21 @@ const conn = mongoose.createConnection(mongoURI);
 const UserSchema = new Schema({
     accountType: {
         type: String,
-        required: true
+        required: [true, 'User type input required'],
+        enum: ['Admin', 'User']
     },
     username: {
         type: String,
-        required: true
+        required: [true, 'Username input required'],
+        maxlength: 15
     },
     email: {
         type: String,
-        required: true
+        required: [true, 'Email input required']
     },
     password: {
         type: String,
-        required: true,
+        required: [true, 'Password input required']
     }
 });
 

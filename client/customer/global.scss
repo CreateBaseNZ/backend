@@ -3,6 +3,7 @@ $clr-2: rgb(240, 240, 255);
 $clr-3: rgb(220, 220, 255);
 $clr-4: rgb(220, 220, 220);
 $clr-5: rgb(230, 230, 230);
+$clr-6: rgb(120, 120, 120);
 $nav-bar-hght: 8vmax;
 $transition-1: all 0.5s ease-out;
 $fnt-1: Arial, Helvetica, sans-serif;
@@ -11,39 +12,63 @@ $fnt-1: Arial, Helvetica, sans-serif;
   background-color: $clr-1;
 }
 
+/* -------------------------------
+TEXT
+------------------------------- */
+
 .hdng-1 {
   font-family: $fnt-1;
   font-size: 2vmax;
   margin: 0;
 }
 
+.hdng-2 {
+  font-family: $fnt-1;
+  font-size: 2.6vmax;
+  margin: 0;
+  letter-spacing: 0.3vmax;
+}
+
 .txt-1 {
   font-family: $fnt-1;
   font-size: 2vmax;
   line-height: 1.4;
+  margin: 0;
 }
 
 .txt-2 {
   font-family: $fnt-1;
   font-size: 4.5vmax;
   letter-spacing: 0.3vmax;
+  margin: 0;
 }
+
+.txt-3 {
+  font-family: $fnt-1;
+  font-size: 2.4vmax;
+  letter-spacing: 0.2vmax;
+  margin: 0;
+}
+
+.sbtl-1 {
+  font-family: $fnt-1;
+  font-size: 1.8vmax;
+}
+
+/* -------------------------------
+TEXT-COLOR
+------------------------------- */
 
 .txt-clr-1 {
   color: rgb(60, 60, 60);
 }
 
 .txt-clr-2 {
-  color: rgb(120, 120, 120);
+  color: $clr-6;
 }
 
 .rmv-link-css {
   text-decoration: none;
-}
-
-.sbtl-1 {
-  font-family: $fnt-1;
-  font-size: 1.8vmax;
 }
 
 body {
@@ -54,6 +79,13 @@ body {
 * {
   box-sizing: border-box;
   transition: $transition-1;
+}
+
+.icn-1 {
+  height: 8vmax;
+  width: 8vmax;
+  border-radius: 4vmax;
+  background-color: $clr-2;
 }
 
 .nav-bar {
@@ -154,11 +186,6 @@ body {
   padding: $nav-bar-hght 0;
 }
 
-.menu {
-  background-color: $clr-3;
-  opacity: 1;
-}
-
 .msgs {
   background-color: $clr-2;
   opacity: 1;
@@ -224,6 +251,20 @@ body {
   width: 100%;
   overflow-y: scroll;
   z-index: 1;
+}
+
+/* -------------------------------
+MESSAGES
+------------------------------- */
+
+.msgs-hdr {
+  width: 100%;
+  display: flex;
+  padding: 1vw 4vw;
+  justify-content: space-between;
+  align-items: center;
+  border-style: none none solid none;
+  border-color: $clr-4;
 }
 
 @media only screen and (min-width: 850px) {
