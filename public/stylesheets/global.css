@@ -1,0 +1,147 @@
+/*-----------------------------------------
+VARIABLES
+-----------------------------------------*/
+/* -------------------------------
+RESET DEFAULT CSS
+------------------------------- */
+.rmv-p-css {
+  display: inline;
+  margin: 0;
+}
+
+.rmv-link-css {
+  text-decoration: none;
+  color: black;
+}
+
+/* -------------------------------
+MOBILE CSS
+------------------------------- */
+.bgd-clr-1 {
+  background-color: #6464ff;
+}
+
+/* -------------------------------
+TEXT
+------------------------------- */
+.hdng-1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2vmax;
+  margin: 0;
+}
+
+.hdng-2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.6vmax;
+  margin: 0;
+  letter-spacing: 0.3vmax;
+}
+
+.txt-1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2vmax;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.txt-2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 4.5vmax;
+  letter-spacing: 0.3vmax;
+  margin: 0;
+}
+
+.txt-3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.4vmax;
+  letter-spacing: 0.2vmax;
+  margin: 0;
+}
+
+.sbtl-1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.8vmax;
+}
+
+/* -------------------------------
+TEXT-COLOR
+------------------------------- */
+.txt-clr-1 {
+  color: #3c3c3c;
+}
+
+.txt-clr-2 {
+  color: #787878;
+}
+
+.txt-clr-3 {
+  color: #f0f0ff;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.icn-1 {
+  height: 8vmax;
+  width: 8vmax;
+  border-radius: 4vmax;
+  background-color: #f0f0ff;
+}
+
+.content {
+  height: 100%;
+  padding: 8vmax 0;
+}
+
+.page {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  z-index: 1;
+}
+
+@media only screen and (min-width: 850px) {
+  .content {
+    padding: 4vmax 0 0 5vmax;
+  }
+  /* -------------------------------
+TEXT
+------------------------------- */
+  .hdng-1 {
+    font-size: 1vmax;
+  }
+  .hdng-2 {
+    font-size: 1.3vmax;
+    letter-spacing: 0.15vmax;
+  }
+  .txt-1 {
+    font-size: 1vmax;
+  }
+  .txt-2 {
+    font-size: 2.25vmax;
+    letter-spacing: 0.15vmax;
+  }
+  .txt-3 {
+    font-size: 1.2vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .sbtl-1 {
+    font-size: 0.9vmax;
+  }
+  .icn-1 {
+    height: 3vmax;
+    width: 3vmax;
+    border-radius: 1.5vmax;
+  }
+}
+/*# sourceMappingURL=global.css.map */

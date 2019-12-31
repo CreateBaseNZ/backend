@@ -1,0 +1,168 @@
+/*-----------------------------------------
+VARIABLES
+-----------------------------------------*/
+
+$clr-1: rgb(100, 100, 255);
+$clr-2: rgb(240, 240, 255);
+$clr-3: rgb(220, 220, 255);
+$clr-4: rgb(220, 220, 220);
+$clr-5: rgb(230, 230, 230);
+$clr-6: rgb(120, 120, 120);
+$nav-bar-hght: 8vmax;
+$nav-bar-hght-dktp: 4vmax;
+$transition-1: all 0.5s ease-out;
+$fnt-1: Arial, Helvetica, sans-serif;
+
+/* -------------------------------
+RESET DEFAULT CSS
+------------------------------- */
+
+.rmv-p-css {
+  display: inline;
+  margin: 0;
+}
+
+.rmv-link-css {
+  text-decoration: none;
+  color: black;
+}
+
+/* -------------------------------
+MOBILE CSS
+------------------------------- */
+
+.bgd-clr-1 {
+  background-color: $clr-1;
+}
+
+/* -------------------------------
+TEXT
+------------------------------- */
+
+.hdng-1 {
+  font-family: $fnt-1;
+  font-size: 2vmax;
+  margin: 0;
+}
+
+.hdng-2 {
+  font-family: $fnt-1;
+  font-size: 2.6vmax;
+  margin: 0;
+  letter-spacing: 0.3vmax;
+}
+
+.txt-1 {
+  font-family: $fnt-1;
+  font-size: 2vmax;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.txt-2 {
+  font-family: $fnt-1;
+  font-size: 4.5vmax;
+  letter-spacing: 0.3vmax;
+  margin: 0;
+}
+
+.txt-3 {
+  font-family: $fnt-1;
+  font-size: 2.4vmax;
+  letter-spacing: 0.2vmax;
+  margin: 0;
+}
+
+.sbtl-1 {
+  font-family: $fnt-1;
+  font-size: 1.8vmax;
+}
+
+/* -------------------------------
+TEXT-COLOR
+------------------------------- */
+
+.txt-clr-1 {
+  color: rgb(60, 60, 60);
+}
+
+.txt-clr-2 {
+  color: $clr-6;
+}
+
+.txt-clr-3 {
+  color: $clr-2;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  transition: $transition-1;
+}
+
+.icn-1 {
+  height: 8vmax;
+  width: 8vmax;
+  border-radius: 4vmax;
+  background-color: $clr-2;
+}
+
+.content {
+  height: 100%;
+  padding: $nav-bar-hght 0;
+}
+
+.page {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  z-index: 1;
+}
+
+@media only screen and (min-width: 850px) {
+  .content {
+    padding: 4vmax 0 0 5vmax;
+  }
+
+  /* -------------------------------
+TEXT
+------------------------------- */
+
+  .hdng-1 {
+    font-size: 1vmax;
+  }
+
+  .hdng-2 {
+    font-size: 1.3vmax;
+    letter-spacing: 0.15vmax;
+  }
+
+  .txt-1 {
+    font-size: 1vmax;
+  }
+
+  .txt-2 {
+    font-size: 2.25vmax;
+    letter-spacing: 0.15vmax;
+  }
+
+  .txt-3 {
+    font-size: 1.2vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  .sbtl-1 {
+    font-size: 0.9vmax;
+  }
+
+  .icn-1 {
+    height: 3vmax;
+    width: 3vmax;
+    border-radius: 1.5vmax;
+  }
+}

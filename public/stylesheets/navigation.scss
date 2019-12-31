@@ -1,0 +1,122 @@
+/*
+VARIABLES
+*/
+
+$clr-1: rgb(100, 100, 255);
+$clr-2: rgb(240, 240, 255);
+$clr-3: rgb(220, 220, 255);
+$clr-4: rgb(220, 220, 220);
+$clr-5: rgb(230, 230, 230);
+$clr-6: rgb(120, 120, 120);
+$nav-bar-hght: 8vmax;
+$nav-bar-hght-dktp: 4vmax;
+$transition-1: all 0.5s ease-out;
+$fnt-1: Arial, Helvetica, sans-serif;
+
+/*
+MOBILE CSS
+*/
+
+.nav-bar {
+  height: $nav-bar-hght;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.nav-bar-hide {
+  height: 0;
+}
+
+.nav-bar-top {
+  position: fixed;
+  top: 0;
+  padding: 1vmax;
+}
+
+.nav-bar-btm {
+  position: fixed;
+  bottom: 0;
+}
+
+.nav-btn {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $clr-2;
+  color: $clr-1;
+  transition: $transition-1;
+}
+
+.nav-btn-untgl {
+  background-color: $clr-1;
+  color: $clr-2;
+}
+
+.nav-icn {
+  height: 3.5vmax;
+  width: 3.5vmax;
+  background-color: rgb(200, 200, 200);
+}
+
+.nav-txt {
+  padding: 0.5vmax 0 0 0;
+  letter-spacing: 0.05vmax;
+}
+
+.nav-bar-dktp {
+  max-height: 0;
+  padding: 0;
+}
+
+.nav-cntt {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 850px) {
+  /* Mobile CSS Reset */
+  .nav-bar-mbl {
+    max-height: 0;
+    padding: 0;
+  }
+
+  .nav-btns-dktp {
+    width: 20vmax;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+  }
+
+  /* Desktop CSS */
+  .nav-bar-dktp {
+    max-height: $nav-bar-hght-dktp;
+    padding: 0.5vmax 1vmax;
+  }
+
+  .nav-btns-dktp-hide {
+    width: 0;
+  }
+
+  .nav-btn-log-out-dktp {
+    height: 3vmax;
+    width: 10vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #nav-btn-signup {
+    border-style: solid;
+    border-width: 0.2vmax;
+    border-radius: 0.5vmax;
+  }
+}
