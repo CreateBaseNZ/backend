@@ -15,7 +15,7 @@ const UserInfo = require("./models/UserInfo");
 
 // specify root for serving static files (i.e. images, CSS, JS files)
 //can have multiple static assets directories. this one's the customer directory
-app.use(express.static(path.join(__dirname, '../views/public')));
+app.use(express.static(path.join(__dirname, '/../views/public')));
 
 // ========================================================================================================================================
 // Passport Authentication - move to another file if sufficiently large (i.e. spanning 20+ lines of code) 
@@ -65,22 +65,24 @@ db.once('open', function(){
 
 //homepage
 app.get('/', function (req,res) {
-    res.sendFile(__dirname + '../views/public/index.html');
+    res.sendFile(path.resolve(__dirname + '/../views/public/index.html'));
 });
 
 //dummySignup
 app.get('/signUpPage', function (req,res) {
-    res.sendFile(__dirname + '../views/public/signup.html');
+    res.sendFile(path.resolve(__dirname + '/../views/public/signup.html'));
 });
 
-//dummySignup submission, saves user to DB as admin by default, hashes password, then redirects to homepage
+//sign up submission, saves user to DB as admin by default, hashes password, then redirects to homepage
 app.post('/signUpSubmission', function (req,res) {
     const form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files) {
 
+        console.log(fields);
+
         bcrypt.hash(fields.password, 10, function(err, hash) {
-            const newUser = new User({ accountType: 'Admin', username: fields.username, email: fields.email, password: hash});
+            const newUser = new User({ accountType: 'Admin', username: fields.displayname, email: fields.email, password: hash});
             newUser.save(function (err) {
                 if (err) return err;
                 console.log("User Saved to DB")

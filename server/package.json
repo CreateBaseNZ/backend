@@ -21,7 +21,9 @@
     "bcrypt": "^3.0.7",
     "formidable": "^1.2.1",
     "http": "0.0.0",
-    "mongodb": "^3.4.1"
+    "mongodb": "^3.4.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "mongoose": "^5.8.2",
