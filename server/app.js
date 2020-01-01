@@ -8,18 +8,22 @@ const mongoose = require('mongoose');
 const formidable = require('formidable');
 const bcrypt = require('bcrypt');
 const path = require('path');
+const session = require("express-session"),
 
 // load User and UserProfile Models
-const User = require("./models/User");
-const UserInfo = require("./models/UserInfo");
+const User = require("/../models/User");
+const UserInfo = require("/../models/UserInfo");
 
 // specify root for serving static files (i.e. images, CSS, JS files)
 //can have multiple static assets directories. this one's the customer directory
 app.use(express.static(path.join(__dirname, '/../views/public')));
 
-// ========================================================================================================================================
-// Passport Authentication - move to another file if sufficiently large (i.e. spanning 20+ lines of code) 
-// ========================================================================================================================================
+//other middleware
+app.use(session({ 
+    resave: false,
+    saveUninitialized: false,
+    secret: "engineeringkits" }));
+
 
 // loads required passport modules
 const passport = require("passport");
@@ -43,21 +47,48 @@ db.on('error', function (err) {
 db.once('open', function(){
     console.log('Database connection established');
 
-// dummy function for deleting a user in our db (deleteOne) or multiple users (deleteMany)
-//    User.deleteOne({ username: 'dummyUser' }, function(err) {
-//         if (!err) {
-//              console.log("User deleted");
-//         }
-//         else {
-//              console.log(err);   
-//         }
-//     });
-
+/**
+    dummy function for deleting a user in our db (deleteOne) or multiple users (deleteMany)
+   User.deleteOne({ username: 'dummyUser' }, function(err) {
+        if (!err) {
+             console.log("User deleted");
+        }
+        else {
+             console.log(err);   
+        }
+    });
+*/
     //displays all documents in our current User collection
     User.find({}, function (error, documents){
         console.log(documents)
-    })
-});
+        })
+    });
+
+
+
+// ========================================================================================================================================
+// Passport
+// ========================================================================================================================================
+
+const localStrategy = new LocalStrategy (
+    function(username, password, done) {
+        User.findOne({ username: username}, function(err, user) {
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.'});
+            }
+            if (!bcrypt.compareSync(password, user.password)) {
+                return done(null, false, { message: 'Incorrect password' });
+            }
+            //if authentication is successful
+            done(null,user);
+        });
+    });
+
+passport.use('local', localStrategy);
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // ========================================================================================================================================
 // Route Handlers - Database - move to another file if sufficiently large (i.e. spanning 20+ lines of code) 
@@ -78,8 +109,6 @@ app.post('/signUpSubmission', function (req,res) {
     const form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files) {
-
-        console.log(fields);
 
         bcrypt.hash(fields.password, 10, function(err, hash) {
             const newUser = new User({ accountType: 'Admin', username: fields.displayname, email: fields.email, password: hash});
