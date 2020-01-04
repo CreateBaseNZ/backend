@@ -17,8 +17,16 @@ module.exports = app => {
   ROUTES
   =======================================================================================*/
 
+  app.get("/services/*", (req, res) => {
+    res.sendFile("error404-2.html", customerRouteOptions);
+  });
+
+  app.get("/company/*", (req, res) => {
+    res.sendFile("error404-2.html", customerRouteOptions);
+  });
+
   app.get("*", (req, res) => {
-    res.sendFile("404.html", customerRouteOptions);
+    res.sendFile("error404-1.html", customerRouteOptions);
   });
 
   /*=======================================================================================
