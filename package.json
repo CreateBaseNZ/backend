@@ -4,7 +4,7 @@
   "description": "Creaft's Web Server",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "Creaft",
   "license": "ISC",
