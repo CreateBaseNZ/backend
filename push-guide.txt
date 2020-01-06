@@ -1,0 +1,14 @@
+// See what's going on
+git status
+
+// Add to the staging area
+git add .
+
+// Commit to git
+git commit -m ""
+
+// Push to GitHub
+git push origin master
+
+// Push to Heroku
+git push heroku master

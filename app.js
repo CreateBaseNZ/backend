@@ -4,6 +4,7 @@ REQUIRED MODULES
 
 const express = require("express");
 const path = require("path");
+const mongoose = require("mongoose");
 
 /*=========================================================================================
 VARIABLES
@@ -11,6 +12,17 @@ VARIABLES
 
 const app = express();
 const port = process.env.PORT || 80;
+
+/*=========================================================================================
+SETUP DATABASE
+=========================================================================================*/
+
+const mongoAtlasURI = require("./config/database.js").mongoAtlasURI;
+mongoose.connect(mongoAtlasURI, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+});
 
 /*=========================================================================================
 SETUP SERVER
