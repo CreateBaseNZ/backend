@@ -22,6 +22,7 @@
     <script src="javascripts/index.js"></script>
     <script src="javascripts/notification.js"></script>
     <script src="javascripts/moment.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
@@ -119,10 +120,10 @@
 
       <div class="page">
         <h3>Welcome to Creaft! Please create your account</h3>
-        <form class="sign-up-form" action="http://" method="post">
+        <form class="sign-up-form" action="/signup/customer" method="post">
           <div class="sign-up-fld">
-            <label for="display-name">Display Name</label>
-            <input type="text" name="display-name" id="sign-up-dspl-name" />
+            <label for="displayName">Display Name</label>
+            <input type="text" name="displayName" id="sign-up-dspl-name" />
           </div>
           <div class="sign-up-fld">
             <label for="email">Email</label>
@@ -133,10 +134,10 @@
             <input type="password" name="password" id="sign-up-pwd" />
           </div>
           <div class="sign-up-fld">
-            <label for="confirm-password">Confirm Password</label>
+            <label for="confirmPassword">Confirm Password</label>
             <input
               type="password"
-              name="confirm-password"
+              name="confirmPassword"
               id="sign-up-cfrm-pwd"
             />
           </div>

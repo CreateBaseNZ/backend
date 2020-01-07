@@ -111,9 +111,9 @@ let navSysLogIn = () => {
 // Check Authentication (TEMP)
 
 let auth = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(false);
-  }, 1000);
+  axios.get("/login-status").then(res => {
+    resolve(res.data.status);
+  });
 });
 
 // Toggle the menu page

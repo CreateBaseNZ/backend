@@ -2,43 +2,93 @@
 REQUIRED MODULES
 =========================================================================================*/
 
+const express = require("express");
 const path = require("path");
+const passport = require("passport");
 
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
+const router = new express.Router();
 const customerRouteOptions = {
   root: path.join(__dirname, "../views/public")
 };
 
-module.exports = app => {
-  /*=======================================================================================
-  ROUTES
-  =======================================================================================*/
+/*=========================================================================================
+MODELS
+=========================================================================================*/
 
-  // @route     Get /
-  // @desc      Homepage
-  // @access    Public
-  app.get("/", (req, res) => {
-    res.sendFile("homepage.html", customerRouteOptions);
-  });
+const Account = require("./../model/Account.js");
 
-  // @route     Get /login
-  // @desc      Login Page
-  // @access    Public
-  app.get("/login", (req, res) => {
-    res.sendFile("login.html", customerRouteOptions);
-  });
+/*=========================================================================================
+ROUTES
+=========================================================================================*/
 
-  // @route     Get /signup
-  // @desc      Signup Page
-  // @access    Public
-  app.get("/signup", (req, res) => {
-    res.sendFile("signup.html", customerRouteOptions);
-  });
+// @route     Get /
+// @desc      Homepage
+// @access    Public
+router.get("/", (req, res) => {
+  res.sendFile("homepage.html", customerRouteOptions);
+});
 
-  /*=======================================================================================
-  END
-  =======================================================================================*/
-};
+// @route     Get /login
+// @desc      Login Page
+// @access    Public
+router.get("/login", (req, res) => {
+  res.sendFile("login.html", customerRouteOptions);
+});
+
+// @route     Get /signup
+// @desc      Signup Page
+// @access    Public
+router.get("/signup", (req, res) => {
+  res.sendFile("signup.html", customerRouteOptions);
+});
+
+// @route     Get /signup/customer
+// @desc      Signup a New Customer Account
+// @access    Public
+router.post(
+  "/signup/customer",
+  passport.authenticate("local-customer-signup", {
+    successRedirect: "/",
+    failureRedirect: "/signup"
+  })
+);
+
+// @route     Get /login/customer
+// @desc      Login Request
+// @access    Public
+router.post(
+  "/login/customer",
+  passport.authenticate("local-customer-login", {
+    successRedirect: "/",
+    failureRedirect: "/login"
+  })
+);
+
+// @route     Get /logout
+// @desc      Get the Login Status
+// @access    Public
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
+// @route     Get /login-status
+// @desc      Get the Login Status
+// @access    Public
+router.get("/login-status", (req, res) => {
+  if (req.isAuthenticated()) return res.send({ status: true });
+});
+
+/*=========================================================================================
+EXPORT ROUTE
+=========================================================================================*/
+
+module.exports = router;
+
+/*=========================================================================================
+END
+=========================================================================================*/

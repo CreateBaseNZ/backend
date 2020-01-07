@@ -2,39 +2,54 @@
 REQUIRED MODULES
 =========================================================================================*/
 
-const express = require("express");
-const path = require("path");
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
-const router = new express.Router();
-const customerRouteOptions = {
-  root: path.join(__dirname, "../views/public")
+const Schema = mongoose.Schema;
+
+/*=========================================================================================
+CREATE ACCOUNT MODEL
+=========================================================================================*/
+
+const AccountSchema = new Schema({
+  type: {
+    type: String
+  },
+  email: {
+    type: String
+  },
+  password: {
+    type: String
+  }
+});
+
+/*=========================================================================================
+
+=========================================================================================*/
+
+AccountSchema.pre("save", async function(next) {
+  // Check if password is modified
+  if (this.isModified("password")) {
+    // Hash the password
+    this.password = await bcrypt.hash(this.password, 8);
+  }
+  // Exit once hashing is completed
+  next();
+});
+
+AccountSchema.methods.validatePassword = async function(password) {
+  return (isMatch = await bcrypt.compare(password, this.password));
 };
 
 /*=========================================================================================
-ROUTES
+EXPORT ACCOUNT MODEL
 =========================================================================================*/
 
-router.get("/services/*", (req, res) => {
-  res.sendFile("error404-2.html", customerRouteOptions);
-});
-
-router.get("/company/*", (req, res) => {
-  res.sendFile("error404-2.html", customerRouteOptions);
-});
-
-router.get("*", (req, res) => {
-  res.sendFile("error404-1.html", customerRouteOptions);
-});
-
-/*=========================================================================================
-EXPORT ROUTE
-=========================================================================================*/
-
-module.exports = router;
+module.exports = Account = mongoose.model("accounts", AccountSchema);
 
 /*=========================================================================================
 END

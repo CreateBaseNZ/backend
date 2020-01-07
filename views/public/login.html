@@ -22,6 +22,7 @@
     <script src="javascripts/index.js"></script>
     <script src="javascripts/notification.js"></script>
     <script src="javascripts/moment.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
@@ -119,7 +120,7 @@
 
       <div class="page">
         <h3>Welcome Back! Please login to your account</h3>
-        <form class="log-in-form" action="http://" method="post">
+        <form class="log-in-form" action="/login/customer" method="post">
           <div class="log-in-fld">
             <label for="email">Email</label>
             <input type="email" name="email" id="log-in-eml" />

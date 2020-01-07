@@ -2,39 +2,32 @@
 REQUIRED MODULES
 =========================================================================================*/
 
-const express = require("express");
-const path = require("path");
+const mongoose = require("mongoose");
 
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
-const router = new express.Router();
-const customerRouteOptions = {
-  root: path.join(__dirname, "../views/public")
-};
+const Schema = mongoose.Schema;
 
 /*=========================================================================================
-ROUTES
+CREATE CUSTOMER MODEL
 =========================================================================================*/
 
-router.get("/services/*", (req, res) => {
-  res.sendFile("error404-2.html", customerRouteOptions);
-});
-
-router.get("/company/*", (req, res) => {
-  res.sendFile("error404-2.html", customerRouteOptions);
-});
-
-router.get("*", (req, res) => {
-  res.sendFile("error404-1.html", customerRouteOptions);
+const CustomerSchema = new Schema({
+  accountId: {
+    type: Schema.Types.ObjectId
+  },
+  displayName: {
+    type: String
+  }
 });
 
 /*=========================================================================================
-EXPORT ROUTE
+EXPORT CUSTOMER MODEL
 =========================================================================================*/
 
-module.exports = router;
+module.exports = Customer = mongoose.model("customers", CustomerSchema);
 
 /*=========================================================================================
 END
