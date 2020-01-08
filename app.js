@@ -51,7 +51,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 /*=========================================================================================
-PASSPORT MIDDLEWARE
+SETUP AUTHENTICATION (PASSPORT JS)
 =========================================================================================*/
 
 app.use(cookieSession({ keys: [keys.cookieKey] }));
