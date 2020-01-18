@@ -41,10 +41,10 @@ const LocalCustomerSignup = new LocalStrategy(
     process.nextTick(() => {
       Account.findOne({ email }, (err, user) => {
         // Check if there is an error found when fetching user
-        if (err) return done(null, false);
+        if (err) return done(err);
         // Check if a user was found
         if (user) return done(null, false);
-        // If there's no error nor ex isting user with the same email
+        // If there's no error nor existing user with the same email
         // Create a new user
         let newUser = new Account({
           type: "customer",
@@ -54,7 +54,7 @@ const LocalCustomerSignup = new LocalStrategy(
         // Save the new user
         newUser.save((err, user) => {
           // Check if there is an error found when saving the new user
-          if (err) return done(null, err);
+          if (err) return done(err);
           // Initiate the new customer detail object and assign values
           let newCustomer = new Customer({
             accountId: user._id,
@@ -63,7 +63,7 @@ const LocalCustomerSignup = new LocalStrategy(
           // Save the new customer detail object to the database
           newCustomer.save((err, customer) => {
             // Check if there is an error
-            if (err) return done(null, err);
+            if (err) return done(err);
             // Return the user if signup is successful
             return done(null, user);
           });
@@ -89,7 +89,7 @@ const LocalCustomerLogin = new LocalStrategy(
     // Find the user that is signing in
     Account.findOne({ email }, (err, user) => {
       // Check if there is an error found when fetching user
-      if (err) return done(null, err);
+      if (err) return done(err);
       // Check if no user was found
       if (!user) return done(null, false);
       // Validate the password of the user

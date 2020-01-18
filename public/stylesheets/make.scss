@@ -1,0 +1,240 @@
+/*=========================================================================================
+VARIABLES
+=========================================================================================*/
+
+// Colours
+$clr-vlt-1: rgb(130, 88, 220);
+$clr-vlt-2: rgb(104, 83, 217);
+$clr-vlt-3: rgb(78, 78, 214);
+$clr-blk-1: rgb(45, 40, 60);
+$clr-blk-2: rgb(50, 45, 65);
+$clr-blk-3: rgb(165, 160, 180); // TEMPORARY
+$clr-wht-1: rgb(255, 255, 255);
+$clr-wht-2: rgb(248, 248, 248);
+$clr-wht-3: rgb(160, 160, 160); // TEMPORARY
+// Font Families
+$fnt-fml-1: "Montserrat", sans-serif;
+$fnt-fml-2: "Poppins", sans-serif;
+
+/*=========================================================================================
+MOBILE CSS
+=========================================================================================*/
+
+/*-----------------------------------------------------------------------------------------
+CLASSES
+-----------------------------------------------------------------------------------------*/
+
+.make-sub-page {
+  height: calc(100% - 16vmax);
+  width: 100%;
+  position: fixed;
+  top: 8vmax;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  padding-bottom: 12vmax;
+  overflow-y: scroll;
+}
+
+.make-sub-page-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.make-sub-page-rght {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.make-sub-hdng {
+  height: 16vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.2vmax;
+}
+
+.make-fld {
+  height: 18vmax;
+  width: 80vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.make-fld-inp {
+  width: 70%;
+  margin: 0.6vmax;
+}
+
+.make-fld-hdng {
+  width: 60%;
+  margin: 0.6vmax;
+  letter-spacing: 0.1vmax;
+}
+
+.make-btns {
+  height: 16vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.make-btn-2 {
+  width: 20vmax;
+}
+
+.make-smry-lbl {
+  width: 30%;
+  padding: 1.5vmax;
+  letter-spacing: 0.1vmax;
+  text-align: right;
+}
+
+.make-smry-txt {
+  width: 70%;
+  padding: 1.5vmax;
+  letter-spacing: 0.1vmax;
+}
+
+/*-----------------------------------------------------------------------------------------
+IDS
+-----------------------------------------------------------------------------------------*/
+
+#make-qck-bld-fld {
+  height: 30vmax;
+}
+
+#make-mdl-lbl {
+  width: 20vmax;
+}
+
+#make-file-name {
+  padding: 2vmax;
+  letter-spacing: 0.1vmax;
+}
+
+#make-note-lbl {
+  width: 90%;
+}
+
+#make-note {
+  height: 100%;
+  width: 100%;
+  border-style: solid;
+  padding: 1.5vmax;
+  resize: none;
+}
+
+#make-qck-bld-btn {
+  margin-top: 4vmax;
+}
+
+#make-smry {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 1vmax;
+  padding: 2vmax;
+}
+
+/*-----------------------------------------------------------------------------------------
+GLOBAL (TEMPORARY)
+-----------------------------------------------------------------------------------------*/
+
+.rmv-file-css {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.rmv-btn-css {
+  border: none;
+  outline: none;
+}
+
+.btn-1 {
+  height: 5vmax;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2.5vmax;
+  letter-spacing: 0.2vmax;
+}
+
+.flt-navs-1 {
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  left: 0vw;
+  height: 12vmax;
+  bottom: 8vmax;
+  padding: 0 6vmax;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.flt-nav-1 {
+  height: 1.6vmax;
+  width: 1.6vmax;
+  border-radius: 0.8vmax;
+  border-style: solid;
+  border-width: 0.4vmax;
+  border-color: $clr-blk-1;
+  background-color: $clr-blk-1;
+  opacity: 0.2;
+}
+
+.flt-nav-1-dsbl {
+  background-color: $clr-wht-1;
+}
+
+.flt-nav-1-slct {
+  height: 2vmax;
+  width: 2vmax;
+  border-radius: 1vmax;
+  border-style: none;
+  background-color: $clr-vlt-3;
+  opacity: 1;
+}
+
+.flt-arw-1 {
+  border-style: solid;
+  border-color: $clr-blk-1;
+  border-width: 0 0.8vmax 0.8vmax 0;
+  padding: 0.8vmax;
+  opacity: 0.6;
+}
+
+.flt-arw-1-dsbl {
+  opacity: 0;
+}
+
+.flt-arw-1-left {
+  transform: rotate(135deg);
+}
+
+.flt-arw-1-rght {
+  transform: rotate(-45deg);
+}
+
+.trst-0 {
+  transition: none;
+}
+
+/*=========================================================================================
+DESKTOP CSS
+=========================================================================================*/
+
+@media only screen and (min-width: 850px) {
+}
+
+/*=========================================================================================
+END
+=========================================================================================*/

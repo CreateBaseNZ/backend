@@ -1,9 +1,18 @@
-/*-----------------------------------------
+/*=========================================================================================
 VARIABLES
------------------------------------------*/
-/* -------------------------------
+=========================================================================================*/
+/*-========================================================================================
+MOBILE CSS
+=========================================================================================*/
+/*-----------------------------------------------------------------------------------------
 RESET DEFAULT CSS
-------------------------------- */
+-----------------------------------------------------------------------------------------*/
+.rmv-h-css {
+  display: inline;
+  margin: 0;
+  font-weight: normal;
+}
+
 .rmv-p-css {
   display: inline;
   margin: 0;
@@ -14,58 +23,49 @@ RESET DEFAULT CSS
   color: black;
 }
 
-/* -------------------------------
-MOBILE CSS
-------------------------------- */
+/*-----------------------------------------------------------------------------------------
+COLOURS
+-----------------------------------------------------------------------------------------*/
 .bgd-clr-1 {
-  background-color: #6464ff;
+  background-color: #4e4ed6;
 }
 
-/* -------------------------------
-TEXT
-------------------------------- */
-.hdng-1 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2vmax;
-  margin: 0;
+.bgd-clr-vlt-1 {
+  background-color: #8258dc;
 }
 
-.hdng-2 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2.6vmax;
-  margin: 0;
-  letter-spacing: 0.3vmax;
+.bgd-clr-vlt-2 {
+  background-color: #6853d9;
 }
 
-.txt-1 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2vmax;
-  line-height: 1.4;
-  margin: 0;
+.bgd-clr-vlt-3 {
+  background-color: #4e4ed6;
 }
 
-.txt-2 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 4.5vmax;
-  letter-spacing: 0.3vmax;
-  margin: 0;
+.bgd-clr-blk-1 {
+  background-color: #2d283c;
 }
 
-.txt-3 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2.4vmax;
-  letter-spacing: 0.2vmax;
-  margin: 0;
+.bgd-clr-blk-2 {
+  background-color: #322d41;
 }
 
-.sbtl-1 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.8vmax;
+.bgd-clr-blk-3 {
+  background-color: #a5a0b4;
 }
 
-/* -------------------------------
-TEXT-COLOR
-------------------------------- */
+.bgd-clr-wht-1 {
+  background-color: white;
+}
+
+.bgd-clr-wht-2 {
+  background-color: #f8f8f8;
+}
+
+.bgd-clr-wht-3 {
+  background-color: #a0a0a0;
+}
+
 .txt-clr-1 {
   color: #3c3c3c;
 }
@@ -78,6 +78,137 @@ TEXT-COLOR
   color: #f0f0ff;
 }
 
+.txt-clr-blk-1 {
+  color: #2d283c;
+}
+
+.txt-clr-blk-2 {
+  color: #322d41;
+}
+
+.txt-clr-blk-3 {
+  color: #a5a0b4;
+}
+
+.txt-clr-wht-1 {
+  color: white;
+}
+
+.txt-clr-wht-2 {
+  color: #f8f8f8;
+}
+
+.txt-clr-wht-3 {
+  color: #a0a0a0;
+}
+
+/*-----------------------------------------------------------------------------------------
+INPUT FIELDS
+-----------------------------------------------------------------------------------------*/
+.inp-txt-1 {
+  height: 4.8vmax;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: #a5a0b4;
+  padding: 0 1vmax;
+  letter-spacing: 0.2vmax;
+}
+
+.inp-txt-1:focus {
+  outline: none;
+  border-bottom-color: #2d283c;
+  color: #2d283c;
+}
+
+.inp-txt-1::-webkit-input-placeholder {
+  color: #a5a0b4;
+}
+
+.inp-txt-1:-ms-input-placeholder {
+  color: #a5a0b4;
+}
+
+.inp-txt-1::-ms-input-placeholder {
+  color: #a5a0b4;
+}
+
+.inp-txt-1::placeholder {
+  color: #a5a0b4;
+}
+
+.inp-slct-1 {
+  height: 4.8vmax;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: #a5a0b4;
+  padding: 0 1vmax;
+  letter-spacing: 0.2vmax;
+}
+
+.inp-slct-1:focus {
+  outline: none;
+  border-bottom-color: #2d283c;
+  color: #2d283c;
+}
+
+.inp-slct-1 option {
+  height: 4.8vmax;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: #a5a0b4;
+  padding: 0 1vmax;
+  letter-spacing: 0.2vmax;
+}
+
+/*-----------------------------------------------------------------------------------------
+TEXTS
+-----------------------------------------------------------------------------------------*/
+.hdng-1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  font-weight: bold;
+}
+
+.hdng-2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.6vmax;
+  font-weight: bold;
+  letter-spacing: 0.3vmax;
+}
+
+.hdng-3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 3.2vmax;
+  font-weight: bold;
+}
+
+.txt-1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2vmax;
+}
+
+.txt-2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 4.5vmax;
+  letter-spacing: 0.3vmax;
+  margin: 0;
+}
+
+.txt-3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.4vmax;
+  letter-spacing: 0.2vmax;
+  margin: 0;
+}
+
+.sbtl-1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8vmax;
+}
+
+/* -------------------------------
+TEXT-COLOR
+------------------------------- */
 body {
   margin: 0;
   height: 100vh;
@@ -104,19 +235,44 @@ body {
 
 .page {
   position: fixed;
-  height: 100%;
+  height: calc(100% - 16vmax);
   width: 100%;
   overflow-y: scroll;
   z-index: 1;
+}
+
+.page-nav-bar-hide {
+  height: calc(100% - 8vmax);
 }
 
 @media only screen and (min-width: 850px) {
   .content {
     padding: 4vmax 0 0 5vmax;
   }
-  /* -------------------------------
-TEXT
-------------------------------- */
+  /*-----------------------------------------------------------------------------------------
+  INPUT FIELDS
+  -----------------------------------------------------------------------------------------*/
+  .inp-txt-1 {
+    height: 2.4vmax;
+    border-width: 0.05vmax;
+    padding: 0 0.5vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .inp-slct-1 {
+    height: 2.4vmax;
+    border-width: 0.05vmax;
+    padding: 0 0.5vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .inp-slct-1 option {
+    height: 2.4vmax;
+    border-width: 0.05vmax;
+    padding: 0 0.5vmax;
+    letter-spacing: 0.1vmax;
+  }
+  /*-----------------------------------------------------------------------------------------
+  TEXTS
+  -----------------------------------------------------------------------------------------*/
   .hdng-1 {
     font-size: 1vmax;
   }

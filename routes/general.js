@@ -22,6 +22,18 @@ MODELS
 const Account = require("./../model/Account.js");
 
 /*=========================================================================================
+MIDDLEWARE
+=========================================================================================*/
+
+const restrictedPages = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/login");
+  }
+};
+
+/*=========================================================================================
 ROUTES
 =========================================================================================*/
 
@@ -81,6 +93,10 @@ router.get("/logout", (req, res) => {
 // @access    Public
 router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
+});
+
+router.get("/3d-printing", restrictedPages, (req, res) => {
+  res.sendFile("make.html", customerRouteOptions);
 });
 
 /*=========================================================================================

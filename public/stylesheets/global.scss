@@ -1,6 +1,8 @@
-/*-----------------------------------------
+/*=========================================================================================
 VARIABLES
------------------------------------------*/
+=========================================================================================*/
+
+// Temporary
 
 $clr-1: rgb(100, 100, 255);
 $clr-2: rgb(240, 240, 255);
@@ -13,9 +15,34 @@ $nav-bar-hght-dktp: 4vmax;
 $transition-1: all 0.5s ease-out;
 $fnt-1: Arial, Helvetica, sans-serif;
 
-/* -------------------------------
+// Official
+// Colours
+$clr-vlt-1: rgb(130, 88, 220);
+$clr-vlt-2: rgb(104, 83, 217);
+$clr-vlt-3: rgb(78, 78, 214);
+$clr-blk-1: rgb(45, 40, 60);
+$clr-blk-2: rgb(50, 45, 65);
+$clr-blk-3: rgb(165, 160, 180); // TEMPORARY
+$clr-wht-1: rgb(255, 255, 255);
+$clr-wht-2: rgb(248, 248, 248);
+$clr-wht-3: rgb(160, 160, 160); // TEMPORARY
+// Font Families
+$fnt-fml-1: "Montserrat", sans-serif;
+$fnt-fml-2: "Poppins", sans-serif;
+
+/*-========================================================================================
+MOBILE CSS
+=========================================================================================*/
+
+/*-----------------------------------------------------------------------------------------
 RESET DEFAULT CSS
-------------------------------- */
+-----------------------------------------------------------------------------------------*/
+
+.rmv-h-css {
+  display: inline;
+  margin: 0;
+  font-weight: normal;
+}
 
 .rmv-p-css {
   display: inline;
@@ -27,72 +54,192 @@ RESET DEFAULT CSS
   color: black;
 }
 
-/* -------------------------------
-MOBILE CSS
-------------------------------- */
-
+/*-----------------------------------------------------------------------------------------
+COLOURS
+-----------------------------------------------------------------------------------------*/
+// TEMPORARY
 .bgd-clr-1 {
-  background-color: $clr-1;
+  background-color: $clr-vlt-3;
 }
 
-/* -------------------------------
-TEXT
-------------------------------- */
+.bgd-clr-vlt-1 {
+  background-color: $clr-vlt-1;
+}
+
+.bgd-clr-vlt-2 {
+  background-color: $clr-vlt-2;
+}
+
+.bgd-clr-vlt-3 {
+  background-color: $clr-vlt-3;
+}
+
+.bgd-clr-blk-1 {
+  background-color: $clr-blk-1;
+}
+
+.bgd-clr-blk-2 {
+  background-color: $clr-blk-2;
+}
+
+.bgd-clr-blk-3 {
+  background-color: $clr-blk-3;
+}
+
+.bgd-clr-wht-1 {
+  background-color: $clr-wht-1;
+}
+
+.bgd-clr-wht-2 {
+  background-color: $clr-wht-2;
+}
+
+.bgd-clr-wht-3 {
+  background-color: $clr-wht-3;
+}
+
+.txt-clr-1 {
+  // TEMPORARY
+  color: rgb(60, 60, 60);
+}
+
+.txt-clr-2 {
+  // TEMPORARY
+  color: $clr-6;
+}
+
+.txt-clr-3 {
+  // TEMPORARY
+  color: $clr-2;
+}
+
+.txt-clr-blk-1 {
+  color: $clr-blk-1;
+}
+
+.txt-clr-blk-2 {
+  color: $clr-blk-2;
+}
+
+.txt-clr-blk-3 {
+  color: $clr-blk-3;
+}
+
+.txt-clr-wht-1 {
+  color: $clr-wht-1;
+}
+
+.txt-clr-wht-2 {
+  color: $clr-wht-2;
+}
+
+.txt-clr-wht-3 {
+  color: $clr-wht-3;
+}
+
+/*-----------------------------------------------------------------------------------------
+INPUT FIELDS
+-----------------------------------------------------------------------------------------*/
+
+.inp-txt-1 {
+  height: 4.8vmax;
+  // Border
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: $clr-blk-3;
+  // Spacing
+  padding: 0 1vmax;
+  letter-spacing: 0.2vmax;
+}
+
+.inp-txt-1:focus {
+  outline: none;
+  border-bottom-color: $clr-blk-1;
+  color: $clr-blk-1;
+}
+
+.inp-txt-1::placeholder {
+  color: $clr-blk-3;
+}
+
+.inp-slct-1 {
+  height: 4.8vmax;
+  // Border
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: $clr-blk-3;
+  // Spacing
+  padding: 0 1vmax;
+  letter-spacing: 0.2vmax;
+}
+
+.inp-slct-1:focus {
+  outline: none;
+  border-bottom-color: $clr-blk-1;
+  color: $clr-blk-1;
+}
+
+.inp-slct-1 option {
+  height: 4.8vmax;
+  // Border
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: $clr-blk-3;
+  // Spacing
+  padding: 0 1vmax;
+  letter-spacing: 0.2vmax;
+}
+
+/*-----------------------------------------------------------------------------------------
+TEXTS
+-----------------------------------------------------------------------------------------*/
 
 .hdng-1 {
-  font-family: $fnt-1;
+  font-family: $fnt-fml-2;
   font-size: 2vmax;
-  margin: 0;
+  font-weight: bold;
 }
 
 .hdng-2 {
-  font-family: $fnt-1;
+  font-family: $fnt-fml-2;
   font-size: 2.6vmax;
-  margin: 0;
+  font-weight: bold;
   letter-spacing: 0.3vmax;
 }
 
+.hdng-3 {
+  font-family: $fnt-fml-2;
+  font-size: 3.2vmax;
+  font-weight: bold;
+}
+
 .txt-1 {
-  font-family: $fnt-1;
+  font-family: $fnt-fml-1;
   font-size: 2vmax;
-  line-height: 1.4;
-  margin: 0;
 }
 
 .txt-2 {
-  font-family: $fnt-1;
+  font-family: $fnt-fml-1;
   font-size: 4.5vmax;
   letter-spacing: 0.3vmax;
   margin: 0;
 }
 
 .txt-3 {
-  font-family: $fnt-1;
+  font-family: $fnt-fml-1;
   font-size: 2.4vmax;
   letter-spacing: 0.2vmax;
   margin: 0;
 }
 
 .sbtl-1 {
-  font-family: $fnt-1;
+  font-family: $fnt-fml-1;
   font-size: 1.8vmax;
 }
 
 /* -------------------------------
 TEXT-COLOR
 ------------------------------- */
-
-.txt-clr-1 {
-  color: rgb(60, 60, 60);
-}
-
-.txt-clr-2 {
-  color: $clr-6;
-}
-
-.txt-clr-3 {
-  color: $clr-2;
-}
 
 body {
   margin: 0;
@@ -118,10 +265,14 @@ body {
 
 .page {
   position: fixed;
-  height: 100%;
+  height: calc(100% - 16vmax);
   width: 100%;
   overflow-y: scroll;
   z-index: 1;
+}
+
+.page-nav-bar-hide {
+  height: calc(100% - 8vmax);
 }
 
 @media only screen and (min-width: 850px) {
@@ -129,9 +280,40 @@ body {
     padding: 4vmax 0 0 5vmax;
   }
 
-  /* -------------------------------
-TEXT
-------------------------------- */
+  /*-----------------------------------------------------------------------------------------
+  INPUT FIELDS
+  -----------------------------------------------------------------------------------------*/
+
+  .inp-txt-1 {
+    height: 2.4vmax;
+    // Border
+    border-width: 0.05vmax;
+    // Spacing
+    padding: 0 0.5vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  .inp-slct-1 {
+    height: 2.4vmax;
+    // Border
+    border-width: 0.05vmax;
+    // Spacing
+    padding: 0 0.5vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  .inp-slct-1 option {
+    height: 2.4vmax;
+    // Border
+    border-width: 0.05vmax;
+    // Spacing
+    padding: 0 0.5vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  /*-----------------------------------------------------------------------------------------
+  TEXTS
+  -----------------------------------------------------------------------------------------*/
 
   .hdng-1 {
     font-size: 1vmax;
