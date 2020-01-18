@@ -214,6 +214,7 @@ GLOBAL (TEMPORARY)
   border-color: #2d283c;
   background-color: #2d283c;
   opacity: 0.2;
+  margin: 2vmax;
 }
 
 .flt-nav-1-dsbl {
@@ -235,6 +236,7 @@ GLOBAL (TEMPORARY)
   border-width: 0 0.8vmax 0.8vmax 0;
   padding: 0.8vmax;
   opacity: 0.6;
+  margin: 1vmax;
 }
 
 .flt-arw-1-dsbl {

@@ -110,6 +110,10 @@ INPUT FIELDS
   border-width: 0.1vmax;
   border-style: none none solid none;
   border-bottom-color: #a5a0b4;
+  border-radius: 0vmax;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   padding: 0 1vmax;
   letter-spacing: 0.2vmax;
 }
@@ -141,6 +145,10 @@ INPUT FIELDS
   border-width: 0.1vmax;
   border-style: none none solid none;
   border-bottom-color: #a5a0b4;
+  border-radius: 0vmax;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   padding: 0 1vmax;
   letter-spacing: 0.2vmax;
 }
@@ -156,6 +164,10 @@ INPUT FIELDS
   border-width: 0.1vmax;
   border-style: none none solid none;
   border-bottom-color: #a5a0b4;
+  border-radius: 0vmax;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   padding: 0 1vmax;
   letter-spacing: 0.2vmax;
 }
