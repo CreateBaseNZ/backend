@@ -36,6 +36,8 @@ CLASSES
   justify-content: center;
   padding-bottom: 12vmax;
   overflow-y: scroll;
+  background-color: $clr-wht-1;
+  z-index: 1;
 }
 
 .make-sub-page-left {
@@ -102,6 +104,19 @@ CLASSES
   letter-spacing: 0.1vmax;
 }
 
+.make-sub-exit {
+  z-index: 6;
+  padding-bottom: 0;
+}
+
+.make-sub-page-hd {
+  z-index: -1;
+}
+
+.make-exit-btn {
+  margin: 6vmax 18vmin;
+}
+
 /*-----------------------------------------------------------------------------------------
 IDS
 -----------------------------------------------------------------------------------------*/
@@ -143,6 +158,10 @@ IDS
   padding: 2vmax;
 }
 
+#make-sub-page-load {
+  align-content: center;
+}
+
 /*-----------------------------------------------------------------------------------------
 GLOBAL (TEMPORARY)
 -----------------------------------------------------------------------------------------*/
@@ -178,6 +197,7 @@ GLOBAL (TEMPORARY)
   bottom: 8vmax;
   padding: 0 6vmax;
   background-color: rgba(255, 255, 255, 0.6);
+  z-index: 5;
 }
 
 .flt-nav-1 {
@@ -230,13 +250,139 @@ GLOBAL (TEMPORARY)
   transition: none;
 }
 
+// Loading Style 1
+
+.load-1 {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.load-1 div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid $clr-vlt-1;
+  border-radius: 50%;
+  animation: load-1 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $clr-vlt-1 transparent transparent transparent;
+}
+.load-1 div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.load-1 div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.load-1 div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes load-1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /*=========================================================================================
 DESKTOP CSS
 =========================================================================================*/
 
 @media only screen and (min-width: 850px) {
-}
+  .make-sub-page {
+    height: initial;
+    position: relative;
+    width: 100%;
+    padding-bottom: 0;
+  }
 
+  .make-sub-page-left {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .make-sub-page-rght {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .make-sub-hdng {
+    height: 6vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  #make-sub-page-0 {
+    position: fixed;
+    top: 4vmax;
+    left: 5vmax;
+    display: flex;
+    height: calc(100% - 4vmax);
+    width: 25vmax;
+    background-color: $clr-wht-2;
+    overflow: hidden;
+  }
+
+  #make-page {
+    height: calc(100% - 4vmax);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 25vmax;
+  }
+
+  #make-mdl-vwr {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  /*-----------------------------------------------------------------------------------------
+  GLOBAL (TEMPORARY)
+  -----------------------------------------------------------------------------------------*/
+
+  .btn-1 {
+    height: 2.5vmax;
+    border-radius: 1.25vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  .flt-navs-1 {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  .flt-nav-1 {
+    height: 0.8vmax;
+    width: 0.8vmax;
+    border-radius: 0.4vmax;
+    border-width: 0.2vmax;
+    margin: 1vmax;
+  }
+
+  .flt-nav-1-slct {
+    height: 1vmax;
+    width: 1vmax;
+    border-radius: 0.5vmax;
+  }
+
+  .flt-arw-1 {
+    border-width: 0 0.4vmax 0.4vmax 0;
+    padding: 0.4vmax;
+    margin: 0.5vmax;
+  }
+}
 /*=========================================================================================
 END
 =========================================================================================*/

@@ -7,6 +7,18 @@ let makeValidity = {
   uploadModel: false,
   orderDetails: false
 };
+let makeQuickBuildOptions = {
+  prototype: {
+    material: "fdm_pla",
+    quality: "draft",
+    strength: "normal"
+  },
+  mechanical: {
+    material: "fdm_petg",
+    quality: "normal",
+    strength: "strong"
+  }
+};
 
 // Elements
 let makeNavigationBack;
@@ -33,7 +45,6 @@ const makeInit = () => {
   makeNavigationPage3 = document.querySelector("#make-flt-nav-3");
   makeNavigationPage4 = document.querySelector("#make-flt-nav-4");
   makeNavigationPage5 = document.querySelector("#make-flt-nav-5");
-
   makeNavigationEventListener();
 };
 
@@ -247,6 +258,23 @@ const makeValidateUpload = extension => {
 };
 
 /*-----------------------------------------------------------------------------------------
+BUILD TYPE
+-----------------------------------------------------------------------------------------*/
+
+const makeQuickBuild = () => {
+  const build = document.querySelector("#make-qck-bld").value;
+  const options = makeQuickBuildOptions[build];
+  document.querySelector("#make-mtrl").value = options.material;
+  document.querySelector("#make-qlty").value = options.quality;
+  document.querySelector("#make-strn").value = options.strength;
+  makeShowPage(4);
+};
+
+const makeCustomBuild = () => {
+  makeShowPage(3);
+};
+
+/*-----------------------------------------------------------------------------------------
 ORDER DETAILS
 -----------------------------------------------------------------------------------------*/
 
@@ -288,11 +316,15 @@ const makeSummary = () => {
 
 const makeGetDetails = () => {
   let details = new FormData(document.querySelector("#make-mdl-form"));
-  details.append("material", document.querySelector("#make-mtrl").value);
+  const material = document.querySelector("#make-mtrl").value.split("_");
+  details.append("process", material[0]);
+  details.append("material", material[1]);
   details.append("quality", document.querySelector("#make-qlty").value);
   details.append("strength", document.querySelector("#make-strn").value);
   details.append("colour", document.querySelector("#make-clr").value);
   details.append("quantity", document.querySelector("#make-qnty").value);
+  details.append("note", document.querySelector("#make-note").value);
+  details.append("date", moment()._d);
   return details;
 };
 
@@ -300,16 +332,44 @@ const makeGetDetails = () => {
 SUBMIT
 -----------------------------------------------------------------------------------------*/
 
-const makeSubmit = () => {
+const makeProceed = type => {
+  document
+    .querySelector(`#make-sub-page-${type}`)
+    .classList.remove("make-sub-page-hd");
+};
+
+const makeNo = type => {
+  document
+    .querySelector(`#make-sub-page-${type}`)
+    .classList.add("make-sub-page-hd");
+};
+
+const makeCancel = () => {
+  document
+    .querySelector("#make-sub-page-cancel")
+    .classList.add("make-sub-page-hd");
+  document
+    .querySelector("#make-sub-page-exit")
+    .classList.remove("make-sub-page-hd");
+};
+
+const makeCheckout = async () => {
   let submission = makeGetDetails();
-  axios
-    .post("/make/submit", submission)
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  document
+    .querySelector("#make-sub-page-load")
+    .classList.remove("make-sub-page-hd");
+
+  try {
+    let response = await axios.post("/make/submit", submission);
+  } catch (error) {}
+
+  document
+    .querySelector("#make-sub-page-thnk")
+    .classList.remove("make-sub-page-hd");
+
+  document
+    .querySelector("#make-sub-page-load")
+    .classList.add("make-sub-page-hd");
 };
 
 /*=========================================================================================

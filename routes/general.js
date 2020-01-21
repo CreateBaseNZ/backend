@@ -81,11 +81,18 @@ router.post(
 );
 
 // @route     Get /logout
-// @desc      Get the Login Status
+// @desc      Logout the user
 // @access    Public
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
+});
+
+// @route     Get /3d-printing
+// @desc      Get the Make Page
+// @access    Public
+router.get("/3d-printing", restrictedPages, (req, res) => {
+  res.sendFile("make.html", customerRouteOptions);
 });
 
 // @route     Get /login-status
@@ -93,10 +100,6 @@ router.get("/logout", (req, res) => {
 // @access    Public
 router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
-});
-
-router.get("/3d-printing", restrictedPages, (req, res) => {
-  res.sendFile("make.html", customerRouteOptions);
 });
 
 /*=========================================================================================

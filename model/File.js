@@ -9,7 +9,7 @@ VARIABLES
 =========================================================================================*/
 
 let GridFS;
-const mongoAtlasURI = require("./../config/database.js").mongoAtlasURI;
+const mongoAtlasURI = require("../config/database.js").mongoAtlasURI;
 const gridFsStream = require("gridfs-stream");
 
 /*=========================================================================================

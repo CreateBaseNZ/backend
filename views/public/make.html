@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Index | Creaft</title>
     <!------------------------------
@@ -183,6 +186,7 @@
             <button
               class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1"
               id="make-qck-bld-btn"
+              onclick="makeQuickBuild();"
             >
               Quick
             </button>
@@ -190,6 +194,8 @@
           <div class="make-fld">
             <button
               class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1"
+              id="make-cstm-bld-btn"
+              onclick="makeCustomBuild();"
             >
               Custom
             </button>
@@ -215,9 +221,9 @@
               id="make-mtrl"
               onchange="makeSummary();"
             >
-              <option value="fdmPLA" default>FDM - PLA</option>
-              <option value="fdmPETG">FDM - PETG</option>
-              <option value="fdmABS">FDM - ABS</option>
+              <option value="fdm_pla" default>FDM - PLA</option>
+              <option value="fdm_petg">FDM - PETG</option>
+              <option value="fdm_abs">FDM - ABS</option>
             </select>
           </div>
           <div class="make-fld">
@@ -357,17 +363,133 @@
           <div class="make-btns">
             <button
               class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1"
-              onclick="makeSubmit()"
+              onclick="makeProceed('checkout');"
             >
               Checkout
             </button>
             <button
               class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1"
+              onclick="makeProceed('cancel');"
             >
               Cancel
             </button>
           </div>
         </div>
+        <!---------------------------------------------------------------------------------
+        CHECKOUT
+        ---------------------------------------------------------------------------------->
+        <div
+          class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
+          id="make-sub-page-checkout"
+        >
+          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">Checkout</h2>
+          <button
+            class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+            onclick="makeCheckout();"
+          >
+            Yes
+          </button>
+          <button
+            class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+            onclick="makeNo('checkout');"
+          >
+            No
+          </button>
+        </div>
+        <!---------------------------------------------------------------------------------
+        CANCEL
+        ---------------------------------------------------------------------------------->
+        <div
+          class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
+          id="make-sub-page-cancel"
+        >
+          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">Cancel</h2>
+          <button
+            class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+            onclick="makeCancel();"
+          >
+            Yes
+          </button>
+          <button
+            class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+            onclick="makeNo('cancel');"
+          >
+            No
+          </button>
+        </div>
+        <!---------------------------------------------------------------------------------
+        EXIT
+        ---------------------------------------------------------------------------------->
+        <div
+          class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
+          id="make-sub-page-exit"
+        >
+          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">Exit</h2>
+          <a
+            href="/3d-printing"
+            class="rmv-link-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+          >
+            New Order
+          </a>
+          <a
+            href="/checkout"
+            class="rmv-link-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+          >
+            Checkout
+          </a>
+          <a
+            href="/"
+            class="rmv-link-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+          >
+            Homepage
+          </a>
+        </div>
+        <!---------------------------------------------------------------------------------
+        EXIT
+        ---------------------------------------------------------------------------------->
+        <div
+          class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
+          id="make-sub-page-thnk"
+        >
+          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">
+            Thank You!
+          </h2>
+          <a
+            href="/3d-printing"
+            class="rmv-link-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+          >
+            New Order
+          </a>
+          <a
+            href="/checkout"
+            class="rmv-link-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+          >
+            Checkout
+          </a>
+          <a
+            href="/"
+            class="rmv-link-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
+          >
+            Homepage
+          </a>
+        </div>
+        <!---------------------------------------------------------------------------------
+        LOADING
+        ---------------------------------------------------------------------------------->
+        <div
+          class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
+          id="make-sub-page-load"
+        >
+          <div class="load-1">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <!---------------------------------------------------------------------------------
+        NAVIGATION
+        ---------------------------------------------------------------------------------->
         <div class="flt-navs-1">
           <div
             class="flt-arw-1 flt-arw-1-left flt-arw-1-dsbl trst-0"
