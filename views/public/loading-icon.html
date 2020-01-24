@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Loading Icon</title>
+  <style>
+    :root {
+      --diamond-sh: 116px;
+      --diamond-lo: 200px;
+      --bg-light: #f8f8f8;
+      --bg-dark: #2d283c;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+    }
+
+    .container {
+      position: relative;
+      flex: 1;
+    }
+
+    .light {
+      background: var(--bg-light);
+    }
+
+    .dark {
+      background: var(--bg-dark);
+    }
+
+    .layer-light,
+    .layer-dark {
+      height: var(--diamond-sh);
+      width: var(--diamond-sh);
+      background: var(--bg-light);
+      opacity: 0.3;
+      position: absolute;
+      border-radius: 10px;
+      margin-top: calc( var(--diamond-sh) / -2 );
+      margin-left: calc( var(--diamond-sh) / -2 );
+    }
+
+    .layer-dark {
+      background: var(--bg-dark); 
+    }
+
+    .layer-1 {
+      animation: animate1 2.5s forwards infinite;
+    }
+
+    .layer-2 {
+      animation: animate2 2.5s forwards infinite;
+    }
+
+    .layer-3 {
+      animation: animate3 2.5s forwards infinite;
+    }
+
+    @keyframes animate1 {
+      0%, 100% {
+        top: calc(50% - 30px);
+        left: 50%;
+        transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+        animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+      }
+      25% {
+        top: 50%;
+        left: 60%;
+        transform: perspective(600px) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+        animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+      }
+      50% {
+        top: calc(50% + 30px);
+        left: 50%;
+        transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+        animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+      }
+      75% {
+        top: 50%;
+        left: 40%;
+        transform: perspective(600px) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+        animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+      }
+    }
+
+    @keyframes animate2 {
+      0%, 100% {
+        top: 50%;
+        left: 50%;
+        transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+        animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+      }
+      25% {
+        top: 50%;
+        left: 50%;
+        transform: perspective(600px) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+        animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+      }
+      50% {
+        top: 50%;
+        left: 50%;
+        transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+        animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+      }
+      75% {
+        top: 50%;
+        left: 50%;
+        transform: perspective(600px) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+        animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+      }
+    }
+
+    @keyframes animate3 {
+      0%, 100% {
+        top: calc(50% + 30px);
+        left: 50%;
+        transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+        animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+      }
+      25% {
+        top: 50%;
+        left: 40%;
+        transform: perspective(600px) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+        animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+      }
+      50% {
+        top: calc(50% - 30px);
+        left: 50%;
+        transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+        animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+      }
+      75% {
+        top: 50%;
+        left: 60%;
+        transform: perspective(600px) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+        animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container light">
+    <div class="layer-dark layer-1"></div>
+    <div class="layer-dark layer-2"></div>
+    <div class="layer-dark layer-3"></div>
+  </div>
+
+  <div class="container dark">
+    <div class="layer-light layer-1"></div>
+    <div class="layer-light layer-2"></div>
+    <div class="layer-light layer-3"></div>
+  </div>
+</body>
+</html>
