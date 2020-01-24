@@ -27,7 +27,7 @@ let srvsTglEvtDktp;
 INITIALISE
 ------------------------------- */
 
-window.onload = () => {
+indexInit = () => {
   menuTglBool = false;
   userMenuTglBool = false;
   msgsTglBool = false;
@@ -63,7 +63,6 @@ window.onload = () => {
       }
     })
     .catch(err => console.log(err));
-  makeInit();
 };
 
 /* -------------------------------

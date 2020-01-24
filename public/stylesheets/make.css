@@ -129,6 +129,16 @@ CLASSES
   margin: 6vmax 18vmin;
 }
 
+.make-smry-lbl {
+  padding: 0.75vmax;
+  letter-spacing: 0.05vmax;
+}
+
+.make-smry-txt {
+  padding: 0.75vmax;
+  letter-spacing: 0.05vmax;
+}
+
 /*-----------------------------------------------------------------------------------------
 IDS
 -----------------------------------------------------------------------------------------*/
@@ -177,191 +187,95 @@ IDS
       align-content: center;
 }
 
-/*-----------------------------------------------------------------------------------------
-GLOBAL (TEMPORARY)
------------------------------------------------------------------------------------------*/
-.rmv-file-css {
-  height: 0;
-  width: 0;
-  overflow: hidden;
-}
-
-.rmv-btn-css {
-  border: none;
-  outline: none;
-}
-
-.btn-1 {
-  height: 5vmax;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 2.5vmax;
-  letter-spacing: 0.2vmax;
-}
-
-.flt-navs-1 {
-  position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100vw;
-  left: 0vw;
-  height: 12vmax;
-  bottom: 8vmax;
-  padding: 0 6vmax;
-  background-color: rgba(255, 255, 255, 0.6);
-  z-index: 5;
-}
-
-.flt-nav-1 {
-  height: 1.6vmax;
-  width: 1.6vmax;
-  border-radius: 0.8vmax;
-  border-style: solid;
-  border-width: 0.4vmax;
-  border-color: #2d283c;
-  background-color: #2d283c;
-  opacity: 0.2;
-  margin: 2vmax;
-}
-
-.flt-nav-1-dsbl {
-  background-color: white;
-}
-
-.flt-nav-1-slct {
-  height: 2vmax;
-  width: 2vmax;
-  border-radius: 1vmax;
-  border-style: none;
-  background-color: #4e4ed6;
-  opacity: 1;
-}
-
-.flt-arw-1 {
-  border-style: solid;
-  border-color: #2d283c;
-  border-width: 0 0.8vmax 0.8vmax 0;
-  padding: 0.8vmax;
-  opacity: 0.6;
-  margin: 1vmax;
-}
-
-.flt-arw-1-dsbl {
-  opacity: 0;
-}
-
-.flt-arw-1-left {
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
-}
-
-.flt-arw-1-rght {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.trst-0 {
-  -webkit-transition: none;
-  transition: none;
-}
-
-.load-1 {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.load-1 div {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #8258dc;
-  border-radius: 50%;
-  -webkit-animation: load-1 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-          animation: load-1 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #8258dc transparent transparent transparent;
-}
-
-.load-1 div:nth-child(1) {
-  -webkit-animation-delay: -0.45s;
-          animation-delay: -0.45s;
-}
-
-.load-1 div:nth-child(2) {
-  -webkit-animation-delay: -0.3s;
-          animation-delay: -0.3s;
-}
-
-.load-1 div:nth-child(3) {
-  -webkit-animation-delay: -0.15s;
-          animation-delay: -0.15s;
-}
-
-@-webkit-keyframes load-1 {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-@keyframes load-1 {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
 /*=========================================================================================
 DESKTOP CSS
 =========================================================================================*/
 @media only screen and (min-width: 850px) {
+  /*---------------------------------------------------------------------------------------
+  CLASSES
+  ---------------------------------------------------------------------------------------*/
   .make-sub-page {
-    height: initial;
+    height: 26vmax;
     position: relative;
     width: 100%;
     padding-bottom: 0;
+    top: 0;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-right: 8vmax;
+    overflow: hidden;
   }
   .make-sub-page-left {
     -webkit-transform: translateX(0);
             transform: translateX(0);
     opacity: 1;
+    height: 5vmax;
+    overflow: hidden;
   }
   .make-sub-page-rght {
     -webkit-transform: translateX(0);
             transform: translateX(0);
     opacity: 1;
+    height: 5vmax;
+    overflow: hidden;
   }
   .make-sub-hdng {
-    height: 6vmax;
+    height: 5vmax;
     letter-spacing: 0.1vmax;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding: 0 2vmax;
   }
+  .make-sub-page-hd {
+    z-index: -1;
+  }
+  .make-sub-exit {
+    z-index: 6;
+    padding-bottom: 0;
+    position: fixed;
+    top: 4vmax;
+    left: 5vmax;
+    height: calc(100% - 4vmax);
+    width: calc(100% - 5vmax);
+  }
+  .make-sub-page-hd {
+    z-index: -1;
+    opacity: 0;
+  }
+  .make-exit-btn {
+    margin: 3vmax 9vmin;
+  }
+  .make-fld {
+    height: 9vmax;
+    width: 40vmin;
+  }
+  .make-fld-inp {
+    width: 70%;
+    margin: 0.3vmax;
+  }
+  .make-fld-hdng {
+    width: 60%;
+    margin: 0.3vmax;
+    letter-spacing: 0.05vmax;
+  }
+  .make-btns {
+    height: 8vmax;
+  }
+  .make-btn-2 {
+    width: 10vmax;
+  }
+  .make-sub-hdng-exit {
+    height: 16vmax;
+    font-size: 3vmax;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  /*---------------------------------------------------------------------------------------
+  IDS
+  ---------------------------------------------------------------------------------------*/
   #make-sub-page-0 {
     position: fixed;
     top: 4vmax;
@@ -389,6 +303,8 @@ DESKTOP CSS
         -ms-flex-align: start;
             align-items: flex-start;
     padding-left: 25vmax;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
   }
   #make-mdl-vwr {
     height: 0;
@@ -397,37 +313,66 @@ DESKTOP CSS
     opacity: 0;
     z-index: -1;
   }
-  /*-----------------------------------------------------------------------------------------
-  GLOBAL (TEMPORARY)
-  -----------------------------------------------------------------------------------------*/
-  .btn-1 {
-    height: 2.5vmax;
-    border-radius: 1.25vmax;
-    letter-spacing: 0.1vmax;
+  #make-qck-bld-fld {
+    height: 15vmax;
   }
-  .flt-navs-1 {
+  #make-mdl-lbl {
+    width: 10vmax;
+  }
+  #make-file-name {
+    padding: 1vmax;
+    letter-spacing: 0.05vmax;
+  }
+  #make-note-fld {
+    height: 10max;
+    width: 60vmin;
+  }
+  #make-note {
+    padding: 0.75vmax;
+  }
+  #make-qck-bld-btn {
+    margin-top: 2vmax;
+  }
+  #make-smry {
     height: 0;
     width: 0;
     overflow: hidden;
     opacity: 0;
     z-index: -1;
+    padding: 0;
   }
-  .flt-nav-1 {
-    height: 0.8vmax;
-    width: 0.8vmax;
-    border-radius: 0.4vmax;
-    border-width: 0.2vmax;
-    margin: 1vmax;
+  #make-smry-btns {
+    width: 60vmin;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    padding: 0 0 0 20vmin;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
-  .flt-nav-1-slct {
-    height: 1vmax;
-    width: 1vmax;
-    border-radius: 0.5vmax;
+  #make-sub-page-5 {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
-  .flt-arw-1 {
-    border-width: 0 0.4vmax 0.4vmax 0;
-    padding: 0.4vmax;
-    margin: 0.5vmax;
+  #make-smry-dktp {
+    height: 40%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+  }
+  #make-mdl-vwr-dktp {
+    height: 60%;
   }
 }
 
