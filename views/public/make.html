@@ -34,7 +34,7 @@
     <script src="javascripts/make.js"></script>
   </head>
 
-  <body>
+  <body onload="indexInit(); makeInit();">
     <!------------------------------
     Header Navigation Bar (Default)
     ------------------------------->
@@ -131,12 +131,57 @@
         <!---------------------------------------------------------------------------------
         DESKTOP SUMMARY
         ---------------------------------------------------------------------------------->
-        <div class="make-sub-page" id="make-sub-page-0"></div>
+        <div class="make-sub-page" id="make-sub-page-0">
+          <div id="make-mdl-vwr-dktp"></div>
+          <div id="make-smry-dktp">
+            <h3 class="rmv-h-css make-smry-lbl txt-1 txt-clr-blk-3">file:</h3>
+            <p
+              class="rmv-p-css make-smry-txt txt-1 txt-clr-blk-1"
+              id="make-smry-file-name"
+            ></p>
+            <h3 class="rmv-h-css make-smry-lbl txt-1 txt-clr-blk-3">
+              material:
+            </h3>
+            <p
+              class="rmv-p-css make-smry-txt txt-1 txt-clr-blk-1"
+              id="make-smry-mtrl"
+            ></p>
+            <h3 class="rmv-h-css make-smry-lbl txt-1 txt-clr-blk-3">
+              quality:
+            </h3>
+            <p
+              class="rmv-p-css make-smry-txt txt-1 txt-clr-blk-1"
+              id="make-smry-qlty"
+            ></p>
+            <h3 class="rmv-h-css make-smry-lbl txt-1 txt-clr-blk-3">
+              strength:
+            </h3>
+            <p
+              class="rmv-p-css make-smry-txt txt-1 txt-clr-blk-1"
+              id="make-smry-strn"
+            ></p>
+            <h3 class="rmv-h-css make-smry-lbl txt-1 txt-clr-blk-3">colour:</h3>
+            <p
+              class="rmv-p-css make-smry-txt txt-1 txt-clr-blk-1"
+              id="make-smry-clr"
+            ></p>
+            <h3 class="rmv-h-css make-smry-lbl txt-1 txt-clr-blk-3">
+              quantity:
+            </h3>
+            <p
+              class="rmv-p-css make-smry-txt txt-1 txt-clr-blk-1"
+              id="make-smry-qnty"
+            ></p>
+          </div>
+        </div>
         <!---------------------------------------------------------------------------------
         UPLOAD MODEL
         ---------------------------------------------------------------------------------->
         <div class="make-sub-page" id="make-sub-page-1">
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">
+          <h2
+            class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2"
+            id="make-sub-hdng-mdl"
+          >
             Upload Model
           </h2>
           <div class="make-fld">
@@ -165,7 +210,10 @@
         BUILD TYPE
         ---------------------------------------------------------------------------------->
         <div class="make-sub-page make-sub-page-rght" id="make-sub-page-2">
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">
+          <h2
+            class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2"
+            id="make-sub-hdng-bld-type"
+          >
             Build Type
           </h2>
           <div class="make-fld" id="make-qck-bld-fld">
@@ -186,7 +234,7 @@
             <button
               class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1"
               id="make-qck-bld-btn"
-              onclick="makeQuickBuild();"
+              onclick="makeQuickBuild(); makeSummary();"
             >
               Quick
             </button>
@@ -195,7 +243,7 @@
             <button
               class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1"
               id="make-cstm-bld-btn"
-              onclick="makeCustomBuild();"
+              onclick="makeCustomBuild(); makeSummary();"
             >
               Custom
             </button>
@@ -205,7 +253,10 @@
         BUILD OPTIONS
         ---------------------------------------------------------------------------------->
         <div class="make-sub-page make-sub-page-rght" id="make-sub-page-3">
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">
+          <h2
+            class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2"
+            id="make-sub-hdng-bld-opts"
+          >
             Build Options
           </h2>
           <div class="make-fld">
@@ -267,7 +318,10 @@
         ORDER DETAILS
         ---------------------------------------------------------------------------------->
         <div class="make-sub-page make-sub-page-rght" id="make-sub-page-4">
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">
+          <h2
+            class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2"
+            id="make-sub-hdng-bld-dtls"
+          >
             Order Details
           </h2>
           <div class="make-fld">
@@ -310,7 +364,12 @@
         COMPLETE
         ---------------------------------------------------------------------------------->
         <div class="make-sub-page make-sub-page-rght" id="make-sub-page-5">
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">Complete</h2>
+          <h2
+            class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2"
+            id="make-sub-hdng-bld-smry"
+          >
+            Complete
+          </h2>
           <div class="bgd-clr-wht-2" id="make-smry">
             <h3 class="rmv-h-css make-smry-lbl txt-1 txt-clr-blk-3">file:</h3>
             <p
@@ -360,7 +419,7 @@
             >
             <textarea name="note" class="inp-txt-1" id="make-note"></textarea>
           </div>
-          <div class="make-btns">
+          <div class="make-btns" id="make-smry-btns">
             <button
               class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1"
               onclick="makeProceed('checkout');"
@@ -382,7 +441,7 @@
           class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
           id="make-sub-page-checkout"
         >
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">Checkout</h2>
+          <h2 class="rmv-h-css make-sub-hdng make-sub-hdng-exit hdng-3 txt-clr-blk-2">Checkout</h2>
           <button
             class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
             onclick="makeCheckout();"
@@ -403,7 +462,7 @@
           class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
           id="make-sub-page-cancel"
         >
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">Cancel</h2>
+          <h2 class="rmv-h-css make-sub-hdng make-sub-hdng-exit hdng-3 txt-clr-blk-2">Cancel</h2>
           <button
             class="rmv-btn-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
             onclick="makeCancel();"
@@ -424,7 +483,7 @@
           class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
           id="make-sub-page-exit"
         >
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">Exit</h2>
+          <h2 class="rmv-h-css make-sub-hdng make-sub-hdng-exit hdng-3 txt-clr-blk-2">Exit</h2>
           <a
             href="/3d-printing"
             class="rmv-link-css make-btn-2 btn-1 bgd-clr-vlt-3 txt-clr-wht-1 hdng-1 make-exit-btn"
@@ -451,7 +510,7 @@
           class="make-sub-page make-sub-exit make-sub-page-hd trst-0"
           id="make-sub-page-thnk"
         >
-          <h2 class="rmv-h-css make-sub-hdng hdng-3 txt-clr-blk-2">
+          <h2 class="rmv-h-css make-sub-hdng make-sub-hdng-exit hdng-3 txt-clr-blk-2">
             Thank You!
           </h2>
           <a

@@ -102,6 +102,13 @@ router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
 });
 
+// @route     Get /test
+// @desc
+// @access    Public
+router.get("/test", (req, res) => {
+  res.sendFile("loading-icon.html", customerRouteOptions);
+});
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

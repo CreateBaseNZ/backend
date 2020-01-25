@@ -1,6 +1,6 @@
-/*
+/*=========================================================================================
 VARIABLES
-*/
+=========================================================================================*/
 
 $clr-1: rgb(100, 100, 255);
 $clr-2: rgb(240, 240, 255);
@@ -13,9 +13,9 @@ $nav-bar-hght-dktp: 4vmax;
 $transition-1: all 0.5s ease-out;
 $fnt-1: Arial, Helvetica, sans-serif;
 
-/*
+/*=========================================================================================
 MOBILE CSS
-*/
+=========================================================================================*/
 
 .nav-bar {
   height: $nav-bar-hght;
@@ -81,6 +81,82 @@ MOBILE CSS
   overflow: hidden;
 }
 
+/*-----------------------------------------------------------------------------------------
+PAGE FLOATING NAVIGATION 1
+-----------------------------------------------------------------------------------------*/
+
+.flt-navs-1 {
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  left: 0vw;
+  height: 12vmax;
+  bottom: 8vmax;
+  padding: 0 6vmax;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 5;
+}
+
+.flt-nav-1 {
+  height: 1.6vmax;
+  width: 1.6vmax;
+  border-radius: 0.8vmax;
+  border-style: solid;
+  border-width: 0.4vmax;
+  border-color: $clr-blk-1;
+  background-color: $clr-blk-1;
+  opacity: 0.2;
+  margin: 2vmax;
+}
+
+.flt-nav-1-dsbl {
+  background-color: $clr-wht-1;
+}
+
+.flt-nav-1-slct {
+  height: 2vmax;
+  width: 2vmax;
+  border-radius: 1vmax;
+  border-style: none;
+  background-color: $clr-vlt-3;
+  opacity: 1;
+}
+
+.flt-arw-1 {
+  border-style: solid;
+  border-color: $clr-blk-1;
+  border-width: 0 0.8vmax 0.8vmax 0;
+  padding: 0.8vmax;
+  opacity: 0.6;
+  margin: 1vmax;
+}
+
+.flt-arw-1-dsbl {
+  opacity: 0;
+}
+
+.flt-arw-1-left {
+  transform: rotate(135deg);
+}
+
+.flt-arw-1-down {
+  transform: rotate(45deg);
+}
+
+.flt-arw-1-rght {
+  transform: rotate(-45deg);
+}
+
+.flt-arw-1-up {
+  transform: rotate(-135deg);
+}
+
+/*=========================================================================================
+DESKTOP CSS
+=========================================================================================*/
+
 @media only screen and (min-width: 850px) {
   /* Mobile CSS Reset */
   .nav-bar-mbl {
@@ -119,4 +195,49 @@ MOBILE CSS
     border-width: 0.2vmax;
     border-radius: 0.5vmax;
   }
+
+  /*---------------------------------------------------------------------------------------
+  PAGE FLOATING NAVIGATION 1
+  ---------------------------------------------------------------------------------------*/
+
+  .flt-navs-1 {
+    height: calc(100% - 4vmax);
+    width: 8vmax;
+    top: 4vmax;
+    left: calc(100% - 8vmax);
+    padding: 8vmax 0;
+    flex-direction: column;
+  }
+
+  .flt-nav-1 {
+    height: 0.8vmax;
+    width: 0.8vmax;
+    border-radius: 0.4vmax;
+    border-width: 0.2vmax;
+    margin: 1vmax;
+  }
+
+  .flt-nav-1-slct {
+    height: 1vmax;
+    width: 1vmax;
+    border-radius: 0.5vmax;
+  }
+
+  .flt-arw-1 {
+    border-width: 0 0.4vmax 0.4vmax 0;
+    padding: 0.4vmax;
+    margin: 0.5vmax;
+  }
+
+  .flt-arw-1-left {
+    transform: rotate(-135deg);
+  }
+
+  .flt-arw-1-rght {
+    transform: rotate(45deg);
+  }
 }
+
+/*=========================================================================================
+END
+=========================================================================================*/

@@ -28,6 +28,11 @@ let makeNavigationPage2;
 let makeNavigationPage3;
 let makeNavigationPage4;
 let makeNavigationPage5;
+let makeHeaderPage1;
+let makeHeaderPage2;
+let makeHeaderPage3;
+let makeHeaderPage4;
+let makeHeaderPage5;
 
 /*=========================================================================================
 FUNCTIONS
@@ -41,10 +46,15 @@ const makeInit = () => {
   makeNavigationBack = document.querySelector("#make-flt-arw-left");
   makeNavigationNext = document.querySelector("#make-flt-arw-rght");
   makeNavigationPage1 = document.querySelector("#make-flt-nav-1");
+  makeHeaderPage1 = document.querySelector("#make-sub-hdng-mdl");
   makeNavigationPage2 = document.querySelector("#make-flt-nav-2");
+  makeHeaderPage2 = document.querySelector("#make-sub-hdng-bld-type");
   makeNavigationPage3 = document.querySelector("#make-flt-nav-3");
+  makeHeaderPage3 = document.querySelector("#make-sub-hdng-bld-opts");
   makeNavigationPage4 = document.querySelector("#make-flt-nav-4");
+  makeHeaderPage4 = document.querySelector("#make-sub-hdng-bld-dtls");
   makeNavigationPage5 = document.querySelector("#make-flt-nav-5");
+  makeHeaderPage5 = document.querySelector("#make-sub-hdng-bld-smry");
   makeNavigationEventListener();
 };
 
@@ -55,6 +65,7 @@ NAVIGATION EVENT HANDLER
 const makeNavigationEventListener = () => {
   let maxPageNumber = makeMaxPageNumber();
   makeNavigationPage1.addEventListener("click", () => makeShowPage(1));
+  makeHeaderPage1.addEventListener("click", () => makeShowPage(1));
 
   if (selectedMakePage <= 1) {
     makeNavigationBack.removeEventListener("click", makePreviousPage);
@@ -76,6 +87,9 @@ const makeNavigationEventListener = () => {
     makeNavigationPage2.removeEventListener("click", () => makeShowPage(2));
     makeNavigationPage3.removeEventListener("click", () => makeShowPage(3));
     makeNavigationPage4.removeEventListener("click", () => makeShowPage(4));
+    makeHeaderPage2.removeEventListener("click", () => makeShowPage(2));
+    makeHeaderPage3.removeEventListener("click", () => makeShowPage(3));
+    makeHeaderPage4.removeEventListener("click", () => makeShowPage(4));
     makeNavigationPage2.classList.add("flt-nav-1-dsbl");
     makeNavigationPage3.classList.add("flt-nav-1-dsbl");
     makeNavigationPage4.classList.add("flt-nav-1-dsbl");
@@ -83,6 +97,9 @@ const makeNavigationEventListener = () => {
     makeNavigationPage2.addEventListener("click", () => makeShowPage(2));
     makeNavigationPage3.addEventListener("click", () => makeShowPage(3));
     makeNavigationPage4.addEventListener("click", () => makeShowPage(4));
+    makeHeaderPage2.addEventListener("click", () => makeShowPage(2));
+    makeHeaderPage3.addEventListener("click", () => makeShowPage(3));
+    makeHeaderPage4.addEventListener("click", () => makeShowPage(4));
     makeNavigationPage2.classList.remove("flt-nav-1-dsbl");
     makeNavigationPage3.classList.remove("flt-nav-1-dsbl");
     makeNavigationPage4.classList.remove("flt-nav-1-dsbl");
@@ -90,9 +107,11 @@ const makeNavigationEventListener = () => {
 
   if (!makeValidity.orderDetails) {
     makeNavigationPage5.removeEventListener("click", () => makeShowPage(5));
+    makeHeaderPage5.removeEventListener("click", () => makeShowPage(5));
     makeNavigationPage5.classList.add("flt-nav-1-dsbl");
   } else {
     makeNavigationPage5.addEventListener("click", () => makeShowPage(5));
+    makeHeaderPage5.addEventListener("click", () => makeShowPage(5));
     makeNavigationPage5.classList.remove("flt-nav-1-dsbl");
   }
 };
@@ -247,12 +266,11 @@ const makeShortenFileName = name => {
 const makeValidateUpload = extension => {
   let errors = [];
 
-  // [TEMPORARY] for testing
-  // const string = extension.toUpperCase();
+  const string = extension.toUpperCase();
 
-  // if (string != "STL" && string != "OBJ" && string != "3MF") {
-  //   errors.push("Invalid File");
-  // }
+  if (string != "STL" && string != "OBJ" && string != "3MF") {
+    errors.push("Invalid File");
+  }
 
   return errors;
 };
