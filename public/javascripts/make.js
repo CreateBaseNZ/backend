@@ -330,6 +330,22 @@ const makeSummary = () => {
   document.querySelector("#make-smry-strn").innerHTML = details.get("strength");
   document.querySelector("#make-smry-clr").innerHTML = details.get("colour");
   document.querySelector("#make-smry-qnty").innerHTML = details.get("quantity");
+  document.querySelector("#make-smry-file-name-dktp").innerHTML = name;
+  document.querySelector("#make-smry-mtrl-dktp").innerHTML = details.get(
+    "material"
+  );
+  document.querySelector("#make-smry-qlty-dktp").innerHTML = details.get(
+    "quality"
+  );
+  document.querySelector("#make-smry-strn-dktp").innerHTML = details.get(
+    "strength"
+  );
+  document.querySelector("#make-smry-clr-dktp").innerHTML = details.get(
+    "colour"
+  );
+  document.querySelector("#make-smry-qnty-dktp").innerHTML = details.get(
+    "quantity"
+  );
 };
 
 const makeGetDetails = () => {

@@ -89,8 +89,86 @@ MOBILE CSS
 }
 
 /*-----------------------------------------------------------------------------------------
-PAGE NAVIGATION 1
+PAGE FLOATING NAVIGATION 1
 -----------------------------------------------------------------------------------------*/
+.flt-navs-1 {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  left: 0vw;
+  height: 12vmax;
+  bottom: 8vmax;
+  padding: 0 6vmax;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 5;
+}
+
+.flt-nav-1 {
+  height: 1.6vmax;
+  width: 1.6vmax;
+  border-radius: 0.8vmax;
+  border-style: solid;
+  border-width: 0.4vmax;
+  border-color: #2d283c;
+  background-color: #2d283c;
+  opacity: 0.2;
+  margin: 2vmax;
+}
+
+.flt-nav-1-dsbl {
+  background-color: white;
+}
+
+.flt-nav-1-slct {
+  height: 2vmax;
+  width: 2vmax;
+  border-radius: 1vmax;
+  border-style: none;
+  background-color: #4e4ed6;
+  opacity: 1;
+}
+
+.flt-arw-1 {
+  border-style: solid;
+  border-color: #2d283c;
+  border-width: 0 0.8vmax 0.8vmax 0;
+  padding: 0.8vmax;
+  opacity: 0.6;
+  margin: 1vmax;
+}
+
+.flt-arw-1-dsbl {
+  opacity: 0;
+}
+
+.flt-arw-1-left {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.flt-arw-1-down {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.flt-arw-1-rght {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.flt-arw-1-up {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+
 /*=========================================================================================
 DESKTOP CSS
 =========================================================================================*/
@@ -135,6 +213,45 @@ DESKTOP CSS
     border-style: solid;
     border-width: 0.2vmax;
     border-radius: 0.5vmax;
+  }
+  /*---------------------------------------------------------------------------------------
+  PAGE FLOATING NAVIGATION 1
+  ---------------------------------------------------------------------------------------*/
+  .flt-navs-1 {
+    height: calc(100% - 4vmax);
+    width: 8vmax;
+    top: 4vmax;
+    left: calc(100% - 8vmax);
+    padding: 8vmax 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .flt-nav-1 {
+    height: 0.8vmax;
+    width: 0.8vmax;
+    border-radius: 0.4vmax;
+    border-width: 0.2vmax;
+    margin: 1vmax;
+  }
+  .flt-nav-1-slct {
+    height: 1vmax;
+    width: 1vmax;
+    border-radius: 0.5vmax;
+  }
+  .flt-arw-1 {
+    border-width: 0 0.4vmax 0.4vmax 0;
+    padding: 0.4vmax;
+    margin: 0.5vmax;
+  }
+  .flt-arw-1-left {
+    -webkit-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+  }
+  .flt-arw-1-rght {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
   }
 }
 
