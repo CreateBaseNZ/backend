@@ -1,0 +1,78 @@
+$dark-1: #877da9;
+$dark-2: #322d41;
+$dark-3: #2d283c;
+
+$light-1: #ffffff;
+$light-2: #f8f8f8;
+$light-3: #c7c2d5;
+
+$montserrat: 'Montserrat', sans-serif;
+$poppins: 'Poppins', sans-serif;
+
+// General Styles
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $light-1;
+  color: black;
+  font-family: $poppins;
+  line-height: 1.5; 
+  background: $light-1;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+
+    .item {
+      flex: 1;
+    }
+
+    // Hello
+    #hello {
+      display: grid;
+      grid-template-areas: 
+        'logo logo'
+        'hello hello'
+        'login signup';
+
+
+      #hello-logo {
+        display: block;
+        grid-area: logo;
+        width: 15vw;
+        margin: auto auto;
+      }
+
+      #hello-creator {
+        grid-area: hello;
+        text-align: center;
+      }
+
+      #hello-login {
+        grid-area: login;
+        text-align: right;
+      }
+
+      #hello-signup {
+        grid-area: signup;
+      }
+    }
+
+    // Slide
+    #slide {
+      background: $dark-3;
+      flex: 1;
+    }
+
+    #login {
+      display: none;
+    }
+  }
+}
+
+
+
