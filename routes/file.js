@@ -15,7 +15,6 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const GridFS = require("./../model/File.js");
 const Make = require("./../model/Make.js");
 const Comment = require("./../model/Comment.js");
 
@@ -31,6 +30,30 @@ const restrictedPages = (req, res, next) => {
   }
 };
 const upload = require("./../config/upload.js");
+
+/*=========================================================================================
+GRIDFS
+=========================================================================================*/
+
+const gridFsStream = require("gridfs-stream");
+
+let GridFS;
+const mongoAtlasURI = require("./../config/database.js").mongoAtlasURI;
+
+mongoose.createConnection(
+  mongoAtlasURI,
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  },
+  (error, client) => {
+    if (error) throw error;
+
+    GridFS = gridFsStream(client.db, mongoose.mongo);
+    GridFS.collection("fs");
+  }
+);
 
 /*=========================================================================================
 ROUTES
