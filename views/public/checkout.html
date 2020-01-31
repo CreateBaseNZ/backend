@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Index | Creaft</title>
-    <!------------------------------
-    Default CSS
-    ------------------------------->
+    <!-------------------------------------------------------------------------------------
+    DEFAULT CSS
+    -------------------------------------------------------------------------------------->
     <link rel="stylesheet" href="stylesheets/global.css" />
     <link rel="stylesheet" href="stylesheets/navigation.css" />
     <link rel="stylesheet" href="stylesheets/sideBar.css" />
@@ -17,16 +17,21 @@
     <link rel="stylesheet" href="stylesheets/userMenu.css" />
     <link rel="stylesheet" href="stylesheets/services.css" />
     <link rel="stylesheet" href="stylesheets/loading.css" />
-    <!------------------------------
-    Default JavaScript
-    ------------------------------->
+    <!-------------------------------------------------------------------------------------
+    DEFAULT JAVASCRIPT
+    -------------------------------------------------------------------------------------->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="javascripts/index.js"></script>
     <script src="javascripts/notification.js"></script>
     <script src="javascripts/moment.js"></script>
+    <!-------------------------------------------------------------------------------------
+    CUSTOM CSS AND JAVASCRIPT
+    -------------------------------------------------------------------------------------->
+    <link rel="stylesheet" href="stylesheets/checkout.css" />
+    <script src="javascripts/checkout.js"></script>
   </head>
 
-  <body>
+  <body onload="indexInit(); checkoutInit();">
     <!------------------------------
     Header Navigation Bar (Default)
     ------------------------------->
@@ -119,36 +124,138 @@
       CHECKOUT PAGE
       ==================================================================================-->
 
-      <div class="page" id="checkout-page">
+      <div class="page" id="checkout-pg">
         <!---------------------------------------------------------------------------------
         SUMMARY PAGE (DESKTOP ONLY)
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-page" id="checkout-sub-page-0"></div>
+        <div class="checkout-sub-pg" id="checkout-sub-pg-0"></div>
 
         <!---------------------------------------------------------------------------------
         CART PAGE
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-page" id="checkout-sub-page-1"></div>
+        <div class="checkout-sub-pg" id="checkout-sub-pg-1">
+          <h2
+            class="checkout-sub-hdng rmv-h-css hdng-3 txt-clr-blk-2"
+            id="checkout-cart-hdng"
+          >
+            Cart
+          </h2>
+
+          <div class="checkout-sub-sub-pgs">
+            <!-----------------------------------------------------------------------------
+            3D PRINTING CART
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-sub-sub-pg" id="cart-sub-pg-prnt">
+              <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+                3D Printing
+              </h3>
+            </div>
+
+            <!-----------------------------------------------------------------------------
+            MARKETPLACE CART
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-sub-sub-pg" id="cart-sub-pg-mkpl">
+              <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+                Marketplace
+              </h3>
+            </div>
+
+            <!-----------------------------------------------------------------------------
+            DISCOUNT
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-sub-sub-pg" id="cart-sub-pg-dsct">
+              <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+                Discount
+              </h3>
+            </div>
+
+            <!-----------------------------------------------------------------------------
+            MANUFACTURING SPEED
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-sub-sub-pg" id="cart-sub-pg-mnft-spd">
+              <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+                Manufacturing Speed
+              </h3>
+            </div>
+
+            <!-----------------------------------------------------------------------------
+            PRE-SHIPPING TOTAL
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-sub-sub-pg" id="cart-sub-pg-prc">
+              <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+                Pre-Shipping Total
+              </h3>
+            </div>
+          </div>
+        </div>
 
         <!---------------------------------------------------------------------------------
         SHIPPING PAGE
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-page" id="checkout-sub-page-2"></div>
+        <div class="checkout-sub-pg" id="checkout-sub-pg-2">
+          <h2
+            class="checkout-sub-hdng rmv-h-css hdng-3 txt-clr-blk-2"
+            id="checkout-shpg-hdng"
+          >
+            Shipping
+          </h2>
+
+          <div class="checkout-sub-sub-pgs">
+            <!-----------------------------------------------------------------------------
+            SHIPPING ADDRESS
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-sub-sub-pg">
+              <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+                Shipping Address
+              </h3>
+            </div>
+
+            <!-----------------------------------------------------------------------------
+            SHIPPING METHOD
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-sub-sub-pg">
+              <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+                Shipping Method
+              </h3>
+            </div>
+          </div>
+        </div>
 
         <!---------------------------------------------------------------------------------
         PAYMENT PAGE
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-page" id="checkout-sub-page-3"></div>
+        <div class="checkout-sub-pg" id="checkout-sub-pg-3">
+          <h2
+            class="checkout-sub-hdng rmv-h-css hdng-3 txt-clr-blk-2"
+            id="checkout-pymt-hdng"
+          >
+            Payment
+          </h2>
+        </div>
 
         <!---------------------------------------------------------------------------------
         COMPLETION PAGE
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-page" id="checkout-sub-page-4"></div>
+        <div class="checkout-sub-pg" id="checkout-sub-pg-4">
+          <h2
+            class="checkout-sub-hdng rmv-h-css hdng-3 txt-clr-blk-2"
+            id="checkout-cmpt-hdng"
+          >
+            Completion
+          </h2>
+        </div>
 
         <!---------------------------------------------------------------------------------
         NAVIGATION SYSTEM

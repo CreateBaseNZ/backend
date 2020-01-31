@@ -1,0 +1,56 @@
+/*=========================================================================================
+VARIABLES
+=========================================================================================*/
+
+/*=========================================================================================
+MOBILE CSS
+=========================================================================================*/
+
+.checkout-sub-pg {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkout-sub-hdng {
+  height: 10vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.2vmax;
+}
+
+.checkout-sub-sub-pgs {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 14vmax 0 4vmax;
+}
+
+.checkout-sub-sub-pg {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkout-sub-sub-hdng {
+  width: 100%;
+  display: flex;
+  letter-spacing: 0.1vmax;
+  border-bottom-style: solid;
+  border-width: 0.3vmax;
+  padding: 1vmax 2vmax;
+  margin: 2vmax 0;
+}
+
+/*=========================================================================================
+DESKTOP CSS
+=========================================================================================*/
+
+@media only screen and (min-width: 850px) {
+}
+
+/*=========================================================================================
+END
+=========================================================================================*/

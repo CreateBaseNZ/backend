@@ -90,9 +90,16 @@ router.get("/logout", (req, res) => {
 
 // @route     Get /3d-printing
 // @desc      Get the Make Page
-// @access    Public
+// @access    Private
 router.get("/3d-printing", restrictedPages, (req, res) => {
   res.sendFile("make.html", customerRouteOptions);
+});
+
+// @route     Get /checkout
+// @desc      Get the Make Page
+// @access    Private
+router.get("/checkout", (req, res) => {
+  res.sendFile("checkout.html", customerRouteOptions);
 });
 
 // @route     Get /login-status
