@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffffff;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  background: #ffffff;
+}
+
+body .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 100vh;
+}
+
+body .container .item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+body .container #hello {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: 'logo logo' 'hello hello' 'login signup';
+}
+
+body .container #hello #hello-logo {
+  display: block;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: logo;
+  width: 15vw;
+  margin: auto auto;
+}
+
+body .container #hello #hello-creator {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: hello;
+  text-align: center;
+}
+
+body .container #hello #hello-login {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: login;
+  text-align: right;
+}
+
+body .container #hello #hello-signup {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: signup;
+}
+
+body .container #slide {
+  background: #2d283c;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+body .container #login {
+  display: none;
+}

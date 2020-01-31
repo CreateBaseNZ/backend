@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "sass": "node-sass -w public/stylesheets/ -o public/stylesheets/ --recursive"
   },
   "author": "Creaft",
   "license": "ISC",
