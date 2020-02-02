@@ -174,7 +174,15 @@ input {
     letter-spacing: 2px;
     font-weight: 100;
   }
+
+  &:focus {
+    // border-bottom: 10px solid $dark-3;
+    outline: none;
+    border-style: solid;
+    border-image: linear-gradient(to right, $logo-1, $logo-3) 27 / 0 0 1px 0;
+  }
 }
+
 
 .container.right-panel-active .hello-container {
   transform: translateX(100%);
