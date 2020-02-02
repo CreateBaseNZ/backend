@@ -4,6 +4,9 @@ VARIABLES
 /*=========================================================================================
 MOBILE CSS
 =========================================================================================*/
+/*-----------------------------------------------------------------------------------------
+CHECKOUT
+-----------------------------------------------------------------------------------------*/
 .checkout-sub-pg {
   width: 100%;
   display: -webkit-box;
@@ -57,6 +60,421 @@ MOBILE CSS
   border-width: 0.3vmax;
   padding: 1vmax 2vmax;
   margin: 2vmax 0;
+}
+
+/*-----------------------------------------------------------------------------------------
+CART
+-----------------------------------------------------------------------------------------*/
+.checkout-cart-cnts {
+  width: 100%;
+}
+
+.checkout-prnt-cnt {
+  height: 16vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  padding: 2vmax 0;
+}
+
+.checkout-prnt-cnt-cntn-1 {
+  height: 100%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.checkout-prnt-cnt-img {
+  height: 8vmax;
+  width: 8vmax;
+}
+
+.checkout-prnt-cnt-cntn-2 {
+  height: 100%;
+  width: 40%;
+}
+
+.checkout-prnt-cnt-file-name {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-prnt-cnt-bld-type {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-prnt-cnt-clr {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-prnt-cnt-qnty-cntn {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-prnt-cnt-qnty {
+  width: 6vmax;
+  margin: 0 1vmax;
+}
+
+.checkout-prnt-cnt-cntn-3 {
+  height: 100%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.checkout-prnt-cnt-cncl {
+  height: 3vmax;
+  width: 3vmax;
+}
+
+.checkout-prnt-cnt-prc {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-mkpl-cnt {
+  height: 16vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  padding: 2vmax 0;
+}
+
+.checkout-mkpl-cnt-cntn-1 {
+  height: 100%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.checkout-mkpl-cnt-img {
+  height: 8vmax;
+  width: 8vmax;
+}
+
+.checkout-mkpl-cnt-cntn-2 {
+  height: 100%;
+  width: 40%;
+}
+
+.checkout-mkpl-cnt-item-name {
+  height: 4vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-mkpl-cnt-shop {
+  height: 4vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-mkpl-cnt-qnty-cntn {
+  height: 4vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-mkpl-cnt-qnty {
+  width: 6vmax;
+  margin: 0 1vmax;
+}
+
+.checkout-mkpl-cnt-cntn-3 {
+  height: 100%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.checkout-mkpl-cnt-cncl {
+  height: 3vmax;
+  width: 3vmax;
+}
+
+.checkout-mkpl-cnt-prc {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-dsct-inp-cntn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 2vmax 0;
+}
+
+.checkout-dsct-inp {
+  width: 70%;
+}
+
+.checkout-dsct-inp-btn {
+  width: 25%;
+  letter-spacing: 0.2vmax;
+}
+
+.checkout-dsct-inp-err {
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0.5vmax 0;
+  letter-spacing: 0.1vmax;
+}
+
+.checkout-dsct-list-cntn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1vmax 0;
+}
+
+.checkout-dsct {
+  width: 100%;
+  letter-spacing: 0.2vmax;
+  padding: 0.5vmax 0;
+}
+
+.checkout-mnft-spd-opts {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2vmax 0;
+}
+
+.checkout-mnft-spd-opt {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.checkout-mnft-spd-opt-inp {
+  width: 100%;
+}
+
+.checkout-mnft-spd-opt-lbl {
+  text-align: center;
+  padding: 1vmax 0;
+  line-height: 1.4;
+  letter-spacing: 0.2vmax;
+}
+
+.checkout-cart-prcs {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 2vmax 0;
+}
+
+.checkout-cart-prc-cntn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1vmax 0;
+}
+
+.checkout-cart-prc-lbl {
+  letter-spacing: 0.1vmax;
+}
+
+.checkout-cart-prc {
+  letter-spacing: 0.1vmax;
+}
+
+.checkout-cart-btns {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 4vmax 0;
+}
+
+.checkout-cart-btn {
+  width: 14vmax;
+  letter-spacing: 0.2vmax;
+}
+
+/*-----------------------------------------------------------------------------------------
+SHIPPING
+-----------------------------------------------------------------------------------------*/
+.checkout-shpg-adrs-cntn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 2vmax 0;
+}
+
+#checkout-shpg-adrs-unit-lbl {
+  width: 70%;
+}
+
+#checkout-shpg-adrs-st-num-lbl {
+  width: 25%;
+}
+
+#checkout-shpg-adrs-unit {
+  width: 70%;
+}
+
+#checkout-shpg-adrs-st-num {
+  width: 25%;
+}
+
+.checkout-shpg-mthd-cntn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2vmax 0;
+}
+
+.checkout-shpg-btns {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 4vmax 0;
+}
+
+.checkout-shpg-btn {
+  width: 14vmax;
+  letter-spacing: 0.2vmax;
 }
 
 /*=========================================================================================

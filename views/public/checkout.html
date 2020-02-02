@@ -152,6 +152,45 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 3D Printing
               </h3>
+              <div class="checkout-cart-cnts" id="checkout-prnt-cnts">
+                <div class="checkout-prnt-cnt">
+                  <div class="checkout-prnt-cnt-cntn-1">
+                    <div class="checkout-prnt-cnt-img bgd-clr-wht-2"></div>
+                  </div>
+                  <div class="checkout-prnt-cnt-cntn-2">
+                    <div
+                      class="checkout-prnt-cnt-file-name sbtl-1 txt-clr-blk-2"
+                    >
+                      file name
+                    </div>
+                    <div
+                      class="checkout-prnt-cnt-bld-type sbtl-1 txt-clr-blk-2"
+                    >
+                      build type
+                    </div>
+                    <div class="checkout-prnt-cnt-clr sbtl-1 txt-clr-blk-2">
+                      colour
+                    </div>
+                    <div class="checkout-prnt-cnt-qnty-cntn">
+                      <label
+                        class="checkout-prnt-cnt-qnty-lbl sbtl-1 txt-clr-blk-2"
+                        >Quantity:</label
+                      >
+                      <input
+                        type="number"
+                        name="quantity"
+                        class="checkout-prnt-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
+                      />
+                    </div>
+                  </div>
+                  <div class="checkout-prnt-cnt-cntn-3">
+                    <div class="checkout-prnt-cnt-cncl"></div>
+                    <div class="checkout-prnt-cnt-prc sbtl-1 txt-clr-blk-2">
+                      $X,XXX.XX
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-----------------------------------------------------------------------------
@@ -162,6 +201,40 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Marketplace
               </h3>
+              <div class="checkout-cart-cnts" id="checkout-mkpl-cnts">
+                <div class="checkout-mkpl-cnt">
+                  <div class="checkout-mkpl-cnt-cntn-1">
+                    <div class="checkout-mkpl-cnt-img bgd-clr-wht-2"></div>
+                  </div>
+                  <div class="checkout-mkpl-cnt-cntn-2">
+                    <div
+                      class="checkout-mkpl-cnt-item-name sbtl-1 txt-clr-blk-2"
+                    >
+                      item name
+                    </div>
+                    <div class="checkout-mkpl-cnt-shop sbtl-1 txt-clr-blk-2">
+                      shop name
+                    </div>
+                    <div class="checkout-mkpl-cnt-qnty-cntn">
+                      <label
+                        class="checkout-mkpl-cnt-qnty-lbl sbtl-1 txt-clr-blk-2"
+                        >Quantity:</label
+                      >
+                      <input
+                        type="number"
+                        name="quantity"
+                        class="checkout-mkpl-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
+                      />
+                    </div>
+                  </div>
+                  <div class="checkout-mkpl-cnt-cntn-3">
+                    <div class="checkout-mkpl-cnt-cncl"></div>
+                    <div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2">
+                      $X,XXX.XX
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-----------------------------------------------------------------------------
@@ -172,6 +245,24 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Discount
               </h3>
+              <div class="checkout-dsct-inp-cntn">
+                <input
+                  type="text"
+                  name="discount"
+                  class="checkout-dsct-inp inp-txt-1 txt-1 txt-clr-blk-2"
+                  placeholder="Discount Code ..."
+                />
+                <button
+                  class="checkout-dsct-inp-btn rmv-btn-css btn-1 bgd-clr-vlt-3 txt-clr-wht-1 txt-1"
+                >
+                  Add
+                </button>
+                <div class="checkout-dsct-inp-err sbtl-1">Error</div>
+              </div>
+              <div id="checkout-dsct-list-cntn">
+                <div class="checkout-dsct sbtl-2 txt-clr-blk-3">Discount 1</div>
+                <div class="checkout-dsct sbtl-2 txt-clr-blk-3">Discount 2</div>
+              </div>
             </div>
 
             <!-----------------------------------------------------------------------------
@@ -182,6 +273,29 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Manufacturing Speed
               </h3>
+              <div class="checkout-mnft-spd-opts">
+                <div class="checkout-mnft-spd-opt">
+                  <input
+                    type="radio"
+                    name="manufacturingSpeed"
+                    class="checkout-mnft-spd-opt-inp inp-rad-1"
+                    checked
+                  />
+                  <label class="checkout-mnft-spd-opt-lbl txt-1 txt-clr-blk-2"
+                    >Normal<br />(1-3 days)</label
+                  >
+                </div>
+                <div class="checkout-mnft-spd-opt">
+                  <input
+                    type="radio"
+                    name="manufacturingSpeed"
+                    class="checkout-mnft-spd-opt-inp inp-rad-1"
+                  />
+                  <label class="checkout-mnft-spd-opt-lbl txt-1 txt-clr-blk-2"
+                    >Urgent<br />(1 day)</label
+                  >
+                </div>
+              </div>
             </div>
 
             <!-----------------------------------------------------------------------------
@@ -192,6 +306,65 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Pre-Shipping Total
               </h3>
+              <div class="checkout-cart-prcs">
+                <div class="checkout-cart-prc-cntn">
+                  <p
+                    class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
+                  >
+                    Subtotal
+                  </p>
+                  <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2">
+                    XXX.XX
+                  </p>
+                </div>
+                <div class="checkout-cart-prc-cntn">
+                  <p
+                    class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
+                  >
+                    Discount (XX.XX%)
+                  </p>
+                  <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2">
+                    -XX.XX
+                  </p>
+                </div>
+                <div class="checkout-cart-prc-cntn">
+                  <p
+                    class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
+                  >
+                    Manufacturing (XX.XX%)
+                  </p>
+                  <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2">
+                    XX.XX
+                  </p>
+                </div>
+                <div class="checkout-cart-prc-cntn">
+                  <p
+                    class="checkout-cart-prc-lbl rmv-p-css hdng-1 txt-clr-blk-2"
+                  >
+                    TOTAL
+                  </p>
+                  <p class="checkout-cart-prc rmv-p-css hdng-1 txt-clr-blk-1">
+                    X,XXX.XX
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-----------------------------------------------------------------------------
+            CONTINUE BUTTON
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-cart-btns">
+              <div
+                class="checkout-cart-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+              >
+                Exit
+              </div>
+              <div
+                class="checkout-cart-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+              >
+                Next
+              </div>
             </div>
           </div>
         </div>
@@ -217,6 +390,39 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Shipping Address
               </h3>
+              <div
+                class="checkout-shpg-adrs-cntn"
+                id="checkout-shpg-adrs-cntn-new"
+              ></div>
+              <div
+                class="checkout-shpg-adrs-cntn"
+                id="checkout-shpg-adrs-cntn-save"
+              >
+                <label
+                  for="checkout-shpg-adrs-unit"
+                  class="sbtl-1 txt-clr-blk-3"
+                  id="checkout-shpg-adrs-unit-lbl"
+                  >Unit</label
+                >
+                <label
+                  for="checkout-shpg-adrs-st-num"
+                  class="sbtl-1 txt-clr-blk-3"
+                  id="checkout-shpg-adrs-st-num-lbl"
+                  >Street No.</label
+                >
+                <input
+                  type="text"
+                  name="unit"
+                  class="checkout-shpg-adrs-inp inp-txt-1 txt-1 txt-clr-blk-2"
+                  id="checkout-shpg-adrs-unit"
+                />
+                <input
+                  type="text"
+                  name="unit"
+                  class="checkout-shpg-adrs-inp inp-txt-1 txt-1 txt-clr-blk-2"
+                  id="checkout-shpg-adrs-st-num"
+                />
+              </div>
             </div>
 
             <!-----------------------------------------------------------------------------
@@ -227,6 +433,24 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Shipping Method
               </h3>
+              <div class="checkout-shpg-mthd-cntn"></div>
+            </div>
+
+            <!-----------------------------------------------------------------------------
+            CONTINUE BUTTON
+            ------------------------------------------------------------------------------>
+
+            <div class="checkout-shpg-btns">
+              <div
+                class="checkout-shpg-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+              >
+                Back
+              </div>
+              <div
+                class="checkout-shpg-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+              >
+                Next
+              </div>
             </div>
           </div>
         </div>
