@@ -390,37 +390,71 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Shipping Address
               </h3>
+              <div class="checkout-shpg-adrs-inp-cntn">
+                <input
+                  type="radio"
+                  name="address"
+                  id="checkout-shpg-adrs-svd-inp"
+                />
+                <label for="checkout-shpg-adrs-svd-inp">Saved Address</label>
+              </div>
+              <div
+                class="checkout-shpg-adrs-cntn"
+                id="checkout-shpg-adrs-cntn-svd"
+              >
+                <div class="checkout-shpg-adrs-svd-line">7/11</div>
+                <div class="checkout-shpg-adrs-svd-line">45B Aranui Road</div>
+                <div class="checkout-shpg-adrs-svd-line">Panmure</div>
+                <div class="checkout-shpg-adrs-svd-line">Auckland, 1020</div>
+                <div class="checkout-shpg-adrs-svd-line">New Zealand</div>
+              </div>
+              <div class="checkout-shpg-adrs-inp-cntn">
+                <input
+                  type="radio"
+                  name="address"
+                  id="checkout-shpg-adrs-new-inp"
+                />
+                <label for="checkout-shpg-adrs-new-inp">New Address</label>
+              </div>
               <div
                 class="checkout-shpg-adrs-cntn"
                 id="checkout-shpg-adrs-cntn-new"
-              ></div>
-              <div
-                class="checkout-shpg-adrs-cntn"
-                id="checkout-shpg-adrs-cntn-save"
               >
                 <label
-                  for="checkout-shpg-adrs-unit"
-                  class="sbtl-1 txt-clr-blk-3"
-                  id="checkout-shpg-adrs-unit-lbl"
+                  for="checkout-shpg-adrs-new-unit"
+                  class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+                  id="checkout-shpg-adrs-new-unit-lbl"
                   >Unit</label
                 >
                 <label
-                  for="checkout-shpg-adrs-st-num"
-                  class="sbtl-1 txt-clr-blk-3"
-                  id="checkout-shpg-adrs-st-num-lbl"
+                  for="checkout-shpg-adrs-new-st-num"
+                  class=" checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+                  id="checkout-shpg-adrs-new-st-num-lbl"
                   >Street No.</label
                 >
                 <input
                   type="text"
                   name="unit"
-                  class="checkout-shpg-adrs-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                  id="checkout-shpg-adrs-unit"
+                  class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+                  id="checkout-shpg-adrs-new-unit"
                 />
                 <input
                   type="text"
-                  name="unit"
-                  class="checkout-shpg-adrs-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                  id="checkout-shpg-adrs-st-num"
+                  name="streetNumber"
+                  class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+                  id="checkout-shpg-adrs-new-st-num"
+                />
+                <label
+                  for="checkout-shpg-adrs-new-st-name"
+                  class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+                  id="checkout-shpg-adrs-new-st-name-lbl"
+                  >Street Name</label
+                >
+                <input
+                  type="text"
+                  name="streetName"
+                  class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+                  id="checkout-shpg-adrs-new-st-name"
                 />
               </div>
             </div>

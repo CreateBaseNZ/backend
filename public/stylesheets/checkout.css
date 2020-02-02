@@ -437,19 +437,33 @@ SHIPPING
   padding: 2vmax 0;
 }
 
-#checkout-shpg-adrs-unit-lbl {
+.checkout-shpg-adrs-svd-line {
+  width: 100%;
+  padding: 0.5vmax 0 0.5vmax 4vmax;
+}
+
+.checkout-shpg-adrs-new-lbl {
+  width: 100%;
+  padding: 1vmax 1vmax 0.5vmax 0;
+}
+
+.checkout-shpg-adrs-new-inp {
+  width: 100%;
+}
+
+#checkout-shpg-adrs-new-unit-lbl {
   width: 70%;
 }
 
-#checkout-shpg-adrs-st-num-lbl {
+#checkout-shpg-adrs-new-st-num-lbl {
   width: 25%;
 }
 
-#checkout-shpg-adrs-unit {
+#checkout-shpg-adrs-new-unit {
   width: 70%;
 }
 
-#checkout-shpg-adrs-st-num {
+#checkout-shpg-adrs-new-st-num {
   width: 25%;
 }
 
