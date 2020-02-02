@@ -22,10 +22,10 @@ $clr-vlt-2: rgb(104, 83, 217);
 $clr-vlt-3: rgb(78, 78, 214);
 $clr-blk-1: rgb(45, 40, 60);
 $clr-blk-2: rgb(50, 45, 65);
-$clr-blk-3: rgb(165, 160, 180); // TEMPORARY
+$clr-blk-3: #877da9;
 $clr-wht-1: rgb(255, 255, 255);
 $clr-wht-2: rgb(248, 248, 248);
-$clr-wht-3: rgb(160, 160, 160); // TEMPORARY
+$clr-wht-3: #c7c2d5;
 // Font Families
 $fnt-fml-1: "Montserrat", sans-serif;
 $fnt-fml-2: "Poppins", sans-serif;
@@ -213,6 +213,29 @@ INPUT FIELDS
   color: $clr-blk-3;
 }
 
+.inp-txt-2 {
+  height: 2.8vmax;
+  // Border
+  border-width: 0.1vmax;
+  border-style: solid;
+  border-color: $clr-blk-3;
+  border-radius: 0.3vmax;
+  appearance: none;
+  // Spacing
+  padding: 0 0.5vmax;
+  letter-spacing: 0.2vmax;
+}
+
+.inp-txt-2:focus {
+  outline: none;
+  border-color: $clr-blk-1;
+  color: $clr-blk-1;
+}
+
+.inp-txt-2::placeholder {
+  color: $clr-blk-3;
+}
+
 .inp-slct-1 {
   height: 4.8vmax;
   // Border
@@ -289,7 +312,12 @@ TEXTS
 
 .sbtl-1 {
   font-family: $fnt-fml-1;
-  font-size: 1.8vmax;
+  font-size: 1.4vmax;
+}
+
+.sbtl-2 {
+  font-family: $fnt-fml-1;
+  font-size: 1.6vmax;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -297,11 +325,11 @@ BUTTONS
 -----------------------------------------------------------------------------------------*/
 
 .btn-1 {
-  height: 5vmax;
+  height: 4.8vmax;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 2.5vmax;
+  border-radius: 2.4vmax;
   letter-spacing: 0.2vmax;
 }
 

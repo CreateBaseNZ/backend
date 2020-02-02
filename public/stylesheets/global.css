@@ -96,7 +96,7 @@ BACKGROUND COLOURS
 }
 
 .bgd-clr-blk-3 {
-  background-color: #a5a0b4;
+  background-color: #877da9;
 }
 
 .bgd-clr-wht-1 {
@@ -108,7 +108,7 @@ BACKGROUND COLOURS
 }
 
 .bgd-clr-wht-3 {
-  background-color: #a0a0a0;
+  background-color: #c7c2d5;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -135,7 +135,7 @@ TEXT COLOURS
 }
 
 .txt-clr-blk-3 {
-  color: #a5a0b4;
+  color: #877da9;
 }
 
 .txt-clr-wht-1 {
@@ -147,7 +147,7 @@ TEXT COLOURS
 }
 
 .txt-clr-wht-3 {
-  color: #a0a0a0;
+  color: #c7c2d5;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -157,7 +157,7 @@ INPUT FIELDS
   height: 4.8vmax;
   border-width: 0.1vmax;
   border-style: none none solid none;
-  border-bottom-color: #a5a0b4;
+  border-bottom-color: #877da9;
   border-radius: 0vmax;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -173,26 +173,61 @@ INPUT FIELDS
 }
 
 .inp-txt-1::-webkit-input-placeholder {
-  color: #a5a0b4;
+  color: #877da9;
 }
 
 .inp-txt-1:-ms-input-placeholder {
-  color: #a5a0b4;
+  color: #877da9;
 }
 
 .inp-txt-1::-ms-input-placeholder {
-  color: #a5a0b4;
+  color: #877da9;
 }
 
 .inp-txt-1::placeholder {
-  color: #a5a0b4;
+  color: #877da9;
+}
+
+.inp-txt-2 {
+  height: 2.8vmax;
+  border-width: 0.1vmax;
+  border-style: solid;
+  border-color: #877da9;
+  border-radius: 0.3vmax;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0 0.5vmax;
+  letter-spacing: 0.2vmax;
+}
+
+.inp-txt-2:focus {
+  outline: none;
+  border-color: #2d283c;
+  color: #2d283c;
+}
+
+.inp-txt-2::-webkit-input-placeholder {
+  color: #877da9;
+}
+
+.inp-txt-2:-ms-input-placeholder {
+  color: #877da9;
+}
+
+.inp-txt-2::-ms-input-placeholder {
+  color: #877da9;
+}
+
+.inp-txt-2::placeholder {
+  color: #877da9;
 }
 
 .inp-slct-1 {
   height: 4.8vmax;
   border-width: 0.1vmax;
   border-style: none none solid none;
-  border-bottom-color: #a5a0b4;
+  border-bottom-color: #877da9;
   border-radius: 0vmax;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -211,7 +246,7 @@ INPUT FIELDS
   height: 4.8vmax;
   border-width: 0.1vmax;
   border-style: none none solid none;
-  border-bottom-color: #a5a0b4;
+  border-bottom-color: #877da9;
   border-radius: 0vmax;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -263,14 +298,19 @@ TEXTS
 
 .sbtl-1 {
   font-family: "Montserrat", sans-serif;
-  font-size: 1.8vmax;
+  font-size: 1.4vmax;
+}
+
+.sbtl-2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.6vmax;
 }
 
 /*-----------------------------------------------------------------------------------------
 BUTTONS
 -----------------------------------------------------------------------------------------*/
 .btn-1 {
-  height: 5vmax;
+  height: 4.8vmax;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -280,7 +320,7 @@ BUTTONS
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border-radius: 2.5vmax;
+  border-radius: 2.4vmax;
   letter-spacing: 0.2vmax;
 }
 
