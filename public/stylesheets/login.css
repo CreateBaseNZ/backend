@@ -1,78 +1,2627 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
-  background: #ffffff;
-  color: black;
-  font-family: "Poppins", sans-serif;
-  line-height: 1.5;
-  background: #ffffff;
-}
-
-body .container {
+  background: -webkit-gradient(linear, left top, right top, from(#2d283c), to(black));
+  background: linear-gradient(to right, #2d283c, black);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
   height: 100vh;
 }
 
-body .container .item {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+body .container {
+  background: #ffffff;
+  overflow: hidden;
+  width: 50vw;
 }
 
-body .container #hello {
+body .container .form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+}
+
+body .container .hello-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+  background: #ffffff;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'logo logo' 'hello hello' 'login signup';
+      grid-template-areas: 'logo logo' 'hello hello' 'signup login';
+  -ms-grid-rows: 2fr 2fr 2fr;
+      grid-template-rows: 2fr 2fr 2fr;
 }
 
-body .container #hello #hello-logo {
+body .container .hello-container #hello-logo {
   display: block;
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: logo;
-  width: 15vw;
-  margin: auto auto;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
 }
 
-body .container #hello #hello-creator {
+body .container .hello-container #hello-logo img {
+  width: 15vw;
+}
+
+body .container .hello-container #hello-creator {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: hello;
-  text-align: center;
+  font-size: 5vw;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-left: calc((50vw - 8 * 5vw)/2);
 }
 
-body .container #hello #hello-login {
+body .container .hello-container #hello-signup {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
-  grid-area: login;
-  text-align: right;
+  grid-area: signup;
+  -ms-grid-column-align: end;
+      justify-self: end;
+  margin-right: 1vw;
 }
 
-body .container #hello #hello-signup {
+body .container .hello-container #hello-login {
   -ms-grid-row: 3;
   -ms-grid-column: 2;
-  grid-area: signup;
+  grid-area: login;
+  margin-left: 1vw;
 }
 
-body .container #slide {
-  background: #2d283c;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+body .container .login-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+  background: #ffffff;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 70vh 15vh 15vh;
+      grid-template-rows: 70vh 15vh 15vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
 }
 
-body .container #login {
-  display: none;
+body .container .login-container .log-in-form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 5vh 25vh 10vh 10vh 20vh;
+      grid-template-rows: 5vh 25vh 10vh 10vh 20vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  width: 100%;
 }
-/*# sourceMappingURL=login.css.map */
+
+body .container .login-container .log-in-form #login-logo {
+  display: block;
+  justify-self: flex-end;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 3vh;
+  margin-right: 3vw;
+}
+
+body .container .login-container .log-in-form #login-logo img {
+  width: 7.5vw;
+}
+
+body .container .login-container .log-in-form h2 {
+  font-size: 1vw;
+  letter-spacing: 0.25vw;
+}
+
+body .container .login-container .log-in-form .log-in-fld {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+body .container .login-container #back-btn {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+body .container .login-container #login-signup {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  font-size: 0.75vw;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid #2d283c;
+  padding: 0.5vw 1vw;
+  width: 20vw;
+}
+
+input::-webkit-input-placeholder {
+  color: #c7c2d5;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+
+input:-ms-input-placeholder {
+  color: #c7c2d5;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+
+input::-ms-input-placeholder {
+  color: #c7c2d5;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+
+input::placeholder {
+  color: #c7c2d5;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+
+.container.right-panel-active .hello-container {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.container.right-panel-active .login-container {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  -webkit-animation: show 0.6s;
+          animation: show 0.6s;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-transition: -webkit-transform 0.6s ease-in-out;
+  transition: -webkit-transform 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.overlay-container .overlay {
+  background: -webkit-gradient(linear, left top, right top, from(#2d283c), to(black));
+  background: linear-gradient(to right, #2d283c, black);
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: -webkit-transform 0.6s ease-in-out;
+  transition: -webkit-transform 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
+}
+
+.overlay-container .overlay .overlay-panel {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 50%;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: -webkit-transform 0s;
+  transition: transform 0s;
+  transition: transform 0s, -webkit-transform 0s;
+}
+
+.overlay-container .overlay .overlay-panel .layer-left,
+.overlay-container .overlay .overlay-panel .layer-right {
+  height: 35vw;
+  width: 35vw;
+  opacity: 0.3;
+  position: absolute;
+  border-radius: 1vw;
+  margin-top: 10%;
+}
+
+.overlay-container .overlay .overlay-panel .layer-left {
+  margin-left: -75%;
+}
+
+.overlay-container .overlay .overlay-panel .layer-right {
+  margin-left: 0%;
+}
+
+.overlay-container .overlay .overlay-panel .layer-1 {
+  -webkit-animation: animate1 5s forwards infinite;
+          animation: animate1 5s forwards infinite;
+}
+
+.overlay-container .overlay .overlay-panel .layer-2 {
+  -webkit-animation: animate2 5s forwards infinite;
+          animation: animate2 5s forwards infinite;
+}
+
+.overlay-container .overlay .overlay-panel .layer-3 {
+  -webkit-animation: animate3 5s forwards infinite;
+          animation: animate3 5s forwards infinite;
+}
+
+.overlay-container .overlay .overlay-left {
+  -webkit-transform: translateX(20%);
+          transform: translateX(20%);
+}
+
+.overlay-container .overlay .overlay-right {
+  right: 0;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.container.right-panel-active .overlay {
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+}
+
+.container.right-panel-active .overlay-container {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.container.right-panel-active .overlay-left {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.container.right-panel-active .overlay-right {
+  -webkit-transform: translateX(20%);
+          transform: translateX(20%);
+}
+
+@-webkit-keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+@keyframes show {
+  0%, 49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%, 100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+@-webkit-keyframes animate1 {
+  0%, 100% {
+    background: #4e4ed6;
+    top: calc(50% - 10vw);
+    left: 50%;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    top: 50%;
+    left: 80%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #4e4ed6;
+    top: calc(50% + 10vw);
+    left: 50%;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    top: 50%;
+    left: 20%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes animate1 {
+  0%, 100% {
+    background: #4e4ed6;
+    top: calc(50% - 10vw);
+    left: 50%;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    top: 50%;
+    left: 80%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #4e4ed6;
+    top: calc(50% + 10vw);
+    left: 50%;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    top: 50%;
+    left: 20%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@-webkit-keyframes animate2 {
+  0%, 100% {
+    background: #6853d9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+            transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #6853d9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes animate2 {
+  0%, 100% {
+    background: #6853d9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+            transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #6853d9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@-webkit-keyframes animate3 {
+  0%, 100% {
+    background: #8258dc;
+    top: calc(50% + 10vw);
+    left: 50%;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    top: 50%;
+    left: 20%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #4e4ed6;
+    top: calc(50% - 10vw);
+    left: 50%;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    top: 50%;
+    left: 80%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes animate3 {
+  0%, 100% {
+    background: #8258dc;
+    top: calc(50% + 10vw);
+    left: 50%;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    top: 50%;
+    left: 20%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #4e4ed6;
+    top: calc(50% - 10vw);
+    left: 50%;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    top: 50%;
+    left: 80%;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+.btn {
+  border: #2d283c solid 1px;
+  color: #2d283c;
+  background: #ffffff;
+  width: 10vw;
+  font-size: 1vw;
+  font-weight: 100;
+  height: 2.5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: 0.25vw;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn:hover, .btn:hover:after, .btn:hover:before {
+  color: #ffffff;
+  border: none;
+  background-image: -webkit-gradient(linear, left top, right top, from(#8258dc), to(#4e4ed6));
+  background-image: linear-gradient(to right, #8258dc, #4e4ed6);
+}
+
+.btn:hover:after, .btn:hover:before {
+  content: attr(data-text);
+  width: 10vw;
+  height: 2.5vw;
+  top: -0.2vw;
+  font-size: 1vw;
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.btn:hover:after {
+  left: 0.2vw;
+  text-shadow: -1px 0 greenyellow;
+  animation: glitch-btn 1.5s linear alternate-reverse;
+  border: none;
+}
+
+.btn:hover:before {
+  left: -0.2vw;
+  text-shadow: 1px 0 magenta;
+  -webkit-animation: glitch-btn 2s linear alternate;
+          animation: glitch-btn 2s linear alternate;
+  border: none;
+}
+
+.glitch {
+  position: relative;
+  padding: 5px;
+}
+
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  padding: 5px;
+  left: 0;
+  text-shadow: -0.1vw 0 greenyellow;
+  top: -2px;
+  background: #ffffff;
+  overflow: hidden;
+  visibility: hidden;
+  animation: noise-anim 10s infinite linear alternate-reverse;
+}
+
+.glitch::before {
+  content: attr(data-text);
+  position: absolute;
+  padding: 5px;
+  left: -0.1vw;
+  text-shadow: 0.1vw 0 magenta;
+  top: -2px;
+  background: #ffffff;
+  overflow: hidden;
+  visibility: hidden;
+  animation: noise-anim-2 5s infinite linear alternate-reverse;
+}
+
+@-webkit-keyframes noise-anim {
+  0% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    visibility: visible;
+  }
+  1.66667% {
+    -webkit-clip-path: inset(91% 0 9% 0);
+            clip-path: inset(91% 0 9% 0);
+    visibility: visible;
+  }
+  3.33333% {
+    -webkit-clip-path: inset(46% 0 1% 0);
+            clip-path: inset(46% 0 1% 0);
+    visibility: visible;
+  }
+  5% {
+    -webkit-clip-path: inset(12% 0 32% 0);
+            clip-path: inset(12% 0 32% 0);
+    visibility: visible;
+  }
+  6.66667% {
+    -webkit-clip-path: inset(71% 0 23% 0);
+            clip-path: inset(71% 0 23% 0);
+    visibility: visible;
+  }
+  8.33333% {
+    -webkit-clip-path: inset(22% 0 41% 0);
+            clip-path: inset(22% 0 41% 0);
+    visibility: visible;
+  }
+  10% {
+    -webkit-clip-path: inset(1% 0 77% 0);
+            clip-path: inset(1% 0 77% 0);
+    visibility: visible;
+  }
+  11.66667% {
+    -webkit-clip-path: inset(53% 0 48% 0);
+            clip-path: inset(53% 0 48% 0);
+    visibility: visible;
+  }
+  13.33333% {
+    -webkit-clip-path: inset(40% 0 8% 0);
+            clip-path: inset(40% 0 8% 0);
+    visibility: visible;
+  }
+  15% {
+    -webkit-clip-path: inset(39% 0 53% 0);
+            clip-path: inset(39% 0 53% 0);
+    visibility: visible;
+  }
+  16.66667% {
+    -webkit-clip-path: inset(58% 0 38% 0);
+            clip-path: inset(58% 0 38% 0);
+    visibility: visible;
+  }
+  18.33333% {
+    -webkit-clip-path: inset(23% 0 26% 0);
+            clip-path: inset(23% 0 26% 0);
+    visibility: visible;
+  }
+  20% {
+    -webkit-clip-path: inset(43% 0 14% 0);
+            clip-path: inset(43% 0 14% 0);
+    visibility: visible;
+  }
+  21.66667% {
+    -webkit-clip-path: inset(40% 0 55% 0);
+            clip-path: inset(40% 0 55% 0);
+    visibility: visible;
+  }
+  23.33333% {
+    -webkit-clip-path: inset(7% 0 93% 0);
+            clip-path: inset(7% 0 93% 0);
+    visibility: visible;
+  }
+  25% {
+    -webkit-clip-path: inset(47% 0 2% 0);
+            clip-path: inset(47% 0 2% 0);
+    visibility: visible;
+  }
+  26.66667% {
+    -webkit-clip-path: inset(49% 0 37% 0);
+            clip-path: inset(49% 0 37% 0);
+    visibility: visible;
+  }
+  28.33333% {
+    -webkit-clip-path: inset(46% 0 26% 0);
+            clip-path: inset(46% 0 26% 0);
+    visibility: visible;
+  }
+  30% {
+    -webkit-clip-path: inset(4% 0 23% 0);
+            clip-path: inset(4% 0 23% 0);
+    visibility: visible;
+  }
+  31.66667% {
+    -webkit-clip-path: inset(21% 0 52% 0);
+            clip-path: inset(21% 0 52% 0);
+    visibility: visible;
+  }
+  33.33333% {
+    -webkit-clip-path: inset(98% 0 3% 0);
+            clip-path: inset(98% 0 3% 0);
+    visibility: visible;
+  }
+  35% {
+    -webkit-clip-path: inset(12% 0 63% 0);
+            clip-path: inset(12% 0 63% 0);
+    visibility: visible;
+  }
+  36.66667% {
+    -webkit-clip-path: inset(5% 0 95% 0);
+            clip-path: inset(5% 0 95% 0);
+    visibility: visible;
+  }
+  38.33333% {
+    -webkit-clip-path: inset(94% 0 3% 0);
+            clip-path: inset(94% 0 3% 0);
+    visibility: visible;
+  }
+  40% {
+    -webkit-clip-path: inset(89% 0 10% 0);
+            clip-path: inset(89% 0 10% 0);
+    visibility: visible;
+  }
+  41.66667% {
+    -webkit-clip-path: inset(97% 0 2% 0);
+            clip-path: inset(97% 0 2% 0);
+    visibility: visible;
+  }
+  43.33333% {
+    -webkit-clip-path: inset(7% 0 30% 0);
+            clip-path: inset(7% 0 30% 0);
+    visibility: visible;
+  }
+  45% {
+    -webkit-clip-path: inset(65% 0 22% 0);
+            clip-path: inset(65% 0 22% 0);
+    visibility: visible;
+  }
+  46.66667% {
+    -webkit-clip-path: inset(66% 0 18% 0);
+            clip-path: inset(66% 0 18% 0);
+    visibility: visible;
+  }
+  48.33333% {
+    -webkit-clip-path: inset(16% 0 78% 0);
+            clip-path: inset(16% 0 78% 0);
+    visibility: visible;
+  }
+  50% {
+    -webkit-clip-path: inset(29% 0 24% 0);
+            clip-path: inset(29% 0 24% 0);
+    visibility: visible;
+  }
+  51.66667% {
+    -webkit-clip-path: inset(10% 0 44% 0);
+            clip-path: inset(10% 0 44% 0);
+    visibility: visible;
+  }
+  53.33333% {
+    -webkit-clip-path: inset(4% 0 44% 0);
+            clip-path: inset(4% 0 44% 0);
+    visibility: visible;
+  }
+  55% {
+    -webkit-clip-path: inset(5% 0 53% 0);
+            clip-path: inset(5% 0 53% 0);
+    visibility: visible;
+  }
+  56.66667% {
+    -webkit-clip-path: inset(80% 0 21% 0);
+            clip-path: inset(80% 0 21% 0);
+    visibility: visible;
+  }
+  58.33333% {
+    -webkit-clip-path: inset(19% 0 7% 0);
+            clip-path: inset(19% 0 7% 0);
+    visibility: visible;
+  }
+  60% {
+    -webkit-clip-path: inset(65% 0 18% 0);
+            clip-path: inset(65% 0 18% 0);
+    visibility: visible;
+  }
+  61.66667% {
+    -webkit-clip-path: inset(91% 0 3% 0);
+            clip-path: inset(91% 0 3% 0);
+    visibility: visible;
+  }
+  63.33333% {
+    -webkit-clip-path: inset(72% 0 11% 0);
+            clip-path: inset(72% 0 11% 0);
+    visibility: visible;
+  }
+  65% {
+    -webkit-clip-path: inset(25% 0 19% 0);
+            clip-path: inset(25% 0 19% 0);
+    visibility: visible;
+  }
+  66.66667% {
+    -webkit-clip-path: inset(18% 0 35% 0);
+            clip-path: inset(18% 0 35% 0);
+    visibility: visible;
+  }
+  68.33333% {
+    -webkit-clip-path: inset(8% 0 66% 0);
+            clip-path: inset(8% 0 66% 0);
+    visibility: visible;
+  }
+  70% {
+    -webkit-clip-path: inset(31% 0 46% 0);
+            clip-path: inset(31% 0 46% 0);
+    visibility: visible;
+  }
+  71.66667% {
+    -webkit-clip-path: inset(37% 0 25% 0);
+            clip-path: inset(37% 0 25% 0);
+    visibility: visible;
+  }
+  73.33333% {
+    -webkit-clip-path: inset(14% 0 50% 0);
+            clip-path: inset(14% 0 50% 0);
+    visibility: visible;
+  }
+  75% {
+    -webkit-clip-path: inset(65% 0 7% 0);
+            clip-path: inset(65% 0 7% 0);
+    visibility: visible;
+  }
+  76.66667% {
+    -webkit-clip-path: inset(71% 0 24% 0);
+            clip-path: inset(71% 0 24% 0);
+    visibility: visible;
+  }
+  78.33333% {
+    -webkit-clip-path: inset(60% 0 35% 0);
+            clip-path: inset(60% 0 35% 0);
+    visibility: visible;
+  }
+  80% {
+    -webkit-clip-path: inset(12% 0 5% 0);
+            clip-path: inset(12% 0 5% 0);
+    visibility: visible;
+  }
+  81.66667% {
+    -webkit-clip-path: inset(29% 0 66% 0);
+            clip-path: inset(29% 0 66% 0);
+    visibility: visible;
+  }
+  83.33333% {
+    -webkit-clip-path: inset(54% 0 35% 0);
+            clip-path: inset(54% 0 35% 0);
+    visibility: visible;
+  }
+  85% {
+    -webkit-clip-path: inset(37% 0 49% 0);
+            clip-path: inset(37% 0 49% 0);
+    visibility: visible;
+  }
+  86.66667% {
+    -webkit-clip-path: inset(4% 0 63% 0);
+            clip-path: inset(4% 0 63% 0);
+    visibility: visible;
+  }
+  88.33333% {
+    -webkit-clip-path: inset(29% 0 2% 0);
+            clip-path: inset(29% 0 2% 0);
+    visibility: visible;
+  }
+  90% {
+    -webkit-clip-path: inset(74% 0 22% 0);
+            clip-path: inset(74% 0 22% 0);
+    visibility: visible;
+  }
+  91.66667% {
+    -webkit-clip-path: inset(29% 0 2% 0);
+            clip-path: inset(29% 0 2% 0);
+    visibility: visible;
+  }
+  93.33333% {
+    -webkit-clip-path: inset(16% 0 35% 0);
+            clip-path: inset(16% 0 35% 0);
+    visibility: visible;
+  }
+  95% {
+    -webkit-clip-path: inset(16% 0 82% 0);
+            clip-path: inset(16% 0 82% 0);
+    visibility: visible;
+  }
+  96.66667% {
+    -webkit-clip-path: inset(51% 0 37% 0);
+            clip-path: inset(51% 0 37% 0);
+    visibility: visible;
+  }
+  98.33333% {
+    -webkit-clip-path: inset(81% 0 12% 0);
+            clip-path: inset(81% 0 12% 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-clip-path: inset(41% 0 48% 0);
+            clip-path: inset(41% 0 48% 0);
+    visibility: visible;
+  }
+}
+
+@keyframes noise-anim {
+  0% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    visibility: visible;
+  }
+  1.66667% {
+    -webkit-clip-path: inset(91% 0 9% 0);
+            clip-path: inset(91% 0 9% 0);
+    visibility: visible;
+  }
+  3.33333% {
+    -webkit-clip-path: inset(46% 0 1% 0);
+            clip-path: inset(46% 0 1% 0);
+    visibility: visible;
+  }
+  5% {
+    -webkit-clip-path: inset(12% 0 32% 0);
+            clip-path: inset(12% 0 32% 0);
+    visibility: visible;
+  }
+  6.66667% {
+    -webkit-clip-path: inset(71% 0 23% 0);
+            clip-path: inset(71% 0 23% 0);
+    visibility: visible;
+  }
+  8.33333% {
+    -webkit-clip-path: inset(22% 0 41% 0);
+            clip-path: inset(22% 0 41% 0);
+    visibility: visible;
+  }
+  10% {
+    -webkit-clip-path: inset(1% 0 77% 0);
+            clip-path: inset(1% 0 77% 0);
+    visibility: visible;
+  }
+  11.66667% {
+    -webkit-clip-path: inset(53% 0 48% 0);
+            clip-path: inset(53% 0 48% 0);
+    visibility: visible;
+  }
+  13.33333% {
+    -webkit-clip-path: inset(40% 0 8% 0);
+            clip-path: inset(40% 0 8% 0);
+    visibility: visible;
+  }
+  15% {
+    -webkit-clip-path: inset(39% 0 53% 0);
+            clip-path: inset(39% 0 53% 0);
+    visibility: visible;
+  }
+  16.66667% {
+    -webkit-clip-path: inset(58% 0 38% 0);
+            clip-path: inset(58% 0 38% 0);
+    visibility: visible;
+  }
+  18.33333% {
+    -webkit-clip-path: inset(23% 0 26% 0);
+            clip-path: inset(23% 0 26% 0);
+    visibility: visible;
+  }
+  20% {
+    -webkit-clip-path: inset(43% 0 14% 0);
+            clip-path: inset(43% 0 14% 0);
+    visibility: visible;
+  }
+  21.66667% {
+    -webkit-clip-path: inset(40% 0 55% 0);
+            clip-path: inset(40% 0 55% 0);
+    visibility: visible;
+  }
+  23.33333% {
+    -webkit-clip-path: inset(7% 0 93% 0);
+            clip-path: inset(7% 0 93% 0);
+    visibility: visible;
+  }
+  25% {
+    -webkit-clip-path: inset(47% 0 2% 0);
+            clip-path: inset(47% 0 2% 0);
+    visibility: visible;
+  }
+  26.66667% {
+    -webkit-clip-path: inset(49% 0 37% 0);
+            clip-path: inset(49% 0 37% 0);
+    visibility: visible;
+  }
+  28.33333% {
+    -webkit-clip-path: inset(46% 0 26% 0);
+            clip-path: inset(46% 0 26% 0);
+    visibility: visible;
+  }
+  30% {
+    -webkit-clip-path: inset(4% 0 23% 0);
+            clip-path: inset(4% 0 23% 0);
+    visibility: visible;
+  }
+  31.66667% {
+    -webkit-clip-path: inset(21% 0 52% 0);
+            clip-path: inset(21% 0 52% 0);
+    visibility: visible;
+  }
+  33.33333% {
+    -webkit-clip-path: inset(98% 0 3% 0);
+            clip-path: inset(98% 0 3% 0);
+    visibility: visible;
+  }
+  35% {
+    -webkit-clip-path: inset(12% 0 63% 0);
+            clip-path: inset(12% 0 63% 0);
+    visibility: visible;
+  }
+  36.66667% {
+    -webkit-clip-path: inset(5% 0 95% 0);
+            clip-path: inset(5% 0 95% 0);
+    visibility: visible;
+  }
+  38.33333% {
+    -webkit-clip-path: inset(94% 0 3% 0);
+            clip-path: inset(94% 0 3% 0);
+    visibility: visible;
+  }
+  40% {
+    -webkit-clip-path: inset(89% 0 10% 0);
+            clip-path: inset(89% 0 10% 0);
+    visibility: visible;
+  }
+  41.66667% {
+    -webkit-clip-path: inset(97% 0 2% 0);
+            clip-path: inset(97% 0 2% 0);
+    visibility: visible;
+  }
+  43.33333% {
+    -webkit-clip-path: inset(7% 0 30% 0);
+            clip-path: inset(7% 0 30% 0);
+    visibility: visible;
+  }
+  45% {
+    -webkit-clip-path: inset(65% 0 22% 0);
+            clip-path: inset(65% 0 22% 0);
+    visibility: visible;
+  }
+  46.66667% {
+    -webkit-clip-path: inset(66% 0 18% 0);
+            clip-path: inset(66% 0 18% 0);
+    visibility: visible;
+  }
+  48.33333% {
+    -webkit-clip-path: inset(16% 0 78% 0);
+            clip-path: inset(16% 0 78% 0);
+    visibility: visible;
+  }
+  50% {
+    -webkit-clip-path: inset(29% 0 24% 0);
+            clip-path: inset(29% 0 24% 0);
+    visibility: visible;
+  }
+  51.66667% {
+    -webkit-clip-path: inset(10% 0 44% 0);
+            clip-path: inset(10% 0 44% 0);
+    visibility: visible;
+  }
+  53.33333% {
+    -webkit-clip-path: inset(4% 0 44% 0);
+            clip-path: inset(4% 0 44% 0);
+    visibility: visible;
+  }
+  55% {
+    -webkit-clip-path: inset(5% 0 53% 0);
+            clip-path: inset(5% 0 53% 0);
+    visibility: visible;
+  }
+  56.66667% {
+    -webkit-clip-path: inset(80% 0 21% 0);
+            clip-path: inset(80% 0 21% 0);
+    visibility: visible;
+  }
+  58.33333% {
+    -webkit-clip-path: inset(19% 0 7% 0);
+            clip-path: inset(19% 0 7% 0);
+    visibility: visible;
+  }
+  60% {
+    -webkit-clip-path: inset(65% 0 18% 0);
+            clip-path: inset(65% 0 18% 0);
+    visibility: visible;
+  }
+  61.66667% {
+    -webkit-clip-path: inset(91% 0 3% 0);
+            clip-path: inset(91% 0 3% 0);
+    visibility: visible;
+  }
+  63.33333% {
+    -webkit-clip-path: inset(72% 0 11% 0);
+            clip-path: inset(72% 0 11% 0);
+    visibility: visible;
+  }
+  65% {
+    -webkit-clip-path: inset(25% 0 19% 0);
+            clip-path: inset(25% 0 19% 0);
+    visibility: visible;
+  }
+  66.66667% {
+    -webkit-clip-path: inset(18% 0 35% 0);
+            clip-path: inset(18% 0 35% 0);
+    visibility: visible;
+  }
+  68.33333% {
+    -webkit-clip-path: inset(8% 0 66% 0);
+            clip-path: inset(8% 0 66% 0);
+    visibility: visible;
+  }
+  70% {
+    -webkit-clip-path: inset(31% 0 46% 0);
+            clip-path: inset(31% 0 46% 0);
+    visibility: visible;
+  }
+  71.66667% {
+    -webkit-clip-path: inset(37% 0 25% 0);
+            clip-path: inset(37% 0 25% 0);
+    visibility: visible;
+  }
+  73.33333% {
+    -webkit-clip-path: inset(14% 0 50% 0);
+            clip-path: inset(14% 0 50% 0);
+    visibility: visible;
+  }
+  75% {
+    -webkit-clip-path: inset(65% 0 7% 0);
+            clip-path: inset(65% 0 7% 0);
+    visibility: visible;
+  }
+  76.66667% {
+    -webkit-clip-path: inset(71% 0 24% 0);
+            clip-path: inset(71% 0 24% 0);
+    visibility: visible;
+  }
+  78.33333% {
+    -webkit-clip-path: inset(60% 0 35% 0);
+            clip-path: inset(60% 0 35% 0);
+    visibility: visible;
+  }
+  80% {
+    -webkit-clip-path: inset(12% 0 5% 0);
+            clip-path: inset(12% 0 5% 0);
+    visibility: visible;
+  }
+  81.66667% {
+    -webkit-clip-path: inset(29% 0 66% 0);
+            clip-path: inset(29% 0 66% 0);
+    visibility: visible;
+  }
+  83.33333% {
+    -webkit-clip-path: inset(54% 0 35% 0);
+            clip-path: inset(54% 0 35% 0);
+    visibility: visible;
+  }
+  85% {
+    -webkit-clip-path: inset(37% 0 49% 0);
+            clip-path: inset(37% 0 49% 0);
+    visibility: visible;
+  }
+  86.66667% {
+    -webkit-clip-path: inset(4% 0 63% 0);
+            clip-path: inset(4% 0 63% 0);
+    visibility: visible;
+  }
+  88.33333% {
+    -webkit-clip-path: inset(29% 0 2% 0);
+            clip-path: inset(29% 0 2% 0);
+    visibility: visible;
+  }
+  90% {
+    -webkit-clip-path: inset(74% 0 22% 0);
+            clip-path: inset(74% 0 22% 0);
+    visibility: visible;
+  }
+  91.66667% {
+    -webkit-clip-path: inset(29% 0 2% 0);
+            clip-path: inset(29% 0 2% 0);
+    visibility: visible;
+  }
+  93.33333% {
+    -webkit-clip-path: inset(16% 0 35% 0);
+            clip-path: inset(16% 0 35% 0);
+    visibility: visible;
+  }
+  95% {
+    -webkit-clip-path: inset(16% 0 82% 0);
+            clip-path: inset(16% 0 82% 0);
+    visibility: visible;
+  }
+  96.66667% {
+    -webkit-clip-path: inset(51% 0 37% 0);
+            clip-path: inset(51% 0 37% 0);
+    visibility: visible;
+  }
+  98.33333% {
+    -webkit-clip-path: inset(81% 0 12% 0);
+            clip-path: inset(81% 0 12% 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-clip-path: inset(41% 0 48% 0);
+            clip-path: inset(41% 0 48% 0);
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes noise-anim-2 {
+  0% {
+    -webkit-clip-path: inset(11% 0 84% 0);
+            clip-path: inset(11% 0 84% 0);
+    visibility: visible;
+  }
+  0.83333% {
+    -webkit-clip-path: inset(50% 0 49% 0);
+            clip-path: inset(50% 0 49% 0);
+    visibility: visible;
+  }
+  1.66667% {
+    -webkit-clip-path: inset(91% 0 6% 0);
+            clip-path: inset(91% 0 6% 0);
+    visibility: visible;
+  }
+  2.5% {
+    -webkit-clip-path: inset(62% 0 18% 0);
+            clip-path: inset(62% 0 18% 0);
+    visibility: visible;
+  }
+  3.33333% {
+    -webkit-clip-path: inset(58% 0 28% 0);
+            clip-path: inset(58% 0 28% 0);
+    visibility: visible;
+  }
+  4.16667% {
+    -webkit-clip-path: inset(9% 0 2% 0);
+            clip-path: inset(9% 0 2% 0);
+    visibility: visible;
+  }
+  5% {
+    -webkit-clip-path: inset(14% 0 49% 0);
+            clip-path: inset(14% 0 49% 0);
+    visibility: visible;
+  }
+  5.83333% {
+    -webkit-clip-path: inset(46% 0 46% 0);
+            clip-path: inset(46% 0 46% 0);
+    visibility: visible;
+  }
+  6.66667% {
+    -webkit-clip-path: inset(24% 0 54% 0);
+            clip-path: inset(24% 0 54% 0);
+    visibility: visible;
+  }
+  7.5% {
+    -webkit-clip-path: inset(62% 0 9% 0);
+            clip-path: inset(62% 0 9% 0);
+    visibility: visible;
+  }
+  8.33333% {
+    -webkit-clip-path: inset(47% 0 18% 0);
+            clip-path: inset(47% 0 18% 0);
+    visibility: visible;
+  }
+  9.16667% {
+    -webkit-clip-path: inset(3% 0 4% 0);
+            clip-path: inset(3% 0 4% 0);
+    visibility: visible;
+  }
+  10% {
+    -webkit-clip-path: inset(9% 0 82% 0);
+            clip-path: inset(9% 0 82% 0);
+    visibility: visible;
+  }
+  10.83333% {
+    -webkit-clip-path: inset(70% 0 30% 0);
+            clip-path: inset(70% 0 30% 0);
+    visibility: visible;
+  }
+  11.66667% {
+    -webkit-clip-path: inset(82% 0 6% 0);
+            clip-path: inset(82% 0 6% 0);
+    visibility: visible;
+  }
+  12.5% {
+    -webkit-clip-path: inset(26% 0 39% 0);
+            clip-path: inset(26% 0 39% 0);
+    visibility: visible;
+  }
+  13.33333% {
+    -webkit-clip-path: inset(33% 0 8% 0);
+            clip-path: inset(33% 0 8% 0);
+    visibility: visible;
+  }
+  14.16667% {
+    -webkit-clip-path: inset(67% 0 18% 0);
+            clip-path: inset(67% 0 18% 0);
+    visibility: visible;
+  }
+  15% {
+    -webkit-clip-path: inset(51% 0 19% 0);
+            clip-path: inset(51% 0 19% 0);
+    visibility: visible;
+  }
+  15.83333% {
+    -webkit-clip-path: inset(79% 0 7% 0);
+            clip-path: inset(79% 0 7% 0);
+    visibility: visible;
+  }
+  16.66667% {
+    -webkit-clip-path: inset(44% 0 2% 0);
+            clip-path: inset(44% 0 2% 0);
+    visibility: visible;
+  }
+  17.5% {
+    -webkit-clip-path: inset(92% 0 9% 0);
+            clip-path: inset(92% 0 9% 0);
+    visibility: visible;
+  }
+  18.33333% {
+    -webkit-clip-path: inset(6% 0 8% 0);
+            clip-path: inset(6% 0 8% 0);
+    visibility: visible;
+  }
+  19.16667% {
+    -webkit-clip-path: inset(62% 0 13% 0);
+            clip-path: inset(62% 0 13% 0);
+    visibility: visible;
+  }
+  20% {
+    -webkit-clip-path: inset(82% 0 7% 0);
+            clip-path: inset(82% 0 7% 0);
+    visibility: visible;
+  }
+  20.83333% {
+    -webkit-clip-path: inset(64% 0 9% 0);
+            clip-path: inset(64% 0 9% 0);
+    visibility: visible;
+  }
+  21.66667% {
+    -webkit-clip-path: inset(25% 0 48% 0);
+            clip-path: inset(25% 0 48% 0);
+    visibility: visible;
+  }
+  22.5% {
+    -webkit-clip-path: inset(89% 0 5% 0);
+            clip-path: inset(89% 0 5% 0);
+    visibility: visible;
+  }
+  23.33333% {
+    -webkit-clip-path: inset(76% 0 21% 0);
+            clip-path: inset(76% 0 21% 0);
+    visibility: visible;
+  }
+  24.16667% {
+    -webkit-clip-path: inset(92% 0 7% 0);
+            clip-path: inset(92% 0 7% 0);
+    visibility: visible;
+  }
+  25% {
+    -webkit-clip-path: inset(77% 0 19% 0);
+            clip-path: inset(77% 0 19% 0);
+    visibility: visible;
+  }
+  25.83333% {
+    -webkit-clip-path: inset(93% 0 3% 0);
+            clip-path: inset(93% 0 3% 0);
+    visibility: visible;
+  }
+  26.66667% {
+    -webkit-clip-path: inset(62% 0 38% 0);
+            clip-path: inset(62% 0 38% 0);
+    visibility: visible;
+  }
+  27.5% {
+    -webkit-clip-path: inset(76% 0 9% 0);
+            clip-path: inset(76% 0 9% 0);
+    visibility: visible;
+  }
+  28.33333% {
+    -webkit-clip-path: inset(96% 0 3% 0);
+            clip-path: inset(96% 0 3% 0);
+    visibility: visible;
+  }
+  29.16667% {
+    -webkit-clip-path: inset(66% 0 22% 0);
+            clip-path: inset(66% 0 22% 0);
+    visibility: visible;
+  }
+  30% {
+    -webkit-clip-path: inset(83% 0 6% 0);
+            clip-path: inset(83% 0 6% 0);
+    visibility: visible;
+  }
+  30.83333% {
+    -webkit-clip-path: inset(69% 0 25% 0);
+            clip-path: inset(69% 0 25% 0);
+    visibility: visible;
+  }
+  31.66667% {
+    -webkit-clip-path: inset(89% 0 6% 0);
+            clip-path: inset(89% 0 6% 0);
+    visibility: visible;
+  }
+  32.5% {
+    -webkit-clip-path: inset(13% 0 20% 0);
+            clip-path: inset(13% 0 20% 0);
+    visibility: visible;
+  }
+  33.33333% {
+    -webkit-clip-path: inset(39% 0 25% 0);
+            clip-path: inset(39% 0 25% 0);
+    visibility: visible;
+  }
+  34.16667% {
+    -webkit-clip-path: inset(87% 0 3% 0);
+            clip-path: inset(87% 0 3% 0);
+    visibility: visible;
+  }
+  35% {
+    -webkit-clip-path: inset(54% 0 38% 0);
+            clip-path: inset(54% 0 38% 0);
+    visibility: visible;
+  }
+  35.83333% {
+    -webkit-clip-path: inset(10% 0 23% 0);
+            clip-path: inset(10% 0 23% 0);
+    visibility: visible;
+  }
+  36.66667% {
+    -webkit-clip-path: inset(80% 0 6% 0);
+            clip-path: inset(80% 0 6% 0);
+    visibility: visible;
+  }
+  37.5% {
+    -webkit-clip-path: inset(39% 0 26% 0);
+            clip-path: inset(39% 0 26% 0);
+    visibility: visible;
+  }
+  38.33333% {
+    -webkit-clip-path: inset(63% 0 33% 0);
+            clip-path: inset(63% 0 33% 0);
+    visibility: visible;
+  }
+  39.16667% {
+    -webkit-clip-path: inset(23% 0 42% 0);
+            clip-path: inset(23% 0 42% 0);
+    visibility: visible;
+  }
+  40% {
+    -webkit-clip-path: inset(71% 0 24% 0);
+            clip-path: inset(71% 0 24% 0);
+    visibility: visible;
+  }
+  40.83333% {
+    -webkit-clip-path: inset(42% 0 43% 0);
+            clip-path: inset(42% 0 43% 0);
+    visibility: visible;
+  }
+  41.66667% {
+    -webkit-clip-path: inset(74% 0 22% 0);
+            clip-path: inset(74% 0 22% 0);
+    visibility: visible;
+  }
+  42.5% {
+    -webkit-clip-path: inset(46% 0 17% 0);
+            clip-path: inset(46% 0 17% 0);
+    visibility: visible;
+  }
+  43.33333% {
+    -webkit-clip-path: inset(57% 0 14% 0);
+            clip-path: inset(57% 0 14% 0);
+    visibility: visible;
+  }
+  44.16667% {
+    -webkit-clip-path: inset(71% 0 13% 0);
+            clip-path: inset(71% 0 13% 0);
+    visibility: visible;
+  }
+  45% {
+    -webkit-clip-path: inset(38% 0 29% 0);
+            clip-path: inset(38% 0 29% 0);
+    visibility: visible;
+  }
+  45.83333% {
+    -webkit-clip-path: inset(92% 0 4% 0);
+            clip-path: inset(92% 0 4% 0);
+    visibility: visible;
+  }
+  46.66667% {
+    -webkit-clip-path: inset(40% 0 21% 0);
+            clip-path: inset(40% 0 21% 0);
+    visibility: visible;
+  }
+  47.5% {
+    -webkit-clip-path: inset(15% 0 4% 0);
+            clip-path: inset(15% 0 4% 0);
+    visibility: visible;
+  }
+  48.33333% {
+    -webkit-clip-path: inset(28% 0 44% 0);
+            clip-path: inset(28% 0 44% 0);
+    visibility: visible;
+  }
+  49.16667% {
+    -webkit-clip-path: inset(55% 0 33% 0);
+            clip-path: inset(55% 0 33% 0);
+    visibility: visible;
+  }
+  50% {
+    -webkit-clip-path: inset(11% 0 59% 0);
+            clip-path: inset(11% 0 59% 0);
+    visibility: visible;
+  }
+  50.83333% {
+    -webkit-clip-path: inset(88% 0 12% 0);
+            clip-path: inset(88% 0 12% 0);
+    visibility: visible;
+  }
+  51.66667% {
+    -webkit-clip-path: inset(29% 0 34% 0);
+            clip-path: inset(29% 0 34% 0);
+    visibility: visible;
+  }
+  52.5% {
+    -webkit-clip-path: inset(91% 0 9% 0);
+            clip-path: inset(91% 0 9% 0);
+    visibility: visible;
+  }
+  53.33333% {
+    -webkit-clip-path: inset(28% 0 19% 0);
+            clip-path: inset(28% 0 19% 0);
+    visibility: visible;
+  }
+  54.16667% {
+    -webkit-clip-path: inset(68% 0 7% 0);
+            clip-path: inset(68% 0 7% 0);
+    visibility: visible;
+  }
+  55% {
+    -webkit-clip-path: inset(83% 0 15% 0);
+            clip-path: inset(83% 0 15% 0);
+    visibility: visible;
+  }
+  55.83333% {
+    -webkit-clip-path: inset(10% 0 85% 0);
+            clip-path: inset(10% 0 85% 0);
+    visibility: visible;
+  }
+  56.66667% {
+    -webkit-clip-path: inset(10% 0 70% 0);
+            clip-path: inset(10% 0 70% 0);
+    visibility: visible;
+  }
+  57.5% {
+    -webkit-clip-path: inset(55% 0 29% 0);
+            clip-path: inset(55% 0 29% 0);
+    visibility: visible;
+  }
+  58.33333% {
+    -webkit-clip-path: inset(89% 0 11% 0);
+            clip-path: inset(89% 0 11% 0);
+    visibility: visible;
+  }
+  59.16667% {
+    -webkit-clip-path: inset(57% 0 26% 0);
+            clip-path: inset(57% 0 26% 0);
+    visibility: visible;
+  }
+  60% {
+    -webkit-clip-path: inset(16% 0 52% 0);
+            clip-path: inset(16% 0 52% 0);
+    visibility: visible;
+  }
+  60.83333% {
+    -webkit-clip-path: inset(72% 0 26% 0);
+            clip-path: inset(72% 0 26% 0);
+    visibility: visible;
+  }
+  61.66667% {
+    -webkit-clip-path: inset(63% 0 9% 0);
+            clip-path: inset(63% 0 9% 0);
+    visibility: visible;
+  }
+  62.5% {
+    -webkit-clip-path: inset(97% 0 4% 0);
+            clip-path: inset(97% 0 4% 0);
+    visibility: visible;
+  }
+  63.33333% {
+    -webkit-clip-path: inset(69% 0 25% 0);
+            clip-path: inset(69% 0 25% 0);
+    visibility: visible;
+  }
+  64.16667% {
+    -webkit-clip-path: inset(55% 0 7% 0);
+            clip-path: inset(55% 0 7% 0);
+    visibility: visible;
+  }
+  65% {
+    -webkit-clip-path: inset(85% 0 8% 0);
+            clip-path: inset(85% 0 8% 0);
+    visibility: visible;
+  }
+  65.83333% {
+    -webkit-clip-path: inset(28% 0 16% 0);
+            clip-path: inset(28% 0 16% 0);
+    visibility: visible;
+  }
+  66.66667% {
+    -webkit-clip-path: inset(54% 0 5% 0);
+            clip-path: inset(54% 0 5% 0);
+    visibility: visible;
+  }
+  67.5% {
+    -webkit-clip-path: inset(75% 0 2% 0);
+            clip-path: inset(75% 0 2% 0);
+    visibility: visible;
+  }
+  68.33333% {
+    -webkit-clip-path: inset(72% 0 22% 0);
+            clip-path: inset(72% 0 22% 0);
+    visibility: visible;
+  }
+  69.16667% {
+    -webkit-clip-path: inset(64% 0 23% 0);
+            clip-path: inset(64% 0 23% 0);
+    visibility: visible;
+  }
+  70% {
+    -webkit-clip-path: inset(47% 0 28% 0);
+            clip-path: inset(47% 0 28% 0);
+    visibility: visible;
+  }
+  70.83333% {
+    -webkit-clip-path: inset(22% 0 20% 0);
+            clip-path: inset(22% 0 20% 0);
+    visibility: visible;
+  }
+  71.66667% {
+    -webkit-clip-path: inset(98% 0 1% 0);
+            clip-path: inset(98% 0 1% 0);
+    visibility: visible;
+  }
+  72.5% {
+    -webkit-clip-path: inset(38% 0 12% 0);
+            clip-path: inset(38% 0 12% 0);
+    visibility: visible;
+  }
+  73.33333% {
+    -webkit-clip-path: inset(54% 0 46% 0);
+            clip-path: inset(54% 0 46% 0);
+    visibility: visible;
+  }
+  74.16667% {
+    -webkit-clip-path: inset(45% 0 52% 0);
+            clip-path: inset(45% 0 52% 0);
+    visibility: visible;
+  }
+  75% {
+    -webkit-clip-path: inset(72% 0 17% 0);
+            clip-path: inset(72% 0 17% 0);
+    visibility: visible;
+  }
+  75.83333% {
+    -webkit-clip-path: inset(3% 0 94% 0);
+            clip-path: inset(3% 0 94% 0);
+    visibility: visible;
+  }
+  76.66667% {
+    -webkit-clip-path: inset(18% 0 35% 0);
+            clip-path: inset(18% 0 35% 0);
+    visibility: visible;
+  }
+  77.5% {
+    -webkit-clip-path: inset(47% 0 30% 0);
+            clip-path: inset(47% 0 30% 0);
+    visibility: visible;
+  }
+  78.33333% {
+    -webkit-clip-path: inset(5% 0 15% 0);
+            clip-path: inset(5% 0 15% 0);
+    visibility: visible;
+  }
+  79.16667% {
+    -webkit-clip-path: inset(96% 0 4% 0);
+            clip-path: inset(96% 0 4% 0);
+    visibility: visible;
+  }
+  80% {
+    -webkit-clip-path: inset(34% 0 67% 0);
+            clip-path: inset(34% 0 67% 0);
+    visibility: visible;
+  }
+  80.83333% {
+    -webkit-clip-path: inset(94% 0 3% 0);
+            clip-path: inset(94% 0 3% 0);
+    visibility: visible;
+  }
+  81.66667% {
+    -webkit-clip-path: inset(24% 0 28% 0);
+            clip-path: inset(24% 0 28% 0);
+    visibility: visible;
+  }
+  82.5% {
+    -webkit-clip-path: inset(84% 0 10% 0);
+            clip-path: inset(84% 0 10% 0);
+    visibility: visible;
+  }
+  83.33333% {
+    -webkit-clip-path: inset(47% 0 39% 0);
+            clip-path: inset(47% 0 39% 0);
+    visibility: visible;
+  }
+  84.16667% {
+    -webkit-clip-path: inset(48% 0 42% 0);
+            clip-path: inset(48% 0 42% 0);
+    visibility: visible;
+  }
+  85% {
+    -webkit-clip-path: inset(12% 0 55% 0);
+            clip-path: inset(12% 0 55% 0);
+    visibility: visible;
+  }
+  85.83333% {
+    -webkit-clip-path: inset(81% 0 20% 0);
+            clip-path: inset(81% 0 20% 0);
+    visibility: visible;
+  }
+  86.66667% {
+    -webkit-clip-path: inset(93% 0 5% 0);
+            clip-path: inset(93% 0 5% 0);
+    visibility: visible;
+  }
+  87.5% {
+    -webkit-clip-path: inset(93% 0 7% 0);
+            clip-path: inset(93% 0 7% 0);
+    visibility: visible;
+  }
+  88.33333% {
+    -webkit-clip-path: inset(24% 0 57% 0);
+            clip-path: inset(24% 0 57% 0);
+    visibility: visible;
+  }
+  89.16667% {
+    -webkit-clip-path: inset(95% 0 2% 0);
+            clip-path: inset(95% 0 2% 0);
+    visibility: visible;
+  }
+  90% {
+    -webkit-clip-path: inset(70% 0 22% 0);
+            clip-path: inset(70% 0 22% 0);
+    visibility: visible;
+  }
+  90.83333% {
+    -webkit-clip-path: inset(74% 0 6% 0);
+            clip-path: inset(74% 0 6% 0);
+    visibility: visible;
+  }
+  91.66667% {
+    -webkit-clip-path: inset(43% 0 46% 0);
+            clip-path: inset(43% 0 46% 0);
+    visibility: visible;
+  }
+  92.5% {
+    -webkit-clip-path: inset(53% 0 15% 0);
+            clip-path: inset(53% 0 15% 0);
+    visibility: visible;
+  }
+  93.33333% {
+    -webkit-clip-path: inset(97% 0 1% 0);
+            clip-path: inset(97% 0 1% 0);
+    visibility: visible;
+  }
+  94.16667% {
+    -webkit-clip-path: inset(84% 0 17% 0);
+            clip-path: inset(84% 0 17% 0);
+    visibility: visible;
+  }
+  95% {
+    -webkit-clip-path: inset(98% 0 1% 0);
+            clip-path: inset(98% 0 1% 0);
+    visibility: visible;
+  }
+  95.83333% {
+    -webkit-clip-path: inset(76% 0 15% 0);
+            clip-path: inset(76% 0 15% 0);
+    visibility: visible;
+  }
+  96.66667% {
+    -webkit-clip-path: inset(59% 0 12% 0);
+            clip-path: inset(59% 0 12% 0);
+    visibility: visible;
+  }
+  97.5% {
+    -webkit-clip-path: inset(96% 0 5% 0);
+            clip-path: inset(96% 0 5% 0);
+    visibility: visible;
+  }
+  98.33333% {
+    -webkit-clip-path: inset(67% 0 30% 0);
+            clip-path: inset(67% 0 30% 0);
+    visibility: visible;
+  }
+  99.16667% {
+    -webkit-clip-path: inset(99% 0 2% 0);
+            clip-path: inset(99% 0 2% 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-clip-path: inset(57% 0 38% 0);
+            clip-path: inset(57% 0 38% 0);
+    visibility: visible;
+  }
+}
+
+@keyframes noise-anim-2 {
+  0% {
+    -webkit-clip-path: inset(11% 0 84% 0);
+            clip-path: inset(11% 0 84% 0);
+    visibility: visible;
+  }
+  0.83333% {
+    -webkit-clip-path: inset(50% 0 49% 0);
+            clip-path: inset(50% 0 49% 0);
+    visibility: visible;
+  }
+  1.66667% {
+    -webkit-clip-path: inset(91% 0 6% 0);
+            clip-path: inset(91% 0 6% 0);
+    visibility: visible;
+  }
+  2.5% {
+    -webkit-clip-path: inset(62% 0 18% 0);
+            clip-path: inset(62% 0 18% 0);
+    visibility: visible;
+  }
+  3.33333% {
+    -webkit-clip-path: inset(58% 0 28% 0);
+            clip-path: inset(58% 0 28% 0);
+    visibility: visible;
+  }
+  4.16667% {
+    -webkit-clip-path: inset(9% 0 2% 0);
+            clip-path: inset(9% 0 2% 0);
+    visibility: visible;
+  }
+  5% {
+    -webkit-clip-path: inset(14% 0 49% 0);
+            clip-path: inset(14% 0 49% 0);
+    visibility: visible;
+  }
+  5.83333% {
+    -webkit-clip-path: inset(46% 0 46% 0);
+            clip-path: inset(46% 0 46% 0);
+    visibility: visible;
+  }
+  6.66667% {
+    -webkit-clip-path: inset(24% 0 54% 0);
+            clip-path: inset(24% 0 54% 0);
+    visibility: visible;
+  }
+  7.5% {
+    -webkit-clip-path: inset(62% 0 9% 0);
+            clip-path: inset(62% 0 9% 0);
+    visibility: visible;
+  }
+  8.33333% {
+    -webkit-clip-path: inset(47% 0 18% 0);
+            clip-path: inset(47% 0 18% 0);
+    visibility: visible;
+  }
+  9.16667% {
+    -webkit-clip-path: inset(3% 0 4% 0);
+            clip-path: inset(3% 0 4% 0);
+    visibility: visible;
+  }
+  10% {
+    -webkit-clip-path: inset(9% 0 82% 0);
+            clip-path: inset(9% 0 82% 0);
+    visibility: visible;
+  }
+  10.83333% {
+    -webkit-clip-path: inset(70% 0 30% 0);
+            clip-path: inset(70% 0 30% 0);
+    visibility: visible;
+  }
+  11.66667% {
+    -webkit-clip-path: inset(82% 0 6% 0);
+            clip-path: inset(82% 0 6% 0);
+    visibility: visible;
+  }
+  12.5% {
+    -webkit-clip-path: inset(26% 0 39% 0);
+            clip-path: inset(26% 0 39% 0);
+    visibility: visible;
+  }
+  13.33333% {
+    -webkit-clip-path: inset(33% 0 8% 0);
+            clip-path: inset(33% 0 8% 0);
+    visibility: visible;
+  }
+  14.16667% {
+    -webkit-clip-path: inset(67% 0 18% 0);
+            clip-path: inset(67% 0 18% 0);
+    visibility: visible;
+  }
+  15% {
+    -webkit-clip-path: inset(51% 0 19% 0);
+            clip-path: inset(51% 0 19% 0);
+    visibility: visible;
+  }
+  15.83333% {
+    -webkit-clip-path: inset(79% 0 7% 0);
+            clip-path: inset(79% 0 7% 0);
+    visibility: visible;
+  }
+  16.66667% {
+    -webkit-clip-path: inset(44% 0 2% 0);
+            clip-path: inset(44% 0 2% 0);
+    visibility: visible;
+  }
+  17.5% {
+    -webkit-clip-path: inset(92% 0 9% 0);
+            clip-path: inset(92% 0 9% 0);
+    visibility: visible;
+  }
+  18.33333% {
+    -webkit-clip-path: inset(6% 0 8% 0);
+            clip-path: inset(6% 0 8% 0);
+    visibility: visible;
+  }
+  19.16667% {
+    -webkit-clip-path: inset(62% 0 13% 0);
+            clip-path: inset(62% 0 13% 0);
+    visibility: visible;
+  }
+  20% {
+    -webkit-clip-path: inset(82% 0 7% 0);
+            clip-path: inset(82% 0 7% 0);
+    visibility: visible;
+  }
+  20.83333% {
+    -webkit-clip-path: inset(64% 0 9% 0);
+            clip-path: inset(64% 0 9% 0);
+    visibility: visible;
+  }
+  21.66667% {
+    -webkit-clip-path: inset(25% 0 48% 0);
+            clip-path: inset(25% 0 48% 0);
+    visibility: visible;
+  }
+  22.5% {
+    -webkit-clip-path: inset(89% 0 5% 0);
+            clip-path: inset(89% 0 5% 0);
+    visibility: visible;
+  }
+  23.33333% {
+    -webkit-clip-path: inset(76% 0 21% 0);
+            clip-path: inset(76% 0 21% 0);
+    visibility: visible;
+  }
+  24.16667% {
+    -webkit-clip-path: inset(92% 0 7% 0);
+            clip-path: inset(92% 0 7% 0);
+    visibility: visible;
+  }
+  25% {
+    -webkit-clip-path: inset(77% 0 19% 0);
+            clip-path: inset(77% 0 19% 0);
+    visibility: visible;
+  }
+  25.83333% {
+    -webkit-clip-path: inset(93% 0 3% 0);
+            clip-path: inset(93% 0 3% 0);
+    visibility: visible;
+  }
+  26.66667% {
+    -webkit-clip-path: inset(62% 0 38% 0);
+            clip-path: inset(62% 0 38% 0);
+    visibility: visible;
+  }
+  27.5% {
+    -webkit-clip-path: inset(76% 0 9% 0);
+            clip-path: inset(76% 0 9% 0);
+    visibility: visible;
+  }
+  28.33333% {
+    -webkit-clip-path: inset(96% 0 3% 0);
+            clip-path: inset(96% 0 3% 0);
+    visibility: visible;
+  }
+  29.16667% {
+    -webkit-clip-path: inset(66% 0 22% 0);
+            clip-path: inset(66% 0 22% 0);
+    visibility: visible;
+  }
+  30% {
+    -webkit-clip-path: inset(83% 0 6% 0);
+            clip-path: inset(83% 0 6% 0);
+    visibility: visible;
+  }
+  30.83333% {
+    -webkit-clip-path: inset(69% 0 25% 0);
+            clip-path: inset(69% 0 25% 0);
+    visibility: visible;
+  }
+  31.66667% {
+    -webkit-clip-path: inset(89% 0 6% 0);
+            clip-path: inset(89% 0 6% 0);
+    visibility: visible;
+  }
+  32.5% {
+    -webkit-clip-path: inset(13% 0 20% 0);
+            clip-path: inset(13% 0 20% 0);
+    visibility: visible;
+  }
+  33.33333% {
+    -webkit-clip-path: inset(39% 0 25% 0);
+            clip-path: inset(39% 0 25% 0);
+    visibility: visible;
+  }
+  34.16667% {
+    -webkit-clip-path: inset(87% 0 3% 0);
+            clip-path: inset(87% 0 3% 0);
+    visibility: visible;
+  }
+  35% {
+    -webkit-clip-path: inset(54% 0 38% 0);
+            clip-path: inset(54% 0 38% 0);
+    visibility: visible;
+  }
+  35.83333% {
+    -webkit-clip-path: inset(10% 0 23% 0);
+            clip-path: inset(10% 0 23% 0);
+    visibility: visible;
+  }
+  36.66667% {
+    -webkit-clip-path: inset(80% 0 6% 0);
+            clip-path: inset(80% 0 6% 0);
+    visibility: visible;
+  }
+  37.5% {
+    -webkit-clip-path: inset(39% 0 26% 0);
+            clip-path: inset(39% 0 26% 0);
+    visibility: visible;
+  }
+  38.33333% {
+    -webkit-clip-path: inset(63% 0 33% 0);
+            clip-path: inset(63% 0 33% 0);
+    visibility: visible;
+  }
+  39.16667% {
+    -webkit-clip-path: inset(23% 0 42% 0);
+            clip-path: inset(23% 0 42% 0);
+    visibility: visible;
+  }
+  40% {
+    -webkit-clip-path: inset(71% 0 24% 0);
+            clip-path: inset(71% 0 24% 0);
+    visibility: visible;
+  }
+  40.83333% {
+    -webkit-clip-path: inset(42% 0 43% 0);
+            clip-path: inset(42% 0 43% 0);
+    visibility: visible;
+  }
+  41.66667% {
+    -webkit-clip-path: inset(74% 0 22% 0);
+            clip-path: inset(74% 0 22% 0);
+    visibility: visible;
+  }
+  42.5% {
+    -webkit-clip-path: inset(46% 0 17% 0);
+            clip-path: inset(46% 0 17% 0);
+    visibility: visible;
+  }
+  43.33333% {
+    -webkit-clip-path: inset(57% 0 14% 0);
+            clip-path: inset(57% 0 14% 0);
+    visibility: visible;
+  }
+  44.16667% {
+    -webkit-clip-path: inset(71% 0 13% 0);
+            clip-path: inset(71% 0 13% 0);
+    visibility: visible;
+  }
+  45% {
+    -webkit-clip-path: inset(38% 0 29% 0);
+            clip-path: inset(38% 0 29% 0);
+    visibility: visible;
+  }
+  45.83333% {
+    -webkit-clip-path: inset(92% 0 4% 0);
+            clip-path: inset(92% 0 4% 0);
+    visibility: visible;
+  }
+  46.66667% {
+    -webkit-clip-path: inset(40% 0 21% 0);
+            clip-path: inset(40% 0 21% 0);
+    visibility: visible;
+  }
+  47.5% {
+    -webkit-clip-path: inset(15% 0 4% 0);
+            clip-path: inset(15% 0 4% 0);
+    visibility: visible;
+  }
+  48.33333% {
+    -webkit-clip-path: inset(28% 0 44% 0);
+            clip-path: inset(28% 0 44% 0);
+    visibility: visible;
+  }
+  49.16667% {
+    -webkit-clip-path: inset(55% 0 33% 0);
+            clip-path: inset(55% 0 33% 0);
+    visibility: visible;
+  }
+  50% {
+    -webkit-clip-path: inset(11% 0 59% 0);
+            clip-path: inset(11% 0 59% 0);
+    visibility: visible;
+  }
+  50.83333% {
+    -webkit-clip-path: inset(88% 0 12% 0);
+            clip-path: inset(88% 0 12% 0);
+    visibility: visible;
+  }
+  51.66667% {
+    -webkit-clip-path: inset(29% 0 34% 0);
+            clip-path: inset(29% 0 34% 0);
+    visibility: visible;
+  }
+  52.5% {
+    -webkit-clip-path: inset(91% 0 9% 0);
+            clip-path: inset(91% 0 9% 0);
+    visibility: visible;
+  }
+  53.33333% {
+    -webkit-clip-path: inset(28% 0 19% 0);
+            clip-path: inset(28% 0 19% 0);
+    visibility: visible;
+  }
+  54.16667% {
+    -webkit-clip-path: inset(68% 0 7% 0);
+            clip-path: inset(68% 0 7% 0);
+    visibility: visible;
+  }
+  55% {
+    -webkit-clip-path: inset(83% 0 15% 0);
+            clip-path: inset(83% 0 15% 0);
+    visibility: visible;
+  }
+  55.83333% {
+    -webkit-clip-path: inset(10% 0 85% 0);
+            clip-path: inset(10% 0 85% 0);
+    visibility: visible;
+  }
+  56.66667% {
+    -webkit-clip-path: inset(10% 0 70% 0);
+            clip-path: inset(10% 0 70% 0);
+    visibility: visible;
+  }
+  57.5% {
+    -webkit-clip-path: inset(55% 0 29% 0);
+            clip-path: inset(55% 0 29% 0);
+    visibility: visible;
+  }
+  58.33333% {
+    -webkit-clip-path: inset(89% 0 11% 0);
+            clip-path: inset(89% 0 11% 0);
+    visibility: visible;
+  }
+  59.16667% {
+    -webkit-clip-path: inset(57% 0 26% 0);
+            clip-path: inset(57% 0 26% 0);
+    visibility: visible;
+  }
+  60% {
+    -webkit-clip-path: inset(16% 0 52% 0);
+            clip-path: inset(16% 0 52% 0);
+    visibility: visible;
+  }
+  60.83333% {
+    -webkit-clip-path: inset(72% 0 26% 0);
+            clip-path: inset(72% 0 26% 0);
+    visibility: visible;
+  }
+  61.66667% {
+    -webkit-clip-path: inset(63% 0 9% 0);
+            clip-path: inset(63% 0 9% 0);
+    visibility: visible;
+  }
+  62.5% {
+    -webkit-clip-path: inset(97% 0 4% 0);
+            clip-path: inset(97% 0 4% 0);
+    visibility: visible;
+  }
+  63.33333% {
+    -webkit-clip-path: inset(69% 0 25% 0);
+            clip-path: inset(69% 0 25% 0);
+    visibility: visible;
+  }
+  64.16667% {
+    -webkit-clip-path: inset(55% 0 7% 0);
+            clip-path: inset(55% 0 7% 0);
+    visibility: visible;
+  }
+  65% {
+    -webkit-clip-path: inset(85% 0 8% 0);
+            clip-path: inset(85% 0 8% 0);
+    visibility: visible;
+  }
+  65.83333% {
+    -webkit-clip-path: inset(28% 0 16% 0);
+            clip-path: inset(28% 0 16% 0);
+    visibility: visible;
+  }
+  66.66667% {
+    -webkit-clip-path: inset(54% 0 5% 0);
+            clip-path: inset(54% 0 5% 0);
+    visibility: visible;
+  }
+  67.5% {
+    -webkit-clip-path: inset(75% 0 2% 0);
+            clip-path: inset(75% 0 2% 0);
+    visibility: visible;
+  }
+  68.33333% {
+    -webkit-clip-path: inset(72% 0 22% 0);
+            clip-path: inset(72% 0 22% 0);
+    visibility: visible;
+  }
+  69.16667% {
+    -webkit-clip-path: inset(64% 0 23% 0);
+            clip-path: inset(64% 0 23% 0);
+    visibility: visible;
+  }
+  70% {
+    -webkit-clip-path: inset(47% 0 28% 0);
+            clip-path: inset(47% 0 28% 0);
+    visibility: visible;
+  }
+  70.83333% {
+    -webkit-clip-path: inset(22% 0 20% 0);
+            clip-path: inset(22% 0 20% 0);
+    visibility: visible;
+  }
+  71.66667% {
+    -webkit-clip-path: inset(98% 0 1% 0);
+            clip-path: inset(98% 0 1% 0);
+    visibility: visible;
+  }
+  72.5% {
+    -webkit-clip-path: inset(38% 0 12% 0);
+            clip-path: inset(38% 0 12% 0);
+    visibility: visible;
+  }
+  73.33333% {
+    -webkit-clip-path: inset(54% 0 46% 0);
+            clip-path: inset(54% 0 46% 0);
+    visibility: visible;
+  }
+  74.16667% {
+    -webkit-clip-path: inset(45% 0 52% 0);
+            clip-path: inset(45% 0 52% 0);
+    visibility: visible;
+  }
+  75% {
+    -webkit-clip-path: inset(72% 0 17% 0);
+            clip-path: inset(72% 0 17% 0);
+    visibility: visible;
+  }
+  75.83333% {
+    -webkit-clip-path: inset(3% 0 94% 0);
+            clip-path: inset(3% 0 94% 0);
+    visibility: visible;
+  }
+  76.66667% {
+    -webkit-clip-path: inset(18% 0 35% 0);
+            clip-path: inset(18% 0 35% 0);
+    visibility: visible;
+  }
+  77.5% {
+    -webkit-clip-path: inset(47% 0 30% 0);
+            clip-path: inset(47% 0 30% 0);
+    visibility: visible;
+  }
+  78.33333% {
+    -webkit-clip-path: inset(5% 0 15% 0);
+            clip-path: inset(5% 0 15% 0);
+    visibility: visible;
+  }
+  79.16667% {
+    -webkit-clip-path: inset(96% 0 4% 0);
+            clip-path: inset(96% 0 4% 0);
+    visibility: visible;
+  }
+  80% {
+    -webkit-clip-path: inset(34% 0 67% 0);
+            clip-path: inset(34% 0 67% 0);
+    visibility: visible;
+  }
+  80.83333% {
+    -webkit-clip-path: inset(94% 0 3% 0);
+            clip-path: inset(94% 0 3% 0);
+    visibility: visible;
+  }
+  81.66667% {
+    -webkit-clip-path: inset(24% 0 28% 0);
+            clip-path: inset(24% 0 28% 0);
+    visibility: visible;
+  }
+  82.5% {
+    -webkit-clip-path: inset(84% 0 10% 0);
+            clip-path: inset(84% 0 10% 0);
+    visibility: visible;
+  }
+  83.33333% {
+    -webkit-clip-path: inset(47% 0 39% 0);
+            clip-path: inset(47% 0 39% 0);
+    visibility: visible;
+  }
+  84.16667% {
+    -webkit-clip-path: inset(48% 0 42% 0);
+            clip-path: inset(48% 0 42% 0);
+    visibility: visible;
+  }
+  85% {
+    -webkit-clip-path: inset(12% 0 55% 0);
+            clip-path: inset(12% 0 55% 0);
+    visibility: visible;
+  }
+  85.83333% {
+    -webkit-clip-path: inset(81% 0 20% 0);
+            clip-path: inset(81% 0 20% 0);
+    visibility: visible;
+  }
+  86.66667% {
+    -webkit-clip-path: inset(93% 0 5% 0);
+            clip-path: inset(93% 0 5% 0);
+    visibility: visible;
+  }
+  87.5% {
+    -webkit-clip-path: inset(93% 0 7% 0);
+            clip-path: inset(93% 0 7% 0);
+    visibility: visible;
+  }
+  88.33333% {
+    -webkit-clip-path: inset(24% 0 57% 0);
+            clip-path: inset(24% 0 57% 0);
+    visibility: visible;
+  }
+  89.16667% {
+    -webkit-clip-path: inset(95% 0 2% 0);
+            clip-path: inset(95% 0 2% 0);
+    visibility: visible;
+  }
+  90% {
+    -webkit-clip-path: inset(70% 0 22% 0);
+            clip-path: inset(70% 0 22% 0);
+    visibility: visible;
+  }
+  90.83333% {
+    -webkit-clip-path: inset(74% 0 6% 0);
+            clip-path: inset(74% 0 6% 0);
+    visibility: visible;
+  }
+  91.66667% {
+    -webkit-clip-path: inset(43% 0 46% 0);
+            clip-path: inset(43% 0 46% 0);
+    visibility: visible;
+  }
+  92.5% {
+    -webkit-clip-path: inset(53% 0 15% 0);
+            clip-path: inset(53% 0 15% 0);
+    visibility: visible;
+  }
+  93.33333% {
+    -webkit-clip-path: inset(97% 0 1% 0);
+            clip-path: inset(97% 0 1% 0);
+    visibility: visible;
+  }
+  94.16667% {
+    -webkit-clip-path: inset(84% 0 17% 0);
+            clip-path: inset(84% 0 17% 0);
+    visibility: visible;
+  }
+  95% {
+    -webkit-clip-path: inset(98% 0 1% 0);
+            clip-path: inset(98% 0 1% 0);
+    visibility: visible;
+  }
+  95.83333% {
+    -webkit-clip-path: inset(76% 0 15% 0);
+            clip-path: inset(76% 0 15% 0);
+    visibility: visible;
+  }
+  96.66667% {
+    -webkit-clip-path: inset(59% 0 12% 0);
+            clip-path: inset(59% 0 12% 0);
+    visibility: visible;
+  }
+  97.5% {
+    -webkit-clip-path: inset(96% 0 5% 0);
+            clip-path: inset(96% 0 5% 0);
+    visibility: visible;
+  }
+  98.33333% {
+    -webkit-clip-path: inset(67% 0 30% 0);
+            clip-path: inset(67% 0 30% 0);
+    visibility: visible;
+  }
+  99.16667% {
+    -webkit-clip-path: inset(99% 0 2% 0);
+            clip-path: inset(99% 0 2% 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-clip-path: inset(57% 0 38% 0);
+            clip-path: inset(57% 0 38% 0);
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes glitch-btn {
+  0% {
+    clip: rect(-3px, 600px, 0px, 0px);
+    visibility: visible;
+  }
+  2% {
+    clip: rect(0px, 600px, 0px, 0px);
+  }
+  5% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  9% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  17% {
+    clip: rect(100px, 600px, 100px, 0px);
+  }
+  29% {
+    clip: rect(0px, 600px, 600px, 0px);
+  }
+  35% {
+    clip: rect(100px, 600px, 0px, 0px);
+  }
+  41% {
+    clip: rect(0px, 600px, 600px, 0px);
+  }
+  47% {
+    clip: rect(100px, 600px, 0px, 0px);
+  }
+  52% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  58% {
+    clip: rect(100px, 450px, 100px, 0px);
+  }
+  64% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  70% {
+    clip: rect(100px, 450px, 100px, 0px);
+  }
+  76% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  82% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  88% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  94% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  100% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+}
+
+@keyframes glitch-btn {
+  0% {
+    clip: rect(-3px, 600px, 0px, 0px);
+    visibility: visible;
+  }
+  2% {
+    clip: rect(0px, 600px, 0px, 0px);
+  }
+  5% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  9% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  17% {
+    clip: rect(100px, 600px, 100px, 0px);
+  }
+  29% {
+    clip: rect(0px, 600px, 600px, 0px);
+  }
+  35% {
+    clip: rect(100px, 600px, 0px, 0px);
+  }
+  41% {
+    clip: rect(0px, 600px, 600px, 0px);
+  }
+  47% {
+    clip: rect(100px, 600px, 0px, 0px);
+  }
+  52% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  58% {
+    clip: rect(100px, 450px, 100px, 0px);
+  }
+  64% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  70% {
+    clip: rect(100px, 450px, 100px, 0px);
+  }
+  76% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  82% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  88% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  94% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  100% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+}
