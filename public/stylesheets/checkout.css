@@ -424,6 +424,17 @@ CART
 /*-----------------------------------------------------------------------------------------
 SHIPPING
 -----------------------------------------------------------------------------------------*/
+.checkout-shpg-adrs-inp-cntn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2vmax 0;
+}
+
 .checkout-shpg-adrs-cntn {
   width: 100%;
   display: -webkit-box;
@@ -434,7 +445,19 @@ SHIPPING
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 2vmax 0;
+}
+
+.checkout-shpg-adrs-inp {
+  margin: 0;
+}
+
+.checkout-shpg-adrs-svd-inp-lbl {
+  letter-spacing: 0.1vmax;
+  padding: 0 0 0 1.6vmax;
 }
 
 .checkout-shpg-adrs-svd-line {
@@ -480,7 +503,19 @@ SHIPPING
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 2vmax 0;
+}
+
+.checkout-shpg-mthd-inp {
+  margin: 0;
+}
+
+.checkout-shpg-mthd-inp-lbl {
+  letter-spacing: 0.1vmax;
+  padding: 0 0 0 1.6vmax;
 }
 
 .checkout-shpg-btns {

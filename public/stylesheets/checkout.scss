@@ -312,12 +312,29 @@ CART
 SHIPPING
 -----------------------------------------------------------------------------------------*/
 
+.checkout-shpg-adrs-inp-cntn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2vmax 0;
+}
+
 .checkout-shpg-adrs-cntn {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   padding: 2vmax 0;
+}
+
+.checkout-shpg-adrs-inp {
+  margin: 0;
+}
+
+.checkout-shpg-adrs-svd-inp-lbl {
+  letter-spacing: 0.1vmax;
+  padding: 0 0 0 1.6vmax;
 }
 
 .checkout-shpg-adrs-svd-line {
@@ -361,7 +378,17 @@ SHIPPING
 .checkout-shpg-mthd-cntn {
   width: 100%;
   display: flex;
+  align-items: center;
   padding: 2vmax 0;
+}
+
+.checkout-shpg-mthd-inp {
+  margin: 0;
+}
+
+.checkout-shpg-mthd-inp-lbl {
+  letter-spacing: 0.1vmax;
+  padding: 0 0 0 1.6vmax;
 }
 
 .checkout-shpg-btns {
