@@ -163,26 +163,34 @@ body {
   }
 }
 
-input {
-  border: none;
-  border-bottom: 1px solid $dark-3;
-  padding: 0.5vw 1vw;
-  width: 20vw;
-  
-  &::placeholder {
-    color: $light-3;
-    letter-spacing: 2px;
-    font-weight: 100;
+.input-decor {
+  position: relative;
+  display: inline-block;
+
+  input {
+    border: none;
+    border-bottom: 1px solid $dark-3;
+    padding: 0.5vw 1vw;
+    width: 20vw;
+    
+    &:focus { outline: none; }
+
+    &::placeholder {
+      color: $light-3;
+      letter-spacing: 2px;
+      font-weight: 100;
+    }
   }
 
-  &:focus {
-    // border-bottom: 10px solid $dark-3;
-    outline: none;
-    border-style: solid;
-    border-image: linear-gradient(to right, $logo-1, $logo-3) 27 / 0 0 1px 0;
+  &:focus-within::after {
+    content: '';
+    border-bottom: 10px solid $dark-3;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
   }
 }
-
 
 .container.right-panel-active .hello-container {
   transform: translateX(100%);
