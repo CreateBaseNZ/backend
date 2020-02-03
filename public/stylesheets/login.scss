@@ -184,7 +184,7 @@ body {
     &:focus { outline: none; }
   }
 
-  .form-label {
+  input[value=""] .form-label {
     position: absolute;
     top: 0;
     left: 0;
