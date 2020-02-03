@@ -24,17 +24,6 @@
 
   <body onload="indexInit();">
     <div class="container" id="container">
-      
-      <div class="form-container hello-container">
-        <a href="/index" id="hello-logo">
-          <img src="images/logo-dark.png" id="logo-img" alt="CreateBase">
-        </a>
-        <h1 id="hello-creator">
-          Hello, <span class="glitch" id="change-text" data-text="Creator">Creator</span>.
-        </h1>
-        <a href="/signup" class="btn" id="hello-signup" data-text="SIGN UP">SIGN UP</a>
-        <button class="btn" id="hello-login" data-text="LOG IN">LOG IN</button>
-      </div>
 
       <div class="form-container login-container">
         <form class="log-in-form" action="/login/customer" method="post">
@@ -43,12 +32,14 @@
           </a>
           <h2>WELCOME BACK TO BASE</h2>
           <div class="log-in-fld input-decor" id="login-email">
-              <input type="email" name="email" id="log-in-eml" placeholder="Email" />
+            <input type="email" name="email" id="log-in-eml" required/>
+            <label for="email" class="form-label">Email</label>
           </div>
           <div class="log-in-fld input-decor" id="login-password">
-              <input type="password" name="password" id="log-in-pwd" placeholder="Password" />
+            <input type="password" name="password" id="log-in-pwd" required/>
+            <label for="password" class="form-label">Password</label>
           </div>
-          <div class="log-in-fld">
+          <div class="log-in-fld" id="login-login">
             <!-- <button type="submit" class="btn" id="login-btn">Log in</button> -->
             <a href="/index" class="btn" id="login-btn" data-text="LOG IN">LOG IN</a>
           </div>
@@ -59,6 +50,17 @@
         <div id="login-signup">
           <p class="rmv-p-css">New to CreateBase? <a class="rmv-link-css" href="/signup">Create an account</a></p>
         </div>
+      </div>
+      
+      <div class="form-container hello-container">
+        <a href="/index" id="hello-logo">
+          <img src="images/logo-dark.png" id="logo-img" alt="CreateBase">
+        </a>
+        <h1 id="hello-creator">
+          Hello, <span class="glitch" id="change-text" data-text="Creator">Creator</span>.
+        </h1>
+        <a href="/signup" class="btn" id="hello-signup" data-text="SIGN UP">SIGN UP</a>
+        <button class="btn" id="hello-login" data-text="LOG IN">LOG IN</button>
       </div>
 
       <div class="overlay-container">
