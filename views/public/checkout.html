@@ -137,7 +137,7 @@
 
         <div class="checkout-sub-pg" id="checkout-sub-pg-1">
           <h2
-            class="checkout-sub-hdng rmv-h-css hdng-3 txt-clr-blk-2"
+            class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
             id="checkout-cart-hdng"
           >
             Cart
@@ -381,7 +381,7 @@
 
         <div class="checkout-sub-pg" id="checkout-sub-pg-2">
           <h2
-            class="checkout-sub-hdng rmv-h-css hdng-3 txt-clr-blk-2"
+            class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
             id="checkout-shpg-hdng"
           >
             Shipping
@@ -400,27 +400,33 @@
                 <input
                   type="radio"
                   name="address"
+                  class="checkout-shpg-adrs-inp"
                   id="checkout-shpg-adrs-svd-inp"
+                  checked
                 />
-                <label for="checkout-shpg-adrs-svd-inp">Saved Address</label>
+                <label
+                  for="checkout-shpg-adrs-svd-inp"
+                  class="checkout-shpg-adrs-svd-inp-lbl txt-1 txt-clr-blk-2"
+                  >Saved Address</label
+                >
               </div>
               <div
                 class="checkout-shpg-adrs-cntn"
                 id="checkout-shpg-adrs-cntn-svd"
               >
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-1">
+                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
                   7/11
                 </div>
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-1">
+                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
                   45B Aranui Road
                 </div>
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-1">
+                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
                   Panmure
                 </div>
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-1">
+                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
                   Auckland, 1020
                 </div>
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-1">
+                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
                   New Zealand
                 </div>
               </div>
@@ -428,9 +434,14 @@
                 <input
                   type="radio"
                   name="address"
+                  class="checkout-shpg-adrs-inp"
                   id="checkout-shpg-adrs-new-inp"
                 />
-                <label for="checkout-shpg-adrs-new-inp">New Address</label>
+                <label
+                  for="checkout-shpg-adrs-new-inp"
+                  class="checkout-shpg-adrs-svd-inp-lbl txt-1 txt-clr-blk-2"
+                  >New Address</label
+                >
               </div>
               <div
                 class="checkout-shpg-adrs-cntn"
@@ -538,7 +549,45 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Shipping Method
               </h3>
-              <div class="checkout-shpg-mthd-cntn"></div>
+              <div class="checkout-shpg-mthd-cntn">
+                <input
+                  type="radio"
+                  name="shippingMethod"
+                  class="checkout-shpg-mthd-inp"
+                  id="checkout-shpg-mthd-inp-pckp"
+                />
+                <label
+                  for="checkout-shpg-mthd-inp-pckp"
+                  class="checkout-shpg-mthd-inp-lbl txt-1 txt-clr-blk-2"
+                  >Pickup (Free)</label
+                >
+              </div>
+              <div class="checkout-shpg-mthd-cntn">
+                <input
+                  type="radio"
+                  name="shippingMethod"
+                  class="checkout-shpg-mthd-inp"
+                  id="checkout-shpg-mthd-inp-trck"
+                />
+                <label
+                  for="checkout-shpg-mthd-inp-trck"
+                  class="checkout-shpg-mthd-inp-lbl txt-1 txt-clr-blk-2"
+                  >Tracked ($X.XX and X days)</label
+                >
+              </div>
+              <div class="checkout-shpg-mthd-cntn">
+                <input
+                  type="radio"
+                  name="shippingMethod"
+                  class="checkout-shpg-mthd-inp"
+                  id="checkout-shpg-mthd-inp-crr"
+                />
+                <label
+                  for="checkout-shpg-mthd-inp-crr"
+                  class="checkout-shpg-mthd-inp-lbl txt-1 txt-clr-blk-2"
+                  >Courier ($X.XX and X days)</label
+                >
+              </div>
             </div>
 
             <!-----------------------------------------------------------------------------
@@ -566,7 +615,7 @@
 
         <div class="checkout-sub-pg" id="checkout-sub-pg-3">
           <h2
-            class="checkout-sub-hdng rmv-h-css hdng-3 txt-clr-blk-2"
+            class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
             id="checkout-pymt-hdng"
           >
             Payment
@@ -579,7 +628,7 @@
 
         <div class="checkout-sub-pg" id="checkout-sub-pg-4">
           <h2
-            class="checkout-sub-hdng rmv-h-css hdng-3 txt-clr-blk-2"
+            class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
             id="checkout-cmpt-hdng"
           >
             Completion
