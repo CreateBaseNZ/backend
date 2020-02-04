@@ -184,7 +184,7 @@ body {
     &:focus { outline: none; }
   }
 
-  input[value=""] .form-label {
+  .form-label {
     position: absolute;
     top: 0;
     left: 0;
@@ -218,7 +218,7 @@ body {
     width: 0%;
     top: 100%;
     left: 0%;
-    transition: .3s ease-in-out;
+    transition: .5s ease-in-out;
   }
 
   &:focus-within::after {
