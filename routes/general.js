@@ -107,6 +107,8 @@ router.get("/checkout", (req, res) => {
 // @access    Public
 router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
+
+  res.send({ status: false });
 });
 
 // @route     Get /test

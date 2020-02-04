@@ -20,6 +20,7 @@
     <!-------------------------------------------------------------------------------------
     DEFAULT JAVASCRIPT
     -------------------------------------------------------------------------------------->
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="javascripts/index.js"></script>
     <script src="javascripts/notification.js"></script>
@@ -620,19 +621,89 @@
           >
             Payment
           </h2>
-        </div>
-
-        <!---------------------------------------------------------------------------------
-        COMPLETION PAGE
-        ---------------------------------------------------------------------------------->
-
-        <div class="checkout-sub-pg" id="checkout-sub-pg-4">
-          <h2
-            class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
-            id="checkout-cmpt-hdng"
-          >
-            Completion
-          </h2>
+          <div class="checkout-sub-sub-pgs">
+            <div id="checkout-pymt-bank-tsfr">
+              <input
+                type="radio"
+                name="paymentMethod"
+                class="checkout-pymt-mthd-inp"
+                id="checkout-pymt-mthd-inp-bank-tsfr"
+                checked
+              />
+              <label
+                for="checkout-pymt-mthd-inp-bank-tsfr"
+                class="checkout-pymt-mthd-inp-lbl txt-1 txt-clr-blk-2"
+                >Bank Transfer (Receive 5% Bonus Credit)</label
+              >
+              <div class="checkout-pymt-btns">
+                <div
+                  class="checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                >
+                  Back
+                </div>
+                <div
+                  class="checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                  id="checkout-pymt-bank-tsfr-pay-btn"
+                >
+                  Payed
+                </div>
+              </div>
+            </div>
+            <div id="checkout-pymt-card">
+              <input
+                type="radio"
+                name="paymentMethod"
+                class="checkout-pymt-mthd-inp"
+                id="checkout-pymt-mthd-inp-card"
+              />
+              <label
+                for="checkout-pymt-mthd-inp-card"
+                class="checkout-pymt-mthd-inp-lbl txt-1 txt-clr-blk-2"
+                >Debit Card or Credit Card</label
+              >
+              <div id="checkout-pymt-card-cntn">
+                <form
+                  action="/charge"
+                  method="post"
+                  id="checkout-pymt-card-form"
+                >
+                  <label
+                    for="checkout-card-num"
+                    class="checkout-pymt-lbl sbtl-1 txt-clr-blk-3"
+                    >Card Number</label
+                  >
+                  <div id="checkout-card-num"></div>
+                  <label
+                    for="checkout-card-exp"
+                    class="checkout-pymt-lbl sbtl-1 txt-clr-blk-3"
+                    id="checkout-pymt-card-exp-lbl"
+                    >Expiry Date</label
+                  >
+                  <label
+                    for="checkout-card-cvc"
+                    class="checkout-pymt-lbl sbtl-1 txt-clr-blk-3"
+                    id="checkout-pymt-card-cvc-lbl"
+                    >CVC</label
+                  >
+                  <div id="checkout-card-exp"></div>
+                  <div id="checkout-card-cvc"></div>
+                  <div class="checkout-pymt-btns">
+                    <div
+                      class="checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                    >
+                      Back
+                    </div>
+                    <div
+                      class="checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                      id="checkout-pymt-card-pay-btn"
+                    >
+                      Pay
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!---------------------------------------------------------------------------------
