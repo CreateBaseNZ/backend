@@ -534,9 +534,94 @@ SHIPPING
   letter-spacing: 0.2vmax;
 }
 
+/*-----------------------------------------------------------------------------------------
+PAYMENT
+-----------------------------------------------------------------------------------------*/
+.checkout-pymt-mthd-inp {
+  margin: 0;
+}
+
+.checkout-pymt-mthd-inp-lbl {
+  letter-spacing: 0.1vmax;
+  padding: 0 0 0 1.6vmax;
+}
+
+#checkout-pymt-card-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2vmax 0;
+}
+
+.checkout-pymt-lbl {
+  width: 100%;
+  padding: 1vmax 1vmax 0.5vmax 0;
+}
+
+#checkout-card-num {
+  width: 100%;
+}
+
+#checkout-pymt-card-exp-lbl {
+  width: 40%;
+}
+
+#checkout-pymt-card-cvc-lbl {
+  width: 40%;
+}
+
+#checkout-card-exp {
+  width: 40%;
+}
+
+#checkout-card-cvc {
+  width: 40%;
+}
+
+.checkout-pymt-btns {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 4vmax 0;
+}
+
+.checkout-pymt-btn {
+  width: 14vmax;
+  letter-spacing: 0.2vmax;
+}
+
 /*=========================================================================================
 DESKTOP CSS
 =========================================================================================*/
 /*=========================================================================================
 END
 =========================================================================================*/
+.StripeElement {
+  height: 4.8vmax;
+  width: 100%;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: #877da9;
+  border-radius: 0vmax;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 1.5vmax 1vmax;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8vmax;
+  color: #322d41;
+}
+/*# sourceMappingURL=checkout.css.map */

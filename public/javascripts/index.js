@@ -60,7 +60,9 @@ indexInit = () => {
       if (authStts) {
         navSysLogIn(); // Display Navigation for logged in user
         loadNtfs(); // Load notifications if user is logged in
+        document.querySelector(".page").classList.remove("page-nav-bar-hide");
       }
+      document.querySelector(".page").classList.add("page-nav-bar-hide");
     })
     .catch(err => console.log(err));
 };

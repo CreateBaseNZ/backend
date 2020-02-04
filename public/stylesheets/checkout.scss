@@ -2,6 +2,20 @@
 VARIABLES
 =========================================================================================*/
 
+// Colours
+$clr-vlt-1: rgb(130, 88, 220);
+$clr-vlt-2: rgb(104, 83, 217);
+$clr-vlt-3: rgb(78, 78, 214);
+$clr-blk-1: rgb(45, 40, 60);
+$clr-blk-2: rgb(50, 45, 65);
+$clr-blk-3: #877da9;
+$clr-wht-1: rgb(255, 255, 255);
+$clr-wht-2: rgb(248, 248, 248);
+$clr-wht-3: #c7c2d5;
+// Font Families
+$fnt-fml-1: "Montserrat", sans-serif;
+$fnt-fml-2: "Poppins", sans-serif;
+
 /*=========================================================================================
 MOBILE CSS
 =========================================================================================*/
@@ -403,6 +417,65 @@ SHIPPING
   letter-spacing: 0.2vmax;
 }
 
+/*-----------------------------------------------------------------------------------------
+PAYMENT
+-----------------------------------------------------------------------------------------*/
+
+.checkout-pymt-mthd-inp {
+  margin: 0;
+}
+
+.checkout-pymt-mthd-inp-lbl {
+  letter-spacing: 0.1vmax;
+  padding: 0 0 0 1.6vmax;
+}
+
+#checkout-pymt-card-form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vmax 0;
+}
+
+.checkout-pymt-lbl {
+  width: 100%;
+  padding: 1vmax 1vmax 0.5vmax 0;
+}
+
+#checkout-card-num {
+  width: 100%;
+}
+
+#checkout-pymt-card-exp-lbl {
+  width: 40%;
+}
+
+#checkout-pymt-card-cvc-lbl {
+  width: 40%;
+}
+
+#checkout-card-exp {
+  width: 40%;
+}
+
+#checkout-card-cvc {
+  width: 40%;
+}
+
+.checkout-pymt-btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 4vmax 0;
+}
+
+.checkout-pymt-btn {
+  width: 14vmax;
+  letter-spacing: 0.2vmax;
+}
+
 /*=========================================================================================
 DESKTOP CSS
 =========================================================================================*/
@@ -413,3 +486,20 @@ DESKTOP CSS
 /*=========================================================================================
 END
 =========================================================================================*/
+.StripeElement {
+  height: 4.8vmax;
+  width: 100%;
+  // Border
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: $clr-blk-3;
+  border-radius: 0vmax;
+  appearance: none;
+  // Spacing
+  padding: 1.5vmax 1vmax;
+  // Text
+  font-family: $fnt-fml-1;
+  font-size: 1.8vmax;
+  // Text Colour
+  color: $clr-blk-2;
+}
