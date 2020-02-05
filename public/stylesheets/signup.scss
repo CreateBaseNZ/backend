@@ -12,7 +12,7 @@ $logo-3: #4e4ed6;
 
 $highlight: #4bf0ea;
 
-$diamond-sh: 35vw;
+$diamond: 35vw;
 
 $montserrat: 'Montserrat', sans-serif;
 $poppins: 'Poppins', sans-serif;
@@ -47,283 +47,27 @@ body {
   // -----------------------------------
   // Main Content
   // -----------------------------------
-  .container {
-    background: $light-1;
-    overflow: hidden;
-    width: 50vw;
-
-    .form-container {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      transition: all 0.6s ease-in-out;
-    }
-
-    // -----------------------------------
-    // Hello window
-    // -----------------------------------
-    .hello-container {
-      left: 0;
-      width: 50%;
-      z-index: 2;
-      background: $light-1;
-      display: grid;
-      grid-template-areas: 
-        'logo logo'
-        'hello hello'
-        'signup login';
-      grid-template-rows: 2fr 2fr 2fr;
-      
-      // Logo
-      #hello-logo {
-        display: block;
-        grid-area: logo;
-        justify-self: center;
-        align-self: end;
-
-        img {
-          width: 15vw;
-        }
-      }
-      
-      // Hello, _____.
-      #hello-creator {
-        grid-area: hello;
-        font-size: $largest-font;
-        align-self: center;
-        margin-left: calc((50vw - 8 * #{$largest-font})/2);
-      }
-      
-      // Signup button
-      #hello-signup {
-        grid-area: signup;
-        justify-self: end;
-        margin-right: 1vw;
-      }
-
-      // Login button
-      #hello-login {
-        grid-area: login;
-        margin-left: 1vw;
-      }
-    }
-
-    // -----------------------------------
-    // Login Window
-    // -----------------------------------
-    .login-container {
-      left: 0;
-      width: 50%;
-      visibility: hidden;
-      z-index: 1;
-      background: $light-1;
-      display: grid;
-      grid-template-rows: 75vh 10vh 15vh;
-      align-items: center;
-      justify-items: center;
-
-      .log-in-form {
-        display: grid;
-        grid-template-rows: 5vh 36vh 10vh 10vh 14vh;
-        align-items: center;
-        justify-items: center;
-        width: 100%;
-  
-        #login-logo {
-          display: block;
-          justify-self: flex-end;
-          align-self: flex-start;
-          margin-top: 3vh;
-          margin-right: 3vw;
-  
-          img {
-            width: 7.5vw;
-          }
-        }
-  
-        h2 {
-          font-size: 1vw;
-          letter-spacing: 0.25vw;
-        }
-
-        #login-login {
-          align-self: flex-end;
-        }
-  
-      }
-
-      #back-btn {
-        align-self: center;
-        justify-self: center;
-      }
-      
-      #login-signup {
-        align-self: flex-end;
-        justify-self: center;
-        font-size: 0.75vw;
-        margin-bottom: 2vh;
-
-        a {
-          color: $highlight;
-        }
-      }
-    }
-  }
-}
-
-.input-decor {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted $dark-3;
-
-  input {
-    border: none;
-    padding: 0.5vw 1vw;
-    width: 20vw;
-    
-    &:focus { outline: none; }
-  }
-
-  .form-label {
+  .layer {
+    height: $diamond;
+    width: $diamond;
+    opacity: 0.3;
     position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 0.5vh;
-    margin-left: 1vw;
-    color: $light-3;
-    letter-spacing: 1.5px;
-    font-size: 1vw;
-    font-weight: 100;
-    transition: all 0.2s ease-out;
-    pointer-events: none;
+    border-radius: 0.02857142857 * $diamond;
+    margin-top: 10%;
   }
 
-  input:focus ~ .form-label {
-    margin-top: -2vh;
-    font-size: 0.75vw;
-    color: $highlight;
-  }
-
-  input:not(:focus):valid ~ .form-label {
-    margin-top: -2vh;
-    font-size: 0.75vw;
-    color: $light-3;
-  }
-
-  &::after,
-  &:focus-within::after {
-    content: '';
-    border-bottom: 1px solid $highlight;
-    position: absolute;
-    width: 0%;
-    top: 100%;
-    left: 0%;
-    transition: .5s ease-in-out;
-  }
-
-  &:focus-within::after {
-    width: 100%;
-  }
-}
-
-.container.right-panel-active .hello-container {
-  transform: translateX(100%);
-}
-.container.right-panel-active .login-container {
-	transform: translateX(100%);
-	visibility: visible;
-	z-index: 5;
-	animation: show 0.6s;
-}
-
-// -----------------------------------
-// Sliding window
-// -----------------------------------
-.overlay-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100vh;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
-
-  .overlay {
-    background: linear-gradient(to right, $dark-3, black);
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
+  .layer { margin-left: -75%; }
   
-    .overlay-panel {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      width: 50%;
-      transform: translateX(0);
-      transition: transform 0.6s ease-in-out;
-    
-      .layer-left,
-      .layer-right {
-        height: $diamond-sh;
-        width: $diamond-sh;
-        opacity: 0.3;
-        position: absolute;
-        border-radius: 1vw;
-        margin-top: 10%;
-      }
-
-      .layer-left { margin-left: -75%; }
-      .layer-right { margin-left: 0%; }
-      
-      .layer-1 { animation: animate1 5s forwards infinite; }
-      .layer-2 { animation: animate2 5s forwards infinite; }
-      .layer-3 { animation: animate3 5s forwards infinite; }
-    }
-    
-    .overlay-left {
-      transform: translateX(-20%);
-    }
-    .overlay-right {
-      right: 0;
-      transform: translateX(0);
-    }
-  }
+  .layer-1 { animation: rotate-1 5s forwards infinite; }
+  .layer-2 { animation: rotate-2 5s forwards infinite; }
+  .layer-3 { animation: rotate-3 5s forwards infinite; }
 }
 
-.container.right-panel-active .overlay {
-  transform: translateX(50%);
-}
-.container.right-panel-active .overlay-container{
-	transform: translateX(-100%);
-}
-.container.right-panel-active .overlay-left {
-	transform: translateX(0%);
-}
-.container.right-panel-active .overlay-right {
-	transform: translateX(20%);
-}
 
-@keyframes show {
-	0%, 49.99% {
-		visibility: hidden;
-		z-index: 1;
-	}
-	
-	50%, 100% {
-		visibility: visible;
-		z-index: 5;
-	}
-}
-
-@keyframes animate1 {
+@keyframes rotate-1 {
   0%, 100% {
     background: $logo-3;
-    top: calc(50% - 10vw);
+    top: calc(50% - 0.28571428571 * $diamond);
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99);
@@ -337,7 +81,7 @@ body {
   }
   50% {
     background: $logo-3;
-    top: calc(50% + 10vw);
+    top: calc(50% + 0.28571428571 * $diamond);
     left: 50%;
     transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99);
@@ -351,7 +95,7 @@ body {
   }
 }
 
-@keyframes animate2 {
+@keyframes rotate-2 {
   0%, 100% {
     background: $logo-2;
     top: 50%;
@@ -382,10 +126,10 @@ body {
   }
 }
 
-@keyframes animate3 {
+@keyframes rotate-3 {
   0%, 100% {
     background: $logo-1;
-    top: calc(50% + 10vw);
+    top: calc(50% + 0.28571428571 * $diamond);
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99);
@@ -399,7 +143,7 @@ body {
   }
   50% {
     background: $logo-3;
-    top: calc(50% - 10vw);
+    top: calc(50% - 0.28571428571 * $diamond);
     left: 50%;
     transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99);
@@ -412,138 +156,3 @@ body {
     animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
   }
 }
-
-// -----------------------------------
-// Button Class
-// -----------------------------------
-.btn {
-  border: $dark-3 solid 1px;
-  color: $dark-3;
-  background: $light-1;
-  width: 10vw;
-  font-size: 1vw;
-  font-weight: 100;
-  height: 2.5vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.25vw;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-
-  &:hover,
-  &:hover:after,
-  &:hover:before {
-    color: $light-1;
-    border: none;
-    background-image: linear-gradient(to right, $logo-1, $logo-3);
-  }
-
-  &:hover:after,
-  &:hover:before {
-    content: attr(data-text);
-    width: 10vw;
-    height: 2.5vw;
-    top: -0.2vw;
-    font-size: 1vw;
-    font-weight: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    overflow: hidden;
-    visibility: hidden;
-  }
-  &:hover:after {
-    left: 0.2vw;
-    text-shadow: -1px 0 greenyellow;
-    animation: glitch-btn 1.5s linear alternate-reverse;
-    border: none;
-  }
-  &:hover:before {
-    left: -0.2vw;
-    text-shadow: 1px 0 magenta;
-    animation: glitch-btn 2s linear alternate;
-    border: none;
-  }
-}
-
-// -----------------------------------
-// Glitch animation
-// -----------------------------------
-.glitch {
-  position: relative;
-  padding: 5px;
-}
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  padding: 5px;
-  left: 0;
-  text-shadow: -0.1vw 0 greenyellow;
-  top: -2px;
-  background: $light-1;
-  overflow: hidden;
-  visibility: hidden;
-  animation: noise-anim 10s infinite linear alternate-reverse;
-}
-.glitch::before {
-  content: attr(data-text);
-  position: absolute;
-  padding: 5px;
-  left: -0.1vw;
-  text-shadow: 0.1vw 0 magenta;
-  top: -2px;
-  background: $light-1;
-  overflow: hidden;
-  visibility: hidden;
-  animation: noise-anim-2 5s infinite linear alternate-reverse;
-}
-
-@keyframes noise-anim {
-  $steps: 60;
-  @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      $top: random(100);
-      $bottom: random(101 - $top);
-      clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-      visibility: visible;
-    }
-  }
-}
-@keyframes noise-anim-2 {
-  $steps: 120;
-  @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      $top: random(100);
-      $bottom: random(101 - $top);
-      clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-      visibility: visible;
-    }
-  }
-}
-@keyframes glitch-btn {
-  0% {
-    clip: rect(-3px, 600px, 0px, 0px);
-    visibility: visible;
-  }
-  2% {clip: rect(0px, 600px, 0px, 0px);}
-  5% {clip: rect(-3px, 600px, 0px, 0px);}
-  9% {clip: rect(-3px, 600px, 0px, 0px);}
-  17% {clip: rect(100px, 600px, 100px, 0px);}
-  29% {clip: rect(0px, 600px, 600px, 0px);}
-  35% {clip: rect(100px, 600px, 0px, 0px);}
-  41% {clip: rect(0px, 600px, 600px, 0px);}
-  47% {clip: rect(100px, 600px, 0px, 0px);}
-  52% {clip: rect(-3px, 600px, 0px, 0px);}
-  58% {clip: rect(100px, 450px,100px, 0px);}
-  64% {clip: rect(0px, 450px, 0px, 0px);}
-  70% {clip: rect(100px, 450px, 100px, 0px);}
-  76% {clip: rect(0px, 450px, 0px, 0px);}
-  82% {clip: rect(0px, 450px, 0px, 0px);}
-  88% {clip: rect(0px, 450px, 0px, 0px);}
-  94% {clip: rect(0px, 450px, 0px, 0px);}
-  100% {clip: rect(0px, 450px, 0px, 0px);}
-}
-

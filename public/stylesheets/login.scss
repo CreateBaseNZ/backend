@@ -12,7 +12,7 @@ $logo-3: #4e4ed6;
 
 $highlight: #4bf0ea;
 
-$diamond-sh: 35vw;
+$diamond: 35vw;
 
 $montserrat: 'Montserrat', sans-serif;
 $poppins: 'Poppins', sans-serif;
@@ -269,8 +269,8 @@ body {
     
       .layer-left,
       .layer-right {
-        height: $diamond-sh;
-        width: $diamond-sh;
+        height: $diamond;
+        width: $diamond;
         opacity: 0.3;
         position: absolute;
         border-radius: 1vw;
