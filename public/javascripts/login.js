@@ -1,21 +1,22 @@
-// Slider animation
-const login = document.getElementById('hello-login');
-const back = document.getElementById('back-btn');
-const container = document.getElementById('container');
+/*=========================================================================================
+VARIABLES
+=========================================================================================*/
 
-login.addEventListener('click', () => {
-    container.classList.add("right-panel-active");
-});
+/*=========================================================================================
+FUNCTIONS
+=========================================================================================*/
 
-back.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-});
+const loginInit = () => {
+    textSequence(0);
+}
 
-// Cycle through words
-var words = ['Creator', 'Maverick', 'Trailblazer', 'Innovator'];
+const toggleContainer = () => {
+    container.classList.toggle("right-panel-active");
+}
 
-textSequence(0);
 function textSequence(i) {
+    // Cycle through words
+    let words = ['Creator', 'Maverick', 'Trailblazer', 'Innovator'];
 
     if (words.length > i) {
         if (i == 1) {
@@ -36,6 +37,6 @@ function textSequence(i) {
     }
 }
 
-
-
-
+/*=========================================================================================
+END
+=========================================================================================*/
