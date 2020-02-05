@@ -13,14 +13,21 @@
     <!------------------------------
     Default CSS
     ------------------------------->
-    <link rel="stylesheet" href="stylesheets/login.css" />
+    
     <!------------------------------
     Default JavaScript
     ------------------------------->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="javascripts/notification.js"></script>
+    <script src="javascripts/moment.js"></script>
+      <!-------------------------------------------------------------------------------------
+    CUSTOM CSS AND JAVASCRIPT
+    -------------------------------------------------------------------------------------->
+    <link rel="stylesheet" href="stylesheets/login.css" />
+    <script src="javascripts/login.js"></script>
   </head>
 
-  <body onload="indexInit();">
+  <body onload="loginInit();">
     <div class="container" id="container">
 
       <div class="form-container login-container">
@@ -43,7 +50,7 @@
           </div>
         </form>
         <div>
-          <button class="btn" id="back-btn" data-text="←">←</button>
+          <button class="btn" id="back-btn" data-text="←" onclick="toggleContainer();">←</button>
         </div>
         <div id="login-signup">
           <p class="rmv-p-css">New to CreateBase? <a class="rmv-link-css" href="/signup">Create an account</a></p>
@@ -58,7 +65,7 @@
           Hello, <span class="glitch" id="change-text" data-text="Creator">Creator</span>.
         </h1>
         <a href="/signup" class="btn" id="hello-signup" data-text="SIGN UP">SIGN UP</a>
-        <button class="btn" id="hello-login" data-text="LOG IN">LOG IN</button>
+        <button class="btn" id="hello-login" data-text="LOG IN" onclick="toggleContainer();">LOG IN</button>
       </div>
 
       <div class="overlay-container">
@@ -78,6 +85,4 @@
 
     </div>
   </body>
-
-  <script src="javascripts/login.js"></script>
 </html>
