@@ -22,6 +22,7 @@ let checkoutHeadingCart;
 let checkoutHeadingShipping;
 let checkoutHeadingPayment;
 let checkoutHeadingCompletion;
+// Card Details
 let cardNumber;
 let cardExpiry;
 let cardCvc;
@@ -49,6 +50,76 @@ const checkoutInit = () => {
   checkoutHeadingShipping = document.querySelector("#checkout-shpg-hdng");
   checkoutHeadingPayment = document.querySelector("#checkout-pymt-hdng");
   checkoutHeadingCompletion = document.querySelector("#checkout-cmpt-hdng");
+};
+
+/*-----------------------------------------------------------------------------------------
+CREATE PAYMENT INTENT AND GET CLIENT SECRET
+-----------------------------------------------------------------------------------------*/
+
+let checkoutPaymentIntent = () => {
+  return new Promise(async (resolve, reject) => {
+    let clientSecret;
+
+    try {
+      clientSecret = await axios.post("/checkout/payment-intent", "Pay");
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(clientSecret.data);
+  });
+};
+
+/*-----------------------------------------------------------------------------------------
+PROCESS PAYMENT
+-----------------------------------------------------------------------------------------*/
+
+const processCardPayment = clientSecret => {
+  return new Promise(async (resolve, reject) => {
+    let result;
+
+    try {
+      result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardNumber,
+          billing_details: {
+            name: "test test"
+          }
+        }
+      });
+    } catch (error) {
+      reject(error);
+    }
+
+    if (result.error) {
+      reject(result.error.message);
+    } else {
+      resolve(result.paymentIntent.status);
+    }
+  });
+};
+
+/*-----------------------------------------------------------------------------------------
+PROCEED WITH PAYMENT
+-----------------------------------------------------------------------------------------*/
+
+const checkoutPay = async () => {
+  let clientSecret;
+  let status;
+
+  try {
+    clientSecret = await checkoutPaymentIntent();
+  } catch (error) {
+    return console.log(error);
+  }
+
+  try {
+    status = await processCardPayment(clientSecret);
+  } catch (error) {
+    return console.log(error);
+  }
+
+  console.log(status);
 };
 
 /*=========================================================================================

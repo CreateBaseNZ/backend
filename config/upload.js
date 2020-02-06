@@ -2,6 +2,9 @@
 REQUIRED MODULES
 =========================================================================================*/
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 
@@ -9,14 +12,12 @@ const GridFsStorage = require("multer-gridfs-storage");
 VARIABLES
 =========================================================================================*/
 
-const mongoAtlasURI = require("./database.js").mongoAtlasURI;
-
 /*=========================================================================================
 SETUP UPLOAD
 =========================================================================================*/
 
 const storage = new GridFsStorage({
-  url: mongoAtlasURI,
+  url: process.env.MONGODB_URL,
   options: {
     useNewUrlParser: true,
     useUnifiedTopology: true

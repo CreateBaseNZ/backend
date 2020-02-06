@@ -2,6 +2,9 @@
 REQUIRED MODULES
 =========================================================================================*/
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -38,10 +41,9 @@ GRIDFS
 const gridFsStream = require("gridfs-stream");
 
 let GridFS;
-const mongoAtlasURI = require("./../config/database.js").mongoAtlasURI;
 
 mongoose.createConnection(
-  mongoAtlasURI,
+  process.env.MONGODB_URL,
   {
     useNewUrlParser: true,
     useCreateIndex: true,

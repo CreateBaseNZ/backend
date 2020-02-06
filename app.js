@@ -2,6 +2,9 @@
 REQUIRED MODULES
 =========================================================================================*/
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -15,15 +18,12 @@ VARIABLES
 =========================================================================================*/
 
 const app = express();
-const port = process.env.PORT || 80;
-const mongoAtlasURI = require("./config/database.js").mongoAtlasURI;
-const keys = require("./config/keys.js");
 
 /*=========================================================================================
 SETUP DATABASE
 =========================================================================================*/
 
-mongoose.connect(mongoAtlasURI, {
+mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
@@ -33,8 +33,8 @@ mongoose.connect(mongoAtlasURI, {
 SETUP SERVER
 =========================================================================================*/
 
-app.listen(port, () => {
-  console.log(`Server is running at port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running at port ${process.env.PORT}`);
 });
 
 /*=========================================================================================
@@ -55,7 +55,10 @@ SETUP AUTHENTICATION (PASSPORT JS)
 =========================================================================================*/
 
 app.use(
-  cookieSession({ maxAge: 1000 * 60 * 60 * 24 * 365, keys: [keys.cookieKey] })
+  cookieSession({
+    maxAge: 1000 * 60 * 60 * 24 * 365,
+    keys: [process.env.COOKIES_SECRET_KEY]
+  })
 );
 app.use(passport.initialize());
 app.use(passport.session());
@@ -69,11 +72,21 @@ const generalRouter = require("./routes/general.js");
 const fileRouter = require("./routes/file.js");
 const errorRouter = require("./routes/error.js");
 const validationRouter = require("./routes/validation.js");
+const paymentRouter = require("./routes/payment.js");
 app.use(generalRouter);
 app.use(fileRouter);
 app.use(errorRouter);
 app.use(validationRouter);
+app.use(paymentRouter);
 
 /*=========================================================================================
 END
+=========================================================================================*/
+
+/*=========================================================================================
+TEMPORARY DEVELOPMENT AREA
+=========================================================================================*/
+
+/*=========================================================================================
+END OF THE DEVELOPMENT AREA
 =========================================================================================*/
