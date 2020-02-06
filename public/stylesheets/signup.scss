@@ -12,15 +12,12 @@ $logo-3: #4e4ed6;
 
 $highlight: #4bf0ea;
 
-$diamond-sh: 35vw;
+$diamond: 25vh;
 
 $montserrat: 'Montserrat', sans-serif;
 $poppins: 'Poppins', sans-serif;
 $largest-font: 5vw;
 
-// -----------------------------------
-// General Styles
-// -----------------------------------
 * {
   margin: 0;
   padding: 0;
@@ -31,142 +28,95 @@ a {
   text-decoration: none;
 }
 
-// -----------------------------------
-// Main Content
-// -----------------------------------
 body {
-  background: linear-gradient(to right, $dark-3, black);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   font-family: $poppins;
   line-height: 1.5; 
   height: 100vh;
-
-  // -----------------------------------
-  // Main Content
-  // -----------------------------------
-  .container {
-    background: $light-1;
+  
+  // Logo animation
+  .logo-anim-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    flex: 1;
     overflow: hidden;
+    z-index: -1;
+
+    .layer {
+      top: 50%;
+      height: $diamond;
+      width: $diamond;
+      background: $light-3;
+      opacity: 0.3;
+      position: absolute;
+      
+      margin-left: -$diamond/2;
+    }
+    
+    .layer-1 { animation: logo-anim-1 2.5s forwards; }
+    .layer-2 { animation: logo-anim-2 2.5s forwards; }
+    .layer-3 { animation: logo-anim-3 2.5s forwards; }
+  }
+
+  // Main form
+  .form-container {
     width: 50vw;
 
-    .form-container {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      transition: all 0.6s ease-in-out;
-    }
-
-    // -----------------------------------
-    // Hello window
-    // -----------------------------------
-    .hello-container {
-      left: 0;
-      width: 50%;
-      z-index: 2;
-      background: $light-1;
+    .sign-up-form {
       display: grid;
-      grid-template-areas: 
-        'logo logo'
-        'hello hello'
-        'signup login';
-      grid-template-rows: 2fr 2fr 2fr;
-      
-      // Logo
-      #hello-logo {
-        display: block;
-        grid-area: logo;
-        justify-self: center;
-        align-self: end;
-
-        img {
-          width: 15vw;
-        }
-      }
-      
-      // Hello, _____.
-      #hello-creator {
-        grid-area: hello;
-        font-size: $largest-font;
-        align-self: center;
-        margin-left: calc((50vw - 8 * #{$largest-font})/2);
-      }
-      
-      // Signup button
-      #hello-signup {
-        grid-area: signup;
-        justify-self: end;
-        margin-right: 1vw;
-      }
-
-      // Login button
-      #hello-login {
-        grid-area: login;
-        margin-left: 1vw;
-      }
-    }
-
-    // -----------------------------------
-    // Login Window
-    // -----------------------------------
-    .login-container {
-      left: 0;
-      width: 50%;
-      visibility: hidden;
-      z-index: 1;
-      background: $light-1;
-      display: grid;
-      grid-template-rows: 75vh 10vh 15vh;
-      align-items: center;
+      grid-template-rows: 6vh 28vh 10vh 10vh 10vh 26vh 10vh;
       justify-items: center;
+      align-items: flex-start;
 
-      .log-in-form {
-        display: grid;
-        grid-template-rows: 5vh 36vh 10vh 10vh 14vh;
-        align-items: center;
-        justify-items: center;
-        width: 100%;
-  
-        #login-logo {
-          display: block;
-          justify-self: flex-end;
-          align-self: flex-start;
-          margin-top: 3vh;
-          margin-right: 3vw;
-  
-          img {
-            width: 7.5vw;
-          }
-        }
-  
-        h2 {
-          font-size: 1vw;
-          letter-spacing: 0.25vw;
-        }
-
-        #login-login {
-          align-self: flex-end;
-        }
-  
+      #signup-logo {
+        justify-self: flex-start;
+        align-self: flex-start;
+        margin-top: 3vh;
+        margin-left: 3vw;
+        img { width: 15vh; }
       }
 
-      #back-btn {
-        align-self: center;
-        justify-self: center;
+      #signup-title {
+        font-size: 1vw;
+        letter-spacing: 0.25vw;
+        margin-top: 13vh;
       }
-      
-      #login-signup {
-        align-self: flex-end;
-        justify-self: center;
+
+      #signup-email {
+
+      }
+
+      #signup-password {
+        display: flex;
+
+        #enter-pass {
+          position: relative;
+        }
+
+        #confirm-pass {
+          position: absolute;
+          opacity: 0;
+          z-index: -1;
+        }
+
+      }
+
+      #signup-submit {
+        margin-top: 10vh;
+      }
+
+      #signup-message {
+        a { color: $highlight; }
         font-size: 0.75vw;
+        align-self: flex-end;
         margin-bottom: 2vh;
-
-        a {
-          color: $highlight;
-        }
       }
+
+      // & * {
+      //   border: none;
+      // }
     }
   }
 }
@@ -184,7 +134,7 @@ body {
     &:focus { outline: none; }
   }
 
-  .form-label {
+  label {
     position: absolute;
     top: 0;
     left: 0;
@@ -198,13 +148,13 @@ body {
     pointer-events: none;
   }
 
-  input:focus ~ .form-label {
+  input:focus ~ label {
     margin-top: -2vh;
     font-size: 0.75vw;
     color: $highlight;
   }
 
-  input:not(:focus):valid ~ .form-label {
+  input:not(:focus):valid ~ label {
     margin-top: -2vh;
     font-size: 0.75vw;
     color: $light-3;
@@ -226,196 +176,6 @@ body {
   }
 }
 
-.container.right-panel-active .hello-container {
-  transform: translateX(100%);
-}
-.container.right-panel-active .login-container {
-	transform: translateX(100%);
-	visibility: visible;
-	z-index: 5;
-	animation: show 0.6s;
-}
-
-// -----------------------------------
-// Sliding window
-// -----------------------------------
-.overlay-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100vh;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
-
-  .overlay {
-    background: linear-gradient(to right, $dark-3, black);
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
-  
-    .overlay-panel {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      width: 50%;
-      transform: translateX(0);
-      transition: transform 0.6s ease-in-out;
-    
-      .layer-left,
-      .layer-right {
-        height: $diamond-sh;
-        width: $diamond-sh;
-        opacity: 0.3;
-        position: absolute;
-        border-radius: 1vw;
-        margin-top: 10%;
-      }
-
-      .layer-left { margin-left: -75%; }
-      .layer-right { margin-left: 0%; }
-      
-      .layer-1 { animation: animate1 5s forwards infinite; }
-      .layer-2 { animation: animate2 5s forwards infinite; }
-      .layer-3 { animation: animate3 5s forwards infinite; }
-    }
-    
-    .overlay-left {
-      transform: translateX(-20%);
-    }
-    .overlay-right {
-      right: 0;
-      transform: translateX(0);
-    }
-  }
-}
-
-.container.right-panel-active .overlay {
-  transform: translateX(50%);
-}
-.container.right-panel-active .overlay-container{
-	transform: translateX(-100%);
-}
-.container.right-panel-active .overlay-left {
-	transform: translateX(0%);
-}
-.container.right-panel-active .overlay-right {
-	transform: translateX(20%);
-}
-
-@keyframes show {
-	0%, 49.99% {
-		visibility: hidden;
-		z-index: 1;
-	}
-	
-	50%, 100% {
-		visibility: visible;
-		z-index: 5;
-	}
-}
-
-@keyframes animate1 {
-  0%, 100% {
-    background: $logo-3;
-    top: calc(50% - 10vw);
-    left: 50%;
-    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 80%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-  50% {
-    background: $logo-3;
-    top: calc(50% + 10vw);
-    left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  75% {
-    background: $logo-2;
-    top: 50%;
-    left: 20%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-}
-
-@keyframes animate2 {
-  0%, 100% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-  50% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  75% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-}
-
-@keyframes animate3 {
-  0%, 100% {
-    background: $logo-1;
-    top: calc(50% + 10vw);
-    left: 50%;
-    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 20%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-  50% {
-    background: $logo-3;
-    top: calc(50% - 10vw);
-    left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  75% {
-    background: $logo-2;
-    top: 50%;
-    left: 80%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-}
-
-// -----------------------------------
-// Button Class
-// -----------------------------------
 .btn {
   border: $dark-3 solid 1px;
   color: $dark-3;
@@ -469,60 +229,90 @@ body {
   }
 }
 
-// -----------------------------------
-// Glitch animation
-// -----------------------------------
-.glitch {
-  position: relative;
-  padding: 5px;
-}
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  padding: 5px;
-  left: 0;
-  text-shadow: -0.1vw 0 greenyellow;
-  top: -2px;
-  background: $light-1;
-  overflow: hidden;
-  visibility: hidden;
-  animation: noise-anim 10s infinite linear alternate-reverse;
-}
-.glitch::before {
-  content: attr(data-text);
-  position: absolute;
-  padding: 5px;
-  left: -0.1vw;
-  text-shadow: 0.1vw 0 magenta;
-  top: -2px;
-  background: $light-1;
-  overflow: hidden;
-  visibility: hidden;
-  animation: noise-anim-2 5s infinite linear alternate-reverse;
+@keyframes logo-anim-1 {
+  0%, 10% {
+    left: 50%;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    margin-top: -$diamond/2;
+  }
+  60% {
+    left: 50%;
+    height: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    opacity: 0.3;
+    background: $logo-3;
+    margin-top: -$diamond * 3/4;
+  }
+  100% {
+    left: 50%;
+    height: 1px;
+    border-radius: 0;
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    opacity: 1;
+    background: $dark-3;
+    margin-top: -10vh;
+  }
 }
 
-@keyframes noise-anim {
-  $steps: 60;
-  @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      $top: random(100);
-      $bottom: random(101 - $top);
-      clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-      visibility: visible;
-    }
+@keyframes logo-anim-2 {
+  0%, 10% {
+    left: 50%;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    margin-top: -$diamond/2;
+  }
+  60% {
+    left: 50%;
+    height: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    opacity: 0.3;
+    background: $logo-2;
+    margin-top: -$diamond/2;
+  }
+  100% {
+    left: 50%;
+    height: 1px;
+    border-radius: 0;
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    opacity: 1;
+    background: $dark-3;
+    margin-top: 0;
   }
 }
-@keyframes noise-anim-2 {
-  $steps: 120;
-  @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      $top: random(100);
-      $bottom: random(101 - $top);
-      clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-      visibility: visible;
-    }
+
+@keyframes logo-anim-3 {
+  0%, 10% {
+    left: 50%;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    margin-top: -$diamond/2;
+  }
+  60% {
+    left: 50%;
+    height: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    opacity: 0.3;
+    background: $logo-1;
+    margin-top: -$diamond * 1/4;
+  }
+  100% {
+    left: 50%;
+    height: 1px;
+    border-radius: 0;
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    opacity: 1;
+    background: $dark-3; 
+    margin-top: 10vh;
   }
 }
+
 @keyframes glitch-btn {
   0% {
     clip: rect(-3px, 600px, 0px, 0px);
@@ -546,4 +336,3 @@ body {
   94% {clip: rect(0px, 450px, 0px, 0px);}
   100% {clip: rect(0px, 450px, 0px, 0px);}
 }
-
