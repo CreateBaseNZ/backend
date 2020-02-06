@@ -28,6 +28,12 @@
   "devDependencies": {
     "dotenv": "^8.2.0"
   },
+<<<<<<< Updated upstream
+=======
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  },
+>>>>>>> Stashed changes
   "repository": {
     "type": "git",
     "url": "git+https://github.com/creaftmain/website.git"

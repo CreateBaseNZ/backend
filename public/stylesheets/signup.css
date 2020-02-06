@@ -225,8 +225,8 @@ body .form-container {
 body .form-container .sign-up-form {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 6vh 28vh 10vh 10vh 10vh 26vh 10vh;
-      grid-template-rows: 6vh 28vh 10vh 10vh 10vh 26vh 10vh;
+  -ms-grid-rows: 6vh 30vh 10vh 10vh 10vh 26vh 8vh;
+      grid-template-rows: 6vh 30vh 10vh 10vh 10vh 26vh 8vh;
   justify-items: center;
   -webkit-box-align: start;
       -ms-flex-align: start;
