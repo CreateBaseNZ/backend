@@ -1,4 +1,0 @@
-PORT=80
-MONGODB_URL="mongodb+srv://creaft-website:cr3fttemp@creaft-website-prototype-1-e5qek.mongodb.net/test?retryWrites=true&w=majority"
-STRIPE_SECRET_KEY="sk_test_3VuDXyed0VKaVmjtUvALzPe800vaLkVsH5"
-COOKIES_SECRET_KEY="cr3ateb@se123"
