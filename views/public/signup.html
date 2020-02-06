@@ -34,8 +34,37 @@
       <div class="layer layer-3"></div>
     </div>
 
-    <div>
-      
+    <div class="form-container">
+      <form class="sign-up-form" action="/signup/customer" method="post" novalidate="novalidate">
+        <a href="/index" id="signup-logo">
+          <img src="images/logo-dark.png" alt="CreateBase">
+        </a>
+        <h2 id="signup-title">CREATE YOUR BASE</h2>
+        <div class="sign-up-fld input-decor" id="signup-display">
+          <input type="text" name="displayName" id="sign-up-dspl-name" required />
+          <label for="displayName">Display Name</label>
+        </div>
+        <div class="sign-up-fld input-decor" id="signup-email">
+          <input type="text" name="email" id="sign-up-eml" required />
+          <label for="email">Email</label>
+        </div>
+        <div class="sign-up-fld input-decor" id="signup-password">
+          <div id="enter-pass">
+            <input type="password" name="password" id="sign-up-pwd" required />
+            <label for="password">Password</label>
+          </div>
+          <div id="confirm-pass">
+            <input type="password" name="confirm" id="sign-up-cfrm-pwd" required />
+            <label for="confirm-password">Confirm Password</label>
+          </div>
+        </div>
+        <div class="sign-up-fld" id="signup-submit">
+          <button class="btn" type="submit" data-text="SIGN UP">SIGN UP</button>
+        </div>
+        <div class="message" id="signup-message">
+          <p class="rmv-p-css">Already a member of Creaft? <a class="rmv-link-css" href="/login">Log in</a></p>
+        </div>
+      </form>
     </div>
 
   </body>

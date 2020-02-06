@@ -12,7 +12,7 @@ $logo-3: #4e4ed6;
 
 $highlight: #4bf0ea;
 
-$diamond: 25vw;
+$diamond: 25vh;
 
 $montserrat: 'Montserrat', sans-serif;
 $poppins: 'Poppins', sans-serif;
@@ -24,40 +24,208 @@ $largest-font: 5vw;
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   display: flex;
   flex-direction: row;
   font-family: $poppins;
   line-height: 1.5; 
   height: 100vh;
+  
+  // Logo animation
+  .logo-anim-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    flex: 1;
+    overflow: hidden;
+    z-index: -1;
+
+    .layer {
+      height: $diamond;
+      width: $diamond;
+      background: $light-3;
+      opacity: 0.3;
+      position: absolute;
+      margin-top: -$diamond/2;
+      margin-left: -$diamond/2;
+    }
+    
+    .layer-1 { animation: logo-anim-1 2.5s forwards; }
+    .layer-2 { animation: logo-anim-2 2.5s forwards; }
+    .layer-3 { animation: logo-anim-3 2.5s forwards; }
+  }
+
+  // Main form
+  .form-container {
+    width: 50vw;
+
+    .sign-up-form {
+      display: grid;
+      grid-template-rows: 6vh 28vh 10vh 10vh 10vh 26vh 10vh;
+      justify-items: center;
+      align-items: flex-start;
+
+      #signup-logo {
+        justify-self: flex-start;
+        align-self: flex-start;
+        margin-top: 3vh;
+        margin-left: 3vw;
+        img { width: 15vh; }
+      }
+
+      #signup-title {
+        font-size: 1vw;
+        letter-spacing: 0.25vw;
+        margin-top: 13vh;
+      }
+
+      #signup-email {
+
+      }
+
+      #signup-password {
+        display: flex;
+
+        #enter-pass {
+          position: relative;
+        }
+
+        #confirm-pass {
+          position: absolute;
+          opacity: 0;
+          z-index: -1;
+        }
+
+      }
+
+      #signup-submit {
+        margin-top: 10vh;
+      }
+
+      #signup-message {
+        a { color: $highlight; }
+        font-size: 0.75vw;
+        align-self: flex-end;
+        margin-bottom: 2vh;
+      }
+
+      // & * {
+      //   border: none;
+      // }
+    }
+  }
 }
 
-.logo-anim-container {
+.input-decor {
   position: relative;
-  flex: 1;
-  overflow: hidden;
+  display: inline-block;
+  border-bottom: 1px dotted $dark-3;
+
+  input {
+    border: none;
+    padding: 0.5vw 1vw;
+    width: 20vw;
+    
+    &:focus { outline: none; }
+  }
+
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 0.5vh;
+    margin-left: 1vw;
+    color: $light-3;
+    letter-spacing: 1.5px;
+    font-size: 1vw;
+    font-weight: 100;
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+  }
+
+  input:focus ~ label {
+    margin-top: -2vh;
+    font-size: 0.75vw;
+    color: $highlight;
+  }
+
+  input:not(:focus):valid ~ label {
+    margin-top: -2vh;
+    font-size: 0.75vw;
+    color: $light-3;
+  }
+
+  &::after,
+  &:focus-within::after {
+    content: '';
+    border-bottom: 1px solid $highlight;
+    position: absolute;
+    width: 0%;
+    top: 100%;
+    left: 0%;
+    transition: .5s ease-in-out;
+  }
+
+  &:focus-within::after {
+    width: 100%;
+  }
 }
 
-.layer {
-  height: $diamond;
-  width: $diamond;
-  background: $light-3;
-  opacity: 0.3;
-  position: absolute;
-  margin-top: -$diamond/2;
-  margin-left: -$diamond/2;
-}
+.btn {
+  border: $dark-3 solid 1px;
+  color: $dark-3;
+  background: $light-1;
+  width: 10vw;
+  font-size: 1vw;
+  font-weight: 100;
+  height: 2.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.25vw;
+  position: relative;
+  cursor: pointer;
+  outline: none;
 
-.layer-1 {
-  animation: logo-anim-1 2.5s forwards;
-}
+  &:hover,
+  &:hover:after,
+  &:hover:before {
+    color: $light-1;
+    border: none;
+    background-image: linear-gradient(to right, $logo-1, $logo-3);
+  }
 
-.layer-2 {
-  animation: logo-anim-2 2.5s forwards;
-}
-
-.layer-3 {
-  animation: logo-anim-3 2.5s forwards;
+  &:hover:after,
+  &:hover:before {
+    content: attr(data-text);
+    width: 10vw;
+    height: 2.5vw;
+    top: -0.2vw;
+    font-size: 1vw;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    overflow: hidden;
+    visibility: hidden;
+  }
+  &:hover:after {
+    left: 0.2vw;
+    text-shadow: -1px 0 greenyellow;
+    animation: glitch-btn 1.5s linear alternate-reverse;
+    border: none;
+  }
+  &:hover:before {
+    left: -0.2vw;
+    text-shadow: 1px 0 magenta;
+    animation: glitch-btn 2s linear alternate;
+    border: none;
+  }
 }
 
 @keyframes logo-anim-1 {
@@ -66,7 +234,6 @@ body {
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
-    // background: ;
   }
   60% {
     top: calc(50% - 5vw);
@@ -79,12 +246,11 @@ body {
     background: $logo-3;
   }
   100% {
-    top: calc(50% - 5vw);
+    top: calc(75% - 10vh);
     left: 50%;
     height: 1px;
     border-radius: 0;
-    // transform: rotateX(-89.5deg) rotateY(0) rotateZ(0);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
     opacity: 1;
     background: $dark-3;
   }
@@ -96,7 +262,6 @@ body {
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
-    // background: ;
   }
   60% {
     top: 50%;
@@ -109,12 +274,11 @@ body {
     background: $logo-2;
   }
   100% {
-    top: 50%;
+    top: 75%;
     left: 50%;
     height: 1px;
     border-radius: 0;
-    // transform: rotateX(-89.5deg) rotateY(0deg) rotateZ(0);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
     opacity: 1;
     background: $dark-3;
   }
@@ -138,13 +302,36 @@ body {
     background: $logo-1;
   }
   100% {
-    top: calc(50% + 5vw);
+    top: calc(75% + 10vh);
     left: 50%;
-    // transform: rotateX(-89.5deg) rotateY(0deg) rotateZ(0);
     height: 1px;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
     opacity: 1;
     background: $dark-3;
   }
+}
+
+@keyframes glitch-btn {
+  0% {
+    clip: rect(-3px, 600px, 0px, 0px);
+    visibility: visible;
+  }
+  2% {clip: rect(0px, 600px, 0px, 0px);}
+  5% {clip: rect(-3px, 600px, 0px, 0px);}
+  9% {clip: rect(-3px, 600px, 0px, 0px);}
+  17% {clip: rect(100px, 600px, 100px, 0px);}
+  29% {clip: rect(0px, 600px, 600px, 0px);}
+  35% {clip: rect(100px, 600px, 0px, 0px);}
+  41% {clip: rect(0px, 600px, 600px, 0px);}
+  47% {clip: rect(100px, 600px, 0px, 0px);}
+  52% {clip: rect(-3px, 600px, 0px, 0px);}
+  58% {clip: rect(100px, 450px,100px, 0px);}
+  64% {clip: rect(0px, 450px, 0px, 0px);}
+  70% {clip: rect(100px, 450px, 100px, 0px);}
+  76% {clip: rect(0px, 450px, 0px, 0px);}
+  82% {clip: rect(0px, 450px, 0px, 0px);}
+  88% {clip: rect(0px, 450px, 0px, 0px);}
+  94% {clip: rect(0px, 450px, 0px, 0px);}
+  100% {clip: rect(0px, 450px, 0px, 0px);}
 }
