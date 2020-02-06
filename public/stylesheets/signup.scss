@@ -12,147 +12,139 @@ $logo-3: #4e4ed6;
 
 $highlight: #4bf0ea;
 
-$diamond: 35vw;
+$diamond: 25vw;
 
 $montserrat: 'Montserrat', sans-serif;
 $poppins: 'Poppins', sans-serif;
 $largest-font: 5vw;
 
-// -----------------------------------
-// General Styles
-// -----------------------------------
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-}
-
-// -----------------------------------
-// Main Content
-// -----------------------------------
 body {
-  background: linear-gradient(to right, $dark-3, black);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   font-family: $poppins;
   line-height: 1.5; 
   height: 100vh;
+}
 
-  // -----------------------------------
-  // Main Content
-  // -----------------------------------
-  .layer {
+.logo-anim-container {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.layer {
+  height: $diamond;
+  width: $diamond;
+  background: $light-3;
+  opacity: 0.3;
+  position: absolute;
+  margin-top: -$diamond/2;
+  margin-left: -$diamond/2;
+}
+
+.layer-1 {
+  animation: logo-anim-1 2.5s forwards;
+}
+
+.layer-2 {
+  animation: logo-anim-2 2.5s forwards;
+}
+
+.layer-3 {
+  animation: logo-anim-3 2.5s forwards;
+}
+
+@keyframes logo-anim-1 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    // background: ;
+  }
+  50% {
+    top: calc(50% - 5vw);
+    left: 50%;
     height: $diamond;
-    width: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     opacity: 0.3;
-    position: absolute;
-    border-radius: 0.02857142857 * $diamond;
-    margin-top: 10%;
-  }
-
-  .layer { margin-left: -75%; }
-  
-  .layer-1 { animation: rotate-1 5s forwards infinite; }
-  .layer-2 { animation: rotate-2 5s forwards infinite; }
-  .layer-3 { animation: rotate-3 5s forwards infinite; }
-}
-
-
-@keyframes rotate-1 {
-  0%, 100% {
     background: $logo-3;
-    top: calc(50% - 0.28571428571 * $diamond);
+  }
+  100% {
+    top: calc(50% - 5vw);
     left: 50%;
-    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 80%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-  50% {
-    background: $logo-3;
-    top: calc(50% + 0.28571428571 * $diamond);
-    left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  75% {
-    background: $logo-2;
-    top: 50%;
-    left: 20%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    height: 1px;
+    border-radius: 0;
+    // transform: rotateX(-89.5deg) rotateY(0) rotateZ(0);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    opacity: 1;
+    background: $dark-3;
   }
 }
 
-@keyframes rotate-2 {
-  0%, 100% {
-    background: $logo-2;
+@keyframes logo-anim-2 {
+  0% {
     top: 50%;
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    // background: ;
   }
   50% {
-    background: $logo-2;
     top: 50%;
     left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    height: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    opacity: 0.3;
+    background: $logo-2;
   }
-  75% {
-    background: $logo-2;
+  100% {
     top: 50%;
     left: 50%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    height: 1px;
+    border-radius: 0;
+    // transform: rotateX(-89.5deg) rotateY(0deg) rotateZ(0);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    opacity: 1;
+    background: $dark-3;
   }
 }
 
-@keyframes rotate-3 {
-  0%, 100% {
+@keyframes logo-anim-3 {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+  }
+  50% {
+    top: calc(50% + 5vw);
+    left: 50%;
+    height: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    opacity: 0.3;
     background: $logo-1;
-    top: calc(50% + 0.28571428571 * $diamond);
+  }
+  100% {
+    top: calc(50% + 5vw);
     left: 50%;
-    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 20%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-  50% {
-    background: $logo-3;
-    top: calc(50% - 0.28571428571 * $diamond);
-    left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  75% {
-    background: $logo-2;
-    top: 50%;
-    left: 80%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    // transform: rotateX(-89.5deg) rotateY(0deg) rotateZ(0);
+    height: 1px;
+    border-radius: 0;
+    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    opacity: 1;
+    background: $dark-3;
   }
 }
