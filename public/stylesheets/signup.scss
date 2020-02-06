@@ -61,14 +61,14 @@ body {
 }
 
 @keyframes logo-anim-1 {
-  0% {
+  0%, 10% {
     top: 50%;
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     // background: ;
   }
-  50% {
+  60% {
     top: calc(50% - 5vw);
     left: 50%;
     height: $diamond;
@@ -91,14 +91,14 @@ body {
 }
 
 @keyframes logo-anim-2 {
-  0% {
+  0%, 10% {
     top: 50%;
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     // background: ;
   }
-  50% {
+  60% {
     top: 50%;
     left: 50%;
     height: $diamond;
@@ -121,13 +121,13 @@ body {
 }
 
 @keyframes logo-anim-3 {
-  0% {
+  0%, 10% {
     top: 50%;
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
   }
-  50% {
+  60% {
     top: calc(50% + 5vw);
     left: 50%;
     height: $diamond;
