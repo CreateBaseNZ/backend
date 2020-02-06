@@ -45,12 +45,13 @@ body {
     z-index: -1;
 
     .layer {
+      top: 50%;
       height: $diamond;
       width: $diamond;
       background: $light-3;
       opacity: 0.3;
       position: absolute;
-      margin-top: -$diamond/2;
+      
       margin-left: -$diamond/2;
     }
     
@@ -230,13 +231,12 @@ body {
 
 @keyframes logo-anim-1 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    margin-top: -$diamond/2;
   }
   60% {
-    top: calc(50% - 5vw);
     left: 50%;
     height: $diamond;
     border-radius: $diamond * 0.05;
@@ -244,27 +244,27 @@ body {
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     opacity: 0.3;
     background: $logo-3;
+    margin-top: -$diamond * 3/4;
   }
   100% {
-    top: calc(75% - 10vh);
     left: 50%;
     height: 1px;
     border-radius: 0;
     animation-timing-function: cubic-bezier(.11,.01,.6,.99);
     opacity: 1;
     background: $dark-3;
+    margin-top: -10vh;
   }
 }
 
 @keyframes logo-anim-2 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    margin-top: -$diamond/2;
   }
   60% {
-    top: 50%;
     left: 50%;
     height: $diamond;
     border-radius: $diamond * 0.05;
@@ -272,27 +272,27 @@ body {
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     opacity: 0.3;
     background: $logo-2;
+    margin-top: -$diamond/2;
   }
   100% {
-    top: 75%;
     left: 50%;
     height: 1px;
     border-radius: 0;
     animation-timing-function: cubic-bezier(.11,.01,.6,.99);
     opacity: 1;
     background: $dark-3;
+    margin-top: 0;
   }
 }
 
 @keyframes logo-anim-3 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
+    margin-top: -$diamond/2;
   }
   60% {
-    top: calc(50% + 5vw);
     left: 50%;
     height: $diamond;
     border-radius: $diamond * 0.05;
@@ -300,15 +300,16 @@ body {
     animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     opacity: 0.3;
     background: $logo-1;
+    margin-top: -$diamond * 1/4;
   }
   100% {
-    top: calc(75% + 10vh);
     left: 50%;
     height: 1px;
     border-radius: 0;
     animation-timing-function: cubic-bezier(.11,.01,.6,.99);
     opacity: 1;
-    background: $dark-3;
+    background: $dark-3; 
+    margin-top: 10vh;
   }
 }
 

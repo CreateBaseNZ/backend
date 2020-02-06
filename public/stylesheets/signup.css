@@ -34,12 +34,12 @@ body .logo-anim-container {
 }
 
 body .logo-anim-container .layer {
+  top: 50%;
   height: 25vh;
   width: 25vh;
   background: #c7c2d5;
   opacity: 0.3;
   position: absolute;
-  margin-top: -12.5vh;
   margin-left: -12.5vh;
 }
 
@@ -248,15 +248,14 @@ body .form-container .sign-up-form #signup-message a {
 
 @-webkit-keyframes logo-anim-1 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
+    margin-top: -12.5vh;
   }
   60% {
-    top: calc(50% - 5vw);
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
@@ -266,9 +265,9 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #4e4ed6;
+    margin-top: -18.75vh;
   }
   100% {
-    top: calc(75% - 10vh);
     left: 50%;
     height: 1px;
     border-radius: 0;
@@ -276,20 +275,20 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
     opacity: 1;
     background: #2d283c;
+    margin-top: -10vh;
   }
 }
 
 @keyframes logo-anim-1 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
+    margin-top: -12.5vh;
   }
   60% {
-    top: calc(50% - 5vw);
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
@@ -299,9 +298,9 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #4e4ed6;
+    margin-top: -18.75vh;
   }
   100% {
-    top: calc(75% - 10vh);
     left: 50%;
     height: 1px;
     border-radius: 0;
@@ -309,20 +308,20 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
     opacity: 1;
     background: #2d283c;
+    margin-top: -10vh;
   }
 }
 
 @-webkit-keyframes logo-anim-2 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
+    margin-top: -12.5vh;
   }
   60% {
-    top: 50%;
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
@@ -332,9 +331,9 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #6853d9;
+    margin-top: -12.5vh;
   }
   100% {
-    top: 75%;
     left: 50%;
     height: 1px;
     border-radius: 0;
@@ -342,20 +341,20 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
     opacity: 1;
     background: #2d283c;
+    margin-top: 0;
   }
 }
 
 @keyframes logo-anim-2 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
+    margin-top: -12.5vh;
   }
   60% {
-    top: 50%;
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
@@ -365,9 +364,9 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #6853d9;
+    margin-top: -12.5vh;
   }
   100% {
-    top: 75%;
     left: 50%;
     height: 1px;
     border-radius: 0;
@@ -375,20 +374,20 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
     opacity: 1;
     background: #2d283c;
+    margin-top: 0;
   }
 }
 
 @-webkit-keyframes logo-anim-3 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
+    margin-top: -12.5vh;
   }
   60% {
-    top: calc(50% + 5vw);
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
@@ -398,9 +397,9 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #8258dc;
+    margin-top: -6.25vh;
   }
   100% {
-    top: calc(75% + 10vh);
     left: 50%;
     height: 1px;
     border-radius: 0;
@@ -408,20 +407,20 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
     opacity: 1;
     background: #2d283c;
+    margin-top: 10vh;
   }
 }
 
 @keyframes logo-anim-3 {
   0%, 10% {
-    top: 50%;
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
+    margin-top: -12.5vh;
   }
   60% {
-    top: calc(50% + 5vw);
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
@@ -431,9 +430,9 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #8258dc;
+    margin-top: -6.25vh;
   }
   100% {
-    top: calc(75% + 10vh);
     left: 50%;
     height: 1px;
     border-radius: 0;
@@ -441,6 +440,7 @@ body .form-container .sign-up-form #signup-message a {
             animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
     opacity: 1;
     background: #2d283c;
+    margin-top: 10vh;
   }
 }
 
