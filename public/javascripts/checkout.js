@@ -94,7 +94,7 @@ const processCardPayment = clientSecret => {
     if (result.error) {
       reject(result.error.message);
     } else {
-      resolve(result.paymentIntent.status);
+      resolve(result.paymentIntent);
     }
   });
 };
