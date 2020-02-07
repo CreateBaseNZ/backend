@@ -199,7 +199,7 @@ body .image-container #back {
 
 .input-decor::after, .input-decor:focus-within::after {
   content: '';
-  border-bottom: 1px solid #4bf0ea;
+  border-bottom: 1.1px solid #4bf0ea;
   position: absolute;
   width: 0%;
   top: 100%;

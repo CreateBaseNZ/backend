@@ -188,7 +188,7 @@ body {
   &::after,
   &:focus-within::after {
     content: '';
-    border-bottom: 1px solid $highlight;
+    border-bottom: 1.1px solid $highlight;
     position: absolute;
     width: 0%;
     top: 100%;
