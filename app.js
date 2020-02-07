@@ -42,7 +42,7 @@ GENERAL MIDDLEWARE
 =========================================================================================*/
 
 // Express Middleware: Serve Static Files (HTML, CSS, JS, Images)
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(__dirname));
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // Parse application/json
