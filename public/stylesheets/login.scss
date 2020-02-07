@@ -479,10 +479,8 @@ body {
 .glitch::after {
   content: attr(data-text);
   position: absolute;
-  padding: 5px;
-  left: 0;
-  text-shadow: -0.1vw 0 greenyellow;
-  top: -2px;
+  left: 1px;
+  text-shadow: -1px 0 greenyellow;
   background: $light-1;
   overflow: hidden;
   visibility: hidden;
@@ -491,23 +489,22 @@ body {
 .glitch::before {
   content: attr(data-text);
   position: absolute;
-  padding: 5px;
-  left: -0.1vw;
-  text-shadow: 0.1vw 0 magenta;
-  top: -2px;
+  left: -1px;
+  text-shadow: 1px 0 magenta;
   background: $light-1;
   overflow: hidden;
   visibility: hidden;
-  animation: noise-anim-2 5s infinite linear alternate-reverse;
+  animation: noise-anim-2 10s infinite linear alternate-reverse;
 }
 
 @keyframes noise-anim {
-  $steps: 60;
+  $steps: 120;
   @for $i from 0 through $steps {
     #{percentage($i*(1/$steps))} {
       $top: random(100);
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+      padding: random(10)px - 10px;
       visibility: visible;
     }
   }
@@ -519,6 +516,7 @@ body {
       $top: random(100);
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+      padding: random(10)px - 10px;
       visibility: visible;
     }
   }
