@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Creaft's Web Server",
+  "description": "CreateBase's Web Server",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -30,10 +30,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creaftmain/website.git"
+    "url": "git+https://github.com/CreateBase-Main/website.git"
   },
   "bugs": {
-    "url": "https://github.com/creaftmain/website/issues"
+    "url": "https://github.com/CreateBase-Main/website/issues"
   },
-  "homepage": "https://github.com/creaftmain/website#readme"
+  "homepage": "https://github.com/CreateBase-Main/website#readme"
 }
