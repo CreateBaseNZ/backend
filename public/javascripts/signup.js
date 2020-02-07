@@ -6,36 +6,18 @@ VARIABLES
 FUNCTIONS
 =========================================================================================*/
 
-const loginInit = () => {
-    textSequence(0);
-}
+const input = document.querySelector('#sign-up-pwd');
+const confirm = document.getElementById('confirm-pass');
+const confirmInput = document.getElementById('sign-up-cfrm-pwd');
 
-const toggleContainer = () => {
-    container.classList.toggle("right-panel-active");
-}
-
-function textSequence(i) {
-    // Cycle through words
-    let words = ['Creator', 'Maverick', 'Trailblazer', 'Innovator'];
-
-    if (words.length > i) {
-        if (i == 1) {
-            setTimeout(function() {
-                document.getElementById("change-text").innerHTML = words[i];
-                document.getElementById("change-text").setAttribute("data-text", words[i]);
-                textSequence(++i);
-            },3000); // 1 second (in milliseconds)
-        } else {
-        setTimeout(function() {
-            document.getElementById("change-text").innerHTML = words[i];
-            document.getElementById("change-text").setAttribute("data-text", words[i]);
-            textSequence(++i);
-        }, 1000); // 1 second (in milliseconds)
-        }
-    } else if (words.length == i) { // Loop
-        textSequence(0);
+input.addEventListener('input', () => {
+    if (input.value.length) {
+        confirm.classList.add('dip-down');
+    } else {
+        confirm.classList.remove('dip-down');
+        confirmInput.value = "";
     }
-}
+});
 
 /*=========================================================================================
 END

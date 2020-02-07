@@ -42,7 +42,8 @@ body {
     height: 100vh;
     flex: 1;
     overflow: hidden;
-    z-index: -1;
+    z-index: -2;
+    background: $light-1;
 
     .layer {
       top: 50%;
@@ -55,14 +56,16 @@ body {
       margin-left: -$diamond/2;
     }
     
-    .layer-1 { animation: logo-anim-1 2.5s forwards; }
-    .layer-2 { animation: logo-anim-2 2.5s forwards; }
-    .layer-3 { animation: logo-anim-3 2.5s forwards; }
+    .layer-1 { animation: logo-anim-1 3s forwards; }
+    .layer-2 { animation: logo-anim-2 3s forwards; }
+    .layer-3 { animation: logo-anim-3 3s forwards; }
   }
 
   // Main form
   .form-container {
     width: 50vw;
+    opacity: 0;
+    animation: appear 3s forwards;
 
     .sign-up-form {
       display: grid;
@@ -84,14 +87,6 @@ body {
         margin-bottom: 5vh;
       }
 
-      #signup-email {
-
-      }
-
-      #enter-pass {
-
-      }
-
       #confirm-pass {
         top: -3vh;
         visibility: none;
@@ -100,12 +95,18 @@ body {
         transition: all 0.3s ease-out;
       }
 
-      // #enter-pass:focus-within + #confirm-pass
-      .dip-down {
+      #enter-pass:focus-within + #confirm-pass {
         top: 0;
         visibility: visible;
         opacity: 1;
         z-index: 2;
+      }
+
+      .dip-down {
+        top: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 2 !important;
       }
 
       #signup-submit {
@@ -118,18 +119,37 @@ body {
         align-self: flex-end;
         margin-bottom: 2vh;
       }
+    }
+  }
 
-      // & * {
-      //   border: none;
-      // }
+  // Image
+  .image-container {
+    z-index: -1;
+    width: 50vw;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      height: 20vh;
+      margin-top: auto;
+      margin-left: auto;
+    }
+
+    #back {
+      width: inherit;
+      height: 100vh;
+      background: $dark-3;
+      animation: slide 3s forwards;
     }
   }
 }
 
+
+
 .input-decor {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted $dark-3;
+  border-bottom: 1.1px dotted $dark-3;
 
   input {
     border: none;
@@ -234,29 +254,67 @@ body {
   }
 }
 
+@keyframes appear {
+  0%, 90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes slide {
+  0%, 85% {
+    margin-left: -50vw;
+  }
+  100% {
+    margin-left: 0vw;
+    animation-timing-function: cubic-bezier(.08,.1,.32,.98);
+  }
+}
+
 @keyframes logo-anim-1 {
   0%, 10% {
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     margin-top: -$diamond/2;
   }
-  60% {
+  30% {
     left: 50%;
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     opacity: 0.3;
     background: $logo-3;
     margin-top: -$diamond * 3/4;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(.72,.01,.5,1);
     opacity: 1;
+    background: $dark-3;
+    margin-top: -10vh;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    animation-timing-function: cubic-bezier(.72,.01,.74,1);
+    opacity: 1;
+    background: $dark-3;
+    margin-top: -10vh;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: $dark-3;
     margin-top: -10vh;
   }
@@ -266,25 +324,43 @@ body {
   0%, 10% {
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     margin-top: -$diamond/2;
   }
-  60% {
+  30% {
     left: 50%;
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     opacity: 0.3;
     background: $logo-2;
     margin-top: -$diamond/2;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(.72,.01,.5,1);
     opacity: 1;
+    background: $dark-3;
+    margin-top: 0;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    animation-timing-function: cubic-bezier(.72,.01,.74,1);
+    opacity: 1;
+    background: $dark-3;
+    margin-top: 0;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: $dark-3;
     margin-top: 0;
   }
@@ -294,25 +370,43 @@ body {
   0%, 10% {
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     margin-top: -$diamond/2;
   }
-  60% {
+  30% {
     left: 50%;
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99) ease-in-out;
     opacity: 0.3;
     background: $logo-1;
     margin-top: -$diamond * 1/4;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(.72,.01,.5,1);
     opacity: 1;
+    background: $dark-3; 
+    margin-top: 10vh;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    animation-timing-function: cubic-bezier(.72,.01,.74,1);
+    opacity: 1;
+    background: $dark-3; 
+    margin-top: 10vh;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: $dark-3; 
     margin-top: 10vh;
   }
