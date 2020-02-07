@@ -66,9 +66,9 @@ body {
 
     .sign-up-form {
       display: grid;
-      grid-template-rows: 6vh 30vh 10vh 10vh 10vh 26vh 8vh;
+      grid-template-rows: 6vh 24vh 10vh 10vh 10vh 10vh 20vh 10vh;
       justify-items: center;
-      align-items: flex-start;
+      align-items: flex-end;
 
       #signup-logo {
         justify-self: flex-start;
@@ -81,30 +81,35 @@ body {
       #signup-title {
         font-size: 1vw;
         letter-spacing: 0.25vw;
-        margin-top: 13vh;
+        margin-bottom: 5vh;
       }
 
       #signup-email {
 
       }
 
-      #signup-password {
-        display: flex;
-
-        #enter-pass {
-          position: relative;
-        }
-
-        #confirm-pass {
-          position: absolute;
-          opacity: 0;
-          z-index: -1;
-        }
+      #enter-pass {
 
       }
 
+      #confirm-pass {
+        top: -3vh;
+        visibility: none;
+        opacity: 0;
+        z-index: -1;
+        transition: all 0.3s ease-out;
+      }
+
+      // #enter-pass:focus-within + #confirm-pass
+      .dip-down {
+        top: 0;
+        visibility: visible;
+        opacity: 1;
+        z-index: 2;
+      }
+
       #signup-submit {
-        margin-top: 10vh;
+        margin-bottom: 5vh;
       }
 
       #signup-message {

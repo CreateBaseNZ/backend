@@ -65,12 +65,12 @@ body .form-container {
 body .form-container .sign-up-form {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 6vh 30vh 10vh 10vh 10vh 26vh 8vh;
-      grid-template-rows: 6vh 30vh 10vh 10vh 10vh 26vh 8vh;
+  -ms-grid-rows: 6vh 24vh 10vh 10vh 10vh 10vh 20vh 10vh;
+      grid-template-rows: 6vh 24vh 10vh 10vh 10vh 10vh 20vh 10vh;
   justify-items: center;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 body .form-container .sign-up-form #signup-logo {
@@ -88,27 +88,27 @@ body .form-container .sign-up-form #signup-logo img {
 body .form-container .sign-up-form #signup-title {
   font-size: 1vw;
   letter-spacing: 0.25vw;
-  margin-top: 13vh;
+  margin-bottom: 5vh;
 }
 
-body .form-container .sign-up-form #signup-password {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-body .form-container .sign-up-form #signup-password #enter-pass {
-  position: relative;
-}
-
-body .form-container .sign-up-form #signup-password #confirm-pass {
-  position: absolute;
+body .form-container .sign-up-form #confirm-pass {
+  top: -3vh;
+  visibility: none;
   opacity: 0;
   z-index: -1;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+body .form-container .sign-up-form .dip-down {
+  top: 0;
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
 }
 
 body .form-container .sign-up-form #signup-submit {
-  margin-top: 10vh;
+  margin-bottom: 5vh;
 }
 
 body .form-container .sign-up-form #signup-message {
