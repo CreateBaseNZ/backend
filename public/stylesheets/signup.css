@@ -30,7 +30,8 @@ body .logo-anim-container {
       -ms-flex: 1;
           flex: 1;
   overflow: hidden;
-  z-index: -1;
+  z-index: -2;
+  background: #ffffff;
 }
 
 body .logo-anim-container .layer {
@@ -44,22 +45,25 @@ body .logo-anim-container .layer {
 }
 
 body .logo-anim-container .layer-1 {
-  -webkit-animation: logo-anim-1 2.5s forwards;
-          animation: logo-anim-1 2.5s forwards;
+  -webkit-animation: logo-anim-1 3s forwards;
+          animation: logo-anim-1 3s forwards;
 }
 
 body .logo-anim-container .layer-2 {
-  -webkit-animation: logo-anim-2 2.5s forwards;
-          animation: logo-anim-2 2.5s forwards;
+  -webkit-animation: logo-anim-2 3s forwards;
+          animation: logo-anim-2 3s forwards;
 }
 
 body .logo-anim-container .layer-3 {
-  -webkit-animation: logo-anim-3 2.5s forwards;
-          animation: logo-anim-3 2.5s forwards;
+  -webkit-animation: logo-anim-3 3s forwards;
+          animation: logo-anim-3 3s forwards;
 }
 
 body .form-container {
   width: 50vw;
+  opacity: 0;
+  -webkit-animation: appear 3s forwards;
+          animation: appear 3s forwards;
 }
 
 body .form-container .sign-up-form {
@@ -100,11 +104,18 @@ body .form-container .sign-up-form #confirm-pass {
   transition: all 0.3s ease-out;
 }
 
-body .form-container .sign-up-form .dip-down {
+body .form-container .sign-up-form #enter-pass:focus-within + #confirm-pass {
   top: 0;
   visibility: visible;
   opacity: 1;
   z-index: 2;
+}
+
+body .form-container .sign-up-form .dip-down {
+  top: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 2 !important;
 }
 
 body .form-container .sign-up-form #signup-submit {
@@ -122,10 +133,31 @@ body .form-container .sign-up-form #signup-message a {
   color: #4bf0ea;
 }
 
+body .image-container {
+  z-index: -1;
+  width: 50vw;
+  overflow: hidden;
+}
+
+body .image-container img {
+  position: absolute;
+  height: 20vh;
+  margin-top: auto;
+  margin-left: auto;
+}
+
+body .image-container #back {
+  width: inherit;
+  height: 100vh;
+  background: #2d283c;
+  -webkit-animation: slide 3s forwards;
+          animation: slide 3s forwards;
+}
+
 .input-decor {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted #2d283c;
+  border-bottom: 1.1px dotted #2d283c;
 }
 
 .input-decor input {
@@ -246,34 +278,95 @@ body .form-container .sign-up-form #signup-message a {
   border: none;
 }
 
+@-webkit-keyframes appear {
+  0%, 90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+}
+
+@keyframes appear {
+  0%, 90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+}
+
+@-webkit-keyframes slide {
+  0%, 85% {
+    margin-left: -50vw;
+  }
+  100% {
+    margin-left: 0vw;
+    -webkit-animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
+            animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
+  }
+}
+
+@keyframes slide {
+  0%, 85% {
+    margin-left: -50vw;
+  }
+  100% {
+    margin-left: 0vw;
+    -webkit-animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
+            animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
+  }
+}
+
 @-webkit-keyframes logo-anim-1 {
   0%, 10% {
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     margin-top: -12.5vh;
   }
-  60% {
+  30% {
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #4e4ed6;
     margin-top: -18.75vh;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: 25vh;
     border-radius: 0;
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
+    background: #2d283c;
+    margin-top: -10vh;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+    opacity: 1;
+    background: #2d283c;
+    margin-top: -10vh;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: #2d283c;
     margin-top: -10vh;
   }
@@ -284,29 +377,46 @@ body .form-container .sign-up-form #signup-message a {
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     margin-top: -12.5vh;
   }
-  60% {
+  30% {
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #4e4ed6;
     margin-top: -18.75vh;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: 25vh;
     border-radius: 0;
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
+    background: #2d283c;
+    margin-top: -10vh;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+    opacity: 1;
+    background: #2d283c;
+    margin-top: -10vh;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: #2d283c;
     margin-top: -10vh;
   }
@@ -317,29 +427,46 @@ body .form-container .sign-up-form #signup-message a {
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     margin-top: -12.5vh;
   }
-  60% {
+  30% {
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #6853d9;
     margin-top: -12.5vh;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: 25vh;
     border-radius: 0;
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
+    background: #2d283c;
+    margin-top: 0;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+    opacity: 1;
+    background: #2d283c;
+    margin-top: 0;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: #2d283c;
     margin-top: 0;
   }
@@ -350,29 +477,46 @@ body .form-container .sign-up-form #signup-message a {
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     margin-top: -12.5vh;
   }
-  60% {
+  30% {
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #6853d9;
     margin-top: -12.5vh;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: 25vh;
     border-radius: 0;
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
+    background: #2d283c;
+    margin-top: 0;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+    opacity: 1;
+    background: #2d283c;
+    margin-top: 0;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: #2d283c;
     margin-top: 0;
   }
@@ -383,29 +527,46 @@ body .form-container .sign-up-form #signup-message a {
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     margin-top: -12.5vh;
   }
-  60% {
+  30% {
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #8258dc;
     margin-top: -6.25vh;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: 25vh;
     border-radius: 0;
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
+    background: #2d283c;
+    margin-top: 10vh;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+    opacity: 1;
+    background: #2d283c;
+    margin-top: 10vh;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: #2d283c;
     margin-top: 10vh;
   }
@@ -416,29 +577,46 @@ body .form-container .sign-up-form #signup-message a {
     left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     margin-top: -12.5vh;
   }
-  60% {
+  30% {
     left: 50%;
     height: 25vh;
     border-radius: 1.25vh;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99) ease-in-out;
     opacity: 0.3;
     background: #8258dc;
     margin-top: -6.25vh;
   }
-  100% {
+  70% {
     left: 50%;
     height: 1px;
+    width: 25vh;
     border-radius: 0;
-    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
-            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
+    background: #2d283c;
+    margin-top: 10vh;
+  }
+  98% {
+    left: 21.1vw;
+    height: 1px;
+    width: 20vw;
+    border-radius: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+            animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
+    opacity: 1;
+    background: #2d283c;
+    margin-top: 10vh;
+  }
+  100% {
+    left: 21.1vw;
+    height: 0.5px;
+    width: 20vw;
+    border-radius: 0;
+    opacity: 0;
     background: #2d283c;
     margin-top: 10vh;
   }

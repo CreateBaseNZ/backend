@@ -92,6 +92,11 @@ body {
         font-size: $largest-font;
         align-self: center;
         margin-left: calc((50vw - 8 * #{$largest-font})/2);
+
+        #change-text {
+          position: relative;
+          padding: 10px;
+        }
       }
       
       // Signup button
@@ -174,7 +179,7 @@ body {
 .input-decor {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted $dark-3;
+  border-bottom: 1.1px dotted $dark-3;
 
   input {
     border: none;
@@ -474,13 +479,13 @@ body {
 // -----------------------------------
 .glitch {
   position: relative;
-  padding: 5px;
+  padding: 10px;
 }
 .glitch::after {
   content: attr(data-text);
   position: absolute;
-  left: 1px;
-  text-shadow: -1px 0 greenyellow;
+  left: 3px;
+  text-shadow: 2px 0 greenyellow;
   background: $light-1;
   overflow: hidden;
   visibility: hidden;
@@ -489,34 +494,34 @@ body {
 .glitch::before {
   content: attr(data-text);
   position: absolute;
-  left: -1px;
-  text-shadow: 1px 0 magenta;
+  left: -3px;
+  text-shadow: -2px 0 magenta;
   background: $light-1;
   overflow: hidden;
   visibility: hidden;
-  animation: noise-anim-2 10s infinite linear alternate-reverse;
+  animation: noise-anim-2 8s infinite linear alternate-reverse;
 }
 
 @keyframes noise-anim {
-  $steps: 120;
+  $steps: 240;
   @for $i from 0 through $steps {
     #{percentage($i*(1/$steps))} {
       $top: random(100);
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-      padding: random(10)px - 10px;
+      padding: random(20)px - 20px;
       visibility: visible;
     }
   }
 }
 @keyframes noise-anim-2 {
-  $steps: 120;
+  $steps: 150;
   @for $i from 0 through $steps {
     #{percentage($i*(1/$steps))} {
       $top: random(100);
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-      padding: random(10)px - 10px;
+      padding: random(30)px - 30px;
       visibility: visible;
     }
   }
