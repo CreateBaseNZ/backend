@@ -29,8 +29,8 @@ function textSequence(i) {
                     i = (Math.floor(Math.random()*4));
                     textSequence(i);
                     console.log(i);
-                }, (100 + Math.random()*100));
-            }, (500 + Math.random()*1500));
+                }, (50 + Math.random()*100));
+            }, (200 + Math.random()*1500));
         }, (50 + Math.random()*50));
     // } else if (words.length == i) { // Loop
     //     textSequence(0);
