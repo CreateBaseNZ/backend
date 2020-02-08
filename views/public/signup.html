@@ -27,6 +27,7 @@
     Custom CSS / JavaScript
     ------------------------------->
     <link rel="stylesheet" href="./../../public/stylesheets/signup.css" />
+    
   </head>
 
   <body>
@@ -37,23 +38,13 @@
     </div>
 
     <div class="form-container">
-      <form
-        class="sign-up-form"
-        action="/signup/customer"
-        method="post"
-        novalidate="novalidate"
-      >
+      <form class="sign-up-form" action="/signup/customer" method="post" novalidate="novalidate">
         <a href="/" id="signup-logo">
           <img src="./../../public/images/logo-dark.png" alt="CreateBase" />
         </a>
         <h2 id="signup-title">CREATE YOUR BASE</h2>
         <div class="sign-up-fld input-decor" id="signup-display">
-          <input
-            type="text"
-            name="displayName"
-            id="sign-up-dspl-name"
-            required
-          />
+          <input type="text" name="displayName" id="sign-up-dspl-name" required />
           <label for="displayName">Display Name</label>
         </div>
         <div class="sign-up-fld input-decor" id="signup-email">
@@ -65,12 +56,7 @@
           <label for="password">Password</label>
         </div>
         <div class="sign-up-fld input-decor" id="confirm-pass">
-          <input
-            type="password"
-            name="confirm"
-            id="sign-up-cfrm-pwd"
-            required
-          />
+          <input type="password" name="confirm" id="sign-up-cfrm-pwd" required />
           <label for="confirm-password">Confirm Password</label>
         </div>
         <div class="sign-up-fld" id="signup-submit">
@@ -78,7 +64,7 @@
         </div>
         <div class="message" id="signup-message">
           <p class="rmv-p-css">
-            Already a member of Creaft?
+            Already a member?
             <a class="rmv-link-css" href="/login">Log in</a>
           </p>
         </div>
@@ -89,5 +75,5 @@
     </div>
   </body>
 
-  <script src="javascripts/signup.js"></script>
+  <script src="./../../public/javascripts/signup.js"></script>
 </html>

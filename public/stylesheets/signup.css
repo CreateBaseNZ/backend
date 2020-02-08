@@ -139,13 +139,6 @@ body .image-container {
   overflow: hidden;
 }
 
-body .image-container img {
-  position: absolute;
-  height: 20vh;
-  margin-top: auto;
-  margin-left: auto;
-}
-
 body .image-container #back {
   width: inherit;
   height: 100vh;
@@ -233,6 +226,47 @@ body .image-container #back {
   position: relative;
   cursor: pointer;
   outline: none;
+}
+
+.btn:before, .btn:after {
+  content: 'SIGN UP';
+  border: #2d283c solid 1px;
+  color: #2d283c;
+  background: #ffffff;
+  width: 10vw;
+  font-size: 1vw;
+  font-weight: 100;
+  height: 2.5vw;
+  letter-spacing: 0.25vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  outline: none;
+  pointer-events: none;
+  visibility: hidden;
+  left: 1px;
+  text-shadow: -2px 2px greenyellow;
+  -webkit-box-shadow: inset -2px 0px greenyellow;
+          box-shadow: inset -2px 0px greenyellow;
+  z-index: 3;
+  animation: twitch-btn 12s alternate-reverse infinite;
+}
+
+.btn:before {
+  left: -1px;
+  text-shadow: 1px 0 magenta;
+  -webkit-box-shadow: inset 1px 0 magenta;
+          box-shadow: inset 1px 0 magenta;
+  z-index: 2;
+  -webkit-animation: twitch-btn 10s infinite;
+          animation: twitch-btn 10s infinite;
 }
 
 .btn:hover, .btn:hover:after, .btn:hover:before {
@@ -350,19 +384,19 @@ body .image-container #back {
     background: #2d283c;
     margin-top: -10vh;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
             animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 1;
+    opacity: 0.4;
     background: #2d283c;
     margin-top: -10vh;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -400,19 +434,19 @@ body .image-container #back {
     background: #2d283c;
     margin-top: -10vh;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
             animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 1;
+    opacity: 0.4;
     background: #2d283c;
     margin-top: -10vh;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -450,19 +484,19 @@ body .image-container #back {
     background: #2d283c;
     margin-top: 0;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
             animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 1;
+    opacity: 0.4;
     background: #2d283c;
     margin-top: 0;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -500,19 +534,19 @@ body .image-container #back {
     background: #2d283c;
     margin-top: 0;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
             animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 1;
+    opacity: 0.4;
     background: #2d283c;
     margin-top: 0;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -550,19 +584,19 @@ body .image-container #back {
     background: #2d283c;
     margin-top: 10vh;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
             animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 1;
+    opacity: 0.4;
     background: #2d283c;
     margin-top: 10vh;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -600,19 +634,19 @@ body .image-container #back {
     background: #2d283c;
     margin-top: 10vh;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
             animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 1;
+    opacity: 0.4;
     background: #2d283c;
     margin-top: 10vh;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -735,5 +769,173 @@ body .image-container #back {
   }
   100% {
     clip: rect(0px, 450px, 0px, 0px);
+  }
+}
+
+@-webkit-keyframes twitch-btn {
+  0% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  18% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+    visibility: visible;
+  }
+  18.5% {
+    -webkit-clip-path: inset(53% 0 42% 0);
+            clip-path: inset(53% 0 42% 0);
+  }
+  19% {
+    -webkit-clip-path: inset(53% 0 42% 0);
+            clip-path: inset(53% 0 42% 0);
+  }
+  19.5% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  58% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  58.5% {
+    -webkit-clip-path: inset(22% 0 67% 0);
+            clip-path: inset(22% 0 67% 0);
+  }
+  59% {
+    -webkit-clip-path: inset(22% 0 67% 0);
+            clip-path: inset(22% 0 67% 0);
+  }
+  59.5% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  60% {
+    -webkit-clip-path: inset(43% 0 48% 0);
+            clip-path: inset(43% 0 48% 0);
+  }
+  60.5% {
+    -webkit-clip-path: inset(43% 0 48% 0);
+            clip-path: inset(43% 0 48% 0);
+  }
+  61% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  83% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  83.5% {
+    -webkit-clip-path: inset(68% 0 19% 0);
+            clip-path: inset(68% 0 19% 0);
+  }
+  84% {
+    -webkit-clip-path: inset(68% 0 19% 0);
+            clip-path: inset(68% 0 19% 0);
+  }
+  84.5% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  85% {
+    -webkit-clip-path: inset(19% 0 68% 0);
+            clip-path: inset(19% 0 68% 0);
+  }
+  85.5% {
+    -webkit-clip-path: inset(19% 0 68% 0);
+            clip-path: inset(19% 0 68% 0);
+  }
+  86% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  100% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+}
+
+@keyframes twitch-btn {
+  0% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  18% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+    visibility: visible;
+  }
+  18.5% {
+    -webkit-clip-path: inset(53% 0 42% 0);
+            clip-path: inset(53% 0 42% 0);
+  }
+  19% {
+    -webkit-clip-path: inset(53% 0 42% 0);
+            clip-path: inset(53% 0 42% 0);
+  }
+  19.5% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  58% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  58.5% {
+    -webkit-clip-path: inset(22% 0 67% 0);
+            clip-path: inset(22% 0 67% 0);
+  }
+  59% {
+    -webkit-clip-path: inset(22% 0 67% 0);
+            clip-path: inset(22% 0 67% 0);
+  }
+  59.5% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  60% {
+    -webkit-clip-path: inset(43% 0 48% 0);
+            clip-path: inset(43% 0 48% 0);
+  }
+  60.5% {
+    -webkit-clip-path: inset(43% 0 48% 0);
+            clip-path: inset(43% 0 48% 0);
+  }
+  61% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  83% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  83.5% {
+    -webkit-clip-path: inset(68% 0 19% 0);
+            clip-path: inset(68% 0 19% 0);
+  }
+  84% {
+    -webkit-clip-path: inset(68% 0 19% 0);
+            clip-path: inset(68% 0 19% 0);
+  }
+  84.5% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  85% {
+    -webkit-clip-path: inset(19% 0 68% 0);
+            clip-path: inset(19% 0 68% 0);
+  }
+  85.5% {
+    -webkit-clip-path: inset(19% 0 68% 0);
+            clip-path: inset(19% 0 68% 0);
+  }
+  86% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
+  }
+  100% {
+    -webkit-clip-path: inset(100% 100% 100% 100%);
+            clip-path: inset(100% 100% 100% 100%);
   }
 }

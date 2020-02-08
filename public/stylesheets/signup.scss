@@ -128,13 +128,6 @@ body {
     width: 50vw;
     overflow: hidden;
 
-    img {
-      position: absolute;
-      height: 20vh;
-      margin-top: auto;
-      margin-left: auto;
-    }
-
     #back {
       width: inherit;
       height: 100vh;
@@ -216,6 +209,40 @@ body {
   position: relative;
   cursor: pointer;
   outline: none;
+
+  &:before,
+  &:after {
+    content: 'SIGN UP';
+    border: $dark-3 solid 1px;
+    color: $dark-3;
+    background: $light-1;
+    width: 10vw;
+    font-size: 1vw;
+    font-weight: 100;
+    height: 2.5vw;
+    letter-spacing: 0.25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    outline: none;
+    pointer-events: none;
+    visibility: hidden;
+
+    left: 1px;
+    text-shadow: -2px 2px greenyellow;
+    box-shadow: inset -2px 0px greenyellow;
+    z-index: 3;
+    animation: twitch-btn 12s alternate-reverse infinite;
+  }
+
+  &:before {
+    left: -1px;
+    text-shadow: 1px 0 magenta;
+    box-shadow: inset 1px 0 magenta;
+    z-index: 2;
+    animation: twitch-btn 10s infinite;
+  }
 
   &:hover,
   &:hover:after,
@@ -299,18 +326,18 @@ body {
     background: $dark-3;
     margin-top: -10vh;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     animation-timing-function: cubic-bezier(.72,.01,.74,1);
-    opacity: 1;
+    opacity: 0.4;
     background: $dark-3;
     margin-top: -10vh;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -345,18 +372,18 @@ body {
     background: $dark-3;
     margin-top: 0;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     animation-timing-function: cubic-bezier(.72,.01,.74,1);
-    opacity: 1;
+    opacity: 0.4;
     background: $dark-3;
     margin-top: 0;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -391,18 +418,18 @@ body {
     background: $dark-3; 
     margin-top: 10vh;
   }
-  98% {
-    left: 21.1vw;
+  95% {
+    left: 22vw;
     height: 1px;
     width: 20vw;
     border-radius: 0;
     animation-timing-function: cubic-bezier(.72,.01,.74,1);
-    opacity: 1;
+    opacity: 0.4;
     background: $dark-3; 
     margin-top: 10vh;
   }
   100% {
-    left: 21.1vw;
+    left: 22vw;
     height: 0.5px;
     width: 20vw;
     border-radius: 0;
@@ -434,4 +461,31 @@ body {
   88% {clip: rect(0px, 450px, 0px, 0px);}
   94% {clip: rect(0px, 450px, 0px, 0px);}
   100% {clip: rect(0px, 450px, 0px, 0px);}
+}
+
+@keyframes twitch-btn {
+  0% { clip-path: inset(100% 100% 100% 100%); }
+
+  18% {clip-path: inset(100% 100% 100% 100%); visibility: visible;}
+  18.5% {clip-path: inset(53% 0 42% 0);}
+  19% {clip-path: inset(53% 0 42% 0);}
+  19.5% {clip-path: inset(100% 100% 100% 100%);}
+
+  58% {clip-path: inset(100% 100% 100% 100%);}
+  58.5% {clip-path: inset(22% 0 67% 0);}
+  59% {clip-path: inset(22% 0 67% 0);}
+  59.5% {clip-path: inset(100% 100% 100% 100%);}
+  60% {clip-path: inset(43% 0 48% 0);}
+  60.5% {clip-path: inset(43% 0 48% 0);}
+  61% {clip-path: inset(100% 100% 100% 100%);}
+
+  83% {clip-path: inset(100% 100% 100% 100%);}
+  83.5% {clip-path: inset(68% 0 19% 0);}
+  84% {clip-path: inset(68% 0 19% 0);}
+  84.5% {clip-path: inset(100% 100% 100% 100%);}
+  85% {clip-path: inset(19% 0 68% 0);}
+  85.5% {clip-path: inset(19% 0 68% 0);}
+  86% {clip-path: inset(100% 100% 100% 100%);}
+
+  100% {clip-path: inset(100% 100% 100% 100%);}
 }
