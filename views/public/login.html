@@ -31,6 +31,20 @@
   </head>
 
   <body onload="loginInit();">
+    <nav>
+      <button class="hamburger" type="button">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+      </button>
+      <p class="nav-header">SERVICES</p>
+      <a href="#" class="nav-item">3D PRINTING</a>
+      <a href="#" class="nav-item">MARKETPLACE</a>
+      <p class="nav-header">CREATEBASE</p>
+      <a href="#" class="nav-item">OUR STORY</a>
+      <a href="#" class="nav-item">OUR TEAM</a>
+    </nav>
+
     <div class="container" id="container">
       <div class="form-container login-container">
         <form class="log-in-form" action="/login/customer" method="post">
@@ -40,11 +54,11 @@
           <h2>WELCOME BACK TO BASE</h2>
           <div class="log-in-fld input-decor" id="login-email">
             <input type="text" name="email" id="log-in-eml" required />
-            <label for="email" class="form-label">Email</label>
+            <label for="email" >Email</label>
           </div>
           <div class="log-in-fld input-decor" id="login-password">
             <input type="password" name="password" id="log-in-pwd" required />
-            <label for="password" class="form-label">Password</label>
+            <label for="password" >Password</label>
           </div>
           <div class="log-in-fld" id="login-login">
             <button type="submit" class="btn" id="login-btn" data-text="LOG IN">LOG IN</button>
@@ -74,18 +88,19 @@
 
       <div class="overlay-container">
         <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <div class="layer-left layer-1"></div>
-            <div class="layer-left layer-2"></div>
-            <div class="layer-left layer-3"></div>
+          <div class="loading-icon overlay-left">
+            <div class="layer layer-left layer-1"></div>
+            <div class="layer layer-left layer-2"></div>
+            <div class="layer layer-left layer-3"></div>
           </div>
-          <div class="overlay-panel overlay-right">
-            <div class="layer-right layer-1"></div>
-            <div class="layer-right layer-2"></div>
-            <div class="layer-right layer-3"></div>
+          <div class="loading-icon overlay-right">
+            <div class="layer layer-right layer-1"></div>
+            <div class="layer layer-right layer-2"></div>
+            <div class="layer layer-right layer-3"></div>
           </div>
         </div>
       </div>
     </div>
   </body>
+  <script src="./../../public/javascripts/navbar.js"></script>
 </html>

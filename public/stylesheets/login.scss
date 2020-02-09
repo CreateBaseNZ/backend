@@ -1,35 +1,8 @@
-$dark-1: #877da9;
-$dark-2: #322d41;
-$dark-3: #2d283c;
+$diamond: 35vw; /* all.scss uses $diamond so it must be declared first */
+@import 'all';
+@import 'hamburger';
 
-$light-1: #ffffff;
-$light-2: #f8f8f8;
-$light-3: #c7c2d5;
-
-$logo-1: #8258dc;
-$logo-2: #6853d9;
-$logo-3: #4e4ed6;
-
-$highlight: #4bf0ea;
-
-$diamond: 35vw;
-
-$montserrat: 'Montserrat', sans-serif;
-$poppins: 'Poppins', sans-serif;
 $largest-font: 5vw;
-
-// -----------------------------------
-// General Styles
-// -----------------------------------
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-}
 
 // -----------------------------------
 // Main Content
@@ -39,10 +12,28 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   font-family: $poppins;
   line-height: 1.5; 
   height: 100vh;
+
+  nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 10vw;
+    z-index: 1000;
+    display: grid;
+    grid-template-rows: repeat(6, auto);
+    grid-template-columns: 1fr 3fr;
+
+      .hamburger {
+        order: 2;
+        grid-row: 1 / span 6;
+        grid-column: 2;
+      }
+  }
 
   // -----------------------------------
   // Main Content
@@ -56,7 +47,7 @@ body {
       position: absolute;
       top: 0;
       height: 100%;
-      transition: all 0.6s ease-in-out;
+      transition: all 0.6s ease-in-out; 
     }
 
     // -----------------------------------
@@ -81,8 +72,7 @@ body {
         justify-self: center;
         align-self: end;
 
-        img {
-          width: 15vw;
+        img { width: 15vw; 
         }
       }
       
@@ -95,7 +85,7 @@ body {
 
         #change-text {
           position: relative;
-          padding: 10px;
+          padding: 10px; 
         }
       }
       
@@ -103,7 +93,7 @@ body {
       #hello-signup {
         grid-area: signup;
         justify-self: end;
-        margin-right: 1vw;
+        margin-right: 1vw; 
       }
 
       // Login button
@@ -111,8 +101,12 @@ body {
         grid-area: login;
         margin-left: 1vw;
 
-        &:before { animation-delay: 0.2s !important; }
-        &:after { animation-delay: 0.4s !important; }
+        &:before { 
+          animation-delay: 0.2s !important; 
+        }
+        &:after { 
+          animation-delay: 0.4s !important; 
+        }
       }
     }
 
@@ -144,25 +138,31 @@ body {
           margin-top: 3vh;
           margin-right: 3vw;
   
-          img {
-            width: 7.5vw;
+          img { 
+            width: 7.5vw; 
           }
         }
   
         h2 {
           font-size: 1vw;
-          letter-spacing: 0.25vw;
+          letter-spacing: 0.25vw; 
         }
 
         #login-login {
-          align-self: flex-end;
+          align-self: flex-end; 
         }
-  
       }
 
       #back-btn {
         align-self: center;
         justify-self: center;
+
+        &:before { 
+          animation-delay: random() + s !important; 
+        }
+        &:after { 
+          animation-delay: random() + s !important; 
+        }
       }
       
       #login-signup {
@@ -179,69 +179,14 @@ body {
   }
 }
 
-.input-decor {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1.1px dotted $dark-3;
-
-  input {
-    border: none;
-    padding: 0.5vw 1vw;
-    width: 20vw;
-    
-    &:focus { outline: none; }
-  }
-
-  .form-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 0.5vh;
-    margin-left: 1vw;
-    color: $light-3;
-    letter-spacing: 1.5px;
-    font-size: 1vw;
-    font-weight: 100;
-    transition: all 0.2s ease-out;
-    pointer-events: none;
-  }
-
-  input:focus ~ .form-label {
-    margin-top: -2vh;
-    font-size: 0.75vw;
-    color: $highlight;
-  }
-
-  input:not(:focus):valid ~ .form-label {
-    margin-top: -2vh;
-    font-size: 0.75vw;
-    color: $light-3;
-  }
-
-  &::after,
-  &:focus-within::after {
-    content: '';
-    border-bottom: 1.1px solid $highlight;
-    position: absolute;
-    width: 0%;
-    top: 100%;
-    left: 0%;
-    transition: .5s ease-in-out;
-  }
-
-  &:focus-within::after {
-    width: 100%;
-  }
-}
-
 .container.right-panel-active .hello-container {
-  transform: translateX(100%);
+  transform: translateX(100%); 
 }
 .container.right-panel-active .login-container {
 	transform: translateX(100%);
 	visibility: visible;
 	z-index: 5;
-	animation: show 0.6s;
+  animation: show 0.6s; 
 }
 
 // -----------------------------------
@@ -265,258 +210,62 @@ body {
     width: 200%;
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
-  
-    .overlay-panel {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      width: 50%;
-      transform: translateX(0);
-      transition: transform 0.6s ease-in-out;
-    
-      .layer-left,
-      .layer-right {
-        height: $diamond;
-        width: $diamond;
-        opacity: 0.3;
-        position: absolute;
-        border-radius: 1vw;
-        margin-top: 10%;
-      }
-
-      .layer-left { margin-left: -75%; }
-      .layer-right { margin-left: 0%; }
-      
-      .layer-1 { animation: animate1 5s forwards infinite; }
-      .layer-2 { animation: animate2 5s forwards infinite; }
-      .layer-3 { animation: animate3 5s forwards infinite; }
-    }
     
     .overlay-left {
       transform: translateX(-20%);
+
+      .layer-left { 
+        margin-left: -75%; 
+      }
     }
     .overlay-right {
       right: 0;
       transform: translateX(0);
+
+      .layer-right { 
+        margin-left: 0%; 
+      }
     }
   }
 }
 
 .container.right-panel-active .overlay {
-  transform: translateX(50%);
+  transform: translateX(50%); 
 }
 .container.right-panel-active .overlay-container{
-	transform: translateX(-100%);
+  transform: translateX(-100%); 
 }
 .container.right-panel-active .overlay-left {
-	transform: translateX(0%);
+  transform: translateX(0%); 
 }
 .container.right-panel-active .overlay-right {
-	transform: translateX(20%);
+  transform: translateX(20%); 
 }
 
 @keyframes show {
 	0%, 49.99% {
 		visibility: hidden;
-		z-index: 1;
-	}
+    z-index: 1; 
+  }
 	
 	50%, 100% {
 		visibility: visible;
-		z-index: 5;
-	}
-}
-
-@keyframes animate1 {
-  0%, 100% {
-    background: $logo-3;
-    top: calc(50% - 10vw);
-    left: 50%;
-    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 80%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-  50% {
-    background: $logo-3;
-    top: calc(50% + 10vw);
-    left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  75% {
-    background: $logo-2;
-    top: 50%;
-    left: 20%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    z-index: 5; 
   }
 }
 
-@keyframes animate2 {
-  0%, 100% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-  50% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  75% {
-    background: $logo-2;
-    top: 50%;
-    left: 50%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-}
 
-@keyframes animate3 {
-  0%, 100% {
-    background: $logo-1;
-    top: calc(50% + 10vw);
-    left: 50%;
-    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  25% {
-    background: $logo-2;
-    top: 50%;
-    left: 20%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-  50% {
-    background: $logo-3;
-    top: calc(50% - 10vw);
-    left: 50%;
-    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
-  }
-  75% {
-    background: $logo-2;
-    top: 50%;
-    left: 80%;
-    transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
-  }
-}
 
 // -----------------------------------
 // Button Class
 // -----------------------------------
-.btn {
-  border: $dark-3 solid 1px;
-  color: $dark-3;
-  background: $light-1;
-  width: 10vw;
-  font-size: 1vw;
-  font-weight: 100;
-  height: 2.5vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.25vw;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-
-  &:before,
-  &:after {
-    content: attr(data-text);
-    border: $dark-3 solid 1px;
-    color: $dark-3;
-    background: $light-1;
-    width: 10vw;
-    font-size: 1vw;
-    font-weight: 100;
-    height: 2.5vw;
-    letter-spacing: 0.25vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    outline: none;
-    pointer-events: none;
-    visibility: hidden;
-
-    left: 1px;
-    text-shadow: -2px 2px greenyellow;
-    box-shadow: inset -2px 0px greenyellow;
-    z-index: 3;
-    animation: twitch-btn 12s alternate-reverse infinite;
-  }
-
-  &:before {
-    left: -1px;
-    text-shadow: 2px 0 magenta;
-    box-shadow: inset 1px 0 magenta;
-    z-index: 2;
-    animation: twitch-btn 10s infinite;
-  }
-
-  &:hover,
-  &:hover:after,
-  &:hover:before {
-    color: $light-1;
-    border: none;
-    background-image: linear-gradient(to right, $logo-1, $logo-3);
-  }
-
-  &:hover:after,
-  &:hover:before {
-    content: attr(data-text);
-    width: 10vw;
-    height: 2.5vw;
-    top: -0.2vw;
-    font-size: 1vw;
-    font-weight: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    overflow: hidden;
-    visibility: hidden;
-  }
-  &:hover:after {
-    left: 0.2vw;
-    text-shadow: -1px 0 greenyellow;
-    animation: glitch-btn 1.5s linear alternate-reverse;
-    border: none;
-  }
-  &:hover:before {
-    left: -0.2vw;
-    text-shadow: 1px 0 magenta;
-    animation: glitch-btn 2s linear alternate;
-    border: none;
-  }
-}
 
 // -----------------------------------
 // Glitch animation
 // -----------------------------------
 .glitch {
   position: relative;
-  padding: 10px;
+  padding: 10px; 
 }
 .glitch::after {
   content: attr(data-text);
@@ -526,7 +275,7 @@ body {
   background: $light-1;
   overflow: hidden;
   visibility: hidden;
-  animation: noise-anim 10s infinite linear alternate-reverse;
+  animation: noise-anim 10s infinite linear alternate-reverse; 
 }
 .glitch::before {
   content: attr(data-text);
@@ -536,7 +285,7 @@ body {
   background: $light-1;
   overflow: hidden;
   visibility: hidden;
-  animation: noise-anim-2 8s infinite linear alternate-reverse;
+  animation: noise-anim-2 8s infinite linear alternate-reverse; 
 }
 
 @keyframes noise-anim {
@@ -547,7 +296,7 @@ body {
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}% 0 #{$bottom}% 0);
       padding: random(20)px - 20px;
-      visibility: visible;
+      visibility: visible; 
     }
   }
 }
@@ -559,57 +308,9 @@ body {
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}% 0 #{$bottom}% 0);
       padding: random(30)px - 30px;
-      visibility: visible;
+      visibility: visible; 
     }
   }
 }
-@keyframes glitch-btn {
-  0% {
-    clip: rect(-3px, 600px, 0px, 0px);
-    visibility: visible;
-  }
-  2% {clip: rect(0px, 600px, 0px, 0px);}
-  5% {clip: rect(-3px, 600px, 0px, 0px);}
-  9% {clip: rect(-3px, 600px, 0px, 0px);}
-  17% {clip: rect(100px, 600px, 100px, 0px);}
-  29% {clip: rect(0px, 600px, 600px, 0px);}
-  35% {clip: rect(100px, 600px, 0px, 0px);}
-  41% {clip: rect(0px, 600px, 600px, 0px);}
-  47% {clip: rect(100px, 600px, 0px, 0px);}
-  52% {clip: rect(-3px, 600px, 0px, 0px);}
-  58% {clip: rect(100px, 450px,100px, 0px);}
-  64% {clip: rect(0px, 450px, 0px, 0px);}
-  70% {clip: rect(100px, 450px, 100px, 0px);}
-  76% {clip: rect(0px, 450px, 0px, 0px);}
-  82% {clip: rect(0px, 450px, 0px, 0px);}
-  88% {clip: rect(0px, 450px, 0px, 0px);}
-  94% {clip: rect(0px, 450px, 0px, 0px);}
-  100% {clip: rect(0px, 450px, 0px, 0px);}
-}
 
-@keyframes twitch-btn {
-  0% { clip-path: inset(100% 100% 100% 100%); }
 
-  18% {clip-path: inset(100% 100% 100% 100%); visibility: visible;}
-  18.5% {clip-path: inset(53% 0 42% 0);}
-  19% {clip-path: inset(53% 0 42% 0);}
-  19.5% {clip-path: inset(100% 100% 100% 100%);}
-
-  58% {clip-path: inset(100% 100% 100% 100%);}
-  58.5% {clip-path: inset(22% 0 67% 0);}
-  59% {clip-path: inset(22% 0 67% 0);}
-  59.5% {clip-path: inset(100% 100% 100% 100%);}
-  60% {clip-path: inset(43% 0 48% 0);}
-  60.5% {clip-path: inset(43% 0 48% 0);}
-  61% {clip-path: inset(100% 100% 100% 100%);}
-
-  83% {clip-path: inset(100% 100% 100% 100%);}
-  83.5% {clip-path: inset(68% 0 19% 0);}
-  84% {clip-path: inset(68% 0 19% 0);}
-  84.5% {clip-path: inset(100% 100% 100% 100%);}
-  85% {clip-path: inset(19% 0 68% 0);}
-  85.5% {clip-path: inset(19% 0 68% 0);}
-  86% {clip-path: inset(100% 100% 100% 100%);}
-
-  100% {clip-path: inset(100% 100% 100% 100%);}
-}
