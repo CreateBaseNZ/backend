@@ -9,10 +9,8 @@
     <!------------------------------ 
     Fonts 
     ------------------------------->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
     <!------------------------------
     Default CSS
     ------------------------------->
@@ -28,21 +26,35 @@
     ------------------------------->
     <link rel="stylesheet" href="./../../public/stylesheets/login.css" />
     <script src="./../../public/javascripts/login.js"></script>
+
   </head>
 
   <body onload="loginInit();">
     <nav>
-      <button class="hamburger" type="button">
+      <a href="/" id="login-logo">
+        <img src="./../../public/images/logo-icon.png" alt="CreateBase" />
+      </a>
+      <button class="hamburger hamburger-arrow" type="button">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
       </button>
-      <p class="nav-header">SERVICES</p>
-      <a href="#" class="nav-item">3D PRINTING</a>
-      <a href="#" class="nav-item">MARKETPLACE</a>
-      <p class="nav-header">CREATEBASE</p>
-      <a href="#" class="nav-item">OUR STORY</a>
-      <a href="#" class="nav-item">OUR TEAM</a>
+      <div class="nav-services">
+        <p class="nav-header">SERVICES</p>
+        <a href="#" class="nav-item">3D PRINTING</a>
+        <a href="#" class="nav-item">MARKETPLACE</a>
+      </div>
+      <div class="nav-createbase">
+        <p class="nav-header">CREATEBASE</p>
+        <a href="#" class="nav-item">OUR STORY</a>
+        <a href="#" class="nav-item">OUR TEAM</a>
+      </div>
+      <div class="nav-socials">
+        <i class="fab fa-facebook-square"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
     </nav>
 
     <div class="container" id="container">
