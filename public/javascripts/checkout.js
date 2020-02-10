@@ -62,11 +62,10 @@ let checkoutPaymentIntent = () => {
 
     try {
       clientSecret = await axios.post("/checkout/payment-intent", "Pay");
+      resolve(clientSecret.data);
     } catch (error) {
       reject(error);
     }
-
-    resolve(clientSecret.data);
   });
 };
 
@@ -87,14 +86,14 @@ const processCardPayment = clientSecret => {
           }
         }
       });
+
+      if (result.error) {
+        reject(result.error.message);
+      } else {
+        resolve(result.paymentIntent);
+      }
     } catch (error) {
       reject(error);
-    }
-
-    if (result.error) {
-      reject(result.error.message);
-    } else {
-      resolve(result.paymentIntent);
     }
   });
 };
@@ -105,7 +104,7 @@ PROCEED WITH PAYMENT
 
 const checkoutPay = async () => {
   let clientSecret;
-  let status;
+  let payment;
 
   try {
     clientSecret = await checkoutPaymentIntent();
@@ -114,12 +113,12 @@ const checkoutPay = async () => {
   }
 
   try {
-    status = await processCardPayment(clientSecret);
+    payment = await processCardPayment(clientSecret);
   } catch (error) {
     return console.log(error);
   }
 
-  console.log(status);
+  console.log(payment["status"]);
 };
 
 /*=========================================================================================

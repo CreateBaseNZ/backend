@@ -27,7 +27,7 @@ let srvsTglEvtDktp;
 INITIALISE
 ------------------------------- */
 
-indexInit = () => {
+const indexInit = async () => {
   menuTglBool = false;
   userMenuTglBool = false;
   msgsTglBool = false;
@@ -55,16 +55,24 @@ indexInit = () => {
     .querySelector(".user-menu-btn-dktp")
     .addEventListener("click", userMenuTgl);
   // Load Initial Classes
-  auth
-    .then(authStts => {
-      if (authStts) {
-        navSysLogIn(); // Display Navigation for logged in user
-        loadNtfs(); // Load notifications if user is logged in
-        document.querySelector(".page").classList.remove("page-nav-bar-hide");
-      }
+  try {
+    let status = await auth();
+    if (status) {
+      navSysLogIn(); // Display Navigation for logged in user
+      loadNtfs(); // Load notifications if user is logged in
+      document.querySelector(".page").classList.remove("page-nav-bar-hide");
+    } else {
       document.querySelector(".page").classList.add("page-nav-bar-hide");
-    })
-    .catch(err => console.log(err));
+    }
+  } catch (error) {
+    const status = true; // Offline Testing
+    if (status) {
+      navSysLogIn(); // Display Navigation for logged in user
+      document.querySelector(".page").classList.remove("page-nav-bar-hide");
+    } else {
+      document.querySelector(".page").classList.add("page-nav-bar-hide");
+    }
+  }
 };
 
 /* -------------------------------
@@ -112,11 +120,16 @@ let navSysLogIn = () => {
 
 // Check Authentication (TEMP)
 
-let auth = new Promise((resolve, reject) => {
-  axios.get("/login-status").then(res => {
-    resolve(res.data.status);
+let auth = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const status = await axios.get("/login-status");
+      resolve(status.data["status"]);
+    } catch (error) {
+      reject(error);
+    }
   });
-});
+};
 
 // Toggle the menu page
 
