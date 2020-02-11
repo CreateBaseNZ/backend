@@ -31,34 +31,39 @@
 
   <body onload="loginInit();">
     <nav>
-      <a href="/" id="login-logo">
-        <img src="./../../public/images/logo-icon.png" alt="CreateBase" />
-      </a>
-      <button class="hamburger hamburger-arrow" type="button">
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-      </button>
-      <div class="nav-services">
-        <p class="nav-header">SERVICES</p>
-        <a href="#" class="nav-item">3D PRINTING</a>
-        <a href="#" class="nav-item">MARKETPLACE</a>
+      <div class="nav-sidebar">
+        <div class="nav-empty"></div>
+        <div class="nav-services">
+          <p class="nav-header">SERVICES</p>
+          <a href="#" class="nav-item">3D PRINTING</a>
+          <a href="#" class="nav-item">MARKETPLACE</a>
+        </div>
+        <div class="nav-createbase">
+          <p class="nav-header">CREATEBASE</p>
+          <a href="#" class="nav-item">OUR STORY</a>
+          <a href="#" class="nav-item">OUR TEAM</a>
+        </div>
+        <div class="nav-socials">
+          <i class="fab fa-facebook-square"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
       </div>
-      <div class="nav-createbase">
-        <p class="nav-header">CREATEBASE</p>
-        <a href="#" class="nav-item">OUR STORY</a>
-        <a href="#" class="nav-item">OUR TEAM</a>
-      </div>
-      <div class="nav-socials">
-        <i class="fab fa-facebook-square"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-youtube"></i>
+      <div class="nav-wiper">
+        <a href="/" id="nav-logo">
+          <img src="./../../public/images/logo-icon.png" alt="CreateBase" />
+        </a>
+        <button class="hamburger hamburger-arrow" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+        </button>
       </div>
     </nav>
 
-    <div class="container" id="container">
-      <div class="form-container login-container">
+    <div class="login-main-container" id="container">
+      <div class="login-form-container login-container">
         <form class="log-in-form" action="/login/customer" method="post">
           <a href="/" id="login-logo">
             <img src="./../../public/images/logo-dark.png" alt="CreateBase" />
@@ -87,7 +92,7 @@
         </div>
       </div>
 
-      <div class="form-container hello-container">
+      <div class="login-form-container hello-container">
         <a href="/" id="hello-logo">
           <img src="./../../public/images/logo-dark.png" id="logo-img" alt="CreateBase"/>
         </a>
@@ -98,17 +103,17 @@
         <button class="btn" id="hello-login" data-text="LOG IN" onclick="toggleContainer();">LOG IN</button>
       </div>
 
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="loading-icon overlay-left">
-            <div class="layer layer-left layer-1"></div>
-            <div class="layer layer-left layer-2"></div>
-            <div class="layer layer-left layer-3"></div>
+      <div class="login-overlay-container">
+        <div class="login-overlay">
+          <div class="loading-icon login-overlay-left">
+            <div class="layer login-layer-left layer-1"></div>
+            <div class="layer login-layer-left layer-2"></div>
+            <div class="layer login-layer-left layer-3"></div>
           </div>
-          <div class="loading-icon overlay-right">
-            <div class="layer layer-right layer-1"></div>
-            <div class="layer layer-right layer-2"></div>
-            <div class="layer layer-right layer-3"></div>
+          <div class="loading-icon login-overlay-right">
+            <div class="layer login-layer-right layer-1"></div>
+            <div class="layer login-layer-right layer-2"></div>
+            <div class="layer login-layer-right layer-3"></div>
           </div>
         </div>
       </div>
