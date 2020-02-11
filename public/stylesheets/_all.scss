@@ -17,6 +17,17 @@ $light-3: rgb(199, 194, 213);
 $montserrat: "Montserrat", sans-serif;
 $poppins: "Poppins", sans-serif;
 
+@import "hamburger";
+
+@import "navigation";
+@import "sideBar";
+@import "notification";
+@import "message";
+@import "menu";
+@import "userMenu";
+@import "services";
+@import "loading";
+
 // ======== G E N E R A L   S T Y L E S ========
 * {
   margin: 0;

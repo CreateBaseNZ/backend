@@ -1,14 +1,13 @@
 $diamond: 25vh; /* all.scss uses $diamond so it must be declared first */
-@import 'all';
-@import 'hamburger';
+@import "all";
 
 body {
   display: flex;
   flex-direction: row;
   font-family: $poppins;
-  line-height: 1.5; 
+  line-height: 1.5;
   height: 100vh;
-  
+
   // Logo animation
   .logo-anim-container {
     position: absolute;
@@ -28,10 +27,16 @@ body {
       position: absolute;
       margin-left: -$diamond/2;
     }
-    
-    .layer-1 { animation: logo-anim-1 3s forwards; }
-    .layer-2 { animation: logo-anim-2 3s forwards; }
-    .layer-3 { animation: logo-anim-3 3s forwards; }
+
+    .layer-1 {
+      animation: logo-anim-1 3s forwards;
+    }
+    .layer-2 {
+      animation: logo-anim-2 3s forwards;
+    }
+    .layer-3 {
+      animation: logo-anim-3 3s forwards;
+    }
   }
 
   // Main form
@@ -50,7 +55,9 @@ body {
         align-self: flex-start;
         margin-top: 3vh;
         margin-left: 3vw;
-        img { width: 15vh; }
+        img {
+          width: 15vh;
+        }
       }
 
       #signup-title {
@@ -86,7 +93,9 @@ body {
       }
 
       #signup-message {
-        a { color: $highlight; }
+        a {
+          color: $highlight;
+        }
         font-size: 0.75vw;
         align-self: flex-end;
         margin-bottom: 2vh;
@@ -110,7 +119,8 @@ body {
 }
 
 @keyframes appear {
-  0%, 90% {
+  0%,
+  90% {
     opacity: 0;
   }
   100% {
@@ -120,17 +130,19 @@ body {
 }
 
 @keyframes slide {
-  0%, 85% {
+  0%,
+  85% {
     margin-left: -50vw;
   }
   100% {
     margin-left: 0vw;
-    animation-timing-function: cubic-bezier(.08,.1,.32,.98);
+    animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
   }
 }
 
 @keyframes logo-anim-1 {
-  0%, 10% {
+  0%,
+  10% {
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     margin-top: -$diamond/2;
@@ -149,7 +161,7 @@ body {
     height: 1px;
     width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.72,.01,.5,1);
+    animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
     background: $dark-3;
     margin-top: -10vh;
@@ -159,7 +171,7 @@ body {
     height: 1px;
     width: 20vw;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.72,.01,.74,1);
+    animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
     opacity: 0.4;
     background: $dark-3;
     margin-top: -10vh;
@@ -176,7 +188,8 @@ body {
 }
 
 @keyframes logo-anim-2 {
-  0%, 10% {
+  0%,
+  10% {
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     margin-top: -$diamond/2;
@@ -195,7 +208,7 @@ body {
     height: 1px;
     width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.72,.01,.5,1);
+    animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
     background: $dark-3;
     margin-top: 0;
@@ -205,7 +218,7 @@ body {
     height: 1px;
     width: 20vw;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.72,.01,.74,1);
+    animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
     opacity: 0.4;
     background: $dark-3;
     margin-top: 0;
@@ -222,7 +235,8 @@ body {
 }
 
 @keyframes logo-anim-3 {
-  0%, 10% {
+  0%,
+  10% {
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     margin-top: -$diamond/2;
@@ -241,9 +255,9 @@ body {
     height: 1px;
     width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.72,.01,.5,1);
+    animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
     opacity: 1;
-    background: $dark-3; 
+    background: $dark-3;
     margin-top: 10vh;
   }
   95% {
@@ -251,9 +265,9 @@ body {
     height: 1px;
     width: 20vw;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(.72,.01,.74,1);
+    animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
     opacity: 0.4;
-    background: $dark-3; 
+    background: $dark-3;
     margin-top: 10vh;
   }
   100% {
@@ -262,7 +276,7 @@ body {
     width: 20vw;
     border-radius: 0;
     opacity: 0;
-    background: $dark-3; 
+    background: $dark-3;
     margin-top: 10vh;
   }
 }

@@ -1,6 +1,5 @@
 $diamond: 35vw; /* all.scss uses $diamond so it must be declared first */
-@import 'all';
-@import 'hamburger';
+@import "all";
 
 $largest-font: 5vw;
 
@@ -14,7 +13,7 @@ body {
   align-items: center;
   flex-direction: row;
   font-family: $poppins;
-  line-height: 1.5; 
+  line-height: 1.5;
   height: 100vh;
 
   // -----------------------------------
@@ -29,7 +28,7 @@ body {
       position: absolute;
       top: 0;
       height: 100%;
-      transition: all 0.6s ease-in-out; 
+      transition: all 0.6s ease-in-out;
     }
 
     // -----------------------------------
@@ -41,12 +40,12 @@ body {
       z-index: 2;
       background: $light-1;
       display: grid;
-      grid-template-areas: 
-        'logo logo'
-        'hello hello'
-        'signup login';
+      grid-template-areas:
+        "logo logo"
+        "hello hello"
+        "signup login";
       grid-template-rows: 2fr 2fr 2fr;
-      
+
       // Logo
       #hello-logo {
         display: block;
@@ -54,28 +53,29 @@ body {
         justify-self: center;
         align-self: end;
 
-        img { width: 15vw; 
+        img {
+          width: 15vw;
         }
       }
-      
+
       // Hello, _____.
       #hello-creator {
         grid-area: hello;
         font-size: $largest-font;
         align-self: center;
-        margin-left: calc((50vw - 8 * #{$largest-font})/2);
+        margin-left: calc((50vw - 8 * #{$largest-font}) / 2);
 
         #change-text {
           position: relative;
-          padding: 10px; 
+          padding: 10px;
         }
       }
-      
+
       // Signup button
       #hello-signup {
         grid-area: signup;
         justify-self: end;
-        margin-right: 1vw; 
+        margin-right: 1vw;
       }
 
       // Login button
@@ -83,11 +83,11 @@ body {
         grid-area: login;
         margin-left: 1vw;
 
-        &:before { 
-          animation-delay: 0.2s !important; 
+        &:before {
+          animation-delay: 0.2s !important;
         }
-        &:after { 
-          animation-delay: 0.4s !important; 
+        &:after {
+          animation-delay: 0.4s !important;
         }
       }
     }
@@ -112,26 +112,26 @@ body {
         align-items: center;
         justify-items: center;
         width: 100%;
-  
+
         #login-logo {
           display: block;
           justify-self: flex-end;
           align-self: flex-start;
           margin-top: 3vh;
           margin-right: 3vw;
-  
-          img { 
-            width: 7.5vw; 
+
+          img {
+            width: 7.5vw;
           }
         }
-  
+
         h2 {
           font-size: 1vw;
-          letter-spacing: 0.25vw; 
+          letter-spacing: 0.25vw;
         }
 
         #login-login {
-          align-self: flex-end; 
+          align-self: flex-end;
         }
       }
 
@@ -139,14 +139,14 @@ body {
         align-self: center;
         justify-self: center;
 
-        &:before { 
-          animation-delay: random() + s !important; 
+        &:before {
+          animation-delay: random() + s !important;
         }
-        &:after { 
-          animation-delay: random() + s !important; 
+        &:after {
+          animation-delay: random() + s !important;
         }
       }
-      
+
       #login-signup {
         align-self: flex-end;
         justify-self: center;
@@ -162,13 +162,13 @@ body {
 }
 
 .login-main-container.right-panel-active .hello-container {
-  transform: translateX(100%); 
+  transform: translateX(100%);
 }
 .login-main-container.right-panel-active .login-container {
-	transform: translateX(100%);
-	visibility: visible;
-	z-index: 5;
-  animation: show 0.6s; 
+  transform: translateX(100%);
+  visibility: visible;
+  z-index: 5;
+  animation: show 0.6s;
 }
 
 // -----------------------------------
@@ -192,51 +192,51 @@ body {
     width: 200%;
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
-    
+
     .login-overlay-left {
       transform: translateX(-20%);
 
-      .login-layer-left { 
-        margin-left: -75%; 
+      .login-layer-left {
+        margin-left: -75%;
       }
     }
     .login-overlay-right {
       right: 0;
       transform: translateX(0);
 
-      .login-layer-right { 
-        margin-left: 0%; 
+      .login-layer-right {
+        margin-left: 0%;
       }
     }
   }
 }
 
 .login-main-container.right-panel-active .login-overlay {
-  transform: translateX(50%); 
+  transform: translateX(50%);
 }
-.login-main-container.right-panel-active .login-overlay-container{
-  transform: translateX(-100%); 
+.login-main-container.right-panel-active .login-overlay-container {
+  transform: translateX(-100%);
 }
 .login-main-container.right-panel-active .login-overlay-left {
-  transform: translateX(0%); 
+  transform: translateX(0%);
 }
 .login-main-container.right-panel-active .login-overlay-right {
-  transform: translateX(20%); 
+  transform: translateX(20%);
 }
 
 @keyframes show {
-	0%, 49.99% {
-		visibility: hidden;
-    z-index: 1; 
+  0%,
+  49.99% {
+    visibility: hidden;
+    z-index: 1;
   }
-	
-	50%, 100% {
-		visibility: visible;
-    z-index: 5; 
+
+  50%,
+  100% {
+    visibility: visible;
+    z-index: 5;
   }
 }
-
-
 
 // -----------------------------------
 // Button Class
@@ -247,7 +247,7 @@ body {
 // -----------------------------------
 .glitch {
   position: relative;
-  padding: 10px; 
+  padding: 10px;
 }
 .glitch::after {
   content: attr(data-text);
@@ -257,7 +257,7 @@ body {
   background: $light-1;
   overflow: hidden;
   visibility: hidden;
-  animation: noise-anim 10s infinite linear alternate-reverse; 
+  animation: noise-anim 10s infinite linear alternate-reverse;
 }
 .glitch::before {
   content: attr(data-text);
@@ -267,7 +267,7 @@ body {
   background: $light-1;
   overflow: hidden;
   visibility: hidden;
-  animation: noise-anim-2 8s infinite linear alternate-reverse; 
+  animation: noise-anim-2 8s infinite linear alternate-reverse;
 }
 
 @keyframes noise-anim {
@@ -277,8 +277,8 @@ body {
       $top: random(100);
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-      padding: random(20)px - 20px;
-      visibility: visible; 
+      padding: random(20) px - 20px;
+      visibility: visible;
     }
   }
 }
@@ -289,10 +289,8 @@ body {
       $top: random(100);
       $bottom: random(101 - $top);
       clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-      padding: random(30)px - 30px;
-      visibility: visible; 
+      padding: random(30) px - 30px;
+      visibility: visible;
     }
   }
 }
-
-
