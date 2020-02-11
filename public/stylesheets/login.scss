@@ -26,78 +26,100 @@ body {
   // -----------------------------------
   nav {
     position: absolute;
-    left: -200px;
+    left: 0px;
     top: 0px;
-    height: 100vh;
     z-index: 1000;
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: 200px 50px;
-    cursor: default;
     background: $light-1;
-    border-right: 1.1px solid $light-2;
-    transition: left 0.6s cubic-bezier(.21,.65,.44,.99);
     font-family: $montserrat;
 
+    .nav-wiper {
+      width: 50px;
+      height: 100vh;
+      left: 0;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      background: $light-1;
+      border-right: 1.1px solid $light-2;
+      position: absolute;
+      justify-items: center;
+      transition: left 0.6s cubic-bezier(.21,.65,.44,.99);
+
+      #nav-logo {
+        cursor: default;
+
+        img {
+          cursor: pointer;
+          padding: 12.5px;
+          width: 50px;
+          margin-top: 3vh;
+          transition: margin-left 0.6s cubic-bezier(.21,.65,.44,.99);
+        }
+      } 
+        
+    }
+
+    .nav-sidebar {
+      width: 25px;
+      height: 100vh;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      background: $light-1;
+      position: absolute;
+      transition: width 0.6s cubic-bezier(.21,.65,.44,.99);
+      overflow: hidden;
+  
+      .nav-services,
+      .nav-createbase,
+      .nav-socials {
+        display: flex;
+        flex-direction: column;
+        margin-left: -10px;
+        transition: margin-left 0.6s linear;
+      }
+
+      .nav-header {
+        font-family: $poppins;
+        font-weight: 900;
+        font-size: 10px;
+        letter-spacing: 1px;
+        color: $dark-1;
+        margin-left: 25px;
+        margin-bottom: 3vh;
+      }
+  
+      .nav-item {
+        margin-left: 25px;
+        margin-bottom: 1.5vh;
+        color: $dark-3;
+      }
+  
+      .nav-socials {
+        font-size: 25px;
+  
+        * {
+          margin-left: 100px;
+          margin-top: 1vh;
+          cursor: pointer;
+        }
+      }
+    }
+
     &:hover {
-      left: 0px;
+      .nav-wiper {
+        left: 200px;
+      }
+      .nav-sidebar {
+        width: 225px;
 
-      a > img {
-        margin-left: 12.5px;
+        .nav-services,
+        .nav-createbase,
+        .nav-socials {
+          margin-left: 0px;
+        }
       }
     }
 
-    * {
-      cursor: default;
-      color: $dark-3;
-    }
 
-    a {
-      img {
-        width: 25px;
-        margin-top: 3vh;
-        margin-left: 212.5px;
-        transition: margin-left 0.6s cubic-bezier(.21,.65,.44,.99);
-      }
-    }
-
-    .hamburger {
-      order: 2;
-      grid-row: 1 / span 4;
-      grid-column: 2;
-    }
-
-    .nav-header {
-      font-family: $poppins;
-      font-weight: 900;
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: $dark-1;
-      margin-left: 25px;
-      margin-bottom: 3vh;
-    }
-
-    .nav-services,
-    .nav-createbase,
-    .nav-socials {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .nav-item {
-      margin-left: 25px;
-      margin-bottom: 1vh;
-    }
-
-    .nav-socials {
-      font-size: 25px;
-      align-items: center;
-
-      * {
-        margin-top: 1vh;
-        cursor: pointer;
-      }
-    }
   }
 
   nav:hover ~ * {
@@ -108,12 +130,12 @@ body {
   // -----------------------------------
   // Main Content
   // -----------------------------------
-  .container {
+  .login-main-container {
     background: $light-1;
     overflow: hidden;
     width: 50vw;
 
-    .form-container {
+    .login-form-container {
       position: absolute;
       top: 0;
       height: 100%;
@@ -249,10 +271,10 @@ body {
   }
 }
 
-.container.right-panel-active .hello-container {
+.login-main-container.right-panel-active .hello-container {
   transform: translateX(100%); 
 }
-.container.right-panel-active .login-container {
+.login-main-container.right-panel-active .login-container {
 	transform: translateX(100%);
 	visibility: visible;
 	z-index: 5;
@@ -262,7 +284,7 @@ body {
 // -----------------------------------
 // Sliding window
 // -----------------------------------
-.overlay-container {
+.login-overlay-container {
   position: absolute;
   top: 0;
   left: 50%;
@@ -272,7 +294,7 @@ body {
   transition: transform 0.6s ease-in-out;
   z-index: 100;
 
-  .overlay {
+  .login-overlay {
     background: linear-gradient(to right, $dark-3, black);
     position: relative;
     left: -100%;
@@ -281,34 +303,34 @@ body {
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
     
-    .overlay-left {
+    .login-overlay-left {
       transform: translateX(-20%);
 
-      .layer-left { 
+      .login-layer-left { 
         margin-left: -75%; 
       }
     }
-    .overlay-right {
+    .login-overlay-right {
       right: 0;
       transform: translateX(0);
 
-      .layer-right { 
+      .login-layer-right { 
         margin-left: 0%; 
       }
     }
   }
 }
 
-.container.right-panel-active .overlay {
+.login-main-container.right-panel-active .login-overlay {
   transform: translateX(50%); 
 }
-.container.right-panel-active .overlay-container{
+.login-main-container.right-panel-active .login-overlay-container{
   transform: translateX(-100%); 
 }
-.container.right-panel-active .overlay-left {
+.login-main-container.right-panel-active .login-overlay-left {
   transform: translateX(0%); 
 }
-.container.right-panel-active .overlay-right {
+.login-main-container.right-panel-active .login-overlay-right {
   transform: translateX(20%); 
 }
 

@@ -25,15 +25,7 @@ $hamburger-layer-color: $dark-3;
   margin: 0;
   overflow: visible;
 
-  &:hover {
-
-  }
-
   &.is-active {
-    &:hover {
-
-    }
-
     .hamburger-inner,
     .hamburger-inner::before,
     .hamburger-inner::after {
@@ -87,15 +79,13 @@ $hamburger-layer-color: $dark-3;
 .hamburger-arrow {
   .hamburger-inner {
     &::before {
-      transition: top 0.3s 0.1s ease,
+      transition: top 0.1s 0.1s ease,
                   transform 0.1s cubic-bezier(.21,.65,.44,.99);
-      // transition-delay: 0.3s;
     }
 
     &::after {
-      transition: bottom 0.3s 0.1s ease,
+      transition: bottom 0.1s 0.1s ease,
                   transform 0.1s cubic-bezier(.21,.65,.44,.99);
-      // transition-delay: 0.3s;
     }
   }
 
@@ -103,19 +93,16 @@ $hamburger-layer-color: $dark-3;
     .hamburger-inner {
       &::before {
         top: 0;
-
         transform: translate3d($hamburger-layer-width * -0.25, $hamburger-layer-width * -0.25, 0) rotate(-45deg) scale(0.7, 1);
         transition: top 0.1s ease,
-                    transform 0.3s 0.3s cubic-bezier(.21,.65,.44,.99);
-        // transition-delay: 0.3s;
+                    transform 0.1s 0.1s cubic-bezier(.21,.65,.44,.99);
       }
 
       &::after {
         bottom: 0;
         transform: translate3d($hamburger-layer-width * -0.25, $hamburger-layer-width * 0.25, 0) rotate(45deg) scale(0.7, 1);
         transition: bottom 0.1s ease,
-                    transform 0.3s 0.3s cubic-bezier(.21,.65,.44,.99);
-        // transition-delay: 0.3s;
+                    transform 0.1s 0.1s cubic-bezier(.21,.65,.44,.99);
       }
     }
   }
