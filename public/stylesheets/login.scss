@@ -26,13 +26,13 @@ body {
   // -----------------------------------
   nav {
     position: absolute;
-    left: -150px;
+    left: -200px;
     top: 0px;
     height: 100vh;
     z-index: 1000;
     display: grid;
     grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: 150px 50px;
+    grid-template-columns: 200px 50px;
     cursor: default;
     background: $light-1;
     border-right: 1.1px solid $light-2;
@@ -56,7 +56,7 @@ body {
       img {
         width: 25px;
         margin-top: 3vh;
-        margin-left: 162.5px;
+        margin-left: 212.5px;
         transition: margin-left 0.6s cubic-bezier(.21,.65,.44,.99);
       }
     }
@@ -73,7 +73,7 @@ body {
       font-size: 10px;
       letter-spacing: 1px;
       color: $dark-1;
-      margin-left: 10px;
+      margin-left: 25px;
       margin-bottom: 3vh;
     }
 
@@ -85,7 +85,7 @@ body {
     }
 
     .nav-item {
-      margin-left: 10px;
+      margin-left: 25px;
       margin-bottom: 1vh;
     }
 
@@ -101,7 +101,7 @@ body {
   }
 
   nav:hover ~ * {
-    opacity: 0.9;
+    opacity: 0.95;
     transition: opacity 0.6s cubic-bezier(.35,.03,.44,.99);
   }
 
