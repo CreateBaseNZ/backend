@@ -33,7 +33,6 @@ DEFAULT ELEMENTS
 
 * {
   box-sizing: border-box;
-  transition: $transition-1;
 }
 
 body {
@@ -97,43 +96,43 @@ BACKGROUND COLOURS
 ======================================================================*/
 // TEMPORARY
 .bgd-clr-1 {
-  background-color: $clr-vlt-3;
+  background-color: $logo-3;
 }
 
 .bgd-clr-vlt-1 {
-  background-color: $clr-vlt-1;
+  background-color: $logo-1;
 }
 
 .bgd-clr-vlt-2 {
-  background-color: $clr-vlt-2;
+  background-color: $logo-2;
 }
 
 .bgd-clr-vlt-3 {
-  background-color: $clr-vlt-3;
+  background-color: $logo-3;
 }
 
 .bgd-clr-blk-1 {
-  background-color: $clr-blk-1;
+  background-color: $dark-1;
 }
 
 .bgd-clr-blk-2 {
-  background-color: $clr-blk-2;
+  background-color: $dark-2;
 }
 
 .bgd-clr-blk-3 {
-  background-color: $clr-blk-3;
+  background-color: $dark-3;
 }
 
 .bgd-clr-wht-1 {
-  background-color: $clr-wht-1;
+  background-color: $light-1;
 }
 
 .bgd-clr-wht-2 {
-  background-color: $clr-wht-2;
+  background-color: $light-2;
 }
 
 .bgd-clr-wht-3 {
-  background-color: $clr-wht-3;
+  background-color: $light-3;
 }
 
 /*======================================================================
@@ -147,36 +146,36 @@ TEXT COLOURS
 
 .txt-clr-2 {
   // TEMPORARY
-  color: $clr-6;
+  color: $dark-3;
 }
 
 .txt-clr-3 {
   // TEMPORARY
-  color: $clr-2;
+  color: $light-2;
 }
 
 .txt-clr-blk-1 {
-  color: $clr-blk-1;
+  color: $dark-1;
 }
 
 .txt-clr-blk-2 {
-  color: $clr-blk-2;
+  color: $dark-2;
 }
 
 .txt-clr-blk-3 {
-  color: $clr-blk-3;
+  color: $dark-3;
 }
 
 .txt-clr-wht-1 {
-  color: $clr-wht-1;
+  color: $light-1;
 }
 
 .txt-clr-wht-2 {
-  color: $clr-wht-2;
+  color: $light-2;
 }
 
 .txt-clr-wht-3 {
-  color: $clr-wht-3;
+  color: $light-3;
 }
 
 /*======================================================================
@@ -188,7 +187,7 @@ INPUT FIELDS
   // Border
   border-width: 0.1vmax;
   border-style: none none solid none;
-  border-bottom-color: $clr-blk-3;
+  border-bottom-color: $dark-3;
   border-radius: 0vmax;
   appearance: none;
   // Spacing
@@ -198,12 +197,12 @@ INPUT FIELDS
 
 .inp-txt-1:focus {
   outline: none;
-  border-bottom-color: $clr-blk-1;
-  color: $clr-blk-1;
+  border-bottom-color: $dark-1;
+  color: $dark-1;
 }
 
 .inp-txt-1::placeholder {
-  color: $clr-blk-3;
+  color: $dark-3;
 }
 
 .inp-txt-2 {
@@ -211,7 +210,7 @@ INPUT FIELDS
   // Border
   border-width: 0.1vmax;
   border-style: solid;
-  border-color: $clr-blk-3;
+  border-color: $dark-3;
   border-radius: 0.3vmax;
   appearance: none;
   // Spacing
@@ -221,12 +220,12 @@ INPUT FIELDS
 
 .inp-txt-2:focus {
   outline: none;
-  border-color: $clr-blk-1;
-  color: $clr-blk-1;
+  border-color: $dark-1;
+  color: $dark-1;
 }
 
 .inp-txt-2::placeholder {
-  color: $clr-blk-3;
+  color: $dark-3;
 }
 
 .inp-slct-1 {
@@ -234,7 +233,7 @@ INPUT FIELDS
   // Border
   border-width: 0.1vmax;
   border-style: none none solid none;
-  border-bottom-color: $clr-blk-3;
+  border-bottom-color: $dark-3;
   border-radius: 0vmax;
   appearance: none;
   // Spacing
@@ -244,8 +243,8 @@ INPUT FIELDS
 
 .inp-slct-1:focus {
   outline: none;
-  border-bottom-color: $clr-blk-1;
-  color: $clr-blk-1;
+  border-bottom-color: $dark-1;
+  color: $dark-1;
 }
 
 .inp-slct-1 option {
@@ -253,7 +252,7 @@ INPUT FIELDS
   // Border
   border-width: 0.1vmax;
   border-style: none none solid none;
-  border-bottom-color: $clr-blk-3;
+  border-bottom-color: $dark-3;
   border-radius: 0vmax;
   appearance: none;
   // Spacing
@@ -266,50 +265,50 @@ TEXTS
 ======================================================================*/
 
 .hdng-1 {
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   font-size: 2.2vmax;
   font-weight: bold;
 }
 
 .hdng-2 {
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   font-size: 3.4vmax;
   font-weight: bold;
 }
 
 .hdng-3 {
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   font-size: 4.6vmax;
   font-weight: bold;
 }
 
 .txt-1 {
-  font-family: $fnt-fml-1;
+  font-family: $montserrat;
   font-size: 1.8vmax;
 }
 
 .txt-2 {
-  font-family: $fnt-fml-1;
+  font-family: $montserrat;
   font-size: 2.6vmax;
 }
 
 .txt-3 {
-  font-family: $fnt-fml-1;
+  font-family: $montserrat;
   font-size: 3.2vmax;
 }
 
 .sbtl-1 {
-  font-family: $fnt-fml-1;
+  font-family: $montserrat;
   font-size: 1.4vmax;
 }
 
 .sbtl-2 {
-  font-family: $fnt-fml-1;
+  font-family: $montserrat;
   font-size: 1.8vmax;
 }
 
 .sbtl-3 {
-  font-family: $fnt-fml-1;
+  font-family: $montserrat;
   font-size: 2.2vmax;
 }
 
@@ -342,7 +341,7 @@ TEMPORARY
   height: 8vmax;
   width: 8vmax;
   border-radius: 4vmax;
-  background-color: $clr-2;
+  background-color: $light-2;
 }
 
 /*======================================================================

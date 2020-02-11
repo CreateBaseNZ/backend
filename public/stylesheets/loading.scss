@@ -2,6 +2,8 @@
 TEMPORARY
 =========================================================================================*/
 
+$logo-1: rgb(130, 88, 220);
+
 .load-1 {
   display: inline-block;
   position: relative;
@@ -15,10 +17,10 @@ TEMPORARY
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid $clr-vlt-1;
+  border: 8px solid $logo-1;
   border-radius: 50%;
   animation: load-1 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: $clr-vlt-1 transparent transparent transparent;
+  border-color: $logo-1 transparent transparent transparent;
 }
 .load-1 div:nth-child(1) {
   animation-delay: -0.45s;

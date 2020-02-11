@@ -13,11 +13,9 @@ $light-1: rgb(255, 255, 255);
 $light-2: rgb(248, 248, 248);
 $light-3: rgb(199, 194, 213);
 
-
 // ================= F O N T S =================
 $montserrat: "Montserrat", sans-serif;
 $poppins: "Poppins", sans-serif;
-
 
 // ======== G E N E R A L   S T Y L E S ========
 * {
@@ -45,7 +43,7 @@ nav {
     background: $light-1;
     border-right: 1.1px solid $light-2;
     position: absolute;
-    transition: left 0.6s cubic-bezier(.21,.65,.44,.99);
+    transition: left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 
     #nav-logo {
       cursor: default;
@@ -56,10 +54,9 @@ nav {
         width: 50px;
         margin-top: 3vh;
         margin-left: 0px;
-        transition: margin-left 0.6s cubic-bezier(.21,.65,.44,.99);
+        transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
       }
-    } 
-      
+    }
   }
 
   .nav-sidebar {
@@ -69,7 +66,7 @@ nav {
     grid-template-rows: repeat(4, 1fr);
     background: $light-1;
     position: absolute;
-    transition: width 0.6s cubic-bezier(.21,.65,.44,.99);
+    transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
     overflow: hidden;
 
     .nav-services,
@@ -114,7 +111,7 @@ nav {
     width: 100vw;
     background: black;
     opacity: 0;
-    transition: opacity 0.6s cubic-bezier(.21,.65,.44,.99);
+    transition: opacity 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
     pointer-events: none;
   }
 
@@ -251,9 +248,15 @@ button {
     margin-top: 10%;
   }
 
-  .layer-1 { animation: load-1 5s forwards infinite; }
-  .layer-2 { animation: load-2 5s forwards infinite; }
-  .layer-3 { animation: load-3 5s forwards infinite; }
+  .layer-1 {
+    animation: load-1 5s forwards infinite;
+  }
+  .layer-2 {
+    animation: load-2 5s forwards infinite;
+  }
+  .layer-3 {
+    animation: load-3 5s forwards infinite;
+  }
 }
 
 .input-decor {
@@ -265,8 +268,10 @@ button {
     border: none;
     padding: 0.5vw 1vw;
     width: 20vw;
-    
-    &:focus { outline: none; }
+
+    &:focus {
+      outline: none;
+    }
   }
 
   label {
@@ -297,7 +302,7 @@ button {
 
   &::after,
   &:focus-within::after {
-    content: '';
+    content: "";
     border-bottom: 1.1px solid $highlight;
     position: absolute;
     width: 0%;
@@ -317,141 +322,219 @@ button {
     clip: rect(-3px, 600px, 0px, 0px);
     visibility: visible;
   }
-  2% {clip: rect(0px, 600px, 0px, 0px);}
-  5% {clip: rect(-3px, 600px, 0px, 0px);}
-  9% {clip: rect(-3px, 600px, 0px, 0px);}
-  17% {clip: rect(100px, 600px, 100px, 0px);}
-  29% {clip: rect(0px, 600px, 600px, 0px);}
-  35% {clip: rect(100px, 600px, 0px, 0px);}
-  41% {clip: rect(0px, 600px, 600px, 0px);}
-  47% {clip: rect(100px, 600px, 0px, 0px);}
-  52% {clip: rect(-3px, 600px, 0px, 0px);}
-  58% {clip: rect(100px, 450px,100px, 0px);}
-  64% {clip: rect(0px, 450px, 0px, 0px);}
-  70% {clip: rect(100px, 450px, 100px, 0px);}
-  76% {clip: rect(0px, 450px, 0px, 0px);}
-  82% {clip: rect(0px, 450px, 0px, 0px);}
-  88% {clip: rect(0px, 450px, 0px, 0px);}
-  94% {clip: rect(0px, 450px, 0px, 0px);}
-  100% {clip: rect(0px, 450px, 0px, 0px);}
+  2% {
+    clip: rect(0px, 600px, 0px, 0px);
+  }
+  5% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  9% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  17% {
+    clip: rect(100px, 600px, 100px, 0px);
+  }
+  29% {
+    clip: rect(0px, 600px, 600px, 0px);
+  }
+  35% {
+    clip: rect(100px, 600px, 0px, 0px);
+  }
+  41% {
+    clip: rect(0px, 600px, 600px, 0px);
+  }
+  47% {
+    clip: rect(100px, 600px, 0px, 0px);
+  }
+  52% {
+    clip: rect(-3px, 600px, 0px, 0px);
+  }
+  58% {
+    clip: rect(100px, 450px, 100px, 0px);
+  }
+  64% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  70% {
+    clip: rect(100px, 450px, 100px, 0px);
+  }
+  76% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  82% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  88% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  94% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
+  100% {
+    clip: rect(0px, 450px, 0px, 0px);
+  }
 }
 
 @keyframes btn-twitch {
-  0% { clip-path: inset(100% 100% 100% 100%); }
+  0% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
 
-  18% {clip-path: inset(100% 100% 100% 100%); visibility: visible;}
-  18.5% {clip-path: inset(53% 0 42% 0);}
-  19% {clip-path: inset(53% 0 42% 0);}
-  19.5% {clip-path: inset(100% 100% 100% 100%);}
+  18% {
+    clip-path: inset(100% 100% 100% 100%);
+    visibility: visible;
+  }
+  18.5% {
+    clip-path: inset(53% 0 42% 0);
+  }
+  19% {
+    clip-path: inset(53% 0 42% 0);
+  }
+  19.5% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
 
-  58% {clip-path: inset(100% 100% 100% 100%);}
-  58.5% {clip-path: inset(22% 0 67% 0);}
-  59% {clip-path: inset(22% 0 67% 0);}
-  59.5% {clip-path: inset(100% 100% 100% 100%);}
-  60% {clip-path: inset(43% 0 48% 0);}
-  60.5% {clip-path: inset(43% 0 48% 0);}
-  61% {clip-path: inset(100% 100% 100% 100%);}
+  58% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
+  58.5% {
+    clip-path: inset(22% 0 67% 0);
+  }
+  59% {
+    clip-path: inset(22% 0 67% 0);
+  }
+  59.5% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
+  60% {
+    clip-path: inset(43% 0 48% 0);
+  }
+  60.5% {
+    clip-path: inset(43% 0 48% 0);
+  }
+  61% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
 
-  83% {clip-path: inset(100% 100% 100% 100%);}
-  83.5% {clip-path: inset(68% 0 19% 0);}
-  84% {clip-path: inset(68% 0 19% 0);}
-  84.5% {clip-path: inset(100% 100% 100% 100%);}
-  85% {clip-path: inset(19% 0 68% 0);}
-  85.5% {clip-path: inset(19% 0 68% 0);}
-  86% {clip-path: inset(100% 100% 100% 100%);}
+  83% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
+  83.5% {
+    clip-path: inset(68% 0 19% 0);
+  }
+  84% {
+    clip-path: inset(68% 0 19% 0);
+  }
+  84.5% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
+  85% {
+    clip-path: inset(19% 0 68% 0);
+  }
+  85.5% {
+    clip-path: inset(19% 0 68% 0);
+  }
+  86% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
 
-  100% {clip-path: inset(100% 100% 100% 100%);}
+  100% {
+    clip-path: inset(100% 100% 100% 100%);
+  }
 }
 
 @keyframes load-1 {
-  0%, 100% {
+  0%,
+  100% {
     background: $logo-3;
     top: calc(50% - 10vw);
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
   }
   25% {
     background: $logo-2;
     top: 50%;
     left: 80%;
     transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
   }
   50% {
     background: $logo-3;
     top: calc(50% + 10vw);
     left: 50%;
     transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
   }
   75% {
     background: $logo-2;
     top: 50%;
     left: 20%;
     transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
   }
 }
 
 @keyframes load-2 {
-  0%, 100% {
+  0%,
+  100% {
     background: $logo-2;
     top: 50%;
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
   }
   25% {
     background: $logo-2;
     top: 50%;
     left: 50%;
     transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
   }
   50% {
     background: $logo-2;
     top: 50%;
     left: 50%;
     transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
   }
   75% {
     background: $logo-2;
     top: 50%;
     left: 50%;
     transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
   }
 }
 
 @keyframes load-3 {
-  0%, 100% {
+  0%,
+  100% {
     background: $logo-1;
     top: calc(50% + 10vw);
     left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
   }
   25% {
     background: $logo-2;
     top: 50%;
     left: 20%;
     transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
   }
   50% {
     background: $logo-3;
     top: calc(50% - 10vw);
     left: 50%;
     transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
-    animation-timing-function: cubic-bezier(.11,.01,.6,.99);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
   }
   75% {
     background: $logo-2;
     top: 50%;
     left: 80%;
     transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
-    animation-timing-function: cubic-bezier(0.40, 0.01, 0.89, 0.99);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
   }
 }

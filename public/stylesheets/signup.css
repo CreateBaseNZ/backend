@@ -332,7 +332,7 @@ button {
 }
 
 .input-decor::after, .input-decor:focus-within::after {
-  content: '';
+  content: "";
   border-bottom: 1.1px solid #4bf0ea;
   position: absolute;
   width: 0%;
@@ -631,7 +631,8 @@ button {
 }
 
 @-webkit-keyframes load-1 {
-  0%, 100% {
+  0%,
+  100% {
     background: #4e4ed6;
     top: calc(50% - 10vw);
     left: 50%;
@@ -670,7 +671,8 @@ button {
 }
 
 @keyframes load-1 {
-  0%, 100% {
+  0%,
+  100% {
     background: #4e4ed6;
     top: calc(50% - 10vw);
     left: 50%;
@@ -709,7 +711,8 @@ button {
 }
 
 @-webkit-keyframes load-2 {
-  0%, 100% {
+  0%,
+  100% {
     background: #6853d9;
     top: 50%;
     left: 50%;
@@ -748,7 +751,8 @@ button {
 }
 
 @keyframes load-2 {
-  0%, 100% {
+  0%,
+  100% {
     background: #6853d9;
     top: 50%;
     left: 50%;
@@ -787,7 +791,8 @@ button {
 }
 
 @-webkit-keyframes load-3 {
-  0%, 100% {
+  0%,
+  100% {
     background: #8258dc;
     top: calc(50% + 10vw);
     left: 50%;
@@ -826,7 +831,8 @@ button {
 }
 
 @keyframes load-3 {
-  0%, 100% {
+  0%,
+  100% {
     background: #8258dc;
     top: calc(50% + 10vw);
     left: 50%;
