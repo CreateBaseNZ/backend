@@ -53,10 +53,24 @@ const checkoutInit = () => {
 };
 
 /*-----------------------------------------------------------------------------------------
+CART FUNCTIONS
+-----------------------------------------------------------------------------------------*/
+
+// FUNCTION TO LOAD THE 3D PRINT ORDERS FROM THE DATABASE
+
+const checkoutCartLoad3dPrintOrders = async () => {};
+
+// FUNCTION TO LOAD THE MARKETPLACE ORDERS FROM THE DATABASE
+
+const checkoutCartLoadMarketplaceOrders = async () => {};
+
+// FUNCTION TO
+
+/*-----------------------------------------------------------------------------------------
 CREATE PAYMENT INTENT AND GET CLIENT SECRET
 -----------------------------------------------------------------------------------------*/
 
-let checkoutPaymentIntent = () => {
+const checkoutPaymentIntent = () => {
   return new Promise(async (resolve, reject) => {
     let clientSecret;
 
