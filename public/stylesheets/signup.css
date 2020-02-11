@@ -5,6 +5,134 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
+  -webkit-transition: opacity 0.6s ease-in;
+  transition: opacity 0.6s ease-in;
+}
+
+nav {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+  background: white;
+  font-family: "Montserrat", sans-serif;
+}
+
+nav .nav-wiper {
+  width: 50px;
+  height: 100vh;
+  left: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[3];
+      grid-template-rows: repeat(3, 1fr);
+  background: white;
+  border-right: 1.1px solid #f8f8f8;
+  position: absolute;
+  -webkit-transition: left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+nav .nav-wiper #nav-logo {
+  cursor: default;
+}
+
+nav .nav-wiper #nav-logo img {
+  cursor: pointer;
+  padding: 12.5px;
+  width: 50px;
+  margin-top: 3vh;
+  margin-left: 0px;
+  -webkit-transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+nav .nav-sidebar {
+  width: 25px;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[4];
+      grid-template-rows: repeat(4, 1fr);
+  background: white;
+  position: absolute;
+  -webkit-transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  overflow: hidden;
+}
+
+nav .nav-sidebar .nav-services,
+nav .nav-sidebar .nav-createbase,
+nav .nav-sidebar .nav-socials {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: -10px;
+  -webkit-transition: margin-left 0.6s linear;
+  transition: margin-left 0.6s linear;
+}
+
+nav .nav-sidebar .nav-header {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #877da9;
+  margin-left: 25px;
+  margin-bottom: 3vh;
+}
+
+nav .nav-sidebar .nav-item {
+  margin-left: 25px;
+  margin-bottom: 1.5vh;
+  color: #2d283c;
+}
+
+nav .nav-sidebar .nav-socials {
+  font-size: 25px;
+}
+
+nav .nav-sidebar .nav-socials * {
+  margin-left: 100px;
+  margin-top: 1vh;
+  cursor: pointer;
+}
+
+nav .nav-darken-filter {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: black;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: opacity 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  pointer-events: none;
+}
+
+nav:hover .nav-wiper {
+  left: 200px;
+}
+
+nav:hover .nav-wiper #nav-logo > img {
+  margin-left: -187.5px;
+}
+
+nav:hover .nav-sidebar {
+  width: 225px;
+}
+
+nav:hover .nav-sidebar .nav-services,
+nav:hover .nav-sidebar .nav-createbase,
+nav:hover .nav-sidebar .nav-socials {
+  margin-left: 0px;
+}
+
+nav:hover .nav-darken-filter {
+  opacity: 0.05;
 }
 
 button {
@@ -736,6 +864,104 @@ button {
   }
 }
 
+.hamburger {
+  padding: 0 0;
+  display: inline-block;
+  -webkit-transition-property: opacity, -webkit-filter;
+  transition-property: opacity, -webkit-filter;
+  transition-property: opacity, filter;
+  transition-property: opacity, filter, -webkit-filter;
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+  background-color: #2d283c;
+}
+
+.hamburger-box {
+  width: 25px;
+  height: 13px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -0.5px;
+}
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+  width: 25px;
+  height: 1px;
+  background-color: #2d283c;
+  position: absolute;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+
+.hamburger-inner::before, .hamburger-inner::after {
+  content: "";
+  display: block;
+}
+
+.hamburger-inner::before {
+  top: -6px;
+}
+
+.hamburger-inner::after {
+  bottom: -6px;
+}
+
+.hamburger-arrow .hamburger-inner::before {
+  -webkit-transition: top 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.hamburger-arrow .hamburger-inner::after {
+  -webkit-transition: bottom 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.hamburger-arrow.is-active .hamburger-inner::before {
+  top: 0;
+  -webkit-transform: translate3d(-6.25px, -6.25px, 0) rotate(-45deg) scale(0.7, 1);
+          transform: translate3d(-6.25px, -6.25px, 0) rotate(-45deg) scale(0.7, 1);
+  -webkit-transition: top 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.hamburger-arrow.is-active .hamburger-inner::after {
+  bottom: 0;
+  -webkit-transform: translate3d(-6.25px, 6.25px, 0) rotate(45deg) scale(0.7, 1);
+          transform: translate3d(-6.25px, 6.25px, 0) rotate(45deg) scale(0.7, 1);
+  -webkit-transition: bottom 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -786,14 +1012,13 @@ body .logo-anim-container .layer-3 {
           animation: logo-anim-3 3s forwards;
 }
 
-body .form-container {
+body .signup-form-container {
   width: 50vw;
-  opacity: 0;
   -webkit-animation: appear 3s forwards;
           animation: appear 3s forwards;
 }
 
-body .form-container .sign-up-form {
+body .signup-form-container .sign-up-form {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 6vh 24vh 10vh 10vh 10vh 10vh 20vh 10vh;
@@ -804,7 +1029,7 @@ body .form-container .sign-up-form {
           align-items: flex-end;
 }
 
-body .form-container .sign-up-form #signup-logo {
+body .signup-form-container .sign-up-form #signup-logo {
   justify-self: flex-start;
   -ms-flex-item-align: start;
       align-self: flex-start;
@@ -812,17 +1037,17 @@ body .form-container .sign-up-form #signup-logo {
   margin-left: 3vw;
 }
 
-body .form-container .sign-up-form #signup-logo img {
+body .signup-form-container .sign-up-form #signup-logo img {
   width: 15vh;
 }
 
-body .form-container .sign-up-form #signup-title {
+body .signup-form-container .sign-up-form #signup-title {
   font-size: 1vw;
   letter-spacing: 0.25vw;
   margin-bottom: 5vh;
 }
 
-body .form-container .sign-up-form #confirm-pass {
+body .signup-form-container .sign-up-form #confirm-pass {
   top: -3vh;
   visibility: none;
   opacity: 0;
@@ -831,42 +1056,42 @@ body .form-container .sign-up-form #confirm-pass {
   transition: all 0.3s ease-out;
 }
 
-body .form-container .sign-up-form #enter-pass:focus-within + #confirm-pass {
+body .signup-form-container .sign-up-form #enter-pass:focus-within + #confirm-pass {
   top: 0;
   visibility: visible;
   opacity: 1;
   z-index: 2;
 }
 
-body .form-container .sign-up-form .dip-down {
+body .signup-form-container .sign-up-form .dip-down {
   top: 0 !important;
   visibility: visible !important;
   opacity: 1 !important;
   z-index: 2 !important;
 }
 
-body .form-container .sign-up-form #signup-submit {
+body .signup-form-container .sign-up-form #signup-submit {
   margin-bottom: 5vh;
 }
 
-body .form-container .sign-up-form #signup-message {
+body .signup-form-container .sign-up-form #signup-message {
   font-size: 0.75vw;
   -ms-flex-item-align: end;
       align-self: flex-end;
   margin-bottom: 2vh;
 }
 
-body .form-container .sign-up-form #signup-message a {
+body .signup-form-container .sign-up-form #signup-message a {
   color: #4bf0ea;
 }
 
-body .image-container {
+body .signup-image-container {
   z-index: -1;
   width: 50vw;
   overflow: hidden;
 }
 
-body .image-container #back {
+body .signup-image-container #back {
   width: inherit;
   height: 100vh;
   background: #2d283c;
