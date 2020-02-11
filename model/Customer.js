@@ -20,6 +20,10 @@ const CustomerSchema = new Schema({
   },
   displayName: {
     type: String
+  },
+  orders: {
+    print: [Schema.Types.ObjectId],
+    marketplace: [Schema.Types.ObjectId]
   }
 });
 

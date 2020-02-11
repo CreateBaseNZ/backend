@@ -20,6 +20,7 @@ MODELS
 
 const Make = require("./../model/Make.js");
 const Comment = require("./../model/Comment.js");
+const Customer = require("./../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -106,7 +107,7 @@ router.post(
     // VALIDATION
     const accountId = mongoose.Types.ObjectId(req.user._id);
     const fileId = mongoose.Types.ObjectId(req.file.id);
-    const status = "checkout";
+    const status = "awaiting quote";
     const process = req.body.process;
     const material = req.body.material;
     const quality = req.body.quality;
@@ -123,6 +124,8 @@ router.post(
     let commentId;
     let comments = [];
     let newMake;
+    let savedMake;
+    let user;
     // OPERATIONS
     // CREATE IF NOTE OR ATTACHMENT(S) EXIST
     if (comment.message) {
@@ -162,10 +165,25 @@ router.post(
     });
     // Save the make to the database
     try {
-      await newMake.save();
+      savedMake = await newMake.save();
     } catch (error) {
       throw error;
     }
+
+    // Get the user details to be able update their list of orders
+    try {
+      user = await Customer.find({ accountId });
+    } catch (error) {
+      throw error;
+    }
+    user.orders.print.push(newMake._id); // Update the user's list of orders
+    // Save the updated user details
+    try {
+      await user.save();
+    } catch (error) {
+      throw error;
+    }
+
     // Update the front-end
     res.send("Submitted");
   }
