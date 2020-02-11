@@ -1,5 +1,6 @@
 $diamond: 25vh; /* all.scss uses $diamond so it must be declared first */
 @import 'all';
+@import 'hamburger';
 
 body {
   display: flex;
@@ -34,9 +35,8 @@ body {
   }
 
   // Main form
-  .form-container {
+  .signup-form-container {
     width: 50vw;
-    opacity: 0;
     animation: appear 3s forwards;
 
     .sign-up-form {
@@ -95,7 +95,7 @@ body {
   }
 
   // Image
-  .image-container {
+  .signup-image-container {
     z-index: -1;
     width: 50vw;
     overflow: hidden;
