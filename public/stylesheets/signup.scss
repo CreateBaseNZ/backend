@@ -51,6 +51,7 @@ body {
       align-items: flex-end;
 
       #signup-logo {
+        visibility: hidden;
         justify-self: flex-start;
         align-self: flex-start;
         margin-top: 3vh;
