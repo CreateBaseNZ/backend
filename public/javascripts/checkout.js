@@ -50,21 +50,97 @@ const checkoutInit = () => {
   checkoutHeadingShipping = document.querySelector("#checkout-shpg-hdng");
   checkoutHeadingPayment = document.querySelector("#checkout-pymt-hdng");
   checkoutHeadingCompletion = document.querySelector("#checkout-cmpt-hdng");
+
+  // LOAD ORDERS
+  checkoutCartLoadOrders();
 };
 
 /*-----------------------------------------------------------------------------------------
 CART FUNCTIONS
 -----------------------------------------------------------------------------------------*/
 
-// FUNCTION TO LOAD THE 3D PRINT ORDERS FROM THE DATABASE
+// FUNCTION TO GET THE 3D PRINT ORDERS FROM THE DATABASE
 
-const checkoutCartLoad3dPrintOrders = async () => {};
+const checkoutCartGet3dPrintOrders = () => {
+  return new Promise(async (resolve, reject) => {
+    let prints = [];
+    let printsAwaitingQuote = [];
+    let printsCheckout = [];
 
-// FUNCTION TO LOAD THE MARKETPLACE ORDERS FROM THE DATABASE
+    try {
+      printsAwaitingQuote = (
+        await axios.post("/customer/orders/print/awaiting-quote")
+      )["data"];
+    } catch (error) {
+      reject(error);
+    }
 
-const checkoutCartLoadMarketplaceOrders = async () => {};
+    try {
+      printsCheckout = (await axios.post("/customer/orders/print/checkout"))[
+        "data"
+      ];
+    } catch (error) {
+      reject(error);
+    }
 
-// FUNCTION TO
+    prints = printsAwaitingQuote.concat(printsCheckout);
+
+    resolve(prints);
+  });
+};
+
+// FUNCTION TO GET THE MARKETPLACE ORDERS FROM THE DATABASE
+
+const checkoutCartGetMarketplaceOrders = () => {
+  return new Promise(async (resolve, reject) => {
+    let items;
+
+    try {
+      items = (await axios.post("/customer/orders/marketplace/checkout"))[
+        "data"
+      ];
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(items);
+  });
+};
+
+// FUNCTION TO CREATE THE HTML FOR 3D PRINT ORDERS
+
+const checkoutCartCreate3dPrintOrderHTML = print => {
+  // Container One
+  const icon = `<div class="checkout-prnt-cnt-img bgd-clr-wht-2"></div>`;
+  const containerOne = `<div class="checkout-prnt-cnt-cntn-1">${icon}</div>`;
+
+  // Container Two
+  const fileName = `<div class="checkout-prnt-cnt-file-name sbtl-1 txt-clr-blk-2"></div>`;
+
+  return html;
+};
+
+// FUNCTION TO LOAD ORDERS
+
+const checkoutCartLoadOrders = async () => {
+  let prints;
+  let items;
+
+  try {
+    prints = await checkoutCartGet3dPrintOrders();
+  } catch (error) {
+    return error;
+  }
+
+  try {
+    items = await checkoutCartGetMarketplaceOrders();
+  } catch (error) {
+    return error;
+  }
+
+  console.log(prints);
+  console.log(items);
+};
 
 /*-----------------------------------------------------------------------------------------
 CREATE PAYMENT INTENT AND GET CLIENT SECRET
