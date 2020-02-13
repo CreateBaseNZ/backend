@@ -169,7 +169,7 @@ const checkoutCartLoadOrders = async () => {
   } catch (error) {
     return error;
   }
-
+  /*
   if (prints.length) {
     document.querySelector("#checkout-prnt-cnts").innerHTML = "";
     for (let i = 0; i < prints.length; i++) {
@@ -182,6 +182,7 @@ const checkoutCartLoadOrders = async () => {
   } else {
     document.querySelector("#checkout-prnt-cnts").innerHTML = "No 3D Prints";
   }
+  */
 };
 
 /*-----------------------------------------------------------------------------------------
