@@ -107,6 +107,7 @@ router.post(
     const accountId = mongoose.Types.ObjectId(req.user._id);
     const fileId = mongoose.Types.ObjectId(req.file.id);
     const status = "awaiting quote";
+    const build = "temporary";
     const process = req.body.process;
     const material = req.body.material;
     const quality = req.body.quality;
@@ -148,16 +149,17 @@ router.post(
     // CREATE THE MAKE
     // Create the new make object to be stored
     newMake = new Make({
-      accountId: accountId,
-      fileId: fileId,
-      status: status,
-      process: process,
-      material: material,
-      quality: quality,
-      strength: strength,
-      colour: colour,
-      quantity: quantity,
-      comments: comments,
+      accountId,
+      fileId,
+      status,
+      build,
+      process,
+      material,
+      quality,
+      strength,
+      colour,
+      quantity,
+      comments,
       dates: {
         checkout: checkoutDate
       }

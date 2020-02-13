@@ -24,6 +24,9 @@ const MakeSchema = new Schema({
   status: {
     type: String
   },
+  build: {
+    type: String
+  },
   process: {
     type: String
   },
@@ -49,6 +52,9 @@ const MakeSchema = new Schema({
     checkout: {
       type: String
     }
+  },
+  price: {
+    type: Number
   }
 });
 

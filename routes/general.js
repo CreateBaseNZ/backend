@@ -98,7 +98,7 @@ router.get("/3d-printing", restrictedPages, (req, res) => {
 // @route     Get /checkout
 // @desc      Get the Make Page
 // @access    Private
-router.get("/checkout", (req, res) => {
+router.get("/checkout", restrictedPages, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
 });
 

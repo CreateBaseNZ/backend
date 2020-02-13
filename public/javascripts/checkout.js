@@ -115,8 +115,40 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
   const containerOne = `<div class="checkout-prnt-cnt-cntn-1">${icon}</div>`;
 
   // Container Two
-  const fileName = `<div class="checkout-prnt-cnt-file-name sbtl-1 txt-clr-blk-2"></div>`;
+  const fileName = `<div class="checkout-prnt-cnt-file-name sbtl-1 txt-clr-blk-2">${print.fileName}</div>`;
+  const buildType = `<div class="checkout-prnt-cnt-bld-type sbtl-1 txt-clr-blk-2">${print.build}</div>`;
+  const colour = `<div class="checkout-prnt-cnt-clr sbtl-1 txt-clr-blk-2">${print.colour}</div>`;
+  const quantity = `<div class="checkout-prnt-cnt-qnty-cntn">
+                      <label
+                        class="checkout-prnt-cnt-qnty-lbl sbtl-1 txt-clr-blk-2"
+                        >Quantity:</label
+                      >
+                      <input
+                        type="number"
+                        name="quantity"
+                        class="checkout-prnt-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
+                        value="${print.quantity}"
+                      />
+                    </div>`;
+  const containerTwo = `<div class="checkout-prnt-cnt-cntn-2">${fileName +
+    buildType +
+    colour +
+    quantity}</div>`;
 
+  // Container Three
+  const cancel = `<div class="checkout-prnt-cnt-cncl"></div>`;
+  let price;
+  if (print.status === "awaiting quote") {
+    price = `<div class="checkout-prnt-cnt-prc sbtl-1 txt-clr-blk-2">awaiting quote</div>`;
+  } else {
+    price = `<div class="checkout-prnt-cnt-prc sbtl-1 txt-clr-blk-2">${print.price}</div>`;
+  }
+  const containerThree = `<div class="checkout-prnt-cnt-cntn-3">${cancel +
+    price}</div>`;
+
+  const html = `<div class="checkout-prnt-cnt">${containerOne +
+    containerTwo +
+    containerThree}</div>`;
   return html;
 };
 
@@ -138,8 +170,18 @@ const checkoutCartLoadOrders = async () => {
     return error;
   }
 
-  console.log(prints);
-  console.log(items);
+  if (prints.length) {
+    document.querySelector("#checkout-prnt-cnts").innerHTML = "";
+    for (let i = 0; i < prints.length; i++) {
+      const print = prints[i];
+      const html = checkoutCartCreate3dPrintOrderHTML(print);
+      document
+        .querySelector("#checkout-prnt-cnts")
+        .insertAdjacentHTML("beforeend", html);
+    }
+  } else {
+    document.querySelector("#checkout-prnt-cnts").innerHTML = "No 3D Prints";
+  }
 };
 
 /*-----------------------------------------------------------------------------------------

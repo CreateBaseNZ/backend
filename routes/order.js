@@ -147,7 +147,6 @@ const getMakeOrders = (accountId, status) => {
         reject(error);
       }
       revisedOrders[i] = { ...order, ...{ fileName } };
-      console.log(revisedOrders[i]);
     }
     resolve(revisedOrders);
   });
