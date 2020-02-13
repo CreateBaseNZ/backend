@@ -107,19 +107,25 @@ $poppins: "Poppins", sans-serif;
 
       &:hover {
         background: $light-2;
+        color: $logo-2;
       }
     }
 
     .nav-socials {
-      font-size: 25px;
       margin-left: -25px;
       transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 
-      * {
+      .fab {
+        font-size: 25px;
         margin-left: 100px;
         margin-top: 1vh;
         width: 25px;
         cursor: pointer;
+        color: $dark-3;
+
+        &:hover {
+          color: $logo-2;
+        }
       }
     }
   }
