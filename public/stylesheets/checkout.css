@@ -1306,8 +1306,8 @@ button {
 }
 
 .loading-icon .layer {
-  height: 0;
-  width: 0;
+  height: 20vw;
+  width: 20vw;
   opacity: 0.3;
   position: absolute;
   border-radius: 1vw;
@@ -2505,3 +2505,4 @@ END
   font-size: 1.8vmax;
   color: #322d41;
 }
+/*# sourceMappingURL=checkout.css.map */
