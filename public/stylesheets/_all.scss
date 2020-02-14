@@ -259,13 +259,13 @@ button {
 }
 
 .loading-icon {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
-  height: 20vh;
+  height: inherit;
   width: 100%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
+  // transform: translateX(0);
+  // transition: transform 0.6s ease-in-out;
 
   .layer {
     height: $diamond;
@@ -273,7 +273,8 @@ button {
     opacity: 0.3;
     position: absolute;
     border-radius: 1vw;
-    margin-top: 10%;
+    margin-top: $diamond/2 * -1;
+    margin-left: $diamond/2 * -1;
   }
 
   .layer-1 {
