@@ -1357,7 +1357,7 @@ button {
   outline: none;
 }
 
-.input-decor input[type='text'] {
+.input-decor input[type="text"] {
   font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
 }
@@ -1692,7 +1692,7 @@ button {
   0%,
   100% {
     background: #4e4ed6;
-    margin-top: calc(25vh * -1/4);
+    margin-top: calc(25vh * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1710,7 +1710,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(25vh * 1/4);
+    margin-top: calc(25vh * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
@@ -1796,7 +1796,7 @@ button {
   0%,
   100% {
     background: #8258dc;
-    margin-top: calc(25vh * 1/4);
+    margin-top: calc(25vh * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1814,7 +1814,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(25vh * -1/4);
+    margin-top: calc(25vh * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
@@ -1836,7 +1836,7 @@ button {
   0%,
   100% {
     background: #8258dc;
-    margin-top: calc(25vh * 1/4);
+    margin-top: calc(25vh * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1854,7 +1854,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(25vh * -1/4);
+    margin-top: calc(25vh * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);

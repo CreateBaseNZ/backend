@@ -52,7 +52,7 @@ const checkoutInit = () => {
   checkoutHeadingCompletion = document.querySelector("#checkout-cmpt-hdng");
 
   // LOAD ORDERS
-  checkoutCartLoadOrders();
+  // checkoutCartLoadOrders();
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -128,6 +128,7 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
                         name="quantity"
                         class="checkout-prnt-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
                         value="${print.quantity}"
+                        onchange="checkoutCartUpdate3dPrintOrderQuantity(this.value);"
                       />
                     </div>`;
   const containerTwo = `<div class="checkout-prnt-cnt-cntn-2">${fileName +
@@ -146,10 +147,15 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
   const containerThree = `<div class="checkout-prnt-cnt-cntn-3">${cancel +
     price}</div>`;
 
-  const html = `<div class="checkout-prnt-cnt">${containerOne +
-    containerTwo +
-    containerThree}</div>`;
-  return html;
+  const containers = containerOne + containerTwo + containerThree;
+  return containers;
+};
+
+// FUNCTION TO UPDATE THE HTML FOR 3D PRINT ORDERS
+
+const checkoutCartUpdate3dPrintOrderHTML = print => {
+  const containers = checkoutCartCreate3dPrintOrderHTML(print);
+  document.querySelector("#");
 };
 
 // FUNCTION TO LOAD ORDERS
@@ -169,12 +175,13 @@ const checkoutCartLoadOrders = async () => {
   } catch (error) {
     return error;
   }
-  /*
+
   if (prints.length) {
     document.querySelector("#checkout-prnt-cnts").innerHTML = "";
     for (let i = 0; i < prints.length; i++) {
       const print = prints[i];
-      const html = checkoutCartCreate3dPrintOrderHTML(print);
+      const containers = checkoutCartCreate3dPrintOrderHTML(print);
+      const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
       document
         .querySelector("#checkout-prnt-cnts")
         .insertAdjacentHTML("beforeend", html);
@@ -182,7 +189,12 @@ const checkoutCartLoadOrders = async () => {
   } else {
     document.querySelector("#checkout-prnt-cnts").innerHTML = "No 3D Prints";
   }
-  */
+};
+
+// FUNCTION TO UPDATE THE NUMBER UNITS
+
+const checkoutCartUpdate3dPrintOrderQuantity = units => {
+  console.log(units);
 };
 
 /*-----------------------------------------------------------------------------------------

@@ -314,7 +314,7 @@ button {
     }
   }
 
-  input[type='text'] {
+  input[type="text"] {
     font-family: $poppins;
     font-size: 1.2rem;
   }
@@ -492,7 +492,7 @@ button {
   0%,
   100% {
     background: $logo-3;
-    margin-top: calc(#{$diamond} * -1/4);
+    margin-top: calc(#{$diamond} * -1 / 4);
     margin-left: 0;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -506,7 +506,7 @@ button {
   }
   50% {
     background: $logo-3;
-    margin-top: calc(#{$diamond} * 1/4);
+    margin-top: calc(#{$diamond} * 1 / 4);
     margin-left: 0;
     transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -548,7 +548,7 @@ button {
   0%,
   100% {
     background: $logo-1;
-    margin-top: calc(#{$diamond} * 1/4);
+    margin-top: calc(#{$diamond} * 1 / 4);
     margin-left: 0;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -562,7 +562,7 @@ button {
   }
   50% {
     background: $logo-3;
-    margin-top: calc(#{$diamond} * -1/4);
+    margin-top: calc(#{$diamond} * -1 / 4);
     margin-left: 0;
     transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);

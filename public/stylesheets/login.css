@@ -97,11 +97,11 @@
   transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-/*=========================================================================================
-VARIABLES
+/*=========================================================================================
+VARIABLES
 =========================================================================================*/
-/*=========================================================================================
-MOBILE CSS
+/*=========================================================================================
+MOBILE CSS
 =========================================================================================*/
 .nav-bar {
   height: 8vmax;
@@ -187,8 +187,8 @@ MOBILE CSS
   overflow: hidden;
 }
 
-/*-----------------------------------------------------------------------------------------
-PAGE FLOATING NAVIGATION 1
+/*-----------------------------------------------------------------------------------------
+PAGE FLOATING NAVIGATION 1
 -----------------------------------------------------------------------------------------*/
 .flt-navs-1 {
   position: fixed;
@@ -268,8 +268,8 @@ PAGE FLOATING NAVIGATION 1
           transform: rotate(-135deg);
 }
 
-/*=========================================================================================
-DESKTOP CSS
+/*=========================================================================================
+DESKTOP CSS
 =========================================================================================*/
 @media only screen and (min-width: 850px) {
   /* Mobile CSS Reset */
@@ -313,8 +313,8 @@ DESKTOP CSS
     border-width: 0.2vmax;
     border-radius: 0.5vmax;
   }
-  /*---------------------------------------------------------------------------------------
-  PAGE FLOATING NAVIGATION 1
+  /*---------------------------------------------------------------------------------------
+  PAGE FLOATING NAVIGATION 1
   ---------------------------------------------------------------------------------------*/
   .flt-navs-1 {
     height: calc(100% - 4vmax);
@@ -354,14 +354,14 @@ DESKTOP CSS
   }
 }
 
-/*=========================================================================================
-END
+/*=========================================================================================
+END
 =========================================================================================*/
-/*
-VARIABLES
+/*
+VARIABLES
 */
-/*
-MOBILE CSS
+/*
+MOBILE CSS
 */
 .sd-bar {
   height: calc(100% - 16vmax);
@@ -383,11 +383,11 @@ MOBILE CSS
   }
 }
 
-/*
-VARIABLES
+/*
+VARIABLES
 */
-/*
-MOBILE CSS
+/*
+MOBILE CSS
 */
 .ntfs-untgl {
   -webkit-transform: translateY(100%);
@@ -580,11 +580,11 @@ MOBILE CSS
   }
 }
 
-/*
-VARIABLES
+/*
+VARIABLES
 */
-/*
-MOBILE CSS
+/*
+MOBILE CSS
 */
 .msgs {
   width: 100%;
@@ -615,8 +615,8 @@ MOBILE CSS
   border-color: gainsboro;
 }
 
-/*
-DESKTOP CSS
+/*
+DESKTOP CSS
 */
 @media only screen and (min-width: 850px) {
   .msgs-untgl {
@@ -637,11 +637,11 @@ DESKTOP CSS
   }
 }
 
-/*
-VARIABLES
+/*
+VARIABLES
 */
-/*
-MOBILE CSS
+/*
+MOBILE CSS
 */
 .menu-untgl {
   -webkit-transform: translateX(-100%);
@@ -698,9 +698,9 @@ MOBILE CSS
   width: 100%;
 }
 
-/*
-Set parent element to position: relative, and child 
-as position: absolute to create overlapping elements
+/*
+Set parent element to position: relative, and child 
+as position: absolute to create overlapping elements
 */
 .menu-grp-hdr {
   height: 6vmax;
@@ -832,11 +832,11 @@ as position: absolute to create overlapping elements
   }
 }
 
-/*
-VARIABLES
+/*
+VARIABLES
 */
-/*
-MOBILE CSS
+/*
+MOBILE CSS
 */
 .user-menu-untgl {
   -webkit-transform: translateX(100%);
@@ -882,8 +882,8 @@ MOBILE CSS
   height: 0;
 }
 
-/*
-DESKTOP CSS
+/*
+DESKTOP CSS
 */
 @media only screen and (min-width: 850px) {
   .user-menu-untgl {
@@ -906,19 +906,19 @@ DESKTOP CSS
   }
 }
 
-/*============================================
-VARIABLES
+/*============================================
+VARIABLES
 ============================================*/
-/*============================================
-MOBILE CSS
+/*============================================
+MOBILE CSS
 ============================================*/
 .srvs {
   z-index: 3;
   opacity: 0;
 }
 
-/*============================================
-DESKTOP CSS
+/*============================================
+DESKTOP CSS
 ============================================*/
 @media only screen and (min-width: 850px) {
   .srvs {
@@ -958,8 +958,8 @@ DESKTOP CSS
   }
 }
 
-/*=========================================================================================
-TEMPORARY
+/*=========================================================================================
+TEMPORARY
 =========================================================================================*/
 .load-1 {
   display: inline-block;
@@ -1020,8 +1020,8 @@ TEMPORARY
   }
 }
 
-/*=========================================================================================
-END
+/*=========================================================================================
+END
 =========================================================================================*/
 * {
   margin: 0;
@@ -1357,7 +1357,7 @@ button {
   outline: none;
 }
 
-.input-decor input[type='text'] {
+.input-decor input[type="text"] {
   font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
 }
@@ -1692,7 +1692,7 @@ button {
   0%,
   100% {
     background: #4e4ed6;
-    margin-top: calc(35vw * -1/4);
+    margin-top: calc(35vw * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1710,7 +1710,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(35vw * 1/4);
+    margin-top: calc(35vw * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
@@ -1796,7 +1796,7 @@ button {
   0%,
   100% {
     background: #8258dc;
-    margin-top: calc(35vw * 1/4);
+    margin-top: calc(35vw * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1814,7 +1814,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(35vw * -1/4);
+    margin-top: calc(35vw * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
@@ -1836,7 +1836,7 @@ button {
   0%,
   100% {
     background: #8258dc;
-    margin-top: calc(35vw * 1/4);
+    margin-top: calc(35vw * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1854,7 +1854,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(35vw * -1/4);
+    margin-top: calc(35vw * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
@@ -5848,9 +5848,9 @@ body .login-main-container .login-container #login-signup a {
     visibility: visible;
   }
   83.33333% {
-    -webkit-clip-path: inset(100% 0 1% 0);
-            clip-path: inset(100% 0 1% 0);
-    padding: 3 px-30px;
+    -webkit-clip-path: inset(98% 0 2% 0);
+            clip-path: inset(98% 0 2% 0);
+    padding: 5 px-30px;
     visibility: visible;
   }
   84% {
@@ -6757,9 +6757,9 @@ body .login-main-container .login-container #login-signup a {
     visibility: visible;
   }
   83.33333% {
-    -webkit-clip-path: inset(100% 0 1% 0);
-            clip-path: inset(100% 0 1% 0);
-    padding: 3 px-30px;
+    -webkit-clip-path: inset(98% 0 2% 0);
+            clip-path: inset(98% 0 2% 0);
+    padding: 5 px-30px;
     visibility: visible;
   }
   84% {
