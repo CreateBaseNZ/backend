@@ -52,7 +52,7 @@ const checkoutInit = () => {
   checkoutHeadingCompletion = document.querySelector("#checkout-cmpt-hdng");
 
   // LOAD ORDERS
-  checkoutCartLoadOrders();
+  // checkoutCartLoadOrders();
 };
 
 /*-----------------------------------------------------------------------------------------
