@@ -1289,14 +1289,16 @@ button {
 }
 
 .loading-icon {
-  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: inherit;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
   width: 100%;
 }
 
@@ -1306,8 +1308,6 @@ button {
   opacity: 0.3;
   position: absolute;
   border-radius: 1vw;
-  margin-top: -10vw;
-  margin-left: -10vw;
 }
 
 .loading-icon .layer-1 {
@@ -1339,6 +1339,11 @@ button {
 
 .input-decor input:focus {
   outline: none;
+}
+
+.input-decor input[type='text'] {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
 }
 
 .input-decor label {
@@ -1671,8 +1676,8 @@ button {
   0%,
   100% {
     background: #4e4ed6;
-    top: calc(50% - 10vw);
-    left: 50%;
+    margin-top: calc(20vw * -1/4);
+    margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1680,8 +1685,8 @@ button {
   }
   25% {
     background: #6853d9;
-    top: 50%;
-    left: 80%;
+    margin-top: 0;
+    margin-left: 20vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1689,8 +1694,8 @@ button {
   }
   50% {
     background: #4e4ed6;
-    top: calc(50% + 10vw);
-    left: 50%;
+    margin-top: calc(20vw * 1/4);
+    margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1698,8 +1703,8 @@ button {
   }
   75% {
     background: #6853d9;
-    top: 50%;
-    left: 20%;
+    margin-top: 0;
+    margin-left: -20vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1711,8 +1716,6 @@ button {
   0%,
   100% {
     background: #6853d9;
-    top: 50%;
-    left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1720,8 +1723,6 @@ button {
   }
   25% {
     background: #6853d9;
-    top: 50%;
-    left: 50%;
     -webkit-transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
             transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1729,8 +1730,6 @@ button {
   }
   50% {
     background: #6853d9;
-    top: 50%;
-    left: 50%;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1738,8 +1737,6 @@ button {
   }
   75% {
     background: #6853d9;
-    top: 50%;
-    left: 50%;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1751,8 +1748,6 @@ button {
   0%,
   100% {
     background: #6853d9;
-    top: 50%;
-    left: 50%;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1760,8 +1755,6 @@ button {
   }
   25% {
     background: #6853d9;
-    top: 50%;
-    left: 50%;
     -webkit-transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
             transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1769,8 +1762,6 @@ button {
   }
   50% {
     background: #6853d9;
-    top: 50%;
-    left: 50%;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1778,8 +1769,6 @@ button {
   }
   75% {
     background: #6853d9;
-    top: 50%;
-    left: 50%;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1791,8 +1780,8 @@ button {
   0%,
   100% {
     background: #8258dc;
-    top: calc(50% + 10vw);
-    left: 50%;
+    margin-top: calc(20vw * 1/4);
+    margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1800,8 +1789,8 @@ button {
   }
   25% {
     background: #6853d9;
-    top: 50%;
-    left: 20%;
+    margin-top: 0;
+    margin-left: -20vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1809,8 +1798,8 @@ button {
   }
   50% {
     background: #4e4ed6;
-    top: calc(50% - 10vw);
-    left: 50%;
+    margin-top: calc(20vw * -1/4);
+    margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1818,8 +1807,8 @@ button {
   }
   75% {
     background: #6853d9;
-    top: 50%;
-    left: 80%;
+    margin-top: 0;
+    margin-left: 20vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1831,8 +1820,8 @@ button {
   0%,
   100% {
     background: #8258dc;
-    top: calc(50% + 10vw);
-    left: 50%;
+    margin-top: calc(20vw * 1/4);
+    margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1840,8 +1829,8 @@ button {
   }
   25% {
     background: #6853d9;
-    top: 50%;
-    left: 20%;
+    margin-top: 0;
+    margin-left: -20vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1849,8 +1838,8 @@ button {
   }
   50% {
     background: #4e4ed6;
-    top: calc(50% - 10vw);
-    left: 50%;
+    margin-top: calc(20vw * -1/4);
+    margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
     -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
@@ -1858,8 +1847,8 @@ button {
   }
   75% {
     background: #6853d9;
-    top: 50%;
-    left: 80%;
+    margin-top: 0;
+    margin-left: 20vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
