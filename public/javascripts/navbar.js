@@ -1,4 +1,4 @@
-const nav = document.querySelector("nav");
+const nav = document.querySelector(".nav-sidebar");
 const hamburger = document.querySelector(".hamburger");
 
 nav.addEventListener("mouseenter", function() {
