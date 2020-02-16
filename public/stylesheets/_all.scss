@@ -34,13 +34,12 @@ $poppins: "Poppins", sans-serif;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  transition: opacity 0.6s ease-in;
 }
 
 .nav-global {
   position: sticky;
-  left: 0px;
   top: 0px;
+  left: 0px;
   z-index: 1000;
   background: $light-1;
   font-family: $montserrat;
