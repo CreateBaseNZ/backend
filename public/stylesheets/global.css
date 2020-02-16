@@ -1033,7 +1033,8 @@ END
 }
 
 .nav-global {
-  position: absolute;
+  position: -webkit-sticky;
+  position: sticky;
   left: 0px;
   top: 0px;
   z-index: 1000;
@@ -1042,7 +1043,7 @@ END
 }
 
 .nav-global .nav-topbar {
-  height: 8vh;
+  height: 10vh;
   width: 100vw;
   position: absolute;
   display: -ms-grid;
@@ -1052,6 +1053,7 @@ END
   justify-items: center;
   -ms-flex-line-pack: center;
       align-content: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .nav-global .nav-sidebar .nav-side-wiper {
@@ -1063,7 +1065,7 @@ END
   -ms-grid-rows: (1fr)[3];
       grid-template-rows: repeat(3, 1fr);
   background: white;
-  border-right: 1.1px solid #f8f8f8;
+  border-right: 1.2px solid #f8f8f8;
   position: absolute;
   -webkit-transition: left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
