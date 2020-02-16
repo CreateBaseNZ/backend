@@ -182,6 +182,9 @@ const checkoutCartLoadOrders = async () => {
   document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
     prints.length}vmax`;
 
+  document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
+    prints.length}vmax`;
+
   // Process the loaded prints
   if (prints.length) {
     // If there are prints ordered
@@ -252,6 +255,14 @@ const checkoutCartValidateOrderQuantity = (newQuantity, quantity, printId) => {
   }
   return true;
 };
+
+// @FUNC  checkoutCartCreateMarketplaceOrderHTML
+// @TYPE  SIMPLE
+// @DESC  This function creates an HTML for the Marketplace that will be inserted into the
+//        page. The components of the HTML is based on a Marketplace order object.
+// @ARGU  order - object - the Marketplace order object
+
+const checkoutCartCreateMarketplaceOrderHTML = order => {};
 
 /*-----------------------------------------------------------------------------------------
 CREATE PAYMENT INTENT AND GET CLIENT SECRET
