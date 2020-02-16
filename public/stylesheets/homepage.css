@@ -1873,9 +1873,6 @@ button {
             animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
   }
 }
-<<<<<<< HEAD
-/*# sourceMappingURL=homepage.css.map */
-=======
 
 body {
   background: white;
@@ -1887,4 +1884,3 @@ body .gif {
   -webkit-filter: invert(100%);
           filter: invert(100%);
 }
->>>>>>> 5e447809e599fbcbff0b4f8c422cdb8fe6053a1f
