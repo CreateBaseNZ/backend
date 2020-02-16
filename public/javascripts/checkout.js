@@ -52,7 +52,7 @@ const checkoutInit = () => {
   checkoutHeadingCompletion = document.querySelector("#checkout-cmpt-hdng");
 
   // LOAD ORDERS
-  // checkoutCartLoadOrders();
+  checkoutCartLoadOrders();
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -128,7 +128,7 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
                         name="quantity"
                         class="checkout-prnt-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
                         value="${print.quantity}"
-                        onchange="checkoutCartUpdate3dPrintOrderQuantity(this.value);"
+                        onchange="checkoutCartUpdate3dPrintOrderQuantity(this.value, ${print});"
                       />
                     </div>`;
   const containerTwo = `<div class="checkout-prnt-cnt-cntn-2">${fileName +
@@ -155,7 +155,7 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
 
 const checkoutCartUpdate3dPrintOrderHTML = print => {
   const containers = checkoutCartCreate3dPrintOrderHTML(print);
-  document.querySelector("#");
+  document.querySelector(`#checkout-prnt-${print._id}`).innerHTML = containers;
 };
 
 // FUNCTION TO LOAD ORDERS
@@ -193,8 +193,8 @@ const checkoutCartLoadOrders = async () => {
 
 // FUNCTION TO UPDATE THE NUMBER UNITS
 
-const checkoutCartUpdate3dPrintOrderQuantity = units => {
-  console.log(units);
+const checkoutCartUpdate3dPrintOrderQuantity = (units, print) => {
+  console.log(units, print);
 };
 
 /*-----------------------------------------------------------------------------------------
