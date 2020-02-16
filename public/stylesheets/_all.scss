@@ -35,6 +35,7 @@ $poppins: "Poppins", sans-serif;
   box-sizing: border-box;
   text-decoration: none;
   transition: opacity 0.6s ease-in;
+  background-color: ;
 }
 
 .nav-global {
@@ -45,87 +46,124 @@ $poppins: "Poppins", sans-serif;
   background: $light-1;
   font-family: $montserrat;
 
-  .nav-wiper {
-    width: 50px;
-    height: 100vh;
-    left: 0;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    background: $light-1;
-    border-right: 1.1px solid $light-2;
+  .nav-topbar {
+    height: 8vh;
+    width: 100vw;
     position: absolute;
-    transition: left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-
-    #nav-logo {
-      cursor: default;
-
-      img {
-        cursor: pointer;
-        padding: 12.5px;
-        width: 50px;
-        margin-top: 3vh;
-        margin-left: 0px;
-        transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-      }
-    }
+    display: grid;
+    grid-template-columns: 75vw 10vw 10vw 5vw;
+    justify-items: center;
+    align-content: center;
   }
 
   .nav-sidebar {
-    width: 25px;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    background: $light-1;
-    position: absolute;
-    transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-    overflow: hidden;
-
-    .nav-services,
-    .nav-createbase,
-    .nav-socials {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .nav-header {
-      font-family: $poppins;
-      font-weight: 900;
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: $dark-1;
-      margin-bottom: 3vh;
-      padding-left: 0px;
-      transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-    }
-
-    .nav-item {
-      padding-top: 0.75vh;
-      padding-bottom: 0.75vh;
-      padding-left: 0px;
-      color: $dark-3;
-      transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-
-      &:hover {
-        background: $light-2;
-        color: $logo-2;
+    .nav-side-wiper {
+      width: 50px;
+      height: 100vh;
+      left: 0;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      background: $light-1;
+      border-right: 1.1px solid $light-2;
+      position: absolute;
+      transition: left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  
+      #nav-main-logo {
+        cursor: default;
+  
+        img {
+          cursor: pointer;
+          padding: 12.5px;
+          width: 50px;
+          margin-top: 3vh;
+          margin-left: 0px;
+          transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+        }
       }
     }
 
-    .nav-socials {
-      margin-left: -25px;
-      transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-
-      .fab {
-        font-size: 25px;
-        margin-left: 100px;
-        margin-top: 1vh;
-        width: 25px;
-        cursor: pointer;
+    .nav-side-menu {
+      width: 25px;
+      height: 100vh;
+      background: $light-1;
+      position: absolute;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      overflow: hidden;
+      transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  
+      .nav-side-services,
+      .nav-side-createbase,
+      .nav-side-socials {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .nav-side-header {
+        font-family: $poppins;
+        font-weight: 900;
+        font-size: 10px;
+        letter-spacing: 1px;
+        color: $dark-1;
+        margin-bottom: 3vh;
+        padding-left: 0px;
+        transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+      }
+  
+      .nav-side-item {
+        padding-top: 0.75vh;
+        padding-bottom: 0.75vh;
+        padding-left: 0px;
         color: $dark-3;
-
+        transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  
         &:hover {
+          background: $light-2;
           color: $logo-2;
         }
+      }
+  
+      .nav-side-socials {
+        margin-left: -25px;
+        transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  
+        .fab {
+          font-size: 25px;
+          margin-left: 100px;
+          margin-top: 1vh;
+          width: 25px;
+          cursor: pointer;
+          color: $dark-3;
+  
+          &:hover {
+            color: $logo-2;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .nav-side-wiper {
+        left: 200px;
+  
+        #nav-main-logo > img {
+          margin-left: -187.5px;
+        }
+      }
+      .nav-side-menu {
+        width: 225px;
+  
+        .nav-side-item,
+        .nav-side-header {
+          padding-left: 25px;
+        }
+  
+        .nav-side-socials {
+          margin-left: 0;
+        }
+      }
+      .nav-darken-filter {
+        opacity: 0.05;
       }
     }
   }
@@ -138,31 +176,6 @@ $poppins: "Poppins", sans-serif;
     opacity: 0;
     transition: opacity 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
     pointer-events: none;
-  }
-
-  &:hover {
-    .nav-wiper {
-      left: 200px;
-
-      #nav-logo > img {
-        margin-left: -187.5px;
-      }
-    }
-    .nav-sidebar {
-      width: 225px;
-
-      .nav-item,
-      .nav-header {
-        padding-left: 25px;
-      }
-
-      .nav-socials {
-        margin-left: 0;
-      }
-    }
-    .nav-darken-filter {
-      opacity: 0.05;
-    }
   }
 }
 
@@ -264,8 +277,7 @@ button {
   justify-content: center;
   height: 100%;
   width: 100%;
-  // transform: translateX(0);
-  // transition: transform 0.6s ease-in-out;
+
 
   .layer {
     height: $diamond;
@@ -279,6 +291,8 @@ button {
     animation: load-1 5s forwards infinite;
   }
   .layer-2 {
+    margin-top: 0;
+    margin-left: 0;
     animation: load-2 5s forwards infinite;
   }
   .layer-3 {
