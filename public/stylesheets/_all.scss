@@ -38,7 +38,7 @@ $poppins: "Poppins", sans-serif;
 }
 
 .nav-global {
-  position: absolute;
+  position: sticky;
   left: 0px;
   top: 0px;
   z-index: 1000;
@@ -46,16 +46,18 @@ $poppins: "Poppins", sans-serif;
   font-family: $montserrat;
 
   .nav-topbar {
-    height: 8vh;
+    height: 10vh;
     width: 100vw;
     position: absolute;
     display: grid;
     grid-template-columns: 75vw 10vw 10vw 5vw;
     justify-items: center;
     align-content: center;
+    font-family: $poppins;
   }
 
   .nav-sidebar {
+
     .nav-side-wiper {
       width: 50px;
       height: 100vh;
@@ -63,7 +65,7 @@ $poppins: "Poppins", sans-serif;
       display: grid;
       grid-template-rows: repeat(3, 1fr);
       background: $light-1;
-      border-right: 1.1px solid $light-2;
+      border-right: 1.2px solid $light-2;
       position: absolute;
       transition: left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 

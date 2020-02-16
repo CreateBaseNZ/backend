@@ -1,3 +1,19 @@
-$diamond: 35vw; /* all.scss uses $diamond so it must be declared first */
+$diamond: 35vw; /* _all.scss uses $diamond so it must be declared first */
 @import "all";
 
+
+body {
+  background: white;
+  width: 100vw;
+  overflow-x: hidden;
+
+  .home-topbar {
+    a {
+      // color: $light-1;
+    }
+  }
+
+  .gif {
+    filter: invert(100%);
+  }
+}
