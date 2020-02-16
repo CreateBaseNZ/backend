@@ -1959,6 +1959,10 @@ CART
 
 .checkout-cart-cnts {
   width: 100%;
+  height: 16vmax;
+  -webkit-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+  overflow: hidden;
 }
 
 .checkout-prnt-cnt {
@@ -2524,3 +2528,4 @@ END
   font-size: 1.8vmax;
   color: #322d41;
 }
+/*# sourceMappingURL=checkout.css.map */

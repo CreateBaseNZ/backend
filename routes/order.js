@@ -114,6 +114,27 @@ router.post(
   }
 );
 
+router.post("/orders/print/update", restrictedPages, async (req, res) => {
+  let printId = mongoose.Types.ObjectId(req.body.printId);
+  let printQuantity = req.body.quantity;
+  let order;
+  try {
+    order = (
+      await updateMakeOrder(printId, "quantity", printQuantity)
+    ).toJSON();
+  } catch (error) {
+    return res.send(error);
+  }
+  let fileName;
+  try {
+    fileName = await getFileName(order.fileId);
+  } catch (error) {
+    return res.send(error);
+  }
+  let revisedOrder = { ...order, ...{ fileName } };
+  return res.send(revisedOrder);
+});
+
 /*=========================================================================================
 FUNCTIONS
 =========================================================================================*/
@@ -186,6 +207,27 @@ const getFileName = _id => {
       reject(error);
     }
     resolve(fileName);
+  });
+};
+
+// THE FUNCTION TO UPDATE A PROPERTY OF A 3D PRINT ORDER
+
+const updateMakeOrder = (_id, property, value) => {
+  return new Promise(async (resolve, reject) => {
+    let order;
+    try {
+      order = await Make.findById(_id);
+    } catch (error) {
+      reject(error);
+    }
+    order[property] = value;
+    let savedOrder;
+    try {
+      savedOrder = await order.save();
+    } catch (error) {
+      reject(error);
+    }
+    resolve(savedOrder);
   });
 };
 

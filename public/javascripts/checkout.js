@@ -126,9 +126,11 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
                       <input
                         type="number"
                         name="quantity"
+                        id="checkout-prnt-qnty-${print._id}"
                         class="checkout-prnt-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
+                        min="1"
                         value="${print.quantity}"
-                        onchange="checkoutCartUpdate3dPrintOrderQuantity(this.value, ${print});"
+                        onchange="checkoutCartUpdate3dPrintOrderQuantity(this.value, '${print.quantity}', '${print._id}');"
                       />
                     </div>`;
   const containerTwo = `<div class="checkout-prnt-cnt-cntn-2">${fileName +
@@ -176,7 +178,13 @@ const checkoutCartLoadOrders = async () => {
     return error;
   }
 
+  // Set the height of the printing cart depending on the number of items
+  document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
+    prints.length}vmax`;
+
+  // Process the loaded prints
   if (prints.length) {
+    // If there are prints ordered
     document.querySelector("#checkout-prnt-cnts").innerHTML = "";
     for (let i = 0; i < prints.length; i++) {
       const print = prints[i];
@@ -187,14 +195,62 @@ const checkoutCartLoadOrders = async () => {
         .insertAdjacentHTML("beforeend", html);
     }
   } else {
+    // If there are no prints ordered
     document.querySelector("#checkout-prnt-cnts").innerHTML = "No 3D Prints";
   }
 };
 
 // FUNCTION TO UPDATE THE NUMBER UNITS
 
-const checkoutCartUpdate3dPrintOrderQuantity = (units, print) => {
-  console.log(units, print);
+const checkoutCartUpdate3dPrintOrderQuantity = async (
+  newQuantity,
+  quantity,
+  printId
+) => {
+  if (!checkoutCartValidateOrderQuantity(newQuantity, quantity, printId)) {
+    return;
+  }
+  document.querySelector(
+    `#checkout-prnt-${printId}`
+  ).innerHTML = `<div class="checkout-cart-loading-container">
+                  <div class="checkout-cart-loading">
+                    <div class="loading-icon">
+                      <div class="layer layer-1"></div>
+                      <div class="layer layer-2"></div>
+                      <div class="layer layer-3"></div>
+                    </div>
+                  </div>
+                </div>`;
+
+  let print;
+
+  try {
+    print = (
+      await axios.post("/orders/print/update", {
+        printId,
+        quantity: newQuantity
+      })
+    )["data"];
+  } catch (error) {
+    return {
+      status: "failed",
+      message: error
+    };
+  }
+
+  const containers = checkoutCartCreate3dPrintOrderHTML(print);
+
+  document.querySelector(`#checkout-prnt-${print._id}`).innerHTML = containers;
+};
+
+// STOP INPUT OF 0 OR LESS QUANTITY
+
+const checkoutCartValidateOrderQuantity = (newQuantity, quantity, printId) => {
+  if (newQuantity <= 0) {
+    document.querySelector(`#checkout-prnt-qnty-${printId}`).value = quantity;
+    return false;
+  }
+  return true;
 };
 
 /*-----------------------------------------------------------------------------------------

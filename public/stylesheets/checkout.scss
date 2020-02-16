@@ -84,6 +84,9 @@ CART
 
 .checkout-cart-cnts {
   width: 100%;
+  height: 16vmax;
+  transition: height 0.5s ease;
+  overflow: hidden;
 }
 
 .checkout-prnt-cnt {
