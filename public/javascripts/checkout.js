@@ -52,7 +52,8 @@ const checkoutInit = () => {
   checkoutHeadingCompletion = document.querySelector("#checkout-cmpt-hdng");
 
   // LOAD ORDERS
-  checkoutCartLoadOrders();
+  checkoutCartLoadPrintOrders();
+  checkoutCartLoadMarketplaceOrders();
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -141,6 +142,9 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
   // Container Three
   const cancel = `<div class="checkout-prnt-cnt-cncl"></div>`;
   let price;
+  price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2">
+                      $X,XXX.XX
+                    </div>`;
   if (print.status === "awaiting quote") {
     price = `<div class="checkout-prnt-cnt-prc sbtl-1 txt-clr-blk-2">awaiting quote</div>`;
   } else {
@@ -162,9 +166,8 @@ const checkoutCartUpdate3dPrintOrderHTML = print => {
 
 // FUNCTION TO LOAD ORDERS
 
-const checkoutCartLoadOrders = async () => {
+const checkoutCartLoadPrintOrders = async () => {
   let prints;
-  let items;
 
   try {
     prints = await checkoutCartGet3dPrintOrders();
@@ -172,21 +175,12 @@ const checkoutCartLoadOrders = async () => {
     return error;
   }
 
-  try {
-    items = await checkoutCartGetMarketplaceOrders();
-  } catch (error) {
-    return error;
-  }
-
-  // Set the height of the printing cart depending on the number of items
-  document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
-    prints.length}vmax`;
-
-  document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
-    prints.length}vmax`;
-
   // Process the loaded prints
   if (prints.length) {
+    // Set the height of the printing cart depending on the number of items
+    document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
+      prints.length}vmax`;
+
     // If there are prints ordered
     document.querySelector("#checkout-prnt-cnts").innerHTML = "";
     for (let i = 0; i < prints.length; i++) {
@@ -256,13 +250,105 @@ const checkoutCartValidateOrderQuantity = (newQuantity, quantity, printId) => {
   return true;
 };
 
+// @FUNC  checkoutCartDelete3dPrintOrder
+// @TYPE
+// @DESC  This function removes a 3d print order from the cart and deletes it on the
+//        database
+// @ARGU  printId - string - The id of the 3d print to be deleted
+const checkoutCartDelete3dPrintOrder = async printId => {};
+
 // @FUNC  checkoutCartCreateMarketplaceOrderHTML
 // @TYPE  SIMPLE
 // @DESC  This function creates an HTML for the Marketplace that will be inserted into the
 //        page. The components of the HTML is based on a Marketplace order object.
 // @ARGU  order - object - the Marketplace order object
+const checkoutCartCreateMarketplaceOrderHTML = order => {
+  // Create container one HTML
+  const icon = `<div class="checkout-mkpl-cnt-img bgd-clr-wht-2"></div>`;
+  const containerOne = `<div class="checkout-mkpl-cnt-cntn-1">${icon}</div>`;
 
-const checkoutCartCreateMarketplaceOrderHTML = order => {};
+  // Create container two HTML
+  const itemName = `<div class="checkout-mkpl-cnt-item-name sbtl-1 txt-clr-blk-2">${order.itemName}</div>`;
+  const shopName = `<div class="checkout-mkpl-cnt-shop sbtl-1 txt-clr-blk-2">${order.shopName}</div>`;
+  const quantity = `<div class="checkout-mkpl-cnt-qnty-cntn">
+                      <label
+                        class="checkout-mkpl-cnt-qnty-lbl sbtl-1 txt-clr-blk-2"
+                        >Quantity:</label
+                      >
+                      <input
+                        type="number"
+                        name="quantity"
+                        class="checkout-mkpl-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
+                        min="1"
+                        value="${order.quantity}"
+                      />
+                    </div>`;
+  const containerTwo = `<div class="checkout-mkpl-cnt-cntn-2">${itemName +
+    shopName +
+    quantity}</div>`;
+
+  // Create container three HTML
+  const cancel = `<div class="checkout-mkpl-cnt-cncl"></div>`;
+  const price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2"></div>`;
+  const containerThree = `<div class="checkout-mkpl-cnt-cntn-3">${cancel +
+    price}</div>`;
+
+  // Return containers
+  const containers = containerOne + containerTwo + containerThree;
+  return containers;
+};
+
+// @FUNC  checkoutCartCreateMarketplaceNoOrderHTML
+// @TYPE  SIMPLE
+// @DESC  This function creates an HTML for the Marketplace that will be inserted into the
+//        page. The HTML created is for no items scenario.
+// @ARGU
+const checkoutCartCreateMarketplaceNoOrderHTML = () => {
+  const html = "<p>No Orders</p>";
+  return html;
+};
+
+// @FUNC  checkoutCartLoadMarketplaceOrders
+// @TYPE  ASYNCHRONOUS
+// @DESC  This function loads the marketplace orders
+// @ARGU
+const checkoutCartLoadMarketplaceOrders = async () => {
+  let items;
+
+  try {
+    items = await checkoutCartGetMarketplaceOrders();
+  } catch (error) {
+    return error;
+  }
+
+  // Process the loaded prints
+  if (items.length) {
+    document.querySelector("#checkout-mkpl-cnts").style = `height: ${16 *
+      items.length}vmax`;
+
+    // If there are prints ordered
+    document.querySelector("#checkout-mkpl-cnts").innerHTML = "";
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      const containers = checkoutCartCreateMarketplaceOrderHTML(item);
+      const html = `<div class="checkout-mkpl-cnt" id="checkout-mkpl-${item._id}">${containers}</div>`;
+      document
+        .querySelector("#checkout-mkpl-cnts")
+        .insertAdjacentHTML("beforeend", html);
+    }
+  } else {
+    // If there are no prints ordered
+    const html = checkoutCartCreateMarketplaceNoOrderHTML();
+    document.querySelector("#checkout-mkpl-cnts").innerHTML = html;
+  }
+};
+
+// @FUNC  checkoutCartDeleteMarketplaceOrder
+// @TYPE
+// @DESC  This function removes a marketplace order from the cart and deletes it on the
+//        database
+// @ARGU  itemId - string - The id of the item to be deleted
+const checkoutCartDeleteMarketplaceOrder = async itemId => {};
 
 /*-----------------------------------------------------------------------------------------
 CREATE PAYMENT INTENT AND GET CLIENT SECRET

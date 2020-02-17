@@ -2111,6 +2111,7 @@ CART
 .checkout-prnt-cnt-cncl {
   height: 3vmax;
   width: 3vmax;
+  background-color: #2d283c;
 }
 
 .checkout-prnt-cnt-prc {
@@ -2217,6 +2218,7 @@ CART
 .checkout-mkpl-cnt-cncl {
   height: 3vmax;
   width: 3vmax;
+  background-color: #2d283c;
 }
 
 .checkout-mkpl-cnt-prc {
