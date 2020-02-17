@@ -20,13 +20,13 @@
     <link rel="stylesheet" href="./../../public/stylesheets/homepage.css" />
   </head>
   <body onload="navInit();">
-    <nav class="nav-global">
+    <nav class="nav-global screen-mode">
       <div class="nav-darken-filter"></div>
 
       <div class="nav-topbar home-topbar">
         <div class="nav-top-empty"></div>
-        <a href="/login">LOG IN</a>
-        <a href="/signup">SIGN UP</a>
+        <a href="/login" class="btn-reg" id="nav-top-login">LOG IN</a>
+        <a href="/signup" class="btn-reg">SIGN UP</a>
         <div class="nav-top-empty"></div>
       </div>
       
@@ -54,7 +54,7 @@
           <a href="/" id="nav-main-logo">
             <img src="./../../public/images/logo-icon.png" alt="CreateBase" />
           </a>
-          <button class="hamburger hamburger-arrow" type="button">
+          <button class="hamburger hamburger-arrow hamburger-screen-mode" type="button">
             <span class="hamburger-box">
               <span class="hamburger-inner"></span>
             </span>
@@ -62,20 +62,31 @@
         </div>
       </div>
     </nav>
+    <div class="main-page">
+      <div class="landing-vid">
+        <video class="vid" autoplay muted loop>
+          <source src="./../../public/videos/placeholder-2.mp4">
+          <source src="./../../public/videos/placeholder-2.mp4">
+        </video>
+      </div>
+      <div class="landing-message">
 
-    <img class="gif" src="./../../public/gifs/1.gif" />
-    <img class="gif" src="./../../public/gifs/2.gif" />
-    <img class="gif" src="./../../public/gifs/3.webp" />
-    <img class="gif" src="./../../public/gifs/4.gif" />
-    <img class="gif" src="./../../public/gifs/5.gif" />
-    <img class="gif" src="./../../public/gifs/6.gif" />
-    <img class="gif" src="./../../public/gifs/7.gif" />
-    <img class="gif" src="./../../public/gifs/8.gif" />
-    <img class="gif" src="./../../public/gifs/9.gif" />
-    <img class="gif" src="./../../public/gifs/10.gif" />
-    <img class="gif" src="./../../public/gifs/11.gif" />
-    <img class="gif" src="./../../public/gifs/12.gif" />
-    <img class="gif" src="./../../public/gifs/13.gif" />
-    <img class="gif" src="./../../public/gifs/14.gif" />
+      </div>
+
+      
+      <!-- <img class="gif" src="./../../public/gifs/1.gif" />
+      <img class="gif" src="./../../public/gifs/2.gif" />
+      <img class="gif" src="./../../public/gifs/3.webp" />
+      <img class="gif" src="./../../public/gifs/4.gif" />
+      <img class="gif" src="./../../public/gifs/5.gif" />
+      <img class="gif" src="./../../public/gifs/6.gif" />
+      <img class="gif" src="./../../public/gifs/7.gif" />
+      <img class="gif" src="./../../public/gifs/8.gif" />
+      <img class="gif" src="./../../public/gifs/9.gif" />
+      <img class="gif" src="./../../public/gifs/10.gif" />
+      <img class="gif" src="./../../public/gifs/11.gif" />
+      <img class="gif" src="./../../public/gifs/12.gif" />
+      <img class="gif" src="./../../public/gifs/13.gif" /> -->
+    </div>
   </body>
 </html>

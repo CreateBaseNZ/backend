@@ -74,6 +74,28 @@ $hamburger-layer-color: $dark-3;
 }
 
 
+
+.hamburger-screen-mode {
+
+  &.is-active {
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: $light-1;
+    }
+  }
+  
+  .hamburger-inner {
+    &,
+    &::before,
+    &::after {
+      background-color: $light-1;
+    }
+  }
+}
+
+
+
 // Arrow Effect
 // ==================================================
 .hamburger-arrow {

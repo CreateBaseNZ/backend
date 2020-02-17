@@ -1,6 +1,8 @@
 $diamond: 35vw; /* _all.scss uses $diamond so it must be declared first */
 @import "all";
 
+$hamburger-active-layer-color: $light-1;
+$hamburger-layer-color: $light-1;
 
 body {
   background: white;
@@ -8,12 +10,33 @@ body {
   overflow-x: hidden;
 
   .home-topbar {
-    a {
-      // color: $light-1;
+
+    .btn-reg {
+      width: 120px;
+      height: 35px;
+      background: transparent;
+      border: $light-1 solid 1px;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: $light-1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      outline: none;
+    }
+
+    #nav-top-login {
+      border: none;
     }
   }
 
-  .gif {
-    filter: invert(100%);
-  } 
+  .landing-vid {
+    height: 100vh;
+    overflow: hidden;
+    
+    .vid {
+      height: 120vh;
+    }
+  }
 }
