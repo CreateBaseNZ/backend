@@ -11,10 +11,10 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
-CREATE PURCHASE MODEL
+CREATE ITEM MODEL
 =========================================================================================*/
 
-const PurchaseSchema = new Schema({
+const ItemSchema = new Schema({
   accountId: {
     type: Schema.Types.ObjectId
   },
@@ -24,10 +24,10 @@ const PurchaseSchema = new Schema({
 });
 
 /*=========================================================================================
-EXPORT PURCHASE MODEL
+EXPORT ITEM MODEL
 =========================================================================================*/
 
-module.exports = Purchase = mongoose.model("purchases", PurchaseSchema);
+module.exports = Item = mongoose.model("purchases", ItemSchema);
 
 /*=========================================================================================
 END

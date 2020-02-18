@@ -295,7 +295,6 @@ const checkoutCartDelete3dPrintOrder = async printId => {
   } catch (error) {
     return { status: "failed", contents: error };
   }
-  console.log(data);
   return;
 };
 
@@ -409,14 +408,73 @@ const checkoutCartDeleteMarketplaceOrder = async itemId => {
   // Delete the item from the database
 };
 
-// @FUNC  checkoutCartCreateDiscountHTML
-// @TYPE
-// @DESC
+// @FUNC  checkoutAddDiscount
+// @TYPE  ASYNCHRONOUS
+// @DESC  Adds a discount if a valid code is provided
 // @ARGU
+const checkoutAddDiscount = () => {
+  // Fetch the discount code input
+  const discountCode = document.querySelector("#checkout-dsct-inp").value;
+  console.log(document.querySelector("#checkout-dsct-inp").value);
+  // Perform pre-validation before sending to the backend
+  let validation = {
+    status: "Success",
+    message: ""
+  };
+  if (!discountCode) {
+    // Check if input code exist
+    validation.status = "Failed";
+    validation.message = "Input Discount Code";
+  }
+  if (!checkoutCartValidateDiscount(validation)) return; // Validation
+  /* Send to the backend to perform validation and if successful,
+  retrieve the discount object */
+  let discount;
+  if (!checkoutCartValidateDiscount(validation)) return; // Validation
+  // Display the discount to the page
+  const html = checkoutCartCreateDiscountHTML(discount);
+  document
+    .querySelector("#checkout-dsct-list-cntn")
+    .insertAdjacentHTML("beforeend", html);
+  document.querySelector("#checkout-dsct-inp").value = ""; // Clear input
+  document.querySelector("#checkout-dsct-inp-err").innerHTML = ""; // Clear error
+};
+
+// @FUNC  checkoutCartValidateDiscount
+// @TYPE  SIMPLE
+// @DESC  Validate the discount code
+// @ARGU  validation - object -
+const checkoutCartValidateDiscount = validation => {
+  if (validation.status == "Failed") {
+    document.querySelector("#checkout-dsct-inp-err").innerHTML =
+      validation.message;
+    return false;
+  }
+  return true;
+};
+
+// @FUNC  checkoutCartCreateDiscountHTML
+// @TYPE  SIMPLE
+// @DESC  Creates an HTML required to be inserted and displayed onto the page
+// @ARGU  discount - object - the discount object
 const checkoutCartCreateDiscountHTML = discount => {
   const html = `<div class="checkout-dsct sbtl-2 txt-clr-blk-3"></div>`;
   return html;
 };
+
+// @FUNC  checkoutCartUpdateManufacturingSpeedOption
+// @TYPE  SIMPLE
+// @DESC  Update the Manufacturing Speed Option of the order
+// @ARGU  manufacturingSpeed - string - the new manufacturing value
+const checkoutCartUpdateManufacturingSpeedOption = manufacturingSpeed => {
+  console.log(manufacturingSpeed);
+};
+
+// @FUNC  checkoutCartUpdateTotal
+// @TYPE  SIMPLE
+// @DESC  Update the displayed totals
+// @ARGU  order - object - the object that contains the details of the order
+const checkoutCartUpdateTotal = order => {};
 
 /*-----------------------------------------------------------------------------------------
 CREATE PAYMENT INTENT AND GET CLIENT SECRET
