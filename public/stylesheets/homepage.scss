@@ -1,16 +1,13 @@
 $diamond: 35vw; /* _all.scss uses $diamond so it must be declared first */
 @import "all";
 
-$hamburger-active-layer-color: $light-1;
-$hamburger-layer-color: $light-1;
-
 body {
   background: white;
   width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
 
   .home-topbar {
-
     .btn-reg {
       width: 120px;
       height: 35px;
@@ -31,12 +28,52 @@ body {
     }
   }
 
-  .landing-vid {
-    height: 100vh;
-    overflow: hidden;
-    
-    .vid {
-      height: 120vh;
+  .main-page {
+
+    .landing-page-container {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+
+      .landing-video {
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      .landing-message {
+        position: fixed;
+        left: 25%;
+        top: 68%;
+        z-index: 100;
+        text-align: right;
+        color: $light-1;
+
+        h1 {
+          font-family: $montserrat;
+          font-weight: bolder;
+          font-size: 5rem;
+        }
+
+        p {
+          font-family: $raleway;
+          font-size: 1.5rem;
+          font-weight: 100;
+        }
+      }
+
+      #slide-1 {
+        left: 0;
+      }
+
+      #slide-2 {
+        #landing-video-2 {
+          height: 120vh;
+        }
+      }
     }
+
   }
 }

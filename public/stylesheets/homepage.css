@@ -1214,11 +1214,17 @@ END
 }
 
 .screen-mode .nav-sidebar .nav-side-menu .nav-side-header {
-  color: white;
+  color: #c7c2d5;
 }
 
 .screen-mode .nav-sidebar .nav-side-menu .nav-side-item {
   color: white;
+}
+
+.screen-mode .nav-sidebar .nav-side-menu .nav-side-item:hover {
+  color: white;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0)));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
 }
 
 .screen-mode .nav-sidebar .nav-side-menu .nav-side-socials .fab {
@@ -1920,6 +1926,7 @@ button {
 body {
   background: white;
   width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -1948,11 +1955,47 @@ body .home-topbar #nav-top-login {
   border: none;
 }
 
-body .landing-vid {
+body .main-page .landing-page-container {
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-body .landing-vid .vid {
+body .main-page .landing-page-container .landing-video {
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+body .main-page .landing-page-container .landing-message {
+  position: fixed;
+  left: 25%;
+  top: 68%;
+  z-index: 100;
+  text-align: right;
+  color: white;
+}
+
+body .main-page .landing-page-container .landing-message h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  font-size: 5rem;
+}
+
+body .main-page .landing-page-container .landing-message p {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+
+body .main-page .landing-page-container #slide-1 {
+  left: 0;
+}
+
+body .main-page .landing-page-container #slide-2 #landing-video-2 {
   height: 120vh;
 }
