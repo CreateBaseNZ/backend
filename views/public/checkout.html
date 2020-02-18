@@ -208,15 +208,18 @@
                 <input
                   type="text"
                   name="discount"
-                  class="checkout-dsct-inp inp-txt-1 txt-1 txt-clr-blk-2"
+                  class="inp-txt-1 txt-1 txt-clr-blk-2"
+                  id="checkout-dsct-inp"
                   placeholder="Discount Code ..."
                 />
                 <button
-                  class="checkout-dsct-inp-btn rmv-btn-css btn-1 bgd-clr-vlt-3 txt-clr-wht-1 txt-1"
+                  class="rmv-btn-css btn-1 bgd-clr-vlt-3 txt-clr-wht-1 txt-1"
+                  id="checkout-dsct-inp-btn"
+                  onclick="checkoutAddDiscount();"
                 >
                   Add
                 </button>
-                <div class="checkout-dsct-inp-err sbtl-1"></div>
+                <div class="sbtl-1" id="checkout-dsct-inp-err"></div>
               </div>
               <div id="checkout-dsct-list-cntn"></div>
             </div>
@@ -236,6 +239,7 @@
                     name="manufacturingSpeed"
                     class="checkout-mnft-spd-opt-inp inp-rad-1"
                     id="checkout-mnft-spd-opt-nrml"
+                    onchange="checkoutCartUpdateManufacturingSpeedOption('normal', this.value);"
                     checked
                   />
                   <label
@@ -250,6 +254,7 @@
                     name="manufacturingSpeed"
                     class="checkout-mnft-spd-opt-inp inp-rad-1"
                     id="checkout-mnft-spd-opt-urgt"
+                    onchange="checkoutCartUpdateManufacturingSpeedOption('urgent', this.value);"
                   />
                   <label
                     for="checkout-mnft-spd-opt-urgt"
@@ -275,29 +280,34 @@
                   >
                     Subtotal
                   </p>
-                  <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2">
-                    XXX.XX
-                  </p>
+                  <p
+                    class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2"
+                    id="checkout-cart-sub-total"
+                  ></p>
                 </div>
                 <div class="checkout-cart-prc-cntn">
                   <p
                     class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
+                    id="checkout-cart-discount-label"
                   >
-                    Discount (XX.XX%)
+                    Discount
                   </p>
-                  <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2">
-                    -XX.XX
-                  </p>
+                  <p
+                    class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2"
+                    id="checkout-cart-discount"
+                  ></p>
                 </div>
                 <div class="checkout-cart-prc-cntn">
                   <p
                     class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
+                    id="checkout-cart-manufacturing-fee-label"
                   >
-                    Manufacturing (XX.XX%)
+                    Manufacturing
                   </p>
-                  <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2">
-                    XX.XX
-                  </p>
+                  <p
+                    class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2"
+                    id="checkout-cart-manufacturing-fee"
+                  ></p>
                 </div>
                 <div class="checkout-cart-prc-cntn">
                   <p
@@ -305,9 +315,10 @@
                   >
                     TOTAL
                   </p>
-                  <p class="checkout-cart-prc rmv-p-css hdng-1 txt-clr-blk-1">
-                    X,XXX.XX
-                  </p>
+                  <p
+                    class="checkout-cart-prc rmv-p-css hdng-1 txt-clr-blk-1"
+                    id="checkout-cart-total"
+                  ></p>
                 </div>
               </div>
             </div>
@@ -317,16 +328,18 @@
             ------------------------------------------------------------------------------>
 
             <div class="checkout-cart-btns">
-              <div
-                class="checkout-cart-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+              <a
+                href="/"
+                class="rmv-link-css checkout-cart-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
               >
                 Exit
-              </div>
-              <div
-                class="checkout-cart-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+              </a>
+              <button
+                class="rmv-btn-css checkout-cart-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                onclick="checkoutShowPage(1);"
               >
                 Next
-              </div>
+              </button>
             </div>
           </div>
         </div>

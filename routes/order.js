@@ -19,7 +19,7 @@ MODELS
 =========================================================================================*/
 
 const Make = require("./../model/Make.js");
-const Purchase = require("./../model/Purchase.js");
+const Purchase = require("./../model/Item.js");
 
 /*=========================================================================================
 MIDDLEWARE

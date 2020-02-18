@@ -34,7 +34,7 @@ CHECKOUT
 }
 
 .checkout-sub-hdng {
-  height: 10vmax;
+  height: 14vmax;
   width: 100%;
   display: flex;
   align-items: center;
@@ -62,7 +62,7 @@ CHECKOUT
   border-bottom-style: solid;
   border-width: 0.3vmax;
   padding: 1vmax 2vmax;
-  margin: 2vmax 0;
+  margin: 6vmax 0;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -266,16 +266,16 @@ CART
   padding: 2vmax 0;
 }
 
-.checkout-dsct-inp {
+#checkout-dsct-inp {
   width: 70%;
 }
 
-.checkout-dsct-inp-btn {
+#checkout-dsct-inp-btn {
   width: 25%;
   letter-spacing: 0.2vmax;
 }
 
-.checkout-dsct-inp-err {
+#checkout-dsct-inp-err {
   width: 70%;
   display: flex;
   justify-content: flex-end;
@@ -347,7 +347,7 @@ CART
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 4vmax 0;
+  padding: 6vmax 0;
 }
 
 .checkout-cart-btn {
