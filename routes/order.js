@@ -114,6 +114,9 @@ router.post(
   }
 );
 
+// @route     GET /orders/print/update
+// @desc      Update the quantity of the 3D print order
+// @access    Private
 router.post("/orders/print/update", restrictedPages, async (req, res) => {
   let printId = mongoose.Types.ObjectId(req.body.printId);
   let printQuantity = req.body.quantity;
@@ -133,6 +136,32 @@ router.post("/orders/print/update", restrictedPages, async (req, res) => {
   }
   let revisedOrder = { ...order, ...{ fileName } };
   return res.send(revisedOrder);
+});
+
+// @route     GET /orders/print/delete
+// @desc      Delete the 3D print order from the database
+// @access    Private
+router.post("/orders/print/delete", restrictedPages, async (req, res) => {
+  // Declare variables
+  const printId = mongoose.Types.ObjectId(req.body.printId);
+  let deletedPrint;
+  let fileId;
+  // Delete the Make
+  try {
+    deletedPrint = await deleteMakeOrder(printId);
+  } catch (error) {
+    return res.send({ status: "failed", contents: error });
+  }
+  fileId = mongoose.Types.ObjectId(deletedPrint.fileId);
+  // Delete the file
+  try {
+    await deleteFile(fileId);
+  } catch (error) {
+    // If error was encountered, send a failed status
+    return res.send({ status: "failed", contents: error });
+  }
+  // Send back a success status
+  return res.send({ status: "success", contents: "" });
 });
 
 /*=========================================================================================
@@ -228,6 +257,47 @@ const updateMakeOrder = (_id, property, value) => {
       reject(error);
     }
     resolve(savedOrder);
+  });
+};
+
+// @FUNC  deleteFile
+// @TYPE  PROMISE
+// @DESC  This function deletes the make order
+// @ARGU
+const deleteMakeOrder = _id => {
+  return new Promise(async (resolve, reject) => {
+    let print;
+    let deletedPrint;
+
+    try {
+      print = await Make.findById(_id);
+    } catch (error) {
+      reject(error);
+    }
+
+    try {
+      deletedPrint = await print.deleteOne();
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(deletedPrint);
+  });
+};
+
+// @FUNC  deleteFile
+// @TYPE  PROMISE
+// @DESC  This function deletes a file based on the id
+// @ARGU
+const deleteFile = _id => {
+  return new Promise(async (resolve, reject) => {
+    let gridStore;
+    try {
+      gridStore = await GridFS.remove({ _id, root: "fs" });
+    } catch (error) {
+      reject(error);
+    }
+    resolve();
   });
 };
 

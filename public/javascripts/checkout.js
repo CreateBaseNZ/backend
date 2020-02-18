@@ -12,6 +12,8 @@ let checkoutValidity = {
 };
 let stripe;
 let elements;
+let numberOfPrints;
+let numberOfItems;
 
 /*-----------------------------------------------------------------------------------------
 ELEMENTS
@@ -111,6 +113,7 @@ const checkoutCartGetMarketplaceOrders = () => {
 // FUNCTION TO CREATE THE HTML FOR 3D PRINT ORDERS
 
 const checkoutCartCreate3dPrintOrderHTML = print => {
+  const printId = String(print._id);
   // Container One
   const icon = `<div class="checkout-prnt-cnt-img bgd-clr-wht-2"></div>`;
   const containerOne = `<div class="checkout-prnt-cnt-cntn-1">${icon}</div>`;
@@ -127,11 +130,11 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
                       <input
                         type="number"
                         name="quantity"
-                        id="checkout-prnt-qnty-${print._id}"
+                        id="checkout-prnt-qnty-${printId}"
                         class="checkout-prnt-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
                         min="1"
                         value="${print.quantity}"
-                        onchange="checkoutCartUpdate3dPrintOrderQuantity(this.value, '${print.quantity}', '${print._id}');"
+                        onchange="checkoutCartUpdate3dPrintOrderQuantity(this.value, '${print.quantity}', '${printId}');"
                       />
                     </div>`;
   const containerTwo = `<div class="checkout-prnt-cnt-cntn-2">${fileName +
@@ -140,7 +143,7 @@ const checkoutCartCreate3dPrintOrderHTML = print => {
     quantity}</div>`;
 
   // Container Three
-  const cancel = `<div class="checkout-prnt-cnt-cncl"></div>`;
+  const cancel = `<div class="checkout-prnt-cnt-cncl" onclick="checkoutCartDelete3dPrintOrder('${printId}');"></div>`;
   let price;
   price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2">
                       $X,XXX.XX
@@ -175,26 +178,8 @@ const checkoutCartLoadPrintOrders = async () => {
     return error;
   }
 
-  // Process the loaded prints
-  if (prints.length) {
-    // Set the height of the printing cart depending on the number of items
-    document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
-      prints.length}vmax`;
-
-    // If there are prints ordered
-    document.querySelector("#checkout-prnt-cnts").innerHTML = "";
-    for (let i = 0; i < prints.length; i++) {
-      const print = prints[i];
-      const containers = checkoutCartCreate3dPrintOrderHTML(print);
-      const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
-      document
-        .querySelector("#checkout-prnt-cnts")
-        .insertAdjacentHTML("beforeend", html);
-    }
-  } else {
-    // If there are no prints ordered
-    document.querySelector("#checkout-prnt-cnts").innerHTML = "No 3D Prints";
-  }
+  numberOfPrints = prints.length;
+  checkoutCartPopulate3dPrintOrders(prints);
 };
 
 // FUNCTION TO UPDATE THE NUMBER UNITS
@@ -250,12 +235,55 @@ const checkoutCartValidateOrderQuantity = (newQuantity, quantity, printId) => {
   return true;
 };
 
+// @FUNC  checkoutCartPopulate3dPrintOrders
+// @TYPE
+// @DESC  This function populate the cart
+// @ARGU  prints - array - The array of 3D print orders
+const checkoutCartPopulate3dPrintOrders = prints => {
+  // Process the loaded prints
+  if (numberOfPrints) {
+    // Set the height of the printing cart depending on the number of items
+    document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
+      numberOfPrints}vmax`;
+    if (prints) {
+      // If there are prints ordered
+      document.querySelector("#checkout-prnt-cnts").innerHTML = "";
+      for (let i = 0; i < numberOfPrints; i++) {
+        const print = prints[i];
+        const containers = checkoutCartCreate3dPrintOrderHTML(print);
+        const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
+        document
+          .querySelector("#checkout-prnt-cnts")
+          .insertAdjacentHTML("beforeend", html);
+      }
+    }
+  } else {
+    // If there are no prints ordered
+    document.querySelector("#checkout-prnt-cnts").innerHTML = "No 3D Prints";
+  }
+};
+
 // @FUNC  checkoutCartDelete3dPrintOrder
 // @TYPE
 // @DESC  This function removes a 3d print order from the cart and deletes it on the
 //        database
 // @ARGU  printId - string - The id of the 3d print to be deleted
-const checkoutCartDelete3dPrintOrder = async printId => {};
+const checkoutCartDelete3dPrintOrder = async printId => {
+  // Remove the 3D print from the cart
+  document.querySelector(`#checkout-prnt-${printId}`).remove();
+  // Reduce the number of 3D prints listed
+  numberOfPrints = numberOfPrints - 1;
+  checkoutCartPopulate3dPrintOrders();
+  // Delete the 3D print from the database
+  let data;
+  try {
+    data = (await axios.post("/orders/print/delete", { printId }))["data"];
+  } catch (error) {
+    return { status: "failed", contents: error };
+  }
+  console.log(data);
+  return;
+};
 
 // @FUNC  checkoutCartCreateMarketplaceOrderHTML
 // @TYPE  SIMPLE
@@ -304,7 +332,7 @@ const checkoutCartCreateMarketplaceOrderHTML = order => {
 //        page. The HTML created is for no items scenario.
 // @ARGU
 const checkoutCartCreateMarketplaceNoOrderHTML = () => {
-  const html = "<p>No Orders</p>";
+  const html = "<p>No Items</p>";
   return html;
 };
 
@@ -321,23 +349,33 @@ const checkoutCartLoadMarketplaceOrders = async () => {
     return error;
   }
 
-  // Process the loaded prints
-  if (items.length) {
-    document.querySelector("#checkout-mkpl-cnts").style = `height: ${16 *
-      items.length}vmax`;
+  numberOfItems = items.length;
+  checkoutCartPopulateMarketplaceOrders(items);
+};
 
-    // If there are prints ordered
-    document.querySelector("#checkout-mkpl-cnts").innerHTML = "";
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      const containers = checkoutCartCreateMarketplaceOrderHTML(item);
-      const html = `<div class="checkout-mkpl-cnt" id="checkout-mkpl-${item._id}">${containers}</div>`;
-      document
-        .querySelector("#checkout-mkpl-cnts")
-        .insertAdjacentHTML("beforeend", html);
+// @FUNC  checkoutCartPopulateMarketplaceOrders
+// @TYPE
+// @DESC  This function populate the cart
+// @ARGU  items - array - The array of Marketplace orders
+const checkoutCartPopulateMarketplaceOrders = items => {
+  // Process the loaded items
+  if (numberOfItems) {
+    document.querySelector("#checkout-mkpl-cnts").style = `height: ${16 *
+      numberOfItems}vmax`;
+    if (items) {
+      // If there are items ordered
+      document.querySelector("#checkout-mkpl-cnts").innerHTML = "";
+      for (let i = 0; i < numberOfItems; i++) {
+        const item = items[i];
+        const containers = checkoutCartCreateMarketplaceOrderHTML(item);
+        const html = `<div class="checkout-mkpl-cnt" id="checkout-mkpl-${item._id}">${containers}</div>`;
+        document
+          .querySelector("#checkout-mkpl-cnts")
+          .insertAdjacentHTML("beforeend", html);
+      }
     }
   } else {
-    // If there are no prints ordered
+    // If there are no items ordered
     const html = checkoutCartCreateMarketplaceNoOrderHTML();
     document.querySelector("#checkout-mkpl-cnts").innerHTML = html;
   }
@@ -348,7 +386,14 @@ const checkoutCartLoadMarketplaceOrders = async () => {
 // @DESC  This function removes a marketplace order from the cart and deletes it on the
 //        database
 // @ARGU  itemId - string - The id of the item to be deleted
-const checkoutCartDeleteMarketplaceOrder = async itemId => {};
+const checkoutCartDeleteMarketplaceOrder = async itemId => {
+  // Remove the item from the cart
+  document.querySelector(`#checkout-prnt-${itemId}`).remove();
+  // Reduce the number of items listed
+  numberOfItems = numberOfItems - 1;
+  checkoutCartPopulate3dPrintOrders();
+  // Delete the item from the database
+};
 
 /*-----------------------------------------------------------------------------------------
 CREATE PAYMENT INTENT AND GET CLIENT SECRET
