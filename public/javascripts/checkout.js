@@ -23,11 +23,14 @@ ELEMENTS
 let checkoutHeadingCart;
 let checkoutHeadingShipping;
 let checkoutHeadingPayment;
-let checkoutHeadingCompletion;
 // Card Details
 let cardNumber;
 let cardExpiry;
 let cardCvc;
+// Navigation
+let checkoutNavigationCart;
+let checkoutNavigationShipping;
+let checkoutNavigationPayment;
 
 /*=========================================================================================
 FUNCTIONS
@@ -51,11 +54,21 @@ const checkoutInit = () => {
   checkoutHeadingCart = document.querySelector("#checkout-cart-hdng");
   checkoutHeadingShipping = document.querySelector("#checkout-shpg-hdng");
   checkoutHeadingPayment = document.querySelector("#checkout-pymt-hdng");
-  checkoutHeadingCompletion = document.querySelector("#checkout-cmpt-hdng");
+  // ELEMENTS - Navigation
+  checkoutNavigationCart = document.querySelector("#checkout-navigation-cart");
+  checkoutNavigationShipping = document.querySelector(
+    "#checkout-navigation-shipping"
+  );
+  checkoutNavigationPayment = document.querySelector(
+    "#checkout-navigation-payment"
+  );
 
   // LOAD ORDERS
   checkoutCartLoadPrintOrders();
   checkoutCartLoadMarketplaceOrders();
+
+  // CREATE EVENT LISTENERS
+  checkoutNavigationEvent();
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -259,7 +272,8 @@ const checkoutCartPopulate3dPrintOrders = prints => {
     }
   } else {
     // If there are no prints ordered
-    document.querySelector("#checkout-prnt-cnts").innerHTML = "No 3D Prints";
+    document.querySelector("#checkout-prnt-cnts").innerHTML =
+      "<p>No 3D Prints</p>";
   }
 };
 
@@ -395,6 +409,15 @@ const checkoutCartDeleteMarketplaceOrder = async itemId => {
   // Delete the item from the database
 };
 
+// @FUNC  checkoutCartCreateDiscountHTML
+// @TYPE
+// @DESC
+// @ARGU
+const checkoutCartCreateDiscountHTML = discount => {
+  const html = `<div class="checkout-dsct sbtl-2 txt-clr-blk-3"></div>`;
+  return html;
+};
+
 /*-----------------------------------------------------------------------------------------
 CREATE PAYMENT INTENT AND GET CLIENT SECRET
 -----------------------------------------------------------------------------------------*/
@@ -462,6 +485,91 @@ const checkoutPay = async () => {
   }
 
   console.log(payment["status"]);
+};
+
+/*-----------------------------------------------------------------------------------------
+NAVIGATION
+-----------------------------------------------------------------------------------------*/
+
+let checkoutPages = ["cart", "shipping", "payment"];
+let checkoutSelectedPage = 0;
+
+// @FUNC  checkoutNavigationEvent
+// @TYPE  SIMPLE
+// @DESC  This function adds an event listener to the navigation
+// @ARGU
+const checkoutNavigationEvent = () => {
+  checkoutNavigationCart.addEventListener("click", () => checkoutShowPage(0));
+  checkoutNavigationShipping.addEventListener("click", () =>
+    checkoutShowPage(1)
+  );
+  checkoutNavigationPayment.addEventListener("click", () =>
+    checkoutShowPage(2)
+  );
+};
+
+// @FUNC  checkoutShowPage
+// @TYPE  SIMPLE
+// @DESC  This function switches the page
+// @ARGU
+const checkoutShowPage = nextPage => {
+  // Check if we are currently on the same page
+  if (nextPage == checkoutSelectedPage) return;
+  // Update the navigation CSS
+  checkoutChangeNavigationCSS(nextPage);
+  checkoutChangePageCSS(nextPage);
+  // Update the current selected page
+  checkoutSelectedPage = nextPage;
+};
+
+// @FUNC  checkoutChangeNavigationCSS
+// @TYPE  SIMPLE
+// @DESC  This function changes the CSS of the navigation
+// @ARGU
+const checkoutChangeNavigationCSS = nextPage => {
+  const nextPageName = checkoutPages[nextPage];
+  const currentPageName = checkoutPages[checkoutSelectedPage];
+  document
+    .querySelector(`#checkout-navigation-${nextPageName}`)
+    .classList.add("checkout-navigation-icon-container-selected");
+  document
+    .querySelector(`#checkout-navigation-${currentPageName}`)
+    .classList.remove("checkout-navigation-icon-container-selected");
+};
+
+// @FUNC  checkoutChangePageCSS
+// @TYPE  SIMPLE
+// @DESC  This function changes the CSS of the pages
+// @ARGU
+const checkoutChangePageCSS = nextPage => {
+  const nextPageName = checkoutPages[nextPage];
+  if (nextPage > checkoutSelectedPage) {
+    document
+      .querySelector(`#checkout-sub-pg-${nextPageName}`)
+      .classList.remove("checkout-sub-pg-right");
+    for (let i = checkoutSelectedPage; i < nextPage; i++) {
+      const currentPageName = checkoutPages[i];
+      document
+        .querySelector(`#checkout-sub-pg-${currentPageName}`)
+        .classList.remove("checkout-sub-pg-right");
+      document
+        .querySelector(`#checkout-sub-pg-${currentPageName}`)
+        .classList.add("checkout-sub-pg-left");
+    }
+  } else {
+    document
+      .querySelector(`#checkout-sub-pg-${nextPageName}`)
+      .classList.remove("checkout-sub-pg-left");
+    for (let i = checkoutSelectedPage; i > nextPage; i--) {
+      const currentPageName = checkoutPages[i];
+      document
+        .querySelector(`#checkout-sub-pg-${currentPageName}`)
+        .classList.remove("checkout-sub-pg-left");
+      document
+        .querySelector(`#checkout-sub-pg-${currentPageName}`)
+        .classList.add("checkout-sub-pg-right");
+    }
+  }
 };
 
 /*=========================================================================================

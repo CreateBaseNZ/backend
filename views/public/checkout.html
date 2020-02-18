@@ -139,13 +139,13 @@
         SUMMARY PAGE (DESKTOP ONLY)
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-pg" id="checkout-sub-pg-0"></div>
+        <div class="checkout-sub-pg" id="checkout-sub-pg-summary"></div>
 
         <!---------------------------------------------------------------------------------
         CART PAGE
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-pg" id="checkout-sub-pg-1">
+        <div class="checkout-sub-pg" id="checkout-sub-pg-cart">
           <h2
             class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
             id="checkout-cart-hdng"
@@ -216,12 +216,9 @@
                 >
                   Add
                 </button>
-                <div class="checkout-dsct-inp-err sbtl-1">Error</div>
+                <div class="checkout-dsct-inp-err sbtl-1"></div>
               </div>
-              <div id="checkout-dsct-list-cntn">
-                <div class="checkout-dsct sbtl-2 txt-clr-blk-3">Discount 1</div>
-                <div class="checkout-dsct sbtl-2 txt-clr-blk-3">Discount 2</div>
-              </div>
+              <div id="checkout-dsct-list-cntn"></div>
             </div>
 
             <!-----------------------------------------------------------------------------
@@ -338,7 +335,10 @@
         SHIPPING PAGE
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-pg" id="checkout-sub-pg-2">
+        <div
+          class="checkout-sub-pg checkout-sub-pg-right"
+          id="checkout-sub-pg-shipping"
+        >
           <h2
             class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
             id="checkout-shpg-hdng"
@@ -572,14 +572,17 @@
         PAYMENT PAGE
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-pg" id="checkout-sub-pg-3">
+        <div
+          class="checkout-sub-pg checkout-sub-pg-right"
+          id="checkout-sub-pg-payment"
+        >
           <h2
             class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
             id="checkout-pymt-hdng"
           >
             Payment
           </h2>
-          <div class="checkout-sub-sub-pgs">
+          <div class="checkout-sub-sub-pgs" id="checkout-pymt-sub-sub-pg">
             <div id="checkout-pymt-bank-tsfr">
               <input
                 type="radio"
@@ -668,6 +671,39 @@
         <!---------------------------------------------------------------------------------
         NAVIGATION SYSTEM
         ---------------------------------------------------------------------------------->
+
+        <nav id="checkout-navigation-container">
+          <div
+            class="checkout-navigation-icon-container checkout-navigation-icon-container-selected"
+            id="checkout-navigation-cart"
+          >
+            <img
+              src="./../../public/images/cart.png"
+              class="checkout-navigation-icon-default"
+              alt=""
+            />
+          </div>
+          <div
+            class="checkout-navigation-icon-container"
+            id="checkout-navigation-shipping"
+          >
+            <img
+              src="./../../public/images/shipping.png"
+              class="checkout-navigation-icon-default"
+              alt=""
+            />
+          </div>
+          <div
+            class="checkout-navigation-icon-container"
+            id="checkout-navigation-payment"
+          >
+            <img
+              src="./../../public/images/payment.png"
+              class="checkout-navigation-icon-default"
+              alt=""
+            />
+          </div>
+        </nav>
       </div>
 
       <!--=================================================================================
