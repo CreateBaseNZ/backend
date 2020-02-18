@@ -27,7 +27,7 @@ const ItemSchema = new Schema({
 EXPORT ITEM MODEL
 =========================================================================================*/
 
-module.exports = Item = mongoose.model("purchases", ItemSchema);
+module.exports = Item = mongoose.model("items", ItemSchema);
 
 /*=========================================================================================
 END

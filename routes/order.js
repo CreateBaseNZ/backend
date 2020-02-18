@@ -118,7 +118,7 @@ router.post(
 // @desc      Update the quantity of the 3D print order
 // @access    Private
 router.post("/orders/print/update", restrictedPages, async (req, res) => {
-  let printId = mongoose.Types.ObjectId(req.body.printId);
+  let printId = mongoose.Schema.Types.ObjectId(req.body.printId);
   let printQuantity = req.body.quantity;
   let order;
   try {
@@ -143,7 +143,7 @@ router.post("/orders/print/update", restrictedPages, async (req, res) => {
 // @access    Private
 router.post("/orders/print/delete", restrictedPages, async (req, res) => {
   // Declare variables
-  const printId = mongoose.Types.ObjectId(req.body.printId);
+  const printId = mongoose.Schema.Types.ObjectId(req.body.printId);
   let deletedPrint;
   let fileId;
   // Delete the Make
@@ -152,7 +152,7 @@ router.post("/orders/print/delete", restrictedPages, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", contents: error });
   }
-  fileId = mongoose.Types.ObjectId(deletedPrint.fileId);
+  fileId = mongoose.Schema.Types.ObjectId(deletedPrint.fileId);
   // Delete the file
   try {
     await deleteFile(fileId);

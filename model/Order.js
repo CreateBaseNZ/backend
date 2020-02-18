@@ -14,13 +14,32 @@ const Schema = mongoose.Schema;
 CREATE ORDER MODEL
 =========================================================================================*/
 
-const OrderSchema = new Schema({});
+const OrderSchema = new Schema({
+  accountId: {
+    type: Schema.Types.ObjectId
+  },
+  makes: {
+    type: [Schema.Types.ObjectId]
+  },
+  items: {
+    type: [Schema.Types.ObjectId]
+  },
+  discounts: {
+    type: [Schema.Types.ObjectId]
+  },
+  manufacturingSpeed: {
+    type: String
+  },
+  status: {
+    type: String
+  }
+});
 
 /*=========================================================================================
 EXPORT ORDER MODEL
 =========================================================================================*/
 
-module.exports = Order = mongoose.model("make", OrderSchema);
+module.exports = Order = mongoose.model("orders", OrderSchema);
 
 /*=========================================================================================
 END
