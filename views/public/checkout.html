@@ -239,7 +239,7 @@
                     name="manufacturingSpeed"
                     class="checkout-mnft-spd-opt-inp inp-rad-1"
                     id="checkout-mnft-spd-opt-nrml"
-                    onchange="checkoutCartUpdateManufacturingSpeedOption('normal', this.value);"
+                    onchange="checkoutCartUpdateManufacturingSpeedOption('normal');"
                     checked
                   />
                   <label
@@ -254,7 +254,7 @@
                     name="manufacturingSpeed"
                     class="checkout-mnft-spd-opt-inp inp-rad-1"
                     id="checkout-mnft-spd-opt-urgt"
-                    onchange="checkoutCartUpdateManufacturingSpeedOption('urgent', this.value);"
+                    onchange="checkoutCartUpdateManufacturingSpeedOption('urgent');"
                   />
                   <label
                     for="checkout-mnft-spd-opt-urgt"
@@ -374,6 +374,7 @@
                   name="address"
                   class="checkout-shpg-adrs-inp"
                   id="checkout-shpg-adrs-svd-inp"
+                  onchange="checkoutShippingSelectAddress('saved');"
                   checked
                 />
                 <label
@@ -383,24 +384,12 @@
                 >
               </div>
               <div
-                class="checkout-shpg-adrs-cntn"
+                class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-svd"
                 id="checkout-shpg-adrs-cntn-svd"
               >
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  7/11
-                </div>
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  45B Aranui Road
-                </div>
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  Panmure
-                </div>
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  Auckland, 1020
-                </div>
-                <div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  New Zealand
-                </div>
+                <p>
+                  No Saved Address
+                </p>
               </div>
               <div class="checkout-shpg-adrs-inp-cntn">
                 <input
@@ -408,6 +397,7 @@
                   name="address"
                   class="checkout-shpg-adrs-inp"
                   id="checkout-shpg-adrs-new-inp"
+                  onchange="checkoutShippingSelectAddress('new');"
                 />
                 <label
                   for="checkout-shpg-adrs-new-inp"
@@ -416,7 +406,7 @@
                 >
               </div>
               <div
-                class="checkout-shpg-adrs-cntn"
+                class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-new checkout-shpg-adrs-cntn-hide"
                 id="checkout-shpg-adrs-cntn-new"
               >
                 <label
@@ -437,6 +427,7 @@
                   class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                   id="checkout-shpg-adrs-new-unit"
                   placeholder="Unit (optional)"
+                  oninput="checkoutShippingGetNewAddressInputs('unit');"
                 />
                 <input
                   type="text"
@@ -444,7 +435,16 @@
                   class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                   id="checkout-shpg-adrs-new-st-num"
                   placeholder="Street No."
+                  oninput="checkoutShippingGetNewAddressInputs('streetNumber');"
                 />
+                <div
+                  class="sbtl-1 checkout-shipping-new-address-error"
+                  id="checkout-shipping-unit-error"
+                ></div>
+                <div
+                  class="sbtl-1 checkout-shipping-new-address-error"
+                  id="checkout-shipping-street-number-error"
+                ></div>
                 <label
                   for="checkout-shpg-adrs-new-st-name"
                   class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
@@ -457,7 +457,12 @@
                   class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                   id="checkout-shpg-adrs-new-st-name"
                   placeholder="Street Name"
+                  oninput="checkoutShippingGetNewAddressInputs('streetName');"
                 />
+                <div
+                  class="sbtl-1 checkout-shipping-new-address-error"
+                  id="checkout-shipping-street-name-error"
+                ></div>
                 <label
                   for="checkout-shpg-adrs-new-sbrb"
                   class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
@@ -470,7 +475,12 @@
                   class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                   id="checkout-shpg-adrs-new-sbrb"
                   placeholder="Suburb"
+                  oninput="checkoutShippingGetNewAddressInputs('suburb');"
                 />
+                <div
+                  class="sbtl-1 checkout-shipping-new-address-error"
+                  id="checkout-shipping-suburb-error"
+                ></div>
                 <label
                   for="checkout-shpg-adrs-new-cty"
                   class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
@@ -483,7 +493,12 @@
                   class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                   id="checkout-shpg-adrs-new-cty"
                   placeholder="City"
+                  oninput="checkoutShippingGetNewAddressInputs('city');"
                 />
+                <div
+                  class="sbtl-1 checkout-shipping-new-address-error"
+                  id="checkout-shipping-city-error"
+                ></div>
                 <label
                   for="checkout-shpg-adrs-new-zp-cd"
                   class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
@@ -496,7 +511,12 @@
                   class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                   id="checkout-shpg-adrs-new-zp-cd"
                   placeholder="Zip Code"
+                  oninput="checkoutShippingGetNewAddressInputs('postcode');"
                 />
+                <div
+                  class="sbtl-1 checkout-shipping-new-address-error"
+                  id="checkout-shipping-postcode-error"
+                ></div>
                 <label
                   for="checkout-shpg-adrs-new-cnty"
                   class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
@@ -505,11 +525,27 @@
                 >
                 <input
                   type="text"
-                  name="streetName"
+                  name="country"
                   class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                   id="checkout-shpg-adrs-new-cnty"
                   placeholder="Country"
+                  oninput="checkoutShippingGetNewAddressInputs('country');"
                 />
+                <div
+                  class="sbtl-1 checkout-shipping-new-address-error"
+                  id="checkout-shipping-country-error"
+                ></div>
+                <div id="checkout-shipping-save-address">
+                  <input
+                    type="checkbox"
+                    name="saveAddress"
+                    id="checkout-shipping-save-address-input"
+                    checked
+                  />
+                  <label for="checkout-shipping-save-address-input"
+                    >Save Address</label
+                  >
+                </div>
               </div>
             </div>
 
@@ -540,6 +576,7 @@
                   name="shippingMethod"
                   class="checkout-shpg-mthd-inp"
                   id="checkout-shpg-mthd-inp-trck"
+                  checked
                 />
                 <label
                   for="checkout-shpg-mthd-inp-trck"
@@ -567,16 +604,18 @@
             ------------------------------------------------------------------------------>
 
             <div class="checkout-shpg-btns">
-              <div
-                class="checkout-shpg-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+              <button
+                class="rmv-btn-css checkout-shpg-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                onclick="checkoutShowPage(0);"
               >
                 Back
-              </div>
-              <div
-                class="checkout-shpg-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+              </button>
+              <button
+                class="rmv-btn-css checkout-shpg-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                onclick="checkoutShowPage(2);"
               >
                 Next
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -610,17 +649,18 @@
                 >Bank Transfer (Receive 5% Bonus Credit)</label
               >
               <div class="checkout-pymt-btns">
-                <div
-                  class="checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                <button
+                  class="rmv-btn-css checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                  onclick="checkoutShowPage(1);"
                 >
                   Back
-                </div>
-                <div
-                  class="checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                </button>
+                <button
+                  class="rmv-btn-css checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
                   id="checkout-pymt-bank-tsfr-pay-btn"
                 >
                   Payed
-                </div>
+                </button>
               </div>
             </div>
             <div id="checkout-pymt-card">
@@ -663,18 +703,19 @@
                   <div id="checkout-card-cvc"></div>
                 </form>
                 <div class="checkout-pymt-btns">
-                  <div
-                    class="checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                  <button
+                    class="rmv-btn-css checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                    onclick="checkoutShowPage(1);"
                   >
                     Back
-                  </div>
-                  <div
-                    class="checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                  </button>
+                  <button
+                    class="rmv-btn-css checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
                     id="checkout-pymt-card-pay-btn"
                     onclick="checkoutPay();"
                   >
                     Pay
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>

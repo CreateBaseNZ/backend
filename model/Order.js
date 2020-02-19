@@ -11,12 +11,45 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
+SUB MODELS
+=========================================================================================*/
+
+const AddressSchema = new Schema({
+  unit: {
+    type: String
+  },
+  street: {
+    number: {
+      type: String
+    },
+    name: {
+      type: String
+    }
+  },
+  suburb: {
+    type: String
+  },
+  city: {
+    type: String
+  },
+  postcode: {
+    type: String
+  },
+  country: {
+    type: String
+  }
+});
+
+/*=========================================================================================
 CREATE ORDER MODEL
 =========================================================================================*/
 
 const OrderSchema = new Schema({
   accountId: {
     type: Schema.Types.ObjectId
+  },
+  status: {
+    type: String
   },
   makes: {
     type: [Schema.Types.ObjectId]
@@ -30,8 +63,24 @@ const OrderSchema = new Schema({
   manufacturingSpeed: {
     type: String
   },
-  status: {
-    type: String
+  shipping: {
+    address: {
+      option: {
+        type: String
+      },
+      saved: {
+        type: AddressSchema
+      },
+      new: {
+        type: AddressSchema
+      },
+      save: {
+        type: Boolean
+      }
+    },
+    method: {
+      type: String
+    }
   }
 });
 

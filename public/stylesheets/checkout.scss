@@ -359,6 +359,8 @@ CART
 SHIPPING
 -----------------------------------------------------------------------------------------*/
 
+// CLASSES
+
 .checkout-shpg-adrs-inp-cntn {
   width: 100%;
   display: flex;
@@ -371,8 +373,24 @@ SHIPPING
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-content: flex-start;
   align-items: center;
   padding: 2vmax 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.checkout-shpg-adrs-cntn-svd {
+  height: 22vmax;
+}
+
+.checkout-shpg-adrs-cntn-new {
+  height: 70vmax;
+}
+
+.checkout-shpg-adrs-cntn-hide {
+  height: 0;
+  padding: 0;
 }
 
 .checkout-shpg-adrs-inp {
@@ -398,30 +416,6 @@ SHIPPING
   width: 100%;
 }
 
-#checkout-shpg-adrs-new-unit-lbl {
-  width: 70%;
-}
-
-#checkout-shpg-adrs-new-st-num-lbl {
-  width: 25%;
-}
-
-#checkout-shpg-adrs-new-unit {
-  width: 70%;
-}
-
-#checkout-shpg-adrs-new-st-num {
-  width: 25%;
-}
-
-#checkout-shpg-adrs-new-zp-cd-lbl {
-  width: 60%;
-}
-
-#checkout-shpg-adrs-new-zp-cd {
-  width: 60%;
-}
-
 .checkout-shpg-mthd-cntn {
   width: 100%;
   display: flex;
@@ -442,12 +436,71 @@ SHIPPING
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 4vmax 0;
+  padding: 6vmax 0;
 }
 
 .checkout-shpg-btn {
   width: 14vmax;
   letter-spacing: 0.2vmax;
+}
+
+.checkout-shipping-new-address-error {
+  width: 100%;
+  height: 2.4vmax;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  letter-spacing: 0.1vmax;
+}
+
+// IDS
+
+#checkout-shpg-adrs-new-unit-lbl {
+  width: 60%;
+}
+
+#checkout-shpg-adrs-new-st-num-lbl {
+  width: 35%;
+}
+
+#checkout-shpg-adrs-new-unit {
+  width: 60%;
+}
+
+#checkout-shpg-adrs-new-st-num {
+  width: 35%;
+}
+
+#checkout-shpg-adrs-new-zp-cd-lbl {
+  width: 60%;
+}
+
+#checkout-shpg-adrs-new-zp-cd {
+  width: 60%;
+}
+
+#checkout-shipping-unit-error {
+  width: 60%;
+}
+
+#checkout-shipping-street-number-error {
+  width: 35%;
+}
+
+#checkout-shipping-postcode-error {
+  width: 60%;
+}
+
+#checkout-shpg-adrs-cntn-svd p {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $fnt-fml-2;
+  letter-spacing: 0.2vmax;
+  font-size: 2.4vmax;
+  color: $clr-wht-3;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -501,7 +554,7 @@ PAYMENT
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 4vmax 0;
+  padding: 6vmax 0;
 }
 
 .checkout-pymt-btn {

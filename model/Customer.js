@@ -11,6 +11,42 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
+SUB MODELS
+=========================================================================================*/
+
+const AddressSchema = new Schema({
+  unit: {
+    type: String
+  },
+  street: {
+    number: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    }
+  },
+  suburb: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  postcode: {
+    type: String,
+    required: true
+  },
+  country: {
+    type: String,
+    required: true
+  }
+});
+
+/*=========================================================================================
 CREATE CUSTOMER MODEL
 =========================================================================================*/
 
@@ -20,6 +56,9 @@ const CustomerSchema = new Schema({
   },
   displayName: {
     type: String
+  },
+  address: {
+    type: AddressSchema
   }
 });
 

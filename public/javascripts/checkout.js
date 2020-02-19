@@ -630,6 +630,286 @@ const checkoutChangePageCSS = nextPage => {
   }
 };
 
+// @FUNC  checkoutShippingSelectAddress
+// @TYPE  SIMPLE
+// @DESC  This function processes the selection of the shipping address
+// @ARGU  shippingAddressOption - string -
+const checkoutShippingSelectAddress = shippingAddressOption => {
+  checkoutShippingChangeAddressCSS(shippingAddressOption);
+};
+
+// @FUNC  checkoutShippingChangeAddressCSS
+// @TYPE  SIMPLE
+// @DESC  This function displays and hide the contents of the address option depending on
+//        the selected shipping address option
+// @ARGU  shippingAddressOption - string -
+const checkoutShippingChangeAddressCSS = shippingAddressOption => {
+  if (shippingAddressOption == "new") {
+    document
+      .querySelector("#checkout-shpg-adrs-cntn-svd")
+      .classList.add("checkout-shpg-adrs-cntn-hide");
+    document
+      .querySelector("#checkout-shpg-adrs-cntn-new")
+      .classList.remove("checkout-shpg-adrs-cntn-hide");
+  } else {
+    document
+      .querySelector("#checkout-shpg-adrs-cntn-svd")
+      .classList.remove("checkout-shpg-adrs-cntn-hide");
+    document
+      .querySelector("#checkout-shpg-adrs-cntn-new")
+      .classList.add("checkout-shpg-adrs-cntn-hide");
+  }
+};
+
+// @FUNC  checkoutShippingCreateSavedAddressHTML
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU  address - object -
+const checkoutShippingCreateSavedAddressHTML = address => {
+  let unit = "";
+
+  if (address.unit) {
+    unit = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+            ${address.unit}</div>`;
+  }
+
+  const street = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+                  ${address.street.number} ${address.street.name}</div>`;
+  const suburb = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+                  ${address.suburb}</div>`;
+  const cityPostal = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+                      ${address.city}, ${address.postcode}</div>`;
+  const country = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+                    ${address.country}</div>`;
+
+  const html = unit + street + suburb + cityPostal + country;
+
+  return html;
+};
+
+// @FUNC  checkoutShippingAddressCollectAndValidateUnit
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+const checkoutShippingAddressCollectAndValidateUnit = () => {
+  const unit = document.querySelector("#checkout-shpg-adrs-new-unit").value;
+  let status = {
+    valid: true,
+    input: unit,
+    message: ""
+  };
+
+  return status;
+};
+
+// @FUNC  checkoutShippingAddressCollectAndValidateStreetNumber
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+const checkoutShippingAddressCollectAndValidateStreetNumber = () => {
+  const streetNumber = document.querySelector("#checkout-shpg-adrs-new-st-num")
+    .value;
+  let status = {
+    valid: true,
+    input: streetNumber,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!streetNumber) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkoutShippingAddressCollectAndValidateStreetName
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+const checkoutShippingAddressCollectAndValidateStreetName = () => {
+  const streetName = document.querySelector("#checkout-shpg-adrs-new-st-name")
+    .value;
+  let status = {
+    valid: true,
+    input: streetName,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!streetName) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkoutShippingAddressCollectAndValidateSuburb
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+const checkoutShippingAddressCollectAndValidateSuburb = () => {
+  const suburb = document.querySelector("#checkout-shpg-adrs-new-sbrb").value;
+  let status = {
+    valid: true,
+    input: suburb,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!suburb) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkoutShippingAddressCollectAndValidateCity
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+const checkoutShippingAddressCollectAndValidateCity = () => {
+  const city = document.querySelector("#checkout-shpg-adrs-new-cty").value;
+  let status = {
+    valid: true,
+    input: city,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!city) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkoutShippingAddressCollectAndValidatePostcode
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+const checkoutShippingAddressCollectAndValidatePostcode = () => {
+  const postcode = document.querySelector("#checkout-shpg-adrs-new-zp-cd")
+    .value;
+  let status = {
+    valid: true,
+    input: postcode,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!postcode) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkoutShippingAddressCollectAndValidateCountry
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+const checkoutShippingAddressCollectAndValidateCountry = () => {
+  const country = document.querySelector("#checkout-shpg-adrs-new-cnty").value;
+  let status = {
+    valid: true,
+    input: country,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!country) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkoutShippingGetNewAddressInputs
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+const checkoutShippingGetNewAddressInputs = type => {
+  // Collect and Validate Inputs
+  const unit = checkoutShippingAddressCollectAndValidateUnit();
+  const streetNumber = checkoutShippingAddressCollectAndValidateStreetNumber();
+  const streetName = checkoutShippingAddressCollectAndValidateStreetName();
+  const suburb = checkoutShippingAddressCollectAndValidateSuburb();
+  const city = checkoutShippingAddressCollectAndValidateCity();
+  const postcode = checkoutShippingAddressCollectAndValidatePostcode();
+  const country = checkoutShippingAddressCollectAndValidateCountry();
+  // Check Validity
+  const valid =
+    unit.valid &&
+    streetNumber.valid &&
+    streetName.valid &&
+    suburb.valid &&
+    city.valid &&
+    postcode.valid &&
+    country.valid;
+  // Error Handling
+  if (type == "unit") {
+    document.querySelector("#checkout-shipping-unit-error").innerHTML =
+      unit.message;
+  } else if (type == "streetNumber") {
+    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
+      streetNumber.message;
+  } else if (type == "streetName") {
+    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
+      streetName.message;
+  } else if (type == "suburb") {
+    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
+      suburb.message;
+  } else if (type == "city") {
+    document.querySelector("#checkout-shipping-city-error").innerHTML =
+      city.message;
+  } else if (type == "postcode") {
+    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
+      postcode.message;
+  } else if (type == "country") {
+    document.querySelector("#checkout-shipping-country-error").innerHTML =
+      country.message;
+  } else {
+    document.querySelector("#checkout-shipping-unit-error").innerHTML =
+      unit.message;
+    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
+      streetNumber.message;
+    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
+      streetName.message;
+    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
+      suburb.message;
+    document.querySelector("#checkout-shipping-city-error").innerHTML =
+      city.message;
+    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
+      postcode.message;
+    document.querySelector("#checkout-shipping-country-error").innerHTML =
+      country.message;
+  }
+  if (valid) {
+  } else {
+  }
+  // Create the Address Object
+  const address = {
+    unit: unit.input,
+    street: {
+      number: streetNumber.input,
+      name: streetName.input
+    },
+    suburb: suburb.input,
+    city: city.input,
+    postcode: postcode.input,
+    country: country.input
+  };
+
+  return address;
+};
+
 /*=========================================================================================
 END
 =========================================================================================*/
