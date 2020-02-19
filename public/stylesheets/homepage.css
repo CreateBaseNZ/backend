@@ -1959,43 +1959,86 @@ body .main-page .landing-page-container {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
-body .main-page .landing-page-container .landing-video {
+body .main-page .landing-page-container .landing-slide {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body .main-page .landing-page-container .landing-vid {
   top: 0;
   left: 0;
   min-width: 100%;
   min-height: 100%;
 }
 
-body .main-page .landing-page-container .landing-message {
-  position: fixed;
-  left: 25%;
-  top: 68%;
+body .main-page .landing-page-container .landing-msg {
+  position: absolute;
   z-index: 100;
-  text-align: right;
   color: white;
 }
 
-body .main-page .landing-page-container .landing-message h1 {
+body .main-page .landing-page-container .landing-msg h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   font-size: 5rem;
 }
 
-body .main-page .landing-page-container .landing-message p {
+body .main-page .landing-page-container .landing-msg p {
   font-family: "Raleway", sans-serif;
   font-size: 1.5rem;
   font-weight: 100;
 }
 
 body .main-page .landing-page-container #slide-1 {
-  left: 0;
+  position: absolute;
+  left: 100%;
 }
 
-body .main-page .landing-page-container #slide-2 #landing-video-2 {
+body .main-page .landing-page-container #slide-1 #landing-msg-1 {
+  top: 68%;
+  left: 25%;
+  text-align: right;
+}
+
+body .main-page .landing-page-container #slide-2 {
+  position: absolute;
+  left: 0%;
+}
+
+body .main-page .landing-page-container #slide-2 #landing-vid-2 {
   height: 120vh;
+}
+
+body .main-page .landing-page-container #slide-2 #landing-msg-2 {
+  width: 100%;
+  top: 65%;
+  text-align: center;
+}
+
+body .main-page .landing-page-container .landing-nav {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  bottom: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .main-page .landing-page-container .landing-nav .landing-nav-btn {
+  height: 15px;
+  width: 15px;
+  border-radius: 50px;
+  background: white;
+  margin: 5px;
 }
