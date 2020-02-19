@@ -66,7 +66,7 @@ GENERAL
 -----------------------------------------------------------------------------------------*/
 
 router.get("/files/download/:fileId", (req, res) => {
-  const id = mongoose.Schema.Types.ObjectId(req.params.fileId);
+  const id = mongoose.Types.ObjectId(req.params.fileId);
   GridFS.files.findOne({ _id: id }, (err, file) => {
     if (!file || file.length == 0) {
       return res.status(404).json({ error: "No file exists" });
@@ -104,8 +104,8 @@ router.post(
   restrictedPages,
   async (req, res) => {
     // VALIDATION
-    const accountId = mongoose.Schema.Types.ObjectId(req.user._id);
-    const fileId = mongoose.Schema.Types.ObjectId(req.file.id);
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    const fileId = mongoose.Types.ObjectId(req.file.id);
     const status = "awaiting quote";
     const build = "temporary";
     const process = req.body.process;
@@ -142,7 +142,7 @@ router.post(
         throw error;
       }
       // Get the comment's id
-      commentId = mongoose.Schema.Types.ObjectId(savedComment._id);
+      commentId = mongoose.Types.ObjectId(savedComment._id);
       // Add the comment id to the list of comment ids
       comments.push(commentId);
     }
