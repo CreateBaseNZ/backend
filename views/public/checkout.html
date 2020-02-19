@@ -416,7 +416,7 @@
                 >
               </div>
               <div
-                class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-new checkout-shpg-adrs-cntn-hide"
+                class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-new checkout-element-hide"
                 id="checkout-shpg-adrs-cntn-new"
               >
                 <label
@@ -697,6 +697,7 @@
                 name="paymentMethod"
                 class="checkout-pymt-mthd-inp"
                 id="checkout-pymt-mthd-inp-bank-tsfr"
+                onchange="checkoutPaymentSelectOption('bankTransfer');"
                 checked
               />
               <label
@@ -704,19 +705,22 @@
                 class="checkout-pymt-mthd-inp-lbl txt-1 txt-clr-blk-2"
                 >Bank Transfer (Receive 5% Bonus Credit)</label
               >
-              <div class="checkout-pymt-btns">
-                <button
-                  class="rmv-btn-css checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
-                  onclick="checkoutShowPage(1);"
-                >
-                  Back
-                </button>
-                <button
-                  class="rmv-btn-css checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
-                  id="checkout-pymt-bank-tsfr-pay-btn"
-                >
-                  Payed
-                </button>
+              <div id="checkout-pymt-bank-tsfr-cntn">
+                <div id="checkout-payment-bank-transfer-instruction"></div>
+                <div class="checkout-pymt-btns">
+                  <button
+                    class="rmv-btn-css checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                    onclick="checkoutShowPage(1);"
+                  >
+                    Back
+                  </button>
+                  <button
+                    class="rmv-btn-css checkout-pymt-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                    id="checkout-pymt-bank-tsfr-pay-btn"
+                  >
+                    Payed
+                  </button>
+                </div>
               </div>
             </div>
             <div id="checkout-pymt-card">
@@ -725,13 +729,14 @@
                 name="paymentMethod"
                 class="checkout-pymt-mthd-inp"
                 id="checkout-pymt-mthd-inp-card"
+                onchange="checkoutPaymentSelectOption('card');"
               />
               <label
                 for="checkout-pymt-mthd-inp-card"
                 class="checkout-pymt-mthd-inp-lbl txt-1 txt-clr-blk-2"
                 >Debit Card or Credit Card</label
               >
-              <div id="checkout-pymt-card-cntn">
+              <div class="checkout-element-hide" id="checkout-pymt-card-cntn">
                 <form
                   action="/charge"
                   method="post"

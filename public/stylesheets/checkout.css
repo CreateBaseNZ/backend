@@ -2431,11 +2431,6 @@ SHIPPING
   height: 70vmax;
 }
 
-.checkout-shpg-adrs-cntn-hide {
-  height: 0;
-  padding: 0;
-}
-
 .checkout-shpg-adrs-inp {
   margin: 0;
 }
@@ -2745,6 +2740,17 @@ NAVIGATION
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 26vh 0;
+}
+
+/*-----------------------------------------------------------------------------------------
+GLOBAL
+-----------------------------------------------------------------------------------------*/
+.checkout-element-hide {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 /*=========================================================================================

@@ -647,17 +647,17 @@ const checkoutShippingChangeAddressCSS = shippingAddressOption => {
   if (shippingAddressOption == "new") {
     document
       .querySelector("#checkout-shpg-adrs-cntn-svd")
-      .classList.add("checkout-shpg-adrs-cntn-hide");
+      .classList.add("checkout-element-hide");
     document
       .querySelector("#checkout-shpg-adrs-cntn-new")
-      .classList.remove("checkout-shpg-adrs-cntn-hide");
+      .classList.remove("checkout-element-hide");
   } else {
     document
       .querySelector("#checkout-shpg-adrs-cntn-svd")
-      .classList.remove("checkout-shpg-adrs-cntn-hide");
+      .classList.remove("checkout-element-hide");
     document
       .querySelector("#checkout-shpg-adrs-cntn-new")
-      .classList.add("checkout-shpg-adrs-cntn-hide");
+      .classList.add("checkout-element-hide");
   }
 };
 
@@ -908,6 +908,41 @@ const checkoutShippingGetNewAddressInputs = type => {
   };
 
   return address;
+};
+
+// @FUNC  checkoutPaymentSelectOption
+// @TYPE  SIMPLE
+// @DESC  This function processes the selection of a payment options
+// @ARGU  option - string -
+const checkoutPaymentSelectOption = option => {
+  // Update CSS
+  checkoutPaymentChangeCSS(option);
+  // Update the Database
+};
+
+// @FUNC  checkoutPaymentChangeCSS
+// @TYPE  SIMPLE
+// @DESC  This function hides and unhides the option details depending on the
+//        payment option selected
+// @ARGU  option - string -
+const checkoutPaymentChangeCSS = option => {
+  if (option === "bankTransfer") {
+    // If the Bank Transfer option is selected
+    document
+      .querySelector("#checkout-pymt-bank-tsfr-cntn")
+      .classList.remove("checkout-element-hide");
+    document
+      .querySelector("#checkout-pymt-card-cntn")
+      .classList.add("checkout-element-hide");
+  } else if (option === "card") {
+    // If the Card option is selected
+    document
+      .querySelector("#checkout-pymt-bank-tsfr-cntn")
+      .classList.add("checkout-element-hide");
+    document
+      .querySelector("#checkout-pymt-card-cntn")
+      .classList.remove("checkout-element-hide");
+  }
 };
 
 /*=========================================================================================
