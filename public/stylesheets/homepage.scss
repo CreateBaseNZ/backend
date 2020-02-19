@@ -34,21 +34,23 @@ body {
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      display: flex;
 
-      .landing-video {
+      .landing-slide {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .landing-vid {
         top: 0;
         left: 0;
         min-width: 100%;
         min-height: 100%;
       }
 
-      .landing-message {
-        position: fixed;
-        left: 25%;
-        top: 68%;
+      .landing-msg {
+        position: absolute;
         z-index: 100;
-        text-align: right;
         color: $light-1;
 
         h1 {
@@ -65,12 +67,54 @@ body {
       }
 
       #slide-1 {
-        left: 0;
+        position: absolute;
+        left: 100%;
+
+        #landing-msg-1 {
+          top: 68%;
+          left: 25%;
+          text-align: right;
+        }
       }
 
       #slide-2 {
-        #landing-video-2 {
+        position: absolute;
+        left: 0%;
+
+        #landing-vid-2 {
           height: 120vh;
+        }
+
+        #landing-msg-2 {
+          width: 100%;
+          top: 65%;
+          text-align: center;
+        }
+      }
+
+      .landing-nav {
+        position: absolute;
+        background: rgba(0,0,0,0.5);
+        width: 100vw;
+        bottom: 10%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .landing-nav-btn {
+          height: 15px;
+          width: 15px;
+          border-radius: 50px;
+          background: white;
+          margin: 5px;
+        }
+
+        #landing-btn-1 {
+
+        }
+
+        #landing-btn-2 {
+
         }
       }
     }
