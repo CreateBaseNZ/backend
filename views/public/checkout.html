@@ -139,13 +139,87 @@
         SUMMARY PAGE (DESKTOP ONLY)
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-pg" id="checkout-sub-pg-summary"></div>
+        <div class="checkout-sub-pg" id="checkout-sub-pg-summary">
+          <div id="checkout-summary-heading-container">
+            <h1 class="rmv-h-css">
+              Order Summary
+            </h1>
+          </div>
+          <div class="checkout-summary-group">
+            <div class="checkout-summary-label">Subtotal</div>
+            <div
+              class="checkout-summary-value"
+              id="checkout-summary-value-subtotal"
+            >
+              $X,XXX.XX
+            </div>
+          </div>
+          <div class="checkout-summary-group">
+            <div
+              class="checkout-summary-label"
+              id="checkout-summary-label-discount"
+            >
+              Discount
+            </div>
+            <div
+              class="checkout-summary-value"
+              id="checkout-summary-value-discount"
+            >
+              $X,XXX.XX
+            </div>
+          </div>
+          <div class="checkout-summary-group">
+            <div
+              class="checkout-summary-label"
+              id="checkout-summary-label-manufacturing"
+            >
+              Manufacturing
+            </div>
+            <div
+              class="checkout-summary-value"
+              id="checkout-summary-value-manufacturing"
+            >
+              $X,XXX.XX
+            </div>
+          </div>
+          <div class="checkout-summary-group">
+            <div
+              class="checkout-summary-label"
+              id="checkout-summary-label-shipping"
+            >
+              Shipping
+            </div>
+            <div
+              class="checkout-summary-value"
+              id="checkout-summary-value-shipping"
+            >
+              $X,XXX.XX
+            </div>
+          </div>
+          <div class="checkout-summary-group" id="checkout-summary-group-total">
+            <div
+              class="checkout-summary-label"
+              id="checkout-summary-label-total"
+            >
+              TOTAL
+            </div>
+            <div
+              class="checkout-summary-value"
+              id="checkout-summary-value-total"
+            >
+              $X,XXX.XX
+            </div>
+          </div>
+        </div>
 
         <!---------------------------------------------------------------------------------
         CART PAGE
         ---------------------------------------------------------------------------------->
 
-        <div class="checkout-sub-pg" id="checkout-sub-pg-cart">
+        <div
+          class="checkout-sub-pg checkout-sub-pg-cart"
+          id="checkout-sub-pg-cart"
+        >
           <h2
             class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
             id="checkout-cart-hdng"
@@ -349,7 +423,7 @@
         ---------------------------------------------------------------------------------->
 
         <div
-          class="checkout-sub-pg checkout-sub-pg-right"
+          class="checkout-sub-pg checkout-sub-pg-shipping checkout-sub-pg-right"
           id="checkout-sub-pg-shipping"
         >
           <h2
@@ -681,7 +755,7 @@
         ---------------------------------------------------------------------------------->
 
         <div
-          class="checkout-sub-pg checkout-sub-pg-right"
+          class="checkout-sub-pg checkout-sub-pg-payment checkout-sub-pg-right"
           id="checkout-sub-pg-payment"
         >
           <h2

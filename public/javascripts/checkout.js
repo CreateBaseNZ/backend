@@ -255,9 +255,6 @@ const checkoutCartValidateOrderQuantity = (newQuantity, quantity, printId) => {
 const checkoutCartPopulate3dPrintOrders = prints => {
   // Process the loaded prints
   if (numberOfPrints) {
-    // Set the height of the printing cart depending on the number of items
-    document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
-      numberOfPrints}vmax`;
     if (prints) {
       // If there are prints ordered
       document.querySelector("#checkout-prnt-cnts").innerHTML = "";
@@ -269,6 +266,8 @@ const checkoutCartPopulate3dPrintOrders = prints => {
           .querySelector("#checkout-prnt-cnts")
           .insertAdjacentHTML("beforeend", html);
       }
+      checkoutResizeOrder(x);
+      x.addListener(checkoutResizeOrder);
     }
   } else {
     // If there are no prints ordered
@@ -948,3 +947,22 @@ const checkoutPaymentChangeCSS = option => {
 /*=========================================================================================
 END
 =========================================================================================*/
+
+const x = window.matchMedia("(min-width: 850px)");
+
+const checkoutResizeOrder = x => {
+  const elements = document.getElementsByClassName("checkout-prnt-cnt");
+  const numOfPrints = elements.length;
+
+  if (x.matches) {
+    if (numOfPrints) {
+      document.querySelector("#checkout-prnt-cnts").style = `height: ${8 *
+        numOfPrints}vmax`;
+    }
+  } else {
+    if (numOfPrints) {
+      document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
+        numOfPrints}vmax`;
+    }
+  }
+};

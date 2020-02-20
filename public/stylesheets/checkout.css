@@ -1367,8 +1367,8 @@ button {
 }
 
 .loading-icon .layer {
-  height: 20vw;
-  width: 20vw;
+  height: 5vw;
+  width: 5vw;
   opacity: 0.3;
   position: absolute;
   border-radius: 1vw;
@@ -1742,7 +1742,7 @@ button {
   0%,
   100% {
     background: #4e4ed6;
-    margin-top: calc(20vw * -1 / 4);
+    margin-top: calc(5vw * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1752,7 +1752,7 @@ button {
   25% {
     background: #6853d9;
     margin-top: 0;
-    margin-left: 20vw;
+    margin-left: 5vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1760,7 +1760,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(20vw * 1 / 4);
+    margin-top: calc(5vw * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
@@ -1770,7 +1770,7 @@ button {
   75% {
     background: #6853d9;
     margin-top: 0;
-    margin-left: -20vw;
+    margin-left: -5vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1846,7 +1846,7 @@ button {
   0%,
   100% {
     background: #8258dc;
-    margin-top: calc(20vw * 1 / 4);
+    margin-top: calc(5vw * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1856,7 +1856,7 @@ button {
   25% {
     background: #6853d9;
     margin-top: 0;
-    margin-left: -20vw;
+    margin-left: -5vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1864,7 +1864,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(20vw * -1 / 4);
+    margin-top: calc(5vw * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
@@ -1874,7 +1874,7 @@ button {
   75% {
     background: #6853d9;
     margin-top: 0;
-    margin-left: 20vw;
+    margin-left: 5vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1886,7 +1886,7 @@ button {
   0%,
   100% {
     background: #8258dc;
-    margin-top: calc(20vw * 1 / 4);
+    margin-top: calc(5vw * 1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1896,7 +1896,7 @@ button {
   25% {
     background: #6853d9;
     margin-top: 0;
-    margin-left: -20vw;
+    margin-left: -5vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1904,7 +1904,7 @@ button {
   }
   50% {
     background: #4e4ed6;
-    margin-top: calc(20vw * -1 / 4);
+    margin-top: calc(5vw * -1 / 4);
     margin-left: 0;
     -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
             transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
@@ -1914,7 +1914,7 @@ button {
   75% {
     background: #6853d9;
     margin-top: 0;
-    margin-left: 20vw;
+    margin-left: 5vw;
     -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
             transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
     -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
@@ -1928,6 +1928,17 @@ VARIABLES
 /*=========================================================================================
 MOBILE CSS
 =========================================================================================*/
+/*-----------------------------------------------------------------------------------------
+SUMMARY
+-----------------------------------------------------------------------------------------*/
+#checkout-sub-pg-summary {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 /*-----------------------------------------------------------------------------------------
 CHECKOUT
 -----------------------------------------------------------------------------------------*/
@@ -2419,8 +2430,8 @@ SHIPPING
           align-items: center;
   padding: 2vmax 0;
   overflow: hidden;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: height 0.5s ease;
+  transition: height 0.5s ease;
 }
 
 .checkout-shpg-adrs-cntn-svd {
@@ -2753,12 +2764,6 @@ GLOBAL
   overflow: hidden;
 }
 
-/*=========================================================================================
-DESKTOP CSS
-=========================================================================================*/
-/*=========================================================================================
-END
-=========================================================================================*/
 .StripeElement {
   height: 4.8vmax;
   width: 100%;
@@ -2774,3 +2779,376 @@ END
   font-size: 1.8vmax;
   color: #322d41;
 }
+
+/*=========================================================================================
+DESKTOP CSS
+=========================================================================================*/
+@media only screen and (min-width: 850px) {
+  .checkout-sub-pg {
+    height: 100vmax;
+    width: 60vw;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 12vmax 0 4vmax;
+    overflow: hidden;
+  }
+  .checkout-sub-pg-cart {
+    height: 80vmax;
+  }
+  .checkout-sub-pg-shipping {
+    height: 90vmax;
+  }
+  .checkout-sub-pg-payment {
+    height: 45vmax;
+  }
+  .checkout-sub-hdng {
+    height: 6vmax;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    font-size: 2vmax;
+  }
+  .checkout-sub-sub-pgs {
+    padding: 2vmax;
+  }
+  .checkout-sub-sub-hdng {
+    height: 3.6vmax;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 1.6vmax;
+    margin: 2vmax 0;
+    border-width: 0.2vmax;
+    font-size: 1vmax;
+  }
+  .checkout-sub-pg-left {
+    height: 6vmax;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  .checkout-sub-pg-right {
+    height: 6vmax;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  .checkout-prnt-cnt {
+    height: 8vmax;
+    padding: 1vmax;
+  }
+  .checkout-prnt-cnt-cntn-1,
+  .checkout-prnt-cnt-cntn-3 {
+    width: 25%;
+  }
+  .checkout-prnt-cnt-cntn-2 {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .checkout-prnt-cnt-cntn-2 div,
+  .checkout-prnt-cnt-qnty-lbl,
+  .checkout-prnt-cnt-qnty,
+  .checkout-prnt-cnt-prc,
+  .checkout-shpg-adrs-new-lbl {
+    font-size: 0.8vmax;
+  }
+  .checkout-prnt-cnt-qnty {
+    height: 1.8vmax;
+    width: 4vmax;
+    margin: 0 0.6vmax;
+    padding: 0 0.5vmax;
+    border-width: 0.05vmax;
+    border-radius: 0.2vmax;
+  }
+  .checkout-prnt-cnt-img {
+    height: 6vmax;
+    width: 6vmax;
+  }
+  .checkout-prnt-cnt-file-name,
+  .checkout-prnt-cnt-bld-type,
+  .checkout-prnt-cnt-clr,
+  .checkout-prnt-cnt-qnty-cntn,
+  .checkout-prnt-cnt-cncl,
+  .checkout-prnt-cnt-prc {
+    height: 2vmax;
+  }
+  .checkout-prnt-cnt-bld-type,
+  .checkout-prnt-cnt-clr {
+    width: 50%;
+  }
+  .checkout-prnt-cnt-cncl {
+    height: 2vmax;
+    width: 2vmax;
+  }
+  .checkout-cart-cnts {
+    height: 8vmax;
+  }
+  .checkout-cart-cnts p {
+    font-size: 1.4vmax;
+    letter-spacing: 0.12vmax;
+  }
+  .checkout-dsct-inp-cntn {
+    height: 5vmax;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    padding: 0 2vmax;
+  }
+  .checkout-dsct {
+    height: 1.4vmax;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0;
+    font-size: 0.8vmax;
+  }
+  .checkout-mnft-spd-opt-inp {
+    height: 1vmax;
+  }
+  .checkout-mnft-spd-opt-lbl {
+    font-size: 0.9vmax;
+  }
+  .checkout-mnft-spd-opts {
+    height: 8vmax;
+    padding: 0;
+  }
+  .checkout-navigation-icon-container {
+    height: 3vmax;
+    width: 3vmax;
+    border-width: 0.1vmax;
+  }
+  .checkout-cart-btns,
+  .checkout-shpg-btns,
+  .checkout-pymt-btns {
+    height: 10vmax;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 6vmax;
+  }
+  .checkout-cart-btn,
+  .checkout-shpg-btn,
+  .checkout-pymt-btn {
+    height: 3vmax;
+    width: 10vmax;
+    border-radius: 1.5vmax;
+    font-size: 1.2vmax;
+    font-weight: bold;
+  }
+  .checkout-shpg-adrs-inp-cntn {
+    padding: 1vmax 2vmax;
+  }
+  .checkout-shpg-adrs-cntn {
+    padding: 1vmax 2vmax;
+  }
+  .checkout-shpg-adrs-cntn-svd {
+    height: 10vmax;
+  }
+  .checkout-shpg-adrs-cntn-new {
+    height: 38vmax;
+  }
+  .checkout-shpg-adrs-new-lbl {
+    padding: 0.5vmax 0.5vmax 0.25vmax 0;
+  }
+  .checkout-shipping-new-address-error {
+    height: 1.2vmax;
+  }
+  .checkout-shpg-mthd-cntn {
+    padding: 1vmax 2vmax;
+  }
+  .checkout-pymt-mthd-inp,
+  .checkout-pymt-mthd-inp-lbl {
+    height: 4vmax;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .checkout-element-hide {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  #checkout-pymt-sub-sub-pg {
+    padding: 1vmax 2vmax;
+  }
+  #checkout-shpg-adrs-cntn-svd p {
+    font-size: 1.2vmax;
+    letter-spacing: 0.1vmax;
+  }
+  #checkout-navigation-container {
+    height: 30vh;
+    width: 3vmax;
+    top: 35vh;
+    right: 4.5vmax;
+    padding: 0;
+  }
+  #checkout-dsct-inp-err {
+    height: 1vmax;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0;
+    font-size: 0.6vmax;
+  }
+  #checkout-dsct-list-cntn {
+    width: 100%;
+  }
+  #checkout-pg {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 4vmax 0 0 40vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  #cart-sub-pg-prc {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  #checkout-pymt-bank-tsfr,
+  #checkout-pymt-card,
+  #checkout-pymt-bank-tsfr-cntn {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .checkout-cart-loading-container {
+    height: 8vmax;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .checkout-cart-loading {
+    height: 4vmax;
+    width: 4vmax;
+  }
+  /*---------------------------------------------------------------------------------------
+  SUMMARY
+  ---------------------------------------------------------------------------------------*/
+  .checkout-summary-group {
+    height: 3vmax;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0 2vmax;
+  }
+  .checkout-summary-label,
+  .checkout-summary-value {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+    color: #877da9;
+  }
+  #checkout-sub-pg-summary {
+    height: 100%;
+    width: 40vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 8vmax 4vmax 4vmax 9vmax;
+    background-color: #f8f8f8;
+    overflow: hidden;
+  }
+  #checkout-summary-heading-container {
+    height: 4vmax;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 0 0 4vmax 0;
+  }
+  #checkout-summary-heading-container h1 {
+    font-family: "Poppins", sans-serif;
+    font-size: 2vmax;
+    font-weight: bold;
+    letter-spacing: 0.1vmax;
+    color: #322d41;
+  }
+  #checkout-summary-group-total {
+    margin-top: 1vmax;
+    height: 5vmax;
+    border-top: solid;
+    border-color: #322d41;
+    border-width: 0.1vmax;
+  }
+  #checkout-summary-label-total,
+  #checkout-summary-value-total {
+    font-size: 1vmax;
+    font-weight: bold;
+    color: #322d41;
+  }
+  /*---------------------------------------------------------------------------------------
+  STRIPE
+  ---------------------------------------------------------------------------------------*/
+  .StripeElement {
+    height: 2.4vmax;
+    width: 100%;
+    border-width: 0.05vmax;
+    border-style: none none solid none;
+    border-bottom-color: #877da9;
+    border-radius: 0vmax;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    padding: 0.75vmax 0.5vmax;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9vmax;
+    color: #322d41;
+  }
+}
+
+/*=========================================================================================
+END
+=========================================================================================*/
