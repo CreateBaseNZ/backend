@@ -50,7 +50,6 @@ body {
 
       .landing-msg {
         position: absolute;
-        z-index: 100;
         color: $light-1;
 
         h1 {
@@ -66,20 +65,22 @@ body {
         }
       }
 
-      #slide-1 {
+      .slide-1 {
         position: absolute;
-        left: 100%;
-
+        left: 0;
+        
         #landing-msg-1 {
           top: 68%;
           left: 25%;
           text-align: right;
         }
       }
-
-      #slide-2 {
+      
+      .slide-2 {
         position: absolute;
-        left: 0%;
+        left: 0;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
 
         #landing-vid-2 {
           height: 120vh;
@@ -92,32 +93,81 @@ body {
         }
       }
 
-      .landing-nav {
+      .slide-right-active {
+        opacity: 0;
+      }
+
+      .landing-nav-btn {
         position: absolute;
-        background: rgba(0,0,0,0.5);
         width: 100vw;
-        bottom: 10%;
+        bottom: 5%;
         display: flex;
-        flex-direction: row;
         justify-content: center;
+        align-items: center;
 
-        .landing-nav-btn {
-          height: 15px;
-          width: 15px;
-          border-radius: 50px;
-          background: white;
-          margin: 5px;
+        .landing-nav-wrapper,
+        .landing-nav-hitbox {
+          height: 20px;
+          width: 50px;
+          border-radius: 10px;
+          border: 2px solid white;
+          transition: all 0.3s ease-out;
         }
 
-        #landing-btn-1 {
-
+        .landing-nav-switch {
+          position: absolute;
+          height: 12px;
+          border-radius: 12px;
+          animation: toggle-slide-left 0.5s ease-out forwards;
         }
 
-        #landing-btn-2 {
+        .landing-nav-hitbox {
+          position: absolute;
+          border: none;
+          cursor: pointer;
+        }
 
+        .right-wrapper-active {
+          border: 2px solid black;
+        }
+
+        .right-switch-active {
+          animation: toggle-slide-right 0.5s ease-out forwards;
         }
       }
     }
 
+  }
+}
+
+@keyframes toggle-slide-right {
+  0% {
+    width: 12px;
+    margin-left: -15px;
+    background: white;
+  }
+  70% {
+    width: 22px;
+  }
+  100% {
+    width: 12px;
+    margin-left: 14px;
+    background: black;
+  }
+}
+
+@keyframes toggle-slide-left {
+  0% {
+    width: 12px;
+    margin-left: 15px;
+    background: black;
+  }
+  70% {
+    width: 22px;
+  }
+  100% {
+    width: 12px;
+    margin-left: -14px;
+    background: white;
   }
 }

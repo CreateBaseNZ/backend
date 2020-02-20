@@ -16,10 +16,11 @@
     <script src="./../../public/javascripts/moment.js"></script>
     <!------------ CUSTOM JAVASCRIPTS ----------->
     <script src="./../../public/javascripts/navbar.js"></script>
+    <script src="./../../public/javascripts/home.js"></script>
     <!---------------- STYLESHEET --------------->
     <link rel="stylesheet" href="./../../public/stylesheets/homepage.css" />
   </head>
-  <body onload="navInit();">
+  <body onload="navInit(); homeInit();">
     <nav class="nav-global screen-mode">
       <div class="nav-darken-filter"></div>
 
@@ -64,7 +65,7 @@
     </nav>
     <div class="main-page">
       <div class="landing-page-container">
-        <div class="landing-slide" id="slide-1">
+        <div class="landing-slide slide-1">
           <video autoplay muted loop class="landing-vid">
             <source src="./../../public/videos/placeholder-1.mp4" type="video/mp4">
           </video>
@@ -73,7 +74,7 @@
             <!-- <p>A solution that all futurists </p> -->
           </div>
         </div>
-        <div class="landing-slide" id="slide-2">
+        <div class="landing-slide slide-2">
           <video autoplay muted loop class="landing-vid" id="landing-vid-2">
             <source src="./../../public/videos/placeholder-2.mp4" type="video/mp4">
           </video>
@@ -82,9 +83,10 @@
             <!-- <p>A solution that all futurists </p> -->
           </div>
         </div>
-        <div class="landing-nav">
-          <div class="landing-nav-btn" id="landing-btn-1"></div>
-          <div class="landing-nav-btn" id="landing-btn-2"></div>
+        <div class="landing-nav-btn">
+          <div class="landing-nav-wrapper"></div>
+          <div class="landing-nav-switch"></div>
+          <div class="landing-nav-hitbox"></div>
         </div>
       </div>
     </div>
