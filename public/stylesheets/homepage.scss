@@ -2,7 +2,7 @@ $diamond: 35vw; /* _all.scss uses $diamond so it must be declared first */
 @import "all";
 
 body {
-  background: white;
+  background: black;
   width: 100vw;
   max-width: 100%;
   overflow-x: hidden;
@@ -28,7 +28,13 @@ body {
     }
   }
 
+  .home-sidebar {
+    position: absolute;
+  }
+
   .main-page {
+    display: flex;
+    flex-direction: column;
 
     .landing-page-container {
       width: 100vw;
@@ -50,6 +56,14 @@ body {
 
       .landing-msg {
         position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         h1 {
           font-family: $montserrat;
@@ -67,11 +81,11 @@ body {
       .slide-1 {
         position: absolute;
         left: 0;
+        opacity: 0;
+        animation: landing-fade-in 0.1s linear 0.6s forwards;
         
         #landing-msg-1 {
-          top: 68%;
-          left: 25%;
-          text-align: right;
+          color: white;
         }
       }
       
@@ -81,10 +95,9 @@ body {
         animation: landing-fade-in 0.5s ease-in-out forwards;
 
         #landing-msg-2 {
-          width: 100%;
-          text-align: center;
-          color: $logo-1;
-          top: 50%
+          width: 30%;
+          left: 10%;
+          color: $light-3;
         }
       }
 
@@ -105,7 +118,7 @@ body {
           height: 20px;
           width: 50px;
           border-radius: 10px;
-          border: 2px solid $logo-1;
+          border: 2px solid $light-3;
           transition: all 0.3s ease-out;
         }
 
@@ -132,6 +145,11 @@ body {
       }
     }
 
+    .testimonials {
+      height: 100vh;
+      width: 100vw;
+      background: white;
+    }
   }
 }
 
@@ -139,7 +157,7 @@ body {
   0% {
     width: 12px;
     margin-left: -15px;
-    background: $logo-1;
+    background: $light-3;
   }
   70% {
     width: 22px;
@@ -163,7 +181,7 @@ body {
   100% {
     width: 12px;
     margin-left: -14px;
-    background: $logo-1;
+    background: $light-3;
   }
 }
 

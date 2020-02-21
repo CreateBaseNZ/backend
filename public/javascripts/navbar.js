@@ -6,7 +6,7 @@ const navInit = () => {
 
   navElement.addEventListener("mouseenter", function() {
     hamburgerElement.classList.toggle("is-active");
-    darkFilter.style.opacity = "0.05";
+    darkFilter.style.opacity = "0.25";
   });
   navElement.addEventListener("mouseleave", function() {
     hamburgerElement.classList.toggle("is-active");
