@@ -1931,7 +1931,7 @@ body {
 }
 
 body .home-topbar .btn-reg {
-  width: 120px;
+  width: 8vw;
   height: 35px;
   background: transparent;
   border: white solid 1px;
@@ -1970,13 +1970,12 @@ body .main-page .landing-page-container .landing-slide {
 body .main-page .landing-page-container .landing-vid {
   top: 0;
   left: 0;
-  min-width: 100%;
-  min-height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 body .main-page .landing-page-container .landing-msg {
   position: absolute;
-  color: white;
 }
 
 body .main-page .landing-page-container .landing-msg h1 {
@@ -2005,23 +2004,20 @@ body .main-page .landing-page-container .slide-1 #landing-msg-1 {
 body .main-page .landing-page-container .slide-2 {
   position: absolute;
   left: 0;
-  opacity: 1;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
-}
-
-body .main-page .landing-page-container .slide-2 #landing-vid-2 {
-  height: 120vh;
+  -webkit-animation: landing-fade-in 0.5s ease-in-out forwards;
+          animation: landing-fade-in 0.5s ease-in-out forwards;
 }
 
 body .main-page .landing-page-container .slide-2 #landing-msg-2 {
   width: 100%;
-  top: 65%;
   text-align: center;
+  color: #8258dc;
+  top: 50%;
 }
 
 body .main-page .landing-page-container .slide-right-active {
-  opacity: 0;
+  -webkit-animation: landing-fade-out 0.5s ease-in-out forwards;
+          animation: landing-fade-out 0.5s ease-in-out forwards;
 }
 
 body .main-page .landing-page-container .landing-nav-btn {
@@ -2044,7 +2040,7 @@ body .main-page .landing-page-container .landing-nav-btn .landing-nav-hitbox {
   height: 20px;
   width: 50px;
   border-radius: 10px;
-  border: 2px solid white;
+  border: 2px solid #8258dc;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
@@ -2064,7 +2060,7 @@ body .main-page .landing-page-container .landing-nav-btn .landing-nav-hitbox {
 }
 
 body .main-page .landing-page-container .landing-nav-btn .right-wrapper-active {
-  border: 2px solid black;
+  border: 2px solid white;
 }
 
 body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
@@ -2076,7 +2072,7 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
   0% {
     width: 12px;
     margin-left: -15px;
-    background: white;
+    background: #8258dc;
   }
   70% {
     width: 22px;
@@ -2084,7 +2080,7 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
   100% {
     width: 12px;
     margin-left: 14px;
-    background: black;
+    background: white;
   }
 }
 
@@ -2092,7 +2088,7 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
   0% {
     width: 12px;
     margin-left: -15px;
-    background: white;
+    background: #8258dc;
   }
   70% {
     width: 22px;
@@ -2100,7 +2096,7 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
   100% {
     width: 12px;
     margin-left: 14px;
-    background: black;
+    background: white;
   }
 }
 
@@ -2108,7 +2104,7 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
   0% {
     width: 12px;
     margin-left: 15px;
-    background: black;
+    background: white;
   }
   70% {
     width: 22px;
@@ -2116,7 +2112,7 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
   100% {
     width: 12px;
     margin-left: -14px;
-    background: white;
+    background: #8258dc;
   }
 }
 
@@ -2124,7 +2120,7 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
   0% {
     width: 12px;
     margin-left: 15px;
-    background: black;
+    background: white;
   }
   70% {
     width: 22px;
@@ -2132,6 +2128,50 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
   100% {
     width: 12px;
     margin-left: -14px;
-    background: white;
+    background: #8258dc;
+  }
+}
+
+@-webkit-keyframes landing-fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes landing-fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes landing-fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: none;
+  }
+}
+
+@keyframes landing-fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: none;
   }
 }
