@@ -3,6 +3,7 @@ REQUIRED MODULES
 =========================================================================================*/
 
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
 
 /*=========================================================================================
 VARIABLES
@@ -46,19 +47,19 @@ CREATE ORDER MODEL
 
 const OrderSchema = new Schema({
   accountId: {
-    type: Schema.Types.ObjectId
+    type: mongoose.Types.ObjectId
   },
   status: {
     type: String
   },
   makes: {
-    type: [Schema.Types.ObjectId]
+    type: [mongoose.Types.ObjectId]
   },
   items: {
-    type: [Schema.Types.ObjectId]
+    type: [mongoose.Types.ObjectId]
   },
   discounts: {
-    type: [Schema.Types.ObjectId]
+    type: [mongoose.Types.ObjectId]
   },
   manufacturingSpeed: {
     type: String
@@ -81,12 +82,123 @@ const OrderSchema = new Schema({
     method: {
       type: String
     }
+  },
+  comments: {
+    type: [mongoose.Types.ObjectId]
+  },
+  date: {
+    created: {
+      type: String
+    },
+    validated: {
+      type: String
+    },
+    built: {
+      type: String
+    },
+    shipped: {
+      type: String
+    },
+    arrived: {
+      type: String
+    },
+    reviewed: {
+      type: String
+    },
+    completed: {
+      type: String
+    },
+    cancelled: {
+      type: String
+    },
+    modified: {
+      type: String
+    }
   }
 });
 
 /*=========================================================================================
-METHODS
+STATIC - MODEL
 =========================================================================================*/
+
+// @FUNC  findOneByStatus
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+OrderSchema.statics.findOneByStatus = function(status) {
+  return new Promise(async (resolve, reject) => {
+    let order;
+
+    try {
+      order = await this.findOne({ status });
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(order);
+  });
+};
+
+/*=========================================================================================
+METHODS - DOCUMENT
+=========================================================================================*/
+
+// @FUNC  updateStatus
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+OrderSchema.methods.updateStatus = function(status) {
+  return new Promise(async (resolve, reject) => {
+    const statuses = [
+      "created",
+      "validated",
+      "built",
+      "shipped",
+      "arrived",
+      "reviewed",
+      "completed",
+      "cancelled"
+    ];
+
+    // VALIDATION START
+
+    if (statuses.indexOf(status) === -1) {
+      reject({
+        status: "failed",
+        message: "invalid status"
+      });
+    }
+
+    // VALIDATION END
+
+    const date = moment()
+      .tz("Pacific/Auckland")
+      .format();
+
+    this.status = status;
+    this.date[status] = date;
+    this.date.modified = date;
+
+    let savedOrder;
+
+    try {
+      savedOrder = await this.save();
+    } catch (error) {
+      reject({
+        status: "failed",
+        message: error
+      });
+    }
+
+    resolve(savedOrder);
+  });
+};
+
+// @FUNC  updateSavedAddress
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+OrderSchema.methods.updateSavedAddress = function() {};
 
 /*=========================================================================================
 EXPORT ORDER MODEL
