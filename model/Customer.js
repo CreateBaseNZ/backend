@@ -63,6 +63,30 @@ const CustomerSchema = new Schema({
 });
 
 /*=========================================================================================
+METHODS
+=========================================================================================*/
+
+// @FUNC  updateAddress
+// @TYPE  METHODS
+// @DESC
+// @ARGU  address - object -
+CustomerSchema.methods.updateAddress = address => {
+  return new Promise(async (resolve, reject) => {
+    this.address = address;
+    let savedCustomer;
+    try {
+      savedCustomer = await this.save();
+    } catch (error) {
+      reject({
+        status: "failed",
+        message: error
+      });
+    }
+    resolve(savedCustomer);
+  });
+};
+
+/*=========================================================================================
 EXPORT CUSTOMER MODEL
 =========================================================================================*/
 
