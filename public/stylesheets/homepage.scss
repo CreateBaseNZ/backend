@@ -9,7 +9,7 @@ body {
 
   .home-topbar {
     .btn-reg {
-      width: 120px;
+      width: 8vw;
       height: 35px;
       background: transparent;
       border: $light-1 solid 1px;
@@ -44,13 +44,12 @@ body {
       .landing-vid {
         top: 0;
         left: 0;
-        min-width: 100%;
-        min-height: 100%;
+        min-width: 100vw;
+        min-height: 100vh;
       }
 
       .landing-msg {
         position: absolute;
-        color: $light-1;
 
         h1 {
           font-family: $montserrat;
@@ -79,22 +78,18 @@ body {
       .slide-2 {
         position: absolute;
         left: 0;
-        opacity: 1;
-        transition: opacity 0.5s ease-in-out;
-
-        #landing-vid-2 {
-          height: 120vh;
-        }
+        animation: landing-fade-in 0.5s ease-in-out forwards;
 
         #landing-msg-2 {
           width: 100%;
-          top: 65%;
           text-align: center;
+          color: $logo-1;
+          top: 50%
         }
       }
 
       .slide-right-active {
-        opacity: 0;
+        animation: landing-fade-out 0.5s ease-in-out forwards;
       }
 
       .landing-nav-btn {
@@ -110,7 +105,7 @@ body {
           height: 20px;
           width: 50px;
           border-radius: 10px;
-          border: 2px solid white;
+          border: 2px solid $logo-1;
           transition: all 0.3s ease-out;
         }
 
@@ -128,7 +123,7 @@ body {
         }
 
         .right-wrapper-active {
-          border: 2px solid black;
+          border: 2px solid white;
         }
 
         .right-switch-active {
@@ -144,7 +139,7 @@ body {
   0% {
     width: 12px;
     margin-left: -15px;
-    background: white;
+    background: $logo-1;
   }
   70% {
     width: 22px;
@@ -152,7 +147,7 @@ body {
   100% {
     width: 12px;
     margin-left: 14px;
-    background: black;
+    background: white;
   }
 }
 
@@ -160,7 +155,7 @@ body {
   0% {
     width: 12px;
     margin-left: 15px;
-    background: black;
+    background: white;
   }
   70% {
     width: 22px;
@@ -168,6 +163,28 @@ body {
   100% {
     width: 12px;
     margin-left: -14px;
-    background: white;
+    background: $logo-1;
+  }
+}
+
+@keyframes landing-fade-in {
+  0% { 
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% { 
+    opacity: 1;
+    visibility: visible; 
+  }
+}
+
+@keyframes landing-fade-out {
+  0% { 
+    opacity: 1;
+    visibility: visible; 
+  }
+  100% { 
+    opacity: 0;
+    visibility: none; 
   }
 }
