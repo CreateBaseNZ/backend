@@ -335,7 +335,7 @@ button {
 .input-decor {
   position: relative;
   display: inline-block;
-  border-bottom: 1.1px dotted $dark-3;
+  border-bottom: 1.2px dotted $dark-3;
 
   input {
     border: none;
@@ -349,7 +349,7 @@ button {
 
   input[type="text"] {
     font-family: $poppins;
-    font-size: 1.2rem;
+    height: 28px;
   }
 
   label {
@@ -381,7 +381,7 @@ button {
   &::after,
   &:focus-within::after {
     content: "";
-    border-bottom: 1.1px solid $highlight;
+    border-bottom: 1.2px solid $highlight;
     position: absolute;
     width: 0%;
     top: 100%;
