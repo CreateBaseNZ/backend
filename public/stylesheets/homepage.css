@@ -2088,10 +2088,24 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
           animation: toggle-slide-right 0.5s ease-out forwards;
 }
 
-body .main-page .test-logo-container {
-  height: 50vh;
-  width: 100%;
+body .main-page .test-container {
+  position: relative;
   background: white;
+  height: 50vh;
+}
+
+body .main-page .test-container .test-header p {
+  padding-top: 10vh;
+  padding-bottom: 2vh;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3vh;
+  color: #877da9;
+  letter-spacing: 2px;
+}
+
+body .main-page .test-container .test-logo-container {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2107,7 +2121,7 @@ body .main-page .test-logo-container {
           align-items: center;
 }
 
-body .main-page .test-logo-container .test-box {
+body .main-page .test-container .test-logo-container .test-box {
   height: 10vw;
   width: 10vw;
   display: -webkit-box;
@@ -2124,13 +2138,13 @@ body .main-page .test-logo-container .test-box {
   transition: 0.3s ease-out;
 }
 
-body .main-page .test-logo-container .test-box img {
+body .main-page .test-container .test-logo-container .test-box img {
   width: 5vw;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
 
-body .main-page .test-logo-container .test-box .test-corner {
+body .main-page .test-container .test-logo-container .test-box .test-corner {
   position: absolute;
   height: 0;
   width: 0;
@@ -2139,46 +2153,62 @@ body .main-page .test-logo-container .test-box .test-corner {
   transition: 0.5s ease-out;
 }
 
-body .main-page .test-logo-container .test-box .top-left {
+body .main-page .test-container .test-logo-container .test-box .top-left {
   margin-top: -5vw;
-  margin-left: -5vw;
+  margin-left: calc(-5vw - 1px);
   border-top: 1px solid #2d283c;
   border-left: 1px solid #2d283c;
 }
 
-body .main-page .test-logo-container .test-box .top-right {
+body .main-page .test-container .test-logo-container .test-box .top-right {
   margin-top: -5vw;
-  margin-left: 5vw;
+  margin-left: calc(5vw + 1px);
   border-top: 1px solid #2d283c;
   border-right: 1px solid #2d283c;
 }
 
-body .main-page .test-logo-container .test-box .bottom-left {
+body .main-page .test-container .test-logo-container .test-box .bottom-left {
   margin-top: 5vw;
-  margin-left: -5vw;
+  margin-left: calc(-5vw - 1px);
   border-bottom: 1px solid #2d283c;
   border-left: 1px solid #2d283c;
 }
 
-body .main-page .test-logo-container .test-box .bottom-right {
+body .main-page .test-container .test-logo-container .test-box .bottom-right {
   margin-top: 5vw;
-  margin-left: 5vw;
+  margin-left: calc(5vw + 1px);
   border-bottom: 1px solid #2d283c;
   border-right: 1px solid #2d283c;
 }
 
-body .main-page .test-logo-container .test-box:hover {
+body .main-page .test-container .test-logo-container .test-box:hover {
   border: 0.8px solid #c7c2d5;
 }
 
-body .main-page .test-logo-container .test-box:hover .test-corner {
+body .main-page .test-container .test-logo-container .test-box:hover .test-corner {
   height: 1vw;
   width: 1vw;
   visibility: visible;
 }
 
-body .main-page .test-logo-container .test-box:hover img {
-  width: 5.5vw;
+body .main-page .test-container .test-logo-container .test-box:hover .top-left {
+  margin-top: -4.5vw;
+  margin-left: calc(-4.5vw - 1px);
+}
+
+body .main-page .test-container .test-logo-container .test-box:hover .top-right {
+  margin-top: -4.5vw;
+  margin-left: calc(4.5vw + 1px);
+}
+
+body .main-page .test-container .test-logo-container .test-box:hover .bottom-left {
+  margin-top: 4.5vw;
+  margin-left: calc(-4.5vw - 1px);
+}
+
+body .main-page .test-container .test-logo-container .test-box:hover .bottom-right {
+  margin-top: 4.5vw;
+  margin-left: calc(4.5vw + 1px);
 }
 
 @-webkit-keyframes toggle-slide-right {
