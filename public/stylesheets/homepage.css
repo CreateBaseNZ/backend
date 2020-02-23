@@ -2088,10 +2088,97 @@ body .main-page .landing-page-container .landing-nav-btn .right-switch-active {
           animation: toggle-slide-right 0.5s ease-out forwards;
 }
 
-body .main-page .testimonials {
-  height: 100vh;
-  width: 100vw;
+body .main-page .test-logo-container {
+  height: 50vh;
+  width: 100%;
   background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .main-page .test-logo-container .test-box {
+  height: 10vw;
+  width: 10vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid white;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+body .main-page .test-logo-container .test-box img {
+  width: 5vw;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+body .main-page .test-logo-container .test-box .test-corner {
+  position: absolute;
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  -webkit-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
+}
+
+body .main-page .test-logo-container .test-box .top-left {
+  margin-top: -5vw;
+  margin-left: -5vw;
+  border-top: 1px solid #2d283c;
+  border-left: 1px solid #2d283c;
+}
+
+body .main-page .test-logo-container .test-box .top-right {
+  margin-top: -5vw;
+  margin-left: 5vw;
+  border-top: 1px solid #2d283c;
+  border-right: 1px solid #2d283c;
+}
+
+body .main-page .test-logo-container .test-box .bottom-left {
+  margin-top: 5vw;
+  margin-left: -5vw;
+  border-bottom: 1px solid #2d283c;
+  border-left: 1px solid #2d283c;
+}
+
+body .main-page .test-logo-container .test-box .bottom-right {
+  margin-top: 5vw;
+  margin-left: 5vw;
+  border-bottom: 1px solid #2d283c;
+  border-right: 1px solid #2d283c;
+}
+
+body .main-page .test-logo-container .test-box:hover {
+  border: 0.8px solid #c7c2d5;
+}
+
+body .main-page .test-logo-container .test-box:hover .test-corner {
+  height: 1vw;
+  width: 1vw;
+  visibility: visible;
+}
+
+body .main-page .test-logo-container .test-box:hover img {
+  width: 5.5vw;
 }
 
 @-webkit-keyframes toggle-slide-right {
