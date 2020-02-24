@@ -71,32 +71,34 @@ let checkout = {
   },
   cart: {
     prints: {
-      fetch: undefined,
-      insert: undefined,
-      load: undefined
+      fetch: undefined, // checkout.cart.prints.fetch
+      insert: undefined, // checkout.cart.prints.insert
+      load: undefined // checkout.cart.prints.load
     },
     print: {
-      create: undefined,
-      insert: undefined,
-      update: undefined,
+      create: undefined, // checkout.cart.print.create
+      insert: undefined, // checkout.cart.print.insert
+      update: undefined, // checkout.cart.print.update
       validate: {
-        quantity: undefined
+        quantity: undefined // checkout.cart.print.validate.quantity
       },
-      delete: undefined
+      delete: undefined // checkout.cart.print.delete
     },
     items: {
-      fetch: undefined,
-      insert: undefined,
-      load: undefined
+      fetch: undefined, // checkout.cart.items.fetch
+      insert: undefined, // checkout.cart.items.insert
+      load: undefined // checkout.cart.items.load
     },
     item: {
-      create: undefined,
-      insert: undefined,
-      delete: undefined
+      create: undefined, // checkout.cart.item.create
+      insert: undefined, // checkout.cart.item.insert
+      delete: undefined // checkout.cart.item.delete
     },
     discounts: {},
     discount: {
-      validate: undefined
+      add: undefined, // checkout.cart.discount.add
+      insert: undefined, // checkout.cart.discount.insert
+      validate: undefined // checkout.cart.discount.validate
     },
     validation: {
       validate: undefined,
@@ -106,6 +108,34 @@ let checkout = {
     show: undefined
   },
   shipping: {
+    address: {
+      option: {
+        select: undefined
+      },
+      saved: {
+        validate: {
+          unit: undefined, // checkout.shipping.address.saved.validate.unit
+          street: {
+            number: undefined, // checkout.shipping.address.saved.validate.street.number
+            name: undefined // checkout.shipping.address.saved.validate.street.name
+          },
+          suburb: undefined, // checkout.shipping.address.saved.validate.suburb
+          city: undefined, // checkout.shipping.address.saved.validate.city
+          postcode: undefined, // checkout.shipping.address.saved.validate.postcode
+          country: undefined, // checkout.shipping.address.saved.validate.country
+          all: undefined // checkout.shipping.address.saved.validate.all
+        },
+        show: undefined
+      },
+      new: {
+        show: undefined
+      }
+    },
+    method: {
+      option: {
+        select: undefined
+      }
+    },
     validation: {
       validate: undefined,
       valid: undefined,
@@ -164,21 +194,23 @@ checkout.stripe.initialise = () => {
 // @DESC
 // @ARGU
 checkout.listener = () => {
-  checkout.element.heading.cart.addEventListener("click", () => {
-    checkoutShowPage(0);
-  });
-  checkout.element.navigation.cart.addEventListener("click", () => {
-    checkoutShowPage(0);
-  });
-  checkout.element.button.shipping.back.addEventListener("click", () => {
-    checkoutShowPage(0);
-  });
-  checkout.element.button.payment.bank.back.addEventListener("click", () => {
-    checkoutShowPage(1);
-  });
-  checkout.element.button.payment.card.back.addEventListener("click", () => {
-    checkoutShowPage(1);
-  });
+  checkout.element.heading.cart.addEventListener("click", checkout.cart.show);
+  checkout.element.navigation.cart.addEventListener(
+    "click",
+    checkout.cart.show
+  );
+  checkout.element.button.shipping.back.addEventListener(
+    "click",
+    checkout.cart.show
+  );
+  checkout.element.button.payment.bank.back.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.button.payment.card.back.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
 };
 
 // @FUNC  checkout.elements.assign
@@ -475,12 +507,7 @@ checkout.cart.items.insert = items => {
       // If there are items ordered
       document.querySelector("#checkout-mkpl-cnts").innerHTML = "";
       for (let i = 0; i < numberOfItems; i++) {
-        const item = items[i];
-        const containers = checkout.cart.item.create(item);
-        const html = `<div class="checkout-mkpl-cnt" id="checkout-mkpl-${item._id}">${containers}</div>`;
-        document
-          .querySelector("#checkout-mkpl-cnts")
-          .insertAdjacentHTML("beforeend", html);
+        checkout.cart.item.insert(items[i]);
       }
     }
     checkoutResizeOrder(x);
@@ -548,52 +575,27 @@ checkout.cart.item.create = item => {
   return containers;
 };
 
-// @FUNC  checkout.cart.validation.valid
+// @FUNC  checkout.cart.item.insert
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.validation.valid = () => {
-  checkout.element.heading.shipping.addEventListener("click", dummy);
-  checkout.element.navigation.shipping.addEventListener("click", dummy);
-  checkout.element.button.cart.next.addEventListener("click", dummy);
+checkout.cart.item.insert = (item, element) => {
+  const containers = checkout.cart.item.create(item);
+  const html = `<div class="checkout-mkpl-cnt" id="checkout-mkpl-${item._id}">${containers}</div>`;
+  if (element) {
+    element.innerHTML = html;
+  } else {
+    document
+      .querySelector("#checkout-mkpl-cnts")
+      .insertAdjacentHTML("beforeend", html);
+  }
 };
 
-// @FUNC  checkout.cart.validation.invalid
+// @FUNC  checkout.cart.item.delete
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.validation.invalid = () => {
-  checkout.element.heading.shipping.removeEventListener("click", dummy);
-  checkout.element.navigation.shipping.removeEventListener("click", dummy);
-  checkout.element.button.cart.next.removeEventListener("click", dummy);
-};
-
-/*=========================================================================================
-OLD VERSION
-=========================================================================================*/
-
-/*=========================================================================================
-VARIABLES
-=========================================================================================*/
-
-/*=========================================================================================
-FUNCTIONS
-=========================================================================================*/
-
-/*-----------------------------------------------------------------------------------------
-INITIALISATION
------------------------------------------------------------------------------------------*/
-
-/*-----------------------------------------------------------------------------------------
-CART FUNCTIONS
------------------------------------------------------------------------------------------*/
-
-// @FUNC  checkoutCartDeleteMarketplaceOrder
-// @TYPE
-// @DESC  This function removes a marketplace order from the cart and deletes it on the
-//        database
-// @ARGU  itemId - string - The id of the item to be deleted
-const checkoutCartDeleteMarketplaceOrder = async itemId => {
+checkout.cart.item.delete = async itemId => {
   // Remove the item from the cart
   document.querySelector(`#checkout-mkpl-${itemId}`).remove();
   // Reduce the number of items listed
@@ -602,11 +604,11 @@ const checkoutCartDeleteMarketplaceOrder = async itemId => {
   // Delete the item from the database
 };
 
-// @FUNC  checkoutAddDiscount
-// @TYPE  ASYNCHRONOUS
-// @DESC  Adds a discount if a valid code is provided
+// @FUNC  checkout.cart.discount.add
+// @TYPE
+// @DESC
 // @ARGU
-const checkoutAddDiscount = () => {
+checkout.cart.discount.add = () => {
   // Fetch the discount code input
   const discountCode = document.querySelector("#checkout-dsct-inp").value;
   console.log(document.querySelector("#checkout-dsct-inp").value);
@@ -620,13 +622,23 @@ const checkoutAddDiscount = () => {
     validation.status = "Failed";
     validation.message = "Input Discount Code";
   }
-  if (!checkoutCartValidateDiscount(validation)) return; // Validation
+  if (!checkout.cart.discount.validate(validation)) return; // Validation
+
   /* Send to the backend to perform validation and if successful,
   retrieve the discount object */
+
   let discount;
-  if (!checkoutCartValidateDiscount(validation)) return; // Validation
+  if (!checkout.cart.discount.validate(validation)) return; // Validation
   // Display the discount to the page
-  const html = checkoutCartCreateDiscountHTML(discount);
+  checkout.cart.discount.insert(discount);
+};
+
+// @FUNC  checkout.cart.discount.insert
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.discount.insert = discount => {
+  const html = `<div class="checkout-dsct sbtl-2 txt-clr-blk-3"></div>`;
   document
     .querySelector("#checkout-dsct-list-cntn")
     .insertAdjacentHTML("beforeend", html);
@@ -634,11 +646,11 @@ const checkoutAddDiscount = () => {
   document.querySelector("#checkout-dsct-inp-err").innerHTML = ""; // Clear error
 };
 
-// @FUNC  checkoutCartValidateDiscount
-// @TYPE  SIMPLE
-// @DESC  Validate the discount code
-// @ARGU  validation - object -
-const checkoutCartValidateDiscount = validation => {
+// @FUNC  checkout.cart.discount.validate
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.discount.validate = validation => {
   if (validation.status == "Failed") {
     document.querySelector("#checkout-dsct-inp-err").innerHTML =
       validation.message;
@@ -647,14 +659,342 @@ const checkoutCartValidateDiscount = validation => {
   return true;
 };
 
-// @FUNC  checkoutCartCreateDiscountHTML
+// @FUNC  checkout.cart.validation.valid
 // @TYPE  SIMPLE
-// @DESC  Creates an HTML required to be inserted and displayed onto the page
-// @ARGU  discount - object - the discount object
-const checkoutCartCreateDiscountHTML = discount => {
-  const html = `<div class="checkout-dsct sbtl-2 txt-clr-blk-3"></div>`;
-  return html;
+// @DESC
+// @ARGU
+checkout.cart.validation.valid = () => {
+  checkout.element.heading.shipping.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.navigation.shipping.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.button.cart.next.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
 };
+
+// @FUNC  checkout.cart.validation.invalid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.validation.invalid = () => {
+  checkout.element.heading.shipping.removeEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.navigation.shipping.removeEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.button.cart.next.removeEventListener(
+    "click",
+    checkout.shipping.show
+  );
+};
+
+// @FUNC  checkout.cart.show
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.show = () => checkoutShowPage(0);
+
+/*-----------------------------------------------------------------------------------------
+SHIPPING
+-----------------------------------------------------------------------------------------*/
+
+// @FUNC  checkout.shipping.address.saved.validate.unit
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.unit = () => {
+  const unit = document.querySelector("#checkout-shpg-adrs-new-unit").value;
+  let status = {
+    valid: true,
+    input: unit,
+    message: ""
+  };
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.street.number
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.street.number = () => {
+  const streetNumber = document.querySelector("#checkout-shpg-adrs-new-st-num")
+    .value;
+  let status = {
+    valid: true,
+    input: streetNumber,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!streetNumber) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.street.name
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.street.name = () => {
+  const streetName = document.querySelector("#checkout-shpg-adrs-new-st-name")
+    .value;
+  let status = {
+    valid: true,
+    input: streetName,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!streetName) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.suburb
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.suburb = () => {
+  const suburb = document.querySelector("#checkout-shpg-adrs-new-sbrb").value;
+  let status = {
+    valid: true,
+    input: suburb,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!suburb) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.city
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.city = () => {
+  const city = document.querySelector("#checkout-shpg-adrs-new-cty").value;
+  let status = {
+    valid: true,
+    input: city,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!city) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.postcode
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.postcode = () => {
+  const postcode = document.querySelector("#checkout-shpg-adrs-new-zp-cd")
+    .value;
+  let status = {
+    valid: true,
+    input: postcode,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!postcode) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.country
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.country = () => {
+  const country = document.querySelector("#checkout-shpg-adrs-new-cnty").value;
+  let status = {
+    valid: true,
+    input: country,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!country) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.all
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.all = type => {
+  // Collect and Validate Inputs
+  const unit = checkout.shipping.address.saved.validate.unit();
+  const streetNumber = checkout.shipping.address.saved.validate.street.number();
+  const streetName = checkout.shipping.address.saved.validate.street.name();
+  const suburb = checkout.shipping.address.saved.validate.suburb();
+  const city = checkout.shipping.address.saved.validate.city();
+  const postcode = checkout.shipping.address.saved.validate.postcode();
+  const country = checkout.shipping.address.saved.validate.country();
+  // Check Validity
+  const valid =
+    unit.valid &&
+    streetNumber.valid &&
+    streetName.valid &&
+    suburb.valid &&
+    city.valid &&
+    postcode.valid &&
+    country.valid;
+  // Error Handling
+  if (type == "unit") {
+    document.querySelector("#checkout-shipping-unit-error").innerHTML =
+      unit.message;
+  } else if (type == "streetNumber") {
+    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
+      streetNumber.message;
+  } else if (type == "streetName") {
+    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
+      streetName.message;
+  } else if (type == "suburb") {
+    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
+      suburb.message;
+  } else if (type == "city") {
+    document.querySelector("#checkout-shipping-city-error").innerHTML =
+      city.message;
+  } else if (type == "postcode") {
+    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
+      postcode.message;
+  } else if (type == "country") {
+    document.querySelector("#checkout-shipping-country-error").innerHTML =
+      country.message;
+  } else {
+    document.querySelector("#checkout-shipping-unit-error").innerHTML =
+      unit.message;
+    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
+      streetNumber.message;
+    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
+      streetName.message;
+    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
+      suburb.message;
+    document.querySelector("#checkout-shipping-city-error").innerHTML =
+      city.message;
+    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
+      postcode.message;
+    document.querySelector("#checkout-shipping-country-error").innerHTML =
+      country.message;
+  }
+  if (valid) {
+  } else {
+  }
+  // Create the Address Object
+  const address = {
+    unit: unit.input,
+    street: {
+      number: streetNumber.input,
+      name: streetName.input
+    },
+    suburb: suburb.input,
+    city: city.input,
+    postcode: postcode.input,
+    country: country.input
+  };
+
+  return address;
+};
+
+// @FUNC  checkout.shipping.validation.valid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.shipping.validation.valid = () => {
+  checkout.element.heading.payment.addEventListener(
+    "click",
+    checkout.payment.show
+  );
+  checkout.element.navigation.payment.addEventListener(
+    "click",
+    checkout.payment.show
+  );
+  checkout.element.button.shipping.next.addEventListener(
+    "click",
+    checkout.payment.show
+  );
+};
+
+// @FUNC  checkout.shipping.validation.invalid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.shipping.validation.invalid = () => {
+  checkout.element.heading.payment.removeEventListener(
+    "click",
+    checkout.payment.show
+  );
+  checkout.element.navigation.payment.removeEventListener(
+    "click",
+    checkout.payment.show
+  );
+  checkout.element.button.shipping.next.removeEventListener(
+    "click",
+    checkout.payment.show
+  );
+};
+
+// @FUNC  checkout.shipping.show
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.shipping.show = () => checkoutShowPage(1);
+
+/*-----------------------------------------------------------------------------------------
+PAYMENT
+-----------------------------------------------------------------------------------------*/
+
+// @FUNC  checkout.payment.show
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.payment.show = () => checkoutShowPage(2);
+
+/*=========================================================================================
+OLD VERSION
+=========================================================================================*/
+
+/*=========================================================================================
+FUNCTIONS
+=========================================================================================*/
+
+/*-----------------------------------------------------------------------------------------
+CART FUNCTIONS
+-----------------------------------------------------------------------------------------*/
 
 // @FUNC  checkoutCartUpdateManufacturingSpeedOption
 // @TYPE  SIMPLE
@@ -745,31 +1085,6 @@ NAVIGATION
 
 let checkoutPages = ["cart", "shipping", "payment"];
 let checkoutSelectedPage = 0;
-
-// @FUNC  checkoutNavigationEvent
-// @TYPE  SIMPLE
-// @DESC  This function adds an event listener to the navigation
-// @ARGU
-const checkoutNavigationEvent = () => {
-  checkout.element.navigation.cart.addEventListener("click", () =>
-    checkoutShowPage(0)
-  );
-  checkout.element.navigation.shipping.addEventListener("click", () =>
-    checkoutShowPage(1)
-  );
-  checkout.element.navigation.payment.addEventListener("click", () =>
-    checkoutShowPage(2)
-  );
-  checkout.element.heading.cart.addEventListener("click", () =>
-    checkoutShowPage(0)
-  );
-  checkout.element.heading.shipping.addEventListener("click", () =>
-    checkoutShowPage(1)
-  );
-  checkout.element.heading.payment.addEventListener("click", () =>
-    checkoutShowPage(2)
-  );
-};
 
 // @FUNC  checkoutShowPage
 // @TYPE  SIMPLE
@@ -890,229 +1205,6 @@ const checkoutShippingCreateSavedAddressHTML = address => {
   const html = unit + street + suburb + cityPostal + country;
 
   return html;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateUnit
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateUnit = () => {
-  const unit = document.querySelector("#checkout-shpg-adrs-new-unit").value;
-  let status = {
-    valid: true,
-    input: unit,
-    message: ""
-  };
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateStreetNumber
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateStreetNumber = () => {
-  const streetNumber = document.querySelector("#checkout-shpg-adrs-new-st-num")
-    .value;
-  let status = {
-    valid: true,
-    input: streetNumber,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!streetNumber) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateStreetName
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateStreetName = () => {
-  const streetName = document.querySelector("#checkout-shpg-adrs-new-st-name")
-    .value;
-  let status = {
-    valid: true,
-    input: streetName,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!streetName) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateSuburb
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateSuburb = () => {
-  const suburb = document.querySelector("#checkout-shpg-adrs-new-sbrb").value;
-  let status = {
-    valid: true,
-    input: suburb,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!suburb) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateCity
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateCity = () => {
-  const city = document.querySelector("#checkout-shpg-adrs-new-cty").value;
-  let status = {
-    valid: true,
-    input: city,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!city) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidatePostcode
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidatePostcode = () => {
-  const postcode = document.querySelector("#checkout-shpg-adrs-new-zp-cd")
-    .value;
-  let status = {
-    valid: true,
-    input: postcode,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!postcode) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateCountry
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateCountry = () => {
-  const country = document.querySelector("#checkout-shpg-adrs-new-cnty").value;
-  let status = {
-    valid: true,
-    input: country,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!country) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingGetNewAddressInputs
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingGetNewAddressInputs = type => {
-  // Collect and Validate Inputs
-  const unit = checkoutShippingAddressCollectAndValidateUnit();
-  const streetNumber = checkoutShippingAddressCollectAndValidateStreetNumber();
-  const streetName = checkoutShippingAddressCollectAndValidateStreetName();
-  const suburb = checkoutShippingAddressCollectAndValidateSuburb();
-  const city = checkoutShippingAddressCollectAndValidateCity();
-  const postcode = checkoutShippingAddressCollectAndValidatePostcode();
-  const country = checkoutShippingAddressCollectAndValidateCountry();
-  // Check Validity
-  const valid =
-    unit.valid &&
-    streetNumber.valid &&
-    streetName.valid &&
-    suburb.valid &&
-    city.valid &&
-    postcode.valid &&
-    country.valid;
-  // Error Handling
-  if (type == "unit") {
-    document.querySelector("#checkout-shipping-unit-error").innerHTML =
-      unit.message;
-  } else if (type == "streetNumber") {
-    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
-      streetNumber.message;
-  } else if (type == "streetName") {
-    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
-      streetName.message;
-  } else if (type == "suburb") {
-    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
-      suburb.message;
-  } else if (type == "city") {
-    document.querySelector("#checkout-shipping-city-error").innerHTML =
-      city.message;
-  } else if (type == "postcode") {
-    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
-      postcode.message;
-  } else if (type == "country") {
-    document.querySelector("#checkout-shipping-country-error").innerHTML =
-      country.message;
-  } else {
-    document.querySelector("#checkout-shipping-unit-error").innerHTML =
-      unit.message;
-    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
-      streetNumber.message;
-    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
-      streetName.message;
-    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
-      suburb.message;
-    document.querySelector("#checkout-shipping-city-error").innerHTML =
-      city.message;
-    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
-      postcode.message;
-    document.querySelector("#checkout-shipping-country-error").innerHTML =
-      country.message;
-  }
-  if (valid) {
-  } else {
-  }
-  // Create the Address Object
-  const address = {
-    unit: unit.input,
-    street: {
-      number: streetNumber.input,
-      name: streetName.input
-    },
-    suburb: suburb.input,
-    city: city.input,
-    postcode: postcode.input,
-    country: country.input
-  };
-
-  return address;
 };
 
 // @FUNC  checkoutPaymentSelectOption
