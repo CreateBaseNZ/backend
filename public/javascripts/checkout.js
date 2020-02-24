@@ -8,25 +8,12 @@ VARIABLES
 
 // Track the current page the user is on
 let selectedCheckoutSubPage = 1;
-// Track the validity of the checkout process
-let checkoutValidity = {
-  cart: false,
-  shipping: false,
-  payment: false
-};
-let stripe;
-let elements;
 let numberOfPrints;
 let numberOfItems;
 
 /*-----------------------------------------------------------------------------------------
 ELEMENTS
 -----------------------------------------------------------------------------------------*/
-
-// Card Details
-let cardNumber;
-let cardExpiry;
-let cardCvc;
 
 let checkout = {
   // VARIABLES
@@ -66,6 +53,7 @@ let checkout = {
   fetch: undefined,
   insert: undefined,
   load: undefined,
+  listener: undefined,
   stripe: {
     initialise: undefined,
     elements: undefined,
@@ -114,21 +102,24 @@ let checkout = {
       validate: undefined,
       valid: undefined,
       invalid: undefined
-    }
+    },
+    show: undefined
   },
   shipping: {
     validation: {
       validate: undefined,
       valid: undefined,
       invalid: undefined
-    }
+    },
+    show: undefined
   },
   payment: {
     validation: {
       validate: undefined,
       valid: undefined,
       invalid: undefined
-    }
+    },
+    show: undefined
   }
 };
 
@@ -136,6 +127,10 @@ let checkout = {
 FUNCTIONS
 =========================================================================================*/
 
+// @FUNC  checkout.initialise
+// @TYPE
+// @DESC
+// @ARGU
 checkout.initialise = () => {
   // Stripe
   checkout.stripe.initialise();
@@ -143,8 +138,8 @@ checkout.initialise = () => {
   // LOAD ORDERS
   checkout.cart.prints.load();
   checkout.cart.items.load();
-  // CREATE EVENT LISTENERS
-  checkoutNavigationEvent();
+  // Event Listener
+  checkout.listener();
 };
 
 checkout.stripe.initialise = () => {
@@ -164,6 +159,32 @@ checkout.stripe.initialise = () => {
   checkout.stripe.element.cvc.mount("#checkout-card-cvc");
 };
 
+// @FUNC  checkout.listener
+// @TYPE
+// @DESC
+// @ARGU
+checkout.listener = () => {
+  checkout.element.heading.cart.addEventListener("click", () => {
+    checkoutShowPage(0);
+  });
+  checkout.element.navigation.cart.addEventListener("click", () => {
+    checkoutShowPage(0);
+  });
+  checkout.element.button.shipping.back.addEventListener("click", () => {
+    checkoutShowPage(0);
+  });
+  checkout.element.button.payment.bank.back.addEventListener("click", () => {
+    checkoutShowPage(1);
+  });
+  checkout.element.button.payment.card.back.addEventListener("click", () => {
+    checkoutShowPage(1);
+  });
+};
+
+// @FUNC  checkout.elements.assign
+// @TYPE
+// @DESC
+// @ARGU
 checkout.elements.assign = () => {
   checkout.element.heading.cart = document.querySelector("#checkout-cart-hdng");
   checkout.element.heading.shipping = document.querySelector(
@@ -525,6 +546,26 @@ checkout.cart.item.create = item => {
   // Return containers
   const containers = containerOne + containerTwo + containerThree;
   return containers;
+};
+
+// @FUNC  checkout.cart.validation.valid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.validation.valid = () => {
+  checkout.element.heading.shipping.addEventListener("click", dummy);
+  checkout.element.navigation.shipping.addEventListener("click", dummy);
+  checkout.element.button.cart.next.addEventListener("click", dummy);
+};
+
+// @FUNC  checkout.cart.validation.invalid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.validation.invalid = () => {
+  checkout.element.heading.shipping.removeEventListener("click", dummy);
+  checkout.element.navigation.shipping.removeEventListener("click", dummy);
+  checkout.element.button.cart.next.removeEventListener("click", dummy);
 };
 
 /*=========================================================================================
