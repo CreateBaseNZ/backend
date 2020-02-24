@@ -6,33 +6,263 @@ NEW VERSION
 VARIABLES
 =========================================================================================*/
 
+// Track the current page the user is on
+let selectedCheckoutSubPage = 1;
+let numberOfPrints;
+let numberOfItems;
+
+/*-----------------------------------------------------------------------------------------
+ELEMENTS
+-----------------------------------------------------------------------------------------*/
+
 let checkout = {
-  fetchOrder: undefined,
-  loadAll: undefined,
-  cart: {
-    prints: {
-      fetch: undefined,
-      load: undefined
+  // VARIABLES
+  element: {
+    heading: {
+      cart: undefined,
+      shipping: undefined,
+      payment: undefined
     },
-    print: {
-      create: undefined,
-      load: undefined
+    button: {
+      cart: {
+        next: undefined
+      },
+      shipping: {
+        back: undefined,
+        next: undefined
+      },
+      payment: {
+        bank: {
+          back: undefined,
+          paid: undefined
+        },
+        card: {
+          back: undefined,
+          pay: undefined
+        }
+      }
+    },
+    navigation: {
+      cart: undefined,
+      shipping: undefined,
+      payment: undefined
     }
   },
-  shipping: {},
-  payment: {}
+  // FUNCTIONS
+  initialise: undefined,
+  fetch: undefined,
+  insert: undefined,
+  load: undefined,
+  listener: undefined,
+  stripe: {
+    initialise: undefined,
+    elements: undefined,
+    element: {
+      stripe: undefined,
+      card: {
+        number: undefined,
+        expiry: undefined,
+        cvc: undefined
+      }
+    }
+  },
+  elements: {
+    assign: undefined
+  },
+  cart: {
+    prints: {
+      fetch: undefined, // checkout.cart.prints.fetch
+      insert: undefined, // checkout.cart.prints.insert
+      load: undefined // checkout.cart.prints.load
+    },
+    print: {
+      create: undefined, // checkout.cart.print.create
+      insert: undefined, // checkout.cart.print.insert
+      update: undefined, // checkout.cart.print.update
+      validate: {
+        quantity: undefined // checkout.cart.print.validate.quantity
+      },
+      delete: undefined // checkout.cart.print.delete
+    },
+    items: {
+      fetch: undefined, // checkout.cart.items.fetch
+      insert: undefined, // checkout.cart.items.insert
+      load: undefined // checkout.cart.items.load
+    },
+    item: {
+      create: undefined, // checkout.cart.item.create
+      insert: undefined, // checkout.cart.item.insert
+      delete: undefined // checkout.cart.item.delete
+    },
+    discounts: {},
+    discount: {
+      add: undefined, // checkout.cart.discount.add
+      insert: undefined, // checkout.cart.discount.insert
+      validate: undefined // checkout.cart.discount.validate
+    },
+    validation: {
+      validate: undefined,
+      valid: undefined,
+      invalid: undefined
+    },
+    show: undefined
+  },
+  shipping: {
+    address: {
+      option: {
+        select: undefined
+      },
+      saved: {
+        validate: {
+          unit: undefined, // checkout.shipping.address.saved.validate.unit
+          street: {
+            number: undefined, // checkout.shipping.address.saved.validate.street.number
+            name: undefined // checkout.shipping.address.saved.validate.street.name
+          },
+          suburb: undefined, // checkout.shipping.address.saved.validate.suburb
+          city: undefined, // checkout.shipping.address.saved.validate.city
+          postcode: undefined, // checkout.shipping.address.saved.validate.postcode
+          country: undefined, // checkout.shipping.address.saved.validate.country
+          all: undefined // checkout.shipping.address.saved.validate.all
+        },
+        show: undefined
+      },
+      new: {
+        show: undefined
+      }
+    },
+    method: {
+      option: {
+        select: undefined
+      }
+    },
+    validation: {
+      validate: undefined,
+      valid: undefined,
+      invalid: undefined
+    },
+    show: undefined
+  },
+  payment: {
+    validation: {
+      validate: undefined,
+      valid: undefined,
+      invalid: undefined
+    },
+    show: undefined
+  }
 };
 
 /*=========================================================================================
 FUNCTIONS
 =========================================================================================*/
 
+// @FUNC  checkout.initialise
+// @TYPE
+// @DESC
+// @ARGU
+checkout.initialise = () => {
+  // Stripe
+  checkout.stripe.initialise();
+  checkout.elements.assign();
+  // LOAD ORDERS
+  checkout.cart.prints.load();
+  checkout.cart.items.load();
+  // Event Listener
+  checkout.listener();
+};
+
+checkout.stripe.initialise = () => {
+  checkout.stripe.element.stripe = Stripe(
+    "pk_test_cyWnxjuNQGbF42g88sLseXpJ003JGn4TCC"
+  );
+  checkout.stripe.elements = checkout.stripe.element.stripe.elements();
+  checkout.stripe.element.number = checkout.stripe.elements.create(
+    "cardNumber"
+  );
+  checkout.stripe.element.number.mount("#checkout-card-num");
+  checkout.stripe.element.expiry = checkout.stripe.elements.create(
+    "cardExpiry"
+  );
+  checkout.stripe.element.expiry.mount("#checkout-card-exp");
+  checkout.stripe.element.cvc = checkout.stripe.elements.create("cardCvc");
+  checkout.stripe.element.cvc.mount("#checkout-card-cvc");
+};
+
+// @FUNC  checkout.listener
+// @TYPE
+// @DESC
+// @ARGU
+checkout.listener = () => {
+  checkout.element.heading.cart.addEventListener("click", checkout.cart.show);
+  checkout.element.navigation.cart.addEventListener(
+    "click",
+    checkout.cart.show
+  );
+  checkout.element.button.shipping.back.addEventListener(
+    "click",
+    checkout.cart.show
+  );
+  checkout.element.button.payment.bank.back.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.button.payment.card.back.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
+};
+
+// @FUNC  checkout.elements.assign
+// @TYPE
+// @DESC
+// @ARGU
+checkout.elements.assign = () => {
+  checkout.element.heading.cart = document.querySelector("#checkout-cart-hdng");
+  checkout.element.heading.shipping = document.querySelector(
+    "#checkout-shpg-hdng"
+  );
+  checkout.element.heading.payment = document.querySelector(
+    "#checkout-pymt-hdng"
+  );
+  checkout.element.navigation.cart = document.querySelector(
+    "#checkout-navigation-cart"
+  );
+  checkout.element.navigation.shipping = document.querySelector(
+    "#checkout-navigation-shipping"
+  );
+  checkout.element.navigation.payment = document.querySelector(
+    "#checkout-navigation-payment"
+  );
+  checkout.element.button.cart.next = document.querySelector(
+    "#checkout-element-button-cart-next"
+  );
+  checkout.element.button.shipping.back = document.querySelector(
+    "#checkout-element-button-shipping-back"
+  );
+  checkout.element.button.shipping.next = document.querySelector(
+    "#checkout-element-button-shipping-next"
+  );
+  checkout.element.button.payment.bank.back = document.querySelector(
+    "#checkout-element-button-payment-bank-back"
+  );
+  checkout.element.button.payment.bank.paid = document.querySelector(
+    "#checkout-element-button-payment-bank-paid"
+  );
+  checkout.element.button.payment.card.back = document.querySelector(
+    "#checkout-element-button-payment-card-back"
+  );
+  checkout.element.button.payment.card.pay = document.querySelector(
+    "#checkout-element-button-payment-card-pay"
+  );
+};
+
 /*-----------------------------------------------------------------------------------------
 CART
 -----------------------------------------------------------------------------------------*/
 
 // @FUNC  checkout.cart.prints.fetch
-// @TYPE
+// @TYPE  PROMISE ASYNCHRONOUS
 // @DESC
 // @ARGU
 checkout.cart.prints.fetch = () => {
@@ -63,27 +293,22 @@ checkout.cart.prints.fetch = () => {
   });
 };
 
-// @FUNC  checkout.cart.prints.load
-// @TYPE
-// @DESC  This function populate the cart
-// @ARGU  prints - array - The array of 3D print orders
-checkout.cart.prints.load = prints => {
+// @FUNC  checkout.cart.prints.insert
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.prints.insert = prints => {
   // Process the loaded prints
   if (numberOfPrints) {
     if (prints) {
       // If there are prints ordered
       document.querySelector("#checkout-prnt-cnts").innerHTML = "";
       for (let i = 0; i < numberOfPrints; i++) {
-        const print = prints[i];
-        const containers = checkout.cart.print.create(print);
-        const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
-        document
-          .querySelector("#checkout-prnt-cnts")
-          .insertAdjacentHTML("beforeend", html);
+        checkout.cart.print.insert(prints[i]);
       }
-      checkoutResizeOrder(x);
-      x.addListener(checkoutResizeOrder);
     }
+    checkoutResizeOrder(x);
+    x.addListener(checkoutResizeOrder);
   } else {
     // If there are no prints ordered
     document.querySelector("#checkout-prnt-cnts").innerHTML =
@@ -91,8 +316,25 @@ checkout.cart.prints.load = prints => {
   }
 };
 
+// @FUNC  checkout.cart.prints.load
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.prints.load = async () => {
+  let prints;
+
+  try {
+    prints = await checkout.cart.prints.fetch();
+  } catch (error) {
+    return error;
+  }
+
+  numberOfPrints = prints.length;
+  checkout.cart.prints.insert(prints);
+};
+
 // @FUNC  checkout.cart.print.create
-// @TYPE
+// @TYPE  SIMPLE
 // @DESC
 // @ARGU
 checkout.cart.print.create = print => {
@@ -117,7 +359,7 @@ checkout.cart.print.create = print => {
                         class="checkout-prnt-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
                         min="1"
                         value="${print.quantity}"
-                        onchange="checkoutCartUpdate3dPrintOrderQuantity(this.value, '${print.quantity}', '${printId}');"
+                        onchange="checkout.cart.print.update(this.value, '${print.quantity}', 'quantity', '${printId}');"
                       />
                     </div>`;
   const containerTwo = `<div class="checkout-prnt-cnt-cntn-2">${fileName +
@@ -126,7 +368,7 @@ checkout.cart.print.create = print => {
     quantity}</div>`;
 
   // Container Three
-  const cancel = `<div class="checkout-prnt-cnt-cncl" onclick="checkoutCartDelete3dPrintOrder('${printId}');"></div>`;
+  const cancel = `<div class="checkout-prnt-cnt-cncl" onclick="checkout.cart.print.delete('${printId}');"></div>`;
   let price;
   price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2">
               $X,XXX.XX
@@ -143,142 +385,31 @@ checkout.cart.print.create = print => {
   return containers;
 };
 
-// @FUNC  checkout.cart.print.load
-// @TYPE
+// @FUNC  checkout.cart.print.insert
+// @TYPE  SIMPLE
 // @DESC
 // @ARGU
-
-/*=========================================================================================
-OLD VERSION
-=========================================================================================*/
-
-/*=========================================================================================
-VARIABLES
-=========================================================================================*/
-
-// Track the current page the user is on
-let selectedCheckoutSubPage = 1;
-// Track the validity of the checkout process
-let checkoutValidity = {
-  cart: false,
-  shipping: false,
-  payment: false
-};
-let stripe;
-let elements;
-let numberOfPrints;
-let numberOfItems;
-
-/*-----------------------------------------------------------------------------------------
-ELEMENTS
------------------------------------------------------------------------------------------*/
-
-// Headings
-let checkoutHeadingCart;
-let checkoutHeadingShipping;
-let checkoutHeadingPayment;
-// Card Details
-let cardNumber;
-let cardExpiry;
-let cardCvc;
-// Navigation
-let checkoutNavigationCart;
-let checkoutNavigationShipping;
-let checkoutNavigationPayment;
-
-/*=========================================================================================
-FUNCTIONS
-=========================================================================================*/
-
-/*-----------------------------------------------------------------------------------------
-INITIALISATION
------------------------------------------------------------------------------------------*/
-
-const checkoutInit = () => {
-  // Stripe
-  stripe = Stripe("pk_test_cyWnxjuNQGbF42g88sLseXpJ003JGn4TCC");
-  elements = stripe.elements();
-  cardNumber = elements.create("cardNumber");
-  cardNumber.mount("#checkout-card-num");
-  cardExpiry = elements.create("cardExpiry");
-  cardExpiry.mount("#checkout-card-exp");
-  cardCvc = elements.create("cardCvc");
-  cardCvc.mount("#checkout-card-cvc");
-  // ELEMENTS - Headings
-  checkoutHeadingCart = document.querySelector("#checkout-cart-hdng");
-  checkoutHeadingShipping = document.querySelector("#checkout-shpg-hdng");
-  checkoutHeadingPayment = document.querySelector("#checkout-pymt-hdng");
-  // ELEMENTS - Navigation
-  checkoutNavigationCart = document.querySelector("#checkout-navigation-cart");
-  checkoutNavigationShipping = document.querySelector(
-    "#checkout-navigation-shipping"
-  );
-  checkoutNavigationPayment = document.querySelector(
-    "#checkout-navigation-payment"
-  );
-
-  // LOAD ORDERS
-  checkoutCartLoadPrintOrders();
-  checkoutCartLoadMarketplaceOrders();
-
-  // CREATE EVENT LISTENERS
-  checkoutNavigationEvent();
-};
-
-/*-----------------------------------------------------------------------------------------
-CART FUNCTIONS
------------------------------------------------------------------------------------------*/
-
-// FUNCTION TO GET THE MARKETPLACE ORDERS FROM THE DATABASE
-
-const checkoutCartGetMarketplaceOrders = () => {
-  return new Promise(async (resolve, reject) => {
-    let items;
-
-    try {
-      items = (await axios.post("/customer/orders/marketplace/checkout"))[
-        "data"
-      ];
-    } catch (error) {
-      reject(error);
-    }
-
-    resolve(items);
-  });
-};
-
-// FUNCTION TO UPDATE THE HTML FOR 3D PRINT ORDERS
-
-const checkoutCartUpdate3dPrintOrderHTML = print => {
+checkout.cart.print.insert = (print, element) => {
   const containers = checkout.cart.print.create(print);
-  document.querySelector(`#checkout-prnt-${print._id}`).innerHTML = containers;
-};
-
-// FUNCTION TO LOAD ORDERS
-
-const checkoutCartLoadPrintOrders = async () => {
-  let prints;
-
-  try {
-    prints = await checkout.cart.prints.fetch();
-  } catch (error) {
-    return error;
+  const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
+  if (element) {
+    element.innerHTML = html;
+  } else {
+    document
+      .querySelector("#checkout-prnt-cnts")
+      .insertAdjacentHTML("beforeend", html);
   }
-
-  numberOfPrints = prints.length;
-  checkout.cart.prints.load(prints);
 };
 
-// FUNCTION TO UPDATE THE NUMBER UNITS
-
-const checkoutCartUpdate3dPrintOrderQuantity = async (
-  newQuantity,
-  quantity,
-  printId
-) => {
-  if (!checkoutCartValidateOrderQuantity(newQuantity, quantity, printId)) {
+// @FUNC  checkout.cart.print.update
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.print.update = async (newValue, oldValue, property, printId) => {
+  if (!checkout.cart.print.validate[property](newValue, oldValue, printId)) {
     return;
   }
+
   document.querySelector(
     `#checkout-prnt-${printId}`
   ).innerHTML = `<div class="checkout-cart-loading-container">
@@ -297,7 +428,7 @@ const checkoutCartUpdate3dPrintOrderQuantity = async (
     print = (
       await axios.post("/orders/print/update", {
         printId,
-        quantity: newQuantity
+        quantity: newValue
       })
     )["data"];
   } catch (error) {
@@ -307,32 +438,34 @@ const checkoutCartUpdate3dPrintOrderQuantity = async (
     };
   }
 
-  const containers = checkout.cart.print.create(print);
-
-  document.querySelector(`#checkout-prnt-${print._id}`).innerHTML = containers;
+  checkout.cart.print.insert(
+    print,
+    document.querySelector(`#checkout-prnt-${print._id}`)
+  );
 };
 
-// STOP INPUT OF 0 OR LESS QUANTITY
-
-const checkoutCartValidateOrderQuantity = (newQuantity, quantity, printId) => {
-  if (newQuantity <= 0) {
-    document.querySelector(`#checkout-prnt-qnty-${printId}`).value = quantity;
+// @FUNC  checkout.cart.print.validate.quantity
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.print.validate.quantity = (newValue, oldValue, printId) => {
+  if (newValue <= 0) {
+    document.querySelector(`#checkout-prnt-qnty-${printId}`).value = oldValue;
     return false;
   }
   return true;
 };
 
-// @FUNC  checkoutCartDelete3dPrintOrder
-// @TYPE
-// @DESC  This function removes a 3d print order from the cart and deletes it on the
-//        database
-// @ARGU  printId - string - The id of the 3d print to be deleted
-const checkoutCartDelete3dPrintOrder = async printId => {
+// @FUNC  checkout.cart.print.delete
+// @TYPE  ASYNCHRONOUS
+// @DESC
+// @ARGU
+checkout.cart.print.delete = async printId => {
   // Remove the 3D print from the cart
   document.querySelector(`#checkout-prnt-${printId}`).remove();
   // Reduce the number of 3D prints listed
   numberOfPrints = numberOfPrints - 1;
-  checkout.cart.prints.load();
+  checkout.cart.prints.insert();
   // Delete the 3D print from the database
   let data;
   try {
@@ -343,32 +476,90 @@ const checkoutCartDelete3dPrintOrder = async printId => {
   return;
 };
 
-// @FUNC  checkoutCartCreateMarketplaceOrderHTML
+// @FUNC  checkout.cart.items.fetch
+// @TYPE  PROMISE ASYNCHRONOUS
+// @DESC
+// @ARGU
+checkout.cart.items.fetch = () => {
+  return new Promise(async (resolve, reject) => {
+    let items;
+
+    try {
+      items = (await axios.post("/customer/orders/marketplace/checkout"))[
+        "data"
+      ];
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(items);
+  });
+};
+
+// @FUNC  checkout.cart.items.insert
+// @TYPE  PROMISE ASYNCHRONOUS
+// @DESC
+// @ARGU
+checkout.cart.items.insert = items => {
+  // Process the loaded items
+  if (numberOfItems) {
+    if (items) {
+      // If there are items ordered
+      document.querySelector("#checkout-mkpl-cnts").innerHTML = "";
+      for (let i = 0; i < numberOfItems; i++) {
+        checkout.cart.item.insert(items[i]);
+      }
+    }
+    checkoutResizeOrder(x);
+    x.addListener(checkoutResizeOrder);
+  } else {
+    // If there are no items ordered
+    document.querySelector("#checkout-mkpl-cnts").innerHTML = "<p>No Items</p>";
+  }
+};
+
+// @FUNC  checkout.cart.items.load
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.items.load = async () => {
+  let items;
+
+  try {
+    items = await checkout.cart.items.fetch();
+  } catch (error) {
+    return error;
+  }
+
+  numberOfItems = items.length;
+  checkout.cart.items.insert(items);
+};
+
+// @FUNC  checkout.cart.item.create
 // @TYPE  SIMPLE
-// @DESC  This function creates an HTML for the Marketplace that will be inserted into the
-//        page. The components of the HTML is based on a Marketplace order object.
-// @ARGU  order - object - the Marketplace order object
-const checkoutCartCreateMarketplaceOrderHTML = order => {
+// @DESC
+// @ARGU
+checkout.cart.item.create = item => {
   // Create container one HTML
   const icon = `<div class="checkout-mkpl-cnt-img bgd-clr-wht-2"></div>`;
   const containerOne = `<div class="checkout-mkpl-cnt-cntn-1">${icon}</div>`;
 
   // Create container two HTML
-  const itemName = `<div class="checkout-mkpl-cnt-item-name sbtl-1 txt-clr-blk-2">${order.itemName}</div>`;
-  const shopName = `<div class="checkout-mkpl-cnt-shop sbtl-1 txt-clr-blk-2">${order.shopName}</div>`;
+  const itemName = `<div class="checkout-mkpl-cnt-item-name sbtl-1 txt-clr-blk-2">${item.itemName}</div>`;
+  const shopName = `<div class="checkout-mkpl-cnt-shop sbtl-1 txt-clr-blk-2">${item.shopName}</div>`;
   const quantity = `<div class="checkout-mkpl-cnt-qnty-cntn">
-                      <label
-                        class="checkout-mkpl-cnt-qnty-lbl sbtl-1 txt-clr-blk-2"
-                        >Quantity:</label
-                      >
-                      <input
-                        type="number"
-                        name="quantity"
-                        class="checkout-mkpl-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
-                        min="1"
-                        value="${order.quantity}"
-                      />
-                    </div>`;
+                       <label
+                         class="checkout-mkpl-cnt-qnty-lbl sbtl-1 txt-clr-blk-2"
+                         >Quantity:</label
+                       >
+                       <input
+                         type="number"
+                         name="quantity"
+                         class="checkout-mkpl-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
+                         min="1"
+                         value="${item.quantity}"
+                       />
+                     </div>`;
   const containerTwo = `<div class="checkout-mkpl-cnt-cntn-2">${itemName +
     shopName +
     quantity}</div>`;
@@ -384,80 +575,40 @@ const checkoutCartCreateMarketplaceOrderHTML = order => {
   return containers;
 };
 
-// @FUNC  checkoutCartCreateMarketplaceNoOrderHTML
+// @FUNC  checkout.cart.item.insert
 // @TYPE  SIMPLE
-// @DESC  This function creates an HTML for the Marketplace that will be inserted into the
-//        page. The HTML created is for no items scenario.
+// @DESC
 // @ARGU
-const checkoutCartCreateMarketplaceNoOrderHTML = () => {
-  const html = "<p>No Items</p>";
-  return html;
-};
-
-// @FUNC  checkoutCartLoadMarketplaceOrders
-// @TYPE  ASYNCHRONOUS
-// @DESC  This function loads the marketplace orders
-// @ARGU
-const checkoutCartLoadMarketplaceOrders = async () => {
-  let items;
-
-  try {
-    items = await checkoutCartGetMarketplaceOrders();
-  } catch (error) {
-    return error;
-  }
-
-  numberOfItems = items.length;
-  checkoutCartPopulateMarketplaceOrders(items);
-};
-
-// @FUNC  checkoutCartPopulateMarketplaceOrders
-// @TYPE
-// @DESC  This function populate the cart
-// @ARGU  items - array - The array of Marketplace orders
-const checkoutCartPopulateMarketplaceOrders = items => {
-  // Process the loaded items
-  if (numberOfItems) {
-    document.querySelector("#checkout-mkpl-cnts").style = `height: ${16 *
-      numberOfItems}vmax`;
-    if (items) {
-      // If there are items ordered
-      document.querySelector("#checkout-mkpl-cnts").innerHTML = "";
-      for (let i = 0; i < numberOfItems; i++) {
-        const item = items[i];
-        const containers = checkoutCartCreateMarketplaceOrderHTML(item);
-        const html = `<div class="checkout-mkpl-cnt" id="checkout-mkpl-${item._id}">${containers}</div>`;
-        document
-          .querySelector("#checkout-mkpl-cnts")
-          .insertAdjacentHTML("beforeend", html);
-      }
-    }
+checkout.cart.item.insert = (item, element) => {
+  const containers = checkout.cart.item.create(item);
+  const html = `<div class="checkout-mkpl-cnt" id="checkout-mkpl-${item._id}">${containers}</div>`;
+  if (element) {
+    element.innerHTML = html;
   } else {
-    // If there are no items ordered
-    const html = checkoutCartCreateMarketplaceNoOrderHTML();
-    document.querySelector("#checkout-mkpl-cnts").innerHTML = html;
+    document
+      .querySelector("#checkout-mkpl-cnts")
+      .insertAdjacentHTML("beforeend", html);
   }
 };
 
-// @FUNC  checkoutCartDeleteMarketplaceOrder
-// @TYPE
-// @DESC  This function removes a marketplace order from the cart and deletes it on the
-//        database
-// @ARGU  itemId - string - The id of the item to be deleted
-const checkoutCartDeleteMarketplaceOrder = async itemId => {
+// @FUNC  checkout.cart.item.delete
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.item.delete = async itemId => {
   // Remove the item from the cart
-  document.querySelector(`#checkout-prnt-${itemId}`).remove();
+  document.querySelector(`#checkout-mkpl-${itemId}`).remove();
   // Reduce the number of items listed
   numberOfItems = numberOfItems - 1;
-  checkout.cart.prints.load();
+  checkout.cart.items.insert();
   // Delete the item from the database
 };
 
-// @FUNC  checkoutAddDiscount
-// @TYPE  ASYNCHRONOUS
-// @DESC  Adds a discount if a valid code is provided
+// @FUNC  checkout.cart.discount.add
+// @TYPE
+// @DESC
 // @ARGU
-const checkoutAddDiscount = () => {
+checkout.cart.discount.add = () => {
   // Fetch the discount code input
   const discountCode = document.querySelector("#checkout-dsct-inp").value;
   console.log(document.querySelector("#checkout-dsct-inp").value);
@@ -471,13 +622,23 @@ const checkoutAddDiscount = () => {
     validation.status = "Failed";
     validation.message = "Input Discount Code";
   }
-  if (!checkoutCartValidateDiscount(validation)) return; // Validation
+  if (!checkout.cart.discount.validate(validation)) return; // Validation
+
   /* Send to the backend to perform validation and if successful,
   retrieve the discount object */
+
   let discount;
-  if (!checkoutCartValidateDiscount(validation)) return; // Validation
+  if (!checkout.cart.discount.validate(validation)) return; // Validation
   // Display the discount to the page
-  const html = checkoutCartCreateDiscountHTML(discount);
+  checkout.cart.discount.insert(discount);
+};
+
+// @FUNC  checkout.cart.discount.insert
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.discount.insert = discount => {
+  const html = `<div class="checkout-dsct sbtl-2 txt-clr-blk-3"></div>`;
   document
     .querySelector("#checkout-dsct-list-cntn")
     .insertAdjacentHTML("beforeend", html);
@@ -485,11 +646,11 @@ const checkoutAddDiscount = () => {
   document.querySelector("#checkout-dsct-inp-err").innerHTML = ""; // Clear error
 };
 
-// @FUNC  checkoutCartValidateDiscount
-// @TYPE  SIMPLE
-// @DESC  Validate the discount code
-// @ARGU  validation - object -
-const checkoutCartValidateDiscount = validation => {
+// @FUNC  checkout.cart.discount.validate
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.discount.validate = validation => {
   if (validation.status == "Failed") {
     document.querySelector("#checkout-dsct-inp-err").innerHTML =
       validation.message;
@@ -498,14 +659,342 @@ const checkoutCartValidateDiscount = validation => {
   return true;
 };
 
-// @FUNC  checkoutCartCreateDiscountHTML
+// @FUNC  checkout.cart.validation.valid
 // @TYPE  SIMPLE
-// @DESC  Creates an HTML required to be inserted and displayed onto the page
-// @ARGU  discount - object - the discount object
-const checkoutCartCreateDiscountHTML = discount => {
-  const html = `<div class="checkout-dsct sbtl-2 txt-clr-blk-3"></div>`;
-  return html;
+// @DESC
+// @ARGU
+checkout.cart.validation.valid = () => {
+  checkout.element.heading.shipping.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.navigation.shipping.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.button.cart.next.addEventListener(
+    "click",
+    checkout.shipping.show
+  );
 };
+
+// @FUNC  checkout.cart.validation.invalid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.validation.invalid = () => {
+  checkout.element.heading.shipping.removeEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.navigation.shipping.removeEventListener(
+    "click",
+    checkout.shipping.show
+  );
+  checkout.element.button.cart.next.removeEventListener(
+    "click",
+    checkout.shipping.show
+  );
+};
+
+// @FUNC  checkout.cart.show
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.show = () => checkoutShowPage(0);
+
+/*-----------------------------------------------------------------------------------------
+SHIPPING
+-----------------------------------------------------------------------------------------*/
+
+// @FUNC  checkout.shipping.address.saved.validate.unit
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.unit = () => {
+  const unit = document.querySelector("#checkout-shpg-adrs-new-unit").value;
+  let status = {
+    valid: true,
+    input: unit,
+    message: ""
+  };
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.street.number
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.street.number = () => {
+  const streetNumber = document.querySelector("#checkout-shpg-adrs-new-st-num")
+    .value;
+  let status = {
+    valid: true,
+    input: streetNumber,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!streetNumber) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.street.name
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.street.name = () => {
+  const streetName = document.querySelector("#checkout-shpg-adrs-new-st-name")
+    .value;
+  let status = {
+    valid: true,
+    input: streetName,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!streetName) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.suburb
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.suburb = () => {
+  const suburb = document.querySelector("#checkout-shpg-adrs-new-sbrb").value;
+  let status = {
+    valid: true,
+    input: suburb,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!suburb) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.city
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.city = () => {
+  const city = document.querySelector("#checkout-shpg-adrs-new-cty").value;
+  let status = {
+    valid: true,
+    input: city,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!city) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.postcode
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.postcode = () => {
+  const postcode = document.querySelector("#checkout-shpg-adrs-new-zp-cd")
+    .value;
+  let status = {
+    valid: true,
+    input: postcode,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!postcode) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.country
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.country = () => {
+  const country = document.querySelector("#checkout-shpg-adrs-new-cnty").value;
+  let status = {
+    valid: true,
+    input: country,
+    message: ""
+  };
+
+  // Validate if there is anything written
+  if (!country) {
+    status.valid = false;
+    status.message = "requires input";
+  }
+
+  return status;
+};
+
+// @FUNC  checkout.shipping.address.saved.validate.all
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.validate.all = type => {
+  // Collect and Validate Inputs
+  const unit = checkout.shipping.address.saved.validate.unit();
+  const streetNumber = checkout.shipping.address.saved.validate.street.number();
+  const streetName = checkout.shipping.address.saved.validate.street.name();
+  const suburb = checkout.shipping.address.saved.validate.suburb();
+  const city = checkout.shipping.address.saved.validate.city();
+  const postcode = checkout.shipping.address.saved.validate.postcode();
+  const country = checkout.shipping.address.saved.validate.country();
+  // Check Validity
+  const valid =
+    unit.valid &&
+    streetNumber.valid &&
+    streetName.valid &&
+    suburb.valid &&
+    city.valid &&
+    postcode.valid &&
+    country.valid;
+  // Error Handling
+  if (type == "unit") {
+    document.querySelector("#checkout-shipping-unit-error").innerHTML =
+      unit.message;
+  } else if (type == "streetNumber") {
+    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
+      streetNumber.message;
+  } else if (type == "streetName") {
+    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
+      streetName.message;
+  } else if (type == "suburb") {
+    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
+      suburb.message;
+  } else if (type == "city") {
+    document.querySelector("#checkout-shipping-city-error").innerHTML =
+      city.message;
+  } else if (type == "postcode") {
+    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
+      postcode.message;
+  } else if (type == "country") {
+    document.querySelector("#checkout-shipping-country-error").innerHTML =
+      country.message;
+  } else {
+    document.querySelector("#checkout-shipping-unit-error").innerHTML =
+      unit.message;
+    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
+      streetNumber.message;
+    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
+      streetName.message;
+    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
+      suburb.message;
+    document.querySelector("#checkout-shipping-city-error").innerHTML =
+      city.message;
+    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
+      postcode.message;
+    document.querySelector("#checkout-shipping-country-error").innerHTML =
+      country.message;
+  }
+  if (valid) {
+  } else {
+  }
+  // Create the Address Object
+  const address = {
+    unit: unit.input,
+    street: {
+      number: streetNumber.input,
+      name: streetName.input
+    },
+    suburb: suburb.input,
+    city: city.input,
+    postcode: postcode.input,
+    country: country.input
+  };
+
+  return address;
+};
+
+// @FUNC  checkout.shipping.validation.valid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.shipping.validation.valid = () => {
+  checkout.element.heading.payment.addEventListener(
+    "click",
+    checkout.payment.show
+  );
+  checkout.element.navigation.payment.addEventListener(
+    "click",
+    checkout.payment.show
+  );
+  checkout.element.button.shipping.next.addEventListener(
+    "click",
+    checkout.payment.show
+  );
+};
+
+// @FUNC  checkout.shipping.validation.invalid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.shipping.validation.invalid = () => {
+  checkout.element.heading.payment.removeEventListener(
+    "click",
+    checkout.payment.show
+  );
+  checkout.element.navigation.payment.removeEventListener(
+    "click",
+    checkout.payment.show
+  );
+  checkout.element.button.shipping.next.removeEventListener(
+    "click",
+    checkout.payment.show
+  );
+};
+
+// @FUNC  checkout.shipping.show
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.shipping.show = () => checkoutShowPage(1);
+
+/*-----------------------------------------------------------------------------------------
+PAYMENT
+-----------------------------------------------------------------------------------------*/
+
+// @FUNC  checkout.payment.show
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.payment.show = () => checkoutShowPage(2);
+
+/*=========================================================================================
+OLD VERSION
+=========================================================================================*/
+
+/*=========================================================================================
+FUNCTIONS
+=========================================================================================*/
+
+/*-----------------------------------------------------------------------------------------
+CART FUNCTIONS
+-----------------------------------------------------------------------------------------*/
 
 // @FUNC  checkoutCartUpdateManufacturingSpeedOption
 // @TYPE  SIMPLE
@@ -596,20 +1085,6 @@ NAVIGATION
 
 let checkoutPages = ["cart", "shipping", "payment"];
 let checkoutSelectedPage = 0;
-
-// @FUNC  checkoutNavigationEvent
-// @TYPE  SIMPLE
-// @DESC  This function adds an event listener to the navigation
-// @ARGU
-const checkoutNavigationEvent = () => {
-  checkoutNavigationCart.addEventListener("click", () => checkoutShowPage(0));
-  checkoutNavigationShipping.addEventListener("click", () =>
-    checkoutShowPage(1)
-  );
-  checkoutNavigationPayment.addEventListener("click", () =>
-    checkoutShowPage(2)
-  );
-};
 
 // @FUNC  checkoutShowPage
 // @TYPE  SIMPLE
@@ -732,229 +1207,6 @@ const checkoutShippingCreateSavedAddressHTML = address => {
   return html;
 };
 
-// @FUNC  checkoutShippingAddressCollectAndValidateUnit
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateUnit = () => {
-  const unit = document.querySelector("#checkout-shpg-adrs-new-unit").value;
-  let status = {
-    valid: true,
-    input: unit,
-    message: ""
-  };
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateStreetNumber
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateStreetNumber = () => {
-  const streetNumber = document.querySelector("#checkout-shpg-adrs-new-st-num")
-    .value;
-  let status = {
-    valid: true,
-    input: streetNumber,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!streetNumber) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateStreetName
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateStreetName = () => {
-  const streetName = document.querySelector("#checkout-shpg-adrs-new-st-name")
-    .value;
-  let status = {
-    valid: true,
-    input: streetName,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!streetName) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateSuburb
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateSuburb = () => {
-  const suburb = document.querySelector("#checkout-shpg-adrs-new-sbrb").value;
-  let status = {
-    valid: true,
-    input: suburb,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!suburb) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateCity
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateCity = () => {
-  const city = document.querySelector("#checkout-shpg-adrs-new-cty").value;
-  let status = {
-    valid: true,
-    input: city,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!city) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidatePostcode
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidatePostcode = () => {
-  const postcode = document.querySelector("#checkout-shpg-adrs-new-zp-cd")
-    .value;
-  let status = {
-    valid: true,
-    input: postcode,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!postcode) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingAddressCollectAndValidateCountry
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingAddressCollectAndValidateCountry = () => {
-  const country = document.querySelector("#checkout-shpg-adrs-new-cnty").value;
-  let status = {
-    valid: true,
-    input: country,
-    message: ""
-  };
-
-  // Validate if there is anything written
-  if (!country) {
-    status.valid = false;
-    status.message = "requires input";
-  }
-
-  return status;
-};
-
-// @FUNC  checkoutShippingGetNewAddressInputs
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-const checkoutShippingGetNewAddressInputs = type => {
-  // Collect and Validate Inputs
-  const unit = checkoutShippingAddressCollectAndValidateUnit();
-  const streetNumber = checkoutShippingAddressCollectAndValidateStreetNumber();
-  const streetName = checkoutShippingAddressCollectAndValidateStreetName();
-  const suburb = checkoutShippingAddressCollectAndValidateSuburb();
-  const city = checkoutShippingAddressCollectAndValidateCity();
-  const postcode = checkoutShippingAddressCollectAndValidatePostcode();
-  const country = checkoutShippingAddressCollectAndValidateCountry();
-  // Check Validity
-  const valid =
-    unit.valid &&
-    streetNumber.valid &&
-    streetName.valid &&
-    suburb.valid &&
-    city.valid &&
-    postcode.valid &&
-    country.valid;
-  // Error Handling
-  if (type == "unit") {
-    document.querySelector("#checkout-shipping-unit-error").innerHTML =
-      unit.message;
-  } else if (type == "streetNumber") {
-    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
-      streetNumber.message;
-  } else if (type == "streetName") {
-    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
-      streetName.message;
-  } else if (type == "suburb") {
-    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
-      suburb.message;
-  } else if (type == "city") {
-    document.querySelector("#checkout-shipping-city-error").innerHTML =
-      city.message;
-  } else if (type == "postcode") {
-    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
-      postcode.message;
-  } else if (type == "country") {
-    document.querySelector("#checkout-shipping-country-error").innerHTML =
-      country.message;
-  } else {
-    document.querySelector("#checkout-shipping-unit-error").innerHTML =
-      unit.message;
-    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
-      streetNumber.message;
-    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
-      streetName.message;
-    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
-      suburb.message;
-    document.querySelector("#checkout-shipping-city-error").innerHTML =
-      city.message;
-    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
-      postcode.message;
-    document.querySelector("#checkout-shipping-country-error").innerHTML =
-      country.message;
-  }
-  if (valid) {
-  } else {
-  }
-  // Create the Address Object
-  const address = {
-    unit: unit.input,
-    street: {
-      number: streetNumber.input,
-      name: streetName.input
-    },
-    suburb: suburb.input,
-    city: city.input,
-    postcode: postcode.input,
-    country: country.input
-  };
-
-  return address;
-};
-
 // @FUNC  checkoutPaymentSelectOption
 // @TYPE  SIMPLE
 // @DESC  This function processes the selection of a payment options
@@ -997,18 +1249,31 @@ END
 const x = window.matchMedia("(min-width: 850px)");
 
 const checkoutResizeOrder = x => {
-  const elements = document.getElementsByClassName("checkout-prnt-cnt");
-  const numOfPrints = elements.length;
-
   if (x.matches) {
-    if (numOfPrints) {
+    if (numberOfPrints) {
       document.querySelector("#checkout-prnt-cnts").style = `height: ${8 *
-        numOfPrints}vmax`;
+        numberOfPrints}vmax`;
+    } else {
+      document.querySelector("#checkout-prnt-cnts").style = `height: 8vmax`;
+    }
+    if (numberOfItems) {
+      document.querySelector("#checkout-mkpl-cnts").style = `height: ${8 *
+        numberOfItems}vmax`;
+    } else {
+      document.querySelector("#checkout-mkpl-cnts").style = `height: 8vmax`;
     }
   } else {
-    if (numOfPrints) {
+    if (numberOfPrints) {
       document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
-        numOfPrints}vmax`;
+        numberOfPrints}vmax`;
+    } else {
+      document.querySelector("#checkout-prnt-cnts").style = `height: 16vmax`;
+    }
+    if (numberOfItems) {
+      document.querySelector("#checkout-mkpl-cnts").style = `height: ${16 *
+        numberOfItems}vmax`;
+    } else {
+      document.querySelector("#checkout-mkpl-cnts").style = `height: 16vmax`;
     }
   }
 };
