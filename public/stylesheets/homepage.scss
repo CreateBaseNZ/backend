@@ -35,213 +35,264 @@ body {
   .main-page {
     display: flex;
     flex-direction: column;
+  }
+}
 
-    .landing-page-container {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
+.landing-page-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 
-      .landing-slide {
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-      }
+  .landing-slide {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-      .landing-vid {
-        top: 0;
-        left: 0;
-        min-width: 100vw;
-        min-height: 100vh;
-      }
+  .landing-vid {
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
 
-      .landing-msg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+  .landing-msg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-        h1 {
-          font-family: $montserrat;
-          font-weight: bolder;
-          font-size: 5rem;
-        }
+    h1 {
+      font-family: $montserrat;
+      font-weight: bolder;
+      font-size: 5rem;
+    }
+  }
 
-        p {
-          font-family: $raleway;
-          font-size: 1.5rem;
-          font-weight: 100;
-        }
-      }
+  .slide-1 {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    animation: landing-fade-in 0.1s linear 0.6s forwards;
+    
+    #landing-msg-1 {
+      color: $light-1;
 
-      .slide-1 {
-        position: absolute;
-        left: 0;
-        opacity: 0;
-        animation: landing-fade-in 0.1s linear 0.6s forwards;
-        
-        #landing-msg-1 {
-          color: white;
-        }
-      }
-      
-      .slide-2 {
-        position: absolute;
-        left: 0;
-        animation: landing-fade-in 0.5s ease-in-out forwards;
-
-        #landing-msg-2 {
-          width: 30%;
-          left: 20vw;
-          color: $light-3;
-        }
-      }
-
-      .slide-right-active {
-        animation: landing-fade-out 0.5s ease-in-out forwards;
-      }
-
-      .landing-nav-btn {
-        position: absolute;
-        width: 100vw;
-        bottom: 5%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .landing-nav-wrapper,
-        .landing-nav-hitbox {
-          height: 20px;
-          width: 50px;
-          border-radius: 10px;
-          border: 2px solid $light-3;
-          transition: all 0.3s ease-out;
-        }
-
-        .landing-nav-switch {
-          position: absolute;
-          height: 12px;
-          border-radius: 12px;
-          animation: toggle-slide-left 0.5s ease-out forwards;
-        }
-
-        .landing-nav-hitbox {
-          position: absolute;
-          border: none;
-          cursor: pointer;
-        }
-
-        .right-wrapper-active {
-          border: 2px solid white;
-        }
-
-        .right-switch-active {
-          animation: toggle-slide-right 0.5s ease-out forwards;
-        }
+      p {
+        font-family: $poppins;
+        font-size: 1rem;
+        font-weight: 100;
+        letter-spacing: 10px;
       }
     }
+  }
+  
+  .slide-2 {
+    position: absolute;
+    left: 0;
+    animation: landing-fade-in 0.5s ease-in-out forwards;
 
-    .test-container {
+    #landing-msg-2 {
+      width: 30%;
+      left: 10vw;
+      color: $light-3;
+    }
+  }
+
+  .slide-right-active {
+    animation: landing-fade-out 0.5s ease-in-out forwards;
+  }
+
+  .landing-nav-btn {
+    position: absolute;
+    width: 100vw;
+    bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .landing-nav-wrapper,
+    .landing-nav-hitbox {
+      height: 20px;
+      width: 50px;
+      border-radius: 10px;
+      border: 2px solid $light-3;
+      transition: all 0.3s ease-out;
+    }
+
+    .landing-nav-switch {
+      position: absolute;
+      height: 12px;
+      border-radius: 12px;
+      animation: toggle-slide-left 0.5s ease-out forwards;
+    }
+
+    .landing-nav-hitbox {
+      position: absolute;
+      border: none;
+      cursor: pointer;
+    }
+
+    .right-wrapper-active {
+      border: 2px solid $light-1;
+    }
+
+    .right-switch-active {
+      animation: toggle-slide-right 0.5s ease-out forwards;
+    }
+  }
+}
+
+.eng-kit-section {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: $light-2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .eng-kit-container {
+    position: relative;
+    display: grid;
+    grid-template-areas: 
+      'code image'
+      'title image'
+      'desc image'
+      'more image';
+
+    img {
+      grid-area: image;
+      height: 60vh;
+    }
+
+    .eng-kit-code {
+      grid-area: code;
+      font-family: $poppins;
+      font-size: 1vw;
+      margin-left: 5.5vw;
+    }
+
+    .eng-kit-title {
+      position: absolute;
+      grid-area: title;
+      font-family: $montserrat;
+      font-weight: 800;
+      font-size: 6vw;
+      margin-left: 5vw;
+    }
+
+    .eng-kit-desc {
+      grid-area: desc;
+    }
+
+    .eng-kit-more {
+      grid-area: more;
+    }
+  }
+}
+
+.test-section {
+  position: relative;
+  background: $light-1;
+  height: 50vh;
+
+  .test-header {
+    p {
+      padding-top: 10vh;
+      padding-bottom: 2vh;
+      text-align: center;
+      font-family: $montserrat;
+      font-size: 2vh;
+      color: $dark-1;
+      letter-spacing: 2px;
+    }
+  }
+
+  .test-logo-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    .test-box {
       position: relative;
-      background: $light-1;
-      height: 50vh;
+      height: 10vw; 
+      width: 10vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid $light-1;
+      transition: 0.3s ease-out;
 
-      .test-header {
-        p {
-          padding-top: 10vh;
-          padding-bottom: 2vh;
-          text-align: center;
-          font-family: $montserrat;
-          font-size: 3vh;
-          color: $dark-1;
-          letter-spacing: 2px;
-        }
+      img {
+        width: 5vw;
+        transition: 0.3s ease-out;
       }
 
-      .test-logo-container {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+      .test-corner {
+        position: absolute;
+        height: 0;
+        width: 0;
+        visibility: hidden;
+        transition: 0.5s ease-out;
+      }
+
+      .top-left { 
+        margin-top: -5vw; 
+        margin-left: calc(-5vw - 1px); 
+        border-top: 1px solid $dark-3;
+        border-left: 1px solid $dark-3;
+      }
+      .top-right { 
+        margin-top: -5vw; 
+        margin-left: calc(5vw + 1px); 
+        border-top: 1px solid $dark-3;
+        border-right: 1px solid $dark-3;
+      }
+      .bottom-left { 
+        margin-top: 5vw; 
+        margin-left: calc(-5vw - 1px); 
+        border-bottom: 1px solid $dark-3;
+        border-left: 1px solid $dark-3;
+      }
+      .bottom-right { 
+        margin-top: 5vw; 
+        margin-left: calc(5vw + 1px); 
+        border-bottom: 1px solid $dark-3;
+        border-right: 1px solid $dark-3;
+      }
+
+      &:hover {
+        border: 0.8px solid $light-3;
         
-        .test-box {
-          height: 10vw; 
-          width: 10vw;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border: 1px solid $light-1;
-          transition: 0.3s ease-out;
+        .test-corner {
+          height: 1vw;
+          width: 1vw;
+          visibility: visible;
+        }
 
-          img {
-            width: 5vw;
-            transition: 0.3s ease-out;
-          }
-
-          .test-corner {
-            position: absolute;
-            height: 0;
-            width: 0;
-            visibility: hidden;
-            transition: 0.5s ease-out;
-          }
-
-          .top-left { 
-            margin-top: -5vw; 
-            margin-left: calc(-5vw - 1px); 
-            border-top: 1px solid $dark-3;
-            border-left: 1px solid $dark-3;
-          }
-          .top-right { 
-            margin-top: -5vw; 
-            margin-left: calc(5vw + 1px); 
-            border-top: 1px solid $dark-3;
-            border-right: 1px solid $dark-3;
-          }
-          .bottom-left { 
-            margin-top: 5vw; 
-            margin-left: calc(-5vw - 1px); 
-            border-bottom: 1px solid $dark-3;
-            border-left: 1px solid $dark-3;
-          }
-          .bottom-right { 
-            margin-top: 5vw; 
-            margin-left: calc(5vw + 1px); 
-            border-bottom: 1px solid $dark-3;
-            border-right: 1px solid $dark-3;
-          }
-
-          &:hover {
-            border: 0.8px solid $light-3;
-            
-            .test-corner {
-              height: 1vw;
-              width: 1vw;
-              visibility: visible;
-            }
-
-            .top-left { 
-              margin-top: -4.5vw; 
-              margin-left: calc(-4.5vw - 1px) 
-            }
-            .top-right { 
-              margin-top: -4.5vw; 
-              margin-left: calc(4.5vw + 1px); 
-            }
-            .bottom-left { 
-              margin-top: 4.5vw; 
-              margin-left: calc(-4.5vw - 1px); 
-            }
-            .bottom-right { 
-              margin-top: 4.5vw; 
-              margin-left: calc(4.5vw + 1px); 
-            }
-          }
+        .top-left { 
+          margin-top: -4.5vw; 
+          margin-left: calc(-4.5vw - 1px) 
+        }
+        .top-right { 
+          margin-top: -4.5vw; 
+          margin-left: calc(4.5vw + 1px); 
+        }
+        .bottom-left { 
+          margin-top: 4.5vw; 
+          margin-left: calc(-4.5vw - 1px); 
+        }
+        .bottom-right { 
+          margin-top: 4.5vw; 
+          margin-left: calc(4.5vw + 1px); 
         }
       }
     }
@@ -260,7 +311,7 @@ body {
   100% {
     width: 12px;
     margin-left: 14px;
-    background: white;
+    background: $light-1;
   }
 }
 
@@ -268,7 +319,7 @@ body {
   0% {
     width: 12px;
     margin-left: 15px;
-    background: white;
+    background: $light-1;
   }
   70% {
     width: 22px;
