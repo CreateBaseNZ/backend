@@ -28,4 +28,26 @@ const homeInit = () => {
       hamburger.classList.add('hamburger-screen-mode');
     }
   }
+
+  const brycepSlide = document.querySelector('.eng-kit-brycep');
+  const hyelosSlide = document.querySelector('.eng-kit-hyelos');
+  const stcSlide = document.querySelector('.eng-kit-stc');
+
+  const changeToBrycep = () => {
+    brycepSlide.classList.remove('eng-kit-hide');
+    brycepSlide.classList.add('eng-kit-hide');
+    brycepSlide.classList.add('eng-kit-hide');
+  }
+
+  const changeToHyelos = () => {
+    brycepSlide.classList.add('eng-kit-hide');
+    brycepSlide.classList.remove('eng-kit-hide');
+    brycepSlide.classList.add('eng-kit-hide');
+  }
+
+  const changeToSTC = () => {
+    brycepSlide.classList.add('eng-kit-hide');
+    brycepSlide.classList.add('eng-kit-hide');
+    brycepSlide.classList.remove('eng-kit-hide');
+  }
 }
