@@ -73,12 +73,16 @@ const fileRouter = require("./routes/file.js");
 const errorRouter = require("./routes/error.js");
 const validationRouter = require("./routes/validation.js");
 const paymentRouter = require("./routes/payment.js");
+const makeRouter = require("./routes/make.js");
+const checkoutRouter = require("./routes/checkout.js");
 const orderRouter = require("./routes/order.js");
 app.use(generalRouter);
 app.use(fileRouter);
 app.use(errorRouter);
 app.use(validationRouter);
 app.use(paymentRouter);
+app.use(makeRouter);
+app.use(checkoutRouter);
 app.use(orderRouter);
 
 /*=========================================================================================

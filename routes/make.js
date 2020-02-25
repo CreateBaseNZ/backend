@@ -75,7 +75,7 @@ router.post(
     const strength = req.body.strength;
     const colour = req.body.colour;
     const quantity = req.body.quantity;
-    const message = req.body.comment.message;
+    const message = req.body.note;
 
     // Create a make object
     let make = new Make({
@@ -92,8 +92,8 @@ router.post(
 
     // Set status
     make.updateStatus("awaitingQuote");
-
     // Create a comment
+
     let comment = new Comment({
       accountId,
       message
@@ -116,7 +116,6 @@ router.post(
     make.comment = mongoose.Types.ObjectId(savedComment._id);
 
     // Save make
-
     let savedMake;
 
     try {

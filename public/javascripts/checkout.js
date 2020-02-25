@@ -204,8 +204,16 @@ checkout.fetch = () => {
     let order;
 
     try {
-      order = (await axios("/checkout/order"))["data"];
-    } catch (error) {}
+      order = (await axios.post("/checkout/order"))["data"];
+    } catch (error) {
+      reject(error);
+    }
+
+    if (order.status == "failed") {
+      reject(order.data);
+    }
+
+    resolve(order.data);
   });
 };
 

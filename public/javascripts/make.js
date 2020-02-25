@@ -389,13 +389,17 @@ const makeCancel = () => {
 
 const makeCheckout = async () => {
   let submission = makeGetDetails();
+  let response;
   document
     .querySelector("#make-sub-page-load")
     .classList.remove("make-sub-page-hd");
 
   try {
-    let response = await axios.post("/make/submit", submission);
-  } catch (error) {}
+    response = (await axios.post("/make/create", submission))["data"];
+  } catch (error) {
+    // PLACEHOLDER FOR ERROR HANDLING
+    return;
+  }
 
   document
     .querySelector("#make-sub-page-thnk")
@@ -404,6 +408,8 @@ const makeCheckout = async () => {
   document
     .querySelector("#make-sub-page-load")
     .classList.add("make-sub-page-hd");
+
+  console.log(response);
 };
 
 /*=========================================================================================

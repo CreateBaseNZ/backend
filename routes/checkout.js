@@ -46,7 +46,7 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
   let order;
   // Find an Active Order
   try {
-    order = await Order.findOneByAccoundIdAndStatus(accountId, "checkout");
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
   } catch (error) {
     return res.send({ status: "failed", data: error });
   }
@@ -62,14 +62,20 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
 
   // Makes
 
+  let makesAwaitingQuote;
+  let makesCheckout;
+
   try {
-    [order.makes.awaitingQuote, order, makes.checkout] = await Promise.all([
-      orderMakesAwaitingQuoteGet(),
-      orderMakesCheckoutGet()
+    [makesAwaitingQuote, makesCheckout] = await Promise.all([
+      orderMakesAwaitingQuoteGet(accountId),
+      orderMakesCheckoutGet(accountId)
     ]);
   } catch (error) {
     return res.send({ status: "failed", data: error });
   }
+
+  order.makes.awaitingQuote = makesAwaitingQuote;
+  order.makes.checkout = makesCheckout;
 
   // Items
 
@@ -103,7 +109,13 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
     return res.send({ status: "failed", data: error });
   }
 
-  return res.send({ status: "success", data: savedOrder });
+  return res.send({
+    status: "success",
+    data: {
+      order: savedOrder,
+      makes: { awaitingQuote: makesAwaitingQuote, checkout: makesCheckout }
+    }
+  });
 });
 
 /*=========================================================================================
@@ -120,7 +132,7 @@ const orderMakesAwaitingQuoteGet = accountId => {
       reject(error);
     }
 
-    makes.sort(orderMakesAwaitingQuoteSort);
+    // makes.sort(orderMakesAwaitingQuoteSort);
 
     resolve(makes);
   });
@@ -138,7 +150,7 @@ const orderMakesCheckoutGet = accountId => {
       reject(error);
     }
 
-    makes.sort(orderMakesCheckoutSort);
+    // makes.sort(orderMakesCheckoutSort);
 
     resolve(makes);
   });

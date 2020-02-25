@@ -49,7 +49,7 @@ const MakeSchema = new Schema({
   comment: {
     type: Schema.Types.ObjectId
   },
-  dates: {
+  date: {
     awaitingQuote: {
       type: String
     },
@@ -78,15 +78,15 @@ STATIC
 // @ARGU
 MakeSchema.statics.findByAccountIdAndStatus = function(accountId, status) {
   return new Promise(async (resolve, reject) => {
-    let make;
+    let makes;
 
     try {
-      make = await this.find({ accountId, status });
+      makes = await this.find({ accountId, status });
     } catch (error) {
       reject(error);
     }
 
-    resolve(make);
+    resolve(makes);
   });
 };
 
