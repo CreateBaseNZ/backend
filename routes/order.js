@@ -164,6 +164,11 @@ router.post("/orders/print/delete", restrictedPages, async (req, res) => {
   return res.send({ status: "success", contents: "" });
 });
 
+// @route     POST /checkout/order
+// @desc
+// @access    Private
+router.post("/checkout/order", restrictedPages, async (req, res) => {});
+
 /*=========================================================================================
 FUNCTIONS
 =========================================================================================*/

@@ -3,6 +3,7 @@ REQUIRED MODULES
 =========================================================================================*/
 
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
 
 /*=========================================================================================
 VARIABLES
@@ -45,11 +46,20 @@ const MakeSchema = new Schema({
   quantity: {
     type: Number
   },
-  comments: {
-    type: [Schema.Types.ObjectId]
+  comment: {
+    type: Schema.Types.ObjectId
   },
   dates: {
+    awaitingQuote: {
+      type: String
+    },
     checkout: {
+      type: String
+    },
+    purchased: {
+      type: String
+    },
+    modified: {
       type: String
     }
   },
@@ -57,6 +67,71 @@ const MakeSchema = new Schema({
     type: Number
   }
 });
+
+/*=========================================================================================
+STATIC
+=========================================================================================*/
+
+// @FUNC  findByAccountIdAndStatus
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+MakeSchema.statics.findByAccountIdAndStatus = function(accountId, status) {
+  return new Promise(async (resolve, reject) => {
+    let make;
+
+    try {
+      make = await this.find({ accountId, status });
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(make);
+  });
+};
+
+/*=========================================================================================
+METHOD
+=========================================================================================*/
+
+// @FUNC  updateStatus
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+MakeSchema.methods.updateStatus = function(status) {
+  return new Promise(async (resolve, reject) => {
+    const statuses = ["awaitingQuote", "checkout", "purchased"];
+
+    // VALIDATION START
+
+    if (statuses.indexOf(status) === -1) {
+      reject("invalid status");
+    }
+
+    // VALIDATION END
+
+    const date = moment()
+      .tz("Pacific/Auckland")
+      .format();
+
+    this.status = status;
+    this.date[status] = date;
+    this.date.modified = date;
+
+    let savedMake;
+
+    try {
+      savedMake = await this.save();
+    } catch (error) {
+      reject({
+        status: "failed",
+        message: error
+      });
+    }
+
+    resolve(savedMake);
+  });
+};
 
 /*=========================================================================================
 EXPORT MAKE MODEL

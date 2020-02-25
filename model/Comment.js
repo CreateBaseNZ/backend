@@ -3,6 +3,7 @@ REQUIRED MODULES
 =========================================================================================*/
 
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
 
 /*=========================================================================================
 VARIABLES
@@ -22,12 +23,62 @@ const CommentSchema = new Schema({
     type: String
   },
   date: {
-    type: String
+    created: {
+      type: String
+    },
+    modified: {
+      type: String
+    }
   },
   attachments: {
     type: [Schema.Types.ObjectId]
   }
 });
+
+/*=========================================================================================
+METHODS
+=========================================================================================*/
+
+CommentSchema.methods.setDate = function() {
+  return new Promise(async (resolve, reject) => {
+    const date = moment()
+      .tz("Pacific/Auckland")
+      .format();
+
+    this.date.created = date;
+    this.date.modified = date;
+
+    let savedComment;
+
+    try {
+      savedComment = await this.save();
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(savedComment);
+  });
+};
+
+CommentSchema.methods.updateDate = function() {
+  return new Promise(async (resolve, reject) => {
+    const date = moment()
+      .tz("Pacific/Auckland")
+      .format();
+
+    this.date.modified = date;
+
+    let savedComment;
+
+    try {
+      savedComment = await this.save();
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(savedComment);
+  });
+};
 
 /*=========================================================================================
 EXPORT COMMENT MODEL
