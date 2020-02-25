@@ -29,25 +29,31 @@ const homeInit = () => {
     }
   }
 
+  const brycepButton = document.querySelector('#eng-kit-btn-brycep');
+  const hyelosButton = document.querySelector('#eng-kit-btn-hyelos');
+  const stcButton = document.querySelector('#eng-kit-btn-stc');
   const brycepSlide = document.querySelector('.eng-kit-brycep');
   const hyelosSlide = document.querySelector('.eng-kit-hyelos');
   const stcSlide = document.querySelector('.eng-kit-stc');
+  
+  brycepButton.addEventListener("click", function() {
+    brycepSlide.style.display = "flex";
+    hyelosSlide.style.display = "none";
+    stcSlide.style.display = "none";
+  });
 
-  const changeToBrycep = () => {
-    brycepSlide.classList.remove('eng-kit-hide');
-    brycepSlide.classList.add('eng-kit-hide');
-    brycepSlide.classList.add('eng-kit-hide');
-  }
+  hyelosButton.addEventListener("click", function() {
+    brycepSlide.style.display = "none";
+    hyelosSlide.style.display = "flex";
+    stcSlide.style.display = "none";
+  });
 
-  const changeToHyelos = () => {
-    brycepSlide.classList.add('eng-kit-hide');
-    brycepSlide.classList.remove('eng-kit-hide');
-    brycepSlide.classList.add('eng-kit-hide');
-  }
-
-  const changeToSTC = () => {
-    brycepSlide.classList.add('eng-kit-hide');
-    brycepSlide.classList.add('eng-kit-hide');
-    brycepSlide.classList.remove('eng-kit-hide');
-  }
+  stcButton.addEventListener("click", function() {
+    brycepSlide.style.display = "none";
+    hyelosSlide.style.display = "none";
+    stcSlide.style.display = "flex";
+  });
 }
+
+
+
