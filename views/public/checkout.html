@@ -453,7 +453,7 @@
                   name="address"
                   class="checkout-shpg-adrs-inp"
                   id="checkout-shpg-adrs-svd-inp"
-                  onchange="checkoutShippingSelectAddress('saved');"
+                  onchange="checkout.shipping.address.select('saved');"
                   checked
                 />
                 <label
@@ -481,7 +481,7 @@
                   name="address"
                   class="checkout-shpg-adrs-inp"
                   id="checkout-shpg-adrs-new-inp"
-                  onchange="checkoutShippingSelectAddress('new');"
+                  onchange="checkout.shipping.address.select('new');"
                 />
                 <label
                   for="checkout-shpg-adrs-new-inp"
@@ -771,7 +771,7 @@
                 name="paymentMethod"
                 class="checkout-pymt-mthd-inp"
                 id="checkout-pymt-mthd-inp-bank-tsfr"
-                onchange="checkoutPaymentSelectOption('bankTransfer');"
+                onchange="checkout.payment.method.select('bankTransfer');"
                 checked
               />
               <label
@@ -803,7 +803,7 @@
                 name="paymentMethod"
                 class="checkout-pymt-mthd-inp"
                 id="checkout-pymt-mthd-inp-card"
-                onchange="checkoutPaymentSelectOption('card');"
+                onchange="checkout.payment.method.select('card');"
               />
               <label
                 for="checkout-pymt-mthd-inp-card"
