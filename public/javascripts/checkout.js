@@ -46,34 +46,24 @@ let checkout = {
       cart: undefined,
       shipping: undefined,
       payment: undefined
-    }
+    },
+    windowSize: undefined
   },
   // FUNCTIONS
-  initialise: undefined,
-  fetch: undefined,
-  insert: undefined,
-  load: undefined,
-  listener: undefined,
-  stripe: {
-    initialise: undefined,
-    elements: undefined,
-    element: {
-      stripe: undefined,
-      card: {
-        number: undefined,
-        expiry: undefined,
-        cvc: undefined
-      }
-    }
-  },
+  initialise: undefined, // checkout.initialise
+  fetch: undefined, // checkout.fetch
+  insert: undefined, // checkout.insert
+  load: undefined, // checkout.load
+  listener: undefined, // checkout.listener
   elements: {
-    assign: undefined
+    assign: undefined // checkout.elements.assign
   },
   cart: {
     prints: {
       fetch: undefined, // checkout.cart.prints.fetch
       insert: undefined, // checkout.cart.prints.insert
-      load: undefined // checkout.cart.prints.load
+      load: undefined, // checkout.cart.prints.load
+      resize: undefined // checkout.cart.prints.resize
     },
     print: {
       create: undefined, // checkout.cart.print.create
@@ -87,7 +77,8 @@ let checkout = {
     items: {
       fetch: undefined, // checkout.cart.items.fetch
       insert: undefined, // checkout.cart.items.insert
-      load: undefined // checkout.cart.items.load
+      load: undefined, // checkout.cart.items.load
+      resize: undefined
     },
     item: {
       create: undefined, // checkout.cart.item.create
@@ -100,34 +91,35 @@ let checkout = {
       insert: undefined, // checkout.cart.discount.insert
       validate: undefined // checkout.cart.discount.validate
     },
-    validation: {
-      validate: undefined,
-      valid: undefined,
-      invalid: undefined
+    manufacturingSpeed: {
+      select: undefined // checkout.cart.manufacturingSpeed.select
     },
-    show: undefined
+    validation: {
+      validate: undefined, // checkout.cart.validation.validate
+      valid: undefined, // checkout.cart.validation.valid
+      invalid: undefined // checkout.cart.validate.invalid
+    },
+    show: undefined // checkout.cart.show
   },
   shipping: {
     address: {
-      option: {
-        select: undefined
-      },
+      select: undefined, // checkout.shipping.address.select
       saved: {
-        validate: {
-          unit: undefined, // checkout.shipping.address.saved.validate.unit
-          street: {
-            number: undefined, // checkout.shipping.address.saved.validate.street.number
-            name: undefined // checkout.shipping.address.saved.validate.street.name
-          },
-          suburb: undefined, // checkout.shipping.address.saved.validate.suburb
-          city: undefined, // checkout.shipping.address.saved.validate.city
-          postcode: undefined, // checkout.shipping.address.saved.validate.postcode
-          country: undefined, // checkout.shipping.address.saved.validate.country
-          all: undefined // checkout.shipping.address.saved.validate.all
-        },
         show: undefined
       },
       new: {
+        validate: {
+          unit: undefined, // checkout.shipping.address.new.validate.unit
+          street: {
+            number: undefined, // checkout.shipping.address.new.validate.street.number
+            name: undefined // checkout.shipping.address.new.validate.street.name
+          },
+          suburb: undefined, // checkout.shipping.address.new.validate.suburb
+          city: undefined, // checkout.shipping.address.new.validate.city
+          postcode: undefined, // checkout.shipping.address.new.validate.postcode
+          country: undefined, // checkout.shipping.address.new.validate.country
+          all: undefined // checkout.shipping.address.new.validate.all
+        },
         show: undefined
       }
     },
@@ -144,12 +136,43 @@ let checkout = {
     show: undefined
   },
   payment: {
+    stripe: {
+      initialise: undefined,
+      element: {
+        stripe: undefined,
+        elements: undefined,
+        card: {
+          number: undefined,
+          expiry: undefined,
+          cvc: undefined
+        }
+      }
+    },
+    method: {
+      select: undefined,
+      bank: {
+        show: undefined
+      },
+      card: {
+        pay: undefined,
+        paymentIntent: undefined,
+        process: undefined,
+        show: undefined
+      }
+    },
     validation: {
       validate: undefined,
       valid: undefined,
       invalid: undefined
     },
     show: undefined
+  },
+  navigation: {
+    navigate: undefined, // checkout.navigation.navigate
+    changeCSS: {
+      page: undefined, // checkout.navigation.changeCSS.page
+      navigation: undefined // checkout.navigation.changeCSS.navigation
+    }
   }
 };
 
@@ -163,7 +186,7 @@ FUNCTIONS
 // @ARGU
 checkout.initialise = () => {
   // Stripe
-  checkout.stripe.initialise();
+  checkout.payment.stripe.initialise();
   checkout.elements.assign();
   // LOAD ORDERS
   checkout.cart.prints.load();
@@ -172,21 +195,18 @@ checkout.initialise = () => {
   checkout.listener();
 };
 
-checkout.stripe.initialise = () => {
-  checkout.stripe.element.stripe = Stripe(
-    "pk_test_cyWnxjuNQGbF42g88sLseXpJ003JGn4TCC"
-  );
-  checkout.stripe.elements = checkout.stripe.element.stripe.elements();
-  checkout.stripe.element.number = checkout.stripe.elements.create(
-    "cardNumber"
-  );
-  checkout.stripe.element.number.mount("#checkout-card-num");
-  checkout.stripe.element.expiry = checkout.stripe.elements.create(
-    "cardExpiry"
-  );
-  checkout.stripe.element.expiry.mount("#checkout-card-exp");
-  checkout.stripe.element.cvc = checkout.stripe.elements.create("cardCvc");
-  checkout.stripe.element.cvc.mount("#checkout-card-cvc");
+// @FUNC  checkout.fetch
+// @TYPE
+// @DESC
+// @ARGU
+checkout.fetch = () => {
+  return new Promise(async (resolve, reject) => {
+    let order;
+
+    try {
+      order = (await axios("/checkout/order"))["data"];
+    } catch (error) {}
+  });
 };
 
 // @FUNC  checkout.listener
@@ -255,6 +275,7 @@ checkout.elements.assign = () => {
   checkout.element.button.payment.card.pay = document.querySelector(
     "#checkout-element-button-payment-card-pay"
   );
+  checkout.element.windowSize = window.matchMedia("(min-width: 850px)");
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -307,8 +328,8 @@ checkout.cart.prints.insert = prints => {
         checkout.cart.print.insert(prints[i]);
       }
     }
-    checkoutResizeOrder(x);
-    x.addListener(checkoutResizeOrder);
+    checkout.cart.prints.resize();
+    checkout.element.windowSize.addListener(checkout.cart.prints.resize);
   } else {
     // If there are no prints ordered
     document.querySelector("#checkout-prnt-cnts").innerHTML =
@@ -331,6 +352,28 @@ checkout.cart.prints.load = async () => {
 
   numberOfPrints = prints.length;
   checkout.cart.prints.insert(prints);
+};
+
+// @FUNC  checkout.cart.prints.resize
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.prints.resize = () => {
+  if (checkout.element.windowSize.matches) {
+    if (numberOfPrints) {
+      document.querySelector("#checkout-prnt-cnts").style = `height: ${8 *
+        numberOfPrints}vmax`;
+    } else {
+      document.querySelector("#checkout-prnt-cnts").style = `height: 8vmax`;
+    }
+  } else {
+    if (numberOfPrints) {
+      document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
+        numberOfPrints}vmax`;
+    } else {
+      document.querySelector("#checkout-prnt-cnts").style = `height: 16vmax`;
+    }
+  }
 };
 
 // @FUNC  checkout.cart.print.create
@@ -510,8 +553,8 @@ checkout.cart.items.insert = items => {
         checkout.cart.item.insert(items[i]);
       }
     }
-    checkoutResizeOrder(x);
-    x.addListener(checkoutResizeOrder);
+    checkout.cart.items.resize();
+    checkout.element.windowSize.addListener(checkout.cart.items.resize);
   } else {
     // If there are no items ordered
     document.querySelector("#checkout-mkpl-cnts").innerHTML = "<p>No Items</p>";
@@ -533,6 +576,28 @@ checkout.cart.items.load = async () => {
 
   numberOfItems = items.length;
   checkout.cart.items.insert(items);
+};
+
+// @FUNC  checkout.cart.items.resize
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.items.resize = () => {
+  if (checkout.element.windowSize.matches) {
+    if (numberOfItems) {
+      document.querySelector("#checkout-mkpl-cnts").style = `height: ${8 *
+        numberOfItems}vmax`;
+    } else {
+      document.querySelector("#checkout-mkpl-cnts").style = `height: 8vmax`;
+    }
+  } else {
+    if (numberOfItems) {
+      document.querySelector("#checkout-mkpl-cnts").style = `height: ${16 *
+        numberOfItems}vmax`;
+    } else {
+      document.querySelector("#checkout-mkpl-cnts").style = `height: 16vmax`;
+    }
+  }
 };
 
 // @FUNC  checkout.cart.item.create
@@ -659,6 +724,12 @@ checkout.cart.discount.validate = validation => {
   return true;
 };
 
+// @FUNC  checkout.cart.manufacturingSpeed.select
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.manufacturingSpeed.select = () => {};
+
 // @FUNC  checkout.cart.validation.valid
 // @TYPE  SIMPLE
 // @DESC
@@ -701,17 +772,47 @@ checkout.cart.validation.invalid = () => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.show = () => checkoutShowPage(0);
+checkout.cart.show = () => checkout.navigation.navigate(0);
 
 /*-----------------------------------------------------------------------------------------
 SHIPPING
 -----------------------------------------------------------------------------------------*/
 
-// @FUNC  checkout.shipping.address.saved.validate.unit
+// @FUNC  checkout.shipping.address.select
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.saved.validate.unit = () => {
+checkout.shipping.address.select = option => {
+  if (option == "saved") {
+    checkout.shipping.address.saved.show(true);
+    checkout.shipping.address.new.show(false);
+  } else if (option == "new") {
+    checkout.shipping.address.saved.show(false);
+    checkout.shipping.address.new.show(true);
+  }
+};
+
+// @FUNC  checkout.shipping.address.saved.show
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.show = show => {
+  if (show) {
+    document
+      .querySelector("#checkout-shpg-adrs-cntn-svd")
+      .classList.remove("checkout-element-hide");
+  } else {
+    document
+      .querySelector("#checkout-shpg-adrs-cntn-svd")
+      .classList.add("checkout-element-hide");
+  }
+};
+
+// @FUNC  checkout.shipping.address.new.validate.unit
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.new.validate.unit = () => {
   const unit = document.querySelector("#checkout-shpg-adrs-new-unit").value;
   let status = {
     valid: true,
@@ -722,11 +823,11 @@ checkout.shipping.address.saved.validate.unit = () => {
   return status;
 };
 
-// @FUNC  checkout.shipping.address.saved.validate.street.number
+// @FUNC  checkout.shipping.address.new.validate.street.number
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.saved.validate.street.number = () => {
+checkout.shipping.address.new.validate.street.number = () => {
   const streetNumber = document.querySelector("#checkout-shpg-adrs-new-st-num")
     .value;
   let status = {
@@ -744,11 +845,11 @@ checkout.shipping.address.saved.validate.street.number = () => {
   return status;
 };
 
-// @FUNC  checkout.shipping.address.saved.validate.street.name
+// @FUNC  checkout.shipping.address.new.validate.street.name
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.saved.validate.street.name = () => {
+checkout.shipping.address.new.validate.street.name = () => {
   const streetName = document.querySelector("#checkout-shpg-adrs-new-st-name")
     .value;
   let status = {
@@ -766,11 +867,11 @@ checkout.shipping.address.saved.validate.street.name = () => {
   return status;
 };
 
-// @FUNC  checkout.shipping.address.saved.validate.suburb
+// @FUNC  checkout.shipping.address.new.validate.suburb
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.saved.validate.suburb = () => {
+checkout.shipping.address.new.validate.suburb = () => {
   const suburb = document.querySelector("#checkout-shpg-adrs-new-sbrb").value;
   let status = {
     valid: true,
@@ -787,11 +888,11 @@ checkout.shipping.address.saved.validate.suburb = () => {
   return status;
 };
 
-// @FUNC  checkout.shipping.address.saved.validate.city
+// @FUNC  checkout.shipping.address.new.validate.city
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.saved.validate.city = () => {
+checkout.shipping.address.new.validate.city = () => {
   const city = document.querySelector("#checkout-shpg-adrs-new-cty").value;
   let status = {
     valid: true,
@@ -808,11 +909,11 @@ checkout.shipping.address.saved.validate.city = () => {
   return status;
 };
 
-// @FUNC  checkout.shipping.address.saved.validate.postcode
+// @FUNC  checkout.shipping.address.new.validate.postcode
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.saved.validate.postcode = () => {
+checkout.shipping.address.new.validate.postcode = () => {
   const postcode = document.querySelector("#checkout-shpg-adrs-new-zp-cd")
     .value;
   let status = {
@@ -830,11 +931,11 @@ checkout.shipping.address.saved.validate.postcode = () => {
   return status;
 };
 
-// @FUNC  checkout.shipping.address.saved.validate.country
+// @FUNC  checkout.shipping.address.new.validate.country
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.saved.validate.country = () => {
+checkout.shipping.address.new.validate.country = () => {
   const country = document.querySelector("#checkout-shpg-adrs-new-cnty").value;
   let status = {
     valid: true,
@@ -851,19 +952,19 @@ checkout.shipping.address.saved.validate.country = () => {
   return status;
 };
 
-// @FUNC  checkout.shipping.address.saved.validate.all
+// @FUNC  checkout.shipping.address.new.validate.all
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.saved.validate.all = type => {
+checkout.shipping.address.new.validate.all = type => {
   // Collect and Validate Inputs
-  const unit = checkout.shipping.address.saved.validate.unit();
-  const streetNumber = checkout.shipping.address.saved.validate.street.number();
-  const streetName = checkout.shipping.address.saved.validate.street.name();
-  const suburb = checkout.shipping.address.saved.validate.suburb();
-  const city = checkout.shipping.address.saved.validate.city();
-  const postcode = checkout.shipping.address.saved.validate.postcode();
-  const country = checkout.shipping.address.saved.validate.country();
+  const unit = checkout.shipping.address.new.validate.unit();
+  const streetNumber = checkout.shipping.address.new.validate.street.number();
+  const streetName = checkout.shipping.address.new.validate.street.name();
+  const suburb = checkout.shipping.address.new.validate.suburb();
+  const city = checkout.shipping.address.new.validate.city();
+  const postcode = checkout.shipping.address.new.validate.postcode();
+  const country = checkout.shipping.address.new.validate.country();
   // Check Validity
   const valid =
     unit.valid &&
@@ -930,6 +1031,22 @@ checkout.shipping.address.saved.validate.all = type => {
   return address;
 };
 
+// @FUNC  checkout.shipping.address.new.show
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.new.show = show => {
+  if (show) {
+    document
+      .querySelector("#checkout-shpg-adrs-cntn-new")
+      .classList.remove("checkout-element-hide");
+  } else {
+    document
+      .querySelector("#checkout-shpg-adrs-cntn-new")
+      .classList.add("checkout-element-hide");
+  }
+};
+
 // @FUNC  checkout.shipping.validation.valid
 // @TYPE  SIMPLE
 // @DESC
@@ -972,66 +1089,139 @@ checkout.shipping.validation.invalid = () => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.shipping.show = () => checkoutShowPage(1);
+checkout.shipping.show = () => checkout.navigation.navigate(1);
+
+// @FUNC  checkoutShippingCreateSavedAddressHTML
+// @TYPE
+// @DESC
+// @ARGU
+const checkoutShippingCreateSavedAddressHTML = address => {
+  let unit = "";
+
+  if (address.unit) {
+    unit = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+            ${address.unit}</div>`;
+  }
+
+  const street = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+                  ${address.street.number} ${address.street.name}</div>`;
+  const suburb = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+                  ${address.suburb}</div>`;
+  const cityPostal = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+                      ${address.city}, ${address.postcode}</div>`;
+  const country = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
+                    ${address.country}</div>`;
+
+  const html = unit + street + suburb + cityPostal + country;
+
+  return html;
+};
 
 /*-----------------------------------------------------------------------------------------
 PAYMENT
 -----------------------------------------------------------------------------------------*/
 
-// @FUNC  checkout.payment.show
-// @TYPE  SIMPLE
+// @FUNC  checkout.payment.stripe.initialise
+// @TYPE
 // @DESC
 // @ARGU
-checkout.payment.show = () => checkoutShowPage(2);
-
-/*=========================================================================================
-OLD VERSION
-=========================================================================================*/
-
-/*=========================================================================================
-FUNCTIONS
-=========================================================================================*/
-
-/*-----------------------------------------------------------------------------------------
-CART FUNCTIONS
------------------------------------------------------------------------------------------*/
-
-// @FUNC  checkoutCartUpdateManufacturingSpeedOption
-// @TYPE  SIMPLE
-// @DESC  Update the Manufacturing Speed Option of the order
-// @ARGU  manufacturingSpeed - string - the new manufacturing value
-const checkoutCartUpdateManufacturingSpeedOption = manufacturingSpeed => {
-  console.log(manufacturingSpeed);
+checkout.payment.stripe.initialise = () => {
+  checkout.payment.stripe.element.stripe = Stripe(
+    "pk_test_cyWnxjuNQGbF42g88sLseXpJ003JGn4TCC"
+  );
+  checkout.payment.stripe.element.elements = checkout.payment.stripe.element.stripe.elements();
+  checkout.payment.stripe.element.number = checkout.payment.stripe.element.elements.create(
+    "cardNumber"
+  );
+  checkout.payment.stripe.element.number.mount("#checkout-card-num");
+  checkout.payment.stripe.element.expiry = checkout.payment.stripe.element.elements.create(
+    "cardExpiry"
+  );
+  checkout.payment.stripe.element.expiry.mount("#checkout-card-exp");
+  checkout.payment.stripe.element.cvc = checkout.payment.stripe.element.elements.create(
+    "cardCvc"
+  );
+  checkout.payment.stripe.element.cvc.mount("#checkout-card-cvc");
 };
 
-// @FUNC  checkoutCartUpdateTotal
-// @TYPE  SIMPLE
-// @DESC  Update the displayed totals
-// @ARGU  order - object - the object that contains the details of the order
-const checkoutCartUpdateTotal = order => {};
+// @FUNC  checkout.payment.method.select
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.method.select = option => {
+  if (option === "bankTransfer") {
+    checkout.payment.method.bank.show(true);
+    checkout.payment.method.card.show(false);
+  } else if (option === "card") {
+    checkout.payment.method.bank.show(false);
+    checkout.payment.method.card.show(true);
+  }
+};
 
-/*-----------------------------------------------------------------------------------------
-CREATE PAYMENT INTENT AND GET CLIENT SECRET
------------------------------------------------------------------------------------------*/
+// @FUNC  checkout.payment.method.bank.show
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.method.bank.show = show => {
+  if (show) {
+    document
+      .querySelector("#checkout-pymt-bank-tsfr-cntn")
+      .classList.remove("checkout-element-hide");
+  } else {
+    document
+      .querySelector("#checkout-pymt-bank-tsfr-cntn")
+      .classList.add("checkout-element-hide");
+  }
+};
 
-const checkoutPaymentIntent = () => {
+// @FUNC  checkout.payment.method.card.pay
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.method.card.pay = async () => {
+  let clientSecret;
+  let payment;
+
+  try {
+    clientSecret = await checkout.payment.method.card.paymentIntent();
+  } catch (error) {
+    return console.log(error);
+  }
+
+  try {
+    payment = await checkout.payment.method.card.process(clientSecret);
+  } catch (error) {
+    return console.log(error);
+  }
+
+  console.log(payment["status"]);
+};
+
+// @FUNC  checkout.payment.method.card.paymentIntent
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.method.card.paymentIntent = () => {
   return new Promise(async (resolve, reject) => {
     let clientSecret;
 
     try {
-      clientSecret = await axios.post("/checkout/payment-intent", "Pay");
-      resolve(clientSecret.data);
+      clientSecret = (await axios.post("/checkout/payment-intent", "Pay"))[
+        "data"
+      ];
     } catch (error) {
       reject(error);
     }
+
+    resolve(clientSecret);
   });
 };
 
-/*-----------------------------------------------------------------------------------------
-PROCESS PAYMENT
------------------------------------------------------------------------------------------*/
-
-const processCardPayment = clientSecret => {
+// @FUNC  checkout.payment.method.card.process
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.method.card.process = clientSecret => {
   return new Promise(async (resolve, reject) => {
     let result;
 
@@ -1056,28 +1246,27 @@ const processCardPayment = clientSecret => {
   });
 };
 
-/*-----------------------------------------------------------------------------------------
-PROCEED WITH PAYMENT
------------------------------------------------------------------------------------------*/
-
-const checkoutPay = async () => {
-  let clientSecret;
-  let payment;
-
-  try {
-    clientSecret = await checkoutPaymentIntent();
-  } catch (error) {
-    return console.log(error);
+// @FUNC  checkout.payment.method.card.show
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.method.card.show = show => {
+  if (show) {
+    document
+      .querySelector("#checkout-pymt-card-cntn")
+      .classList.remove("checkout-element-hide");
+  } else {
+    document
+      .querySelector("#checkout-pymt-card-cntn")
+      .classList.add("checkout-element-hide");
   }
-
-  try {
-    payment = await processCardPayment(clientSecret);
-  } catch (error) {
-    return console.log(error);
-  }
-
-  console.log(payment["status"]);
 };
+
+// @FUNC  checkout.payment.show
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.payment.show = () => checkout.navigation.navigate(2);
 
 /*-----------------------------------------------------------------------------------------
 NAVIGATION
@@ -1086,25 +1275,25 @@ NAVIGATION
 let checkoutPages = ["cart", "shipping", "payment"];
 let checkoutSelectedPage = 0;
 
-// @FUNC  checkoutShowPage
-// @TYPE  SIMPLE
-// @DESC  This function switches the page
+// @FUNC  checkout.navigation.navigate
+// @TYPE
+// @DESC
 // @ARGU
-const checkoutShowPage = nextPage => {
+checkout.navigation.navigate = nextPage => {
   // Check if we are currently on the same page
   if (nextPage == checkoutSelectedPage) return;
   // Update the navigation CSS
-  checkoutChangeNavigationCSS(nextPage);
-  checkoutChangePageCSS(nextPage);
+  checkout.navigation.changeCSS.navigation(nextPage);
+  checkout.navigation.changeCSS.page(nextPage);
   // Update the current selected page
   checkoutSelectedPage = nextPage;
 };
 
-// @FUNC  checkoutChangeNavigationCSS
-// @TYPE  SIMPLE
-// @DESC  This function changes the CSS of the navigation
+// @FUNC  checkout.navigation.changeCSS.navigation
+// @TYPE
+// @DESC
 // @ARGU
-const checkoutChangeNavigationCSS = nextPage => {
+checkout.navigation.changeCSS.navigation = nextPage => {
   const nextPageName = checkoutPages[nextPage];
   const currentPageName = checkoutPages[checkoutSelectedPage];
   document
@@ -1115,11 +1304,11 @@ const checkoutChangeNavigationCSS = nextPage => {
     .classList.remove("checkout-navigation-icon-container-selected");
 };
 
-// @FUNC  checkoutChangePageCSS
-// @TYPE  SIMPLE
-// @DESC  This function changes the CSS of the pages
+// @FUNC  checkout.navigation.changeCSS.page
+// @TYPE
+// @DESC
 // @ARGU
-const checkoutChangePageCSS = nextPage => {
+checkout.navigation.changeCSS.page = nextPage => {
   const nextPageName = checkoutPages[nextPage];
   if (nextPage > checkoutSelectedPage) {
     document
@@ -1150,130 +1339,6 @@ const checkoutChangePageCSS = nextPage => {
   }
 };
 
-// @FUNC  checkoutShippingSelectAddress
-// @TYPE  SIMPLE
-// @DESC  This function processes the selection of the shipping address
-// @ARGU  shippingAddressOption - string -
-const checkoutShippingSelectAddress = shippingAddressOption => {
-  checkoutShippingChangeAddressCSS(shippingAddressOption);
-};
-
-// @FUNC  checkoutShippingChangeAddressCSS
-// @TYPE  SIMPLE
-// @DESC  This function displays and hide the contents of the address option depending on
-//        the selected shipping address option
-// @ARGU  shippingAddressOption - string -
-const checkoutShippingChangeAddressCSS = shippingAddressOption => {
-  if (shippingAddressOption == "new") {
-    document
-      .querySelector("#checkout-shpg-adrs-cntn-svd")
-      .classList.add("checkout-element-hide");
-    document
-      .querySelector("#checkout-shpg-adrs-cntn-new")
-      .classList.remove("checkout-element-hide");
-  } else {
-    document
-      .querySelector("#checkout-shpg-adrs-cntn-svd")
-      .classList.remove("checkout-element-hide");
-    document
-      .querySelector("#checkout-shpg-adrs-cntn-new")
-      .classList.add("checkout-element-hide");
-  }
-};
-
-// @FUNC  checkoutShippingCreateSavedAddressHTML
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU  address - object -
-const checkoutShippingCreateSavedAddressHTML = address => {
-  let unit = "";
-
-  if (address.unit) {
-    unit = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-            ${address.unit}</div>`;
-  }
-
-  const street = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  ${address.street.number} ${address.street.name}</div>`;
-  const suburb = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  ${address.suburb}</div>`;
-  const cityPostal = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                      ${address.city}, ${address.postcode}</div>`;
-  const country = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                    ${address.country}</div>`;
-
-  const html = unit + street + suburb + cityPostal + country;
-
-  return html;
-};
-
-// @FUNC  checkoutPaymentSelectOption
-// @TYPE  SIMPLE
-// @DESC  This function processes the selection of a payment options
-// @ARGU  option - string -
-const checkoutPaymentSelectOption = option => {
-  // Update CSS
-  checkoutPaymentChangeCSS(option);
-  // Update the Database
-};
-
-// @FUNC  checkoutPaymentChangeCSS
-// @TYPE  SIMPLE
-// @DESC  This function hides and unhides the option details depending on the
-//        payment option selected
-// @ARGU  option - string -
-const checkoutPaymentChangeCSS = option => {
-  if (option === "bankTransfer") {
-    // If the Bank Transfer option is selected
-    document
-      .querySelector("#checkout-pymt-bank-tsfr-cntn")
-      .classList.remove("checkout-element-hide");
-    document
-      .querySelector("#checkout-pymt-card-cntn")
-      .classList.add("checkout-element-hide");
-  } else if (option === "card") {
-    // If the Card option is selected
-    document
-      .querySelector("#checkout-pymt-bank-tsfr-cntn")
-      .classList.add("checkout-element-hide");
-    document
-      .querySelector("#checkout-pymt-card-cntn")
-      .classList.remove("checkout-element-hide");
-  }
-};
-
 /*=========================================================================================
 END
 =========================================================================================*/
-
-const x = window.matchMedia("(min-width: 850px)");
-
-const checkoutResizeOrder = x => {
-  if (x.matches) {
-    if (numberOfPrints) {
-      document.querySelector("#checkout-prnt-cnts").style = `height: ${8 *
-        numberOfPrints}vmax`;
-    } else {
-      document.querySelector("#checkout-prnt-cnts").style = `height: 8vmax`;
-    }
-    if (numberOfItems) {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: ${8 *
-        numberOfItems}vmax`;
-    } else {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: 8vmax`;
-    }
-  } else {
-    if (numberOfPrints) {
-      document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
-        numberOfPrints}vmax`;
-    } else {
-      document.querySelector("#checkout-prnt-cnts").style = `height: 16vmax`;
-    }
-    if (numberOfItems) {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: ${16 *
-        numberOfItems}vmax`;
-    } else {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: 16vmax`;
-    }
-  }
-};
