@@ -53,7 +53,12 @@ const OrderSchema = new Schema({
     type: String
   },
   makes: {
-    type: [mongoose.Types.ObjectId]
+    awaitingQuote: {
+      type: [mongoose.Types.ObjectId]
+    },
+    checkout: {
+      type: [mongoose.Types.ObjectId]
+    }
   },
   items: {
     type: [mongoose.Types.ObjectId]
@@ -121,16 +126,34 @@ const OrderSchema = new Schema({
 STATIC - MODEL
 =========================================================================================*/
 
-// @FUNC  findOneByStatus
+// @FUNC  findByStatus
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-OrderSchema.statics.findOneByStatus = function(status) {
+OrderSchema.statics.findByStatus = function(status) {
   return new Promise(async (resolve, reject) => {
     let order;
 
     try {
-      order = await this.findOne({ status });
+      order = await this.find({ status });
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(order);
+  });
+};
+
+// @FUNC  findOneByAccoundIdAndStatus
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+OrderSchema.statics.findOneByAccoundIdAndStatus = function(accountId, status) {
+  return new Promise(async (resolve, reject) => {
+    let order;
+
+    try {
+      order = await this.findOne({ accountId, status });
     } catch (error) {
       reject(error);
     }
