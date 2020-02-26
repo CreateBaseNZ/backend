@@ -2768,7 +2768,7 @@ GLOBAL
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border-radius: 3vmax;
+  border-radius: 1vmax;
   background-color: #c7c2d5;
   font-family: "Poppins", sans-serif;
   font-size: 2vmax;
@@ -3171,7 +3171,7 @@ DESKTOP CSS
   .checkout-button {
     height: 3vmax;
     width: 12vmax;
-    border-radius: 1.5vmax;
+    border-radius: 0.5vmax;
     font-size: 1vmax;
     letter-spacing: 0.2vmax;
   }

@@ -684,7 +684,7 @@ GLOBAL
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 3vmax;
+  border-radius: 1vmax;
   background-color: $clr-wht-3;
   font-family: $fnt-fml-2;
   font-size: 2vmax;
@@ -1101,7 +1101,7 @@ DESKTOP CSS
   .checkout-button {
     height: 3vmax;
     width: 12vmax;
-    border-radius: 1.5vmax;
+    border-radius: 0.5vmax;
     font-size: 1vmax;
     letter-spacing: 0.2vmax;
   }
