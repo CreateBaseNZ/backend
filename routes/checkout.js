@@ -20,7 +20,7 @@ MODELS
 
 const Order = require("./../model/Order.js");
 const Make = require("./../model/Make.js");
-const Purchase = require("./../model/Item.js");
+const Item = require("./../model/Item.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -57,18 +57,24 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
       accountId
     });
     // Update status of the order
-    order.updateStatus("created");
+    try {
+      await order.updateStatus("created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
   }
 
-  // Makes
+  // Makes and Items
 
   let makesAwaitingQuote;
   let makesCheckout;
+  let itemsCheckout;
 
   try {
-    [makesAwaitingQuote, makesCheckout] = await Promise.all([
+    [makesAwaitingQuote, makesCheckout, itemsCheckout] = await Promise.all([
       orderMakesAwaitingQuoteGet(accountId),
-      orderMakesCheckoutGet(accountId)
+      orderMakesCheckoutGet(accountId),
+      orderItemsCheckoutGet(accountId)
     ]);
   } catch (error) {
     return res.send({ status: "failed", data: error });
@@ -76,8 +82,6 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
 
   order.makes.awaitingQuote = makesAwaitingQuote;
   order.makes.checkout = makesCheckout;
-
-  // Items
 
   order.items = [];
 
@@ -113,10 +117,60 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
     status: "success",
     data: {
       order: savedOrder,
-      makes: { awaitingQuote: makesAwaitingQuote, checkout: makesCheckout }
+      makes: { awaitingQuote: makesAwaitingQuote, checkout: makesCheckout },
+      items: itemsCheckout
     }
   });
 });
+
+// @route     POST /checkout/order/update/manufacturing-speed
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/update/manufacturing-speed",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    const option = req.body.option;
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Update order
+    order.manufacturingSpeed = option;
+    // Save order
+    let savedOrder;
+    try {
+      savedOrder = await order.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    return res.send({ status: "success", data: savedOrder });
+  }
+);
+
+// @route     POST /checkout/order/validate/cart
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/validate/cart",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    valid = order.validateCart();
+    return res.send({ status: "success", data: valid });
+  }
+);
 
 /*=========================================================================================
 FUNCTIONS
@@ -157,6 +211,24 @@ const orderMakesCheckoutGet = accountId => {
 };
 
 const orderMakesCheckoutSort = (makeOne, makeTwo) => {};
+
+const orderItemsCheckoutGet = accountId => {
+  return new Promise(async (resolve, reject) => {
+    let items;
+
+    try {
+      items = await Item.findByAccountIdAndStatus(accountId, "checkout");
+    } catch (error) {
+      reject(error);
+    }
+
+    // items.sort(orderItemsCheckoutSort);
+
+    resolve(items);
+  });
+};
+
+const orderItemsCheckoutSort = (itemOne, itemTwo) => {};
 
 /*=========================================================================================
 EXPORT ROUTE

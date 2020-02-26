@@ -67,7 +67,10 @@ router.post(
   restrictedPages,
   async (req, res) => {
     const accountId = mongoose.Types.ObjectId(req.user._id);
-    const fileId = mongoose.Types.ObjectId(req.file.id);
+    const file = {
+      id: mongoose.Types.ObjectId(req.file.id),
+      name: req.file.filename
+    };
     const build = req.body.build;
     const process = req.body.process;
     const material = req.body.material;
@@ -80,7 +83,7 @@ router.post(
     // Create a make object
     let make = new Make({
       accountId,
-      fileId,
+      file,
       build,
       process,
       material,

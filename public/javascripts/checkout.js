@@ -184,13 +184,12 @@ FUNCTIONS
 // @TYPE
 // @DESC
 // @ARGU
-checkout.initialise = () => {
+checkout.initialise = async () => {
   // Stripe
   checkout.payment.stripe.initialise();
   checkout.elements.assign();
-  // LOAD ORDERS
-  checkout.cart.prints.load();
-  checkout.cart.items.load();
+  // LOAD ORDER DETAILS
+  checkout.load();
   // Event Listener
   checkout.listener();
 };
@@ -215,6 +214,45 @@ checkout.fetch = () => {
 
     resolve(order.data);
   });
+};
+
+// @FUNC  checkout.insert
+// @TYPE
+// @DESC
+// @ARGU
+checkout.insert = object => {
+  // MAKES
+  const makes = object.makes;
+  checkout.cart.prints.insert(makes);
+  // ITEMS
+  const items = object.items;
+  checkout.cart.items.insert(items);
+  // MANUFACTURING SPEED
+  const manufacturingSpeed = object.manufacturingSpeed;
+  if (manufacturingSpeed == "normal") {
+    document.querySelector("#checkout-mnft-spd-opt-nrml").checked = true;
+  } else {
+    document.querySelector("#checkout-mnft-spd-opt-urgt").checked = true;
+  }
+};
+
+// @FUNC  checkout.load
+// @TYPE
+// @DESC
+// @ARGU
+checkout.load = async () => {
+  let object;
+
+  try {
+    object = await checkout.fetch();
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+
+  checkout.insert(object);
+  // Perform Validation
+  checkout.cart.validation.validate();
 };
 
 // @FUNC  checkout.listener
@@ -296,12 +334,11 @@ CART
 // @ARGU
 checkout.cart.prints.fetch = () => {
   return new Promise(async (resolve, reject) => {
-    let prints = [];
-    let printsAwaitingQuote = [];
-    let printsCheckout = [];
+    let awaitingQuote = [];
+    let checkout = [];
 
     try {
-      printsAwaitingQuote = (
+      awaitingQuote = (
         await axios.post("/customer/orders/print/awaiting-quote")
       )["data"];
     } catch (error) {
@@ -309,16 +346,12 @@ checkout.cart.prints.fetch = () => {
     }
 
     try {
-      printsCheckout = (await axios.post("/customer/orders/print/checkout"))[
-        "data"
-      ];
+      checkout = (await axios.post("/customer/orders/print/checkout"))["data"];
     } catch (error) {
       reject(error);
     }
 
-    prints = printsAwaitingQuote.concat(printsCheckout);
-
-    resolve(prints);
+    resolve({ awaitingQuote, checkout });
   });
 };
 
@@ -326,22 +359,30 @@ checkout.cart.prints.fetch = () => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.prints.insert = prints => {
-  // Process the loaded prints
-  if (numberOfPrints) {
-    if (prints) {
+checkout.cart.prints.insert = object => {
+  if (object) {
+    const makes = object.awaitingQuote.concat(object.checkout);
+    numberOfPrints = makes.length;
+    if (numberOfPrints) {
       // If there are prints ordered
       document.querySelector("#checkout-prnt-cnts").innerHTML = "";
       for (let i = 0; i < numberOfPrints; i++) {
-        checkout.cart.print.insert(prints[i]);
+        checkout.cart.print.insert(makes[i]);
       }
+      checkout.cart.prints.resize();
+      checkout.element.windowSize.addListener(checkout.cart.prints.resize);
+    } else {
+      // If there are no prints ordered
+      document.querySelector("#checkout-prnt-cnts").innerHTML =
+        "<p>No 3D Prints</p>";
     }
-    checkout.cart.prints.resize();
-    checkout.element.windowSize.addListener(checkout.cart.prints.resize);
   } else {
-    // If there are no prints ordered
-    document.querySelector("#checkout-prnt-cnts").innerHTML =
-      "<p>No 3D Prints</p>";
+    if (!numberOfPrints) {
+      document.querySelector("#checkout-prnt-cnts").innerHTML =
+        "<p>No 3D Prints</p>";
+    } else {
+      checkout.cart.prints.resize();
+    }
   }
 };
 
@@ -350,16 +391,15 @@ checkout.cart.prints.insert = prints => {
 // @DESC
 // @ARGU
 checkout.cart.prints.load = async () => {
-  let prints;
+  let object;
 
   try {
-    prints = await checkout.cart.prints.fetch();
+    object = await checkout.cart.prints.fetch();
   } catch (error) {
     return error;
   }
 
-  numberOfPrints = prints.length;
-  checkout.cart.prints.insert(prints);
+  checkout.cart.prints.insert(object);
 };
 
 // @FUNC  checkout.cart.prints.resize
@@ -395,7 +435,7 @@ checkout.cart.print.create = print => {
   const containerOne = `<div class="checkout-prnt-cnt-cntn-1">${icon}</div>`;
 
   // Container Two
-  const fileName = `<div class="checkout-prnt-cnt-file-name sbtl-1 txt-clr-blk-2">${print.fileName}</div>`;
+  const fileName = `<a href="/files/download/${print.file.id}" class="rmv-a-css checkout-prnt-cnt-file-name sbtl-1 txt-clr-blk-2">${print.file.name}</a>`;
   const buildType = `<div class="checkout-prnt-cnt-bld-type sbtl-1 txt-clr-blk-2">${print.build}</div>`;
   const colour = `<div class="checkout-prnt-cnt-clr sbtl-1 txt-clr-blk-2">${print.colour}</div>`;
   const quantity = `<div class="checkout-prnt-cnt-qnty-cntn">
@@ -424,7 +464,7 @@ checkout.cart.print.create = print => {
   price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2">
               $X,XXX.XX
           </div>`;
-  if (print.status === "awaiting quote") {
+  if (print.status === "awaitingQuote") {
     price = `<div class="checkout-prnt-cnt-prc sbtl-1 txt-clr-blk-2">awaiting quote</div>`;
   } else {
     price = `<div class="checkout-prnt-cnt-prc sbtl-1 txt-clr-blk-2">${print.price}</div>`;
@@ -524,6 +564,8 @@ checkout.cart.print.delete = async printId => {
   } catch (error) {
     return { status: "failed", contents: error };
   }
+  // Perform Validation
+  checkout.cart.validation.validate();
   return;
 };
 
@@ -736,13 +778,51 @@ checkout.cart.discount.validate = validation => {
 // @TYPE
 // @DESC
 // @ARGU
-checkout.cart.manufacturingSpeed.select = () => {};
+checkout.cart.manufacturingSpeed.select = async option => {
+  // Place Loaders
+
+  // Update the Database
+  let price;
+  try {
+    price = await axios.post("/checkout/order/update/manufacturing-speed", {
+      option
+    });
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // Update Price
+
+  // Perform Validation
+  checkout.cart.validation.validate();
+};
+
+// @FUNC  checkout.cart.validation.validate
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.validation.validate = async () => {
+  let response;
+  try {
+    response = (await axios.post("/checkout/order/validate/cart"))["data"];
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+
+  if (response.data) {
+    checkout.cart.validation.valid();
+  } else {
+    checkout.cart.validation.invalid();
+  }
+};
 
 // @FUNC  checkout.cart.validation.valid
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
 checkout.cart.validation.valid = () => {
+  // Add Event Listeners
   checkout.element.heading.shipping.addEventListener(
     "click",
     checkout.shipping.show
@@ -755,6 +835,8 @@ checkout.cart.validation.valid = () => {
     "click",
     checkout.shipping.show
   );
+  // Update CSS
+  checkout.element.button.cart.next.classList.add("checkout-button-valid");
 };
 
 // @FUNC  checkout.cart.validation.invalid
@@ -774,6 +856,10 @@ checkout.cart.validation.invalid = () => {
     "click",
     checkout.shipping.show
   );
+  // Update CSS
+  checkout.element.button.cart.next.classList.remove("checkout-button-valid");
+  // Return to Cart Page
+  checkout.cart.show();
 };
 
 // @FUNC  checkout.cart.show
@@ -1072,6 +1158,8 @@ checkout.shipping.validation.valid = () => {
     "click",
     checkout.payment.show
   );
+  // Update CSS
+  checkout.element.button.shipping.next.classList.add("checkout-button-valid");
 };
 
 // @FUNC  checkout.shipping.validation.invalid
@@ -1090,6 +1178,10 @@ checkout.shipping.validation.invalid = () => {
   checkout.element.button.shipping.next.removeEventListener(
     "click",
     checkout.payment.show
+  );
+  // Update CSS
+  checkout.element.button.shipping.next.classList.remove(
+    "checkout-button-valid"
   );
 };
 
