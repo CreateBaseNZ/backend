@@ -165,6 +165,7 @@ body {
 
     img {
       filter: blur(15px);
+      animation: all-img 0.3s ease-out forwards;
     }
 
     .eng-kit-text {
@@ -201,24 +202,32 @@ body {
         color: $dark-1;
         letter-spacing: 0.2vmax;
         font-weight: 900;
-        font-size: 1vmax;
+        font-size: 0.8vmax;
 
         &:hover {
           color: $highlight;
         }
+
+        &:hover ~ .eng-kit-line-overlap {
+          width: 7vmax;
+        }
       }
 
       .eng-kit-line {
-        opacity: 0;
         display: inline-block;
+        margin-left: 1vmax;
+        height: 0.4vmax;
+        border-top: $light-3 solid 1px;
         animation: all-line 0.3s ease-out 1.2s forwards;
       }
 
       .eng-kit-line-overlap {
-        opacity: 0;
         display: inline-block;
         width: 0vmax;
-        transition: 0.5s ease-out;
+        margin-left: calc(-7vmax - 4px);
+        height: 0.4vmax;
+        border-top: $highlight solid 1px;
+        transition: width 0.5s ease-out;
       }
     }
   }
@@ -239,34 +248,21 @@ body {
         margin-left: 6vmax;
       }
       .eng-kit-desc {
+        margin-top: 6vmax;
         margin-bottom: 4vmax;
         padding-right: 2vmax;
         animation: brycep-desc 0.6s ease-out 0.3s forwards;
       }
       .eng-kit-more {
         animation: brycep-more 0.6s ease-out 0.9s forwards;
-
-        &:hover ~ .eng-kit-line-overlap {
-          width: 7vmax;
-        }
-      }
-      .eng-kit-line {
-        margin-left: 1vmax;
-        height: 0.4vmax;
-        border-top: $light-3 solid 1px;
-      }
-      .eng-kit-line-overlap {
-        margin-left: calc(-7vmax - 4px);
-        height: 0.4vmax;
-        border-top: $highlight solid 1px;
       }
     }
   }
 
   .eng-kit-hyelos {
+    display: none;
     margin-top: -5vmax;
     margin-left: 20vmax;
-    display: none;
     img {
       margin-top: 8vmax;
       margin-left: -85vmax;
@@ -283,7 +279,7 @@ body {
         margin-left: -10vmax;
       }
       .eng-kit-desc {
-        margin-left: 0vmax;
+        margin-top: 4vmax; 
         margin-bottom: 3vmax;
         width: 26vmax;
         text-align: right;
@@ -291,72 +287,39 @@ body {
       }
       .eng-kit-more {
         animation: hyelos-more 0.6s ease-out 0.9s forwards;
-
-        &:hover ~ .eng-kit-line-overlap {
-          width: 7vmax;
-        }
-      }
-      .eng-kit-line {
-        margin-left: 1vmax;
-        height: 0.4vmax;
-        border-top: $light-3 solid 1px;
-      }
-      .eng-kit-line-overlap {
-        margin-left: calc(-7vmax - 4px);
-        height: 0.4vmax;
-        border-top: $highlight solid 1px;
       }
     }
   }
 
   .eng-kit-stc {
-    margin-top: -5vmax;
-    margin-left: 20vmax;
     display: none;
+    margin-top: -5vmax;
+    margin-left: 5vmax;
     img {
       margin-top: 8vmax;
-      margin-left: -85vmax;
+      margin-left: 0vmax;
       width: 40vmax;
     }
     .eng-kit-text {
       width: 30vmax;
       height: 30vmax;
       .eng-kit-code {
-        margin-left: 0vmax;
-        animation: hyelos-code 0.3s ease-out forwards;
+        margin-left: -10vmax;
+        animation: stc-code 0.3s ease-out forwards;
       }
       .eng-kit-title {
         margin-left: -10vmax;
       }
       .eng-kit-desc {
-        margin-left: 0vmax;
+        margin-top: 5vmax;
         margin-bottom: 3vmax;
-        width: 26vmax;
-        text-align: right;
-        animation: hyelos-desc 0.6s ease-out 0.3s forwards;
+        width: 25vmax;
+        animation: stc-desc 0.6s ease-out 0.3s forwards;
       }
       .eng-kit-more {
-        animation: hyelos-more 0.6s ease-out 0.9s forwards;
-
-        &:hover ~ .eng-kit-line-overlap {
-          width: 7vmax;
-        }
-      }
-      .eng-kit-line {
-        margin-left: 1vmax;
-        height: 0.4vmax;
-        border-top: $light-3 solid 1px;
-      }
-      .eng-kit-line-overlap {
-        margin-left: calc(-7vmax - 4px);
-        height: 0.4vmax;
-        border-top: $highlight solid 1px;
+        animation: stc-more 0.6s ease-out 0.9s forwards;
       }
     }
-  }
-
-  .eng-kit-hide {
-    display: none;
   }
 
   .eng-kit-btn-container {
@@ -365,14 +328,17 @@ body {
     right: -10vmax;
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
     
     .eng-kit-btn {
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
-      margin: 0 3vmax;
+      justify-content: flex-start;
+      height: 2vmax;
+      width: 9vmax;
       cursor: pointer;
       
       .eng-kit-btn-dot {
@@ -387,18 +353,34 @@ body {
 
       .eng-kit-btn-text {
         font-family: $poppins;
-        color: $dark-1;
+        color: $light-3;
         font-size: 0.6vmax;
         letter-spacing: 0.4vmax;
         font-weight: 800;
+      }
+
+      &:hover > .eng-kit-btn-text {
+        color: $dark-1;
       }
 
       &:hover > .eng-kit-btn-dot {
         opacity: 1;
       }
     }
+
+    .eng-kit-btn-focus {
+      .eng-kit-btn-dot {
+        opacity: 1;
+        background: $highlight;
+      }
+      .eng-kit-btn-text {
+        color: $highlight !important;
+      }
+    }
   }
 }
+
+
 
 .test-section {
   position: relative;
@@ -546,13 +528,17 @@ body {
   100% { opacity: 0; visibility: none; }
 }
 
+@keyframes all-img {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 @keyframes all-title {
   0% { opacity: 0; margin-top: -1vmax; }
   100% { opacity: 1; margin-top: 0vmax; }
 }
 @keyframes all-line {
-  0% { opacity: 0; width: 0vmax; }
-  100% { opacity: 1; width: 7vmax; }
+  0% { width: 0vmax; }
+  100% { width: 7vmax; }
 }
 
 @keyframes brycep-code {
@@ -560,8 +546,8 @@ body {
   100% { opacity: 1;  margin-top: 6vmax; }
 }
 @keyframes brycep-desc {
-  0% { opacity: 0; margin-top: 4vmax; }
-  100% { opacity: 1; margin-top: 6vmax; }
+  0% { opacity: 0; margin-left: -2vmax; }
+  100% { opacity: 1; margin-left: 0vmax;}
 }
 @keyframes brycep-more {
   0% { opacity: 0; margin-left: 2vmax; }
@@ -573,11 +559,24 @@ body {
   100% { opacity: 1; margin-top: 10vmax; }
 }
 @keyframes hyelos-desc {
-  0% { opacity: 0; margin-top: 2vmax; }
-  100% { opacity: 1; margin-top: 4vmax; }
+  0% { opacity: 0; margin-left: -2vmax; }
+  100% { opacity: 1; margin-left: 0vmax; }
 }
 @keyframes hyelos-more {
-  0% { opacity: 0; margin-left: 6vmax; }
-  100% { opacity: 1; margin-left: 8vmax; }
+  0% { opacity: 0; margin-left: 7vmax; }
+  100% { opacity: 1; margin-left: 9vmax; }
+}
+
+@keyframes stc-code {
+  0% { opacity: 0; margin-top: 8vmax; }
+  100% { opacity: 1; margin-top: 9vmax; }
+}
+@keyframes stc-desc {
+  0% { opacity: 0; margin-left: -4vmax; }
+  100% { opacity: 1; margin-left: -2vmax; }
+}
+@keyframes stc-more {
+  0% { opacity: 0; margin-left: -4vmax; }
+  100% { opacity: 1; margin-left: -2vmax; }
 }
 
