@@ -19,8 +19,13 @@ const MakeSchema = new Schema({
   accountId: {
     type: Schema.Types.ObjectId
   },
-  fileId: {
-    type: Schema.Types.ObjectId
+  file: {
+    id: {
+      type: Schema.Types.ObjectId
+    },
+    name: {
+      type: String
+    }
   },
   status: {
     type: String

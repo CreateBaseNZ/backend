@@ -24,6 +24,28 @@ const ItemSchema = new Schema({
 });
 
 /*=========================================================================================
+STATIC
+=========================================================================================*/
+
+// @FUNC  findByAccountIdAndStatus
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+ItemSchema.statics.findByAccountIdAndStatus = function(accountId, status) {
+  return new Promise(async (resolve, reject) => {
+    let items;
+
+    try {
+      items = await this.find({ accountId, status });
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(items);
+  });
+};
+
+/*=========================================================================================
 EXPORT ITEM MODEL
 =========================================================================================*/
 

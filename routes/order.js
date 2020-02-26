@@ -152,7 +152,7 @@ router.post("/orders/print/delete", restrictedPages, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", contents: error });
   }
-  fileId = mongoose.Types.ObjectId(deletedPrint.fileId);
+  fileId = mongoose.Types.ObjectId(deletedPrint.file.id);
   // Delete the file
   try {
     await deleteFile(fileId);
@@ -265,7 +265,7 @@ const updateMakeOrder = (_id, property, value) => {
   });
 };
 
-// @FUNC  deleteFile
+// @FUNC  deleteMakeOrder
 // @TYPE  PROMISE
 // @DESC  This function deletes the make order
 // @ARGU
@@ -302,7 +302,8 @@ const deleteFile = _id => {
     } catch (error) {
       reject(error);
     }
-    resolve();
+
+    resolve(gridStore);
   });
 };
 

@@ -313,8 +313,7 @@
                     name="manufacturingSpeed"
                     class="checkout-mnft-spd-opt-inp inp-rad-1"
                     id="checkout-mnft-spd-opt-nrml"
-                    onchange="checkoutCartUpdateManufacturingSpeedOption('normal');"
-                    checked
+                    onchange="checkout.cart.manufacturingSpeed.select('normal');"
                   />
                   <label
                     for="checkout-mnft-spd-opt-nrml"
@@ -328,7 +327,7 @@
                     name="manufacturingSpeed"
                     class="checkout-mnft-spd-opt-inp inp-rad-1"
                     id="checkout-mnft-spd-opt-urgt"
-                    onchange="checkoutCartUpdateManufacturingSpeedOption('urgent');"
+                    onchange="checkout.cart.manufacturingSpeed.select('urgent');"
                   />
                   <label
                     for="checkout-mnft-spd-opt-urgt"
@@ -401,15 +400,15 @@
             CONTINUE BUTTON
             ------------------------------------------------------------------------------>
 
-            <div class="checkout-cart-btns">
+            <div class="checkout-buttons">
               <a
                 href="/"
-                class="rmv-link-css checkout-cart-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                class="rmv-link-css checkout-button checkout-button-valid"
               >
                 Exit
               </a>
               <button
-                class="rmv-btn-css checkout-cart-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                class="rmv-btn-css checkout-button"
                 id="checkout-element-button-cart-next"
               >
                 Next
@@ -733,15 +732,15 @@
             CONTINUE BUTTON
             ------------------------------------------------------------------------------>
 
-            <div class="checkout-shpg-btns">
+            <div class="checkout-buttons">
               <button
-                class="rmv-btn-css checkout-shpg-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                class="rmv-btn-css checkout-button checkout-button-valid"
                 id="checkout-element-button-shipping-back"
               >
                 Back
               </button>
               <button
-                class="rmv-btn-css checkout-shpg-btn btn-1 bgd-clr-vlt-3 txt-1 txt-clr-wht-1"
+                class="rmv-btn-css checkout-button"
                 id="checkout-element-button-shipping-next"
               >
                 Next

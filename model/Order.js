@@ -223,6 +223,22 @@ OrderSchema.methods.updateStatus = function(status) {
 // @ARGU
 OrderSchema.methods.updateSavedAddress = function() {};
 
+// @FUNC  validateCart
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+OrderSchema.methods.validateCart = function() {
+  // Check if there are prints or items ready for checkout
+  if (!(this.makes.awaitingQuote.length || this.items.length)) {
+    return false;
+  }
+  if (!this.manufacturingSpeed) {
+    return false;
+  }
+
+  return true;
+};
+
 /*=========================================================================================
 EXPORT ORDER MODEL
 =========================================================================================*/

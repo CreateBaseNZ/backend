@@ -2380,11 +2380,6 @@ CART
   padding: 6vmax 0;
 }
 
-.checkout-cart-btn {
-  width: 14vmax;
-  letter-spacing: 0.2vmax;
-}
-
 /*-----------------------------------------------------------------------------------------
 SHIPPING
 -----------------------------------------------------------------------------------------*/
@@ -2742,6 +2737,52 @@ NAVIGATION
 /*-----------------------------------------------------------------------------------------
 GLOBAL
 -----------------------------------------------------------------------------------------*/
+.checkout-buttons {
+  height: 24vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 3vmax 0;
+}
+
+.checkout-button {
+  height: 6vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 3vmax;
+  background-color: #c7c2d5;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  letter-spacing: 0.3vmax;
+  color: #2d283c;
+}
+
+.checkout-button-valid {
+  border-color: #4e4ed6;
+  background-color: #4e4ed6;
+  color: white;
+  cursor: pointer;
+}
+
 .checkout-element-hide {
   margin: 0;
   border: 0;
@@ -3116,8 +3157,24 @@ DESKTOP CSS
     color: #322d41;
   }
   /*---------------------------------------------------------------------------------------
-  STRIPE
+  GLOBAL
   ---------------------------------------------------------------------------------------*/
+  .checkout-buttons {
+    height: 12vmax;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .checkout-button {
+    height: 3vmax;
+    width: 12vmax;
+    border-radius: 1.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.2vmax;
+  }
   .StripeElement {
     height: 2.4vmax;
     width: 100%;
