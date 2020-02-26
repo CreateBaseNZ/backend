@@ -172,10 +172,14 @@ router.post(
   }
 );
 
-// @route     POST /checkout/delete-print
+// @route     POST /checkout/order/delete/print
 // @desc
 // @access    Private
-router.post("/checkout/delete-print", restrictedPages, async (req, res) => {});
+router.post(
+  "/checkout/order/delete/print",
+  restrictedPages,
+  async (req, res) => {}
+);
 
 /*=========================================================================================
 FUNCTIONS
