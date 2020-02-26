@@ -12,11 +12,52 @@ const homeInit = () => {
     slide.classList.toggle("slide-right-active");
   });
 
+  const navSideBar = document.querySelector('.nav-global');
+  const hamburger = document.querySelector('.hamburger');
+
   window.onscroll = function() {navbarOnScroll()};
 
+  const brycepButton = document.querySelector('#eng-kit-btn-brycep');
+  const hyelosButton = document.querySelector('#eng-kit-btn-hyelos');
+  const stcButton = document.querySelector('#eng-kit-btn-stc');
+  const brycepSlide = document.querySelector('.eng-kit-brycep');
+  const hyelosSlide = document.querySelector('.eng-kit-hyelos');
+  const stcSlide = document.querySelector('.eng-kit-stc');
+  let firstLoad = true;
+  let activeSlide = brycepSlide;
+  let activeButton = brycepButton;
+  
+  brycepButton.addEventListener("click", function() {
+    activeSlide.style.display = 'none'
+    brycepSlide.style.display = 'flex';
+    activeSlide = brycepSlide;
+
+    activeButton.classList.remove('eng-kit-btn-focus');
+    brycepButton.classList.add('eng-kit-btn-focus');
+    activeButton = brycepButton;
+  });
+
+  hyelosButton.addEventListener("click", function() {
+    activeSlide.style.display = 'none'
+    hyelosSlide.style.display = 'flex';
+    activeSlide = hyelosSlide;
+
+    activeButton.classList.remove('eng-kit-btn-focus');
+    hyelosButton.classList.add('eng-kit-btn-focus');
+    activeButton = hyelosButton;
+  });
+
+  stcButton.addEventListener("click", function() {
+    activeSlide.style.display = 'none'
+    stcSlide.style.display = 'flex';
+    activeSlide = stcSlide;
+
+    activeButton.classList.remove('eng-kit-btn-focus');
+    stcButton.classList.add('eng-kit-btn-focus');
+    activeButton = stcButton;
+  });
+
   function navbarOnScroll() {
-    let navSideBar = document.querySelector('.nav-global');
-    let hamburger = document.querySelector('.hamburger');
     let scrollPosition = document.documentElement.scrollTop;
     let clientHeight = document.documentElement.clientHeight;
 
@@ -27,32 +68,18 @@ const homeInit = () => {
       navSideBar.classList.add('screen-mode');
       hamburger.classList.add('hamburger-screen-mode');
     }
+
+    if (scrollPosition > clientHeight/2 && firstLoad) {
+      activeSlide.style.display = "flex";
+      activeButton.classList.add('eng-kit-btn-focus');
+      firstLoad = false;
+    } else if (scrollPosition == 0) {
+      activeSlide.style.display = 'none';
+      activeButton.classList.remove('eng-kit-btn-focus');
+      firstLoad = true;
+    }
+    
   }
-
-  const brycepButton = document.querySelector('#eng-kit-btn-brycep');
-  const hyelosButton = document.querySelector('#eng-kit-btn-hyelos');
-  const stcButton = document.querySelector('#eng-kit-btn-stc');
-  const brycepSlide = document.querySelector('.eng-kit-brycep');
-  const hyelosSlide = document.querySelector('.eng-kit-hyelos');
-  const stcSlide = document.querySelector('.eng-kit-stc');
-  
-  brycepButton.addEventListener("click", function() {
-    brycepSlide.style.display = "flex";
-    hyelosSlide.style.display = "none";
-    stcSlide.style.display = "none";
-  });
-
-  hyelosButton.addEventListener("click", function() {
-    brycepSlide.style.display = "none";
-    hyelosSlide.style.display = "flex";
-    stcSlide.style.display = "none";
-  });
-
-  stcButton.addEventListener("click", function() {
-    brycepSlide.style.display = "none";
-    hyelosSlide.style.display = "none";
-    stcSlide.style.display = "flex";
-  });
 }
 
 
