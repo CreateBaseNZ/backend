@@ -1,4 +1,16 @@
 /* all.scss uses $diamond so it must be declared first */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+}
+
 .hamburger {
   padding: 0 0;
   display: inline-block;
@@ -63,16 +75,6 @@
   bottom: -6px;
 }
 
-.hamburger-screen-mode.is-active .hamburger-inner,
-.hamburger-screen-mode.is-active .hamburger-inner::before,
-.hamburger-screen-mode.is-active .hamburger-inner::after {
-  background-color: white;
-}
-
-.hamburger-screen-mode .hamburger-inner, .hamburger-screen-mode .hamburger-inner::before, .hamburger-screen-mode .hamburger-inner::after {
-  background-color: white;
-}
-
 .hamburger-arrow .hamburger-inner::before {
   -webkit-transition: top 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: top 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
@@ -105,6 +107,16 @@
   transition: bottom 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.hamburger-screen-mode.is-active .hamburger-inner,
+.hamburger-screen-mode.is-active .hamburger-inner::before,
+.hamburger-screen-mode.is-active .hamburger-inner::after {
+  background-color: #2d283c;
+}
+
+.hamburger-screen-mode .hamburger-inner, .hamburger-screen-mode .hamburger-inner::before, .hamburger-screen-mode .hamburger-inner::after {
+  background-color: #2d283c;
 }
 
 /*=========================================================================================
@@ -1033,14 +1045,6 @@ TEMPORARY
 /*=========================================================================================
 END
 =========================================================================================*/
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  text-decoration: none;
-}
-
 .nav-global {
   position: -webkit-sticky;
   position: sticky;
@@ -1090,8 +1094,8 @@ END
   width: 50px;
   margin-top: 3vh;
   margin-left: 0px;
-  -webkit-transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-  transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  -webkit-transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
+  transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
 }
 
 .nav-global .nav-sidebar .nav-side-menu {
@@ -1104,8 +1108,8 @@ END
   -ms-grid-rows: (1fr)[4];
       grid-template-rows: repeat(4, 1fr);
   overflow: hidden;
-  -webkit-transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-  transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  -webkit-transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
+  transition: width 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
 }
 
 .nav-global .nav-sidebar .nav-side-menu .nav-side-services,
@@ -1128,8 +1132,8 @@ END
   color: #877da9;
   margin-bottom: 3vh;
   padding-left: 0px;
-  -webkit-transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-  transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  -webkit-transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
+  transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
 }
 
 .nav-global .nav-sidebar .nav-side-menu .nav-side-item {
@@ -1137,8 +1141,8 @@ END
   padding-bottom: 0.75vh;
   padding-left: 0px;
   color: #2d283c;
-  -webkit-transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-  transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  -webkit-transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
+  transition: padding-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
 }
 
 .nav-global .nav-sidebar .nav-side-menu .nav-side-item:hover {
@@ -1148,8 +1152,8 @@ END
 
 .nav-global .nav-sidebar .nav-side-menu .nav-side-socials {
   margin-left: -25px;
-  -webkit-transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-  transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  -webkit-transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
+  transition: margin-left 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99) !important;
 }
 
 .nav-global .nav-sidebar .nav-side-menu .nav-side-socials .fab {
@@ -1197,13 +1201,8 @@ END
   pointer-events: none;
 }
 
-.screen-mode {
-  background: rgba(0, 0, 0, 0);
-}
-
 .screen-mode .nav-sidebar .nav-side-wiper {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0)));
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  background: transparent;
   border-right: none;
 }
 
@@ -1214,25 +1213,29 @@ END
 }
 
 .screen-mode .nav-sidebar .nav-side-menu .nav-side-header {
-  color: #c7c2d5;
+  color: #877da9;
 }
 
 .screen-mode .nav-sidebar .nav-side-menu .nav-side-item {
-  color: white;
+  color: #2d283c;
 }
 
 .screen-mode .nav-sidebar .nav-side-menu .nav-side-item:hover {
   color: white;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0)));
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
 }
 
 .screen-mode .nav-sidebar .nav-side-menu .nav-side-socials .fab {
-  color: white;
+  color: #2d283c;
 }
 
-button {
-  outline: none;
+.screen-mode .nav-sidebar:hover .nav-side-wiper {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.screen-mode .nav-sidebar:hover .nav-side-menu {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .btn {
