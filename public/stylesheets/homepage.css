@@ -1996,6 +1996,7 @@ body .main-page {
 
 .landing-section .landing-slide-right,
 .landing-section .landing-slide-left {
+  background: grey;
   cursor: pointer;
 }
 
