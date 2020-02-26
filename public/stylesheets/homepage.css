@@ -2104,9 +2104,7 @@ body .main-page {
 
 .eng-kit-section .eng-kit-container {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -2222,7 +2220,6 @@ body .main-page {
 }
 
 .eng-kit-section .eng-kit-hyelos {
-  display: none;
   margin-top: -5vmax;
   margin-left: 20vmax;
 }
@@ -2263,7 +2260,6 @@ body .main-page {
 }
 
 .eng-kit-section .eng-kit-stc {
-  display: none;
   margin-top: -5vmax;
   margin-left: 5vmax;
 }
@@ -2375,6 +2371,16 @@ body .main-page {
 
 .eng-kit-section .eng-kit-btn-container .eng-kit-btn-focus .eng-kit-btn-text {
   color: #4bf0ea !important;
+}
+
+.eng-kit-section .eng-kit-coming-soon {
+  position: absolute;
+  bottom: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.6vmax;
+  color: #877da9;
+  font-weight: 100;
+  letter-spacing: 0.3vmax;
 }
 
 .test-section {

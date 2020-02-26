@@ -159,7 +159,7 @@ body {
 
   .eng-kit-container {
     position: relative;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
 
@@ -260,7 +260,6 @@ body {
   }
 
   .eng-kit-hyelos {
-    display: none;
     margin-top: -5vmax;
     margin-left: 20vmax;
     img {
@@ -292,7 +291,6 @@ body {
   }
 
   .eng-kit-stc {
-    display: none;
     margin-top: -5vmax;
     margin-left: 5vmax;
     img {
@@ -377,6 +375,16 @@ body {
         color: $highlight !important;
       }
     }
+  }
+
+  .eng-kit-coming-soon  {
+    position: absolute;
+    bottom: 0;
+    font-family: $poppins;
+    font-size: 0.6vmax;
+    color: $dark-1;
+    font-weight: 100;
+    letter-spacing: 0.3vmax;
   }
 }
 
