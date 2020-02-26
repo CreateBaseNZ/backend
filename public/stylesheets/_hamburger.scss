@@ -13,7 +13,6 @@ $hamburger-layer-color: $dark-3;
 .hamburger {
   padding: $hamburger-padding-y $hamburger-padding-x;
   display: inline-block;
-  // cursor: pointer;
 
   transition-property: opacity, filter;
   transition-duration: 0.15s;
@@ -73,28 +72,6 @@ $hamburger-layer-color: $dark-3;
   }
 }
 
-
-
-.hamburger-screen-mode {
-  &.is-active {
-    .hamburger-inner,
-    .hamburger-inner::before,
-    .hamburger-inner::after {
-      background-color: $light-1;
-    }
-  }
-  
-  .hamburger-inner {
-    &,
-    &::before,
-    &::after {
-      background-color: $light-1;
-    }
-  }
-}
-
-
-
 // Arrow Effect
 // ==================================================
 .hamburger-arrow {
@@ -125,6 +102,24 @@ $hamburger-layer-color: $dark-3;
         transition: bottom 0.1s ease,
                     transform 0.1s 0.1s cubic-bezier(.21,.65,.44,.99);
       }
+    }
+  }
+}
+
+.hamburger-screen-mode {
+  &.is-active {
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: $dark-3;
+    }
+  }
+  
+  .hamburger-inner {
+    &,
+    &::before,
+    &::after {
+      background-color: $dark-3;
     }
   }
 }
