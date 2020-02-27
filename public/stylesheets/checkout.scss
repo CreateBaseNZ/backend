@@ -50,8 +50,9 @@ CHECKOUT
   height: 14vmax;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding-bottom: 4vmax;
   letter-spacing: 0.2vmax;
 }
 
@@ -69,11 +70,11 @@ CHECKOUT
 }
 
 .checkout-sub-sub-hdng {
+  height: 14vmax;
   width: 100%;
   display: flex;
+  align-items: center;
   letter-spacing: 0.1vmax;
-  padding: 1vmax 2vmax;
-  margin: 6vmax 0;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -295,31 +296,6 @@ CART
   padding: 0.5vmax 0;
 }
 
-.checkout-mnft-spd-opts {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 2vmax 0;
-}
-
-.checkout-mnft-spd-opt {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.checkout-mnft-spd-opt-inp {
-  width: 100%;
-}
-
-.checkout-mnft-spd-opt-lbl {
-  text-align: center;
-  padding: 1vmax 0;
-  line-height: 1.4;
-  letter-spacing: 0.2vmax;
-}
-
 .checkout-cart-prcs {
   width: 100%;
   display: flex;
@@ -348,13 +324,6 @@ SHIPPING
 
 // CLASSES
 
-.checkout-shpg-adrs-inp-cntn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 2vmax 0;
-}
-
 .checkout-shpg-adrs-cntn {
   width: 100%;
   display: flex;
@@ -373,15 +342,6 @@ SHIPPING
 
 .checkout-shpg-adrs-cntn-new {
   height: 70vmax;
-}
-
-.checkout-shpg-adrs-inp {
-  margin: 0;
-}
-
-.checkout-shpg-adrs-svd-inp-lbl {
-  letter-spacing: 0.1vmax;
-  padding: 0 0 0 1.6vmax;
 }
 
 .checkout-shpg-adrs-svd-line {
@@ -664,7 +624,7 @@ GLOBAL
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  padding: 3vmax 0;
+  padding: 3vmax 6vmax;
 }
 
 .checkout-button {
@@ -686,6 +646,29 @@ GLOBAL
   background-color: $clr-vlt-3;
   color: $clr-wht-1;
   cursor: pointer;
+}
+
+.checkout-radio-container {
+  height: 6vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.checkout-radio {
+  height: 1.6vmax;
+  width: 1.6vmax;
+}
+
+.checkout-radio-label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: $fnt-fml-1;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+  padding-left: 2.6vmax;
 }
 
 .checkout-element-hide {
@@ -857,27 +840,10 @@ DESKTOP CSS
     font-size: 0.8vmax;
   }
 
-  .checkout-mnft-spd-opt-inp {
-    height: 1vmax;
-  }
-
-  .checkout-mnft-spd-opt-lbl {
-    font-size: 0.9vmax;
-  }
-
-  .checkout-mnft-spd-opts {
-    height: 8vmax;
-    padding: 0;
-  }
-
   .checkout-navigation-icon-container {
     height: 3vmax;
     width: 3vmax;
     border-width: 0.1vmax;
-  }
-
-  .checkout-shpg-adrs-inp-cntn {
-    padding: 1vmax 2vmax;
   }
 
   .checkout-shpg-adrs-cntn {
@@ -909,6 +875,14 @@ DESKTOP CSS
     height: 4vmax;
     display: flex;
     align-items: center;
+  }
+
+  .checkout-radio-container {
+    height: 4vmax;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .checkout-element-hide {

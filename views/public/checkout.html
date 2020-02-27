@@ -306,35 +306,34 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Manufacturing Speed
               </h3>
-              <div class="checkout-mnft-spd-opts">
-                <div class="checkout-mnft-spd-opt">
-                  <input
-                    type="radio"
-                    name="manufacturingSpeed"
-                    class="checkout-mnft-spd-opt-inp inp-rad-1"
-                    id="checkout-mnft-spd-opt-nrml"
-                    onchange="checkout.cart.manufacturingSpeed.select('normal');"
-                  />
-                  <label
-                    for="checkout-mnft-spd-opt-nrml"
-                    class="checkout-mnft-spd-opt-lbl txt-1 txt-clr-blk-2"
-                    >Normal<br />(1-3 days)</label
-                  >
-                </div>
-                <div class="checkout-mnft-spd-opt">
-                  <input
-                    type="radio"
-                    name="manufacturingSpeed"
-                    class="checkout-mnft-spd-opt-inp inp-rad-1"
-                    id="checkout-mnft-spd-opt-urgt"
-                    onchange="checkout.cart.manufacturingSpeed.select('urgent');"
-                  />
-                  <label
-                    for="checkout-mnft-spd-opt-urgt"
-                    class="checkout-mnft-spd-opt-lbl txt-1 txt-clr-blk-2"
-                    >Urgent<br />(1 day)</label
-                  >
-                </div>
+
+              <div class="checkout-radio-container">
+                <input
+                  type="radio"
+                  name="manufacturingSpeed"
+                  class="checkout-radio"
+                  id="checkout-mnft-spd-opt-nrml"
+                  onchange="checkout.cart.manufacturingSpeed.select('normal');"
+                />
+                <label
+                  for="checkout-mnft-spd-opt-nrml"
+                  class="checkout-radio-label"
+                  >Normal (1-3 days)</label
+                >
+              </div>
+              <div class="checkout-radio-container">
+                <input
+                  type="radio"
+                  name="manufacturingSpeed"
+                  class="checkout-radio"
+                  id="checkout-mnft-spd-opt-urgt"
+                  onchange="checkout.cart.manufacturingSpeed.select('urgent');"
+                />
+                <label
+                  for="checkout-mnft-spd-opt-urgt"
+                  class="checkout-radio-label"
+                  >Urgent (1 day)</label
+                >
               </div>
             </div>
 
@@ -395,25 +394,23 @@
                 </div>
               </div>
             </div>
-
-            <!-----------------------------------------------------------------------------
-            CONTINUE BUTTON
-            ------------------------------------------------------------------------------>
-
-            <div class="checkout-buttons">
-              <a
-                href="/"
-                class="rmv-link-css checkout-button checkout-button-valid"
-              >
-                Exit
-              </a>
-              <button
-                class="rmv-btn-css checkout-button"
-                id="checkout-element-button-cart-next"
-              >
-                Next
-              </button>
-            </div>
+          </div>
+          <!-----------------------------------------------------------------------------
+          CONTINUE BUTTON
+          ------------------------------------------------------------------------------>
+          <div class="checkout-buttons">
+            <a
+              href="/"
+              class="rmv-link-css checkout-button checkout-button-valid"
+            >
+              Exit
+            </a>
+            <button
+              class="rmv-btn-css checkout-button"
+              id="checkout-element-button-cart-next"
+            >
+              Next
+            </button>
           </div>
         </div>
 
@@ -446,23 +443,22 @@
               SAVED ADDRESS
               ---------------------------------------------------------------------------->
 
-              <div class="checkout-shpg-adrs-inp-cntn">
+              <div class="checkout-radio-container">
                 <input
                   type="radio"
                   name="address"
-                  class="checkout-shpg-adrs-inp"
+                  class="checkout-radio"
                   id="checkout-shpg-adrs-svd-inp"
                   onchange="checkout.shipping.address.select('saved');"
-                  checked
                 />
                 <label
                   for="checkout-shpg-adrs-svd-inp"
-                  class="checkout-shpg-adrs-svd-inp-lbl txt-1 txt-clr-blk-2"
+                  class="checkout-radio-label"
                   >Saved Address</label
                 >
               </div>
               <div
-                class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-svd"
+                class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-svd checkout-element-hide"
                 id="checkout-shpg-adrs-cntn-svd"
               >
                 <p>
@@ -474,17 +470,17 @@
               NEW ADDRESS
               ---------------------------------------------------------------------------->
 
-              <div class="checkout-shpg-adrs-inp-cntn">
+              <div class="checkout-radio-container">
                 <input
                   type="radio"
                   name="address"
-                  class="checkout-shpg-adrs-inp"
+                  class="checkout-radio"
                   id="checkout-shpg-adrs-new-inp"
                   onchange="checkout.shipping.address.select('new');"
                 />
                 <label
                   for="checkout-shpg-adrs-new-inp"
-                  class="checkout-shpg-adrs-svd-inp-lbl txt-1 txt-clr-blk-2"
+                  class="checkout-radio-label"
                   >New Address</label
                 >
               </div>
@@ -623,7 +619,6 @@
                     type="checkbox"
                     name="saveAddress"
                     id="checkout-shipping-save-address-input"
-                    checked
                   />
                   <label for="checkout-shipping-save-address-input"
                     >Save Address</label
@@ -640,44 +635,43 @@
               <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
                 Shipping Method
               </h3>
-              <div class="checkout-shpg-mthd-cntn">
+              <div class="checkout-radio-container">
                 <input
                   type="radio"
                   name="shippingMethod"
-                  class="checkout-shpg-mthd-inp"
+                  class="checkout-radio"
                   id="checkout-shpg-mthd-inp-pckp"
                 />
                 <label
                   for="checkout-shpg-mthd-inp-pckp"
-                  class="checkout-shpg-mthd-inp-lbl txt-1 txt-clr-blk-2"
+                  class="checkout-radio-label"
                   >Pickup (Free)</label
                 >
               </div>
-              <div class="checkout-shpg-mthd-cntn">
+              <div class="checkout-radio-container">
                 <input
                   type="radio"
                   name="shippingMethod"
-                  class="checkout-shpg-mthd-inp"
+                  class="checkout-radio"
                   id="checkout-shpg-mthd-inp-trck"
-                  checked
                 />
                 <label
                   for="checkout-shpg-mthd-inp-trck"
-                  class="checkout-shpg-mthd-inp-lbl txt-1 txt-clr-blk-2"
-                  >Tracked ($X.XX and X days)</label
+                  class="checkout-radio-label"
+                  >Tracked</label
                 >
               </div>
-              <div class="checkout-shpg-mthd-cntn">
+              <div class="checkout-radio-container">
                 <input
                   type="radio"
                   name="shippingMethod"
-                  class="checkout-shpg-mthd-inp"
+                  class="checkout-radio"
                   id="checkout-shpg-mthd-inp-crr"
                 />
                 <label
                   for="checkout-shpg-mthd-inp-crr"
-                  class="checkout-shpg-mthd-inp-lbl txt-1 txt-clr-blk-2"
-                  >Courier ($X.XX and X days)</label
+                  class="checkout-radio-label"
+                  >Courier</label
                 >
               </div>
             </div>
@@ -727,25 +721,23 @@
                 </div>
               </div>
             </div>
-
-            <!-----------------------------------------------------------------------------
-            CONTINUE BUTTON
-            ------------------------------------------------------------------------------>
-
-            <div class="checkout-buttons">
-              <button
-                class="rmv-btn-css checkout-button checkout-button-valid"
-                id="checkout-element-button-shipping-back"
-              >
-                Back
-              </button>
-              <button
-                class="rmv-btn-css checkout-button"
-                id="checkout-element-button-shipping-next"
-              >
-                Next
-              </button>
-            </div>
+          </div>
+          <!-----------------------------------------------------------------------------
+          CONTINUE BUTTON
+          ------------------------------------------------------------------------------>
+          <div class="checkout-buttons">
+            <button
+              class="rmv-btn-css checkout-button checkout-button-valid"
+              id="checkout-element-button-shipping-back"
+            >
+              Back
+            </button>
+            <button
+              class="rmv-btn-css checkout-button"
+              id="checkout-element-button-shipping-next"
+            >
+              Next
+            </button>
           </div>
         </div>
 
@@ -771,7 +763,6 @@
                 class="checkout-pymt-mthd-inp"
                 id="checkout-pymt-mthd-inp-bank-tsfr"
                 onchange="checkout.payment.method.select('bankTransfer');"
-                checked
               />
               <label
                 for="checkout-pymt-mthd-inp-bank-tsfr"

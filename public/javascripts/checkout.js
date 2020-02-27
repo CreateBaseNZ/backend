@@ -124,16 +124,15 @@ let checkout = {
       }
     },
     method: {
-      option: {
-        select: undefined
-      }
+      select: undefined
     },
     validation: {
       validate: undefined,
       valid: undefined,
       invalid: undefined
     },
-    show: undefined
+    show: undefined,
+    resize: undefined // checkout.shipping.resize
   },
   payment: {
     stripe: {
@@ -228,10 +227,10 @@ checkout.insert = object => {
   const items = object.items;
   checkout.cart.items.insert(items);
   // MANUFACTURING SPEED
-  const manufacturingSpeed = object.manufacturingSpeed;
+  const manufacturingSpeed = object.order.manufacturingSpeed;
   if (manufacturingSpeed == "normal") {
     document.querySelector("#checkout-mnft-spd-opt-nrml").checked = true;
-  } else {
+  } else if (manufacturingSpeed == "urgent") {
     document.querySelector("#checkout-mnft-spd-opt-urgt").checked = true;
   }
 };
@@ -880,7 +879,12 @@ checkout.cart.validation.invalid = () => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.show = () => checkout.navigation.navigate(0);
+checkout.cart.show = () => {
+  checkout.navigation.navigate(0);
+  document
+    .querySelector("#checkout-sub-pg-cart")
+    .scrollIntoView({ behavior: "smooth", block: "end" });
+};
 
 // @FUNC  checkout.cart.resize
 // @TYPE  SIMPLE
@@ -1240,7 +1244,12 @@ checkout.shipping.validation.invalid = () => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.shipping.show = () => checkout.navigation.navigate(1);
+checkout.shipping.show = () => {
+  checkout.navigation.navigate(1);
+  document
+    .querySelector("#checkout-sub-pg-cart")
+    .scrollIntoView({ behavior: "smooth", block: "start" });
+};
 
 // @FUNC  checkoutShippingCreateSavedAddressHTML
 // @TYPE
@@ -1417,7 +1426,9 @@ checkout.payment.method.card.show = show => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.payment.show = () => checkout.navigation.navigate(2);
+checkout.payment.show = () => {
+  checkout.navigation.navigate(2);
+};
 
 /*-----------------------------------------------------------------------------------------
 NAVIGATION
