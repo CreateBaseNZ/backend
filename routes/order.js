@@ -128,14 +128,7 @@ router.post("/orders/print/update", restrictedPages, async (req, res) => {
   } catch (error) {
     return res.send(error);
   }
-  let fileName;
-  try {
-    fileName = await getFileName(order.fileId);
-  } catch (error) {
-    return res.send(error);
-  }
-  let revisedOrder = { ...order, ...{ fileName } };
-  return res.send(revisedOrder);
+  return res.send(order);
 });
 
 // @route     GET /orders/print/delete
@@ -163,11 +156,6 @@ router.post("/orders/print/delete", restrictedPages, async (req, res) => {
   // Send back a success status
   return res.send({ status: "success", contents: "" });
 });
-
-// @route     POST /checkout/order
-// @desc
-// @access    Private
-router.post("/checkout/order", restrictedPages, async (req, res) => {});
 
 /*=========================================================================================
 FUNCTIONS

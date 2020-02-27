@@ -252,7 +252,8 @@ checkout.load = async () => {
 
   checkout.insert(object);
   // Perform Validation
-  checkout.cart.validation.validate();
+  checkout.cart.validation.validate(object.validity);
+  return;
 };
 
 // @FUNC  checkout.listener
@@ -482,10 +483,10 @@ checkout.cart.print.create = print => {
 // @ARGU
 checkout.cart.print.insert = (print, element) => {
   const containers = checkout.cart.print.create(print);
-  const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
   if (element) {
-    element.innerHTML = html;
+    element.innerHTML = containers;
   } else {
+    const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
     document
       .querySelector("#checkout-prnt-cnts")
       .insertAdjacentHTML("beforeend", html);
@@ -560,12 +561,15 @@ checkout.cart.print.delete = async printId => {
   // Delete the 3D print from the database
   let data;
   try {
-    data = (await axios.post("/orders/print/delete", { printId }))["data"];
+    data = (await axios.post("/checkout/order/delete/print", { printId }))[
+      "data"
+    ];
   } catch (error) {
     return { status: "failed", contents: error };
   }
+  console.log(data);
   // Perform Validation
-  checkout.cart.validation.validate();
+  checkout.cart.validation.validate(data.data.validity);
   return;
 };
 
@@ -801,16 +805,23 @@ checkout.cart.manufacturingSpeed.select = async option => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.validation.validate = async () => {
-  let response;
-  try {
-    response = (await axios.post("/checkout/order/validate/cart"))["data"];
-  } catch (error) {
-    console.log(error);
-    return;
+checkout.cart.validation.validate = async validity => {
+  let valid;
+
+  if (validity) {
+    valid = validity.cart;
+  } else {
+    try {
+      valid = (await axios.post("/checkout/order/validate/cart"))["data"][
+        "data"
+      ];
+    } catch (error) {
+      console.log(error);
+      return;
+    }
   }
 
-  if (response.data) {
+  if (valid) {
     checkout.cart.validation.valid();
   } else {
     checkout.cart.validation.invalid();
