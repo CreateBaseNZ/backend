@@ -102,6 +102,10 @@ body {
       opacity: 0;
       animation: landing-slide-sub-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
 
+      &:hover {
+        color: $highlight;
+      }
+
       &::after {
         position: absolute;
         content: '';

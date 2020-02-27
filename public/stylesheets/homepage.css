@@ -2047,6 +2047,10 @@ body .main-page {
           animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
 }
 
+.landing-carousel .landing-slide .landing-slide-sub:hover {
+  color: #4bf0ea;
+}
+
 .landing-carousel .landing-slide .landing-slide-sub::after {
   position: absolute;
   content: '';
