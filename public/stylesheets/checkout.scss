@@ -44,9 +44,10 @@ CHECKOUT
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-.checkout-sub-hdng {
+.checkout-heading {
   height: 14vmax;
   width: 100%;
   display: flex;
@@ -54,6 +55,13 @@ CHECKOUT
   justify-content: center;
   padding-bottom: 4vmax;
   letter-spacing: 0.2vmax;
+  color: $clr-wht-3;
+  cursor: default;
+}
+
+.checkout-heading-valid {
+  color: $clr-blk-1;
+  cursor: pointer;
 }
 
 .checkout-sub-sub-pgs {
@@ -659,6 +667,7 @@ GLOBAL
 .checkout-radio {
   height: 1.6vmax;
   width: 1.6vmax;
+  cursor: pointer;
 }
 
 .checkout-radio-label {
@@ -669,6 +678,7 @@ GLOBAL
   font-size: 1.6vmax;
   letter-spacing: 0.2vmax;
   padding-left: 2.6vmax;
+  cursor: pointer;
 }
 
 .checkout-element-hide {
@@ -723,7 +733,7 @@ DESKTOP CSS
     height: 45vmax;
   }
 
-  .checkout-sub-hdng {
+  .checkout-heading {
     height: 8vmax;
     width: 100%;
     display: flex;
@@ -1051,16 +1061,32 @@ DESKTOP CSS
 
   .checkout-buttons {
     height: 12vmax;
+    padding: 0;
     flex-direction: row;
     justify-content: space-around;
   }
 
   .checkout-button {
     height: 3vmax;
-    width: 12vmax;
+    width: 14vmax;
     border-radius: 0.5vmax;
     font-size: 1vmax;
     letter-spacing: 0.2vmax;
+  }
+
+  .checkout-radio-container {
+    height: 3vmax;
+  }
+
+  .checkout-radio {
+    height: 1vmax;
+    width: 1vmax;
+  }
+
+  .checkout-radio-label {
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+    padding-left: 1.6vmax;
   }
 
   .StripeElement {

@@ -1938,9 +1938,11 @@ CHECKOUT
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
 }
 
-.checkout-sub-hdng {
+.checkout-heading {
   height: 14vmax;
   width: 100%;
   display: -webkit-box;
@@ -1954,6 +1956,13 @@ CHECKOUT
           justify-content: center;
   padding-bottom: 4vmax;
   letter-spacing: 0.2vmax;
+  color: #c7c2d5;
+  cursor: default;
+}
+
+.checkout-heading-valid {
+  color: #2d283c;
+  cursor: pointer;
 }
 
 .checkout-sub-sub-pgs {
@@ -2729,6 +2738,7 @@ GLOBAL
 .checkout-radio {
   height: 1.6vmax;
   width: 1.6vmax;
+  cursor: pointer;
 }
 
 .checkout-radio-label {
@@ -2743,6 +2753,7 @@ GLOBAL
   font-size: 1.6vmax;
   letter-spacing: 0.2vmax;
   padding-left: 2.6vmax;
+  cursor: pointer;
 }
 
 .checkout-element-hide {
@@ -2792,7 +2803,7 @@ DESKTOP CSS
   .checkout-sub-pg-payment {
     height: 45vmax;
   }
-  .checkout-sub-hdng {
+  .checkout-heading {
     height: 8vmax;
     width: 100%;
     display: -webkit-box;
@@ -3116,6 +3127,7 @@ DESKTOP CSS
   }
   .checkout-buttons {
     height: 12vmax;
+    padding: 0;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -3125,10 +3137,22 @@ DESKTOP CSS
   }
   .checkout-button {
     height: 3vmax;
-    width: 12vmax;
+    width: 14vmax;
     border-radius: 0.5vmax;
     font-size: 1vmax;
     letter-spacing: 0.2vmax;
+  }
+  .checkout-radio-container {
+    height: 3vmax;
+  }
+  .checkout-radio {
+    height: 1vmax;
+    width: 1vmax;
+  }
+  .checkout-radio-label {
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+    padding-left: 1.6vmax;
   }
   .StripeElement {
     height: 2.4vmax;

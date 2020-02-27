@@ -277,7 +277,6 @@ checkout.listener = () => {
     "click",
     checkout.shipping.show
   );
-
   checkout.element.windowSize.addListener(checkout.cart.prints.resize);
   checkout.element.windowSize.addListener(checkout.cart.items.resize);
   checkout.element.windowSize.addListener(checkout.cart.resize);
@@ -849,6 +848,7 @@ checkout.cart.validation.valid = () => {
     checkout.shipping.show
   );
   // Update CSS
+  checkout.element.heading.shipping.classList.add("checkout-heading-valid");
   checkout.element.button.cart.next.classList.add("checkout-button-valid");
 };
 
@@ -870,6 +870,7 @@ checkout.cart.validation.invalid = () => {
     checkout.shipping.show
   );
   // Update CSS
+  checkout.element.heading.shipping.classList.remove("checkout-heading-valid");
   checkout.element.button.cart.next.classList.remove("checkout-button-valid");
   // Return to Cart Page
   checkout.cart.show();
@@ -881,9 +882,6 @@ checkout.cart.validation.invalid = () => {
 // @ARGU
 checkout.cart.show = () => {
   checkout.navigation.navigate(0);
-  document
-    .querySelector("#checkout-sub-pg-cart")
-    .scrollIntoView({ behavior: "smooth", block: "end" });
 };
 
 // @FUNC  checkout.cart.resize
@@ -1246,9 +1244,6 @@ checkout.shipping.validation.invalid = () => {
 // @ARGU
 checkout.shipping.show = () => {
   checkout.navigation.navigate(1);
-  document
-    .querySelector("#checkout-sub-pg-cart")
-    .scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
 // @FUNC  checkoutShippingCreateSavedAddressHTML
