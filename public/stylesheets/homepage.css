@@ -1997,6 +1997,7 @@ body .main-page {
 }
 
 .landing-carousel .landing-slide {
+  position: relative;
   margin: auto 2vmax;
   height: 35vmax;
   width: 70vmax;
@@ -2009,6 +2010,23 @@ body .main-page {
      object-fit: cover;
   overflow: hidden;
   opacity: 1;
+}
+
+.landing-carousel .landing-slide p {
+  position: absolute;
+  text-align: center;
+  top: 45%;
+  width: 100%;
+  margin-top: -2vmax;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 1.8vmax;
+  letter-spacing: 0.4vmax;
+  color: white;
+  z-index: 2;
+  opacity: 0;
+  -webkit-animation: landing-slide-text-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1s forwards;
+          animation: landing-slide-text-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1s forwards;
 }
 
 .landing-carousel #landing-1,
@@ -2710,11 +2728,11 @@ body .main-page {
     opacity: 1;
   }
   50% {
-    width: 35vmax;
+    width: 20vmax;
     opacity: 1;
   }
   100% {
-    width: 35vmax;
+    width: 20vmax;
     opacity: 0;
   }
 }
@@ -2725,12 +2743,34 @@ body .main-page {
     opacity: 1;
   }
   50% {
-    width: 35vmax;
+    width: 20vmax;
     opacity: 1;
   }
   100% {
-    width: 35vmax;
+    width: 20vmax;
     opacity: 0;
+  }
+}
+
+@-webkit-keyframes landing-slide-text-anim {
+  0% {
+    margin-top: -1vmax;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 0vmax;
+    opacity: 1;
+  }
+}
+
+@keyframes landing-slide-text-anim {
+  0% {
+    margin-top: -1vmax;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 0vmax;
+    opacity: 1;
   }
 }
 
