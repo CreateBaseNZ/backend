@@ -1992,8 +1992,8 @@ body .main-page {
       -ms-flex-align: center;
           align-items: center;
   margin-left: 0vmax;
-  -webkit-transition: margin-left 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98);
-  transition: margin-left 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98);
+  -webkit-transition: margin-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98);
+  transition: margin-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98);
 }
 
 .landing-carousel .landing-slide {
@@ -2012,21 +2012,66 @@ body .main-page {
   opacity: 1;
 }
 
-.landing-carousel .landing-slide p {
+.landing-carousel .landing-slide .landing-slide-title {
   position: absolute;
   text-align: center;
   top: 45%;
   width: 100%;
-  margin-top: -2vmax;
+  margin-top: -1vmax;
   font-family: "Poppins", sans-serif;
-  font-weight: 100;
+  font-weight: 800;
   font-size: 1.8vmax;
   letter-spacing: 0.4vmax;
   color: white;
   z-index: 2;
   opacity: 0;
-  -webkit-animation: landing-slide-text-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1s forwards;
-          animation: landing-slide-text-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1s forwards;
+  -webkit-animation: landing-slide-title-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1s forwards;
+          animation: landing-slide-title-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1s forwards;
+}
+
+.landing-carousel .landing-slide .landing-slide-sub {
+  position: absolute;
+  text-align: center;
+  width: 20vmax;
+  top: 60%;
+  left: calc(50% - 10vmax);
+  margin-top: -1vmax;
+  font-family: "Poppins", sans-serif;
+  font-style: lighter;
+  font-weight: 10;
+  font-size: 1vmax;
+  color: white;
+  z-index: 2;
+  opacity: 0;
+  -webkit-animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
+          animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
+}
+
+.landing-carousel .landing-slide .landing-slide-sub:hover {
+  color: #4bf0ea;
+}
+
+.landing-carousel .landing-slide .landing-slide-sub::after {
+  position: absolute;
+  content: '';
+  height: 1vmax;
+  width: 0;
+  top: 60%;
+  left: 50%;
+  margin-top: -0.5vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 1vmax;
+  z-index: 2;
+  border-bottom: 1px solid #4bf0ea;
+  -webkit-transition: all 0.8s cubic-bezier(0.28, 0.6, 0.3, 0.98);
+  transition: all 0.8s cubic-bezier(0.28, 0.6, 0.3, 0.98);
+}
+
+.landing-carousel .landing-slide .landing-slide-sub:hover:after {
+  width: 8vmax;
+  left: calc(50% - 4vmax);
+  -webkit-transition: all 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98);
+  transition: all 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98);
 }
 
 .landing-carousel #landing-1,
@@ -2752,7 +2797,7 @@ body .main-page {
   }
 }
 
-@-webkit-keyframes landing-slide-text-anim {
+@-webkit-keyframes landing-slide-title-anim {
   0% {
     margin-top: -1vmax;
     opacity: 0;
@@ -2763,7 +2808,29 @@ body .main-page {
   }
 }
 
-@keyframes landing-slide-text-anim {
+@keyframes landing-slide-title-anim {
+  0% {
+    margin-top: -1vmax;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 0vmax;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes landing-slide-sub-anim {
+  0% {
+    margin-top: -1vmax;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 0vmax;
+    opacity: 1;
+  }
+}
+
+@keyframes landing-slide-sub-anim {
   0% {
     margin-top: -1vmax;
     opacity: 0;
