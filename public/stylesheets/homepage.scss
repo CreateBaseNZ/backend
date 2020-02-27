@@ -54,7 +54,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-left: 0vmax;
-  transition: margin-left 0.3s cubic-bezier(.28,.6,.3,.98);
+  transition: margin-left 0.5s cubic-bezier(.28,.6,.3,.98);
 
   .landing-slide {
     position: relative;
@@ -70,20 +70,58 @@ body {
       opacity: 1;
     }
 
-    p {
+    .landing-slide-title {
       position: absolute;
       text-align: center;
       top: 45%;
       width: 100%;
-      margin-top: -2vmax;
+      margin-top: -1vmax;
       font-family: $poppins;
-      font-weight: 100;
+      font-weight: 800;
       font-size: 1.8vmax;
       letter-spacing: 0.4vmax;
       color: $light-1;
       z-index: 2;
       opacity: 0;
-      animation: landing-slide-text-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1s forwards;
+      animation: landing-slide-title-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1s forwards;
+    }
+
+    .landing-slide-sub {
+      position: absolute;
+      text-align: center;
+      width: 20vmax;
+      top: 60%;
+      left: calc(50% - 10vmax);
+      margin-top: -1vmax;
+      font-family: $poppins;
+      font-style: lighter;
+      font-weight: 10;
+      font-size: 1vmax;
+      color: $light-1;
+      z-index: 2;
+      opacity: 0;
+      animation: landing-slide-sub-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
+
+      &::after {
+        position: absolute;
+        content: '';
+        height: 1vmax;
+        width: 0;
+        top: 60%;
+        left: 50%;
+        margin-top: -0.5vmax;
+        font-family: $poppins;
+        font-size: 1vmax;
+        z-index: 2;
+        border-bottom: 1px solid $highlight;
+        transition: all 0.8s cubic-bezier(.28,.6,.3,.98);
+      }
+
+      &:hover:after {
+        width: 8vmax;
+        left: calc(50% - 4vmax);
+        transition: all 0.3s cubic-bezier(.28,.6,.3,.98);
+      }
     }
   }
 
@@ -617,7 +655,11 @@ body {
   100% { width: 20vmax; opacity: 0; }
 }
 
-@keyframes landing-slide-text-anim {
+@keyframes landing-slide-title-anim {
+  0% { margin-top: -1vmax; opacity: 0; }
+  100% { margin-top: 0vmax; opacity: 1; }
+}
+@keyframes landing-slide-sub-anim {
   0% { margin-top: -1vmax; opacity: 0; }
   100% { margin-top: 0vmax; opacity: 1; }
 }
