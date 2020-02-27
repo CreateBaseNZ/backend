@@ -7,7 +7,6 @@ VARIABLES
 =========================================================================================*/
 
 // Track the current page the user is on
-let selectedCheckoutSubPage = 1;
 let numberOfPrints;
 let numberOfItems;
 
@@ -99,7 +98,8 @@ let checkout = {
       valid: undefined, // checkout.cart.validation.valid
       invalid: undefined // checkout.cart.validate.invalid
     },
-    show: undefined // checkout.cart.show
+    show: undefined, // checkout.cart.show
+    resize: undefined // checkout.cart.resize
   },
   shipping: {
     address: {
@@ -252,7 +252,8 @@ checkout.load = async () => {
 
   checkout.insert(object);
   // Perform Validation
-  checkout.cart.validation.validate();
+  checkout.cart.validation.validate(object.validity);
+  return;
 };
 
 // @FUNC  checkout.listener
@@ -277,6 +278,10 @@ checkout.listener = () => {
     "click",
     checkout.shipping.show
   );
+
+  checkout.element.windowSize.addListener(checkout.cart.prints.resize);
+  checkout.element.windowSize.addListener(checkout.cart.items.resize);
+  checkout.element.windowSize.addListener(checkout.cart.resize);
 };
 
 // @FUNC  checkout.elements.assign
@@ -369,8 +374,6 @@ checkout.cart.prints.insert = object => {
       for (let i = 0; i < numberOfPrints; i++) {
         checkout.cart.print.insert(makes[i]);
       }
-      checkout.cart.prints.resize();
-      checkout.element.windowSize.addListener(checkout.cart.prints.resize);
     } else {
       // If there are no prints ordered
       document.querySelector("#checkout-prnt-cnts").innerHTML =
@@ -381,9 +384,10 @@ checkout.cart.prints.insert = object => {
       document.querySelector("#checkout-prnt-cnts").innerHTML =
         "<p>No 3D Prints</p>";
     } else {
-      checkout.cart.prints.resize();
     }
   }
+  checkout.cart.prints.resize();
+  checkout.cart.resize();
 };
 
 // @FUNC  checkout.cart.prints.load
@@ -409,10 +413,10 @@ checkout.cart.prints.load = async () => {
 checkout.cart.prints.resize = () => {
   if (checkout.element.windowSize.matches) {
     if (numberOfPrints) {
-      document.querySelector("#checkout-prnt-cnts").style = `height: ${8 *
+      document.querySelector("#checkout-prnt-cnts").style = `height: ${10 *
         numberOfPrints}vmax`;
     } else {
-      document.querySelector("#checkout-prnt-cnts").style = `height: 8vmax`;
+      document.querySelector("#checkout-prnt-cnts").style = `height: 10vmax`;
     }
   } else {
     if (numberOfPrints) {
@@ -459,7 +463,7 @@ checkout.cart.print.create = print => {
     quantity}</div>`;
 
   // Container Three
-  const cancel = `<div class="checkout-prnt-cnt-cncl" onclick="checkout.cart.print.delete('${printId}');"></div>`;
+  const cancel = `<div class="checkout-delete" onclick="checkout.cart.print.delete('${printId}');"></div>`;
   let price;
   price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2">
               $X,XXX.XX
@@ -482,10 +486,10 @@ checkout.cart.print.create = print => {
 // @ARGU
 checkout.cart.print.insert = (print, element) => {
   const containers = checkout.cart.print.create(print);
-  const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
   if (element) {
-    element.innerHTML = html;
+    element.innerHTML = containers;
   } else {
+    const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
     document
       .querySelector("#checkout-prnt-cnts")
       .insertAdjacentHTML("beforeend", html);
@@ -560,12 +564,15 @@ checkout.cart.print.delete = async printId => {
   // Delete the 3D print from the database
   let data;
   try {
-    data = (await axios.post("/orders/print/delete", { printId }))["data"];
+    data = (await axios.post("/checkout/order/delete/print", { printId }))[
+      "data"
+    ];
   } catch (error) {
     return { status: "failed", contents: error };
   }
+  console.log(data);
   // Perform Validation
-  checkout.cart.validation.validate();
+  checkout.cart.validation.validate(data.data.validity);
   return;
 };
 
@@ -603,12 +610,12 @@ checkout.cart.items.insert = items => {
         checkout.cart.item.insert(items[i]);
       }
     }
-    checkout.cart.items.resize();
-    checkout.element.windowSize.addListener(checkout.cart.items.resize);
   } else {
     // If there are no items ordered
     document.querySelector("#checkout-mkpl-cnts").innerHTML = "<p>No Items</p>";
   }
+  checkout.cart.items.resize();
+  checkout.cart.resize();
 };
 
 // @FUNC  checkout.cart.items.load
@@ -635,10 +642,10 @@ checkout.cart.items.load = async () => {
 checkout.cart.items.resize = () => {
   if (checkout.element.windowSize.matches) {
     if (numberOfItems) {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: ${8 *
+      document.querySelector("#checkout-mkpl-cnts").style = `height: ${10 *
         numberOfItems}vmax`;
     } else {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: 8vmax`;
+      document.querySelector("#checkout-mkpl-cnts").style = `height: 10vmax`;
     }
   } else {
     if (numberOfItems) {
@@ -680,7 +687,7 @@ checkout.cart.item.create = item => {
     quantity}</div>`;
 
   // Create container three HTML
-  const cancel = `<div class="checkout-mkpl-cnt-cncl"></div>`;
+  const cancel = `<div class="checkout-delete"></div>`;
   const price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2"></div>`;
   const containerThree = `<div class="checkout-mkpl-cnt-cntn-3">${cancel +
     price}</div>`;
@@ -801,16 +808,23 @@ checkout.cart.manufacturingSpeed.select = async option => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.validation.validate = async () => {
-  let response;
-  try {
-    response = (await axios.post("/checkout/order/validate/cart"))["data"];
-  } catch (error) {
-    console.log(error);
-    return;
+checkout.cart.validation.validate = async validity => {
+  let valid;
+
+  if (validity) {
+    valid = validity.cart;
+  } else {
+    try {
+      valid = (await axios.post("/checkout/order/validate/cart"))["data"][
+        "data"
+      ];
+    } catch (error) {
+      console.log(error);
+      return;
+    }
   }
 
-  if (response.data) {
+  if (valid) {
     checkout.cart.validation.valid();
   } else {
     checkout.cart.validation.invalid();
@@ -867,6 +881,43 @@ checkout.cart.validation.invalid = () => {
 // @DESC
 // @ARGU
 checkout.cart.show = () => checkout.navigation.navigate(0);
+
+// @FUNC  checkout.cart.resize
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.cart.resize = () => {
+  // DESKTOP HEIGHT CALCULATION
+  const desktopHeight = {
+    heading: 8,
+    subHeading: 8 * 4,
+    prints: numberOfPrints ? 10 * numberOfPrints : 10,
+    items: numberOfItems ? 10 * numberOfItems : 10,
+    discountInput: 9,
+    manufacturingSpeed: 8,
+    buttons: 12
+  };
+  const total =
+    desktopHeight.heading +
+    desktopHeight.subHeading +
+    desktopHeight.prints +
+    desktopHeight.items +
+    desktopHeight.discountInput +
+    desktopHeight.manufacturingSpeed +
+    desktopHeight.buttons;
+  // SET THE CART PAGE SIZE
+  if (checkout.element.windowSize.matches) {
+    if (checkoutSelectedPage == 0) {
+      document.querySelector("#checkout-sub-pg-cart").style =
+        "height: " + total + "vmax;";
+    } else {
+      document.querySelector("#checkout-sub-pg-cart").style = "height: 8vmax;";
+    }
+  } else {
+    document.querySelector("#checkout-sub-pg-cart").style =
+      "height: calc(100% - 16vmax);";
+  }
+};
 
 /*-----------------------------------------------------------------------------------------
 SHIPPING
@@ -1387,6 +1438,7 @@ checkout.navigation.navigate = nextPage => {
   checkout.navigation.changeCSS.page(nextPage);
   // Update the current selected page
   checkoutSelectedPage = nextPage;
+  checkout.cart.resize();
 };
 
 // @FUNC  checkout.navigation.changeCSS.navigation

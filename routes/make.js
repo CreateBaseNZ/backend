@@ -96,28 +96,28 @@ router.post(
     // Set status
     make.updateStatus("awaitingQuote");
     // Create a comment
+    if (message) {
+      let comment = new Comment({
+        accountId,
+        message
+      });
 
-    let comment = new Comment({
-      accountId,
-      message
-    });
+      try {
+        await comment.setDate();
+      } catch (error) {
+        return res.send({ status: "failed", data: error });
+      }
 
-    try {
-      await comment.setDate();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
+      let savedComment;
+
+      try {
+        savedComment = await comment.save();
+      } catch (error) {
+        return res.send({ status: "failed", data: error });
+      }
+
+      make.comment = mongoose.Types.ObjectId(savedComment._id);
     }
-
-    let savedComment;
-
-    try {
-      savedComment = await comment.save();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-
-    make.comment = mongoose.Types.ObjectId(savedComment._id);
-
     // Save make
     let savedMake;
 

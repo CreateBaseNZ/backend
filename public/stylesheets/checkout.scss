@@ -15,6 +15,7 @@ $clr-blk-3: #877da9;
 $clr-wht-1: rgb(255, 255, 255);
 $clr-wht-2: rgb(248, 248, 248);
 $clr-wht-3: #c7c2d5;
+$clr-ext-1: #4bf0ea;
 // Font Families
 $fnt-fml-1: "Montserrat", sans-serif;
 $fnt-fml-2: "Poppins", sans-serif;
@@ -71,8 +72,6 @@ CHECKOUT
   width: 100%;
   display: flex;
   letter-spacing: 0.1vmax;
-  border-bottom-style: solid;
-  border-width: 0.3vmax;
   padding: 1vmax 2vmax;
   margin: 6vmax 0;
 }
@@ -181,12 +180,6 @@ CART
   justify-content: flex-end;
 }
 
-.checkout-prnt-cnt-cncl {
-  height: 3vmax;
-  width: 3vmax;
-  background-color: $clr-blk-1;
-}
-
 .checkout-prnt-cnt-prc {
   height: 3vmax;
   width: 100%;
@@ -254,12 +247,6 @@ CART
   flex-wrap: wrap;
   align-content: space-between;
   justify-content: flex-end;
-}
-
-.checkout-mkpl-cnt-cncl {
-  height: 3vmax;
-  width: 3vmax;
-  background-color: $clr-blk-1;
 }
 
 .checkout-mkpl-cnt-prc {
@@ -355,13 +342,6 @@ CART
   letter-spacing: 0.1vmax;
 }
 
-.checkout-cart-btns {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 6vmax 0;
-}
-
 /*-----------------------------------------------------------------------------------------
 SHIPPING
 -----------------------------------------------------------------------------------------*/
@@ -432,18 +412,6 @@ SHIPPING
 .checkout-shpg-mthd-inp-lbl {
   letter-spacing: 0.1vmax;
   padding: 0 0 0 1.6vmax;
-}
-
-.checkout-shpg-btns {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 6vmax 0;
-}
-
-.checkout-shpg-btn {
-  width: 14vmax;
-  letter-spacing: 0.2vmax;
 }
 
 .checkout-shipping-new-address-error {
@@ -552,18 +520,6 @@ PAYMENT
   width: 40%;
 }
 
-.checkout-pymt-btns {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 6vmax 0;
-}
-
-.checkout-pymt-btn {
-  width: 14vmax;
-  letter-spacing: 0.2vmax;
-}
-
 #checkout-pymt-card {
   width: 100%;
 }
@@ -668,6 +624,39 @@ NAVIGATION
 GLOBAL
 -----------------------------------------------------------------------------------------*/
 
+// CLOSE BUTTON
+
+.checkout-delete {
+  position: relative;
+  display: inline-block;
+  width: 2.8vmax;
+  height: 2.8vmax;
+  cursor: pointer;
+  &:hover {
+    &::before,
+    &::after {
+      background: $clr-ext-1;
+    }
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    background: $clr-blk-3;
+    height: 0.24vmax;
+    border-radius: 0.12vmax;
+    transition: all 0.1s ease;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
 .checkout-buttons {
   height: 24vmax;
   width: 100%;
@@ -731,16 +720,16 @@ DESKTOP CSS
 
 @media only screen and (min-width: 850px) {
   .checkout-sub-pg {
-    height: 100vmax;
     width: 60vw;
     position: relative;
     display: flex;
-    padding: 0 12vmax 0 4vmax;
+    padding: 0 12vmax 0 6vmax;
     overflow: hidden;
+    cursor: default;
   }
 
   .checkout-sub-pg-cart {
-    height: 80vmax;
+    height: 89vmax;
   }
 
   .checkout-sub-pg-shipping {
@@ -752,43 +741,47 @@ DESKTOP CSS
   }
 
   .checkout-sub-hdng {
-    height: 6vmax;
+    height: 8vmax;
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     // Text CSS
     font-size: 2vmax;
   }
 
   .checkout-sub-sub-pgs {
-    padding: 2vmax;
+    padding: 0;
   }
 
   .checkout-sub-sub-hdng {
-    height: 3.6vmax;
+    height: 8vmax;
     display: flex;
     align-items: center;
-    padding: 0 1.6vmax;
-    margin: 2vmax 0;
-    border-width: 0.2vmax;
+    padding: 0;
+    margin: 0;
     // Text CSS
-    font-size: 1vmax;
+    font-size: 1.2vmax;
   }
 
   .checkout-sub-pg-left {
-    height: 6vmax;
+    height: 8vmax;
     transform: translateX(0);
     opacity: 1;
   }
   .checkout-sub-pg-right {
-    height: 6vmax;
+    height: 8vmax;
     transform: translateX(0);
     opacity: 1;
   }
 
   .checkout-prnt-cnt {
-    height: 8vmax;
-    padding: 1vmax;
+    height: 10vmax;
+    padding: 2vmax 0;
+  }
+
+  .checkout-prnt-cnt-file-name {
+    color: $clr-ext-1;
   }
 
   .checkout-prnt-cnt-cntn-1,
@@ -828,7 +821,6 @@ DESKTOP CSS
   .checkout-prnt-cnt-bld-type,
   .checkout-prnt-cnt-clr,
   .checkout-prnt-cnt-qnty-cntn,
-  .checkout-prnt-cnt-cncl,
   .checkout-prnt-cnt-prc {
     height: 2vmax;
   }
@@ -838,13 +830,8 @@ DESKTOP CSS
     width: 50%;
   }
 
-  .checkout-prnt-cnt-cncl {
-    height: 2vmax;
-    width: 2vmax;
-  }
-
   .checkout-cart-cnts {
-    height: 8vmax;
+    height: 10vmax;
   }
 
   .checkout-cart-cnts p {
@@ -853,9 +840,13 @@ DESKTOP CSS
   }
 
   .checkout-dsct-inp-cntn {
-    height: 5vmax;
+    height: 9vmax;
     align-content: center;
-    padding: 0 2vmax;
+    padding: 2vmax;
+  }
+
+  #checkout-dsct-inp-btn {
+    cursor: pointer;
   }
 
   .checkout-dsct {
@@ -883,24 +874,6 @@ DESKTOP CSS
     height: 3vmax;
     width: 3vmax;
     border-width: 0.1vmax;
-  }
-
-  .checkout-cart-btns,
-  .checkout-shpg-btns,
-  .checkout-pymt-btns {
-    height: 10vmax;
-    align-items: center;
-    padding: 0 6vmax;
-  }
-
-  .checkout-cart-btn,
-  .checkout-shpg-btn,
-  .checkout-pymt-btn {
-    height: 3vmax;
-    width: 10vmax;
-    border-radius: 1.5vmax;
-    font-size: 1.2vmax;
-    font-weight: bold;
   }
 
   .checkout-shpg-adrs-inp-cntn {
@@ -982,7 +955,7 @@ DESKTOP CSS
     position: fixed;
     top: 0;
     left: 0;
-    padding: 4vmax 0 0 40vw;
+    padding: 7vmax 0 3vmax 40vw;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -1091,6 +1064,16 @@ DESKTOP CSS
   /*---------------------------------------------------------------------------------------
   GLOBAL
   ---------------------------------------------------------------------------------------*/
+
+  .checkout-delete {
+    width: 1.4vmax;
+    height: 1.4vmax;
+    &::before,
+    &::after {
+      height: 0.12vmax;
+      border-radius: 0.06vmax;
+    }
+  }
 
   .checkout-buttons {
     height: 12vmax;

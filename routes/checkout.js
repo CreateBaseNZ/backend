@@ -113,12 +113,18 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
     return res.send({ status: "failed", data: error });
   }
 
+  // Validate the checkout
+  validity = {
+    cart: savedOrder.validateCart()
+  };
+
   return res.send({
     status: "success",
     data: {
       order: savedOrder,
       makes: { awaitingQuote: makesAwaitingQuote, checkout: makesCheckout },
-      items: itemsCheckout
+      items: itemsCheckout,
+      validity
     }
   });
 });
@@ -178,7 +184,55 @@ router.post(
 router.post(
   "/checkout/order/delete/print",
   restrictedPages,
-  async (req, res) => {}
+  async (req, res) => {
+    // Delete the make document and the corresponding file from the database
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    const makeId = mongoose.Types.ObjectId(req.body.printId);
+    let deletedMake;
+    try {
+      deletedMake = await Make.deleteByIdAndAccountId(makeId, accountId);
+    } catch (error) {
+      // If error was encountered, send a failed status
+      return res.send({ status: "failed", data: error });
+    }
+    // Update the order
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Update the Make
+    let makesAwaitingQuote;
+    let makesCheckout;
+    try {
+      [makesAwaitingQuote, makesCheckout] = await Promise.all([
+        orderMakesAwaitingQuoteGet(accountId),
+        orderMakesCheckoutGet(accountId)
+      ]);
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    order.makes.awaitingQuote = makesAwaitingQuote;
+    order.makes.checkout = makesCheckout;
+    // Save the make
+    let savedOrder;
+    try {
+      savedOrder = await order.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Validate the checkout
+    validity = {
+      cart: savedOrder.validateCart()
+    };
+    // Send back a success status
+    return res.send({
+      status: "success",
+      data: { order: savedOrder, validity }
+    });
+  }
 );
 
 /*=========================================================================================

@@ -6,10 +6,39 @@ const mongoose = require("mongoose");
 const moment = require("moment-timezone");
 
 /*=========================================================================================
+GRIDFS
+=========================================================================================*/
+
+const gridFsStream = require("gridfs-stream");
+
+let GridFS;
+
+mongoose.createConnection(
+  process.env.MONGODB_URL,
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  },
+  (error, client) => {
+    if (error) throw error;
+
+    GridFS = gridFsStream(client.db, mongoose.mongo);
+    GridFS.collection("fs");
+  }
+);
+
+/*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
 const Schema = mongoose.Schema;
+
+/*=========================================================================================
+MODELS
+=========================================================================================*/
+
+const Comment = require("./Comment.js");
 
 /*=========================================================================================
 CREATE MAKE MODEL
@@ -92,6 +121,53 @@ MakeSchema.statics.findByAccountIdAndStatus = function(accountId, status) {
     }
 
     resolve(makes);
+  });
+};
+
+// @FUNC  deleteByIdAndAccountId
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+MakeSchema.statics.deleteByIdAndAccountId = function(_id, accountId) {
+  return new Promise(async (resolve, reject) => {
+    // Find the make to be deleted
+    let make;
+    try {
+      make = await this.findOne({ _id, accountId });
+    } catch (error) {
+      reject(error);
+    }
+    // Delete the make
+    let deletedMake;
+    try {
+      deletedMake = await make.deleteOne();
+    } catch (error) {
+      reject(error);
+    }
+    // Find and Delete the comment associated with the Make
+    if (deletedMake.comment) {
+      const commentId = mongoose.Types.ObjectId(deletedMake.comment);
+      let comment;
+      try {
+        comment = await Comment.findOne({ _id: commentId, accountId });
+      } catch (error) {
+        reject(error);
+      }
+      try {
+        await comment.deleteOne();
+      } catch (error) {
+        reject(error);
+      }
+    }
+    // Delete file associated with the make
+    const fileId = mongoose.Types.ObjectId(deletedMake.file.id);
+    try {
+      await GridFS.remove({ _id: fileId, root: "fs" });
+    } catch (error) {
+      reject(error);
+    }
+    // Return the deleted make
+    resolve(deletedMake);
   });
 };
 
