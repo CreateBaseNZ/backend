@@ -57,6 +57,7 @@ body {
   transition: margin-left 0.3s cubic-bezier(.28,.6,.3,.98);
 
   .landing-slide {
+    position: relative;
     margin: auto 2vmax;
     height: 35vmax;
     width: 70vmax;
@@ -67,6 +68,22 @@ body {
       object-fit: cover;
       overflow: hidden;
       opacity: 1;
+    }
+
+    p {
+      position: absolute;
+      text-align: center;
+      top: 45%;
+      width: 100%;
+      margin-top: -2vmax;
+      font-family: $poppins;
+      font-weight: 100;
+      font-size: 1.8vmax;
+      letter-spacing: 0.4vmax;
+      color: $light-1;
+      z-index: 2;
+      opacity: 0;
+      animation: landing-slide-text-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1s forwards;
     }
   }
 
@@ -596,8 +613,13 @@ body {
 }
 @keyframes landing-side-after-anim {
   0% { width: 0vmax; opacity: 1; }
-  50% { width: 35vmax; opacity: 1; }
-  100% { width: 35vmax; opacity: 0; }
+  50% { width: 20vmax; opacity: 1; }
+  100% { width: 20vmax; opacity: 0; }
+}
+
+@keyframes landing-slide-text-anim {
+  0% { margin-top: -1vmax; opacity: 0; }
+  100% { margin-top: 0vmax; opacity: 1; }
 }
 
 @keyframes all-title {
