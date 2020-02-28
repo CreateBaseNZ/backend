@@ -3,12 +3,11 @@ $diamond: 35vw; /* _all.scss uses $diamond so it must be declared first */
 
 body {
   background: $light-1;
-  width: 100vw;
   max-width: 100%;
   overflow-x: hidden;
 
   .home-topbar {
-    grid-template-columns: calc(71.5vw + 50px) 8vw 8vw calc(12.5vw - 50px) !important;
+    grid-template-columns: calc(71.5vw + 50px) 8vw 8vw calc(12.5vw - 50px);
 
     .btn-reg {
       width: 8vmax;
@@ -46,10 +45,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .landing-carousel {
-  width: 100vmax;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -664,7 +664,7 @@ body {
   100% { margin-top: 0vmax; opacity: 1; }
 }
 @keyframes landing-slide-sub-anim {
-  0% { margin-top: -1vmax; opacity: 0; }
+  0% { margin-top: -1.5vmax; opacity: 0; }
   100% { margin-top: 0vmax; opacity: 1; }
 }
 
@@ -728,3 +728,6 @@ body {
   100% { opacity: 1; margin-left: -2vmax; }
 }
 
+@media only screen and (max-width: 850px) {
+
+}

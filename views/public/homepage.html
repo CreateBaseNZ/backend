@@ -21,10 +21,45 @@
     <link rel="stylesheet" href="./../../public/stylesheets/homepage.css" />
   </head>
   <body onload="navInit(); homeInit();">
-    <nav class="nav-global screen-mode">
-      <div class="nav-darken-filter"></div>
+    <nav class="nav-global-container">
+      <!-- <div class="nav-darken-overlay"></div> -->
+        <div class="nav-top-bar">
+          <button class="hamburger hamburger-arrow" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+          <img href="/" src="./../../public/images/logo-icon.png" class="nav-logo" alt="CreateBase"/>
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="nav-side-menus">
+          <div class="nav-side-menu-left">
+            <div class="empty"></div>
+            <div class="nav-side-services">
+              <p class="nav-side-header">SERVICES</p>
+              <a href="#" class="nav-side-item">3D PRINTING</a>
+              <a href="#" class="nav-side-item">MARKETPLACE</a>
+            </div>
+            <div class="nav-side-createbase">
+              <p class="nav-side-header">CREATEBASE</p>
+              <a href="#" class="nav-side-item">OUR STORY</a>
+              <a href="#" class="nav-side-item">OUR TEAM</a>
+            </div>
+            <div class="nav-side-socials">
+              <a href="https://www.facebook.com/" class="fab fa-facebook-square" target="_blank"></a>
+              <a href="https://www.instagram.com/" class="fab fa-instagram" target="_blank"></a>
+              <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
+              <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
+            </div>
+          </div>
+          <div class="nav-side-menu-right">
 
-      <div class="nav-topbar home-topbar">
+          </div>
+        </div>
+      </div>
+    </nav>
+
+      <!-- <div class="nav-topbar home-topbar">
         <div class="nav-top-empty"></div>
         <a href="/login" class="btn-reg" id="nav-top-login">LOG IN</a>
         <a href="/signup" class="btn-reg">SIGN UP</a>
@@ -52,8 +87,8 @@
           </div>
         </div>
         <div class="nav-side-wiper">
-          <a href="/" id="nav-main-logo">
-            <img src="./../../public/images/logo-icon.png" alt="CreateBase" />
+          <a href="#" id="nav-main-logo">
+            <img href="/" src="./../../public/images/logo-icon.png" alt="CreateBase" />
           </a>
           <button class="hamburger hamburger-arrow hamburger-screen-mode" type="button">
             <span class="hamburger-box">
@@ -61,8 +96,7 @@
             </span>
           </button>
         </div>
-      </div>
-    </nav>
+      </div> -->
 
     <div class="main-page">
       <div class="landing-section">
@@ -70,19 +104,19 @@
           <div class="landing-slide landing-slide-left" id="landing-1">
             <img src="./../../public/images/landing-7.png" alt="Landing 1">
             <p class="landing-slide-title">THEY DESERVE TO BE OUT THERE</p>
-            <a href="#" class="landing-slide-sub">EXPLORE MARKETPLACE</a>
+            <a href="#" class="landing-slide-sub" text-content="EXPLORE MARKETPLACE">EXPLORE MARKETPLACE</a>
             <div class="landing-slide-btn"></div>
           </div>
           <div class="landing-slide landing-slide-middle" id="landing-2">
             <img src="./../../public/images/landing-5.png" alt="Landing 2">
             <p class="landing-slide-title">GIVE YOUR IDEAS SOME DIMENSIONS</p>
-            <a href="#" class="landing-slide-sub">EXPLORE 3D PRINTING</a>
+            <a href="#" class="landing-slide-sub" text-content="EXPLORE 3D PRINTING">EXPLORE 3D PRINTING</a>
             <div class="landing-slide-btn"></div>
           </div>
           <div class="landing-slide landing-slide-right" id="landing-3">
             <img src="./../../public/images/landing-6.png" alt="Landing 3">
             <p class="landing-slide-title">UPSKILL AND UPGRADE</p>
-            <a href="#" class="landing-slide-sub">EXPLORE ENG. KITS</a>
+            <a href="#" class="landing-slide-sub" text-content="EXPLORE ENG. KITS">EXPLORE ENG. KITS</a>
             <div class="landing-slide-btn"></div>
           </div>
         </div>
