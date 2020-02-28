@@ -30,11 +30,11 @@ button {
 .hamburger.is-active .hamburger-inner,
 .hamburger.is-active .hamburger-inner::before,
 .hamburger.is-active .hamburger-inner::after {
-  background-color: #2d283c;
+  background-color: #4bf0ea;
 }
 
 .hamburger-box {
-  width: 26px;
+  width: 20px;
   height: 15px;
   display: inline-block;
   position: relative;
@@ -47,7 +47,7 @@ button {
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-  width: 26px;
+  width: 20px;
   height: 1px;
   background-color: #2d283c;
   position: absolute;
@@ -90,8 +90,8 @@ button {
 
 .hamburger-arrow.is-active .hamburger-inner::before {
   top: 0;
-  -webkit-transform: translate3d(-6.5px, -6.5px, 0) rotate(-45deg) scale(0.7, 1);
-          transform: translate3d(-6.5px, -6.5px, 0) rotate(-45deg) scale(0.7, 1);
+  -webkit-transform: translate3d(-5px, -5px, 0) rotate(-45deg) scale(0.7, 1);
+          transform: translate3d(-5px, -5px, 0) rotate(-45deg) scale(0.7, 1);
   -webkit-transition: top 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: top 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
@@ -100,8 +100,8 @@ button {
 
 .hamburger-arrow.is-active .hamburger-inner::after {
   bottom: 0;
-  -webkit-transform: translate3d(-6.5px, 6.5px, 0) rotate(45deg) scale(0.7, 1);
-          transform: translate3d(-6.5px, 6.5px, 0) rotate(45deg) scale(0.7, 1);
+  -webkit-transform: translate3d(-5px, 5px, 0) rotate(45deg) scale(0.7, 1);
+          transform: translate3d(-5px, 5px, 0) rotate(45deg) scale(0.7, 1);
   -webkit-transition: bottom 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: bottom 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
@@ -1049,7 +1049,6 @@ END
   position: sticky;
   top: 0px;
   left: 0px;
-  z-index: 1000;
   background: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1083,11 +1082,26 @@ END
           justify-content: center;
   height: 50px;
   width: 100vw;
+  z-index: 1000;
+}
+
+.nav-global-container .nav-top-bar .hamburger {
+  cursor: pointer;
+}
+
+.nav-global-container .nav-top-bar .hamburger:active .hamburger-inner,
+.nav-global-container .nav-top-bar .hamburger:active .hamburger-inner::before,
+.nav-global-container .nav-top-bar .hamburger:active .hamburger-inner::after {
+  background: #4bf0ea;
 }
 
 .nav-global-container .nav-top-bar .nav-logo {
   height: 30px;
   margin: 0 35vw;
+}
+
+.nav-global-container .nav-top-bar .nav-user {
+  height: 20px;
 }
 
 .nav-global-container .nav-side-menus {
@@ -1098,27 +1112,37 @@ END
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left {
+.nav-global-container .nav-side-menus .nav-left-menu-wrap {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 0vmax;
+  overflow: hidden;
+  z-index: 0;
+  -webkit-transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
+  position: relative;
   height: calc(100vh - 50px);
   width: 100vw;
   background: white;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr 4fr 4fr 3fr;
-      grid-template-rows: 1fr 4fr 4fr 3fr;
+  -ms-grid-rows: 4fr 1fr;
+      grid-template-rows: 4fr 1fr;
+  margin-left: -5vw;
+  -webkit-transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-services,
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-createbase {
-  position: relative;
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-menu-links {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1134,38 +1158,34 @@ END
           align-items: center;
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-services:after,
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-createbase:after {
-  content: '';
-  position: absolute;
-  left: calc(50% - 5vw);
-  bottom: 0;
-  width: 10vw;
-  height: 10vh;
-  border-bottom: 1px solid #c7c2d5;
-}
-
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-header {
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-header {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
-  font-size: 3vw;
-  letter-spacing: 0.1vw;
+  font-size: 2vw;
+  letter-spacing: 0.5vw;
   color: #c7c2d5;
-  margin-bottom: 3vh;
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-item {
-  padding: 1.5vh 0;
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-item {
+  margin-top: 2vh;
   color: #2d283c;
   font-family: "Montserrat", sans-serif;
+  font-weight: 100;
   letter-spacing: 0.1vw;
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-item:active {
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-item:active {
   color: #4bf0ea;
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-socials {
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-sep {
+  width: 5vw;
+  height: 1px;
+  background: #c7c2d5;
+  margin: 6vh 0;
+}
+
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-socials {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1181,17 +1201,26 @@ END
           align-items: center;
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-socials .fab {
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-socials .fab {
   margin-left: 5vw;
   margin-right: 5vw;
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-socials .fab:visited {
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-socials .fab:visited {
   color: #877da9;
 }
 
-.nav-global-container .nav-side-menus .nav-side-menu-left .nav-side-socials .fab:active {
+.nav-global-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-socials .fab:active {
   color: #4bf0ea;
+}
+
+.nav-global-container .nav-side-menus .nav-left-menu-active {
+  width: 100vw;
+  z-index: 100;
+}
+
+.nav-global-container .nav-side-menus .nav-left-menu-active .nav-left-menu {
+  margin-left: 0;
 }
 
 .nav-global-container .nav-darken-overlay {
