@@ -4,12 +4,30 @@ const navInit = () => {
   const hamburgerElement = document.querySelector(".hamburger");
   const darkFilter = document.querySelector(".nav-darken-filter");
     
+
+  function toggleSideMenu() {
+    if (hamburgerElement.classList.contains('is-active')) {
+      hamburgerElement.classList.remove("is-active");
+      darkFilter.style.opacity = "0";
+    } else {
+      hamburgerElement.classList.add("is-active");
+      darkFilter.style.opacity = "0.1";
+    }
+  }
+
   navElement.addEventListener("mouseenter", function() {
-    hamburgerElement.classList.add("is-active");
+    if (!hamburgerElement.classList.contains('is-active')) {
+      hamburgerElement.classList.add("is-active");
+    }
     darkFilter.style.opacity = "0.1";
   });
   navElement.addEventListener("mouseleave", function() {
-    hamburgerElement.classList.remove("is-active");
+    if (hamburgerElement.classList.contains('is-active')) {
+      hamburgerElement.classList.remove("is-active");
+    }
     darkFilter.style.opacity = "0";
+  });
+  hamburgerElement.addEventListener("onclick", function () {
+    toggleSideMenu();
   });
 }
