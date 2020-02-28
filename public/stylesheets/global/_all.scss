@@ -36,13 +36,7 @@ button {
 @import "../nav/hamburger";
 @import "../nav/navbar";
 @import "../nav/navigation";
-@import "../other/menu";
-@import "../other/message";
-@import "../other/notification";
 @import "../other/loading";
-@import "../other/services";
-@import "../other/sideBar";
-@import "../other/userMenu";
 
 // =============== C L A S S E S ===============
 .loading-icon {
@@ -89,7 +83,6 @@ button {
       outline: none;
     }
   }
-
 
   label {
     position: absolute;
