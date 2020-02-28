@@ -239,6 +239,14 @@ OrderSchema.methods.validateCart = function() {
   return true;
 };
 
+// @FUNC  validateShipping
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+OrderSchema.methods.validateShipping = function() {
+  return true;
+};
+
 /*=========================================================================================
 EXPORT ORDER MODEL
 =========================================================================================*/

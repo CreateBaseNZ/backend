@@ -124,7 +124,7 @@ let checkout = {
       }
     },
     method: {
-      select: undefined
+      select: undefined // checkout.shipping.method.select
     },
     validation: {
       validate: undefined,
@@ -220,6 +220,7 @@ checkout.fetch = () => {
 // @DESC
 // @ARGU
 checkout.insert = object => {
+  console.log(object);
   // MAKES
   const makes = object.makes;
   checkout.cart.prints.insert(makes);
@@ -232,6 +233,36 @@ checkout.insert = object => {
     document.querySelector("#checkout-mnft-spd-opt-nrml").checked = true;
   } else if (manufacturingSpeed == "urgent") {
     document.querySelector("#checkout-mnft-spd-opt-urgt").checked = true;
+  }
+  // SHIPPING ADDRESS
+  // Check if there is a saved address
+  if (object.order.shipping.address.saved.suburb) {
+    // Saved - Populate Element
+    console.log("Saved Address");
+  } else {
+    // Disable click
+    document.querySelector("#checkout-shpg-adrs-svd-inp").disabled = true;
+    document
+      .querySelector("#checkout-saved-address-label")
+      .classList.add("checkout-radio-label-disabled");
+    // Add error to inform user that there is no saved address
+    document.querySelector("#checkout-radio-error-saved-address").innerHTML =
+      "No Saved Address";
+    document
+      .querySelector("#checkout-radio-error-saved-address")
+      .classList.remove("checkout-element-hide");
+  }
+
+  // New
+
+  // SHIPPING METHOD
+  const shippingMethod = object.order.shipping.method;
+  if (shippingMethod == "pickup") {
+    document.querySelector("#checkout-shpg-mthd-inp-pckp").checked = true;
+  } else if (shippingMethod == "tracked") {
+    document.querySelector("#checkout-shpg-mthd-inp-trck").checked = true;
+  } else if (shippingMethod == "courier") {
+    document.querySelector("#checkout-shpg-mthd-inp-crr").checked = true;
   }
 };
 
@@ -252,6 +283,7 @@ checkout.load = async () => {
   checkout.insert(object);
   // Perform Validation
   checkout.cart.validation.validate(object.validity);
+  checkout.shipping.validation.validate(object.validity);
   return;
 };
 
@@ -1194,6 +1226,56 @@ checkout.shipping.address.new.show = show => {
   }
 };
 
+// @FUNC  checkout.shipping.method.select
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.method.select = async option => {
+  // Place Loaders
+
+  // Update the Database
+  let object;
+  try {
+    object = await axios.post("/checkout/order/update/shipping-method", {
+      option
+    });
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // Update Price
+
+  // Perform Validation
+  checkout.shipping.validation.validate(object.validity);
+};
+
+// @FUNC  checkout.shipping.validation.valid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.shipping.validation.validate = async validity => {
+  let valid;
+
+  if (validity) {
+    valid = validity.cart && validity.shipping;
+  } else {
+    try {
+      valid = (await axios.post("/checkout/order/validate/shipping"))["data"][
+        "data"
+      ];
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
+
+  if (valid) {
+    checkout.shipping.validation.valid();
+  } else {
+    checkout.shipping.validation.invalid();
+  }
+};
+
 // @FUNC  checkout.shipping.validation.valid
 // @TYPE  SIMPLE
 // @DESC
@@ -1213,6 +1295,7 @@ checkout.shipping.validation.valid = () => {
   );
   // Update CSS
   checkout.element.button.shipping.next.classList.add("checkout-button-valid");
+  checkout.element.heading.payment.classList.add("checkout-heading-valid");
 };
 
 // @FUNC  checkout.shipping.validation.invalid

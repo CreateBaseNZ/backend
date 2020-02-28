@@ -62,6 +62,30 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
     } catch (error) {
       return res.send({ status: "failed", data: error });
     }
+    // Preset the New and Saved Shipping Address
+    order.shipping.address.saved = {
+      unit: "",
+      street: {
+        number: "",
+        name: ""
+      },
+      suburb: "",
+      city: "",
+      postcode: "",
+      country: ""
+    };
+
+    order.shipping.address.new = {
+      unit: "",
+      street: {
+        number: "",
+        name: ""
+      },
+      suburb: "",
+      city: "",
+      postcode: "",
+      country: ""
+    };
   }
 
   // Makes and Items
@@ -91,18 +115,6 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
 
   // Saved Shipping Address
 
-  order.shipping.address.saved = {
-    unit: "",
-    street: {
-      number: "",
-      name: ""
-    },
-    suburb: "",
-    city: "",
-    postcode: "",
-    country: ""
-  };
-
   // Save and Send Response
 
   let savedOrder;
@@ -115,7 +127,8 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
 
   // Validate the checkout
   validity = {
-    cart: savedOrder.validateCart()
+    cart: savedOrder.validateCart(),
+    shipping: savedOrder.validateShipping()
   };
 
   return res.send({
@@ -158,6 +171,48 @@ router.post(
   }
 );
 
+// @route     POST /checkout/order/update/shipping-method
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/update/shipping-method",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    const option = req.body.option;
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Update order
+    order.shipping.method = option;
+    // Save order
+    let savedOrder;
+    try {
+      savedOrder = await order.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Validation
+    validity = {
+      cart: savedOrder.validateCart(),
+      shipping: savedOrder.validateShipping()
+    };
+
+    return res.send({
+      status: "success",
+      data: {
+        order: savedOrder,
+        price: {},
+        validity: {}
+      }
+    });
+  }
+);
+
 // @route     POST /checkout/order/validate/cart
 // @desc
 // @access    Private
@@ -174,6 +229,26 @@ router.post(
       return res.send({ status: "failed", data: error });
     }
     valid = order.validateCart();
+    return res.send({ status: "success", data: valid });
+  }
+);
+
+// @route     POST /checkout/order/validate/shipping
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/validate/shipping",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    valid = order.validateCart() && order.validateShipping();
     return res.send({ status: "success", data: valid });
   }
 );

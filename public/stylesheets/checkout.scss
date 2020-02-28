@@ -17,7 +17,7 @@ $clr-wht-2: rgb(248, 248, 248);
 $clr-wht-3: #c7c2d5;
 $clr-ext-1: #4bf0ea;
 // Font Families
-$fnt-fml-1: "Montserrat", sans-serif;
+$fnt-fml-2: "Montserrat", sans-serif;
 $fnt-fml-2: "Poppins", sans-serif;
 
 /*=========================================================================================
@@ -674,11 +674,27 @@ GLOBAL
   height: 100%;
   display: flex;
   align-items: center;
-  font-family: $fnt-fml-1;
+  font-family: $fnt-fml-2;
   font-size: 1.6vmax;
   letter-spacing: 0.2vmax;
   padding-left: 2.6vmax;
+  color: $clr-blk-2;
   cursor: pointer;
+}
+
+.checkout-radio-label-disabled {
+  color: $clr-wht-3;
+  cursor: default;
+}
+
+.checkout-radio-error {
+  height: 1.6vmax;
+  width: 100%;
+  padding-left: 2.6vmax;
+  font-family: $fnt-fml-2;
+  font-size: 0.7vmax;
+  letter-spacing: 0.1vmax;
+  color: #bb0000;
 }
 
 .checkout-element-hide {
@@ -701,7 +717,7 @@ GLOBAL
   // Spacing
   padding: 1.5vmax 1vmax;
   // Text
-  font-family: $fnt-fml-1;
+  font-family: $fnt-fml-2;
   font-size: 1.8vmax;
   // Text Colour
   color: $clr-blk-2;
@@ -990,7 +1006,7 @@ DESKTOP CSS
 
   .checkout-summary-label,
   .checkout-summary-value {
-    font-family: $fnt-fml-1;
+    font-family: $fnt-fml-2;
     font-size: 0.8vmax;
     letter-spacing: 0.1vmax;
     color: $clr-blk-3;
@@ -1101,7 +1117,7 @@ DESKTOP CSS
     // Spacing
     padding: 0.75vmax 0.5vmax;
     // Text
-    font-family: $fnt-fml-1;
+    font-family: $fnt-fml-2;
     font-size: 0.9vmax;
     // Text Colour
     color: $clr-blk-2;

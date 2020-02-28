@@ -2749,11 +2749,27 @@ GLOBAL
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.6vmax;
   letter-spacing: 0.2vmax;
   padding-left: 2.6vmax;
+  color: #322d41;
   cursor: pointer;
+}
+
+.checkout-radio-label-disabled {
+  color: #c7c2d5;
+  cursor: default;
+}
+
+.checkout-radio-error {
+  height: 1.6vmax;
+  width: 100%;
+  padding-left: 2.6vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7vmax;
+  letter-spacing: 0.1vmax;
+  color: #bb0000;
 }
 
 .checkout-element-hide {
@@ -2775,7 +2791,7 @@ GLOBAL
      -moz-appearance: none;
           appearance: none;
   padding: 1.5vmax 1vmax;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.8vmax;
   color: #322d41;
 }
@@ -3060,7 +3076,7 @@ DESKTOP CSS
   }
   .checkout-summary-label,
   .checkout-summary-value {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 0.8vmax;
     letter-spacing: 0.1vmax;
     color: #877da9;
@@ -3165,7 +3181,7 @@ DESKTOP CSS
        -moz-appearance: none;
             appearance: none;
     padding: 0.75vmax 0.5vmax;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 0.9vmax;
     color: #322d41;
   }
