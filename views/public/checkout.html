@@ -221,7 +221,7 @@
           id="checkout-sub-pg-cart"
         >
           <h2
-            class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
+            class="checkout-heading rmv-h-css hdng-2 checkout-heading-valid"
             id="checkout-cart-hdng"
           >
             Cart
@@ -422,10 +422,7 @@
           class="checkout-sub-pg checkout-sub-pg-shipping checkout-sub-pg-right"
           id="checkout-sub-pg-shipping"
         >
-          <h2
-            class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
-            id="checkout-shpg-hdng"
-          >
+          <h2 class="checkout-heading rmv-h-css hdng-2" id="checkout-shpg-hdng">
             Shipping
           </h2>
 
@@ -454,9 +451,14 @@
                 <label
                   for="checkout-shpg-adrs-svd-inp"
                   class="checkout-radio-label"
+                  id="checkout-saved-address-label"
                   >Saved Address</label
                 >
               </div>
+              <div
+                id="checkout-radio-error-saved-address"
+                class="checkout-radio-error checkout-element-hide"
+              ></div>
               <div
                 class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-svd checkout-element-hide"
                 id="checkout-shpg-adrs-cntn-svd"
@@ -641,11 +643,12 @@
                   name="shippingMethod"
                   class="checkout-radio"
                   id="checkout-shpg-mthd-inp-pckp"
+                  onchange="checkout.shipping.method.select('pickup');"
                 />
                 <label
                   for="checkout-shpg-mthd-inp-pckp"
                   class="checkout-radio-label"
-                  >Pickup (Free)</label
+                  >Pickup</label
                 >
               </div>
               <div class="checkout-radio-container">
@@ -654,6 +657,7 @@
                   name="shippingMethod"
                   class="checkout-radio"
                   id="checkout-shpg-mthd-inp-trck"
+                  onchange="checkout.shipping.method.select('tracked');"
                 />
                 <label
                   for="checkout-shpg-mthd-inp-trck"
@@ -667,6 +671,7 @@
                   name="shippingMethod"
                   class="checkout-radio"
                   id="checkout-shpg-mthd-inp-crr"
+                  onchange="checkout.shipping.method.select('courier');"
                 />
                 <label
                   for="checkout-shpg-mthd-inp-crr"
@@ -749,10 +754,7 @@
           class="checkout-sub-pg checkout-sub-pg-payment checkout-sub-pg-right"
           id="checkout-sub-pg-payment"
         >
-          <h2
-            class="checkout-sub-hdng rmv-h-css hdng-2 txt-clr-blk-2"
-            id="checkout-pymt-hdng"
-          >
+          <h2 class="checkout-heading rmv-h-css hdng-2" id="checkout-pymt-hdng">
             Payment
           </h2>
           <div class="checkout-sub-sub-pgs" id="checkout-pymt-sub-sub-pg">
@@ -769,7 +771,10 @@
                 class="checkout-pymt-mthd-inp-lbl txt-1 txt-clr-blk-2"
                 >Bank Transfer (Receive 5% Bonus Credit)</label
               >
-              <div id="checkout-pymt-bank-tsfr-cntn">
+              <div
+                class="checkout-element-hide"
+                id="checkout-pymt-bank-tsfr-cntn"
+              >
                 <div id="checkout-payment-bank-transfer-instruction"></div>
                 <div class="checkout-buttons">
                   <button
