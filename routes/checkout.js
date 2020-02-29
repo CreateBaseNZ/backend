@@ -74,7 +74,6 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
       postcode: "",
       country: ""
     };
-
     order.shipping.address.new = {
       unit: "",
       street: {
@@ -114,6 +113,18 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
   order.discounts = [];
 
   // Saved Shipping Address
+
+  order.shipping.address.saved = {
+    unit: "",
+    street: {
+      number: "45A",
+      name: "Aranui Road"
+    },
+    suburb: "Mount Wellington",
+    city: "Auckland",
+    postcode: "1060",
+    country: "New Zealand"
+  };
 
   // Save and Send Response
 
