@@ -14,7 +14,6 @@ $top-bar-height: 60px;
     justify-content: center;
     height: #{$top-bar-height};
     width: 100vw;
-    z-index: 1000;
     background: $light-1;
   
     .hamburger {
@@ -77,6 +76,7 @@ $top-bar-height: 60px;
     align-items: center;
     height: calc(100vh - #{$top-bar-height});
     width: 100vw;
+    visibility: hidden;
   
     .nav-left-menu-wrap {
       position: absolute;
@@ -84,7 +84,6 @@ $top-bar-height: 60px;
       left: 0;
       width: 0vw;
       overflow: hidden;
-      z-index: 0;
       transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);;
   
       .nav-left-menu {
@@ -106,7 +105,7 @@ $top-bar-height: 60px;
     }
   
     .nav-left-menu-active {
-      z-index: 100;
+      visibility: visible;
       width: 100vw;
   
       .nav-left-menu {
@@ -126,7 +125,6 @@ $top-bar-height: 60px;
       height: calc(100vh - #{$top-bar-height});
       width: 0vw;
       overflow: hidden;
-      z-index: 0;
       transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   
       .nav-right-menu {
@@ -146,7 +144,7 @@ $top-bar-height: 60px;
     }
   
     .nav-right-menu-active {
-      z-index: 100;
+      visibility: visible;
       width: 100vw;
   
       .nav-right-menu {

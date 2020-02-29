@@ -535,7 +535,6 @@ button {
           justify-content: center;
   height: 60px;
   width: 100vw;
-  z-index: 1000;
   background: white;
 }
 
@@ -603,6 +602,7 @@ button {
           align-items: center;
   height: calc(100vh - 60px);
   width: 100vw;
+  visibility: hidden;
 }
 
 .nav-container .nav-side-menus .nav-left-menu-wrap {
@@ -611,7 +611,6 @@ button {
   left: 0;
   width: 0vw;
   overflow: hidden;
-  z-index: 0;
   -webkit-transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
@@ -646,7 +645,7 @@ button {
 }
 
 .nav-container .nav-side-menus .nav-left-menu-active {
-  z-index: 100;
+  visibility: visible;
   width: 100vw;
 }
 
@@ -667,7 +666,6 @@ button {
   height: calc(100vh - 60px);
   width: 0vw;
   overflow: hidden;
-  z-index: 0;
   -webkit-transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
@@ -698,7 +696,7 @@ button {
 }
 
 .nav-container .nav-side-menus .nav-right-menu-active {
-  z-index: 100;
+  visibility: visible;
   width: 100vw;
 }
 
@@ -1391,9 +1389,12 @@ END
 
 body {
   background: white;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-body .main-page {
+.main-page {
+  margin-top: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1404,14 +1405,13 @@ body .main-page {
 }
 
 .landing-section {
-  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -1426,22 +1426,25 @@ body .main-page {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-left: 0vmax;
-  -webkit-transition: margin-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98);
-  transition: margin-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98);
+  width: 100vw;
+  height: calc(100vh - 60px);
 }
 
 .landing-carousel .landing-slide {
   position: relative;
-  margin: auto 2vmax;
-  height: 35vmax;
-  width: 70vmax;
+  margin: 2vmax 0;
+  height: 20vh;
+  width: 70vw;
 }
 
 .landing-carousel .landing-slide img {
@@ -1453,66 +1456,71 @@ body .main-page {
   opacity: 1;
 }
 
-.landing-carousel .landing-slide .landing-slide-title {
+.landing-carousel .landing-slide .landing-slide-text {
   position: absolute;
-  text-align: center;
-  top: 45%;
+  top: 0;
+  left: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 12vh 1vh 7vh;
+      grid-template-rows: 12vh 1vh 7vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
   width: 100%;
-  margin-top: -1vmax;
+  z-index: 2;
+}
+
+.landing-carousel .landing-slide .landing-slide-text .landing-slide-title {
+  margin-bottom: 2vh;
+  width: 50vw;
   font-family: "Poppins", sans-serif;
-  font-weight: 800;
   font-size: 1.8vmax;
+  font-weight: 800;
   letter-spacing: 0.4vmax;
   color: white;
-  z-index: 2;
   opacity: 0;
-  -webkit-animation: landing-slide-title-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1s forwards;
-          animation: landing-slide-title-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1s forwards;
-}
-
-.landing-carousel .landing-slide .landing-slide-sub {
-  position: absolute;
   text-align: center;
-  width: 20vmax;
-  top: 60%;
-  left: calc(50% - 10vmax);
-  margin-top: -1vmax;
-  font-family: "Poppins", sans-serif;
-  font-style: lighter;
-  font-weight: 10;
-  font-size: 1vmax;
-  color: white;
-  z-index: 2;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  -webkit-animation: landing-slide-title-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.5s forwards;
+          animation: landing-slide-title-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.5s forwards;
+}
+
+.landing-carousel .landing-slide .landing-slide-text .landing-slide-text-sep {
+  height: 1px;
+  width: 0vw;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  background: white;
   opacity: 0;
-  -webkit-animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
-          animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  -webkit-animation: landing-slide-sep-anim 0.4s cubic-bezier(0.28, 0.6, 0.3, 0.98) 2.3s forwards;
+          animation: landing-slide-sep-anim 0.4s cubic-bezier(0.28, 0.6, 0.3, 0.98) 2.3s forwards;
 }
 
-.landing-carousel .landing-slide .landing-slide-sub:hover {
-  color: #4bf0ea;
-}
-
-.landing-carousel .landing-slide .landing-slide-sub::after {
-  position: absolute;
-  content: '';
-  height: 1vmax;
-  width: 0;
-  top: 60%;
-  left: 50%;
-  margin-top: -0.5vmax;
+.landing-carousel .landing-slide .landing-slide-text .landing-slide-sub {
+  margin-top: -1vh;
   font-family: "Poppins", sans-serif;
-  font-size: 1vmax;
-  z-index: 2;
-  border-bottom: 1px solid #4bf0ea;
-  -webkit-transition: all 0.8s cubic-bezier(0.28, 0.6, 0.3, 0.98);
-  transition: all 0.8s cubic-bezier(0.28, 0.6, 0.3, 0.98);
+  font-size: 1.5vmax;
+  font-weight: 10;
+  color: white;
+  opacity: 0;
+  text-align: center;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  -webkit-animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.7s forwards;
+          animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.7s forwards;
 }
 
-.landing-carousel .landing-slide .landing-slide-sub:hover:after {
-  width: 8vmax;
-  left: calc(50% - 4vmax);
-  -webkit-transition: all 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98);
-  transition: all 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98);
+.landing-carousel .landing-slide .landing-slide-text:active .landing-slide-text-sep {
+  background: #4bf0ea;
 }
 
 .landing-carousel #landing-1,
@@ -1531,8 +1539,8 @@ body .main-page {
   position: absolute;
   pointer-events: none;
   top: 0;
-  width: 70vmax;
-  height: 35vmax;
+  width: 70vw;
+  height: 20vh;
   background: white;
 }
 
@@ -1544,172 +1552,51 @@ body .main-page {
 
 .landing-carousel #landing-1:before, .landing-carousel #landing-1:after {
   right: 0;
-  -webkit-animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
-          animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
+  -webkit-animation: landing-side-before-anim 0.8s ease-out 0.8s forwards;
+          animation: landing-side-before-anim 0.8s ease-out 0.8s forwards;
 }
 
 .landing-carousel #landing-1:after {
   width: 0vmax;
-  -webkit-animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
-          animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
+  -webkit-animation: landing-side-after-anim 0.8s ease-out 0.8s forwards;
+          animation: landing-side-after-anim 0.8s ease-out 0.8s forwards;
 }
 
 .landing-carousel #landing-2:before, .landing-carousel #landing-2:after {
   left: 0;
-  -webkit-animation: landing-mid-before-anim 0.8s ease-out 0.5s forwards;
-          animation: landing-mid-before-anim 0.8s ease-out 0.5s forwards;
+  -webkit-animation: landing-mid-before-anim 0.8s ease-out 0.4s forwards;
+          animation: landing-mid-before-anim 0.8s ease-out 0.4s forwards;
 }
 
 .landing-carousel #landing-2:after {
   height: 0vmax;
-  -webkit-animation: landing-mid-after-anim 0.8s ease-out 0.5s forwards;
-          animation: landing-mid-after-anim 0.8s ease-out 0.5s forwards;
+  -webkit-animation: landing-mid-after-anim 0.8s ease-out 0.4s forwards;
+          animation: landing-mid-after-anim 0.8s ease-out 0.4s forwards;
 }
 
 .landing-carousel #landing-3:before, .landing-carousel #landing-3:after {
   left: 0;
-  -webkit-animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
-          animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
+  -webkit-animation: landing-side-before-anim 0.8s ease-out 0.8s forwards;
+          animation: landing-side-before-anim 0.8s ease-out 0.8s forwards;
 }
 
 .landing-carousel #landing-3:after {
   width: 0vmax;
-  -webkit-animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
-          animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
-}
-
-.landing-carousel .landing-slide-right,
-.landing-carousel .landing-slide-left {
-  cursor: pointer;
-}
-
-.landing-carousel .landing-slide-right .landing-slide-btn::before,
-.landing-carousel .landing-slide-right .landing-slide-btn::after,
-.landing-carousel .landing-slide-left .landing-slide-btn::before,
-.landing-carousel .landing-slide-left .landing-slide-btn::after {
-  content: '';
-  position: absolute;
-  pointer-events: none;
-  z-index: 2;
-  width: 1px;
-  height: 0.5vmax;
-  background: #2d283c;
-  -webkit-transition: all 0.6s ease-out 0.7s;
-  transition: all 0.6s ease-out 0.7s;
-}
-
-.landing-carousel .landing-slide-right:hover > .landing-slide-btn:before,
-.landing-carousel .landing-slide-left:hover > .landing-slide-btn:before {
-  height: 2vmax;
-  -webkit-transition: all 0.15s ease-out;
-  transition: all 0.15s ease-out;
-}
-
-.landing-carousel .landing-slide-right:hover > .landing-slide-btn:after,
-.landing-carousel .landing-slide-left:hover > .landing-slide-btn:after {
-  top: calc(50% - 1vmax);
-  width: 4px;
-  height: 2vmax;
-  -webkit-transition: all 0.15s ease-out 0.15s, width 0.15s ease-out 0.3s;
-  transition: all 0.15s ease-out 0.15s, width 0.15s ease-out 0.3s;
-}
-
-.landing-carousel .landing-slide-right img,
-.landing-carousel .landing-slide-left img {
-  opacity: 0.4;
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
-}
-
-.landing-carousel .landing-slide-right:hover img,
-.landing-carousel .landing-slide-left:hover img {
-  opacity: 0.8;
-}
-
-.landing-carousel .landing-slide-left .landing-slide-btn::before,
-.landing-carousel .landing-slide-left .landing-slide-btn::after {
-  top: calc(50% - 1vmax);
-  right: 2vmax;
-}
-
-.landing-carousel .landing-slide-left .landing-slide-btn::after {
-  top: calc(50% + 1vmax);
-  height: 0vmax;
-  background: #4bf0ea;
-  -webkit-transition: all 0.5s ease-out 0.2s, width 0.2s ease-out;
-  transition: all 0.5s ease-out 0.2s, width 0.2s ease-out;
-}
-
-.landing-carousel .landing-slide-right .landing-slide-btn::before,
-.landing-carousel .landing-slide-right .landing-slide-btn::after {
-  top: calc(50% - 1vmax);
-  left: 2vmax;
-}
-
-.landing-carousel .landing-slide-right .landing-slide-btn::after {
-  top: calc(50% + 1vmax);
-  height: 0vmax;
-  background: #4bf0ea;
-  -webkit-transition: all 0.5s ease-out 0.2s, width 0.2s ease-out;
-  transition: all 0.5s ease-out 0.2s, width 0.2s ease-out;
-}
-
-.landing-slide-nav-container {
-  margin-top: -2vmax;
-  height: 2vmax;
-  width: 100%;
-  z-index: 2;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.landing-slide-nav-container .landing-slide-nav-btn {
-  cursor: pointer;
-  height: 1vmax;
-  width: 1.5vmax;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.landing-slide-nav-container .landing-slide-nav-btn:hover > .landing-slide-nav-btn-box {
-  opacity: 1;
-}
-
-.landing-slide-nav-container .landing-slide-nav-btn .landing-slide-nav-btn-box {
-  height: 1px;
-  width: 1vmax;
-  background: white;
-  opacity: 0.5;
-}
-
-.landing-slide-nav-container .landing-slide-nav-btn-focus .landing-slide-nav-btn-box {
-  background: #4bf0ea;
-  height: 2px;
-  opacity: 1;
+  -webkit-animation: landing-side-after-anim 0.8s ease-out 0.8s forwards;
+          animation: landing-side-after-anim 0.8s ease-out 0.8s forwards;
 }
 
 .eng-kit-section {
   position: relative;
-  height: 100vh;
   width: 100vw;
   background: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1720,33 +1607,34 @@ body .main-page {
 
 .eng-kit-section .eng-kit-container {
   position: relative;
-  display: none;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  width: 100vw;
+  height: 50vh;
 }
 
 .eng-kit-section .eng-kit-container img {
+  position: absolute;
   -webkit-filter: blur(15px);
           filter: blur(15px);
 }
 
 .eng-kit-section .eng-kit-container .eng-kit-text {
+  position: absolute;
   z-index: 2;
 }
 
 .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-code {
+  position: absolute;
   font-family: "Poppins", sans-serif;
   font-weight: 900;
   font-size: 1vmax;
   letter-spacing: 0.2vmax;
   color: #c7c2d5;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 
 .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-title {
+  position: absolute;
   font-family: "Montserrat", sans-serif;
   font-weight: 900;
   font-size: 6vmax;
@@ -1756,6 +1644,7 @@ body .main-page {
 }
 
 .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-desc {
+  position: absolute;
   opacity: 0;
   font-family: "Montserrat", sans-serif;
   font-weight: 100;
@@ -1765,6 +1654,7 @@ body .main-page {
 }
 
 .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-more {
+  position: absolute;
   opacity: 0;
   font-family: "Poppins", sans-serif;
   color: #877da9;
@@ -1782,7 +1672,7 @@ body .main-page {
 }
 
 .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-line {
-  display: inline-block;
+  position: absolute;
   margin-left: 1vmax;
   height: 0.4vmax;
   border-top: #c7c2d5 solid 1px;
@@ -1791,7 +1681,7 @@ body .main-page {
 }
 
 .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-line-overlap {
-  display: inline-block;
+  position: absolute;
   width: 0vmax;
   margin-left: calc(-7vmax - 4px);
   height: 0.4vmax;
@@ -1801,31 +1691,28 @@ body .main-page {
 }
 
 .eng-kit-section .eng-kit-brycep img {
-  margin-left: -5vmax;
-  height: 40vmax;
+  top: 10vh;
+  left: 40vw;
+  width: 50vw;
   -webkit-animation: brycep-img 0.3s ease-out forwards;
           animation: brycep-img 0.3s ease-out forwards;
 }
 
-.eng-kit-section .eng-kit-brycep .eng-kit-text {
-  width: 30vmax;
-  height: 30vmax;
-}
-
 .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-code {
-  margin-left: 10vmax;
+  top: 20vh;
+  left: 20vw;
   -webkit-animation: brycep-code 0.3s ease-out forwards;
           animation: brycep-code 0.3s ease-out forwards;
 }
 
 .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-title {
-  margin-left: 6vmax;
+  margin-left: 2vw;
 }
 
 .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-desc {
-  margin-top: 6vmax;
-  margin-bottom: 4vmax;
-  padding-right: 2vmax;
+  margin-top: 6vh;
+  margin-bottom: 4vh;
+  padding-right: 2vw;
   -webkit-animation: brycep-desc 0.6s ease-out 0.3s forwards;
           animation: brycep-desc 0.6s ease-out 0.3s forwards;
 }
@@ -2166,11 +2053,11 @@ body .main-page {
     opacity: 1;
   }
   50% {
-    height: 35vmax;
+    height: 20vh;
     opacity: 1;
   }
   100% {
-    height: 35vmax;
+    height: 20vh;
     opacity: 0;
   }
 }
@@ -2181,11 +2068,11 @@ body .main-page {
     opacity: 1;
   }
   50% {
-    height: 35vmax;
+    height: 20vh;
     opacity: 1;
   }
   100% {
-    height: 35vmax;
+    height: 20vh;
     opacity: 0;
   }
 }
@@ -2214,11 +2101,11 @@ body .main-page {
     opacity: 1;
   }
   50% {
-    width: 20vmax;
+    width: 70vw;
     opacity: 1;
   }
   100% {
-    width: 20vmax;
+    width: 70vw;
     opacity: 0;
   }
 }
@@ -2229,55 +2116,77 @@ body .main-page {
     opacity: 1;
   }
   50% {
-    width: 20vmax;
+    width: 70vw;
     opacity: 1;
   }
   100% {
-    width: 20vmax;
+    width: 70vw;
     opacity: 0;
   }
 }
 
 @-webkit-keyframes landing-slide-title-anim {
   0% {
-    margin-top: -1vmax;
+    margin-bottom: 2vh;
     opacity: 0;
   }
   100% {
-    margin-top: 0vmax;
+    margin-bottom: 1vh;
     opacity: 1;
   }
 }
 
 @keyframes landing-slide-title-anim {
   0% {
-    margin-top: -1vmax;
+    margin-bottom: 2vh;
     opacity: 0;
   }
   100% {
-    margin-top: 0vmax;
+    margin-bottom: 1vh;
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes landing-slide-sep-anim {
+  0% {
+    width: 0vw;
+    opacity: 0;
+  }
+  100% {
+    width: 10vw;
+    opacity: 0.75;
+  }
+}
+
+@keyframes landing-slide-sep-anim {
+  0% {
+    width: 0vw;
+    opacity: 0;
+  }
+  100% {
+    width: 10vw;
+    opacity: 0.75;
   }
 }
 
 @-webkit-keyframes landing-slide-sub-anim {
   0% {
-    margin-top: -1.5vmax;
+    margin-top: -1vh;
     opacity: 0;
   }
   100% {
-    margin-top: 0vmax;
+    margin-top: 1vh;
     opacity: 1;
   }
 }
 
 @keyframes landing-slide-sub-anim {
   0% {
-    margin-top: -1.5vmax;
+    margin-top: -1vh;
     opacity: 0;
   }
   100% {
-    margin-top: 0vmax;
+    margin-top: 1vh;
     opacity: 1;
   }
 }
