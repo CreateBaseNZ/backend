@@ -3,39 +3,12 @@ $diamond: 35vw; /* _all.scss uses $diamond so it must be declared first */
 
 body {
   background: $light-1;
-  max-width: 100%;
-  overflow-x: hidden;
-
-  .home-topbar {
-    grid-template-columns: calc(71.5vw + 50px) 8vw 8vw calc(12.5vw - 50px);
-
-    .btn-reg {
-      width: 8vmax;
-      height: 2vmax;
-      background: transparent;
-      border: $dark-3 solid 1px;
-      font-size: 0.8vmax;
-      letter-spacing: 2px;
-      color: $dark-3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      outline: none;
-    }
-
-    #nav-top-login {
-      border: none;
-    }
-  }
-
-  .home-sidebar {
-    position: absolute;
-  }
-
+  // max-width: 100%;
+  
   .main-page {
     display: flex;
     flex-direction: column;
+    // overflow-x: hidden;
   }
 }
 
