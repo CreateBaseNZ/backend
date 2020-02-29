@@ -27,25 +27,21 @@
     <link rel="stylesheet" href="./../../public/stylesheets/home.css" />
   </head>
   <body onload="navInit(); homeInit();">
-    <nav class="nav-global-container">
-      <div class="nav-darken-overlay"></div>
+    <nav class="nav-container">
+      <!-- <div class="nav-darken-overlay"></div> -->
       <div class="nav-top-bar">
         <button class="hamburger hamburger-arrow" type="button">
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
           </span>
         </button>
-        <img
-          href="/"
-          src="./../../public/images/logo-icon.png"
-          class="nav-logo"
-          alt="CreateBase"
-        />
-        <img
-          src="./../../public/images/logged-out.png"
-          class="nav-user"
-          alt="User"
-        />
+        <a href="/" class="nav-home-btn">
+          <img src="./../../public/images/logo-icon.png" class="nav-logo" alt="CreateBase"/>
+        </a>
+        <div class="nav-user">
+          <img src="./../../public/images/logged-out-highlight.png" class="nav-user-hlt" alt="User"/>
+          <img src="./../../public/images/logged-out.png" class="nav-user-reg" alt="User"/>
+        </div>
       </div>
       <div class="nav-side-menus">
         <div class="nav-left-menu-wrap">
@@ -63,71 +59,25 @@
               <a href="#" class="nav-side-item">OUR TEAM</a>
             </div>
             <div class="nav-side-socials">
-              <a
-                href="https://www.facebook.com/"
-                class="fab fa-facebook-square"
-                target="_blank"
-              ></a>
-              <a
-                href="https://www.instagram.com/"
-                class="fab fa-instagram"
-                target="_blank"
-              ></a>
-              <a
-                href="https://twitter.com/"
-                class="fab fa-twitter"
-                target="_blank"
-              ></a>
-              <a
-                href="https://www.youtube.com/user/LouiiL"
-                class="fab fa-youtube"
-                target="_blank"
-              ></a>
+              <a href="https://www.facebook.com/" class="fab fa-facebook-square" target="_blank"></a>
+              <a href="https://www.instagram.com/" class="fab fa-instagram" target="_blank"></a>
+              <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
+              <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
             </div>
           </div>
         </div>
-        <div class="nav-right-menu"></div>
+        <div class="nav-right-menu-wrap">
+          <div class="nav-right-menu">
+            <p class="nav-side-header">WELCOME BACK</p>
+            <a href="#" class="nav-side-item">LOG IN</a>
+            <div class="nav-sep"></div>
+            <p class="nav-side-header">FIRST TIME?</p>
+            <a href="#" class="nav-side-item">SIGN UP</a>
+          </div>
+        </div>
       </div>
     </nav>
 
-    <!-- <div class="nav-topbar home-topbar">
-        <div class="nav-top-empty"></div>
-        <a href="/login" class="btn-reg" id="nav-top-login">LOG IN</a>
-        <a href="/signup" class="btn-reg">SIGN UP</a>
-        <div class="nav-top-empty"></div>
-      </div>
-      
-      <div class="nav-sidebar home-sidebar">
-        <div class="nav-side-menu">
-          <div class="nav-side-empty"></div>
-          <div class="nav-side-services">
-            <p class="nav-side-header">SERVICES</p>
-            <a href="#" class="nav-side-item">3D PRINTING</a>
-            <a href="#" class="nav-side-item">MARKETPLACE</a>
-          </div>
-          <div class="nav-side-createbase">
-            <p class="nav-side-header">CREATEBASE</p>
-            <a href="#" class="nav-side-item">OUR STORY</a>
-            <a href="#" class="nav-side-item">OUR TEAM</a>
-          </div>
-          <div class="nav-side-socials">
-            <a href="https://www.facebook.com/" class="fab fa-facebook-square"></a>
-            <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
-            <a href="https://twitter.com/" class="fab fa-twitter"></a>
-            <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube"></a>
-          </div>
-        </div>
-        <div class="nav-side-wiper">
-          <a href="#" id="nav-main-logo">
-            <img href="/" src="./../../public/images/logo-icon.png" alt="CreateBase" />
-          </a>
-          <button class="hamburger hamburger-arrow hamburger-screen-mode" type="button">
-            <span class="hamburger-box">
-              <span class="hamburger-inner"></span>
-            </span>
-          </button>
-        </div>
-      </div> -->
 
     <div class="main-page">
       <div class="landing-section">
