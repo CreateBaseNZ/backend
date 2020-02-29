@@ -105,7 +105,9 @@ let checkout = {
     address: {
       select: undefined, // checkout.shipping.address.select
       saved: {
-        show: undefined
+        create: undefined, // checkout.shipping.address.saved.create
+        insert: undefined, // checkout.shipping.address.saved.insert
+        show: undefined // checkout.shipping.address.saved.show
       },
       new: {
         validate: {
@@ -120,7 +122,8 @@ let checkout = {
           country: undefined, // checkout.shipping.address.new.validate.country
           all: undefined // checkout.shipping.address.new.validate.all
         },
-        show: undefined
+        show: undefined,
+        resize: undefined // checkout.shipping.resize
       }
     },
     method: {
@@ -235,10 +238,13 @@ checkout.insert = object => {
     document.querySelector("#checkout-mnft-spd-opt-urgt").checked = true;
   }
   // SHIPPING ADDRESS
+  let html;
   // Check if there is a saved address
   if (object.order.shipping.address.saved.suburb) {
     // Saved - Populate Element
-    console.log("Saved Address");
+    html = checkout.shipping.address.saved.create(
+      object.order.shipping.address.saved
+    );
   } else {
     // Disable click
     document.querySelector("#checkout-shpg-adrs-svd-inp").disabled = true;
@@ -251,7 +257,9 @@ checkout.insert = object => {
     document
       .querySelector("#checkout-radio-error-saved-address")
       .classList.remove("checkout-element-hide");
+    html = "No Saved Address";
   }
+  checkout.shipping.address.saved.insert(html);
 
   // New
 
@@ -262,7 +270,6 @@ checkout.insert = object => {
   } else if (shippingMethod == "tracked") {
     document.querySelector("#checkout-shpg-mthd-inp-trck").checked = true;
   } else if (shippingMethod == "courier") {
-    document.querySelector("#checkout-shpg-mthd-inp-crr").checked = true;
   }
 };
 
@@ -948,8 +955,7 @@ checkout.cart.resize = () => {
       document.querySelector("#checkout-sub-pg-cart").style = "height: 8vmax;";
     }
   } else {
-    document.querySelector("#checkout-sub-pg-cart").style =
-      "height: calc(100% - 16vmax);";
+    document.querySelector("#checkout-sub-pg-cart").style = "height: 100%;";
   }
 };
 
@@ -969,6 +975,40 @@ checkout.shipping.address.select = option => {
     checkout.shipping.address.saved.show(false);
     checkout.shipping.address.new.show(true);
   }
+};
+
+// @FUNC  checkout.shipping.address.saved.create
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.create = address => {
+  let unit = "";
+
+  if (address.unit) {
+    unit = `<div class="checkout-saved-address-line">
+            ${address.unit}</div>`;
+  }
+
+  const street = `<div class="checkout-saved-address-line">
+                  ${address.street.number} ${address.street.name}</div>`;
+  const suburb = `<div class="checkout-saved-address-line">
+                  ${address.suburb}</div>`;
+  const cityPostal = `<div class="checkout-saved-address-line">
+                      ${address.city}, ${address.postcode}</div>`;
+  const country = `<div class="checkout-saved-address-line">
+                    ${address.country}</div>`;
+
+  const html = unit + street + suburb + cityPostal + country;
+
+  return html;
+};
+
+// @FUNC  checkout.shipping.address.saved.insert
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.saved.insert = html => {
+  document.querySelector("#checkout-shpg-adrs-cntn-svd").innerHTML = html;
 };
 
 // @FUNC  checkout.shipping.address.saved.show
@@ -1329,30 +1369,45 @@ checkout.shipping.show = () => {
   checkout.navigation.navigate(1);
 };
 
-// @FUNC  checkoutShippingCreateSavedAddressHTML
-// @TYPE
-// @DESC
-// @ARGU
-const checkoutShippingCreateSavedAddressHTML = address => {
-  let unit = "";
+checkout.shipping.resize = type => {
+  // DESKTOP HEIGHT CALCULATION
+  const heading = 8;
+  const subHeading = 8 * 2;
+  let address;
 
-  if (address.unit) {
-    unit = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-            ${address.unit}</div>`;
+  if (type == "saved") {
+    address = {
+      saved: undefined,
+      new: undefined
+    };
+  } else if (type == "new") {
+    address = {
+      saved: undefined,
+      new: undefined
+    };
+  } else {
+    address = {
+      saved: 3,
+      new: 3
+    };
   }
 
-  const street = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  ${address.street.number} ${address.street.name}</div>`;
-  const suburb = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                  ${address.suburb}</div>`;
-  const cityPostal = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                      ${address.city}, ${address.postcode}</div>`;
-  const country = `<div class="checkout-shpg-adrs-svd-line sbtl-2 txt-clr-blk-3">
-                    ${address.country}</div>`;
+  const method = 3 * 5;
+  const buttons = 12;
+  const total =
+    heading + subHeading + address.saved + address.new + method + buttons;
 
-  const html = unit + street + suburb + cityPostal + country;
-
-  return html;
+  // SET THE CART PAGE SIZE
+  if (checkout.element.windowSize.matches) {
+    if (checkoutSelectedPage == 0) {
+      document.querySelector("#checkout-sub-pg-cart").style =
+        "height: " + total + "vmax;";
+    } else {
+      document.querySelector("#checkout-sub-pg-cart").style = "height: 8vmax;";
+    }
+  } else {
+    document.querySelector("#checkout-sub-pg-cart").style = "height: 100%;";
+  }
 };
 
 /*-----------------------------------------------------------------------------------------

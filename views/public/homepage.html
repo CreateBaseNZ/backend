@@ -1,82 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" href="./../../public/images/logo-icon.png" />
-    <title>CreateBase</title>
-    <!------------------ FONTS ------------------>
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat|Poppins|Raleway&display=swap"
-      rel="stylesheet"
-    />
-    <!------------------ ICONS ------------------>
-    <script
-      src="https://kit.fontawesome.com/b382730141.js"
-      crossorigin="anonymous"
-    ></script>
-    <!----------- DEFAULT JAVASCRIPTS ----------->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./../../public/javascripts/notification.js"></script>
-    <script src="./../../public/javascripts/moment.js"></script>
-    <!------------ CUSTOM JAVASCRIPTS ----------->
-    <script src="./../../public/javascripts/nav.js"></script>
-    <script src="./../../public/javascripts/home.js"></script>
-    <!---------------- STYLESHEET --------------->
-    <link rel="stylesheet" href="./../../public/stylesheets/home.css" />
-  </head>
-  <body onload="navInit(); homeInit();">
-    <nav class="nav-container">
-      <!-- <div class="nav-darken-overlay"></div> -->
-      <div class="nav-top-bar">
-        <button class="hamburger hamburger-arrow" type="button">
-          <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-          </span>
-        </button>
-        <a href="/" class="nav-home-btn">
-          <img src="./../../public/images/logo-icon.png" class="nav-logo" alt="CreateBase"/>
-        </a>
-        <div class="nav-user">
-          <img src="./../../public/images/logged-out-highlight.png" class="nav-user-hlt" alt="User"/>
-          <img src="./../../public/images/logged-out.png" class="nav-user-reg" alt="User"/>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="./../../public/images/logo-icon.png" />
+  <title>CreateBase</title>
+  <!------------------ FONTS ------------------>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins|Raleway&display=swap" rel="stylesheet" />
+  <!------------------ ICONS ------------------>
+  <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <!----------- DEFAULT JAVASCRIPTS ----------->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./../../public/javascripts/moment.js"></script>
+  <!------------ CUSTOM JAVASCRIPTS ----------->
+  <script src="./../../public/javascripts/nav.js"></script>
+  <script src="./../../public/javascripts/home.js"></script>
+  <!---------------- STYLESHEET --------------->
+  <link rel="stylesheet" href="./../../public/stylesheets/home.css" />
+</head>
+
+<body onload="navInit(); homeInit();">
+  <nav class="nav-container">
+    <!-- <div class="nav-darken-overlay"></div> -->
+    <div class="nav-top-bar">
+      <button class="hamburger hamburger-arrow" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <a href="/" class="nav-home-btn">
+        <img src="./../../public/images/logo-icon.png" class="nav-logo" alt="CreateBase" />
+      </a>
+      <div class="nav-user">
+        <img src="./../../public/images/logged-out-highlight.png" class="nav-user-hlt" alt="User" />
+        <img src="./../../public/images/logged-out.png" class="nav-user-reg" alt="User" />
       </div>
-      <div class="nav-side-menus">
-        <div class="nav-left-menu-wrap">
-          <div class="nav-left-menu">
-            <div class="nav-side-menu-links">
-              <p class="nav-side-header">SERVICES</p>
-              <a href="#" class="nav-side-item">3D PRINTING</a>
-              <a href="#" class="nav-side-item">MARKETPLACE</a>
-              <div class="nav-sep"></div>
-              <p class="nav-side-header">PRODUCTS</p>
-              <a href="#" class="nav-side-item">ENGINEERING KITS</a>
-              <div class="nav-sep"></div>
-              <p class="nav-side-header">CREATEBASE</p>
-              <a href="#" class="nav-side-item">OUR STORY</a>
-              <a href="#" class="nav-side-item">OUR TEAM</a>
-            </div>
-            <div class="nav-side-socials">
-              <a href="https://www.facebook.com/" class="fab fa-facebook-square" target="_blank"></a>
-              <a href="https://www.instagram.com/" class="fab fa-instagram" target="_blank"></a>
-              <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
-              <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
-            </div>
-          </div>
-        </div>
-        <div class="nav-right-menu-wrap">
-          <div class="nav-right-menu">
-            <p class="nav-side-header">WELCOME BACK</p>
-            <a href="#" class="nav-side-item">LOG IN</a>
+    </div>
+    <div class="nav-side-menus">
+      <div class="nav-left-menu-wrap">
+        <div class="nav-left-menu">
+          <div class="nav-side-menu-links">
+            <p class="nav-side-header">SERVICES</p>
+            <a href="#" class="nav-side-item">3D PRINTING</a>
+            <a href="#" class="nav-side-item">MARKETPLACE</a>
             <div class="nav-sep"></div>
-            <p class="nav-side-header">FIRST TIME?</p>
-            <a href="#" class="nav-side-item">SIGN UP</a>
+            <p class="nav-side-header">PRODUCTS</p>
+            <a href="#" class="nav-side-item">ENGINEERING KITS</a>
+            <div class="nav-sep"></div>
+            <p class="nav-side-header">CREATEBASE</p>
+            <a href="#" class="nav-side-item">OUR STORY</a>
+            <a href="#" class="nav-side-item">OUR TEAM</a>
+          </div>
+          <div class="nav-side-socials">
+            <a href="https://www.facebook.com/" class="fab fa-facebook-square" target="_blank"></a>
+            <a href="https://www.instagram.com/" class="fab fa-instagram" target="_blank"></a>
+            <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
+            <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
           </div>
         </div>
       </div>
-    </nav>
+      <div class="nav-right-menu-wrap">
+        <div class="nav-right-menu">
+          <p class="nav-side-header">WELCOME BACK</p>
+          <a href="#" class="nav-side-item">LOG IN</a>
+          <div class="nav-sep"></div>
+          <p class="nav-side-header">FIRST TIME?</p>
+          <a href="#" class="nav-side-item">SIGN UP</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 
 
     <div class="main-page">
@@ -121,6 +116,12 @@
             <div class="landing-slide-nav-btn-box"></div>
           </div>
         </div>
+        <div class="landing-slide landing-slide-right" id="landing-3">
+          <img src="./../../public/images/landing-6.png" alt="Landing 3" />
+          <p class="landing-slide-title">UPSKILL AND UPGRADE</p>
+          <a href="#" class="landing-slide-sub" text-content="EXPLORE ENG. KITS">EXPLORE ENG. KITS</a>
+          <div class="landing-slide-btn"></div>
+        </div>
       </div>
 
       <div class="eng-kit-section">
@@ -159,26 +160,21 @@
           <img src="./../../public/images/maglev.png" alt="SubTeamCool" />
           <p class=""></p>
         </div>
-        <div class="eng-kit-btn-container">
-          <div class="eng-kit-btn" id="eng-kit-btn-brycep">
-            <div class="eng-kit-btn-text">BRYCEP</div>
-            <div class="eng-kit-btn-dot"></div>
-          </div>
-          <div class="eng-kit-btn" id="eng-kit-btn-hyelos">
-            <div class="eng-kit-btn-text">HYELOS</div>
-            <div class="eng-kit-btn-dot"></div>
-          </div>
-          <div class="eng-kit-btn" id="eng-kit-btn-stc">
-            <div class="eng-kit-btn-text">STC</div>
-            <div class="eng-kit-btn-dot"></div>
-          </div>
-        </div>
-        <div class="eng-kit-coming-soon">⸻ COMING SOON ⸻</div>
       </div>
+    </div>
 
-      <div class="test-section">
-        <div class="test-header">
-          <p>TRUSTED BY</p>
+    <div class="eng-kit-section">
+      <div class="eng-kit-container eng-kit-brycep">
+        <div class="eng-kit-text">
+          <p class="eng-kit-code">ENG • KIT • 01</p>
+          <p class="eng-kit-title">Brycep</p>
+          <p class="eng-kit-desc">
+            Explore dexterity, precision, kinematics, and strength in the
+            realm of mechatronics with the 6-axis Brycep.
+          </p>
+          <a href="#" class="eng-kit-more">LEARN MORE</a>
+          <div class="eng-kit-line"></div>
+          <div class="eng-kit-line-overlap"></div>
         </div>
         <div class="test-logo-container">
           <a href="https://www.cie.auckland.ac.nz/unleash-space/" class="test-box" target="_blank">
@@ -217,7 +213,84 @@
             <img src="./../../public/images/velocity.png" alt="Velocity" />
           </a>
         </div>
+        <img src="./../../public/images/car.png" alt="Hyelos" />
+        <p class=""></p>
+      </div>
+      <div class="eng-kit-container eng-kit-stc">
+        <div class="eng-kit-text">
+          <p class="eng-kit-code">ENG • KIT • 03</p>
+          <p class="eng-kit-title">SubTeamCool</p>
+          <p class="eng-kit-desc">
+            This is a boarding call for all passengers departing for The
+            Future—soundless, frictionless, wheelless.
+          </p>
+          <a href="#" class="eng-kit-more">LEARN MORE</a>
+          <div class="eng-kit-line"></div>
+          <div class="eng-kit-line-overlap"></div>
+        </div>
+        <img src="./../../public/images/maglev.png" alt="SubTeamCool" />
+        <p class=""></p>
+      </div>
+      <div class="eng-kit-btn-container">
+        <div class="eng-kit-btn" id="eng-kit-btn-brycep">
+          <div class="eng-kit-btn-text">BRYCEP</div>
+          <div class="eng-kit-btn-dot"></div>
+        </div>
+        <div class="eng-kit-btn" id="eng-kit-btn-hyelos">
+          <div class="eng-kit-btn-text">HYELOS</div>
+          <div class="eng-kit-btn-dot"></div>
+        </div>
+        <div class="eng-kit-btn" id="eng-kit-btn-stc">
+          <div class="eng-kit-btn-text">STC</div>
+          <div class="eng-kit-btn-dot"></div>
+        </div>
+      </div>
+      <div class="eng-kit-coming-soon">⸻ COMING SOON ⸻</div>
+    </div>
+
+    <div class="test-section">
+      <div class="test-header">
+        <p>TRUSTED BY</p>
+      </div>
+      <div class="test-logo-container">
+        <a href="https://www.cie.auckland.ac.nz/unleash-space/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img src="./../../public/images/unleash.png" alt="Unleash Space" />
+        </a>
+        <a href="https://www.auckland.ac.nz/en/engineering.html" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img src="./../../public/images/uoa.png" alt="The University of Auckland" />
+        </a>
+        <a href="https://www.fisherpaykeltechnologies.com/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img src="./../../public/images/f&p.jfif" alt="Fisher & Paykel Technologies" />
+        </a>
+        <a href="https://www.gettinglost.co.nz/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img src="./../../public/images/getting-lost.png" alt="Getting Lost" />
+        </a>
+        <a href="https://www.velocity.auckland.ac.nz/" target="_blank" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img src="./../../public/images/velocity.png" alt="Velocity" />
+        </a>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
