@@ -1,124 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" href="./../../public/images/logo-icon.png" />
-    <title>Login | CreateBase</title>
-    <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet" />
-    <!-- ICONS -->
-    <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
-    <!-- DEFAULT JAVASCRIPT -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./../../public/javascripts/notification.js"></script>
-    <script src="./../../public/javascripts/moment.js"></script>
-    <!-- CUSTOM JAVASCRIPT -->
-    <script src="./../../public/javascripts/login.js"></script>
-    <script src="./../../public/javascripts/navbar.js"></script>
-    <!-- STYLESHEET -->
-    <link rel="stylesheet" href="./../../public/stylesheets/login.css" />
-  </head>
 
-  <body onload="loginInit(); navInit();">
-    <nav class="nav-global">
-      <div class="nav-darken-filter"></div>
-      <!-- <div class="nav-topbar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="./../../public/images/logo-icon.png" />
+  <title>Login | CreateBase</title>
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet" />
+  <!-- ICONS -->
+  <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <!-- DEFAULT JAVASCRIPT -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./../../public/javascripts/moment.js"></script>
+  <!-- CUSTOM JAVASCRIPT -->
+  <script src="./../../public/javascripts/login.js"></script>
+  <script src="./../../public/javascripts/navbar.js"></script>
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="./../../public/stylesheets/login.css" />
+</head>
+
+<body onload="loginInit(); navInit();">
+  <nav class="nav-global">
+    <div class="nav-darken-filter"></div>
+    <!-- <div class="nav-topbar">
         <div class="nav-top-empty"></div>
         <a href="/login">LOG IN</a>
         <a href="/signup">SIGN UP</a>
         <div class="nav-top-empty"></div>
       </div> -->
-      <div class="nav-sidebar">
-        <div class="nav-side-menu">
-          <div class="nav-side-empty"></div>
-          <div class="nav-side-services">
-            <p class="nav-side-header">SERVICES</p>
-            <a href="#" class="nav-side-item">3D PRINTING</a>
-            <a href="#" class="nav-side-item">MARKETPLACE</a>
-          </div>
-          <div class="nav-side-createbase">
-            <p class="nav-side-header">CREATEBASE</p>
-            <a href="#" class="nav-side-item">OUR STORY</a>
-            <a href="#" class="nav-side-item">OUR TEAM</a>
-          </div>
-          <div class="nav-side-socials">
-            <a href="https://www.facebook.com/" class="fab fa-facebook-square"></a>
-            <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
-            <a href="https://twitter.com/" class="fab fa-twitter"></a>
-            <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube"></a>
-          </div>
+    <div class="nav-sidebar">
+      <div class="nav-side-menu">
+        <div class="nav-side-empty"></div>
+        <div class="nav-side-services">
+          <p class="nav-side-header">SERVICES</p>
+          <a href="#" class="nav-side-item">3D PRINTING</a>
+          <a href="#" class="nav-side-item">MARKETPLACE</a>
         </div>
-        <div class="nav-side-wiper">
-          <a href="/" id="nav-main-logo">
-            <img src="./../../public/images/logo-icon.png" alt="CreateBase" />
-          </a>
-          <button class="hamburger hamburger-arrow" type="button">
-            <span class="hamburger-box">
-              <span class="hamburger-inner"></span>
-            </span>
-          </button>
+        <div class="nav-side-createbase">
+          <p class="nav-side-header">CREATEBASE</p>
+          <a href="#" class="nav-side-item">OUR STORY</a>
+          <a href="#" class="nav-side-item">OUR TEAM</a>
+        </div>
+        <div class="nav-side-socials">
+          <a href="https://www.facebook.com/" class="fab fa-facebook-square"></a>
+          <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
+          <a href="https://twitter.com/" class="fab fa-twitter"></a>
+          <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube"></a>
         </div>
       </div>
-    </nav>
-
-    <div class="login-main-container" id="container">
-      <div class="login-form-container login-container">
-        <form class="log-in-form" action="/login/customer" method="post">
-          <a href="/" id="login-logo">
-            <img src="./../../public/images/logo-dark.png" alt="CreateBase"/>
-          </a>
-          <h2>WELCOME BACK TO BASE</h2>
-          <div class="log-in-fld input-decor" id="login-email">
-            <input type="text" name="email" id="log-in-eml" required/>
-            <label for="email" >Email</label>
-          </div>
-          <div class="log-in-fld input-decor" id="login-password">
-            <input type="password" name="password" id="log-in-pwd" required/>
-            <label for="password">Password</label>
-          </div>
-          <div class="log-in-fld" id="login-login">
-            <button type="submit" class="btn" id="login-btn" data-text="LOG IN">LOG IN</button>
-          </div>
-        </form>
-        <div>
-          <button class="btn" id="back-btn" data-text="←" onclick="toggleContainer();">←</button>
-        </div>
-        <div id="login-signup">
-          <p class="rmv-p-css">
-            New to CreateBase?
-            <a class="rmv-link-css" href="/signup">Create an account</a>
-          </p>
-        </div>
-      </div>
-
-      <div class="login-form-container hello-container">
-        <a href="/" id="hello-logo">
-          <img src="./../../public/images/logo-dark.png" id="logo-img" alt="CreateBase"/>
+      <div class="nav-side-wiper">
+        <a href="/" id="nav-main-logo">
+          <img src="./../../public/images/logo-icon.png" alt="CreateBase" />
         </a>
-        <h1 id="hello-creator">
-          Hello, <span class="glitch" id="change-text" data-text="Creator">Creator</span>.
-        </h1>
-        <a href="/signup" class="btn" id="hello-signup" data-text="SIGN UP">SIGN UP</a>
-        <button class="btn" id="hello-login" data-text="LOG IN" onclick="toggleContainer();">LOG IN</button>
+        <button class="hamburger hamburger-arrow" type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
       </div>
+    </div>
+  </nav>
 
-      <div class="login-overlay-container">
-        <div class="login-overlay">
-          <div class="loading-icon login-overlay-left">
-            <div class="layer login-layer-left layer-1"></div>
-            <div class="layer login-layer-left layer-2"></div>
-            <div class="layer login-layer-left layer-3"></div>
-          </div>
-          <div class="loading-icon login-overlay-right">
-            <div class="layer login-layer-right layer-1"></div>
-            <div class="layer login-layer-right layer-2"></div>
-            <div class="layer login-layer-right layer-3"></div>
-          </div>
+  <div class="login-main-container" id="container">
+    <div class="login-form-container login-container">
+      <form class="log-in-form" action="/login/customer" method="post">
+        <a href="/" id="login-logo">
+          <img src="./../../public/images/logo-dark.png" alt="CreateBase" />
+        </a>
+        <h2>WELCOME BACK TO BASE</h2>
+        <div class="log-in-fld input-decor" id="login-email">
+          <input type="text" name="email" id="log-in-eml" required />
+          <label for="email">Email</label>
+        </div>
+        <div class="log-in-fld input-decor" id="login-password">
+          <input type="password" name="password" id="log-in-pwd" required />
+          <label for="password">Password</label>
+        </div>
+        <div class="log-in-fld" id="login-login">
+          <button type="submit" class="btn" id="login-btn" data-text="LOG IN">LOG IN</button>
+        </div>
+      </form>
+      <div>
+        <button class="btn" id="back-btn" data-text="←" onclick="toggleContainer();">←</button>
+      </div>
+      <div id="login-signup">
+        <p class="rmv-p-css">
+          New to CreateBase?
+          <a class="rmv-link-css" href="/signup">Create an account</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="login-form-container hello-container">
+      <a href="/" id="hello-logo">
+        <img src="./../../public/images/logo-dark.png" id="logo-img" alt="CreateBase" />
+      </a>
+      <h1 id="hello-creator">
+        Hello, <span class="glitch" id="change-text" data-text="Creator">Creator</span>.
+      </h1>
+      <a href="/signup" class="btn" id="hello-signup" data-text="SIGN UP">SIGN UP</a>
+      <button class="btn" id="hello-login" data-text="LOG IN" onclick="toggleContainer();">LOG IN</button>
+    </div>
+
+    <div class="login-overlay-container">
+      <div class="login-overlay">
+        <div class="loading-icon login-overlay-left">
+          <div class="layer login-layer-left layer-1"></div>
+          <div class="layer login-layer-left layer-2"></div>
+          <div class="layer login-layer-left layer-3"></div>
+        </div>
+        <div class="loading-icon login-overlay-right">
+          <div class="layer login-layer-right layer-1"></div>
+          <div class="layer login-layer-right layer-2"></div>
+          <div class="layer login-layer-right layer-3"></div>
         </div>
       </div>
     </div>
-  </body>
-  <script src="./../../public/javascripts/navbar.js"></script>
+  </div>
+</body>
+<script src="./../../public/javascripts/navbar.js"></script>
+
 </html>

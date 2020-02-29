@@ -955,8 +955,7 @@ checkout.cart.resize = () => {
       document.querySelector("#checkout-sub-pg-cart").style = "height: 8vmax;";
     }
   } else {
-    document.querySelector("#checkout-sub-pg-cart").style =
-      "height: calc(100% - 16vmax);";
+    document.querySelector("#checkout-sub-pg-cart").style = "height: 100%;";
   }
 };
 
@@ -1370,14 +1369,29 @@ checkout.shipping.show = () => {
   checkout.navigation.navigate(1);
 };
 
-checkout.shipping.resize = () => {
+checkout.shipping.resize = type => {
   // DESKTOP HEIGHT CALCULATION
   const heading = 8;
   const subHeading = 8 * 2;
-  const address = {
-    saved: undefined,
-    new: undefined
-  };
+  let address;
+
+  if (type == "saved") {
+    address = {
+      saved: undefined,
+      new: undefined
+    };
+  } else if (type == "new") {
+    address = {
+      saved: undefined,
+      new: undefined
+    };
+  } else {
+    address = {
+      saved: 3,
+      new: 3
+    };
+  }
+
   const method = 3 * 5;
   const buttons = 12;
   const total =
@@ -1392,8 +1406,7 @@ checkout.shipping.resize = () => {
       document.querySelector("#checkout-sub-pg-cart").style = "height: 8vmax;";
     }
   } else {
-    document.querySelector("#checkout-sub-pg-cart").style =
-      "height: calc(100% - 16vmax);";
+    document.querySelector("#checkout-sub-pg-cart").style = "height: 100%;";
   }
 };
 
