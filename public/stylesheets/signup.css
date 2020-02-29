@@ -535,7 +535,6 @@ button {
           justify-content: center;
   height: 60px;
   width: 100vw;
-  z-index: 1000;
   background: white;
 }
 
@@ -603,6 +602,7 @@ button {
           align-items: center;
   height: calc(100vh - 60px);
   width: 100vw;
+  visibility: hidden;
 }
 
 .nav-container .nav-side-menus .nav-left-menu-wrap {
@@ -611,7 +611,6 @@ button {
   left: 0;
   width: 0vw;
   overflow: hidden;
-  z-index: 0;
   -webkit-transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
@@ -646,7 +645,7 @@ button {
 }
 
 .nav-container .nav-side-menus .nav-left-menu-active {
-  z-index: 100;
+  visibility: visible;
   width: 100vw;
 }
 
@@ -667,7 +666,6 @@ button {
   height: calc(100vh - 60px);
   width: 0vw;
   overflow: hidden;
-  z-index: 0;
   -webkit-transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: all 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
@@ -698,7 +696,7 @@ button {
 }
 
 .nav-container .nav-side-menus .nav-right-menu-active {
-  z-index: 100;
+  visibility: visible;
   width: 100vw;
 }
 

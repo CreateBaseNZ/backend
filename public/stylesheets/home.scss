@@ -3,19 +3,19 @@ $diamond: 35vw; /* _all.scss uses $diamond so it must be declared first */
 
 body {
   background: $light-1;
-  // max-width: 100%;
-  
-  .main-page {
-    display: flex;
-    flex-direction: column;
-    // overflow-x: hidden;
-  }
+  max-width: 100%;
+  overflow-x: hidden; 
+}
+
+.main-page {
+  margin-top: $top-bar-height;
+  display: flex;
+  flex-direction: column;
 }
 
 .landing-section {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   overflow: hidden;
@@ -24,16 +24,17 @@ body {
 .landing-carousel {
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 0vmax;
-  transition: margin-left 0.5s cubic-bezier(.28,.6,.3,.98);
+  width: 100vw;
+  height: calc(100vh - #{$top-bar-height});
 
   .landing-slide {
     position: relative;
-    margin: auto 2vmax;
-    height: 35vmax;
-    width: 70vmax;
+    margin: 2vmax 0;
+    height: 20vh;
+    width: 70vw;
 
     img {
       height: inherit;
@@ -43,61 +44,58 @@ body {
       opacity: 1;
     }
 
-    .landing-slide-title {
+    .landing-slide-text {
       position: absolute;
-      text-align: center;
-      top: 45%;
+      top: 0;
+      left: 0;
+      display: grid;
+      grid-template-rows: 12vh 1vh 7vh;
+      justify-content: center;
+      height: 100%;
       width: 100%;
-      margin-top: -1vmax;
-      font-family: $poppins;
-      font-weight: 800;
-      font-size: 1.8vmax;
-      letter-spacing: 0.4vmax;
-      color: $light-1;
       z-index: 2;
-      opacity: 0;
-      animation: landing-slide-title-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1s forwards;
-    }
 
-    .landing-slide-sub {
-      position: absolute;
-      text-align: center;
-      width: 20vmax;
-      top: 60%;
-      left: calc(50% - 10vmax);
-      margin-top: -1vmax;
-      font-family: $poppins;
-      font-style: lighter;
-      font-weight: 10;
-      font-size: 1vmax;
-      color: $light-1;
-      z-index: 2;
-      opacity: 0;
-      animation: landing-slide-sub-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
-
-      &:hover {
-        color: $highlight;
-      }
-
-      &::after {
-        position: absolute;
-        content: '';
-        height: 1vmax;
-        width: 0;
-        top: 60%;
-        left: 50%;
-        margin-top: -0.5vmax;
+      .landing-slide-title {
+        margin-bottom: 2vh;
+        width: 50vw;
         font-family: $poppins;
-        font-size: 1vmax;
-        z-index: 2;
-        border-bottom: 1px solid $highlight;
-        transition: all 0.8s cubic-bezier(.28,.6,.3,.98);
+        font-size: 1.8vmax;
+        font-weight: 800;
+        letter-spacing: 0.4vmax;
+        color: $light-1;
+        opacity: 0;
+        text-align: center;
+        align-self: end;
+        animation: landing-slide-title-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1.5s forwards;
       }
 
-      &:hover:after {
-        width: 8vmax;
-        left: calc(50% - 4vmax);
-        transition: all 0.3s cubic-bezier(.28,.6,.3,.98);
+      .landing-slide-text-sep {
+        height: 1px;
+        width: 0vw;
+        align-self: center;
+        justify-self: center;
+        background: $light-1;
+        opacity: 0;
+        transition: all 0.3s ease-out;
+        animation: landing-slide-sep-anim 0.4s cubic-bezier(.28,.6,.3,.98) 2.3s forwards;
+      }
+  
+      .landing-slide-sub {
+        margin-top: -1vh;
+        font-family: $poppins;
+        font-size: 1.5vmax;
+        font-weight: 10;
+        color: $light-1;
+        opacity: 0;
+        text-align: center;
+        align-self: flex-start;
+        animation: landing-slide-sub-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1.7s forwards;
+      }
+
+      &:active {
+        .landing-slide-text-sep {
+          background: $highlight;
+        }
       }
     }
   }
@@ -114,8 +112,8 @@ body {
       position: absolute;
       pointer-events: none;
       top: 0;
-      width: 70vmax;
-      height: 35vmax;
+      width: 70vw;
+      height: 20vh;
       background: $light-1;
     }
     &:after {
@@ -127,11 +125,11 @@ body {
     &:before,
     &:after {
       right: 0;
-      animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
+      animation: landing-side-before-anim 0.8s ease-out 0.8s forwards;
     }
     &:after {
       width: 0vmax;
-      animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
+      animation: landing-side-after-anim 0.8s ease-out 0.8s forwards;
     }
   }
 
@@ -139,11 +137,11 @@ body {
     &:before,
     &:after {
       left: 0;
-      animation: landing-mid-before-anim 0.8s ease-out 0.5s forwards;
+      animation: landing-mid-before-anim 0.8s ease-out 0.4s forwards;
     }
     &:after {
       height: 0vmax;
-      animation: landing-mid-after-anim 0.8s ease-out 0.5s forwards;
+      animation: landing-mid-after-anim 0.8s ease-out 0.4s forwards;
     }
   }
 
@@ -151,150 +149,50 @@ body {
     &:before,
     &:after {
       left: 0;
-      animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
+      animation: landing-side-before-anim 0.8s ease-out 0.8s forwards;
     }
     &:after {
       width: 0vmax;
-      animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
-    }
-  }
-
-  .landing-slide-right,
-  .landing-slide-left {
-    cursor: pointer;
-
-    .landing-slide-btn::before,
-    .landing-slide-btn::after {
-      content: '';
-      position: absolute;
-      pointer-events: none;
-      z-index: 2;
-      width: 1px;
-      height: 0.5vmax;
-      background: $dark-3;
-      transition: all 0.6s ease-out 0.7s;
-    }
-
-    &:hover > .landing-slide-btn:before {
-      height: 2vmax;
-      transition: all 0.15s ease-out;
-    }
-    &:hover > .landing-slide-btn:after {
-      top: calc(50% - 1vmax);
-      width: 4px;
-      height: 2vmax;
-      transition: all 0.15s ease-out 0.15s, width 0.15s ease-out 0.3s;
-    }
-  
-    img {
-      opacity: 0.4;
-      transition: 0.3s ease-out;
-    }
-    &:hover {
-      img {
-        opacity: 0.8;
-      }
-    }
-  }
-
-  .landing-slide-left {
-    .landing-slide-btn::before,
-    .landing-slide-btn::after {
-      top: calc(50% - 1vmax);
-      right: 2vmax;
-    }
-    .landing-slide-btn::after {
-      top: calc(50% + 1vmax);
-      height: 0vmax;
-      background: $highlight;
-      transition: all 0.5s ease-out 0.2s, width 0.2s ease-out;
-    }
-  }
-
-  .landing-slide-right {
-    .landing-slide-btn::before,
-    .landing-slide-btn::after {
-      top: calc(50% - 1vmax);
-      left: 2vmax;
-    }
-    .landing-slide-btn::after {
-      top: calc(50% + 1vmax);
-      height: 0vmax;
-      background: $highlight;
-      transition: all 0.5s ease-out 0.2s, width 0.2s ease-out;
-    }
-  }
-}
-
-.landing-slide-nav-container {
-  margin-top: -2vmax;
-  height: 2vmax;
-  width: 100%;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .landing-slide-nav-btn {
-    cursor: pointer;
-    height: 1vmax;
-    width: 1.5vmax;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover > .landing-slide-nav-btn-box {
-      opacity: 1;
-    }
-
-    .landing-slide-nav-btn-box {
-      height: 1px;
-      width: 1vmax;
-      background: $light-1;
-      opacity: 0.5;
-    }
-  }
-
-  .landing-slide-nav-btn-focus {
-    .landing-slide-nav-btn-box {
-      background: $highlight;
-      height: 2px;
-      opacity: 1;
+      animation: landing-side-after-anim 0.8s ease-out 0.8s forwards;
     }
   }
 }
 
 .eng-kit-section {
-  position: relative;
-  height: 100vh;
+  position: relative;  
   width: 100vw;
   background: $light-1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   .eng-kit-container {
     position: relative;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    width: 100vw;
+    height: 50vh;
 
     img {
+      position: absolute;
       filter: blur(15px);
     }
 
     .eng-kit-text {
+      position: absolute;
       z-index: 2;
 
       .eng-kit-code {
+        position: absolute;
         font-family: $poppins;
         font-weight: 900;
         font-size: 1vmax;
         letter-spacing: 0.2vmax;
         color: $light-3;
+        transform: rotate(-90deg);
       }
       
       .eng-kit-title {
+        position: absolute;
         font-family: $montserrat;
         font-weight: 900;
         font-size: 6vmax;
@@ -303,6 +201,7 @@ body {
       }
       
       .eng-kit-desc {
+        position: absolute;
         opacity: 0;
         font-family: $montserrat;
         font-weight: 100;
@@ -312,6 +211,7 @@ body {
       }
       
       .eng-kit-more {
+        position: absolute;
         opacity: 0;
         font-family: $poppins;
         color: $dark-1;
@@ -329,7 +229,7 @@ body {
       }
 
       .eng-kit-line {
-        display: inline-block;
+        position: absolute;
         margin-left: 1vmax;
         height: 0.4vmax;
         border-top: $light-3 solid 1px;
@@ -337,7 +237,7 @@ body {
       }
 
       .eng-kit-line-overlap {
-        display: inline-block;
+        position: absolute;
         width: 0vmax;
         margin-left: calc(-7vmax - 4px);
         height: 0.4vmax;
@@ -349,24 +249,24 @@ body {
 
   .eng-kit-brycep {
     img {
-      margin-left: -5vmax;
-      height: 40vmax;
+      top: 10vh;
+      left: 40vw;
+      width: 50vw;
       animation: brycep-img 0.3s ease-out forwards;
     }
     .eng-kit-text {
-      width: 30vmax;
-      height: 30vmax;
       .eng-kit-code {
-        margin-left: 10vmax;
+        top: 20vh;
+        left: 20vw;
         animation: brycep-code 0.3s ease-out forwards;
       }
       .eng-kit-title {
-        margin-left: 6vmax;
+        margin-left: 2vw;
       }
       .eng-kit-desc {
-        margin-top: 6vmax;
-        margin-bottom: 4vmax;
-        padding-right: 2vmax;
+        margin-top: 6vh;
+        margin-bottom: 4vh;
+        padding-right: 2vw;
         animation: brycep-desc 0.6s ease-out 0.3s forwards;
       }
       .eng-kit-more {
@@ -618,8 +518,8 @@ body {
 }
 @keyframes landing-mid-after-anim {
   0% { height: 0vmax; opacity: 1; }
-  50% { height: 35vmax; opacity: 1; }
-  100% { height: 35vmax; opacity: 0; }
+  50% { height: 20vh; opacity: 1; }
+  100% { height: 20vh; opacity: 0; }
 }
 
 @keyframes landing-side-before-anim {
@@ -628,17 +528,21 @@ body {
 }
 @keyframes landing-side-after-anim {
   0% { width: 0vmax; opacity: 1; }
-  50% { width: 20vmax; opacity: 1; }
-  100% { width: 20vmax; opacity: 0; }
+  50% { width: 70vw; opacity: 1; }
+  100% { width: 70vw; opacity: 0; }
 }
 
 @keyframes landing-slide-title-anim {
-  0% { margin-top: -1vmax; opacity: 0; }
-  100% { margin-top: 0vmax; opacity: 1; }
+  0% { margin-bottom: 2vh; opacity: 0; }
+  100% { margin-bottom: 1vh; opacity: 1; }
+}
+@keyframes landing-slide-sep-anim {
+  0% { width: 0vw; opacity: 0; }
+  100% { width: 10vw; opacity: 0.75; }
 }
 @keyframes landing-slide-sub-anim {
-  0% { margin-top: -1.5vmax; opacity: 0; }
-  100% { margin-top: 0vmax; opacity: 1; }
+  0% { margin-top: -1vh; opacity: 0; }
+  100% { margin-top: 1vh; opacity: 1; }
 }
 
 @keyframes all-title {
