@@ -401,7 +401,8 @@
                 class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                 id="checkout-shpg-adrs-new-unit"
                 placeholder="Unit (optional)"
-                oninput="checkout.shippingAddress.saved.validate.all('unit');"
+                oninput="checkout.shipping.address.new.validate.all('unit');"
+                onchange="checkout.shipping.address.new.update('unit');"
               />
               <input
                 type="text"
@@ -409,14 +410,15 @@
                 class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                 id="checkout-shpg-adrs-new-st-num"
                 placeholder="Street No."
-                oninput="checkout.shippingAddress.saved.validate.all('streetNumber');"
+                oninput="checkout.shipping.address.new.validate.all('streetNumber');"
+                onchange="checkout.shipping.address.new.update('streetNumber');"
               />
               <div
-                class="sbtl-1 checkout-shipping-new-address-error"
+                class="sbtl-1 checkout-input-error"
                 id="checkout-shipping-unit-error"
               ></div>
               <div
-                class="sbtl-1 checkout-shipping-new-address-error"
+                class="sbtl-1 checkout-input-error"
                 id="checkout-shipping-street-number-error"
               ></div>
               <label
@@ -431,10 +433,11 @@
                 class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                 id="checkout-shpg-adrs-new-st-name"
                 placeholder="Street Name"
-                oninput="checkout.shippingAddress.saved.validate.all('streetName');"
+                oninput="checkout.shipping.address.new.validate.all('streetName');"
+                onchange="checkout.shipping.address.new.update('streetName');"
               />
               <div
-                class="sbtl-1 checkout-shipping-new-address-error"
+                class="sbtl-1 checkout-input-error"
                 id="checkout-shipping-street-name-error"
               ></div>
               <label
@@ -449,10 +452,11 @@
                 class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                 id="checkout-shpg-adrs-new-sbrb"
                 placeholder="Suburb"
-                oninput="checkout.shippingAddress.saved.validate.all('suburb');"
+                oninput="checkout.shipping.address.new.validate.all('suburb');"
+                onchange="checkout.shipping.address.new.update('suburb');"
               />
               <div
-                class="sbtl-1 checkout-shipping-new-address-error"
+                class="sbtl-1 checkout-input-error"
                 id="checkout-shipping-suburb-error"
               ></div>
               <label
@@ -467,10 +471,11 @@
                 class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                 id="checkout-shpg-adrs-new-cty"
                 placeholder="City"
-                oninput="checkout.shippingAddress.saved.validate.all('city');"
+                oninput="checkout.shipping.address.new.validate.all('city');"
+                onchange="checkout.shipping.address.new.update('city');"
               />
               <div
-                class="sbtl-1 checkout-shipping-new-address-error"
+                class="sbtl-1 checkout-input-error"
                 id="checkout-shipping-city-error"
               ></div>
               <label
@@ -485,10 +490,11 @@
                 class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                 id="checkout-shpg-adrs-new-zp-cd"
                 placeholder="Zip Code"
-                oninput="checkout.shippingAddress.saved.validate.all('postcode');"
+                oninput="checkout.shipping.address.new.validate.all('postcode');"
+                onchange="checkout.shipping.address.new.update('postcode');"
               />
               <div
-                class="sbtl-1 checkout-shipping-new-address-error"
+                class="sbtl-1 checkout-input-error"
                 id="checkout-shipping-postcode-error"
               ></div>
               <label
@@ -503,10 +509,11 @@
                 class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
                 id="checkout-shpg-adrs-new-cnty"
                 placeholder="Country"
-                oninput="checkout.shippingAddress.saved.validate.all('country');"
+                oninput="checkout.shipping.address.new.validate.all('country');"
+                onchange="checkout.shipping.address.new.update('country');"
               />
               <div
-                class="sbtl-1 checkout-shipping-new-address-error"
+                class="sbtl-1 checkout-input-error"
                 id="checkout-shipping-country-error"
               ></div>
               <div id="checkout-shipping-save-address">
@@ -514,6 +521,7 @@
                   type="checkbox"
                   name="saveAddress"
                   id="checkout-shipping-save-address-input"
+                  onchange="checkout.shipping.address.new.toggleSave(this.checked);"
                 />
                 <label for="checkout-shipping-save-address-input"
                   >Save Address</label

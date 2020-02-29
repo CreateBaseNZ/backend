@@ -403,15 +403,6 @@ SHIPPING
   padding: 0 0 0 1.6vmax;
 }
 
-.checkout-shipping-new-address-error {
-  width: 100%;
-  height: 2.4vmax;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  letter-spacing: 0.1vmax;
-}
-
 // IDS
 
 #checkout-shpg-adrs-new-unit-lbl {
@@ -706,6 +697,17 @@ GLOBAL
   color: #bb0000;
 }
 
+.checkout-input-error {
+  height: 1.6vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: $fnt-fml-2;
+  font-size: 0.7vmax;
+  letter-spacing: 0.1vmax;
+  color: #bb0000;
+}
+
 .checkout-element-hide {
   margin: 0;
   border: 0;
@@ -891,10 +893,6 @@ DESKTOP CSS
 
   .checkout-shpg-adrs-new-lbl {
     padding: 0.5vmax 0.5vmax 0.25vmax 0;
-  }
-
-  .checkout-shipping-new-address-error {
-    height: 1.2vmax;
   }
 
   .checkout-shpg-mthd-cntn {

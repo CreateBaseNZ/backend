@@ -111,6 +111,9 @@ let checkout = {
         show: undefined // checkout.shipping.address.saved.show
       },
       new: {
+        update: undefined,
+        populate: undefined,
+        toggleSave: undefined,
         validate: {
           unit: undefined, // checkout.shipping.address.new.validate.unit
           street: {
@@ -261,12 +264,15 @@ checkout.insert = object => {
   }
   checkout.shipping.address.saved.insert(html);
   // New
-
+  checkout.shipping.address.new.populate(object.order.shipping.address.new);
+  document.querySelector("#checkout-shipping-save-address-input").checked =
+    object.order.shipping.address.save;
   // Selection
   checkout.shipping.address.selected = object.order.shipping.address.option;
   if (checkout.shipping.address.selected == "saved") {
     if (object.order.shipping.address.saved.suburb) {
-      document.querySelector("#checkout-shpg-adrs-svd-inp").checked = true;
+      document.querySelector("#checkout-shpg-adrs-svd-inp").checked =
+        object.order.shipping.address.save;
     }
   } else if (checkout.shipping.address.selected == "new") {
     document.querySelector("#checkout-shpg-adrs-new-inp").checked = true;
@@ -610,17 +616,17 @@ checkout.cart.print.delete = async printId => {
   numberOfPrints = numberOfPrints - 1;
   checkout.cart.prints.insert();
   // Delete the 3D print from the database
-  let data;
+  let object;
   try {
-    data = (await axios.post("/checkout/order/delete/print", { printId }))[
+    object = (await axios.post("/checkout/order/delete/print", { printId }))[
       "data"
-    ];
+    ]["data"];
   } catch (error) {
     return { status: "failed", contents: error };
   }
-  console.log(data);
+  console.log(object);
   // Perform Validation
-  checkout.cart.validation.validate(data.data.validity);
+  checkout.cart.validation.validate(object.validity);
   return;
 };
 
@@ -837,11 +843,13 @@ checkout.cart.manufacturingSpeed.select = async option => {
   // Place Loaders
 
   // Update the Database
-  let price;
+  let object;
   try {
-    price = await axios.post("/checkout/order/update/manufacturing-speed", {
-      option
-    });
+    object = (
+      await axios.post("/checkout/order/update/manufacturing-speed", {
+        option
+      })
+    )["data"]["data"];
   } catch (error) {
     console.log(error);
     return;
@@ -849,7 +857,7 @@ checkout.cart.manufacturingSpeed.select = async option => {
   // Update Price
 
   // Perform Validation
-  checkout.cart.validation.validate();
+  checkout.cart.validation.validate(object.validity);
 };
 
 // @FUNC  checkout.cart.validation.validate
@@ -1283,6 +1291,72 @@ checkout.shipping.address.new.validate.all = type => {
   return address;
 };
 
+// @FUNC  checkout.shipping.address.new.populate
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.new.populate = address => {
+  document.querySelector("#checkout-shpg-adrs-new-unit").value = address.unit;
+  document.querySelector("#checkout-shpg-adrs-new-st-num").value =
+    address.street.number;
+  document.querySelector("#checkout-shpg-adrs-new-st-name").value =
+    address.street.name;
+  document.querySelector("#checkout-shpg-adrs-new-sbrb").value = address.suburb;
+  document.querySelector("#checkout-shpg-adrs-new-cty").value = address.city;
+  document.querySelector("#checkout-shpg-adrs-new-zp-cd").value =
+    address.postcode;
+  document.querySelector("#checkout-shpg-adrs-new-cnty").value =
+    address.country;
+};
+
+// @FUNC  checkout.shipping.address.new.update
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.new.update = async type => {
+  const address = checkout.shipping.address.new.validate.all(type);
+
+  let object;
+  try {
+    object = (
+      await axios.post("/checkout/order/update/new-shipping-address", {
+        address
+      })
+    )["data"]["data"];
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+
+  checkout.shipping.validation.validate(object.validity);
+};
+
+// @FUNC  checkout.shipping.address.new.toggleSave
+// @TYPE
+// @DESC
+// @ARGU
+checkout.shipping.address.new.toggleSave = async save => {
+  // Place Loaders
+
+  // Update the Database
+  let object;
+  try {
+    object = await axios.post(
+      "/checkout/order/update/new-shipping-address-save",
+      {
+        save
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // Update Price
+
+  // Perform Validation
+  checkout.shipping.validation.validate(object.validity);
+};
+
 // @FUNC  checkout.shipping.address.new.show
 // @TYPE
 // @DESC
@@ -1309,9 +1383,11 @@ checkout.shipping.method.select = async option => {
   // Update the Database
   let object;
   try {
-    object = await axios.post("/checkout/order/update/shipping-method", {
-      option
-    });
+    object = (
+      await axios.post("/checkout/order/update/shipping-method", {
+        option
+      })
+    )["data"]["data"];
   } catch (error) {
     console.log(error);
     return;

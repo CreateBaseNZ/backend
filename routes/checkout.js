@@ -166,7 +166,19 @@ router.post(
     } catch (error) {
       return res.send({ status: "failed", data: error });
     }
-    return res.send({ status: "success", data: savedOrder });
+    // Validation
+    validity = {
+      cart: savedOrder.validateCart(),
+      shipping: savedOrder.validateShipping()
+    };
+    return res.send({
+      status: "success",
+      data: {
+        order: savedOrder,
+        price: {},
+        validity
+      }
+    });
   }
 );
 
@@ -206,7 +218,91 @@ router.post(
       data: {
         order: savedOrder,
         price: {},
-        validity: {}
+        validity
+      }
+    });
+  }
+);
+
+// @route     POST /checkout/order/update/new-shipping-address
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/update/new-shipping-address",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    const address = req.body.address;
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Update order
+    order.shipping.address.new = address;
+    // Save order
+    let savedOrder;
+    try {
+      savedOrder = await order.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Validation
+    validity = {
+      cart: savedOrder.validateCart(),
+      shipping: savedOrder.validateShipping()
+    };
+
+    return res.send({
+      status: "success",
+      data: {
+        order: savedOrder,
+        price: {},
+        validity
+      }
+    });
+  }
+);
+
+// @route     POST /checkout/order/update/new-shipping-address-save
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/update/new-shipping-address-save",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    const save = req.body.save;
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Update order
+    order.shipping.address.save = save;
+    // Save order
+    let savedOrder;
+    try {
+      savedOrder = await order.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Validation
+    validity = {
+      cart: savedOrder.validateCart(),
+      shipping: savedOrder.validateShipping()
+    };
+
+    return res.send({
+      status: "success",
+      data: {
+        order: savedOrder,
+        price: {},
+        validity
       }
     });
   }
@@ -248,7 +344,7 @@ router.post(
       data: {
         order: savedOrder,
         price: {},
-        validity: {}
+        validity
       }
     });
   }

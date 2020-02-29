@@ -81,7 +81,8 @@ const OrderSchema = new Schema({
         type: AddressSchema
       },
       save: {
-        type: Boolean
+        type: Boolean,
+        default: true
       }
     },
     method: {
