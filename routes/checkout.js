@@ -114,18 +114,6 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
 
   // Saved Shipping Address
 
-  order.shipping.address.saved = {
-    unit: "",
-    street: {
-      number: "45A",
-      name: "Aranui Road"
-    },
-    suburb: "Mount Wellington",
-    city: "Auckland",
-    postcode: "1060",
-    country: "New Zealand"
-  };
-
   // Save and Send Response
 
   let savedOrder;
@@ -179,6 +167,48 @@ router.post(
       return res.send({ status: "failed", data: error });
     }
     return res.send({ status: "success", data: savedOrder });
+  }
+);
+
+// @route     POST /checkout/order/update/shipping-address-option
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/update/shipping-address-option",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    const option = req.body.option;
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Update order
+    order.shipping.address.option = option;
+    // Save order
+    let savedOrder;
+    try {
+      savedOrder = await order.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Validation
+    validity = {
+      cart: savedOrder.validateCart(),
+      shipping: savedOrder.validateShipping()
+    };
+
+    return res.send({
+      status: "success",
+      data: {
+        order: savedOrder,
+        price: {},
+        validity: {}
+      }
+    });
   }
 );
 

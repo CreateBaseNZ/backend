@@ -104,6 +104,7 @@ let checkout = {
   shipping: {
     address: {
       select: undefined, // checkout.shipping.address.select
+      selected: undefined,
       saved: {
         create: undefined, // checkout.shipping.address.saved.create
         insert: undefined, // checkout.shipping.address.saved.insert
@@ -122,8 +123,7 @@ let checkout = {
           country: undefined, // checkout.shipping.address.new.validate.country
           all: undefined // checkout.shipping.address.new.validate.all
         },
-        show: undefined,
-        resize: undefined // checkout.shipping.resize
+        show: undefined // checkout.shipping.address.new.show
       }
     },
     method: {
@@ -260,9 +260,18 @@ checkout.insert = object => {
     html = "No Saved Address";
   }
   checkout.shipping.address.saved.insert(html);
-
   // New
 
+  // Selection
+  checkout.shipping.address.selected = object.order.shipping.address.option;
+  if (checkout.shipping.address.selected == "saved") {
+    if (object.order.shipping.address.saved.suburb) {
+      document.querySelector("#checkout-shpg-adrs-svd-inp").checked = true;
+    }
+  } else if (checkout.shipping.address.selected == "new") {
+    document.querySelector("#checkout-shpg-adrs-new-inp").checked = true;
+  }
+  checkout.shipping.address.select(checkout.shipping.address.selected);
   // SHIPPING METHOD
   const shippingMethod = object.order.shipping.method;
   if (shippingMethod == "pickup") {
@@ -270,6 +279,7 @@ checkout.insert = object => {
   } else if (shippingMethod == "tracked") {
     document.querySelector("#checkout-shpg-mthd-inp-trck").checked = true;
   } else if (shippingMethod == "courier") {
+    document.querySelector("#checkout-shpg-mthd-inp-crr").checked = true;
   }
 };
 
@@ -288,6 +298,7 @@ checkout.load = async () => {
   }
 
   checkout.insert(object);
+
   // Perform Validation
   checkout.cart.validation.validate(object.validity);
   checkout.shipping.validation.validate(object.validity);
@@ -967,7 +978,8 @@ SHIPPING
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.select = option => {
+checkout.shipping.address.select = async option => {
+  checkout.shipping.address.selected = option;
   if (option == "saved") {
     checkout.shipping.address.saved.show(true);
     checkout.shipping.address.new.show(false);
@@ -975,6 +987,27 @@ checkout.shipping.address.select = option => {
     checkout.shipping.address.saved.show(false);
     checkout.shipping.address.new.show(true);
   }
+  checkout.shipping.resize();
+  // UPDATE THE DATABASE
+  // Place Loaders
+
+  // Update the Database
+  let object;
+  try {
+    object = await axios.post(
+      "/checkout/order/update/shipping-address-option",
+      {
+        option
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // Update Price
+
+  // Perform Validation
+  checkout.shipping.validation.validate(object.validity);
 };
 
 // @FUNC  checkout.shipping.address.saved.create
@@ -1369,21 +1402,21 @@ checkout.shipping.show = () => {
   checkout.navigation.navigate(1);
 };
 
-checkout.shipping.resize = type => {
+checkout.shipping.resize = () => {
   // DESKTOP HEIGHT CALCULATION
   const heading = 8;
   const subHeading = 8 * 2;
   let address;
 
-  if (type == "saved") {
+  if (checkout.shipping.address.selected == "saved") {
     address = {
-      saved: undefined,
-      new: undefined
+      saved: 13,
+      new: 3
     };
-  } else if (type == "new") {
+  } else if (checkout.shipping.address.selected == "new") {
     address = {
-      saved: undefined,
-      new: undefined
+      saved: 3,
+      new: 41
     };
   } else {
     address = {
@@ -1392,21 +1425,30 @@ checkout.shipping.resize = type => {
     };
   }
 
-  const method = 3 * 5;
+  const error = 1.6;
+
+  const method = 3 * 3;
   const buttons = 12;
   const total =
-    heading + subHeading + address.saved + address.new + method + buttons;
+    heading +
+    subHeading +
+    address.saved +
+    address.new +
+    error +
+    method +
+    buttons;
 
   // SET THE CART PAGE SIZE
   if (checkout.element.windowSize.matches) {
-    if (checkoutSelectedPage == 0) {
-      document.querySelector("#checkout-sub-pg-cart").style =
+    if (checkoutSelectedPage == 1) {
+      document.querySelector("#checkout-sub-pg-shipping").style =
         "height: " + total + "vmax;";
     } else {
-      document.querySelector("#checkout-sub-pg-cart").style = "height: 8vmax;";
+      document.querySelector("#checkout-sub-pg-shipping").style =
+        "height: 8vmax;";
     }
   } else {
-    document.querySelector("#checkout-sub-pg-cart").style = "height: 100%;";
+    document.querySelector("#checkout-sub-pg-shipping").style = "height: 100%;";
   }
 };
 
@@ -1583,6 +1625,7 @@ checkout.navigation.navigate = nextPage => {
   // Update the current selected page
   checkoutSelectedPage = nextPage;
   checkout.cart.resize();
+  checkout.shipping.resize();
 };
 
 // @FUNC  checkout.navigation.changeCSS.navigation
