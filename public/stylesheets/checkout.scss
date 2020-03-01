@@ -445,15 +445,6 @@ SHIPPING
 PAYMENT
 -----------------------------------------------------------------------------------------*/
 
-.checkout-pymt-mthd-inp {
-  margin: 0;
-}
-
-.checkout-pymt-mthd-inp-lbl {
-  letter-spacing: 0.1vmax;
-  padding: 0 0 0 1.6vmax;
-}
-
 #checkout-pymt-card-form {
   width: 100%;
   display: flex;
@@ -498,6 +489,29 @@ PAYMENT
 
 #checkout-pymt-sub-sub-pg {
   padding: 4vmax 14vmax 4vmax 4vmax;
+}
+
+#checkout-bank-transfer-instruction-comment {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  div {
+    height: 20vmax;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    h3 {
+      height: 3vmax;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 3vmax;
+      font-family: $fnt-fml-2;
+      font-size: 1.6vmax;
+      letter-spacing: 0.2vmax;
+    }
+  }
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -687,24 +701,35 @@ GLOBAL
   cursor: default;
 }
 
-.checkout-radio-error {
-  height: 1.6vmax;
+.checkout-radio-error,
+.checkout-radio-valid {
+  height: 3vmax;
   width: 100%;
-  padding-left: 2.6vmax;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 4.2vmax;
   font-family: $fnt-fml-2;
-  font-size: 0.7vmax;
-  letter-spacing: 0.1vmax;
+  font-size: 1.2vmax;
+  letter-spacing: 0.2vmax;
   color: #bb0000;
 }
 
+.checkout-radio-error {
+  color: #bb0000;
+}
+
+.checkout-radio-valid {
+  color: #008000;
+}
+
 .checkout-input-error {
-  height: 1.6vmax;
+  height: 2vmax;
   width: 100%;
   display: flex;
   align-items: center;
   font-family: $fnt-fml-2;
-  font-size: 0.7vmax;
-  letter-spacing: 0.1vmax;
+  font-size: 1.2vmax;
+  letter-spacing: 0.2vmax;
   color: #bb0000;
 }
 
@@ -897,13 +922,6 @@ DESKTOP CSS
 
   .checkout-shpg-mthd-cntn {
     padding: 1vmax 2vmax;
-  }
-
-  .checkout-pymt-mthd-inp,
-  .checkout-pymt-mthd-inp-lbl {
-    height: 4vmax;
-    display: flex;
-    align-items: center;
   }
 
   #checkout-pymt-sub-sub-pg {
@@ -1115,6 +1133,20 @@ DESKTOP CSS
     font-size: 1vmax;
     letter-spacing: 0.1vmax;
     padding-left: 1.6vmax;
+  }
+
+  .checkout-radio-error,
+  .checkout-radio-valid {
+    height: 2vmax;
+    padding-left: 2.6vmax;
+    font-size: 0.7vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  .checkout-input-error {
+    height: 1.6vmax;
+    font-size: 0.7vmax;
+    letter-spacing: 0.1vmax;
   }
 
   .StripeElement {

@@ -154,7 +154,8 @@ let checkout = {
       }
     },
     method: {
-      select: undefined,
+      select: undefined, // checkout.payment.method.select
+      selected: undefined, // checkout.payment.method.selected
       bank: {
         show: undefined
       },
@@ -287,6 +288,11 @@ checkout.insert = object => {
   } else if (shippingMethod == "courier") {
     document.querySelector("#checkout-shpg-mthd-inp-crr").checked = true;
   }
+  // PAYMENT METHOD
+  // Assign the stored payment method to the global variable
+  checkout.payment.method.selected = object.order.payment.method;
+  // Perform an operation based on the selected method
+  checkout.payment.method.select(checkout.payment.method.selected);
 };
 
 // @FUNC  checkout.load
@@ -336,6 +342,7 @@ checkout.listener = () => {
   checkout.element.windowSize.addListener(checkout.cart.prints.resize);
   checkout.element.windowSize.addListener(checkout.cart.items.resize);
   checkout.element.windowSize.addListener(checkout.cart.resize);
+  checkout.element.windowSize.addListener(checkout.shipping.resize);
 };
 
 // @FUNC  checkout.elements.assign
@@ -1501,7 +1508,7 @@ checkout.shipping.resize = () => {
     };
   }
 
-  const error = 1.6;
+  const error = 2;
 
   const method = 3 * 3;
   const buttons = 12;
@@ -1559,14 +1566,36 @@ checkout.payment.stripe.initialise = () => {
 // @TYPE
 // @DESC
 // @ARGU
-checkout.payment.method.select = option => {
+checkout.payment.method.select = async option => {
   if (option === "bankTransfer") {
+    document.querySelector(
+      "#checkout-payment-method-bank-transfer"
+    ).checked = true;
     checkout.payment.method.bank.show(true);
     checkout.payment.method.card.show(false);
   } else if (option === "card") {
+    document.querySelector("#checkout-payment-method-card").checked = true;
     checkout.payment.method.bank.show(false);
     checkout.payment.method.card.show(true);
   }
+
+  // UPDATE THE DATABASE
+  // Place Loaders
+
+  // Update the Database
+  let object;
+  try {
+    object = await axios.post("/checkout/order/update/payment-method", {
+      option
+    });
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // Update Price
+
+  // Perform Validation
+  checkout.shipping.validation.validate(object.validity);
 };
 
 // @FUNC  checkout.payment.method.bank.show

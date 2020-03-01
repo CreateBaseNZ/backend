@@ -50,29 +50,36 @@ const OrderSchema = new Schema({
     type: mongoose.Types.ObjectId
   },
   status: {
-    type: String
+    type: String,
+    default: ""
   },
   makes: {
     awaitingQuote: {
-      type: [mongoose.Types.ObjectId]
+      type: [mongoose.Types.ObjectId],
+      default: []
     },
     checkout: {
-      type: [mongoose.Types.ObjectId]
+      type: [mongoose.Types.ObjectId],
+      default: []
     }
   },
   items: {
-    type: [mongoose.Types.ObjectId]
+    type: [mongoose.Types.ObjectId],
+    default: []
   },
   discounts: {
-    type: [mongoose.Types.ObjectId]
+    type: [mongoose.Types.ObjectId],
+    default: []
   },
   manufacturingSpeed: {
-    type: String
+    type: String,
+    default: ""
   },
   shipping: {
     address: {
       option: {
-        type: String
+        type: String,
+        default: ""
       },
       saved: {
         type: AddressSchema
@@ -86,39 +93,55 @@ const OrderSchema = new Schema({
       }
     },
     method: {
-      type: String
+      type: String,
+      default: ""
+    }
+  },
+  payment: {
+    method: {
+      type: String,
+      default: ""
     }
   },
   comments: {
-    type: [mongoose.Types.ObjectId]
+    type: [mongoose.Types.ObjectId],
+    default: []
   },
   date: {
     created: {
-      type: String
+      type: String,
+      default: ""
     },
     validated: {
-      type: String
+      type: String,
+      default: ""
     },
     built: {
-      type: String
+      type: String,
+      default: ""
     },
     shipped: {
-      type: String
+      type: String,
+      default: ""
     },
     arrived: {
-      type: String
+      type: String,
+      default: ""
     },
     reviewed: {
       type: String
     },
     completed: {
-      type: String
+      type: String,
+      default: ""
     },
     cancelled: {
-      type: String
+      type: String,
+      default: ""
     },
     modified: {
-      type: String
+      type: String,
+      default: ""
     }
   }
 });
