@@ -48,52 +48,48 @@ body {
       position: absolute;
       top: 0;
       left: 0;
-      display: grid;
-      grid-template-rows: 12vh 1vh 7vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
       height: 100%;
       width: 100%;
       z-index: 2;
 
       .landing-slide-title {
-        margin-bottom: 2vh;
-        width: 50vw;
+        display: none;
+      }
+
+      .landing-slide-text-sep {
+        display: none;
+      }
+  
+      .landing-slide-sub {
+        margin-top: 0vh;
         font-family: $poppins;
-        font-size: 1.8vmax;
+        font-size: 2vmax;
         font-weight: 800;
         letter-spacing: 0.4vmax;
         color: $light-1;
         opacity: 0;
         text-align: center;
-        align-self: end;
-        animation: landing-slide-title-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1.5s forwards;
+        align-self: center;
+        animation: landing-slide-sub-anim 0.5s ease-out 1.2s forwards;
       }
 
-      .landing-slide-text-sep {
+      .landing-slide-text-sep-2 {
+        margin-top: 2vh;
         height: 1px;
         width: 0vw;
-        align-self: center;
-        justify-self: center;
         background: $light-1;
         opacity: 0;
         transition: all 0.3s ease-out;
-        animation: landing-slide-sep-anim 0.4s cubic-bezier(.28,.6,.3,.98) 2.3s forwards;
-      }
-  
-      .landing-slide-sub {
-        margin-top: -1vh;
-        font-family: $poppins;
-        font-size: 1.5vmax;
-        font-weight: 10;
-        color: $light-1;
-        opacity: 0;
-        text-align: center;
-        align-self: flex-start;
-        animation: landing-slide-sub-anim 0.6s cubic-bezier(.28,.6,.3,.98) 1.7s forwards;
+        animation: landing-slide-sep-anim 0.4s cubic-bezier(.28,.6,.3,.98) 1.7s forwards;
       }
 
       &:active {
-        .landing-slide-text-sep {
+        .landing-slide-text-sep-2 {
+          opacity: 1;
           background: $highlight;
         }
       }
@@ -166,15 +162,16 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  
   .eng-kit-container {
     position: relative;
-    width: 100vw;
     height: 50vh;
+    width: 100vw;
 
     img {
       position: absolute;
-      filter: blur(15px);
+      filter: blur(10px);
+      animation: all-img 0.3s ease-out forwards;
     }
 
     .eng-kit-text {
@@ -185,29 +182,24 @@ body {
         position: absolute;
         font-family: $poppins;
         font-weight: 900;
-        font-size: 1vmax;
-        letter-spacing: 0.2vmax;
+        font-size: 4vw;
+        letter-spacing: 0.5vw;
         color: $light-3;
-        transform: rotate(-90deg);
+        width: 50vw;
+        animation: all-code 0.3s ease-out forwards;
       }
       
       .eng-kit-title {
         position: absolute;
         font-family: $montserrat;
         font-weight: 900;
-        font-size: 6vmax;
+        font-size: 10vw;
         color: $dark-3;
         animation: all-title 0.6s ease-out forwards;
       }
       
       .eng-kit-desc {
-        position: absolute;
-        opacity: 0;
-        font-family: $montserrat;
-        font-weight: 100;
-        font-size: 0.8vmax;
-        padding-right: 2vmax;
-        color: $dark-3;
+        display: none;
       }
       
       .eng-kit-more {
@@ -215,32 +207,32 @@ body {
         opacity: 0;
         font-family: $poppins;
         color: $dark-1;
-        letter-spacing: 0.2vmax;
+        letter-spacing: 0.5vw;
         font-weight: 900;
-        font-size: 0.8vmax;
+        font-size: 3vw;
+        width: 30vw;
+        animation: all-more 0.6s ease-out 0.9s forwards;
 
-        &:hover {
+        &:active {
           color: $highlight;
         }
 
-        &:hover ~ .eng-kit-line-overlap {
-          width: 7vmax;
+        &:active ~ .eng-kit-line-overlap {
+          width: 15vw;
         }
       }
 
       .eng-kit-line {
         position: absolute;
-        margin-left: 1vmax;
-        height: 0.4vmax;
+        height: 1px;
         border-top: $light-3 solid 1px;
         animation: all-line 0.3s ease-out 1.2s forwards;
       }
 
       .eng-kit-line-overlap {
         position: absolute;
-        width: 0vmax;
-        margin-left: calc(-7vmax - 4px);
-        height: 0.4vmax;
+        width: 0vw;
+        height: 1px;
         border-top: $highlight solid 1px;
         transition: width 0.5s ease-out;
       }
@@ -249,89 +241,82 @@ body {
 
   .eng-kit-brycep {
     img {
-      top: 10vh;
-      left: 40vw;
+      top: 5vh;
+      left: 38vw;
       width: 50vw;
-      animation: brycep-img 0.3s ease-out forwards;
     }
     .eng-kit-text {
       .eng-kit-code {
-        top: 20vh;
-        left: 20vw;
-        animation: brycep-code 0.3s ease-out forwards;
+        top: 13vh;
+        left: 13vw;
       }
       .eng-kit-title {
+        top: 16vh;
+        left: 8vw;
         margin-left: 2vw;
       }
-      .eng-kit-desc {
-        margin-top: 6vh;
-        margin-bottom: 4vh;
-        padding-right: 2vw;
-        animation: brycep-desc 0.6s ease-out 0.3s forwards;
-      }
       .eng-kit-more {
-        animation: brycep-more 0.6s ease-out 0.9s forwards;
+        top: 33vh;
+        left: 13vw;
+      }
+      .eng-kit-line,
+      .eng-kit-line-overlap {
+        top: 30vh;
+        left: 13vw;
       }
     }
   }
 
   .eng-kit-hyelos {
-    margin-top: -5vmax;
-    margin-left: 15vmax;
     img {
-      margin-left: -85vmax;
-      width: 50vmax;
-      animation: hyelos-img 0.3s ease-out forwards;
+      top: 6vh;
+      left: 10vw;
+      width: 70vw;
     }
     .eng-kit-text {
-      width: 30vmax;
-      height: 30vmax;
       .eng-kit-code {
-        margin-left: 0vmax;
-        animation: hyelos-code 0.3s ease-out forwards;
+        top: 34vh;
+        left: 40vw;
       }
       .eng-kit-title {
-        margin-left: -10vmax;
-      }
-      .eng-kit-desc {
-        margin-top: 4vmax; 
-        margin-bottom: 3vmax;
-        width: 26vmax;
-        text-align: right;
-        animation: hyelos-desc 0.6s ease-out 0.3s forwards;
+        top: 26vh;
+        left: 20vw;
       }
       .eng-kit-more {
-        animation: hyelos-more 0.6s ease-out 0.9s forwards;
+        top: 43vh;
+        left: 50vw;
+      }
+      .eng-kit-line,
+      .eng-kit-line-overlap {
+        top: 40vh;
+        left: 50vw;
       }
     }
   }
 
   .eng-kit-stc {
-    margin-top: -5vmax;
-    margin-left: 5vmax;
     img {
-      margin-left: 0vmax;
-      width: 40vmax;
-      animation: stc-img 0.3s ease-out forwards;
+      top: 15vh;
+      left: 19vw;
+      width: 70vw;
     }
     .eng-kit-text {
-      width: 30vmax;
-      height: 30vmax;
       .eng-kit-code {
-        margin-left: -10vmax;
-        animation: stc-code 0.3s ease-out forwards;
+        top: 7vh;
+        left: 22vw;
       }
       .eng-kit-title {
-        margin-left: -10vmax;
-      }
-      .eng-kit-desc {
-        margin-top: 5vmax;
-        margin-bottom: 3vmax;
-        width: 25vmax;
-        animation: stc-desc 0.6s ease-out 0.3s forwards;
+        top: 10vh;
+        left: 14vw;
       }
       .eng-kit-more {
-        animation: stc-more 0.6s ease-out 0.9s forwards;
+        top: 30vh;
+        left: 9vw;
+      }
+      .eng-kit-line,
+      .eng-kit-line-overlap {
+        top: 35vh;
+        left: 9vw;
       }
     }
   }
@@ -408,7 +393,7 @@ body {
 .test-section {
   position: relative;
   background: $light-1;
-  height: 50vh;
+  height: 25vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -416,11 +401,11 @@ body {
   .test-header {
     width: 100%;
     p {
-      padding-top: 8vmax;
-      padding-bottom: 1vmax;
+      padding-top: 3vh;
+      padding-bottom: 1vh;
       text-align: center;
       font-family: $montserrat;
-      font-size: 1vmax;
+      font-size: 4vw;
       color: $dark-1;
       letter-spacing: 2px;
     }
@@ -541,69 +526,31 @@ body {
   100% { width: 10vw; opacity: 0.75; }
 }
 @keyframes landing-slide-sub-anim {
-  0% { margin-top: -1vh; opacity: 0; }
-  100% { margin-top: 1vh; opacity: 1; }
+  0% { margin-top: 0vh; opacity: 0; }
+  100% { margin-top: 2vh; opacity: 1; }
 }
 
+@keyframes all-img {
+  0% { opacity: 0; margin-top: -2vh;}
+  100% { opacity: 1; margin-top: 0vh;}
+}
+@keyframes all-code {
+  0% { opacity: 0; margin-top: -1vh; }
+  100% { opacity: 1; margin-top: 0vh; }
+}
 @keyframes all-title {
-  0% { opacity: 0; margin-top: -1vmax; }
-  100% { opacity: 1; margin-top: 0vmax; }
+  0% { opacity: 0; margin-top: -1vh; }
+  100% { opacity: 1; margin-top: 0vh; }
 }
 @keyframes all-line {
-  0% { width: 0vmax; }
-  100% { width: 7vmax; }
+  0% { width: 0vw; }
+  100% { width: 15vw; }
+}
+@keyframes all-more {
+  0% { opacity: 0; margin-left: -3vw; }
+  100% { opacity: 1; margin-left: 0vw; }
 }
 
-@keyframes brycep-img {
-  0% { opacity: 0; margin-top: -2vmax;}
-  100% { opacity: 1; margin-top: 0vmax;}
-}
-@keyframes brycep-code {
-  0% { opacity: 0; margin-top: 5vmax; }
-  100% { opacity: 1;  margin-top: 6vmax; }
-}
-@keyframes brycep-desc {
-  0% { opacity: 0; margin-left: -2vmax; }
-  100% { opacity: 1; margin-left: 0vmax;}
-}
-@keyframes brycep-more {
-  0% { opacity: 0; margin-left: 2vmax; }
-  100% { opacity: 1; margin-left: 4vmax; }
-}
-
-@keyframes hyelos-img {
-  0% { opacity: 0; margin-top: 6vmax;}
-  100% { opacity: 1; margin-top: 8vmax;}
-}
-@keyframes hyelos-code {
-  0% { opacity: 0; margin-top: 9vmax; }
-  100% { opacity: 1; margin-top: 10vmax; }
-}
-@keyframes hyelos-desc {
-  0% { opacity: 0; margin-left: -2vmax; }
-  100% { opacity: 1; margin-left: 0vmax; }
-}
-@keyframes hyelos-more {
-  0% { opacity: 0; margin-left: 7vmax; }
-  100% { opacity: 1; margin-left: 9vmax; }
-}
-
-@keyframes stc-img {
-  0% { opacity: 0; margin-top: 6vmax;}
-  100% { opacity: 1; margin-top: 8vmax;}
-}
-@keyframes stc-code {
-  0% { opacity: 0; margin-top: 8vmax; }
-  100% { opacity: 1; margin-top: 9vmax; }
-}
-@keyframes stc-desc {
-  0% { opacity: 0; margin-left: -4vmax; }
-  100% { opacity: 1; margin-left: -2vmax; }
-}
-@keyframes stc-more {
-  0% { opacity: 0; margin-left: -4vmax; }
-  100% { opacity: 1; margin-left: -2vmax; }
-}
 
 @media only screen and (max-width: 850px) {
 
