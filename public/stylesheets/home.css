@@ -1601,9 +1601,13 @@ body {
           justify-content: center;
 }
 
+.eng-kit-section .swiper-wrapper {
+  width: 100vw;
+}
+
 .eng-kit-section .eng-kit-container {
   position: relative;
-  height: 50vh;
+  height: 55vh;
   width: 100vw;
 }
 
@@ -1768,88 +1772,20 @@ body {
 
 .eng-kit-section .eng-kit-coming-soon {
   font-family: "Poppins", sans-serif;
-  font-size: 4vw;
+  font-size: 3vw;
   color: #877da9;
   font-weight: 100;
   letter-spacing: 0.3vmax;
 }
 
 .eng-kit-section .eng-kit-btn-container {
-  margin-top: 5vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.eng-kit-section .eng-kit-btn-container .eng-kit-btn {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  height: 5vh;
-  width: 20vw;
-  cursor: pointer;
-}
-
-.eng-kit-section .eng-kit-btn-container .eng-kit-btn .eng-kit-btn-dot {
-  opacity: 0;
-  height: 0.4vmax;
-  width: 0.4vmax;
-  border-radius: 50%;
-  background: #877da9;
-  margin-left: -0.4vmax;
-  margin-top: 0.4vmax;
-}
-
-.eng-kit-section .eng-kit-btn-container .eng-kit-btn .eng-kit-btn-text {
-  font-family: "Poppins", sans-serif;
-  color: #c7c2d5;
-  font-size: 3vw;
-  letter-spacing: 0.4vmax;
-  font-weight: 800;
-}
-
-.eng-kit-section .eng-kit-btn-container .eng-kit-btn:hover > .eng-kit-btn-text {
-  color: #877da9;
-}
-
-.eng-kit-section .eng-kit-btn-container .eng-kit-btn:hover > .eng-kit-btn-dot {
-  opacity: 1;
-}
-
-.eng-kit-section .eng-kit-btn-container .eng-kit-btn-focus .eng-kit-btn-dot {
-  opacity: 1;
-  background: #4bf0ea;
-}
-
-.eng-kit-section .eng-kit-btn-container .eng-kit-btn-focus .eng-kit-btn-text {
-  color: #4bf0ea !important;
+  display: none;
 }
 
 .test-section {
   position: relative;
   background: white;
-  height: 25vh;
+  height: 30vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1867,7 +1803,7 @@ body {
 }
 
 .test-section .test-header p {
-  padding-top: 3vh;
+  padding-top: 8vh;
   padding-bottom: 1vh;
   text-align: center;
   font-family: "Montserrat", sans-serif;

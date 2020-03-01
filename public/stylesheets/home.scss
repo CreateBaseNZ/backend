@@ -162,10 +162,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  .swiper-wrapper {
+    width: 100vw;
+  }
   
   .eng-kit-container {
     position: relative;
-    height: 50vh;
+    height: 55vh;
     width: 100vw;
 
     img {
@@ -323,72 +327,25 @@ body {
 
   .eng-kit-coming-soon  {
     font-family: $poppins;
-    font-size: 4vw;
+    font-size: 3vw;
     color: $dark-1;
     font-weight: 100;
     letter-spacing: 0.3vmax;
   }
 
+  .swiper-pagination {
+    // margin-bottom: -5vh;
+  }
+
   .eng-kit-btn-container {
-    margin-top: 5vh;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    
-    .eng-kit-btn {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 5vh;
-      width: 20vw;
-      cursor: pointer;
-      
-      .eng-kit-btn-dot {
-        opacity: 0;
-        height: 0.4vmax;
-        width: 0.4vmax;
-        border-radius: 50%;
-        background: $dark-1;
-        margin-left: -0.4vmax;
-        margin-top: 0.4vmax;
-      }
-
-      .eng-kit-btn-text {
-        font-family: $poppins;
-        color: $light-3;
-        font-size: 3vw;
-        letter-spacing: 0.4vmax;
-        font-weight: 800;
-      }
-
-      &:hover > .eng-kit-btn-text {
-        color: $dark-1;
-      }
-
-      &:hover > .eng-kit-btn-dot {
-        opacity: 1;
-      }
-    }
-
-    .eng-kit-btn-focus {
-      .eng-kit-btn-dot {
-        opacity: 1;
-        background: $highlight;
-      }
-      .eng-kit-btn-text {
-        color: $highlight !important;
-      }
-    }
+    display: none;
   }
 }
 
 .test-section {
   position: relative;
   background: $light-1;
-  height: 25vh;
+  height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -396,7 +353,7 @@ body {
   .test-header {
     width: 100%;
     p {
-      padding-top: 3vh;
+      padding-top: 8vh;
       padding-bottom: 1vh;
       text-align: center;
       font-family: $montserrat;
@@ -545,7 +502,6 @@ body {
   0% { opacity: 0; margin-left: -3vw; }
   100% { opacity: 1; margin-left: 0vw; }
 }
-
 
 @media only screen and (max-width: 850px) {
 
