@@ -644,8 +644,8 @@
       </div>
 
       <!---------------------------------------------------------------------------------
-        PAYMENT PAGE
-        ---------------------------------------------------------------------------------->
+      PAYMENT PAGE
+      ---------------------------------------------------------------------------------->
 
       <div
         class="checkout-sub-pg checkout-sub-pg-payment checkout-sub-pg-right"
@@ -656,23 +656,65 @@
         </h2>
         <div class="checkout-sub-sub-pgs" id="checkout-pymt-sub-sub-pg">
           <div id="checkout-pymt-bank-tsfr">
-            <input
-              type="radio"
-              name="paymentMethod"
-              class="checkout-pymt-mthd-inp"
-              id="checkout-pymt-mthd-inp-bank-tsfr"
-              onchange="checkout.payment.method.select('bankTransfer');"
-            />
-            <label
-              for="checkout-pymt-mthd-inp-bank-tsfr"
-              class="checkout-pymt-mthd-inp-lbl txt-1 txt-clr-blk-2"
-              >Bank Transfer (Receive 5% Bonus Credit)</label
-            >
+            <div class="checkout-radio-container">
+              <input
+                type="radio"
+                name="paymentMethod"
+                class="checkout-radio"
+                id="checkout-payment-method-bank-transfer"
+                onchange="checkout.payment.method.select('bankTransfer');"
+              />
+              <label
+                for="checkout-payment-method-bank-transfer"
+                class="checkout-radio-label"
+                >Bank Transfer</label
+              >
+            </div>
+            <div class="checkout-radio-valid">Receive 5% Credit</div>
             <div
               class="checkout-element-hide"
               id="checkout-pymt-bank-tsfr-cntn"
             >
-              <div id="checkout-payment-bank-transfer-instruction"></div>
+              <div id="checkout-payment-bank-transfer-instruction">
+                <div class="checkout-bank-transfer-instruction-line">
+                  <h4 class="rmv-h-css">Account Number:</h4>
+                  <p class="rmv-p-css">12-3456-7891011-12</p>
+                </div>
+                <div class="checkout-bank-transfer-instruction-line">
+                  <h4 class="rmv-h-css">Payee Name:</h4>
+                  <p class="rmv-p-css">CreataBase</p>
+                </div>
+                <div class="checkout-bank-transfer-instruction-line">
+                  <h4 class="rmv-h-css">Reference:</h4>
+                  <p
+                    class="rmv-p-css"
+                    id="checkout-bank-transfer-reference"
+                  ></p>
+                </div>
+                <div class="checkout-bank-transfer-instruction-line">
+                  <h4 class="rmv-h-css">Minimum Amount:</h4>
+                  <p class="rmv-p-css" id="checkout-bank-transfer-amount"></p>
+                </div>
+                <div id="checkout-bank-transfer-instruction-comment">
+                  <div>
+                    <h3 class="rmv-h-css">
+                      You can transfer more than
+                    </h3>
+                    <h3 class="rmv-h-css">
+                      the minimum amount and will
+                    </h3>
+                    <h3 class="rmv-h-css">
+                      go to your account wallet.
+                    </h3>
+                    <h3 class="rmv-h-css">
+                      You can easily withdraw back
+                    </h3>
+                    <h3 class="rmv-h-css">
+                      funds from your wallet.
+                    </h3>
+                  </div>
+                </div>
+              </div>
               <div class="checkout-buttons">
                 <button
                   class="rmv-btn-css checkout-button checkout-button-valid"
@@ -690,18 +732,20 @@
             </div>
           </div>
           <div id="checkout-pymt-card">
-            <input
-              type="radio"
-              name="paymentMethod"
-              class="checkout-pymt-mthd-inp"
-              id="checkout-pymt-mthd-inp-card"
-              onchange="checkout.payment.method.select('card');"
-            />
-            <label
-              for="checkout-pymt-mthd-inp-card"
-              class="checkout-pymt-mthd-inp-lbl txt-1 txt-clr-blk-2"
-              >Debit Card or Credit Card</label
-            >
+            <div class="checkout-radio-container">
+              <input
+                type="radio"
+                name="paymentMethod"
+                class="checkout-radio"
+                id="checkout-payment-method-card"
+                onchange="checkout.payment.method.select('card');"
+              />
+              <label
+                for="checkout-payment-method-card"
+                class="checkout-radio-label"
+                >Debit Card or Credit Card</label
+              >
+            </div>
             <div class="checkout-element-hide" id="checkout-pymt-card-cntn">
               <form action="/charge" method="post" id="checkout-pymt-card-form">
                 <label

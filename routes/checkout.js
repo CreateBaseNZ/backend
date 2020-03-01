@@ -350,6 +350,48 @@ router.post(
   }
 );
 
+// @route     POST /checkout/order/update/payment-method
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/update/payment-method",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    const option = req.body.option;
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Update order
+    order.payment.method = option;
+    // Save order
+    let savedOrder;
+    try {
+      savedOrder = await order.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Validation
+    validity = {
+      cart: savedOrder.validateCart(),
+      shipping: savedOrder.validateShipping()
+    };
+
+    return res.send({
+      status: "success",
+      data: {
+        order: savedOrder,
+        price: {},
+        validity
+      }
+    });
+  }
+);
+
 // @route     POST /checkout/order/validate/cart
 // @desc
 // @access    Private
