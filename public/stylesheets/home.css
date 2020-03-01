@@ -1766,11 +1766,16 @@ body {
   left: 9vw;
 }
 
+.eng-kit-section .eng-kit-coming-soon {
+  font-family: "Poppins", sans-serif;
+  font-size: 4vw;
+  color: #877da9;
+  font-weight: 100;
+  letter-spacing: 0.3vmax;
+}
+
 .eng-kit-section .eng-kit-btn-container {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  position: absolute;
-  right: -6vmax;
+  margin-top: 5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1801,8 +1806,8 @@ body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  height: 2vmax;
-  width: 9vmax;
+  height: 5vh;
+  width: 20vw;
   cursor: pointer;
 }
 
@@ -1819,7 +1824,7 @@ body {
 .eng-kit-section .eng-kit-btn-container .eng-kit-btn .eng-kit-btn-text {
   font-family: "Poppins", sans-serif;
   color: #c7c2d5;
-  font-size: 0.6vmax;
+  font-size: 3vw;
   letter-spacing: 0.4vmax;
   font-weight: 800;
 }
@@ -1839,17 +1844,6 @@ body {
 
 .eng-kit-section .eng-kit-btn-container .eng-kit-btn-focus .eng-kit-btn-text {
   color: #4bf0ea !important;
-}
-
-.eng-kit-section .eng-kit-coming-soon {
-  position: absolute;
-  left: 43.1vw;
-  bottom: 0;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.6vmax;
-  color: #877da9;
-  font-weight: 100;
-  letter-spacing: 0.3vmax;
 }
 
 .test-section {
