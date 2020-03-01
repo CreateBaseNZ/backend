@@ -1946,47 +1946,6 @@ SHIPPING
 /*-----------------------------------------------------------------------------------------
 PAYMENT
 -----------------------------------------------------------------------------------------*/
-#checkout-pymt-card-form {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 2vmax 0;
-}
-
-.checkout-pymt-lbl {
-  width: 100%;
-  padding: 1vmax 1vmax 0.5vmax 0;
-}
-
-#checkout-card-num {
-  width: 100%;
-}
-
-#checkout-pymt-card-exp-lbl {
-  width: 40%;
-}
-
-#checkout-pymt-card-cvc-lbl {
-  width: 40%;
-}
-
-#checkout-card-exp {
-  width: 40%;
-}
-
-#checkout-card-cvc {
-  width: 40%;
-}
-
 #checkout-pymt-card {
   width: 100%;
 }
@@ -1995,8 +1954,106 @@ PAYMENT
   width: 100%;
 }
 
-#checkout-pymt-sub-sub-pg {
-  padding: 4vmax 14vmax 4vmax 4vmax;
+.checkout-payment-card-container {
+  height: 47.6vmax;
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#checkout-pymt-card-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.checkout-payment-card-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1vmax;
+}
+
+.checkout-payment-card-input-container label {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+  color: #877da9;
+}
+
+.checkout-payment-card-input-container div {
+  width: 100%;
+}
+
+#checkout-card-number-container {
+  width: 100%;
+}
+
+#checkout-card-expiry-container,
+#checkout-card-cvc-container {
+  width: 50%;
+}
+
+.checkout-payment-bank-transfer-container {
+  height: 68vmax;
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#checkout-payment-bank-transfer-instruction {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 3vmax 0;
+}
+
+.checkout-bank-transfer-instruction-line {
+  height: 5vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.checkout-bank-transfer-instruction-line h4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.checkout-bank-transfer-instruction-line h4,
+.checkout-bank-transfer-instruction-line p {
+  width: 50%;
+  padding-left: 1vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
 }
 
 #checkout-bank-transfer-instruction-comment {
@@ -2006,11 +2063,13 @@ PAYMENT
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #checkout-bank-transfer-instruction-comment div {
-  height: 20vmax;
-  width: 100%;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2018,6 +2077,7 @@ PAYMENT
       flex-wrap: wrap;
   -ms-flex-line-pack: center;
       align-content: center;
+  padding-top: 3vmax;
 }
 
 #checkout-bank-transfer-instruction-comment div h3 {
@@ -2029,10 +2089,13 @@ PAYMENT
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 3vmax;
   font-family: "Poppins", sans-serif;
   font-size: 1.6vmax;
   letter-spacing: 0.2vmax;
+}
+
+#checkout-pymt-sub-sub-pg {
+  padding: 4vmax 14vmax 4vmax 4vmax;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -2040,7 +2103,7 @@ NAVIGATION
 -----------------------------------------------------------------------------------------*/
 .checkout-sub-pg {
   position: fixed;
-  height: calc(100% - 16vmax);
+  height: 100%;
   overflow-y: scroll;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -2637,6 +2700,62 @@ DESKTOP CSS
     color: #322d41;
   }
   /*---------------------------------------------------------------------------------------
+  PAYMENT
+  ---------------------------------------------------------------------------------------*/
+  .checkout-payment-card-container {
+    height: 19.5vmax;
+  }
+  .checkout-payment-card-input-container {
+    padding: 1vmax;
+  }
+  .checkout-payment-card-input-container label {
+    height: 1.5vmax;
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
+  #checkout-card-number-container {
+    width: 50%;
+  }
+  #checkout-card-expiry-container,
+  #checkout-card-cvc-container {
+    width: 25%;
+  }
+  .StripeElement {
+    height: 2.4vmax;
+    border-width: 0.05vmax;
+    padding: 0.75vmax 0.5vmax;
+    font-size: 0.9vmax;
+  }
+  .checkout-payment-bank-transfer-container {
+    height: 38.5vmax;
+  }
+  #checkout-payment-bank-transfer-instruction {
+    padding: 1.5vmax 0;
+  }
+  .checkout-bank-transfer-instruction-line {
+    height: 3vmax;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .checkout-bank-transfer-instruction-line h4,
+  .checkout-bank-transfer-instruction-line p {
+    width: 40%;
+    padding-right: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
+  #checkout-bank-transfer-instruction-comment div {
+    width: 50%;
+    padding-top: 1.5vmax;
+  }
+  #checkout-bank-transfer-instruction-comment div h3 {
+    height: 2vmax;
+    width: 100%;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
+  /*---------------------------------------------------------------------------------------
   GLOBAL
   ---------------------------------------------------------------------------------------*/
   .checkout-element-hide {
@@ -2694,21 +2813,6 @@ DESKTOP CSS
     height: 1.6vmax;
     font-size: 0.7vmax;
     letter-spacing: 0.1vmax;
-  }
-  .StripeElement {
-    height: 2.4vmax;
-    width: 100%;
-    border-width: 0.05vmax;
-    border-style: none none solid none;
-    border-bottom-color: #877da9;
-    border-radius: 0vmax;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    padding: 0.75vmax 0.5vmax;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9vmax;
-    color: #322d41;
   }
 }
 

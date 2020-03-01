@@ -445,39 +445,7 @@ SHIPPING
 PAYMENT
 -----------------------------------------------------------------------------------------*/
 
-#checkout-pymt-card-form {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2vmax 0;
-}
-
-.checkout-pymt-lbl {
-  width: 100%;
-  padding: 1vmax 1vmax 0.5vmax 0;
-}
-
-#checkout-card-num {
-  width: 100%;
-}
-
-#checkout-pymt-card-exp-lbl {
-  width: 40%;
-}
-
-#checkout-pymt-card-cvc-lbl {
-  width: 40%;
-}
-
-#checkout-card-exp {
-  width: 40%;
-}
-
-#checkout-card-cvc {
-  width: 40%;
-}
+// CARD - START
 
 #checkout-pymt-card {
   width: 100%;
@@ -487,31 +455,109 @@ PAYMENT
   width: 100%;
 }
 
-#checkout-pymt-sub-sub-pg {
-  padding: 4vmax 14vmax 4vmax 4vmax;
+.checkout-payment-card-container {
+  height: 47.6vmax;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+#checkout-pymt-card-form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkout-payment-card-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1vmax;
+  label {
+    height: 3vmax;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-family: $fnt-fml-2;
+    font-size: 1.6vmax;
+    letter-spacing: 0.2vmax;
+    color: $clr-blk-3;
+  }
+  div {
+    width: 100%;
+  }
+}
+
+#checkout-card-number-container {
+  width: 100%;
+}
+
+#checkout-card-expiry-container,
+#checkout-card-cvc-container {
+  width: 50%;
+}
+
+// CARD - END
+// BANK TRANSFER - START
+
+.checkout-payment-bank-transfer-container {
+  height: 68vmax;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+#checkout-payment-bank-transfer-instruction {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3vmax 0;
+}
+
+.checkout-bank-transfer-instruction-line {
+  height: 5vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  h4 {
+    display: flex;
+    justify-content: flex-end;
+  }
+  h4,
+  p {
+    width: 50%;
+    padding-left: 1vmax;
+    font-family: $fnt-fml-2;
+    font-size: 1.6vmax;
+    letter-spacing: 0.2vmax;
+  }
 }
 
 #checkout-bank-transfer-instruction-comment {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   div {
-    height: 20vmax;
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
+    padding-top: 3vmax;
     h3 {
       height: 3vmax;
       width: 100%;
       display: flex;
       align-items: center;
-      padding: 0 3vmax;
       font-family: $fnt-fml-2;
       font-size: 1.6vmax;
       letter-spacing: 0.2vmax;
     }
   }
+}
+
+// BANK TRANSFER - END
+
+#checkout-pymt-sub-sub-pg {
+  padding: 4vmax 14vmax 4vmax 4vmax;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -522,7 +568,7 @@ NAVIGATION
 
 .checkout-sub-pg {
   position: fixed;
-  height: calc(100% - 16vmax);
+  height: 100%;
   overflow-y: scroll;
   transition: all 0.5s ease;
   opacity: 1;
@@ -1084,6 +1130,82 @@ DESKTOP CSS
   }
 
   /*---------------------------------------------------------------------------------------
+  PAYMENT
+  ---------------------------------------------------------------------------------------*/
+
+  // CARD - START
+
+  .checkout-payment-card-container {
+    height: 19.5vmax;
+  }
+
+  .checkout-payment-card-input-container {
+    padding: 1vmax;
+    label {
+      height: 1.5vmax;
+      font-size: 0.8vmax;
+      letter-spacing: 0.1vmax;
+    }
+  }
+
+  #checkout-card-number-container {
+    width: 50%;
+  }
+
+  #checkout-card-expiry-container,
+  #checkout-card-cvc-container {
+    width: 25%;
+  }
+
+  .StripeElement {
+    height: 2.4vmax;
+    // Border
+    border-width: 0.05vmax;
+    // Spacing
+    padding: 0.75vmax 0.5vmax;
+    // Text
+    font-size: 0.9vmax;
+  }
+
+  // CARD - END
+  // BANK TRANSFER - START
+
+  .checkout-payment-bank-transfer-container {
+    height: 38.5vmax;
+  }
+
+  #checkout-payment-bank-transfer-instruction {
+    padding: 1.5vmax 0;
+  }
+
+  .checkout-bank-transfer-instruction-line {
+    height: 3vmax;
+    justify-content: center;
+    h4,
+    p {
+      width: 40%;
+      padding-right: 0.5vmax;
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+    }
+  }
+
+  #checkout-bank-transfer-instruction-comment {
+    div {
+      width: 50%;
+      padding-top: 1.5vmax;
+      h3 {
+        height: 2vmax;
+        width: 100%;
+        font-size: 1vmax;
+        letter-spacing: 0.1vmax;
+      }
+    }
+  }
+
+  // BANK TRANSFER - END
+
+  /*---------------------------------------------------------------------------------------
   GLOBAL
   ---------------------------------------------------------------------------------------*/
 
@@ -1147,24 +1269,6 @@ DESKTOP CSS
     height: 1.6vmax;
     font-size: 0.7vmax;
     letter-spacing: 0.1vmax;
-  }
-
-  .StripeElement {
-    height: 2.4vmax;
-    width: 100%;
-    // Border
-    border-width: 0.05vmax;
-    border-style: none none solid none;
-    border-bottom-color: $clr-blk-3;
-    border-radius: 0vmax;
-    appearance: none;
-    // Spacing
-    padding: 0.75vmax 0.5vmax;
-    // Text
-    font-family: $fnt-fml-2;
-    font-size: 0.9vmax;
-    // Text Colour
-    color: $clr-blk-2;
   }
 }
 

@@ -672,7 +672,7 @@
             </div>
             <div class="checkout-radio-valid">Receive 5% Credit</div>
             <div
-              class="checkout-element-hide"
+              class="checkout-element-hide checkout-payment-bank-transfer-container"
               id="checkout-pymt-bank-tsfr-cntn"
             >
               <div id="checkout-payment-bank-transfer-instruction">
@@ -746,28 +746,35 @@
                 >Debit Card or Credit Card</label
               >
             </div>
-            <div class="checkout-element-hide" id="checkout-pymt-card-cntn">
+            <div
+              class="checkout-element-hide checkout-payment-card-container"
+              id="checkout-pymt-card-cntn"
+            >
               <form action="/charge" method="post" id="checkout-pymt-card-form">
-                <label
-                  for="checkout-card-num"
-                  class="checkout-pymt-lbl sbtl-1 txt-clr-blk-3"
-                  >Card Number</label
+                <div
+                  class="checkout-payment-card-input-container"
+                  id="checkout-card-number-container"
                 >
-                <div id="checkout-card-num"></div>
-                <label
-                  for="checkout-card-exp"
-                  class="checkout-pymt-lbl sbtl-1 txt-clr-blk-3"
-                  id="checkout-pymt-card-exp-lbl"
-                  >Expiry Date</label
+                  <label for="checkout-card-num">Card Number</label>
+                  <div id="checkout-card-num"></div>
+                  <p class="rmv-p-css checkout-input-error"></p>
+                </div>
+                <div
+                  class="checkout-payment-card-input-container"
+                  id="checkout-card-expiry-container"
                 >
-                <label
-                  for="checkout-card-cvc"
-                  class="checkout-pymt-lbl sbtl-1 txt-clr-blk-3"
-                  id="checkout-pymt-card-cvc-lbl"
-                  >CVC</label
+                  <label for="checkout-card-exp">Expiry Date</label>
+                  <div id="checkout-card-exp"></div>
+                  <p class="rmv-p-css checkout-input-error"></p>
+                </div>
+                <div
+                  class="checkout-payment-card-input-container"
+                  id="checkout-card-cvc-container"
                 >
-                <div id="checkout-card-exp"></div>
-                <div id="checkout-card-cvc"></div>
+                  <label for="checkout-card-cvc">CVC</label>
+                  <div id="checkout-card-cvc"></div>
+                  <p class="rmv-p-css checkout-input-error"></p>
+                </div>
               </form>
               <div class="checkout-buttons">
                 <button

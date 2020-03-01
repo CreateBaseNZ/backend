@@ -343,6 +343,7 @@ checkout.listener = () => {
   checkout.element.windowSize.addListener(checkout.cart.items.resize);
   checkout.element.windowSize.addListener(checkout.cart.resize);
   checkout.element.windowSize.addListener(checkout.shipping.resize);
+  checkout.element.windowSize.addListener(checkout.payment.resize);
 };
 
 // @FUNC  checkout.elements.assign
@@ -1567,6 +1568,7 @@ checkout.payment.stripe.initialise = () => {
 // @DESC
 // @ARGU
 checkout.payment.method.select = async option => {
+  checkout.payment.method.selected = option;
   if (option === "bankTransfer") {
     document.querySelector(
       "#checkout-payment-method-bank-transfer"
@@ -1578,6 +1580,7 @@ checkout.payment.method.select = async option => {
     checkout.payment.method.bank.show(false);
     checkout.payment.method.card.show(true);
   }
+  checkout.payment.resize();
 
   // UPDATE THE DATABASE
   // Place Loaders
@@ -1710,6 +1713,41 @@ checkout.payment.show = () => {
   checkout.navigation.navigate(2);
 };
 
+// @FUNC  checkout.payment.resize
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.payment.resize = () => {
+  // DESKTOP HEIGHT CALCULATION
+  const heading = 8;
+  let buttons = 0;
+  let method = 0;
+  if (checkout.payment.method.selected == "bankTransfer") {
+    buttons = 12;
+    method = 26.5;
+  } else if (checkout.payment.method.selected == "card") {
+    buttons = 12;
+    method = 7.5;
+  }
+
+  const bonus = 2;
+  const option = 3 * 2;
+  const total = heading + buttons + method + bonus + option;
+
+  // SET THE CART PAGE SIZE
+  if (checkout.element.windowSize.matches) {
+    if (checkoutSelectedPage === 2) {
+      document.querySelector("#checkout-sub-pg-payment").style =
+        "height: " + total + "vmax;";
+    } else {
+      document.querySelector("#checkout-sub-pg-payment").style =
+        "height: 8vmax;";
+    }
+  } else {
+    document.querySelector("#checkout-sub-pg-payment").style = "height: 100%;";
+  }
+};
+
 /*-----------------------------------------------------------------------------------------
 NAVIGATION
 -----------------------------------------------------------------------------------------*/
@@ -1731,6 +1769,7 @@ checkout.navigation.navigate = nextPage => {
   checkoutSelectedPage = nextPage;
   checkout.cart.resize();
   checkout.shipping.resize();
+  checkout.payment.resize();
 };
 
 // @FUNC  checkout.navigation.changeCSS.navigation
