@@ -1426,6 +1426,11 @@ TEMPORARY
 /*=========================================================================================
 END
 =========================================================================================*/
+:root {
+  --swiper-pagination-color: #877da9;
+  --swiper-theme-color: #c7c2d5;
+}
+
 body {
   background: white;
   max-width: 100%;
@@ -1441,6 +1446,18 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-sep {
+  width: 70vw;
+  height: 2px;
+  background: #f8f8f8;
 }
 
 .landing-section {
@@ -1624,7 +1641,8 @@ body {
 .eng-kit-section {
   position: relative;
   width: 100vw;
-  background: white;
+  height: 100vh;
+  background: #f8f8f8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1783,30 +1801,30 @@ body {
 }
 
 .eng-kit-section .eng-kit-stc img {
-  top: 15vh;
+  top: 11vh;
   left: 19vw;
   width: 70vw;
 }
 
 .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-code {
-  top: 7vh;
+  top: 3vh;
   left: 22vw;
 }
 
 .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-title {
-  top: 10vh;
+  top: 6vh;
   left: 14vw;
 }
 
 .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-more {
-  top: 30vh;
-  left: 9vw;
+  top: 42vh;
+  left: 25vw;
 }
 
 .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-line,
 .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-line-overlap {
-  top: 35vh;
-  left: 9vw;
+  top: 47vh;
+  left: 25vw;
 }
 
 .eng-kit-section .eng-kit-coming-soon {

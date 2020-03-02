@@ -1,5 +1,10 @@
 @import "global/all";
 
+:root {
+  --swiper-pagination-color: #{$dark-1};
+  --swiper-theme-color: #{$light-3};
+}
+
 body {
   background: $light-1;
   max-width: 100%;
@@ -10,6 +15,14 @@ body {
   margin-top: $top-bar-height;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-sep {
+  width: 70vw;
+  height: 2px;
+  background: $light-2;
 }
 
 .landing-section {
@@ -156,7 +169,8 @@ body {
 .eng-kit-section {
   position: relative;  
   width: 100vw;
-  background: $light-1;
+  height: 100vh;
+  background: $light-2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -299,27 +313,27 @@ body {
 
   .eng-kit-stc {
     img {
-      top: 15vh;
+      top: 11vh;
       left: 19vw;
       width: 70vw;
     }
     .eng-kit-text {
       .eng-kit-code {
-        top: 7vh;
+        top: 3vh;
         left: 22vw;
       }
       .eng-kit-title {
-        top: 10vh;
+        top: 6vh;
         left: 14vw;
       }
       .eng-kit-more {
-        top: 30vh;
-        left: 9vw;
+        top: 42vh;
+        left: 25vw;
       }
       .eng-kit-line,
       .eng-kit-line-overlap {
-        top: 35vh;
-        left: 9vw;
+        top: 47vh;
+        left: 25vw;
       }
     }
   }
@@ -330,10 +344,6 @@ body {
     color: $dark-1;
     font-weight: 100;
     letter-spacing: 0.3vmax;
-  }
-
-  .swiper-pagination {
-    // margin-bottom: -5vh;
   }
 
   .eng-kit-btn-container {
