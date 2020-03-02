@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+}
+
+$logo-1: rgb(130, 88, 220);
+$logo-2: rgb(104, 83, 217);
+$logo-3: rgb(78, 78, 214);
+
+$highlight: rgb(75, 240, 234);
+
+$dark-3: rgb(45, 40, 60);
+$dark-2: rgb(50, 45, 65);
+$dark-1: rgb(135, 125, 169);
+
+$light-1: rgb(255, 255, 255);
+$light-2: rgb(248, 248, 248);
+$light-3: rgb(199, 194, 213);
+
+$montserrat: "Montserrat", sans-serif;
+$poppins: "Poppins", sans-serif;
+$raleway: "Raleway", sans-serif;
+
+$diamond: 0;

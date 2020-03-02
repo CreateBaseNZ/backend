@@ -1,0 +1,115 @@
+.loading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .layer {
+    height: $diamond;
+    width: $diamond;
+    opacity: 0.3;
+    position: absolute;
+    border-radius: 1vw;
+  }
+
+  .layer-1 {
+    animation: loading-icon-1 5s forwards infinite;
+  }
+  .layer-2 {
+    margin-top: 0;
+    margin-left: 0;
+    animation: loading-icon-2 5s forwards infinite;
+  }
+  .layer-3 {
+    animation: loading-icon-3 5s forwards infinite;
+  }
+}
+
+@keyframes loading-icon-1 {
+  0%,
+  100% {
+    background: $logo-3;
+    margin-top: calc(#{$diamond} * -1 / 4);
+    margin-left: 0;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: $diamond;
+    transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-3;
+    margin-top: calc(#{$diamond} * 1 / 4);
+    margin-left: 0;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: -$diamond;
+    transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes loading-icon-2 {
+  0%,
+  100% {
+    background: $logo-2;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-2;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes loading-icon-3 {
+  0%,
+  100% {
+    background: $logo-1;
+    margin-top: calc(#{$diamond} * 1 / 4);
+    margin-left: 0;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: -$diamond;
+    transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-3;
+    margin-top: calc(#{$diamond} * -1 / 4);
+    margin-left: 0;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: $diamond;
+    transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
