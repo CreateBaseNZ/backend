@@ -7,17 +7,19 @@ const navInit = () => {
 
   ham.addEventListener("click", function () {
     leftMenu.classList.toggle('nav-left-menu-active');
+    ham.classList.toggle('is-active');
     if (rightMenu.classList.contains('nav-right-menu-active')) {
-      console.log('hi')
       rightMenu.classList.remove('nav-right-menu-active');
+      user.classList.remove('nav-user-active');
     }
   });
 
   user.addEventListener("click", function () {
     rightMenu.classList.toggle('nav-right-menu-active');
+    user.classList.toggle('nav-user-active');
     if (leftMenu.classList.contains('nav-left-menu-active')) {
-      console.log('hi');
       leftMenu.classList.remove('nav-left-menu-active');
+      ham.classList.remove('is-active');
     }
   });
 
