@@ -2276,51 +2276,47 @@ body {
   margin-left: calc(4.5vmax + 0.5px);
 }
 
-@-webkit-keyframes landing-mid-before-anim {
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes landing-mid-before-anim {
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes landing-mid-after-anim {
+@-webkit-keyframes landing-slide-sub-anim {
   0% {
-    height: 0vmax;
-    opacity: 1;
-  }
-  50% {
-    height: 20vh;
-    opacity: 1;
+    margin-top: 0vh;
+    opacity: 0;
   }
   100% {
-    height: 20vh;
-    opacity: 0;
+    margin-top: 2vh;
+    opacity: 1;
   }
 }
 
-@keyframes landing-mid-after-anim {
+@keyframes landing-slide-sub-anim {
   0% {
-    height: 0vmax;
-    opacity: 1;
-  }
-  50% {
-    height: 20vh;
-    opacity: 1;
+    margin-top: 0vh;
+    opacity: 0;
   }
   100% {
-    height: 20vh;
+    margin-top: 2vh;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes landing-slide-sep-anim {
+  0% {
+    width: 0vw;
     opacity: 0;
+  }
+  100% {
+    width: 10vw;
+    opacity: 0.75;
+  }
+}
+
+@keyframes landing-slide-sep-anim {
+  0% {
+    width: 0vw;
+    opacity: 0;
+  }
+  100% {
+    width: 10vw;
+    opacity: 0.75;
   }
 }
 
@@ -2372,47 +2368,51 @@ body {
   }
 }
 
-@-webkit-keyframes landing-slide-sep-anim {
-  0% {
-    width: 0vw;
-    opacity: 0;
-  }
-  100% {
-    width: 10vw;
-    opacity: 0.75;
-  }
-}
-
-@keyframes landing-slide-sep-anim {
-  0% {
-    width: 0vw;
-    opacity: 0;
-  }
-  100% {
-    width: 10vw;
-    opacity: 0.75;
-  }
-}
-
-@-webkit-keyframes landing-slide-sub-anim {
-  0% {
-    margin-top: 0vh;
-    opacity: 0;
-  }
-  100% {
-    margin-top: 2vh;
+@-webkit-keyframes landing-mid-before-anim {
+  50% {
     opacity: 1;
   }
-}
-
-@keyframes landing-slide-sub-anim {
-  0% {
-    margin-top: 0vh;
+  100% {
     opacity: 0;
   }
-  100% {
-    margin-top: 2vh;
+}
+
+@keyframes landing-mid-before-anim {
+  50% {
     opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes landing-mid-after-anim {
+  0% {
+    height: 0vmax;
+    opacity: 1;
+  }
+  50% {
+    height: 20vh;
+    opacity: 1;
+  }
+  100% {
+    height: 20vh;
+    opacity: 0;
+  }
+}
+
+@keyframes landing-mid-after-anim {
+  0% {
+    height: 0vmax;
+    opacity: 1;
+  }
+  50% {
+    height: 20vh;
+    opacity: 1;
+  }
+  100% {
+    height: 20vh;
+    opacity: 0;
   }
 }
 
@@ -2482,24 +2482,6 @@ body {
   }
 }
 
-@-webkit-keyframes all-line {
-  0% {
-    width: 0vw;
-  }
-  100% {
-    width: 15vw;
-  }
-}
-
-@keyframes all-line {
-  0% {
-    width: 0vw;
-  }
-  100% {
-    width: 15vw;
-  }
-}
-
 @-webkit-keyframes all-more {
   0% {
     opacity: 0;
@@ -2522,6 +2504,24 @@ body {
   }
 }
 
+@-webkit-keyframes all-line {
+  0% {
+    width: 0vw;
+  }
+  100% {
+    width: 15vw;
+  }
+}
+
+@keyframes all-line {
+  0% {
+    width: 0vw;
+  }
+  100% {
+    width: 15vw;
+  }
+}
+
 @media only screen and (min-width: 850px) {
   .main-page {
     margin-top: 0vh;
@@ -2538,7 +2538,7 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    width: auto;
+    width: 300vw;
     height: auto;
     -webkit-transition: margin-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98);
     transition: margin-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98);
@@ -2554,7 +2554,7 @@ body {
   }
   .landing-carousel .landing-slide .landing-slide-text .landing-slide-title {
     display: block;
-    padding-top: 30vh;
+    padding-top: 35vh;
     margin-top: -1vh;
     font-family: "Poppins", sans-serif;
     font-weight: 800;
@@ -2568,7 +2568,7 @@ body {
   }
   .landing-carousel .landing-slide .landing-slide-text .landing-slide-text-sep {
     display: block;
-    margin: 5vh 0;
+    margin: 6vh 0;
     width: 0;
     height: 1px;
     opacity: 0;
@@ -2589,7 +2589,7 @@ body {
     color: #4bf0ea;
   }
   .landing-carousel .landing-slide .landing-slide-text .landing-slide-sub:hover ~ .landing-slide-text-sep-2 {
-    width: 8vw;
+    width: 5vw;
   }
   .landing-carousel .landing-slide .landing-slide-text .landing-slide-text-sep-2 {
     margin-top: 0;
@@ -3004,64 +3004,64 @@ body {
     font-weight: 100;
     letter-spacing: 0.3vmax;
   }
-  @-webkit-keyframes landing-mid-before-anim {
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes landing-mid-before-anim {
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @-webkit-keyframes landing-mid-after-anim {
+  @-webkit-keyframes landing-slide-title-anim {
     0% {
-      height: 0vmax;
-      opacity: 1;
-    }
-    50% {
-      height: 35vmax;
-      opacity: 1;
-    }
-    100% {
-      height: 35vmax;
+      margin-top: -1vh;
       opacity: 0;
     }
+    100% {
+      margin-top: 0vmax;
+      opacity: 1;
+    }
   }
-  @keyframes landing-mid-after-anim {
+  @keyframes landing-slide-title-anim {
     0% {
-      height: 0vmax;
-      opacity: 1;
-    }
-    50% {
-      height: 35vmax;
-      opacity: 1;
+      margin-top: -1vh;
+      opacity: 0;
     }
     100% {
-      height: 35vmax;
-      opacity: 0;
+      margin-top: 0vmax;
+      opacity: 1;
     }
   }
-  @-webkit-keyframes landing-side-before-anim {
-    50% {
-      opacity: 1;
+  @-webkit-keyframes landing-slide-sub-anim {
+    0% {
+      margin-top: -2vh;
+      opacity: 0;
     }
     100% {
-      opacity: 0;
+      margin-top: 0vh;
+      opacity: 1;
     }
   }
-  @keyframes landing-side-before-anim {
-    50% {
-      opacity: 1;
+  @keyframes landing-slide-sub-anim {
+    0% {
+      margin-top: -2vh;
+      opacity: 0;
     }
     100% {
+      margin-top: 0vh;
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes landing-slide-sep-anim {
+    0% {
+      width: 0vw;
       opacity: 0;
+    }
+    100% {
+      width: 5vw;
+      opacity: 0.5;
+    }
+  }
+  @keyframes landing-slide-sep-anim {
+    0% {
+      width: 0vw;
+      opacity: 0;
+    }
+    100% {
+      width: 5vw;
+      opacity: 0.5;
     }
   }
   @-webkit-keyframes landing-side-after-anim {
@@ -3092,64 +3092,32 @@ body {
       opacity: 0;
     }
   }
-  @-webkit-keyframes landing-slide-title-anim {
+  @-webkit-keyframes landing-mid-after-anim {
     0% {
-      margin-top: -1vh;
-      opacity: 0;
-    }
-    100% {
-      margin-top: 0vmax;
+      height: 0vmax;
       opacity: 1;
     }
-  }
-  @keyframes landing-slide-title-anim {
-    0% {
-      margin-top: -1vh;
-      opacity: 0;
-    }
-    100% {
-      margin-top: 0vmax;
+    50% {
+      height: 35vmax;
       opacity: 1;
     }
-  }
-  @-webkit-keyframes landing-slide-sep-anim {
-    0% {
-      width: 0vw;
+    100% {
+      height: 35vmax;
       opacity: 0;
     }
-    100% {
-      width: 8vw;
-      opacity: 0.5;
-    }
   }
-  @keyframes landing-slide-sep-anim {
+  @keyframes landing-mid-after-anim {
     0% {
-      width: 0vw;
-      opacity: 0;
-    }
-    100% {
-      width: 8vw;
-      opacity: 0.5;
-    }
-  }
-  @-webkit-keyframes landing-slide-sub-anim {
-    0% {
-      margin-top: -2vh;
-      opacity: 0;
-    }
-    100% {
-      margin-top: 0vh;
+      height: 0vmax;
       opacity: 1;
     }
-  }
-  @keyframes landing-slide-sub-anim {
-    0% {
-      margin-top: -2vh;
-      opacity: 0;
+    50% {
+      height: 35vmax;
+      opacity: 1;
     }
     100% {
-      margin-top: 0vh;
-      opacity: 1;
+      height: 35vmax;
+      opacity: 0;
     }
   }
   @-webkit-keyframes all-title {
