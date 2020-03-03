@@ -59,6 +59,12 @@ const CustomerSchema = new Schema({
   },
   address: {
     type: AddressSchema
+  },
+  wallet: {
+    amount: {
+      type: Number,
+      default: 0
+    }
   }
 });
 

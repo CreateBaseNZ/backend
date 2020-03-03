@@ -662,7 +662,7 @@
                 name="paymentMethod"
                 class="checkout-radio"
                 id="checkout-payment-method-bank-transfer"
-                onchange="checkout.payment.method.select('bankTransfer');"
+                onchange="checkout.payment.method.select('bankTransfer',true);"
               />
               <label
                 for="checkout-payment-method-bank-transfer"
@@ -738,7 +738,7 @@
                 name="paymentMethod"
                 class="checkout-radio"
                 id="checkout-payment-method-card"
-                onchange="checkout.payment.method.select('card');"
+                onchange="checkout.payment.method.select('card', true);"
               />
               <label
                 for="checkout-payment-method-card"
@@ -805,32 +805,88 @@
           id="checkout-navigation-cart"
         >
           <img
-            src="./../../public/images/cart.png"
-            class="checkout-navigation-icon-default"
+            class="checkout-navigation-icon checkout-navigation-icon-black"
+            src="./../../public/images/checkout/cart-black-2.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-white"
+            src="./../../public/images/checkout/cart-white-2.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-green"
+            src="./../../public/images/checkout/cart-green.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-grey"
+            src="./../../public/images/checkout/cart-white-3.png"
             alt=""
           />
         </div>
         <div
-          class="checkout-navigation-icon-container"
+          class="checkout-navigation-icon-container checkout-navigation-icon-container-deselected"
           id="checkout-navigation-shipping"
         >
           <img
-            src="./../../public/images/shipping.png"
-            class="checkout-navigation-icon-default"
+            class="checkout-navigation-icon checkout-navigation-icon-black"
+            src="./../../public/images/checkout/shipping-black-2.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-white"
+            src="./../../public/images/checkout/shipping-white-2.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-green"
+            src="./../../public/images/checkout/shipping-green.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-grey"
+            src="./../../public/images/checkout/shipping-white-3.png"
             alt=""
           />
         </div>
         <div
-          class="checkout-navigation-icon-container"
+          class="checkout-navigation-icon-container checkout-navigation-icon-container-deselected"
           id="checkout-navigation-payment"
         >
           <img
-            src="./../../public/images/payment.png"
-            class="checkout-navigation-icon-default"
+            class="checkout-navigation-icon checkout-navigation-icon-black"
+            src="./../../public/images/checkout/payment-black-2.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-white"
+            src="./../../public/images/checkout/payment-white-2.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-green"
+            src="./../../public/images/checkout/payment-green.png"
+            alt=""
+          />
+          <img
+            class="checkout-navigation-icon checkout-navigation-icon-grey"
+            src="./../../public/images/checkout/payment-white-3.png"
             alt=""
           />
         </div>
       </nav>
+    </div>
+    <div id="checkout-loading-display" class="">
+      <div id="checkout-loading-display-load">
+        <div class="load-2">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <p id="checkout-loading-display-text">loading order details</p>
     </div>
   </body>
 </html>

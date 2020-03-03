@@ -268,6 +268,9 @@ OrderSchema.methods.validateCart = function() {
 // @DESC
 // @ARGU
 OrderSchema.methods.validateShipping = function() {
+  if (this.shipping.address.option == "saved") {
+  } else if (this.shipping.address.option == "new") {
+  }
   return true;
 };
 

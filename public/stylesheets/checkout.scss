@@ -98,8 +98,8 @@ CART
 }
 
 .checkout-cart-loading {
-  height: 4vmax;
-  width: 4vmax;
+  height: 16vmax;
+  width: 16vmax;
 }
 
 .checkout-cart-cnts {
@@ -594,43 +594,56 @@ NAVIGATION
   justify-content: center;
   overflow: hidden;
   border-radius: 3.5vmax;
-  border-color: $clr-blk-1;
   border-style: solid;
   border-width: 0.3vmax;
-  background-color: $clr-wht-1;
-}
-
-.checkout-navigation-icon-container .checkout-navigation-icon-default {
-  width: 60%;
-  height: 60%;
-  position: absolute;
-  opacity: 1;
-}
-
-.checkout-navigation-icon-container .checkout-navigation-icon-selected {
-  width: 60%;
-  height: 60%;
-  position: absolute;
-  opacity: 0;
+  transition: all 0.5s ease;
+  .checkout-navigation-icon {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
 }
 
 .checkout-navigation-icon-container-selected {
   background-color: $clr-blk-1;
+  border-color: $clr-blk-1;
+  .checkout-navigation-icon-white {
+    opacity: 1;
+  }
 }
 
-.checkout-navigation-icon-container-selected .checkout-navigation-icon-default {
-  width: 60%;
-  height: 60%;
-  position: absolute;
-  opacity: 0;
+.checkout-navigation-icon-container-deselected {
+  background-color: $clr-wht-1;
+  border-color: $clr-blk-1;
+  .checkout-navigation-icon-black {
+    opacity: 1;
+  }
 }
 
-.checkout-navigation-icon-container-selected
-  .checkout-navigation-icon-selected {
-  width: 60%;
-  height: 60%;
-  position: absolute;
-  opacity: 1;
+.checkout-navigation-icon-container-selected.valid {
+  background-color: #008000;
+  border-color: #008000;
+  .checkout-navigation-icon-white {
+    opacity: 1;
+  }
+}
+
+.checkout-navigation-icon-container-deselected.valid {
+  background-color: $clr-wht-1;
+  border-color: #008000;
+  .checkout-navigation-icon-green {
+    opacity: 1;
+  }
+}
+
+.checkout-navigation-icon-container-deselected.unavailable {
+  background-color: $clr-wht-1;
+  border-color: $clr-wht-3;
+  .checkout-navigation-icon-grey {
+    opacity: 1;
+  }
 }
 
 // IDS
@@ -777,6 +790,40 @@ GLOBAL
   font-size: 1.2vmax;
   letter-spacing: 0.2vmax;
   color: #bb0000;
+}
+
+#checkout-loading-display {
+  height: 5vmax;
+  width: 40vmax;
+  position: fixed;
+  left: calc(50vw - 20vmax);
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 1vmax;
+  border-top-right-radius: 1vmax;
+  padding: 0 2vmax;
+  background-color: $clr-vlt-3;
+  z-index: 10;
+  transition: all 0.5s ease;
+  #checkout-loading-display-load {
+    width: 5vmax;
+    display: flex;
+    justify-content: center;
+  }
+  p {
+    width: 31vmax;
+    padding: 0 4vmax;
+    font-family: $fnt-fml-2;
+    font-size: 1.6vmax;
+    font-weight: bold;
+    letter-spacing: 0.3vmax;
+    color: $clr-wht-1;
+  }
+}
+
+#checkout-loading-display.hide {
+  transform: translateY(5vmax);
 }
 
 .checkout-element-hide {
@@ -1269,6 +1316,28 @@ DESKTOP CSS
     height: 1.6vmax;
     font-size: 0.7vmax;
     letter-spacing: 0.1vmax;
+  }
+
+  #checkout-loading-display {
+    height: 2.5vmax;
+    width: 20vmax;
+    left: calc(50vw - 10vmax);
+    border-top-left-radius: 0.5vmax;
+    border-top-right-radius: 0.5vmax;
+    padding: 0 1vmax;
+    #checkout-loading-display-load {
+      width: 2.5vmax;
+    }
+    p {
+      width: 15.5vmax;
+      padding: 0 2vmax;
+      font-size: 0.8vmax;
+      letter-spacing: 0.15vmax;
+    }
+  }
+
+  #checkout-loading-display.hide {
+    transform: translateY(2.5vmax);
   }
 }
 

@@ -1423,6 +1423,168 @@ TEMPORARY
   }
 }
 
+.load-2 {
+  display: inline-block;
+  position: relative;
+  width: 3.6vmax;
+  height: 3.6vmax;
+}
+
+.load-2 div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 2.4vmax;
+  height: 2.4vmax;
+  margin: 0.5vmax;
+  border: 0.5vmax solid white;
+  border-radius: 50%;
+  -webkit-animation: load-2 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: load-2 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: white transparent transparent transparent;
+}
+
+.load-2 div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.load-2 div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.load-2 div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+@-webkit-keyframes load-2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes load-2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 4;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+          animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+  width: 3.6vmax;
+  height: 3.6vmax;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  -webkit-box-shadow: inset 0px 0px 0px #7ac142;
+          box-shadow: inset 0px 0px 0px #7ac142;
+  -webkit-animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+          animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark__check {
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  -webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@-webkit-keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes scale {
+  0%,
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+            transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes scale {
+  0%,
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+            transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@-webkit-keyframes fill {
+  100% {
+    -webkit-box-shadow: inset 0px 0px 0px 30px #7ac142;
+            box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+
+@keyframes fill {
+  100% {
+    -webkit-box-shadow: inset 0px 0px 0px 30px #7ac142;
+            box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .load-2 {
+    width: 1.6vmax;
+    height: 1.6vmax;
+  }
+  .load-2 div {
+    width: 1.2vmax;
+    height: 1.2vmax;
+    margin: 0.25vmax;
+    border: 0.25vmax solid white;
+    border-color: white transparent transparent transparent;
+  }
+  .checkmark {
+    width: 1.6vmax;
+    height: 1.6vmax;
+  }
+}
+
 /*=========================================================================================
 END
 =========================================================================================*/
@@ -1529,8 +1691,8 @@ CART
 }
 
 .checkout-cart-loading {
-  height: 4vmax;
-  width: 4vmax;
+  height: 16vmax;
+  width: 16vmax;
 }
 
 .checkout-cart-cnts {
@@ -2179,42 +2341,63 @@ NAVIGATION
           justify-content: center;
   overflow: hidden;
   border-radius: 3.5vmax;
-  border-color: #2d283c;
   border-style: solid;
   border-width: 0.3vmax;
-  background-color: white;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-.checkout-navigation-icon-container .checkout-navigation-icon-default {
-  width: 60%;
-  height: 60%;
-  position: absolute;
-  opacity: 1;
-}
-
-.checkout-navigation-icon-container .checkout-navigation-icon-selected {
+.checkout-navigation-icon-container .checkout-navigation-icon {
   width: 60%;
   height: 60%;
   position: absolute;
   opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .checkout-navigation-icon-container-selected {
   background-color: #2d283c;
+  border-color: #2d283c;
 }
 
-.checkout-navigation-icon-container-selected .checkout-navigation-icon-default {
-  width: 60%;
-  height: 60%;
-  position: absolute;
-  opacity: 0;
+.checkout-navigation-icon-container-selected .checkout-navigation-icon-white {
+  opacity: 1;
 }
 
-.checkout-navigation-icon-container-selected
-.checkout-navigation-icon-selected {
-  width: 60%;
-  height: 60%;
-  position: absolute;
+.checkout-navigation-icon-container-deselected {
+  background-color: white;
+  border-color: #2d283c;
+}
+
+.checkout-navigation-icon-container-deselected .checkout-navigation-icon-black {
+  opacity: 1;
+}
+
+.checkout-navigation-icon-container-selected.valid {
+  background-color: #008000;
+  border-color: #008000;
+}
+
+.checkout-navigation-icon-container-selected.valid .checkout-navigation-icon-white {
+  opacity: 1;
+}
+
+.checkout-navigation-icon-container-deselected.valid {
+  background-color: white;
+  border-color: #008000;
+}
+
+.checkout-navigation-icon-container-deselected.valid .checkout-navigation-icon-green {
+  opacity: 1;
+}
+
+.checkout-navigation-icon-container-deselected.unavailable {
+  background-color: white;
+  border-color: #c7c2d5;
+}
+
+.checkout-navigation-icon-container-deselected.unavailable .checkout-navigation-icon-grey {
   opacity: 1;
 }
 
@@ -2402,6 +2585,52 @@ GLOBAL
   font-size: 1.2vmax;
   letter-spacing: 0.2vmax;
   color: #bb0000;
+}
+
+#checkout-loading-display {
+  height: 5vmax;
+  width: 40vmax;
+  position: fixed;
+  left: calc(50vw - 20vmax);
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top-left-radius: 1vmax;
+  border-top-right-radius: 1vmax;
+  padding: 0 2vmax;
+  background-color: #4e4ed6;
+  z-index: 10;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#checkout-loading-display #checkout-loading-display-load {
+  width: 5vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#checkout-loading-display p {
+  width: 31vmax;
+  padding: 0 4vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  font-weight: bold;
+  letter-spacing: 0.3vmax;
+  color: white;
+}
+
+#checkout-loading-display.hide {
+  -webkit-transform: translateY(5vmax);
+          transform: translateY(5vmax);
 }
 
 .checkout-element-hide {
@@ -2853,6 +3082,27 @@ DESKTOP CSS
     height: 1.6vmax;
     font-size: 0.7vmax;
     letter-spacing: 0.1vmax;
+  }
+  #checkout-loading-display {
+    height: 2.5vmax;
+    width: 20vmax;
+    left: calc(50vw - 10vmax);
+    border-top-left-radius: 0.5vmax;
+    border-top-right-radius: 0.5vmax;
+    padding: 0 1vmax;
+  }
+  #checkout-loading-display #checkout-loading-display-load {
+    width: 2.5vmax;
+  }
+  #checkout-loading-display p {
+    width: 15.5vmax;
+    padding: 0 2vmax;
+    font-size: 0.8vmax;
+    letter-spacing: 0.15vmax;
+  }
+  #checkout-loading-display.hide {
+    -webkit-transform: translateY(2.5vmax);
+            transform: translateY(2.5vmax);
   }
 }
 

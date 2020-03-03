@@ -41,6 +41,11 @@ let checkout = {
         }
       }
     },
+    validity: {
+      cart: undefined,
+      shipping: undefined,
+      payment: undefined
+    },
     navigation: {
       cart: undefined,
       shipping: undefined,
@@ -167,7 +172,7 @@ let checkout = {
       }
     },
     validation: {
-      validate: undefined,
+      validate: undefined, // checkout.validation.validate
       valid: undefined,
       invalid: undefined
     },
@@ -179,6 +184,11 @@ let checkout = {
       page: undefined, // checkout.navigation.changeCSS.page
       navigation: undefined // checkout.navigation.changeCSS.navigation
     }
+  },
+  load: {
+    success: undefined,
+    load: undefined,
+    time: undefined
   }
 };
 
@@ -198,6 +208,8 @@ checkout.initialise = async () => {
   checkout.load();
   // Event Listener
   checkout.listener();
+  // Update Loader
+  checkout.load.success("success");
 };
 
 // @FUNC  checkout.fetch
@@ -567,19 +579,9 @@ checkout.cart.print.update = async (newValue, oldValue, property, printId) => {
     return;
   }
 
-  document.querySelector(
-    `#checkout-prnt-${printId}`
-  ).innerHTML = `<div class="checkout-cart-loading-container">
-                  <div class="checkout-cart-loading">
-                    <div class="loading-icon">
-                      <div class="layer layer-1"></div>
-                      <div class="layer layer-2"></div>
-                      <div class="layer layer-3"></div>
-                    </div>
-                  </div>
-                </div>`;
-
   let print;
+
+  checkout.load.load("updating quantity");
 
   try {
     print = (
@@ -595,10 +597,7 @@ checkout.cart.print.update = async (newValue, oldValue, property, printId) => {
     };
   }
 
-  checkout.cart.print.insert(
-    print,
-    document.querySelector(`#checkout-prnt-${print._id}`)
-  );
+  checkout.load.success("success");
 };
 
 // @FUNC  checkout.cart.print.validate.quantity
@@ -624,6 +623,7 @@ checkout.cart.print.delete = async printId => {
   numberOfPrints = numberOfPrints - 1;
   checkout.cart.prints.insert();
   // Delete the 3D print from the database
+  checkout.load.load("deleting 3D print");
   let object;
   try {
     object = (await axios.post("/checkout/order/delete/print", { printId }))[
@@ -632,9 +632,10 @@ checkout.cart.print.delete = async printId => {
   } catch (error) {
     return { status: "failed", contents: error };
   }
-  console.log(object);
+  checkout.load.success("deleted");
   // Perform Validation
   checkout.cart.validation.validate(object.validity);
+  checkout.shipping.validation.validate(object.validity);
   return;
 };
 
@@ -851,6 +852,7 @@ checkout.cart.manufacturingSpeed.select = async option => {
   // Place Loaders
 
   // Update the Database
+  checkout.load.load("updating order");
   let object;
   try {
     object = (
@@ -862,6 +864,7 @@ checkout.cart.manufacturingSpeed.select = async option => {
     console.log(error);
     return;
   }
+  checkout.load.success("success");
   // Update Price
 
   // Perform Validation
@@ -887,6 +890,8 @@ checkout.cart.validation.validate = async validity => {
       return;
     }
   }
+
+  checkout.element.validity.cart = valid;
 
   if (valid) {
     checkout.cart.validation.valid();
@@ -916,6 +921,8 @@ checkout.cart.validation.valid = () => {
   // Update CSS
   checkout.element.heading.shipping.classList.add("checkout-heading-valid");
   checkout.element.button.cart.next.classList.add("checkout-button-valid");
+  checkout.element.navigation.cart.classList.add("valid");
+  checkout.element.navigation.shipping.classList.remove("unavailable");
 };
 
 // @FUNC  checkout.cart.validation.invalid
@@ -938,6 +945,8 @@ checkout.cart.validation.invalid = () => {
   // Update CSS
   checkout.element.heading.shipping.classList.remove("checkout-heading-valid");
   checkout.element.button.cart.next.classList.remove("checkout-button-valid");
+  checkout.element.navigation.cart.classList.remove("valid");
+  checkout.element.navigation.shipping.classList.add("unavailable");
   // Return to Cart Page
   checkout.cart.show();
 };
@@ -994,7 +1003,7 @@ SHIPPING
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.select = async option => {
+checkout.shipping.address.select = async (option, update) => {
   checkout.shipping.address.selected = option;
   if (option == "saved") {
     checkout.shipping.address.saved.show(true);
@@ -1008,22 +1017,26 @@ checkout.shipping.address.select = async option => {
   // Place Loaders
 
   // Update the Database
-  let object;
-  try {
-    object = await axios.post(
-      "/checkout/order/update/shipping-address-option",
-      {
-        option
-      }
-    );
-  } catch (error) {
-    console.log(error);
-    return;
-  }
-  // Update Price
+  if (update) {
+    checkout.load.load("updating order");
+    let object;
+    try {
+      object = await axios.post(
+        "/checkout/order/update/shipping-address-option",
+        {
+          option
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    checkout.load.success("success");
+    // Update Price
 
-  // Perform Validation
-  checkout.shipping.validation.validate(object.validity);
+    // Perform Validation
+    checkout.shipping.validation.validate(object.validity);
+  }
 };
 
 // @FUNC  checkout.shipping.address.saved.create
@@ -1324,6 +1337,7 @@ checkout.shipping.address.new.populate = address => {
 checkout.shipping.address.new.update = async type => {
   const address = checkout.shipping.address.new.validate.all(type);
 
+  checkout.load.load("updating order");
   let object;
   try {
     object = (
@@ -1335,7 +1349,7 @@ checkout.shipping.address.new.update = async type => {
     console.log(error);
     return;
   }
-
+  checkout.load.success("success");
   checkout.shipping.validation.validate(object.validity);
 };
 
@@ -1347,6 +1361,7 @@ checkout.shipping.address.new.toggleSave = async save => {
   // Place Loaders
 
   // Update the Database
+  checkout.load.load("updating order");
   let object;
   try {
     object = await axios.post(
@@ -1359,6 +1374,7 @@ checkout.shipping.address.new.toggleSave = async save => {
     console.log(error);
     return;
   }
+  checkout.load.success("success");
   // Update Price
 
   // Perform Validation
@@ -1389,6 +1405,7 @@ checkout.shipping.method.select = async option => {
   // Place Loaders
 
   // Update the Database
+  checkout.load.load("updating order");
   let object;
   try {
     object = (
@@ -1400,6 +1417,7 @@ checkout.shipping.method.select = async option => {
     console.log(error);
     return;
   }
+  checkout.load.success("success");
   // Update Price
 
   // Perform Validation
@@ -1425,6 +1443,8 @@ checkout.shipping.validation.validate = async validity => {
       return;
     }
   }
+
+  checkout.element.validity.shipping = valid;
 
   if (valid) {
     checkout.shipping.validation.valid();
@@ -1453,6 +1473,8 @@ checkout.shipping.validation.valid = () => {
   // Update CSS
   checkout.element.button.shipping.next.classList.add("checkout-button-valid");
   checkout.element.heading.payment.classList.add("checkout-heading-valid");
+  checkout.element.navigation.shipping.classList.add("valid");
+  checkout.element.navigation.payment.classList.remove("unavailable");
 };
 
 // @FUNC  checkout.shipping.validation.invalid
@@ -1476,6 +1498,8 @@ checkout.shipping.validation.invalid = () => {
   checkout.element.button.shipping.next.classList.remove(
     "checkout-button-valid"
   );
+  checkout.element.navigation.shipping.classList.remove("valid");
+  checkout.element.navigation.payment.classList.add("unavailable");
 };
 
 // @FUNC  checkout.shipping.show
@@ -1567,7 +1591,7 @@ checkout.payment.stripe.initialise = () => {
 // @TYPE
 // @DESC
 // @ARGU
-checkout.payment.method.select = async option => {
+checkout.payment.method.select = async (option, update) => {
   checkout.payment.method.selected = option;
   if (option === "bankTransfer") {
     document.querySelector(
@@ -1585,20 +1609,24 @@ checkout.payment.method.select = async option => {
   // UPDATE THE DATABASE
   // Place Loaders
 
-  // Update the Database
-  let object;
-  try {
-    object = await axios.post("/checkout/order/update/payment-method", {
-      option
-    });
-  } catch (error) {
-    console.log(error);
-    return;
-  }
-  // Update Price
+  if (update) {
+    checkout.load.load("updating order");
+    // Update the Database
+    let object;
+    try {
+      object = await axios.post("/checkout/order/update/payment-method", {
+        option
+      });
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    // Update Price
 
-  // Perform Validation
-  checkout.shipping.validation.validate(object.validity);
+    // Perform Validation
+    checkout.shipping.validation.validate(object.validity);
+    checkout.load.success("success");
+  }
 };
 
 // @FUNC  checkout.payment.method.bank.show
@@ -1763,7 +1791,7 @@ checkout.navigation.navigate = nextPage => {
   // Check if we are currently on the same page
   if (nextPage == checkoutSelectedPage) return;
   // Update the navigation CSS
-  checkout.navigation.changeCSS.navigation(nextPage);
+  checkout.navigation.changeCSS.navigation(nextPage, "select");
   checkout.navigation.changeCSS.page(nextPage);
   // Update the current selected page
   checkoutSelectedPage = nextPage;
@@ -1776,15 +1804,21 @@ checkout.navigation.navigate = nextPage => {
 // @TYPE
 // @DESC
 // @ARGU
-checkout.navigation.changeCSS.navigation = nextPage => {
+checkout.navigation.changeCSS.navigation = (nextPage, type) => {
   const nextPageName = checkoutPages[nextPage];
   const currentPageName = checkoutPages[checkoutSelectedPage];
   document
     .querySelector(`#checkout-navigation-${nextPageName}`)
     .classList.add("checkout-navigation-icon-container-selected");
   document
+    .querySelector(`#checkout-navigation-${nextPageName}`)
+    .classList.remove("checkout-navigation-icon-container-deselected");
+  document
     .querySelector(`#checkout-navigation-${currentPageName}`)
     .classList.remove("checkout-navigation-icon-container-selected");
+  document
+    .querySelector(`#checkout-navigation-${currentPageName}`)
+    .classList.add("checkout-navigation-icon-container-deselected");
 };
 
 // @FUNC  checkout.navigation.changeCSS.page
@@ -1820,6 +1854,43 @@ checkout.navigation.changeCSS.page = nextPage => {
         .classList.add("checkout-sub-pg-right");
     }
   }
+};
+
+checkout.load.success = message => {
+  clearTimeout(checkout.load.time);
+  document.querySelector(
+    "#checkout-loading-display-load"
+  ).innerHTML = `<svg class="checkmark" viewBox="0 0 52 52">
+  <circle
+    class="checkmark__circle"
+    cx="26"
+    cy="26"
+    r="25"
+    fill="none"
+  ></circle>
+  <path
+    class="checkmark__check"
+    fill="none"
+    d="M14.1 27.2l7.1 7.2 16.7-16.8"
+  ></path>
+</svg>`;
+  document.querySelector("#checkout-loading-display-text").innerHTML = message;
+  checkout.load.time = setTimeout(() => {
+    document.querySelector("#checkout-loading-display").classList.add("hide");
+  }, 1300);
+};
+
+checkout.load.load = message => {
+  document.querySelector(
+    "#checkout-loading-display-load"
+  ).innerHTML = `<div class="load-2">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>`;
+  document.querySelector("#checkout-loading-display-text").innerHTML = message;
+  document.querySelector("#checkout-loading-display").classList.remove("hide");
 };
 
 /*=========================================================================================
