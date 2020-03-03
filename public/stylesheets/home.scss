@@ -117,6 +117,7 @@ body {
       height: 20vh;
       background: $light-1;
     }
+
     &:after {
       background: $light-2;
     }
@@ -157,10 +158,10 @@ body {
       animation: landing-side-after-anim 0.8s ease-out 0.8s forwards;
     }
   }
+}
 
-  .landing-slide-nav-container {
-    display: none;
-  }
+.landing-slide-nav-container {
+  display: none;
 }
 
 .eng-kit-section {
@@ -602,56 +603,36 @@ body {
     #landing-1,
     #landing-2,
     #landing-3 {
-      position: relative;
-  
+
       &:before,
       &:after {
-        content: '';
-        z-index: 3;
-        position: absolute;
-        pointer-events: none;
-        top: 0;
-        width: 70vmax;
         height: 35vmax;
-        background: $light-1;
-      }
-      &:after {
-        background: $light-2;
       }
     }
   
     #landing-1 {
-      &:before,
-      &:after {
-        right: 0;
+      &:before {
         animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
       }
       &:after {
-        width: 0vmax;
         animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
       }
     }
   
     #landing-2 {
-      &:before,
-      &:after {
-        left: 0;
+      &:before {
         animation: landing-mid-before-anim 0.8s ease-out 0.5s forwards;
       }
       &:after {
-        height: 0vmax;
         animation: landing-mid-after-anim 0.8s ease-out 0.5s forwards;
       }
     }
   
     #landing-3 {
-      &:before,
-      &:after {
-        left: 0;
+      &:before {
         animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
       }
       &:after {
-        width: 0vmax;
         animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
       }
     }
@@ -724,8 +705,6 @@ body {
   }
   
   .landing-slide-nav-container {
-    position: absolute;
-    top: 80vh;
     margin-top: -2vmax;
     height: 2vmax;
     width: 100%;

@@ -1913,7 +1913,7 @@ body {
           animation: landing-side-after-anim 0.8s ease-out 0.8s forwards;
 }
 
-.landing-carousel .landing-slide-nav-container {
+.landing-slide-nav-container {
   display: none;
 }
 
@@ -2601,57 +2601,34 @@ body {
     -webkit-animation: none;
             animation: none;
   }
-  .landing-carousel #landing-1,
-  .landing-carousel #landing-2,
-  .landing-carousel #landing-3 {
-    position: relative;
-  }
   .landing-carousel #landing-1:before, .landing-carousel #landing-1:after,
   .landing-carousel #landing-2:before,
   .landing-carousel #landing-2:after,
   .landing-carousel #landing-3:before,
   .landing-carousel #landing-3:after {
-    content: '';
-    z-index: 3;
-    position: absolute;
-    pointer-events: none;
-    top: 0;
-    width: 70vmax;
     height: 35vmax;
-    background: white;
   }
-  .landing-carousel #landing-1:after,
-  .landing-carousel #landing-2:after,
-  .landing-carousel #landing-3:after {
-    background: #f8f8f8;
-  }
-  .landing-carousel #landing-1:before, .landing-carousel #landing-1:after {
-    right: 0;
+  .landing-carousel #landing-1:before {
     -webkit-animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
             animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
   }
   .landing-carousel #landing-1:after {
-    width: 0vmax;
     -webkit-animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
             animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
   }
-  .landing-carousel #landing-2:before, .landing-carousel #landing-2:after {
-    left: 0;
+  .landing-carousel #landing-2:before {
     -webkit-animation: landing-mid-before-anim 0.8s ease-out 0.5s forwards;
             animation: landing-mid-before-anim 0.8s ease-out 0.5s forwards;
   }
   .landing-carousel #landing-2:after {
-    height: 0vmax;
     -webkit-animation: landing-mid-after-anim 0.8s ease-out 0.5s forwards;
             animation: landing-mid-after-anim 0.8s ease-out 0.5s forwards;
   }
-  .landing-carousel #landing-3:before, .landing-carousel #landing-3:after {
-    left: 0;
+  .landing-carousel #landing-3:before {
     -webkit-animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
             animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
   }
   .landing-carousel #landing-3:after {
-    width: 0vmax;
     -webkit-animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
             animation: landing-side-after-anim 0.8s ease-out 1.3s forwards;
   }
@@ -2722,8 +2699,6 @@ body {
     transition: all 0.5s ease-out 0.2s, width 0.2s ease-out;
   }
   .landing-slide-nav-container {
-    position: absolute;
-    top: 80vh;
     margin-top: -2vmax;
     height: 2vmax;
     width: 100%;
