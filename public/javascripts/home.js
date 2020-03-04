@@ -98,6 +98,43 @@ const homeInit = () => {
       slide3Click();
     });  
 
+  const brycepButton = document.querySelector('#eng-kit-btn-brycep');
+  const hyelosButton = document.querySelector('#eng-kit-btn-hyelos');
+  const stcButton = document.querySelector('#eng-kit-btn-stc');
+
+  let activeSlide = brycepKit;
+  let activeButton = brycepButton;
+  
+  brycepButton.addEventListener("click", function() {
+    activeSlide.style.display = 'none'
+    brycepKit.style.display = 'flex';
+    activeSlide = brycepKit;
+
+    activeButton.classList.remove('eng-kit-btn-focus');
+    brycepButton.classList.add('eng-kit-btn-focus');
+    activeButton = brycepButton;
+  });
+
+  hyelosButton.addEventListener("click", function() {
+    activeSlide.style.display = 'none'
+    hyelosKit.style.display = 'flex';
+    activeSlide = hyelosKit;
+
+    activeButton.classList.remove('eng-kit-btn-focus');
+    hyelosButton.classList.add('eng-kit-btn-focus');
+    activeButton = hyelosButton;
+  });
+
+  stcButton.addEventListener("click", function() {
+    activeSlide.style.display = 'none'
+    stcKit.style.display = 'flex';
+    activeSlide = stcKit;
+
+    activeButton.classList.remove('eng-kit-btn-focus');
+    stcButton.classList.add('eng-kit-btn-focus');
+    activeButton = stcButton;
+  });
+
   } else {
 
     window.addEventListener("scroll", function (event) {
@@ -113,46 +150,14 @@ const homeInit = () => {
       }
     });
 
+    var swiper = new Swiper('.swiper-container', {
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+      },
+    });
+
   }
-
-  // 
-  // const brycepButton = document.querySelector('#eng-kit-btn-brycep');
-  // const hyelosButton = document.querySelector('#eng-kit-btn-hyelos');
-  // const stcButton = document.querySelector('#eng-kit-btn-stc');
-
-  // let firstLoad = true;
-  // let activeSlide = brycepSlide;
-  // let activeButton = brycepButton;
-  
-  // brycepButton.addEventListener("click", function() {
-  //   activeSlide.style.display = 'none'
-  //   brycepSlide.style.display = 'flex';
-  //   activeSlide = brycepSlide;
-
-  //   activeButton.classList.remove('eng-kit-btn-focus');
-  //   brycepButton.classList.add('eng-kit-btn-focus');
-  //   activeButton = brycepButton;
-  // });
-
-  // hyelosButton.addEventListener("click", function() {
-  //   activeSlide.style.display = 'none'
-  //   hyelosSlide.style.display = 'flex';
-  //   activeSlide = hyelosSlide;
-
-  //   activeButton.classList.remove('eng-kit-btn-focus');
-  //   hyelosButton.classList.add('eng-kit-btn-focus');
-  //   activeButton = hyelosButton;
-  // });
-
-  // stcButton.addEventListener("click", function() {
-  //   activeSlide.style.display = 'none'
-  //   stcSlide.style.display = 'flex';
-  //   activeSlide = stcSlide;
-
-  //   activeButton.classList.remove('eng-kit-btn-focus');
-  //   stcButton.classList.add('eng-kit-btn-focus');
-  //   activeButton = stcButton;
-  // });
 }
 
 

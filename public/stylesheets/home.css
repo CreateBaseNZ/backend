@@ -2082,7 +2082,7 @@ body {
 .eng-kit-section {
   position: relative;
   width: 100vw;
-  height: 80vh;
+  height: 70vh;
   background: #f8f8f8;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2192,8 +2192,7 @@ body {
 
 .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-title {
   top: 16vh;
-  left: 8vw;
-  margin-left: 2vw;
+  left: 10vw;
 }
 
 .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-more {
@@ -2288,10 +2287,11 @@ body {
 
 .eng-kit-section .eng-kit-coming-soon {
   font-family: "Poppins", sans-serif;
-  font-size: 3vw;
+  font-size: 2vw;
   color: #877da9;
   font-weight: 100;
   letter-spacing: 0.3vmax;
+  margin-bottom: 1vh;
 }
 
 .eng-kit-section .eng-kit-btn-container {
@@ -2301,7 +2301,7 @@ body {
 .test-section {
   position: relative;
   background: white;
-  height: 30vh;
+  height: 30vmax;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2742,13 +2742,17 @@ body {
     margin-top: -2vh;
     font-weight: 100;
     font-size: 1vmax;
+    letter-spacing: 2px;
     color: white;
     z-index: 2;
     -webkit-animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
             animation: landing-slide-sub-anim 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
+    -webkit-transition: letter-spacing 0.3s ease-out;
+    transition: letter-spacing 0.3s ease-out;
   }
   .landing-carousel .landing-slide .landing-slide-text .landing-slide-sub:hover {
     color: #4bf0ea;
+    letter-spacing: 3px;
   }
   .landing-carousel .landing-slide .landing-slide-text .landing-slide-sub:hover ~ .landing-slide-text-sep-2 {
     width: 5vw;
@@ -2783,6 +2787,7 @@ body {
             animation: landing-mid-before-anim 0.8s ease-out 0.5s forwards;
   }
   .landing-carousel #landing-2:after {
+    height: 0vmax;
     -webkit-animation: landing-mid-after-anim 0.8s ease-out 0.5s forwards;
             animation: landing-mid-after-anim 0.8s ease-out 0.5s forwards;
   }
@@ -2904,190 +2909,168 @@ body {
     opacity: 1;
   }
   .eng-kit-section {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    background: white;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    height: 85vh;
+  }
+  .eng-kit-section .eng-kit-coming-soon {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.6vmax;
+    color: #877da9;
+    font-weight: 100;
+    letter-spacing: 0.3vmax;
+    margin-top: 1vh;
+    margin-bottom: 0;
   }
   .eng-kit-section .eng-kit-container {
-    position: relative;
-    display: none;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    height: 80vh;
   }
   .eng-kit-section .eng-kit-container img {
     -webkit-filter: blur(15px);
             filter: blur(15px);
-  }
-  .eng-kit-section .eng-kit-container .eng-kit-text {
-    z-index: 2;
+    opacity: 0;
+    -webkit-animation: all-img 0.3s ease-out forwards;
+            animation: all-img 0.3s ease-out forwards;
+    margin-top: -4vh;
   }
   .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-code {
-    font-family: "Poppins", sans-serif;
-    font-weight: 900;
-    font-size: 1vmax;
-    letter-spacing: 0.2vmax;
-    color: #c7c2d5;
+    font-size: 1vw;
+    letter-spacing: 0.2vw;
+    opacity: 0;
+    -webkit-animation: all-code 0.3s ease-out forwards;
+            animation: all-code 0.3s ease-out forwards;
+    margin-top: -2vh;
   }
   .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-title {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 900;
-    font-size: 6vmax;
-    color: #2d283c;
+    font-size: 6vw;
+    opacity: 0;
     -webkit-animation: all-title 0.6s ease-out forwards;
             animation: all-title 0.6s ease-out forwards;
+    margin-top: -2vh;
   }
   .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-desc {
+    display: block;
+    position: absolute;
     opacity: 0;
     font-family: "Montserrat", sans-serif;
     font-weight: 100;
     font-size: 0.8vmax;
-    padding-right: 2vmax;
     color: #2d283c;
+    -webkit-animation: all-desc 0.6s ease-out 0.3s forwards;
+            animation: all-desc 0.6s ease-out 0.3s forwards;
+    margin-left: -2vw;
   }
   .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-more {
     opacity: 0;
-    font-family: "Poppins", sans-serif;
-    color: #877da9;
-    letter-spacing: 0.2vmax;
-    font-weight: 900;
     font-size: 0.8vmax;
+    letter-spacing: 0.2vmax;
+    -webkit-animation: all-more 0.6s ease-out 0.9s forwards;
+            animation: all-more 0.6s ease-out 0.9s forwards;
+    margin-left: -2vw;
   }
   .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-more:hover {
     color: #4bf0ea;
   }
   .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-more:hover ~ .eng-kit-line-overlap {
-    width: 7vmax;
+    width: 7vw;
   }
   .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-line {
-    display: inline-block;
-    margin-left: 1vmax;
-    height: 0.4vmax;
-    border-top: #c7c2d5 solid 1px;
+    background: #c7c2d5;
+    border-top: none;
     -webkit-animation: all-line 0.3s ease-out 1.2s forwards;
             animation: all-line 0.3s ease-out 1.2s forwards;
   }
   .eng-kit-section .eng-kit-container .eng-kit-text .eng-kit-line-overlap {
-    display: inline-block;
-    width: 0vmax;
-    margin-left: calc(-7vmax - 4px);
-    height: 0.4vmax;
-    border-top: #4bf0ea solid 1px;
+    border-top: none;
+    background: #4bf0ea;
     -webkit-transition: width 0.5s ease-out;
     transition: width 0.5s ease-out;
   }
   .eng-kit-section .eng-kit-brycep img {
-    margin-left: -5vmax;
-    height: 40vmax;
-    -webkit-animation: brycep-img 0.3s ease-out forwards;
-            animation: brycep-img 0.3s ease-out forwards;
-  }
-  .eng-kit-section .eng-kit-brycep .eng-kit-text {
-    width: 30vmax;
-    height: 30vmax;
+    left: 50vw;
+    width: auto;
+    height: 70vh;
   }
   .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-code {
-    margin-left: 10vmax;
-    -webkit-animation: brycep-code 0.3s ease-out forwards;
-            animation: brycep-code 0.3s ease-out forwards;
+    top: 15vh;
+    left: 37vw;
   }
   .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-title {
-    margin-left: 6vmax;
+    top: 18vh;
+    left: 32vw;
   }
   .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-desc {
-    margin-top: 6vmax;
-    margin-bottom: 4vmax;
-    padding-right: 2vmax;
-    -webkit-animation: brycep-desc 0.6s ease-out 0.3s forwards;
-            animation: brycep-desc 0.6s ease-out 0.3s forwards;
+    top: 50vh;
+    left: 27vw;
+    width: 30vw;
   }
   .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-more {
-    -webkit-animation: brycep-more 0.6s ease-out 0.9s forwards;
-            animation: brycep-more 0.6s ease-out 0.9s forwards;
+    top: 60vh;
+    left: 32vw;
+  }
+  .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-line,
+  .eng-kit-section .eng-kit-brycep .eng-kit-text .eng-kit-line-overlap {
+    top: 61.2vh;
+    left: 40vw;
   }
   .eng-kit-section .eng-kit-hyelos {
-    margin-top: -5vmax;
-    margin-left: 15vmax;
+    display: none;
   }
   .eng-kit-section .eng-kit-hyelos img {
-    margin-left: -85vmax;
-    width: 50vmax;
-    -webkit-animation: hyelos-img 0.3s ease-out forwards;
-            animation: hyelos-img 0.3s ease-out forwards;
-  }
-  .eng-kit-section .eng-kit-hyelos .eng-kit-text {
-    width: 30vmax;
-    height: 30vmax;
+    top: 15vh;
+    left: 12vw;
+    width: 45vw;
   }
   .eng-kit-section .eng-kit-hyelos .eng-kit-text .eng-kit-code {
-    margin-left: 0vmax;
-    -webkit-animation: hyelos-code 0.3s ease-out forwards;
-            animation: hyelos-code 0.3s ease-out forwards;
+    top: 20vh;
+    left: 64vw;
   }
   .eng-kit-section .eng-kit-hyelos .eng-kit-text .eng-kit-title {
-    margin-left: -10vmax;
+    top: 23vh;
+    left: 55vw;
   }
   .eng-kit-section .eng-kit-hyelos .eng-kit-text .eng-kit-desc {
-    margin-top: 4vmax;
-    margin-bottom: 3vmax;
-    width: 26vmax;
+    top: 47vh;
+    left: 64vw;
+    width: 22vw;
     text-align: right;
-    -webkit-animation: hyelos-desc 0.6s ease-out 0.3s forwards;
-            animation: hyelos-desc 0.6s ease-out 0.3s forwards;
   }
   .eng-kit-section .eng-kit-hyelos .eng-kit-text .eng-kit-more {
-    -webkit-animation: hyelos-more 0.6s ease-out 0.9s forwards;
-            animation: hyelos-more 0.6s ease-out 0.9s forwards;
+    top: 60vh;
+    left: 71vw;
+  }
+  .eng-kit-section .eng-kit-hyelos .eng-kit-text .eng-kit-line,
+  .eng-kit-section .eng-kit-hyelos .eng-kit-text .eng-kit-line-overlap {
+    top: 61.2vh;
+    left: 79vw;
   }
   .eng-kit-section .eng-kit-stc {
-    margin-top: -5vmax;
-    margin-left: 5vmax;
+    display: none;
   }
   .eng-kit-section .eng-kit-stc img {
-    margin-left: 0vmax;
-    width: 40vmax;
-    -webkit-animation: stc-img 0.3s ease-out forwards;
-            animation: stc-img 0.3s ease-out forwards;
-  }
-  .eng-kit-section .eng-kit-stc .eng-kit-text {
-    width: 30vmax;
-    height: 30vmax;
+    top: 10vh;
+    left: 50vw;
+    width: 35vw;
   }
   .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-code {
-    margin-left: -10vmax;
-    -webkit-animation: stc-code 0.3s ease-out forwards;
-            animation: stc-code 0.3s ease-out forwards;
+    top: 20vh;
+    left: 10vw;
   }
   .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-title {
-    margin-left: -10vmax;
+    top: 23vh;
+    left: 10vw;
   }
   .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-desc {
-    margin-top: 5vmax;
-    margin-bottom: 3vmax;
-    width: 25vmax;
-    -webkit-animation: stc-desc 0.6s ease-out 0.3s forwards;
-            animation: stc-desc 0.6s ease-out 0.3s forwards;
+    top: 47vh;
+    left: 18vw;
+    width: 22vw;
   }
   .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-more {
-    -webkit-animation: stc-more 0.6s ease-out 0.9s forwards;
-            animation: stc-more 0.6s ease-out 0.9s forwards;
+    top: 55vh;
+    left: 18vw;
+  }
+  .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-line,
+  .eng-kit-section .eng-kit-stc .eng-kit-text .eng-kit-line-overlap {
+    top: 56.2vh;
+    left: 26vw;
   }
   .eng-kit-section .eng-kit-btn-container {
     -webkit-transform: rotate(90deg);
@@ -3107,6 +3090,7 @@ body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    z-index: 2;
   }
   .eng-kit-section .eng-kit-btn-container .eng-kit-btn {
     position: relative;
@@ -3155,16 +3139,6 @@ body {
   }
   .eng-kit-section .eng-kit-btn-container .eng-kit-btn-focus .eng-kit-btn-text {
     color: #4bf0ea !important;
-  }
-  .eng-kit-section .eng-kit-coming-soon {
-    position: absolute;
-    left: 43.1vw;
-    bottom: 0;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.6vmax;
-    color: #877da9;
-    font-weight: 100;
-    letter-spacing: 0.3vmax;
   }
   @-webkit-keyframes landing-slide-title-anim {
     0% {
@@ -3282,24 +3256,104 @@ body {
       opacity: 0;
     }
   }
-  @-webkit-keyframes all-title {
+  @-webkit-keyframes all-img {
     0% {
       opacity: 0;
-      margin-top: -1vmax;
+      margin-top: -4vh;
     }
     100% {
       opacity: 1;
-      margin-top: 0vmax;
+      margin-top: 0vh;
+    }
+  }
+  @keyframes all-img {
+    0% {
+      opacity: 0;
+      margin-top: -4vh;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 0vh;
+    }
+  }
+  @-webkit-keyframes all-code {
+    0% {
+      opacity: 0;
+      margin-top: -2vh;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 0vh;
+    }
+  }
+  @keyframes all-code {
+    0% {
+      opacity: 0;
+      margin-top: -2vh;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 0vh;
+    }
+  }
+  @-webkit-keyframes all-title {
+    0% {
+      opacity: 0;
+      margin-top: -2vh;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 0vh;
     }
   }
   @keyframes all-title {
     0% {
       opacity: 0;
-      margin-top: -1vmax;
+      margin-top: -2vh;
     }
     100% {
       opacity: 1;
-      margin-top: 0vmax;
+      margin-top: 0vh;
+    }
+  }
+  @-webkit-keyframes all-desc {
+    0% {
+      opacity: 0;
+      margin-left: -2vw;
+    }
+    100% {
+      opacity: 1;
+      margin-left: 0vw;
+    }
+  }
+  @keyframes all-desc {
+    0% {
+      opacity: 0;
+      margin-left: -2vw;
+    }
+    100% {
+      opacity: 1;
+      margin-left: 0vw;
+    }
+  }
+  @-webkit-keyframes all-more {
+    0% {
+      opacity: 0;
+      margin-left: -2vw;
+    }
+    100% {
+      opacity: 1;
+      margin-left: 0vw;
+    }
+  }
+  @keyframes all-more {
+    0% {
+      opacity: 0;
+      margin-left: -2vw;
+    }
+    100% {
+      opacity: 1;
+      margin-left: 0vw;
     }
   }
   @-webkit-keyframes all-line {
@@ -3316,246 +3370,6 @@ body {
     }
     100% {
       width: 7vmax;
-    }
-  }
-  @-webkit-keyframes brycep-img {
-    0% {
-      opacity: 0;
-      margin-top: -2vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 0vmax;
-    }
-  }
-  @keyframes brycep-img {
-    0% {
-      opacity: 0;
-      margin-top: -2vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 0vmax;
-    }
-  }
-  @-webkit-keyframes brycep-code {
-    0% {
-      opacity: 0;
-      margin-top: 5vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 6vmax;
-    }
-  }
-  @keyframes brycep-code {
-    0% {
-      opacity: 0;
-      margin-top: 5vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 6vmax;
-    }
-  }
-  @-webkit-keyframes brycep-desc {
-    0% {
-      opacity: 0;
-      margin-left: -2vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: 0vmax;
-    }
-  }
-  @keyframes brycep-desc {
-    0% {
-      opacity: 0;
-      margin-left: -2vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: 0vmax;
-    }
-  }
-  @-webkit-keyframes brycep-more {
-    0% {
-      opacity: 0;
-      margin-left: 2vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: 4vmax;
-    }
-  }
-  @keyframes brycep-more {
-    0% {
-      opacity: 0;
-      margin-left: 2vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: 4vmax;
-    }
-  }
-  @-webkit-keyframes hyelos-img {
-    0% {
-      opacity: 0;
-      margin-top: 6vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 8vmax;
-    }
-  }
-  @keyframes hyelos-img {
-    0% {
-      opacity: 0;
-      margin-top: 6vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 8vmax;
-    }
-  }
-  @-webkit-keyframes hyelos-code {
-    0% {
-      opacity: 0;
-      margin-top: 9vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 10vmax;
-    }
-  }
-  @keyframes hyelos-code {
-    0% {
-      opacity: 0;
-      margin-top: 9vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 10vmax;
-    }
-  }
-  @-webkit-keyframes hyelos-desc {
-    0% {
-      opacity: 0;
-      margin-left: -2vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: 0vmax;
-    }
-  }
-  @keyframes hyelos-desc {
-    0% {
-      opacity: 0;
-      margin-left: -2vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: 0vmax;
-    }
-  }
-  @-webkit-keyframes hyelos-more {
-    0% {
-      opacity: 0;
-      margin-left: 7vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: 9vmax;
-    }
-  }
-  @keyframes hyelos-more {
-    0% {
-      opacity: 0;
-      margin-left: 7vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: 9vmax;
-    }
-  }
-  @-webkit-keyframes stc-img {
-    0% {
-      opacity: 0;
-      margin-top: 6vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 8vmax;
-    }
-  }
-  @keyframes stc-img {
-    0% {
-      opacity: 0;
-      margin-top: 6vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 8vmax;
-    }
-  }
-  @-webkit-keyframes stc-code {
-    0% {
-      opacity: 0;
-      margin-top: 8vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 9vmax;
-    }
-  }
-  @keyframes stc-code {
-    0% {
-      opacity: 0;
-      margin-top: 8vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-top: 9vmax;
-    }
-  }
-  @-webkit-keyframes stc-desc {
-    0% {
-      opacity: 0;
-      margin-left: -4vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: -2vmax;
-    }
-  }
-  @keyframes stc-desc {
-    0% {
-      opacity: 0;
-      margin-left: -4vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: -2vmax;
-    }
-  }
-  @-webkit-keyframes stc-more {
-    0% {
-      opacity: 0;
-      margin-left: -4vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: -2vmax;
-    }
-  }
-  @keyframes stc-more {
-    0% {
-      opacity: 0;
-      margin-left: -4vmax;
-    }
-    100% {
-      opacity: 1;
-      margin-left: -2vmax;
     }
   }
 }
