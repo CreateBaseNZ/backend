@@ -927,6 +927,11 @@ button {
   left: 0;
   top: 0;
   width: 20px;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  opacity: 1;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 .nav-container .nav-top-bar .nav-user .nav-user-hlt {
@@ -934,23 +939,35 @@ button {
   top: 0;
   left: 0;
   width: 20px;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
   opacity: 0;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 .nav-container .nav-top-bar .nav-user:active .nav-user-reg {
   opacity: 0;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
 }
 
 .nav-container .nav-top-bar .nav-user:active .nav-user-hlt {
   opacity: 1;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
 }
 
 .nav-container .nav-top-bar .nav-user-active .nav-user-reg {
   opacity: 0;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
 }
 
 .nav-container .nav-top-bar .nav-user-active .nav-user-hlt {
   opacity: 1;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
 }
 
 .nav-container .nav-side-menus {

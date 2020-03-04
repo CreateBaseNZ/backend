@@ -1,5 +1,5 @@
 @import "global/all";
-$diamond: 25vw; 
+$diamond: 20vw; 
 
 .main-page {
   height: 100vh;
@@ -144,7 +144,7 @@ $diamond: 25vw;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: $logo-3;
-    top: calc(50vh - #{$diamond}/2 - 4vh);
+    top: calc(50vh - #{$diamond}/2 - #{$diamond}/4);
     left: calc(50vw - #{$diamond}/2);
   }
   75% {
@@ -239,7 +239,7 @@ $diamond: 25vw;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: $logo-1;
-    top: calc(50vh - #{$diamond}/2 + 4vh);
+    top: calc(50vh - #{$diamond}/2 + #{$diamond}/4);
     left: calc(50vw - #{$diamond}/2);
   }
   75% {

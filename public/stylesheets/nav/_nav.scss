@@ -49,21 +49,28 @@ $top-bar-height: 60px;
         left: 0;
         top: 0;
         width: 20px;
+        transform: scaleX(1);
+        opacity: 1;
+        transition: 0.3s ease-out;
       }
       .nav-user-hlt {
         position: absolute;
         top: 0;
         left: 0;
         width: 20px;
+        transform: scaleX(0);
         opacity: 0;
+        transition: 0.3s ease-out;
       }
   
       &:active {
         .nav-user-reg {
           opacity: 0;
+          transform: scaleX(0);
         }
         .nav-user-hlt {
           opacity: 1;
+          transform: scaleX(1);
         }
       }
     }
@@ -71,9 +78,11 @@ $top-bar-height: 60px;
     .nav-user-active {
       .nav-user-reg {
         opacity: 0;
+        transform: scaleX(0);
       }
       .nav-user-hlt {
         opacity: 1;
+        transform: scaleX(1);
       }
     }
   }

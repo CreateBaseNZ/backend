@@ -927,6 +927,11 @@ button {
   left: 0;
   top: 0;
   width: 20px;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  opacity: 1;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 .nav-container .nav-top-bar .nav-user .nav-user-hlt {
@@ -934,23 +939,35 @@ button {
   top: 0;
   left: 0;
   width: 20px;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
   opacity: 0;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 .nav-container .nav-top-bar .nav-user:active .nav-user-reg {
   opacity: 0;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
 }
 
 .nav-container .nav-top-bar .nav-user:active .nav-user-hlt {
   opacity: 1;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
 }
 
 .nav-container .nav-top-bar .nav-user-active .nav-user-reg {
   opacity: 0;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
 }
 
 .nav-container .nav-top-bar .nav-user-active .nav-user-hlt {
   opacity: 1;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
 }
 
 .nav-container .nav-side-menus {
@@ -1896,8 +1913,8 @@ END
 
 .main-page .logo-anim-container .layer {
   position: absolute;
-  height: 25vw;
-  width: 25vw;
+  height: 20vw;
+  width: 20vw;
   background: #c7c2d5;
   opacity: 0.3;
   top: 50%;
@@ -2046,29 +2063,29 @@ END
   10% {
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    top: calc(50vh - 25vw/2);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2);
+    left: calc(50vw - 20vw/2);
   }
   50% {
-    height: 25vw;
-    border-radius: 1.25vw;
+    height: 20vw;
+    border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: #4e4ed6;
-    top: calc(50vh - 25vw/2 - 4vh);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2 - 20vw/4);
+    left: calc(50vw - 20vw/2);
   }
   75% {
     height: 1px;
-    width: 25vw;
+    width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: #2d283c;
     top: calc(40vh - 1px);
-    left: calc(50vw - 25vw/2);
+    left: calc(50vw - 20vw/2);
   }
   97% {
     height: 1px;
@@ -2097,29 +2114,29 @@ END
   10% {
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    top: calc(50vh - 25vw/2);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2);
+    left: calc(50vw - 20vw/2);
   }
   50% {
-    height: 25vw;
-    border-radius: 1.25vw;
+    height: 20vw;
+    border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: #4e4ed6;
-    top: calc(50vh - 25vw/2 - 4vh);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2 - 20vw/4);
+    left: calc(50vw - 20vw/2);
   }
   75% {
     height: 1px;
-    width: 25vw;
+    width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: #2d283c;
     top: calc(40vh - 1px);
-    left: calc(50vw - 25vw/2);
+    left: calc(50vw - 20vw/2);
   }
   97% {
     height: 1px;
@@ -2148,29 +2165,29 @@ END
   10% {
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    top: calc(50vh - 25vw/2);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2);
+    left: calc(50vw - 20vw/2);
   }
   50% {
-    height: 25vw;
-    border-radius: 1.25vw;
+    height: 20vw;
+    border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: #6853d9;
-    top: calc(50vh - 25vw/2);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2);
+    left: calc(50vw - 20vw/2);
   }
   75% {
     height: 1px;
-    width: 25vw;
+    width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: #2d283c;
     top: calc(50vh - 2px);
-    left: calc(50vw - 25vw/2);
+    left: calc(50vw - 20vw/2);
   }
   97% {
     height: 1px;
@@ -2201,29 +2218,29 @@ END
   10% {
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    top: calc(50vh - 25vw/2);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2);
+    left: calc(50vw - 20vw/2);
   }
   50% {
-    height: 25vw;
-    border-radius: 1.25vw;
+    height: 20vw;
+    border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: #6853d9;
-    top: calc(50vh - 25vw/2);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2);
+    left: calc(50vw - 20vw/2);
   }
   75% {
     height: 1px;
-    width: 25vw;
+    width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: #2d283c;
     top: calc(50vh - 2px);
-    left: calc(50vw - 25vw/2);
+    left: calc(50vw - 20vw/2);
   }
   97% {
     height: 1px;
@@ -2254,29 +2271,29 @@ END
   10% {
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    top: calc(50vh - 25vw/2);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2);
+    left: calc(50vw - 20vw/2);
   }
   50% {
-    height: 25vw;
-    border-radius: 1.25vw;
+    height: 20vw;
+    border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: #8258dc;
-    top: calc(50vh - 25vw/2 + 4vh);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2 + 20vw/4);
+    left: calc(50vw - 20vw/2);
   }
   75% {
     height: 1px;
-    width: 25vw;
+    width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: #2d283c;
     top: calc(60vh - 1px);
-    left: calc(50vw - 25vw/2);
+    left: calc(50vw - 20vw/2);
   }
   97% {
     height: 1px;
@@ -2307,29 +2324,29 @@ END
   10% {
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    top: calc(50vh - 25vw/2);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2);
+    left: calc(50vw - 20vw/2);
   }
   50% {
-    height: 25vw;
-    border-radius: 1.25vw;
+    height: 20vw;
+    border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
             transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: #8258dc;
-    top: calc(50vh - 25vw/2 + 4vh);
-    left: calc(50vw - 25vw/2);
+    top: calc(50vh - 20vw/2 + 20vw/4);
+    left: calc(50vw - 20vw/2);
   }
   75% {
     height: 1px;
-    width: 25vw;
+    width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: #2d283c;
     top: calc(60vh - 1px);
-    left: calc(50vw - 25vw/2);
+    left: calc(50vw - 20vw/2);
   }
   97% {
     height: 1px;
