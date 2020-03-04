@@ -218,15 +218,18 @@ $top-bar-height: 60px;
   }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (min-width: 850px) {
   $top-bar-height: 60px;
+  $menu-icon-size: 20px;
+  $menu-icon-padding: 10px;
+  $menu-width: 15vw;
 
 .nav-container {
   position: sticky;
   top: 0;
   height: 0px;
   z-index: 1000;
-
+  
   .nav-top-bar {
     position: relative;
     display: flex;
@@ -234,13 +237,16 @@ $top-bar-height: 60px;
     align-items: flex-end;
     justify-content: center;
     height: #{$top-bar-height};
-    width: 100vw;
+    width: 100%;
     background: $light-1;
   
     .hamburger {
-      margin-bottom: 10px;
+      cursor: pointer;
+      margin-bottom: 0;
+      padding: $menu-icon-padding;
 
-      &:active {
+      &:active,
+      &:hover {
         .hamburger-inner,
         .hamburger-inner::before,
         .hamburger-inner::after {
@@ -251,8 +257,8 @@ $top-bar-height: 60px;
   
     .nav-home-btn {  
       height: 30px;    
-      margin: 0 35vw;
-      margin-bottom: 10px;
+      margin: 0 35.5vw;
+      margin-bottom: $menu-icon-padding;
   
       .nav-logo {
         height: 100%;
@@ -260,26 +266,28 @@ $top-bar-height: 60px;
     }
   
     .nav-user {
+      cursor: pointer;
       position: relative;
-      height: 20px;
-      width: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 0;
+      width: calc(#{$menu-icon-size} + 2*#{$menu-icon-padding});
+      height: calc(#{$menu-icon-size} + 2*#{$menu-icon-padding});
   
       .nav-user-reg {
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 20px;
+        top: $menu-icon-padding;
+        left: $menu-icon-padding;
+        width: $menu-icon-size;
       }
       .nav-user-hlt {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 20px;
+        top: $menu-icon-padding;
+        left: $menu-icon-padding;
+        width: $menu-icon-size;
         opacity: 0;
       }
   
-      &:active {
+      &:active,
+      &:hover {
         .nav-user-reg {
           opacity: 0;
         }
@@ -318,11 +326,11 @@ $top-bar-height: 60px;
   
       .nav-left-menu {
         height: calc(100vh - #{$top-bar-height});
-        width: 100vw;
+        width: $menu-width;
         background: $light-1;
         display: grid;
-        grid-template-rows: 4fr 1fr;
-        margin-left: -5vw;
+        grid-template-rows: 2fr 1fr;
+        margin-left: -2vw;
         transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   
         .nav-side-menu-links {
@@ -336,15 +344,10 @@ $top-bar-height: 60px;
   
     .nav-left-menu-active {
       visibility: visible;
-      width: 100vw;
+      width: $menu-width;
   
       .nav-left-menu {
         margin-left: 0;
-  
-        .nav-sep {
-          width: 5vw;
-          transition: 0.2s ease-out 0.3s;
-        }
       }
     }
   
@@ -362,72 +365,69 @@ $top-bar-height: 60px;
         top: 0;
         right: 0;
         height: calc(100vh - #{$top-bar-height});
-        width: 100vw;
+        width: calc(#{$menu-width} + 15px);
         background: $light-1;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-right: -5vw;
+        margin-right: -2vw;
         transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
       }  
     }
   
     .nav-right-menu-active {
       visibility: visible;
-      width: 100vw;
+      width: calc(#{$menu-width} + 15px);
   
       .nav-right-menu {
         margin-right: 0vw;
-  
-        .nav-sep {
-          width: 5vw;
-          transition: 0.2s ease-out 0.3s;
-        }
       }
     }
   
     .nav-side-header {
       font-family: $poppins;
       font-weight: 100;
-      font-size: 2vw;
-      letter-spacing: 0.5vw;
+      font-size: 0.6vw;
+      letter-spacing: 0.1vw;
       color: $light-3;
+      margin-top: 10vh;
     }
   
     .nav-side-item {
-      margin-top: 3vh;
+      margin-top: 2vh;
+      padding: 1vh;
       color: $dark-3;
       font-family: $montserrat;
       font-weight: 100;
-      letter-spacing: 0.1vw;
+      font-size: 0.9vw;
+      letter-spacing: 0;
   
-      &:active {
+      &:active,
+      &:hover {
         color: $highlight;
       }
     }
   
     .nav-sep {
-      width: 0vw;
-      height: 1px;
-      background: $light-3;
-      margin: 6vh 0;
-      transition: 0.2s ease-out;
+      display: none;
     }
   
     .nav-side-socials {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
   
       .fab {
-        margin-left: 5vw;
-        margin-right: 5vw;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 5px;
         &:visited {
           color: $dark-1;
         }
-        &:active {
+        &:active,
+        &:hover {
           color: $highlight;
         }
       }
@@ -435,13 +435,21 @@ $top-bar-height: 60px;
   }
   
   .nav-darken-overlay {
+    display: block;
+    visibility: hidden;
     position: absolute;
+    top: 0;
+    left: 0;
     height: 100vh;
     width: 100vw;
     background: black;
     opacity: 0;
     transition: opacity 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-    pointer-events: none;
+  }
+  .nav-darken-overlay-active {
+    visibility: visible;
+    opacity: 0.1;
   }
 }
+
 }

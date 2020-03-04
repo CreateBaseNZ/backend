@@ -104,9 +104,18 @@ const homeInit = () => {
 
   let activeSlide = brycepKit;
   let activeButton = brycepButton;
+
+  window.addEventListener("scroll", function () {
+    var scrollPos = this.scrollY;
+    if (scrollPos > 380) {
+      activeSlide.style.display = 'flex';
+    } else if (scrollPos == 0) {
+      activeSlide.style.display = 'none';
+    }
+  });
   
   brycepButton.addEventListener("click", function() {
-    activeSlide.style.display = 'none'
+    activeSlide.style.display = 'none';
     brycepKit.style.display = 'flex';
     activeSlide = brycepKit;
 
@@ -116,7 +125,7 @@ const homeInit = () => {
   });
 
   hyelosButton.addEventListener("click", function() {
-    activeSlide.style.display = 'none'
+    activeSlide.style.display = 'none';
     hyelosKit.style.display = 'flex';
     activeSlide = hyelosKit;
 

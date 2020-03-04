@@ -370,7 +370,7 @@ body {
 .test-section {
   position: relative;
   background: $light-1;
-  height: 30vmax;
+  height: 25vmax;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -378,8 +378,8 @@ body {
   .test-header {
     width: 100%;
     p {
-      padding-top: 8vh;
-      padding-bottom: 1vh;
+      padding-top: 5vmax;
+      padding-bottom: 1vmax;
       text-align: center;
       font-family: $montserrat;
       font-size: 2vh;
@@ -584,7 +584,7 @@ body {
     
           &:hover {
             color: $highlight;
-            letter-spacing: 3px;
+            letter-spacing: 2.2px;
           }
 
           &:hover ~ .landing-slide-text-sep-2 {
@@ -710,7 +710,7 @@ body {
   .landing-slide-nav-container {
     margin-top: -2vmax;
     height: 2vmax;
-    width: 100%;
+    width: 100vw;
     z-index: 2;
     display: flex;
     justify-content: center;
@@ -759,6 +759,7 @@ body {
     }
     
     .eng-kit-container {
+      display: none;
       height: 80vh;
   
       img {
@@ -864,7 +865,6 @@ body {
     }
   
     .eng-kit-hyelos {
-      display: none;
       img {
         top: 15vh;
         left: 12vw;
@@ -898,7 +898,6 @@ body {
     }
   
     .eng-kit-stc {
-      display: none;
       img {
         top: 10vh;
         left: 50vw;

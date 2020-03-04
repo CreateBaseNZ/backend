@@ -1,31 +1,34 @@
 @import "global/all";
-$diamond: 25vh; 
+$diamond: 25vw; 
 
-body {
-  display: flex;
-  flex-direction: row;
-  font-family: $poppins;
-  line-height: 1.5;
+.main-page {
   height: 100vh;
+  width: 100vw;
+  font-family: $poppins;
+
+  .signup-mobile-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    overflow: hidden;
+  }
 
   // Logo animation
   .logo-anim-container {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    flex: 1;
-    overflow: hidden;
-    z-index: -2;
-    background: $light-1;
-
+    
     .layer {
-      top: 50%;
+      position: absolute;
       height: $diamond;
       width: $diamond;
       background: $light-3;
       opacity: 0.3;
-      position: absolute;
-      margin-left: -$diamond/2;
+      top: 50%;
     }
 
     .layer-1 {
@@ -41,7 +44,8 @@ body {
 
   // Main form
   .signup-form-container {
-    width: 50vw;
+    width: 100vw;
+    height: calc(100vw - #{$top-bar-height});
     animation: appear 3s forwards;
 
     .sign-up-form {
@@ -103,20 +107,6 @@ body {
       }
     }
   }
-
-  // Image
-  .signup-image-container {
-    z-index: -1;
-    width: 50vw;
-    overflow: hidden;
-
-    #back {
-      width: inherit;
-      height: 100vh;
-      background: $dark-3;
-      animation: slide 3s forwards;
-    }
-  }
 }
 
 @keyframes appear {
@@ -144,140 +134,142 @@ body {
 @keyframes logo-anim-1 {
   0%,
   10% {
-    left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    margin-top: -$diamond/2;
+    top: calc(50vh - #{$diamond}/2);
+    left: calc(50vw - #{$diamond}/2);
   }
-  30% {
-    left: 50%;
+  50% {
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: $logo-3;
-    margin-top: -$diamond * 3/4;
+    top: calc(50vh - #{$diamond}/2 - 4vh);
+    left: calc(50vw - #{$diamond}/2);
   }
-  70% {
-    left: 50%;
+  75% {
     height: 1px;
     width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: $dark-3;
-    margin-top: -10vh;
+    top: calc(40vh - 1px);
+    left: calc(50vw - #{$diamond}/2);
   }
-  95% {
-    left: 22vw;
+  97% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 0.4;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
     background: $dark-3;
-    margin-top: -10vh;
+    top: calc(40vh - 1px);
+    left: 40vw;
   }
   100% {
-    left: 22vw;
-    height: 0.5px;
+    height: 1px;
     width: 20vw;
     border-radius: 0;
     opacity: 0;
     background: $dark-3;
-    margin-top: -10vh;
+    top: calc(40vh - 1px);
+    left: 40vw;
   }
 }
 
 @keyframes logo-anim-2 {
   0%,
   10% {
-    left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    margin-top: -$diamond/2;
+    top: calc(50vh - #{$diamond}/2);
+    left: calc(50vw - #{$diamond}/2);
   }
-  30% {
-    left: 50%;
+  50% {
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: $logo-2;
-    margin-top: -$diamond/2;
+    top: calc(50vh - #{$diamond}/2);
+    left: calc(50vw - #{$diamond}/2);
   }
-  70% {
-    left: 50%;
+  75% {
     height: 1px;
     width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: $dark-3;
-    margin-top: 0;
+    top: calc(50vh - 2px);
+    left: calc(50vw - #{$diamond}/2);
   }
-  95% {
-    left: 22vw;
+  97% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 0.4;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
     background: $dark-3;
-    margin-top: 0;
+    top: calc(50vh - 2px);
+    left: 40vw;
   }
   100% {
-    left: 22vw;
-    height: 0.5px;
+    height: 1px;
     width: 20vw;
     border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 0;
     background: $dark-3;
-    margin-top: 0;
+    top: calc(50vh - 2px);
+    left: 40vw;
   }
 }
 
 @keyframes logo-anim-3 {
   0%,
   10% {
-    left: 50%;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
-    margin-top: -$diamond/2;
+    top: calc(50vh - #{$diamond}/2);
+    left: calc(50vw - #{$diamond}/2);
   }
-  30% {
-    left: 50%;
+  50% {
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
     opacity: 0.3;
     background: $logo-1;
-    margin-top: -$diamond * 1/4;
+    top: calc(50vh - #{$diamond}/2 + 4vh);
+    left: calc(50vw - #{$diamond}/2);
   }
-  70% {
-    left: 50%;
+  75% {
     height: 1px;
     width: $diamond;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(0.72, 0.01, 0.5, 1);
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
     background: $dark-3;
-    margin-top: 10vh;
+    top: calc(60vh - 1px);
+    left: calc(50vw - #{$diamond}/2);
   }
-  95% {
-    left: 22vw;
+  97% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
-    animation-timing-function: cubic-bezier(0.72, 0.01, 0.74, 1);
-    opacity: 0.4;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
     background: $dark-3;
-    margin-top: 10vh;
+    top: calc(60vh - 1px);
+    left: 40vw;
   }
   100% {
-    left: 22vw;
-    height: 0.5px;
+    height: 1px;
     width: 20vw;
     border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 0;
     background: $dark-3;
-    margin-top: 10vh;
+    top: calc(60vh - 1px);
+    left: 40vw;
   }
 }
