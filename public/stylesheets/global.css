@@ -667,15 +667,16 @@ button {
 .input-decor {
   position: relative;
   display: inline-block;
-  border-bottom: 1.2px dotted #2d283c;
+  border-bottom: 1px solid #f8f8f8;
 }
 
 .input-decor input {
   border: none;
   padding: 0.5vw 1vw;
-  width: 20vw;
+  width: 75vw;
   font-family: "Poppins", sans-serif;
   height: 32px;
+  background: transparent;
 }
 
 .input-decor input:focus {
@@ -686,32 +687,33 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-  margin-top: 0.5vh;
+  margin-top: 1.5vh;
   margin-left: 1vw;
-  color: #c7c2d5;
+  color: #877da9;
   letter-spacing: 1.5px;
-  font-size: 1vw;
+  font-size: 3.5vw;
   font-weight: 100;
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
   pointer-events: none;
+  background: transparent;
 }
 
 .input-decor input:focus ~ label {
   margin-top: -2vh;
-  font-size: 0.75vw;
+  font-size: 2vw;
   color: #4bf0ea;
 }
 
 .input-decor input:not(:focus):valid ~ label {
   margin-top: -2vh;
-  font-size: 0.75vw;
+  font-size: 2vw;
   color: #c7c2d5;
 }
 
 .input-decor::after, .input-decor:focus-within::after {
   content: "";
-  border-bottom: 1.2px solid #4bf0ea;
+  border-bottom: 1px solid #4bf0ea;
   position: absolute;
   width: 0%;
   top: 100%;
@@ -722,6 +724,61 @@ button {
 
 .input-decor:focus-within::after {
   width: 100%;
+}
+
+@media only screen and (min-width: 850px) {
+  .input-decor {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1.2px dotted #2d283c;
+  }
+  .input-decor input {
+    border: none;
+    padding: 0.5vw 1vw;
+    width: 20vmax;
+    font-family: "Poppins", sans-serif;
+    height: 32px;
+  }
+  .input-decor input:focus {
+    outline: none;
+  }
+  .input-decor label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    color: #c7c2d5;
+    letter-spacing: 1.5px;
+    font-size: 1vw;
+    font-weight: 100;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+  }
+  .input-decor input:focus ~ label {
+    margin-top: -2vh;
+    font-size: 0.75vw;
+    color: #4bf0ea;
+  }
+  .input-decor input:not(:focus):valid ~ label {
+    margin-top: -2vh;
+    font-size: 0.75vw;
+    color: #c7c2d5;
+  }
+  .input-decor::after, .input-decor:focus-within::after {
+    content: "";
+    border-bottom: 1.2px solid #4bf0ea;
+    position: absolute;
+    width: 0%;
+    top: 100%;
+    left: 0%;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+  }
+  .input-decor:focus-within::after {
+    width: 100%;
+  }
 }
 
 .hamburger {
@@ -930,8 +987,8 @@ button {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   opacity: 1;
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .nav-container .nav-top-bar .nav-user .nav-user-hlt {
@@ -942,17 +999,17 @@ button {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   opacity: 0;
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
-.nav-container .nav-top-bar .nav-user:active .nav-user-reg {
+.nav-container .nav-top-bar .nav-user:active .nav-user-reg, .nav-container .nav-top-bar .nav-user:hover .nav-user-reg {
   opacity: 0;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
 }
 
-.nav-container .nav-top-bar .nav-user:active .nav-user-hlt {
+.nav-container .nav-top-bar .nav-user:active .nav-user-hlt, .nav-container .nav-top-bar .nav-user:hover .nav-user-hlt {
   opacity: 1;
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
@@ -968,6 +1025,8 @@ button {
   opacity: 1;
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .nav-container .nav-side-menus {
@@ -1401,266 +1460,6 @@ button {
   }
 }
 
-/*=========================================================================================
-VARIABLES
-=========================================================================================*/
-/*=========================================================================================
-MOBILE CSS
-=========================================================================================*/
-.nav-bar {
-  height: 8vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  z-index: 5;
-  overflow: hidden;
-}
-
-.nav-bar-hide {
-  height: 0;
-}
-
-.nav-bar-top {
-  position: fixed;
-  top: 0;
-  padding: 1vmax;
-}
-
-.nav-bar-btm {
-  position: fixed;
-  bottom: 0;
-}
-
-.nav-btn {
-  height: 100%;
-  width: 25%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  background-color: #f0f0ff;
-  color: #6464ff;
-  -webkit-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
-}
-
-.nav-btn-untgl {
-  background-color: #6464ff;
-  color: #f0f0ff;
-}
-
-.nav-icn {
-  height: 3.5vmax;
-  width: 3.5vmax;
-  background-color: #c8c8c8;
-}
-
-.nav-txt {
-  padding: 0.5vmax 0 0 0;
-  letter-spacing: 0.05vmax;
-}
-
-.nav-bar-dktp {
-  max-height: 0;
-  padding: 0;
-}
-
-.nav-cntt {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  overflow: hidden;
-}
-
-/*-----------------------------------------------------------------------------------------
-PAGE FLOATING NAVIGATION 1
------------------------------------------------------------------------------------------*/
-.flt-navs-1 {
-  position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100vw;
-  left: 0vw;
-  height: 12vmax;
-  bottom: 8vmax;
-  padding: 0 6vmax;
-  background-color: rgba(255, 255, 255, 0.6);
-  z-index: 5;
-}
-
-.flt-nav-1 {
-  height: 1.6vmax;
-  width: 1.6vmax;
-  border-radius: 0.8vmax;
-  border-style: solid;
-  border-width: 0.4vmax;
-  border-color: #2d283c;
-  background-color: #2d283c;
-  opacity: 0.2;
-  margin: 2vmax;
-}
-
-.flt-nav-1-dsbl {
-  background-color: white;
-}
-
-.flt-nav-1-slct {
-  height: 2vmax;
-  width: 2vmax;
-  border-radius: 1vmax;
-  border-style: none;
-  background-color: #4e4ed6;
-  opacity: 1;
-}
-
-.flt-arw-1 {
-  border-style: solid;
-  border-color: #2d283c;
-  border-width: 0 0.8vmax 0.8vmax 0;
-  padding: 0.8vmax;
-  opacity: 0.6;
-  margin: 1vmax;
-}
-
-.flt-arw-1-dsbl {
-  opacity: 0;
-}
-
-.flt-arw-1-left {
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
-}
-
-.flt-arw-1-down {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.flt-arw-1-rght {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.flt-arw-1-up {
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-}
-
-/*=========================================================================================
-DESKTOP CSS
-=========================================================================================*/
-@media only screen and (min-width: 850px) {
-  /* Mobile CSS Reset */
-  .nav-bar-mbl {
-    max-height: 0;
-    padding: 0;
-  }
-  .nav-btns-dktp {
-    width: 20vmax;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    overflow: hidden;
-  }
-  /* Desktop CSS */
-  .nav-bar-dktp {
-    max-height: 4vmax;
-    padding: 0.5vmax 1vmax;
-  }
-  .nav-btns-dktp-hide {
-    width: 0;
-  }
-  .nav-btn-log-out-dktp {
-    height: 3vmax;
-    width: 10vmax;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    overflow: hidden;
-  }
-  #nav-btn-signup {
-    border-style: solid;
-    border-width: 0.2vmax;
-    border-radius: 0.5vmax;
-  }
-  /*---------------------------------------------------------------------------------------
-  PAGE FLOATING NAVIGATION 1
-  ---------------------------------------------------------------------------------------*/
-  .flt-navs-1 {
-    height: calc(100% - 4vmax);
-    width: 8vmax;
-    top: 4vmax;
-    left: calc(100% - 8vmax);
-    padding: 8vmax 0;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .flt-nav-1 {
-    height: 0.8vmax;
-    width: 0.8vmax;
-    border-radius: 0.4vmax;
-    border-width: 0.2vmax;
-    margin: 1vmax;
-  }
-  .flt-nav-1-slct {
-    height: 1vmax;
-    width: 1vmax;
-    border-radius: 0.5vmax;
-  }
-  .flt-arw-1 {
-    border-width: 0 0.4vmax 0.4vmax 0;
-    padding: 0.4vmax;
-    margin: 0.5vmax;
-  }
-  .flt-arw-1-left {
-    -webkit-transform: rotate(-135deg);
-            transform: rotate(-135deg);
-  }
-  .flt-arw-1-rght {
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-  }
-}
-
-/*=========================================================================================
-END
-=========================================================================================*/
 /*=========================================================================================
 TEMPORARY
 =========================================================================================*/

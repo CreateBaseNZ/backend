@@ -51,7 +51,8 @@ $top-bar-height: 60px;
         width: 20px;
         transform: scaleX(1);
         opacity: 1;
-        transition: 0.3s ease-out;
+        transition: all 0.3s ease-out;
+
       }
       .nav-user-hlt {
         position: absolute;
@@ -60,10 +61,12 @@ $top-bar-height: 60px;
         width: 20px;
         transform: scaleX(0);
         opacity: 0;
-        transition: 0.3s ease-out;
+        transition: all 0.3s ease-out;
+
       }
   
-      &:active {
+      &:active,
+      &:hover {
         .nav-user-reg {
           opacity: 0;
           transform: scaleX(0);
@@ -83,6 +86,7 @@ $top-bar-height: 60px;
       .nav-user-hlt {
         opacity: 1;
         transform: scaleX(1);
+        transition: all 0.3s ease-out;
       }
     }
   }
