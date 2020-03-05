@@ -268,10 +268,93 @@ OrderSchema.methods.validateCart = function() {
 // @DESC
 // @ARGU
 OrderSchema.methods.validateShipping = function() {
-  if (this.shipping.address.option == "saved") {
-  } else if (this.shipping.address.option == "new") {
+  console.log("Validate Shipping");
+  // Check if a shipping option is provided
+  if (!this.shipping.address.option) {
+    console.log("no address option selected");
+    return false;
+  }
+  // Check if a shipping address is provided
+  if (this.shipping.address.option === "saved") {
+    // Saved Address
+    const data = checkAddressValidity(this.shipping.address.saved);
+    console.log(data.message);
+    if (data.status === "failed") {
+      return false;
+    }
+  } else if (this.shipping.address.option === "new") {
+    // New Address
+    const data = checkAddressValidity(this.shipping.address.new);
+    console.log(data.message);
+    if (data.status === "failed") {
+      return false;
+    }
+  }
+  // Check if a shipping method is provided
+  if (!this.shipping.method) {
+    console.log("no method selected");
+    return false;
   }
   return true;
+};
+
+/*=========================================================================================
+FUNCTIONS
+=========================================================================================*/
+
+const checkAddressValidity = address => {
+  // VALIDATION - STREET NAME
+  if (!address.street.name) {
+    // Check if there is no street name provided
+    return {
+      status: "failed",
+      message: "no street name"
+    };
+  }
+  // VALIDATION - STREET NUMBER
+  if (!address.street.number) {
+    // Check if there is no street number provided
+    return {
+      status: "failed",
+      message: "no street number"
+    };
+  }
+  // VALIDATION - SUBURB
+  if (!address.suburb) {
+    // Check if there is no suburb provided
+    return {
+      status: "failed",
+      message: "no suburb"
+    };
+  }
+  // VALIDATION - CITY
+  if (!address.city) {
+    // Check if there is no city provided
+    return {
+      status: "failed",
+      message: "no city"
+    };
+  }
+  // VALIDATION - POSTCODE
+  if (!address.postcode) {
+    // Check if there is no postcode provided
+    return {
+      status: "failed",
+      message: "no postcode"
+    };
+  }
+  // VALIDATION - COUNTRY
+  if (!address.country) {
+    return {
+      status: "failed",
+      message: "no country"
+    };
+  }
+  // All Valid
+  return {
+    status: "success",
+    message: "valid address"
+  };
 };
 
 /*=========================================================================================

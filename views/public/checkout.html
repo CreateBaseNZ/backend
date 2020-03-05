@@ -25,6 +25,7 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./../../public/javascripts/moment.js"></script>
+    <script src="./../../public/javascripts/nav.js"></script>
     <!-------------------------------------------------------------------------------------
     Default CSS
     -------------------------------------------------------------------------------------->
@@ -40,7 +41,85 @@
     <script src="./../../public/javascripts/checkout.js"></script>
   </head>
 
-  <body onload="checkout.initialise();">
+  <body onload="navInit(); checkout.initialise();">
+    <nav class="nav-container">
+      <div class="nav-darken-overlay"></div>
+      <div class="nav-top-bar">
+        <button class="hamburger hamburger-spin" type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+        <a href="/" class="nav-home-btn">
+          <img
+            src="./../../public/images/logo-icon.png"
+            class="nav-logo"
+            alt="CreateBase"
+          />
+        </a>
+        <div class="nav-user">
+          <img
+            src="./../../public/images/logged-out-highlight.png"
+            class="nav-user-hlt"
+            alt="User"
+          />
+          <img
+            src="./../../public/images/logged-out.png"
+            class="nav-user-reg"
+            alt="User"
+          />
+        </div>
+      </div>
+      <div class="nav-side-menus">
+        <div class="nav-left-menu-wrap">
+          <div class="nav-left-menu">
+            <div class="nav-side-menu-links">
+              <p class="nav-side-header">SERVICES</p>
+              <a href="#" class="nav-side-item">3D PRINTING</a>
+              <a href="#" class="nav-side-item">MARKETPLACE</a>
+              <div class="nav-sep"></div>
+              <p class="nav-side-header">PRODUCTS</p>
+              <a href="#" class="nav-side-item">ENGINEERING KITS</a>
+              <div class="nav-sep"></div>
+              <p class="nav-side-header">CREATEBASE</p>
+              <a href="#" class="nav-side-item">OUR STORY</a>
+              <a href="#" class="nav-side-item">OUR TEAM</a>
+            </div>
+            <div class="nav-side-socials">
+              <a
+                href="https://www.facebook.com/"
+                class="fab fa-facebook-square"
+                target="_blank"
+              ></a>
+              <a
+                href="https://www.instagram.com/"
+                class="fab fa-instagram"
+                target="_blank"
+              ></a>
+              <a
+                href="https://twitter.com/"
+                class="fab fa-twitter"
+                target="_blank"
+              ></a>
+              <a
+                href="https://www.youtube.com/user/LouiiL"
+                class="fab fa-youtube"
+                target="_blank"
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-right-menu-wrap">
+          <div class="nav-right-menu">
+            <p class="nav-side-header">WELCOME BACK</p>
+            <a href="/login" class="nav-side-item">LOG IN</a>
+            <div class="nav-sep"></div>
+            <p class="nav-side-header">FIRST TIME?</p>
+            <a href="/signup" class="nav-side-item">SIGN UP</a>
+          </div>
+        </div>
+      </div>
+    </nav>
     <div class="page" id="checkout-pg">
       <!---------------------------------------------------------------------------------
       SUMMARY PAGE (DESKTOP ONLY)
@@ -247,7 +326,7 @@
               Pre-Shipping Total
             </h3>
             <div class="checkout-cart-prcs">
-              <div class="checkout-cart-prc-cntn">
+              <div class="checkout-pricing-container">
                 <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3">
                   Subtotal
                 </p>
@@ -256,7 +335,7 @@
                   id="checkout-cart-sub-total"
                 ></p>
               </div>
-              <div class="checkout-cart-prc-cntn">
+              <div class="checkout-pricing-container">
                 <p
                   class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
                   id="checkout-cart-discount-label"
@@ -268,7 +347,7 @@
                   id="checkout-cart-discount"
                 ></p>
               </div>
-              <div class="checkout-cart-prc-cntn">
+              <div class="checkout-pricing-container">
                 <p
                   class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
                   id="checkout-cart-manufacturing-fee-label"
@@ -280,7 +359,7 @@
                   id="checkout-cart-manufacturing-fee"
                 ></p>
               </div>
-              <div class="checkout-cart-prc-cntn">
+              <div class="checkout-pricing-container total">
                 <p class="checkout-cart-prc-lbl rmv-p-css hdng-1 txt-clr-blk-2">
                   TOTAL
                 </p>
@@ -591,7 +670,7 @@
               Order Total
             </h3>
             <div class="checkout-cart-prcs">
-              <div class="checkout-cart-prc-cntn">
+              <div class="checkout-pricing-container">
                 <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3">
                   Subtotal
                 </p>
@@ -600,7 +679,7 @@
                   id="checkout-cart-sub-total"
                 ></p>
               </div>
-              <div class="checkout-cart-prc-cntn">
+              <div class="checkout-pricing-container">
                 <p
                   class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
                   id="checkout-cart-discount-label"
@@ -612,7 +691,7 @@
                   id="checkout-cart-discount"
                 ></p>
               </div>
-              <div class="checkout-cart-prc-cntn">
+              <div class="checkout-pricing-container total">
                 <p class="checkout-cart-prc-lbl rmv-p-css hdng-1 txt-clr-blk-2">
                   TOTAL
                 </p>
@@ -757,7 +836,10 @@
                 >
                   <label for="checkout-card-num">Card Number</label>
                   <div id="checkout-card-num"></div>
-                  <p class="rmv-p-css checkout-input-error"></p>
+                  <p
+                    class="rmv-p-css checkout-input-error"
+                    id="checkout-card-number-error"
+                  ></p>
                 </div>
                 <div
                   class="checkout-payment-card-input-container"
@@ -765,7 +847,10 @@
                 >
                   <label for="checkout-card-exp">Expiry Date</label>
                   <div id="checkout-card-exp"></div>
-                  <p class="rmv-p-css checkout-input-error"></p>
+                  <p
+                    class="rmv-p-css checkout-input-error"
+                    id="checkout-card-expiry-error"
+                  ></p>
                 </div>
                 <div
                   class="checkout-payment-card-input-container"
@@ -773,7 +858,10 @@
                 >
                   <label for="checkout-card-cvc">CVC</label>
                   <div id="checkout-card-cvc"></div>
-                  <p class="rmv-p-css checkout-input-error"></p>
+                  <p
+                    class="rmv-p-css checkout-input-error"
+                    id="checkout-card-cvc-error"
+                  ></p>
                 </div>
               </form>
               <div class="checkout-buttons">

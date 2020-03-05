@@ -311,11 +311,24 @@ CART
   padding: 2vmax 0;
 }
 
-.checkout-cart-prc-cntn {
+.checkout-pricing-container {
+  height: 6vmax;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 1vmax 0;
+}
+
+.checkout-pricing-container.total {
+  height: 10vmax;
+}
+
+.checkout-cart-prc-cntn {
+  height: 6vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .checkout-cart-prc-lbl {
@@ -569,10 +582,11 @@ NAVIGATION
 .checkout-sub-pg {
   position: fixed;
   height: 100%;
+  align-content: flex-start;
+  padding-top: 60px;
   overflow-y: scroll;
   transition: all 0.5s ease;
   opacity: 1;
-  align-content: flex-start;
 }
 
 .checkout-sub-pg-left {

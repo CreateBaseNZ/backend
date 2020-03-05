@@ -152,11 +152,12 @@ let checkout = {
         stripe: undefined,
         elements: undefined,
         card: {
-          number: undefined,
-          expiry: undefined,
-          cvc: undefined
+          number: undefined, // checkout.payment.stripe.element.card.number
+          expiry: undefined, // checkout.payment.stripe.element.card.expiry
+          cvc: undefined // checkout.payment.stripe.element.card.cvc
         }
-      }
+      },
+      errorHandler: undefined
     },
     method: {
       select: undefined, // checkout.payment.method.select
@@ -209,7 +210,7 @@ checkout.initialise = async () => {
   // Event Listener
   checkout.listener();
   // Update Loader
-  checkout.load.success("success");
+  checkout.load.success("loaded");
 };
 
 // @FUNC  checkout.fetch
@@ -864,7 +865,7 @@ checkout.cart.manufacturingSpeed.select = async option => {
     console.log(error);
     return;
   }
-  checkout.load.success("success");
+  checkout.load.success("saved");
   // Update Price
 
   // Perform Validation
@@ -1031,7 +1032,7 @@ checkout.shipping.address.select = async (option, update) => {
       console.log(error);
       return;
     }
-    checkout.load.success("success");
+    checkout.load.success("saved");
     // Update Price
 
     // Perform Validation
@@ -1349,7 +1350,7 @@ checkout.shipping.address.new.update = async type => {
     console.log(error);
     return;
   }
-  checkout.load.success("success");
+  checkout.load.success("saved");
   checkout.shipping.validation.validate(object.validity);
 };
 
@@ -1374,7 +1375,7 @@ checkout.shipping.address.new.toggleSave = async save => {
     console.log(error);
     return;
   }
-  checkout.load.success("success");
+  checkout.load.success("saved");
   // Update Price
 
   // Perform Validation
@@ -1417,7 +1418,7 @@ checkout.shipping.method.select = async option => {
     console.log(error);
     return;
   }
-  checkout.load.success("success");
+  checkout.load.success("saved");
   // Update Price
 
   // Perform Validation
@@ -1573,18 +1574,63 @@ checkout.payment.stripe.initialise = () => {
     "pk_test_cyWnxjuNQGbF42g88sLseXpJ003JGn4TCC"
   );
   checkout.payment.stripe.element.elements = checkout.payment.stripe.element.stripe.elements();
-  checkout.payment.stripe.element.number = checkout.payment.stripe.element.elements.create(
+  checkout.payment.stripe.element.card.number = checkout.payment.stripe.element.elements.create(
     "cardNumber"
   );
-  checkout.payment.stripe.element.number.mount("#checkout-card-num");
-  checkout.payment.stripe.element.expiry = checkout.payment.stripe.element.elements.create(
+  checkout.payment.stripe.element.card.number.mount("#checkout-card-num");
+  checkout.payment.stripe.element.card.expiry = checkout.payment.stripe.element.elements.create(
     "cardExpiry"
   );
-  checkout.payment.stripe.element.expiry.mount("#checkout-card-exp");
-  checkout.payment.stripe.element.cvc = checkout.payment.stripe.element.elements.create(
+  checkout.payment.stripe.element.card.expiry.mount("#checkout-card-exp");
+  checkout.payment.stripe.element.card.cvc = checkout.payment.stripe.element.elements.create(
     "cardCvc"
   );
-  checkout.payment.stripe.element.cvc.mount("#checkout-card-cvc");
+  checkout.payment.stripe.element.card.cvc.mount("#checkout-card-cvc");
+  // ERROR HANDLER
+  checkout.payment.stripe.errorHandler();
+};
+
+// @FUNC  checkout.payment.stripe.errorHandler
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.stripe.errorHandler = () => {
+  // CARD NUMBER
+  checkout.payment.stripe.element.card.number.addEventListener(
+    "change",
+    ({ error }) => {
+      const element = document.querySelector("#checkout-card-number-error");
+      if (error) {
+        element.textContent = "invalid";
+      } else {
+        element.textContent = "";
+      }
+    }
+  );
+  // CARD NAME
+  checkout.payment.stripe.element.card.expiry.addEventListener(
+    "change",
+    ({ error }) => {
+      const element = document.querySelector("#checkout-card-expiry-error");
+      if (error) {
+        element.textContent = "invalid";
+      } else {
+        element.textContent = "";
+      }
+    }
+  );
+  // CARD CVC
+  checkout.payment.stripe.element.card.cvc.addEventListener(
+    "change",
+    ({ error }) => {
+      const element = document.querySelector("#checkout-card-cvc-error");
+      if (error) {
+        element.textContent = "invalid";
+      } else {
+        element.textContent = "";
+      }
+    }
+  );
 };
 
 // @FUNC  checkout.payment.method.select
@@ -1625,7 +1671,7 @@ checkout.payment.method.select = async (option, update) => {
 
     // Perform Validation
     checkout.shipping.validation.validate(object.validity);
-    checkout.load.success("success");
+    checkout.load.success("saved");
   }
 };
 
