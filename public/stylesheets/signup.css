@@ -1803,13 +1803,13 @@ END
 
 .nice-btn {
   font-family: "Poppins", sans-serif;
-  font-size: 3vw;
-  letter-spacing: 0.5vw;
+  font-size: 1.5vmax;
+  font-weight: 800;
+  letter-spacing: 0.1vmax;
   color: #877da9;
   border: 1px solid #877da9;
-  padding: 4px 12px;
-  background: white;
-  width: 30vw;
+  padding: 8px 40px;
+  background: transparent;
 }
 
 @-webkit-keyframes appear {
@@ -1836,30 +1836,6 @@ END
   }
 }
 
-@-webkit-keyframes slide {
-  0%,
-  85% {
-    margin-left: -50vw;
-  }
-  100% {
-    margin-left: 0vw;
-    -webkit-animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-            animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-  }
-}
-
-@keyframes slide {
-  0%,
-  85% {
-    margin-left: -50vw;
-  }
-  100% {
-    margin-left: 0vw;
-    -webkit-animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-            animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-  }
-}
-
 @-webkit-keyframes logo-anim-1 {
   0%,
   10% {
@@ -1868,7 +1844,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1878,7 +1854,7 @@ END
     top: calc(50vh - 20vw/2 - 20vw/4);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
@@ -1889,7 +1865,7 @@ END
     top: calc(40vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
@@ -1919,7 +1895,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1929,7 +1905,7 @@ END
     top: calc(50vh - 20vw/2 - 20vw/4);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
@@ -1940,7 +1916,7 @@ END
     top: calc(40vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
@@ -1970,7 +1946,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1980,7 +1956,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
@@ -1991,7 +1967,7 @@ END
     top: calc(50vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
@@ -2023,7 +1999,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -2033,7 +2009,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
@@ -2044,7 +2020,7 @@ END
     top: calc(50vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
@@ -2076,7 +2052,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -2086,7 +2062,7 @@ END
     top: calc(50vh - 20vw/2 + 20vw/4);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
@@ -2097,7 +2073,7 @@ END
     top: calc(60vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
@@ -2129,7 +2105,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -2139,7 +2115,7 @@ END
     top: calc(50vh - 20vw/2 + 20vw/4);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
@@ -2150,7 +2126,7 @@ END
     top: calc(60vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
