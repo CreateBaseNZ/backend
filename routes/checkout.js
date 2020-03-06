@@ -432,6 +432,29 @@ router.post(
   }
 );
 
+// @route     POST /checkout/order/validate/payment
+// @desc
+// @access    Private
+router.post(
+  "/checkout/order/validate/payment",
+  restrictedPages,
+  async (req, res) => {
+    const accountId = mongoose.Types.ObjectId(req.user._id);
+    let order;
+    // Find an Active Order
+    try {
+      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    valid =
+      order.validateCart() &&
+      order.validateShipping() &&
+      order.validatePayment();
+    return res.send({ status: "success", data: valid });
+  }
+);
+
 // @route     POST /checkout/order/delete/print
 // @desc
 // @access    Private

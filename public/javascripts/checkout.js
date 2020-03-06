@@ -18,40 +18,40 @@ let checkout = {
   // VARIABLES
   element: {
     heading: {
-      cart: undefined,
-      shipping: undefined,
-      payment: undefined
+      cart: undefined, // checkout.element.heading.cart
+      shipping: undefined, // checkout.element.heading.shipping
+      payment: undefined // checkout.element.heading.payment
     },
     button: {
       cart: {
-        next: undefined
+        next: undefined // checkout.element.button.cart.next
       },
       shipping: {
-        back: undefined,
-        next: undefined
+        back: undefined, // checkout.element.button.shipping.back
+        next: undefined // checkout.element.button.shipping.next
       },
       payment: {
         bank: {
-          back: undefined,
-          paid: undefined
+          back: undefined, // checkout.element.payment.bank.back
+          paid: undefined // checkout.element.payment.bank.paid
         },
         card: {
-          back: undefined,
-          pay: undefined
+          back: undefined, // checkout.element.payment.card.back
+          pay: undefined // checkout.element.payment.card.pay
         }
       }
     },
     validity: {
-      cart: undefined,
-      shipping: undefined,
-      payment: undefined
+      cart: undefined, // checkout.element.validity.cart
+      shipping: undefined, // checkout.element.validity.shipping
+      payment: undefined // checkout.element.validity.payment
     },
     navigation: {
-      cart: undefined,
-      shipping: undefined,
-      payment: undefined
+      cart: undefined, // checkout.element.navigation.cart
+      shipping: undefined, // checkout.element.navigation.shipping
+      payment: undefined // checkout.element.navigation.payment
     },
-    windowSize: undefined
+    windowSize: undefined // checkout.element.windowSize
   },
   // FUNCTIONS
   initialise: undefined, // checkout.initialise
@@ -116,9 +116,9 @@ let checkout = {
         show: undefined // checkout.shipping.address.saved.show
       },
       new: {
-        update: undefined,
-        populate: undefined,
-        toggleSave: undefined,
+        update: undefined, // checkout.shipping.address.new.update
+        populate: undefined, // checkout.shipping.address.new.populate
+        toggleSave: undefined, // checkout.shipping.address.new.toggleSave
         validate: {
           unit: undefined, // checkout.shipping.address.new.validate.unit
           street: {
@@ -138,46 +138,47 @@ let checkout = {
       select: undefined // checkout.shipping.method.select
     },
     validation: {
-      validate: undefined,
-      valid: undefined,
-      invalid: undefined
+      validate: undefined, // checkout.shipping.validation.validate
+      valid: undefined, // checkout.shipping.validation.valid
+      invalid: undefined // checkout.shipping.validation.invalid
     },
-    show: undefined,
+    show: undefined, // checkout.shipping.show
     resize: undefined // checkout.shipping.resize
   },
   payment: {
     stripe: {
-      initialise: undefined,
+      initialise: undefined, // checkout.payment.stripe.initialise
       element: {
-        stripe: undefined,
-        elements: undefined,
+        stripe: undefined, // checkout.payment.stripe.element.stripe
+        elements: undefined, // checkout.payment.stripe.element.elements
         card: {
           number: undefined, // checkout.payment.stripe.element.card.number
           expiry: undefined, // checkout.payment.stripe.element.card.expiry
           cvc: undefined // checkout.payment.stripe.element.card.cvc
         }
       },
-      errorHandler: undefined
+      errorHandler: undefined // checkout.payment.stripe.errorHandler
     },
     method: {
       select: undefined, // checkout.payment.method.select
       selected: undefined, // checkout.payment.method.selected
       bank: {
-        show: undefined
+        show: undefined, // checkout.payment.method.bank.show
+        paid: undefined // checkout.payment.method.bank.paid
       },
       card: {
-        pay: undefined,
-        paymentIntent: undefined,
-        process: undefined,
-        show: undefined
+        paymentIntent: undefined, // checkout.payment.method.card.paymentIntent
+        process: undefined, // checkout.payment.method.card.process
+        show: undefined, // checkout.payment.method.card.show
+        pay: undefined // checkout.payment.method.card.pay
       }
     },
     validation: {
-      validate: undefined, // checkout.validation.validate
-      valid: undefined,
-      invalid: undefined
+      validate: undefined, // checkout.payment.validation.validate
+      valid: undefined, // checkout.payment.validation.valid
+      invalid: undefined // checkout.payment.validation.invalid
     },
-    show: undefined
+    show: undefined // checkout.payment.show
   },
   navigation: {
     navigate: undefined, // checkout.navigation.navigate
@@ -187,9 +188,9 @@ let checkout = {
     }
   },
   load: {
-    success: undefined,
-    load: undefined,
-    time: undefined
+    success: undefined, // checkout.load.success
+    load: undefined, // checkout.load.load
+    time: undefined // checkout.load.time
   }
 };
 
@@ -327,6 +328,7 @@ checkout.load = async () => {
   // Perform Validation
   checkout.cart.validation.validate(object.validity);
   checkout.shipping.validation.validate(object.validity);
+  checkout.payment.validation.validate(object.validity);
   return;
 };
 
@@ -876,7 +878,7 @@ checkout.cart.manufacturingSpeed.select = async option => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.validation.validate = async validity => {
+checkout.cart.asyncvavaliditylidation.validate = async validity => {
   let valid;
 
   if (validity) {
@@ -1425,7 +1427,7 @@ checkout.shipping.method.select = async option => {
   checkout.shipping.validation.validate(object.validity);
 };
 
-// @FUNC  checkout.shipping.validation.valid
+// @FUNC  checkout.shipping.validation.validate
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
@@ -1691,6 +1693,8 @@ checkout.payment.method.bank.show = show => {
   }
 };
 
+checkout.payment.method.bank.paid = () => {};
+
 // @FUNC  checkout.payment.method.card.pay
 // @TYPE
 // @DESC
@@ -1777,6 +1781,67 @@ checkout.payment.method.card.show = show => {
       .querySelector("#checkout-pymt-card-cntn")
       .classList.add("checkout-element-hide");
   }
+};
+
+// @FUNC  checkout.payment.validation.validate
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.payment.validation.validate = async validity => {
+  let valid;
+
+  if (validity) {
+    // Check if the validity object is provided
+    valid = validity.cart && validity.shipping && validity.payment;
+  } else {
+    // Fetch Validity from Backend if Validity Object is NOT provided
+    try {
+      valid = (await axios.post("/checkout/order/validate/payment"))["data"][
+        "data"
+      ];
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
+
+  checkout.element.validity.payment = valid;
+
+  if (valid) {
+    checkout.payment.validation.valid();
+  } else {
+    checkout.payment.validation.invalid();
+  }
+};
+
+// @FUNC  checkout.payment.validation.valid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.payment.validation.valid = () => {
+  checkout.element.payment.bank.paid.addEventListener(
+    "click",
+    checkout.payment.method.bank.paid
+  );
+  checkout.element.payment.card.pay.addEventListener(
+    "click",
+    checkout.payment.method.card.pay
+  );
+};
+
+// @FUNC  checkout.payment.validation.invalid
+// @TYPE  SIMPLE
+// @DESC
+// @ARGU
+checkout.payment.validation.invalid = () => {
+  checkout.element.payment.bank.paid.removeEventListener(
+    "click",
+    checkout.payment.method.bank.paid
+  );
+  checkout.element.payment.card.pay.removeEventListener(
+    "click",
+    checkout.payment.method.card.pay
+  );
 };
 
 // @FUNC  checkout.payment.show

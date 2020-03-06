@@ -268,33 +268,36 @@ OrderSchema.methods.validateCart = function() {
 // @DESC
 // @ARGU
 OrderSchema.methods.validateShipping = function() {
-  console.log("Validate Shipping");
   // Check if a shipping option is provided
   if (!this.shipping.address.option) {
-    console.log("no address option selected");
     return false;
   }
   // Check if a shipping address is provided
   if (this.shipping.address.option === "saved") {
     // Saved Address
     const data = checkAddressValidity(this.shipping.address.saved);
-    console.log(data.message);
     if (data.status === "failed") {
       return false;
     }
   } else if (this.shipping.address.option === "new") {
     // New Address
     const data = checkAddressValidity(this.shipping.address.new);
-    console.log(data.message);
     if (data.status === "failed") {
       return false;
     }
   }
   // Check if a shipping method is provided
   if (!this.shipping.method) {
-    console.log("no method selected");
     return false;
   }
+  return true;
+};
+
+// @FUNC  validatePayment
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+OrderSchema.methods.validatePayment = function() {
   return true;
 };
 
