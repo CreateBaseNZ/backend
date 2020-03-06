@@ -1801,6 +1801,17 @@ END
   color: #4bf0ea;
 }
 
+.nice-btn {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5vmax;
+  font-weight: 800;
+  letter-spacing: 0.1vmax;
+  color: #877da9;
+  border: 1px solid #877da9;
+  padding: 8px 40px;
+  background: transparent;
+}
+
 @-webkit-keyframes appear {
   0%,
   90% {
@@ -1825,30 +1836,6 @@ END
   }
 }
 
-@-webkit-keyframes slide {
-  0%,
-  85% {
-    margin-left: -50vw;
-  }
-  100% {
-    margin-left: 0vw;
-    -webkit-animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-            animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-  }
-}
-
-@keyframes slide {
-  0%,
-  85% {
-    margin-left: -50vw;
-  }
-  100% {
-    margin-left: 0vw;
-    -webkit-animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-            animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-  }
-}
-
 @-webkit-keyframes logo-anim-1 {
   0%,
   10% {
@@ -1857,7 +1844,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1867,25 +1854,25 @@ END
     top: calc(50vh - 20vw/2 - 20vw/4);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #4e4ed6;
     top: calc(40vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(40vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -1894,7 +1881,7 @@ END
     width: 75vw;
     border-radius: 0;
     opacity: 0;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(40vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -1908,7 +1895,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1918,25 +1905,25 @@ END
     top: calc(50vh - 20vw/2 - 20vw/4);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #4e4ed6;
     top: calc(40vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(40vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -1945,7 +1932,7 @@ END
     width: 75vw;
     border-radius: 0;
     opacity: 0;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(40vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -1959,7 +1946,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -1969,25 +1956,25 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #6853d9;
     top: calc(50vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(50vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -1998,7 +1985,7 @@ END
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 0;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(50vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -2012,7 +1999,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -2022,25 +2009,25 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #6853d9;
     top: calc(50vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(50vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -2051,7 +2038,7 @@ END
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 0;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(50vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -2065,7 +2052,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -2075,25 +2062,25 @@ END
     top: calc(50vh - 20vw/2 + 20vw/4);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #8258dc;
     top: calc(60vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(60vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -2104,7 +2091,7 @@ END
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 0;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(60vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -2118,7 +2105,7 @@ END
     top: calc(50vh - 20vw/2);
     left: calc(50vw - 20vw/2);
   }
-  50% {
+  40% {
     height: 20vw;
     border-radius: 1vw;
     -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -2128,25 +2115,25 @@ END
     top: calc(50vh - 20vw/2 + 20vw/4);
     left: calc(50vw - 20vw/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: 20vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #8258dc;
     top: calc(60vh - 1px);
     left: calc(50vw - 20vw/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: 75vw;
     border-radius: 0;
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(60vh - 1px);
     left: calc(50vw - 75vw/2);
   }
@@ -2157,7 +2144,7 @@ END
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 0;
-    background: #877da9;
+    background: #f8f8f8;
     top: calc(60vh - 1px);
     left: calc(50vw - 75vw/2);
   }

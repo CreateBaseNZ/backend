@@ -38,6 +38,7 @@ const navInit = () => {
       }
     });
   } else {
+    
     ham.addEventListener("click", function () {
       leftMenu.classList.toggle('nav-left-menu-active');
       ham.classList.toggle('is-active');

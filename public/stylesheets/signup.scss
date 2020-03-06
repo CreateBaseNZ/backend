@@ -103,6 +103,18 @@ $diamond: 20vw;
   }
 }
 
+.nice-btn {
+  font-family: $poppins;
+  font-size: 1.5vmax;
+  font-weight: 800;
+  letter-spacing: 0.1vmax;
+  color: $dark-1;
+  border: 1px solid $dark-1;
+  // border: none;
+  padding: 8px 40px;
+  background: transparent;
+}
+
 @keyframes appear {
   0%,
   90% {
@@ -114,17 +126,6 @@ $diamond: 20vw;
   }
 }
 
-@keyframes slide {
-  0%,
-  85% {
-    margin-left: -50vw;
-  }
-  100% {
-    margin-left: 0vw;
-    animation-timing-function: cubic-bezier(0.08, 0.1, 0.32, 0.98);
-  }
-}
-
 @keyframes logo-anim-1 {
   0%,
   10% {
@@ -132,7 +133,7 @@ $diamond: 20vw;
     top: calc(50vh - #{$diamond}/2);
     left: calc(50vw - #{$diamond}/2);
   }
-  50% {
+  40% {
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -141,23 +142,23 @@ $diamond: 20vw;
     top: calc(50vh - #{$diamond}/2 - #{$diamond}/4);
     left: calc(50vw - #{$diamond}/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: $diamond;
     border-radius: 0;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: $dark-1;
+    background: $logo-3;
     top: calc(40vh - 1px);
     left: calc(50vw - #{$diamond}/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: $input-width;
     border-radius: 0;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: $dark-1;
+    background: $light-2;
     top: calc(40vh - 1px);
     left: calc(50vw - #{$input-width}/2);
   }
@@ -166,7 +167,7 @@ $diamond: 20vw;
     width: $input-width;
     border-radius: 0;
     opacity: 0;
-    background: $dark-1;
+    background: $light-2;
     top: calc(40vh - 1px);
     left: calc(50vw - #{$input-width}/2);
   }
@@ -179,7 +180,7 @@ $diamond: 20vw;
     top: calc(50vh - #{$diamond}/2);
     left: calc(50vw - #{$diamond}/2);
   }
-  50% {
+  40% {
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -188,23 +189,23 @@ $diamond: 20vw;
     top: calc(50vh - #{$diamond}/2);
     left: calc(50vw - #{$diamond}/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: $diamond;
     border-radius: 0;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: $dark-1;
+    background: $logo-2;
     top: calc(50vh - 1px);
     left: calc(50vw - #{$diamond}/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: $input-width;
     border-radius: 0;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: $dark-1;
+    background: $light-2;
     top: calc(50vh - 1px);
     left: calc(50vw - #{$input-width}/2);
   }
@@ -214,7 +215,7 @@ $diamond: 20vw;
     border-radius: 0;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 0;
-    background: $dark-1;
+    background: $light-2;
     top: calc(50vh - 1px);
     left: calc(50vw - #{$input-width}/2);
   }
@@ -227,7 +228,7 @@ $diamond: 20vw;
     top: calc(50vh - #{$diamond}/2);
     left: calc(50vw - #{$diamond}/2);
   }
-  50% {
+  40% {
     height: $diamond;
     border-radius: $diamond * 0.05;
     transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
@@ -236,23 +237,23 @@ $diamond: 20vw;
     top: calc(50vh - #{$diamond}/2 + #{$diamond}/4);
     left: calc(50vw - #{$diamond}/2);
   }
-  75% {
+  65% {
     height: 1px;
     width: $diamond;
     border-radius: 0;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: $dark-1;
+    background: $logo-1;
     top: calc(60vh - 1px);
     left: calc(50vw - #{$diamond}/2);
   }
-  97% {
+  90% {
     height: 1px;
     width: $input-width;
     border-radius: 0;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 1;
-    background: $dark-1;
+    background: $light-2;
     top: calc(60vh - 1px);
     left: calc(50vw - #{$input-width}/2);
   }
@@ -262,7 +263,7 @@ $diamond: 20vw;
     border-radius: 0;
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     opacity: 0;
-    background: $dark-1;
+    background: $light-2;
     top: calc(60vh - 1px);
     left: calc(50vw - #{$input-width}/2);
   }
