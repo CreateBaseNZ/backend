@@ -987,8 +987,10 @@ button {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   opacity: 1;
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  -webkit-transition: -webkit-transform 0.15s ease-out 0.15s;
+  transition: -webkit-transform 0.15s ease-out 0.15s;
+  transition: transform 0.15s ease-out 0.15s;
+  transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
 }
 
 .nav-container .nav-top-bar .nav-user .nav-user-hlt {
@@ -996,37 +998,43 @@ button {
   top: 0;
   left: 0;
   width: 20px;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
   opacity: 0;
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  -webkit-transition: -webkit-transform 0.15s ease-out 0.15s;
+  transition: -webkit-transform 0.15s ease-out 0.15s;
+  transition: transform 0.15s ease-out 0.15s;
+  transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
 }
 
-.nav-container .nav-top-bar .nav-user:active .nav-user-reg, .nav-container .nav-top-bar .nav-user:hover .nav-user-reg {
-  opacity: 0;
+.nav-container .nav-top-bar .nav-user .nav-user-x {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
-}
-
-.nav-container .nav-top-bar .nav-user:active .nav-user-hlt, .nav-container .nav-top-bar .nav-user:hover .nav-user-hlt {
-  opacity: 1;
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
 }
 
 .nav-container .nav-top-bar .nav-user-active .nav-user-reg {
-  opacity: 0;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
+  opacity: 0;
 }
 
 .nav-container .nav-top-bar .nav-user-active .nav-user-hlt {
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
   opacity: 1;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+
+.nav-container .nav-top-bar .nav-user-active .nav-user-x {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.15s ease-out 0.15s;
+  transition: all 0.15s ease-out 0.15s;
 }
 
 .nav-container .nav-side-menus {
@@ -1267,7 +1275,8 @@ button {
     width: calc(20px + 2*10px);
     height: calc(20px + 2*10px);
   }
-  .nav-container .nav-top-bar .nav-user .nav-user-reg {
+  .nav-container .nav-top-bar .nav-user .nav-user-reg,
+  .nav-container .nav-top-bar .nav-user .nav-user-x {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -1280,10 +1289,10 @@ button {
     width: 20px;
     opacity: 0;
   }
-  .nav-container .nav-top-bar .nav-user:active .nav-user-reg, .nav-container .nav-top-bar .nav-user:hover .nav-user-reg {
+  .nav-container .nav-top-bar .nav-user:hover .nav-user-reg {
     opacity: 0;
   }
-  .nav-container .nav-top-bar .nav-user:active .nav-user-hlt, .nav-container .nav-top-bar .nav-user:hover .nav-user-hlt {
+  .nav-container .nav-top-bar .nav-user:hover .nav-user-hlt {
     opacity: 1;
   }
   .nav-container .nav-top-bar .nav-user-active .nav-user-reg {

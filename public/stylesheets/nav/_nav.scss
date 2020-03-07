@@ -51,42 +51,39 @@ $top-bar-height: 60px;
         width: 20px;
         transform: scaleX(1);
         opacity: 1;
-        transition: all 0.3s ease-out;
-
+        transition: transform 0.15s ease-out 0.15s;
       }
       .nav-user-hlt {
         position: absolute;
         top: 0;
         left: 0;
         width: 20px;
-        transform: scaleX(0);
         opacity: 0;
-        transition: all 0.3s ease-out;
-
+        transition: transform 0.15s ease-out 0.15s;
       }
-  
-      &:active,
-      &:hover {
-        .nav-user-reg {
-          opacity: 0;
-          transform: scaleX(0);
-        }
-        .nav-user-hlt {
-          opacity: 1;
-          transform: scaleX(1);
-        }
+      .nav-user-x {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 20px;
+        transform: scaleX(0);
+        transition: all 0.15s ease-out;
       }
     }
 
     .nav-user-active {
       .nav-user-reg {
-        opacity: 0;
         transform: scaleX(0);
+        opacity: 0;
       }
       .nav-user-hlt {
+        transform: scaleX(0);
         opacity: 1;
+        transition: all 0.15s ease-out;
+      }
+      .nav-user-x {
         transform: scaleX(1);
-        transition: all 0.3s ease-out;
+        transition: all 0.15s ease-out 0.15s;
       }
     }
   }
@@ -285,7 +282,8 @@ $top-bar-height: 60px;
       width: calc(#{$menu-icon-size} + 2*#{$menu-icon-padding});
       height: calc(#{$menu-icon-size} + 2*#{$menu-icon-padding});
   
-      .nav-user-reg {
+      .nav-user-reg,
+      .nav-user-x {
         position: absolute;
         top: $menu-icon-padding;
         left: $menu-icon-padding;
@@ -299,7 +297,6 @@ $top-bar-height: 60px;
         opacity: 0;
       }
   
-      &:active,
       &:hover {
         .nav-user-reg {
           opacity: 0;
