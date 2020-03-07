@@ -127,7 +127,8 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
   // Validate the checkout
   validity = {
     cart: savedOrder.validateCart(),
-    shipping: savedOrder.validateShipping()
+    shipping: savedOrder.validateShipping(),
+    payment: savedOrder.validatePayment()
   };
 
   return res.send({
@@ -169,8 +170,10 @@ router.post(
     // Validation
     validity = {
       cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping()
+      shipping: savedOrder.validateShipping(),
+      payment: savedOrder.validatePayment()
     };
+
     return res.send({
       status: "success",
       data: {
@@ -210,7 +213,8 @@ router.post(
     // Validation
     validity = {
       cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping()
+      shipping: savedOrder.validateShipping(),
+      payment: savedOrder.validatePayment()
     };
 
     return res.send({
@@ -252,7 +256,8 @@ router.post(
     // Validation
     validity = {
       cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping()
+      shipping: savedOrder.validateShipping(),
+      payment: savedOrder.validatePayment()
     };
 
     return res.send({
@@ -294,7 +299,8 @@ router.post(
     // Validation
     validity = {
       cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping()
+      shipping: savedOrder.validateShipping(),
+      payment: savedOrder.validatePayment()
     };
 
     return res.send({
@@ -336,7 +342,8 @@ router.post(
     // Validation
     validity = {
       cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping()
+      shipping: savedOrder.validateShipping(),
+      payment: savedOrder.validatePayment()
     };
 
     return res.send({
@@ -378,7 +385,8 @@ router.post(
     // Validation
     validity = {
       cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping()
+      shipping: savedOrder.validateShipping(),
+      payment: savedOrder.validatePayment()
     };
 
     return res.send({
@@ -502,7 +510,9 @@ router.post(
     }
     // Validate the checkout
     validity = {
-      cart: savedOrder.validateCart()
+      cart: savedOrder.validateCart(),
+      shipping: savedOrder.validateShipping(),
+      payment: savedOrder.validatePayment()
     };
     // Send back a success status
     return res.send({

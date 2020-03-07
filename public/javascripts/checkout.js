@@ -32,12 +32,12 @@ let checkout = {
       },
       payment: {
         bank: {
-          back: undefined, // checkout.element.payment.bank.back
-          paid: undefined // checkout.element.payment.bank.paid
+          back: undefined, // checkout.element.button.payment.bank.back
+          paid: undefined // checkout.element.button.payment.bank.paid
         },
         card: {
-          back: undefined, // checkout.element.payment.card.back
-          pay: undefined // checkout.element.payment.card.pay
+          back: undefined, // checkout.element.button.payment.card.back
+          pay: undefined // checkout.element.button.payment.card.pay
         }
       }
     },
@@ -878,7 +878,7 @@ checkout.cart.manufacturingSpeed.select = async option => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.asyncvavaliditylidation.validate = async validity => {
+checkout.cart.validation.validate = async validity => {
   let valid;
 
   if (validity) {
@@ -1709,6 +1709,8 @@ checkout.payment.method.card.pay = async () => {
     return console.log(error);
   }
 
+  console.log(clientSecret);
+
   try {
     payment = await checkout.payment.method.card.process(clientSecret);
   } catch (error) {
@@ -1742,19 +1744,22 @@ checkout.payment.method.card.paymentIntent = () => {
 // @TYPE
 // @DESC
 // @ARGU
-checkout.payment.method.card.process = clientSecret => {
+checkout.payment.method.card.process = async clientSecret => {
   return new Promise(async (resolve, reject) => {
     let result;
 
     try {
-      result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: cardNumber,
-          billing_details: {
-            name: "test test"
+      result = await checkout.payment.stripe.element.stripe.confirmCardPayment(
+        clientSecret,
+        {
+          payment_method: {
+            card: checkout.payment.stripe.element.card.number,
+            billing_details: {
+              name: "test test"
+            }
           }
         }
-      });
+      );
 
       if (result.error) {
         reject(result.error.message);
@@ -1805,6 +1810,8 @@ checkout.payment.validation.validate = async validity => {
     }
   }
 
+  console.log(valid);
+
   checkout.element.validity.payment = valid;
 
   if (valid) {
@@ -1819,11 +1826,11 @@ checkout.payment.validation.validate = async validity => {
 // @DESC
 // @ARGU
 checkout.payment.validation.valid = () => {
-  checkout.element.payment.bank.paid.addEventListener(
+  checkout.element.button.payment.bank.paid.addEventListener(
     "click",
     checkout.payment.method.bank.paid
   );
-  checkout.element.payment.card.pay.addEventListener(
+  checkout.element.button.payment.card.pay.addEventListener(
     "click",
     checkout.payment.method.card.pay
   );
@@ -1834,11 +1841,11 @@ checkout.payment.validation.valid = () => {
 // @DESC
 // @ARGU
 checkout.payment.validation.invalid = () => {
-  checkout.element.payment.bank.paid.removeEventListener(
+  checkout.element.button.payment.bank.paid.removeEventListener(
     "click",
     checkout.payment.method.bank.paid
   );
-  checkout.element.payment.card.pay.removeEventListener(
+  checkout.element.button.payment.card.pay.removeEventListener(
     "click",
     checkout.payment.method.card.pay
   );
