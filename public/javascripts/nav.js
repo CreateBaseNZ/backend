@@ -1,7 +1,5 @@
 const navInit = async() => {
 
-  const mq = window.matchMedia("(min-width: 850px)")
-
   let status;
   try {
     status = (await axios.get("/login-status"))["data"]["status"]
@@ -19,119 +17,125 @@ const navInit = async() => {
   const rightMenuIn = document.querySelector(".nav-right-menu-in")
   const rightMenuOut = document.querySelector(".nav-right-menu-out")
 
-  if (mq.matches) { /* Desktop */
+  function mainFunction(mq) {
 
-    darken.addEventListener("click", function () {
-      if (leftMenu.classList.contains('nav-left-menu-active')) {
-        leftMenu.classList.remove('nav-left-menu-active')
-        ham.classList.remove('is-active')
-      }
-      if (rightMenuIn.classList.contains('nav-right-menu-active')) {
-        rightMenuIn.classList.remove('nav-right-menu-active')
-        user.classList.remove('nav-user-active')
-      } else if (rightMenuOut.classList.contains('nav-right-menu-active')) {
-        rightMenuOut.classList.remove('nav-right-menu-active')
-        user.classList.remove('nav-user-active')
-      }
-      darken.classList.remove('nav-darken-overlay-active')
-    })
+    if (mq.matches) { /* Desktop */
 
-    if (status) { /* Logged in on desktop */
-
-      userOut.style.display = "none"
-      rightMenuOut.style.display = "none"
-
-      ham.addEventListener("click", function () {
-        leftMenu.classList.toggle('nav-left-menu-active')
-        ham.classList.toggle('is-active')
-        
-        if (!(rightMenuIn.classList.contains('nav-right-menu-active'))) {
-          darken.classList.toggle('nav-darken-overlay-active')
+      darken.addEventListener("click", function () {
+        if (leftMenu.classList.contains('nav-left-menu-active')) {
+          leftMenu.classList.remove('nav-left-menu-active')
+          ham.classList.remove('is-active')
         }
-      })
-  
-      userIn.addEventListener("click", function () {
-        rightMenuIn.classList.toggle('nav-right-menu-active')
-        userIn.classList.toggle('nav-user-active')
-  
-        if (!(leftMenu.classList.contains('nav-left-menu-active'))) {
-          darken.classList.toggle('nav-darken-overlay-active')
-        }
-      })
-    } else { /* Logged out on desktop */
-
-      userIn.style.display = "none"
-      rightMenuIn.style.display= "none"
-
-      ham.addEventListener("click", function () {
-        leftMenu.classList.toggle('nav-left-menu-active')
-        ham.classList.toggle('is-active')
-        
-        if (!(rightMenuOut.classList.contains('nav-right-menu-active'))) {
-          darken.classList.toggle('nav-darken-overlay-active')
-        }
-      })
-  
-      userOut.addEventListener("click", function () {
-        rightMenuOut.classList.toggle('nav-right-menu-active')
-        userOut.classList.toggle('nav-user-active')
-  
-        if (!(leftMenu.classList.contains('nav-left-menu-active'))) {
-          darken.classList.toggle('nav-darken-overlay-active')
-        }
-      })
-    }
-
-  } else { /* Mobile */
-
-    userOut.style.display = "none"
-
-    if (status) { /* Logged in on mobile */
-
-      rightMenuOut.style.display = "none"
-
-      ham.addEventListener("click", function () {
-        leftMenu.classList.toggle('nav-left-menu-active')
-        ham.classList.toggle('is-active')
-        
         if (rightMenuIn.classList.contains('nav-right-menu-active')) {
           rightMenuIn.classList.remove('nav-right-menu-active')
-          userIn.classList.remove('nav-user-active')
-        }
-      })
-  
-      userIn.addEventListener("click", function () {
-        rightMenuIn.classList.toggle('nav-right-menu-active')
-        userIn.classList.toggle('nav-user-active')
-  
-        if (leftMenu.classList.contains('nav-left-menu-active')) {
-          leftMenu.classList.remove('nav-left-menu-active')
-          ham.classList.remove('is-active')
-        } 
-      })
-    } else { /* Logged out on mobile */
-
-      rightMenuIn.style.display = "none"
-
-      ham.addEventListener("click", function () {
-        leftMenu.classList.toggle('nav-left-menu-active')
-        ham.classList.toggle('is-active')
-        
-        if (rightMenuOut.classList.contains('nav-right-menu-active')) {
+          user.classList.remove('nav-user-active')
+        } else if (rightMenuOut.classList.contains('nav-right-menu-active')) {
           rightMenuOut.classList.remove('nav-right-menu-active')
-          userIn.classList.remove('nav-user-active')
+          user.classList.remove('nav-user-active')
         }
+        darken.classList.remove('nav-darken-overlay-active')
       })
   
-      userIn.addEventListener("click", function () {
-        rightMenuOut.classList.toggle('nav-right-menu-active')
-        userIn.classList.toggle('nav-user-active')
+      if (status) { /* Logged in on desktop */
   
-        if (leftMenu.classList.contains('nav-left-menu-active')) {
-          leftMenu.classList.remove('nav-left-menu-active')
-          ham.classList.remove('is-active')
-        } 
-      })
+        userIn.style.display = "block"
+        userOut.style.display = "none"
+        rightMenuIn.style.display = "block"
+        rightMenuOut.style.display = "none"
+  
+        ham.addEventListener("click", function () {
+          leftMenu.classList.toggle('nav-left-menu-active')
+          ham.classList.toggle('is-active')
+          
+          if (!(rightMenuIn.classList.contains('nav-right-menu-active'))) {
+            darken.classList.toggle('nav-darken-overlay-active')
+          }
+        })
+    
+        userIn.addEventListener("click", function () {
+          rightMenuIn.classList.toggle('nav-right-menu-active')
+          userIn.classList.toggle('nav-user-active')
+    
+          if (!(leftMenu.classList.contains('nav-left-menu-active'))) {
+            darken.classList.toggle('nav-darken-overlay-active')
+          }
+        })
+      } else { /* Logged out on desktop */
+  
+        userOut.style.display = "block"
+        userIn.style.display = "none"
+        rightMenuOut.style.display = "block"
+        rightMenuIn.style.display= "none"
+  
+        ham.addEventListener("click", function () {
+          leftMenu.classList.toggle('nav-left-menu-active')
+          ham.classList.toggle('is-active')
+          
+          if (!(rightMenuOut.classList.contains('nav-right-menu-active'))) {
+            darken.classList.toggle('nav-darken-overlay-active')
+          }
+        })
+      }
+  
+    } else { /* Mobile */
+
+      userIn.style.display = "block"
+      userOut.style.display = "none"
+  
+      if (status) { /* Logged in on mobile */
+  
+        rightMenuOut.style.display = "none"
+        rightMenuIn.style.display = "block"
+  
+        ham.addEventListener("click", function () {
+          leftMenu.classList.toggle('nav-left-menu-active')
+          ham.classList.toggle('is-active')
+          
+          if (rightMenuIn.classList.contains('nav-right-menu-active')) {
+            rightMenuIn.classList.remove('nav-right-menu-active')
+            userIn.classList.remove('nav-user-active')
+          }
+        })
+    
+        userIn.addEventListener("click", function () {
+          rightMenuIn.classList.toggle('nav-right-menu-active')
+          userIn.classList.toggle('nav-user-active')
+    
+          if (leftMenu.classList.contains('nav-left-menu-active')) {
+            leftMenu.classList.remove('nav-left-menu-active')
+            ham.classList.remove('is-active')
+          } 
+        })
+      } else { /* Logged out on mobile */
+  
+        rightMenuOut.style.display = "block"
+        rightMenuIn.style.display = "none"
+  
+        ham.addEventListener("click", function () {
+          leftMenu.classList.toggle('nav-left-menu-active')
+          ham.classList.toggle('is-active')
+          
+          if (rightMenuOut.classList.contains('nav-right-menu-active')) {
+            rightMenuOut.classList.remove('nav-right-menu-active')
+            userIn.classList.remove('nav-user-active')
+          }
+        })
+    
+        userIn.addEventListener("click", function () {
+          rightMenuOut.classList.toggle('nav-right-menu-active')
+          userIn.classList.toggle('nav-user-active')
+    
+          if (leftMenu.classList.contains('nav-left-menu-active')) {
+            leftMenu.classList.remove('nav-left-menu-active')
+            ham.classList.remove('is-active')
+          } 
+        })
+      }
     }
   }
+
+  var mq = window.matchMedia("(min-width: 850px)")
+  mainFunction(mq)
+  mq.addListener(mainFunction)
+  console.log(mq.matches)
 }

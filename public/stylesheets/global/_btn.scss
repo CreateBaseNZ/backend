@@ -85,6 +85,17 @@
   }
 }
 
+.nice-btn {
+  font-family: $poppins;
+  font-size: 1.5vmax;
+  font-weight: 800;
+  letter-spacing: 0.1vmax;
+  color: $dark-1;
+  border: 1px solid $dark-1;
+  padding: 8px 40px;
+  background: transparent;
+}
+
 @keyframes btn-hover {
   0% {
     clip: rect(-3px, 600px, 0px, 0px);
@@ -133,4 +144,17 @@
   85.5% { clip-path: inset(19% 0 68% 0); }
   86% { clip-path: inset(100% 100% 100% 100%); }
   100% { clip-path: inset(100% 100% 100% 100%); }
+}
+
+@media only screen and (min-width: 850px) {
+  // .nice-btn {
+  //   font-family: $poppins;
+  //   font-size: 1.5vmax;
+  //   font-weight: 800;
+  //   letter-spacing: 0.1vmax;
+  //   color: $dark-1;
+  //   border: 1px solid $dark-1;
+  //   padding: 8px 40px;
+  //   background: transparent;
+  // }
 }
