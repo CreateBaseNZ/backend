@@ -59,6 +59,7 @@ let checkout = {
   insert: undefined, // checkout.insert
   load: undefined, // checkout.load
   listener: undefined, // checkout.listener
+  validate: undefined, // checkout.validate
   elements: {
     assign: undefined // checkout.elements.assign
   },
@@ -207,7 +208,12 @@ checkout.initialise = async () => {
   checkout.payment.stripe.initialise();
   checkout.elements.assign();
   // LOAD ORDER DETAILS
-  checkout.load();
+  try {
+    await checkout.load();
+  } catch (error) {
+    console.log(error);
+    return;
+  }
   // Event Listener
   checkout.listener();
   // Update Loader
@@ -326,9 +332,7 @@ checkout.load = async () => {
   checkout.insert(object);
 
   // Perform Validation
-  checkout.cart.validation.validate(object.validity);
-  checkout.shipping.validation.validate(object.validity);
-  checkout.payment.validation.validate(object.validity);
+  checkout.validate(object.validity);
   return;
 };
 
@@ -359,6 +363,16 @@ checkout.listener = () => {
   checkout.element.windowSize.addListener(checkout.cart.resize);
   checkout.element.windowSize.addListener(checkout.shipping.resize);
   checkout.element.windowSize.addListener(checkout.payment.resize);
+};
+
+// @FUNC  checkout.validate
+// @TYPE
+// @DESC
+// @ARGU
+checkout.validate = async validity => {
+  checkout.cart.validation.validate(validity);
+  checkout.shipping.validation.validate(validity);
+  checkout.payment.validation.validate(validity);
 };
 
 // @FUNC  checkout.elements.assign
@@ -637,8 +651,7 @@ checkout.cart.print.delete = async printId => {
   }
   checkout.load.success("deleted");
   // Perform Validation
-  checkout.cart.validation.validate(object.validity);
-  checkout.shipping.validation.validate(object.validity);
+  checkout.validate(object.validity);
   return;
 };
 
@@ -871,7 +884,7 @@ checkout.cart.manufacturingSpeed.select = async option => {
   // Update Price
 
   // Perform Validation
-  checkout.cart.validation.validate(object.validity);
+  checkout.validate(object.validity);
 };
 
 // @FUNC  checkout.cart.validation.validate
@@ -1038,7 +1051,7 @@ checkout.shipping.address.select = async (option, update) => {
     // Update Price
 
     // Perform Validation
-    checkout.shipping.validation.validate(object.validity);
+    checkout.validate(object.validity);
   }
 };
 
@@ -1353,7 +1366,7 @@ checkout.shipping.address.new.update = async type => {
     return;
   }
   checkout.load.success("saved");
-  checkout.shipping.validation.validate(object.validity);
+  checkout.validate(object.validity);
 };
 
 // @FUNC  checkout.shipping.address.new.toggleSave
@@ -1381,7 +1394,7 @@ checkout.shipping.address.new.toggleSave = async save => {
   // Update Price
 
   // Perform Validation
-  checkout.shipping.validation.validate(object.validity);
+  checkout.validate(object.validity);
 };
 
 // @FUNC  checkout.shipping.address.new.show
@@ -1424,7 +1437,7 @@ checkout.shipping.method.select = async option => {
   // Update Price
 
   // Perform Validation
-  checkout.shipping.validation.validate(object.validity);
+  checkout.validate(object.validity);
 };
 
 // @FUNC  checkout.shipping.validation.validate
@@ -1672,7 +1685,7 @@ checkout.payment.method.select = async (option, update) => {
     // Update Price
 
     // Perform Validation
-    checkout.shipping.validation.validate(object.validity);
+    checkout.validate(object.validity);
     checkout.load.success("saved");
   }
 };
@@ -1810,8 +1823,6 @@ checkout.payment.validation.validate = async validity => {
     }
   }
 
-  console.log(valid);
-
   checkout.element.validity.payment = valid;
 
   if (valid) {
@@ -1826,6 +1837,7 @@ checkout.payment.validation.validate = async validity => {
 // @DESC
 // @ARGU
 checkout.payment.validation.valid = () => {
+  // Event Listeners
   checkout.element.button.payment.bank.paid.addEventListener(
     "click",
     checkout.payment.method.bank.paid
@@ -1834,6 +1846,14 @@ checkout.payment.validation.valid = () => {
     "click",
     checkout.payment.method.card.pay
   );
+  // CSS
+  checkout.element.button.payment.bank.paid.classList.add(
+    "checkout-button-valid"
+  );
+  checkout.element.button.payment.card.pay.classList.add(
+    "checkout-button-valid"
+  );
+  checkout.element.navigation.payment.classList.add("valid");
 };
 
 // @FUNC  checkout.payment.validation.invalid
@@ -1841,6 +1861,7 @@ checkout.payment.validation.valid = () => {
 // @DESC
 // @ARGU
 checkout.payment.validation.invalid = () => {
+  // Event Listeners
   checkout.element.button.payment.bank.paid.removeEventListener(
     "click",
     checkout.payment.method.bank.paid
@@ -1849,6 +1870,14 @@ checkout.payment.validation.invalid = () => {
     "click",
     checkout.payment.method.card.pay
   );
+  // CSS
+  checkout.element.button.payment.bank.paid.classList.remove(
+    "checkout-button-valid"
+  );
+  checkout.element.button.payment.card.pay.classList.remove(
+    "checkout-button-valid"
+  );
+  checkout.element.navigation.payment.classList.remove("valid");
 };
 
 // @FUNC  checkout.payment.show
