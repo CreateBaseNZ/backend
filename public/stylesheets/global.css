@@ -972,14 +972,14 @@ button {
   height: 100%;
 }
 
-.nav-container .nav-top-bar .nav-user {
+.nav-container .nav-top-bar .nav-user-icon {
   position: relative;
   height: 20px;
   width: 20px;
   margin-bottom: 10px;
 }
 
-.nav-container .nav-top-bar .nav-user .nav-user-reg {
+.nav-container .nav-top-bar .nav-user-icon .nav-user-reg {
   position: absolute;
   left: 0;
   top: 0;
@@ -993,7 +993,7 @@ button {
   transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
 }
 
-.nav-container .nav-top-bar .nav-user .nav-user-hlt {
+.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt {
   position: absolute;
   top: 0;
   left: 0;
@@ -1005,7 +1005,7 @@ button {
   transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
 }
 
-.nav-container .nav-top-bar .nav-user .nav-user-x {
+.nav-container .nav-top-bar .nav-user-icon .nav-user-x {
   position: absolute;
   left: 0;
   top: 0;
@@ -1108,7 +1108,7 @@ button {
   transition: 0.2s ease-out 0.3s;
 }
 
-.nav-container .nav-side-menus .nav-right-menu-wrap {
+.nav-container .nav-side-menus .nav-right-menu-in {
   position: absolute;
   top: 0;
   right: 0;
@@ -1119,7 +1119,43 @@ button {
   transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.nav-container .nav-side-menus .nav-right-menu-wrap .nav-right-menu {
+.nav-container .nav-side-menus .nav-right-menu-in .nav-right-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: calc(100vh - 60px);
+  width: 100vw;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: -5vw;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-container .nav-side-menus .nav-right-menu-out {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: calc(100vh - 60px);
+  width: 0vw;
+  overflow: hidden;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-container .nav-side-menus .nav-right-menu-out .nav-right-menu {
   position: absolute;
   top: 0;
   right: 0;
@@ -1176,6 +1212,18 @@ button {
 }
 
 .nav-container .nav-side-menus .nav-side-item:active {
+  color: #4bf0ea;
+}
+
+.nav-container .nav-side-menus .nav-side-out {
+  margin-top: 25vh;
+  color: #2d283c;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.1vw;
+}
+
+.nav-container .nav-side-menus .nav-side-out:active {
   color: #4bf0ea;
 }
 
@@ -1268,38 +1316,8 @@ button {
   .nav-container .nav-top-bar .nav-home-btn .nav-logo {
     height: 100%;
   }
-  .nav-container .nav-top-bar .nav-user {
-    cursor: pointer;
-    position: relative;
-    margin-bottom: 0;
-    width: calc(20px + 2*10px);
-    height: calc(20px + 2*10px);
-  }
-  .nav-container .nav-top-bar .nav-user .nav-user-reg,
-  .nav-container .nav-top-bar .nav-user .nav-user-x {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 20px;
-  }
-  .nav-container .nav-top-bar .nav-user .nav-user-hlt {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 20px;
-    opacity: 0;
-  }
-  .nav-container .nav-top-bar .nav-user:hover .nav-user-reg {
-    opacity: 0;
-  }
-  .nav-container .nav-top-bar .nav-user:hover .nav-user-hlt {
-    opacity: 1;
-  }
-  .nav-container .nav-top-bar .nav-user-active .nav-user-reg {
-    opacity: 0;
-  }
-  .nav-container .nav-top-bar .nav-user-active .nav-user-hlt {
-    opacity: 1;
+  .nav-container .nav-top-bar .nav-user-mobile {
+    display: none;
   }
   .nav-container .nav-side-menus {
     position: relative;
@@ -1360,7 +1378,7 @@ button {
   .nav-container .nav-side-menus .nav-left-menu-active .nav-left-menu {
     margin-left: 0;
   }
-  .nav-container .nav-side-menus .nav-right-menu-wrap {
+  .nav-container .nav-side-menus .nav-right-menu-in {
     position: absolute;
     top: 0;
     right: 0;
@@ -1370,7 +1388,7 @@ button {
     -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
     transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   }
-  .nav-container .nav-side-menus .nav-right-menu-wrap .nav-right-menu {
+  .nav-container .nav-side-menus .nav-right-menu-in .nav-right-menu {
     position: absolute;
     top: 0;
     right: 0;
