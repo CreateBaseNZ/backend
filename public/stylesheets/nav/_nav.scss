@@ -41,34 +41,52 @@ $menu-width: 100vw;
     }
   
     .nav-user-icon {
+      cursor: pointer;
       position: relative;
       height: 20px;
       width: 20px;
-      margin-bottom: 10px;
-  
-      .nav-user-reg {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 20px;
-        transform: scaleX(1);
-        opacity: 1;
-        transition: transform 0.15s ease-out 0.15s;
-      }
+      margin-bottom: 20px;
+
       .nav-user-hlt {
+        box-sizing: content-box;
         position: absolute;
         top: 0;
         left: 0;
         width: 20px;
         opacity: 0;
+        padding: 10px;
+        z-index: 2;
+        transition: transform 0.15s ease-out 0.15s;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &:hover ~ .nav-user-reg {
+          opacity: 0;
+        }
+      }
+  
+      .nav-user-reg {
+        box-sizing: content-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        transform: scaleX(1);
+        opacity: 1;
+        padding: 10px;
         transition: transform 0.15s ease-out 0.15s;
       }
+
       .nav-user-x {
+        box-sizing: content-box;
         position: absolute;
         left: 0;
         top: 0;
         width: 20px;
         transform: scaleX(0);
+        padding: 10px;
         transition: all 0.15s ease-out;
       }
     }
@@ -90,38 +108,7 @@ $menu-width: 100vw;
     }
 
     .nav-user-button {
-      margin-bottom: 15px;
-
-      .nav-user-login {
-        font-family: $poppins;
-        font-size: 1vmax;
-        font-weight: 100;
-        letter-spacing: 0.1vmax;
-        color: $dark-3;
-        background: transparent;
-        margin: 5px 40px;
-
-        &:hover {
-          color: $highlight;
-        }
-      }
-
-      .nav-user-signup {
-        font-family: $poppins;
-        font-size: 1vmax;
-        font-weight: 100;
-        letter-spacing: 0.1vmax;
-        color: $dark-3;
-        padding: 5px 20px;
-        border: 1px solid $dark-3;
-        background: transparent;
-
-        &:hover {
-          border: 1px solid $light-1;
-          color: $light-1;
-          background: linear-gradient(to right, $logo-1, $logo-3);
-        }
-      }
+      display: none;
     }
   }
   
@@ -249,9 +236,10 @@ $menu-width: 100vw;
     .nav-side-item {
       margin-top: 3vh;
       color: $dark-3;
-      font-family: $montserrat;
+      font-family: $poppins;
+      font-size: 2.5vmax;
       font-weight: 100;
-      letter-spacing: 0.1vw;
+      letter-spacing: 0.2vw;
   
       &:active,
       &:hover {
@@ -259,14 +247,15 @@ $menu-width: 100vw;
       }
     }
 
-    .nav-side-out {
+    .nav-side-signout {
       margin-top: 25vh;
       color: $dark-3;
-      font-family: $montserrat;
+      font-family: $poppins;
       font-weight: 100;
-      letter-spacing: 0.1vw;
+      letter-spacing: 0.2vw;
   
-      &:active {
+      &:active,
+      &:hover {
         color: $highlight;
       }
     }
@@ -321,6 +310,42 @@ $menu-width: 100vw;
       margin-bottom: $menu-icon-padding;
     }
 
+    .nav-user-button {
+      display: block;
+      margin-bottom: 15px;
+
+      .nav-user-login {
+        font-family: $poppins;
+        font-size: calc(8px + 0.2vmax);
+        font-weight: 100;
+        letter-spacing: 0.1vmax;
+        color: $dark-3;
+        background: transparent;
+        padding: 10px 10px;
+        margin: 0px 30px;
+
+        &:hover {
+          color: $highlight;
+        }
+      }
+
+      .nav-user-signup {
+        font-family: $poppins;
+        font-size: calc(8px + 0.2vmax);
+        font-weight: 100;
+        letter-spacing: 0.1vmax;
+        color: $logo-2;
+        padding: 5px 20px;
+        border: 1px solid $logo-2;
+        background: transparent;
+  
+        &:hover {
+          border: 1px solid $light-1;
+          color: $light-1;
+          background: linear-gradient(to right, $logo-1, $logo-3);
+        }
+      }
+    }
   }
   
   .nav-side-menus {
@@ -354,13 +379,18 @@ $menu-width: 100vw;
     .nav-side-header {
       font-size: 0.6vw;
       margin-top: 10vh;
+      letter-spacing: 0.1vw;
     }
   
     .nav-side-item {
       margin-top: 2vh;
       padding: 1vh;
       font-size: 0.9vw;
-      letter-spacing: 0;
+      letter-spacing: 0.1vw;
+    }
+
+    .nav-side-signout {
+      letter-spacing: 0.1vw;
     }
   
     .nav-sep {
