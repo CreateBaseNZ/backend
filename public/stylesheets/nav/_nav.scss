@@ -21,8 +21,7 @@ $menu-width: 100vw;
       cursor: pointer;
       margin-bottom: 10px;
 
-      &:hover,
-      &:active {
+      &:hover {
         .hamburger-inner,
         .hamburger-inner::before,
         .hamburger-inner::after {
@@ -254,7 +253,6 @@ $menu-width: 100vw;
       font-weight: 100;
       letter-spacing: 0.2vw;
   
-      &:active,
       &:hover {
         color: $highlight;
       }
@@ -280,7 +278,7 @@ $menu-width: 100vw;
         &:visited {
           color: $dark-1;
         }
-        &:active {
+        &:hover {
           color: $highlight;
         }
       }
@@ -342,7 +340,7 @@ $menu-width: 100vw;
         &:hover {
           border: 1px solid $light-1;
           color: $light-1;
-          background: linear-gradient(to right, $logo-1, $logo-3);
+          background: linear-gradient(60deg, $logo-1, $logo-3);
         }
       }
     }
@@ -377,20 +375,22 @@ $menu-width: 100vw;
     }
   
     .nav-side-header {
-      font-size: 0.6vw;
+      font-size: calc(8px + 0.1vw);
       margin-top: 10vh;
       letter-spacing: 0.1vw;
     }
   
     .nav-side-item {
-      margin-top: 2vh;
+      margin-top: 1.5vh;
       padding: 1vh;
-      font-size: 0.9vw;
+      font-size: calc(10px + 0.2vw);
       letter-spacing: 0.1vw;
     }
 
     .nav-side-signout {
+      font-size: calc(10px + 0.2vw);
       letter-spacing: 0.1vw;
+      padding: 1vh;
     }
   
     .nav-sep {

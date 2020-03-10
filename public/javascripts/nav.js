@@ -28,10 +28,10 @@ const navInit = async() => {
         }
         if (rightMenuIn.classList.contains('nav-right-menu-active')) {
           rightMenuIn.classList.remove('nav-right-menu-active')
-          user.classList.remove('nav-user-active')
+          userIn.classList.remove('nav-user-active')
         } else if (rightMenuOut.classList.contains('nav-right-menu-active')) {
           rightMenuOut.classList.remove('nav-right-menu-active')
-          user.classList.remove('nav-user-active')
+          userOut.classList.remove('nav-user-active')
         }
         darken.classList.remove('nav-darken-overlay-active')
       })
@@ -137,5 +137,4 @@ const navInit = async() => {
   var mq = window.matchMedia("(min-width: 850px)")
   mainFunction(mq)
   mq.addListener(mainFunction)
-  console.log(mq.matches)
 }

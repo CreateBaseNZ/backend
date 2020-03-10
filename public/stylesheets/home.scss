@@ -92,7 +92,7 @@ body {
         animation: landing-slide-sep-anim 0.4s cubic-bezier(.28,.6,.3,.98) 1.7s forwards;
       }
 
-      &:active {
+      &:hover {
         .landing-slide-text-sep-2 {
           opacity: 1;
           background: $highlight;
@@ -227,11 +227,11 @@ body {
         font-size: 3vw;
         width: 30vw;
 
-        &:active {
+        &:hover {
           color: $highlight;
         }
 
-        &:active ~ .eng-kit-line-overlap {
+        &:hover ~ .eng-kit-line-overlap {
           width: 15vw;
         }
       }
