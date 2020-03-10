@@ -1,4 +1,5 @@
 $top-bar-height: 60px;
+$menu-width: 100vw;
 
 .nav-container {
   position: sticky;
@@ -8,17 +9,19 @@ $top-bar-height: 60px;
 
   .nav-top-bar {
     position: relative;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 30vw 40vw 30vw;
     align-items: flex-end;
-    justify-content: center;
+    justify-items: center;
     height: #{$top-bar-height};
     width: 100vw;
     background: $light-1;
   
     .hamburger {
+      cursor: pointer;
       margin-bottom: 10px;
 
+      &:hover,
       &:active {
         .hamburger-inner,
         .hamburger-inner::before,
@@ -30,7 +33,6 @@ $top-bar-height: 60px;
   
     .nav-home-btn {  
       height: 30px;    
-      margin: 0 35vw;
       margin-bottom: 10px;
   
       .nav-logo {
@@ -39,34 +41,52 @@ $top-bar-height: 60px;
     }
   
     .nav-user-icon {
+      cursor: pointer;
       position: relative;
       height: 20px;
       width: 20px;
-      margin-bottom: 10px;
-  
-      .nav-user-reg {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 20px;
-        transform: scaleX(1);
-        opacity: 1;
-        transition: transform 0.15s ease-out 0.15s;
-      }
+      margin-bottom: 20px;
+
       .nav-user-hlt {
+        box-sizing: content-box;
         position: absolute;
         top: 0;
         left: 0;
         width: 20px;
         opacity: 0;
+        padding: 10px;
+        z-index: 2;
+        transition: transform 0.15s ease-out 0.15s;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &:hover ~ .nav-user-reg {
+          opacity: 0;
+        }
+      }
+  
+      .nav-user-reg {
+        box-sizing: content-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        transform: scaleX(1);
+        opacity: 1;
+        padding: 10px;
         transition: transform 0.15s ease-out 0.15s;
       }
+
       .nav-user-x {
+        box-sizing: content-box;
         position: absolute;
         left: 0;
         top: 0;
         width: 20px;
         transform: scaleX(0);
+        padding: 10px;
         transition: all 0.15s ease-out;
       }
     }
@@ -85,6 +105,10 @@ $top-bar-height: 60px;
         transform: scaleX(1);
         transition: all 0.15s ease-out 0.15s;
       }
+    }
+
+    .nav-user-button {
+      display: none;
     }
   }
   
@@ -107,7 +131,7 @@ $top-bar-height: 60px;
   
       .nav-left-menu {
         height: calc(100vh - #{$top-bar-height});
-        width: 100vw;
+        width: $menu-width;
         background: $light-1;
         display: grid;
         grid-template-rows: 4fr 1fr;
@@ -125,7 +149,7 @@ $top-bar-height: 60px;
   
     .nav-left-menu-active {
       visibility: visible;
-      width: 100vw;
+      width: $menu-width;
   
       .nav-left-menu {
         margin-left: 0;
@@ -151,7 +175,7 @@ $top-bar-height: 60px;
         top: 0;
         right: 0;
         height: calc(100vh - #{$top-bar-height});
-        width: 100vw;
+        width: $menu-width;
         background: $light-1;
         display: flex;
         flex-direction: column;
@@ -189,7 +213,7 @@ $top-bar-height: 60px;
   
     .nav-right-menu-active {
       visibility: visible;
-      width: 100vw;
+      width: $menu-width;
   
       .nav-right-menu {
         margin-right: 0vw;
@@ -212,23 +236,26 @@ $top-bar-height: 60px;
     .nav-side-item {
       margin-top: 3vh;
       color: $dark-3;
-      font-family: $montserrat;
+      font-family: $poppins;
+      font-size: 2.5vmax;
       font-weight: 100;
-      letter-spacing: 0.1vw;
+      letter-spacing: 0.2vw;
   
-      &:active {
+      &:active,
+      &:hover {
         color: $highlight;
       }
     }
 
-    .nav-side-out {
+    .nav-side-signout {
       margin-top: 25vh;
       color: $dark-3;
-      font-family: $montserrat;
+      font-family: $poppins;
       font-weight: 100;
-      letter-spacing: 0.1vw;
+      letter-spacing: 0.2vw;
   
-      &:active {
+      &:active,
+      &:hover {
         color: $highlight;
       }
     }
@@ -266,130 +293,83 @@ $top-bar-height: 60px;
 }
 
 @media only screen and (min-width: 850px) {
-  $top-bar-height: 60px;
+  $top-bar-height: 80px;
   $menu-icon-size: 20px;
   $menu-icon-padding: 10px;
-  $menu-width: 15vw;
+  $menu-width: 20vw;
 
 .nav-container {
-  position: sticky;
-  top: 0;
-  height: 0px;
-  z-index: 1000;
-  
   .nav-top-bar {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: center;
-    height: #{$top-bar-height};
-    width: 100%;
-    background: $light-1;
-  
     .hamburger {
-      cursor: pointer;
       margin-bottom: 0;
       padding: $menu-icon-padding;
-
-      &:active,
-      &:hover {
-        .hamburger-inner,
-        .hamburger-inner::before,
-        .hamburger-inner::after {
-          background: $hamburger-active-layer-color;
-        }
-      }
     }
   
     .nav-home-btn {  
-      height: 30px;    
       margin: 0 35.5vw;
       margin-bottom: $menu-icon-padding;
-  
-      .nav-logo {
-        height: 100%;
-      }
-    }
-  
-    .nav-user-mobile {
-      display: none;
     }
 
+    .nav-user-button {
+      display: block;
+      margin-bottom: 15px;
+
+      .nav-user-login {
+        font-family: $poppins;
+        font-size: calc(8px + 0.2vmax);
+        font-weight: 100;
+        letter-spacing: 0.1vmax;
+        color: $dark-3;
+        background: transparent;
+        padding: 10px 10px;
+        margin: 0px 30px;
+
+        &:hover {
+          color: $highlight;
+        }
+      }
+
+      .nav-user-signup {
+        font-family: $poppins;
+        font-size: calc(8px + 0.2vmax);
+        font-weight: 100;
+        letter-spacing: 0.1vmax;
+        color: $logo-2;
+        padding: 5px 20px;
+        border: 1px solid $logo-2;
+        background: transparent;
+  
+        &:hover {
+          border: 1px solid $light-1;
+          color: $light-1;
+          background: linear-gradient(to right, $logo-1, $logo-3);
+        }
+      }
+    }
   }
   
   .nav-side-menus {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: calc(100vh - #{$top-bar-height});
-    width: 100vw;
-    visibility: hidden;
-  
     .nav-left-menu-wrap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0vw;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);;
-  
       .nav-left-menu {
-        height: calc(100vh - #{$top-bar-height});
-        width: $menu-width;
-        background: $light-1;
-        display: grid;
-        grid-template-rows: 2fr 1fr;
         margin-left: -2vw;
-        transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-  
-        .nav-side-menu-links {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+        width: $menu-width;
       }  
     }
-  
     .nav-left-menu-active {
-      visibility: visible;
       width: $menu-width;
-  
-      .nav-left-menu {
-        margin-left: 0;
-      }
     }
   
     .nav-right-menu-in {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: calc(100vh - #{$top-bar-height});
-      width: 0vw;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-  
       .nav-right-menu {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: calc(100vh - #{$top-bar-height});
         width: calc(#{$menu-width} + 15px);
-        background: $light-1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         margin-right: -2vw;
-        transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+        width: $menu-width;
       }  
     }
   
     .nav-right-menu-active {
-      visibility: visible;
       width: calc(#{$menu-width} + 15px);
+      width: $menu-width;
   
       .nav-right-menu {
         margin-right: 0vw;
@@ -397,27 +377,20 @@ $top-bar-height: 60px;
     }
   
     .nav-side-header {
-      font-family: $poppins;
-      font-weight: 100;
       font-size: 0.6vw;
-      letter-spacing: 0.1vw;
-      color: $light-3;
       margin-top: 10vh;
+      letter-spacing: 0.1vw;
     }
   
     .nav-side-item {
       margin-top: 2vh;
       padding: 1vh;
-      color: $dark-3;
-      font-family: $montserrat;
-      font-weight: 100;
       font-size: 0.9vw;
-      letter-spacing: 0;
-  
-      &:active,
-      &:hover {
-        color: $highlight;
-      }
+      letter-spacing: 0.1vw;
+    }
+
+    .nav-side-signout {
+      letter-spacing: 0.1vw;
     }
   
     .nav-sep {
@@ -425,22 +398,12 @@ $top-bar-height: 60px;
     }
   
     .nav-side-socials {
-      display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
   
       .fab {
         margin-left: 0;
         margin-right: 0;
         padding: 5px;
-        &:visited {
-          color: $dark-1;
-        }
-        &:active,
-        &:hover {
-          color: $highlight;
-        }
       }
     }
   }
