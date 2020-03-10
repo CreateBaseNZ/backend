@@ -1299,6 +1299,22 @@ DESKTOP CSS
 
   // BANK TRANSFER - END
 
+  .checkout-complete-container {
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    #checkout-complete-loading-icon {
+      height: 8vmax;
+      width: 8vmax;
+    }
+    p {
+      height: 2vmax;
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+    }
+  }
+
   /*---------------------------------------------------------------------------------------
   GLOBAL
   ---------------------------------------------------------------------------------------*/

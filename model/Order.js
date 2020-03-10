@@ -112,6 +112,10 @@ const OrderSchema = new Schema({
       type: String,
       default: ""
     },
+    checkedout: {
+      type: String,
+      default: ""
+    },
     validated: {
       type: String,
       default: ""
@@ -198,6 +202,7 @@ OrderSchema.methods.updateStatus = function(status) {
   return new Promise(async (resolve, reject) => {
     const statuses = [
       "created",
+      "checkedout",
       "validated",
       "built",
       "shipped",

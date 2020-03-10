@@ -439,7 +439,7 @@
                 name="address"
                 class="checkout-radio"
                 id="checkout-shpg-adrs-svd-inp"
-                onchange="checkout.shipping.address.select('saved');"
+                onchange="checkout.shipping.address.select('saved', true);"
               />
               <label
                 for="checkout-shpg-adrs-svd-inp"
@@ -467,7 +467,7 @@
                 name="address"
                 class="checkout-radio"
                 id="checkout-shpg-adrs-new-inp"
-                onchange="checkout.shipping.address.select('new');"
+                onchange="checkout.shipping.address.select('new', true);"
               />
               <label
                 for="checkout-shpg-adrs-new-inp"
@@ -904,22 +904,17 @@
       COMPLETE PAGE
       ---------------------------------------------------------------------------------->
 
-      <div id="checkout-complete-container" class="checkout-complete-container">
+      <div
+        id="checkout-complete-container"
+        class="checkout-complete-container checkout-element-hide"
+      >
         <div id="checkout-complete-loading-icon">
-          <svg class="checkmark-2" viewBox="0 0 52 52">
-            <circle
-              class="checkmark__circle-2"
-              cx="26"
-              cy="26"
-              r="25"
-              fill="none"
-            ></circle>
-            <path
-              class="checkmark__check-2"
-              fill="none"
-              d="M14.1 27.2l7.1 7.2 16.7-16.8"
-            ></path>
-          </svg>
+          <div class="load-1">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
         <p id="checkout-complete-text">Some Text Here ...</p>
       </div>
