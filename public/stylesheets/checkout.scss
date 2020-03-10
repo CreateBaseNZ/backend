@@ -569,6 +569,38 @@ PAYMENT
 
 // BANK TRANSFER - END
 
+.checkout-complete-container {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  padding-top: 60px;
+  background-color: $clr-wht-1;
+  opacity: 1;
+  z-index: 100;
+  #checkout-complete-loading-icon {
+    height: 16vmax;
+    width: 16vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  p {
+    height: 4vmax;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $fnt-fml-2;
+    font-size: 2vmax;
+    letter-spacing: 0.2vmax;
+    color: $clr-wht-3;
+  }
+}
+
 #checkout-pymt-sub-sub-pg {
   padding: 4vmax 14vmax 4vmax 4vmax;
 }
@@ -846,6 +878,7 @@ GLOBAL
   padding: 0;
   height: 0;
   overflow: hidden;
+  z-index: -1;
 }
 
 .StripeElement {
@@ -1265,6 +1298,22 @@ DESKTOP CSS
   }
 
   // BANK TRANSFER - END
+
+  .checkout-complete-container {
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    #checkout-complete-loading-icon {
+      height: 8vmax;
+      width: 8vmax;
+    }
+    p {
+      height: 2vmax;
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+    }
+  }
 
   /*---------------------------------------------------------------------------------------
   GLOBAL

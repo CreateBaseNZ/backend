@@ -1706,13 +1706,56 @@ checkout.payment.method.bank.show = show => {
   }
 };
 
-checkout.payment.method.bank.paid = () => {};
+checkout.payment.method.bank.paid = async () => {
+  // PREPARE PAGE USING LOADING ICON
+  document
+    .querySelector("#checkout-complete-container")
+    .classList.remove("checkout-element-hide");
+  document.querySelector("#checkout-complete-text").textContent =
+    "Processing Your Order...";
+  // PROCESS THE ORDER
+  try {
+    await axios.post("/checkout/order/paid");
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // COMPLETE PROCESSING
+  document.querySelector(
+    "#checkout-complete-loading-icon"
+  ).innerHTML = `<svg class="checkmark-2" viewBox="0 0 52 52">
+                    <circle
+                      class="checkmark__circle-2"
+                      cx="26"
+                      cy="26"
+                      r="25"
+                      fill="none"
+                    ></circle>
+                    <path
+                      class="checkmark__check-2"
+                      fill="none"
+                      d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                    ></path>
+                  </svg>`;
+  document.querySelector("#checkout-complete-text").textContent =
+    "Successfully Processed Your Order!";
+  setTimeout(() => {
+    window.location.href = "/";
+  }, 2000);
+};
 
 // @FUNC  checkout.payment.method.card.pay
 // @TYPE
 // @DESC
 // @ARGU
 checkout.payment.method.card.pay = async () => {
+  // PREPARE PAGE USING LOADING ICON
+  document
+    .querySelector("#checkout-complete-container")
+    .classList.remove("checkout-element-hide");
+  document.querySelector("#checkout-complete-text").textContent =
+    "Processing Your Order...";
+  // PROCESS THE CARD PAYMENT
   let clientSecret;
   let payment;
 
@@ -1730,7 +1773,37 @@ checkout.payment.method.card.pay = async () => {
     return console.log(error);
   }
 
+  // Update Order
+  try {
+    await axios.post("/checkout/order/paid");
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+
   console.log(payment["status"]);
+  // COMPLETE PROCESSING
+  document.querySelector(
+    "#checkout-complete-loading-icon"
+  ).innerHTML = `<svg class="checkmark-2" viewBox="0 0 52 52">
+                    <circle
+                      class="checkmark__circle-2"
+                      cx="26"
+                      cy="26"
+                      r="25"
+                      fill="none"
+                    ></circle>
+                    <path
+                      class="checkmark__check-2"
+                      fill="none"
+                      d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                    ></path>
+                  </svg>`;
+  document.querySelector("#checkout-complete-text").textContent =
+    "Successfully Processed Your Order!";
+  setTimeout(() => {
+    window.location.href = "/";
+  }, 2000);
 };
 
 // @FUNC  checkout.payment.method.card.paymentIntent
@@ -1927,7 +2000,7 @@ checkout.payment.resize = () => {
 NAVIGATION
 -----------------------------------------------------------------------------------------*/
 
-let checkoutPages = ["cart", "shipping", "payment"];
+let checkoutPages = ["cart", "shipping", "payment", "complete"];
 let checkoutSelectedPage = 0;
 
 // @FUNC  checkout.navigation.navigate

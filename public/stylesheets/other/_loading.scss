@@ -8,17 +8,16 @@ $light-1: rgb(255, 255, 255);
 .load-1 {
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 8vmax;
+  height: 8vmax;
 }
 .load-1 div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid $logo-1;
+  width: 8vmax;
+  height: 8vmax;
+  border: 1vmax solid $logo-1;
   border-radius: 50%;
   animation: load-1 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: $logo-1 transparent transparent transparent;
@@ -110,6 +109,37 @@ $light-1: rgb(255, 255, 255);
   animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
+.checkmark__circle-2 {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 0;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-2 {
+  width: 8vmax;
+  height: 8vmax;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 4;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  box-shadow: inset 0px 0px 0px #7ac142;
+  animation: fill 0.4s ease-in-out 0.4s forwards,
+    scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark__check-2 {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
 @keyframes stroke {
   100% {
     stroke-dashoffset: 0;
@@ -131,6 +161,18 @@ $light-1: rgb(255, 255, 255);
 }
 
 @media only screen and (min-width: 850px) {
+  .load-1 {
+    width: 4vmax;
+    height: 4vmax;
+  }
+
+  .load-1 div {
+    width: 4vmax;
+    height: 4vmax;
+    border: 0.5vmax solid $logo-1;
+    border-color: $logo-1 transparent transparent transparent;
+  }
+
   .load-2 {
     width: 1.6vmax;
     height: 1.6vmax;
@@ -146,6 +188,11 @@ $light-1: rgb(255, 255, 255);
   .checkmark {
     width: 1.6vmax;
     height: 1.6vmax;
+  }
+
+  .checkmark-2 {
+    width: 4vmax;
+    height: 4vmax;
   }
 }
 

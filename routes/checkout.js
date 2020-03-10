@@ -522,6 +522,52 @@ router.post(
   }
 );
 
+// @route     POST /checkout/order/paid
+// @desc
+// @access    Private
+router.post("/checkout/order/paid", restrictedPages, async (req, res) => {
+  const accountId = mongoose.Types.ObjectId(req.user._id);
+  let order;
+  // Find the Active Order
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  // Check if no order was found
+  if (!order) {
+    // Create a New Order if no Active Order
+    return res.send({ status: "failed", data: "no order found" });
+  }
+  // Update each makes
+  for (let i = 0; i < order.makes.awaitingQuote.length; i++) {
+    // Get make id
+    let _id = order.makes.awaitingQuote[i];
+    // Get the make
+    let make;
+    try {
+      make = await Make.findById(_id);
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+    // Update make
+    try {
+      await make.updateStatus("purchased");
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+  }
+  // Update the order
+  let updatedOrder;
+  try {
+    updatedOrder = await order.updateStatus("checkedout");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  // Success!
+  return res.send({ status: "success", data: "" });
+});
+
 /*=========================================================================================
 FUNCTIONS
 =========================================================================================*/

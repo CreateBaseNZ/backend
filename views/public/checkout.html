@@ -57,17 +57,26 @@
             alt="CreateBase"
           />
         </a>
-        <div class="nav-user">
+        <div class="nav-user-icon">
           <img
-            src="./../../public/images/logged-out-highlight.png"
+            src="./../../public/images/user-out-highlight.png"
             class="nav-user-hlt"
             alt="User"
           />
           <img
-            src="./../../public/images/logged-out.png"
+            src="./../../public/images/user-out.png"
             class="nav-user-reg"
             alt="User"
           />
+          <img
+            src="./../../public/images/user-x.png"
+            class="nav-user-x"
+            alt="User"
+          />
+        </div>
+        <div class="nav-user-button">
+          <a href="#" id="nav-user-login">LOG IN</a>
+          <a href="#" id="nav-user-signup">SIGN UP</a>
         </div>
       </div>
       <div class="nav-side-menus">
@@ -109,7 +118,7 @@
             </div>
           </div>
         </div>
-        <div class="nav-right-menu-wrap">
+        <div class="nav-right-menu-out">
           <div class="nav-right-menu">
             <p class="nav-side-header">WELCOME BACK</p>
             <a href="/login" class="nav-side-item">LOG IN</a>
@@ -118,8 +127,16 @@
             <a href="/signup" class="nav-side-item">SIGN UP</a>
           </div>
         </div>
+        <div class="nav-right-menu-in">
+          <div class="nav-right-menu">
+            <p class="nav-side-header">HELLO, CREATOR</p>
+            <a href="#" class="nav-side-item">PLACEHOLDER</a>
+            <a href="#" class="nav-side-out">SIGN OUT</a>
+          </div>
+        </div>
       </div>
     </nav>
+
     <div class="page" id="checkout-pg">
       <!---------------------------------------------------------------------------------
       SUMMARY PAGE (DESKTOP ONLY)
@@ -422,7 +439,7 @@
                 name="address"
                 class="checkout-radio"
                 id="checkout-shpg-adrs-svd-inp"
-                onchange="checkout.shipping.address.select('saved');"
+                onchange="checkout.shipping.address.select('saved', true);"
               />
               <label
                 for="checkout-shpg-adrs-svd-inp"
@@ -450,7 +467,7 @@
                 name="address"
                 class="checkout-radio"
                 id="checkout-shpg-adrs-new-inp"
-                onchange="checkout.shipping.address.select('new');"
+                onchange="checkout.shipping.address.select('new', true);"
               />
               <label
                 for="checkout-shpg-adrs-new-inp"
@@ -884,6 +901,25 @@
       </div>
 
       <!---------------------------------------------------------------------------------
+      COMPLETE PAGE
+      ---------------------------------------------------------------------------------->
+
+      <div
+        id="checkout-complete-container"
+        class="checkout-complete-container checkout-element-hide"
+      >
+        <div id="checkout-complete-loading-icon">
+          <div class="load-1">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <p id="checkout-complete-text">Some Text Here ...</p>
+      </div>
+
+      <!---------------------------------------------------------------------------------
       NAVIGATION SYSTEM
       ---------------------------------------------------------------------------------->
 
@@ -965,7 +1001,7 @@
         </div>
       </nav>
     </div>
-    <div id="checkout-loading-display" class="">
+    <div id="checkout-loading-display">
       <div id="checkout-loading-display-load">
         <div class="load-2">
           <div></div>
