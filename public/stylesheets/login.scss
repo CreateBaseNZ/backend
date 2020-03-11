@@ -1,7 +1,7 @@
 @import "global/all";
 
 $diamond: 35vw;
-$largest-font: 5vw;
+$largest-font: 2vw;
 
 body {
 
@@ -49,54 +49,79 @@ body {
         background: $light-1;
         display: grid;
         grid-template-areas:
-          "logo logo"
           "hello hello"
           "signup login";
-        grid-template-rows: 2fr 2fr 2fr;
-
-        // Logo
-        #hello-logo {
-          display: block;
-          grid-area: logo;
-          justify-self: center;
-          align-self: end;
-
-          img {
-            width: 15vw;
-          }
-        }
+        grid-template-rows: 1fr 1fr;
 
         // Hello, _____.
         #hello-creator {
           grid-area: hello;
           font-size: $largest-font;
-          align-self: center;
+          font-family: $montserrat;
+          font-weight: 100;
+          align-self: flex-end;
           margin-left: calc((50vw - 8 * #{$largest-font}) / 2);
 
           #change-text {
             position: relative;
-            padding: 10px;
+            padding: 1px;
           }
         }
 
         // Signup button
         #hello-signup {
+          align-self: flex-start;
+          justify-self: flex-end;
           grid-area: signup;
-          justify-self: end;
-          margin-right: 1vw;
-        }
+          margin-top: 5vh;
+          margin-right: 2vw;
 
+          &:hover {
+            border: 1px solid $light-1;
+          }
+        }
+        
         // Login button
         #hello-login {
+          align-self: flex-start;
+          justify-self: flex-start;
           grid-area: login;
-          margin-left: 1vw;
+          margin-top: 5vh;
+          margin-left: 2vw;
 
-          &:before {
-            animation-delay: 0.2s !important;
+          border: none;
+          padding: 10px;
+          color: $dark-3;
+          &:hover {
+            color: $highlight;
+            background: transparent;
           }
-          &:after {
-            animation-delay: 0.4s !important;
+          &:hover ~ .hello-login-line::after {
+            width: 23vw;
+            transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
           }
+        }
+
+        .hello-login-line {
+          pointer-events: none;
+          position: absolute;
+          top: calc(50% + 5vh + 39px);
+          left: calc(50% + 2vw);
+          width: 23vw;
+          height: 2px;
+          background: $light-2;
+        }
+
+        .hello-login-line::after {
+          content: '';
+          pointer-events: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 1px;
+          width: 0vw;
+          background: $highlight;
+          transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
         }
       }
 
@@ -240,7 +265,7 @@ body {
   .glitch::after {
     content: attr(data-text);
     position: absolute;
-    left: 3px;
+    left: 2px;
     text-shadow: 2px 0 greenyellow;
     background: $light-1;
     overflow: hidden;
@@ -250,7 +275,7 @@ body {
   .glitch::before {
     content: attr(data-text);
     position: absolute;
-    left: -3px;
+    left: -2px;
     text-shadow: -2px 0 magenta;
     background: $light-1;
     overflow: hidden;
@@ -265,7 +290,7 @@ body {
         $top: random(100);
         $bottom: random(101 - $top);
         clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-        padding: random(20) px - 20px;
+        padding: random(24)px - 24px;
         visibility: visible;
       }
     }
@@ -277,7 +302,7 @@ body {
         $top: random(100);
         $bottom: random(101 - $top);
         clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-        padding: random(30) px - 30px;
+        padding: random(20)px - 20px;
         visibility: visible;
       }
     }

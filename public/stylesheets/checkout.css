@@ -6,10 +6,6 @@
   text-decoration: none;
 }
 
-button {
-  outline: none;
-}
-
 .reg-btn {
   cursor: pointer;
   font-family: "Poppins", sans-serif;

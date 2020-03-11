@@ -126,7 +126,7 @@ $menu-width: 100vw;
       left: 0;
       width: 0vw;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);;
+      transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   
       .nav-left-menu {
         height: calc(100vh - #{$top-bar-height});
