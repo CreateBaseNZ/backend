@@ -9,6 +9,11 @@ $nav-bar-hght: 8vmax;
 $nav-bar-hght-dktp: 4vmax;
 $transition-1: all 0.5s ease-out;
 
+$height-mobile: 7vmax;
+$height-desktop: 3.5vmax;
+$clr: rgb(78, 78, 214);
+$fnt: "Poppins", sans-serif;
+
 /*======================================================================
 BASE ELEMENT
 ======================================================================*/
@@ -295,6 +300,92 @@ BUTTONS
   letter-spacing: 0.2vmax;
 }
 
+.button-5 {
+  display: flex;
+}
+
+.button-5-back {
+  height: $height-mobile;
+  width: $height-mobile;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-color: $clr;
+  border-width: 0.2vmax;
+  border-radius: 1vmax;
+  margin-right: calc(#{$height-mobile} * 0.3);
+}
+
+.button-5-back-icon {
+  border-style: solid;
+  border-color: $clr;
+  border-width: 0 calc(#{$height-mobile} * 0.04) calc(#{$height-mobile} * 0.04)
+    0;
+  display: inline-block;
+  padding: calc(#{$height-mobile} * 0.08);
+  transform: rotate(135deg);
+}
+
+.button-5-next {
+  height: $height-mobile;
+  width: calc(4.5 * #{$height-mobile});
+  display: flex;
+  justify-content: space-between;
+  border-radius: 1vmax;
+  background-color: $clr;
+  overflow: hidden;
+}
+
+.button-5-next-message {
+  height: $height-mobile;
+  width: calc(3 * #{$height-mobile});
+  display: flex;
+  align-items: center;
+  padding-left: 3vmax;
+  font-family: $fnt;
+  font-size: calc(#{$height-mobile} * 0.28);
+  letter-spacing: calc(#{$height-mobile} * 0.03);
+  color: white;
+  transition: all 0.5s ease;
+  transform: translateX(0%);
+  opacity: 1;
+  &.idle {
+    opacity: 0;
+  }
+  &.hide {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+}
+
+.button-5-next-icon {
+  height: $height-mobile;
+  width: $height-mobile;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  transform: translateX(0%);
+  opacity: 1;
+  &.idle {
+    opacity: 0;
+  }
+  &.hide {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  .right {
+    border-style: solid;
+    border-color: white;
+    border-width: 0 calc(#{$height-mobile} * 0.04)
+      calc(#{$height-mobile} * 0.04) 0;
+    display: inline-block;
+    padding: calc(#{$height-mobile} * 0.08);
+    transform: rotate(-45deg);
+  }
+}
+
 /*======================================================================
 TRANSITION SPEED
 ======================================================================*/
@@ -401,6 +492,44 @@ DESKTOP CSS
     height: 2.5vmax;
     border-radius: 1.25vmax;
     letter-spacing: 0.1vmax;
+  }
+
+  .button-5-back {
+    height: $height-desktop;
+    width: $height-desktop;
+    border-width: 0.1vmax;
+    border-radius: 0.5vmax;
+    margin-right: calc(#{$height-mobile} * 0.15);
+  }
+
+  .button-5-back-icon {
+    border-width: 0 calc(#{$height-desktop} * 0.04)
+      calc(#{$height-desktop} * 0.04) 0;
+    padding: calc(#{$height-desktop} * 0.08);
+  }
+
+  .button-5-next {
+    height: $height-desktop;
+    width: calc(4.5 * #{$height-desktop});
+    border-radius: 0.5vmax;
+  }
+
+  .button-5-next-message {
+    height: $height-desktop;
+    width: calc(3 * #{$height-desktop});
+    padding-left: 1.5vmax;
+    font-size: calc(#{$height-desktop} * 0.28);
+    letter-spacing: calc(#{$height-desktop} * 0.03);
+  }
+
+  .button-5-next-icon {
+    height: $height-desktop;
+    width: $height-desktop;
+    .right {
+      border-width: 0 calc(#{$height-desktop} * 0.04)
+        calc(#{$height-desktop} * 0.04) 0;
+      padding: calc(#{$height-desktop} * 0.08);
+    }
   }
 
   /*======================================================================
