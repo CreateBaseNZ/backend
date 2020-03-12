@@ -1613,6 +1613,125 @@ BUTTONS
   letter-spacing: 0.2vmax;
 }
 
+.button-5 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.button-5-back {
+  height: 7vmax;
+  width: 7vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-style: solid;
+  border-color: #4e4ed6;
+  border-width: 0.2vmax;
+  border-radius: 1vmax;
+  margin-right: calc(7vmax * 0.3);
+}
+
+.button-5-back-icon {
+  border-style: solid;
+  border-color: #4e4ed6;
+  border-width: 0 calc(7vmax * 0.04) calc(7vmax * 0.04) 0;
+  display: inline-block;
+  padding: calc(7vmax * 0.08);
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.button-5-next {
+  height: 7vmax;
+  width: calc(4.5 * 7vmax);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 1vmax;
+  background-color: #4e4ed6;
+  overflow: hidden;
+}
+
+.button-5-next-message {
+  height: 7vmax;
+  width: calc(3 * 7vmax);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 3vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: calc(7vmax * 0.28);
+  letter-spacing: calc(7vmax * 0.03);
+  color: white;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  opacity: 1;
+}
+
+.button-5-next-message.idle {
+  opacity: 0;
+}
+
+.button-5-next-message.hide {
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+  opacity: 0;
+}
+
+.button-5-next-icon {
+  height: 7vmax;
+  width: 7vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  opacity: 1;
+}
+
+.button-5-next-icon.idle {
+  opacity: 0;
+}
+
+.button-5-next-icon.hide {
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+  opacity: 0;
+}
+
+.button-5-next-icon .right {
+  border-style: solid;
+  border-color: white;
+  border-width: 0 calc(7vmax * 0.04) calc(7vmax * 0.04) 0;
+  display: inline-block;
+  padding: calc(7vmax * 0.08);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
 /*======================================================================
 TRANSITION SPEED
 ======================================================================*/
@@ -1696,6 +1815,37 @@ DESKTOP CSS
     height: 2.5vmax;
     border-radius: 1.25vmax;
     letter-spacing: 0.1vmax;
+  }
+  .button-5-back {
+    height: 3.5vmax;
+    width: 3.5vmax;
+    border-width: 0.1vmax;
+    border-radius: 0.5vmax;
+    margin-right: calc(7vmax * 0.15);
+  }
+  .button-5-back-icon {
+    border-width: 0 calc(3.5vmax * 0.04) calc(3.5vmax * 0.04) 0;
+    padding: calc(3.5vmax * 0.08);
+  }
+  .button-5-next {
+    height: 3.5vmax;
+    width: calc(4.5 * 3.5vmax);
+    border-radius: 0.5vmax;
+  }
+  .button-5-next-message {
+    height: 3.5vmax;
+    width: calc(3 * 3.5vmax);
+    padding-left: 1.5vmax;
+    font-size: calc(3.5vmax * 0.28);
+    letter-spacing: calc(3.5vmax * 0.03);
+  }
+  .button-5-next-icon {
+    height: 3.5vmax;
+    width: 3.5vmax;
+  }
+  .button-5-next-icon .right {
+    border-width: 0 calc(3.5vmax * 0.04) calc(3.5vmax * 0.04) 0;
+    padding: calc(3.5vmax * 0.08);
   }
   /*======================================================================
   TEMPORARY

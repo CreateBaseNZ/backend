@@ -1,0 +1,366 @@
+@import "global/all";
+
+/*=========================================================================================
+VARIABLES
+=========================================================================================*/
+
+// Colours
+$clr-vlt-1: rgb(130, 88, 220);
+$clr-vlt-2: rgb(104, 83, 217);
+$clr-vlt-3: rgb(78, 78, 214);
+$clr-blk-1: rgb(45, 40, 60);
+$clr-blk-2: rgb(50, 45, 65);
+$clr-blk-3: #877da9;
+$clr-wht-1: rgb(255, 255, 255);
+$clr-wht-2: rgb(248, 248, 248);
+$clr-wht-3: #c7c2d5;
+// Font Families
+$fnt-fml-1: "Montserrat", sans-serif;
+$fnt-fml-2: "Poppins", sans-serif;
+
+/*=========================================================================================
+MOBILE CSS
+=========================================================================================*/
+
+/*-----------------------------------------------------------------------------------------
+CLASSES
+-----------------------------------------------------------------------------------------*/
+
+.make-sub-page {
+  height: calc(100% - 16vmax);
+  width: 100%;
+  position: fixed;
+  top: 8vmax;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  padding-bottom: 12vmax;
+  overflow-y: scroll;
+  background-color: $clr-wht-1;
+  z-index: 1;
+}
+
+.make-sub-page-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.make-sub-page-rght {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.make-sub-hdng {
+  height: 16vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.2vmax;
+}
+
+.make-fld {
+  height: 18vmax;
+  width: 80vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.make-fld-inp {
+  width: 70%;
+  margin: 0.6vmax;
+}
+
+.make-fld-hdng {
+  width: 60%;
+  margin: 0.6vmax;
+  letter-spacing: 0.1vmax;
+}
+
+.make-btns {
+  height: 16vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.make-btn-2 {
+  width: 20vmax;
+}
+
+.make-smry-lbl {
+  width: 30%;
+  padding: 1.5vmax;
+  letter-spacing: 0.1vmax;
+  text-align: right;
+}
+
+.make-smry-txt {
+  width: 70%;
+  padding: 1.5vmax;
+  letter-spacing: 0.1vmax;
+}
+
+.make-sub-exit {
+  z-index: 6;
+  padding-bottom: 0;
+}
+
+.make-sub-page-hd {
+  z-index: -1;
+}
+
+.make-exit-btn {
+  margin: 6vmax 18vmin;
+}
+
+.make-smry-lbl {
+  padding: 0.75vmax;
+  letter-spacing: 0.05vmax;
+}
+
+.make-smry-txt {
+  padding: 0.75vmax;
+  letter-spacing: 0.05vmax;
+}
+
+/*-----------------------------------------------------------------------------------------
+IDS
+-----------------------------------------------------------------------------------------*/
+
+#make-qck-bld-fld {
+  height: 30vmax;
+}
+
+#make-mdl-lbl {
+  width: 20vmax;
+}
+
+#make-file-name {
+  padding: 2vmax;
+  letter-spacing: 0.1vmax;
+}
+
+#make-note-lbl {
+  width: 90%;
+}
+
+#make-note {
+  height: 100%;
+  width: 100%;
+  border-style: solid;
+  padding: 1.5vmax;
+  resize: none;
+}
+
+#make-qck-bld-btn {
+  margin-top: 4vmax;
+}
+
+#make-smry {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 1vmax;
+  padding: 2vmax;
+}
+
+#make-sub-page-load {
+  align-content: center;
+}
+
+/*=========================================================================================
+DESKTOP CSS
+=========================================================================================*/
+
+@media only screen and (min-width: 850px) {
+  /*---------------------------------------------------------------------------------------
+  CLASSES
+  ---------------------------------------------------------------------------------------*/
+
+  .make-sub-page {
+    height: 26vmax;
+    position: relative;
+    width: 100%;
+    padding-bottom: 0;
+    top: 0;
+    align-items: center;
+    margin-right: 8vmax;
+    overflow: hidden;
+  }
+
+  .make-sub-page-left {
+    transform: translateX(0);
+    opacity: 1;
+    height: 5vmax;
+    overflow: hidden;
+  }
+
+  .make-sub-page-rght {
+    transform: translateX(0);
+    opacity: 1;
+    height: 5vmax;
+    overflow: hidden;
+  }
+
+  .make-sub-hdng {
+    height: 5vmax;
+    letter-spacing: 0.1vmax;
+    justify-content: flex-start;
+    padding: 0 2vmax;
+  }
+
+  .make-sub-page-hd {
+    z-index: -1;
+  }
+
+  .make-sub-exit {
+    z-index: 6;
+    padding-bottom: 0;
+    position: fixed;
+    top: 4vmax;
+    left: 5vmax;
+    height: calc(100% - 4vmax);
+    width: calc(100% - 5vmax);
+  }
+
+  .make-sub-page-hd {
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .make-exit-btn {
+    margin: 3vmax 9vmin;
+  }
+
+  .make-fld {
+    height: 9vmax;
+    width: 40vmin;
+  }
+
+  .make-fld-inp {
+    width: 70%;
+    margin: 0.3vmax;
+  }
+
+  .make-fld-hdng {
+    width: 60%;
+    margin: 0.3vmax;
+    letter-spacing: 0.05vmax;
+  }
+
+  .make-btns {
+    height: 8vmax;
+  }
+
+  .make-btn-2 {
+    width: 10vmax;
+  }
+
+  .make-sub-hdng-exit {
+    height: 16vmax;
+    font-size: 3vmax;
+    justify-content: center;
+  }
+
+  /*---------------------------------------------------------------------------------------
+  IDS
+  ---------------------------------------------------------------------------------------*/
+
+  #make-sub-page-0 {
+    position: fixed;
+    top: 4vmax;
+    left: 5vmax;
+    display: flex;
+    height: calc(100% - 4vmax);
+    width: 25vmax;
+    background-color: $clr-wht-2;
+    overflow: hidden;
+  }
+
+  #make-page {
+    height: calc(100% - 4vmax);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 25vmax;
+    align-content: flex-start;
+  }
+
+  #make-mdl-vwr {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  #make-qck-bld-fld {
+    height: 15vmax;
+  }
+
+  #make-mdl-lbl {
+    width: 10vmax;
+  }
+
+  #make-file-name {
+    padding: 1vmax;
+    letter-spacing: 0.05vmax;
+  }
+
+  #make-note-fld {
+    height: 10max;
+    width: 60vmin;
+  }
+
+  #make-note {
+    padding: 0.75vmax;
+  }
+
+  #make-qck-bld-btn {
+    margin-top: 2vmax;
+  }
+
+  #make-smry {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    z-index: -1;
+    padding: 0;
+  }
+
+  #make-smry-btns {
+    width: 60vmin;
+    flex-direction: row-reverse;
+    padding: 0 0 0 20vmin;
+    justify-content: space-between;
+  }
+
+  #make-sub-page-5 {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #make-smry-dktp {
+    height: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+
+  #make-mdl-vwr-dktp {
+    height: 60%;
+  }
+}
+
+/*=========================================================================================
+END
+=========================================================================================*/
