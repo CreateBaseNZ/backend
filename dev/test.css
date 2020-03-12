@@ -71,6 +71,10 @@ body {
   overflow: hidden;
 }
 
+.button-5-next.disable {
+  background-color: #c7c2d5;
+}
+
 .button-5-next-message {
   height: 7vmax;
   width: calc(3 * 7vmax);

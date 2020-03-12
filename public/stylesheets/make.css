@@ -1310,9 +1310,255 @@ VARIABLES
 /*=========================================================================================
 MOBILE CSS
 =========================================================================================*/
+.make-page {
+  width: 100vw;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.make-page.hide-left {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.make-page.hide-left .heading {
+  cursor: pointer;
+}
+
+.make-page.hide-right {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.make-page.hide-right .heading {
+  cursor: pointer;
+}
+
+.make-page.disable .heading {
+  cursor: default;
+}
+
+.make-page .heading {
+  height: 20vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 4vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 3.6vmax;
+  font-weight: bold;
+  letter-spacing: 0.3vmax;
+  color: #322d41;
+  cursor: default;
+}
+
+.make-page form {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.make-page .button {
+  height: 20vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.make-file-upload-button {
+  height: 20vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.make-file-upload-button label {
+  height: 7vmax;
+  width: 31.5vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 1vmax;
+  background-color: #4e4ed6;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  letter-spacing: 0.2vmax;
+  color: white;
+}
+
+.make-file-input {
+  height: 20vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.make-file-input h3,
+.make-file-input p {
+  width: 30vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.make-file-input h3 {
+  height: 5vmax;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 3vmax;
+  letter-spacing: 0.2vmax;
+  color: #c7c2d5;
+}
+
+.make-file-input p {
+  height: 3vmax;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 1.2vmax;
+  letter-spacing: 0.1vmax;
+  color: #ff392e;
+}
+
 /*=========================================================================================
 DESKTOP CSS
 =========================================================================================*/
+@media only screen and (min-width: 850px) {
+  #make {
+    height: calc(100vh - 60px);
+    width: 100%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 0 0 36vw;
+    background-color: #f8f8f8;
+    overflow-y: scroll;
+  }
+  .make-page {
+    width: 62vw;
+    position: relative;
+    top: 0;
+    border-radius: 1vmax;
+    margin: 1vw;
+    background-color: white;
+    overflow: hidden;
+  }
+  .make-page.upload {
+    height: 35vmax;
+  }
+  .make-page.hide-left {
+    height: 5vmax;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  .make-page.hide-right {
+    height: 5vmax;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  .make-page .heading {
+    height: 5vmax;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding-left: 3vmax;
+    padding-bottom: 0;
+    font-size: 1.8vmax;
+    letter-spacing: 0.15vmax;
+  }
+  .make-page .button {
+    height: 10vmax;
+  }
+  .make-file-upload-button {
+    height: 10vmax;
+  }
+  .make-file-upload-button label {
+    height: 3.5vmax;
+    width: 15.75vmax;
+    border-radius: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .make-file-input {
+    height: 10vmax;
+  }
+  .make-file-input h3,
+  .make-file-input p {
+    width: 15vmax;
+  }
+  .make-file-input h3 {
+    height: 2.5vmax;
+    font-size: 1.5vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .make-file-input p {
+    height: 1.5vmax;
+    font-size: 0.6vmax;
+    letter-spacing: 0.05vmax;
+  }
+}
+
 /*=========================================================================================
 END
 =========================================================================================*/

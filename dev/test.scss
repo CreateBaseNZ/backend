@@ -1,6 +1,7 @@
 $height-mobile: 7vmax;
 $height-desktop: 3.5vmax;
 $clr: rgb(78, 78, 214);
+$clr-blk: #c7c2d5;
 $fnt: "Poppins", sans-serif;
 
 // Temporary
@@ -56,6 +57,9 @@ body {
   border-radius: 1vmax;
   background-color: $clr;
   overflow: hidden;
+  &.disable {
+    background-color: $clr-blk;
+  }
 }
 
 .button-5-next-message {

@@ -9,11 +9,6 @@ $nav-bar-hght: 8vmax;
 $nav-bar-hght-dktp: 4vmax;
 $transition-1: all 0.5s ease-out;
 
-$height-mobile: 7vmax;
-$height-desktop: 3.5vmax;
-$clr: rgb(78, 78, 214);
-$fnt: "Poppins", sans-serif;
-
 /*======================================================================
 BASE ELEMENT
 ======================================================================*/
@@ -63,6 +58,28 @@ REMOVE DEFAULT CSS
 
 .rmv-btn-css {
   border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+
+  text-align: inherit;
   outline: none;
 }
 
@@ -311,7 +328,7 @@ BUTTONS
   align-items: center;
   justify-content: center;
   border-style: solid;
-  border-color: $clr;
+  border-color: $logo-3;
   border-width: 0.2vmax;
   border-radius: 1vmax;
   margin-right: calc(#{$height-mobile} * 0.3);
@@ -319,7 +336,7 @@ BUTTONS
 
 .button-5-back-icon {
   border-style: solid;
-  border-color: $clr;
+  border-color: $logo-3;
   border-width: 0 calc(#{$height-mobile} * 0.04) calc(#{$height-mobile} * 0.04)
     0;
   display: inline-block;
@@ -333,8 +350,11 @@ BUTTONS
   display: flex;
   justify-content: space-between;
   border-radius: 1vmax;
-  background-color: $clr;
+  background-color: $logo-3;
   overflow: hidden;
+  &.disable {
+    background-color: $dark-1;
+  }
 }
 
 .button-5-next-message {
@@ -343,10 +363,10 @@ BUTTONS
   display: flex;
   align-items: center;
   padding-left: 3vmax;
-  font-family: $fnt;
+  font-family: $poppins;
   font-size: calc(#{$height-mobile} * 0.28);
   letter-spacing: calc(#{$height-mobile} * 0.03);
-  color: white;
+  color: $light-1;
   transition: all 0.5s ease;
   transform: translateX(0%);
   opacity: 1;
@@ -377,7 +397,7 @@ BUTTONS
   }
   .right {
     border-style: solid;
-    border-color: white;
+    border-color: $light-1;
     border-width: 0 calc(#{$height-mobile} * 0.04)
       calc(#{$height-mobile} * 0.04) 0;
     display: inline-block;
