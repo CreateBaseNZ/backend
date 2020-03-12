@@ -60,10 +60,8 @@ $diamond: 10vmax;
       align-items: flex-end;
 
       #signup-title {
-        font-size: 10px;
-        letter-spacing: 3px;
-        margin-bottom: 4vh;
-
+        margin-top: $top-bar-height;
+        align-self: center;
         span {
           color: $highlight;
         }
@@ -272,13 +270,8 @@ $diamond: 10vmax;
     .signup-form-container {
       
       .sign-up-form {
-        #signup-title {
-          font-size: calc(10px + 0.2vmax);
-          letter-spacing: 6px;
-        }
-  
         #signup-message {
-          font-size: calc(10px + 0.2vmax);
+          font-size: calc(8px + 0.2vmax);
         }
       }
     }

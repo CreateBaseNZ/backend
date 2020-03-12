@@ -1,17 +1,27 @@
 @import "global/all";
 
 $diamond: 35vw;
-$largest-font: 2vw;
+$largest-font: calc(16px + 1vw);
 
 body {
 
-  .nav-user-icon,
-  .nav-user-button {
-    display: none !important;
+  .nav-container {
+    .nav-top-bar {
+      background: transparent !important;
+  
+      .nav-user-icon,
+      .nav-user-button {
+        display: none !important;
+      }
+    }
+  }
+
+  .nav-darken-overlay-active ~ .nav-top-bar {
+    background: $light-1;
   }
 
   .main-login {
-    background: linear-gradient(to right, $dark-3, black);
+    background: $light-1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,6 +62,7 @@ body {
           "hello hello"
           "signup login";
         grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
 
         // Hello, _____.
         #hello-creator {
@@ -89,16 +100,18 @@ body {
           margin-top: 5vh;
           margin-left: 2vw;
 
-          border: none;
           padding: 10px;
-          color: $dark-3;
+          transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+
           &:hover {
-            color: $highlight;
-            background: transparent;
+            padding-left: 25px;
+            transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
           }
-          &:hover ~ .hello-login-line::after {
+
+          &:hover ~ .hello-login-line {
             width: 23vw;
-            transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+            background: $highlight;
+            transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
           }
         }
 
@@ -107,20 +120,9 @@ body {
           position: absolute;
           top: calc(50% + 5vh + 39px);
           left: calc(50% + 2vw);
-          width: 23vw;
-          height: 2px;
-          background: $light-2;
-        }
-
-        .hello-login-line::after {
-          content: '';
-          pointer-events: none;
-          position: absolute;
-          top: 0;
-          left: 0;
+          width: 20px;
           height: 1px;
-          width: 0vw;
-          background: $highlight;
+          background: $light-3;
           transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
         }
       }
@@ -141,26 +143,13 @@ body {
 
         .log-in-form {
           display: grid;
-          grid-template-rows: 5vh 36vh 10vh 10vh 14vh;
+          grid-template-rows: 41vh 10vh 10vh 14vh;
           align-items: center;
           justify-items: center;
           width: 100%;
 
-          #login-logo {
-            display: block;
-            justify-self: flex-end;
-            align-self: flex-start;
-            margin-top: 3vh;
-            margin-right: 3vw;
-
-            img {
-              width: 7.5vw;
-            }
-          }
-
-          h2 {
-            font-size: 1vw;
-            letter-spacing: 0.25vw;
+          #login-title {
+            margin-top: $top-bar-height;
           }
 
           #login-login {
@@ -183,7 +172,7 @@ body {
         #login-signup {
           align-self: flex-end;
           justify-self: center;
-          font-size: 0.75vw;
+          font-size: calc(8px + 0.2vmax);
           margin-bottom: 2vh;
 
           a {
@@ -216,29 +205,61 @@ body {
     overflow: hidden;
     transition: transform 0.6s ease-in-out;
     z-index: 100;
+  }
 
-    .login-overlay {
-      background: $light-2;
-      position: relative;
-      left: -100%;
-      height: 100%;
-      width: 200%;
-      transform: translateX(0);
-      transition: transform 0.6s ease-in-out;
-    }
+  .login-main-container.right-panel-active .login-overlay-container {
+    transform: translateX(-100%);
+  }
+
+  .login-overlay {
+    background: $light-1;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
   }
 
   .login-main-container.right-panel-active .login-overlay {
     transform: translateX(50%);
   }
-  .login-main-container.right-panel-active .login-overlay-container {
-    transform: translateX(-100%);
+
+  .login-overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      overflow: hidden;
+      height: 100vh;
+    }
+  }
+
+  .login-overlay-left {
+    transform: translateX(-20%);
   }
   .login-main-container.right-panel-active .login-overlay-left {
-    transform: translateX(-50%);
+    transform: translateX(0%);
+  }
+
+  .login-overlay-right {
+    right: 0;
+    transform: translateX(0);
   }
   .login-main-container.right-panel-active .login-overlay-right {
-    transform: translateX(75%);
+    transform: translateX(20%);
   }
 
   @keyframes show {
@@ -265,8 +286,8 @@ body {
   .glitch::after {
     content: attr(data-text);
     position: absolute;
-    left: 2px;
-    text-shadow: 2px 0 greenyellow;
+    left: 1px;
+    text-shadow: 1px 0 greenyellow;
     background: $light-1;
     overflow: hidden;
     visibility: hidden;
@@ -275,8 +296,8 @@ body {
   .glitch::before {
     content: attr(data-text);
     position: absolute;
-    left: -2px;
-    text-shadow: -2px 0 magenta;
+    left: -1px;
+    text-shadow: -1px 0 magenta;
     background: $light-1;
     overflow: hidden;
     visibility: hidden;
@@ -290,7 +311,7 @@ body {
         $top: random(100);
         $bottom: random(101 - $top);
         clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-        padding: random(24)px - 24px;
+        padding: random(8)px - 8px;
         visibility: visible;
       }
     }
@@ -302,7 +323,7 @@ body {
         $top: random(100);
         $bottom: random(101 - $top);
         clip-path: inset(#{$top}% 0 #{$bottom}% 0);
-        padding: random(20)px - 20px;
+        padding: random(10)px - 10px;
         visibility: visible;
       }
     }
