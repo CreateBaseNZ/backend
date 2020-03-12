@@ -1,0 +1,12 @@
+.mini-caps-title {
+  font-size: calc(8px + 0.1vw);
+  letter-spacing: 3px;
+  font-weight: 800;
+}
+
+@media only screen and (min-width: 850px) {
+  .mini-caps-title {
+    font-size: calc(10px + 0.1vw);
+    letter-spacing: 4px;
+  }
+}

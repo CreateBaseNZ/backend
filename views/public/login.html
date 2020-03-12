@@ -93,10 +93,7 @@
     <div class="login-main-container" id="container">
       <div class="login-form-container login-container">
         <form class="log-in-form" action="/login/customer" method="post">
-          <a href="/" id="login-logo">
-            <img src="./../../public/images/logo-dark.png" alt="CreateBase" />
-          </a>
-          <h2>WELCOME BACK TO BASE</h2>
+          <p class="mini-caps-title" id="login-title">WELCOME BACK TO BASE</h2>
           <div class="log-in-fld input-decor" id="login-email">
             <input type="text" name="email" id="log-in-eml" required />
             <label for="email">Email</label>
@@ -106,11 +103,11 @@
             <label for="password">Password</label>
           </div>
           <div class="log-in-fld" id="login-login">
-            <button type="submit" class="reg-btn" id="login-btn" data-text="LOG IN">LOG IN</button>
+            <button type="submit" class="reg-btn" id="login-btn">LOG IN</button>
           </div>
         </form>
         <div>
-          <button id="back-btn" class="reg-btn" data-text="←" onclick="toggleContainer();">←</button>
+          <button id="back-btn" class="plain-btn" onclick="toggleContainer();">←</button>
         </div>
         <div id="login-signup">
           <p class="rmv-p-css">
@@ -125,12 +122,18 @@
           Hello, <span class="glitch" id="change-text" data-text="Creator">Creator</span>.
         </h1>
         <a href="/signup" class="reg-btn" id="hello-signup">SIGN UP</a>
-        <button class="reg-btn" id="hello-login" onclick="toggleContainer();">LOG IN</button>
+        <button class="plain-btn" id="hello-login" onclick="toggleContainer();">LOG IN</button>
         <div class="hello-login-line"></div>
       </div>
   
       <div class="login-overlay-container">
         <div class="login-overlay">
+          <div class="login-overlay-panel login-overlay-left">
+            <img src="./../../public/images/login-left.png" alt="Login">
+          </div>
+          <div class="login-overlay-panel login-overlay-right">
+            <img src="./../../public/images/login-right.png" alt="Login">
+          </div>
         </div>
       </div>
     </div>

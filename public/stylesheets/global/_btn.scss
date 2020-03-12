@@ -1,25 +1,82 @@
+button {
+  outline: none;
+}
+
 .reg-btn {
+  position: relative;
   cursor: pointer;
   font-family: $poppins;
-  color: $logo-2;
-  border: 1px solid $logo-2;
+  color: $dark-1;
+  border: 1px solid rgba(255,255,255,0);
   background: transparent;
   
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1px;
-  padding: 8px 40px;
+  padding: 10px 40px;
+  transition: color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    transition: all 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  &:before {    
+    top: -0.5px;
+    left: -0.5px;
+    border-top: 1px solid $light-3;
+    border-left: 1px solid $light-3;
+  }
+  &:after {
+    bottom: -0.5px;
+    right: -0.5px;
+    border-bottom: 1px solid $light-3;
+    border-right: 1px solid $light-3;  
+  }
 
   &:hover {
-    border: none;
-    background: linear-gradient(60deg, $logo-1, $logo-3);
-    color: $light-1;
+    color: $highlight;
+    transition: color 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  &:hover:before,
+  &:hover:after {
+    height: 100%;
+    width: 100%;
+    border-color: $highlight;
+    transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+}
+
+.plain-btn {
+  position: relative;
+  cursor: pointer;
+  font-family: $poppins;
+  background: transparent;
+  border: none;
+  
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: $dark-1;
+
+  &:hover {
+    color: $highlight;
   }
 }
 
 @media only screen and (min-width: 850px) {
 
   .reg-btn {
+    font-size: 12px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    padding: 10px 30px;
+  }
+
+  .plain-btn {
     font-size: 12px;
     font-weight: 100;
     letter-spacing: 1px;
