@@ -1388,87 +1388,6 @@ VARIABLES
 /*=========================================================================================
 MOBILE CSS
 =========================================================================================*/
-.make-page {
-  width: 100vw;
-  position: fixed;
-  top: 60px;
-  left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
-}
-
-.make-page.hide-left {
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-}
-
-.make-page.hide-left .heading {
-  cursor: pointer;
-}
-
-.make-page.hide-right {
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
-}
-
-.make-page.hide-right .heading {
-  cursor: pointer;
-}
-
-.make-page.disable .heading {
-  cursor: default;
-}
-
-.make-page .heading {
-  height: 20vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-bottom: 4vmax;
-  font-family: "Poppins", sans-serif;
-  font-size: 3.6vmax;
-  font-weight: bold;
-  letter-spacing: 0.3vmax;
-  color: #322d41;
-  cursor: default;
-}
-
-.make-page form {
-  height: 0;
-  width: 0;
-  overflow: hidden;
-}
-
-.make-page .button {
-  height: 20vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .make-file-upload-button {
   height: 20vmax;
   width: 100%;
@@ -1553,61 +1472,347 @@ MOBILE CSS
   color: #ff392e;
 }
 
+/*-----------------------------------------------------------------------------------------
+BUILD TYPE
+-----------------------------------------------------------------------------------------*/
+.make-build-type-inputs {
+  height: 20vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.make-build-type-inputs label {
+  height: 8vmax;
+  width: 16vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #4e4ed6;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  letter-spacing: 0.4vmax;
+  color: white;
+  opacity: 0.4;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.make-build-type-inputs label.select {
+  height: 7.2vmax;
+  font-weight: bold;
+  opacity: 1;
+}
+
+#make-quick-build-input {
+  border-radius: 2vmax 0.4vmax 0.4vmax 2vmax;
+  border-right-style: solid;
+  border-right-width: 0.15vmax;
+  border-right-color: white;
+}
+
+#make-custom-build-input {
+  border-radius: 0.4vmax 2vmax 2vmax 0.4vmax;
+  border-left-style: solid;
+  border-left-width: 0.3vmax;
+  border-left-color: white;
+}
+
+.make-quick-build-options {
+  height: 20vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  opacity: 0.4;
+}
+
+.make-quick-build-options label {
+  height: 10vmax;
+  width: 20vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-style: solid;
+  border-radius: 2vmax;
+  border-color: #c7c2d5;
+  border-width: 0.2vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  letter-spacing: 0.2vmax;
+  color: #c7c2d5;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.make-quick-build-options label.select {
+  border-color: #6853d9;
+  font-weight: bold;
+  border-width: 0.4vmax;
+  color: #6853d9;
+}
+
+.make-quick-build-options.select {
+  opacity: 1;
+}
+
+/*-----------------------------------------------------------------------------------------
+BUILD OPTION
+-----------------------------------------------------------------------------------------*/
+.make-build-option {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.make-build-option h2 {
+  height: 14vmax;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-bottom: 3vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.4vmax;
+  letter-spacing: 0.2vmax;
+  color: #877da9;
+}
+
+.make-build-option h3 {
+  height: 6vmax;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  letter-spacing: 0.2vmax;
+  color: #322d41;
+}
+
+.make-build-option-inputs {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.make-build-option-inputs label {
+  height: 9vmax;
+  width: 18vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-style: solid;
+  border-radius: 2vmax;
+  border-color: #c7c2d5;
+  border-width: 0.2vmax;
+  margin: 3vmax 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  letter-spacing: 0.2vmax;
+  color: #c7c2d5;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.make-build-option-inputs label.select {
+  border-color: #6853d9;
+  font-weight: bold;
+  border-width: 0.4vmax;
+  color: #6853d9;
+}
+
+/*-----------------------------------------------------------------------------------------
+ORDER DETAILS
+-----------------------------------------------------------------------------------------*/
+.make-order-detail {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.make-order-detail h2 {
+  height: 14vmax;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-bottom: 3vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.4vmax;
+  letter-spacing: 0.2vmax;
+  color: #877da9;
+}
+
+/*-----------------------------------------------------------------------------------------
+UNIVERSAL
+-----------------------------------------------------------------------------------------*/
+.make-page {
+  height: calc(100vh - 60px);
+  width: 100vw;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  overflow: auto;
+}
+
+.make-page.hide-left {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.make-page.hide-left .heading {
+  cursor: pointer;
+}
+
+.make-page.hide-right {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.make-page.hide-right .heading {
+  cursor: pointer;
+}
+
+.make-page.disable .heading {
+  cursor: default;
+}
+
+.make-page .heading {
+  height: 20vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 4vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 3.6vmax;
+  font-weight: bold;
+  letter-spacing: 0.3vmax;
+  color: #322d41;
+  cursor: default;
+}
+
+.make-page .button {
+  height: 20vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.hide-element {
+  height: 0;
+  width: 0;
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.hide-element-height {
+  height: 0;
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 /*=========================================================================================
 DESKTOP CSS
 =========================================================================================*/
 @media only screen and (min-width: 850px) {
-  #make {
-    height: calc(100vh - 60px);
-    width: 100%;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 0 0 0 36vw;
-    background-color: #f8f8f8;
-    overflow-y: scroll;
-  }
-  .make-page {
-    width: 62vw;
-    position: relative;
-    top: 0;
-    border-radius: 1vmax;
-    margin: 1vw;
-    background-color: white;
-    overflow: hidden;
-  }
-  .make-page.upload {
-    height: 35vmax;
-  }
-  .make-page.hide-left {
-    height: 5vmax;
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-  .make-page.hide-right {
-    height: 5vmax;
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-  .make-page .heading {
-    height: 5vmax;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    padding-left: 3vmax;
-    padding-bottom: 0;
-    font-size: 1.8vmax;
-    letter-spacing: 0.15vmax;
-  }
-  .make-page .button {
-    height: 10vmax;
-  }
   .make-file-upload-button {
     height: 10vmax;
   }
@@ -1634,6 +1839,138 @@ DESKTOP CSS
     height: 1.5vmax;
     font-size: 0.6vmax;
     letter-spacing: 0.05vmax;
+  }
+  /*---------------------------------------------------------------------------------------
+  BUILD TYPE
+  ---------------------------------------------------------------------------------------*/
+  .make-build-type-inputs {
+    height: 10vmax;
+  }
+  .make-build-type-inputs label {
+    height: 4vmax;
+    width: 8vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.2vmax;
+  }
+  .make-build-type-inputs label.select {
+    height: 3.6vmax;
+  }
+  #make-quick-build-input {
+    border-radius: 1vmax 0.2vmax 0.2vmax 1vmax;
+    border-right-width: 0.15vmax;
+  }
+  #make-custom-build-input {
+    border-radius: 0.2vmax 1vmax 1vmax 0.2vmax;
+    border-left-width: 0.15vmax;
+  }
+  .make-quick-build-options {
+    height: 10vmax;
+  }
+  .make-quick-build-options label {
+    height: 5vmax;
+    width: 10vmax;
+    border-radius: 1vmax;
+    border-width: 0.1vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .make-quick-build-options label.select {
+    border-width: 0.2vmax;
+  }
+  /*-----------------------------------------------------------------------------------------
+BUILD OPTION
+-----------------------------------------------------------------------------------------*/
+  .make-build-option h2 {
+    height: 7vmax;
+    width: 80%;
+    padding-bottom: 1.5vmax;
+    font-size: 1.2vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .make-build-option h3 {
+    height: 3vmax;
+    width: 70%;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .make-build-option-inputs {
+    width: 70%;
+  }
+  .make-build-option-inputs label {
+    height: 4.5vmax;
+    width: 9vmax;
+    border-radius: 1vmax;
+    border-width: 0.1vmax;
+    margin: 1.5vmax 0;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .make-build-option-inputs label.select {
+    border-width: 0.1vmax;
+  }
+  /*---------------------------------------------------------------------------------------
+  UNIVERSAL
+  ---------------------------------------------------------------------------------------*/
+  #make {
+    height: calc(100vh - 60px);
+    width: 100%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+    padding: 0 0 1vw 36vw;
+    background-color: #f8f8f8;
+    overflow-y: auto;
+  }
+  .make-page {
+    width: 62vw;
+    position: relative;
+    top: 0;
+    border-radius: 1vmax;
+    margin: 1vw 1vw 0;
+    background-color: white;
+    overflow: hidden;
+  }
+  .make-page.upload {
+    height: 35vmax;
+  }
+  .make-page.build-type {
+    height: 35vmax;
+  }
+  .make-page.build-options {
+    height: 61.5vmax;
+  }
+  .make-page.hide-left {
+    height: 5vmax;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  .make-page.hide-right {
+    height: 5vmax;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  .make-page .heading {
+    height: 5vmax;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding-left: 3vmax;
+    padding-bottom: 0;
+    font-size: 1.8vmax;
+    letter-spacing: 0.15vmax;
+  }
+  .make-page .button {
+    height: 10vmax;
   }
 }
 

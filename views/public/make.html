@@ -142,11 +142,92 @@
     </nav>
 
     <div id="make">
-      <div class="make-page upload">
+      <!--INPUTS-->
+      <form id="make-inputs" class="hide-element">
+        <input type="file" name="file" id="make-file" />
+        <input
+          type="radio"
+          name="buildType"
+          id="make-quick-build"
+          value="quick"
+        />
+        <input
+          type="radio"
+          name="buildType"
+          id="make-custom-build"
+          value="custom"
+        />
+        <input
+          type="radio"
+          name="quickBuild"
+          id="make-prototype-build"
+          value="prototype"
+        />
+        <input
+          type="radio"
+          name="quickBuild"
+          id="make-mechanical-build"
+          value="mechanical"
+        />
+        <input
+          type="radio"
+          name="material"
+          id="make-fdm-pla-material"
+          value="fdm-pla"
+        />
+        <input
+          type="radio"
+          name="material"
+          id="make-fdm-abs-material"
+          value="fdm-abs"
+        />
+        <input
+          type="radio"
+          name="material"
+          id="make-fdm-petg-material"
+          value="fdm-petg"
+        />
+        <input
+          type="radio"
+          name="quality"
+          id="make-draft-quality"
+          value="draft"
+        />
+        <input
+          type="radio"
+          name="quality"
+          id="make-normal-quality"
+          value="normal"
+        />
+        <input
+          type="radio"
+          name="quality"
+          id="make-high-quality"
+          value="high"
+        />
+        <input
+          type="radio"
+          name="stength"
+          id="make-normal-strength"
+          value="normal"
+        />
+        <input
+          type="radio"
+          name="stength"
+          id="make-strong-strength"
+          value="strong"
+        />
+        <input
+          type="radio"
+          name="stength"
+          id="make-solid-strength"
+          value="solid"
+        />
+      </form>
+      <!--UPLOAD FILE-->
+
+      <div class="make-page upload hide-left">
         <h1 class="rmv-h-css heading">Upload a File</h1>
-        <form id="make-file-upload-field">
-          <input type="file" name="" id="make-file-upload" />
-        </form>
         <div class="make-file-upload-button">
           <label for="make-file-upload">Upload</label>
         </div>
@@ -167,6 +248,100 @@
             </button>
           </div>
         </div>
+      </div>
+
+      <!--BUILD TYPE-->
+      <div class="make-page build-type hide-left">
+        <h1 class="rmv-h-css heading">Choose Build Type</h1>
+        <div class="make-build-type-inputs">
+          <label for="make-quick-build" id="make-quick-build-input"
+            >Quick</label
+          >
+          <label for="make-custom-build" id="make-custom-build-input"
+            >Custom</label
+          >
+        </div>
+        <div class="make-quick-build-options">
+          <label for="make-prototype-build">Prototype</label>
+          <label for="make-mechanical-build">Mechanical</label>
+        </div>
+        <div class="button">
+          <div class="button-5">
+            <button class="rmv-btn-css button-5-back">
+              <div class="button-5-back-icon"></div>
+            </button>
+            <button class="rmv-btn-css button-5-next disable">
+              <div class="button-5-next-message">Continue</div>
+              <div class="button-5-next-icon">
+                <div class="right"></div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!--BUILD OPTIONS-->
+
+      <div class="make-page build-options hide-left">
+        <h1 class="rmv-h-css heading">Set Build Options</h1>
+        <div class="make-build-option">
+          <h2 class="rmv-h-css">Material</h2>
+          <h3 class="rmv-h-css">FDM</h3>
+          <div class="make-build-option-inputs">
+            <label for="make-fdm-pla-material">PLA</label>
+            <label for="make-fdm-abs-material">ABS</label>
+            <label for="make-fdm-petg-material">PETG</label>
+          </div>
+        </div>
+        <div class="make-build-option">
+          <h2 class="rmv-h-css">Quality</h2>
+          <div class="make-build-option-inputs">
+            <label for="make-draft-quality">Draft</label>
+            <label for="make-normal-quality">Normal</label>
+            <label for="make-high-quality">High</label>
+          </div>
+        </div>
+        <div class="make-build-option">
+          <h2 class="rmv-h-css">Strength</h2>
+          <div class="make-build-option-inputs">
+            <label for="make-normal-strength">Normal</label>
+            <label for="make-strong-strength">Strong</label>
+            <label for="make-solid-strength">Solid</label>
+          </div>
+        </div>
+        <div class="button">
+          <div class="button-5">
+            <button class="rmv-btn-css button-5-back">
+              <div class="button-5-back-icon"></div>
+            </button>
+            <button class="rmv-btn-css button-5-next disable">
+              <div class="button-5-next-message">Continue</div>
+              <div class="button-5-next-icon">
+                <div class="right"></div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!--ORDER DETAILS-->
+
+      <div class="make-page order-details">
+        <h1 class="rmv-h-css heading">Set Order Details</h1>
+        <div class="make-order-detail">
+          <h2 class="rmv-h-css">Colour</h2>
+          <div class="make-order-detail-inputs"></div>
+        </div>
+        <div class="make-order-detail">
+          <h2 class="rmv-h-css">Quantity</h2>
+          <div class="make-order-detail-inputs"></div>
+        </div>
+      </div>
+
+      <!--COMPLETE-->
+
+      <div class="make-page complete hide-right">
+        <h1 class="rmv-h-css heading">Complete</h1>
       </div>
     </div>
   </body>
