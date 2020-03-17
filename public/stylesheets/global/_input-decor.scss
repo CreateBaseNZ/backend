@@ -4,13 +4,14 @@ $input-width: 75vmin;
   position: relative;
   display: inline-block;
   border-bottom: 1px solid $light-2;
+  height: 40px;
 
   input {
     border: none;
-    padding: 0.5vw 1vw;
     width: $input-width;
     font-family: $poppins;
-    height: 32px;
+    font-size: 12px;
+    margin-top: 18px;
     background: transparent;
 
     &:focus {
@@ -18,31 +19,32 @@ $input-width: 75vmin;
     }
   }
 
-  label {
+  .input-label {
     position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 1vh;
-    margin-left: 1vw;
+    top: 15px;
+    left: 5px;
     color: $dark-1;
-    letter-spacing: 1.5px;
-    font-size: calc(10px + 0.1vh);
+    letter-spacing: 1px;
+    font-size: 12px;
     font-weight: 100;
-    transition: all 0.2s ease-out;
     pointer-events: none;
     background: transparent;
+    transition: all 0.2s ease-out;
   }
 
-  input:focus ~ label {
-    margin-top: -2vh;
-    font-size: calc(6px + 0.1vh);
+  input:focus ~ .input-label,
+  input:not(:focus):valid ~ .input-label {
+    top: 0px;
+    font-size: 8px;
     color: $highlight;
   }
 
-  input:not(:focus):valid ~ label {
-    margin-top: -2vh;
-    font-size: calc(10px + 0.1vh);
-    color: $light-3;
+  .input-error {
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    font-size: 8px;
+    color: red;
   }
 
   &::after,
@@ -53,7 +55,7 @@ $input-width: 75vmin;
     width: 0%;
     top: 100%;
     left: 0%;
-    transition: 0.5s ease-in-out;
+    transition: all 0.5s ease-out;
   }
 
   &:focus-within::after {
@@ -64,64 +66,5 @@ $input-width: 75vmin;
 @media only screen and (min-width: 850px) {
 
 $input-width: 20vw;
-
-.input-decor {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px solid $light-2;
-
-  input {
-    border: none;
-    padding: 0.5vw 1vw;
-    width: $input-width;
-    font-family: $poppins;
-    height: 32px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 0.6vh;
-    margin-left: 1vw;
-    color: $dark-1;
-    letter-spacing: 1.5px;
-    font-size: 1.8vh;
-    font-weight: 100;
-    transition: all 0.2s ease-out;
-    pointer-events: none;
-  }
-
-  input:focus ~ label {
-    margin-top: -2vh;
-    font-size: 1.2vh;
-    color: $highlight;
-  }
-
-  input:not(:focus):valid ~ label {
-    margin-top: -2vh;
-    font-size: 0.75vw;
-    color: $light-3;
-  }
-
-  &::after,
-  &:focus-within::after {
-    content: "";
-    border-bottom: 1px solid $highlight;
-    position: absolute;
-    width: 0%;
-    top: 100%;
-    left: 0%;
-    transition: 0.5s ease-in-out;
-  }
-
-  &:focus-within::after {
-    width: 100%;
-  }
-}
 
 }

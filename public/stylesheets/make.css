@@ -20,7 +20,7 @@ button {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1px;
-  padding: 10px 40px;
+  padding: 10px 20px;
   -webkit-transition: color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   transition: color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
@@ -360,14 +360,15 @@ button {
   position: relative;
   display: inline-block;
   border-bottom: 1px solid #f8f8f8;
+  height: 40px;
 }
 
 .input-decor input {
   border: none;
-  padding: 0.5vw 1vw;
   width: 75vmin;
   font-family: "Poppins", sans-serif;
-  height: 32px;
+  font-size: 12px;
+  margin-top: 18px;
   background: transparent;
 }
 
@@ -375,32 +376,33 @@ button {
   outline: none;
 }
 
-.input-decor label {
+.input-decor .input-label {
   position: absolute;
-  top: 0;
-  left: 0;
-  margin-top: 1vh;
-  margin-left: 1vw;
+  top: 15px;
+  left: 5px;
   color: #877da9;
-  letter-spacing: 1.5px;
-  font-size: calc(10px + 0.1vh);
+  letter-spacing: 1px;
+  font-size: 12px;
   font-weight: 100;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
   pointer-events: none;
   background: transparent;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
-.input-decor input:focus ~ label {
-  margin-top: -2vh;
-  font-size: calc(6px + 0.1vh);
+.input-decor input:focus ~ .input-label,
+.input-decor input:not(:focus):valid ~ .input-label {
+  top: 0px;
+  font-size: 8px;
   color: #4bf0ea;
 }
 
-.input-decor input:not(:focus):valid ~ label {
-  margin-top: -2vh;
-  font-size: calc(10px + 0.1vh);
-  color: #c7c2d5;
+.input-decor .input-error {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+  font-size: 8px;
+  color: red;
 }
 
 .input-decor::after, .input-decor:focus-within::after {
@@ -410,67 +412,12 @@ button {
   width: 0%;
   top: 100%;
   left: 0%;
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .input-decor:focus-within::after {
   width: 100%;
-}
-
-@media only screen and (min-width: 850px) {
-  .input-decor {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px solid #f8f8f8;
-  }
-  .input-decor input {
-    border: none;
-    padding: 0.5vw 1vw;
-    width: 20vw;
-    font-family: "Poppins", sans-serif;
-    height: 32px;
-  }
-  .input-decor input:focus {
-    outline: none;
-  }
-  .input-decor label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 0.6vh;
-    margin-left: 1vw;
-    color: #877da9;
-    letter-spacing: 1.5px;
-    font-size: 1.8vh;
-    font-weight: 100;
-    -webkit-transition: all 0.2s ease-out;
-    transition: all 0.2s ease-out;
-    pointer-events: none;
-  }
-  .input-decor input:focus ~ label {
-    margin-top: -2vh;
-    font-size: 1.2vh;
-    color: #4bf0ea;
-  }
-  .input-decor input:not(:focus):valid ~ label {
-    margin-top: -2vh;
-    font-size: 0.75vw;
-    color: #c7c2d5;
-  }
-  .input-decor::after, .input-decor:focus-within::after {
-    content: "";
-    border-bottom: 1px solid #4bf0ea;
-    position: absolute;
-    width: 0%;
-    top: 100%;
-    left: 0%;
-    -webkit-transition: 0.5s ease-in-out;
-    transition: 0.5s ease-in-out;
-  }
-  .input-decor:focus-within::after {
-    width: 100%;
-  }
 }
 
 .mini-caps-title {
