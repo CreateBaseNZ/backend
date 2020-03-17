@@ -223,6 +223,42 @@
           id="make-solid-strength"
           value="solid"
         />
+        <input
+          type="radio"
+          name="colour"
+          id="make-pla-white-colour"
+          value="pla-white"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-pla-black-colour"
+          value="pla-black"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-abs-white-colour"
+          value="abs-white"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-abs-black-colour"
+          value="abs-black"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-petg-white-colour"
+          value="petg-white"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-petg-black-colour"
+          value="petg-black"
+        />
       </form>
       <!--UPLOAD FILE-->
 
@@ -330,11 +366,49 @@
         <h1 class="rmv-h-css heading">Set Order Details</h1>
         <div class="make-order-detail">
           <h2 class="rmv-h-css">Colour</h2>
-          <div class="make-order-detail-inputs"></div>
+          <div class="make-order-detail-inputs" id="make-pla-colours">
+            <label for="make-pla-white-colour">Any</label>
+            <label for="make-pla-white-colour">White</label>
+            <label for="make-pla-black-colour">Black</label>
+          </div>
+          <div class="make-order-detail-inputs" id="make-abs-colours">
+            <label for="make-abs-white-colour">Any</label>
+            <label for="make-abs-white-colour">White</label>
+            <label for="make-abs-black-colour">Black</label>
+          </div>
+          <div class="make-order-detail-inputs" id="make-petg-colours">
+            <label for="make-petg-white-colour">Any</label>
+            <label for="make-petg-white-colour">White</label>
+            <label for="make-petg-black-colour">Black</label>
+          </div>
         </div>
         <div class="make-order-detail">
           <h2 class="rmv-h-css">Quantity</h2>
-          <div class="make-order-detail-inputs"></div>
+          <div class="make-order-detail-inputs">
+            <div class="make-quantity-container">
+              <div class="subtract"></div>
+              <input
+                type="number"
+                name="quantity"
+                id="make-quantity"
+                value="1"
+              />
+              <div class="add"></div>
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <div class="button-5">
+            <button class="rmv-btn-css button-5-back">
+              <div class="button-5-back-icon"></div>
+            </button>
+            <button class="rmv-btn-css button-5-next disable">
+              <div class="button-5-next-message">Continue</div>
+              <div class="button-5-next-icon">
+                <div class="right"></div>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 

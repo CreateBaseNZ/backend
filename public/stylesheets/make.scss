@@ -231,6 +231,80 @@ ORDER DETAILS
 }
 
 .make-order-detail-inputs {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  label {
+    height: 9vmax;
+    width: 18vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-radius: 2vmax;
+    border-color: $light-3;
+    border-width: 0.2vmax;
+    margin: 3vmax 0;
+    font-family: $poppins;
+    font-size: 2vmax;
+    letter-spacing: 0.2vmax;
+    color: $light-3;
+    transition: all 0.2s ease;
+    &.select {
+      border-color: $logo-2;
+      font-weight: bold;
+      border-width: 0.4vmax;
+      color: $logo-2;
+    }
+  }
+}
+
+.make-quantity-container {
+  height: 16vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  input {
+    height: 5vmax;
+    width: 5vmax;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-style: none;
+    outline: none;
+    font-family: $poppins;
+    font-size: 2vmax;
+    color: $logo-1;
+    transition: all 0.2s ease;
+  }
+  .subtract,
+  .add {
+    height: 5vmax;
+    width: 5vmax;
+    border-style: solid;
+    border-width: 0.2vmax;
+    border-radius: 2.5vmax;
+    border-color: $logo-1;
+    margin: 0 2vmax;
+    background-color: $light-1;
+  }
+  .subtract {
+    display: inline-block;
+    background: linear-gradient($logo-1, $logo-1);
+    background-position: center;
+    background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
+    background-repeat: no-repeat;
+  }
+  .add {
+    display: inline-block;
+    background: linear-gradient($logo-1, $logo-1),
+      linear-gradient($logo-1, $logo-1);
+    background-position: center;
+    background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
+    background-repeat: no-repeat;
+  }
 }
 
 /*-----------------------------------------------------------------------------------------
