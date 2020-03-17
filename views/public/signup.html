@@ -103,19 +103,23 @@
         <p class="mini-caps-title" id="signup-title">CREATE <span>YOUR</span> BASE</p>
         <div class="sign-up-fld input-decor" id="signup-display">
           <input type="text" name="displayName" id="sign-up-dspl-name" required />
-          <label for="displayName">Display Name</label>
+          <label class="input-label" for="displayName">Display Name</label>
+          <label class="input-error" for="displayName">Name unavailable, please try again.</label>
         </div>
         <div class="sign-up-fld input-decor" id="signup-email">
           <input type="text" name="email" id="sign-up-eml" required />
-          <label for="email">Email</label>
+          <label class="input-label" for="email">Email</label>
+          <label class="input-error" for="displayName">Invalid email, please try again.</label>
         </div>
         <div class="sign-up-fld input-decor" id="enter-pass">
           <input type="password" name="password" id="sign-up-pwd" required />
-          <label for="password">Password</label>
+          <label class="input-label" for="password">Password</label>
+          <label class="input-error" for="displayName">Your password is too short, please try again.</label>
         </div>
         <div class="sign-up-fld input-decor" id="confirm-pass">
           <input type="password" name="confirm" id="sign-up-cfrm-pwd" required />
-          <label for="confirm-password">Confirm Password</label>
+          <label class="input-label" for="confirm-password">Confirm Password</label>
+          <label class="input-error" for="displayName">Passwords do not match, please try again.</label>
         </div>
         <div class="sign-up-fld" id="signup-submit">
           <a href="/" class="reg-btn" id="signup-btn">CREATE ACCOUNT</a>
