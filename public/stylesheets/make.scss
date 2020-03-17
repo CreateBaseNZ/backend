@@ -275,7 +275,7 @@ ORDER DETAILS
     border-style: none;
     outline: none;
     font-family: $poppins;
-    font-size: 2vmax;
+    font-size: 2.5vmax;
     color: $logo-1;
     transition: all 0.2s ease;
   }
@@ -289,6 +289,27 @@ ORDER DETAILS
     border-color: $logo-1;
     margin: 0 2vmax;
     background-color: $light-1;
+    transition: all 0.2s ease;
+    &.disable {
+      border-color: $light-3;
+      &:active {
+        height: 5vmax;
+        width: 5vmax;
+        border-style: solid;
+        border-width: 0.2vmax;
+        border-radius: 2.5vmax;
+        border-color: $light-3;
+        margin: 0 2vmax;
+      }
+    }
+    &:active {
+      height: 5.2vmax;
+      width: 5.2vmax;
+      border-width: 0.3vmax;
+      border-radius: 2.6vmax;
+      border-color: $logo-3;
+      margin: 0 1.9vmax;
+    }
   }
   .subtract {
     display: inline-block;
@@ -296,6 +317,24 @@ ORDER DETAILS
     background-position: center;
     background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
     background-repeat: no-repeat;
+    &.disable {
+      background: linear-gradient($light-3, $light-3);
+      background-position: center;
+      background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
+      background-repeat: no-repeat;
+      &:active {
+        background: linear-gradient($light-3, $light-3);
+        background-position: center;
+        background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
+        background-repeat: no-repeat;
+      }
+    }
+    &:active {
+      background: linear-gradient($logo-3, $logo-3);
+      background-position: center;
+      background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
+      background-repeat: no-repeat;
+    }
   }
   .add {
     display: inline-block;
@@ -304,6 +343,71 @@ ORDER DETAILS
     background-position: center;
     background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
     background-repeat: no-repeat;
+    &.disable {
+      background: linear-gradient($light-3, $light-3),
+        linear-gradient($light-3, $light-3);
+      background-position: center;
+      background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
+      background-repeat: no-repeat;
+      &:active {
+        background: linear-gradient($light-3, $light-3),
+          linear-gradient($light-3, $light-3);
+        background-position: center;
+        background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
+        background-repeat: no-repeat;
+      }
+    }
+    &:active {
+      background: linear-gradient($logo-3, $logo-3),
+        linear-gradient($logo-3, $logo-3);
+      background-position: center;
+      background-size: 60% 0.2vmax, 0.2vmax 60%; /*thickness = 0.2vmax, length = 60%*/
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+/*-----------------------------------------------------------------------------------------
+COMPLETE
+-----------------------------------------------------------------------------------------*/
+
+.make-complete {
+  height: 30vmax;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  label {
+    height: 5vmax;
+    width: 75%;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 1vmax;
+    font-family: $poppins;
+    font-size: 2vmax;
+    letter-spacing: 0.2vmax;
+    color: $logo-3;
+    &.select {
+    }
+  }
+  textarea {
+    height: 16vmax;
+    width: 75%;
+    padding: 1vmax;
+    border-style: solid;
+    border-width: 0.1vmax;
+    border-radius: 1vmax;
+    border-color: $logo-3;
+    outline: none;
+    font-family: $poppins;
+    font-size: 2vmax;
+    letter-spacing: 0.2vmax;
+    color: $logo-3;
+  }
+  &.select {
+    opacity: 1;
   }
 }
 
@@ -456,9 +560,9 @@ DESKTOP CSS
     }
   }
 
-  /*-----------------------------------------------------------------------------------------
-BUILD OPTION
------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------
+  BUILD OPTION
+  ---------------------------------------------------------------------------------------*/
 
   .make-build-option {
     h2 {
@@ -491,6 +595,97 @@ BUILD OPTION
       }
     }
   }
+
+  /*---------------------------------------------------------------------------------------
+  ORDER DETAILS
+  ---------------------------------------------------------------------------------------*/
+
+  .make-order-detail {
+    h2 {
+      height: 7vmax;
+      width: 80%;
+      padding-bottom: 1.5vmax;
+      font-size: 1.2vmax;
+      letter-spacing: 0.1vmax;
+    }
+  }
+
+  .make-order-detail-inputs {
+    width: 70%;
+    label {
+      height: 4.5vmax;
+      width: 9vmax;
+      border-radius: 1vmax;
+      border-width: 0.1vmax;
+      margin: 1.5vmax 0;
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+      &.select {
+        border-width: 0.2vmax;
+      }
+    }
+  }
+
+  .make-quantity-container {
+    height: 8vmax;
+    input {
+      height: 2.5vmax;
+      width: 2.5vmax;
+      font-size: 1.25vmax;
+    }
+    .subtract,
+    .add {
+      height: 2.5vmax;
+      width: 2.5vmax;
+      border-width: 0.1vmax;
+      border-radius: 1.25vmax;
+      margin: 0 1vmax;
+      &.disable {
+        &:active {
+          height: 2.5vmax;
+          width: 2.5vmax;
+          border-width: 0.1vmax;
+          border-radius: 1.25vmax;
+          margin: 0 1vmax;
+        }
+      }
+      &:active {
+        height: 2.6vmax;
+        width: 2.6vmax;
+        border-width: 0.15vmax;
+        border-radius: 1.3vmax;
+        margin: 0 0.95vmax;
+      }
+    }
+    .subtract {
+      background-size: 60% 0.1vmax, 0.1vmax 60%; /*thickness = 0.1vmax, length = 60%*/
+      &.disable {
+        background-size: 60% 0.1vmax, 0.1vmax 60%; /*thickness = 0.1vmax, length = 60%*/
+        &:active {
+          background-size: 60% 0.1vmax, 0.1vmax 60%; /*thickness = 0.1vmax, length = 60%*/
+        }
+      }
+      &:active {
+        background-size: 60% 0.1vmax, 0.1vmax 60%; /*thickness = 0.1vmax, length = 60%*/
+      }
+    }
+    .add {
+      background-size: 60% 0.1vmax, 0.1vmax 60%; /*thickness = 0.1vmax, length = 60%*/
+      &.disable {
+        background-size: 60% 0.1vmax, 0.1vmax 60%; /*thickness = 0.1vmax, length = 60%*/
+        &:active {
+          background-size: 60% 0.1vmax, 0.1vmax 60%; /*thickness = 0.1vmax, length = 60%*/
+        }
+      }
+      &:active {
+        background-size: 60% 0.1vmax, 0.1vmax 60%; /*thickness = 0.1vmax, length = 60%*/
+      }
+    }
+  }
+
+  /*---------------------------------------------------------------------------------------
+  COMPLETE
+  ---------------------------------------------------------------------------------------*/
 
   /*---------------------------------------------------------------------------------------
   UNIVERSAL
@@ -527,6 +722,9 @@ BUILD OPTION
     &.build-options {
       height: 61.5vmax;
     }
+    &.order-details {
+      height: 44.5vmax;
+    }
     &.hide-left {
       height: 5vmax;
       transform: translateX(0);
@@ -549,7 +747,6 @@ BUILD OPTION
     }
   }
 }
-
 /*=========================================================================================
 END
 =========================================================================================*/
