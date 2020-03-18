@@ -379,6 +379,7 @@ COMPLETE
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
+  opacity: 0.4;
   label {
     height: 5vmax;
     width: 75%;
@@ -389,8 +390,6 @@ COMPLETE
     font-size: 2vmax;
     letter-spacing: 0.2vmax;
     color: $logo-3;
-    &.select {
-    }
   }
   textarea {
     height: 16vmax;
@@ -404,7 +403,7 @@ COMPLETE
     font-family: $poppins;
     font-size: 2vmax;
     letter-spacing: 0.2vmax;
-    color: $logo-3;
+    color: $dark-2;
   }
   &.select {
     opacity: 1;
@@ -687,6 +686,26 @@ DESKTOP CSS
   COMPLETE
   ---------------------------------------------------------------------------------------*/
 
+  .make-complete {
+    height: 15vmax;
+    label {
+      height: 2.5vmax;
+      width: 50%;
+      padding-bottom: 0.5vmax;
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+    }
+    textarea {
+      height: 8vmax;
+      width: 50%;
+      padding: 0.5vmax;
+      border-width: 0.05vmax;
+      border-radius: 0.5vmax;
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+    }
+  }
+
   /*---------------------------------------------------------------------------------------
   UNIVERSAL
   ---------------------------------------------------------------------------------------*/
@@ -724,6 +743,9 @@ DESKTOP CSS
     }
     &.order-details {
       height: 44.5vmax;
+    }
+    &.complete {
+      height: 30vmax;
     }
     &.hide-left {
       height: 5vmax;
