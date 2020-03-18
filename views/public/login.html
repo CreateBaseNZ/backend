@@ -97,16 +97,18 @@
           <div class="log-in-fld input-decor" id="login-email">
             <input type="text" name="email" id="log-in-eml" required />
             <label class="input-label" for="email">Email</label>
+            <label class="input-error" for="displayName">Invalid name, please try again.</label>
           </div>
           <div class="log-in-fld input-decor" id="login-password">
             <input type="password" name="password" id="log-in-pwd" required />
             <label class="input-label" for="password">Password</label>
+            <label class="input-error" for="displayName">Incorrect password, please try again.</label>
           </div>
           <div class="log-in-fld" id="login-login">
             <button type="submit" class="reg-btn" id="login-btn">LOG IN</button>
           </div>
         </form>
-        <button id="login-back" class="plain-btn" onclick="toggleContainer();">←</button>
+        <button id="login-back" class="plain-btn" onclick="toggleContainer();">⇠</button>
         <div id="login-signup">
           <p class="rmv-p-css">
             New to CreateBase?
