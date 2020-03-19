@@ -26,6 +26,9 @@ make.changePage = nextPage => {
   };
   // Validation
   // Change Page
+  // Hide Current Page
+
+  // Show Next Page
 
   // Update Current Page
   make.currentPage = nextPage;

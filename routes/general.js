@@ -41,7 +41,7 @@ ROUTES
 // @desc      Homepage
 // @access    Public
 router.get("/", (req, res) => {
-  res.sendFile("homepage.html", customerRouteOptions);
+  res.sendFile("home.html", customerRouteOptions);
 });
 
 // @route     Get /login
@@ -56,6 +56,41 @@ router.get("/login", (req, res) => {
 // @access    Public
 router.get("/signup", (req, res) => {
   res.sendFile("signup.html", customerRouteOptions);
+});
+
+// @route     Get /story
+// @desc      Our story Page
+// @access    Public
+router.get("/story", (req, res) => {
+  res.sendFile("story.html", customerRouteOptions);
+});
+
+// @route     Get /team
+// @desc      Our team Page
+// @access    Public
+router.get("/team", (req, res) => {
+  res.sendFile("team.html", customerRouteOptions);
+});
+
+// @route     Get /products/engkits
+// @desc      Engineering Kits Info Page
+// @access    Public
+router.get("/products/engkits", (req, res) => {
+  res.sendFile("engkits.html", customerRouteOptions);
+});
+
+// @route     Get /services/3d-printing
+// @desc      3D Printing Info Page
+// @access    Public
+router.get("/services/3d-printing", (req, res) => {
+  res.sendFile("printing.html", customerRouteOptions);
+});
+
+// @route     Get /services/marketplace
+// @desc      Marketplace Info Page
+// @access    Public
+router.get("/services/marketplace", (req, res) => {
+  res.sendFile("market.html", customerRouteOptions);
 });
 
 // @route     Get /signup/customer
