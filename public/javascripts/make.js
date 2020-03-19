@@ -2,9 +2,34 @@
 VARIABLES
 =========================================================================================*/
 
+let make = {
+  // VARIABLES
+  currentPage: 0,
+  pages: ["upload", "build-type", "build-options", "order-details", "complete"],
+  // FUNCTIONS
+  changePage: undefined
+};
+
 /*=========================================================================================
 FUNCTIONS
 =========================================================================================*/
+
+/*-----------------------------------------------------------------------------------------
+NAVIGATION
+-----------------------------------------------------------------------------------------*/
+
+make.changePage = nextPage => {
+  // Set Page Names
+  const pageName = {
+    current: make.pages[make.currentPage],
+    next: make.pages[nextPage]
+  };
+  // Validation
+  // Change Page
+
+  // Update Current Page
+  make.currentPage = nextPage;
+};
 
 /*=========================================================================================
 END
