@@ -1907,6 +1907,7 @@ COMPLETE
           justify-content: center;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  opacity: 0.4;
 }
 
 .make-complete label {
@@ -1937,7 +1938,7 @@ COMPLETE
   font-family: "Poppins", sans-serif;
   font-size: 2vmax;
   letter-spacing: 0.2vmax;
-  color: #4e4ed6;
+  color: #322d41;
 }
 
 .make-complete.select {
@@ -2232,6 +2233,25 @@ DESKTOP CSS
   /*---------------------------------------------------------------------------------------
   COMPLETE
   ---------------------------------------------------------------------------------------*/
+  .make-complete {
+    height: 15vmax;
+  }
+  .make-complete label {
+    height: 2.5vmax;
+    width: 50%;
+    padding-bottom: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .make-complete textarea {
+    height: 8vmax;
+    width: 50%;
+    padding: 0.5vmax;
+    border-width: 0.05vmax;
+    border-radius: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
   /*---------------------------------------------------------------------------------------
   UNIVERSAL
   ---------------------------------------------------------------------------------------*/
@@ -2272,6 +2292,9 @@ DESKTOP CSS
   }
   .make-page.order-details {
     height: 44.5vmax;
+  }
+  .make-page.complete {
+    height: 30vmax;
   }
   .make-page.hide-left {
     height: 5vmax;
