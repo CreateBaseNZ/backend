@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon" href="./../../public/images/logo-icon.png" />
-  <title>Signup | CreateBase</title>
+  <title>Marketplace | CreateBase</title>
   <!------------------ FONTS ------------------>
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet" />
   <!------------------ ICONS ------------------>
@@ -16,12 +16,11 @@
   <script src="./../../public/javascripts/moment.js"></script>
   <!------------ CUSTOM JAVASCRIPTS ----------->
   <script src="./../../public/javascripts/nav.js"></script>
-  <script src="./../../public/javascripts/signup.js"></script>
   <!---------------- STYLESHEET --------------->
-  <link rel="stylesheet" href="./../../public/stylesheets/signup.css" />
+  <link rel="stylesheet" href="./../../public/stylesheets/market.css" />
 </head>
 
-<body onload="navInit(); signupInit();">
+<body onload="navInit();">
   <nav class="nav-container">
     <div class="nav-darken-overlay"></div>
     <div class="nav-top-bar">
@@ -90,48 +89,7 @@
   </nav>
 
   <div class="main-page">
-    <img src="./../../public/images/signup-desktop.png" class="signup-mobile-bg" alt="Theme">
     
-    <div class="logo-anim-container">
-      <div class="layer layer-1"></div>
-      <div class="layer layer-2"></div>
-      <div class="layer layer-3"></div>
-    </div>
-  
-    <div class="signup-form-container">
-      <form class="sign-up-form" action="/signup/customer" method="post" novalidate="novalidate">
-        <p class="mini-caps-title" id="signup-title">CREATE <span>YOUR</span> BASE</p>
-        <div class="sign-up-fld input-decor" id="signup-display">
-          <input type="text" name="displayName" id="sign-up-dspl-name" required />
-          <label class="input-label" for="displayName">Display Name</label>
-          <label class="input-error" for="displayName">Name unavailable, please try again.</label>
-        </div>
-        <div class="sign-up-fld input-decor" id="signup-email">
-          <input type="text" name="email" id="sign-up-eml" required />
-          <label class="input-label" for="email">Email</label>
-          <label class="input-error" for="displayName">Invalid email, please try again.</label>
-        </div>
-        <div class="sign-up-fld input-decor" id="enter-pass">
-          <input type="password" name="password" id="sign-up-pwd" required />
-          <label class="input-label" for="password">Password</label>
-          <label class="input-error" for="displayName">Your password is too short, please try again.</label>
-        </div>
-        <div class="sign-up-fld input-decor" id="confirm-pass">
-          <input type="password" name="confirm" id="sign-up-cfrm-pwd" required />
-          <label class="input-label" for="confirm-password">Confirm Password</label>
-          <label class="input-error" for="displayName">Passwords do not match, please try again.</label>
-        </div>
-        <div class="sign-up-fld" id="signup-submit">
-          <a href="/" class="reg-btn" id="signup-btn">CREATE ACCOUNT</a>
-        </div>
-        <div class="message" id="signup-message">
-          <p class="rmv-p-css">
-            Already a member?
-            <a class="rmv-link-css" href="/login">Log in</a>
-          </p>
-        </div>
-      </form>
-    </div>
   </div>
 </body>
 

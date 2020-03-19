@@ -378,13 +378,13 @@ button {
 
 .input-decor .input-label {
   position: absolute;
+  pointer-events: none;
   top: 15px;
   left: 5px;
   color: #877da9;
   letter-spacing: 1px;
   font-size: 12px;
   font-weight: 100;
-  pointer-events: none;
   background: transparent;
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
@@ -399,6 +399,10 @@ button {
 
 .input-decor input:not(:focus):valid ~ .input-label {
   color: #877da9;
+}
+
+.input-decor input:hover ~ .input-label {
+  color: #4bf0ea;
 }
 
 .input-decor .input-error {
@@ -422,6 +426,10 @@ button {
 
 .input-decor:focus-within::after {
   width: 100%;
+}
+
+.input-decor input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
 }
 
 @media only screen and (min-width: 850px) {
