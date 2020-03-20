@@ -41,7 +41,7 @@
     <script src="./../../public/javascripts/make.js"></script>
   </head>
 
-  <body onload="navInit();">
+  <body onload="navInit(); make.initialise();">
     <nav class="nav-container">
       <div class="nav-darken-overlay"></div>
       <div class="nav-top-bar">
@@ -51,12 +51,28 @@
           </span>
         </button>
         <a href="/" class="nav-home-btn">
-          <img src="./../../public/images/logo-icon.png" class="nav-logo" alt="CreateBase" />
+          <img
+            src="./../../public/images/logo-icon.png"
+            class="nav-logo"
+            alt="CreateBase"
+          />
         </a>
         <div class="nav-user-icon">
-          <img src="./../../public/images/user-out-highlight.png" class="nav-user-hlt" alt="User" />
-          <img src="./../../public/images/user-out.png" class="nav-user-reg" alt="User" />
-          <img src="./../../public/images/user-x.png" class="nav-user-x" alt="User" />
+          <img
+            src="./../../public/images/user-out-highlight.png"
+            class="nav-user-hlt"
+            alt="User"
+          />
+          <img
+            src="./../../public/images/user-out.png"
+            class="nav-user-reg"
+            alt="User"
+          />
+          <img
+            src="./../../public/images/user-x.png"
+            class="nav-user-x"
+            alt="User"
+          />
         </div>
         <div class="nav-user-button">
           <a href="/login" class="nav-user-login">LOG IN</a>
@@ -79,10 +95,26 @@
               <a href="/team" class="nav-side-item">OUR TEAM</a>
             </div>
             <div class="nav-side-socials">
-              <a href="https://www.facebook.com/" class="fab fa-facebook-square" target="_blank"></a>
-              <a href="https://www.instagram.com/" class="fab fa-instagram" target="_blank"></a>
-              <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
-              <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
+              <a
+                href="https://www.facebook.com/"
+                class="fab fa-facebook-square"
+                target="_blank"
+              ></a>
+              <a
+                href="https://www.instagram.com/"
+                class="fab fa-instagram"
+                target="_blank"
+              ></a>
+              <a
+                href="https://twitter.com/"
+                class="fab fa-twitter"
+                target="_blank"
+              ></a>
+              <a
+                href="https://www.youtube.com/user/LouiiL"
+                class="fab fa-youtube"
+                target="_blank"
+              ></a>
             </div>
           </div>
         </div>
@@ -112,30 +144,35 @@
     <div id="make">
       <!--INPUTS-->
       <form id="make-inputs" class="hide-element">
-        <input type="file" name="file" id="make-file" />
+        <input
+          type="file"
+          name="file"
+          id="make-file"
+          onchange="make.upload.change(this.files[0]);"
+        />
         <input
           type="radio"
           name="buildType"
           id="make-quick-build"
-          value="quick"
+          onchange="make.buildType.change('quick', this.checked); make.buildType.validation.validate();"
         />
         <input
           type="radio"
           name="buildType"
           id="make-custom-build"
-          value="custom"
+          onchange="make.buildType.change('custom', this.checked); make.buildType.validation.validate();"
         />
         <input
           type="radio"
           name="quickBuild"
           id="make-prototype-build"
-          value="prototype"
+          onchange="make.buildType.validation.validate();"
         />
         <input
           type="radio"
           name="quickBuild"
           id="make-mechanical-build"
-          value="mechanical"
+          onchange="make.buildType.validation.validate();"
         />
         <input
           type="radio"
@@ -230,21 +267,24 @@
       </form>
       <!--UPLOAD FILE-->
 
-      <div class="make-page upload hide-left" id="make-upload">
+      <div class="make-page upload" id="make-upload">
         <h1 class="rmv-h-css heading">Upload a File</h1>
         <div class="make-file-upload-button">
-          <label for="make-file-upload">Upload</label>
+          <label for="make-file">Upload</label>
         </div>
         <div class="make-file-input">
           <h3 class="rmv-h-css" id="make-file-name">No File Uploaded</h3>
-          <p class="rmv-p-css" id="make-file-error">please upload a file</p>
+          <p class="rmv-p-css" id="make-file-error"></p>
         </div>
         <div class="button">
           <div class="button-5">
-            <button class="rmv-btn-css button-5-back">
+            <button class="rmv-btn-css button-5-back hide">
               <div class="button-5-back-icon"></div>
             </button>
-            <button class="rmv-btn-css button-5-next disable">
+            <button
+              id="make-upload-next"
+              class="rmv-btn-css button-5-next disable"
+            >
               <div class="button-5-next-message">Continue</div>
               <div class="button-5-next-icon">
                 <div class="right"></div>
@@ -255,7 +295,7 @@
       </div>
 
       <!--BUILD TYPE-->
-      <div class="make-page build-type hide-left" id="make-build-type">
+      <div class="make-page build-type hide-right" id="make-build-type">
         <h1 class="rmv-h-css heading">Choose Build Type</h1>
         <div class="make-build-type-inputs">
           <label for="make-quick-build" id="make-quick-build-input"
@@ -265,17 +305,29 @@
             >Custom</label
           >
         </div>
-        <div class="make-quick-build-options">
-          <label for="make-prototype-build">Prototype</label>
-          <label for="make-mechanical-build">Mechanical</label>
+        <div class="make-quick-build-options" id="make-quick-build-options">
+          <label for="make-prototype-build" id="make-prototype-build-input"
+            >Prototype</label
+          >
+          <label for="make-mechanical-build" id="make-mechanical-build-input"
+            >Mechanical</label
+          >
         </div>
         <div class="button">
           <div class="button-5">
-            <button class="rmv-btn-css button-5-back">
+            <button
+              class="rmv-btn-css button-5-back"
+              onclick="make.upload.show();"
+            >
               <div class="button-5-back-icon"></div>
             </button>
-            <button class="rmv-btn-css button-5-next disable">
-              <div class="button-5-next-message">Continue</div>
+            <button
+              id="make-build-type-next"
+              class="rmv-btn-css button-5-next disable"
+            >
+              <div class="button-5-next-message">
+                Continue
+              </div>
               <div class="button-5-next-icon">
                 <div class="right"></div>
               </div>
@@ -286,7 +338,7 @@
 
       <!--BUILD OPTIONS-->
 
-      <div class="make-page build-options hide-left" id="make-build-options">
+      <div class="make-page build-options hide-right" id="make-build-options">
         <h1 class="rmv-h-css heading">Set Build Options</h1>
         <div class="make-build-option">
           <h2 class="rmv-h-css">Material</h2>
@@ -315,10 +367,16 @@
         </div>
         <div class="button">
           <div class="button-5">
-            <button class="rmv-btn-css button-5-back">
+            <button
+              class="rmv-btn-css button-5-back"
+              onclick="make.buildType.show();"
+            >
               <div class="button-5-back-icon"></div>
             </button>
-            <button class="rmv-btn-css button-5-next disable">
+            <button
+              id="make-build-options-next"
+              class="rmv-btn-css button-5-next disable"
+            >
               <div class="button-5-next-message">Continue</div>
               <div class="button-5-next-icon">
                 <div class="right"></div>
@@ -330,7 +388,7 @@
 
       <!--ORDER DETAILS-->
 
-      <div class="make-page order-details hide-left" id="make-order-details">
+      <div class="make-page order-details hide-right" id="make-order-details">
         <h1 class="rmv-h-css heading">Set Order Details</h1>
         <div class="make-order-detail">
           <h2 class="rmv-h-css">Colour</h2>
@@ -388,7 +446,7 @@
 
       <!--COMPLETE-->
 
-      <div class="make-page complete" id="make-complete">
+      <div class="make-page complete hide-right" id="make-complete">
         <h1 class="rmv-h-css heading">Complete</h1>
         <div class="make-complete">
           <label for="make-note">Note</label>

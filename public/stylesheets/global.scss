@@ -334,6 +334,14 @@ BUTTONS
   border-width: 0.2vmax;
   border-radius: 1vmax;
   margin-right: calc(#{$height-mobile} * 0.3);
+  &.hide {
+    height: 0;
+    width: 0;
+    margin: 0;
+    border-width: 0;
+    padding: 0;
+    overflow: hidden;
+  }
 }
 
 .button-5-back-icon {

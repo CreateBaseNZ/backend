@@ -1715,6 +1715,15 @@ BUTTONS
   margin-right: calc(7vmax * 0.3);
 }
 
+.button-5-back.hide {
+  height: 0;
+  width: 0;
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 .button-5-back-icon {
   border-style: solid;
   border-color: #4e4ed6;
