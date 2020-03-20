@@ -1387,7 +1387,7 @@ body {
 }
 
 .team-bg-text p {
-  padding-top: 60vh;
+  padding-top: 65vh;
   font-family: "Montserrat", sans-serif;
   color: #f8f8f8;
   font-size: 5vmax;
@@ -1404,11 +1404,26 @@ body {
   position: absolute;
 }
 
-.main-page .team-scroll .indiv-photo {
+.main-page .team-scroll .team-profile .indiv-photo {
   height: 50vh;
   width: 26vw;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.main-page .team-scroll .team-profile .indiv-name {
+  font-family: "Montserrat", sans-serif;
+  font-size: calc(25px + 0.2vw);
+  font-weight: 100;
+  color: #877da9;
+}
+
+.main-page .team-scroll .team-profile .indiv-role {
+  font-family: "Poppins", sans-serif;
+  font-size: calc(8px + 0.1vw);
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #322d41;
 }
 
 .main-page .team-scroll #memb-1 {

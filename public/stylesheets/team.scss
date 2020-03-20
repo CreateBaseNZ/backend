@@ -1,4 +1,4 @@
-@import "global/all";
+@import "global/all";  
 
 $fade-height: 100px;
 
@@ -21,7 +21,7 @@ body {
   top: -20vh;
   
   p {
-    padding-top: 60vh;
+    padding-top: 65vh;
     font-family: $montserrat;
     color: $light-2;
     font-size: 5vmax;
@@ -48,13 +48,29 @@ body {
 
     .team-profile {
       position: absolute;
+
+      .indiv-photo {
+        height: $photo-height;
+        width: $photo-width;
+        object-fit: cover;
+      }
+
+      .indiv-name {
+        font-family: $montserrat;
+        font-size: calc(25px + 0.2vw);
+        font-weight: 100;
+        color: $dark-1;
+      }
+
+      .indiv-role {
+        font-family: $poppins;
+        font-size: calc(8px + 0.1vw);
+        font-weight: 800;
+        letter-spacing: 1px;
+        color: $dark-2;
+      }
     }
 
-    .indiv-photo {
-      height: $photo-height;
-      width: $photo-width;
-      object-fit: cover;
-    }
 
     #memb-1 {
       top: $top-margin;
