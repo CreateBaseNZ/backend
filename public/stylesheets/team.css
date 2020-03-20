@@ -1397,7 +1397,7 @@ body {
 .main-page {
   margin-top: 60px;
   width: 100vw;
-  height: 330vh;
+  height: 300vh;
 }
 
 .main-page .team-scroll .team-profile {
@@ -1413,7 +1413,7 @@ body {
 
 .main-page .team-scroll .team-profile .indiv-name {
   font-family: "Montserrat", sans-serif;
-  font-size: calc(25px + 0.2vw);
+  font-size: calc(30px + 0.2vw);
   font-weight: 100;
   color: #877da9;
 }
@@ -1422,8 +1422,34 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: calc(8px + 0.1vw);
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 4px;
   color: #322d41;
+}
+
+.main-page .team-scroll .profile-left .indiv-name,
+.main-page .team-scroll .profile-left .indiv-role {
+  position: absolute;
+  top: 15%;
+  left: 95%;
+  white-space: nowrap;
+}
+
+.main-page .team-scroll .profile-left .indiv-role {
+  top: calc(15% + 0.5vh + 35px);
+}
+
+.main-page .team-scroll .profile-right .indiv-name,
+.main-page .team-scroll .profile-right .indiv-role {
+  position: absolute;
+  top: 80%;
+  right: 95%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  white-space: nowrap;
+}
+
+.main-page .team-scroll .profile-right .indiv-role {
+  top: calc(80% + 0.5vh + 35px);
 }
 
 .main-page .team-scroll #memb-1 {
@@ -1469,4 +1495,8 @@ body {
 .main-page .team-scroll #memb-9 {
   top: calc(110vh + 2*25vh + 2*50vh + 2*40vh);
   left: calc(8vw + 2*26vw + 2*3vw);
+}
+
+.end-section {
+  height: 40vh;
 }

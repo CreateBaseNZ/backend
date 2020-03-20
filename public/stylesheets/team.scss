@@ -42,7 +42,7 @@ body {
 
   margin-top: $top-bar-height;
   width: 100vw;
-  height: 330vh;
+  height: 300vh;
   
   .team-scroll {
 
@@ -57,7 +57,7 @@ body {
 
       .indiv-name {
         font-family: $montserrat;
-        font-size: calc(25px + 0.2vw);
+        font-size: calc(30px + 0.2vw);
         font-weight: 100;
         color: $dark-1;
       }
@@ -66,11 +66,37 @@ body {
         font-family: $poppins;
         font-size: calc(8px + 0.1vw);
         font-weight: 800;
-        letter-spacing: 1px;
+        letter-spacing: 4px;
         color: $dark-2;
       }
     }
 
+    .profile-left {
+      .indiv-name,
+      .indiv-role {
+        position: absolute;
+        top: 15%;
+        left: 95%;
+        white-space: nowrap;
+      }
+      .indiv-role {
+        top: calc(15% + 0.5vh + 35px);
+      }
+    }
+
+    .profile-right {
+      .indiv-name,
+      .indiv-role {
+        position: absolute;
+        top: 80%;
+        right: 95%;
+        align-self: flex-end;
+        white-space: nowrap;
+      }
+      .indiv-role {
+        top: calc(80% + 0.5vh + 35px);
+      }
+    }
 
     #memb-1 {
       top: $top-margin;
@@ -109,4 +135,8 @@ body {
       left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
     }
   }
+}
+
+.end-section {
+  height: 40vh;
 }
