@@ -1425,7 +1425,7 @@ MOBILE CSS
 
 .make-file-input h3,
 .make-file-input p {
-  width: 30vmax;
+  width: 60%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1490,8 +1490,8 @@ BUILD TYPE
   letter-spacing: 0.4vmax;
   color: white;
   opacity: 0.4;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .make-build-type-inputs label.select {
@@ -2061,7 +2061,7 @@ DESKTOP CSS
   }
   .make-file-input h3,
   .make-file-input p {
-    width: 15vmax;
+    width: 30%;
   }
   .make-file-input h3 {
     height: 2.5vmax;

@@ -42,7 +42,7 @@ MOBILE CSS
   align-items: center;
   h3,
   p {
-    width: 30vmax;
+    width: 60%;
     display: flex;
     align-items: center;
     // Text
@@ -86,7 +86,7 @@ BUILD TYPE
     letter-spacing: 0.4vmax;
     color: $light-1;
     opacity: 0.4;
-    transition: all 0.5s ease;
+    transition: all 0.2s ease;
     &.select {
       height: 7.2vmax;
       font-weight: bold;
@@ -503,7 +503,7 @@ DESKTOP CSS
     height: 10vmax;
     h3,
     p {
-      width: 15vmax;
+      width: 30%;
     }
     h3 {
       height: 2.5vmax;
