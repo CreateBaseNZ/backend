@@ -1,1 +1,96 @@
 @import "global/all";
+
+$fade-height: 100px;
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.team-bg {
+  position: absolute;
+  top: 15vh;
+  left: 5vw;
+  height: 70vh;
+  width: 90vw;
+  object-fit: cover;
+}
+
+.team-bg-text {
+  position: sticky;
+  top: -20vh;
+  
+  p {
+    padding-top: 60vh;
+    font-family: $montserrat;
+    color: $light-2;
+    font-size: 5vmax;
+    text-align: center;
+  }
+}
+
+
+
+.main-page {
+  $top-margin: 110vh;
+  $left-margin: 8vw;
+  $height-margin: 25vh;
+  $width-margin: 3vw;
+  $photo-height: 50vh;
+  $photo-width: 26vw;
+  $offset: 40vh;
+
+  margin-top: $top-bar-height;
+  width: 100vw;
+  height: 330vh;
+  
+  .team-scroll {
+
+    .team-profile {
+      position: absolute;
+    }
+
+    .indiv-photo {
+      height: $photo-height;
+      width: $photo-width;
+      object-fit: cover;
+    }
+
+    #memb-1 {
+      top: $top-margin;
+      left: $left-margin;
+    }
+    #memb-2 {
+      top: calc(#{$top-margin} + #{$height-margin});
+      left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+    }
+    #memb-3 {
+      top: calc(#{$top-margin} + 2*#{$height-margin});
+      left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+    }
+    #memb-4 {
+      top: calc(#{$top-margin} + #{$photo-height} + #{$offset});
+      left: $left-margin;
+    }
+    #memb-5 {
+      top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height} + #{$offset});
+      left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+    }
+    #memb-6 {
+      top: calc(#{$top-margin} + 2*#{$height-margin} + #{$photo-height} + #{$offset});
+      left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+    }
+    #memb-7 {
+      top: calc(#{$top-margin} + 2*#{$photo-height} + 2*#{$offset});
+      left: $left-margin;
+    }
+    #memb-8 {
+      top: calc(#{$top-margin} + #{$height-margin} + 2*#{$photo-height} + 2*#{$offset});
+      left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+    }
+    #memb-9 {
+      top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height} + 2*#{$offset});
+      left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+    }
+  }
+}

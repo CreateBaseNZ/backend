@@ -1365,3 +1365,93 @@ TEMPORARY
 /*=========================================================================================
 END
 =========================================================================================*/
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.team-bg {
+  position: absolute;
+  top: 15vh;
+  left: 5vw;
+  height: 70vh;
+  width: 90vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.team-bg-text {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -20vh;
+}
+
+.team-bg-text p {
+  padding-top: 60vh;
+  font-family: "Montserrat", sans-serif;
+  color: #f8f8f8;
+  font-size: 5vmax;
+  text-align: center;
+}
+
+.main-page {
+  margin-top: 60px;
+  width: 100vw;
+  height: 330vh;
+}
+
+.main-page .team-scroll .team-profile {
+  position: absolute;
+}
+
+.main-page .team-scroll .indiv-photo {
+  height: 50vh;
+  width: 26vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.main-page .team-scroll #memb-1 {
+  top: 110vh;
+  left: 8vw;
+}
+
+.main-page .team-scroll #memb-2 {
+  top: calc(110vh + 25vh);
+  left: calc(8vw + 26vw + 3vw);
+}
+
+.main-page .team-scroll #memb-3 {
+  top: calc(110vh + 2*25vh);
+  left: calc(8vw + 2*26vw + 2*3vw);
+}
+
+.main-page .team-scroll #memb-4 {
+  top: calc(110vh + 50vh + 40vh);
+  left: 8vw;
+}
+
+.main-page .team-scroll #memb-5 {
+  top: calc(110vh + 25vh + 50vh + 40vh);
+  left: calc(8vw + 26vw + 3vw);
+}
+
+.main-page .team-scroll #memb-6 {
+  top: calc(110vh + 2*25vh + 50vh + 40vh);
+  left: calc(8vw + 2*26vw + 2*3vw);
+}
+
+.main-page .team-scroll #memb-7 {
+  top: calc(110vh + 2*50vh + 2*40vh);
+  left: 8vw;
+}
+
+.main-page .team-scroll #memb-8 {
+  top: calc(110vh + 25vh + 2*50vh + 2*40vh);
+  left: calc(8vw + 26vw + 3vw);
+}
+
+.main-page .team-scroll #memb-9 {
+  top: calc(110vh + 2*25vh + 2*50vh + 2*40vh);
+  left: calc(8vw + 2*26vw + 2*3vw);
+}
