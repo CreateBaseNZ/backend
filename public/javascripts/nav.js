@@ -3,7 +3,7 @@ const navInit = async() => {
   let status;
   try {
     status = (await axios.get("/login-status"))["data"]["status"]
-    console.log(status)
+    // console.log(status)
   } catch (error) {
     console.log(error)
     return
