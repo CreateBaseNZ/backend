@@ -84,11 +84,17 @@
           <div class="nav-left-menu">
             <div class="nav-side-menu-links">
               <p class="nav-side-header">SERVICES</p>
-              <a href="/services/3d-printing" class="nav-side-item">3D PRINTING</a>
-              <a href="/services/marketplace" class="nav-side-item">MARKETPLACE</a>
+              <a href="/services/3d-printing" class="nav-side-item"
+                >3D PRINTING</a
+              >
+              <a href="/services/marketplace" class="nav-side-item"
+                >MARKETPLACE</a
+              >
               <div class="nav-sep"></div>
               <p class="nav-side-header">PRODUCTS</p>
-              <a href="/products/engkits" class="nav-side-item">ENGINEERING KITS</a>
+              <a href="/products/engkits" class="nav-side-item"
+                >ENGINEERING KITS</a
+              >
               <div class="nav-sep"></div>
               <p class="nav-side-header">CREATEBASE</p>
               <a href="/story" class="nav-side-item">OUR STORY</a>
@@ -344,25 +350,45 @@
           <h2 class="rmv-h-css">Material</h2>
           <h3 class="rmv-h-css">FDM</h3>
           <div class="make-build-option-inputs">
-            <label for="make-fdm-pla-material">PLA</label>
-            <label for="make-fdm-abs-material">ABS</label>
-            <label for="make-fdm-petg-material">PETG</label>
+            <label for="make-fdm-pla-material" id="make-fdm-pla-material-input"
+              >PLA</label
+            >
+            <label for="make-fdm-abs-material" id="make-fdm-abs-material-input"
+              >ABS</label
+            >
+            <label
+              for="make-fdm-petg-material"
+              id="make-fdm-petg-material-input"
+              >PETG</label
+            >
           </div>
         </div>
         <div class="make-build-option">
           <h2 class="rmv-h-css">Quality</h2>
           <div class="make-build-option-inputs">
-            <label for="make-draft-quality">Draft</label>
-            <label for="make-normal-quality">Normal</label>
-            <label for="make-high-quality">High</label>
+            <label for="make-draft-quality" id="make-draft-quality-input"
+              >Draft</label
+            >
+            <label for="make-normal-quality" id="make-normal-quality-input"
+              >Normal</label
+            >
+            <label for="make-high-quality" id="make-high-quality-input"
+              >High</label
+            >
           </div>
         </div>
         <div class="make-build-option">
           <h2 class="rmv-h-css">Strength</h2>
           <div class="make-build-option-inputs">
-            <label for="make-normal-strength">Normal</label>
-            <label for="make-strong-strength">Strong</label>
-            <label for="make-solid-strength">Solid</label>
+            <label for="make-normal-strength" id="make-normal-strength-input"
+              >Normal</label
+            >
+            <label for="make-strong-strength" id="make-strong-strength-input"
+              >Strong</label
+            >
+            <label for="make-solid-strength" id="make-solid-strength-input"
+              >Solid</label
+            >
           </div>
         </div>
         <div class="button">
@@ -431,7 +457,10 @@
         </div>
         <div class="button">
           <div class="button-5">
-            <button class="rmv-btn-css button-5-back">
+            <button
+              class="rmv-btn-css button-5-back"
+              onclick="make.buildOptions.show();"
+            >
               <div class="button-5-back-icon"></div>
             </button>
             <button class="rmv-btn-css button-5-next disable">
@@ -454,7 +483,10 @@
         </div>
         <div class="button">
           <div class="button-5">
-            <button class="rmv-btn-css button-5-back">
+            <button
+              class="rmv-btn-css button-5-back"
+              onclick="make.orderDetails.show();"
+            >
               <div class="button-5-back-icon"></div>
             </button>
             <button class="rmv-btn-css button-5-next disable">

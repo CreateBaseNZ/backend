@@ -278,6 +278,10 @@ ORDER DETAILS
     font-size: 2.5vmax;
     color: $logo-1;
     transition: all 0.2s ease;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
   }
   .subtract,
   .add {

@@ -1772,6 +1772,10 @@ ORDER DETAILS
   transition: all 0.2s ease;
 }
 
+.make-quantity-container input::-webkit-outer-spin-button, .make-quantity-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .make-quantity-container .subtract,
 .make-quantity-container .add {
   height: 5vmax;

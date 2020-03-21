@@ -46,11 +46,13 @@ let make = {
       deselect: undefined,
       prototype: {
         select: undefined,
-        deselect: undefined
+        deselect: undefined,
+        set: undefined
       },
       mechanical: {
         select: undefined,
-        deselect: undefined
+        deselect: undefined,
+        set: undefined
       }
     },
     custom: {
@@ -62,9 +64,26 @@ let make = {
       valid: undefined,
       invalid: undefined
     },
+    next: undefined,
     show: undefined
   },
   buildOptions: {
+    material: {
+      fdm: ["pla", "abs", "petg"],
+      select: undefined,
+      deselect: undefined
+    },
+    quality: {
+      selection: ["draft", "normal", "high"],
+      select: undefined,
+      deselect: undefined
+    },
+    strength: {
+      selection: ["normal", "strong", "solid"],
+      select: undefined,
+      deselect: undefined
+    },
+    reset: undefined,
     show: undefined
   },
   orderDetails: {
@@ -234,10 +253,18 @@ make.buildType.quick.prototype.select = () => {
   make.button.buildType.quick.prototype.classList.add("select");
   // Deselect other selection
   make.buildType.quick.mechanical.deselect();
+
+  make.buildOptions.reset();
 };
 
 make.buildType.quick.prototype.deselect = () => {
   make.button.buildType.quick.prototype.classList.remove("select");
+};
+
+make.buildType.quick.prototype.set = () => {
+  // Pre-Set Inputs
+  document.querySelector("#make-fdm-pla-material").checked = true;
+  document.querySelector("#make-draft-quality").checked = true;
 };
 
 make.buildType.quick.mechanical.select = () => {
@@ -245,11 +272,15 @@ make.buildType.quick.mechanical.select = () => {
   make.button.buildType.quick.mechanical.classList.add("select");
   // Deselect other selection
   make.buildType.quick.prototype.deselect();
+
+  make.buildOptions.reset();
 };
 
 make.buildType.quick.mechanical.deselect = () => {
   make.button.buildType.quick.mechanical.classList.remove("select");
 };
+
+make.buildType.quick.mechanical.set = () => {};
 
 make.buildType.custom.select = () => {
   document.querySelector("#make-custom-build-input").classList.add("select");
@@ -293,17 +324,34 @@ make.buildType.validation.valid = () => {
   // Update next button css
   make.button.buildType.next.classList.remove("disable");
   // Add event listener
-  make.button.buildType.next.addEventListener("click", make.buildOptions.show);
+  make.button.buildType.next.addEventListener("click", make.buildType.next);
 };
 
 make.buildType.validation.invalid = () => {
   // Update next button css
   make.button.buildType.next.classList.add("disable");
   // Remove event listener
-  make.button.buildType.next.removeEventListener(
-    "click",
-    make.buildOptions.show
-  );
+  make.button.buildType.next.removeEventListener("click", make.buildType.next);
+};
+
+make.buildType.next = () => {
+  // Collect Input
+  const build = {
+    quick: document.querySelector("#make-quick-build").checked,
+    custom: document.querySelector("#make-custom-build").checked,
+    prototype: document.querySelector("#make-prototype-build").checked,
+    mechanical: document.querySelector("#make-mechanical-build").checked
+  };
+
+  if (build.quick) {
+    if (build.prototype) {
+    } else if (build.mechanical) {
+    }
+    make.buildOptions.show();
+    make.orderDetails.show();
+  } else if (build.custom) {
+    make.buildOptions.show();
+  }
 };
 
 make.buildType.show = () => make.changePage(1);
@@ -311,6 +359,40 @@ make.buildType.show = () => make.changePage(1);
 /*-----------------------------------------------------------------------------------------
 BUILD OPTIONS
 -----------------------------------------------------------------------------------------*/
+
+make.buildOptions.reset = () => {
+  // RESET INPUTS AND CSS
+  // Material - FDM
+  for (let i = 0; i < make.buildOptions.material.fdm.length; i++) {
+    const material = make.buildOptions.material.fdm[i];
+    // Input
+    document.querySelector(`#make-fdm-${material}-material`).checked = false;
+    // CSS
+    document
+      .querySelector(`#make-fdm-${material}-material-input`)
+      .classList.remove("select");
+  }
+  // Quality
+  for (let i = 0; i < make.buildOptions.quality.selection.length; i++) {
+    const quality = make.buildOptions.quality.selection[i];
+    // Input
+    document.querySelector(`#make-${quality}-quality`).checked = false;
+    // CSS
+    document
+      .querySelector(`#make-${quality}-quality-input`)
+      .classList.remove("select");
+  }
+  // Strength
+  for (let i = 0; i < make.buildOptions.strength.selection.length; i++) {
+    const strength = make.buildOptions.strength.selection[i];
+    // Input
+    document.querySelector(`#make-${strength}-strength`).checked = false;
+    // CSS
+    document
+      .querySelector(`#make-${strength}-strength-input`)
+      .classList.remove("select");
+  }
+};
 
 make.buildOptions.show = () => make.changePage(2);
 
