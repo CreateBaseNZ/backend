@@ -64,6 +64,7 @@ let make = {
       valid: undefined,
       invalid: undefined
     },
+    reset: undefined,
     next: undefined,
     show: undefined
   },
@@ -82,6 +83,11 @@ let make = {
       selection: ["normal", "strong", "solid"],
       select: undefined,
       deselect: undefined
+    },
+    validation: {
+      validate: undefined,
+      valid: undefined,
+      invalid: undefined
     },
     reset: undefined,
     show: undefined
@@ -108,6 +114,9 @@ make.initialise = () => {
     "#make-mechanical-build-input"
   );
   make.button.buildType.next = document.querySelector("#make-build-type-next");
+  make.button.buildOptions.next = document.querySelector(
+    "#make-build-options-next"
+  );
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -253,8 +262,10 @@ make.buildType.quick.prototype.select = () => {
   make.button.buildType.quick.prototype.classList.add("select");
   // Deselect other selection
   make.buildType.quick.mechanical.deselect();
-
+  // Reset Build Options
   make.buildOptions.reset();
+  // Set Build Options
+  make.buildType.quick.prototype.set();
 };
 
 make.buildType.quick.prototype.deselect = () => {
@@ -265,6 +276,15 @@ make.buildType.quick.prototype.set = () => {
   // Pre-Set Inputs
   document.querySelector("#make-fdm-pla-material").checked = true;
   document.querySelector("#make-draft-quality").checked = true;
+  document.querySelector("#make-normal-strength").checked = true;
+  // Edit CSS
+  document
+    .querySelector("#make-fdm-pla-material-input")
+    .classList.add("select");
+  document.querySelector("#make-draft-quality-input").classList.add("select");
+  document.querySelector("#make-normal-strength-input").classList.add("select");
+  // Validate Build Options
+  make.buildOptions.validation.validate();
 };
 
 make.buildType.quick.mechanical.select = () => {
@@ -272,18 +292,35 @@ make.buildType.quick.mechanical.select = () => {
   make.button.buildType.quick.mechanical.classList.add("select");
   // Deselect other selection
   make.buildType.quick.prototype.deselect();
-
+  // Reset Build Options
   make.buildOptions.reset();
+  // Set Build Options
+  make.buildType.quick.mechanical.set();
 };
 
 make.buildType.quick.mechanical.deselect = () => {
   make.button.buildType.quick.mechanical.classList.remove("select");
 };
 
-make.buildType.quick.mechanical.set = () => {};
+make.buildType.quick.mechanical.set = () => {
+  // Pre-Set Inputs
+  document.querySelector("#make-fdm-petg-material").checked = true;
+  document.querySelector("#make-normal-quality").checked = true;
+  document.querySelector("#make-strong-strength").checked = true;
+  // Edit CSS
+  document
+    .querySelector("#make-fdm-petg-material-input")
+    .classList.add("select");
+  document.querySelector("#make-normal-quality-input").classList.add("select");
+  document.querySelector("#make-strong-strength-input").classList.add("select");
+  // Validate Build Options
+  make.buildOptions.validation.validate();
+};
 
 make.buildType.custom.select = () => {
   document.querySelector("#make-custom-build-input").classList.add("select");
+  // Reset Build Options
+  make.buildOptions.reset();
 };
 
 make.buildType.custom.deselect = () => {
@@ -334,6 +371,24 @@ make.buildType.validation.invalid = () => {
   make.button.buildType.next.removeEventListener("click", make.buildType.next);
 };
 
+make.buildType.reset = () => {
+  // Reset Input Values
+  document.querySelector("#make-quick-build").checked = false;
+  document.querySelector("#make-custom-build").checked = false;
+  document.querySelector("#make-prototype-build").checked = false;
+  document.querySelector("#make-mechanical-build").checked = false;
+  // Reset CSS Values
+  document.querySelector("#make-quick-build-input").classList.remove("select");
+  document.querySelector("#make-custom-build-input").classList.remove("select");
+  document
+    .querySelector("#make-prototype-build-input")
+    .classList.remove("select");
+  document
+    .querySelector("#make-mechanical-build-input")
+    .classList.remove("select");
+  make.buildType.validation.validate();
+};
+
 make.buildType.next = () => {
   // Collect Input
   const build = {
@@ -360,39 +415,189 @@ make.buildType.show = () => make.changePage(1);
 BUILD OPTIONS
 -----------------------------------------------------------------------------------------*/
 
-make.buildOptions.reset = () => {
-  // RESET INPUTS AND CSS
-  // Material - FDM
+make.buildOptions.material.select = (process, material) => {
+  // RESET CSS
+  // FDM
   for (let i = 0; i < make.buildOptions.material.fdm.length; i++) {
-    const material = make.buildOptions.material.fdm[i];
-    // Input
-    document.querySelector(`#make-fdm-${material}-material`).checked = false;
-    // CSS
     document
-      .querySelector(`#make-fdm-${material}-material-input`)
+      .querySelector(
+        `#make-fdm-${make.buildOptions.material.fdm[i]}-material-input`
+      )
       .classList.remove("select");
   }
-  // Quality
-  for (let i = 0; i < make.buildOptions.quality.selection.length; i++) {
-    const quality = make.buildOptions.quality.selection[i];
-    // Input
-    document.querySelector(`#make-${quality}-quality`).checked = false;
-    // CSS
-    document
-      .querySelector(`#make-${quality}-quality-input`)
-      .classList.remove("select");
-  }
-  // Strength
-  for (let i = 0; i < make.buildOptions.strength.selection.length; i++) {
-    const strength = make.buildOptions.strength.selection[i];
-    // Input
-    document.querySelector(`#make-${strength}-strength`).checked = false;
-    // CSS
-    document
-      .querySelector(`#make-${strength}-strength-input`)
-      .classList.remove("select");
-  }
+  // Set CSS
+  document
+    .querySelector(`#make-${process}-${material}-material-input`)
+    .classList.add("select");
+  // Change Build Type to Custom
+  make.buildType.reset();
+  document.querySelector("#make-custom-build").checked = true;
+  document.querySelector("#make-custom-build-input").classList.add("select");
+  // Validate
+  make.buildType.validation.validate();
+  make.buildOptions.validation.validate();
 };
+
+make.buildOptions.quality.select = quality => {
+  // RESET CSS
+  for (let i = 0; i < make.buildOptions.quality.selection.length; i++) {
+    document
+      .querySelector(
+        `#make-${make.buildOptions.quality.selection[i]}-quality-input`
+      )
+      .classList.remove("select");
+  }
+  // Set CSS
+  document
+    .querySelector(`#make-${quality}-quality-input`)
+    .classList.add("select");
+  // Change Build Type to Custom
+  make.buildType.reset();
+  document.querySelector("#make-custom-build").checked = true;
+  document.querySelector("#make-custom-build-input").classList.add("select");
+  // Validate
+  make.buildType.validation.validate();
+  make.buildOptions.validation.validate();
+};
+
+make.buildOptions.strength.select = strength => {
+  // RESET CSS
+  for (let i = 0; i < make.buildOptions.strength.selection.length; i++) {
+    document
+      .querySelector(
+        `#make-${make.buildOptions.strength.selection[i]}-strength-input`
+      )
+      .classList.remove("select");
+  }
+  // Set CSS
+  document
+    .querySelector(`#make-${strength}-strength-input`)
+    .classList.add("select");
+  // Change Build Type to Custom
+  make.buildType.reset();
+  document.querySelector("#make-custom-build").checked = true;
+  document.querySelector("#make-custom-build-input").classList.add("select");
+  // Validate
+  make.buildType.validation.validate();
+  make.buildOptions.validation.validate();
+};
+
+make.buildOptions.validation.validate = () => {
+  // Initialise Variables
+  let data = {
+    valid: true,
+    message: ""
+  };
+  // Collect Inputs
+  let material = false;
+  for (let i = 0; i < make.buildOptions.material.fdm.length; i++) {
+    if (
+      document.querySelector(
+        `#make-fdm-${make.buildOptions.material.fdm[i]}-material`
+      ).checked
+    ) {
+      material = true;
+    }
+  }
+  let quality = false;
+  for (let i = 0; i < make.buildOptions.quality.selection.length; i++) {
+    if (
+      document.querySelector(
+        `#make-${make.buildOptions.quality.selection[i]}-quality`
+      ).checked
+    ) {
+      quality = true;
+    }
+  }
+  let strength = false;
+  for (let i = 0; i < make.buildOptions.strength.selection.length; i++) {
+    if (
+      document.querySelector(
+        `#make-${make.buildOptions.strength.selection[i]}-strength`
+      ).checked
+    ) {
+      strength = true;
+    }
+  }
+  // Validation Processes
+  if (!material) {
+    data.valid = false;
+    data.message = "choose a material";
+    make.buildOptions.validation.invalid();
+    return data;
+  } else if (!quality) {
+    data.valid = false;
+    data.message = "specify quality";
+    make.buildOptions.validation.invalid();
+    return data;
+  } else if (!strength) {
+    data.valid = false;
+    data.message = "specify strength";
+    make.buildOptions.validation.invalid();
+    return data;
+  }
+  // Return
+  make.buildOptions.validation.valid();
+  return data;
+};
+
+make.buildOptions.validation.valid = () => {
+  // Update next button css
+  make.button.buildOptions.next.classList.remove("disable");
+  // Add Event Listener
+  make.button.buildOptions.next.addEventListener(
+    "click",
+    make.orderDetails.show
+  );
+};
+
+make.buildOptions.validation.invalid = () => {
+  // Update next button css
+  make.button.buildOptions.next.classList.add("disable");
+  // Remove Event Listener
+  make.button.buildOptions.next.removeEventListener(
+    "click",
+    make.orderDetails.show
+  );
+};
+
+make.buildOptions.reset =
+  // Set Build Options
+  () => {
+    // RESET INPUTS AND CSS
+    // Material - FDM
+    for (let i = 0; i < make.buildOptions.material.fdm.length; i++) {
+      const material = make.buildOptions.material.fdm[i];
+      // Input
+      document.querySelector(`#make-fdm-${material}-material`).checked = false;
+      // CSS
+      document
+        .querySelector(`#make-fdm-${material}-material-input`)
+        .classList.remove("select");
+    }
+    // Quality
+    for (let i = 0; i < make.buildOptions.quality.selection.length; i++) {
+      const quality = make.buildOptions.quality.selection[i];
+      // Input
+      document.querySelector(`#make-${quality}-quality`).checked = false;
+      // CSS
+      document
+        .querySelector(`#make-${quality}-quality-input`)
+        .classList.remove("select");
+    }
+    // Strength
+    for (let i = 0; i < make.buildOptions.strength.selection.length; i++) {
+      const strength = make.buildOptions.strength.selection[i];
+      // Input
+      document.querySelector(`#make-${strength}-strength`).checked = false;
+      // CSS
+      document
+        .querySelector(`#make-${strength}-strength-input`)
+        .classList.remove("select");
+    }
+    // Validate
+    make.buildOptions.validation.validate();
+  };
 
 make.buildOptions.show = () => make.changePage(2);
 
