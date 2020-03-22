@@ -10,164 +10,242 @@ body {
 .team-bg {
   position: absolute;
   top: 15vh;
-  left: 10vw;
-  height: 70vh;
-  width: 80vw;
+  left: 30vw;
+  height: 60vh;
+  width: 60vw;
   object-fit: cover;
   object-position: center;
 }
 
-.team-bg-text {
-  position: sticky;
-  top: -20vh;
-  
-  p {
-    padding-top: 65vh;
-    font-family: $montserrat;
-    color: $light-2;
-    font-size: 5vmax;
-    text-align: center;
+.team-title {
+  position: absolute;
+  top: 80vh;
+  left: 8vw;
+  font-family: $montserrat;
+  font-size: calc(18px + 4vmax);
+  color: $dark-2;
+  span {
+    display: inline-block;
+    margin-right: 3vmax;
   }
 }
 
+.team-desc {
+  position: absolute;
+  bottom: 30vh;
+  left: 8vw; 
+  width: 15vw;
+  font-family: $montserrat;
+  font-size: calc(10px + 0.2vmax);
+  color: $dark-3;
 
+  #team-desc-top {
+    font-weight: 800;
+    animation: desc-top 0.6s cubic-bezier(.28,.6,.3,.98) 0.5s forwards;
+    opacity: 0;
+  }
+
+  #team-desc-mid {
+    opacity: 0;
+    animation: desc-mid 0.4s cubic-bezier(.28,.6,.3,.98) 1.8s forwards;
+  }
+  
+  #team-desc-bot-1 {
+    opacity: 0;
+    width: 15vw;
+    animation: desc-bot 0.6s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
+  }
+  #team-desc-bot-2 {
+    opacity: 0;
+    width: 15vw;
+    animation: desc-bot 0.6s cubic-bezier(.28,.6,.3,.98) 1.4s forwards;
+  }
+}
 
 .main-page {
-  $top-margin: 110vh;
-  $left-margin: 8vw;
-  $height-margin: 25vh;
-  $width-margin: 3vw;
-  $photo-height: 50vh;
-  $photo-width: 26vw;
-  $offset: 40vh;
+  $top-margin: 100vh;
+  $left-margin: 4vw;
+  $height-margin: 20vh;
+  $width-margin: 4vw;
+  $photo-height: 45vh;
+  $photo-width: 20vw;
+  $offset: 4vh;
 
-  margin-top: $top-bar-height;
+  margin-top: $top-margin;
   width: 100vw;
-  height: 300vh;
-  
-  .team-scroll {
+  height: calc(3*#{$photo-height} + 2*#{$offset} + 2*#{$height-margin});
 
-    .team-profile {
+  .team-profile {
+    position: absolute;
+
+    .indiv-photo {
+      height: $photo-height;
+      width: $photo-width;
+      object-fit: cover;
+      transition: 0.3s ease-out;
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(0.5);
+      }
+    }
+
+    .indiv-name {
+      font-family: $montserrat;
+      font-size: calc(30px + 0.2vw);
+      font-weight: 100;
+      color: $dark-1;
+      display: none;
+    }
+
+    .indiv-role {
+      font-family: $poppins;
+      font-size: calc(8px + 0.1vw);
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: $dark-2;
+      display: none;
+    }
+
+    .indiv-study {
+      font-family: $montserrat;
+      font-size: calc(8px + 0.1vw);
+      font-weight: 100;
+      color: $dark-3;
+    }
+  }
+
+  .profile-left {
+    .indiv-name,
+    .indiv-role,
+    .indiv-study {
       position: absolute;
+      top: 15%;
+      left: 95%;
+      opacity: 0;
+      white-space: nowrap;
+      animation: in-left 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+    }
+    .indiv-role {
+      top: calc(15% + 0.5vh + 37px);
+      animation: in-left 0.5s cubic-bezier(.28,.6,.3,.98) 0.2s forwards;
+    }
+    .indiv-study {
+      top: calc(15% + 1vh + 55px);
+      animation: in-left 0.5s cubic-bezier(.28,.6,.3,.98) 0.2s forwards;
+    }
+  }
 
-      .indiv-photo {
-        height: $photo-height;
-        width: $photo-width;
-        object-fit: cover;
-      }
+  .profile-right {
+    .indiv-name,
+    .indiv-role {
+      position: absolute;
+      top: 75%;
+      right: 95%;
+      opacity: 0;
+      align-self: flex-end;
+      white-space: nowrap;
+      animation: in-right 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+    }
+    .indiv-role {
+      top: calc(75% + 0.5vh + 37px);
+      animation: in-right 0.5s cubic-bezier(.28,.6,.3,.98) 0.2s forwards;
+    }
+  }
 
-      .indiv-name {
-        font-family: $montserrat;
-        font-size: calc(30px + 0.2vw);
-        font-weight: 100;
-        color: $dark-1;
-        display: none;
-      }
-
-      .indiv-role {
-        font-family: $poppins;
-        font-size: calc(8px + 0.1vw);
-        font-weight: 800;
-        letter-spacing: 4px;
-        color: $dark-2;
-        display: none;
-      }
-    }
-
-    .profile-left {
-      .indiv-name,
-      .indiv-role {
-        position: absolute;
-        top: 15%;
-        left: 90%;
-        opacity: 0;
-        white-space: nowrap;
-        animation: in-left 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
-      }
-      .indiv-role {
-        top: calc(15% + 0.5vh + 35px);
-        animation: in-left 0.5s cubic-bezier(.28,.6,.3,.98) 0.2s forwards;
-      }
-    }
-
-    .profile-right {
-      .indiv-name,
-      .indiv-role {
-        position: absolute;
-        top: 75%;
-        right: 90%;
-        opacity: 0;
-        align-self: flex-end;
-        white-space: nowrap;
-        animation: in-right 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
-      }
-      .indiv-role {
-        top: calc(75% + 0.5vh + 35px);
-        animation: in-right 0.5s cubic-bezier(.28,.6,.3,.98) 0.2s forwards;
-      }
-    }
-
-    #memb-1 {
-      top: $top-margin;
-      left: $left-margin;
-    }
-    #memb-2 {
-      top: calc(#{$top-margin} + #{$height-margin});
-      left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-    }
-    #memb-3 {
-      top: calc(#{$top-margin} + 2*#{$height-margin});
-      left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-    }
-    #memb-4 {
-      top: calc(#{$top-margin} + #{$photo-height} + #{$offset});
-      left: $left-margin;
-    }
-    #memb-5 {
-      top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height} + #{$offset});
-      left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-    }
-    #memb-6 {
-      top: calc(#{$top-margin} + 2*#{$height-margin} + #{$photo-height} + #{$offset});
-      left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-    }
-    #memb-7 {
-      top: calc(#{$top-margin} + 2*#{$photo-height} + 2*#{$offset});
-      left: $left-margin;
-    }
-    #memb-8 {
-      top: calc(#{$top-margin} + #{$height-margin} + 2*#{$photo-height} + 2*#{$offset});
-      left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-    }
-    #memb-9 {
-      top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height} + 2*#{$offset});
-      left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-    }
+  #memb-0 {
+    top: $top-margin;
+    left: $left-margin;
+  }
+  #memb-1 {
+    top: calc(#{$top-margin} + #{$height-margin});
+    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+  }
+  #memb-2 {
+    top: $top-margin;
+    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+  }
+  #memb-3 {
+    top: calc(#{$top-margin} + #{$height-margin});
+    left: calc(#{$left-margin} + 3*#{$photo-width} + 3*#{$width-margin});
+  }
+  #memb-4 {
+    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height} + #{$offset});
+    left: $left-margin;
+  }
+  #memb-5 {
+    top: calc(#{$top-margin} + 2*#{$height-margin} + #{$photo-height} + #{$offset});
+    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+  }
+  #memb-6 {
+    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height} + #{$offset});
+    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+  }
+  #memb-7 {
+    top: calc(#{$top-margin} + 2*#{$height-margin} + #{$photo-height} + #{$offset});
+    left: calc(#{$left-margin} + 3*#{$photo-width} + 3*#{$width-margin});
+  }
+  #memb-8 {
+    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height} + 2*#{$offset});
+    left: $left-margin;
   }
 }
 
 .end-section {
-  height: 40vh;
+  height: 25vh;
 }
 
 @keyframes in-left {
   0% { 
-    left: 90%;
+    margin-left: -20px;
     opacity: 0;
   }
   100% { 
-    left: 95%; 
+    margin-left: 0; 
     opacity: 1;
   }
 }
 
 @keyframes in-right {
   0% { 
-    right: 90%;
+    margin-right: -20px;
     opacity: 0;
   }
   100% { 
-    right: 95%; 
+    margin-right: 0; 
     opacity: 1;
+  }
+}
+
+@keyframes desc-top {
+  0% {
+    opacity: 0;
+    margin-bottom: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-bottom: 0vw;
+  }
+}
+
+@keyframes desc-mid {
+  0% {
+    opacity: 0;
+    margin-left: -30px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0vw;
+  }
+}
+
+@keyframes desc-bot {
+  0% {
+    opacity: 0;
+    margin-left: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0px;
   }
 }

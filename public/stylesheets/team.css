@@ -1373,47 +1373,92 @@ body {
 .team-bg {
   position: absolute;
   top: 15vh;
-  left: 10vw;
-  height: 70vh;
-  width: 80vw;
+  left: 30vw;
+  height: 60vh;
+  width: 60vw;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
 }
 
-.team-bg-text {
-  position: -webkit-sticky;
-  position: sticky;
-  top: -20vh;
+.team-title {
+  position: absolute;
+  top: 80vh;
+  left: 8vw;
+  font-family: "Montserrat", sans-serif;
+  font-size: calc(18px + 4vmax);
+  color: #322d41;
 }
 
-.team-bg-text p {
-  padding-top: 65vh;
+.team-title span {
+  display: inline-block;
+  margin-right: 3vmax;
+}
+
+.team-desc {
+  position: absolute;
+  bottom: 30vh;
+  left: 8vw;
+  width: 15vw;
   font-family: "Montserrat", sans-serif;
-  color: #f8f8f8;
-  font-size: 5vmax;
-  text-align: center;
+  font-size: calc(10px + 0.2vmax);
+  color: #2d283c;
+}
+
+.team-desc #team-desc-top {
+  font-weight: 800;
+  -webkit-animation: desc-top 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.5s forwards;
+          animation: desc-top 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.5s forwards;
+  opacity: 0;
+}
+
+.team-desc #team-desc-mid {
+  opacity: 0;
+  -webkit-animation: desc-mid 0.4s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.8s forwards;
+          animation: desc-mid 0.4s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.8s forwards;
+}
+
+.team-desc #team-desc-bot-1 {
+  opacity: 0;
+  width: 15vw;
+  -webkit-animation: desc-bot 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
+          animation: desc-bot 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
+}
+
+.team-desc #team-desc-bot-2 {
+  opacity: 0;
+  width: 15vw;
+  -webkit-animation: desc-bot 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.4s forwards;
+          animation: desc-bot 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.4s forwards;
 }
 
 .main-page {
-  margin-top: 60px;
+  margin-top: 100vh;
   width: 100vw;
-  height: 300vh;
+  height: calc(3*45vh + 2*4vh + 2*20vh);
 }
 
-.main-page .team-scroll .team-profile {
+.main-page .team-profile {
   position: absolute;
 }
 
-.main-page .team-scroll .team-profile .indiv-photo {
-  height: 50vh;
-  width: 26vw;
+.main-page .team-profile .indiv-photo {
+  height: 45vh;
+  width: 20vw;
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  cursor: pointer;
 }
 
-.main-page .team-scroll .team-profile .indiv-name {
+.main-page .team-profile .indiv-photo:hover {
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+}
+
+.main-page .team-profile .indiv-name {
   font-family: "Montserrat", sans-serif;
   font-size: calc(30px + 0.2vw);
   font-weight: 100;
@@ -1421,7 +1466,7 @@ body {
   display: none;
 }
 
-.main-page .team-scroll .team-profile .indiv-role {
+.main-page .team-profile .indiv-role {
   font-family: "Poppins", sans-serif;
   font-size: calc(8px + 0.1vw);
   font-weight: 800;
@@ -1430,28 +1475,42 @@ body {
   display: none;
 }
 
-.main-page .team-scroll .profile-left .indiv-name,
-.main-page .team-scroll .profile-left .indiv-role {
+.main-page .team-profile .indiv-study {
+  font-family: "Montserrat", sans-serif;
+  font-size: calc(8px + 0.1vw);
+  font-weight: 100;
+  color: #2d283c;
+}
+
+.main-page .profile-left .indiv-name,
+.main-page .profile-left .indiv-role,
+.main-page .profile-left .indiv-study {
   position: absolute;
   top: 15%;
-  left: 90%;
+  left: 95%;
   opacity: 0;
   white-space: nowrap;
   -webkit-animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
           animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
 }
 
-.main-page .team-scroll .profile-left .indiv-role {
-  top: calc(15% + 0.5vh + 35px);
+.main-page .profile-left .indiv-role {
+  top: calc(15% + 0.5vh + 37px);
   -webkit-animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
           animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
 }
 
-.main-page .team-scroll .profile-right .indiv-name,
-.main-page .team-scroll .profile-right .indiv-role {
+.main-page .profile-left .indiv-study {
+  top: calc(15% + 1vh + 55px);
+  -webkit-animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
+          animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
+}
+
+.main-page .profile-right .indiv-name,
+.main-page .profile-right .indiv-role {
   position: absolute;
   top: 75%;
-  right: 90%;
+  right: 95%;
   opacity: 0;
   -ms-flex-item-align: end;
       align-self: flex-end;
@@ -1460,101 +1519,167 @@ body {
           animation: in-right 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
 }
 
-.main-page .team-scroll .profile-right .indiv-role {
-  top: calc(75% + 0.5vh + 35px);
+.main-page .profile-right .indiv-role {
+  top: calc(75% + 0.5vh + 37px);
   -webkit-animation: in-right 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
           animation: in-right 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
 }
 
-.main-page .team-scroll #memb-1 {
-  top: 110vh;
-  left: 8vw;
+.main-page #memb-0 {
+  top: 100vh;
+  left: 4vw;
 }
 
-.main-page .team-scroll #memb-2 {
-  top: calc(110vh + 25vh);
-  left: calc(8vw + 26vw + 3vw);
+.main-page #memb-1 {
+  top: calc(100vh + 20vh);
+  left: calc(4vw + 20vw + 4vw);
 }
 
-.main-page .team-scroll #memb-3 {
-  top: calc(110vh + 2*25vh);
-  left: calc(8vw + 2*26vw + 2*3vw);
+.main-page #memb-2 {
+  top: 100vh;
+  left: calc(4vw + 2*20vw + 2*4vw);
 }
 
-.main-page .team-scroll #memb-4 {
-  top: calc(110vh + 50vh + 40vh);
-  left: 8vw;
+.main-page #memb-3 {
+  top: calc(100vh + 20vh);
+  left: calc(4vw + 3*20vw + 3*4vw);
 }
 
-.main-page .team-scroll #memb-5 {
-  top: calc(110vh + 25vh + 50vh + 40vh);
-  left: calc(8vw + 26vw + 3vw);
+.main-page #memb-4 {
+  top: calc(100vh + 20vh + 45vh + 4vh);
+  left: 4vw;
 }
 
-.main-page .team-scroll #memb-6 {
-  top: calc(110vh + 2*25vh + 50vh + 40vh);
-  left: calc(8vw + 2*26vw + 2*3vw);
+.main-page #memb-5 {
+  top: calc(100vh + 2*20vh + 45vh + 4vh);
+  left: calc(4vw + 20vw + 4vw);
 }
 
-.main-page .team-scroll #memb-7 {
-  top: calc(110vh + 2*50vh + 2*40vh);
-  left: 8vw;
+.main-page #memb-6 {
+  top: calc(100vh + 20vh + 45vh + 4vh);
+  left: calc(4vw + 2*20vw + 2*4vw);
 }
 
-.main-page .team-scroll #memb-8 {
-  top: calc(110vh + 25vh + 2*50vh + 2*40vh);
-  left: calc(8vw + 26vw + 3vw);
+.main-page #memb-7 {
+  top: calc(100vh + 2*20vh + 45vh + 4vh);
+  left: calc(4vw + 3*20vw + 3*4vw);
 }
 
-.main-page .team-scroll #memb-9 {
-  top: calc(110vh + 2*25vh + 2*50vh + 2*40vh);
-  left: calc(8vw + 2*26vw + 2*3vw);
+.main-page #memb-8 {
+  top: calc(100vh + 2*20vh + 2*45vh + 2*4vh);
+  left: 4vw;
 }
 
 .end-section {
-  height: 40vh;
+  height: 25vh;
 }
 
 @-webkit-keyframes in-left {
   0% {
-    left: 90%;
+    margin-left: -20px;
     opacity: 0;
   }
   100% {
-    left: 95%;
+    margin-left: 0;
     opacity: 1;
   }
 }
 
 @keyframes in-left {
   0% {
-    left: 90%;
+    margin-left: -20px;
     opacity: 0;
   }
   100% {
-    left: 95%;
+    margin-left: 0;
     opacity: 1;
   }
 }
 
 @-webkit-keyframes in-right {
   0% {
-    right: 90%;
+    margin-right: -20px;
     opacity: 0;
   }
   100% {
-    right: 95%;
+    margin-right: 0;
     opacity: 1;
   }
 }
 
 @keyframes in-right {
   0% {
-    right: 90%;
+    margin-right: -20px;
     opacity: 0;
   }
   100% {
-    right: 95%;
+    margin-right: 0;
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes desc-top {
+  0% {
+    opacity: 0;
+    margin-bottom: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-bottom: 0vw;
+  }
+}
+
+@keyframes desc-top {
+  0% {
+    opacity: 0;
+    margin-bottom: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-bottom: 0vw;
+  }
+}
+
+@-webkit-keyframes desc-mid {
+  0% {
+    opacity: 0;
+    margin-left: -30px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0vw;
+  }
+}
+
+@keyframes desc-mid {
+  0% {
+    opacity: 0;
+    margin-left: -30px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0vw;
+  }
+}
+
+@-webkit-keyframes desc-bot {
+  0% {
+    opacity: 0;
+    margin-left: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0px;
+  }
+}
+
+@keyframes desc-bot {
+  0% {
+    opacity: 0;
+    margin-left: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0px;
   }
 }
