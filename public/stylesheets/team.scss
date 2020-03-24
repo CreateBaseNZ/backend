@@ -19,7 +19,7 @@ body {
 
 .team-title {
   position: absolute;
-  top: 80vh;
+  bottom: 4vh;
   left: 8vw;
   font-family: $montserrat;
   font-size: calc(18px + 4vmax);
@@ -47,6 +47,7 @@ body {
 
   #team-desc-mid {
     opacity: 0;
+    color: $light-3;
     animation: desc-mid 0.4s cubic-bezier(.28,.6,.3,.98) 1.8s forwards;
   }
   
@@ -64,9 +65,9 @@ body {
 
 .main-page {
   $top-margin: 100vh;
-  $left-margin: 4vw;
-  $height-margin: 20vh;
-  $width-margin: 4vw;
+  $left-margin: 10vw;
+  $height-margin: 10vh;
+  $width-margin: 10vw;
   $photo-height: 45vh;
   $photo-width: 20vw;
   $offset: 4vh;
@@ -83,73 +84,86 @@ body {
       width: $photo-width;
       object-fit: cover;
       transition: 0.3s ease-out;
-      cursor: pointer;
+    }
 
-      &:hover {
-        filter: brightness(0.5);
-      }
+    .indiv-role,
+    .indiv-name,
+    .indiv-study {
+      position: absolute;
+      opacity: 0;
+      white-space: nowrap;
     }
 
     .indiv-name {
+      top: calc(100% + 0.2vh);
+      left: 1vw;
       font-family: $montserrat;
-      font-size: calc(30px + 0.2vw);
+      font-size: calc(12px + 2vmin);
       font-weight: 100;
       color: $dark-1;
       display: none;
+      animation: name-anim 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
     }
 
     .indiv-role {
+      bottom: 0.1vmin;
+      left: calc(-10px - 0.4vw);
       font-family: $poppins;
-      font-size: calc(8px + 0.1vw);
+      font-size: calc(8px + 0.2vmin);
       font-weight: 800;
       letter-spacing: 4px;
       color: $dark-2;
+      transform-origin: top left;
+      transform: rotate(-90deg);
       display: none;
+      opacity: 0;
+      animation: role-anim 0.3s cubic-bezier(.28,.6,.3,.98) forwards;
     }
 
-    .indiv-study {
-      font-family: $montserrat;
-      font-size: calc(8px + 0.1vw);
-      font-weight: 100;
-      color: $dark-3;
+    .fab {
+      position: absolute;
+      top: 0;
+      left: calc(-20px - 0.4vw);
+      padding: 10px;
+      font-size: calc(12px + 0.4vmin);
+      color: $dark-2;
+      display: none;
+      opacity: 0;
+      animation: role-anim 0.3s cubic-bezier(.28,.6,.3,.98) forwards;
+
+      &:hover {
+        color: $highlight;
+      }
     }
   }
 
   .profile-left {
-    .indiv-name,
     .indiv-role,
-    .indiv-study {
-      position: absolute;
-      top: 15%;
-      left: 95%;
-      opacity: 0;
-      white-space: nowrap;
-      animation: in-left 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+    .fab {
+      animation-delay: 0.3s;
     }
-    .indiv-role {
-      top: calc(15% + 0.5vh + 37px);
-      animation: in-left 0.5s cubic-bezier(.28,.6,.3,.98) 0.2s forwards;
+    .indiv-name {
+      animation-delay: 0s;
     }
-    .indiv-study {
-      top: calc(15% + 1vh + 55px);
-      animation: in-left 0.5s cubic-bezier(.28,.6,.3,.98) 0.2s forwards;
+  }
+
+  .profile-mid {
+    .indiv-role,
+    .fab {
+      animation-delay: 0.7s;
+    }
+    .indiv-name {
+      animation-delay: 0.4s;
     }
   }
 
   .profile-right {
-    .indiv-name,
-    .indiv-role {
-      position: absolute;
-      top: 75%;
-      right: 95%;
-      opacity: 0;
-      align-self: flex-end;
-      white-space: nowrap;
-      animation: in-right 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+    .indiv-role,
+    .fab {
+      animation-delay: 1.2s;
     }
-    .indiv-role {
-      top: calc(75% + 0.5vh + 37px);
-      animation: in-right 0.5s cubic-bezier(.28,.6,.3,.98) 0.2s forwards;
+    .indiv-name {
+      animation-delay: 0.9s;
     }
   }
 
@@ -158,7 +172,7 @@ body {
     left: $left-margin;
   }
   #memb-1 {
-    top: calc(#{$top-margin} + #{$height-margin});
+    top: $top-margin;
     left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
   }
   #memb-2 {
@@ -166,28 +180,32 @@ body {
     left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
   }
   #memb-3 {
-    top: calc(#{$top-margin} + #{$height-margin});
-    left: calc(#{$left-margin} + 3*#{$photo-width} + 3*#{$width-margin});
+    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
+    left: $left-margin;
   }
   #memb-4 {
-    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height} + #{$offset});
-    left: $left-margin;
+    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
+    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+    animation-delay: 0.2s;
   }
   #memb-5 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + #{$photo-height} + #{$offset});
-    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
+    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+    animation-delay: 0.4s;
   }
   #memb-6 {
-    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height} + #{$offset});
-    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
+    left: $left-margin;
   }
   #memb-7 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + #{$photo-height} + #{$offset});
-    left: calc(#{$left-margin} + 3*#{$photo-width} + 3*#{$width-margin});
+    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
+    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+    animation-delay: 0.2s;
   }
   #memb-8 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height} + 2*#{$offset});
-    left: $left-margin;
+    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
+    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+    animation-delay: 0.4s;
   }
 }
 
@@ -195,7 +213,224 @@ body {
   height: 25vh;
 }
 
-@keyframes in-left {
+@media only screen and (min-width: 850px) {
+
+$fade-height: 100px;
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.team-bg {
+  position: absolute;
+  top: 15vh;
+  left: 30vw;
+  height: 60vh;
+  width: 60vw;
+  object-fit: cover;
+  object-position: center;
+}
+
+.team-title {
+  position: absolute;
+  bottom: 4vh;
+  left: 8vw;
+  font-family: $montserrat;
+  font-size: calc(18px + 4vmax);
+  color: $dark-2;
+  span {
+    display: inline-block;
+    margin-right: 3vmax;
+  }
+}
+
+.team-desc {
+  position: absolute;
+  bottom: 30vh;
+  left: 8vw; 
+  width: 15vw;
+  font-family: $montserrat;
+  font-size: calc(10px + 0.2vmax);
+  color: $dark-3;
+
+  #team-desc-top {
+    font-weight: 800;
+    animation: desc-top 0.6s cubic-bezier(.28,.6,.3,.98) 0.5s forwards;
+    opacity: 0;
+  }
+
+  #team-desc-mid {
+    opacity: 0;
+    color: $light-3;
+    animation: desc-mid 0.4s cubic-bezier(.28,.6,.3,.98) 1.8s forwards;
+  }
+  
+  #team-desc-bot-1 {
+    opacity: 0;
+    width: 15vw;
+    animation: desc-bot 0.6s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
+  }
+  #team-desc-bot-2 {
+    opacity: 0;
+    width: 15vw;
+    animation: desc-bot 0.6s cubic-bezier(.28,.6,.3,.98) 1.4s forwards;
+  }
+}
+
+.main-page {
+  $top-margin: 100vh;
+  $left-margin: 10vw;
+  $height-margin: 10vh;
+  $width-margin: 10vw;
+  $photo-height: 45vh;
+  $photo-width: 20vw;
+  $offset: 4vh;
+
+  margin-top: $top-margin;
+  width: 100vw;
+  height: calc(3*#{$photo-height} + 2*#{$offset} + 2*#{$height-margin});
+
+  .team-profile {
+    position: absolute;
+
+    .indiv-photo {
+      height: $photo-height;
+      width: $photo-width;
+      object-fit: cover;
+      transition: 0.3s ease-out;
+    }
+
+    .indiv-role,
+    .indiv-name,
+    .indiv-study {
+      position: absolute;
+      opacity: 0;
+      white-space: nowrap;
+    }
+
+    .indiv-name {
+      top: calc(100% + 0.2vh);
+      left: 1vw;
+      font-family: $montserrat;
+      font-size: calc(12px + 2vmin);
+      font-weight: 100;
+      color: $dark-1;
+      display: none;
+      animation: name-anim 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+    }
+
+    .indiv-role {
+      bottom: 0.1vmin;
+      left: calc(-10px - 0.4vw);
+      font-family: $poppins;
+      font-size: calc(8px + 0.2vmin);
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: $dark-2;
+      transform-origin: top left;
+      transform: rotate(-90deg);
+      display: none;
+      opacity: 0;
+      animation: role-anim 0.3s cubic-bezier(.28,.6,.3,.98) forwards;
+    }
+
+    .fab {
+      position: absolute;
+      top: 0;
+      left: calc(-20px - 0.4vw);
+      padding: 10px;
+      font-size: calc(12px + 0.4vmin);
+      color: $dark-2;
+      display: none;
+      opacity: 0;
+      animation: role-anim 0.3s cubic-bezier(.28,.6,.3,.98) forwards;
+
+      &:hover {
+        color: $highlight;
+      }
+    }
+  }
+
+  .profile-left {
+    .indiv-role,
+    .fab {
+      animation-delay: 0.3s;
+    }
+    .indiv-name {
+      animation-delay: 0s;
+    }
+  }
+
+  .profile-mid {
+    .indiv-role,
+    .fab {
+      animation-delay: 0.7s;
+    }
+    .indiv-name {
+      animation-delay: 0.4s;
+    }
+  }
+
+  .profile-right {
+    .indiv-role,
+    .fab {
+      animation-delay: 1.2s;
+    }
+    .indiv-name {
+      animation-delay: 0.9s;
+    }
+  }
+
+  #memb-0 {
+    top: $top-margin;
+    left: $left-margin;
+  }
+  #memb-1 {
+    top: $top-margin;
+    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+  }
+  #memb-2 {
+    top: $top-margin;
+    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+  }
+  #memb-3 {
+    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
+    left: $left-margin;
+  }
+  #memb-4 {
+    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
+    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+    animation-delay: 0.2s;
+  }
+  #memb-5 {
+    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
+    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+    animation-delay: 0.4s;
+  }
+  #memb-6 {
+    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
+    left: $left-margin;
+  }
+  #memb-7 {
+    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
+    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
+    animation-delay: 0.2s;
+  }
+  #memb-8 {
+    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
+    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
+    animation-delay: 0.4s;
+  }
+}
+
+.end-section {
+  height: 25vh;
+}
+
+}
+
+@keyframes name-anim {
   0% { 
     margin-left: -20px;
     opacity: 0;
@@ -205,14 +440,13 @@ body {
     opacity: 1;
   }
 }
-
-@keyframes in-right {
+@keyframes role-anim {
   0% { 
-    margin-right: -20px;
+    margin-left: 20px;
     opacity: 0;
   }
   100% { 
-    margin-right: 0; 
+    margin-left: 0px; 
     opacity: 1;
   }
 }

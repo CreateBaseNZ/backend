@@ -1384,7 +1384,7 @@ body {
 
 .team-title {
   position: absolute;
-  top: 80vh;
+  bottom: 4vh;
   left: 8vw;
   font-family: "Montserrat", sans-serif;
   font-size: calc(18px + 4vmax);
@@ -1415,6 +1415,7 @@ body {
 
 .team-desc #team-desc-mid {
   opacity: 0;
+  color: #c7c2d5;
   -webkit-animation: desc-mid 0.4s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.8s forwards;
           animation: desc-mid 0.4s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.8s forwards;
 }
@@ -1436,7 +1437,7 @@ body {
 .main-page {
   margin-top: 100vh;
   width: 100vw;
-  height: calc(3*45vh + 2*4vh + 2*20vh);
+  height: calc(3*45vh + 2*4vh + 2*10vh);
 }
 
 .main-page .team-profile {
@@ -1450,131 +1451,357 @@ body {
      object-fit: cover;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
-  cursor: pointer;
 }
 
-.main-page .team-profile .indiv-photo:hover {
-  -webkit-filter: brightness(0.5);
-          filter: brightness(0.5);
+.main-page .team-profile .indiv-role,
+.main-page .team-profile .indiv-name,
+.main-page .team-profile .indiv-study {
+  position: absolute;
+  opacity: 0;
+  white-space: nowrap;
 }
 
 .main-page .team-profile .indiv-name {
+  top: calc(100% + 0.2vh);
+  left: 1vw;
   font-family: "Montserrat", sans-serif;
-  font-size: calc(30px + 0.2vw);
+  font-size: calc(12px + 2vmin);
   font-weight: 100;
   color: #877da9;
   display: none;
+  -webkit-animation: name-anim 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+          animation: name-anim 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
 }
 
 .main-page .team-profile .indiv-role {
+  bottom: 0.1vmin;
+  left: calc(-10px - 0.4vw);
   font-family: "Poppins", sans-serif;
-  font-size: calc(8px + 0.1vw);
+  font-size: calc(8px + 0.2vmin);
   font-weight: 800;
   letter-spacing: 4px;
   color: #322d41;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
   display: none;
+  opacity: 0;
+  -webkit-animation: role-anim 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+          animation: role-anim 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
 }
 
-.main-page .team-profile .indiv-study {
-  font-family: "Montserrat", sans-serif;
-  font-size: calc(8px + 0.1vw);
-  font-weight: 100;
-  color: #2d283c;
+.main-page .team-profile .fab {
+  position: absolute;
+  top: 0;
+  left: calc(-20px - 0.4vw);
+  padding: 10px;
+  font-size: calc(12px + 0.4vmin);
+  color: #322d41;
+  display: none;
+  opacity: 0;
+  -webkit-animation: role-anim 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+          animation: role-anim 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
 }
 
-.main-page .profile-left .indiv-name,
+.main-page .team-profile .fab:hover {
+  color: #4bf0ea;
+}
+
 .main-page .profile-left .indiv-role,
-.main-page .profile-left .indiv-study {
-  position: absolute;
-  top: 15%;
-  left: 95%;
-  opacity: 0;
-  white-space: nowrap;
-  -webkit-animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
-          animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+.main-page .profile-left .fab {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
 }
 
-.main-page .profile-left .indiv-role {
-  top: calc(15% + 0.5vh + 37px);
-  -webkit-animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
-          animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
+.main-page .profile-left .indiv-name {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
 }
 
-.main-page .profile-left .indiv-study {
-  top: calc(15% + 1vh + 55px);
-  -webkit-animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
-          animation: in-left 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
+.main-page .profile-mid .indiv-role,
+.main-page .profile-mid .fab {
+  -webkit-animation-delay: 0.7s;
+          animation-delay: 0.7s;
 }
 
-.main-page .profile-right .indiv-name,
-.main-page .profile-right .indiv-role {
-  position: absolute;
-  top: 75%;
-  right: 95%;
-  opacity: 0;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  white-space: nowrap;
-  -webkit-animation: in-right 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
-          animation: in-right 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+.main-page .profile-mid .indiv-name {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
 }
 
-.main-page .profile-right .indiv-role {
-  top: calc(75% + 0.5vh + 37px);
-  -webkit-animation: in-right 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
-          animation: in-right 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.2s forwards;
+.main-page .profile-right .indiv-role,
+.main-page .profile-right .fab {
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+}
+
+.main-page .profile-right .indiv-name {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
 }
 
 .main-page #memb-0 {
   top: 100vh;
-  left: 4vw;
+  left: 10vw;
 }
 
 .main-page #memb-1 {
-  top: calc(100vh + 20vh);
-  left: calc(4vw + 20vw + 4vw);
+  top: 100vh;
+  left: calc(10vw + 20vw + 10vw);
 }
 
 .main-page #memb-2 {
   top: 100vh;
-  left: calc(4vw + 2*20vw + 2*4vw);
+  left: calc(10vw + 2*20vw + 2*10vw);
 }
 
 .main-page #memb-3 {
-  top: calc(100vh + 20vh);
-  left: calc(4vw + 3*20vw + 3*4vw);
+  top: calc(100vh + 10vh + 45vh);
+  left: 10vw;
 }
 
 .main-page #memb-4 {
-  top: calc(100vh + 20vh + 45vh + 4vh);
-  left: 4vw;
+  top: calc(100vh + 10vh + 45vh);
+  left: calc(10vw + 20vw + 10vw);
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
 }
 
 .main-page #memb-5 {
-  top: calc(100vh + 2*20vh + 45vh + 4vh);
-  left: calc(4vw + 20vw + 4vw);
+  top: calc(100vh + 10vh + 45vh);
+  left: calc(10vw + 2*20vw + 2*10vw);
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
 }
 
 .main-page #memb-6 {
-  top: calc(100vh + 20vh + 45vh + 4vh);
-  left: calc(4vw + 2*20vw + 2*4vw);
+  top: calc(100vh + 2*10vh + 2*45vh);
+  left: 10vw;
 }
 
 .main-page #memb-7 {
-  top: calc(100vh + 2*20vh + 45vh + 4vh);
-  left: calc(4vw + 3*20vw + 3*4vw);
+  top: calc(100vh + 2*10vh + 2*45vh);
+  left: calc(10vw + 20vw + 10vw);
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
 }
 
 .main-page #memb-8 {
-  top: calc(100vh + 2*20vh + 2*45vh + 2*4vh);
-  left: 4vw;
+  top: calc(100vh + 2*10vh + 2*45vh);
+  left: calc(10vw + 2*20vw + 2*10vw);
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
 }
 
 .end-section {
   height: 25vh;
 }
 
-@-webkit-keyframes in-left {
+@media only screen and (min-width: 850px) {
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .team-bg {
+    position: absolute;
+    top: 15vh;
+    left: 30vw;
+    height: 60vh;
+    width: 60vw;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+  }
+  .team-title {
+    position: absolute;
+    bottom: 4vh;
+    left: 8vw;
+    font-family: "Montserrat", sans-serif;
+    font-size: calc(18px + 4vmax);
+    color: #322d41;
+  }
+  .team-title span {
+    display: inline-block;
+    margin-right: 3vmax;
+  }
+  .team-desc {
+    position: absolute;
+    bottom: 30vh;
+    left: 8vw;
+    width: 15vw;
+    font-family: "Montserrat", sans-serif;
+    font-size: calc(10px + 0.2vmax);
+    color: #2d283c;
+  }
+  .team-desc #team-desc-top {
+    font-weight: 800;
+    -webkit-animation: desc-top 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.5s forwards;
+            animation: desc-top 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 0.5s forwards;
+    opacity: 0;
+  }
+  .team-desc #team-desc-mid {
+    opacity: 0;
+    color: #c7c2d5;
+    -webkit-animation: desc-mid 0.4s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.8s forwards;
+            animation: desc-mid 0.4s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.8s forwards;
+  }
+  .team-desc #team-desc-bot-1 {
+    opacity: 0;
+    width: 15vw;
+    -webkit-animation: desc-bot 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
+            animation: desc-bot 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.2s forwards;
+  }
+  .team-desc #team-desc-bot-2 {
+    opacity: 0;
+    width: 15vw;
+    -webkit-animation: desc-bot 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.4s forwards;
+            animation: desc-bot 0.6s cubic-bezier(0.28, 0.6, 0.3, 0.98) 1.4s forwards;
+  }
+  .main-page {
+    margin-top: 100vh;
+    width: 100vw;
+    height: calc(3*45vh + 2*4vh + 2*10vh);
+  }
+  .main-page .team-profile {
+    position: absolute;
+  }
+  .main-page .team-profile .indiv-photo {
+    height: 45vh;
+    width: 20vw;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+  }
+  .main-page .team-profile .indiv-role,
+  .main-page .team-profile .indiv-name,
+  .main-page .team-profile .indiv-study {
+    position: absolute;
+    opacity: 0;
+    white-space: nowrap;
+  }
+  .main-page .team-profile .indiv-name {
+    top: calc(100% + 0.2vh);
+    left: 1vw;
+    font-family: "Montserrat", sans-serif;
+    font-size: calc(12px + 2vmin);
+    font-weight: 100;
+    color: #877da9;
+    display: none;
+    -webkit-animation: name-anim 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+            animation: name-anim 0.5s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+  }
+  .main-page .team-profile .indiv-role {
+    bottom: 0.1vmin;
+    left: calc(-10px - 0.4vw);
+    font-family: "Poppins", sans-serif;
+    font-size: calc(8px + 0.2vmin);
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #322d41;
+    -webkit-transform-origin: top left;
+            transform-origin: top left;
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    display: none;
+    opacity: 0;
+    -webkit-animation: role-anim 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+            animation: role-anim 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+  }
+  .main-page .team-profile .fab {
+    position: absolute;
+    top: 0;
+    left: calc(-20px - 0.4vw);
+    padding: 10px;
+    font-size: calc(12px + 0.4vmin);
+    color: #322d41;
+    display: none;
+    opacity: 0;
+    -webkit-animation: role-anim 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+            animation: role-anim 0.3s cubic-bezier(0.28, 0.6, 0.3, 0.98) forwards;
+  }
+  .main-page .team-profile .fab:hover {
+    color: #4bf0ea;
+  }
+  .main-page .profile-left .indiv-role,
+  .main-page .profile-left .fab {
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+  }
+  .main-page .profile-left .indiv-name {
+    -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+  }
+  .main-page .profile-mid .indiv-role,
+  .main-page .profile-mid .fab {
+    -webkit-animation-delay: 0.7s;
+            animation-delay: 0.7s;
+  }
+  .main-page .profile-mid .indiv-name {
+    -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+  }
+  .main-page .profile-right .indiv-role,
+  .main-page .profile-right .fab {
+    -webkit-animation-delay: 1.2s;
+            animation-delay: 1.2s;
+  }
+  .main-page .profile-right .indiv-name {
+    -webkit-animation-delay: 0.9s;
+            animation-delay: 0.9s;
+  }
+  .main-page #memb-0 {
+    top: 100vh;
+    left: 10vw;
+  }
+  .main-page #memb-1 {
+    top: 100vh;
+    left: calc(10vw + 20vw + 10vw);
+  }
+  .main-page #memb-2 {
+    top: 100vh;
+    left: calc(10vw + 2*20vw + 2*10vw);
+  }
+  .main-page #memb-3 {
+    top: calc(100vh + 10vh + 45vh);
+    left: 10vw;
+  }
+  .main-page #memb-4 {
+    top: calc(100vh + 10vh + 45vh);
+    left: calc(10vw + 20vw + 10vw);
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+  }
+  .main-page #memb-5 {
+    top: calc(100vh + 10vh + 45vh);
+    left: calc(10vw + 2*20vw + 2*10vw);
+    -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+  }
+  .main-page #memb-6 {
+    top: calc(100vh + 2*10vh + 2*45vh);
+    left: 10vw;
+  }
+  .main-page #memb-7 {
+    top: calc(100vh + 2*10vh + 2*45vh);
+    left: calc(10vw + 20vw + 10vw);
+    -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+  }
+  .main-page #memb-8 {
+    top: calc(100vh + 2*10vh + 2*45vh);
+    left: calc(10vw + 2*20vw + 2*10vw);
+    -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+  }
+  .end-section {
+    height: 25vh;
+  }
+}
+
+@-webkit-keyframes name-anim {
   0% {
     margin-left: -20px;
     opacity: 0;
@@ -1585,7 +1812,7 @@ body {
   }
 }
 
-@keyframes in-left {
+@keyframes name-anim {
   0% {
     margin-left: -20px;
     opacity: 0;
@@ -1596,24 +1823,24 @@ body {
   }
 }
 
-@-webkit-keyframes in-right {
+@-webkit-keyframes role-anim {
   0% {
-    margin-right: -20px;
+    margin-left: 20px;
     opacity: 0;
   }
   100% {
-    margin-right: 0;
+    margin-left: 0px;
     opacity: 1;
   }
 }
 
-@keyframes in-right {
+@keyframes role-anim {
   0% {
-    margin-right: -20px;
+    margin-left: 20px;
     opacity: 0;
   }
   100% {
-    margin-right: 0;
+    margin-left: 0px;
     opacity: 1;
   }
 }
