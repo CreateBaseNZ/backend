@@ -334,6 +334,7 @@ BUTTONS
   border-width: 0.2vmax;
   border-radius: 1vmax;
   margin-right: calc(#{$height-mobile} * 0.3);
+  cursor: pointer;
   &.hide {
     height: 0;
     width: 0;
@@ -362,8 +363,10 @@ BUTTONS
   border-radius: 1vmax;
   background-color: $logo-3;
   overflow: hidden;
+  cursor: pointer;
   &.disable {
     background-color: $light-3;
+    cursor: default;
   }
 }
 

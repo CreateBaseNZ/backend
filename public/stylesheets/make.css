@@ -1407,6 +1407,7 @@ MOBILE CSS
   font-size: 2vmax;
   letter-spacing: 0.2vmax;
   color: white;
+  cursor: pointer;
 }
 
 .make-file-input {
@@ -1496,12 +1497,14 @@ BUILD TYPE
   opacity: 0.4;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .make-build-type-inputs label.select {
   height: 7.2vmax;
   font-weight: bold;
   opacity: 1;
+  cursor: default;
 }
 
 #make-quick-build-input {
@@ -1568,6 +1571,14 @@ BUILD TYPE
 
 .make-quick-build-options.select {
   opacity: 1;
+}
+
+.make-quick-build-options.select label {
+  cursor: pointer;
+}
+
+.make-quick-build-options.select label.select {
+  cursor: default;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -1655,6 +1666,7 @@ BUILD OPTION
   color: #c7c2d5;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .make-build-option-inputs label.select {
@@ -1662,6 +1674,7 @@ BUILD OPTION
   font-weight: bold;
   border-width: 0.4vmax;
   color: #6853d9;
+  cursor: default;
 }
 
 /*-----------------------------------------------------------------------------------------
@@ -1734,6 +1747,7 @@ ORDER DETAILS
   color: #c7c2d5;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .make-order-detail-inputs label.select {
@@ -1741,6 +1755,7 @@ ORDER DETAILS
   font-weight: bold;
   border-width: 0.4vmax;
   color: #6853d9;
+  cursor: default;
 }
 
 .make-quantity-container {
@@ -1996,6 +2011,7 @@ UNIVERSAL
 
 .make-page.disable .heading {
   cursor: default;
+  color: #c7c2d5;
 }
 
 .make-page .heading {
@@ -2016,7 +2032,6 @@ UNIVERSAL
   font-weight: bold;
   letter-spacing: 0.3vmax;
   color: #322d41;
-  cursor: default;
 }
 
 .make-page .button {

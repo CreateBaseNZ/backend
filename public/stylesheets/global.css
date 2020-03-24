@@ -1713,6 +1713,7 @@ BUTTONS
   border-width: 0.2vmax;
   border-radius: 1vmax;
   margin-right: calc(7vmax * 0.3);
+  cursor: pointer;
 }
 
 .button-5-back.hide {
@@ -1746,10 +1747,12 @@ BUTTONS
   border-radius: 1vmax;
   background-color: #4e4ed6;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .button-5-next.disable {
   background-color: #c7c2d5;
+  cursor: default;
 }
 
 .button-5-next-message {

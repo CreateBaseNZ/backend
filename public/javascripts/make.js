@@ -27,6 +27,13 @@ let make = {
       next: undefined
     }
   },
+  heading: {
+    upload: undefined,
+    buildType: undefined,
+    buildOptions: undefined,
+    orderDetails: undefined,
+    complete: undefined
+  },
   // FUNCTIONS
   initialise: undefined,
   upload: {
@@ -93,6 +100,19 @@ let make = {
     show: undefined
   },
   orderDetails: {
+    colour: {
+      selection: {
+        pla: ["any", "white", "black"],
+        abs: ["any", "white", "black"],
+        petg: ["any", "white", "black"]
+      },
+      select: undefined,
+      deselect: undefined
+    },
+    quantity: {
+      add: undefined,
+      subtract: undefined
+    },
     show: undefined
   },
   complete: {
@@ -106,6 +126,7 @@ FUNCTIONS
 =========================================================================================*/
 
 make.initialise = () => {
+  // Buttons
   make.button.upload.next = document.querySelector("#make-upload-next");
   make.button.buildType.quick.prototype = document.querySelector(
     "#make-prototype-build-input"
@@ -117,6 +138,16 @@ make.initialise = () => {
   make.button.buildOptions.next = document.querySelector(
     "#make-build-options-next"
   );
+  // Headings
+  make.heading.upload = document.querySelector("#make-upload-heading");
+  make.heading.buildType = document.querySelector("#make-build-type-heading");
+  make.heading.buildOptions = document.querySelector(
+    "#make-build-options-heading"
+  );
+  make.heading.orderDetails = document.querySelector(
+    "#make-order-details-heading"
+  );
+  make.heading.complete = document.querySelector("#make-complete-heading");
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -190,16 +221,20 @@ make.upload.validation.validate = file => {
 
 make.upload.validation.valid = () => {
   // Update next button css
+  document.querySelector("#make-build-type").classList.remove("disable");
   make.button.upload.next.classList.remove("disable");
   // Add event listener
   make.button.upload.next.addEventListener("click", make.buildType.show);
+  make.heading.buildType.addEventListener("click", make.buildType.show);
 };
 
 make.upload.validation.invalid = () => {
   // Update next button css
+  document.querySelector("#make-build-type").classList.add("disable");
   make.button.upload.next.classList.add("disable");
   // Remove event listener
   make.button.upload.next.removeEventListener("click", make.buildType.show);
+  make.heading.buildType.removeEventListener("click", make.buildType.show);
 };
 
 make.upload.show = () => make.changePage(0);
@@ -359,16 +394,23 @@ make.buildType.validation.validate = () => {
 
 make.buildType.validation.valid = () => {
   // Update next button css
+  document.querySelector("#make-build-options").classList.remove("disable");
   make.button.buildType.next.classList.remove("disable");
   // Add event listener
   make.button.buildType.next.addEventListener("click", make.buildType.next);
+  make.heading.buildOptions.addEventListener("click", make.buildOptions.show);
 };
 
 make.buildType.validation.invalid = () => {
   // Update next button css
+  document.querySelector("#make-build-options").classList.add("disable");
   make.button.buildType.next.classList.add("disable");
   // Remove event listener
   make.button.buildType.next.removeEventListener("click", make.buildType.next);
+  make.heading.buildOptions.removeEventListener(
+    "click",
+    make.buildOptions.show
+  );
 };
 
 make.buildType.reset = () => {
@@ -402,7 +444,6 @@ make.buildType.next = () => {
     if (build.prototype) {
     } else if (build.mechanical) {
     }
-    make.buildOptions.show();
     make.orderDetails.show();
   } else if (build.custom) {
     make.buildOptions.show();
@@ -543,19 +584,26 @@ make.buildOptions.validation.validate = () => {
 
 make.buildOptions.validation.valid = () => {
   // Update next button css
+  document.querySelector("#make-order-details").classList.remove("disable");
   make.button.buildOptions.next.classList.remove("disable");
   // Add Event Listener
   make.button.buildOptions.next.addEventListener(
     "click",
     make.orderDetails.show
   );
+  make.heading.orderDetails.addEventListener("click", make.orderDetails.show);
 };
 
 make.buildOptions.validation.invalid = () => {
   // Update next button css
+  document.querySelector("#make-order-details").classList.add("disable");
   make.button.buildOptions.next.classList.add("disable");
   // Remove Event Listener
   make.button.buildOptions.next.removeEventListener(
+    "click",
+    make.orderDetails.show
+  );
+  make.heading.orderDetails.removeEventListener(
     "click",
     make.orderDetails.show
   );
@@ -619,37 +667,35 @@ NAVIGATION
 
 make.changePage = nextPage => {
   // Set Page Names
-  const pageName = {
-    current: make.pages[make.currentPage],
-    next: make.pages[nextPage]
-  };
+  const nextPageName = make.pages[nextPage];
   // Validation
   if (make.currentPage === nextPage) {
     // If the same page is being opened
     return;
   }
   // Change Page
-  // Hide Current Page
-  let hide = {
-    current: undefined,
-    next: undefined
-  };
+  // Hide Current Page and Show Next Page
   if (make.currentPage < nextPage) {
-    hide = {
-      current: "hide-left",
-      next: "hide-right"
-    };
+    for (let i = make.currentPage; i < nextPage; i++) {
+      const pageName = make.pages[i];
+      document
+        .querySelector(`#make-${pageName}`)
+        .classList.remove("hide-right");
+      document.querySelector(`#make-${pageName}`).classList.add("hide-left");
+    }
+    document
+      .querySelector(`#make-${nextPageName}`)
+      .classList.remove("hide-right");
   } else {
-    hide = {
-      current: "hide-right",
-      next: "hide-left"
-    };
+    for (let i = nextPage + 1; i <= make.currentPage; i++) {
+      const pageName = make.pages[i];
+      document.querySelector(`#make-${pageName}`).classList.remove("hide-left");
+      document.querySelector(`#make-${pageName}`).classList.add("hide-right");
+    }
+    document
+      .querySelector(`#make-${nextPageName}`)
+      .classList.remove("hide-left");
   }
-  document
-    .querySelector(`#make-${pageName.current}`)
-    .classList.add(hide.current);
-  // Show Next Page
-  document.querySelector(`#make-${pageName.next}`).classList.remove(hide.next);
   // Update Current Page
   make.currentPage = nextPage;
 };
