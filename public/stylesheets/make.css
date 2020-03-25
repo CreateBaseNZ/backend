@@ -1805,8 +1805,6 @@ ORDER DETAILS
   border-color: #8258dc;
   margin: 0 2vmax;
   background-color: white;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
 }
 
 .make-quantity-container .subtract.disable,
@@ -1827,12 +1825,12 @@ ORDER DETAILS
 
 .make-quantity-container .subtract:active,
 .make-quantity-container .add:active {
-  height: 5.2vmax;
-  width: 5.2vmax;
+  height: 5vmax;
+  width: 5vmax;
   border-width: 0.3vmax;
-  border-radius: 2.6vmax;
+  border-radius: 2.5vmax;
   border-color: #4e4ed6;
-  margin: 0 1.9vmax;
+  margin: 0 2vmax;
 }
 
 .make-quantity-container .subtract {

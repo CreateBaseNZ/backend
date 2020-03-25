@@ -6,6 +6,9 @@ let make = {
   // VARIABLES
   currentPage: 0,
   pages: ["upload", "build-type", "build-options", "order-details", "complete"],
+  materials: {
+    fdm: ["pla", "abs", "petg"]
+  },
   button: {
     upload: {
       next: undefined
@@ -107,11 +110,20 @@ let make = {
         petg: ["any", "white", "black"]
       },
       select: undefined,
-      deselect: undefined
+      deselect: undefined,
+      reset: undefined,
+      show: undefined
     },
     quantity: {
+      value: undefined,
       add: undefined,
-      subtract: undefined
+      subtract: undefined,
+      change: undefined
+    },
+    validation: {
+      validate: undefined,
+      valid: undefined,
+      invalid: undefined
     },
     show: undefined
   },
@@ -137,6 +149,9 @@ make.initialise = () => {
   make.button.buildType.next = document.querySelector("#make-build-type-next");
   make.button.buildOptions.next = document.querySelector(
     "#make-build-options-next"
+  );
+  make.button.orderDetails.next = document.querySelector(
+    "#make-order-details-next"
   );
   // Headings
   make.heading.upload = document.querySelector("#make-upload-heading");
@@ -310,6 +325,7 @@ make.buildType.quick.prototype.deselect = () => {
 make.buildType.quick.prototype.set = () => {
   // Pre-Set Inputs
   document.querySelector("#make-fdm-pla-material").checked = true;
+  make.orderDetails.colour.show("fdm", "pla");
   document.querySelector("#make-draft-quality").checked = true;
   document.querySelector("#make-normal-strength").checked = true;
   // Edit CSS
@@ -340,6 +356,7 @@ make.buildType.quick.mechanical.deselect = () => {
 make.buildType.quick.mechanical.set = () => {
   // Pre-Set Inputs
   document.querySelector("#make-fdm-petg-material").checked = true;
+  make.orderDetails.colour.show("fdm", "petg");
   document.querySelector("#make-normal-quality").checked = true;
   document.querySelector("#make-strong-strength").checked = true;
   // Edit CSS
@@ -477,6 +494,8 @@ make.buildOptions.material.select = (process, material) => {
   // Validate
   make.buildType.validation.validate();
   make.buildOptions.validation.validate();
+  // Show Colours
+  make.orderDetails.colour.show(process, material);
 };
 
 make.buildOptions.quality.select = quality => {
@@ -652,6 +671,161 @@ make.buildOptions.show = () => make.changePage(2);
 /*-----------------------------------------------------------------------------------------
 ORDER DETAILS
 -----------------------------------------------------------------------------------------*/
+
+make.orderDetails.colour.select = (process, material, colour) => {
+  // Reset all input selections
+  make.orderDetails.colour.reset();
+  // Update CSS
+  document
+    .querySelector(`#make-${material}-${colour}-colour-input`)
+    .classList.add("select");
+  // Set input
+  document.querySelector(`#make-${material}-${colour}-colour`).checked = true;
+  make.orderDetails.validation.validate();
+};
+
+make.orderDetails.colour.deselect = (process, material, colour) => {
+  // Update CSS
+  document
+    .querySelector(`#make-${material}-${colour}-colour-input`)
+    .classList.remove("select");
+};
+
+make.orderDetails.colour.reset = () => {
+  // FDM Materials
+  for (let i = 0; i < make.materials.fdm.length; i++) {
+    const material = make.materials.fdm[i];
+    for (
+      let i = 0;
+      i < make.orderDetails.colour.selection[material].length;
+      i++
+    ) {
+      const colour = make.orderDetails.colour.selection[material][i];
+      make.orderDetails.colour.deselect("fdm", material, colour);
+      document.querySelector(
+        `#make-${material}-${colour}-colour`
+      ).checked = false;
+    }
+  }
+};
+
+make.orderDetails.colour.show = (process, material) => {
+  // Reset all input selections
+  make.orderDetails.colour.reset();
+  // Hide all colours
+  // FDM Materials
+  for (let i = 0; i < make.materials.fdm.length; i++) {
+    const material = make.materials.fdm[i];
+    document
+      .querySelector(`#make-${material}-colours`)
+      .classList.add("hide-element");
+  }
+  // Show colours for selected material
+  document
+    .querySelector(`#make-${material}-colours`)
+    .classList.remove("hide-element");
+};
+
+make.orderDetails.quantity.add = () => {
+  let value = Number(document.querySelector("#make-quantity").value);
+  document.querySelector("#make-quantity").value = value + 1;
+  make.orderDetails.quantity.value = value + 1;
+  document.querySelector("#make-quantity-subtract").classList.remove("disable");
+  make.orderDetails.validation.validate();
+};
+
+make.orderDetails.quantity.subtract = () => {
+  let value = Number(document.querySelector("#make-quantity").value);
+  if (value === 0) {
+    return;
+  }
+  document.querySelector("#make-quantity").value = value - 1;
+  make.orderDetails.quantity.value = value - 1;
+  if (value - 1 === 0) {
+    document.querySelector("#make-quantity-subtract").classList.add("disable");
+  }
+  make.orderDetails.validation.validate();
+};
+
+make.orderDetails.quantity.change = quantity => {
+  if (quantity < 0) {
+    document.querySelector("#make-quantity").value =
+      make.orderDetails.quantity.value;
+    return;
+  }
+  make.orderDetails.quantity.value = quantity;
+  if (quantity === 0) {
+    document.querySelector("#make-quantity-subtract").classList.add("disable");
+  }
+  make.orderDetails.validation.validate();
+};
+
+make.orderDetails.validation.validate = () => {
+  // Initialise Variables
+  let data = {
+    valid: true,
+    message: ""
+  };
+  // Collect Inputs
+  let colourBool = false;
+  // Colour - FDM
+  for (let i = 0; i < make.materials.fdm.length; i++) {
+    const material = make.materials.fdm[i];
+    for (
+      let i = 0;
+      i < make.orderDetails.colour.selection[material].length;
+      i++
+    ) {
+      const colour = make.orderDetails.colour.selection[material][i];
+      if (
+        document.querySelector(`#make-${material}-${colour}-colour`).checked
+      ) {
+        colourBool = true;
+      }
+    }
+  }
+  // Quantity
+  let quantity = false;
+  if (document.querySelector("#make-quantity").value > 0) {
+    quantity = true;
+  }
+  // Validation Processes
+  if (!colourBool) {
+    data.valid = false;
+    data.message = "choose a colour";
+    make.orderDetails.validation.invalid();
+    return data;
+  } else if (!quantity) {
+    data.valid = false;
+    data.message = "requires quantity";
+    make.orderDetails.validation.invalid();
+    return data;
+  }
+  // Return
+  make.orderDetails.validation.valid();
+  return data;
+};
+
+make.orderDetails.validation.valid = () => {
+  // Update next button css
+  document.querySelector("#make-complete").classList.remove("disable");
+  make.button.orderDetails.next.classList.remove("disable");
+  // Add Event Listener
+  make.button.orderDetails.next.addEventListener("click", make.complete.show);
+  make.heading.complete.addEventListener("click", make.complete.show);
+};
+
+make.orderDetails.validation.invalid = () => {
+  // Update next button css
+  document.querySelector("#make-complete").classList.add("disable");
+  make.button.orderDetails.next.classList.add("disable");
+  // Add Event Listener
+  make.button.orderDetails.next.removeEventListener(
+    "click",
+    make.complete.show
+  );
+  make.heading.complete.removeEventListener("click", make.complete.show);
+};
 
 make.orderDetails.show = () => make.changePage(3);
 

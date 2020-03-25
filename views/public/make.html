@@ -234,15 +234,60 @@
           id="make-solid-strength"
           onchange="make.buildOptions.strength.select('solid');"
         />
-        <input type="radio" name="colour" id="make-pla-any-colour" />
-        <input type="radio" name="colour" id="make-pla-white-colour" />
-        <input type="radio" name="colour" id="make-pla-black-colour" />
-        <input type="radio" name="colour" id="make-abs-any-colour" />
-        <input type="radio" name="colour" id="make-abs-white-colour" />
-        <input type="radio" name="colour" id="make-abs-black-colour" />
-        <input type="radio" name="colour" id="make-petg-any-colour" />
-        <input type="radio" name="colour" id="make-petg-white-colour" />
-        <input type="radio" name="colour" id="make-petg-black-colour" />
+        <input
+          type="radio"
+          name="colour"
+          id="make-pla-any-colour"
+          onchange="make.orderDetails.colour.select('fdm','pla','any');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-pla-white-colour"
+          onchange="make.orderDetails.colour.select('fdm','pla','white');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-pla-black-colour"
+          onchange="make.orderDetails.colour.select('fdm','pla','black');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-abs-any-colour"
+          onchange="make.orderDetails.colour.select('fdm','abs','any');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-abs-white-colour"
+          onchange="make.orderDetails.colour.select('fdm','abs','white');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-abs-black-colour"
+          onchange="make.orderDetails.colour.select('fdm','abs','black');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-petg-any-colour"
+          onchange="make.orderDetails.colour.select('fdm','petg','any');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-petg-white-colour"
+          onchange="make.orderDetails.colour.select('fdm','petg','white');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-petg-black-colour"
+          onchange="make.orderDetails.colour.select('fdm','petg','black');"
+        />
       </form>
       <!--UPLOAD FILE-->
 
@@ -405,40 +450,73 @@
         </h1>
         <div class="make-order-detail">
           <h2 class="rmv-h-css">Colour</h2>
-          <div class="make-order-detail-inputs" id="make-pla-colours">
-            <label for="make-pla-any-colour">Any</label>
-            <label for="make-pla-white-colour">White</label>
-            <label for="make-pla-black-colour">Black</label>
+          <div
+            class="make-order-detail-inputs hide-element"
+            id="make-pla-colours"
+          >
+            <label for="make-pla-any-colour" id="make-pla-any-colour-input"
+              >Any</label
+            >
+            <label for="make-pla-white-colour" id="make-pla-white-colour-input"
+              >White</label
+            >
+            <label for="make-pla-black-colour" id="make-pla-black-colour-input"
+              >Black</label
+            >
           </div>
           <div
             class="make-order-detail-inputs hide-element"
             id="make-abs-colours"
           >
-            <label for="make-abs-any-colour">Any</label>
-            <label for="make-abs-white-colour">White</label>
-            <label for="make-abs-black-colour">Black</label>
+            <label for="make-abs-any-colour" id="make-abs-any-colour-input"
+              >Any</label
+            >
+            <label for="make-abs-white-colour" id="make-abs-white-colour-input"
+              >White</label
+            >
+            <label for="make-abs-black-colour" id="make-abs-black-colour-input"
+              >Black</label
+            >
           </div>
           <div
             class="make-order-detail-inputs hide-element"
             id="make-petg-colours"
           >
-            <label for="make-petg-any-colour">Any</label>
-            <label for="make-petg-white-colour">White</label>
-            <label for="make-petg-black-colour">Black</label>
+            <label for="make-petg-any-colour" id="make-petg-any-colour-input"
+              >Any</label
+            >
+            <label
+              for="make-petg-white-colour"
+              id="make-petg-white-colour-input"
+              >White</label
+            >
+            <label
+              for="make-petg-black-colour"
+              id="make-petg-black-colour-input"
+              >Black</label
+            >
           </div>
         </div>
         <div class="make-order-detail">
           <h2 class="rmv-h-css">Quantity</h2>
           <div class="make-order-detail-inputs">
             <div class="make-quantity-container">
-              <div class="subtract disable"></div>
+              <button
+                class="rmv-btn-css subtract disable"
+                id="make-quantity-subtract"
+                onclick="make.orderDetails.quantity.subtract();"
+              ></button>
               <input
                 type="number"
                 name="quantity"
                 id="make-quantity"
                 value="0"
+                onchange="make.orderDetails.quantity.change(Number(this.value));"
               />
-              <div class="add"></div>
+              <button
+                class="rmv-btn-css add"
+                onclick="make.orderDetails.quantity.add();"
+              ></button>
             </div>
           </div>
         </div>
@@ -450,7 +528,10 @@
             >
               <div class="button-5-back-icon"></div>
             </button>
-            <button class="rmv-btn-css button-5-next disable">
+            <button
+              class="rmv-btn-css button-5-next disable"
+              id="make-order-details-next"
+            >
               <div class="button-5-next-message">Continue</div>
               <div class="button-5-next-icon">
                 <div class="right"></div>

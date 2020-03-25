@@ -310,7 +310,6 @@ ORDER DETAILS
     border-color: $logo-1;
     margin: 0 2vmax;
     background-color: $light-1;
-    transition: all 0.2s ease;
     &.disable {
       border-color: $light-3;
       &:active {
@@ -324,12 +323,12 @@ ORDER DETAILS
       }
     }
     &:active {
-      height: 5.2vmax;
-      width: 5.2vmax;
+      height: 5vmax;
+      width: 5vmax;
       border-width: 0.3vmax;
-      border-radius: 2.6vmax;
+      border-radius: 2.5vmax;
       border-color: $logo-3;
-      margin: 0 1.9vmax;
+      margin: 0 2vmax;
     }
   }
   .subtract {
