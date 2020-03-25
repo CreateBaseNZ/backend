@@ -927,7 +927,7 @@ button {
 }
 
 .nav-container .nav-side-menus .nav-side-signout {
-  margin-top: 25vh;
+  margin-top: 10vh;
   color: #2d283c;
   font-family: "Poppins", sans-serif;
   font-weight: 100;
@@ -974,6 +974,14 @@ button {
 
 .nav-container .nav-side-menus .nav-side-socials .fab:hover {
   color: #4bf0ea;
+}
+
+.nav-container .nav-side-menus .nav-profile-pic {
+  background: #2d283c;
+  height: 20vh;
+  width: 20vh;
+  border-radius: 50%;
+  margin: 10vh 0;
 }
 
 .nav-container .nav-darken-overlay {
@@ -1030,6 +1038,9 @@ button {
   .nav-container .nav-side-menus .nav-left-menu-active {
     width: 20vw;
   }
+  .nav-container .nav-side-menus .nav-left-menu-active .nav-left-menu {
+    margin-left: 0;
+  }
   .nav-container .nav-side-menus .nav-right-menu-in .nav-right-menu {
     width: calc(20vw + 15px);
     margin-right: -2vw;
@@ -1071,6 +1082,10 @@ button {
     margin-left: 0;
     margin-right: 0;
     padding: 5px;
+  }
+  .nav-container .nav-side-menus .nav-profile-pic {
+    margin-top: 5vh;
+    margin-bottom: 0vh;
   }
   .nav-container .nav-darken-overlay {
     display: block;
@@ -2212,7 +2227,7 @@ body {
   }
   .landing-carousel .landing-slide .landing-slide-text .landing-slide-title {
     display: block;
-    padding-top: 35vh;
+    padding-top: 17vmax;
     margin-top: -1vh;
     font-family: "Poppins", sans-serif;
     font-weight: 800;
@@ -2226,7 +2241,7 @@ body {
   }
   .landing-carousel .landing-slide .landing-slide-text .landing-slide-text-sep {
     display: block;
-    margin: 6vh 0;
+    margin: 4vmax 0;
     width: 0;
     height: 1px;
     opacity: 0;

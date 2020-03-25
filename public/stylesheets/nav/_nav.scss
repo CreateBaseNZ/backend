@@ -251,7 +251,7 @@ $menu-width: 100vw;
     }
 
     .nav-side-signout {
-      margin-top: 25vh;
+      margin-top: 10vh;
       color: $dark-3;
       font-family: $poppins;
       font-weight: 100;
@@ -286,6 +286,14 @@ $menu-width: 100vw;
           color: $highlight;
         }
       }
+    }
+
+    .nav-profile-pic {
+      background: $dark-3;
+      height: 20vh;
+      width: 20vh;
+      border-radius: 50%;
+      margin: 10vh 0;
     }
   }
   
@@ -361,6 +369,9 @@ $menu-width: 100vw;
     }
     .nav-left-menu-active {
       width: $menu-width;
+      .nav-left-menu {
+        margin-left: 0;
+      }
     }
   
     .nav-right-menu-in {
@@ -411,6 +422,11 @@ $menu-width: 100vw;
         margin-right: 0;
         padding: 5px;
       }
+    }
+
+    .nav-profile-pic {
+      margin-top: 5vh;
+      margin-bottom: 0vh;
     }
   }
   
