@@ -12,7 +12,4 @@ const signupInit = () => {
             confirmInput.value = "";
         }
     });
-
-
-
 }

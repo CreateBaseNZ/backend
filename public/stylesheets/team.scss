@@ -1,457 +1,289 @@
 @import "global/all";  
 
-$fade-height: 100px;
-
 body {
   max-width: 100%;
   overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
 
-.team-bg {
-  position: absolute;
-  top: 15vh;
-  left: 30vw;
-  height: 60vh;
-  width: 60vw;
-  object-fit: cover;
-  object-position: center;
-}
+.landing-section {
+  display: grid;
+  grid-template-areas: 
+  'photo'
+  'desc'
+  'title';
+  grid-template-rows: 45vh 30vh 25vh;
 
-.team-title {
-  position: absolute;
-  bottom: 4vh;
-  left: 8vw;
-  font-family: $montserrat;
-  font-size: calc(18px + 4vmax);
-  color: $dark-2;
-  span {
-    display: inline-block;
-    margin-right: 3vmax;
+  .team-desc {
+    grid-area: desc;
+    margin-top: 6vh;
+    align-self: flex-start;
+    justify-self: center;
+    font-family: $montserrat;
+    font-size: calc(10px + 0.2vmax);
+    color: $dark-3;
+    text-align: center;
+  
+    #team-desc-top {
+      font-weight: 800;
+      animation: desc-mob 0.4s cubic-bezier(.28,.6,.3,.98) 0.5s forwards;
+      opacity: 0;
+    }
+  
+    #team-desc-mid {
+      margin-top: 2vh;
+      color: $light-3;
+      animation: desc-mid-mob 0.3s cubic-bezier(.28,.6,.3,.98) 1.8s forwards;
+      opacity: 0;
+    }
+    
+    #team-desc-bot-1 {
+      width: 75vw;
+      animation: desc-mob 0.4s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
+      opacity: 0;
+    }
+    #team-desc-bot-2 {
+      width: 75vw;
+      animation: desc-mob 0.4s cubic-bezier(.28,.6,.3,.98) 1.4s forwards;
+      opacity: 0;
+    }
   }
-}
 
-.team-desc {
-  position: absolute;
-  bottom: 30vh;
-  left: 8vw; 
-  width: 15vw;
-  font-family: $montserrat;
-  font-size: calc(10px + 0.2vmax);
-  color: $dark-3;
-
-  #team-desc-top {
-    font-weight: 800;
-    animation: desc-top 0.6s cubic-bezier(.28,.6,.3,.98) 0.5s forwards;
-    opacity: 0;
-  }
-
-  #team-desc-mid {
-    opacity: 0;
-    color: $light-3;
-    animation: desc-mid 0.4s cubic-bezier(.28,.6,.3,.98) 1.8s forwards;
+  .team-photo {
+    grid-area: photo;
+    height: 30vh;
+    width: 85vw;
+    align-self: flex-end;
+    justify-self: center;
+    object-fit: cover;
+    object-position: center;
   }
   
-  #team-desc-bot-1 {
-    opacity: 0;
-    width: 15vw;
-    animation: desc-bot 0.6s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
-  }
-  #team-desc-bot-2 {
-    opacity: 0;
-    width: 15vw;
-    animation: desc-bot 0.6s cubic-bezier(.28,.6,.3,.98) 1.4s forwards;
+  .team-title {
+    grid-area: title;
+    align-self: flex-end;
+    margin-left: 7vw;
+    margin-bottom: 4vh;
+    font-family: $montserrat;
+    font-size: calc(18px + 4vmax);
+    color: $dark-2;
+    span {
+      display: inline-block;
+      margin-right: 3vmax;
+    }
   }
 }
 
-.main-page {
-  $top-margin: 100vh;
-  $left-margin: 10vw;
-  $height-margin: 10vh;
-  $width-margin: 10vw;
-  $photo-height: 45vh;
-  $photo-width: 20vw;
-  $offset: 4vh;
-
-  margin-top: $top-margin;
+.profile-section {
+  position: relative;
   width: 100vw;
-  height: calc(3*#{$photo-height} + 2*#{$offset} + 2*#{$height-margin});
+  display: grid;
+  grid-template-columns: 35vw 35vw;
+  justify-content: space-evenly;
 
   .team-profile {
-    position: absolute;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 45vh;
 
     .indiv-photo {
-      height: $photo-height;
-      width: $photo-width;
+      height: 35vh;
+      width: 100%;
       object-fit: cover;
       transition: 0.3s ease-out;
-    }
-
-    .indiv-role,
-    .indiv-name,
-    .indiv-study {
-      position: absolute;
-      opacity: 0;
-      white-space: nowrap;
+      z-index: 100;
     }
 
     .indiv-name {
-      top: calc(100% + 0.2vh);
-      left: 1vw;
+      align-self: center;
+      margin-top: 10px;
       font-family: $montserrat;
-      font-size: calc(12px + 2vmin);
+      font-size: calc(12px + 1.8vmin);
       font-weight: 100;
       color: $dark-1;
+      animation: name-anim-mob 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+      white-space: nowrap;
       display: none;
-      animation: name-anim 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
     }
 
     .indiv-role {
-      bottom: 0.1vmin;
-      left: calc(-10px - 0.4vw);
+      align-self: center;
       font-family: $poppins;
       font-size: calc(8px + 0.2vmin);
       font-weight: 800;
       letter-spacing: 4px;
       color: $dark-2;
-      transform-origin: top left;
-      transform: rotate(-90deg);
+      white-space: nowrap;
+      animation: role-anim-mob 0.3s cubic-bezier(.28,.6,.3,.98) 0.4s forwards;
       display: none;
       opacity: 0;
-      animation: role-anim 0.3s cubic-bezier(.28,.6,.3,.98) forwards;
     }
 
     .fab {
       position: absolute;
       top: 0;
-      left: calc(-20px - 0.4vw);
+      right: 0;
       padding: 10px;
-      font-size: calc(12px + 0.4vmin);
+      font-size: calc(8px + 0.4vmin);
       color: $dark-2;
+      animation: fab-anim-mob 0.4s cubic-bezier(.28,.6,.3,.98) 0.6s forwards;
       display: none;
       opacity: 0;
-      animation: role-anim 0.3s cubic-bezier(.28,.6,.3,.98) forwards;
 
       &:hover {
         color: $highlight;
       }
     }
   }
-
-  .profile-left {
-    .indiv-role,
-    .fab {
-      animation-delay: 0.3s;
-    }
-    .indiv-name {
-      animation-delay: 0s;
-    }
-  }
-
-  .profile-mid {
-    .indiv-role,
-    .fab {
-      animation-delay: 0.7s;
-    }
-    .indiv-name {
-      animation-delay: 0.4s;
-    }
-  }
-
-  .profile-right {
-    .indiv-role,
-    .fab {
-      animation-delay: 1.2s;
-    }
-    .indiv-name {
-      animation-delay: 0.9s;
-    }
-  }
-
-  #memb-0 {
-    top: $top-margin;
-    left: $left-margin;
-  }
-  #memb-1 {
-    top: $top-margin;
-    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-  }
-  #memb-2 {
-    top: $top-margin;
-    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-  }
-  #memb-3 {
-    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
-    left: $left-margin;
-  }
-  #memb-4 {
-    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
-    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-    animation-delay: 0.2s;
-  }
-  #memb-5 {
-    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
-    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-    animation-delay: 0.4s;
-  }
-  #memb-6 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
-    left: $left-margin;
-  }
-  #memb-7 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
-    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-    animation-delay: 0.2s;
-  }
-  #memb-8 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
-    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-    animation-delay: 0.4s;
-  }
 }
 
 .end-section {
-  height: 25vh;
+  height: 10vh;
+}
+
+@keyframes desc-mob {
+  0% {
+    opacity: 0;
+    margin-top: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 2vh;
+  }
+}
+
+@keyframes desc-mid-mob {
+  0% {
+    opacity: 0;
+    margin-left: -20px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0px;
+  }
+}
+
+@keyframes name-anim-mob {
+  0% { 
+    margin-top: -10px;
+    opacity: 0;
+  }
+  100% { 
+    margin-top: 0; 
+    opacity: 1;
+  }
+}
+
+@keyframes role-anim-mob {
+  0% { 
+    margin-top: -10px;
+    opacity: 0;
+  }
+  100% { 
+    margin-top: 0; 
+    opacity: 1;
+  }
+}
+
+@keyframes fab-anim-mob {
+  0% { 
+    opacity: 0;
+  }
+  100% { 
+    opacity: 1;
+  }
 }
 
 @media only screen and (min-width: 850px) {
 
-$fade-height: 100px;
+.landing-section {
+  grid-template-areas: 
+  'desc photo'
+  'title title';
+  grid-template-rows: 75vh 25vh;
 
-body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
+  grid-template-columns: 30vw 70vw;
 
-.team-bg {
-  position: absolute;
-  top: 15vh;
-  left: 30vw;
-  height: 60vh;
-  width: 60vw;
-  object-fit: cover;
-  object-position: center;
-}
+  .team-desc {
+    margin-top: auto;
+    align-self: flex-end;
+    justify-self: flex-start;
+    text-align: left;
 
-.team-title {
-  position: absolute;
-  bottom: 4vh;
-  left: 8vw;
-  font-family: $montserrat;
-  font-size: calc(18px + 4vmax);
-  color: $dark-2;
-  span {
-    display: inline-block;
-    margin-right: 3vmax;
-  }
-}
-
-.team-desc {
-  position: absolute;
-  bottom: 30vh;
-  left: 8vw; 
-  width: 15vw;
-  font-family: $montserrat;
-  font-size: calc(10px + 0.2vmax);
-  color: $dark-3;
-
-  #team-desc-top {
-    font-weight: 800;
-    animation: desc-top 0.6s cubic-bezier(.28,.6,.3,.98) 0.5s forwards;
-    opacity: 0;
-  }
-
-  #team-desc-mid {
-    opacity: 0;
-    color: $light-3;
-    animation: desc-mid 0.4s cubic-bezier(.28,.6,.3,.98) 1.8s forwards;
-  }
+    margin-bottom: 5vh;
+    margin-left: 7vw;
   
-  #team-desc-bot-1 {
-    opacity: 0;
-    width: 15vw;
-    animation: desc-bot 0.6s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
+    #team-desc-top {
+      animation: desc-top-desktop 0.6s cubic-bezier(.28,.6,.3,.98) 0.5s forwards;
+    }
+  
+    #team-desc-mid {
+      animation: desc-mid-desktop 0.4s cubic-bezier(.28,.6,.3,.98) 1.8s forwards;
+    }
+    
+    #team-desc-bot-1 {
+      width: 15vw;
+      animation: desc-bot-desktop 0.6s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
+
+      margin-top: 2vh;
+    }
+    #team-desc-bot-2 {
+      width: 15vw;
+      animation: desc-bot-desktop 0.6s cubic-bezier(.28,.6,.3,.98) 1.4s forwards;
+
+      margin-top: 2vh;
+    }
   }
-  #team-desc-bot-2 {
-    opacity: 0;
-    width: 15vw;
-    animation: desc-bot 0.6s cubic-bezier(.28,.6,.3,.98) 1.4s forwards;
+
+  .team-photo {
+    height: 60vh;
+    width: 60vw;
+    justify-self: flex-start;
   }
 }
 
-.main-page {
-  $top-margin: 100vh;
-  $left-margin: 10vw;
-  $height-margin: 10vh;
-  $width-margin: 10vw;
-  $photo-height: 45vh;
-  $photo-width: 20vw;
-  $offset: 4vh;
-
-  margin-top: $top-margin;
-  width: 100vw;
-  height: calc(3*#{$photo-height} + 2*#{$offset} + 2*#{$height-margin});
+.profile-section {
+  grid-template-columns: 20vw 20vw 20vw;
 
   .team-profile {
-    position: absolute;
+    height: 55vh;
 
     .indiv-photo {
-      height: $photo-height;
-      width: $photo-width;
-      object-fit: cover;
-      transition: 0.3s ease-out;
-    }
-
-    .indiv-role,
-    .indiv-name,
-    .indiv-study {
-      position: absolute;
-      opacity: 0;
-      white-space: nowrap;
+      height: 45vh;
     }
 
     .indiv-name {
-      top: calc(100% + 0.2vh);
-      left: 1vw;
-      font-family: $montserrat;
-      font-size: calc(12px + 2vmin);
-      font-weight: 100;
-      color: $dark-1;
-      display: none;
-      animation: name-anim 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+      align-self: flex-start;
+      animation: name-anim-desktop 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
     }
 
     .indiv-role {
-      bottom: 0.1vmin;
-      left: calc(-10px - 0.4vw);
-      font-family: $poppins;
-      font-size: calc(8px + 0.2vmin);
-      font-weight: 800;
-      letter-spacing: 4px;
-      color: $dark-2;
-      transform-origin: top left;
-      transform: rotate(-90deg);
-      display: none;
-      opacity: 0;
-      animation: role-anim 0.3s cubic-bezier(.28,.6,.3,.98) forwards;
-    }
+      animation: role-anim-desktop 0.3s cubic-bezier(.28,.6,.3,.98) 0.3s forwards;
 
-    .fab {
       position: absolute;
-      top: 0;
-      left: calc(-20px - 0.4vw);
-      padding: 10px;
-      font-size: calc(12px + 0.4vmin);
-      color: $dark-2;
-      display: none;
-      opacity: 0;
-      animation: role-anim 0.3s cubic-bezier(.28,.6,.3,.98) forwards;
-
-      &:hover {
-        color: $highlight;
-      }
+      left: 0;
+      bottom: 10vh;
+      transform: rotate(-90deg);
+      transform-origin: bottom left;
     }
-  }
 
-  .profile-left {
-    .indiv-role,
     .fab {
-      animation-delay: 0.3s;
-    }
-    .indiv-name {
-      animation-delay: 0s;
-    }
-  }
+      right: auto;
+      animation: fab-anim-desktop 0.3s cubic-bezier(.28,.6,.3,.98) 0.6s forwards;
 
-  .profile-mid {
-    .indiv-role,
-    .fab {
-      animation-delay: 0.7s;
+      left: -23px;
     }
-    .indiv-name {
-      animation-delay: 0.4s;
-    }
-  }
-
-  .profile-right {
-    .indiv-role,
-    .fab {
-      animation-delay: 1.2s;
-    }
-    .indiv-name {
-      animation-delay: 0.9s;
-    }
-  }
-
-  #memb-0 {
-    top: $top-margin;
-    left: $left-margin;
-  }
-  #memb-1 {
-    top: $top-margin;
-    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-  }
-  #memb-2 {
-    top: $top-margin;
-    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-  }
-  #memb-3 {
-    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
-    left: $left-margin;
-  }
-  #memb-4 {
-    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
-    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-    animation-delay: 0.2s;
-  }
-  #memb-5 {
-    top: calc(#{$top-margin} + #{$height-margin} + #{$photo-height});
-    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-    animation-delay: 0.4s;
-  }
-  #memb-6 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
-    left: $left-margin;
-  }
-  #memb-7 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
-    left: calc(#{$left-margin} + #{$photo-width} + #{$width-margin});
-    animation-delay: 0.2s;
-  }
-  #memb-8 {
-    top: calc(#{$top-margin} + 2*#{$height-margin} + 2*#{$photo-height});
-    left: calc(#{$left-margin} + 2*#{$photo-width} + 2*#{$width-margin});
-    animation-delay: 0.4s;
   }
 }
 
 .end-section {
-  height: 25vh;
+  height: 20vh;
 }
 
-}
-
-@keyframes name-anim {
-  0% { 
-    margin-left: -20px;
-    opacity: 0;
-  }
-  100% { 
-    margin-left: 0; 
-    opacity: 1;
-  }
-}
-@keyframes role-anim {
-  0% { 
-    margin-left: 20px;
-    opacity: 0;
-  }
-  100% { 
-    margin-left: 0px; 
-    opacity: 1;
-  }
-}
-
-@keyframes desc-top {
+@keyframes desc-top-desktop {
   0% {
     opacity: 0;
     margin-bottom: -10px;
@@ -462,18 +294,18 @@ body {
   }
 }
 
-@keyframes desc-mid {
+@keyframes desc-mid-desktop {
   0% {
     opacity: 0;
-    margin-left: -30px;
+    margin-left: 0px;
   }
   100% {
     opacity: 1;
-    margin-left: 0vw;
+    margin-left: 20px;
   }
 }
 
-@keyframes desc-bot {
+@keyframes desc-bot-desktop {
   0% {
     opacity: 0;
     margin-left: -10px;
@@ -483,3 +315,39 @@ body {
     margin-left: 0px;
   }
 }
+
+@keyframes name-anim-desktop {
+  0% { 
+    margin-left: 0px;
+    opacity: 0;
+  }
+  100% { 
+    margin-left: 0.5vw; 
+    opacity: 1;
+  }
+}
+
+@keyframes role-anim-desktop {
+  0% { 
+    margin-left: 20px;
+    opacity: 0;
+  }
+  100% { 
+    margin-left: 0px; 
+    opacity: 1;
+  }
+}
+
+@keyframes fab-anim-desktop {
+  0% { 
+    top: -10px;
+    opacity: 0;
+  }
+  100% { 
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+}
+

@@ -1,9 +1,10 @@
+var mq = window.matchMedia("(min-width: 850px)")
+
 const navInit = async() => {
 
   let status;
   try {
     status = (await axios.get("/login-status"))["data"]["status"]
-    // console.log(status)
   } catch (error) {
     console.log(error)
     return
@@ -134,7 +135,6 @@ const navInit = async() => {
     }
   }
 
-  var mq = window.matchMedia("(min-width: 850px)")
   mainFunction(mq)
   mq.addListener(mainFunction)
 }
