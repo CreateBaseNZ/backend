@@ -41,6 +41,7 @@ $menu-width: 100vw;
     }
   
     .nav-user-icon {
+      display: none;
       cursor: pointer;
       position: relative;
       height: 20px;
@@ -313,7 +314,7 @@ $menu-width: 100vw;
     }
 
     .nav-user-button {
-      display: block;
+      display: none;
       margin-bottom: 15px;
 
       .nav-user-login {

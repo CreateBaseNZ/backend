@@ -657,6 +657,7 @@ button {
 }
 
 .nav-container .nav-top-bar .nav-user-icon {
+  display: none;
   cursor: pointer;
   position: relative;
   height: 20px;
@@ -989,7 +990,7 @@ button {
     margin-bottom: 10px;
   }
   .nav-container .nav-top-bar .nav-user-button {
-    display: block;
+    display: none;
     margin-bottom: 15px;
   }
   .nav-container .nav-top-bar .nav-user-button .nav-user-login {
