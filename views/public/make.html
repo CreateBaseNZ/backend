@@ -154,138 +154,160 @@
           type="file"
           name="file"
           id="make-file"
-          onchange="make.upload.change(this.files[0]);"
+          onchange="make.upload.change();"
         />
         <input
           type="radio"
-          name="buildType"
+          name="build"
           id="make-quick-build"
-          onchange="make.buildType.change('quick', this.checked); make.buildType.validation.validate();"
+          value="quick"
+          onchange="make.buildType.change(this.value, this.checked); make.buildType.validation.validate();"
         />
         <input
           type="radio"
-          name="buildType"
+          name="build"
           id="make-custom-build"
-          onchange="make.buildType.change('custom', this.checked); make.buildType.validation.validate();"
+          value="custom"
+          onchange="make.buildType.change(this.value, this.checked); make.buildType.validation.validate();"
         />
         <input
           type="radio"
-          name="quickBuild"
+          name="quick"
           id="make-prototype-build"
+          value="prototype"
           onchange="make.buildType.validation.validate();"
         />
         <input
           type="radio"
-          name="quickBuild"
+          name="quick"
           id="make-mechanical-build"
+          value="mechanical"
           onchange="make.buildType.validation.validate();"
         />
         <input
           type="radio"
           name="material"
           id="make-fdm-pla-material"
+          value="fdm-pla"
           onchange="make.buildOptions.material.select('fdm', 'pla');"
         />
         <input
           type="radio"
           name="material"
           id="make-fdm-abs-material"
+          value="fdm-abs"
           onchange="make.buildOptions.material.select('fdm', 'abs');"
         />
         <input
           type="radio"
           name="material"
           id="make-fdm-petg-material"
+          value="fdm-petg"
           onchange="make.buildOptions.material.select('fdm', 'petg');"
         />
         <input
           type="radio"
           name="quality"
           id="make-draft-quality"
+          value="draft"
           onchange="make.buildOptions.quality.select('draft');"
         />
         <input
           type="radio"
           name="quality"
           id="make-normal-quality"
+          value="normal"
           onchange="make.buildOptions.quality.select('normal');"
         />
         <input
           type="radio"
           name="quality"
           id="make-high-quality"
+          value="high"
           onchange="make.buildOptions.quality.select('high');"
         />
         <input
           type="radio"
           name="stength"
           id="make-normal-strength"
+          value="normal"
           onchange="make.buildOptions.strength.select('normal');"
         />
         <input
           type="radio"
           name="stength"
           id="make-strong-strength"
+          value="strong"
           onchange="make.buildOptions.strength.select('strong');"
         />
         <input
           type="radio"
           name="stength"
           id="make-solid-strength"
+          value="solid"
           onchange="make.buildOptions.strength.select('solid');"
         />
         <input
           type="radio"
           name="colour"
           id="make-pla-any-colour"
+          value="any"
           onchange="make.orderDetails.colour.select('fdm','pla','any');"
         />
         <input
           type="radio"
           name="colour"
           id="make-pla-white-colour"
+          value="white"
           onchange="make.orderDetails.colour.select('fdm','pla','white');"
         />
         <input
           type="radio"
           name="colour"
           id="make-pla-black-colour"
+          value="black"
           onchange="make.orderDetails.colour.select('fdm','pla','black');"
         />
         <input
           type="radio"
           name="colour"
           id="make-abs-any-colour"
+          value="any"
           onchange="make.orderDetails.colour.select('fdm','abs','any');"
         />
         <input
           type="radio"
           name="colour"
           id="make-abs-white-colour"
+          value="white"
           onchange="make.orderDetails.colour.select('fdm','abs','white');"
         />
         <input
           type="radio"
           name="colour"
           id="make-abs-black-colour"
+          value="black"
           onchange="make.orderDetails.colour.select('fdm','abs','black');"
         />
         <input
           type="radio"
           name="colour"
           id="make-petg-any-colour"
+          value="any"
           onchange="make.orderDetails.colour.select('fdm','petg','any');"
         />
         <input
           type="radio"
           name="colour"
           id="make-petg-white-colour"
+          value="white"
           onchange="make.orderDetails.colour.select('fdm','petg','white');"
         />
         <input
           type="radio"
           name="colour"
           id="make-petg-black-colour"
+          value="black"
           onchange="make.orderDetails.colour.select('fdm','petg','black');"
         />
       </form>
@@ -558,7 +580,7 @@
               <div class="button-5-back-icon"></div>
             </button>
             <button class="rmv-btn-css button-5-next disable">
-              <div class="button-5-next-message">Continue</div>
+              <div class="button-5-next-message">Submit</div>
               <div class="button-5-next-icon">
                 <div class="right"></div>
               </div>

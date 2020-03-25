@@ -62,6 +62,9 @@ const MakeSchema = new Schema({
   build: {
     type: String
   },
+  quick: {
+    type: String
+  },
   process: {
     type: String
   },
@@ -180,7 +183,7 @@ METHOD
 // @DESC
 // @ARGU
 MakeSchema.methods.updateStatus = function(status) {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const statuses = ["awaitingQuote", "checkout", "purchased"];
 
     // VALIDATION START
@@ -199,18 +202,7 @@ MakeSchema.methods.updateStatus = function(status) {
     this.date[status] = date;
     this.date.modified = date;
 
-    let savedMake;
-
-    try {
-      savedMake = await this.save();
-    } catch (error) {
-      reject({
-        status: "failed",
-        message: error
-      });
-    }
-
-    resolve(savedMake);
+    resolve();
   });
 };
 

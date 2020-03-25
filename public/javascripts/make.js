@@ -39,6 +39,10 @@ let make = {
   },
   // FUNCTIONS
   initialise: undefined,
+  collect: undefined,
+  inspect: undefined,
+  submit: undefined,
+  validate: undefined,
   upload: {
     change: undefined,
     namer: undefined,
@@ -165,16 +169,90 @@ make.initialise = () => {
   make.heading.complete = document.querySelector("#make-complete-heading");
 };
 
+make.collect = () => {
+  let input = new FormData(document.querySelector("#make-inputs"));
+  const quantity = document.querySelector("#make-quantity").value;
+  input.append("quantity", quantity);
+  const note = document.querySelector("#make-note").value;
+  input.append("note", note);
+  return input;
+};
+
+make.inspect = () => {
+  const input = make.collect();
+  for (let pair of input.entries()) {
+    console.log(`${pair[0]}: ${pair[1]}`);
+  }
+};
+
+make.submit = async () => {
+  // Validate Inputs
+  const validation = make.validate();
+  if (!validation.valid) {
+    console.log(validation.message);
+    return;
+  }
+  // Collect Inputs
+  const input = make.collect();
+  // Save Input
+  let data;
+  try {
+    data = (await axios.post("/make/submit", input))["data"];
+  } catch (error) {
+    console.log(error); // TEMPORARY (error handling placeholder)
+    return;
+  }
+  // Redirection Page
+  console.log(data);
+};
+
+make.validate = () => {
+  data = {
+    valid: false,
+    message: ""
+  };
+  // Upload
+  let upload = make.upload.validation.validate();
+  if (!upload.valid) {
+    data.message = upload.message;
+    return data;
+  }
+  // Build Type
+  let buildType = make.buildType.validation.validate();
+  if (!buildType.valid) {
+    data.message = buildType.message;
+    return data;
+  }
+  // Build Options
+  let buildOptions = make.buildOptions.validation.validate();
+  if (!buildOptions.valid) {
+    data.message = buildType.message;
+    return data;
+  }
+  // Order Details
+  let orderDetails = make.orderDetails.validation.validate();
+  if (!orderDetails.valid) {
+    data.message = orderDetails.message;
+    return data;
+  }
+  // Return Success
+  data.valid = true;
+  return data;
+};
+
 /*-----------------------------------------------------------------------------------------
 UPLOAD
 -----------------------------------------------------------------------------------------*/
 
-make.upload.change = file => {
+make.upload.change = () => {
+  // Get File Input
+  const input = make.collect();
+  const file = input.get("file");
   // Validate the uploaded file
-  const data = make.upload.validation.validate(file);
+  const data = make.upload.validation.validate();
   if (data.valid) {
     // Update the displayed file name
-    const name = make.upload.namer(file);
+    const name = make.upload.namer(file.name);
     document.querySelector("#make-file-name").textContent = name;
   } else {
     // Clear file name
@@ -184,8 +262,7 @@ make.upload.change = file => {
   document.querySelector("#make-file-error").textContent = data.message;
 };
 
-make.upload.namer = file => {
-  const name = file.name.split(".")[0];
+make.upload.namer = name => {
   const length = name.length;
   let displayName = {
     first: undefined,
@@ -208,13 +285,17 @@ make.upload.namer = file => {
   return displayName.first + displayName.middle + displayName.last;
 };
 
-make.upload.validation.validate = file => {
+make.upload.validation.validate = () => {
+  // Get File Input
+  const input = make.collect();
+  const file = input.get("file");
+  // Initialise
   let data = {
     valid: true,
     message: ""
   };
   // Check if there is no file uploaded
-  if (!file) {
+  if (!file.name) {
     data.valid = false;
     data.message = "file is required";
     make.upload.validation.invalid();
