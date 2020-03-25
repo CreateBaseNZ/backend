@@ -6,6 +6,9 @@ let make = {
   // VARIABLES
   currentPage: 0,
   pages: ["upload", "build-type", "build-options", "order-details", "complete"],
+  materials: {
+    fdm: ["pla", "abs", "petg"]
+  },
   button: {
     upload: {
       next: undefined
@@ -26,6 +29,13 @@ let make = {
     complete: {
       next: undefined
     }
+  },
+  heading: {
+    upload: undefined,
+    buildType: undefined,
+    buildOptions: undefined,
+    orderDetails: undefined,
+    complete: undefined
   },
   // FUNCTIONS
   initialise: undefined,
@@ -93,6 +103,28 @@ let make = {
     show: undefined
   },
   orderDetails: {
+    colour: {
+      selection: {
+        pla: ["any", "white", "black"],
+        abs: ["any", "white", "black"],
+        petg: ["any", "white", "black"]
+      },
+      select: undefined,
+      deselect: undefined,
+      reset: undefined,
+      show: undefined
+    },
+    quantity: {
+      value: undefined,
+      add: undefined,
+      subtract: undefined,
+      change: undefined
+    },
+    validation: {
+      validate: undefined,
+      valid: undefined,
+      invalid: undefined
+    },
     show: undefined
   },
   complete: {
@@ -106,6 +138,7 @@ FUNCTIONS
 =========================================================================================*/
 
 make.initialise = () => {
+  // Buttons
   make.button.upload.next = document.querySelector("#make-upload-next");
   make.button.buildType.quick.prototype = document.querySelector(
     "#make-prototype-build-input"
@@ -117,6 +150,19 @@ make.initialise = () => {
   make.button.buildOptions.next = document.querySelector(
     "#make-build-options-next"
   );
+  make.button.orderDetails.next = document.querySelector(
+    "#make-order-details-next"
+  );
+  // Headings
+  make.heading.upload = document.querySelector("#make-upload-heading");
+  make.heading.buildType = document.querySelector("#make-build-type-heading");
+  make.heading.buildOptions = document.querySelector(
+    "#make-build-options-heading"
+  );
+  make.heading.orderDetails = document.querySelector(
+    "#make-order-details-heading"
+  );
+  make.heading.complete = document.querySelector("#make-complete-heading");
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -190,16 +236,20 @@ make.upload.validation.validate = file => {
 
 make.upload.validation.valid = () => {
   // Update next button css
+  document.querySelector("#make-build-type").classList.remove("disable");
   make.button.upload.next.classList.remove("disable");
   // Add event listener
   make.button.upload.next.addEventListener("click", make.buildType.show);
+  make.heading.buildType.addEventListener("click", make.buildType.show);
 };
 
 make.upload.validation.invalid = () => {
   // Update next button css
+  document.querySelector("#make-build-type").classList.add("disable");
   make.button.upload.next.classList.add("disable");
   // Remove event listener
   make.button.upload.next.removeEventListener("click", make.buildType.show);
+  make.heading.buildType.removeEventListener("click", make.buildType.show);
 };
 
 make.upload.show = () => make.changePage(0);
@@ -275,6 +325,7 @@ make.buildType.quick.prototype.deselect = () => {
 make.buildType.quick.prototype.set = () => {
   // Pre-Set Inputs
   document.querySelector("#make-fdm-pla-material").checked = true;
+  make.orderDetails.colour.show("fdm", "pla");
   document.querySelector("#make-draft-quality").checked = true;
   document.querySelector("#make-normal-strength").checked = true;
   // Edit CSS
@@ -305,6 +356,7 @@ make.buildType.quick.mechanical.deselect = () => {
 make.buildType.quick.mechanical.set = () => {
   // Pre-Set Inputs
   document.querySelector("#make-fdm-petg-material").checked = true;
+  make.orderDetails.colour.show("fdm", "petg");
   document.querySelector("#make-normal-quality").checked = true;
   document.querySelector("#make-strong-strength").checked = true;
   // Edit CSS
@@ -359,16 +411,23 @@ make.buildType.validation.validate = () => {
 
 make.buildType.validation.valid = () => {
   // Update next button css
+  document.querySelector("#make-build-options").classList.remove("disable");
   make.button.buildType.next.classList.remove("disable");
   // Add event listener
   make.button.buildType.next.addEventListener("click", make.buildType.next);
+  make.heading.buildOptions.addEventListener("click", make.buildOptions.show);
 };
 
 make.buildType.validation.invalid = () => {
   // Update next button css
+  document.querySelector("#make-build-options").classList.add("disable");
   make.button.buildType.next.classList.add("disable");
   // Remove event listener
   make.button.buildType.next.removeEventListener("click", make.buildType.next);
+  make.heading.buildOptions.removeEventListener(
+    "click",
+    make.buildOptions.show
+  );
 };
 
 make.buildType.reset = () => {
@@ -402,7 +461,6 @@ make.buildType.next = () => {
     if (build.prototype) {
     } else if (build.mechanical) {
     }
-    make.buildOptions.show();
     make.orderDetails.show();
   } else if (build.custom) {
     make.buildOptions.show();
@@ -436,6 +494,8 @@ make.buildOptions.material.select = (process, material) => {
   // Validate
   make.buildType.validation.validate();
   make.buildOptions.validation.validate();
+  // Show Colours
+  make.orderDetails.colour.show(process, material);
 };
 
 make.buildOptions.quality.select = quality => {
@@ -543,19 +603,26 @@ make.buildOptions.validation.validate = () => {
 
 make.buildOptions.validation.valid = () => {
   // Update next button css
+  document.querySelector("#make-order-details").classList.remove("disable");
   make.button.buildOptions.next.classList.remove("disable");
   // Add Event Listener
   make.button.buildOptions.next.addEventListener(
     "click",
     make.orderDetails.show
   );
+  make.heading.orderDetails.addEventListener("click", make.orderDetails.show);
 };
 
 make.buildOptions.validation.invalid = () => {
   // Update next button css
+  document.querySelector("#make-order-details").classList.add("disable");
   make.button.buildOptions.next.classList.add("disable");
   // Remove Event Listener
   make.button.buildOptions.next.removeEventListener(
+    "click",
+    make.orderDetails.show
+  );
+  make.heading.orderDetails.removeEventListener(
     "click",
     make.orderDetails.show
   );
@@ -605,6 +672,161 @@ make.buildOptions.show = () => make.changePage(2);
 ORDER DETAILS
 -----------------------------------------------------------------------------------------*/
 
+make.orderDetails.colour.select = (process, material, colour) => {
+  // Reset all input selections
+  make.orderDetails.colour.reset();
+  // Update CSS
+  document
+    .querySelector(`#make-${material}-${colour}-colour-input`)
+    .classList.add("select");
+  // Set input
+  document.querySelector(`#make-${material}-${colour}-colour`).checked = true;
+  make.orderDetails.validation.validate();
+};
+
+make.orderDetails.colour.deselect = (process, material, colour) => {
+  // Update CSS
+  document
+    .querySelector(`#make-${material}-${colour}-colour-input`)
+    .classList.remove("select");
+};
+
+make.orderDetails.colour.reset = () => {
+  // FDM Materials
+  for (let i = 0; i < make.materials.fdm.length; i++) {
+    const material = make.materials.fdm[i];
+    for (
+      let i = 0;
+      i < make.orderDetails.colour.selection[material].length;
+      i++
+    ) {
+      const colour = make.orderDetails.colour.selection[material][i];
+      make.orderDetails.colour.deselect("fdm", material, colour);
+      document.querySelector(
+        `#make-${material}-${colour}-colour`
+      ).checked = false;
+    }
+  }
+};
+
+make.orderDetails.colour.show = (process, material) => {
+  // Reset all input selections
+  make.orderDetails.colour.reset();
+  // Hide all colours
+  // FDM Materials
+  for (let i = 0; i < make.materials.fdm.length; i++) {
+    const material = make.materials.fdm[i];
+    document
+      .querySelector(`#make-${material}-colours`)
+      .classList.add("hide-element");
+  }
+  // Show colours for selected material
+  document
+    .querySelector(`#make-${material}-colours`)
+    .classList.remove("hide-element");
+};
+
+make.orderDetails.quantity.add = () => {
+  let value = Number(document.querySelector("#make-quantity").value);
+  document.querySelector("#make-quantity").value = value + 1;
+  make.orderDetails.quantity.value = value + 1;
+  document.querySelector("#make-quantity-subtract").classList.remove("disable");
+  make.orderDetails.validation.validate();
+};
+
+make.orderDetails.quantity.subtract = () => {
+  let value = Number(document.querySelector("#make-quantity").value);
+  if (value === 0) {
+    return;
+  }
+  document.querySelector("#make-quantity").value = value - 1;
+  make.orderDetails.quantity.value = value - 1;
+  if (value - 1 === 0) {
+    document.querySelector("#make-quantity-subtract").classList.add("disable");
+  }
+  make.orderDetails.validation.validate();
+};
+
+make.orderDetails.quantity.change = quantity => {
+  if (quantity < 0) {
+    document.querySelector("#make-quantity").value =
+      make.orderDetails.quantity.value;
+    return;
+  }
+  make.orderDetails.quantity.value = quantity;
+  if (quantity === 0) {
+    document.querySelector("#make-quantity-subtract").classList.add("disable");
+  }
+  make.orderDetails.validation.validate();
+};
+
+make.orderDetails.validation.validate = () => {
+  // Initialise Variables
+  let data = {
+    valid: true,
+    message: ""
+  };
+  // Collect Inputs
+  let colourBool = false;
+  // Colour - FDM
+  for (let i = 0; i < make.materials.fdm.length; i++) {
+    const material = make.materials.fdm[i];
+    for (
+      let i = 0;
+      i < make.orderDetails.colour.selection[material].length;
+      i++
+    ) {
+      const colour = make.orderDetails.colour.selection[material][i];
+      if (
+        document.querySelector(`#make-${material}-${colour}-colour`).checked
+      ) {
+        colourBool = true;
+      }
+    }
+  }
+  // Quantity
+  let quantity = false;
+  if (document.querySelector("#make-quantity").value > 0) {
+    quantity = true;
+  }
+  // Validation Processes
+  if (!colourBool) {
+    data.valid = false;
+    data.message = "choose a colour";
+    make.orderDetails.validation.invalid();
+    return data;
+  } else if (!quantity) {
+    data.valid = false;
+    data.message = "requires quantity";
+    make.orderDetails.validation.invalid();
+    return data;
+  }
+  // Return
+  make.orderDetails.validation.valid();
+  return data;
+};
+
+make.orderDetails.validation.valid = () => {
+  // Update next button css
+  document.querySelector("#make-complete").classList.remove("disable");
+  make.button.orderDetails.next.classList.remove("disable");
+  // Add Event Listener
+  make.button.orderDetails.next.addEventListener("click", make.complete.show);
+  make.heading.complete.addEventListener("click", make.complete.show);
+};
+
+make.orderDetails.validation.invalid = () => {
+  // Update next button css
+  document.querySelector("#make-complete").classList.add("disable");
+  make.button.orderDetails.next.classList.add("disable");
+  // Add Event Listener
+  make.button.orderDetails.next.removeEventListener(
+    "click",
+    make.complete.show
+  );
+  make.heading.complete.removeEventListener("click", make.complete.show);
+};
+
 make.orderDetails.show = () => make.changePage(3);
 
 /*-----------------------------------------------------------------------------------------
@@ -619,37 +841,35 @@ NAVIGATION
 
 make.changePage = nextPage => {
   // Set Page Names
-  const pageName = {
-    current: make.pages[make.currentPage],
-    next: make.pages[nextPage]
-  };
+  const nextPageName = make.pages[nextPage];
   // Validation
   if (make.currentPage === nextPage) {
     // If the same page is being opened
     return;
   }
   // Change Page
-  // Hide Current Page
-  let hide = {
-    current: undefined,
-    next: undefined
-  };
+  // Hide Current Page and Show Next Page
   if (make.currentPage < nextPage) {
-    hide = {
-      current: "hide-left",
-      next: "hide-right"
-    };
+    for (let i = make.currentPage; i < nextPage; i++) {
+      const pageName = make.pages[i];
+      document
+        .querySelector(`#make-${pageName}`)
+        .classList.remove("hide-right");
+      document.querySelector(`#make-${pageName}`).classList.add("hide-left");
+    }
+    document
+      .querySelector(`#make-${nextPageName}`)
+      .classList.remove("hide-right");
   } else {
-    hide = {
-      current: "hide-right",
-      next: "hide-left"
-    };
+    for (let i = nextPage + 1; i <= make.currentPage; i++) {
+      const pageName = make.pages[i];
+      document.querySelector(`#make-${pageName}`).classList.remove("hide-left");
+      document.querySelector(`#make-${pageName}`).classList.add("hide-right");
+    }
+    document
+      .querySelector(`#make-${nextPageName}`)
+      .classList.remove("hide-left");
   }
-  document
-    .querySelector(`#make-${pageName.current}`)
-    .classList.add(hide.current);
-  // Show Next Page
-  document.querySelector(`#make-${pageName.next}`).classList.remove(hide.next);
   // Update Current Page
   make.currentPage = nextPage;
 };

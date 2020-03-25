@@ -237,44 +237,64 @@
         <input
           type="radio"
           name="colour"
+          id="make-pla-any-colour"
+          onchange="make.orderDetails.colour.select('fdm','pla','any');"
+        />
+        <input
+          type="radio"
+          name="colour"
           id="make-pla-white-colour"
-          value="pla-white"
+          onchange="make.orderDetails.colour.select('fdm','pla','white');"
         />
         <input
           type="radio"
           name="colour"
           id="make-pla-black-colour"
-          value="pla-black"
+          onchange="make.orderDetails.colour.select('fdm','pla','black');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-abs-any-colour"
+          onchange="make.orderDetails.colour.select('fdm','abs','any');"
         />
         <input
           type="radio"
           name="colour"
           id="make-abs-white-colour"
-          value="abs-white"
+          onchange="make.orderDetails.colour.select('fdm','abs','white');"
         />
         <input
           type="radio"
           name="colour"
           id="make-abs-black-colour"
-          value="abs-black"
+          onchange="make.orderDetails.colour.select('fdm','abs','black');"
+        />
+        <input
+          type="radio"
+          name="colour"
+          id="make-petg-any-colour"
+          onchange="make.orderDetails.colour.select('fdm','petg','any');"
         />
         <input
           type="radio"
           name="colour"
           id="make-petg-white-colour"
-          value="petg-white"
+          onchange="make.orderDetails.colour.select('fdm','petg','white');"
         />
         <input
           type="radio"
           name="colour"
           id="make-petg-black-colour"
-          value="petg-black"
+          onchange="make.orderDetails.colour.select('fdm','petg','black');"
         />
       </form>
       <!--UPLOAD FILE-->
 
       <div class="make-page upload" id="make-upload">
-        <h1 class="rmv-h-css heading">Upload a File</h1>
+        <h1 class="rmv-h-css heading" id="make-upload-heading">
+          Upload a File
+        </h1>
         <div class="make-file-upload-button">
           <label for="make-file">Upload</label>
         </div>
@@ -301,8 +321,10 @@
       </div>
 
       <!--BUILD TYPE-->
-      <div class="make-page build-type hide-right" id="make-build-type">
-        <h1 class="rmv-h-css heading">Choose Build Type</h1>
+      <div class="make-page build-type disable hide-right" id="make-build-type">
+        <h1 class="rmv-h-css heading" id="make-build-type-heading">
+          Choose Build Type
+        </h1>
         <div class="make-build-type-inputs">
           <label for="make-quick-build" id="make-quick-build-input"
             >Quick</label
@@ -344,8 +366,13 @@
 
       <!--BUILD OPTIONS-->
 
-      <div class="make-page build-options hide-right" id="make-build-options">
-        <h1 class="rmv-h-css heading">Set Build Options</h1>
+      <div
+        class="make-page build-options disable hide-right"
+        id="make-build-options"
+      >
+        <h1 class="rmv-h-css heading" id="make-build-options-heading">
+          Set Build Options
+        </h1>
         <div class="make-build-option">
           <h2 class="rmv-h-css">Material</h2>
           <h3 class="rmv-h-css">FDM</h3>
@@ -414,44 +441,82 @@
 
       <!--ORDER DETAILS-->
 
-      <div class="make-page order-details hide-right" id="make-order-details">
-        <h1 class="rmv-h-css heading">Set Order Details</h1>
+      <div
+        class="make-page order-details disable hide-right"
+        id="make-order-details"
+      >
+        <h1 class="rmv-h-css heading" id="make-order-details-heading">
+          Set Order Details
+        </h1>
         <div class="make-order-detail">
           <h2 class="rmv-h-css">Colour</h2>
-          <div class="make-order-detail-inputs" id="make-pla-colours">
-            <label for="make-pla-white-colour">Any</label>
-            <label for="make-pla-white-colour">White</label>
-            <label for="make-pla-black-colour">Black</label>
+          <div
+            class="make-order-detail-inputs hide-element"
+            id="make-pla-colours"
+          >
+            <label for="make-pla-any-colour" id="make-pla-any-colour-input"
+              >Any</label
+            >
+            <label for="make-pla-white-colour" id="make-pla-white-colour-input"
+              >White</label
+            >
+            <label for="make-pla-black-colour" id="make-pla-black-colour-input"
+              >Black</label
+            >
           </div>
           <div
             class="make-order-detail-inputs hide-element"
             id="make-abs-colours"
           >
-            <label for="make-abs-white-colour">Any</label>
-            <label for="make-abs-white-colour">White</label>
-            <label for="make-abs-black-colour">Black</label>
+            <label for="make-abs-any-colour" id="make-abs-any-colour-input"
+              >Any</label
+            >
+            <label for="make-abs-white-colour" id="make-abs-white-colour-input"
+              >White</label
+            >
+            <label for="make-abs-black-colour" id="make-abs-black-colour-input"
+              >Black</label
+            >
           </div>
           <div
             class="make-order-detail-inputs hide-element"
             id="make-petg-colours"
           >
-            <label for="make-petg-white-colour">Any</label>
-            <label for="make-petg-white-colour">White</label>
-            <label for="make-petg-black-colour">Black</label>
+            <label for="make-petg-any-colour" id="make-petg-any-colour-input"
+              >Any</label
+            >
+            <label
+              for="make-petg-white-colour"
+              id="make-petg-white-colour-input"
+              >White</label
+            >
+            <label
+              for="make-petg-black-colour"
+              id="make-petg-black-colour-input"
+              >Black</label
+            >
           </div>
         </div>
         <div class="make-order-detail">
           <h2 class="rmv-h-css">Quantity</h2>
           <div class="make-order-detail-inputs">
             <div class="make-quantity-container">
-              <div class="subtract disable"></div>
+              <button
+                class="rmv-btn-css subtract disable"
+                id="make-quantity-subtract"
+                onclick="make.orderDetails.quantity.subtract();"
+              ></button>
               <input
                 type="number"
                 name="quantity"
                 id="make-quantity"
                 value="0"
+                onchange="make.orderDetails.quantity.change(Number(this.value));"
               />
-              <div class="add"></div>
+              <button
+                class="rmv-btn-css add"
+                onclick="make.orderDetails.quantity.add();"
+              ></button>
             </div>
           </div>
         </div>
@@ -463,7 +528,10 @@
             >
               <div class="button-5-back-icon"></div>
             </button>
-            <button class="rmv-btn-css button-5-next disable">
+            <button
+              class="rmv-btn-css button-5-next disable"
+              id="make-order-details-next"
+            >
               <div class="button-5-next-message">Continue</div>
               <div class="button-5-next-icon">
                 <div class="right"></div>
@@ -475,8 +543,8 @@
 
       <!--COMPLETE-->
 
-      <div class="make-page complete hide-right" id="make-complete">
-        <h1 class="rmv-h-css heading">Complete</h1>
+      <div class="make-page complete disable hide-right" id="make-complete">
+        <h1 class="rmv-h-css heading" id="make-complete-heading">Complete</h1>
         <div class="make-complete">
           <label for="make-note">Note</label>
           <textarea name="note" id="make-note"></textarea>
