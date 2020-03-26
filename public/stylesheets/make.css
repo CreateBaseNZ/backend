@@ -2062,6 +2062,49 @@ UNIVERSAL
           justify-content: center;
 }
 
+#make-redirect {
+  height: calc(100% - 60px);
+  width: 100%;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 12vmax 0;
+}
+
+#make-redirect a {
+  height: 7vmax;
+  width: calc(4.5 * 7vmax);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 1vmax;
+  background-color: #4e4ed6;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  font-size: calc(7vmax * 0.28);
+  letter-spacing: calc(7vmax * 0.03);
+  color: white;
+}
+
 .hide-element {
   height: 0;
   width: 0;
@@ -2358,6 +2401,20 @@ DESKTOP CSS
   }
   .make-page .button {
     height: 10vmax;
+  }
+  #make-redirect {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    padding: 0 12vmax;
+  }
+  #make-redirect a {
+    height: 3.5vmax;
+    width: calc(4.5 * 3.5vmax);
+    border-radius: 0.5vmax;
+    font-size: calc(3.5vmax * 0.28);
+    letter-spacing: calc(3.5vmax * 0.03);
   }
 }
 

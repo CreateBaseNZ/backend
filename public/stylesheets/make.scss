@@ -486,6 +486,33 @@ UNIVERSAL
   }
 }
 
+#make-redirect {
+  height: calc(100% - 60px);
+  width: 100%;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 12vmax 0;
+  a {
+    height: $height-mobile;
+    width: calc(4.5 * #{$height-mobile});
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1vmax;
+    background-color: $logo-3;
+    overflow: hidden;
+    font-family: $poppins;
+    font-size: calc(#{$height-mobile} * 0.28);
+    letter-spacing: calc(#{$height-mobile} * 0.03);
+    color: $light-1;
+  }
+}
+
 .hide-element {
   height: 0;
   width: 0;
@@ -786,6 +813,18 @@ DESKTOP CSS
     }
     .button {
       height: 10vmax;
+    }
+  }
+
+  #make-redirect {
+    flex-direction: row;
+    padding: 0 12vmax;
+    a {
+      height: $height-desktop;
+      width: calc(4.5 * #{$height-desktop});
+      border-radius: 0.5vmax;
+      font-size: calc(#{$height-desktop} * 0.28);
+      letter-spacing: calc(#{$height-desktop} * 0.03);
     }
   }
 }

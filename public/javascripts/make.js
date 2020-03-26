@@ -42,7 +42,7 @@ let make = {
   collect: undefined,
   inspect: undefined,
   submit: undefined,
-  validate: undefined,
+  redirect: undefined,
   upload: {
     change: undefined,
     namer: undefined,
@@ -276,6 +276,9 @@ make.submit = async () => {
       .classList.remove("hide");
   }, 500);
   // Redirection Page
+  setTimeout(() => {
+    make.redirect();
+  }, 1500);
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -1048,6 +1051,18 @@ make.changePage = nextPage => {
   }
   // Update Current Page
   make.currentPage = nextPage;
+};
+
+/*-----------------------------------------------------------------------------------------
+REDIRECT PAGE
+-----------------------------------------------------------------------------------------*/
+
+make.redirect = () => {
+  document.querySelector("#make").innerHTML = `<div id="make-redirect">
+    <a class="rmv-link-css" href="/">Home</a>
+    <a class="rmv-link-css" href="/3d-printing">New Make</a>
+    <a class="rmv-link-css" href="/checkout">Go to Cart</a>
+  </div>`;
 };
 
 /*=========================================================================================
