@@ -358,6 +358,7 @@ BUTTONS
 .button-5-next {
   height: $height-mobile;
   width: calc(4.5 * #{$height-mobile});
+  position: relative;
   display: flex;
   justify-content: space-between;
   border-radius: 1vmax;
@@ -373,6 +374,9 @@ BUTTONS
 .button-5-next-message {
   height: $height-mobile;
   width: calc(3 * #{$height-mobile});
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   padding-left: 3vmax;
@@ -384,6 +388,7 @@ BUTTONS
   transform: translateX(0%);
   opacity: 1;
   &.idle {
+    transform: translateX(-20%);
     opacity: 0;
   }
   &.hide {
@@ -395,6 +400,9 @@ BUTTONS
 .button-5-next-icon {
   height: $height-mobile;
   width: $height-mobile;
+  position: absolute;
+  top: 0;
+  left: calc(3.5 * #{$height-mobile});
   display: flex;
   align-items: center;
   justify-content: center;
@@ -402,6 +410,7 @@ BUTTONS
   transform: translateX(0%);
   opacity: 1;
   &.idle {
+    transform: translateX(-20%);
     opacity: 0;
   }
   &.hide {
@@ -558,6 +567,7 @@ DESKTOP CSS
   .button-5-next-icon {
     height: $height-desktop;
     width: $height-desktop;
+    left: calc(3.5 * #{$height-desktop});
     .right {
       border-width: 0 calc(#{$height-desktop} * 0.04)
         calc(#{$height-desktop} * 0.04) 0;

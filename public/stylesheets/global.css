@@ -1739,6 +1739,7 @@ BUTTONS
 .button-5-next {
   height: 7vmax;
   width: calc(4.5 * 7vmax);
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1759,6 +1760,9 @@ BUTTONS
 .button-5-next-message {
   height: 7vmax;
   width: calc(3 * 7vmax);
+  position: absolute;
+  top: 0;
+  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1778,6 +1782,8 @@ BUTTONS
 }
 
 .button-5-next-message.idle {
+  -webkit-transform: translateX(-20%);
+          transform: translateX(-20%);
   opacity: 0;
 }
 
@@ -1790,6 +1796,9 @@ BUTTONS
 .button-5-next-icon {
   height: 7vmax;
   width: 7vmax;
+  position: absolute;
+  top: 0;
+  left: calc(3.5 * 7vmax);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1807,6 +1816,8 @@ BUTTONS
 }
 
 .button-5-next-icon.idle {
+  -webkit-transform: translateX(-20%);
+          transform: translateX(-20%);
   opacity: 0;
 }
 
@@ -1936,6 +1947,7 @@ DESKTOP CSS
   .button-5-next-icon {
     height: 3.5vmax;
     width: 3.5vmax;
+    left: calc(3.5 * 3.5vmax);
   }
   .button-5-next-icon .right {
     border-width: 0 calc(3.5vmax * 0.04) calc(3.5vmax * 0.04) 0;

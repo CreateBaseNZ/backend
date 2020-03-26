@@ -132,6 +132,11 @@ let make = {
     show: undefined
   },
   complete: {
+    validation: {
+      validate: undefined,
+      valid: undefined,
+      invalid: undefined
+    },
     show: undefined
   },
   changePage: undefined
@@ -157,6 +162,7 @@ make.initialise = () => {
   make.button.orderDetails.next = document.querySelector(
     "#make-order-details-next"
   );
+  make.button.complete.next = document.querySelector("#make-complete-next");
   // Headings
   make.heading.upload = document.querySelector("#make-upload-heading");
   make.heading.buildType = document.querySelector("#make-build-type-heading");
@@ -186,58 +192,90 @@ make.inspect = () => {
 };
 
 make.submit = async () => {
+  make.complete.validation.invalid();
   // Validate Inputs
-  const validation = make.validate();
+  const validation = make.complete.validation.validate();
   if (!validation.valid) {
     console.log(validation.message);
     return;
   }
   // Collect Inputs
   const input = make.collect();
+  // Update Button Text
+  document.querySelector("#make-complete-submit-message").classList.add("hide");
+  document.querySelector("#make-complete-submit-icon").classList.add("hide");
+  document
+    .querySelector("#make-complete-processing-message")
+    .classList.remove("idle");
+  document
+    .querySelector("#make-complete-processing-icon")
+    .classList.remove("idle");
+  setTimeout(() => {
+    document
+      .querySelector("#make-complete-submit-message")
+      .classList.add("idle");
+    document.querySelector("#make-complete-submit-icon").classList.add("idle");
+    document
+      .querySelector("#make-complete-submit-message")
+      .classList.remove("hide");
+    document
+      .querySelector("#make-complete-submit-icon")
+      .classList.remove("hide");
+  }, 500);
   // Save Input
   let data;
   try {
     data = (await axios.post("/make/submit", input))["data"];
   } catch (error) {
     console.log(error); // TEMPORARY (error handling placeholder)
+    make.complete.validation.valid();
     return;
   }
-  // Redirection Page
   console.log(data);
-};
-
-make.validate = () => {
-  data = {
-    valid: false,
-    message: ""
-  };
-  // Upload
-  let upload = make.upload.validation.validate();
-  if (!upload.valid) {
-    data.message = upload.message;
-    return data;
-  }
-  // Build Type
-  let buildType = make.buildType.validation.validate();
-  if (!buildType.valid) {
-    data.message = buildType.message;
-    return data;
-  }
-  // Build Options
-  let buildOptions = make.buildOptions.validation.validate();
-  if (!buildOptions.valid) {
-    data.message = buildType.message;
-    return data;
-  }
-  // Order Details
-  let orderDetails = make.orderDetails.validation.validate();
-  if (!orderDetails.valid) {
-    data.message = orderDetails.message;
-    return data;
-  }
-  // Return Success
-  data.valid = true;
-  return data;
+  // Update Button Text
+  document
+    .querySelector("#make-complete-processing-message")
+    .classList.add("hide");
+  document
+    .querySelector("#make-complete-processing-icon")
+    .classList.add("hide");
+  document.querySelector(
+    "#make-complete-success-icon"
+  ).innerHTML = `<svg class="checkmark" viewBox="0 0 52 52">
+      <circle
+        class="checkmark__circle"
+        cx="26"
+        cy="26"
+        r="25"
+        fill="none"
+      ></circle>
+      <path
+        class="checkmark__check"
+        fill="none"
+        d="M14.1 27.2l7.1 7.2 16.7-16.8"
+      ></path>
+    </svg>`;
+  document
+    .querySelector("#make-complete-success-message")
+    .classList.remove("idle");
+  document
+    .querySelector("#make-complete-success-icon")
+    .classList.remove("idle");
+  setTimeout(() => {
+    document
+      .querySelector("#make-complete-processing-message")
+      .classList.add("idle");
+    document
+      .querySelector("#make-complete-processing-icon")
+      .classList.add("idle");
+    document
+      .querySelector("#make-complete-processing-message")
+      .classList.remove("hide");
+    document
+      .querySelector("#make-complete-processing-icon")
+      .classList.remove("hide");
+  }, 500);
+  // Redirection Page
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -762,7 +800,10 @@ make.orderDetails.colour.select = (process, material, colour) => {
     .classList.add("select");
   // Set input
   document.querySelector(`#make-${material}-${colour}-colour`).checked = true;
-  make.orderDetails.validation.validate();
+  const validity = make.orderDetails.validation.validate();
+  if (validity.valid) {
+    make.complete.validation.valid();
+  }
 };
 
 make.orderDetails.colour.deselect = (process, material, colour) => {
@@ -812,7 +853,10 @@ make.orderDetails.quantity.add = () => {
   document.querySelector("#make-quantity").value = value + 1;
   make.orderDetails.quantity.value = value + 1;
   document.querySelector("#make-quantity-subtract").classList.remove("disable");
-  make.orderDetails.validation.validate();
+  const validity = make.orderDetails.validation.validate();
+  if (validity.valid) {
+    make.complete.validation.valid();
+  }
 };
 
 make.orderDetails.quantity.subtract = () => {
@@ -825,7 +869,10 @@ make.orderDetails.quantity.subtract = () => {
   if (value - 1 === 0) {
     document.querySelector("#make-quantity-subtract").classList.add("disable");
   }
-  make.orderDetails.validation.validate();
+  const validity = make.orderDetails.validation.validate();
+  if (validity.valid) {
+    make.complete.validation.valid();
+  }
 };
 
 make.orderDetails.quantity.change = quantity => {
@@ -838,7 +885,10 @@ make.orderDetails.quantity.change = quantity => {
   if (quantity === 0) {
     document.querySelector("#make-quantity-subtract").classList.add("disable");
   }
-  make.orderDetails.validation.validate();
+  const validity = make.orderDetails.validation.validate();
+  if (validity.valid) {
+    make.complete.validation.valid();
+  }
 };
 
 make.orderDetails.validation.validate = () => {
@@ -875,15 +925,18 @@ make.orderDetails.validation.validate = () => {
     data.valid = false;
     data.message = "choose a colour";
     make.orderDetails.validation.invalid();
+    make.complete.validation.invalid();
     return data;
   } else if (!quantity) {
     data.valid = false;
     data.message = "requires quantity";
     make.orderDetails.validation.invalid();
+    make.complete.validation.invalid();
     return data;
   }
-  // Return
+  // If Valid
   make.orderDetails.validation.valid();
+  // Return
   return data;
 };
 
@@ -913,6 +966,48 @@ make.orderDetails.show = () => make.changePage(3);
 /*-----------------------------------------------------------------------------------------
 COMPLETE
 -----------------------------------------------------------------------------------------*/
+
+make.complete.validation.validate = () => {
+  data = {
+    valid: false,
+    message: ""
+  };
+  // Upload
+  let upload = make.upload.validation.validate();
+  if (!upload.valid) {
+    data.message = upload.message;
+    return data;
+  }
+  // Build Type
+  let buildType = make.buildType.validation.validate();
+  if (!buildType.valid) {
+    data.message = buildType.message;
+    return data;
+  }
+  // Build Options
+  let buildOptions = make.buildOptions.validation.validate();
+  if (!buildOptions.valid) {
+    data.message = buildType.message;
+    return data;
+  }
+  // Order Details
+  let orderDetails = make.orderDetails.validation.validate();
+  if (!orderDetails.valid) {
+    data.message = orderDetails.message;
+    return data;
+  }
+  // Return Success
+  data.valid = true;
+  return data;
+};
+
+make.complete.validation.valid = () => {
+  make.button.complete.next.addEventListener("click", make.submit);
+};
+
+make.complete.validation.invalid = () => {
+  make.button.complete.next.removeEventListener("click", make.submit);
+};
 
 make.complete.show = () => make.changePage(4);
 
