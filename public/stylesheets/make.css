@@ -2416,6 +2416,91 @@ DESKTOP CSS
     font-size: calc(3.5vmax * 0.28);
     letter-spacing: calc(3.5vmax * 0.03);
   }
+  #make-validations {
+    bottom: 2vmax;
+    left: calc((36vw - 20vmax) / 2);
+    position: fixed;
+    height: 22vmax;
+    width: 20vmax;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 1vmax 2vmax;
+    border-radius: 1vmax;
+    -webkit-box-shadow: 0 0 2vmax -1.8vmax #322d41;
+            box-shadow: 0 0 2vmax -1.8vmax #322d41;
+    background-color: white;
+  }
+  .make-validation {
+    height: 4vmax;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    cursor: pointer;
+  }
+  .make-validation .icon {
+    height: 1.6vmax;
+    width: 1.6vmax;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    border-radius: 0.8vmax;
+    background-color: #c7c2d5;
+    font-family: "Poppins", sans-serif;
+    font-size: 1vmax;
+    color: white;
+  }
+  .make-validation .icon.valid {
+    background-color: white;
+  }
+  .make-validation .message {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 0 0 1.5vmax;
+    font-family: "Poppins", sans-serif;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+    color: #322d41;
+  }
+  .make-validation.disable {
+    cursor: default;
+  }
+  .make-validation.disable .icon {
+    background-color: #f8f8f8;
+    color: #322d41;
+  }
+  .make-validation.disable .message {
+    color: #c7c2d5;
+  }
+  .make-validation.select {
+    cursor: default;
+  }
+  .make-validation.select .icon {
+    background-color: #322d41;
+    color: white;
+  }
+  .make-validation.select .message {
+    color: #877da9;
+  }
+  .make-validation.valid .icon {
+    background-color: white;
+  }
+  .make-validation.valid .message {
+    color: #8258dc;
+  }
 }
 
 /*=========================================================================================

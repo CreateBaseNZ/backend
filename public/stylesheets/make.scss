@@ -827,6 +827,79 @@ DESKTOP CSS
       letter-spacing: calc(#{$height-desktop} * 0.03);
     }
   }
+
+  #make-validations {
+    bottom: 2vmax;
+    left: calc((36vw - 20vmax) / 2);
+    position: fixed;
+    height: 22vmax;
+    width: 20vmax;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1vmax 2vmax;
+    border-radius: 1vmax;
+    box-shadow: 0 0 2vmax -1.8vmax $dark-2;
+    background-color: $light-1;
+  }
+
+  .make-validation {
+    height: 4vmax;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    .icon {
+      height: 1.6vmax;
+      width: 1.6vmax;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.8vmax;
+      background-color: $light-3;
+      font-family: $poppins;
+      font-size: 1vmax;
+      color: $light-1;
+      &.valid {
+        background-color: $light-1;
+      }
+    }
+    .message {
+      display: flex;
+      padding: 0 0 0 1.5vmax;
+      font-family: $poppins;
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+      color: $dark-2;
+    }
+    &.disable {
+      cursor: default;
+      .icon {
+        background-color: $light-2;
+        color: $dark-2;
+      }
+      .message {
+        color: $light-3;
+      }
+    }
+    &.select {
+      cursor: default;
+      .icon {
+        background-color: $dark-2;
+        color: $light-1;
+      }
+      .message {
+        color: $dark-1;
+      }
+    }
+    &.valid {
+      .icon {
+        background-color: $light-1;
+      }
+      .message {
+        color: $logo-1;
+      }
+    }
+  }
 }
 /*=========================================================================================
 END
