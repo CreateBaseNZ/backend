@@ -9,12 +9,10 @@ const marketInit = () => {
         left.classList.toggle('market-left-active')
         right.classList.toggle('market-right-active')
         text.classList.toggle('mid-text-active')
-        if (text.childNodes[3].innerHTML == "SHOW MORE") {
-            console.log(text.childNodes[3])
-            text.childNodes[3].innerHTML = "SHOW LESS"
+        if (text.children[1].innerHTML == "SHOW MORE") {
+            text.children[1].innerHTML = "SHOW LESS"
         } else {
-            console.log(text.childNodes)
-            text.childNodes[3].innerHTML = "SHOW MORE"
+            text.children[1].innerHTML = "SHOW MORE"
         }
     })
 

@@ -2,101 +2,69 @@ window,onbeforeunload = function () {
   window.scrollTo(0, 0)
 }
 
-const num_membs = 9
+const num_membs = 8
 var mq = window.matchMedia("(min-width: 850px)")
 
 const teamInit = async() => {
 
+  // Array of profiles
   var team = {};
-
   for(var i=0; i < num_membs; i++){
-    team[i] = document.getElementById('memb-'+i).childNodes
+    team[i] = document.querySelector('.profile-section').children[i].children
   }
   
   function mainFunction(mq) {
 
-    if (mq.matches) { /* Desktop */
+    // -- Desktop --
+    if (mq.matches) {
+
+      // On desktop, 3 profiles per row
+      var row = 3
+      // Each position is in increments of 0.55
+      var inc = 0.55
+
       window.addEventListener("scroll", function () {
         var pos = this.scrollY / document.documentElement.clientHeight
-    
-        if (pos > 1.65) {
-          team[6][3].style.display = 'block'
-          team[6][5].style.display = 'block'
-          team[6][7].style.display = 'block'
-          team[7][3].style.display = 'block'
-          team[7][5].style.display = 'block'
-          team[7][7].style.display = 'block'
-          team[8][3].style.display = 'block'
-          team[8][5].style.display = 'block'
-          team[8][7].style.display = 'block'
-        } else if (pos > 1.1) {
-          team[3][3].style.display = 'block'
-          team[3][5].style.display = 'block'
-          team[3][7].style.display = 'block'
-          team[4][3].style.display = 'block'
-          team[4][5].style.display = 'block'
-          team[4][7].style.display = 'block'
-          team[5][3].style.display = 'block'
-          team[5][5].style.display = 'block'
-          team[5][7].style.display = 'block'
-        } else if (pos > 0.55) {
-          team[0][3].style.display = 'block'
-          team[0][5].style.display = 'block'
-          team[0][7].style.display = 'block'
-          team[1][3].style.display = 'block'
-          team[1][5].style.display = 'block'
-          team[1][7].style.display = 'block'
-          team[2][3].style.display = 'block'
-          team[2][5].style.display = 'block'
-          team[2][7].style.display = 'block'
-        } else if (pos == 0) {
-          for(var i = 0; i < num_membs; i++){
-            team[i][3].style.display = 'none'
-            team[i][5].style.display = 'none'
-            team[i][7].style.display = 'none'
+        if (pos == 0) {
+          for(var i = 0; i < num_membs; i++) {
+            for(var j = 1; j <= 3; j++) {
+              team[i][j].style.display = 'none'
+            }
+          }
+        } else if (pos > inc) {
+          var ind = (Math.floor((pos / inc)) - 1) * row
+          for(var i = ind; i < Math.min(ind+row, num_membs); i++) {
+            console.log(i)
+            for(var j = 1; j <= 3; j++) {
+              team[i][j].style.display = 'block'
+            }
           }
         }
       });
-    } else { /* Mobile */
+
+    // -- Mobile --
+    } else {
+
+      // On mobile, 2 profiles per row
+      var row = 2
+      // Each position is in increments of 0.45
+      var inc = 0.45
+
       window.addEventListener("scroll", function () {
         var pos = this.scrollY / document.documentElement.clientHeight
-    
-        if (pos > 2.25) {
-          team[8][3].style.display = 'block'
-          team[8][5].style.display = 'block'
-          team[8][7].style.display = 'block'
-        } else if (pos > 1.8) {
-          team[6][3].style.display = 'block'
-          team[6][5].style.display = 'block'
-          team[6][7].style.display = 'block'
-          team[7][3].style.display = 'block'
-          team[7][5].style.display = 'block'
-          team[7][7].style.display = 'block'
-        } else if (pos > 1.35) {
-          team[4][3].style.display = 'block'
-          team[4][5].style.display = 'block'
-          team[4][7].style.display = 'block'
-          team[5][3].style.display = 'block'
-          team[5][5].style.display = 'block'
-          team[5][7].style.display = 'block'
-        } else if (pos > 0.9) {
-          team[2][3].style.display = 'block'
-          team[2][5].style.display = 'block'
-          team[3][7].style.display = 'block'
-          team[3][3].style.display = 'block'
-          team[3][5].style.display = 'block'
-        } else if (pos > 0.48) {
-          team[0][3].style.display = 'block'
-          team[0][5].style.display = 'block'
-          team[0][7].style.display = 'block'
-          team[1][3].style.display = 'block'
-          team[1][5].style.display = 'block'
-          team[1][7].style.display = 'block'
-        } else if (pos == 0) {
-          for(var i = 0; i < num_membs; i++){
-            team[i][3].style.display = 'none'
-            team[i][5].style.display = 'none'
-            team[i][7].style.display = 'none'
+        if (pos == 0) {
+          for(var i = 0; i < num_membs; i++) {
+            for(var j = 1; j <= 3; j++) {
+              team[i][j].style.display = 'none'
+            }
+          }
+        } else if (pos > inc) {
+          var ind = (Math.floor((pos / inc)) - 1) * row
+          for(var i = ind; i < Math.min(ind+row, num_membs); i++) {
+            console.log(i)
+            for(var j = 1; j <= 3; j++) {
+              team[i][j].style.display = 'block'
+            }
           }
         }
       });
