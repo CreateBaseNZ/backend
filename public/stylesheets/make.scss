@@ -476,6 +476,7 @@ UNIVERSAL
     font-weight: bold;
     letter-spacing: 0.3vmax;
     color: $dark-2;
+    cursor: default;
   }
   .button {
     height: 20vmax;
@@ -511,6 +512,15 @@ UNIVERSAL
     letter-spacing: calc(#{$height-mobile} * 0.03);
     color: $light-1;
   }
+}
+
+#make-validations {
+  height: 0;
+  width: 0;
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .hide-element {
@@ -836,7 +846,7 @@ DESKTOP CSS
     width: 20vmax;
     display: flex;
     flex-wrap: wrap;
-    padding: 1vmax 2vmax;
+    padding: 1vmax;
     border-radius: 1vmax;
     box-shadow: 0 0 2vmax -1.8vmax $dark-2;
     background-color: $light-1;
@@ -847,7 +857,9 @@ DESKTOP CSS
     width: 100%;
     display: flex;
     align-items: center;
+    padding: 0 1vmax;
     cursor: pointer;
+    z-index: 1;
     .icon {
       height: 1.6vmax;
       width: 1.6vmax;
@@ -898,6 +910,31 @@ DESKTOP CSS
       .message {
         color: $logo-1;
       }
+    }
+  }
+
+  #make-validation-hover {
+    left: calc((36vw - 18vmax) / 2);
+    position: fixed;
+    height: 4vmax;
+    width: 18vmax;
+    border-radius: 0.5vmax;
+    background-color: $light-2;
+    transition: all 0.5s ease;
+    &.upload {
+      bottom: 19vmax;
+    }
+    &.build-type {
+      bottom: 15vmax;
+    }
+    &.build-options {
+      bottom: 11vmax;
+    }
+    &.order-details {
+      bottom: 7vmax;
+    }
+    &.complete {
+      bottom: 3vmax;
     }
   }
 }

@@ -2101,6 +2101,7 @@ UNIVERSAL
   font-weight: bold;
   letter-spacing: 0.3vmax;
   color: #322d41;
+  cursor: default;
 }
 
 .make-page .button {
@@ -2158,6 +2159,15 @@ UNIVERSAL
   font-size: calc(7vmax * 0.28);
   letter-spacing: calc(7vmax * 0.03);
   color: white;
+}
+
+#make-validations {
+  height: 0;
+  width: 0;
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .hide-element {
@@ -2482,7 +2492,7 @@ DESKTOP CSS
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    padding: 1vmax 2vmax;
+    padding: 1vmax;
     border-radius: 1vmax;
     -webkit-box-shadow: 0 0 2vmax -1.8vmax #322d41;
             box-shadow: 0 0 2vmax -1.8vmax #322d41;
@@ -2497,7 +2507,9 @@ DESKTOP CSS
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    padding: 0 1vmax;
     cursor: pointer;
+    z-index: 1;
   }
   .make-validation .icon {
     height: 1.6vmax;
@@ -2555,6 +2567,31 @@ DESKTOP CSS
   }
   .make-validation.valid .message {
     color: #8258dc;
+  }
+  #make-validation-hover {
+    left: calc((36vw - 18vmax) / 2);
+    position: fixed;
+    height: 4vmax;
+    width: 18vmax;
+    border-radius: 0.5vmax;
+    background-color: #f8f8f8;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  #make-validation-hover.upload {
+    bottom: 19vmax;
+  }
+  #make-validation-hover.build-type {
+    bottom: 15vmax;
+  }
+  #make-validation-hover.build-options {
+    bottom: 11vmax;
+  }
+  #make-validation-hover.order-details {
+    bottom: 7vmax;
+  }
+  #make-validation-hover.complete {
+    bottom: 3vmax;
   }
 }
 
