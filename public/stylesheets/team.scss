@@ -96,7 +96,27 @@ body {
       object-fit: cover;
       transition: 0.3s ease-out;
       z-index: 100;
+
+      // &:hover {
+      //   filter: brightness(0.5);
+      // }
+
+      // &:hover ~ .indiv-bio {
+      //   opacity: 1;
+      // }
     }
+
+    // .indiv-bio {
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   opacity: 0;
+    //   pointer-events: none;
+    //   z-index: 100;
+    //   color: $light-1;
+    //   font-family: $poppins;
+    //   padding: 1.5vmin;
+    // }
 
     .indiv-name {
       align-self: center;

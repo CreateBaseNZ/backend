@@ -1448,8 +1448,8 @@ body {
   overflow: hidden;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 49vw 2vw 49vw;
-      grid-template-columns: 49vw 2vw 49vw;
+  -ms-grid-columns: 49.5vw 1vw 49.5vw;
+      grid-template-columns: 49.5vw 1vw 49.5vw;
 }
 
 .main-section .market-bg {
@@ -1491,7 +1491,6 @@ body {
 }
 
 .main-section .mid-text .market-title {
-  margin-top: 40vh;
   color: #2d283c;
   font-size: 14vmin;
   letter-spacing: 6vmin;
@@ -1500,15 +1499,35 @@ body {
   height: 15vh;
 }
 
+.main-section .mid-text .market-desc {
+  position: absolute;
+  top: 50vh;
+  opacity: 0;
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+  width: 30vw;
+  text-align: center;
+  font-size: calc(12px + 0.1vw);
+  font-weight: 100;
+  font-family: "Montserrat", sans-serif;
+  color: #2d283c;
+  -webkit-transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
 .main-section .mid-text .market-btn {
-  margin-bottom: 35vh;
+  position: absolute;
+  top: 65vh;
   padding: 0.2vmin;
   color: #c7c2d5;
-  font-size: 1vmin;
+  font-size: calc(10px + 0.1vmin);
   letter-spacing: 0.3vmin;
   white-space: nowrap;
   border-bottom: 1px #c7c2d5 solid;
   cursor: pointer;
+  -webkit-transition: top 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  z-index: 100;
 }
 
 .main-section .mid-text .market-btn:hover {
@@ -1532,29 +1551,47 @@ body {
           animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
 }
 
+.main-section .mid-text-active .market-desc {
+  -webkit-filter: blur(0);
+          filter: blur(0);
+  opacity: 1;
+  -webkit-transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99) 0.5s;
+  transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99) 0.5s;
+}
+
+.main-section .mid-text-active .market-btn {
+  top: 85vh;
+}
+
 @-webkit-keyframes title-anim-before {
   0% {
+    margin-top: 30vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
-    font-size: 7vmin;
-    letter-spacing: 3vmin;
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
   }
   40% {
-    -webkit-filter: blur(20px);
-            filter: blur(20px);
+    margin-top: 30vh;
+    -webkit-filter: blur(10px);
+            filter: blur(10px);
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
     opacity: 0;
-    font-size: 28vmin;
-    letter-spacing: 12vmin;
     z-index: 3;
   }
   41% {
+    margin-top: 44vh;
+    -webkit-filter: blur(20px);
+            filter: blur(20px);
+    opacity: 0;
     font-size: 3.5vmin;
     letter-spacing: 1.5vmin;
-    opacity: 0;
     z-index: 1;
   }
   100% {
+    margin-top: 40vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
@@ -1565,27 +1602,33 @@ body {
 
 @keyframes title-anim-before {
   0% {
+    margin-top: 30vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
-    font-size: 7vmin;
-    letter-spacing: 3vmin;
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
   }
   40% {
-    -webkit-filter: blur(20px);
-            filter: blur(20px);
+    margin-top: 30vh;
+    -webkit-filter: blur(10px);
+            filter: blur(10px);
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
     opacity: 0;
-    font-size: 28vmin;
-    letter-spacing: 12vmin;
     z-index: 3;
   }
   41% {
+    margin-top: 44vh;
+    -webkit-filter: blur(20px);
+            filter: blur(20px);
+    opacity: 0;
     font-size: 3.5vmin;
     letter-spacing: 1.5vmin;
-    opacity: 0;
     z-index: 1;
   }
   100% {
+    margin-top: 40vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
@@ -1596,6 +1639,7 @@ body {
 
 @-webkit-keyframes title-anim-after {
   0% {
+    margin-top: 40vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
@@ -1603,6 +1647,7 @@ body {
     letter-spacing: 3vmin;
   }
   60% {
+    margin-top: 44vh;
     -webkit-filter: blur(20px);
             filter: blur(20px);
     opacity: 0;
@@ -1611,22 +1656,27 @@ body {
     z-index: 1;
   }
   61% {
-    font-size: 28vmin;
-    letter-spacing: 12vmin;
+    margin-top: 30vh;
+    -webkit-filter: blur(10px);
+            filter: blur(10px);
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
     opacity: 0;
     z-index: 3;
   }
   100% {
+    margin-top: 30vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
-    font-size: 7vmin;
-    letter-spacing: 3vmin;
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
   }
 }
 
 @keyframes title-anim-after {
   0% {
+    margin-top: 40vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
@@ -1634,6 +1684,7 @@ body {
     letter-spacing: 3vmin;
   }
   60% {
+    margin-top: 44vh;
     -webkit-filter: blur(20px);
             filter: blur(20px);
     opacity: 0;
@@ -1642,17 +1693,47 @@ body {
     z-index: 1;
   }
   61% {
-    font-size: 28vmin;
-    letter-spacing: 12vmin;
+    margin-top: 30vh;
+    -webkit-filter: blur(10px);
+            filter: blur(10px);
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
     opacity: 0;
     z-index: 3;
+  }
+  100% {
+    margin-top: 30vh;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
+  }
+}
+
+@-webkit-keyframes desc-anim {
+  0% {
+    -webkit-filter: blur(20px);
+            filter: blur(20px);
+    opacity: 0;
   }
   100% {
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
-    font-size: 7vmin;
-    letter-spacing: 3vmin;
+  }
+}
+
+@keyframes desc-anim {
+  0% {
+    -webkit-filter: blur(20px);
+            filter: blur(20px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
   }
 }
 

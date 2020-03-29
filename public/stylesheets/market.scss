@@ -11,7 +11,7 @@ body {
   height: calc(100vh - #{$top-bar-height});
   overflow: hidden;
   display: grid;
-  grid-template-columns: 49vw 2vw 49vw;
+  grid-template-columns: 49.5vw 1vw 49.5vw;
 
   .market-bg {
     object-fit: cover;
@@ -39,7 +39,6 @@ body {
     align-items: center;
     
     .market-title {
-      margin-top: 40vh;
       color: $dark-3;
       font-size: 14vmin;
       letter-spacing: 6vmin;
@@ -47,15 +46,32 @@ body {
       height: 15vh;
     }
 
+    .market-desc {
+      position: absolute;
+      top: 50vh;
+      opacity: 0;
+      filter: blur(10px);
+      width: 30vw;
+      text-align: center;
+      font-size: calc(12px + 0.1vw);
+      font-weight: 100;
+      font-family: $montserrat;
+      color: $dark-3;
+      transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    }
+
     .market-btn {
-      margin-bottom: 35vh;
+      position: absolute;
+      top: 65vh;
       padding: 0.2vmin;
       color: $light-3;
-      font-size: 1vmin;
+      font-size: calc(10px + 0.1vmin);
       letter-spacing: 0.3vmin;
       white-space: nowrap;
       border-bottom: 1px $light-3 solid;
       cursor: pointer;
+      transition: top 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+      z-index: 100;
 
       &:hover {
         color: $highlight;
@@ -78,8 +94,14 @@ body {
       animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
     }
 
-    .market-btn {
+    .market-desc {
+      filter: blur(0);
+      opacity: 1;
+      transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99) 0.5s;
+    }
 
+    .market-btn {
+      top: 85vh;
     }
   }
 }
@@ -87,25 +109,30 @@ body {
 
 @keyframes title-anim-before {
   0% {
+    margin-top: 30vh;
     filter: blur(0);
     opacity: 1;
-    font-size: 7vmin;
-    letter-spacing: 3vmin;
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
   }
   40% {
-    filter: blur(20px);
+    margin-top: 30vh;
+    filter: blur(10px);
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
     opacity: 0;
-    font-size: 28vmin;
-    letter-spacing: 12vmin;
     z-index: 3;
   }
   41% {
+    margin-top: 44vh;
+    filter: blur(20px);
+    opacity: 0;
     font-size: 3.5vmin;
     letter-spacing: 1.5vmin;
-    opacity: 0;
     z-index: 1;
   }
   100% {
+    margin-top: 40vh;
     filter: blur(0);
     opacity: 1;
     font-size: 7vmin;
@@ -115,12 +142,14 @@ body {
 
 @keyframes title-anim-after {
   0% {
+    margin-top: 40vh;
     filter: blur(0);
     opacity: 1;
     font-size: 7vmin;
     letter-spacing: 3vmin;
   }
   60% {
+    margin-top: 44vh;
     filter: blur(20px);
     opacity: 0;
     font-size: 3.5vmin;
@@ -128,16 +157,30 @@ body {
     z-index: 1;
   }
   61% {
-    font-size: 28vmin;
-    letter-spacing: 12vmin;
+    margin-top: 30vh;
+    filter: blur(10px);
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
     opacity: 0;
     z-index: 3;
   }
   100% {
+    margin-top: 30vh;
     filter: blur(0);
     opacity: 1;
-    font-size: 7vmin;
-    letter-spacing: 3vmin;
+    font-size: 2vmin;
+    letter-spacing: 1vmin;
+  }
+}
+
+@keyframes desc-anim {
+  0% {
+    filter: blur(20px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
   }
 }
 
