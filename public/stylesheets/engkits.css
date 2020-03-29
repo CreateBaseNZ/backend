@@ -1027,8 +1027,10 @@ button {
 
 @media only screen and (min-width: 850px) {
   .nav-container .nav-top-bar .hamburger {
+    justify-self: flex-start;
     margin-bottom: 0;
     padding: 10px;
+    margin-left: calc(50px + 1vw);
   }
   .nav-container .nav-top-bar .nav-home-btn {
     margin: 0 35.5vw;
@@ -1436,4 +1438,3 @@ TEMPORARY
 /*=========================================================================================
 END
 =========================================================================================*/
-/*# sourceMappingURL=engkits.css.map */
