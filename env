@@ -1,4 +1,0 @@
-PORT=80
-MONGODB_URL="mongodb+srv://CreateBase:Cr3ateB@se123@createbase-c1-hcjct.mongodb.net/main"
-STRIPE_SECRET_KEY="sk_test_3VuDXyed0VKaVmjtUvALzPe800vaLkVsH5"
-COOKIES_SECRET_KEY="cr3ateb@se123"
