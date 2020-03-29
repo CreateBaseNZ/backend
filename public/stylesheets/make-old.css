@@ -1026,6 +1026,10 @@ button {
 }
 
 @media only screen and (min-width: 850px) {
+  .nav-container .nav-top-bar {
+    -ms-grid-columns: 45vw 10vw 45vw;
+        grid-template-columns: 45vw 10vw 45vw;
+  }
   .nav-container .nav-top-bar .hamburger {
     justify-self: flex-start;
     margin-bottom: 0;

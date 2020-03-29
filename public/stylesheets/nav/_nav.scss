@@ -343,6 +343,7 @@ $menu-width: 100vw;
 
 .nav-container {
   .nav-top-bar {
+    grid-template-columns: 45vw 10vw 45vw;
 
     .hamburger {
       justify-self: flex-start;
