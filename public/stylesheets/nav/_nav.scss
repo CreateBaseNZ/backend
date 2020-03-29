@@ -357,6 +357,8 @@ $menu-width: 100vw;
     }
 
     .nav-user-button {
+      justify-self: flex-end;
+      margin-right: calc(90px + 1vw);
       display: none;
       margin-bottom: 15px;
 
@@ -391,6 +393,11 @@ $menu-width: 100vw;
           background: linear-gradient(60deg, $logo-1, $logo-3);
         }
       }
+    }
+
+    .nav-user-icon {
+      justify-self: flex-end;
+      margin-right: calc(90px + 1vw);
     }
   }
   

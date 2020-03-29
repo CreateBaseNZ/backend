@@ -1037,6 +1037,8 @@ button {
     margin-bottom: 10px;
   }
   .nav-container .nav-top-bar .nav-user-button {
+    justify-self: flex-end;
+    margin-right: calc(90px + 1vw);
     display: none;
     margin-bottom: 15px;
   }
@@ -1067,6 +1069,10 @@ button {
     border: 1px solid white;
     color: white;
     background: linear-gradient(60deg, #8258dc, #4e4ed6);
+  }
+  .nav-container .nav-top-bar .nav-user-icon {
+    justify-self: flex-end;
+    margin-right: calc(90px + 1vw);
   }
   .nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
