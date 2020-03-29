@@ -343,9 +343,12 @@ $menu-width: 100vw;
 
 .nav-container {
   .nav-top-bar {
+
     .hamburger {
+      justify-self: flex-start;
       margin-bottom: 0;
       padding: $menu-icon-padding;
+      margin-left: calc(50px + 1vw);
     }
   
     .nav-home-btn {  
