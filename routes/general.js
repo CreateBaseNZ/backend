@@ -19,7 +19,9 @@ const customerRouteOptions = {
 MODELS
 =========================================================================================*/
 
+const Mail = require("./../model/Mail.js");
 const Account = require("./../model/Account.js");
+const Customer = require("./../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -137,6 +139,74 @@ router.get("/checkout", restrictedPages, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
 });
 
+// @route     POST /subscribe/mailing-list
+// @desc      Subscribing to mailing list for public users
+// @access    Public
+router.post("/subscribe/mailing-list", async (req, res) => {
+  const email = req.body.email;
+  // Check if the email is already in the mailing list
+  let mail;
+  try {
+    mail = await Mail.findByEmail(email);
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  if (mail) {
+    return res.send({ status: "success", data: "already subscribed" });
+  }
+  // Check if the user is registered
+  let account;
+  try {
+    account = await Account.findByEmail(email);
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  if (account) {
+    const newMail = new Mail({
+      accountId: account._id,
+      email
+    });
+
+    try {
+      await newMail.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+
+    // Update user subscription mailing status
+    let customer;
+    try {
+      customer = await Customer.findByAccountId(account._id);
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+
+    customer.subscription = {
+      mail: true
+    };
+
+    try {
+      await customer.save();
+    } catch (error) {
+      return res.send({ status: "failed", data: error });
+    }
+
+    return res.send({ status: "success", data: "subscribed" });
+  }
+  // If user is not registered and not subscribed
+  const newMail = new Mail({
+    email
+  });
+
+  try {
+    await newMail.save();
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+
+  return res.send({ status: "success", data: "subscribed" });
+});
+
 // @route     Get /login-status
 // @desc      Get the Login Status
 // @access    Public
@@ -144,13 +214,6 @@ router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
 
   res.send({ status: false });
-});
-
-// @route     Get /test
-// @desc
-// @access    Public
-router.get("/test", (req, res) => {
-  res.sendFile("loading-icon.html", customerRouteOptions);
 });
 
 /*=========================================================================================

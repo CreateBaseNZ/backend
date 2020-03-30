@@ -87,13 +87,19 @@ const LocalCustomerLogin = new LocalStrategy(
   },
   (email, password, done) => {
     // Find the user that is signing in
-    Account.findOne({ email }, (err, user) => {
+    Account.findOne({ email }, async (err, user) => {
       // Check if there is an error found when fetching user
       if (err) return done(err);
       // Check if no user was found
       if (!user) return done(null, false);
       // Validate the password of the user
-      if (!user.validatePassword(password)) return done(null, false);
+      let isMatch;
+      try {
+        isMatch = await user.validatePassword(password);
+      } catch (error) {
+        return done(error);
+      }
+      if (!isMatch) return done(null, false);
       // Return the user if all is successful
       return done(null, user);
     });

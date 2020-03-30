@@ -60,6 +60,11 @@ const CustomerSchema = new Schema({
   address: {
     type: AddressSchema
   },
+  subscription: {
+    mail: {
+      type: Boolean
+    }
+  },
   wallet: {
     amount: {
       type: Number,
@@ -67,6 +72,28 @@ const CustomerSchema = new Schema({
     }
   }
 });
+
+/*=========================================================================================
+STATUS
+=========================================================================================*/
+
+// @FUNC  findByAccountId
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+CustomerSchema.statics.findByAccountId = function(accountId) {
+  return new Promise(async (resolve, reject) => {
+    let customer;
+
+    try {
+      customer = await this.findOne({ accountId });
+    } catch (error) {
+      reject(error);
+    }
+
+    resolve(customer);
+  });
+};
 
 /*=========================================================================================
 METHODS
