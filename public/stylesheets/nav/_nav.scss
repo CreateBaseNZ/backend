@@ -379,6 +379,7 @@ $menu-width: 100vw;
       }
 
       .nav-user-signup {
+        transition: all ease 0.2s;
         font-family: $poppins;
         font-size: calc(8px + 0.2vmax);
         font-weight: 100;

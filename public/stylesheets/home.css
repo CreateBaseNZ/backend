@@ -1060,6 +1060,8 @@ button {
     color: #4bf0ea;
   }
   .nav-container .nav-top-bar .nav-user-button .nav-user-signup {
+    -webkit-transition: all ease 0.2s;
+    transition: all ease 0.2s;
     font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
     font-weight: 100;
@@ -1921,6 +1923,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 3vh;
 }
 
 .test-section .test-logo-container .test-box {
@@ -2014,6 +2017,86 @@ body {
 .test-section .test-logo-container .test-box:hover .bottom-right {
   margin-top: 4.5vmax;
   margin-left: calc(4.5vmax + 0.5px);
+}
+
+.footer-section {
+  width: 100%;
+  background-color: #322d41;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.footer-section .footer-legal-section {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 80%;
+          flex: 0 0 80%;
+  margin-top: 4vh;
+  padding-bottom: 2vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 180%;
+}
+
+.footer-section .footer-legal-section li {
+  list-style-type: none;
+}
+
+.footer-section .footer-legal-section li a {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5vh;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+}
+
+.footer-section .footer-legal-section li a:hover {
+  color: #4bf0ea;
+}
+
+.footer-section .footer-legal-section .list-section-left {
+  padding-right: 4vw;
+  text-align: right;
+}
+
+.footer-section .footer-legal-section .list-section-divider {
+  width: 1px;
+  border-left: thin solid white;
+  height: 8vh;
+}
+
+.footer-section .footer-legal-section .list-section-right {
+  padding-left: 4vw;
+  text-align: left;
+}
+
+.footer-section .footer-contact-section {
+  display: none;
+}
+
+.footer-section .footer-copyright-section {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  padding-top: 2vh;
+  padding-bottom: 4vh;
+}
+
+.footer-section .footer-copyright-section h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 1.4vh;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.2vh;
 }
 
 @-webkit-keyframes landing-slide-sub-anim {
@@ -2946,3 +3029,4 @@ body {
     }
   }
 }
+/*# sourceMappingURL=home.css.map */
