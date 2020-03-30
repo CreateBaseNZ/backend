@@ -1026,6 +1026,10 @@ button {
 }
 
 @media only screen and (min-width: 850px) {
+  .nav-container .nav-top-bar {
+    -ms-grid-columns: 45vw 10vw 45vw;
+        grid-template-columns: 45vw 10vw 45vw;
+  }
   .nav-container .nav-top-bar .hamburger {
     justify-self: flex-start;
     margin-bottom: 0;
@@ -1037,6 +1041,8 @@ button {
     margin-bottom: 10px;
   }
   .nav-container .nav-top-bar .nav-user-button {
+    justify-self: flex-end;
+    margin-right: calc(75px + 1vw);
     display: none;
     margin-bottom: 15px;
   }
@@ -1067,6 +1073,10 @@ button {
     border: 1px solid white;
     color: white;
     background: linear-gradient(60deg, #8258dc, #4e4ed6);
+  }
+  .nav-container .nav-top-bar .nav-user-icon {
+    justify-self: flex-end;
+    margin-right: calc(75px + 1vw);
   }
   .nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
@@ -1438,9 +1448,13 @@ TEMPORARY
 /*=========================================================================================
 END
 =========================================================================================*/
-.nav-user-icon,
-.nav-user-button {
-  display: none !important;
+.nav-container .nav-top-bar {
+  background: transparent;
+}
+
+.nav-container .nav-top-bar .nav-user-icon,
+.nav-container .nav-top-bar .nav-user-button {
+  display: none;
 }
 
 .main-page {

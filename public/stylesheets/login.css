@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   margin: 0;
   padding: 0;
@@ -6607,3 +6608,6624 @@ body .login-overlay-container {
     }
   }
 }
+=======
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+}
+
+.reg-btn {
+  position: relative;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  color: #877da9;
+  border: 1px solid rgba(255, 255, 255, 0);
+  background: transparent;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  -webkit-transition: color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.reg-btn:before, .reg-btn:after {
+  content: '';
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  -webkit-transition: all 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.reg-btn:before {
+  top: -0.5px;
+  left: -0.5px;
+  border-top: 1px solid #c7c2d5;
+  border-left: 1px solid #c7c2d5;
+}
+
+.reg-btn:after {
+  bottom: -0.5px;
+  right: -0.5px;
+  border-bottom: 1px solid #c7c2d5;
+  border-right: 1px solid #c7c2d5;
+}
+
+.reg-btn:hover {
+  color: #4bf0ea;
+  -webkit-transition: color 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: color 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.reg-btn:hover:before, .reg-btn:hover:after {
+  height: 100%;
+  width: 100%;
+  border-color: #4bf0ea;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.plain-btn {
+  position: relative;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  background: transparent;
+  border: none;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #877da9;
+}
+
+.plain-btn:hover {
+  color: #4bf0ea;
+}
+
+@media only screen and (min-width: 850px) {
+  .reg-btn {
+    font-size: 12px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    padding: 10px 30px;
+  }
+  .plain-btn {
+    font-size: 12px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    padding: 10px 30px;
+  }
+}
+
+.loading-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.loading-icon .layer {
+  height: 0;
+  width: 0;
+  opacity: 0.3;
+  position: absolute;
+  border-radius: 1vw;
+}
+
+.loading-icon .layer-1 {
+  -webkit-animation: loading-icon-1 5s forwards infinite;
+          animation: loading-icon-1 5s forwards infinite;
+}
+
+.loading-icon .layer-2 {
+  margin-top: 0;
+  margin-left: 0;
+  -webkit-animation: loading-icon-2 5s forwards infinite;
+          animation: loading-icon-2 5s forwards infinite;
+}
+
+.loading-icon .layer-3 {
+  -webkit-animation: loading-icon-3 5s forwards infinite;
+          animation: loading-icon-3 5s forwards infinite;
+}
+
+@-webkit-keyframes loading-icon-1 {
+  0%,
+  100% {
+    background: #4e4ed6;
+    margin-top: calc(0 * -1 / 4);
+    margin-left: 0;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    margin-top: 0;
+    margin-left: 0;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #4e4ed6;
+    margin-top: calc(0 * 1 / 4);
+    margin-left: 0;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    margin-top: 0;
+    margin-left: 0;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes loading-icon-1 {
+  0%,
+  100% {
+    background: #4e4ed6;
+    margin-top: calc(0 * -1 / 4);
+    margin-left: 0;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    margin-top: 0;
+    margin-left: 0;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #4e4ed6;
+    margin-top: calc(0 * 1 / 4);
+    margin-left: 0;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    margin-top: 0;
+    margin-left: 0;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@-webkit-keyframes loading-icon-2 {
+  0%,
+  100% {
+    background: #6853d9;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    -webkit-transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+            transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #6853d9;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes loading-icon-2 {
+  0%,
+  100% {
+    background: #6853d9;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    -webkit-transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+            transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #6853d9;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@-webkit-keyframes loading-icon-3 {
+  0%,
+  100% {
+    background: #8258dc;
+    margin-top: calc(0 * 1 / 4);
+    margin-left: 0;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    margin-top: 0;
+    margin-left: 0;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #4e4ed6;
+    margin-top: calc(0 * -1 / 4);
+    margin-left: 0;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    margin-top: 0;
+    margin-left: 0;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes loading-icon-3 {
+  0%,
+  100% {
+    background: #8258dc;
+    margin-top: calc(0 * 1 / 4);
+    margin-left: 0;
+    -webkit-transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: #6853d9;
+    margin-top: 0;
+    margin-left: 0;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: #4e4ed6;
+    margin-top: calc(0 * -1 / 4);
+    margin-left: 0;
+    -webkit-transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+            transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    -webkit-animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+            animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: #6853d9;
+    margin-top: 0;
+    margin-left: 0;
+    -webkit-transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+            transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+            animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+.input-decor {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px solid #f8f8f8;
+  height: 40px;
+}
+
+.input-decor input {
+  border: none;
+  width: 75vmin;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  margin-top: 18px;
+  background: transparent;
+}
+
+.input-decor input:focus {
+  outline: none;
+}
+
+.input-decor .input-label {
+  position: absolute;
+  pointer-events: none;
+  top: 15px;
+  left: 5px;
+  color: #877da9;
+  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: 100;
+  background: transparent;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.input-decor input:focus ~ .input-label,
+.input-decor input:not(:focus):valid ~ .input-label {
+  top: 0px;
+  font-size: 8px;
+  color: #4bf0ea;
+}
+
+.input-decor input:not(:focus):valid ~ .input-label {
+  color: #877da9;
+}
+
+.input-decor input:hover ~ .input-label {
+  color: #4bf0ea;
+}
+
+.input-decor .input-error {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+  font-size: 8px;
+  color: red;
+}
+
+.input-decor::after, .input-decor:focus-within::after {
+  content: "";
+  border-bottom: 1px solid #4bf0ea;
+  position: absolute;
+  width: 0%;
+  top: 100%;
+  left: 0%;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.input-decor:focus-within::after {
+  width: 100%;
+}
+
+.input-decor input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+@media only screen and (min-width: 850px) {
+  .input-decor {
+    height: 50px;
+  }
+  .input-decor input {
+    width: 20vmax;
+    margin-top: 22px;
+    font-size: 16px;
+  }
+  .input-decor .input-label {
+    left: 10px;
+    top: 25px;
+    font-size: 16px;
+  }
+  .input-decor input:focus ~ .input-label,
+  .input-decor input:not(:focus):valid ~ .input-label {
+    font-size: 10px;
+  }
+  .input-decor .input-error {
+    bottom: -17px;
+    font-size: 10px;
+  }
+}
+
+.mini-caps-title {
+  font-size: calc(8px + 0.1vw);
+  letter-spacing: 3px;
+  font-weight: 800;
+}
+
+@media only screen and (min-width: 850px) {
+  .mini-caps-title {
+    font-size: calc(10px + 0.1vw);
+    letter-spacing: 4px;
+  }
+}
+
+.hamburger {
+  padding: 0 0;
+  display: inline-block;
+  -webkit-transition-property: opacity, -webkit-filter;
+  transition-property: opacity, -webkit-filter;
+  transition-property: opacity, filter;
+  transition-property: opacity, filter, -webkit-filter;
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+  background-color: #4bf0ea;
+}
+
+.hamburger-box {
+  width: 20px;
+  height: 15px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -0.5px;
+}
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+  width: 20px;
+  height: 1px;
+  background-color: #2d283c;
+  position: absolute;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+
+.hamburger-inner::before, .hamburger-inner::after {
+  content: "";
+  display: block;
+}
+
+.hamburger-inner::before {
+  top: -7px;
+}
+
+.hamburger-inner::after {
+  bottom: -7px;
+}
+
+.hamburger-arrow .hamburger-inner::before {
+  -webkit-transition: top 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.hamburger-arrow .hamburger-inner::after {
+  -webkit-transition: bottom 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s 0.1s ease, transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.hamburger-arrow.is-active .hamburger-inner::before {
+  top: 0;
+  -webkit-transform: translate3d(-5px, -5px, 0) rotate(-45deg) scale(0.7, 1);
+          transform: translate3d(-5px, -5px, 0) rotate(-45deg) scale(0.7, 1);
+  -webkit-transition: top 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.hamburger-arrow.is-active .hamburger-inner::after {
+  bottom: 0;
+  -webkit-transform: translate3d(-5px, 5px, 0) rotate(45deg) scale(0.7, 1);
+          transform: translate3d(-5px, 5px, 0) rotate(45deg) scale(0.7, 1);
+  -webkit-transition: bottom 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s ease, -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-transform 0.1s 0.1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.hamburger-spin .hamburger-inner {
+  -webkit-transition-duration: 0.22s;
+          transition-duration: 0.22s;
+  -webkit-transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger-spin .hamburger-inner::before {
+  -webkit-transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+  transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+}
+
+.hamburger-spin .hamburger-inner::after {
+  -webkit-transition: bottom 0.1s 0.25s ease-in, -webkit-transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: bottom 0.1s 0.25s ease-in, -webkit-transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger-spin.is-active .hamburger-inner {
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+  -webkit-transition-delay: 0.12s;
+          transition-delay: 0.12s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+          transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.hamburger-spin.is-active .hamburger-inner::before {
+  top: 0;
+  opacity: 0;
+  -webkit-transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+  transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+}
+
+.hamburger-spin.is-active .hamburger-inner::after {
+  bottom: 0;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition: bottom 0.1s ease-out, -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: bottom 0.1s ease-out, -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.nav-container {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 0px;
+  z-index: 1000;
+}
+
+.nav-container .nav-top-bar {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30vw 40vw 30vw;
+      grid-template-columns: 30vw 40vw 30vw;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  justify-items: center;
+  height: 60px;
+  width: 100vw;
+  background: white;
+  z-index: 1001;
+}
+
+.nav-container .nav-top-bar .hamburger {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.nav-container .nav-top-bar .hamburger:hover .hamburger-inner,
+.nav-container .nav-top-bar .hamburger:hover .hamburger-inner::before,
+.nav-container .nav-top-bar .hamburger:hover .hamburger-inner::after {
+  background: #4bf0ea;
+}
+
+.nav-container .nav-top-bar .nav-home-btn {
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.nav-container .nav-top-bar .nav-home-btn .nav-logo {
+  height: 100%;
+}
+
+.nav-container .nav-top-bar .nav-user-icon {
+  display: none;
+  cursor: pointer;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  margin-bottom: 20px;
+}
+
+.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  opacity: 0;
+  padding: 10px;
+  z-index: 2;
+  -webkit-transition: -webkit-transform 0.15s ease-out 0.15s;
+  transition: -webkit-transform 0.15s ease-out 0.15s;
+  transition: transform 0.15s ease-out 0.15s;
+  transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
+}
+
+.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt:hover {
+  opacity: 1;
+}
+
+.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ .nav-user-reg {
+  opacity: 0;
+}
+
+.nav-container .nav-top-bar .nav-user-icon .nav-user-reg {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  opacity: 1;
+  padding: 10px;
+  -webkit-transition: -webkit-transform 0.15s ease-out 0.15s;
+  transition: -webkit-transform 0.15s ease-out 0.15s;
+  transition: transform 0.15s ease-out 0.15s;
+  transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
+}
+
+.nav-container .nav-top-bar .nav-user-icon .nav-user-x {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  padding: 10px;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+
+.nav-container .nav-top-bar .nav-user-active .nav-user-reg {
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  opacity: 0;
+}
+
+.nav-container .nav-top-bar .nav-user-active .nav-user-hlt {
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  opacity: 1;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+
+.nav-container .nav-top-bar .nav-user-active .nav-user-x {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transition: all 0.15s ease-out 0.15s;
+  transition: all 0.15s ease-out 0.15s;
+}
+
+.nav-container .nav-top-bar .nav-user-button {
+  display: none;
+}
+
+.nav-container .nav-side-menus {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  margin-top: -60px;
+  width: 100vw;
+  visibility: hidden;
+}
+
+.nav-container .nav-side-menus .nav-left-menu-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0vw;
+  overflow: hidden;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 85vh 15vh;
+      grid-template-rows: 85vh 15vh;
+  margin-left: -5vw;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-menu-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 60px;
+}
+
+.nav-container .nav-side-menus .nav-left-menu-active {
+  visibility: visible;
+  width: 100vw;
+}
+
+.nav-container .nav-side-menus .nav-left-menu-active .nav-left-menu {
+  margin-left: 0;
+}
+
+.nav-container .nav-side-menus .nav-left-menu-active .nav-left-menu .nav-sep {
+  width: 5vw;
+  -webkit-transition: 0.2s ease-out 0.3s;
+  transition: 0.2s ease-out 0.3s;
+}
+
+.nav-container .nav-side-menus .nav-right-menu-in {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 0vw;
+  overflow: hidden;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-container .nav-side-menus .nav-right-menu-in .nav-right-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: -5vw;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-container .nav-side-menus .nav-right-menu-out {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 0vw;
+  overflow: hidden;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-container .nav-side-menus .nav-right-menu-out .nav-right-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: -5vw;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.nav-container .nav-side-menus .nav-right-menu-active {
+  visibility: visible;
+  width: 100vw;
+}
+
+.nav-container .nav-side-menus .nav-right-menu-active .nav-right-menu {
+  margin-right: 0vw;
+}
+
+.nav-container .nav-side-menus .nav-right-menu-active .nav-right-menu .nav-sep {
+  width: 5vw;
+  -webkit-transition: 0.2s ease-out 0.3s;
+  transition: 0.2s ease-out 0.3s;
+}
+
+.nav-container .nav-side-menus .nav-side-header {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 2vw;
+  letter-spacing: 0.5vw;
+  color: #c7c2d5;
+}
+
+.nav-container .nav-side-menus .nav-side-item {
+  margin-top: 3vh;
+  color: #2d283c;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5vmax;
+  font-weight: 100;
+  letter-spacing: 0.2vw;
+}
+
+.nav-container .nav-side-menus .nav-side-item:hover {
+  color: #4bf0ea;
+}
+
+.nav-container .nav-side-menus .nav-item-outer {
+  margin-top: 3vh;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-container .nav-side-menus .nav-item-outer .nav-item-inner {
+  font-size: 2.5vmax;
+  color: #2d283c;
+  margin-right: 2vw;
+  letter-spacing: 0.2vw;
+}
+
+.nav-container .nav-side-menus .nav-item-outer .nav-item-inner:hover {
+  color: #4bf0ea;
+}
+
+.nav-container .nav-side-menus .nav-item-outer .info {
+  height: 2vmax;
+  width: 2vmax;
+  border-radius: 50%;
+  font-size: 1.5vmax;
+  color: white;
+  background: #c7c2d5;
+  text-align: center;
+}
+
+.nav-container .nav-side-menus .nav-item-outer .info:hover {
+  background: #4bf0ea;
+}
+
+.nav-container .nav-side-menus .nav-side-signout {
+  margin-top: 10vh;
+  color: #2d283c;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.2vw;
+}
+
+.nav-container .nav-side-menus .nav-side-signout:hover {
+  color: #4bf0ea;
+}
+
+.nav-container .nav-side-menus .nav-sep {
+  width: 0vw;
+  height: 1px;
+  background: #c7c2d5;
+  margin: 6vh 0;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.nav-container .nav-side-menus .nav-side-socials {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-container .nav-side-menus .nav-side-socials .fab {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.nav-container .nav-side-menus .nav-side-socials .fab:visited {
+  color: #877da9;
+}
+
+.nav-container .nav-side-menus .nav-side-socials .fab:hover {
+  color: #4bf0ea;
+}
+
+.nav-container .nav-side-menus .nav-profile-pic {
+  background: #2d283c;
+  height: 20vh;
+  width: 20vh;
+  border-radius: 50%;
+  margin: 10vh 0;
+}
+
+.nav-container .nav-darken-overlay {
+  display: none;
+}
+
+@media only screen and (min-width: 850px) {
+  .nav-container .nav-top-bar {
+    -ms-grid-columns: 45vw 10vw 45vw;
+        grid-template-columns: 45vw 10vw 45vw;
+  }
+  .nav-container .nav-top-bar .hamburger {
+    justify-self: flex-start;
+    margin-bottom: 0;
+    padding: 10px;
+    margin-left: calc(50px + 1vw);
+  }
+  .nav-container .nav-top-bar .nav-home-btn {
+    margin: 0 35.5vw;
+    margin-bottom: 10px;
+  }
+  .nav-container .nav-top-bar .nav-user-button {
+    justify-self: flex-end;
+    margin-right: calc(75px + 1vw);
+    display: none;
+    margin-bottom: 15px;
+  }
+  .nav-container .nav-top-bar .nav-user-button .nav-user-login {
+    font-family: "Poppins", sans-serif;
+    font-size: calc(8px + 0.2vmax);
+    font-weight: 100;
+    letter-spacing: 0.1vmax;
+    color: #2d283c;
+    background: transparent;
+    padding: 10px 10px;
+    margin: 0px 30px;
+  }
+  .nav-container .nav-top-bar .nav-user-button .nav-user-login:hover {
+    color: #4bf0ea;
+  }
+  .nav-container .nav-top-bar .nav-user-button .nav-user-signup {
+    font-family: "Poppins", sans-serif;
+    font-size: calc(8px + 0.2vmax);
+    font-weight: 100;
+    letter-spacing: 0.1vmax;
+    color: #6853d9;
+    padding: 5px 20px;
+    border: 1px solid #6853d9;
+    background: transparent;
+  }
+  .nav-container .nav-top-bar .nav-user-button .nav-user-signup:hover {
+    border: 1px solid white;
+    color: white;
+    background: linear-gradient(60deg, #8258dc, #4e4ed6);
+  }
+  .nav-container .nav-top-bar .nav-user-icon {
+    justify-self: flex-end;
+    margin-right: calc(75px + 1vw);
+  }
+  .nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
+    margin-left: -2vw;
+    width: 20vw;
+    -ms-grid-rows: 75vh 25vh;
+        grid-template-rows: 75vh 25vh;
+  }
+  .nav-container .nav-side-menus .nav-left-menu-active {
+    width: 20vw;
+  }
+  .nav-container .nav-side-menus .nav-left-menu-active .nav-left-menu {
+    margin-left: 0;
+  }
+  .nav-container .nav-side-menus .nav-right-menu-in .nav-right-menu {
+    width: calc(20vw + 15px);
+    margin-right: -2vw;
+    width: 20vw;
+  }
+  .nav-container .nav-side-menus .nav-right-menu-active {
+    width: calc(20vw + 15px);
+    width: 20vw;
+  }
+  .nav-container .nav-side-menus .nav-right-menu-active .nav-right-menu {
+    margin-right: 0vw;
+  }
+  .nav-container .nav-side-menus .nav-side-header {
+    font-size: calc(8px + 0.1vw);
+    margin-top: 10vh;
+    letter-spacing: 0.1vw;
+  }
+  .nav-container .nav-side-menus .nav-side-item {
+    margin-top: 1.5vh;
+    padding: 1vh;
+    font-size: calc(10px + 0.2vw);
+    letter-spacing: 0.1vw;
+  }
+  .nav-container .nav-side-menus .nav-item-outer {
+    margin-top: 1.5vh;
+  }
+  .nav-container .nav-side-menus .nav-item-outer .nav-item-inner {
+    font-size: calc(10px + 0.2vw);
+    color: #2d283c;
+    margin-right: 0.5vw;
+    letter-spacing: 0.1vw;
+    padding: 1vh;
+  }
+  .nav-container .nav-side-menus .nav-item-outer .info {
+    font-family: "Montserrat", sans-serif;
+    height: calc(10px + 0.2vw);
+    width: calc(10px + 0.2vw);
+    font-size: calc(10px + 0.1vw);
+    background: #c7c2d5;
+    text-align: center;
+  }
+  .nav-container .nav-side-menus .nav-side-signout {
+    font-size: calc(10px + 0.2vw);
+    letter-spacing: 0.1vw;
+    padding: 1vh;
+  }
+  .nav-container .nav-side-menus .nav-sep {
+    display: none;
+  }
+  .nav-container .nav-side-menus .nav-side-socials {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .nav-container .nav-side-menus .nav-side-socials .fab {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 5px;
+  }
+  .nav-container .nav-side-menus .nav-profile-pic {
+    margin-top: 5vh;
+    margin-bottom: 0vh;
+  }
+  .nav-container .nav-darken-overlay {
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    opacity: 0;
+    -webkit-transition: opacity 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: opacity 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  .nav-container .nav-darken-overlay-active {
+    visibility: visible;
+    opacity: 0.1;
+  }
+}
+
+/*=========================================================================================
+TEMPORARY
+=========================================================================================*/
+.load-1 {
+  display: inline-block;
+  position: relative;
+  width: 8vmax;
+  height: 8vmax;
+}
+
+.load-1 div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 8vmax;
+  height: 8vmax;
+  border: 1vmax solid #8258dc;
+  border-radius: 50%;
+  -webkit-animation: load-1 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: load-1 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #8258dc transparent transparent transparent;
+}
+
+.load-1 div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.load-1 div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.load-1 div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+@-webkit-keyframes load-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes load-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.load-2 {
+  display: inline-block;
+  position: relative;
+  width: 3.6vmax;
+  height: 3.6vmax;
+}
+
+.load-2 div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 2.4vmax;
+  height: 2.4vmax;
+  margin: 0.5vmax;
+  border: 0.5vmax solid white;
+  border-radius: 50%;
+  -webkit-animation: load-2 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: load-2 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: white transparent transparent transparent;
+}
+
+.load-2 div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.load-2 div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.load-2 div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+@-webkit-keyframes load-2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes load-2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 4;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+          animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+  width: 3.6vmax;
+  height: 3.6vmax;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  -webkit-box-shadow: inset 0px 0px 0px #7ac142;
+          box-shadow: inset 0px 0px 0px #7ac142;
+  -webkit-animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+          animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark__check {
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  -webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+.checkmark__circle-2 {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 0;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+          animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-2 {
+  width: 8vmax;
+  height: 8vmax;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 4;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  -webkit-box-shadow: inset 0px 0px 0px #7ac142;
+          box-shadow: inset 0px 0px 0px #7ac142;
+  -webkit-animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+          animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark__check-2 {
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  -webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@-webkit-keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes scale {
+  0%,
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+            transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes scale {
+  0%,
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+  50% {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+            transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@-webkit-keyframes fill {
+  100% {
+    -webkit-box-shadow: inset 0px 0px 0px 30px #7ac142;
+            box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+
+@keyframes fill {
+  100% {
+    -webkit-box-shadow: inset 0px 0px 0px 30px #7ac142;
+            box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .load-1 {
+    width: 4vmax;
+    height: 4vmax;
+  }
+  .load-1 div {
+    width: 4vmax;
+    height: 4vmax;
+    border: 0.5vmax solid #8258dc;
+    border-color: #8258dc transparent transparent transparent;
+  }
+  .load-2 {
+    width: 1.6vmax;
+    height: 1.6vmax;
+  }
+  .load-2 div {
+    width: 1.2vmax;
+    height: 1.2vmax;
+    margin: 0.25vmax;
+    border: 0.25vmax solid white;
+    border-color: white transparent transparent transparent;
+  }
+  .checkmark {
+    width: 1.6vmax;
+    height: 1.6vmax;
+  }
+  .checkmark-2 {
+    width: 4vmax;
+    height: 4vmax;
+  }
+}
+
+/*=========================================================================================
+END
+=========================================================================================*/
+body .nav-container .nav-top-bar {
+  background: transparent;
+}
+
+body .nav-container .nav-top-bar .nav-user-icon,
+body .nav-container .nav-top-bar .nav-user-button {
+  display: none;
+}
+
+body .nav-darken-overlay-active ~ .nav-top-bar {
+  background: white;
+}
+
+body .main-login {
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  height: 100vh;
+}
+
+body .main-login .nav-global {
+  position: absolute;
+}
+
+body .main-login .login-main-container {
+  background: white;
+  overflow: hidden;
+}
+
+body .main-login .login-main-container .login-form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+body .main-login .login-main-container .hello-container {
+  display: none;
+}
+
+body .main-login .login-main-container .login-container {
+  left: 0;
+  width: 100vw;
+  z-index: 1;
+  background: white;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 80vh 20vh;
+      grid-template-rows: 80vh 20vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+}
+
+body .main-login .login-main-container .login-container .log-in-form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 41vh 10vh 10vh 19vh;
+      grid-template-rows: 41vh 10vh 10vh 19vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  width: 100%;
+}
+
+body .main-login .login-main-container .login-container .log-in-form #login-title {
+  margin-top: 60px;
+}
+
+body .main-login .login-main-container .login-container .log-in-form #login-login {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+body .main-login .login-main-container .login-container #login-back {
+  display: none;
+}
+
+body .main-login .login-main-container .login-container #login-signup {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  font-size: calc(8px + 0.2vmax);
+  margin-bottom: 2vh;
+}
+
+body .main-login .login-main-container .login-container #login-signup a {
+  color: #4bf0ea;
+}
+
+body .login-overlay-container {
+  display: none;
+}
+
+@media only screen and (min-width: 850px) {
+  body .nav-container .nav-top-bar {
+    background: transparent !important;
+  }
+  body .nav-container .nav-top-bar .nav-user-icon,
+  body .nav-container .nav-top-bar .nav-user-button {
+    display: none !important;
+  }
+  body .nav-darken-overlay-active ~ .nav-top-bar {
+    background: white;
+  }
+  body .main-login {
+    background: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.5;
+    height: 100vh;
+  }
+  body .main-login .nav-global {
+    position: absolute;
+  }
+  body .main-login .login-main-container {
+    background: white;
+    overflow: hidden;
+    width: 50vw;
+  }
+  body .main-login .login-main-container .login-form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    -webkit-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+  }
+  body .main-login .login-main-container .hello-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+    background: white;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "hello hello" "signup login";
+    -ms-grid-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+  body .main-login .login-main-container .hello-container #hello-creator {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: hello;
+    font-size: calc(16px + 1vw);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 100;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin-left: calc((50vw - 8 * calc(16px + 1vw)) / 2);
+  }
+  body .main-login .login-main-container .hello-container #hello-creator #change-text {
+    position: relative;
+    padding: 1px;
+  }
+  body .main-login .login-main-container .hello-container #hello-signup {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    justify-self: flex-end;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: signup;
+    margin-top: 5vh;
+    margin-right: 2vw;
+  }
+  body .main-login .login-main-container .hello-container #hello-signup:hover {
+    border: 1px solid white;
+  }
+  body .main-login .login-main-container .hello-container #hello-login {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    justify-self: flex-start;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: login;
+    margin-top: 5vh;
+    margin-left: 2vw;
+    padding: 10px;
+    -webkit-transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  body .main-login .login-main-container .hello-container #hello-login:hover {
+    padding-left: 25px;
+    -webkit-transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  body .main-login .login-main-container .hello-container #hello-login:hover ~ .hello-login-line {
+    width: 23vw;
+    background: #4bf0ea;
+    -webkit-transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  body .main-login .login-main-container .hello-container .hello-login-line {
+    pointer-events: none;
+    position: absolute;
+    top: calc(50% + 5vh + 39px);
+    left: calc(50% + 2vw);
+    width: 20px;
+    height: 1px;
+    background: #c7c2d5;
+    -webkit-transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  body .main-login .login-main-container .login-container {
+    left: 0;
+    width: 50%;
+    visibility: hidden;
+    z-index: 1;
+    background: white;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: 75vh 10vh 15vh;
+        grid-template-rows: 75vh 10vh 15vh;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: center;
+  }
+  body .main-login .login-main-container .login-container .log-in-form {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: 41vh 10vh 10vh 14vh;
+        grid-template-rows: 41vh 10vh 10vh 14vh;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: center;
+    width: 100%;
+  }
+  body .main-login .login-main-container .login-container .log-in-form #login-title {
+    margin-top: 60px;
+  }
+  body .main-login .login-main-container .login-container .log-in-form #login-login {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+  }
+  body .main-login .login-main-container .login-container #login-back {
+    display: block;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    -ms-grid-column-align: center;
+        justify-self: center;
+    -webkit-transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  body .main-login .login-main-container .login-container #login-back::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 1px;
+    width: 0px;
+    background: #c7c2d5;
+    -webkit-transition: 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  body .main-login .login-main-container .login-container #login-back:hover {
+    padding-right: 10vw;
+    -webkit-transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  body .main-login .login-main-container .login-container #login-back:hover:before {
+    left: calc(50% - 2vw);
+    width: 10vw;
+    background: #4bf0ea;
+    -webkit-transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+    transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  }
+  body .main-login .login-main-container .login-container #login-signup {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    -ms-grid-column-align: center;
+        justify-self: center;
+    font-size: calc(8px + 0.2vmax);
+    margin-bottom: 2vh;
+  }
+  body .main-login .login-main-container .login-container #login-signup a {
+    color: #4bf0ea;
+  }
+  body .login-main-container.right-panel-active .hello-container {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  body .login-main-container.right-panel-active .login-container {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    visibility: visible;
+    z-index: 5;
+    -webkit-animation: show 0.6s;
+            animation: show 0.6s;
+  }
+  body .login-overlay-container {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
+    transition: -webkit-transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
+    z-index: 100;
+  }
+  body .login-main-container.right-panel-active .login-overlay-container {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  body .login-overlay {
+    background: white;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
+    transition: -webkit-transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
+  }
+  body .login-main-container.right-panel-active .login-overlay {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+  }
+  body .login-overlay-panel {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
+    transition: -webkit-transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
+    overflow: hidden;
+  }
+  body .login-overlay-panel img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    overflow: hidden;
+    height: 100vh;
+  }
+  body .login-overlay-left {
+    -webkit-transform: translateX(-40%);
+            transform: translateX(-40%);
+  }
+  body .login-overlay-left img {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+  body .login-main-container.right-panel-active .login-overlay-left {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  body .login-overlay-right {
+    right: 0;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  body .login-overlay-right img {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+  }
+  body .login-main-container.right-panel-active .login-overlay-right {
+    -webkit-transform: translateX(40%);
+            transform: translateX(40%);
+  }
+  @-webkit-keyframes show {
+    0%,
+    49.99% {
+      visibility: hidden;
+      z-index: 1;
+    }
+    50%,
+    100% {
+      visibility: visible;
+      z-index: 5;
+    }
+  }
+  @keyframes show {
+    0%,
+    49.99% {
+      visibility: hidden;
+      z-index: 1;
+    }
+    50%,
+    100% {
+      visibility: visible;
+      z-index: 5;
+    }
+  }
+  body .glitch {
+    position: relative;
+    padding: 10px;
+  }
+  body .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 1px;
+    text-shadow: 1px 0 greenyellow;
+    background: white;
+    overflow: hidden;
+    visibility: hidden;
+    animation: noise-anim 10s infinite linear alternate-reverse;
+  }
+  body .glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -1px;
+    text-shadow: -1px 0 magenta;
+    background: white;
+    overflow: hidden;
+    visibility: hidden;
+    animation: noise-anim-2 8s infinite linear alternate-reverse;
+  }
+  @-webkit-keyframes noise-anim {
+    0% {
+      -webkit-clip-path: inset(89% 0 9% 0);
+              clip-path: inset(89% 0 9% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    0.41667% {
+      -webkit-clip-path: inset(42% 0 13% 0);
+              clip-path: inset(42% 0 13% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    0.83333% {
+      -webkit-clip-path: inset(29% 0 61% 0);
+              clip-path: inset(29% 0 61% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    1.25% {
+      -webkit-clip-path: inset(61% 0 38% 0);
+              clip-path: inset(61% 0 38% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    1.66667% {
+      -webkit-clip-path: inset(82% 0 16% 0);
+              clip-path: inset(82% 0 16% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    2.08333% {
+      -webkit-clip-path: inset(24% 0 10% 0);
+              clip-path: inset(24% 0 10% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    2.5% {
+      -webkit-clip-path: inset(55% 0 4% 0);
+              clip-path: inset(55% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    2.91667% {
+      -webkit-clip-path: inset(96% 0 3% 0);
+              clip-path: inset(96% 0 3% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    3.33333% {
+      -webkit-clip-path: inset(27% 0 72% 0);
+              clip-path: inset(27% 0 72% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    3.75% {
+      -webkit-clip-path: inset(85% 0 9% 0);
+              clip-path: inset(85% 0 9% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    4.16667% {
+      -webkit-clip-path: inset(87% 0 4% 0);
+              clip-path: inset(87% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    4.58333% {
+      -webkit-clip-path: inset(55% 0 33% 0);
+              clip-path: inset(55% 0 33% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    5% {
+      -webkit-clip-path: inset(29% 0 35% 0);
+              clip-path: inset(29% 0 35% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    5.41667% {
+      -webkit-clip-path: inset(26% 0 38% 0);
+              clip-path: inset(26% 0 38% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    5.83333% {
+      -webkit-clip-path: inset(26% 0 74% 0);
+              clip-path: inset(26% 0 74% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    6.25% {
+      -webkit-clip-path: inset(54% 0 42% 0);
+              clip-path: inset(54% 0 42% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    6.66667% {
+      -webkit-clip-path: inset(89% 0 8% 0);
+              clip-path: inset(89% 0 8% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    7.08333% {
+      -webkit-clip-path: inset(19% 0 77% 0);
+              clip-path: inset(19% 0 77% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    7.5% {
+      -webkit-clip-path: inset(26% 0 3% 0);
+              clip-path: inset(26% 0 3% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    7.91667% {
+      -webkit-clip-path: inset(91% 0 9% 0);
+              clip-path: inset(91% 0 9% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    8.33333% {
+      -webkit-clip-path: inset(47% 0 34% 0);
+              clip-path: inset(47% 0 34% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    8.75% {
+      -webkit-clip-path: inset(73% 0 6% 0);
+              clip-path: inset(73% 0 6% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    9.16667% {
+      -webkit-clip-path: inset(40% 0 5% 0);
+              clip-path: inset(40% 0 5% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    9.58333% {
+      -webkit-clip-path: inset(21% 0 12% 0);
+              clip-path: inset(21% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    10% {
+      -webkit-clip-path: inset(26% 0 23% 0);
+              clip-path: inset(26% 0 23% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    10.41667% {
+      -webkit-clip-path: inset(63% 0 28% 0);
+              clip-path: inset(63% 0 28% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    10.83333% {
+      -webkit-clip-path: inset(100% 0 1% 0);
+              clip-path: inset(100% 0 1% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    11.25% {
+      -webkit-clip-path: inset(42% 0 6% 0);
+              clip-path: inset(42% 0 6% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    11.66667% {
+      -webkit-clip-path: inset(36% 0 16% 0);
+              clip-path: inset(36% 0 16% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    12.08333% {
+      -webkit-clip-path: inset(48% 0 13% 0);
+              clip-path: inset(48% 0 13% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    12.5% {
+      -webkit-clip-path: inset(18% 0 59% 0);
+              clip-path: inset(18% 0 59% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    12.91667% {
+      -webkit-clip-path: inset(56% 0 31% 0);
+              clip-path: inset(56% 0 31% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    13.33333% {
+      -webkit-clip-path: inset(45% 0 34% 0);
+              clip-path: inset(45% 0 34% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    13.75% {
+      -webkit-clip-path: inset(83% 0 16% 0);
+              clip-path: inset(83% 0 16% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    14.16667% {
+      -webkit-clip-path: inset(3% 0 81% 0);
+              clip-path: inset(3% 0 81% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    14.58333% {
+      -webkit-clip-path: inset(7% 0 67% 0);
+              clip-path: inset(7% 0 67% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    15% {
+      -webkit-clip-path: inset(65% 0 30% 0);
+              clip-path: inset(65% 0 30% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    15.41667% {
+      -webkit-clip-path: inset(75% 0 3% 0);
+              clip-path: inset(75% 0 3% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    15.83333% {
+      -webkit-clip-path: inset(32% 0 53% 0);
+              clip-path: inset(32% 0 53% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    16.25% {
+      -webkit-clip-path: inset(68% 0 12% 0);
+              clip-path: inset(68% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    16.66667% {
+      -webkit-clip-path: inset(53% 0 19% 0);
+              clip-path: inset(53% 0 19% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    17.08333% {
+      -webkit-clip-path: inset(70% 0 27% 0);
+              clip-path: inset(70% 0 27% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    17.5% {
+      -webkit-clip-path: inset(90% 0 4% 0);
+              clip-path: inset(90% 0 4% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    17.91667% {
+      -webkit-clip-path: inset(98% 0 3% 0);
+              clip-path: inset(98% 0 3% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    18.33333% {
+      -webkit-clip-path: inset(21% 0 10% 0);
+              clip-path: inset(21% 0 10% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    18.75% {
+      -webkit-clip-path: inset(31% 0 7% 0);
+              clip-path: inset(31% 0 7% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    19.16667% {
+      -webkit-clip-path: inset(82% 0 9% 0);
+              clip-path: inset(82% 0 9% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    19.58333% {
+      -webkit-clip-path: inset(38% 0 58% 0);
+              clip-path: inset(38% 0 58% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    20% {
+      -webkit-clip-path: inset(87% 0 7% 0);
+              clip-path: inset(87% 0 7% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    20.41667% {
+      -webkit-clip-path: inset(35% 0 40% 0);
+              clip-path: inset(35% 0 40% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    20.83333% {
+      -webkit-clip-path: inset(11% 0 53% 0);
+              clip-path: inset(11% 0 53% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    21.25% {
+      -webkit-clip-path: inset(44% 0 48% 0);
+              clip-path: inset(44% 0 48% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    21.66667% {
+      -webkit-clip-path: inset(23% 0 51% 0);
+              clip-path: inset(23% 0 51% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    22.08333% {
+      -webkit-clip-path: inset(4% 0 52% 0);
+              clip-path: inset(4% 0 52% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    22.5% {
+      -webkit-clip-path: inset(51% 0 4% 0);
+              clip-path: inset(51% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    22.91667% {
+      -webkit-clip-path: inset(14% 0 39% 0);
+              clip-path: inset(14% 0 39% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    23.33333% {
+      -webkit-clip-path: inset(66% 0 34% 0);
+              clip-path: inset(66% 0 34% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    23.75% {
+      -webkit-clip-path: inset(3% 0 28% 0);
+              clip-path: inset(3% 0 28% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    24.16667% {
+      -webkit-clip-path: inset(44% 0 57% 0);
+              clip-path: inset(44% 0 57% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    24.58333% {
+      -webkit-clip-path: inset(71% 0 13% 0);
+              clip-path: inset(71% 0 13% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    25% {
+      -webkit-clip-path: inset(80% 0 7% 0);
+              clip-path: inset(80% 0 7% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    25.41667% {
+      -webkit-clip-path: inset(85% 0 15% 0);
+              clip-path: inset(85% 0 15% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    25.83333% {
+      -webkit-clip-path: inset(8% 0 26% 0);
+              clip-path: inset(8% 0 26% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    26.25% {
+      -webkit-clip-path: inset(50% 0 41% 0);
+              clip-path: inset(50% 0 41% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    26.66667% {
+      -webkit-clip-path: inset(54% 0 43% 0);
+              clip-path: inset(54% 0 43% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    27.08333% {
+      -webkit-clip-path: inset(85% 0 4% 0);
+              clip-path: inset(85% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    27.5% {
+      -webkit-clip-path: inset(80% 0 9% 0);
+              clip-path: inset(80% 0 9% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    27.91667% {
+      -webkit-clip-path: inset(54% 0 28% 0);
+              clip-path: inset(54% 0 28% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    28.33333% {
+      -webkit-clip-path: inset(11% 0 52% 0);
+              clip-path: inset(11% 0 52% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    28.75% {
+      -webkit-clip-path: inset(10% 0 59% 0);
+              clip-path: inset(10% 0 59% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    29.16667% {
+      -webkit-clip-path: inset(47% 0 23% 0);
+              clip-path: inset(47% 0 23% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    29.58333% {
+      -webkit-clip-path: inset(90% 0 11% 0);
+              clip-path: inset(90% 0 11% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    30% {
+      -webkit-clip-path: inset(85% 0 11% 0);
+              clip-path: inset(85% 0 11% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    30.41667% {
+      -webkit-clip-path: inset(46% 0 43% 0);
+              clip-path: inset(46% 0 43% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    30.83333% {
+      -webkit-clip-path: inset(94% 0 4% 0);
+              clip-path: inset(94% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    31.25% {
+      -webkit-clip-path: inset(17% 0 32% 0);
+              clip-path: inset(17% 0 32% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    31.66667% {
+      -webkit-clip-path: inset(58% 0 7% 0);
+              clip-path: inset(58% 0 7% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    32.08333% {
+      -webkit-clip-path: inset(86% 0 2% 0);
+              clip-path: inset(86% 0 2% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    32.5% {
+      -webkit-clip-path: inset(80% 0 9% 0);
+              clip-path: inset(80% 0 9% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    32.91667% {
+      -webkit-clip-path: inset(70% 0 9% 0);
+              clip-path: inset(70% 0 9% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    33.33333% {
+      -webkit-clip-path: inset(15% 0 69% 0);
+              clip-path: inset(15% 0 69% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    33.75% {
+      -webkit-clip-path: inset(79% 0 17% 0);
+              clip-path: inset(79% 0 17% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    34.16667% {
+      -webkit-clip-path: inset(45% 0 44% 0);
+              clip-path: inset(45% 0 44% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    34.58333% {
+      -webkit-clip-path: inset(98% 0 1% 0);
+              clip-path: inset(98% 0 1% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    35% {
+      -webkit-clip-path: inset(60% 0 41% 0);
+              clip-path: inset(60% 0 41% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    35.41667% {
+      -webkit-clip-path: inset(32% 0 8% 0);
+              clip-path: inset(32% 0 8% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    35.83333% {
+      -webkit-clip-path: inset(78% 0 17% 0);
+              clip-path: inset(78% 0 17% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    36.25% {
+      -webkit-clip-path: inset(39% 0 53% 0);
+              clip-path: inset(39% 0 53% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    36.66667% {
+      -webkit-clip-path: inset(62% 0 14% 0);
+              clip-path: inset(62% 0 14% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    37.08333% {
+      -webkit-clip-path: inset(99% 0 1% 0);
+              clip-path: inset(99% 0 1% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    37.5% {
+      -webkit-clip-path: inset(31% 0 62% 0);
+              clip-path: inset(31% 0 62% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    37.91667% {
+      -webkit-clip-path: inset(49% 0 10% 0);
+              clip-path: inset(49% 0 10% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    38.33333% {
+      -webkit-clip-path: inset(68% 0 16% 0);
+              clip-path: inset(68% 0 16% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    38.75% {
+      -webkit-clip-path: inset(58% 0 15% 0);
+              clip-path: inset(58% 0 15% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    39.16667% {
+      -webkit-clip-path: inset(40% 0 15% 0);
+              clip-path: inset(40% 0 15% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    39.58333% {
+      -webkit-clip-path: inset(5% 0 14% 0);
+              clip-path: inset(5% 0 14% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    40% {
+      -webkit-clip-path: inset(29% 0 70% 0);
+              clip-path: inset(29% 0 70% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    40.41667% {
+      -webkit-clip-path: inset(87% 0 12% 0);
+              clip-path: inset(87% 0 12% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    40.83333% {
+      -webkit-clip-path: inset(40% 0 22% 0);
+              clip-path: inset(40% 0 22% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    41.25% {
+      -webkit-clip-path: inset(29% 0 38% 0);
+              clip-path: inset(29% 0 38% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    41.66667% {
+      -webkit-clip-path: inset(96% 0 1% 0);
+              clip-path: inset(96% 0 1% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    42.08333% {
+      -webkit-clip-path: inset(36% 0 62% 0);
+              clip-path: inset(36% 0 62% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    42.5% {
+      -webkit-clip-path: inset(63% 0 33% 0);
+              clip-path: inset(63% 0 33% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    42.91667% {
+      -webkit-clip-path: inset(89% 0 12% 0);
+              clip-path: inset(89% 0 12% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    43.33333% {
+      -webkit-clip-path: inset(43% 0 17% 0);
+              clip-path: inset(43% 0 17% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    43.75% {
+      -webkit-clip-path: inset(11% 0 52% 0);
+              clip-path: inset(11% 0 52% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    44.16667% {
+      -webkit-clip-path: inset(11% 0 63% 0);
+              clip-path: inset(11% 0 63% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    44.58333% {
+      -webkit-clip-path: inset(47% 0 12% 0);
+              clip-path: inset(47% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    45% {
+      -webkit-clip-path: inset(33% 0 38% 0);
+              clip-path: inset(33% 0 38% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    45.41667% {
+      -webkit-clip-path: inset(6% 0 91% 0);
+              clip-path: inset(6% 0 91% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    45.83333% {
+      -webkit-clip-path: inset(39% 0 13% 0);
+              clip-path: inset(39% 0 13% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    46.25% {
+      -webkit-clip-path: inset(100% 0 1% 0);
+              clip-path: inset(100% 0 1% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    46.66667% {
+      -webkit-clip-path: inset(20% 0 61% 0);
+              clip-path: inset(20% 0 61% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    47.08333% {
+      -webkit-clip-path: inset(31% 0 23% 0);
+              clip-path: inset(31% 0 23% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    47.5% {
+      -webkit-clip-path: inset(11% 0 57% 0);
+              clip-path: inset(11% 0 57% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    47.91667% {
+      -webkit-clip-path: inset(99% 0 2% 0);
+              clip-path: inset(99% 0 2% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    48.33333% {
+      -webkit-clip-path: inset(94% 0 5% 0);
+              clip-path: inset(94% 0 5% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    48.75% {
+      -webkit-clip-path: inset(45% 0 26% 0);
+              clip-path: inset(45% 0 26% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    49.16667% {
+      -webkit-clip-path: inset(18% 0 11% 0);
+              clip-path: inset(18% 0 11% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    49.58333% {
+      -webkit-clip-path: inset(52% 0 46% 0);
+              clip-path: inset(52% 0 46% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    50% {
+      -webkit-clip-path: inset(50% 0 49% 0);
+              clip-path: inset(50% 0 49% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    50.41667% {
+      -webkit-clip-path: inset(28% 0 6% 0);
+              clip-path: inset(28% 0 6% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    50.83333% {
+      -webkit-clip-path: inset(81% 0 12% 0);
+              clip-path: inset(81% 0 12% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    51.25% {
+      -webkit-clip-path: inset(43% 0 28% 0);
+              clip-path: inset(43% 0 28% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    51.66667% {
+      -webkit-clip-path: inset(32% 0 20% 0);
+              clip-path: inset(32% 0 20% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    52.08333% {
+      -webkit-clip-path: inset(74% 0 13% 0);
+              clip-path: inset(74% 0 13% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    52.5% {
+      -webkit-clip-path: inset(84% 0 4% 0);
+              clip-path: inset(84% 0 4% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    52.91667% {
+      -webkit-clip-path: inset(49% 0 28% 0);
+              clip-path: inset(49% 0 28% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    53.33333% {
+      -webkit-clip-path: inset(28% 0 45% 0);
+              clip-path: inset(28% 0 45% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    53.75% {
+      -webkit-clip-path: inset(87% 0 11% 0);
+              clip-path: inset(87% 0 11% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    54.16667% {
+      -webkit-clip-path: inset(45% 0 11% 0);
+              clip-path: inset(45% 0 11% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    54.58333% {
+      -webkit-clip-path: inset(65% 0 24% 0);
+              clip-path: inset(65% 0 24% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    55% {
+      -webkit-clip-path: inset(95% 0 4% 0);
+              clip-path: inset(95% 0 4% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    55.41667% {
+      -webkit-clip-path: inset(26% 0 39% 0);
+              clip-path: inset(26% 0 39% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    55.83333% {
+      -webkit-clip-path: inset(66% 0 19% 0);
+              clip-path: inset(66% 0 19% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    56.25% {
+      -webkit-clip-path: inset(58% 0 41% 0);
+              clip-path: inset(58% 0 41% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    56.66667% {
+      -webkit-clip-path: inset(69% 0 7% 0);
+              clip-path: inset(69% 0 7% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    57.08333% {
+      -webkit-clip-path: inset(23% 0 37% 0);
+              clip-path: inset(23% 0 37% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    57.5% {
+      -webkit-clip-path: inset(63% 0 27% 0);
+              clip-path: inset(63% 0 27% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    57.91667% {
+      -webkit-clip-path: inset(23% 0 26% 0);
+              clip-path: inset(23% 0 26% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    58.33333% {
+      -webkit-clip-path: inset(87% 0 11% 0);
+              clip-path: inset(87% 0 11% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    58.75% {
+      -webkit-clip-path: inset(63% 0 21% 0);
+              clip-path: inset(63% 0 21% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    59.16667% {
+      -webkit-clip-path: inset(40% 0 40% 0);
+              clip-path: inset(40% 0 40% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    59.58333% {
+      -webkit-clip-path: inset(88% 0 3% 0);
+              clip-path: inset(88% 0 3% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    60% {
+      -webkit-clip-path: inset(54% 0 39% 0);
+              clip-path: inset(54% 0 39% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    60.41667% {
+      -webkit-clip-path: inset(58% 0 9% 0);
+              clip-path: inset(58% 0 9% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    60.83333% {
+      -webkit-clip-path: inset(47% 0 16% 0);
+              clip-path: inset(47% 0 16% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    61.25% {
+      -webkit-clip-path: inset(14% 0 67% 0);
+              clip-path: inset(14% 0 67% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    61.66667% {
+      -webkit-clip-path: inset(63% 0 37% 0);
+              clip-path: inset(63% 0 37% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    62.08333% {
+      -webkit-clip-path: inset(11% 0 9% 0);
+              clip-path: inset(11% 0 9% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    62.5% {
+      -webkit-clip-path: inset(12% 0 40% 0);
+              clip-path: inset(12% 0 40% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    62.91667% {
+      -webkit-clip-path: inset(41% 0 33% 0);
+              clip-path: inset(41% 0 33% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    63.33333% {
+      -webkit-clip-path: inset(30% 0 58% 0);
+              clip-path: inset(30% 0 58% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    63.75% {
+      -webkit-clip-path: inset(30% 0 35% 0);
+              clip-path: inset(30% 0 35% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    64.16667% {
+      -webkit-clip-path: inset(88% 0 4% 0);
+              clip-path: inset(88% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    64.58333% {
+      -webkit-clip-path: inset(87% 0 8% 0);
+              clip-path: inset(87% 0 8% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    65% {
+      -webkit-clip-path: inset(90% 0 2% 0);
+              clip-path: inset(90% 0 2% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    65.41667% {
+      -webkit-clip-path: inset(48% 0 17% 0);
+              clip-path: inset(48% 0 17% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    65.83333% {
+      -webkit-clip-path: inset(39% 0 55% 0);
+              clip-path: inset(39% 0 55% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    66.25% {
+      -webkit-clip-path: inset(88% 0 9% 0);
+              clip-path: inset(88% 0 9% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    66.66667% {
+      -webkit-clip-path: inset(40% 0 16% 0);
+              clip-path: inset(40% 0 16% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    67.08333% {
+      -webkit-clip-path: inset(78% 0 21% 0);
+              clip-path: inset(78% 0 21% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    67.5% {
+      -webkit-clip-path: inset(57% 0 40% 0);
+              clip-path: inset(57% 0 40% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    67.91667% {
+      -webkit-clip-path: inset(93% 0 5% 0);
+              clip-path: inset(93% 0 5% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    68.33333% {
+      -webkit-clip-path: inset(94% 0 7% 0);
+              clip-path: inset(94% 0 7% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    68.75% {
+      -webkit-clip-path: inset(76% 0 19% 0);
+              clip-path: inset(76% 0 19% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    69.16667% {
+      -webkit-clip-path: inset(90% 0 2% 0);
+              clip-path: inset(90% 0 2% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    69.58333% {
+      -webkit-clip-path: inset(4% 0 90% 0);
+              clip-path: inset(4% 0 90% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    70% {
+      -webkit-clip-path: inset(96% 0 2% 0);
+              clip-path: inset(96% 0 2% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    70.41667% {
+      -webkit-clip-path: inset(52% 0 25% 0);
+              clip-path: inset(52% 0 25% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    70.83333% {
+      -webkit-clip-path: inset(31% 0 60% 0);
+              clip-path: inset(31% 0 60% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    71.25% {
+      -webkit-clip-path: inset(71% 0 21% 0);
+              clip-path: inset(71% 0 21% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    71.66667% {
+      -webkit-clip-path: inset(65% 0 1% 0);
+              clip-path: inset(65% 0 1% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    72.08333% {
+      -webkit-clip-path: inset(19% 0 27% 0);
+              clip-path: inset(19% 0 27% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    72.5% {
+      -webkit-clip-path: inset(15% 0 29% 0);
+              clip-path: inset(15% 0 29% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    72.91667% {
+      -webkit-clip-path: inset(69% 0 14% 0);
+              clip-path: inset(69% 0 14% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    73.33333% {
+      -webkit-clip-path: inset(13% 0 62% 0);
+              clip-path: inset(13% 0 62% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    73.75% {
+      -webkit-clip-path: inset(16% 0 66% 0);
+              clip-path: inset(16% 0 66% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    74.16667% {
+      -webkit-clip-path: inset(37% 0 19% 0);
+              clip-path: inset(37% 0 19% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    74.58333% {
+      -webkit-clip-path: inset(48% 0 48% 0);
+              clip-path: inset(48% 0 48% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    75% {
+      -webkit-clip-path: inset(99% 0 2% 0);
+              clip-path: inset(99% 0 2% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    75.41667% {
+      -webkit-clip-path: inset(39% 0 23% 0);
+              clip-path: inset(39% 0 23% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    75.83333% {
+      -webkit-clip-path: inset(88% 0 13% 0);
+              clip-path: inset(88% 0 13% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    76.25% {
+      -webkit-clip-path: inset(13% 0 86% 0);
+              clip-path: inset(13% 0 86% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    76.66667% {
+      -webkit-clip-path: inset(31% 0 14% 0);
+              clip-path: inset(31% 0 14% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    77.08333% {
+      -webkit-clip-path: inset(1% 0 42% 0);
+              clip-path: inset(1% 0 42% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    77.5% {
+      -webkit-clip-path: inset(55% 0 6% 0);
+              clip-path: inset(55% 0 6% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    77.91667% {
+      -webkit-clip-path: inset(19% 0 50% 0);
+              clip-path: inset(19% 0 50% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    78.33333% {
+      -webkit-clip-path: inset(30% 0 33% 0);
+              clip-path: inset(30% 0 33% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    78.75% {
+      -webkit-clip-path: inset(73% 0 15% 0);
+              clip-path: inset(73% 0 15% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    79.16667% {
+      -webkit-clip-path: inset(59% 0 31% 0);
+              clip-path: inset(59% 0 31% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    79.58333% {
+      -webkit-clip-path: inset(37% 0 60% 0);
+              clip-path: inset(37% 0 60% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    80% {
+      -webkit-clip-path: inset(94% 0 4% 0);
+              clip-path: inset(94% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    80.41667% {
+      -webkit-clip-path: inset(27% 0 46% 0);
+              clip-path: inset(27% 0 46% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    80.83333% {
+      -webkit-clip-path: inset(80% 0 20% 0);
+              clip-path: inset(80% 0 20% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    81.25% {
+      -webkit-clip-path: inset(76% 0 17% 0);
+              clip-path: inset(76% 0 17% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    81.66667% {
+      -webkit-clip-path: inset(1% 0 28% 0);
+              clip-path: inset(1% 0 28% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    82.08333% {
+      -webkit-clip-path: inset(16% 0 12% 0);
+              clip-path: inset(16% 0 12% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    82.5% {
+      -webkit-clip-path: inset(11% 0 57% 0);
+              clip-path: inset(11% 0 57% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    82.91667% {
+      -webkit-clip-path: inset(94% 0 6% 0);
+              clip-path: inset(94% 0 6% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    83.33333% {
+      -webkit-clip-path: inset(36% 0 49% 0);
+              clip-path: inset(36% 0 49% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    83.75% {
+      -webkit-clip-path: inset(24% 0 59% 0);
+              clip-path: inset(24% 0 59% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    84.16667% {
+      -webkit-clip-path: inset(100% 0 1% 0);
+              clip-path: inset(100% 0 1% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    84.58333% {
+      -webkit-clip-path: inset(29% 0 9% 0);
+              clip-path: inset(29% 0 9% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    85% {
+      -webkit-clip-path: inset(85% 0 12% 0);
+              clip-path: inset(85% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    85.41667% {
+      -webkit-clip-path: inset(32% 0 50% 0);
+              clip-path: inset(32% 0 50% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    85.83333% {
+      -webkit-clip-path: inset(28% 0 43% 0);
+              clip-path: inset(28% 0 43% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    86.25% {
+      -webkit-clip-path: inset(25% 0 13% 0);
+              clip-path: inset(25% 0 13% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    86.66667% {
+      -webkit-clip-path: inset(8% 0 70% 0);
+              clip-path: inset(8% 0 70% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    87.08333% {
+      -webkit-clip-path: inset(9% 0 20% 0);
+              clip-path: inset(9% 0 20% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    87.5% {
+      -webkit-clip-path: inset(21% 0 24% 0);
+              clip-path: inset(21% 0 24% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    87.91667% {
+      -webkit-clip-path: inset(62% 0 15% 0);
+              clip-path: inset(62% 0 15% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    88.33333% {
+      -webkit-clip-path: inset(52% 0 23% 0);
+              clip-path: inset(52% 0 23% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    88.75% {
+      -webkit-clip-path: inset(60% 0 19% 0);
+              clip-path: inset(60% 0 19% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    89.16667% {
+      -webkit-clip-path: inset(73% 0 16% 0);
+              clip-path: inset(73% 0 16% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    89.58333% {
+      -webkit-clip-path: inset(81% 0 3% 0);
+              clip-path: inset(81% 0 3% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    90% {
+      -webkit-clip-path: inset(42% 0 23% 0);
+              clip-path: inset(42% 0 23% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    90.41667% {
+      -webkit-clip-path: inset(49% 0 4% 0);
+              clip-path: inset(49% 0 4% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    90.83333% {
+      -webkit-clip-path: inset(82% 0 11% 0);
+              clip-path: inset(82% 0 11% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    91.25% {
+      -webkit-clip-path: inset(50% 0 26% 0);
+              clip-path: inset(50% 0 26% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    91.66667% {
+      -webkit-clip-path: inset(12% 0 45% 0);
+              clip-path: inset(12% 0 45% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    92.08333% {
+      -webkit-clip-path: inset(9% 0 4% 0);
+              clip-path: inset(9% 0 4% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    92.5% {
+      -webkit-clip-path: inset(7% 0 71% 0);
+              clip-path: inset(7% 0 71% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    92.91667% {
+      -webkit-clip-path: inset(95% 0 3% 0);
+              clip-path: inset(95% 0 3% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    93.33333% {
+      -webkit-clip-path: inset(96% 0 2% 0);
+              clip-path: inset(96% 0 2% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    93.75% {
+      -webkit-clip-path: inset(27% 0 17% 0);
+              clip-path: inset(27% 0 17% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    94.16667% {
+      -webkit-clip-path: inset(43% 0 34% 0);
+              clip-path: inset(43% 0 34% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    94.58333% {
+      -webkit-clip-path: inset(79% 0 10% 0);
+              clip-path: inset(79% 0 10% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    95% {
+      -webkit-clip-path: inset(42% 0 38% 0);
+              clip-path: inset(42% 0 38% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    95.41667% {
+      -webkit-clip-path: inset(93% 0 8% 0);
+              clip-path: inset(93% 0 8% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    95.83333% {
+      -webkit-clip-path: inset(77% 0 12% 0);
+              clip-path: inset(77% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    96.25% {
+      -webkit-clip-path: inset(49% 0 24% 0);
+              clip-path: inset(49% 0 24% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    96.66667% {
+      -webkit-clip-path: inset(77% 0 9% 0);
+              clip-path: inset(77% 0 9% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    97.08333% {
+      -webkit-clip-path: inset(59% 0 8% 0);
+              clip-path: inset(59% 0 8% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    97.5% {
+      -webkit-clip-path: inset(55% 0 45% 0);
+              clip-path: inset(55% 0 45% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    97.91667% {
+      -webkit-clip-path: inset(47% 0 29% 0);
+              clip-path: inset(47% 0 29% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    98.33333% {
+      -webkit-clip-path: inset(47% 0 1% 0);
+              clip-path: inset(47% 0 1% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    98.75% {
+      -webkit-clip-path: inset(37% 0 13% 0);
+              clip-path: inset(37% 0 13% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    99.16667% {
+      -webkit-clip-path: inset(20% 0 61% 0);
+              clip-path: inset(20% 0 61% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    99.58333% {
+      -webkit-clip-path: inset(38% 0 62% 0);
+              clip-path: inset(38% 0 62% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    100% {
+      -webkit-clip-path: inset(52% 0 2% 0);
+              clip-path: inset(52% 0 2% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+  }
+  @keyframes noise-anim {
+    0% {
+      -webkit-clip-path: inset(89% 0 9% 0);
+              clip-path: inset(89% 0 9% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    0.41667% {
+      -webkit-clip-path: inset(42% 0 13% 0);
+              clip-path: inset(42% 0 13% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    0.83333% {
+      -webkit-clip-path: inset(29% 0 61% 0);
+              clip-path: inset(29% 0 61% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    1.25% {
+      -webkit-clip-path: inset(61% 0 38% 0);
+              clip-path: inset(61% 0 38% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    1.66667% {
+      -webkit-clip-path: inset(82% 0 16% 0);
+              clip-path: inset(82% 0 16% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    2.08333% {
+      -webkit-clip-path: inset(24% 0 10% 0);
+              clip-path: inset(24% 0 10% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    2.5% {
+      -webkit-clip-path: inset(55% 0 4% 0);
+              clip-path: inset(55% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    2.91667% {
+      -webkit-clip-path: inset(96% 0 3% 0);
+              clip-path: inset(96% 0 3% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    3.33333% {
+      -webkit-clip-path: inset(27% 0 72% 0);
+              clip-path: inset(27% 0 72% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    3.75% {
+      -webkit-clip-path: inset(85% 0 9% 0);
+              clip-path: inset(85% 0 9% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    4.16667% {
+      -webkit-clip-path: inset(87% 0 4% 0);
+              clip-path: inset(87% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    4.58333% {
+      -webkit-clip-path: inset(55% 0 33% 0);
+              clip-path: inset(55% 0 33% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    5% {
+      -webkit-clip-path: inset(29% 0 35% 0);
+              clip-path: inset(29% 0 35% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    5.41667% {
+      -webkit-clip-path: inset(26% 0 38% 0);
+              clip-path: inset(26% 0 38% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    5.83333% {
+      -webkit-clip-path: inset(26% 0 74% 0);
+              clip-path: inset(26% 0 74% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    6.25% {
+      -webkit-clip-path: inset(54% 0 42% 0);
+              clip-path: inset(54% 0 42% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    6.66667% {
+      -webkit-clip-path: inset(89% 0 8% 0);
+              clip-path: inset(89% 0 8% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    7.08333% {
+      -webkit-clip-path: inset(19% 0 77% 0);
+              clip-path: inset(19% 0 77% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    7.5% {
+      -webkit-clip-path: inset(26% 0 3% 0);
+              clip-path: inset(26% 0 3% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    7.91667% {
+      -webkit-clip-path: inset(91% 0 9% 0);
+              clip-path: inset(91% 0 9% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    8.33333% {
+      -webkit-clip-path: inset(47% 0 34% 0);
+              clip-path: inset(47% 0 34% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    8.75% {
+      -webkit-clip-path: inset(73% 0 6% 0);
+              clip-path: inset(73% 0 6% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    9.16667% {
+      -webkit-clip-path: inset(40% 0 5% 0);
+              clip-path: inset(40% 0 5% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    9.58333% {
+      -webkit-clip-path: inset(21% 0 12% 0);
+              clip-path: inset(21% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    10% {
+      -webkit-clip-path: inset(26% 0 23% 0);
+              clip-path: inset(26% 0 23% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    10.41667% {
+      -webkit-clip-path: inset(63% 0 28% 0);
+              clip-path: inset(63% 0 28% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    10.83333% {
+      -webkit-clip-path: inset(100% 0 1% 0);
+              clip-path: inset(100% 0 1% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    11.25% {
+      -webkit-clip-path: inset(42% 0 6% 0);
+              clip-path: inset(42% 0 6% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    11.66667% {
+      -webkit-clip-path: inset(36% 0 16% 0);
+              clip-path: inset(36% 0 16% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    12.08333% {
+      -webkit-clip-path: inset(48% 0 13% 0);
+              clip-path: inset(48% 0 13% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    12.5% {
+      -webkit-clip-path: inset(18% 0 59% 0);
+              clip-path: inset(18% 0 59% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    12.91667% {
+      -webkit-clip-path: inset(56% 0 31% 0);
+              clip-path: inset(56% 0 31% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    13.33333% {
+      -webkit-clip-path: inset(45% 0 34% 0);
+              clip-path: inset(45% 0 34% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    13.75% {
+      -webkit-clip-path: inset(83% 0 16% 0);
+              clip-path: inset(83% 0 16% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    14.16667% {
+      -webkit-clip-path: inset(3% 0 81% 0);
+              clip-path: inset(3% 0 81% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    14.58333% {
+      -webkit-clip-path: inset(7% 0 67% 0);
+              clip-path: inset(7% 0 67% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    15% {
+      -webkit-clip-path: inset(65% 0 30% 0);
+              clip-path: inset(65% 0 30% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    15.41667% {
+      -webkit-clip-path: inset(75% 0 3% 0);
+              clip-path: inset(75% 0 3% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    15.83333% {
+      -webkit-clip-path: inset(32% 0 53% 0);
+              clip-path: inset(32% 0 53% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    16.25% {
+      -webkit-clip-path: inset(68% 0 12% 0);
+              clip-path: inset(68% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    16.66667% {
+      -webkit-clip-path: inset(53% 0 19% 0);
+              clip-path: inset(53% 0 19% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    17.08333% {
+      -webkit-clip-path: inset(70% 0 27% 0);
+              clip-path: inset(70% 0 27% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    17.5% {
+      -webkit-clip-path: inset(90% 0 4% 0);
+              clip-path: inset(90% 0 4% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    17.91667% {
+      -webkit-clip-path: inset(98% 0 3% 0);
+              clip-path: inset(98% 0 3% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    18.33333% {
+      -webkit-clip-path: inset(21% 0 10% 0);
+              clip-path: inset(21% 0 10% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    18.75% {
+      -webkit-clip-path: inset(31% 0 7% 0);
+              clip-path: inset(31% 0 7% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    19.16667% {
+      -webkit-clip-path: inset(82% 0 9% 0);
+              clip-path: inset(82% 0 9% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    19.58333% {
+      -webkit-clip-path: inset(38% 0 58% 0);
+              clip-path: inset(38% 0 58% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    20% {
+      -webkit-clip-path: inset(87% 0 7% 0);
+              clip-path: inset(87% 0 7% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    20.41667% {
+      -webkit-clip-path: inset(35% 0 40% 0);
+              clip-path: inset(35% 0 40% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    20.83333% {
+      -webkit-clip-path: inset(11% 0 53% 0);
+              clip-path: inset(11% 0 53% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    21.25% {
+      -webkit-clip-path: inset(44% 0 48% 0);
+              clip-path: inset(44% 0 48% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    21.66667% {
+      -webkit-clip-path: inset(23% 0 51% 0);
+              clip-path: inset(23% 0 51% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    22.08333% {
+      -webkit-clip-path: inset(4% 0 52% 0);
+              clip-path: inset(4% 0 52% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    22.5% {
+      -webkit-clip-path: inset(51% 0 4% 0);
+              clip-path: inset(51% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    22.91667% {
+      -webkit-clip-path: inset(14% 0 39% 0);
+              clip-path: inset(14% 0 39% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    23.33333% {
+      -webkit-clip-path: inset(66% 0 34% 0);
+              clip-path: inset(66% 0 34% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    23.75% {
+      -webkit-clip-path: inset(3% 0 28% 0);
+              clip-path: inset(3% 0 28% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    24.16667% {
+      -webkit-clip-path: inset(44% 0 57% 0);
+              clip-path: inset(44% 0 57% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    24.58333% {
+      -webkit-clip-path: inset(71% 0 13% 0);
+              clip-path: inset(71% 0 13% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    25% {
+      -webkit-clip-path: inset(80% 0 7% 0);
+              clip-path: inset(80% 0 7% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    25.41667% {
+      -webkit-clip-path: inset(85% 0 15% 0);
+              clip-path: inset(85% 0 15% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    25.83333% {
+      -webkit-clip-path: inset(8% 0 26% 0);
+              clip-path: inset(8% 0 26% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    26.25% {
+      -webkit-clip-path: inset(50% 0 41% 0);
+              clip-path: inset(50% 0 41% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    26.66667% {
+      -webkit-clip-path: inset(54% 0 43% 0);
+              clip-path: inset(54% 0 43% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    27.08333% {
+      -webkit-clip-path: inset(85% 0 4% 0);
+              clip-path: inset(85% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    27.5% {
+      -webkit-clip-path: inset(80% 0 9% 0);
+              clip-path: inset(80% 0 9% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    27.91667% {
+      -webkit-clip-path: inset(54% 0 28% 0);
+              clip-path: inset(54% 0 28% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    28.33333% {
+      -webkit-clip-path: inset(11% 0 52% 0);
+              clip-path: inset(11% 0 52% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    28.75% {
+      -webkit-clip-path: inset(10% 0 59% 0);
+              clip-path: inset(10% 0 59% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    29.16667% {
+      -webkit-clip-path: inset(47% 0 23% 0);
+              clip-path: inset(47% 0 23% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    29.58333% {
+      -webkit-clip-path: inset(90% 0 11% 0);
+              clip-path: inset(90% 0 11% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    30% {
+      -webkit-clip-path: inset(85% 0 11% 0);
+              clip-path: inset(85% 0 11% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    30.41667% {
+      -webkit-clip-path: inset(46% 0 43% 0);
+              clip-path: inset(46% 0 43% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    30.83333% {
+      -webkit-clip-path: inset(94% 0 4% 0);
+              clip-path: inset(94% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    31.25% {
+      -webkit-clip-path: inset(17% 0 32% 0);
+              clip-path: inset(17% 0 32% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    31.66667% {
+      -webkit-clip-path: inset(58% 0 7% 0);
+              clip-path: inset(58% 0 7% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    32.08333% {
+      -webkit-clip-path: inset(86% 0 2% 0);
+              clip-path: inset(86% 0 2% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    32.5% {
+      -webkit-clip-path: inset(80% 0 9% 0);
+              clip-path: inset(80% 0 9% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    32.91667% {
+      -webkit-clip-path: inset(70% 0 9% 0);
+              clip-path: inset(70% 0 9% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    33.33333% {
+      -webkit-clip-path: inset(15% 0 69% 0);
+              clip-path: inset(15% 0 69% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    33.75% {
+      -webkit-clip-path: inset(79% 0 17% 0);
+              clip-path: inset(79% 0 17% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    34.16667% {
+      -webkit-clip-path: inset(45% 0 44% 0);
+              clip-path: inset(45% 0 44% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    34.58333% {
+      -webkit-clip-path: inset(98% 0 1% 0);
+              clip-path: inset(98% 0 1% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    35% {
+      -webkit-clip-path: inset(60% 0 41% 0);
+              clip-path: inset(60% 0 41% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    35.41667% {
+      -webkit-clip-path: inset(32% 0 8% 0);
+              clip-path: inset(32% 0 8% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    35.83333% {
+      -webkit-clip-path: inset(78% 0 17% 0);
+              clip-path: inset(78% 0 17% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    36.25% {
+      -webkit-clip-path: inset(39% 0 53% 0);
+              clip-path: inset(39% 0 53% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    36.66667% {
+      -webkit-clip-path: inset(62% 0 14% 0);
+              clip-path: inset(62% 0 14% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    37.08333% {
+      -webkit-clip-path: inset(99% 0 1% 0);
+              clip-path: inset(99% 0 1% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    37.5% {
+      -webkit-clip-path: inset(31% 0 62% 0);
+              clip-path: inset(31% 0 62% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    37.91667% {
+      -webkit-clip-path: inset(49% 0 10% 0);
+              clip-path: inset(49% 0 10% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    38.33333% {
+      -webkit-clip-path: inset(68% 0 16% 0);
+              clip-path: inset(68% 0 16% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    38.75% {
+      -webkit-clip-path: inset(58% 0 15% 0);
+              clip-path: inset(58% 0 15% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    39.16667% {
+      -webkit-clip-path: inset(40% 0 15% 0);
+              clip-path: inset(40% 0 15% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    39.58333% {
+      -webkit-clip-path: inset(5% 0 14% 0);
+              clip-path: inset(5% 0 14% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    40% {
+      -webkit-clip-path: inset(29% 0 70% 0);
+              clip-path: inset(29% 0 70% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    40.41667% {
+      -webkit-clip-path: inset(87% 0 12% 0);
+              clip-path: inset(87% 0 12% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    40.83333% {
+      -webkit-clip-path: inset(40% 0 22% 0);
+              clip-path: inset(40% 0 22% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    41.25% {
+      -webkit-clip-path: inset(29% 0 38% 0);
+              clip-path: inset(29% 0 38% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    41.66667% {
+      -webkit-clip-path: inset(96% 0 1% 0);
+              clip-path: inset(96% 0 1% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    42.08333% {
+      -webkit-clip-path: inset(36% 0 62% 0);
+              clip-path: inset(36% 0 62% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    42.5% {
+      -webkit-clip-path: inset(63% 0 33% 0);
+              clip-path: inset(63% 0 33% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    42.91667% {
+      -webkit-clip-path: inset(89% 0 12% 0);
+              clip-path: inset(89% 0 12% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    43.33333% {
+      -webkit-clip-path: inset(43% 0 17% 0);
+              clip-path: inset(43% 0 17% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    43.75% {
+      -webkit-clip-path: inset(11% 0 52% 0);
+              clip-path: inset(11% 0 52% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    44.16667% {
+      -webkit-clip-path: inset(11% 0 63% 0);
+              clip-path: inset(11% 0 63% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    44.58333% {
+      -webkit-clip-path: inset(47% 0 12% 0);
+              clip-path: inset(47% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    45% {
+      -webkit-clip-path: inset(33% 0 38% 0);
+              clip-path: inset(33% 0 38% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    45.41667% {
+      -webkit-clip-path: inset(6% 0 91% 0);
+              clip-path: inset(6% 0 91% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    45.83333% {
+      -webkit-clip-path: inset(39% 0 13% 0);
+              clip-path: inset(39% 0 13% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    46.25% {
+      -webkit-clip-path: inset(100% 0 1% 0);
+              clip-path: inset(100% 0 1% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    46.66667% {
+      -webkit-clip-path: inset(20% 0 61% 0);
+              clip-path: inset(20% 0 61% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    47.08333% {
+      -webkit-clip-path: inset(31% 0 23% 0);
+              clip-path: inset(31% 0 23% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    47.5% {
+      -webkit-clip-path: inset(11% 0 57% 0);
+              clip-path: inset(11% 0 57% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    47.91667% {
+      -webkit-clip-path: inset(99% 0 2% 0);
+              clip-path: inset(99% 0 2% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    48.33333% {
+      -webkit-clip-path: inset(94% 0 5% 0);
+              clip-path: inset(94% 0 5% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    48.75% {
+      -webkit-clip-path: inset(45% 0 26% 0);
+              clip-path: inset(45% 0 26% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    49.16667% {
+      -webkit-clip-path: inset(18% 0 11% 0);
+              clip-path: inset(18% 0 11% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    49.58333% {
+      -webkit-clip-path: inset(52% 0 46% 0);
+              clip-path: inset(52% 0 46% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    50% {
+      -webkit-clip-path: inset(50% 0 49% 0);
+              clip-path: inset(50% 0 49% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    50.41667% {
+      -webkit-clip-path: inset(28% 0 6% 0);
+              clip-path: inset(28% 0 6% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    50.83333% {
+      -webkit-clip-path: inset(81% 0 12% 0);
+              clip-path: inset(81% 0 12% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    51.25% {
+      -webkit-clip-path: inset(43% 0 28% 0);
+              clip-path: inset(43% 0 28% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    51.66667% {
+      -webkit-clip-path: inset(32% 0 20% 0);
+              clip-path: inset(32% 0 20% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    52.08333% {
+      -webkit-clip-path: inset(74% 0 13% 0);
+              clip-path: inset(74% 0 13% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    52.5% {
+      -webkit-clip-path: inset(84% 0 4% 0);
+              clip-path: inset(84% 0 4% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    52.91667% {
+      -webkit-clip-path: inset(49% 0 28% 0);
+              clip-path: inset(49% 0 28% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    53.33333% {
+      -webkit-clip-path: inset(28% 0 45% 0);
+              clip-path: inset(28% 0 45% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    53.75% {
+      -webkit-clip-path: inset(87% 0 11% 0);
+              clip-path: inset(87% 0 11% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    54.16667% {
+      -webkit-clip-path: inset(45% 0 11% 0);
+              clip-path: inset(45% 0 11% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    54.58333% {
+      -webkit-clip-path: inset(65% 0 24% 0);
+              clip-path: inset(65% 0 24% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    55% {
+      -webkit-clip-path: inset(95% 0 4% 0);
+              clip-path: inset(95% 0 4% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    55.41667% {
+      -webkit-clip-path: inset(26% 0 39% 0);
+              clip-path: inset(26% 0 39% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    55.83333% {
+      -webkit-clip-path: inset(66% 0 19% 0);
+              clip-path: inset(66% 0 19% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    56.25% {
+      -webkit-clip-path: inset(58% 0 41% 0);
+              clip-path: inset(58% 0 41% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    56.66667% {
+      -webkit-clip-path: inset(69% 0 7% 0);
+              clip-path: inset(69% 0 7% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    57.08333% {
+      -webkit-clip-path: inset(23% 0 37% 0);
+              clip-path: inset(23% 0 37% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    57.5% {
+      -webkit-clip-path: inset(63% 0 27% 0);
+              clip-path: inset(63% 0 27% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    57.91667% {
+      -webkit-clip-path: inset(23% 0 26% 0);
+              clip-path: inset(23% 0 26% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    58.33333% {
+      -webkit-clip-path: inset(87% 0 11% 0);
+              clip-path: inset(87% 0 11% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    58.75% {
+      -webkit-clip-path: inset(63% 0 21% 0);
+              clip-path: inset(63% 0 21% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    59.16667% {
+      -webkit-clip-path: inset(40% 0 40% 0);
+              clip-path: inset(40% 0 40% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    59.58333% {
+      -webkit-clip-path: inset(88% 0 3% 0);
+              clip-path: inset(88% 0 3% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    60% {
+      -webkit-clip-path: inset(54% 0 39% 0);
+              clip-path: inset(54% 0 39% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    60.41667% {
+      -webkit-clip-path: inset(58% 0 9% 0);
+              clip-path: inset(58% 0 9% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    60.83333% {
+      -webkit-clip-path: inset(47% 0 16% 0);
+              clip-path: inset(47% 0 16% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    61.25% {
+      -webkit-clip-path: inset(14% 0 67% 0);
+              clip-path: inset(14% 0 67% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    61.66667% {
+      -webkit-clip-path: inset(63% 0 37% 0);
+              clip-path: inset(63% 0 37% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    62.08333% {
+      -webkit-clip-path: inset(11% 0 9% 0);
+              clip-path: inset(11% 0 9% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    62.5% {
+      -webkit-clip-path: inset(12% 0 40% 0);
+              clip-path: inset(12% 0 40% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    62.91667% {
+      -webkit-clip-path: inset(41% 0 33% 0);
+              clip-path: inset(41% 0 33% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    63.33333% {
+      -webkit-clip-path: inset(30% 0 58% 0);
+              clip-path: inset(30% 0 58% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    63.75% {
+      -webkit-clip-path: inset(30% 0 35% 0);
+              clip-path: inset(30% 0 35% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    64.16667% {
+      -webkit-clip-path: inset(88% 0 4% 0);
+              clip-path: inset(88% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    64.58333% {
+      -webkit-clip-path: inset(87% 0 8% 0);
+              clip-path: inset(87% 0 8% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    65% {
+      -webkit-clip-path: inset(90% 0 2% 0);
+              clip-path: inset(90% 0 2% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    65.41667% {
+      -webkit-clip-path: inset(48% 0 17% 0);
+              clip-path: inset(48% 0 17% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    65.83333% {
+      -webkit-clip-path: inset(39% 0 55% 0);
+              clip-path: inset(39% 0 55% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    66.25% {
+      -webkit-clip-path: inset(88% 0 9% 0);
+              clip-path: inset(88% 0 9% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    66.66667% {
+      -webkit-clip-path: inset(40% 0 16% 0);
+              clip-path: inset(40% 0 16% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    67.08333% {
+      -webkit-clip-path: inset(78% 0 21% 0);
+              clip-path: inset(78% 0 21% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    67.5% {
+      -webkit-clip-path: inset(57% 0 40% 0);
+              clip-path: inset(57% 0 40% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    67.91667% {
+      -webkit-clip-path: inset(93% 0 5% 0);
+              clip-path: inset(93% 0 5% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    68.33333% {
+      -webkit-clip-path: inset(94% 0 7% 0);
+              clip-path: inset(94% 0 7% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    68.75% {
+      -webkit-clip-path: inset(76% 0 19% 0);
+              clip-path: inset(76% 0 19% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    69.16667% {
+      -webkit-clip-path: inset(90% 0 2% 0);
+              clip-path: inset(90% 0 2% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    69.58333% {
+      -webkit-clip-path: inset(4% 0 90% 0);
+              clip-path: inset(4% 0 90% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    70% {
+      -webkit-clip-path: inset(96% 0 2% 0);
+              clip-path: inset(96% 0 2% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    70.41667% {
+      -webkit-clip-path: inset(52% 0 25% 0);
+              clip-path: inset(52% 0 25% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    70.83333% {
+      -webkit-clip-path: inset(31% 0 60% 0);
+              clip-path: inset(31% 0 60% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    71.25% {
+      -webkit-clip-path: inset(71% 0 21% 0);
+              clip-path: inset(71% 0 21% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    71.66667% {
+      -webkit-clip-path: inset(65% 0 1% 0);
+              clip-path: inset(65% 0 1% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    72.08333% {
+      -webkit-clip-path: inset(19% 0 27% 0);
+              clip-path: inset(19% 0 27% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    72.5% {
+      -webkit-clip-path: inset(15% 0 29% 0);
+              clip-path: inset(15% 0 29% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    72.91667% {
+      -webkit-clip-path: inset(69% 0 14% 0);
+              clip-path: inset(69% 0 14% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    73.33333% {
+      -webkit-clip-path: inset(13% 0 62% 0);
+              clip-path: inset(13% 0 62% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    73.75% {
+      -webkit-clip-path: inset(16% 0 66% 0);
+              clip-path: inset(16% 0 66% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    74.16667% {
+      -webkit-clip-path: inset(37% 0 19% 0);
+              clip-path: inset(37% 0 19% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    74.58333% {
+      -webkit-clip-path: inset(48% 0 48% 0);
+              clip-path: inset(48% 0 48% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    75% {
+      -webkit-clip-path: inset(99% 0 2% 0);
+              clip-path: inset(99% 0 2% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    75.41667% {
+      -webkit-clip-path: inset(39% 0 23% 0);
+              clip-path: inset(39% 0 23% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    75.83333% {
+      -webkit-clip-path: inset(88% 0 13% 0);
+              clip-path: inset(88% 0 13% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    76.25% {
+      -webkit-clip-path: inset(13% 0 86% 0);
+              clip-path: inset(13% 0 86% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    76.66667% {
+      -webkit-clip-path: inset(31% 0 14% 0);
+              clip-path: inset(31% 0 14% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    77.08333% {
+      -webkit-clip-path: inset(1% 0 42% 0);
+              clip-path: inset(1% 0 42% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    77.5% {
+      -webkit-clip-path: inset(55% 0 6% 0);
+              clip-path: inset(55% 0 6% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    77.91667% {
+      -webkit-clip-path: inset(19% 0 50% 0);
+              clip-path: inset(19% 0 50% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    78.33333% {
+      -webkit-clip-path: inset(30% 0 33% 0);
+              clip-path: inset(30% 0 33% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    78.75% {
+      -webkit-clip-path: inset(73% 0 15% 0);
+              clip-path: inset(73% 0 15% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    79.16667% {
+      -webkit-clip-path: inset(59% 0 31% 0);
+              clip-path: inset(59% 0 31% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    79.58333% {
+      -webkit-clip-path: inset(37% 0 60% 0);
+              clip-path: inset(37% 0 60% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    80% {
+      -webkit-clip-path: inset(94% 0 4% 0);
+              clip-path: inset(94% 0 4% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    80.41667% {
+      -webkit-clip-path: inset(27% 0 46% 0);
+              clip-path: inset(27% 0 46% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    80.83333% {
+      -webkit-clip-path: inset(80% 0 20% 0);
+              clip-path: inset(80% 0 20% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    81.25% {
+      -webkit-clip-path: inset(76% 0 17% 0);
+              clip-path: inset(76% 0 17% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    81.66667% {
+      -webkit-clip-path: inset(1% 0 28% 0);
+              clip-path: inset(1% 0 28% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    82.08333% {
+      -webkit-clip-path: inset(16% 0 12% 0);
+              clip-path: inset(16% 0 12% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    82.5% {
+      -webkit-clip-path: inset(11% 0 57% 0);
+              clip-path: inset(11% 0 57% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    82.91667% {
+      -webkit-clip-path: inset(94% 0 6% 0);
+              clip-path: inset(94% 0 6% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    83.33333% {
+      -webkit-clip-path: inset(36% 0 49% 0);
+              clip-path: inset(36% 0 49% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    83.75% {
+      -webkit-clip-path: inset(24% 0 59% 0);
+              clip-path: inset(24% 0 59% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    84.16667% {
+      -webkit-clip-path: inset(100% 0 1% 0);
+              clip-path: inset(100% 0 1% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    84.58333% {
+      -webkit-clip-path: inset(29% 0 9% 0);
+              clip-path: inset(29% 0 9% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    85% {
+      -webkit-clip-path: inset(85% 0 12% 0);
+              clip-path: inset(85% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    85.41667% {
+      -webkit-clip-path: inset(32% 0 50% 0);
+              clip-path: inset(32% 0 50% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    85.83333% {
+      -webkit-clip-path: inset(28% 0 43% 0);
+              clip-path: inset(28% 0 43% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    86.25% {
+      -webkit-clip-path: inset(25% 0 13% 0);
+              clip-path: inset(25% 0 13% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    86.66667% {
+      -webkit-clip-path: inset(8% 0 70% 0);
+              clip-path: inset(8% 0 70% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    87.08333% {
+      -webkit-clip-path: inset(9% 0 20% 0);
+              clip-path: inset(9% 0 20% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    87.5% {
+      -webkit-clip-path: inset(21% 0 24% 0);
+              clip-path: inset(21% 0 24% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    87.91667% {
+      -webkit-clip-path: inset(62% 0 15% 0);
+              clip-path: inset(62% 0 15% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    88.33333% {
+      -webkit-clip-path: inset(52% 0 23% 0);
+              clip-path: inset(52% 0 23% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    88.75% {
+      -webkit-clip-path: inset(60% 0 19% 0);
+              clip-path: inset(60% 0 19% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    89.16667% {
+      -webkit-clip-path: inset(73% 0 16% 0);
+              clip-path: inset(73% 0 16% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    89.58333% {
+      -webkit-clip-path: inset(81% 0 3% 0);
+              clip-path: inset(81% 0 3% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    90% {
+      -webkit-clip-path: inset(42% 0 23% 0);
+              clip-path: inset(42% 0 23% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    90.41667% {
+      -webkit-clip-path: inset(49% 0 4% 0);
+              clip-path: inset(49% 0 4% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    90.83333% {
+      -webkit-clip-path: inset(82% 0 11% 0);
+              clip-path: inset(82% 0 11% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    91.25% {
+      -webkit-clip-path: inset(50% 0 26% 0);
+              clip-path: inset(50% 0 26% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    91.66667% {
+      -webkit-clip-path: inset(12% 0 45% 0);
+              clip-path: inset(12% 0 45% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    92.08333% {
+      -webkit-clip-path: inset(9% 0 4% 0);
+              clip-path: inset(9% 0 4% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    92.5% {
+      -webkit-clip-path: inset(7% 0 71% 0);
+              clip-path: inset(7% 0 71% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    92.91667% {
+      -webkit-clip-path: inset(95% 0 3% 0);
+              clip-path: inset(95% 0 3% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    93.33333% {
+      -webkit-clip-path: inset(96% 0 2% 0);
+              clip-path: inset(96% 0 2% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    93.75% {
+      -webkit-clip-path: inset(27% 0 17% 0);
+              clip-path: inset(27% 0 17% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    94.16667% {
+      -webkit-clip-path: inset(43% 0 34% 0);
+              clip-path: inset(43% 0 34% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    94.58333% {
+      -webkit-clip-path: inset(79% 0 10% 0);
+              clip-path: inset(79% 0 10% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    95% {
+      -webkit-clip-path: inset(42% 0 38% 0);
+              clip-path: inset(42% 0 38% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    95.41667% {
+      -webkit-clip-path: inset(93% 0 8% 0);
+              clip-path: inset(93% 0 8% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    95.83333% {
+      -webkit-clip-path: inset(77% 0 12% 0);
+              clip-path: inset(77% 0 12% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    96.25% {
+      -webkit-clip-path: inset(49% 0 24% 0);
+              clip-path: inset(49% 0 24% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    96.66667% {
+      -webkit-clip-path: inset(77% 0 9% 0);
+              clip-path: inset(77% 0 9% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    97.08333% {
+      -webkit-clip-path: inset(59% 0 8% 0);
+              clip-path: inset(59% 0 8% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    97.5% {
+      -webkit-clip-path: inset(55% 0 45% 0);
+              clip-path: inset(55% 0 45% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    97.91667% {
+      -webkit-clip-path: inset(47% 0 29% 0);
+              clip-path: inset(47% 0 29% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    98.33333% {
+      -webkit-clip-path: inset(47% 0 1% 0);
+              clip-path: inset(47% 0 1% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    98.75% {
+      -webkit-clip-path: inset(37% 0 13% 0);
+              clip-path: inset(37% 0 13% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    99.16667% {
+      -webkit-clip-path: inset(20% 0 61% 0);
+              clip-path: inset(20% 0 61% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    99.58333% {
+      -webkit-clip-path: inset(38% 0 62% 0);
+              clip-path: inset(38% 0 62% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    100% {
+      -webkit-clip-path: inset(52% 0 2% 0);
+              clip-path: inset(52% 0 2% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+  }
+  @-webkit-keyframes noise-anim-2 {
+    0% {
+      -webkit-clip-path: inset(38% 0 52% 0);
+              clip-path: inset(38% 0 52% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    0.66667% {
+      -webkit-clip-path: inset(64% 0 12% 0);
+              clip-path: inset(64% 0 12% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    1.33333% {
+      -webkit-clip-path: inset(73% 0 23% 0);
+              clip-path: inset(73% 0 23% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    2% {
+      -webkit-clip-path: inset(32% 0 3% 0);
+              clip-path: inset(32% 0 3% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    2.66667% {
+      -webkit-clip-path: inset(30% 0 1% 0);
+              clip-path: inset(30% 0 1% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    3.33333% {
+      -webkit-clip-path: inset(18% 0 76% 0);
+              clip-path: inset(18% 0 76% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    4% {
+      -webkit-clip-path: inset(56% 0 16% 0);
+              clip-path: inset(56% 0 16% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    4.66667% {
+      -webkit-clip-path: inset(98% 0 2% 0);
+              clip-path: inset(98% 0 2% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    5.33333% {
+      -webkit-clip-path: inset(80% 0 17% 0);
+              clip-path: inset(80% 0 17% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    6% {
+      -webkit-clip-path: inset(18% 0 49% 0);
+              clip-path: inset(18% 0 49% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    6.66667% {
+      -webkit-clip-path: inset(80% 0 10% 0);
+              clip-path: inset(80% 0 10% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    7.33333% {
+      -webkit-clip-path: inset(72% 0 18% 0);
+              clip-path: inset(72% 0 18% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    8% {
+      -webkit-clip-path: inset(60% 0 36% 0);
+              clip-path: inset(60% 0 36% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    8.66667% {
+      -webkit-clip-path: inset(7% 0 50% 0);
+              clip-path: inset(7% 0 50% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    9.33333% {
+      -webkit-clip-path: inset(23% 0 1% 0);
+              clip-path: inset(23% 0 1% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    10% {
+      -webkit-clip-path: inset(14% 0 46% 0);
+              clip-path: inset(14% 0 46% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    10.66667% {
+      -webkit-clip-path: inset(68% 0 2% 0);
+              clip-path: inset(68% 0 2% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    11.33333% {
+      -webkit-clip-path: inset(66% 0 15% 0);
+              clip-path: inset(66% 0 15% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    12% {
+      -webkit-clip-path: inset(35% 0 46% 0);
+              clip-path: inset(35% 0 46% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    12.66667% {
+      -webkit-clip-path: inset(81% 0 2% 0);
+              clip-path: inset(81% 0 2% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    13.33333% {
+      -webkit-clip-path: inset(23% 0 64% 0);
+              clip-path: inset(23% 0 64% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    14% {
+      -webkit-clip-path: inset(18% 0 50% 0);
+              clip-path: inset(18% 0 50% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    14.66667% {
+      -webkit-clip-path: inset(37% 0 47% 0);
+              clip-path: inset(37% 0 47% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    15.33333% {
+      -webkit-clip-path: inset(16% 0 54% 0);
+              clip-path: inset(16% 0 54% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    16% {
+      -webkit-clip-path: inset(87% 0 6% 0);
+              clip-path: inset(87% 0 6% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    16.66667% {
+      -webkit-clip-path: inset(15% 0 18% 0);
+              clip-path: inset(15% 0 18% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    17.33333% {
+      -webkit-clip-path: inset(2% 0 23% 0);
+              clip-path: inset(2% 0 23% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    18% {
+      -webkit-clip-path: inset(49% 0 37% 0);
+              clip-path: inset(49% 0 37% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    18.66667% {
+      -webkit-clip-path: inset(84% 0 8% 0);
+              clip-path: inset(84% 0 8% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    19.33333% {
+      -webkit-clip-path: inset(78% 0 4% 0);
+              clip-path: inset(78% 0 4% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    20% {
+      -webkit-clip-path: inset(90% 0 7% 0);
+              clip-path: inset(90% 0 7% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    20.66667% {
+      -webkit-clip-path: inset(5% 0 59% 0);
+              clip-path: inset(5% 0 59% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    21.33333% {
+      -webkit-clip-path: inset(40% 0 50% 0);
+              clip-path: inset(40% 0 50% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    22% {
+      -webkit-clip-path: inset(7% 0 27% 0);
+              clip-path: inset(7% 0 27% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    22.66667% {
+      -webkit-clip-path: inset(27% 0 8% 0);
+              clip-path: inset(27% 0 8% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    23.33333% {
+      -webkit-clip-path: inset(79% 0 12% 0);
+              clip-path: inset(79% 0 12% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    24% {
+      -webkit-clip-path: inset(13% 0 36% 0);
+              clip-path: inset(13% 0 36% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    24.66667% {
+      -webkit-clip-path: inset(41% 0 26% 0);
+              clip-path: inset(41% 0 26% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    25.33333% {
+      -webkit-clip-path: inset(84% 0 5% 0);
+              clip-path: inset(84% 0 5% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    26% {
+      -webkit-clip-path: inset(70% 0 30% 0);
+              clip-path: inset(70% 0 30% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    26.66667% {
+      -webkit-clip-path: inset(69% 0 9% 0);
+              clip-path: inset(69% 0 9% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    27.33333% {
+      -webkit-clip-path: inset(71% 0 21% 0);
+              clip-path: inset(71% 0 21% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    28% {
+      -webkit-clip-path: inset(2% 0 37% 0);
+              clip-path: inset(2% 0 37% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    28.66667% {
+      -webkit-clip-path: inset(11% 0 28% 0);
+              clip-path: inset(11% 0 28% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    29.33333% {
+      -webkit-clip-path: inset(49% 0 34% 0);
+              clip-path: inset(49% 0 34% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    30% {
+      -webkit-clip-path: inset(49% 0 24% 0);
+              clip-path: inset(49% 0 24% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    30.66667% {
+      -webkit-clip-path: inset(28% 0 39% 0);
+              clip-path: inset(28% 0 39% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    31.33333% {
+      -webkit-clip-path: inset(1% 0 50% 0);
+              clip-path: inset(1% 0 50% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    32% {
+      -webkit-clip-path: inset(75% 0 9% 0);
+              clip-path: inset(75% 0 9% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    32.66667% {
+      -webkit-clip-path: inset(39% 0 32% 0);
+              clip-path: inset(39% 0 32% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    33.33333% {
+      -webkit-clip-path: inset(27% 0 15% 0);
+              clip-path: inset(27% 0 15% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    34% {
+      -webkit-clip-path: inset(66% 0 12% 0);
+              clip-path: inset(66% 0 12% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    34.66667% {
+      -webkit-clip-path: inset(23% 0 71% 0);
+              clip-path: inset(23% 0 71% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    35.33333% {
+      -webkit-clip-path: inset(80% 0 15% 0);
+              clip-path: inset(80% 0 15% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    36% {
+      -webkit-clip-path: inset(65% 0 14% 0);
+              clip-path: inset(65% 0 14% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    36.66667% {
+      -webkit-clip-path: inset(81% 0 18% 0);
+              clip-path: inset(81% 0 18% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    37.33333% {
+      -webkit-clip-path: inset(36% 0 64% 0);
+              clip-path: inset(36% 0 64% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    38% {
+      -webkit-clip-path: inset(33% 0 18% 0);
+              clip-path: inset(33% 0 18% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    38.66667% {
+      -webkit-clip-path: inset(34% 0 47% 0);
+              clip-path: inset(34% 0 47% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    39.33333% {
+      -webkit-clip-path: inset(82% 0 4% 0);
+              clip-path: inset(82% 0 4% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    40% {
+      -webkit-clip-path: inset(23% 0 5% 0);
+              clip-path: inset(23% 0 5% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    40.66667% {
+      -webkit-clip-path: inset(60% 0 28% 0);
+              clip-path: inset(60% 0 28% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    41.33333% {
+      -webkit-clip-path: inset(6% 0 74% 0);
+              clip-path: inset(6% 0 74% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    42% {
+      -webkit-clip-path: inset(4% 0 18% 0);
+              clip-path: inset(4% 0 18% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    42.66667% {
+      -webkit-clip-path: inset(17% 0 69% 0);
+              clip-path: inset(17% 0 69% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    43.33333% {
+      -webkit-clip-path: inset(4% 0 65% 0);
+              clip-path: inset(4% 0 65% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    44% {
+      -webkit-clip-path: inset(36% 0 5% 0);
+              clip-path: inset(36% 0 5% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    44.66667% {
+      -webkit-clip-path: inset(69% 0 26% 0);
+              clip-path: inset(69% 0 26% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    45.33333% {
+      -webkit-clip-path: inset(11% 0 4% 0);
+              clip-path: inset(11% 0 4% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    46% {
+      -webkit-clip-path: inset(48% 0 47% 0);
+              clip-path: inset(48% 0 47% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    46.66667% {
+      -webkit-clip-path: inset(47% 0 24% 0);
+              clip-path: inset(47% 0 24% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    47.33333% {
+      -webkit-clip-path: inset(83% 0 16% 0);
+              clip-path: inset(83% 0 16% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    48% {
+      -webkit-clip-path: inset(85% 0 13% 0);
+              clip-path: inset(85% 0 13% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    48.66667% {
+      -webkit-clip-path: inset(34% 0 62% 0);
+              clip-path: inset(34% 0 62% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    49.33333% {
+      -webkit-clip-path: inset(20% 0 17% 0);
+              clip-path: inset(20% 0 17% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    50% {
+      -webkit-clip-path: inset(32% 0 7% 0);
+              clip-path: inset(32% 0 7% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    50.66667% {
+      -webkit-clip-path: inset(4% 0 84% 0);
+              clip-path: inset(4% 0 84% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    51.33333% {
+      -webkit-clip-path: inset(21% 0 58% 0);
+              clip-path: inset(21% 0 58% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    52% {
+      -webkit-clip-path: inset(62% 0 8% 0);
+              clip-path: inset(62% 0 8% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    52.66667% {
+      -webkit-clip-path: inset(5% 0 19% 0);
+              clip-path: inset(5% 0 19% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    53.33333% {
+      -webkit-clip-path: inset(84% 0 4% 0);
+              clip-path: inset(84% 0 4% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    54% {
+      -webkit-clip-path: inset(67% 0 19% 0);
+              clip-path: inset(67% 0 19% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    54.66667% {
+      -webkit-clip-path: inset(99% 0 2% 0);
+              clip-path: inset(99% 0 2% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    55.33333% {
+      -webkit-clip-path: inset(50% 0 30% 0);
+              clip-path: inset(50% 0 30% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    56% {
+      -webkit-clip-path: inset(81% 0 18% 0);
+              clip-path: inset(81% 0 18% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    56.66667% {
+      -webkit-clip-path: inset(31% 0 57% 0);
+              clip-path: inset(31% 0 57% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    57.33333% {
+      -webkit-clip-path: inset(17% 0 71% 0);
+              clip-path: inset(17% 0 71% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    58% {
+      -webkit-clip-path: inset(98% 0 1% 0);
+              clip-path: inset(98% 0 1% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    58.66667% {
+      -webkit-clip-path: inset(82% 0 13% 0);
+              clip-path: inset(82% 0 13% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    59.33333% {
+      -webkit-clip-path: inset(72% 0 28% 0);
+              clip-path: inset(72% 0 28% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    60% {
+      -webkit-clip-path: inset(89% 0 6% 0);
+              clip-path: inset(89% 0 6% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    60.66667% {
+      -webkit-clip-path: inset(52% 0 39% 0);
+              clip-path: inset(52% 0 39% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    61.33333% {
+      -webkit-clip-path: inset(75% 0 1% 0);
+              clip-path: inset(75% 0 1% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    62% {
+      -webkit-clip-path: inset(62% 0 31% 0);
+              clip-path: inset(62% 0 31% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    62.66667% {
+      -webkit-clip-path: inset(86% 0 12% 0);
+              clip-path: inset(86% 0 12% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    63.33333% {
+      -webkit-clip-path: inset(28% 0 71% 0);
+              clip-path: inset(28% 0 71% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    64% {
+      -webkit-clip-path: inset(44% 0 28% 0);
+              clip-path: inset(44% 0 28% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    64.66667% {
+      -webkit-clip-path: inset(26% 0 58% 0);
+              clip-path: inset(26% 0 58% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    65.33333% {
+      -webkit-clip-path: inset(72% 0 7% 0);
+              clip-path: inset(72% 0 7% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    66% {
+      -webkit-clip-path: inset(7% 0 89% 0);
+              clip-path: inset(7% 0 89% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    66.66667% {
+      -webkit-clip-path: inset(82% 0 4% 0);
+              clip-path: inset(82% 0 4% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    67.33333% {
+      -webkit-clip-path: inset(70% 0 27% 0);
+              clip-path: inset(70% 0 27% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    68% {
+      -webkit-clip-path: inset(44% 0 42% 0);
+              clip-path: inset(44% 0 42% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    68.66667% {
+      -webkit-clip-path: inset(76% 0 6% 0);
+              clip-path: inset(76% 0 6% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    69.33333% {
+      -webkit-clip-path: inset(13% 0 4% 0);
+              clip-path: inset(13% 0 4% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    70% {
+      -webkit-clip-path: inset(20% 0 76% 0);
+              clip-path: inset(20% 0 76% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    70.66667% {
+      -webkit-clip-path: inset(96% 0 4% 0);
+              clip-path: inset(96% 0 4% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    71.33333% {
+      -webkit-clip-path: inset(8% 0 69% 0);
+              clip-path: inset(8% 0 69% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    72% {
+      -webkit-clip-path: inset(13% 0 20% 0);
+              clip-path: inset(13% 0 20% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    72.66667% {
+      -webkit-clip-path: inset(59% 0 23% 0);
+              clip-path: inset(59% 0 23% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    73.33333% {
+      -webkit-clip-path: inset(14% 0 82% 0);
+              clip-path: inset(14% 0 82% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    74% {
+      -webkit-clip-path: inset(78% 0 18% 0);
+              clip-path: inset(78% 0 18% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    74.66667% {
+      -webkit-clip-path: inset(78% 0 12% 0);
+              clip-path: inset(78% 0 12% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    75.33333% {
+      -webkit-clip-path: inset(35% 0 58% 0);
+              clip-path: inset(35% 0 58% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    76% {
+      -webkit-clip-path: inset(61% 0 4% 0);
+              clip-path: inset(61% 0 4% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    76.66667% {
+      -webkit-clip-path: inset(78% 0 5% 0);
+              clip-path: inset(78% 0 5% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    77.33333% {
+      -webkit-clip-path: inset(34% 0 54% 0);
+              clip-path: inset(34% 0 54% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    78% {
+      -webkit-clip-path: inset(66% 0 24% 0);
+              clip-path: inset(66% 0 24% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    78.66667% {
+      -webkit-clip-path: inset(81% 0 20% 0);
+              clip-path: inset(81% 0 20% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    79.33333% {
+      -webkit-clip-path: inset(74% 0 17% 0);
+              clip-path: inset(74% 0 17% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    80% {
+      -webkit-clip-path: inset(75% 0 2% 0);
+              clip-path: inset(75% 0 2% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    80.66667% {
+      -webkit-clip-path: inset(55% 0 21% 0);
+              clip-path: inset(55% 0 21% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    81.33333% {
+      -webkit-clip-path: inset(58% 0 27% 0);
+              clip-path: inset(58% 0 27% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    82% {
+      -webkit-clip-path: inset(32% 0 7% 0);
+              clip-path: inset(32% 0 7% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    82.66667% {
+      -webkit-clip-path: inset(69% 0 22% 0);
+              clip-path: inset(69% 0 22% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    83.33333% {
+      -webkit-clip-path: inset(95% 0 6% 0);
+              clip-path: inset(95% 0 6% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    84% {
+      -webkit-clip-path: inset(5% 0 64% 0);
+              clip-path: inset(5% 0 64% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    84.66667% {
+      -webkit-clip-path: inset(11% 0 75% 0);
+              clip-path: inset(11% 0 75% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    85.33333% {
+      -webkit-clip-path: inset(38% 0 14% 0);
+              clip-path: inset(38% 0 14% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    86% {
+      -webkit-clip-path: inset(86% 0 11% 0);
+              clip-path: inset(86% 0 11% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    86.66667% {
+      -webkit-clip-path: inset(32% 0 63% 0);
+              clip-path: inset(32% 0 63% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    87.33333% {
+      -webkit-clip-path: inset(60% 0 15% 0);
+              clip-path: inset(60% 0 15% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    88% {
+      -webkit-clip-path: inset(19% 0 3% 0);
+              clip-path: inset(19% 0 3% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    88.66667% {
+      -webkit-clip-path: inset(75% 0 19% 0);
+              clip-path: inset(75% 0 19% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    89.33333% {
+      -webkit-clip-path: inset(72% 0 25% 0);
+              clip-path: inset(72% 0 25% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    90% {
+      -webkit-clip-path: inset(74% 0 20% 0);
+              clip-path: inset(74% 0 20% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    90.66667% {
+      -webkit-clip-path: inset(76% 0 8% 0);
+              clip-path: inset(76% 0 8% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    91.33333% {
+      -webkit-clip-path: inset(11% 0 87% 0);
+              clip-path: inset(11% 0 87% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    92% {
+      -webkit-clip-path: inset(72% 0 22% 0);
+              clip-path: inset(72% 0 22% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    92.66667% {
+      -webkit-clip-path: inset(14% 0 45% 0);
+              clip-path: inset(14% 0 45% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    93.33333% {
+      -webkit-clip-path: inset(85% 0 16% 0);
+              clip-path: inset(85% 0 16% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    94% {
+      -webkit-clip-path: inset(31% 0 38% 0);
+              clip-path: inset(31% 0 38% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    94.66667% {
+      -webkit-clip-path: inset(16% 0 35% 0);
+              clip-path: inset(16% 0 35% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    95.33333% {
+      -webkit-clip-path: inset(16% 0 47% 0);
+              clip-path: inset(16% 0 47% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    96% {
+      -webkit-clip-path: inset(19% 0 43% 0);
+              clip-path: inset(19% 0 43% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    96.66667% {
+      -webkit-clip-path: inset(56% 0 17% 0);
+              clip-path: inset(56% 0 17% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    97.33333% {
+      -webkit-clip-path: inset(45% 0 43% 0);
+              clip-path: inset(45% 0 43% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    98% {
+      -webkit-clip-path: inset(39% 0 60% 0);
+              clip-path: inset(39% 0 60% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    98.66667% {
+      -webkit-clip-path: inset(69% 0 10% 0);
+              clip-path: inset(69% 0 10% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    99.33333% {
+      -webkit-clip-path: inset(22% 0 40% 0);
+              clip-path: inset(22% 0 40% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    100% {
+      -webkit-clip-path: inset(89% 0 11% 0);
+              clip-path: inset(89% 0 11% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+  }
+  @keyframes noise-anim-2 {
+    0% {
+      -webkit-clip-path: inset(38% 0 52% 0);
+              clip-path: inset(38% 0 52% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    0.66667% {
+      -webkit-clip-path: inset(64% 0 12% 0);
+              clip-path: inset(64% 0 12% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    1.33333% {
+      -webkit-clip-path: inset(73% 0 23% 0);
+              clip-path: inset(73% 0 23% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    2% {
+      -webkit-clip-path: inset(32% 0 3% 0);
+              clip-path: inset(32% 0 3% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    2.66667% {
+      -webkit-clip-path: inset(30% 0 1% 0);
+              clip-path: inset(30% 0 1% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    3.33333% {
+      -webkit-clip-path: inset(18% 0 76% 0);
+              clip-path: inset(18% 0 76% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    4% {
+      -webkit-clip-path: inset(56% 0 16% 0);
+              clip-path: inset(56% 0 16% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    4.66667% {
+      -webkit-clip-path: inset(98% 0 2% 0);
+              clip-path: inset(98% 0 2% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    5.33333% {
+      -webkit-clip-path: inset(80% 0 17% 0);
+              clip-path: inset(80% 0 17% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    6% {
+      -webkit-clip-path: inset(18% 0 49% 0);
+              clip-path: inset(18% 0 49% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    6.66667% {
+      -webkit-clip-path: inset(80% 0 10% 0);
+              clip-path: inset(80% 0 10% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    7.33333% {
+      -webkit-clip-path: inset(72% 0 18% 0);
+              clip-path: inset(72% 0 18% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    8% {
+      -webkit-clip-path: inset(60% 0 36% 0);
+              clip-path: inset(60% 0 36% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    8.66667% {
+      -webkit-clip-path: inset(7% 0 50% 0);
+              clip-path: inset(7% 0 50% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    9.33333% {
+      -webkit-clip-path: inset(23% 0 1% 0);
+              clip-path: inset(23% 0 1% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    10% {
+      -webkit-clip-path: inset(14% 0 46% 0);
+              clip-path: inset(14% 0 46% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    10.66667% {
+      -webkit-clip-path: inset(68% 0 2% 0);
+              clip-path: inset(68% 0 2% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    11.33333% {
+      -webkit-clip-path: inset(66% 0 15% 0);
+              clip-path: inset(66% 0 15% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    12% {
+      -webkit-clip-path: inset(35% 0 46% 0);
+              clip-path: inset(35% 0 46% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    12.66667% {
+      -webkit-clip-path: inset(81% 0 2% 0);
+              clip-path: inset(81% 0 2% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    13.33333% {
+      -webkit-clip-path: inset(23% 0 64% 0);
+              clip-path: inset(23% 0 64% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    14% {
+      -webkit-clip-path: inset(18% 0 50% 0);
+              clip-path: inset(18% 0 50% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    14.66667% {
+      -webkit-clip-path: inset(37% 0 47% 0);
+              clip-path: inset(37% 0 47% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    15.33333% {
+      -webkit-clip-path: inset(16% 0 54% 0);
+              clip-path: inset(16% 0 54% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    16% {
+      -webkit-clip-path: inset(87% 0 6% 0);
+              clip-path: inset(87% 0 6% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    16.66667% {
+      -webkit-clip-path: inset(15% 0 18% 0);
+              clip-path: inset(15% 0 18% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    17.33333% {
+      -webkit-clip-path: inset(2% 0 23% 0);
+              clip-path: inset(2% 0 23% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    18% {
+      -webkit-clip-path: inset(49% 0 37% 0);
+              clip-path: inset(49% 0 37% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    18.66667% {
+      -webkit-clip-path: inset(84% 0 8% 0);
+              clip-path: inset(84% 0 8% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    19.33333% {
+      -webkit-clip-path: inset(78% 0 4% 0);
+              clip-path: inset(78% 0 4% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    20% {
+      -webkit-clip-path: inset(90% 0 7% 0);
+              clip-path: inset(90% 0 7% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    20.66667% {
+      -webkit-clip-path: inset(5% 0 59% 0);
+              clip-path: inset(5% 0 59% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    21.33333% {
+      -webkit-clip-path: inset(40% 0 50% 0);
+              clip-path: inset(40% 0 50% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    22% {
+      -webkit-clip-path: inset(7% 0 27% 0);
+              clip-path: inset(7% 0 27% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    22.66667% {
+      -webkit-clip-path: inset(27% 0 8% 0);
+              clip-path: inset(27% 0 8% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    23.33333% {
+      -webkit-clip-path: inset(79% 0 12% 0);
+              clip-path: inset(79% 0 12% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    24% {
+      -webkit-clip-path: inset(13% 0 36% 0);
+              clip-path: inset(13% 0 36% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    24.66667% {
+      -webkit-clip-path: inset(41% 0 26% 0);
+              clip-path: inset(41% 0 26% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    25.33333% {
+      -webkit-clip-path: inset(84% 0 5% 0);
+              clip-path: inset(84% 0 5% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    26% {
+      -webkit-clip-path: inset(70% 0 30% 0);
+              clip-path: inset(70% 0 30% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    26.66667% {
+      -webkit-clip-path: inset(69% 0 9% 0);
+              clip-path: inset(69% 0 9% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    27.33333% {
+      -webkit-clip-path: inset(71% 0 21% 0);
+              clip-path: inset(71% 0 21% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    28% {
+      -webkit-clip-path: inset(2% 0 37% 0);
+              clip-path: inset(2% 0 37% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    28.66667% {
+      -webkit-clip-path: inset(11% 0 28% 0);
+              clip-path: inset(11% 0 28% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    29.33333% {
+      -webkit-clip-path: inset(49% 0 34% 0);
+              clip-path: inset(49% 0 34% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    30% {
+      -webkit-clip-path: inset(49% 0 24% 0);
+              clip-path: inset(49% 0 24% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    30.66667% {
+      -webkit-clip-path: inset(28% 0 39% 0);
+              clip-path: inset(28% 0 39% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    31.33333% {
+      -webkit-clip-path: inset(1% 0 50% 0);
+              clip-path: inset(1% 0 50% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    32% {
+      -webkit-clip-path: inset(75% 0 9% 0);
+              clip-path: inset(75% 0 9% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    32.66667% {
+      -webkit-clip-path: inset(39% 0 32% 0);
+              clip-path: inset(39% 0 32% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    33.33333% {
+      -webkit-clip-path: inset(27% 0 15% 0);
+              clip-path: inset(27% 0 15% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    34% {
+      -webkit-clip-path: inset(66% 0 12% 0);
+              clip-path: inset(66% 0 12% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    34.66667% {
+      -webkit-clip-path: inset(23% 0 71% 0);
+              clip-path: inset(23% 0 71% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    35.33333% {
+      -webkit-clip-path: inset(80% 0 15% 0);
+              clip-path: inset(80% 0 15% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    36% {
+      -webkit-clip-path: inset(65% 0 14% 0);
+              clip-path: inset(65% 0 14% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    36.66667% {
+      -webkit-clip-path: inset(81% 0 18% 0);
+              clip-path: inset(81% 0 18% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    37.33333% {
+      -webkit-clip-path: inset(36% 0 64% 0);
+              clip-path: inset(36% 0 64% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    38% {
+      -webkit-clip-path: inset(33% 0 18% 0);
+              clip-path: inset(33% 0 18% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    38.66667% {
+      -webkit-clip-path: inset(34% 0 47% 0);
+              clip-path: inset(34% 0 47% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    39.33333% {
+      -webkit-clip-path: inset(82% 0 4% 0);
+              clip-path: inset(82% 0 4% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    40% {
+      -webkit-clip-path: inset(23% 0 5% 0);
+              clip-path: inset(23% 0 5% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    40.66667% {
+      -webkit-clip-path: inset(60% 0 28% 0);
+              clip-path: inset(60% 0 28% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    41.33333% {
+      -webkit-clip-path: inset(6% 0 74% 0);
+              clip-path: inset(6% 0 74% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    42% {
+      -webkit-clip-path: inset(4% 0 18% 0);
+              clip-path: inset(4% 0 18% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    42.66667% {
+      -webkit-clip-path: inset(17% 0 69% 0);
+              clip-path: inset(17% 0 69% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    43.33333% {
+      -webkit-clip-path: inset(4% 0 65% 0);
+              clip-path: inset(4% 0 65% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    44% {
+      -webkit-clip-path: inset(36% 0 5% 0);
+              clip-path: inset(36% 0 5% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    44.66667% {
+      -webkit-clip-path: inset(69% 0 26% 0);
+              clip-path: inset(69% 0 26% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    45.33333% {
+      -webkit-clip-path: inset(11% 0 4% 0);
+              clip-path: inset(11% 0 4% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    46% {
+      -webkit-clip-path: inset(48% 0 47% 0);
+              clip-path: inset(48% 0 47% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    46.66667% {
+      -webkit-clip-path: inset(47% 0 24% 0);
+              clip-path: inset(47% 0 24% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    47.33333% {
+      -webkit-clip-path: inset(83% 0 16% 0);
+              clip-path: inset(83% 0 16% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    48% {
+      -webkit-clip-path: inset(85% 0 13% 0);
+              clip-path: inset(85% 0 13% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    48.66667% {
+      -webkit-clip-path: inset(34% 0 62% 0);
+              clip-path: inset(34% 0 62% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    49.33333% {
+      -webkit-clip-path: inset(20% 0 17% 0);
+              clip-path: inset(20% 0 17% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    50% {
+      -webkit-clip-path: inset(32% 0 7% 0);
+              clip-path: inset(32% 0 7% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    50.66667% {
+      -webkit-clip-path: inset(4% 0 84% 0);
+              clip-path: inset(4% 0 84% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    51.33333% {
+      -webkit-clip-path: inset(21% 0 58% 0);
+              clip-path: inset(21% 0 58% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    52% {
+      -webkit-clip-path: inset(62% 0 8% 0);
+              clip-path: inset(62% 0 8% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    52.66667% {
+      -webkit-clip-path: inset(5% 0 19% 0);
+              clip-path: inset(5% 0 19% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    53.33333% {
+      -webkit-clip-path: inset(84% 0 4% 0);
+              clip-path: inset(84% 0 4% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    54% {
+      -webkit-clip-path: inset(67% 0 19% 0);
+              clip-path: inset(67% 0 19% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    54.66667% {
+      -webkit-clip-path: inset(99% 0 2% 0);
+              clip-path: inset(99% 0 2% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    55.33333% {
+      -webkit-clip-path: inset(50% 0 30% 0);
+              clip-path: inset(50% 0 30% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    56% {
+      -webkit-clip-path: inset(81% 0 18% 0);
+              clip-path: inset(81% 0 18% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    56.66667% {
+      -webkit-clip-path: inset(31% 0 57% 0);
+              clip-path: inset(31% 0 57% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    57.33333% {
+      -webkit-clip-path: inset(17% 0 71% 0);
+              clip-path: inset(17% 0 71% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    58% {
+      -webkit-clip-path: inset(98% 0 1% 0);
+              clip-path: inset(98% 0 1% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    58.66667% {
+      -webkit-clip-path: inset(82% 0 13% 0);
+              clip-path: inset(82% 0 13% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    59.33333% {
+      -webkit-clip-path: inset(72% 0 28% 0);
+              clip-path: inset(72% 0 28% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    60% {
+      -webkit-clip-path: inset(89% 0 6% 0);
+              clip-path: inset(89% 0 6% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    60.66667% {
+      -webkit-clip-path: inset(52% 0 39% 0);
+              clip-path: inset(52% 0 39% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    61.33333% {
+      -webkit-clip-path: inset(75% 0 1% 0);
+              clip-path: inset(75% 0 1% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    62% {
+      -webkit-clip-path: inset(62% 0 31% 0);
+              clip-path: inset(62% 0 31% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    62.66667% {
+      -webkit-clip-path: inset(86% 0 12% 0);
+              clip-path: inset(86% 0 12% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    63.33333% {
+      -webkit-clip-path: inset(28% 0 71% 0);
+              clip-path: inset(28% 0 71% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    64% {
+      -webkit-clip-path: inset(44% 0 28% 0);
+              clip-path: inset(44% 0 28% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    64.66667% {
+      -webkit-clip-path: inset(26% 0 58% 0);
+              clip-path: inset(26% 0 58% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    65.33333% {
+      -webkit-clip-path: inset(72% 0 7% 0);
+              clip-path: inset(72% 0 7% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    66% {
+      -webkit-clip-path: inset(7% 0 89% 0);
+              clip-path: inset(7% 0 89% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    66.66667% {
+      -webkit-clip-path: inset(82% 0 4% 0);
+              clip-path: inset(82% 0 4% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    67.33333% {
+      -webkit-clip-path: inset(70% 0 27% 0);
+              clip-path: inset(70% 0 27% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    68% {
+      -webkit-clip-path: inset(44% 0 42% 0);
+              clip-path: inset(44% 0 42% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    68.66667% {
+      -webkit-clip-path: inset(76% 0 6% 0);
+              clip-path: inset(76% 0 6% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    69.33333% {
+      -webkit-clip-path: inset(13% 0 4% 0);
+              clip-path: inset(13% 0 4% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    70% {
+      -webkit-clip-path: inset(20% 0 76% 0);
+              clip-path: inset(20% 0 76% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    70.66667% {
+      -webkit-clip-path: inset(96% 0 4% 0);
+              clip-path: inset(96% 0 4% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    71.33333% {
+      -webkit-clip-path: inset(8% 0 69% 0);
+              clip-path: inset(8% 0 69% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    72% {
+      -webkit-clip-path: inset(13% 0 20% 0);
+              clip-path: inset(13% 0 20% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    72.66667% {
+      -webkit-clip-path: inset(59% 0 23% 0);
+              clip-path: inset(59% 0 23% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    73.33333% {
+      -webkit-clip-path: inset(14% 0 82% 0);
+              clip-path: inset(14% 0 82% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    74% {
+      -webkit-clip-path: inset(78% 0 18% 0);
+              clip-path: inset(78% 0 18% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    74.66667% {
+      -webkit-clip-path: inset(78% 0 12% 0);
+              clip-path: inset(78% 0 12% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    75.33333% {
+      -webkit-clip-path: inset(35% 0 58% 0);
+              clip-path: inset(35% 0 58% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    76% {
+      -webkit-clip-path: inset(61% 0 4% 0);
+              clip-path: inset(61% 0 4% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    76.66667% {
+      -webkit-clip-path: inset(78% 0 5% 0);
+              clip-path: inset(78% 0 5% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    77.33333% {
+      -webkit-clip-path: inset(34% 0 54% 0);
+              clip-path: inset(34% 0 54% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    78% {
+      -webkit-clip-path: inset(66% 0 24% 0);
+              clip-path: inset(66% 0 24% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    78.66667% {
+      -webkit-clip-path: inset(81% 0 20% 0);
+              clip-path: inset(81% 0 20% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    79.33333% {
+      -webkit-clip-path: inset(74% 0 17% 0);
+              clip-path: inset(74% 0 17% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    80% {
+      -webkit-clip-path: inset(75% 0 2% 0);
+              clip-path: inset(75% 0 2% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    80.66667% {
+      -webkit-clip-path: inset(55% 0 21% 0);
+              clip-path: inset(55% 0 21% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    81.33333% {
+      -webkit-clip-path: inset(58% 0 27% 0);
+              clip-path: inset(58% 0 27% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    82% {
+      -webkit-clip-path: inset(32% 0 7% 0);
+              clip-path: inset(32% 0 7% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    82.66667% {
+      -webkit-clip-path: inset(69% 0 22% 0);
+              clip-path: inset(69% 0 22% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    83.33333% {
+      -webkit-clip-path: inset(95% 0 6% 0);
+              clip-path: inset(95% 0 6% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    84% {
+      -webkit-clip-path: inset(5% 0 64% 0);
+              clip-path: inset(5% 0 64% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    84.66667% {
+      -webkit-clip-path: inset(11% 0 75% 0);
+              clip-path: inset(11% 0 75% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    85.33333% {
+      -webkit-clip-path: inset(38% 0 14% 0);
+              clip-path: inset(38% 0 14% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    86% {
+      -webkit-clip-path: inset(86% 0 11% 0);
+              clip-path: inset(86% 0 11% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    86.66667% {
+      -webkit-clip-path: inset(32% 0 63% 0);
+              clip-path: inset(32% 0 63% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    87.33333% {
+      -webkit-clip-path: inset(60% 0 15% 0);
+              clip-path: inset(60% 0 15% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    88% {
+      -webkit-clip-path: inset(19% 0 3% 0);
+              clip-path: inset(19% 0 3% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    88.66667% {
+      -webkit-clip-path: inset(75% 0 19% 0);
+              clip-path: inset(75% 0 19% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    89.33333% {
+      -webkit-clip-path: inset(72% 0 25% 0);
+              clip-path: inset(72% 0 25% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    90% {
+      -webkit-clip-path: inset(74% 0 20% 0);
+              clip-path: inset(74% 0 20% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    90.66667% {
+      -webkit-clip-path: inset(76% 0 8% 0);
+              clip-path: inset(76% 0 8% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    91.33333% {
+      -webkit-clip-path: inset(11% 0 87% 0);
+              clip-path: inset(11% 0 87% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    92% {
+      -webkit-clip-path: inset(72% 0 22% 0);
+              clip-path: inset(72% 0 22% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    92.66667% {
+      -webkit-clip-path: inset(14% 0 45% 0);
+              clip-path: inset(14% 0 45% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    93.33333% {
+      -webkit-clip-path: inset(85% 0 16% 0);
+              clip-path: inset(85% 0 16% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    94% {
+      -webkit-clip-path: inset(31% 0 38% 0);
+              clip-path: inset(31% 0 38% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    94.66667% {
+      -webkit-clip-path: inset(16% 0 35% 0);
+              clip-path: inset(16% 0 35% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    95.33333% {
+      -webkit-clip-path: inset(16% 0 47% 0);
+              clip-path: inset(16% 0 47% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    96% {
+      -webkit-clip-path: inset(19% 0 43% 0);
+              clip-path: inset(19% 0 43% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    96.66667% {
+      -webkit-clip-path: inset(56% 0 17% 0);
+              clip-path: inset(56% 0 17% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    97.33333% {
+      -webkit-clip-path: inset(45% 0 43% 0);
+              clip-path: inset(45% 0 43% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    98% {
+      -webkit-clip-path: inset(39% 0 60% 0);
+              clip-path: inset(39% 0 60% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    98.66667% {
+      -webkit-clip-path: inset(69% 0 10% 0);
+              clip-path: inset(69% 0 10% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    99.33333% {
+      -webkit-clip-path: inset(22% 0 40% 0);
+              clip-path: inset(22% 0 40% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    100% {
+      -webkit-clip-path: inset(89% 0 11% 0);
+              clip-path: inset(89% 0 11% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+  }
+}
+>>>>>>> master

@@ -1026,6 +1026,10 @@ button {
 }
 
 @media only screen and (min-width: 850px) {
+  .nav-container .nav-top-bar {
+    -ms-grid-columns: 45vw 10vw 45vw;
+        grid-template-columns: 45vw 10vw 45vw;
+  }
   .nav-container .nav-top-bar .hamburger {
     justify-self: flex-start;
     margin-bottom: 0;
@@ -1037,6 +1041,8 @@ button {
     margin-bottom: 10px;
   }
   .nav-container .nav-top-bar .nav-user-button {
+    justify-self: flex-end;
+    margin-right: calc(75px + 1vw);
     display: none;
     margin-bottom: 15px;
   }
@@ -1067,6 +1073,10 @@ button {
     border: 1px solid white;
     color: white;
     background: linear-gradient(60deg, #8258dc, #4e4ed6);
+  }
+  .nav-container .nav-top-bar .nav-user-icon {
+    justify-self: flex-end;
+    margin-right: calc(75px + 1vw);
   }
   .nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
@@ -1477,7 +1487,7 @@ body {
           animation: right-before 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
 }
 
-.main-section .mid-text {
+.main-section .market-mid {
   font-family: "Poppins", sans-serif;
   height: calc(100vh - 60px);
   display: -webkit-box;
@@ -1492,32 +1502,74 @@ body {
           align-items: center;
 }
 
-.main-section .mid-text .market-title {
+.main-section .market-mid .market-title {
+  font-weight: 800;
   color: #2d283c;
-  font-size: 14vmin;
-  letter-spacing: 6vmin;
-  -webkit-animation: title-anim-before 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-          animation: title-anim-before 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-  height: 15vh;
+  -webkit-animation: title-anim-before 0.5s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
+          animation: title-anim-before 0.5s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
 }
 
-.main-section .mid-text .market-desc {
-  position: absolute;
-  top: 50vh;
+.main-section .market-mid .market-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   opacity: 0;
   -webkit-filter: blur(10px);
           filter: blur(10px);
-  width: 30vw;
-  text-align: center;
   font-size: calc(12px + 0.1vw);
   font-weight: 100;
   font-family: "Montserrat", sans-serif;
   color: #2d283c;
-  -webkit-transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-  transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.main-section .mid-text .market-btn {
+.main-section .market-mid .market-body .market-desc {
+  margin-top: 15vh;
+  width: 30vw;
+  text-align: center;
+  pointer-events: none;
+  -webkit-transition: blur 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: blur 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.main-section .market-mid .market-body .market-already-updated {
+  display: none;
+  margin-top: 10vh;
+  width: 30vw;
+  text-align: center;
+}
+
+.main-section .market-mid .market-body .market-get-updates {
+  display: none;
+  margin-top: 10vh;
+  white-space: nowrap;
+}
+
+.main-section .market-mid .market-body .market-fld {
+  display: none;
+  margin-top: 10px;
+  pointer-events: none;
+  -webkit-transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.main-section .market-mid .market-body .market-btn {
+  display: none;
+  width: 150px;
+  margin-top: 50px;
+  -webkit-transition: opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-filter 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-filter 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: filter 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: filter 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), -webkit-filter 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.main-section .market-mid .market-show {
   position: absolute;
   top: 65vh;
   padding: 0.2vmin;
@@ -1532,7 +1584,7 @@ body {
   z-index: 100;
 }
 
-.main-section .mid-text .market-btn:hover {
+.main-section .market-mid .market-show:hover {
   color: #4bf0ea;
   font-weight: 800;
   border-bottom: 1px #4bf0ea solid;
@@ -1548,38 +1600,63 @@ body {
           animation: right-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
 }
 
-.main-section .mid-text-active .market-title {
+.main-section .market-mid-active-out .market-title {
   -webkit-animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
           animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
 }
 
-.main-section .mid-text-active .market-desc {
+.main-section .market-mid-active-out .market-body {
   -webkit-filter: blur(0);
           filter: blur(0);
   opacity: 1;
-  -webkit-transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99) 0.5s;
-  transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99) 0.5s;
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
 }
 
-.main-section .mid-text-active .market-btn {
+.main-section .market-mid-active-out .market-body .market-fld {
+  pointer-events: auto;
+}
+
+.main-section .market-mid-active-out .market-show {
+  top: 95vh;
+}
+
+.main-section .market-mid-active-in .market-title {
+  -webkit-animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
+          animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
+}
+
+.main-section .market-mid-active-in .market-body {
+  -webkit-filter: blur(0);
+          filter: blur(0);
+  opacity: 1;
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
+.main-section .market-mid-active-in .market-body .market-desc {
+  margin-top: 15vh;
+}
+
+.main-section .market-mid-active-in .market-show {
   top: 85vh;
 }
 
 @-webkit-keyframes title-anim-before {
   0% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(16px + 1vmin);
+    letter-spacing: 2vmin;
   }
   40% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     -webkit-filter: blur(10px);
             filter: blur(10px);
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(16px + 1vmin);
+    letter-spacing: 2vmin;
     opacity: 0;
     z-index: 3;
   }
@@ -1604,19 +1681,19 @@ body {
 
 @keyframes title-anim-before {
   0% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(16px + 1vmin);
+    letter-spacing: 2vmin;
   }
   40% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     -webkit-filter: blur(10px);
             filter: blur(10px);
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(16px + 1vmin);
+    letter-spacing: 2vmin;
     opacity: 0;
     z-index: 3;
   }
@@ -1658,21 +1735,21 @@ body {
     z-index: 1;
   }
   61% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     -webkit-filter: blur(10px);
             filter: blur(10px);
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(10px + 0.8vmin);
+    letter-spacing: 2vmin;
     opacity: 0;
     z-index: 3;
   }
   100% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(10px + 0.8vmin);
+    letter-spacing: 2vmin;
   }
 }
 
@@ -1695,47 +1772,21 @@ body {
     z-index: 1;
   }
   61% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     -webkit-filter: blur(10px);
             filter: blur(10px);
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(10px + 0.8vmin);
+    letter-spacing: 2vmin;
     opacity: 0;
     z-index: 3;
   }
   100% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     -webkit-filter: blur(0);
             filter: blur(0);
     opacity: 1;
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
-  }
-}
-
-@-webkit-keyframes desc-anim {
-  0% {
-    -webkit-filter: blur(20px);
-            filter: blur(20px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    opacity: 1;
-  }
-}
-
-@keyframes desc-anim {
-  0% {
-    -webkit-filter: blur(20px);
-            filter: blur(20px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    opacity: 1;
+    font-size: calc(10px + 0.8vmin);
+    letter-spacing: 2vmin;
   }
 }
 
