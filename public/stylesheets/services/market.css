@@ -1451,7 +1451,7 @@ END
 body {
   background: white;
   max-width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .main-section {
@@ -1527,6 +1527,7 @@ body {
   font-weight: 100;
   font-family: "Montserrat", sans-serif;
   color: #2d283c;
+  line-height: 150%;
 }
 
 .main-section .market-mid .market-body .market-desc {
@@ -1543,6 +1544,7 @@ body {
   margin-top: 10vh;
   width: 30vw;
   text-align: center;
+  line-height: 150%;
 }
 
 .main-section .market-mid .market-body .market-get-updates {

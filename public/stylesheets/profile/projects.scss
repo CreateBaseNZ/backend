@@ -1,0 +1,95 @@
+@import "../global/all";
+
+body {
+  background: $light-1;
+  max-width: 100%;
+  overflow-x: hidden; 
+}
+
+.profile-page {
+  margin-top: $top-bar-height;
+  display: grid;
+  grid-template-areas:
+  "profile tabs"
+  "profile projects";
+  grid-template-columns: 30vw 70vw;
+  grid-template-rows: 10vh calc(80vh - #{$top-bar-height});
+
+  .my-profile-section {
+    grid-area: profile;
+    display: flex;
+    flex-direction: column;
+    font-family: $montserrat;
+
+    .profile-pic {
+      height: 20vw;
+      width: 20vw;
+      border-radius: 50%;
+      background: $dark-3;
+      align-self: center;
+      margin-top: 10vh;
+    }
+
+    .profile-name {
+      margin-top: 7vh;
+      padding: 0 5vw;
+      font-size: calc(20px + 0.5vw);
+    }
+    
+    .profile-location {
+      margin-top: 1vh;
+      padding: 0 5vw;
+      text-transform: uppercase;
+      font-family: $poppins;
+      font-weight: 800;
+      font-size: calc(10px + 0.2vw);
+      letter-spacing: 3px;
+      color: $light-3;
+    }
+
+    .profile-bio {
+      margin-top: 5vh;
+      padding: 0 5vw;
+      font-size: calc(10px + 0.2vw);
+      line-height: 150%;
+    }
+
+  }
+
+  .profile-tabs-bar {
+    grid-area: tabs;
+    display: flex;
+    font-family: $poppins;
+    font-weight: 200;
+    margin-top: 5vh;
+
+    * {
+      width: calc(100px + 5vw);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $light-3;
+
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      font-size: calc(10px + 0.2vw);
+    }
+
+    *:not(:last-child) {
+      border-right: 1px solid $light-2;
+    }
+  }
+
+  .my-projects-section {
+    grid-area: projects;
+    background: linear-gradient(to bottom,$light-2,$light-1);
+    border-right: calc(55px + 1vw) solid $light-1;
+  }
+}
+
+#profile-projects {
+  color: $dark-1;
+  background: $light-2;
+}

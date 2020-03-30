@@ -1,9 +1,9 @@
-@import "global/all";
+@import "../global/all";
 
 body {
   background: $light-1;
   max-width: 100%;
-  overflow: hidden; 
+  overflow-x: hidden; 
 }
 
 .main-section {
@@ -54,6 +54,7 @@ body {
       font-weight: 100;
       font-family: $montserrat;
       color: $dark-3;
+      line-height: 150%;
 
       .market-desc {
         margin-top: 15vh;
@@ -69,6 +70,7 @@ body {
         margin-top: 10vh;
         width: 30vw;
         text-align: center;
+        line-height: 150%;
       }
 
       .market-get-updates {
