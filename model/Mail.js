@@ -3,7 +3,11 @@ REQUIRED MODULES
 =========================================================================================*/
 
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const moment = require("moment-timezone");
+
+/*=========================================================================================
+GRIDFS
+=========================================================================================*/
 
 /*=========================================================================================
 VARIABLES
@@ -12,33 +16,20 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
-CREATE ACCOUNT MODEL
+MODELS
 =========================================================================================*/
 
-const AccountSchema = new Schema({
-  type: {
-    type: String
+/*=========================================================================================
+CREATE MAILING MODEL
+=========================================================================================*/
+
+const MailSchema = new Schema({
+  accountId: {
+    type: Schema.Types.ObjectId
   },
   email: {
     type: String
-  },
-  password: {
-    type: String
   }
-});
-
-/*=========================================================================================
-
-=========================================================================================*/
-
-AccountSchema.pre("save", async function(next) {
-  // Check if password is modified
-  if (this.isModified("password")) {
-    // Hash the password
-    this.password = await bcrypt.hash(this.password, 8);
-  }
-  // Exit once hashing is completed
-  next();
 });
 
 /*=========================================================================================
@@ -49,17 +40,17 @@ STATIC
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-AccountSchema.statics.findByEmail = function(email) {
+MailSchema.statics.findByEmail = function (email) {
   return new Promise(async (resolve, reject) => {
-    let account;
+    let mail;
 
     try {
-      account = await this.findOne({ email });
+      mail = await this.findOne({ email });
     } catch (error) {
       reject(error);
     }
 
-    resolve(account);
+    resolve(mail);
   });
 };
 
@@ -67,21 +58,11 @@ AccountSchema.statics.findByEmail = function(email) {
 METHOD
 =========================================================================================*/
 
-AccountSchema.methods.validatePassword = async function(password) {
-  let isMatch;
-  try {
-    isMatch = await bcrypt.compare(password, this.password);
-  } catch (error) {
-    return false;
-  }
-  return isMatch;
-};
-
 /*=========================================================================================
-EXPORT ACCOUNT MODEL
+EXPORT MAIL MODEL
 =========================================================================================*/
 
-module.exports = Account = mongoose.model("accounts", AccountSchema);
+module.exports = Mail = mongoose.model("mail", MailSchema);
 
 /*=========================================================================================
 END

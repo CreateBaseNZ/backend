@@ -41,6 +41,8 @@ GENERAL
 // @access    Public
 router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
+
+  res.send({ status: false });
 });
 
 /*-----------------------------------------------------------------------------------------
