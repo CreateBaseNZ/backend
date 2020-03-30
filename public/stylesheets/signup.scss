@@ -1,9 +1,15 @@
 @import "global/all";
 $diamond: 10vmax; 
 
-.nav-user-icon,
-.nav-user-button {
-  display: none !important;
+.nav-container {
+  .nav-top-bar {
+    background: transparent;
+
+    .nav-user-icon,
+    .nav-user-button {
+      display: none;
+    }
+  }
 }
 
 .main-page {

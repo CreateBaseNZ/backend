@@ -1,7 +1,3 @@
-window,onbeforeunload = function () {
-  window.scrollTo(0, 0)
-}
-
 const num_membs = 6
 var mq = window.matchMedia("(min-width: 850px)")
 

@@ -1042,7 +1042,7 @@ button {
   }
   .nav-container .nav-top-bar .nav-user-button {
     justify-self: flex-end;
-    margin-right: calc(90px + 1vw);
+    margin-right: calc(75px + 1vw);
     display: none;
     margin-bottom: 15px;
   }
@@ -1076,7 +1076,7 @@ button {
   }
   .nav-container .nav-top-bar .nav-user-icon {
     justify-self: flex-end;
-    margin-right: calc(90px + 1vw);
+    margin-right: calc(75px + 1vw);
   }
   .nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
@@ -1448,9 +1448,13 @@ TEMPORARY
 /*=========================================================================================
 END
 =========================================================================================*/
-.nav-user-icon,
-.nav-user-button {
-  display: none !important;
+.nav-container .nav-top-bar {
+  background: transparent;
+}
+
+.nav-container .nav-top-bar .nav-user-icon,
+.nav-container .nav-top-bar .nav-user-button {
+  display: none;
 }
 
 .main-page {

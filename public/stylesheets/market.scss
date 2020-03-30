@@ -31,7 +31,7 @@ body {
     animation: right-before 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
   }
   
-  .mid-text {
+  .market-mid {
     font-family: $poppins;
     height: calc(100vh - #{$top-bar-height});
     display: flex;
@@ -39,28 +39,63 @@ body {
     align-items: center;
     
     .market-title {
+      font-weight: 800;
       color: $dark-3;
-      font-size: 14vmin;
-      letter-spacing: 6vmin;
-      animation: title-anim-before 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-      height: 15vh;
+      animation: title-anim-before 0.5s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
     }
 
-    .market-desc {
-      position: absolute;
-      top: 50vh;
+    .market-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       opacity: 0;
       filter: blur(10px);
-      width: 30vw;
-      text-align: center;
       font-size: calc(12px + 0.1vw);
       font-weight: 100;
       font-family: $montserrat;
       color: $dark-3;
-      transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+
+      .market-desc {
+        margin-top: 15vh;
+        width: 30vw;
+        text-align: center;
+  
+        pointer-events: none;
+        transition: blur 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+      }
+  
+      .market-already-updated {
+        display: none;
+        margin-top: 10vh;
+        width: 30vw;
+        text-align: center;
+      }
+
+      .market-get-updates {
+        display: none;
+        margin-top: 10vh;
+        white-space: nowrap;
+      }
+  
+      .market-fld {
+        display: none;
+        margin-top: 10px;
+  
+        pointer-events: none;
+        transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+      }
+  
+      .market-btn {
+        display: none;
+        width: 150px;
+        margin-top: 50px;
+  
+        transition: filter 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+      }
     }
 
-    .market-btn {
+
+    .market-show {
       position: absolute;
       top: 65vh;
       padding: 0.2vmin;
@@ -89,18 +124,42 @@ body {
     animation: right-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
   }
 
-  .mid-text-active {
+  .market-mid-active-out {
     .market-title {
       animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
     }
 
-    .market-desc {
+    .market-body {
       filter: blur(0);
       opacity: 1;
-      transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99) 0.5s;
+      transition-delay: 0.5s;
+  
+      .market-fld {
+        pointer-events: auto;
+      }
     }
 
-    .market-btn {
+    .market-show {
+      top: 95vh;
+    }
+  }
+
+  .market-mid-active-in {
+    .market-title {
+      animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
+    }
+
+    .market-body {
+      filter: blur(0);
+      opacity: 1;
+      transition-delay: 0.5s;
+  
+      .market-desc {
+        margin-top: 15vh;
+      }
+    }
+
+    .market-show {
       top: 85vh;
     }
   }
@@ -109,17 +168,17 @@ body {
 
 @keyframes title-anim-before {
   0% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     filter: blur(0);
     opacity: 1;
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(16px + 1vmin);
+    letter-spacing: 2vmin;
   }
   40% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     filter: blur(10px);
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(16px + 1vmin);
+    letter-spacing: 2vmin;
     opacity: 0;
     z-index: 3;
   }
@@ -157,30 +216,19 @@ body {
     z-index: 1;
   }
   61% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     filter: blur(10px);
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
+    font-size: calc(10px + 0.8vmin);
+    letter-spacing: 2vmin;
     opacity: 0;
     z-index: 3;
   }
   100% {
-    margin-top: 30vh;
+    margin-top: 15vh;
     filter: blur(0);
     opacity: 1;
-    font-size: 2vmin;
-    letter-spacing: 1vmin;
-  }
-}
-
-@keyframes desc-anim {
-  0% {
-    filter: blur(20px);
-    opacity: 0;
-  }
-  100% {
-    filter: blur(0);
-    opacity: 1;
+    font-size: calc(10px + 0.8vmin);
+    letter-spacing: 2vmin;
   }
 }
 
