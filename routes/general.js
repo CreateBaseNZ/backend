@@ -161,7 +161,7 @@ router.get("/profile/billing", restrictedPages, (req, res) => {
 });
 
 // @route     POST /subscribe/mailing-list
-// @desc      Subscribing to mailing list for public users
+// @desc      Subscribing to mailing list
 // @access    Public
 router.post("/subscribe/mailing-list", async (req, res) => {
   const email = req.body.email;
@@ -226,6 +226,17 @@ router.post("/subscribe/mailing-list", async (req, res) => {
   }
 
   return res.send({ status: "success", data: "subscribed" });
+});
+
+// @route     POST /unsubscribe/mailing-list
+// @desc      Unsubscribing from mailing list
+// @access    Public
+router.post("/unsubscribe/mailing-list", async (req, res) => {
+  // Initialise Email Variable
+  // Check if Email Exist in the Mailing List
+  // Check if User is Registered
+  // If Registered Update Subscription
+  // Remove Email from the Mailing List
 });
 
 // @route     Get /login-status
