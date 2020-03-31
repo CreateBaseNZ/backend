@@ -139,18 +139,25 @@ router.get("/checkout", restrictedPages, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
 });
 
-// @route     Get /checkout
-// @desc      Get the Make Page
+// @route     Get /profile/projects
+// @desc
 // @access    Private
 router.get("/profile/projects", restrictedPages, (req, res) => {
   res.sendFile("projects.html", customerRouteOptions);
 });
 
-// @route     Get /checkout
-// @desc      Get the Make Page
+// @route     Get /profile/settings
+// @desc
 // @access    Private
 router.get("/profile/settings", restrictedPages, (req, res) => {
   res.sendFile("settings.html", customerRouteOptions);
+});
+
+// @route     Get /profile/billing
+// @desc
+// @access    Private
+router.get("/profile/billing", restrictedPages, (req, res) => {
+  res.sendFile("billing.html", customerRouteOptions);
 });
 
 // @route     POST /subscribe/mailing-list
