@@ -7,9 +7,9 @@ button {
   cursor: pointer;
   font-family: $poppins;
   color: $dark-1;
-  border: 1px solid rgba(255,255,255,0);
+  border: 1px solid rgba(255, 255, 255, 0);
   background: transparent;
-  
+
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -18,13 +18,13 @@ button {
 
   &:before,
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     height: 10px;
     width: 10px;
     transition: all 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   }
-  &:before {    
+  &:before {
     top: -0.5px;
     left: -0.5px;
     border-top: 1px solid $light-3;
@@ -34,7 +34,7 @@ button {
     bottom: -0.5px;
     right: -0.5px;
     border-bottom: 1px solid $light-3;
-    border-right: 1px solid $light-3;  
+    border-right: 1px solid $light-3;
   }
 
   &:hover {
@@ -56,7 +56,7 @@ button {
   font-family: $poppins;
   background: transparent;
   border: none;
-  
+
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -67,8 +67,124 @@ button {
   }
 }
 
-@media only screen and (min-width: 850px) {
+/*======================================================================
+Carl's Button Design (Start)
+======================================================================*/
 
+.button-5 {
+  display: flex;
+}
+
+.button-5-back {
+  height: $height-mobile;
+  width: $height-mobile;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-color: $logo-3;
+  border-width: 0.2vmax;
+  border-radius: 0.5vmax;
+  margin-right: calc(#{$height-mobile} * 0.3);
+  cursor: pointer;
+  &.hide {
+    height: 0;
+    width: 0;
+    margin: 0;
+    border-width: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+.button-5-back-icon {
+  border-style: solid;
+  border-color: $logo-3;
+  border-width: 0 calc(#{$height-mobile} * 0.04) calc(#{$height-mobile} * 0.04)
+    0;
+  display: inline-block;
+  padding: calc(#{$height-mobile} * 0.08);
+  transform: rotate(135deg);
+}
+
+.button-5-next {
+  height: $height-mobile;
+  width: calc(4.5 * #{$height-mobile});
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0.5vmax;
+  background-color: $logo-3;
+  overflow: hidden;
+  cursor: pointer;
+  &.disable {
+    background-color: $light-3;
+    cursor: default;
+  }
+}
+
+.button-5-next-message {
+  height: $height-mobile;
+  width: calc(3 * #{$height-mobile});
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 3vmax;
+  font-family: $poppins;
+  font-size: calc(#{$height-mobile} * 0.28);
+  letter-spacing: calc(#{$height-mobile} * 0.03);
+  color: $light-1;
+  transition: all 0.5s ease;
+  transform: translateX(0%);
+  opacity: 1;
+  &.idle {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
+  &.hide {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+}
+
+.button-5-next-icon {
+  height: $height-mobile;
+  width: $height-mobile;
+  position: absolute;
+  top: 0;
+  left: calc(3.5 * #{$height-mobile});
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  transform: translateX(0%);
+  opacity: 1;
+  &.idle {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
+  &.hide {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  .right {
+    border-style: solid;
+    border-color: $light-1;
+    border-width: 0 calc(#{$height-mobile} * 0.04)
+      calc(#{$height-mobile} * 0.04) 0;
+    display: inline-block;
+    padding: calc(#{$height-mobile} * 0.08);
+    transform: rotate(-45deg);
+  }
+}
+
+/*======================================================================
+Carl's Button Design (End)
+======================================================================*/
+
+@media only screen and (min-width: 850px) {
   .reg-btn {
     font-size: 12px;
     font-weight: 100;
@@ -83,4 +199,50 @@ button {
     padding: 10px 30px;
   }
 
+  /*======================================================================
+  Carl's Button Design (Start)
+  ======================================================================*/
+
+  .button-5-back {
+    height: $height-desktop;
+    width: $height-desktop;
+    border-width: 0.1vmax;
+    border-radius: 0.25vmax;
+    margin-right: calc(#{$height-mobile} * 0.15);
+  }
+
+  .button-5-back-icon {
+    border-width: 0 calc(#{$height-desktop} * 0.04)
+      calc(#{$height-desktop} * 0.04) 0;
+    padding: calc(#{$height-desktop} * 0.08);
+  }
+
+  .button-5-next {
+    height: $height-desktop;
+    width: calc(4.5 * #{$height-desktop});
+    border-radius: 0.25vmax;
+  }
+
+  .button-5-next-message {
+    height: $height-desktop;
+    width: calc(3 * #{$height-desktop});
+    padding-left: 1.5vmax;
+    font-size: calc(#{$height-desktop} * 0.28);
+    letter-spacing: calc(#{$height-desktop} * 0.03);
+  }
+
+  .button-5-next-icon {
+    height: $height-desktop;
+    width: $height-desktop;
+    left: calc(3.5 * #{$height-desktop});
+    .right {
+      border-width: 0 calc(#{$height-desktop} * 0.04)
+        calc(#{$height-desktop} * 0.04) 0;
+      padding: calc(#{$height-desktop} * 0.08);
+    }
+  }
+
+  /*======================================================================
+  Carl's Button Design (End)
+  ======================================================================*/
 }
