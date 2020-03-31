@@ -1060,6 +1060,8 @@ button {
     color: #4bf0ea;
   }
   .nav-container .nav-top-bar .nav-user-button .nav-user-signup {
+    -webkit-transition: all ease 0.2s;
+    transition: all ease 0.2s;
     font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
     font-weight: 100;

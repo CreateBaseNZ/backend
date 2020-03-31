@@ -13,32 +13,49 @@ body {
   "profile tabs"
   "profile projects";
   grid-template-columns: 30vw 70vw;
-  grid-template-rows: 10vh calc(80vh - #{$top-bar-height});
-
+  grid-template-rows: 10vh auto;
+  
   .my-profile-section {
+    opacity: 0;
     grid-area: profile;
     display: flex;
     flex-direction: column;
     font-family: $montserrat;
-
+    margin: 5vh 2.5vw 5vh 2.5vw;
+    padding: 0 2.5vw;
+    border: thin solid $light-1;
+    
     .profile-pic {
-      height: 20vw;
+      position: relative;
+      height: calc(5vh + 20vw);
       width: 20vw;
-      border-radius: 50%;
-      background: $dark-3;
-      align-self: center;
-      margin-top: 10vh;
+      background: $light-1;
+
+      #profile-preview {
+        margin-top: 5vh;
+        height: 20vw;
+        width: 20vw;
+        border-radius: 50%;
+        align-self: center;
+        object-fit: cover;
+      }
+
+      input {
+        display: none;
+      }
+
+      label {
+        display: none;
+      }
     }
 
     .profile-name {
-      margin-top: 7vh;
-      padding: 0 5vw;
+      margin-top: 3vh;
       font-size: calc(20px + 0.5vw);
     }
     
     .profile-location {
       margin-top: 1vh;
-      padding: 0 5vw;
       text-transform: uppercase;
       font-family: $poppins;
       font-weight: 800;
@@ -48,12 +65,106 @@ body {
     }
 
     .profile-bio {
-      margin-top: 5vh;
-      padding: 0 5vw;
+      margin-top: 3vh;
       font-size: calc(10px + 0.2vw);
       line-height: 150%;
     }
 
+    .profile-edit {
+      position: relative;
+      margin: 6vh 0 3vh 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      * {
+        font-size: calc(10px + 0.2vw);
+      }
+      
+      .profile-edit-btn {
+        display: block;
+      }
+
+      .profile-save-btn {
+        display: none;
+      }
+  
+      .profile-cancel-btn {
+        display: none;
+      }
+    }
+
+  }
+
+  .my-profile-section-edit {
+    border: thin solid $highlight;
+
+    .profile-pic {
+      label {
+        position: absolute;
+        display: inline-block;
+        top: calc(5vh + 20px);
+        right: calc(3vw - 20px);
+        
+        i {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $dark-1;
+          background: $light-1;
+          border-radius: 50%;
+          box-shadow: 0 0 10px -5px $dark-3;
+          cursor: pointer;
+          z-index: 100;
+          
+          &:hover {
+            color: $dark-3;
+            background: $light-2;
+          }
+        }
+
+      }
+    }
+
+    .profile-edit {
+
+      .profile-edit-btn {
+        display: none;
+      }
+
+      .profile-save-btn {
+        display: block;
+      }
+
+      .profile-cancel-btn {
+        position: relative;
+        display: block;
+        padding: 5px;
+        cursor: pointer;
+        color: $light-3;
+
+        &:hover {
+          color: red;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          border-bottom: thin solid red;
+          transition: 0.2s ease-out;
+        }
+
+        &:hover:after {
+          width: 100%;
+        }
+      }
+    }
   }
 
   .profile-tabs-bar {
@@ -70,15 +181,21 @@ body {
       align-items: center;
       justify-content: center;
       color: $light-3;
+      background: $light-1;
 
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 0.2vw;
       font-weight: 600;
       font-size: calc(10px + 0.2vw);
+      transition: 0.2s ease-out;
+
+      &:hover {
+        color: $logo-1;
+      }
     }
 
     *:not(:last-child) {
-      border-right: 1px solid $light-2;
+      border-right: thin solid $light-2;
     }
   }
 
@@ -86,6 +203,7 @@ body {
     grid-area: projects;
     background: linear-gradient(to bottom,$light-2,$light-1);
     border-right: calc(55px + 1vw) solid $light-1;
+    border-bottom: 5vh solid $light-1;
   }
 }
 
