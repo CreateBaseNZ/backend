@@ -1,3 +1,49 @@
+/*======================================================================
+REMOVE DEFAULT CSS
+======================================================================*/
+.rmv-h-css {
+  display: inline;
+  margin: 0;
+  font-weight: normal;
+}
+
+.rmv-p-css {
+  display: inline;
+  margin: 0;
+}
+
+.rmv-link-css {
+  text-decoration: none;
+  color: black;
+}
+
+.rmv-file-css {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.rmv-btn-css {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+  text-align: inherit;
+  outline: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +72,7 @@ button {
 }
 
 .reg-btn:before, .reg-btn:after {
-  content: '';
+  content: "";
   position: absolute;
   height: 10px;
   width: 10px;
@@ -78,6 +124,158 @@ button {
   color: #4bf0ea;
 }
 
+/*======================================================================
+Carl's Button Design (Start)
+======================================================================*/
+.button-5 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.button-5-back {
+  height: 7vmax;
+  width: 7vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-style: solid;
+  border-color: #4e4ed6;
+  border-width: 0.2vmax;
+  border-radius: 0.5vmax;
+  margin-right: calc(7vmax * 0.3);
+  cursor: pointer;
+}
+
+.button-5-back.hide {
+  height: 0;
+  width: 0;
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.button-5-back-icon {
+  border-style: solid;
+  border-color: #4e4ed6;
+  border-width: 0 calc(7vmax * 0.04) calc(7vmax * 0.04) 0;
+  display: inline-block;
+  padding: calc(7vmax * 0.08);
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.button-5-next {
+  height: 7vmax;
+  width: calc(4.5 * 7vmax);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 0.5vmax;
+  background-color: #4e4ed6;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.button-5-next.disable {
+  background-color: #c7c2d5;
+  cursor: default;
+}
+
+.button-5-next-message {
+  height: 7vmax;
+  width: calc(3 * 7vmax);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 3vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: calc(7vmax * 0.28);
+  letter-spacing: calc(7vmax * 0.03);
+  color: white;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  opacity: 1;
+}
+
+.button-5-next-message.idle {
+  -webkit-transform: translateX(-20%);
+          transform: translateX(-20%);
+  opacity: 0;
+}
+
+.button-5-next-message.hide {
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+  opacity: 0;
+}
+
+.button-5-next-icon {
+  height: 7vmax;
+  width: 7vmax;
+  position: absolute;
+  top: 0;
+  left: calc(3.5 * 7vmax);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  opacity: 1;
+}
+
+.button-5-next-icon.idle {
+  -webkit-transform: translateX(-20%);
+          transform: translateX(-20%);
+  opacity: 0;
+}
+
+.button-5-next-icon.hide {
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+  opacity: 0;
+}
+
+.button-5-next-icon .right {
+  border-style: solid;
+  border-color: white;
+  border-width: 0 calc(7vmax * 0.04) calc(7vmax * 0.04) 0;
+  display: inline-block;
+  padding: calc(7vmax * 0.08);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+/*======================================================================
+Carl's Button Design (End)
+======================================================================*/
 @media only screen and (min-width: 850px) {
   .reg-btn {
     font-size: 12px;
@@ -91,6 +289,44 @@ button {
     letter-spacing: 1px;
     padding: 10px 30px;
   }
+  /*======================================================================
+  Carl's Button Design (Start)
+  ======================================================================*/
+  .button-5-back {
+    height: 3.5vmax;
+    width: 3.5vmax;
+    border-width: 0.1vmax;
+    border-radius: 0.25vmax;
+    margin-right: calc(7vmax * 0.15);
+  }
+  .button-5-back-icon {
+    border-width: 0 calc(3.5vmax * 0.04) calc(3.5vmax * 0.04) 0;
+    padding: calc(3.5vmax * 0.08);
+  }
+  .button-5-next {
+    height: 3.5vmax;
+    width: calc(4.5 * 3.5vmax);
+    border-radius: 0.25vmax;
+  }
+  .button-5-next-message {
+    height: 3.5vmax;
+    width: calc(3 * 3.5vmax);
+    padding-left: 1.5vmax;
+    font-size: calc(3.5vmax * 0.28);
+    letter-spacing: calc(3.5vmax * 0.03);
+  }
+  .button-5-next-icon {
+    height: 3.5vmax;
+    width: 3.5vmax;
+    left: calc(3.5 * 3.5vmax);
+  }
+  .button-5-next-icon .right {
+    border-width: 0 calc(3.5vmax * 0.04) calc(3.5vmax * 0.04) 0;
+    padding: calc(3.5vmax * 0.08);
+  }
+  /*======================================================================
+  Carl's Button Design (End)
+  ======================================================================*/
 }
 
 .loading-icon {
@@ -1175,9 +1411,6 @@ button {
   }
 }
 
-/*=========================================================================================
-TEMPORARY
-=========================================================================================*/
 .load-1 {
   display: inline-block;
   position: relative;
@@ -1897,4 +2130,3 @@ body {
     margin-left: 20vw;
   }
 }
-/*# sourceMappingURL=market.css.map */

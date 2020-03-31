@@ -5,24 +5,108 @@ VARIABLES
 =========================================================================================*/
 $diamond: 5vw;
 
-// Colours
-$clr-vlt-1: rgb(130, 88, 220);
-$clr-vlt-2: rgb(104, 83, 217);
-$clr-vlt-3: rgb(78, 78, 214);
-$clr-blk-1: rgb(45, 40, 60);
-$clr-blk-2: rgb(50, 45, 65);
-$clr-blk-3: #877da9;
-$clr-wht-1: rgb(255, 255, 255);
-$clr-wht-2: rgb(248, 248, 248);
-$clr-wht-3: #c7c2d5;
-$clr-ext-1: #4bf0ea;
-// Font Families
-$fnt-fml-2: "Montserrat", sans-serif;
-$fnt-fml-2: "Poppins", sans-serif;
-
 /*=========================================================================================
 MOBILE CSS
 =========================================================================================*/
+
+/*======================================================================
+BACKGROUND COLOURS
+======================================================================*/
+
+.bgd-clr-vlt-3 {
+  background-color: $logo-3;
+}
+
+/*======================================================================
+TEXT COLOURS
+======================================================================*/
+
+.txt-clr-blk-1 {
+  color: $dark-3;
+}
+
+.txt-clr-blk-2 {
+  color: $dark-2;
+}
+
+.txt-clr-blk-3 {
+  color: $dark-1;
+}
+
+.txt-clr-wht-1 {
+  color: $light-1;
+}
+
+/*======================================================================
+INPUT FIELDS
+======================================================================*/
+
+.inp-txt-1 {
+  height: 4.8vmax;
+  // Border
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: $dark-1;
+  border-radius: 0vmax;
+  appearance: none;
+  // Spacing
+  padding: 0 1vmax;
+  letter-spacing: 0.2vmax;
+}
+
+.inp-txt-1:focus {
+  outline: none;
+  border-bottom-color: $dark-3;
+  color: $dark-3;
+}
+
+.inp-txt-1::placeholder {
+  color: $dark-1;
+}
+
+/*======================================================================
+TEXTS
+======================================================================*/
+
+.hdng-1 {
+  font-family: $poppins;
+  font-size: 2.2vmax;
+  font-weight: bold;
+}
+
+.hdng-2 {
+  font-family: $poppins;
+  font-size: 3.4vmax;
+  font-weight: bold;
+}
+
+.txt-1 {
+  font-family: $montserrat;
+  font-size: 1.8vmax;
+}
+
+.sbtl-1 {
+  font-family: $montserrat;
+  font-size: 1.4vmax;
+}
+
+.sbtl-2 {
+  font-family: $montserrat;
+  font-size: 1.8vmax;
+}
+
+/*======================================================================
+BUTTONS
+======================================================================*/
+
+.btn-1 {
+  height: 4.8vmax;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2.4vmax;
+  letter-spacing: 0.2vmax;
+}
 
 /*-----------------------------------------------------------------------------------------
 SUMMARY
@@ -55,12 +139,12 @@ CHECKOUT
   justify-content: center;
   padding-bottom: 4vmax;
   letter-spacing: 0.2vmax;
-  color: $clr-wht-3;
+  color: $light-3;
   cursor: default;
 }
 
 .checkout-heading-valid {
-  color: $clr-blk-1;
+  color: $dark-3;
   cursor: pointer;
 }
 
@@ -115,10 +199,10 @@ CART
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   letter-spacing: 0.2vmax;
   font-size: 2.4vmax;
-  color: $clr-wht-3;
+  color: $light-3;
 }
 
 .checkout-prnt-cnt {
@@ -372,10 +456,10 @@ SHIPPING
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   letter-spacing: 0.2vmax;
   font-size: 2.4vmax;
-  color: $clr-wht-3;
+  color: $light-3;
 }
 
 .checkout-saved-address-line {
@@ -385,10 +469,10 @@ SHIPPING
   align-items: center;
   padding: 0 0 0 6.2vmax;
   // TEXT
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   font-size: 1.6vmax;
   letter-spacing: 0.2vmax;
-  color: $clr-wht-3;
+  color: $light-3;
 }
 
 .checkout-shpg-adrs-new-lbl {
@@ -489,10 +573,10 @@ PAYMENT
     width: 100%;
     display: flex;
     align-items: center;
-    font-family: $fnt-fml-2;
+    font-family: $poppins;
     font-size: 1.6vmax;
     letter-spacing: 0.2vmax;
-    color: $clr-blk-3;
+    color: $dark-3;
   }
   div {
     width: 100%;
@@ -538,7 +622,7 @@ PAYMENT
   p {
     width: 50%;
     padding-left: 1vmax;
-    font-family: $fnt-fml-2;
+    font-family: $poppins;
     font-size: 1.6vmax;
     letter-spacing: 0.2vmax;
   }
@@ -560,7 +644,7 @@ PAYMENT
       width: 100%;
       display: flex;
       align-items: center;
-      font-family: $fnt-fml-2;
+      font-family: $poppins;
       font-size: 1.6vmax;
       letter-spacing: 0.2vmax;
     }
@@ -578,7 +662,7 @@ PAYMENT
   justify-content: center;
   align-content: center;
   padding-top: 60px;
-  background-color: $clr-wht-1;
+  background-color: $light-1;
   opacity: 1;
   z-index: 100;
   #checkout-complete-loading-icon {
@@ -594,10 +678,10 @@ PAYMENT
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: $fnt-fml-2;
+    font-family: $poppins;
     font-size: 2vmax;
     letter-spacing: 0.2vmax;
-    color: $clr-wht-3;
+    color: $light-3;
   }
 }
 
@@ -653,16 +737,16 @@ NAVIGATION
 }
 
 .checkout-navigation-icon-container-selected {
-  background-color: $clr-blk-1;
-  border-color: $clr-blk-1;
+  background-color: $dark-1;
+  border-color: $dark-1;
   .checkout-navigation-icon-white {
     opacity: 1;
   }
 }
 
 .checkout-navigation-icon-container-deselected {
-  background-color: $clr-wht-1;
-  border-color: $clr-blk-1;
+  background-color: $light-1;
+  border-color: $dark-1;
   .checkout-navigation-icon-black {
     opacity: 1;
   }
@@ -677,7 +761,7 @@ NAVIGATION
 }
 
 .checkout-navigation-icon-container-deselected.valid {
-  background-color: $clr-wht-1;
+  background-color: $light-1;
   border-color: #008000;
   .checkout-navigation-icon-green {
     opacity: 1;
@@ -685,8 +769,8 @@ NAVIGATION
 }
 
 .checkout-navigation-icon-container-deselected.unavailable {
-  background-color: $clr-wht-1;
-  border-color: $clr-wht-3;
+  background-color: $light-1;
+  border-color: $light-3;
   .checkout-navigation-icon-grey {
     opacity: 1;
   }
@@ -722,7 +806,7 @@ GLOBAL
   &:hover {
     &::before,
     &::after {
-      background: $clr-ext-1;
+      background: $highlight;
     }
   }
   &::before,
@@ -731,7 +815,7 @@ GLOBAL
     position: absolute;
     width: 100%;
     top: 50%;
-    background: $clr-blk-3;
+    background: $dark-3;
     height: 0.24vmax;
     border-radius: 0.12vmax;
     transition: all 0.1s ease;
@@ -761,17 +845,17 @@ GLOBAL
   align-items: center;
   justify-content: center;
   border-radius: 1vmax;
-  background-color: $clr-wht-3;
-  font-family: $fnt-fml-2;
+  background-color: $light-3;
+  font-family: $poppins;
   font-size: 2vmax;
   letter-spacing: 0.3vmax;
-  color: $clr-blk-1;
+  color: $dark-1;
 }
 
 .checkout-button-valid {
-  border-color: $clr-vlt-3;
-  background-color: $clr-vlt-3;
-  color: $clr-wht-1;
+  border-color: $logo-3;
+  background-color: $logo-3;
+  color: $light-1;
   cursor: pointer;
 }
 
@@ -793,16 +877,16 @@ GLOBAL
   height: 100%;
   display: flex;
   align-items: center;
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   font-size: 1.6vmax;
   letter-spacing: 0.2vmax;
   padding-left: 2.6vmax;
-  color: $clr-blk-2;
+  color: $dark-2;
   cursor: pointer;
 }
 
 .checkout-radio-label-disabled {
-  color: $clr-wht-3;
+  color: $light-3;
   cursor: default;
 }
 
@@ -813,7 +897,7 @@ GLOBAL
   display: flex;
   align-items: flex-start;
   padding-left: 4.2vmax;
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   font-size: 1.2vmax;
   letter-spacing: 0.2vmax;
   color: #bb0000;
@@ -832,7 +916,7 @@ GLOBAL
   width: 100%;
   display: flex;
   align-items: center;
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   font-size: 1.2vmax;
   letter-spacing: 0.2vmax;
   color: #bb0000;
@@ -849,7 +933,7 @@ GLOBAL
   border-top-left-radius: 1vmax;
   border-top-right-radius: 1vmax;
   padding: 0 2vmax;
-  background-color: $clr-vlt-3;
+  background-color: $logo-3;
   z-index: 10;
   transition: all 0.5s ease;
   #checkout-loading-display-load {
@@ -860,11 +944,11 @@ GLOBAL
   p {
     width: 31vmax;
     padding: 0 4vmax;
-    font-family: $fnt-fml-2;
+    font-family: $poppins;
     font-size: 1.6vmax;
     font-weight: bold;
     letter-spacing: 0.3vmax;
-    color: $clr-wht-1;
+    color: $light-1;
   }
 }
 
@@ -887,16 +971,16 @@ GLOBAL
   // Border
   border-width: 0.1vmax;
   border-style: none none solid none;
-  border-bottom-color: $clr-blk-3;
+  border-bottom-color: $dark-3;
   border-radius: 0vmax;
   appearance: none;
   // Spacing
   padding: 1.5vmax 1vmax;
   // Text
-  font-family: $fnt-fml-2;
+  font-family: $poppins;
   font-size: 1.8vmax;
   // Text Colour
-  color: $clr-blk-2;
+  color: $dark-2;
 }
 
 /*=========================================================================================
@@ -904,6 +988,50 @@ DESKTOP CSS
 =========================================================================================*/
 
 @media only screen and (min-width: 850px) {
+  /*======================================================================
+  INPUT FIELDS
+  ======================================================================*/
+
+  .inp-txt-1 {
+    height: 2.4vmax;
+    // Border
+    border-width: 0.05vmax;
+    // Spacing
+    padding: 0 0.5vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  /*======================================================================
+  TEXTS
+  ======================================================================*/
+
+  .hdng-1 {
+    font-size: 1vmax;
+  }
+
+  .hdng-2 {
+    font-size: 1.3vmax;
+    letter-spacing: 0.15vmax;
+  }
+
+  .txt-1 {
+    font-size: 1vmax;
+  }
+
+  .sbtl-1 {
+    font-size: 0.9vmax;
+  }
+
+  /*======================================================================
+  BUTTONS
+  ======================================================================*/
+
+  .btn-1 {
+    height: 2.5vmax;
+    border-radius: 1.25vmax;
+    letter-spacing: 0.1vmax;
+  }
+
   .checkout-sub-pg {
     width: 64vw;
     position: relative;
@@ -966,7 +1094,7 @@ DESKTOP CSS
   }
 
   .checkout-prnt-cnt-file-name {
-    color: $clr-ext-1;
+    color: $highlight;
   }
 
   .checkout-prnt-cnt-cntn-1,
@@ -1168,10 +1296,10 @@ DESKTOP CSS
 
   .checkout-summary-label,
   .checkout-summary-value {
-    font-family: $fnt-fml-2;
+    font-family: $poppins;
     font-size: 0.8vmax;
     letter-spacing: 0.1vmax;
-    color: $clr-blk-3;
+    color: $dark-3;
   }
 
   // IDS
@@ -1187,7 +1315,7 @@ DESKTOP CSS
     display: flex;
     flex-wrap: wrap;
     padding: 8vmax 6vmax 6vmax 8vmax;
-    background-color: $clr-wht-2;
+    background-color: $light-2;
     overflow: hidden;
   }
 
@@ -1201,18 +1329,18 @@ DESKTOP CSS
   }
 
   #checkout-summary-heading-container h1 {
-    font-family: $fnt-fml-2;
+    font-family: $poppins;
     font-size: 2vmax;
     font-weight: bold;
     letter-spacing: 0.1vmax;
-    color: $clr-blk-2;
+    color: $dark-2;
   }
 
   #checkout-summary-group-total {
     margin-top: 1vmax;
     height: 5vmax;
     border-top: solid;
-    border-color: $clr-blk-2;
+    border-color: $dark-2;
     border-width: 0.1vmax;
   }
 
@@ -1220,7 +1348,7 @@ DESKTOP CSS
   #checkout-summary-value-total {
     font-size: 1vmax;
     font-weight: bold;
-    color: $clr-blk-2;
+    color: $dark-2;
   }
 
   /*---------------------------------------------------------------------------------------

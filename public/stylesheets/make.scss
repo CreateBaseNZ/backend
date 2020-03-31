@@ -28,7 +28,7 @@ MOBILE CSS
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 1vmax;
+    border-radius: 0.5vmax;
     background-color: $logo-3;
     font-family: $poppins;
     font-size: 2vmax;
@@ -94,8 +94,6 @@ BUILD TYPE
     transition: all 0.2s ease;
     cursor: pointer;
     &.select {
-      height: 7.2vmax;
-      font-weight: bold;
       opacity: 1;
       cursor: default;
     }
@@ -103,14 +101,14 @@ BUILD TYPE
 }
 
 #make-quick-build-input {
-  border-radius: 2vmax 0.4vmax 0.4vmax 2vmax;
+  border-radius: 1vmax 0.2vmax 0.2vmax 1vmax;
   border-right-style: solid;
   border-right-width: 0.15vmax;
   border-right-color: $light-1;
 }
 
 #make-custom-build-input {
-  border-radius: 0.4vmax 2vmax 2vmax 0.4vmax;
+  border-radius: 0.2vmax 1vmax 1vmax 0.2vmax;
   border-left-style: solid;
   border-left-width: 0.3vmax;
   border-left-color: $light-1;
@@ -131,7 +129,7 @@ BUILD TYPE
     align-items: center;
     justify-content: center;
     border-style: solid;
-    border-radius: 2vmax;
+    border-radius: 1vmax;
     border-color: $light-3;
     border-width: 0.2vmax;
     font-family: $poppins;
@@ -202,7 +200,7 @@ BUILD OPTION
     align-items: center;
     justify-content: center;
     border-style: solid;
-    border-radius: 2vmax;
+    border-radius: 1vmax;
     border-color: $light-3;
     border-width: 0.2vmax;
     margin: 3vmax 0;
@@ -257,7 +255,7 @@ ORDER DETAILS
     align-items: center;
     justify-content: center;
     border-style: solid;
-    border-radius: 2vmax;
+    border-radius: 1vmax;
     border-color: $light-3;
     border-width: 0.2vmax;
     margin: 3vmax 0;
@@ -417,7 +415,7 @@ COMPLETE
     padding: 1vmax;
     border-style: solid;
     border-width: 0.1vmax;
-    border-radius: 1vmax;
+    border-radius: 0.5vmax;
     border-color: $logo-3;
     outline: none;
     font-family: $poppins;
@@ -504,7 +502,7 @@ UNIVERSAL
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 1vmax;
+    border-radius: 0.5vmax;
     background-color: $logo-3;
     overflow: hidden;
     font-family: $poppins;
@@ -550,7 +548,7 @@ DESKTOP CSS
     label {
       height: 3.5vmax;
       width: 15.75vmax;
-      border-radius: 0.5vmax;
+      border-radius: 0.25vmax;
       font-size: 1vmax;
       letter-spacing: 0.1vmax;
     }
@@ -606,7 +604,7 @@ DESKTOP CSS
     label {
       height: 5vmax;
       width: 10vmax;
-      border-radius: 1vmax;
+      border-radius: 0.5vmax;
       border-width: 0.1vmax;
       font-size: 1vmax;
       letter-spacing: 0.1vmax;
@@ -641,7 +639,7 @@ DESKTOP CSS
     label {
       height: 4.5vmax;
       width: 9vmax;
-      border-radius: 1vmax;
+      border-radius: 0.5vmax;
       border-width: 0.1vmax;
       margin: 1.5vmax 0;
       font-size: 1vmax;
@@ -671,7 +669,7 @@ DESKTOP CSS
     label {
       height: 4.5vmax;
       width: 9vmax;
-      border-radius: 1vmax;
+      border-radius: 0.5vmax;
       border-width: 0.1vmax;
       margin: 1.5vmax 0;
       font-size: 1vmax;
@@ -757,7 +755,7 @@ DESKTOP CSS
       width: 50%;
       padding: 0.5vmax;
       border-width: 0.05vmax;
-      border-radius: 0.5vmax;
+      border-radius: 0.25vmax;
       font-size: 1vmax;
       letter-spacing: 0.1vmax;
     }
@@ -785,7 +783,7 @@ DESKTOP CSS
     width: 62vw;
     position: relative;
     top: 0;
-    border-radius: 1vmax;
+    border-radius: 0.5vmax;
     margin: 1vw 1vw 0;
     background-color: $light-1;
     overflow: hidden;
@@ -832,7 +830,7 @@ DESKTOP CSS
     a {
       height: $height-desktop;
       width: calc(4.5 * #{$height-desktop});
-      border-radius: 0.5vmax;
+      border-radius: 0.25vmax;
       font-size: calc(#{$height-desktop} * 0.28);
       letter-spacing: calc(#{$height-desktop} * 0.03);
     }
@@ -847,7 +845,7 @@ DESKTOP CSS
     display: flex;
     flex-wrap: wrap;
     padding: 1vmax;
-    border-radius: 1vmax;
+    border-radius: 0.5vmax;
     box-shadow: 0 0 2vmax -1.8vmax $dark-2;
     background-color: $light-1;
   }
@@ -918,7 +916,7 @@ DESKTOP CSS
     position: fixed;
     height: 4vmax;
     width: 18vmax;
-    border-radius: 0.5vmax;
+    border-radius: 0.25vmax;
     background-color: $light-2;
     transition: all 0.5s ease;
     &.upload {
