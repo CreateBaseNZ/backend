@@ -61,7 +61,7 @@ button {
   cursor: pointer;
   font-family: "Poppins", sans-serif;
   color: #877da9;
-  border: 1px solid rgba(255, 255, 255, 0);
+  border: thin solid rgba(255, 255, 255, 0);
   background: transparent;
   font-size: 10px;
   font-weight: 800;
@@ -83,15 +83,15 @@ button {
 .reg-btn:before {
   top: -0.5px;
   left: -0.5px;
-  border-top: 1px solid #c7c2d5;
-  border-left: 1px solid #c7c2d5;
+  border-top: thin solid #c7c2d5;
+  border-left: thin solid #c7c2d5;
 }
 
 .reg-btn:after {
   bottom: -0.5px;
   right: -0.5px;
-  border-bottom: 1px solid #c7c2d5;
-  border-right: 1px solid #c7c2d5;
+  border-bottom: thin solid #c7c2d5;
+  border-right: thin solid #c7c2d5;
 }
 
 .reg-btn:hover {
@@ -595,7 +595,7 @@ Carl's Button Design (End)
 .input-decor {
   position: relative;
   display: inline-block;
-  border-bottom: 1px solid #f8f8f8;
+  border-bottom: thin solid #f8f8f8;
   height: 40px;
 }
 
@@ -651,7 +651,7 @@ Carl's Button Design (End)
 
 .input-decor::after, .input-decor:focus-within::after {
   content: "";
-  border-bottom: 1px solid #4bf0ea;
+  border-bottom: thin solid #4bf0ea;
   position: absolute;
   width: 0%;
   top: 100%;
@@ -1304,11 +1304,11 @@ Carl's Button Design (End)
     letter-spacing: 0.1vmax;
     color: #6853d9;
     padding: 5px 20px;
-    border: 1px solid #6853d9;
+    border: thin solid #6853d9;
     background: transparent;
   }
   .nav-container .nav-top-bar .nav-user-button .nav-user-signup:hover {
-    border: 1px solid white;
+    border: thin solid white;
     color: white;
     background: linear-gradient(60deg, #8258dc, #4e4ed6);
   }

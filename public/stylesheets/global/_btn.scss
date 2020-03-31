@@ -7,7 +7,7 @@ button {
   cursor: pointer;
   font-family: $poppins;
   color: $dark-1;
-  border: 1px solid rgba(255, 255, 255, 0);
+  border: thin solid rgba(255, 255, 255, 0);
   background: transparent;
 
   font-size: 10px;
@@ -27,14 +27,14 @@ button {
   &:before {
     top: -0.5px;
     left: -0.5px;
-    border-top: 1px solid $light-3;
-    border-left: 1px solid $light-3;
+    border-top: thin solid $light-3;
+    border-left: thin solid $light-3;
   }
   &:after {
     bottom: -0.5px;
     right: -0.5px;
-    border-bottom: 1px solid $light-3;
-    border-right: 1px solid $light-3;
+    border-bottom: thin solid $light-3;
+    border-right: thin solid $light-3;
   }
 
   &:hover {

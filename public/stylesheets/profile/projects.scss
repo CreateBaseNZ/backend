@@ -24,6 +24,7 @@ body {
     margin: 5vh 2.5vw 5vh 2.5vw;
     padding: 0 2.5vw;
     border: thin solid $light-1;
+    cursor: default;
     
     .profile-pic {
       position: relative;
@@ -46,6 +47,32 @@ body {
 
       label {
         display: none;
+        position: absolute;
+        top: calc(5vh + 20px);
+        right: calc(3vw - 20px);
+        
+        i {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $dark-1;
+          background: $light-1;
+          border-radius: 50%;
+          box-shadow: 0 0 10px -5px $dark-3;
+          cursor: pointer;
+          
+          &:hover {
+            color: $dark-3;
+            background: $light-2;
+          }
+        }
+
+        &:hover ~ #profile-preview {
+          box-shadow: 0 0 10px -2px $highlight;
+        }
       }
     }
 
@@ -88,60 +115,10 @@ body {
       .profile-save-btn {
         display: none;
       }
-  
+      
       .profile-cancel-btn {
         display: none;
-      }
-    }
-
-  }
-
-  .my-profile-section-edit {
-    border: thin solid $highlight;
-
-    .profile-pic {
-      label {
-        position: absolute;
-        display: inline-block;
-        top: calc(5vh + 20px);
-        right: calc(3vw - 20px);
-        
-        i {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: $dark-1;
-          background: $light-1;
-          border-radius: 50%;
-          box-shadow: 0 0 10px -5px $dark-3;
-          cursor: pointer;
-          z-index: 100;
-          
-          &:hover {
-            color: $dark-3;
-            background: $light-2;
-          }
-        }
-
-      }
-    }
-
-    .profile-edit {
-
-      .profile-edit-btn {
-        display: none;
-      }
-
-      .profile-save-btn {
-        display: block;
-      }
-
-      .profile-cancel-btn {
         position: relative;
-        display: block;
         padding: 5px;
         cursor: pointer;
         color: $light-3;
@@ -163,6 +140,46 @@ body {
         &:hover:after {
           width: 100%;
         }
+      }
+    }
+
+  }
+
+  .my-profile-section-edit {
+    border: thin solid $highlight;
+
+    .profile-pic {
+      label {
+        display: inline-block;
+      }
+    }
+
+    .profile-name,
+    .profile-location,
+    .profile-bio {
+      -webkit-user-modify: read-write;
+      border: thin solid $light-2;
+      padding: 10px;
+      cursor: text;
+
+      &:empty:not(:focus)::before {
+        content: attr(data-placeholder);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 5px $highlight;
+      }
+    }
+
+    .profile-edit {
+      .profile-edit-btn {
+        display: none;
+      }
+
+      .profile-save-btn, 
+      .profile-cancel-btn {
+        display: block;
       }
     }
   }

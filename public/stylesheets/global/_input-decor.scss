@@ -3,7 +3,7 @@ $input-width: 75vmin;
 .input-decor {
   position: relative;
   display: inline-block;
-  border-bottom: 1px solid $light-2;
+  border-bottom: thin solid $light-2;
   height: 40px;
 
   input {
@@ -58,7 +58,7 @@ $input-width: 75vmin;
   &::after,
   &:focus-within::after {
     content: "";
-    border-bottom: 1px solid $highlight;
+    border-bottom: thin solid $highlight;
     position: absolute;
     width: 0%;
     top: 100%;

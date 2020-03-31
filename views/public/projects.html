@@ -103,13 +103,13 @@
   <div class="profile-page">
     <div class="my-profile-section">
       <div class="profile-pic">
-        <img src="./../../public/images/default-profile.png" id="profile-preview"></img>
         <input type="file" id="profile-upload" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
         <label for="profile-upload"><i class="far fa-edit"></i></label>
+        <img src="./../../public/images/default-profile.png" id="profile-preview"></img>
       </div>
-      <p class="profile-name"></p>
-      <p class="profile-location"></p>
-      <p class="profile-bio"></p>
+      <p class="profile-name" data-placeholder="Display Name"></p>
+      <p class="profile-location" data-placeholder="City/State, Country"></p>
+      <p class="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
       <div class="profile-edit">
         <div class="profile-cancel-btn">Cancel</div>
         <div class="profile-save-btn reg-btn">Save</div>

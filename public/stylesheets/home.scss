@@ -239,14 +239,14 @@ body {
       .eng-kit-line {
         position: absolute;
         height: 1px;
-        border-top: $light-3 solid 1px;
+        border-top: thin $light-3 solid;
       }
 
       .eng-kit-line-overlap {
         position: absolute;
         width: 0vw;
         height: 1px;
-        border-top: $highlight solid 1px;
+        border-top: thin $highlight solid;
         transition: width 0.5s ease-out;
       }
     }
@@ -403,7 +403,7 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0);
+      border: thin solid rgba(255, 255, 255, 0);
       transition: 0.3s ease-out;
 
       img {
@@ -421,26 +421,26 @@ body {
       .top-left { 
         margin-top: -5vmax; 
         margin-left: calc(-5vmax - 0.5px); 
-        border-top: 1px solid $dark-3;
-        border-left: 1px solid $dark-3;
+        border-top: thin solid $dark-3;
+        border-left: thin solid $dark-3;
       }
       .top-right { 
         margin-top: -5vmax; 
         margin-left: calc(5vmax + 0.5px); 
-        border-top: 1px solid $dark-3;
-        border-right: 1px solid $dark-3;
+        border-top: thin solid $dark-3;
+        border-right: thin solid $dark-3;
       }
       .bottom-left { 
         margin-top: 5vw; 
         margin-left: calc(-5vmax - 0.5px); 
-        border-bottom: 1px solid $dark-3;
-        border-left: 1px solid $dark-3;
+        border-bottom: thin solid $dark-3;
+        border-left: thin solid $dark-3;
       }
       .bottom-right { 
         margin-top: 5vmax; 
         margin-left: calc(5vmax + 0.5px); 
-        border-bottom: 1px solid $dark-3;
-        border-right: 1px solid $dark-3;
+        border-bottom: thin solid $dark-3;
+        border-right: thin solid $dark-3;
       }
 
       &:hover {
