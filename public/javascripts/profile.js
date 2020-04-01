@@ -11,6 +11,10 @@ var loadFile = function(event) {
 
 const profileInit = async() => {
 
+  if (localStorage.getItem('tab')) {
+    document.querySelector('#' + localStorage.getItem('tab') + '-tab').checked = true
+  }
+
   let customerInfo
 
   try {
@@ -20,10 +24,10 @@ const profileInit = async() => {
     return
   }
 
-
   // [TO DO] Get values from server
   var name = customerInfo["data"]["data"]["displayName"]
   var bio = customerInfo["data"]["data"]["bio"]
+  var profilePic = customerInfo["data"]["data"]["profilePic"]
   let location
 
   location = 'auckland, new zealand'

@@ -134,7 +134,11 @@ const navInit = async() => {
       }
     }
   }
-
   mainFunction(mq)
   mq.addListener(mainFunction)
+}
+
+function passTab(el) {
+  var tab = el.getAttribute('data-tab')
+  localStorage.setItem('tab', tab)
 }

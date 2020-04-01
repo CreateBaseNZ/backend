@@ -2010,6 +2010,12 @@ Carl's Button Design (End)
 /*=========================================================================================
 END
 =========================================================================================*/
+body {
+  background: white;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .profile-page {
   margin-top: 60px;
   display: -ms-grid;
@@ -2207,8 +2213,8 @@ END
 .profile-page .my-profile-section-edit .profile-location::after {
   display: block;
   content: attr(data-info);
-  font-size: calc(12px + 0.1vw);
-  color: #4bf0ea;
+  font-size: calc(10px + 0.1vw);
+  color: #c7c2d5;
   font-weight: 100;
   letter-spacing: 0;
   text-transform: none;
@@ -2236,7 +2242,16 @@ END
   margin-top: 5vh;
 }
 
-.profile-page .profile-tabs-bar * {
+.profile-page .profile-tabs-bar input {
+  display: none;
+}
+
+.profile-page .profile-tabs-bar input:checked + label {
+  color: #877da9;
+  background: #f8f8f8;
+}
+
+.profile-page .profile-tabs-bar label {
   width: calc(100px + 5vw);
   height: 100%;
   display: -webkit-box;
@@ -2250,6 +2265,7 @@ END
           justify-content: center;
   color: #c7c2d5;
   background: white;
+  cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.2vw;
   font-weight: 600;
@@ -2258,7 +2274,7 @@ END
   transition: 0.2s ease-out;
 }
 
-.profile-page .profile-tabs-bar *:hover {
+.profile-page .profile-tabs-bar label:hover {
   color: #8258dc;
 }
 
@@ -2274,15 +2290,4 @@ END
   background: linear-gradient(to bottom, #f8f8f8, white);
   border-right: calc(55px + 1vw) solid white;
   border-bottom: 5vh solid white;
-}
-
-body {
-  background: white;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-#profile-projects {
-  color: #877da9;
-  background: #f8f8f8;
 }

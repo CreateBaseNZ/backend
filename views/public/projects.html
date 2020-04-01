@@ -18,7 +18,7 @@
   <script src="./../../public/javascripts/nav.js"></script>
   <script src="./../../public/javascripts/profile.js"></script>
   <!---------------- STYLESHEET --------------->
-  <link rel="stylesheet" href="./../../public/stylesheets/profile/projects.css" />
+  <link rel="stylesheet" href="./../../public/stylesheets/profile.css" />
 </head>
 
 <body onload="navInit(); profileInit();">
@@ -89,11 +89,12 @@
         <div class="nav-right-menu">
           <div class="nav-profile-pic"></div>
           <p class="nav-side-header">PROJECTS</p>
-          <a href="/profile/projects" class="nav-side-item">MY PROJECTS</a>
+          <a href="/profile/projects" class="nav-side-item" data-tab="projects" onclick="passTab(this);">MY PROJECTS</a>
           <div class="nav-sep"></div>
           <p class="nav-side-header">ACCOUNT</p>
-          <a href="/profile/projects" class="nav-side-item">MY PROFILE</a>
-          <a href="/profile/settings" class="nav-side-item">SETTINGS</a>
+          <a href="/profile/projects" class="nav-side-item" data-tab="" onclick="passTab(this);">MY PROFILE</a>
+          <a href="/profile/projects" class="nav-side-item" data-tab="settings" onclick="passTab(this);">SETTINGS</a>
+          <a href="/profile/projects" class="nav-side-item" data-tab="billing" onclick="passTab(this);">BILLING</a>
           <a href="/logout" class="nav-side-signout">SIGN OUT</a>
         </div>
       </div>
@@ -108,7 +109,7 @@
         <img src="./../../public/images/default-profile.png" id="profile-preview"></img>
       </div>
       <p class="profile-name" data-placeholder="Display Name"></p>
-      <p class="profile-location" data-info="You can edit location information under the Billing tab."></p>
+      <p class="profile-location" data-info="Edit location under the Billing tab."></p>
       <p class="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
       <div class="profile-edit">
         <div class="profile-cancel-btn">Cancel</div>
@@ -117,9 +118,12 @@
       </div>
     </div>
     <div class="profile-tabs-bar">
-      <a href="#" class="profile-tab" id="profile-projects">Projects</a>
-      <a href="/profile/settings" class="profile-tab" id="profile-settings">Settings</a>
-      <a href="/profile/billing" class="profile-tab" id="profile-billing">Billing</a>
+      <input type="radio" id="projects-tab" name="tab">
+      <label for="profile-projects">Projects</label>
+      <input type="radio" id="settings-tab" name="tab">
+      <label for="profile-settings">Settings</label>
+      <input type="radio" id="billing-tab" name="tab">
+      <label for="profile-billing">Billing</label>
     </div>
     <div class="my-projects-section">
     </div>
