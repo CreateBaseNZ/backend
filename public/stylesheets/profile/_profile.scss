@@ -1,0 +1,230 @@
+.profile-page {
+  margin-top: $top-bar-height;
+  display: grid;
+  grid-template-areas:
+  "profile tabs"
+  "profile projects";
+  grid-template-columns: 30vw 70vw;
+  grid-template-rows: 10vh auto;
+  
+  .my-profile-section {
+    opacity: 0;
+    grid-area: profile;
+    display: flex;
+    flex-direction: column;
+    font-family: $montserrat;
+    margin: 5vh 2.5vw 5vh 2.5vw;
+    padding: 0 2.5vw;
+    border: thin solid $light-1;
+    cursor: default;
+    
+    .profile-pic {
+      position: relative;
+      height: calc(5vh + 20vw);
+      width: 20vw;
+      background: $light-1;
+
+      #profile-preview {
+        margin-top: 5vh;
+        height: 20vw;
+        width: 20vw;
+        border-radius: 50%;
+        align-self: center;
+        object-fit: cover;
+      }
+
+      input {
+        display: none;
+      }
+
+      label {
+        display: none;
+        position: absolute;
+        top: calc(5vh + 20px);
+        right: calc(3vw - 20px);
+        
+        i {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $dark-1;
+          background: $light-1;
+          border-radius: 50%;
+          box-shadow: 0 0 10px -5px $dark-3;
+          cursor: pointer;
+          
+          &:hover {
+            color: $dark-3;
+            background: $light-2;
+          }
+        }
+
+        &:hover ~ #profile-preview {
+          box-shadow: 0 0 10px -2px $highlight;
+        }
+      }
+    }
+
+    .profile-name {
+      margin-top: 3vh;
+      font-size: calc(20px + 0.5vw);
+    }
+    
+    .profile-location {
+      margin-top: 1vh;
+      text-transform: uppercase;
+      font-family: $poppins;
+      font-weight: 800;
+      font-size: calc(10px + 0.2vw);
+      letter-spacing: 3px;
+      color: $light-3;
+    }
+
+    .profile-bio {
+      margin-top: 3vh;
+      font-size: calc(10px + 0.2vw);
+      line-height: 150%;
+    }
+
+    .profile-edit {
+      position: relative;
+      margin: 6vh 0 3vh 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      * {
+        font-size: calc(10px + 0.2vw);
+      }
+      
+      .profile-edit-btn {
+        display: block;
+      }
+
+      .profile-save-btn {
+        display: none;
+      }
+      
+      .profile-cancel-btn {
+        display: none;
+        position: relative;
+        padding: 5px;
+        cursor: pointer;
+        color: $light-3;
+
+        &:hover {
+          color: red;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          border-bottom: thin solid red;
+          transition: 0.2s ease-out;
+        }
+
+        &:hover:after {
+          width: 100%;
+        }
+      }
+    }
+
+  }
+
+  .my-profile-section-edit {
+    border: thin solid $highlight;
+
+    .profile-pic {
+      label {
+        display: inline-block;
+      }
+    }
+
+    .profile-name,
+    .profile-bio {
+      -webkit-user-modify: read-write;
+      border: thin solid $light-2;
+      padding: 10px;
+      cursor: text;
+
+      &:empty:not(:focus)::before {
+        content: attr(data-placeholder);
+        color: $light-3;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 5px $highlight;
+      }
+    }
+
+    .profile-location {
+      &::after {
+        display: block;
+        content: attr(data-info);
+        font-size: calc(12px + 0.1vw);
+        color: $highlight;
+        font-weight: 100;
+        letter-spacing: 0;
+        text-transform: none;
+        line-height: 100%;
+      }
+    }
+
+    .profile-edit {
+      .profile-edit-btn {
+        display: none;
+      }
+
+      .profile-save-btn, 
+      .profile-cancel-btn {
+        display: block;
+      }
+    }
+  }
+
+  .profile-tabs-bar {
+    grid-area: tabs;
+    display: flex;
+    font-family: $poppins;
+    font-weight: 200;
+    margin-top: 5vh;
+
+    * {
+      width: calc(100px + 5vw);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $light-3;
+      background: $light-1;
+
+      text-transform: uppercase;
+      letter-spacing: 0.2vw;
+      font-weight: 600;
+      font-size: calc(10px + 0.2vw);
+      transition: 0.2s ease-out;
+
+      &:hover {
+        color: $logo-1;
+      }
+    }
+
+    *:not(:last-child) {
+      border-right: thin solid $light-2;
+    }
+  }
+
+  .my-projects-section {
+    grid-area: projects;
+    background: linear-gradient(to bottom,$light-2,$light-1);
+    border-right: calc(55px + 1vw) solid $light-1;
+    border-bottom: 5vh solid $light-1;
+  }
+}

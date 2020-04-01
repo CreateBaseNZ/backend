@@ -2,7 +2,7 @@ var mq = window.matchMedia("(min-width: 850px)")
 
 const navInit = async() => {
 
-  let status;
+  let status
   try {
     status = (await axios.get("/login-status"))["data"]["status"]
   } catch (error) {

@@ -16,11 +16,12 @@
   <script src="./../../public/javascripts/moment.js"></script>
   <!------------ CUSTOM JAVASCRIPTS ----------->
   <script src="./../../public/javascripts/nav.js"></script>
+  <script src="./../../public/javascripts/profile.js"></script>
   <!---------------- STYLESHEET --------------->
   <link rel="stylesheet" href="./../../public/stylesheets/profile/billing.css" />
 </head>
 
-<body onload="navInit();">
+<body onload="navInit(); profileInit();">
   <nav class="nav-container">
     <div class="nav-darken-overlay"></div>
     <div class="nav-top-bar">
@@ -93,14 +94,36 @@
           <p class="nav-side-header">ACCOUNT</p>
           <a href="/profile/projects" class="nav-side-item">MY PROFILE</a>
           <a href="/profile/settings" class="nav-side-item">SETTINGS</a>
+          <a href="/profile/billing" class="nav-side-item">BILLING</a>
           <a href="/logout" class="nav-side-signout">SIGN OUT</a>
         </div>
       </div>
     </div>
   </nav>
 
-  <div class="main-page">
-    
+  <div class="profile-page">
+    <div class="my-profile-section">
+      <div class="profile-pic">
+        <input type="file" id="profile-upload" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
+        <label for="profile-upload"><i class="far fa-edit"></i></label>
+        <img src="./../../public/images/default-profile.png" id="profile-preview"></img>
+      </div>
+      <p class="profile-name" data-placeholder="Display Name"></p>
+      <p class="profile-location" data-info="You can edit location information under the Billing tab."></p>
+      <p class="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
+      <div class="profile-edit">
+        <div class="profile-cancel-btn">Cancel</div>
+        <div class="profile-save-btn reg-btn">Save</div>
+        <div class="profile-edit-btn reg-btn">Edit</div>
+      </div>
+    </div>
+    <div class="profile-tabs-bar">
+      <a href="/profile/projects" class="profile-tab" id="profile-projects">Projects</a>
+      <a href="/profile/settings" class="profile-tab" id="profile-settings">Settings</a>
+      <a href="#" class="profile-tab" id="profile-billing">Billing</a>
+    </div>
+    <div class="my-projects-section">
+    </div>
   </div>
 </body>
 

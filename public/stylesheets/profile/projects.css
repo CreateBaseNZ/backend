@@ -2010,12 +2010,6 @@ Carl's Button Design (End)
 /*=========================================================================================
 END
 =========================================================================================*/
-body {
-  background: white;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
 .profile-page {
   margin-top: 60px;
   display: -ms-grid;
@@ -2190,7 +2184,6 @@ body {
 }
 
 .profile-page .my-profile-section-edit .profile-name,
-.profile-page .my-profile-section-edit .profile-location,
 .profile-page .my-profile-section-edit .profile-bio {
   -webkit-user-modify: read-write;
   border: thin solid #f8f8f8;
@@ -2199,17 +2192,27 @@ body {
 }
 
 .profile-page .my-profile-section-edit .profile-name:empty:not(:focus)::before,
-.profile-page .my-profile-section-edit .profile-location:empty:not(:focus)::before,
 .profile-page .my-profile-section-edit .profile-bio:empty:not(:focus)::before {
   content: attr(data-placeholder);
+  color: #c7c2d5;
 }
 
 .profile-page .my-profile-section-edit .profile-name:focus,
-.profile-page .my-profile-section-edit .profile-location:focus,
 .profile-page .my-profile-section-edit .profile-bio:focus {
   outline: none;
   -webkit-box-shadow: 0 0 5px #4bf0ea;
           box-shadow: 0 0 5px #4bf0ea;
+}
+
+.profile-page .my-profile-section-edit .profile-location::after {
+  display: block;
+  content: attr(data-info);
+  font-size: calc(12px + 0.1vw);
+  color: #4bf0ea;
+  font-weight: 100;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 100%;
 }
 
 .profile-page .my-profile-section-edit .profile-edit .profile-edit-btn {
@@ -2271,6 +2274,12 @@ body {
   background: linear-gradient(to bottom, #f8f8f8, white);
   border-right: calc(55px + 1vw) solid white;
   border-bottom: 5vh solid white;
+}
+
+body {
+  background: white;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 #profile-projects {

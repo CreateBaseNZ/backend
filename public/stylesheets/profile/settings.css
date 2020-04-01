@@ -2010,3 +2010,279 @@ Carl's Button Design (End)
 /*=========================================================================================
 END
 =========================================================================================*/
+.profile-page {
+  margin-top: 60px;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "profile tabs" "profile projects";
+  -ms-grid-columns: 30vw 70vw;
+      grid-template-columns: 30vw 70vw;
+  -ms-grid-rows: 10vh auto;
+      grid-template-rows: 10vh auto;
+}
+
+.profile-page .my-profile-section {
+  opacity: 0;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: profile;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  margin: 5vh 2.5vw 5vh 2.5vw;
+  padding: 0 2.5vw;
+  border: thin solid white;
+  cursor: default;
+}
+
+.profile-page .my-profile-section .profile-pic {
+  position: relative;
+  height: calc(5vh + 20vw);
+  width: 20vw;
+  background: white;
+}
+
+.profile-page .my-profile-section .profile-pic #profile-preview {
+  margin-top: 5vh;
+  height: 20vw;
+  width: 20vw;
+  border-radius: 50%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.profile-page .my-profile-section .profile-pic input {
+  display: none;
+}
+
+.profile-page .my-profile-section .profile-pic label {
+  display: none;
+  position: absolute;
+  top: calc(5vh + 20px);
+  right: calc(3vw - 20px);
+}
+
+.profile-page .my-profile-section .profile-pic label i {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #877da9;
+  background: white;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 10px -5px #2d283c;
+          box-shadow: 0 0 10px -5px #2d283c;
+  cursor: pointer;
+}
+
+.profile-page .my-profile-section .profile-pic label i:hover {
+  color: #2d283c;
+  background: #f8f8f8;
+}
+
+.profile-page .my-profile-section .profile-pic label:hover ~ #profile-preview {
+  -webkit-box-shadow: 0 0 10px -2px #4bf0ea;
+          box-shadow: 0 0 10px -2px #4bf0ea;
+}
+
+.profile-page .my-profile-section .profile-name {
+  margin-top: 3vh;
+  font-size: calc(20px + 0.5vw);
+}
+
+.profile-page .my-profile-section .profile-location {
+  margin-top: 1vh;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: calc(10px + 0.2vw);
+  letter-spacing: 3px;
+  color: #c7c2d5;
+}
+
+.profile-page .my-profile-section .profile-bio {
+  margin-top: 3vh;
+  font-size: calc(10px + 0.2vw);
+  line-height: 150%;
+}
+
+.profile-page .my-profile-section .profile-edit {
+  position: relative;
+  margin: 6vh 0 3vh 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.profile-page .my-profile-section .profile-edit * {
+  font-size: calc(10px + 0.2vw);
+}
+
+.profile-page .my-profile-section .profile-edit .profile-edit-btn {
+  display: block;
+}
+
+.profile-page .my-profile-section .profile-edit .profile-save-btn {
+  display: none;
+}
+
+.profile-page .my-profile-section .profile-edit .profile-cancel-btn {
+  display: none;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  color: #c7c2d5;
+}
+
+.profile-page .my-profile-section .profile-edit .profile-cancel-btn:hover {
+  color: red;
+}
+
+.profile-page .my-profile-section .profile-edit .profile-cancel-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  border-bottom: thin solid red;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.profile-page .my-profile-section .profile-edit .profile-cancel-btn:hover:after {
+  width: 100%;
+}
+
+.profile-page .my-profile-section-edit {
+  border: thin solid #4bf0ea;
+}
+
+.profile-page .my-profile-section-edit .profile-pic label {
+  display: inline-block;
+}
+
+.profile-page .my-profile-section-edit .profile-name,
+.profile-page .my-profile-section-edit .profile-bio {
+  -webkit-user-modify: read-write;
+  border: thin solid #f8f8f8;
+  padding: 10px;
+  cursor: text;
+}
+
+.profile-page .my-profile-section-edit .profile-name:empty:not(:focus)::before,
+.profile-page .my-profile-section-edit .profile-bio:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+  color: #c7c2d5;
+}
+
+.profile-page .my-profile-section-edit .profile-name:focus,
+.profile-page .my-profile-section-edit .profile-bio:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 5px #4bf0ea;
+          box-shadow: 0 0 5px #4bf0ea;
+}
+
+.profile-page .my-profile-section-edit .profile-location::after {
+  display: block;
+  content: attr(data-info);
+  font-size: calc(12px + 0.1vw);
+  color: #4bf0ea;
+  font-weight: 100;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 100%;
+}
+
+.profile-page .my-profile-section-edit .profile-edit .profile-edit-btn {
+  display: none;
+}
+
+.profile-page .my-profile-section-edit .profile-edit .profile-save-btn,
+.profile-page .my-profile-section-edit .profile-edit .profile-cancel-btn {
+  display: block;
+}
+
+.profile-page .profile-tabs-bar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: tabs;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  margin-top: 5vh;
+}
+
+.profile-page .profile-tabs-bar * {
+  width: calc(100px + 5vw);
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #c7c2d5;
+  background: white;
+  text-transform: uppercase;
+  letter-spacing: 0.2vw;
+  font-weight: 600;
+  font-size: calc(10px + 0.2vw);
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.profile-page .profile-tabs-bar *:hover {
+  color: #8258dc;
+}
+
+.profile-page .profile-tabs-bar *:not(:last-child) {
+  border-right: thin solid #f8f8f8;
+}
+
+.profile-page .my-projects-section {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: projects;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(white));
+  background: linear-gradient(to bottom, #f8f8f8, white);
+  border-right: calc(55px + 1vw) solid white;
+  border-bottom: 5vh solid white;
+}
+
+body {
+  background: white;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#profile-settings {
+  color: #877da9;
+  background: #f8f8f8;
+}
