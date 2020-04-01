@@ -2027,7 +2027,7 @@ body {
       grid-template-rows: 10vh auto;
 }
 
-.profile-page .my-profile-section {
+.my-profile-section {
   opacity: 0;
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
@@ -2047,14 +2047,14 @@ body {
   cursor: default;
 }
 
-.profile-page .my-profile-section .profile-pic {
+.my-profile-section .profile-pic {
   position: relative;
   height: calc(5vh + 20vw);
   width: 20vw;
   background: white;
 }
 
-.profile-page .my-profile-section .profile-pic #profile-preview {
+.my-profile-section .profile-pic #profile-preview {
   margin-top: 5vh;
   height: 20vw;
   width: 20vw;
@@ -2066,18 +2066,18 @@ body {
      object-fit: cover;
 }
 
-.profile-page .my-profile-section .profile-pic input {
+.my-profile-section .profile-pic input {
   display: none;
 }
 
-.profile-page .my-profile-section .profile-pic label {
+.my-profile-section .profile-pic label {
   display: none;
   position: absolute;
   top: calc(5vh + 20px);
   right: calc(3vw - 20px);
 }
 
-.profile-page .my-profile-section .profile-pic label i {
+.my-profile-section .profile-pic label i {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -2098,22 +2098,22 @@ body {
   cursor: pointer;
 }
 
-.profile-page .my-profile-section .profile-pic label i:hover {
+.my-profile-section .profile-pic label i:hover {
   color: #2d283c;
   background: #f8f8f8;
 }
 
-.profile-page .my-profile-section .profile-pic label:hover ~ #profile-preview {
+.my-profile-section .profile-pic label:hover ~ #profile-preview {
   -webkit-box-shadow: 0 0 10px -2px #4bf0ea;
           box-shadow: 0 0 10px -2px #4bf0ea;
 }
 
-.profile-page .my-profile-section .profile-name {
+.my-profile-section .profile-name {
   margin-top: 3vh;
   font-size: calc(20px + 0.5vw);
 }
 
-.profile-page .my-profile-section .profile-location {
+.my-profile-section .profile-location {
   margin-top: 1vh;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
@@ -2123,13 +2123,13 @@ body {
   color: #c7c2d5;
 }
 
-.profile-page .my-profile-section .profile-bio {
+.my-profile-section .profile-bio {
   margin-top: 3vh;
   font-size: calc(10px + 0.2vw);
   line-height: 150%;
 }
 
-.profile-page .my-profile-section .profile-edit {
+.my-profile-section .profile-edit {
   position: relative;
   margin: 6vh 0 3vh 0;
   display: -webkit-box;
@@ -2142,19 +2142,19 @@ body {
       justify-content: space-around;
 }
 
-.profile-page .my-profile-section .profile-edit * {
+.my-profile-section .profile-edit * {
   font-size: calc(10px + 0.2vw);
 }
 
-.profile-page .my-profile-section .profile-edit .profile-edit-btn {
+.my-profile-section .profile-edit .profile-edit-btn {
   display: block;
 }
 
-.profile-page .my-profile-section .profile-edit .profile-save-btn {
+.my-profile-section .profile-edit .profile-save-btn {
   display: none;
 }
 
-.profile-page .my-profile-section .profile-edit .profile-cancel-btn {
+.my-profile-section .profile-edit .profile-cancel-btn {
   display: none;
   position: relative;
   padding: 5px;
@@ -2162,11 +2162,11 @@ body {
   color: #c7c2d5;
 }
 
-.profile-page .my-profile-section .profile-edit .profile-cancel-btn:hover {
+.my-profile-section .profile-edit .profile-cancel-btn:hover {
   color: red;
 }
 
-.profile-page .my-profile-section .profile-edit .profile-cancel-btn::after {
+.my-profile-section .profile-edit .profile-cancel-btn::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -2177,40 +2177,41 @@ body {
   transition: 0.2s ease-out;
 }
 
-.profile-page .my-profile-section .profile-edit .profile-cancel-btn:hover:after {
+.my-profile-section .profile-edit .profile-cancel-btn:hover:after {
   width: 100%;
 }
 
-.profile-page .my-profile-section-edit {
+.my-profile-section-edit {
   border: thin solid #4bf0ea;
 }
 
-.profile-page .my-profile-section-edit .profile-pic label {
+.my-profile-section-edit .profile-pic label {
   display: inline-block;
 }
 
-.profile-page .my-profile-section-edit .profile-name,
-.profile-page .my-profile-section-edit .profile-bio {
+.my-profile-section-edit .profile-name,
+.my-profile-section-edit .profile-bio {
   -webkit-user-modify: read-write;
+  -moz-user-modify: read-write;
   border: thin solid #f8f8f8;
   padding: 10px;
   cursor: text;
 }
 
-.profile-page .my-profile-section-edit .profile-name:empty:not(:focus)::before,
-.profile-page .my-profile-section-edit .profile-bio:empty:not(:focus)::before {
+.my-profile-section-edit .profile-name:empty:not(:focus)::before,
+.my-profile-section-edit .profile-bio:empty:not(:focus)::before {
   content: attr(data-placeholder);
   color: #c7c2d5;
 }
 
-.profile-page .my-profile-section-edit .profile-name:focus,
-.profile-page .my-profile-section-edit .profile-bio:focus {
+.my-profile-section-edit .profile-name:focus,
+.my-profile-section-edit .profile-bio:focus {
   outline: none;
   -webkit-box-shadow: 0 0 5px #4bf0ea;
           box-shadow: 0 0 5px #4bf0ea;
 }
 
-.profile-page .my-profile-section-edit .profile-location::after {
+.my-profile-section-edit .profile-location::after {
   display: block;
   content: attr(data-info);
   font-size: calc(10px + 0.1vw);
@@ -2221,16 +2222,16 @@ body {
   line-height: 100%;
 }
 
-.profile-page .my-profile-section-edit .profile-edit .profile-edit-btn {
+.my-profile-section-edit .profile-edit .profile-edit-btn {
   display: none;
 }
 
-.profile-page .my-profile-section-edit .profile-edit .profile-save-btn,
-.profile-page .my-profile-section-edit .profile-edit .profile-cancel-btn {
+.my-profile-section-edit .profile-edit .profile-save-btn,
+.my-profile-section-edit .profile-edit .profile-cancel-btn {
   display: block;
 }
 
-.profile-page .profile-tabs-bar {
+.profile-tabs-bar {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: tabs;
@@ -2242,16 +2243,16 @@ body {
   margin-top: 5vh;
 }
 
-.profile-page .profile-tabs-bar input {
+.profile-tabs-bar input {
   display: none;
 }
 
-.profile-page .profile-tabs-bar input:checked + label {
+.profile-tabs-bar input:checked + label {
   color: #877da9;
   background: #f8f8f8;
 }
 
-.profile-page .profile-tabs-bar label {
+.profile-tabs-bar label {
   width: calc(100px + 5vw);
   height: 100%;
   display: -webkit-box;
@@ -2270,19 +2271,19 @@ body {
   letter-spacing: 0.2vw;
   font-weight: 600;
   font-size: calc(10px + 0.2vw);
-  -webkit-transition: 0.2s ease-out;
-  transition: 0.2s ease-out;
+  -webkit-transition: color 0.2s ease-out, background-color 0.2s ease-out;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
-.profile-page .profile-tabs-bar label:hover {
+.profile-tabs-bar label:hover {
   color: #8258dc;
 }
 
-.profile-page .profile-tabs-bar *:not(:last-child) {
+.profile-tabs-bar *:not(:last-child) {
   border-right: thin solid #f8f8f8;
 }
 
-.profile-page .my-projects-section {
+.main-section {
   -ms-grid-row: 2;
   -ms-grid-column: 2;
   grid-area: projects;
@@ -2290,4 +2291,22 @@ body {
   background: linear-gradient(to bottom, #f8f8f8, white);
   border-right: calc(55px + 1vw) solid white;
   border-bottom: 5vh solid white;
+}
+
+.main-section .main-section-projects,
+.main-section .main-section-settings,
+.main-section .main-section-billing {
+  display: none;
+}
+
+#main-section-projects .main-section-projects {
+  display: block;
+}
+
+#main-section-settings .main-section-settings {
+  display: block;
+}
+
+#main-section-billing .main-section-billing {
+  display: block;
 }

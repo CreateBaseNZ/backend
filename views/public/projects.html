@@ -92,7 +92,7 @@
           <a href="/profile/projects" class="nav-side-item" data-tab="projects" onclick="passTab(this);">MY PROJECTS</a>
           <div class="nav-sep"></div>
           <p class="nav-side-header">ACCOUNT</p>
-          <a href="/profile/projects" class="nav-side-item" data-tab="" onclick="passTab(this);">MY PROFILE</a>
+          <a href="/profile/projects" class="nav-side-item" data-tab="projects" onclick="passTab(this);">MY PROFILE</a>
           <a href="/profile/projects" class="nav-side-item" data-tab="settings" onclick="passTab(this);">SETTINGS</a>
           <a href="/profile/projects" class="nav-side-item" data-tab="billing" onclick="passTab(this);">BILLING</a>
           <a href="/logout" class="nav-side-signout">SIGN OUT</a>
@@ -118,14 +118,23 @@
       </div>
     </div>
     <div class="profile-tabs-bar">
-      <input type="radio" id="projects-tab" name="tab">
+      <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="passTab(this); changeMainSection(this);">
       <label for="projects-tab">Projects</label>
-      <input type="radio" id="settings-tab" name="tab">
+      <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this); changeMainSection(this);">
       <label for="settings-tab">Settings</label>
-      <input type="radio" id="billing-tab" name="tab">
+      <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this); changeMainSection(this);">
       <label for="billing-tab">Billing</label>
     </div>
-    <div class="my-projects-section">
+    <div class="main-section">
+      <div class="main-section-projects">
+        <p>Projects</p>
+      </div>
+      <div class="main-section-settings">
+        <p>Settings</p>
+      </div>
+      <div class="main-section-billing">
+        <p>Billing</p>
+      </div>
     </div>
   </div>
 

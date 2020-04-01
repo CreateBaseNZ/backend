@@ -8,13 +8,19 @@ var loadFile = function(event) {
   console.log('yes')
 }
 
+// -- Render selected tab --
+function changeMainSection(el) {
+  console.log(document.querySelector('.main-section'))
+  document.querySelector('.main-section').id = 'main-section-' + el.getAttribute('data-tab')
+}
 
 const profileInit = async() => {
 
-  if (localStorage.getItem('tab')) {
-    document.querySelector('#' + localStorage.getItem('tab') + '-tab').checked = true
-  }
+  // -- Prerender selected tab --
+  document.querySelector('#' + localStorage.getItem('tab') + '-tab').checked = true
+  document.querySelector('.main-section').id = 'main-section-' + localStorage.getItem('tab')
 
+  // -- Get customer info --
   let customerInfo
 
   try {
@@ -24,7 +30,6 @@ const profileInit = async() => {
     return
   }
 
-  // [TO DO] Get values from server
   var name = customerInfo["data"]["data"]["displayName"]
   var bio = customerInfo["data"]["data"]["bio"]
   var profilePic = customerInfo["data"]["data"]["profilePic"]
@@ -32,23 +37,23 @@ const profileInit = async() => {
 
   location = 'auckland, new zealand'
 
-  // Update all markup (display + edit)
+  // -- Update all markup (display + edit) --
   document.querySelector('.profile-name').innerHTML = name
   document.querySelector('.profile-location').innerHTML = location
   document.querySelector('.profile-bio').innerHTML = bio
   // Force everything to load before rendering the section
   document.querySelector('.my-profile-section').style.opacity = 1
   
-  const editBtn = document.querySelector('.profile-edit-btn')
-  const saveBtn = document.querySelector('.profile-save-btn')
-  const cancelBtn = document.querySelector('.profile-cancel-btn')
-  const section = document.querySelector('.my-profile-section')
+  const profileSection = document.querySelector('.my-profile-section')
 
-  editBtn.addEventListener('click', () => {
-    section.classList.toggle('my-profile-section-edit')
+  // -- If edit --
+  document.querySelector('.profile-edit-btn').addEventListener('click', () => {
+    profileSection.classList.toggle('my-profile-section-edit')
   })
-  saveBtn.addEventListener('click', () => {
-    section.classList.toggle('my-profile-section-edit')
+
+  //  -- If save --
+  document.querySelector('.profile-save-btn').addEventListener('click', () => {
+    profileSection.classList.toggle('my-profile-section-edit')
 
     // Save new variables
     name = document.querySelector('.profile-name').innerHTML
@@ -63,12 +68,15 @@ const profileInit = async() => {
     // await axios.post("/profile/update-customer", customerInfo)
 
   })
-  cancelBtn.addEventListener('click', () => {
-    section.classList.toggle('my-profile-section-edit')
 
+  // -- If cancel --
+  document.querySelector('.profile-cancel-btn').addEventListener('click', () => {
+    
     // Revert all changes back to variables
     document.querySelector('.profile-name').innerHTML = name
     document.querySelector('.profile-location').innerHTML = location
     document.querySelector('.profile-bio').innerHTML = bio
+    profileSection.classList.toggle('my-profile-section-edit')
   })
+
 }
