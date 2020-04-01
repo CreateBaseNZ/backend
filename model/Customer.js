@@ -54,6 +54,9 @@ const CustomerSchema = new Schema({
   accountId: {
     type: Schema.Types.ObjectId
   },
+  picture: {
+    type: Schema.Types.ObjectId
+  },
   displayName: {
     type: String
   },

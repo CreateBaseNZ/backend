@@ -74,12 +74,14 @@ const errorRouter = require("./routes/error.js");
 const validationRouter = require("./routes/validation.js");
 const makeRouter = require("./routes/make.js");
 const checkoutRouter = require("./routes/checkout.js");
+const profileRouter = require("./routes/profile.js");
 app.use(generalRouter);
 app.use(fileRouter);
 app.use(errorRouter);
 app.use(validationRouter);
 app.use(makeRouter);
 app.use(checkoutRouter);
+app.use(profileRouter);
 
 /*=========================================================================================
 END
