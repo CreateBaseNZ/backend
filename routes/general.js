@@ -139,25 +139,11 @@ router.get("/checkout", restrictedPages, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
 });
 
-// @route     Get /profile/projects
+// @route     Get /profile
 // @desc
 // @access    Private
-router.get("/profile/projects", restrictedPages, (req, res) => {
-  res.sendFile("projects.html", customerRouteOptions);
-});
-
-// @route     Get /profile/settings
-// @desc
-// @access    Private
-router.get("/profile/settings", restrictedPages, (req, res) => {
-  res.sendFile("settings.html", customerRouteOptions);
-});
-
-// @route     Get /profile/billing
-// @desc
-// @access    Private
-router.get("/profile/billing", restrictedPages, (req, res) => {
-  res.sendFile("billing.html", customerRouteOptions);
+router.get("/profile", restrictedPages, (req, res) => {
+  res.sendFile("profile.html", customerRouteOptions);
 });
 
 // @route     POST /subscribe/mailing-list
@@ -252,24 +238,54 @@ router.get("/login-status", (req, res) => {
 PROFILE
 -----------------------------------------------------------------------------------------*/
 
-router.get("/profile/customer-info", async (req, res) => {
-  const id = req.user._id;
+router.get("/profile/customer-info", restrictedPages, async (req, res) => {
+  // Declare Variables
+  const accountId = req.user._id;
+  // Fetch Customer
   let customer;
   try {
-    customer = await Customer.findByAccountId(id);
+    customer = await Customer.findByAccountId(accountId);
   } catch (error) {
     res.send({ status: "failed", data: error });
     return;
   }
+  // Check if Bio is Empty (TEMPORARY)
+  let bio;
+  if (customer.bio) {
+    bio = customer.bio;
+  } else {
+    bio = "";
+  }
+  // Filter Customer Details
   const filteredCustomer = {
     displayName: customer.displayName,
-    bio: customer.bio,
+    bio,
     address: customer.address
   };
+  // Send Success Request
   res.send({ status: "success", data: filteredCustomer });
 });
 
-router.post("/profile/customer-update/", async (req, res) => {});
+router.post("/profile/customer-update", restrictedPages, async (req, res) => {
+  // Declare Variables
+  const details = req.body;
+  const accountId = req.user._id;
+  // Fetch Customer
+  let customer;
+  try {
+    customer = await Customer.findByAccountId(accountId);
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  // Update Customer Details
+  let updatedCustomer;
+  try {
+    updatedCustomer = await customer.update(details);
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  return res.send({ status: "success", data: "customer details updated" });
+});
 
 /*=========================================================================================
 EXPORT ROUTE

@@ -58,7 +58,8 @@ const CustomerSchema = new Schema({
     type: String
   },
   bio: {
-    type: String
+    type: String,
+    default: ""
   },
   address: {
     type: AddressSchema
@@ -101,6 +102,30 @@ CustomerSchema.statics.findByAccountId = function(accountId) {
 /*=========================================================================================
 METHODS
 =========================================================================================*/
+
+// @FUNC  update
+// @TYPE  METHODS
+// @DESC
+// @ARGU  customer - object -
+CustomerSchema.method.update = customer => {
+  return new Promise(async (resolve, reject) => {
+    // Update Details
+    for (const property in customer) {
+      // Validate Detail
+      // TEMPORARY - NEED VALIDATION FUNCTION
+      // Update Detail
+      this[property] = customer[property];
+    }
+    // Save Update
+    let savedCustomer;
+    try {
+      savedCustomer = await this.save();
+    } catch (error) {
+      reject(error);
+    }
+    resolve(savedCustomer);
+  });
+};
 
 // @FUNC  updateAddress
 // @TYPE  METHODS
