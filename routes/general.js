@@ -238,7 +238,7 @@ router.get("/login-status", (req, res) => {
 PROFILE
 -----------------------------------------------------------------------------------------*/
 
-router.get("/profile/customer-info", restrictedPages, async (req, res) => {
+router.get("/profile/customer/fetch", restrictedPages, async (req, res) => {
   // Declare Variables
   const accountId = req.user._id;
   // Fetch Customer
@@ -266,7 +266,7 @@ router.get("/profile/customer-info", restrictedPages, async (req, res) => {
   res.send({ status: "success", data: filteredCustomer });
 });
 
-router.post("/profile/customer-update", restrictedPages, async (req, res) => {
+router.post("/profile/customer/update", restrictedPages, async (req, res) => {
   // Declare Variables
   const details = req.body;
   const accountId = req.user._id;

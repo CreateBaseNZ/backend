@@ -107,7 +107,7 @@ METHODS
 // @TYPE  METHODS
 // @DESC
 // @ARGU  customer - object -
-CustomerSchema.method.update = customer => {
+CustomerSchema.methods.update = customer => {
   return new Promise(async (resolve, reject) => {
     // Update Details
     for (const property in customer) {
