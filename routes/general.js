@@ -248,6 +248,29 @@ router.get("/login-status", (req, res) => {
   res.send({ status: false });
 });
 
+/*-----------------------------------------------------------------------------------------
+PROFILE
+-----------------------------------------------------------------------------------------*/
+
+router.get("/profile/customer-info", async (req, res) => {
+  const id = req.user._id;
+  let customer;
+  try {
+    customer = await Customer.findByAccountId(id);
+  } catch (error) {
+    res.send({ status: "failed", data: error });
+    return;
+  }
+  const filteredCustomer = {
+    displayName: customer.displayName,
+    bio: customer.bio,
+    address: customer.address
+  };
+  res.send({ status: "success", data: filteredCustomer });
+});
+
+router.post("/profile/customer-update/", async (req, res) => {});
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

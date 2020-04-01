@@ -57,6 +57,9 @@ const CustomerSchema = new Schema({
   displayName: {
     type: String
   },
+  bio: {
+    type: String
+  },
   address: {
     type: AddressSchema
   },
