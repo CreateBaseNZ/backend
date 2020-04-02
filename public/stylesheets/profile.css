@@ -2020,17 +2020,15 @@ body {
   margin-top: 60px;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "profile tabs" "profile projects";
+      grid-template-areas: "profile tabs";
   -ms-grid-columns: 30vw 70vw;
       grid-template-columns: 30vw 70vw;
-  -ms-grid-rows: 10vh auto;
-      grid-template-rows: 10vh auto;
+  min-height: calc(100vh - 60px);
 }
 
 .my-profile-section {
   opacity: 0;
   -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: profile;
   display: -webkit-box;
@@ -2238,6 +2236,8 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   margin-top: 5vh;
@@ -2254,7 +2254,7 @@ body {
 
 .profile-tabs-bar label {
   width: calc(100px + 5vw);
-  height: 100%;
+  height: 5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2279,34 +2279,30 @@ body {
   color: #8258dc;
 }
 
-.profile-tabs-bar *:not(:last-child) {
+.profile-tabs-bar label:not(:last-of-type) {
   border-right: thin solid #f8f8f8;
 }
 
-.main-section {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  grid-area: projects;
+.profile-tabs-bar .main-area {
+  display: none;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
   background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(white));
   background: linear-gradient(to bottom, #f8f8f8, white);
   border-right: calc(55px + 1vw) solid white;
   border-bottom: 5vh solid white;
+  height: 100%;
 }
 
-.main-section .main-section-projects,
-.main-section .main-section-settings,
-.main-section .main-section-billing {
-  display: none;
-}
-
-#main-section-projects .main-section-projects {
+.profile-tabs-bar #projects-tab:checked ~ #projects-area {
   display: block;
 }
 
-#main-section-settings .main-section-settings {
+.profile-tabs-bar #settings-tab:checked ~ #settings-area {
   display: block;
 }
 
-#main-section-billing .main-section-billing {
+.profile-tabs-bar #billing-tab:checked ~ #billing-area {
   display: block;
 }

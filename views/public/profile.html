@@ -118,21 +118,19 @@
       </div>
     </div>
     <div class="profile-tabs-bar">
-      <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="passTab(this); changeMainSection(this);">
+      <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="passTab(this);">
       <label for="projects-tab">Projects</label>
-      <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this); changeMainSection(this);">
+      <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this);">
       <label for="settings-tab">Settings</label>
-      <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this); changeMainSection(this);">
+      <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this);">
       <label for="billing-tab">Billing</label>
-    </div>
-    <div class="main-section">
-      <div class="main-section-projects">
+      <div class="main-area" id="projects-area">
         <p>Projects</p>
       </div>
-      <div class="main-section-settings">
+      <div class="main-area" id="settings-area">
         <p>Settings</p>
       </div>
-      <div class="main-section-billing">
+      <div class="main-area" id="billing-area">
         <p>Billing</p>
       </div>
     </div>
