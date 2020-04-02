@@ -5,27 +5,18 @@ var loadFile = function(event) {
   output.onload = function() {
     URL.revokeObjectURL(output.src) // free memory
   }
-  console.log('yes')
-}
-
-// -- Render selected tab --
-function changeMainSection(el) {
-  console.log(document.querySelector('.main-section'))
-  document.querySelector('.main-section').id = 'main-section-' + el.getAttribute('data-tab')
 }
 
 const profileInit = async() => {
 
-  // -- Prerender selected tab --
+  // -- Prerender selected tab -- 
   document.querySelector('#' + localStorage.getItem('tab') + '-tab').checked = true
-  document.querySelector('.main-section').id = 'main-section-' + localStorage.getItem('tab')
 
   // -- Get customer info --
   let customerInfo
 
   try {
     customerInfo = (await axios.get("/profile/customer/fetch"))["data"]["data"]
-    console.log(customerInfo)
   } catch (error) {
     console.log(error)
     return
@@ -62,9 +53,6 @@ const profileInit = async() => {
     customerInfo["displayName"] = name
     customerInfo["bio"] = bio
 
-    console.log(customerInfo)
-
-
     let data
     // Post to server
     try {
@@ -72,9 +60,6 @@ const profileInit = async() => {
     } catch (error) {
       console.log(error)
     }
-
-    console.log(data)
-
   })
 
   // -- If cancel --

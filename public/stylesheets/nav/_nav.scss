@@ -243,6 +243,7 @@ $menu-width: 100vw;
       font-size: 2.5vmax;
       font-weight: 100;
       letter-spacing: 0.2vw;
+      transition: color 0.1s ease-out;
   
       &:hover {
         color: $highlight;
@@ -261,6 +262,7 @@ $menu-width: 100vw;
         color: $dark-3;
         margin-right: 2vw;
         letter-spacing: 0.2vw;
+        transition: color 0.1s ease-out;
 
         &:hover {
           color: $highlight;
@@ -283,14 +285,26 @@ $menu-width: 100vw;
     }
 
     .nav-side-signout {
+      position: relative;
       margin-top: 10vh;
-      color: $dark-3;
+      color: red;
       font-family: $poppins;
       font-weight: 100;
       letter-spacing: 0.2vw;
-  
-      &:hover {
-        color: $highlight;
+      transition: color 0.1s ease-out;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        border-bottom: thin solid red;
+        transition: width 0.2s ease-out;
+      }
+
+      &:hover:after {
+        width: 100%;
       }
     }
   
@@ -311,6 +325,8 @@ $menu-width: 100vw;
       .fab {
         margin-left: 5vw;
         margin-right: 5vw;
+        transition: color 0.1s ease-out;
+
         &:visited {
           color: $dark-1;
         }

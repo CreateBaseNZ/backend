@@ -10,10 +10,9 @@ body {
   margin-top: $top-bar-height;
   display: grid;
   grid-template-areas:
-  "profile tabs"
-  "profile projects";
+  "profile tabs";
   grid-template-columns: 30vw 70vw;
-  grid-template-rows: 10vh auto;
+  min-height: calc(100vh - #{$top-bar-height});
 }
   
 .my-profile-section {
@@ -162,7 +161,7 @@ body {
     padding: 10px;
     cursor: text;
 
-    &:empty:not(:focus)::before {
+    &:empty::before {
       content: attr(data-placeholder);
       color: $light-3;
     }
@@ -202,6 +201,7 @@ body {
 .profile-tabs-bar {
   grid-area: tabs;
   display: flex;
+  flex-wrap: wrap;
   font-family: $poppins;
   font-weight: 200;
   margin-top: 5vh;
@@ -217,7 +217,7 @@ body {
 
   label {
     width: calc(100px + 5vw);
-    height: 100%;
+    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -234,40 +234,30 @@ body {
     &:hover {
       color: $logo-1;
     }
+
+    &:not(:last-of-type) {
+      border-right: thin solid $light-2;
+    }
   }
 
-  *:not(:last-child) {
-    border-right: thin solid $light-2;
-  }
-}
-
-.main-section {
-  grid-area: projects;
-  background: linear-gradient(to bottom,$light-2,$light-1);
-  border-right: calc(55px + 1vw) solid $light-1;
-  border-bottom: 5vh solid $light-1;
-
-  .main-section-projects,
-  .main-section-settings,
-  .main-section-billing {
+  .main-area {
     display: none;
+    flex: 1 0 100%;
+    background: linear-gradient(to bottom,$light-2,$light-1);
+    border-right: calc(55px + 1vw) solid $light-1;
+    border-bottom: 5vh solid $light-1;
+    height: calc(100% - 5vh);
   }
-}
 
-#main-section-projects {
-  .main-section-projects {
+  #projects-tab:checked ~ #projects-area {
     display: block;
   }
-}
-
-#main-section-settings {
-  .main-section-settings {
+  #settings-tab:checked ~ #settings-area {
     display: block;
   }
-}
-
-#main-section-billing {
-  .main-section-billing {
+  #billing-tab:checked ~ #billing-area {
     display: block;
   }
+
 }
+
