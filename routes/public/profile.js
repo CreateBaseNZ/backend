@@ -88,15 +88,17 @@ router.get(
       } catch (error) {
         return res.send({ status: "failed", content: error });
       }
-    } else {
-      // Else, Return Temporary Profile Picture
-      try {
-        file = await GridFS.files.findOne({ filename: "default-profile.png" });
-      } catch (error) {
-        return res.send({ status: "failed", content: error });
+      if (file) {
+        let readstream = GridFS.createReadStream(file.filename);
+        return readstream.pipe(res);
       }
     }
-    // Prepare file to be a display-able image
+    // Else, Return Temporary Profile Picture
+    try {
+      file = await GridFS.files.findOne({ filename: "default-profile.png" });
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
+    }
     let readstream = GridFS.createReadStream(file.filename);
     return readstream.pipe(res);
   }
@@ -130,6 +132,7 @@ router.post(
       }
     }
     // Update Customer's Profile Picture
+    console.log(file.id);
     customer.picture = file.id;
     try {
       customer.save();
