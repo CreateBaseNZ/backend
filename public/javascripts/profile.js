@@ -24,15 +24,16 @@ const profileInit = async() => {
   let customerInfo
 
   try {
-    customerInfo = (await axios.get("/profile/customer-info"))
+    customerInfo = (await axios.get("/profile/customer/fetch"))["data"]["data"]
+    console.log(customerInfo)
   } catch (error) {
     console.log(error)
     return
   }
 
-  var name = customerInfo["data"]["data"]["displayName"]
-  var bio = customerInfo["data"]["data"]["bio"]
-  var profilePic = customerInfo["data"]["data"]["profilePic"]
+  var name = customerInfo["displayName"]
+  var bio = customerInfo["bio"]
+  var profilePic = customerInfo["profilePic"]
   let location
 
   location = 'auckland, new zealand'
@@ -52,20 +53,27 @@ const profileInit = async() => {
   })
 
   //  -- If save --
-  document.querySelector('.profile-save-btn').addEventListener('click', () => {
+  document.querySelector('.profile-save-btn').addEventListener('click', async() => {
     profileSection.classList.toggle('my-profile-section-edit')
 
     // Save new variables
     name = document.querySelector('.profile-name').innerHTML
-    customerInfo["data"]["data"]["displayName"] = name
-    location = document.querySelector('.profile-location').innerHTML
     bio = document.querySelector('.profile-bio').innerHTML
-    customerInfo["data"]["data"]["bio"] = bio
+    customerInfo["displayName"] = name
+    customerInfo["bio"] = bio
 
     console.log(customerInfo)
 
-    // [TO DO] Post to server
-    // await axios.post("/profile/update-customer", customerInfo)
+
+    let data
+    // Post to server
+    try {
+      data = (await axios.post("/profile/customer/update", customerInfo))
+    } catch (error) {
+      console.log(error)
+    }
+
+    console.log(data)
 
   })
 
