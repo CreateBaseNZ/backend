@@ -50,6 +50,10 @@ REMOVE DEFAULT CSS
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 button {
@@ -2216,8 +2220,8 @@ body {
   cursor: text;
 }
 
-.my-profile-section-edit .profile-name:empty:not(:focus)::before,
-.my-profile-section-edit .profile-bio:empty:not(:focus)::before {
+.my-profile-section-edit .profile-name:empty::before,
+.my-profile-section-edit .profile-bio:empty::before {
   content: attr(data-placeholder);
   color: #c7c2d5;
 }
