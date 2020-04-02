@@ -12,16 +12,16 @@ VARIABLES
 
 const router = new express.Router();
 const customerRouteOptions = {
-  root: path.join(__dirname, "../views/public")
+  root: path.join(__dirname, "../../views/public")
 };
 
 /*=========================================================================================
 MODELS
 =========================================================================================*/
 
-const Mail = require("./../model/Mail.js");
-const Account = require("./../model/Account.js");
-const Customer = require("./../model/Customer.js");
+const Mail = require("../../model/Mail.js");
+const Account = require("../../model/Account.js");
+const Customer = require("../../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -232,59 +232,6 @@ router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
 
   res.send({ status: false });
-});
-
-/*-----------------------------------------------------------------------------------------
-PROFILE
------------------------------------------------------------------------------------------*/
-
-router.get("/profile/customer/fetch", restrictedPages, async (req, res) => {
-  // Declare Variables
-  const accountId = req.user._id;
-  // Fetch Customer
-  let customer;
-  try {
-    customer = await Customer.findByAccountId(accountId);
-  } catch (error) {
-    res.send({ status: "failed", data: error });
-    return;
-  }
-  // Check if Bio is Empty (TEMPORARY)
-  let bio;
-  if (customer.bio) {
-    bio = customer.bio;
-  } else {
-    bio = "";
-  }
-  // Filter Customer Details
-  const filteredCustomer = {
-    displayName: customer.displayName,
-    bio,
-    address: customer.address
-  };
-  // Send Success Request
-  res.send({ status: "success", data: filteredCustomer });
-});
-
-router.post("/profile/customer/update", restrictedPages, async (req, res) => {
-  // Declare Variables
-  const details = req.body;
-  const accountId = req.user._id;
-  // Fetch Customer
-  let customer;
-  try {
-    customer = await Customer.findByAccountId(accountId);
-  } catch (error) {
-    return res.send({ status: "failed", data: error });
-  }
-  // Update Customer Details
-  let updatedCustomer;
-  try {
-    updatedCustomer = await customer.update(details);
-  } catch (error) {
-    return res.send({ status: "failed", data: error });
-  }
-  return res.send({ status: "success", data: "customer details updated" });
 });
 
 /*=========================================================================================

@@ -19,9 +19,9 @@ const customerRouteOptions = {
 MODELS
 =========================================================================================*/
 
-const Mail = require("./../model/Mail.js");
-const Account = require("./../model/Account.js");
-const Customer = require("./../model/Customer.js");
+const Mail = require("../../model/Mail.js");
+const Account = require("../../model/Account.js");
+const Customer = require("../../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -34,7 +34,7 @@ const restrictedPages = (req, res, next) => {
     res.redirect("/login");
   }
 };
-const upload = require("./../config/upload.js");
+const upload = require("../../config/upload.js");
 
 /*=========================================================================================
 GRIDFS

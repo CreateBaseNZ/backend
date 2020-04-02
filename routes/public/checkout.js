@@ -19,9 +19,9 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Order = require("./../model/Order.js");
-const Make = require("./../model/Make.js");
-const Item = require("./../model/Item.js");
+const Order = require("../../model/Order.js");
+const Make = require("../../model/Make.js");
+const Item = require("../../model/Item.js");
 
 /*=========================================================================================
 MIDDLEWARE

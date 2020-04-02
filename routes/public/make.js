@@ -18,8 +18,8 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Make = require("./../model/Make.js");
-const Comment = require("./../model/Comment.js");
+const Make = require("../../model/Make.js");
+const Comment = require("../../model/Comment.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -32,7 +32,7 @@ const restrictedPages = (req, res, next) => {
     res.redirect("/login");
   }
 };
-const upload = require("./../config/upload.js");
+const upload = require("../../config/upload.js");
 
 /*=========================================================================================
 ROUTES

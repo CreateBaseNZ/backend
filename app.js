@@ -68,29 +68,39 @@ require("./config/passport.js");
 ROUTES
 =========================================================================================*/
 
-const generalRouter = require("./routes/general.js");
-const fileRouter = require("./routes/file.js");
-const errorRouter = require("./routes/error.js");
-const validationRouter = require("./routes/validation.js");
-const makeRouter = require("./routes/make.js");
-const checkoutRouter = require("./routes/checkout.js");
-const profileRouter = require("./routes/profile.js");
+/*-----------------------------------------------------------------------------------------
+PUBLIC
+-----------------------------------------------------------------------------------------*/
+
+const generalRouter = require("./routes/public/general.js");
+const fileRouter = require("./routes/public/file.js");
+const validationRouter = require("./routes/public/validation.js");
+const makeRouter = require("./routes/public/make.js");
+const checkoutRouter = require("./routes/public/checkout.js");
+const profileRouter = require("./routes/public/profile.js");
 app.use(generalRouter);
 app.use(fileRouter);
-app.use(errorRouter);
 app.use(validationRouter);
 app.use(makeRouter);
 app.use(checkoutRouter);
 app.use(profileRouter);
 
+/*-----------------------------------------------------------------------------------------
+ADMIN
+-----------------------------------------------------------------------------------------*/
+
+const adminGeneralRoute = require("./routes/admin/general.js");
+const adminFileRoute = require("./routes/admin/file.js");
+app.use(adminGeneralRoute);
+app.use(adminFileRoute);
+
+/*-----------------------------------------------------------------------------------------
+ERROR PAGE
+-----------------------------------------------------------------------------------------*/
+
+const errorRouter = require("./routes/public/error.js");
+app.use(errorRouter);
+
 /*=========================================================================================
 END
-=========================================================================================*/
-
-/*=========================================================================================
-TEMPORARY DEVELOPMENT AREA
-=========================================================================================*/
-
-/*=========================================================================================
-END OF THE DEVELOPMENT AREA
 =========================================================================================*/
