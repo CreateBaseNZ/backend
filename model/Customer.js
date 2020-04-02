@@ -110,8 +110,9 @@ METHODS
 // @TYPE  METHODS
 // @DESC
 // @ARGU  customer - object -
-CustomerSchema.methods.update = customer => {
+CustomerSchema.methods.update = function(customer) {
   return new Promise(async (resolve, reject) => {
+    console.log(customer);
     // Update Details
     for (const property in customer) {
       // Validate Detail
@@ -134,7 +135,7 @@ CustomerSchema.methods.update = customer => {
 // @TYPE  METHODS
 // @DESC
 // @ARGU  address - object -
-CustomerSchema.methods.updateAddress = address => {
+CustomerSchema.methods.updateAddress = function(address) {
   return new Promise(async (resolve, reject) => {
     this.address = address;
     let savedCustomer;

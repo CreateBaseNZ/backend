@@ -180,8 +180,6 @@ router.post("/profile/customer/update", restrictedPages, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", data: error });
   }
-  console.log('Customer: ' + customer)
-
   // Update Customer Details
   let updatedCustomer;
   try {
@@ -189,7 +187,6 @@ router.post("/profile/customer/update", restrictedPages, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", data: error });
   }
-  console.log('Updated:' + updatedCustomer)
   return res.send({ status: "success", data: "customer details updated" });
 });
 
