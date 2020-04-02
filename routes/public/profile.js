@@ -88,19 +88,26 @@ router.get(
       } catch (error) {
         return res.send({ status: "failed", content: error });
       }
-      // Prepare file to be a display-able image
-      let readstream = GridFS.createReadStream(file.filename);
-      return readstream.pipe(res);
+      if (file) {
+        let readstream = GridFS.createReadStream(file.filename);
+        return readstream.pipe(res);
+      }
     }
-    // Else, Return no Profile Picture
-    // Return a temporary file image
+    // Else, Return Temporary Profile Picture
+    try {
+      file = await GridFS.files.findOne({ filename: "default-profile.png" });
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
+    }
+    let readstream = GridFS.createReadStream(file.filename);
+    return readstream.pipe(res);
   }
 );
 
 // @route     Get /profile/customer/update/picture
 // @desc
 // @access    Private
-router.get(
+router.post(
   "/profile/customer/update/picture",
   upload.single("picture"),
   restrictedPages,
@@ -125,6 +132,7 @@ router.get(
       }
     }
     // Update Customer's Profile Picture
+    console.log(file.id);
     customer.picture = file.id;
     try {
       customer.save();

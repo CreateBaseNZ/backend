@@ -161,7 +161,7 @@ body {
     padding: 10px;
     cursor: text;
 
-    &:empty:not(:focus)::before {
+    &:empty::before {
       content: attr(data-placeholder);
       color: $light-3;
     }

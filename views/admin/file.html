@@ -8,9 +8,21 @@
   </head>
   <body>
     <form id="admin-file-upload">
-      <input type="file" name="file" />
-      <input type="submit" value="Submit" />
+      <input type="file" name="file" id="file" />
     </form>
+    <button onclick="upload();">Upload</button>
   </body>
-  <script></script>
+  <script>
+    const upload = async () => {
+      const file = new FormData(document.querySelector("#admin-file-upload"));
+      let data;
+      try {
+        data = (await axios.post("/admin/file/upload", file))["data"];
+      } catch (error) {
+        console.log(error);
+        return;
+      }
+      console.log(data);
+    };
+  </script>
 </html>

@@ -42,6 +42,13 @@ router.get("/admin/file", (req, res) => {
   res.sendFile("file.html", routeOptions);
 });
 
+// @route     Get /admin/test
+// @desc
+// @access    Admin
+router.get("/admin/test", (req, res) => {
+  res.sendFile("test.html", routeOptions);
+});
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

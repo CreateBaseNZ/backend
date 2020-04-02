@@ -35,7 +35,7 @@
       </a>
       <div class="nav-user-icon">
         <img src="./../../public/images/user-out-highlight.png" class="nav-user-hlt" alt="User" />
-        <img src="./../../public/images/user-out.png" class="nav-user-reg" alt="User" />
+        <img src="/profile/customer/fetch/picture" class="nav-user-reg" alt="User" />
         <img src="./../../public/images/user-x.png" class="nav-user-x" alt="User" />
       </div>
       <div class="nav-user-button">
@@ -77,7 +77,7 @@
       </div>
       <div class="nav-right-menu-out">
         <div class="nav-right-menu">
-          <div class="nav-profile-pic"></div>
+          <img src="/profile/customer/fetch/picture" class="nav-profile-pic"></img>
           <p class="nav-side-header">WELCOME BACK</p>
           <a href="/login" class="nav-side-item">LOG IN</a>
           <div class="nav-sep"></div>
@@ -87,7 +87,7 @@
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <div class="nav-profile-pic"></div>
+          <img src="/profile/customer/fetch/picture" class="nav-profile-pic"></img>
           <p class="nav-side-header">PROJECTS</p>
           <a href="/profile" class="nav-side-item" data-tab="projects" onclick="passTab(this);">MY PROJECTS</a>
           <div class="nav-sep"></div>
@@ -100,20 +100,21 @@
       </div>
     </div>
   </nav>
-
+  <form id="profile-upload-form" style="display: none;">
+    <input type="file" name="picture" id="profile-upload" accept=".png, .jpg, .jpeg" onchange="loadFile(event);">
+  </form>
   <div class="profile-page">
     <div class="my-profile-section">
       <div class="profile-pic">
-        <input type="file" id="profile-upload" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
         <label for="profile-upload"><i class="far fa-edit"></i></label>
-        <img src="./../../public/images/default-profile.png" id="profile-preview"></img>
+        <img src="/profile/customer/fetch/picture" id="profile-preview"></img>
       </div>
       <p class="profile-name" data-placeholder="Display Name"></p>
       <p class="profile-location" data-info="Edit location under the Billing tab."></p>
       <p class="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
       <div class="profile-edit">
         <div class="profile-cancel-btn">Cancel</div>
-        <div class="profile-save-btn reg-btn">Save</div>
+        <div class="profile-save-btn reg-btn" onclick="profileUploadPicture();">Save</div>
         <div class="profile-edit-btn reg-btn">Edit</div>
       </div>
     </div>
@@ -137,5 +138,19 @@
   </div>
 
 </body>
+
+<script>
+  const profileUploadPicture = async () => {
+    const file = new FormData(document.querySelector("#profile-upload-form"));
+      let data;
+      try {
+        data = (await axios.post("/profile/customer/update/picture", file))["data"];
+      } catch (error) {
+        console.log(error);
+        return;
+      }
+      console.log(data);
+  }
+</script>
 
 </html>

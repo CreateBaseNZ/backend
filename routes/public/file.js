@@ -61,22 +61,6 @@ mongoose.createConnection(
 ROUTES
 =========================================================================================*/
 
-router.post("/admin/file/upload", (req, res) => {
-  const id = mongoose.Types.ObjectId(req.params.fileId);
-  GridFS.files.findOne({ _id: id }, (err, file) => {
-    if (!file || file.length == 0) {
-      return res.status(404).json({ error: "No file exists" });
-    }
-    const readstream = GridFS.createReadStream(file.filename);
-    res.setHeader(
-      "Content-disposition",
-      "attachment; filename=" + file.filename
-    );
-    res.setHeader("Content-type", "application/octet-stream");
-    readstream.pipe(res);
-  });
-});
-
 router.get("/files/download/:fileId", (req, res) => {
   const id = mongoose.Types.ObjectId(req.params.fileId);
   GridFS.files.findOne({ _id: id }, (err, file) => {
