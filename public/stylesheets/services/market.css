@@ -1156,6 +1156,8 @@ Carl's Button Design (End)
   font-size: 2.5vmax;
   font-weight: 100;
   letter-spacing: 0.2vw;
+  -webkit-transition: color 0.1s ease-out;
+  transition: color 0.1s ease-out;
 }
 
 .nav-container .nav-side-menus .nav-side-item:hover {
@@ -1179,6 +1181,8 @@ Carl's Button Design (End)
   color: #2d283c;
   margin-right: 2vw;
   letter-spacing: 0.2vw;
+  -webkit-transition: color 0.1s ease-out;
+  transition: color 0.1s ease-out;
 }
 
 .nav-container .nav-side-menus .nav-item-outer .nav-item-inner:hover {
@@ -1200,15 +1204,29 @@ Carl's Button Design (End)
 }
 
 .nav-container .nav-side-menus .nav-side-signout {
+  position: relative;
   margin-top: 10vh;
-  color: #2d283c;
+  color: red;
   font-family: "Poppins", sans-serif;
   font-weight: 100;
   letter-spacing: 0.2vw;
+  -webkit-transition: color 0.1s ease-out;
+  transition: color 0.1s ease-out;
 }
 
-.nav-container .nav-side-menus .nav-side-signout:hover {
-  color: #4bf0ea;
+.nav-container .nav-side-menus .nav-side-signout::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  border-bottom: thin solid red;
+  -webkit-transition: width 0.2s ease-out;
+  transition: width 0.2s ease-out;
+}
+
+.nav-container .nav-side-menus .nav-side-signout:hover:after {
+  width: 100%;
 }
 
 .nav-container .nav-side-menus .nav-sep {
@@ -1239,6 +1257,8 @@ Carl's Button Design (End)
 .nav-container .nav-side-menus .nav-side-socials .fab {
   margin-left: 5vw;
   margin-right: 5vw;
+  -webkit-transition: color 0.1s ease-out;
+  transition: color 0.1s ease-out;
 }
 
 .nav-container .nav-side-menus .nav-side-socials .fab:visited {

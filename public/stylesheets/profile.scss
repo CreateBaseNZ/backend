@@ -246,7 +246,7 @@ body {
     background: linear-gradient(to bottom,$light-2,$light-1);
     border-right: calc(55px + 1vw) solid $light-1;
     border-bottom: 5vh solid $light-1;
-    height: 100%;
+    height: calc(100% - 5vh);
   }
 
   #projects-tab:checked ~ #projects-area {

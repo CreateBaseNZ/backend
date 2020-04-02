@@ -9,6 +9,9 @@ var loadFile = function(event) {
 
 const profileInit = async() => {
 
+  // -- Prerender selected tab -- 
+  document.querySelector('#' + localStorage.getItem('tab') + '-tab').checked = true
+
   // -- Get customer info --
   let customerInfo
 
