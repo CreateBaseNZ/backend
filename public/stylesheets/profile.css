@@ -852,7 +852,7 @@ Carl's Button Design (End)
   transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.nav-container {
+nav {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -860,7 +860,7 @@ Carl's Button Design (End)
   z-index: 1000;
 }
 
-.nav-container .nav-top-bar {
+nav .nav-top-bar {
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -876,27 +876,27 @@ Carl's Button Design (End)
   z-index: 1001;
 }
 
-.nav-container .nav-top-bar .hamburger {
+nav .nav-top-bar .hamburger {
   cursor: pointer;
   margin-bottom: 10px;
 }
 
-.nav-container .nav-top-bar .hamburger:hover .hamburger-inner,
-.nav-container .nav-top-bar .hamburger:hover .hamburger-inner::before,
-.nav-container .nav-top-bar .hamburger:hover .hamburger-inner::after {
+nav .nav-top-bar .hamburger:hover .hamburger-inner,
+nav .nav-top-bar .hamburger:hover .hamburger-inner::before,
+nav .nav-top-bar .hamburger:hover .hamburger-inner::after {
   background: #4bf0ea;
 }
 
-.nav-container .nav-top-bar .nav-home-btn {
+nav .nav-top-bar .nav-home-btn {
   height: 30px;
   margin-bottom: 10px;
 }
 
-.nav-container .nav-top-bar .nav-home-btn .nav-logo {
+nav .nav-top-bar .nav-home-btn .nav-logo {
   height: 100%;
 }
 
-.nav-container .nav-top-bar .nav-user-icon {
+nav .nav-top-bar .nav-user-icon {
   display: none;
   cursor: pointer;
   position: relative;
@@ -905,7 +905,7 @@ Carl's Button Design (End)
   margin-bottom: 20px;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt {
+nav .nav-top-bar .nav-user-icon .nav-user-hlt {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
@@ -921,15 +921,17 @@ Carl's Button Design (End)
   transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt:hover {
+nav .nav-top-bar .nav-user-icon .nav-user-hlt:hover {
   opacity: 1;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ #nav-user-reg {
+nav .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ #nav-user-reg,
+nav .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ #nav-user-out {
   opacity: 0;
 }
 
-.nav-container .nav-top-bar .nav-user-icon #nav-user-reg {
+nav .nav-top-bar .nav-user-icon #nav-user-reg,
+nav .nav-top-bar .nav-user-icon #nav-user-out {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
@@ -946,7 +948,7 @@ Carl's Button Design (End)
   transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
 }
 
-.nav-container .nav-top-bar .nav-user-icon #nav-user-x {
+nav .nav-top-bar .nav-user-icon #nav-user-x {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
@@ -960,13 +962,14 @@ Carl's Button Design (End)
   transition: all 0.15s ease-out;
 }
 
-.nav-container .nav-top-bar .nav-user-active #nav-user-reg {
+nav .nav-top-bar .nav-user-active #nav-user-out,
+nav .nav-top-bar .nav-user-active #nav-user-reg {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   opacity: 0;
 }
 
-.nav-container .nav-top-bar .nav-user-active .nav-user-hlt {
+nav .nav-top-bar .nav-user-active .nav-user-hlt {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   opacity: 1;
@@ -974,18 +977,18 @@ Carl's Button Design (End)
   transition: all 0.15s ease-out;
 }
 
-.nav-container .nav-top-bar .nav-user-active #nav-user-x {
+nav .nav-top-bar .nav-user-active #nav-user-x {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transition: all 0.15s ease-out 0.15s;
   transition: all 0.15s ease-out 0.15s;
 }
 
-.nav-container .nav-top-bar .nav-user-button {
+nav .nav-top-bar .nav-user-button {
   display: none;
 }
 
-.nav-container .nav-side-menus {
+nav .nav-side-menus {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1003,7 +1006,7 @@ Carl's Button Design (End)
   visibility: hidden;
 }
 
-.nav-container .nav-side-menus .nav-left-menu-wrap {
+nav .nav-side-menus .nav-left-menu-wrap {
   position: absolute;
   top: 0;
   left: 0;
@@ -1013,7 +1016,7 @@ Carl's Button Design (End)
   transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
+nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
   height: 100vh;
   width: 100vw;
   background: white;
@@ -1026,7 +1029,7 @@ Carl's Button Design (End)
   transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-menu-links {
+nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu .nav-side-menu-links {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1043,22 +1046,22 @@ Carl's Button Design (End)
   margin-top: 60px;
 }
 
-.nav-container .nav-side-menus .nav-left-menu-active {
+nav .nav-side-menus .nav-left-menu-active {
   visibility: visible;
   width: 100vw;
 }
 
-.nav-container .nav-side-menus .nav-left-menu-active .nav-left-menu {
+nav .nav-side-menus .nav-left-menu-active .nav-left-menu {
   margin-left: 0;
 }
 
-.nav-container .nav-side-menus .nav-left-menu-active .nav-left-menu .nav-sep {
+nav .nav-side-menus .nav-left-menu-active .nav-left-menu .nav-sep {
   width: 5vw;
   -webkit-transition: 0.2s ease-out 0.3s;
   transition: 0.2s ease-out 0.3s;
 }
 
-.nav-container .nav-side-menus .nav-right-menu-in {
+nav .nav-side-menus .nav-right-menu-in {
   position: absolute;
   top: 0;
   right: 0;
@@ -1069,7 +1072,7 @@ Carl's Button Design (End)
   transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.nav-container .nav-side-menus .nav-right-menu-in .nav-right-menu {
+nav .nav-side-menus .nav-right-menu-in .nav-right-menu {
   position: absolute;
   top: 0;
   right: 0;
@@ -1094,7 +1097,7 @@ Carl's Button Design (End)
   transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.nav-container .nav-side-menus .nav-right-menu-out {
+nav .nav-side-menus .nav-right-menu-out {
   position: absolute;
   top: 0;
   right: 0;
@@ -1105,7 +1108,7 @@ Carl's Button Design (End)
   transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.nav-container .nav-side-menus .nav-right-menu-out .nav-right-menu {
+nav .nav-side-menus .nav-right-menu-out .nav-right-menu {
   position: absolute;
   top: 0;
   right: 0;
@@ -1130,22 +1133,22 @@ Carl's Button Design (End)
   transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 }
 
-.nav-container .nav-side-menus .nav-right-menu-active {
+nav .nav-side-menus .nav-right-menu-active {
   visibility: visible;
   width: 100vw;
 }
 
-.nav-container .nav-side-menus .nav-right-menu-active .nav-right-menu {
+nav .nav-side-menus .nav-right-menu-active .nav-right-menu {
   margin-right: 0vw;
 }
 
-.nav-container .nav-side-menus .nav-right-menu-active .nav-right-menu .nav-sep {
+nav .nav-side-menus .nav-right-menu-active .nav-right-menu .nav-sep {
   width: 5vw;
   -webkit-transition: 0.2s ease-out 0.3s;
   transition: 0.2s ease-out 0.3s;
 }
 
-.nav-container .nav-side-menus .nav-side-header {
+nav .nav-side-menus .nav-side-header {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
   font-size: 2vw;
@@ -1153,7 +1156,7 @@ Carl's Button Design (End)
   color: #c7c2d5;
 }
 
-.nav-container .nav-side-menus .nav-side-item {
+nav .nav-side-menus .nav-side-item {
   margin-top: 3vh;
   color: #2d283c;
   font-family: "Poppins", sans-serif;
@@ -1164,11 +1167,11 @@ Carl's Button Design (End)
   transition: color 0.1s ease-out;
 }
 
-.nav-container .nav-side-menus .nav-side-item:hover {
+nav .nav-side-menus .nav-side-item:hover {
   color: #4bf0ea;
 }
 
-.nav-container .nav-side-menus .nav-item-outer {
+nav .nav-side-menus .nav-item-outer {
   margin-top: 3vh;
   font-family: "Poppins", sans-serif;
   font-weight: 100;
@@ -1180,7 +1183,7 @@ Carl's Button Design (End)
           align-items: center;
 }
 
-.nav-container .nav-side-menus .nav-item-outer .nav-item-inner {
+nav .nav-side-menus .nav-item-outer .nav-item-inner {
   font-size: 2.5vmax;
   color: #2d283c;
   margin-right: 2vw;
@@ -1189,11 +1192,11 @@ Carl's Button Design (End)
   transition: color 0.1s ease-out;
 }
 
-.nav-container .nav-side-menus .nav-item-outer .nav-item-inner:hover {
+nav .nav-side-menus .nav-item-outer .nav-item-inner:hover {
   color: #4bf0ea;
 }
 
-.nav-container .nav-side-menus .nav-item-outer .info {
+nav .nav-side-menus .nav-item-outer .info {
   height: 2vmax;
   width: 2vmax;
   border-radius: 50%;
@@ -1203,11 +1206,11 @@ Carl's Button Design (End)
   text-align: center;
 }
 
-.nav-container .nav-side-menus .nav-item-outer .info:hover {
+nav .nav-side-menus .nav-item-outer .info:hover {
   background: #4bf0ea;
 }
 
-.nav-container .nav-side-menus .nav-side-signout {
+nav .nav-side-menus .nav-side-signout {
   position: relative;
   margin-top: 10vh;
   color: red;
@@ -1218,7 +1221,7 @@ Carl's Button Design (End)
   transition: color 0.1s ease-out;
 }
 
-.nav-container .nav-side-menus .nav-side-signout::after {
+nav .nav-side-menus .nav-side-signout::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -1229,11 +1232,11 @@ Carl's Button Design (End)
   transition: width 0.2s ease-out;
 }
 
-.nav-container .nav-side-menus .nav-side-signout:hover:after {
+nav .nav-side-menus .nav-side-signout:hover:after {
   width: 100%;
 }
 
-.nav-container .nav-side-menus .nav-sep {
+nav .nav-side-menus .nav-sep {
   width: 0vw;
   height: 1px;
   background: #c7c2d5;
@@ -1242,7 +1245,7 @@ Carl's Button Design (End)
   transition: 0.2s ease-out;
 }
 
-.nav-container .nav-side-menus .nav-side-socials {
+nav .nav-side-menus .nav-side-socials {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1258,54 +1261,58 @@ Carl's Button Design (End)
           align-items: center;
 }
 
-.nav-container .nav-side-menus .nav-side-socials .fab {
+nav .nav-side-menus .nav-side-socials .fab {
   margin-left: 5vw;
   margin-right: 5vw;
   -webkit-transition: color 0.1s ease-out;
   transition: color 0.1s ease-out;
 }
 
-.nav-container .nav-side-menus .nav-side-socials .fab:visited {
+nav .nav-side-menus .nav-side-socials .fab:visited {
   color: #877da9;
 }
 
-.nav-container .nav-side-menus .nav-side-socials .fab:hover {
+nav .nav-side-menus .nav-side-socials .fab:hover {
   color: #4bf0ea;
 }
 
-.nav-container .nav-side-menus .nav-dp {
+nav .nav-side-menus #nav-dp {
   height: 20vh;
   width: 20vh;
   border-radius: 50%;
   margin: 10vh 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
 }
 
-.nav-container .nav-darken-overlay {
+nav .nav-darken-overlay {
   display: none;
 }
 
 @media only screen and (min-width: 850px) {
-  .nav-container .nav-top-bar {
+  nav .nav-top-bar {
     -ms-grid-columns: 45vw 10vw 45vw;
         grid-template-columns: 45vw 10vw 45vw;
   }
-  .nav-container .nav-top-bar .hamburger {
+  nav .nav-top-bar .hamburger {
     justify-self: flex-start;
     margin-bottom: 0;
     padding: 10px;
     margin-left: calc(50px + 1vw);
   }
-  .nav-container .nav-top-bar .nav-home-btn {
+  nav .nav-top-bar .nav-home-btn {
     margin: 0 35.5vw;
     margin-bottom: 10px;
   }
-  .nav-container .nav-top-bar .nav-user-button {
+  nav .nav-top-bar .nav-user-button {
     justify-self: flex-end;
     margin-right: calc(75px + 1vw);
     display: none;
     margin-bottom: 15px;
   }
-  .nav-container .nav-top-bar .nav-user-button .nav-user-login {
+  nav .nav-top-bar .nav-user-button #nav-user-login {
     font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
     font-weight: 100;
@@ -1315,10 +1322,10 @@ Carl's Button Design (End)
     padding: 10px 10px;
     margin: 0px 30px;
   }
-  .nav-container .nav-top-bar .nav-user-button .nav-user-login:hover {
+  nav .nav-top-bar .nav-user-button #nav-user-login:hover {
     color: #4bf0ea;
   }
-  .nav-container .nav-top-bar .nav-user-button .nav-user-signup {
+  nav .nav-top-bar .nav-user-button #nav-user-signup {
     -webkit-transition: all ease 0.2s;
     transition: all ease 0.2s;
     font-family: "Poppins", sans-serif;
@@ -1330,61 +1337,61 @@ Carl's Button Design (End)
     border: thin solid #6853d9;
     background: transparent;
   }
-  .nav-container .nav-top-bar .nav-user-button .nav-user-signup:hover {
+  nav .nav-top-bar .nav-user-button #nav-user-signup:hover {
     border: thin solid white;
     color: white;
     background: linear-gradient(60deg, #8258dc, #4e4ed6);
   }
-  .nav-container .nav-top-bar .nav-user-icon {
+  nav .nav-top-bar .nav-user-icon {
     justify-self: flex-end;
     margin-right: calc(75px + 1vw);
   }
-  .nav-container .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
+  nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
     width: 20vw;
     -ms-grid-rows: 75vh 25vh;
         grid-template-rows: 75vh 25vh;
   }
-  .nav-container .nav-side-menus .nav-left-menu-active {
+  nav .nav-side-menus .nav-left-menu-active {
     width: 20vw;
   }
-  .nav-container .nav-side-menus .nav-left-menu-active .nav-left-menu {
+  nav .nav-side-menus .nav-left-menu-active .nav-left-menu {
     margin-left: 0;
   }
-  .nav-container .nav-side-menus .nav-right-menu-in .nav-right-menu {
+  nav .nav-side-menus .nav-right-menu-in .nav-right-menu {
     width: calc(20vw + 15px);
     margin-right: -2vw;
     width: 20vw;
   }
-  .nav-container .nav-side-menus .nav-right-menu-active {
+  nav .nav-side-menus .nav-right-menu-active {
     width: calc(20vw + 15px);
     width: 20vw;
   }
-  .nav-container .nav-side-menus .nav-right-menu-active .nav-right-menu {
+  nav .nav-side-menus .nav-right-menu-active .nav-right-menu {
     margin-right: 0vw;
   }
-  .nav-container .nav-side-menus .nav-side-header {
+  nav .nav-side-menus .nav-side-header {
     font-size: calc(8px + 0.1vw);
     margin-top: 10vh;
     letter-spacing: 0.1vw;
   }
-  .nav-container .nav-side-menus .nav-side-item {
+  nav .nav-side-menus .nav-side-item {
     margin-top: 1.5vh;
     padding: 1vh;
     font-size: calc(10px + 0.2vw);
     letter-spacing: 0.1vw;
   }
-  .nav-container .nav-side-menus .nav-item-outer {
+  nav .nav-side-menus .nav-item-outer {
     margin-top: 1.5vh;
   }
-  .nav-container .nav-side-menus .nav-item-outer .nav-item-inner {
+  nav .nav-side-menus .nav-item-outer .nav-item-inner {
     font-size: calc(10px + 0.2vw);
     color: #2d283c;
     margin-right: 0.5vw;
     letter-spacing: 0.1vw;
     padding: 1vh;
   }
-  .nav-container .nav-side-menus .nav-item-outer .info {
+  nav .nav-side-menus .nav-item-outer .info {
     font-family: "Montserrat", sans-serif;
     height: calc(10px + 0.2vw);
     width: calc(10px + 0.2vw);
@@ -1392,30 +1399,30 @@ Carl's Button Design (End)
     background: #c7c2d5;
     text-align: center;
   }
-  .nav-container .nav-side-menus .nav-side-signout {
+  nav .nav-side-menus .nav-side-signout {
     font-size: calc(10px + 0.2vw);
     letter-spacing: 0.1vw;
     padding: 1vh;
   }
-  .nav-container .nav-side-menus .nav-sep {
+  nav .nav-side-menus .nav-sep {
     display: none;
   }
-  .nav-container .nav-side-menus .nav-side-socials {
+  nav .nav-side-menus .nav-side-socials {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .nav-container .nav-side-menus .nav-side-socials .fab {
+  nav .nav-side-menus .nav-side-socials .fab {
     margin-left: 0;
     margin-right: 0;
     padding: 5px;
   }
-  .nav-container .nav-side-menus .nav-dp {
+  nav .nav-side-menus #nav-dp {
     margin-top: 5vh;
     margin-bottom: 0vh;
   }
-  .nav-container .nav-darken-overlay {
+  nav .nav-darken-overlay {
     display: block;
     visibility: hidden;
     position: absolute;
@@ -1428,7 +1435,7 @@ Carl's Button Design (End)
     -webkit-transition: opacity 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
     transition: opacity 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   }
-  .nav-container .nav-darken-overlay-active {
+  nav .nav-darken-overlay-active {
     visibility: visible;
     opacity: 0.1;
   }
@@ -2252,7 +2259,7 @@ body {
   display: block;
 }
 
-.profile-tabs-bar {
+#profile-tabs-bar {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: tabs;
@@ -2266,16 +2273,16 @@ body {
   margin-top: 5vh;
 }
 
-.profile-tabs-bar input {
+#profile-tabs-bar input {
   display: none;
 }
 
-.profile-tabs-bar input:checked + label {
+#profile-tabs-bar input:checked + label {
   color: #877da9;
   background: #f8f8f8;
 }
 
-.profile-tabs-bar label {
+#profile-tabs-bar label {
   width: calc(100px + 5vw);
   height: 5vh;
   display: -webkit-box;
@@ -2298,15 +2305,15 @@ body {
   transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
-.profile-tabs-bar label:hover {
+#profile-tabs-bar label:hover {
   color: #8258dc;
 }
 
-.profile-tabs-bar label:not(:last-of-type) {
+#profile-tabs-bar label:not(:last-of-type) {
   border-right: thin solid #f8f8f8;
 }
 
-.profile-tabs-bar .main-area {
+#profile-tabs-bar .main-area {
   display: none;
   -webkit-box-flex: 1;
       -ms-flex: 1 0 100%;
@@ -2318,14 +2325,14 @@ body {
   height: calc(100% - 5vh);
 }
 
-.profile-tabs-bar #projects-tab:checked ~ #projects-area {
+#profile-tabs-bar #projects-tab:checked ~ #projects-area {
   display: block;
 }
 
-.profile-tabs-bar #settings-tab:checked ~ #settings-area {
+#profile-tabs-bar #settings-tab:checked ~ #settings-area {
   display: block;
 }
 
-.profile-tabs-bar #billing-tab:checked ~ #billing-area {
+#profile-tabs-bar #billing-tab:checked ~ #billing-area {
   display: block;
 }

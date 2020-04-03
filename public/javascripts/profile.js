@@ -7,14 +7,14 @@ const profileInit = async() => {
 
   // Get elements
   const profileSection = document.querySelector('.my-profile-section')
-  const navDP = [document.getElementById('nav-dp-desktop'), document.getElementById('nav-dp-mobile'), document.getElementById('nav-user-reg')]
+  const navDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-reg')]
   const dpEl = document.getElementById('profile-preview')
   const nameEl = document.getElementById('profile-name')
   const locationEl = document.getElementById('profile-location')
   const bioEl = document.getElementById('profile-bio')
 
   // -- Prerender selected tab -- 
-  document.querySelector('#' + localStorage.getItem('tab') + '-tab').checked = true
+  document.getElementById(localStorage.getItem('tab') + '-tab').checked = true
 
   // -- Get customer info --
   let customerInfo
@@ -66,7 +66,7 @@ const profileInit = async() => {
 
     // Update profile pictures in nav bar
     for (var i = 0; i < navDP.length; i++) {
-      navDP[i].src = dpTemp 
+      navDP[i].src = dpTemp
     }    
   })
 

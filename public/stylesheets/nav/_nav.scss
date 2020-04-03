@@ -1,7 +1,7 @@
 $top-bar-height: 60px;
 $menu-width: 100vw;
 
-.nav-container {
+nav {
   position: sticky;
   top: 0;
   height: 0px;
@@ -63,12 +63,14 @@ $menu-width: 100vw;
           opacity: 1;
         }
 
-        &:hover ~ #nav-user-reg {
+        &:hover ~ #nav-user-reg,
+        &:hover ~ #nav-user-out {
           opacity: 0;
         }
       }
   
-      #nav-user-reg {
+      #nav-user-reg,
+      #nav-user-out {
         box-sizing: content-box;
         position: absolute;
         top: 0;
@@ -93,6 +95,7 @@ $menu-width: 100vw;
     }
 
     .nav-user-active {
+      #nav-user-out,
       #nav-user-reg {
         transform: scaleX(0);
         opacity: 0;
@@ -336,11 +339,13 @@ $menu-width: 100vw;
       }
     }
 
-    .nav-dp {
+    #nav-dp {
       height: 20vh;
       width: 20vh;
       border-radius: 50%;
       margin: 10vh 0;
+      object-fit: cover;
+      object-position: 50% 50%;
     }
   }
   
@@ -356,7 +361,7 @@ $menu-width: 100vw;
   $menu-icon-padding: 10px;
   $menu-width: 20vw;
 
-.nav-container {
+nav {
   .nav-top-bar {
     grid-template-columns: 45vw 10vw 45vw;
 
@@ -378,7 +383,7 @@ $menu-width: 100vw;
       display: none;
       margin-bottom: 15px;
 
-      .nav-user-login {
+      #nav-user-login {
         font-family: $poppins;
         font-size: calc(8px + 0.2vmax);
         font-weight: 100;
@@ -393,7 +398,7 @@ $menu-width: 100vw;
         }
       }
 
-      .nav-user-signup {
+      #nav-user-signup {
         transition: all ease 0.2s;
         font-family: $poppins;
         font-size: calc(8px + 0.2vmax);
@@ -504,7 +509,7 @@ $menu-width: 100vw;
       }
     }
 
-    .nav-dp {
+    #nav-dp {
       margin-top: 5vh;
       margin-bottom: 0vh;
     }
