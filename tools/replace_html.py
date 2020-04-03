@@ -4,9 +4,8 @@ from bs4 import BeautifulSoup, Tag
 test = True
 
 my_document = """
-spacer
   <pre>
-<nav>
+  <nav>
     <div class="nav-darken-overlay"></div>
     <div class="nav-top-bar">
       <button class="hamburger hamburger-spin" type="button">
@@ -90,7 +89,7 @@ spacer
 soup = BeautifulSoup(my_document, "html.parser")
 newHTML = str(soup.encode(formatter=None).decode())
 
-directory = "D:/Users/Carl Velasco/Documents/GitHub/website/views/public"
+directory = "C:/Users/lollo/Documents/CreateBase/website/views/public"
 
 for path, dirs, files in os.walk(os.path.abspath(directory)):
   for filename in fnmatch.filter(files, "*.html"):
@@ -98,7 +97,7 @@ for path, dirs, files in os.walk(os.path.abspath(directory)):
     with open(filepath) as target_file:
       editting = target_file.read()
     editting = re.sub('<nav>(.|\n)*?<\/nav>\n', newHTML, editting, count=1)
-    editting = re.sub('Init\(\);">(.|\n)*?<pre>', 'Init();">\n', editting)
+    editting = re.sub('\(\);">(.|\n)*?<pre>', '();">\n', editting)
     editting = re.sub('</pre>(.|\n)*?<div', '\n\t<div', editting)
     with open(filepath, "w") as file:
       file.write(editting)
