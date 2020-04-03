@@ -18,16 +18,12 @@
   <!-- CUSTOM JAVASCRIPT -->
   <script src="./../../public/javascripts/login.js"></script>
   <!-- STYLESHEET -->
-  <link rel="stylesheet" href="./../../public/stylesheets/login.css"/>
+  <link rel="stylesheet" href="./../../public/stylesheets/login.css" />
 </head>
 
 <body onload="loginInit(); navInit();">
 
-<<<<<<< HEAD
 <nav>
-=======
-  <nav>
->>>>>>> c0f04dcf38fb2cceeaa14d28acb83ede6c0fba7d
     <div class="nav-darken-overlay"></div>
     <div class="nav-top-bar">
       <button class="hamburger hamburger-spin" type="button">
@@ -111,19 +107,19 @@
       <div class="login-form-container login-container">
         <form class="log-in-form" action="/login/customer" method="post">
           <p class="mini-caps-title" id="login-title">WELCOME BACK TO BASE</h2>
-          <div class="log-in-fld input-decor" id="login-email">
-            <input type="text" name="email" id="log-in-eml" required />
-            <label class="input-label" for="email">Email</label>
-            <label class="input-error" for="displayName">Invalid name, please try again.</label>
-          </div>
-          <div class="log-in-fld input-decor" id="login-password">
-            <input type="password" name="password" id="log-in-pwd" required />
-            <label class="input-label" for="password">Password</label>
-            <label class="input-error" for="displayName">Incorrect password, please try again.</label>
-          </div>
-          <div class="log-in-fld" id="login-login">
-            <button type="submit" class="reg-btn" id="login-btn">LOG IN</button>
-          </div>
+            <div class="log-in-fld input-decor" id="login-email">
+              <input type="text" name="email" id="log-in-eml" required />
+              <label class="input-label" for="email">Email</label>
+              <label class="input-error" for="displayName">Invalid name, please try again.</label>
+            </div>
+            <div class="log-in-fld input-decor" id="login-password">
+              <input type="password" name="password" id="log-in-pwd" required />
+              <label class="input-label" for="password">Password</label>
+              <label class="input-error" for="displayName">Incorrect password, please try again.</label>
+            </div>
+            <div class="log-in-fld" id="login-login">
+              <button type="submit" class="reg-btn" id="login-btn">LOG IN</button>
+            </div>
         </form>
         <button id="login-back" class="plain-btn" onclick="toggleContainer();">⇠</button>
         <div id="login-signup">
@@ -133,7 +129,7 @@
           </p>
         </div>
       </div>
-  
+
       <div class="login-form-container hello-container">
         <h1 id="hello-creator">
           Hello, <span class="glitch" id="change-text" data-text="Creator">Creator</span>.
@@ -142,7 +138,7 @@
         <button class="plain-btn" id="hello-login" onclick="toggleContainer();">LOG IN</button>
         <div class="hello-login-line"></div>
       </div>
-  
+
       <div class="login-overlay-container">
         <div class="login-overlay">
           <div class="login-overlay-panel login-overlay-left">

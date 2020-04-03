@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" href="./../../public/images/logo-icon.png" />
-    <title>Page Not Found | CreateBase</title>
-    <!--===================================================================================
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="./../../public/images/logo-icon.png" />
+  <title>Page Not Found | CreateBase</title>
+  <!--===================================================================================
     CSS and JavaScript
     ====================================================================================-->
-    <!-------------------------------------------------------------------------------------
+  <!-------------------------------------------------------------------------------------
     Sourced CSS
     -------------------------------------------------------------------------------------->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <!-------------------------------------------------------------------------------------
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet" />
+  <!-------------------------------------------------------------------------------------
     Sourced JavaScript
     -------------------------------------------------------------------------------------->
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./../../public/javascripts/moment.js"></script>
-    <!-------------------------------------------------------------------------------------
-    Default CSS
-    -------------------------------------------------------------------------------------->
-    <link rel="stylesheet" href="./../../public/stylesheets/global.css" />
-    <!-------------------------------------------------------------------------------------
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./../../public/javascripts/moment.js"></script>
+  <!-------------------------------------------------------------------------------------
     Default JavaScript
     -------------------------------------------------------------------------------------->
-    <script src="./../../public/javascripts/index.js"></script>
-    <!-------------------------------------------------------------------------------------
+  <script src="./../../public/javascripts/nav.js"></script>
+  <!-------------------------------------------------------------------------------------
     Custom CSS and JavaScript
     -------------------------------------------------------------------------------------->
-  </head>
+</head>
 
-  <body onload="">
-    <div class="page">
-      <p>404: Page not found</p>
-      <div>
-        <p>Go back to the</p>
-        <a href="/">homepage</a>
-      </div>
+<body onload="navInit();">
+  <div class="page">
+    <p>404: Page not found</p>
+    <div>
+      <p>Go back to the</p>
+      <a href="/">homepage</a>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

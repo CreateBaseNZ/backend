@@ -1,57 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" href="./../../public/images/logo-icon.png" />
-    <title>Checkout • CreateBase</title>
-    <!--===================================================================================
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="./../../public/images/logo-icon.png" />
+  <title>Checkout • CreateBase</title>
+  <!--===================================================================================
     CSS and JavaScript
     ====================================================================================-->
-    <!-------------------------------------------------------------------------------------
+  <!-------------------------------------------------------------------------------------
     Sourced CSS
     -------------------------------------------------------------------------------------->
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <!-------------------------------------------------------------------------------------
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet" />
+  <!-------------------------------------------------------------------------------------
     Sourced JavaScript
     -------------------------------------------------------------------------------------->
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./../../public/javascripts/moment.js"></script>
-    <!-------------------------------------------------------------------------------------
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./../../public/javascripts/moment.js"></script>
+  <!-------------------------------------------------------------------------------------
     Default JavaScript
     -------------------------------------------------------------------------------------->
-    <script src="./../../public/javascripts/nav.js"></script>
-    <!-------------------------------------------------------------------------------------
+  <script src="./../../public/javascripts/nav.js"></script>
+  <!-------------------------------------------------------------------------------------
     Custom CSS and JavaScript
     -------------------------------------------------------------------------------------->
-    <link rel="stylesheet" href="./../../public/stylesheets/checkout.css" />
-    <script src="./../../public/javascripts/checkout.js"></script>
-  </head>
+  <link rel="stylesheet" href="./../../public/stylesheets/checkout.css" />
+  <script src="./../../public/javascripts/checkout.js"></script>
+</head>
 
-  <body onload="navInit(); checkout.initialise();">
-<<<<<<< HEAD
-    
-spacer
-  <pre>
-<nav>
-=======
-
-
-<pre>
-  
-<pre>
-  
-<pre>
+<body onload="navInit(); checkout.initialise();">
   <nav>
->>>>>>> c0f04dcf38fb2cceeaa14d28acb83ede6c0fba7d
     <div class="nav-darken-overlay"></div>
     <div class="nav-top-bar">
       <button class="hamburger hamburger-spin" type="button">
@@ -60,13 +41,13 @@ spacer
         </span>
       </button>
       <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
+        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png" />
       </a>
       <div class="nav-user-icon">
-        <img alt="User" class="nav-user-hlt" src="./../../public/images/user-out-highlight.png"/>
-        <img alt="User" id="nav-user-reg" src="/profile/customer/fetch/picture"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
-        <img alt="User" id="nav-user-x" src="./../../public/images/user-x.png"/>
+        <img alt="User" class="nav-user-hlt" src="./../../public/images/user-out-highlight.png" />
+        <img alt="User" id="nav-user-reg" src="/profile/customer/fetch/picture" />
+        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png" />
+        <img alt="User" id="nav-user-x" src="./../../public/images/user-x.png" />
       </div>
       <div class="nav-user-button">
         <a href="/login" id="nav-user-login">LOG IN</a>
@@ -116,7 +97,7 @@ spacer
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <img id="nav-dp" src="/profile/customer/fetch/picture"/>
+          <img id="nav-dp" src="/profile/customer/fetch/picture" />
           <p class="nav-side-header">PROJECTS</p>
           <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <div class="nav-sep"></div>
@@ -129,881 +110,540 @@ spacer
       </div>
     </div>
   </nav>
-  
-	<div class="page" id="checkout-pg">
-      <!---------------------------------------------------------------------------------
-      SUMMARY PAGE (DESKTOP ONLY)
-      ---------------------------------------------------------------------------------->
 
-      <div class="checkout-sub-pg" id="checkout-sub-pg-summary">
-        <div id="checkout-summary-heading-container">
-          <h1 class="rmv-h-css">
-            Order Summary
-          </h1>
-        </div>
-        <div class="checkout-summary-group">
-          <div class="checkout-summary-label">Subtotal</div>
-          <div
-            class="checkout-summary-value"
-            id="checkout-summary-value-subtotal"
-          >
-            $X,XXX.XX
-          </div>
-        </div>
-        <div class="checkout-summary-group">
-          <div
-            class="checkout-summary-label"
-            id="checkout-summary-label-discount"
-          >
-            Discount
-          </div>
-          <div
-            class="checkout-summary-value"
-            id="checkout-summary-value-discount"
-          >
-            $X,XXX.XX
-          </div>
-        </div>
-        <div class="checkout-summary-group">
-          <div
-            class="checkout-summary-label"
-            id="checkout-summary-label-manufacturing"
-          >
-            Manufacturing
-          </div>
-          <div
-            class="checkout-summary-value"
-            id="checkout-summary-value-manufacturing"
-          >
-            $X,XXX.XX
-          </div>
-        </div>
-        <div class="checkout-summary-group">
-          <div
-            class="checkout-summary-label"
-            id="checkout-summary-label-shipping"
-          >
-            Shipping
-          </div>
-          <div
-            class="checkout-summary-value"
-            id="checkout-summary-value-shipping"
-          >
-            $X,XXX.XX
-          </div>
-        </div>
-        <div class="checkout-summary-group" id="checkout-summary-group-total">
-          <div class="checkout-summary-label" id="checkout-summary-label-total">
-            TOTAL
-          </div>
-          <div class="checkout-summary-value" id="checkout-summary-value-total">
-            $X,XXX.XX
-          </div>
+  <div class="page" id="checkout-pg">
+    <!---------------------------------------------------------------------------------
+    SUMMARY PAGE (DESKTOP ONLY)
+    ---------------------------------------------------------------------------------->
+
+    <div class="checkout-sub-pg" id="checkout-sub-pg-summary">
+      <div id="checkout-summary-heading-container">
+        <h1 class="rmv-h-css">
+          Order Summary
+        </h1>
+      </div>
+      <div class="checkout-summary-group">
+        <div class="checkout-summary-label">Subtotal</div>
+        <div class="checkout-summary-value" id="checkout-summary-value-subtotal">
+          $X,XXX.XX
         </div>
       </div>
+      <div class="checkout-summary-group">
+        <div class="checkout-summary-label" id="checkout-summary-label-discount">
+          Discount
+        </div>
+        <div class="checkout-summary-value" id="checkout-summary-value-discount">
+          $X,XXX.XX
+        </div>
+      </div>
+      <div class="checkout-summary-group">
+        <div class="checkout-summary-label" id="checkout-summary-label-manufacturing">
+          Manufacturing
+        </div>
+        <div class="checkout-summary-value" id="checkout-summary-value-manufacturing">
+          $X,XXX.XX
+        </div>
+      </div>
+      <div class="checkout-summary-group">
+        <div class="checkout-summary-label" id="checkout-summary-label-shipping">
+          Shipping
+        </div>
+        <div class="checkout-summary-value" id="checkout-summary-value-shipping">
+          $X,XXX.XX
+        </div>
+      </div>
+      <div class="checkout-summary-group" id="checkout-summary-group-total">
+        <div class="checkout-summary-label" id="checkout-summary-label-total">
+          TOTAL
+        </div>
+        <div class="checkout-summary-value" id="checkout-summary-value-total">
+          $X,XXX.XX
+        </div>
+      </div>
+    </div>
 
-      <!---------------------------------------------------------------------------------
+    <!---------------------------------------------------------------------------------
         CART PAGE
         ---------------------------------------------------------------------------------->
 
-      <div
-        class="checkout-sub-pg checkout-sub-pg-cart"
-        id="checkout-sub-pg-cart"
-      >
-        <h2
-          class="checkout-heading rmv-h-css hdng-2 checkout-heading-valid"
-          id="checkout-cart-hdng"
-        >
-          Cart
-        </h2>
+    <div class="checkout-sub-pg checkout-sub-pg-cart" id="checkout-sub-pg-cart">
+      <h2 class="checkout-heading rmv-h-css hdng-2 checkout-heading-valid" id="checkout-cart-hdng">
+        Cart
+      </h2>
 
-        <div class="checkout-sub-sub-pgs">
-          <!-----------------------------------------------------------------------------
+      <div class="checkout-sub-sub-pgs">
+        <!-----------------------------------------------------------------------------
             3D PRINTING CART
             ------------------------------------------------------------------------------>
 
-          <div class="checkout-sub-sub-pg" id="cart-sub-pg-prnt">
-            <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
-              3D Printing
-            </h3>
-            <div class="checkout-cart-cnts" id="checkout-prnt-cnts">
-              <div class="checkout-cart-loading-container">
-                <div class="checkout-cart-loading">
-                  <div class="loading-icon">
-                    <div class="layer layer-1"></div>
-                    <div class="layer layer-2"></div>
-                    <div class="layer layer-3"></div>
-                  </div>
+        <div class="checkout-sub-sub-pg" id="cart-sub-pg-prnt">
+          <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+            3D Printing
+          </h3>
+          <div class="checkout-cart-cnts" id="checkout-prnt-cnts">
+            <div class="checkout-cart-loading-container">
+              <div class="checkout-cart-loading">
+                <div class="loading-icon">
+                  <div class="layer layer-1"></div>
+                  <div class="layer layer-2"></div>
+                  <div class="layer layer-3"></div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-----------------------------------------------------------------------------
+        <!-----------------------------------------------------------------------------
             MARKETPLACE CART
             ------------------------------------------------------------------------------>
 
-          <div class="checkout-sub-sub-pg" id="cart-sub-pg-mkpl">
-            <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
-              Marketplace
-            </h3>
-            <div class="checkout-cart-cnts" id="checkout-mkpl-cnts">
-              <div class="checkout-cart-loading-container">
-                <div class="checkout-cart-loading">
-                  <div class="loading-icon">
-                    <div class="layer layer-1"></div>
-                    <div class="layer layer-2"></div>
-                    <div class="layer layer-3"></div>
-                  </div>
+        <div class="checkout-sub-sub-pg" id="cart-sub-pg-mkpl">
+          <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+            Marketplace
+          </h3>
+          <div class="checkout-cart-cnts" id="checkout-mkpl-cnts">
+            <div class="checkout-cart-loading-container">
+              <div class="checkout-cart-loading">
+                <div class="loading-icon">
+                  <div class="layer layer-1"></div>
+                  <div class="layer layer-2"></div>
+                  <div class="layer layer-3"></div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-----------------------------------------------------------------------------
+        <!-----------------------------------------------------------------------------
             DISCOUNT
             ------------------------------------------------------------------------------>
 
-          <div class="checkout-sub-sub-pg" id="cart-sub-pg-dsct">
-            <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
-              Discount
-            </h3>
-            <div class="checkout-dsct-inp-cntn">
-              <input
-                type="text"
-                name="discount"
-                class="inp-txt-1 txt-1 txt-clr-blk-2"
-                id="checkout-dsct-inp"
-                placeholder="Discount Code ..."
-              />
-              <button
-                class="rmv-btn-css btn-1 bgd-clr-vlt-3 txt-clr-wht-1 txt-1"
-                id="checkout-dsct-inp-btn"
-                onclick="checkoutAddDiscount();"
-              >
-                Add
-              </button>
-              <div class="sbtl-1" id="checkout-dsct-inp-err"></div>
-            </div>
-            <div id="checkout-dsct-list-cntn"></div>
+        <div class="checkout-sub-sub-pg" id="cart-sub-pg-dsct">
+          <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+            Discount
+          </h3>
+          <div class="checkout-dsct-inp-cntn">
+            <input type="text" name="discount" class="inp-txt-1 txt-1 txt-clr-blk-2" id="checkout-dsct-inp"
+              placeholder="Discount Code ..." />
+            <button class="rmv-btn-css btn-1 bgd-clr-vlt-3 txt-clr-wht-1 txt-1" id="checkout-dsct-inp-btn"
+              onclick="checkoutAddDiscount();">
+              Add
+            </button>
+            <div class="sbtl-1" id="checkout-dsct-inp-err"></div>
           </div>
+          <div id="checkout-dsct-list-cntn"></div>
+        </div>
 
-          <!-----------------------------------------------------------------------------
+        <!-----------------------------------------------------------------------------
             MANUFACTURING SPEED
             ------------------------------------------------------------------------------>
 
-          <div class="checkout-sub-sub-pg" id="cart-sub-pg-mnft-spd">
-            <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
-              Manufacturing Speed
-            </h3>
+        <div class="checkout-sub-sub-pg" id="cart-sub-pg-mnft-spd">
+          <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+            Manufacturing Speed
+          </h3>
 
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="manufacturingSpeed"
-                class="checkout-radio"
-                id="checkout-mnft-spd-opt-nrml"
-                onchange="checkout.cart.manufacturingSpeed.select('normal');"
-              />
-              <label
-                for="checkout-mnft-spd-opt-nrml"
-                class="checkout-radio-label"
-                >Normal (1-3 days)</label
-              >
-            </div>
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="manufacturingSpeed"
-                class="checkout-radio"
-                id="checkout-mnft-spd-opt-urgt"
-                onchange="checkout.cart.manufacturingSpeed.select('urgent');"
-              />
-              <label
-                for="checkout-mnft-spd-opt-urgt"
-                class="checkout-radio-label"
-                >Urgent (1 day)</label
-              >
-            </div>
+          <div class="checkout-radio-container">
+            <input type="radio" name="manufacturingSpeed" class="checkout-radio" id="checkout-mnft-spd-opt-nrml"
+              onchange="checkout.cart.manufacturingSpeed.select('normal');" />
+            <label for="checkout-mnft-spd-opt-nrml" class="checkout-radio-label">Normal (1-3 days)</label>
           </div>
+          <div class="checkout-radio-container">
+            <input type="radio" name="manufacturingSpeed" class="checkout-radio" id="checkout-mnft-spd-opt-urgt"
+              onchange="checkout.cart.manufacturingSpeed.select('urgent');" />
+            <label for="checkout-mnft-spd-opt-urgt" class="checkout-radio-label">Urgent (1 day)</label>
+          </div>
+        </div>
 
-          <!-----------------------------------------------------------------------------
+        <!-----------------------------------------------------------------------------
             PRE-SHIPPING TOTAL
             ------------------------------------------------------------------------------>
 
-          <div class="checkout-sub-sub-pg" id="cart-sub-pg-prc">
-            <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
-              Pre-Shipping Total
-            </h3>
-            <div class="checkout-cart-prcs">
-              <div class="checkout-pricing-container">
-                <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3">
-                  Subtotal
-                </p>
-                <p
-                  class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2"
-                  id="checkout-cart-sub-total"
-                ></p>
-              </div>
-              <div class="checkout-pricing-container">
-                <p
-                  class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
-                  id="checkout-cart-discount-label"
-                >
-                  Discount
-                </p>
-                <p
-                  class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2"
-                  id="checkout-cart-discount"
-                ></p>
-              </div>
-              <div class="checkout-pricing-container">
-                <p
-                  class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
-                  id="checkout-cart-manufacturing-fee-label"
-                >
-                  Manufacturing
-                </p>
-                <p
-                  class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2"
-                  id="checkout-cart-manufacturing-fee"
-                ></p>
-              </div>
-              <div class="checkout-pricing-container total">
-                <p class="checkout-cart-prc-lbl rmv-p-css hdng-1 txt-clr-blk-2">
-                  TOTAL
-                </p>
-                <p
-                  class="checkout-cart-prc rmv-p-css hdng-1 txt-clr-blk-1"
-                  id="checkout-cart-total"
-                ></p>
-              </div>
+        <div class="checkout-sub-sub-pg" id="cart-sub-pg-prc">
+          <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+            Pre-Shipping Total
+          </h3>
+          <div class="checkout-cart-prcs">
+            <div class="checkout-pricing-container">
+              <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3">
+                Subtotal
+              </p>
+              <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2" id="checkout-cart-sub-total"></p>
+            </div>
+            <div class="checkout-pricing-container">
+              <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3" id="checkout-cart-discount-label">
+                Discount
+              </p>
+              <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2" id="checkout-cart-discount"></p>
+            </div>
+            <div class="checkout-pricing-container">
+              <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
+                id="checkout-cart-manufacturing-fee-label">
+                Manufacturing
+              </p>
+              <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2" id="checkout-cart-manufacturing-fee"></p>
+            </div>
+            <div class="checkout-pricing-container total">
+              <p class="checkout-cart-prc-lbl rmv-p-css hdng-1 txt-clr-blk-2">
+                TOTAL
+              </p>
+              <p class="checkout-cart-prc rmv-p-css hdng-1 txt-clr-blk-1" id="checkout-cart-total"></p>
             </div>
           </div>
         </div>
-        <!-----------------------------------------------------------------------------
+      </div>
+      <!-----------------------------------------------------------------------------
           CONTINUE BUTTON
           ------------------------------------------------------------------------------>
-        <div class="checkout-buttons">
-          <a
-            href="/"
-            class="rmv-link-css checkout-button checkout-button-valid"
-          >
-            Exit
-          </a>
-          <button
-            class="rmv-btn-css checkout-button"
-            id="checkout-element-button-cart-next"
-          >
-            Next
-          </button>
-        </div>
+      <div class="checkout-buttons">
+        <a href="/" class="rmv-link-css checkout-button checkout-button-valid">
+          Exit
+        </a>
+        <button class="rmv-btn-css checkout-button" id="checkout-element-button-cart-next">
+          Next
+        </button>
       </div>
+    </div>
 
-      <!---------------------------------------------------------------------------------
+    <!---------------------------------------------------------------------------------
       SHIPPING PAGE
       ---------------------------------------------------------------------------------->
 
-      <div
-        class="checkout-sub-pg checkout-sub-pg-shipping checkout-sub-pg-right"
-        id="checkout-sub-pg-shipping"
-      >
-        <h2 class="checkout-heading rmv-h-css hdng-2" id="checkout-shpg-hdng">
-          Shipping
-        </h2>
+    <div class="checkout-sub-pg checkout-sub-pg-shipping checkout-sub-pg-right" id="checkout-sub-pg-shipping">
+      <h2 class="checkout-heading rmv-h-css hdng-2" id="checkout-shpg-hdng">
+        Shipping
+      </h2>
 
-        <div class="checkout-sub-sub-pgs">
-          <!-----------------------------------------------------------------------------
+      <div class="checkout-sub-sub-pgs">
+        <!-----------------------------------------------------------------------------
           SHIPPING ADDRESS
           ------------------------------------------------------------------------------>
 
-          <div class="checkout-sub-sub-pg">
-            <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
-              Shipping Address
-            </h3>
+        <div class="checkout-sub-sub-pg">
+          <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+            Shipping Address
+          </h3>
 
-            <!---------------------------------------------------------------------------
+          <!---------------------------------------------------------------------------
             SAVED ADDRESS
             ---------------------------------------------------------------------------->
 
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="address"
-                class="checkout-radio"
-                id="checkout-shpg-adrs-svd-inp"
-                onchange="checkout.shipping.address.select('saved', true);"
-              />
-              <label
-                for="checkout-shpg-adrs-svd-inp"
-                class="checkout-radio-label"
-                id="checkout-saved-address-label"
-                >Saved Address</label
-              >
-            </div>
-            <div
-              id="checkout-radio-error-saved-address"
-              class="checkout-radio-error checkout-element-hide"
-            ></div>
-            <div
-              class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-svd checkout-element-hide"
-              id="checkout-shpg-adrs-cntn-svd"
-            ></div>
+          <div class="checkout-radio-container">
+            <input type="radio" name="address" class="checkout-radio" id="checkout-shpg-adrs-svd-inp"
+              onchange="checkout.shipping.address.select('saved', true);" />
+            <label for="checkout-shpg-adrs-svd-inp" class="checkout-radio-label" id="checkout-saved-address-label">Saved
+              Address</label>
+          </div>
+          <div id="checkout-radio-error-saved-address" class="checkout-radio-error checkout-element-hide"></div>
+          <div class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-svd checkout-element-hide"
+            id="checkout-shpg-adrs-cntn-svd"></div>
 
-            <!---------------------------------------------------------------------------
+          <!---------------------------------------------------------------------------
             NEW ADDRESS
             ---------------------------------------------------------------------------->
 
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="address"
-                class="checkout-radio"
-                id="checkout-shpg-adrs-new-inp"
-                onchange="checkout.shipping.address.select('new', true);"
-              />
-              <label
-                for="checkout-shpg-adrs-new-inp"
-                class="checkout-radio-label"
-                >New Address</label
-              >
-            </div>
-            <div
-              class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-new checkout-element-hide"
-              id="checkout-shpg-adrs-cntn-new"
-            >
-              <label
-                for="checkout-shpg-adrs-new-unit"
-                class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
-                id="checkout-shpg-adrs-new-unit-lbl"
-                >Unit (optional)</label
-              >
-              <label
-                for="checkout-shpg-adrs-new-st-num"
-                class=" checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
-                id="checkout-shpg-adrs-new-st-num-lbl"
-                >Street No.</label
-              >
-              <input
-                type="text"
-                name="unit"
-                class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                id="checkout-shpg-adrs-new-unit"
-                placeholder="Unit (optional)"
-                oninput="checkout.shipping.address.new.validate.all('unit');"
-                onchange="checkout.shipping.address.new.update('unit');"
-              />
-              <input
-                type="text"
-                name="streetNumber"
-                class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                id="checkout-shpg-adrs-new-st-num"
-                placeholder="Street No."
-                oninput="checkout.shipping.address.new.validate.all('streetNumber');"
-                onchange="checkout.shipping.address.new.update('streetNumber');"
-              />
-              <div
-                class="sbtl-1 checkout-input-error"
-                id="checkout-shipping-unit-error"
-              ></div>
-              <div
-                class="sbtl-1 checkout-input-error"
-                id="checkout-shipping-street-number-error"
-              ></div>
-              <label
-                for="checkout-shpg-adrs-new-st-name"
-                class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
-                id="checkout-shpg-adrs-new-st-name-lbl"
-                >Street Name</label
-              >
-              <input
-                type="text"
-                name="streetName"
-                class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                id="checkout-shpg-adrs-new-st-name"
-                placeholder="Street Name"
-                oninput="checkout.shipping.address.new.validate.all('streetName');"
-                onchange="checkout.shipping.address.new.update('streetName');"
-              />
-              <div
-                class="sbtl-1 checkout-input-error"
-                id="checkout-shipping-street-name-error"
-              ></div>
-              <label
-                for="checkout-shpg-adrs-new-sbrb"
-                class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
-                id="checkout-shpg-adrs-new-sbrb-lbl"
-                >Suburb</label
-              >
-              <input
-                type="text"
-                name="suburb"
-                class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                id="checkout-shpg-adrs-new-sbrb"
-                placeholder="Suburb"
-                oninput="checkout.shipping.address.new.validate.all('suburb');"
-                onchange="checkout.shipping.address.new.update('suburb');"
-              />
-              <div
-                class="sbtl-1 checkout-input-error"
-                id="checkout-shipping-suburb-error"
-              ></div>
-              <label
-                for="checkout-shpg-adrs-new-cty"
-                class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
-                id="checkout-shpg-adrs-new-cty-lbl"
-                >City</label
-              >
-              <input
-                type="text"
-                name="city"
-                class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                id="checkout-shpg-adrs-new-cty"
-                placeholder="City"
-                oninput="checkout.shipping.address.new.validate.all('city');"
-                onchange="checkout.shipping.address.new.update('city');"
-              />
-              <div
-                class="sbtl-1 checkout-input-error"
-                id="checkout-shipping-city-error"
-              ></div>
-              <label
-                for="checkout-shpg-adrs-new-zp-cd"
-                class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
-                id="checkout-shpg-adrs-new-zp-cd-lbl"
-                >Zip Code</label
-              >
-              <input
-                type="text"
-                name="zipCode"
-                class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                id="checkout-shpg-adrs-new-zp-cd"
-                placeholder="Zip Code"
-                oninput="checkout.shipping.address.new.validate.all('postcode');"
-                onchange="checkout.shipping.address.new.update('postcode');"
-              />
-              <div
-                class="sbtl-1 checkout-input-error"
-                id="checkout-shipping-postcode-error"
-              ></div>
-              <label
-                for="checkout-shpg-adrs-new-cnty"
-                class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
-                id="checkout-shpg-adrs-new-cnty-lbl"
-                >Country</label
-              >
-              <input
-                type="text"
-                name="country"
-                class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
-                id="checkout-shpg-adrs-new-cnty"
-                placeholder="Country"
-                oninput="checkout.shipping.address.new.validate.all('country');"
-                onchange="checkout.shipping.address.new.update('country');"
-              />
-              <div
-                class="sbtl-1 checkout-input-error"
-                id="checkout-shipping-country-error"
-              ></div>
-              <div id="checkout-shipping-save-address">
-                <input
-                  type="checkbox"
-                  name="saveAddress"
-                  id="checkout-shipping-save-address-input"
-                  onchange="checkout.shipping.address.new.toggleSave(this.checked);"
-                />
-                <label for="checkout-shipping-save-address-input"
-                  >Save Address</label
-                >
-              </div>
+          <div class="checkout-radio-container">
+            <input type="radio" name="address" class="checkout-radio" id="checkout-shpg-adrs-new-inp"
+              onchange="checkout.shipping.address.select('new', true);" />
+            <label for="checkout-shpg-adrs-new-inp" class="checkout-radio-label">New Address</label>
+          </div>
+          <div class="checkout-shpg-adrs-cntn checkout-shpg-adrs-cntn-new checkout-element-hide"
+            id="checkout-shpg-adrs-cntn-new">
+            <label for="checkout-shpg-adrs-new-unit" class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+              id="checkout-shpg-adrs-new-unit-lbl">Unit (optional)</label>
+            <label for="checkout-shpg-adrs-new-st-num" class=" checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+              id="checkout-shpg-adrs-new-st-num-lbl">Street No.</label>
+            <input type="text" name="unit" class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+              id="checkout-shpg-adrs-new-unit" placeholder="Unit (optional)"
+              oninput="checkout.shipping.address.new.validate.all('unit');"
+              onchange="checkout.shipping.address.new.update('unit');" />
+            <input type="text" name="streetNumber" class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+              id="checkout-shpg-adrs-new-st-num" placeholder="Street No."
+              oninput="checkout.shipping.address.new.validate.all('streetNumber');"
+              onchange="checkout.shipping.address.new.update('streetNumber');" />
+            <div class="sbtl-1 checkout-input-error" id="checkout-shipping-unit-error"></div>
+            <div class="sbtl-1 checkout-input-error" id="checkout-shipping-street-number-error"></div>
+            <label for="checkout-shpg-adrs-new-st-name" class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+              id="checkout-shpg-adrs-new-st-name-lbl">Street Name</label>
+            <input type="text" name="streetName" class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+              id="checkout-shpg-adrs-new-st-name" placeholder="Street Name"
+              oninput="checkout.shipping.address.new.validate.all('streetName');"
+              onchange="checkout.shipping.address.new.update('streetName');" />
+            <div class="sbtl-1 checkout-input-error" id="checkout-shipping-street-name-error"></div>
+            <label for="checkout-shpg-adrs-new-sbrb" class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+              id="checkout-shpg-adrs-new-sbrb-lbl">Suburb</label>
+            <input type="text" name="suburb" class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+              id="checkout-shpg-adrs-new-sbrb" placeholder="Suburb"
+              oninput="checkout.shipping.address.new.validate.all('suburb');"
+              onchange="checkout.shipping.address.new.update('suburb');" />
+            <div class="sbtl-1 checkout-input-error" id="checkout-shipping-suburb-error"></div>
+            <label for="checkout-shpg-adrs-new-cty" class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+              id="checkout-shpg-adrs-new-cty-lbl">City</label>
+            <input type="text" name="city" class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+              id="checkout-shpg-adrs-new-cty" placeholder="City"
+              oninput="checkout.shipping.address.new.validate.all('city');"
+              onchange="checkout.shipping.address.new.update('city');" />
+            <div class="sbtl-1 checkout-input-error" id="checkout-shipping-city-error"></div>
+            <label for="checkout-shpg-adrs-new-zp-cd" class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+              id="checkout-shpg-adrs-new-zp-cd-lbl">Zip Code</label>
+            <input type="text" name="zipCode" class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+              id="checkout-shpg-adrs-new-zp-cd" placeholder="Zip Code"
+              oninput="checkout.shipping.address.new.validate.all('postcode');"
+              onchange="checkout.shipping.address.new.update('postcode');" />
+            <div class="sbtl-1 checkout-input-error" id="checkout-shipping-postcode-error"></div>
+            <label for="checkout-shpg-adrs-new-cnty" class="checkout-shpg-adrs-new-lbl sbtl-1 txt-clr-blk-3"
+              id="checkout-shpg-adrs-new-cnty-lbl">Country</label>
+            <input type="text" name="country" class="checkout-shpg-adrs-new-inp inp-txt-1 txt-1 txt-clr-blk-2"
+              id="checkout-shpg-adrs-new-cnty" placeholder="Country"
+              oninput="checkout.shipping.address.new.validate.all('country');"
+              onchange="checkout.shipping.address.new.update('country');" />
+            <div class="sbtl-1 checkout-input-error" id="checkout-shipping-country-error"></div>
+            <div id="checkout-shipping-save-address">
+              <input type="checkbox" name="saveAddress" id="checkout-shipping-save-address-input"
+                onchange="checkout.shipping.address.new.toggleSave(this.checked);" />
+              <label for="checkout-shipping-save-address-input">Save Address</label>
             </div>
           </div>
+        </div>
 
-          <!-----------------------------------------------------------------------------
+        <!-----------------------------------------------------------------------------
             SHIPPING METHOD
             ------------------------------------------------------------------------------>
 
-          <div class="checkout-sub-sub-pg">
-            <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
-              Shipping Method
-            </h3>
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="shippingMethod"
-                class="checkout-radio"
-                id="checkout-shpg-mthd-inp-pckp"
-                onchange="checkout.shipping.method.select('pickup');"
-              />
-              <label
-                for="checkout-shpg-mthd-inp-pckp"
-                class="checkout-radio-label"
-                >Pickup</label
-              >
-            </div>
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="shippingMethod"
-                class="checkout-radio"
-                id="checkout-shpg-mthd-inp-trck"
-                onchange="checkout.shipping.method.select('tracked');"
-              />
-              <label
-                for="checkout-shpg-mthd-inp-trck"
-                class="checkout-radio-label"
-                >Tracked</label
-              >
-            </div>
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="shippingMethod"
-                class="checkout-radio"
-                id="checkout-shpg-mthd-inp-crr"
-                onchange="checkout.shipping.method.select('courier');"
-              />
-              <label
-                for="checkout-shpg-mthd-inp-crr"
-                class="checkout-radio-label"
-                >Courier</label
-              >
-            </div>
+        <div class="checkout-sub-sub-pg">
+          <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+            Shipping Method
+          </h3>
+          <div class="checkout-radio-container">
+            <input type="radio" name="shippingMethod" class="checkout-radio" id="checkout-shpg-mthd-inp-pckp"
+              onchange="checkout.shipping.method.select('pickup');" />
+            <label for="checkout-shpg-mthd-inp-pckp" class="checkout-radio-label">Pickup</label>
           </div>
+          <div class="checkout-radio-container">
+            <input type="radio" name="shippingMethod" class="checkout-radio" id="checkout-shpg-mthd-inp-trck"
+              onchange="checkout.shipping.method.select('tracked');" />
+            <label for="checkout-shpg-mthd-inp-trck" class="checkout-radio-label">Tracked</label>
+          </div>
+          <div class="checkout-radio-container">
+            <input type="radio" name="shippingMethod" class="checkout-radio" id="checkout-shpg-mthd-inp-crr"
+              onchange="checkout.shipping.method.select('courier');" />
+            <label for="checkout-shpg-mthd-inp-crr" class="checkout-radio-label">Courier</label>
+          </div>
+        </div>
 
-          <!-----------------------------------------------------------------------------
+        <!-----------------------------------------------------------------------------
             ORDER TOTAL
             ------------------------------------------------------------------------------>
 
-          <div class="checkout-sub-sub-pg" id="cart-sub-pg-prc">
-            <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
-              Order Total
-            </h3>
-            <div class="checkout-cart-prcs">
-              <div class="checkout-pricing-container">
-                <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3">
-                  Subtotal
-                </p>
-                <p
-                  class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2"
-                  id="checkout-cart-sub-total"
-                ></p>
-              </div>
-              <div class="checkout-pricing-container">
-                <p
-                  class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3"
-                  id="checkout-cart-discount-label"
-                >
-                  Shipping
-                </p>
-                <p
-                  class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2"
-                  id="checkout-cart-discount"
-                ></p>
-              </div>
-              <div class="checkout-pricing-container total">
-                <p class="checkout-cart-prc-lbl rmv-p-css hdng-1 txt-clr-blk-2">
-                  TOTAL
-                </p>
-                <p
-                  class="checkout-cart-prc rmv-p-css hdng-1 txt-clr-blk-1"
-                  id="checkout-cart-total"
-                ></p>
-              </div>
+        <div class="checkout-sub-sub-pg" id="cart-sub-pg-prc">
+          <h3 class="checkout-sub-sub-hdng rmv-h-css hdng-1 txt-clr-blk-3">
+            Order Total
+          </h3>
+          <div class="checkout-cart-prcs">
+            <div class="checkout-pricing-container">
+              <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3">
+                Subtotal
+              </p>
+              <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2" id="checkout-cart-sub-total"></p>
+            </div>
+            <div class="checkout-pricing-container">
+              <p class="checkout-cart-prc-lbl rmv-p-css sbtl-2 txt-clr-blk-3" id="checkout-cart-discount-label">
+                Shipping
+              </p>
+              <p class="checkout-cart-prc rmv-p-css sbtl-2 txt-clr-blk-2" id="checkout-cart-discount"></p>
+            </div>
+            <div class="checkout-pricing-container total">
+              <p class="checkout-cart-prc-lbl rmv-p-css hdng-1 txt-clr-blk-2">
+                TOTAL
+              </p>
+              <p class="checkout-cart-prc rmv-p-css hdng-1 txt-clr-blk-1" id="checkout-cart-total"></p>
             </div>
           </div>
         </div>
-        <!-----------------------------------------------------------------------------
+      </div>
+      <!-----------------------------------------------------------------------------
           CONTINUE BUTTON
           ------------------------------------------------------------------------------>
-        <div class="checkout-buttons">
-          <button
-            class="rmv-btn-css checkout-button checkout-button-valid"
-            id="checkout-element-button-shipping-back"
-          >
-            Back
-          </button>
-          <button
-            class="rmv-btn-css checkout-button"
-            id="checkout-element-button-shipping-next"
-          >
-            Next
-          </button>
-        </div>
+      <div class="checkout-buttons">
+        <button class="rmv-btn-css checkout-button checkout-button-valid" id="checkout-element-button-shipping-back">
+          Back
+        </button>
+        <button class="rmv-btn-css checkout-button" id="checkout-element-button-shipping-next">
+          Next
+        </button>
       </div>
+    </div>
 
-      <!---------------------------------------------------------------------------------
+    <!---------------------------------------------------------------------------------
       PAYMENT PAGE
       ---------------------------------------------------------------------------------->
 
-      <div
-        class="checkout-sub-pg checkout-sub-pg-payment checkout-sub-pg-right"
-        id="checkout-sub-pg-payment"
-      >
-        <h2 class="checkout-heading rmv-h-css hdng-2" id="checkout-pymt-hdng">
-          Payment
-        </h2>
-        <div class="checkout-sub-sub-pgs" id="checkout-pymt-sub-sub-pg">
-          <div id="checkout-pymt-bank-tsfr">
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="paymentMethod"
-                class="checkout-radio"
-                id="checkout-payment-method-bank-transfer"
-                onchange="checkout.payment.method.select('bankTransfer',true);"
-              />
-              <label
-                for="checkout-payment-method-bank-transfer"
-                class="checkout-radio-label"
-                >Bank Transfer</label
-              >
+    <div class="checkout-sub-pg checkout-sub-pg-payment checkout-sub-pg-right" id="checkout-sub-pg-payment">
+      <h2 class="checkout-heading rmv-h-css hdng-2" id="checkout-pymt-hdng">
+        Payment
+      </h2>
+      <div class="checkout-sub-sub-pgs" id="checkout-pymt-sub-sub-pg">
+        <div id="checkout-pymt-bank-tsfr">
+          <div class="checkout-radio-container">
+            <input type="radio" name="paymentMethod" class="checkout-radio" id="checkout-payment-method-bank-transfer"
+              onchange="checkout.payment.method.select('bankTransfer',true);" />
+            <label for="checkout-payment-method-bank-transfer" class="checkout-radio-label">Bank Transfer</label>
+          </div>
+          <div class="checkout-radio-valid">Receive 5% Credit</div>
+          <div class="checkout-element-hide checkout-payment-bank-transfer-container" id="checkout-pymt-bank-tsfr-cntn">
+            <div id="checkout-payment-bank-transfer-instruction">
+              <div class="checkout-bank-transfer-instruction-line">
+                <h4 class="rmv-h-css">Account Number:</h4>
+                <p class="rmv-p-css">12-3456-7891011-12</p>
+              </div>
+              <div class="checkout-bank-transfer-instruction-line">
+                <h4 class="rmv-h-css">Payee Name:</h4>
+                <p class="rmv-p-css">CreataBase</p>
+              </div>
+              <div class="checkout-bank-transfer-instruction-line">
+                <h4 class="rmv-h-css">Reference:</h4>
+                <p class="rmv-p-css" id="checkout-bank-transfer-reference"></p>
+              </div>
+              <div class="checkout-bank-transfer-instruction-line">
+                <h4 class="rmv-h-css">Minimum Amount:</h4>
+                <p class="rmv-p-css" id="checkout-bank-transfer-amount"></p>
+              </div>
+              <div id="checkout-bank-transfer-instruction-comment">
+                <div>
+                  <h3 class="rmv-h-css">
+                    You can transfer more than
+                  </h3>
+                  <h3 class="rmv-h-css">
+                    the minimum amount and will
+                  </h3>
+                  <h3 class="rmv-h-css">
+                    go to your account wallet.
+                  </h3>
+                  <h3 class="rmv-h-css">
+                    You can easily withdraw back
+                  </h3>
+                  <h3 class="rmv-h-css">
+                    funds from your wallet.
+                  </h3>
+                </div>
+              </div>
             </div>
-            <div class="checkout-radio-valid">Receive 5% Credit</div>
-            <div
-              class="checkout-element-hide checkout-payment-bank-transfer-container"
-              id="checkout-pymt-bank-tsfr-cntn"
-            >
-              <div id="checkout-payment-bank-transfer-instruction">
-                <div class="checkout-bank-transfer-instruction-line">
-                  <h4 class="rmv-h-css">Account Number:</h4>
-                  <p class="rmv-p-css">12-3456-7891011-12</p>
-                </div>
-                <div class="checkout-bank-transfer-instruction-line">
-                  <h4 class="rmv-h-css">Payee Name:</h4>
-                  <p class="rmv-p-css">CreataBase</p>
-                </div>
-                <div class="checkout-bank-transfer-instruction-line">
-                  <h4 class="rmv-h-css">Reference:</h4>
-                  <p
-                    class="rmv-p-css"
-                    id="checkout-bank-transfer-reference"
-                  ></p>
-                </div>
-                <div class="checkout-bank-transfer-instruction-line">
-                  <h4 class="rmv-h-css">Minimum Amount:</h4>
-                  <p class="rmv-p-css" id="checkout-bank-transfer-amount"></p>
-                </div>
-                <div id="checkout-bank-transfer-instruction-comment">
-                  <div>
-                    <h3 class="rmv-h-css">
-                      You can transfer more than
-                    </h3>
-                    <h3 class="rmv-h-css">
-                      the minimum amount and will
-                    </h3>
-                    <h3 class="rmv-h-css">
-                      go to your account wallet.
-                    </h3>
-                    <h3 class="rmv-h-css">
-                      You can easily withdraw back
-                    </h3>
-                    <h3 class="rmv-h-css">
-                      funds from your wallet.
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div class="checkout-buttons">
-                <button
-                  class="rmv-btn-css checkout-button checkout-button-valid"
-                  id="checkout-element-button-payment-bank-back"
-                >
-                  Back
-                </button>
-                <button
-                  class="rmv-btn-css checkout-button"
-                  id="checkout-element-button-payment-bank-paid"
-                >
-                  Paid
-                </button>
-              </div>
+            <div class="checkout-buttons">
+              <button class="rmv-btn-css checkout-button checkout-button-valid"
+                id="checkout-element-button-payment-bank-back">
+                Back
+              </button>
+              <button class="rmv-btn-css checkout-button" id="checkout-element-button-payment-bank-paid">
+                Paid
+              </button>
             </div>
           </div>
-          <div id="checkout-pymt-card">
-            <div class="checkout-radio-container">
-              <input
-                type="radio"
-                name="paymentMethod"
-                class="checkout-radio"
-                id="checkout-payment-method-card"
-                onchange="checkout.payment.method.select('card', true);"
-              />
-              <label
-                for="checkout-payment-method-card"
-                class="checkout-radio-label"
-                >Debit Card or Credit Card</label
-              >
-            </div>
-            <div
-              class="checkout-element-hide checkout-payment-card-container"
-              id="checkout-pymt-card-cntn"
-            >
-              <form action="/charge" method="post" id="checkout-pymt-card-form">
-                <div
-                  class="checkout-payment-card-input-container"
-                  id="checkout-card-number-container"
-                >
-                  <label for="checkout-card-num">Card Number</label>
-                  <div id="checkout-card-num"></div>
-                  <p
-                    class="rmv-p-css checkout-input-error"
-                    id="checkout-card-number-error"
-                  ></p>
-                </div>
-                <div
-                  class="checkout-payment-card-input-container"
-                  id="checkout-card-expiry-container"
-                >
-                  <label for="checkout-card-exp">Expiry Date</label>
-                  <div id="checkout-card-exp"></div>
-                  <p
-                    class="rmv-p-css checkout-input-error"
-                    id="checkout-card-expiry-error"
-                  ></p>
-                </div>
-                <div
-                  class="checkout-payment-card-input-container"
-                  id="checkout-card-cvc-container"
-                >
-                  <label for="checkout-card-cvc">CVC</label>
-                  <div id="checkout-card-cvc"></div>
-                  <p
-                    class="rmv-p-css checkout-input-error"
-                    id="checkout-card-cvc-error"
-                  ></p>
-                </div>
-              </form>
-              <div class="checkout-buttons">
-                <button
-                  class="rmv-btn-css checkout-button checkout-button-valid"
-                  id="checkout-element-button-payment-card-back"
-                >
-                  Back
-                </button>
-                <button
-                  class="rmv-btn-css checkout-button"
-                  id="checkout-element-button-payment-card-pay"
-                >
-                  Pay
-                </button>
+        </div>
+        <div id="checkout-pymt-card">
+          <div class="checkout-radio-container">
+            <input type="radio" name="paymentMethod" class="checkout-radio" id="checkout-payment-method-card"
+              onchange="checkout.payment.method.select('card', true);" />
+            <label for="checkout-payment-method-card" class="checkout-radio-label">Debit Card or Credit Card</label>
+          </div>
+          <div class="checkout-element-hide checkout-payment-card-container" id="checkout-pymt-card-cntn">
+            <form action="/charge" method="post" id="checkout-pymt-card-form">
+              <div class="checkout-payment-card-input-container" id="checkout-card-number-container">
+                <label for="checkout-card-num">Card Number</label>
+                <div id="checkout-card-num"></div>
+                <p class="rmv-p-css checkout-input-error" id="checkout-card-number-error"></p>
               </div>
+              <div class="checkout-payment-card-input-container" id="checkout-card-expiry-container">
+                <label for="checkout-card-exp">Expiry Date</label>
+                <div id="checkout-card-exp"></div>
+                <p class="rmv-p-css checkout-input-error" id="checkout-card-expiry-error"></p>
+              </div>
+              <div class="checkout-payment-card-input-container" id="checkout-card-cvc-container">
+                <label for="checkout-card-cvc">CVC</label>
+                <div id="checkout-card-cvc"></div>
+                <p class="rmv-p-css checkout-input-error" id="checkout-card-cvc-error"></p>
+              </div>
+            </form>
+            <div class="checkout-buttons">
+              <button class="rmv-btn-css checkout-button checkout-button-valid"
+                id="checkout-element-button-payment-card-back">
+                Back
+              </button>
+              <button class="rmv-btn-css checkout-button" id="checkout-element-button-payment-card-pay">
+                Pay
+              </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!---------------------------------------------------------------------------------
+    <!---------------------------------------------------------------------------------
       COMPLETE PAGE
       ---------------------------------------------------------------------------------->
 
-      <div
-        id="checkout-complete-container"
-        class="checkout-complete-container checkout-element-hide"
-      >
-        <div id="checkout-complete-loading-icon">
-          <div class="load-1">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+    <div id="checkout-complete-container" class="checkout-complete-container checkout-element-hide">
+      <div id="checkout-complete-loading-icon">
+        <div class="load-1">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-        <p id="checkout-complete-text">Some Text Here ...</p>
       </div>
+      <p id="checkout-complete-text">Some Text Here ...</p>
+    </div>
 
-      <!---------------------------------------------------------------------------------
+    <!---------------------------------------------------------------------------------
       NAVIGATION SYSTEM
       ---------------------------------------------------------------------------------->
 
-      <nav id="checkout-navigation-container">
-        <div
-          class="checkout-navigation-icon-container checkout-navigation-icon-container-selected"
-          id="checkout-navigation-cart"
-        >
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-black"
-            src="./../../public/images/checkout/cart-black-2.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-white"
-            src="./../../public/images/checkout/cart-white-2.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-green"
-            src="./../../public/images/checkout/cart-green.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-grey"
-            src="./../../public/images/checkout/cart-white-3.png"
-            alt=""
-          />
-        </div>
-        <div
-          class="checkout-navigation-icon-container checkout-navigation-icon-container-deselected unavailable"
-          id="checkout-navigation-shipping"
-        >
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-black"
-            src="./../../public/images/checkout/shipping-black-2.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-white"
-            src="./../../public/images/checkout/shipping-white-2.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-green"
-            src="./../../public/images/checkout/shipping-green.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-grey"
-            src="./../../public/images/checkout/shipping-white-3.png"
-            alt=""
-          />
-        </div>
-        <div
-          class="checkout-navigation-icon-container checkout-navigation-icon-container-deselected unavailable"
-          id="checkout-navigation-payment"
-        >
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-black"
-            src="./../../public/images/checkout/payment-black-2.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-white"
-            src="./../../public/images/checkout/payment-white-2.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-green"
-            src="./../../public/images/checkout/payment-green.png"
-            alt=""
-          />
-          <img
-            class="checkout-navigation-icon checkout-navigation-icon-grey"
-            src="./../../public/images/checkout/payment-white-3.png"
-            alt=""
-          />
-        </div>
-      </nav>
-    </div>
-    <div id="checkout-loading-display">
-      <div id="checkout-loading-display-load">
-        <div class="load-2">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+    <nav id="checkout-navigation-container">
+      <div class="checkout-navigation-icon-container checkout-navigation-icon-container-selected"
+        id="checkout-navigation-cart">
+        <img class="checkout-navigation-icon checkout-navigation-icon-black"
+          src="./../../public/images/checkout/cart-black-2.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-white"
+          src="./../../public/images/checkout/cart-white-2.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-green"
+          src="./../../public/images/checkout/cart-green.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-grey"
+          src="./../../public/images/checkout/cart-white-3.png" alt="" />
       </div>
-      <p id="checkout-loading-display-text">loading order details</p>
+      <div class="checkout-navigation-icon-container checkout-navigation-icon-container-deselected unavailable"
+        id="checkout-navigation-shipping">
+        <img class="checkout-navigation-icon checkout-navigation-icon-black"
+          src="./../../public/images/checkout/shipping-black-2.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-white"
+          src="./../../public/images/checkout/shipping-white-2.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-green"
+          src="./../../public/images/checkout/shipping-green.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-grey"
+          src="./../../public/images/checkout/shipping-white-3.png" alt="" />
+      </div>
+      <div class="checkout-navigation-icon-container checkout-navigation-icon-container-deselected unavailable"
+        id="checkout-navigation-payment">
+        <img class="checkout-navigation-icon checkout-navigation-icon-black"
+          src="./../../public/images/checkout/payment-black-2.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-white"
+          src="./../../public/images/checkout/payment-white-2.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-green"
+          src="./../../public/images/checkout/payment-green.png" alt="" />
+        <img class="checkout-navigation-icon checkout-navigation-icon-grey"
+          src="./../../public/images/checkout/payment-white-3.png" alt="" />
+      </div>
+    </nav>
+  </div>
+  <div id="checkout-loading-display">
+    <div id="checkout-loading-display-load">
+      <div class="load-2">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-  </body>
+    <p id="checkout-loading-display-text">loading order details</p>
+  </div>
+</body>
+
 </html>

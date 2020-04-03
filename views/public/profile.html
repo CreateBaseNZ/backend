@@ -23,11 +23,7 @@
 
 <body onload="navInit(); profileInit();">
 
-<<<<<<< HEAD
 <nav>
-=======
-  <nav>
->>>>>>> c0f04dcf38fb2cceeaa14d28acb83ede6c0fba7d
     <div class="nav-darken-overlay"></div>
     <div class="nav-top-bar">
       <button class="hamburger hamburger-spin" type="button">
@@ -145,14 +141,14 @@
 <script>
   const profileUploadPicture = async () => {
     const file = new FormData(document.querySelector("#profile-upload-form"));
-      let data;
-      try {
-        data = (await axios.post("/profile/customer/update/picture", file))["data"];
-      } catch (error) {
-        console.log(error);
-        return;
-      }
-      console.log(data);
+    let data;
+    try {
+      data = (await axios.post("/profile/customer/update/picture", file))["data"];
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    console.log(data);
   }
 </script>
 
