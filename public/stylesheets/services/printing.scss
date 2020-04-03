@@ -1,1 +1,15 @@
 @import "../global/all";
+
+
+/* ---- particles.js container ---- */
+
+#particles-js{
+    width: 100%;
+    height: 40vh;
+    background-color: white;
+    background-image: url('');
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+  
