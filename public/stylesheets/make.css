@@ -2765,6 +2765,15 @@ UNIVERSAL
   overflow: hidden;
 }
 
+#make-summary {
+  height: 0;
+  width: 0;
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 .hide-element {
   height: 0;
   width: 0;
@@ -3187,6 +3196,13 @@ DESKTOP CSS
   }
   #make-validation-hover.complete {
     bottom: 3vmax;
+  }
+  #make-summary {
+    top: calc(60px + 2vmax);
+    left: calc((36vw - 25vmax) / 2);
+    position: fixed;
+    height: calc(4vmax * 4);
+    width: 25vmax;
   }
 }
 
