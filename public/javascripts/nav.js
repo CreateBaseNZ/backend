@@ -15,6 +15,8 @@ const navInit = async() => {
   const leftMenu = document.querySelector(".nav-left-menu-wrap")
   const userIn = document.querySelector(".nav-user-icon")
   const userOut = document.querySelector(".nav-user-button")
+  const userMobIn = document.getElementById('nav-user-reg')
+  const userMobOut = document.getElementById('nav-user-out')
   const rightMenuIn = document.querySelector(".nav-right-menu-in")
   const rightMenuOut = document.querySelector(".nav-right-menu-out")
 
@@ -82,6 +84,8 @@ const navInit = async() => {
 
       userIn.style.display = "block"
       userOut.style.display = "none"
+      userMobIn.style.display = "block"
+      userMobOut.style.display = "none"
   
       if (status) { /* Logged in on mobile */
   
@@ -111,6 +115,8 @@ const navInit = async() => {
   
         rightMenuOut.style.display = "block"
         rightMenuIn.style.display = "none"
+        userMobIn.style.display = "none"
+        userMobOut.style.display = "block"
   
         ham.addEventListener("click", function () {
           leftMenu.classList.toggle('nav-left-menu-active')
