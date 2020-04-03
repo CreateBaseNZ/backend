@@ -35,8 +35,8 @@
       </a>
       <div class="nav-user-icon">
         <img src="./../../public/images/user-out-highlight.png" class="nav-user-hlt" alt="User" />
-        <img src="/profile/customer/fetch/picture" class="nav-user-reg" alt="User" />
-        <img src="./../../public/images/user-x.png" class="nav-user-x" alt="User" />
+        <img src="/profile/customer/fetch/picture" id="nav-user-reg" alt="User" />
+        <img src="./../../public/images/user-x.png" id="nav-user-x" alt="User" />
       </div>
       <div class="nav-user-button">
         <a href="/login" class="nav-user-login">LOG IN</a>
@@ -77,7 +77,7 @@
       </div>
       <div class="nav-right-menu-out">
         <div class="nav-right-menu">
-          <img src="/profile/customer/fetch/picture" class="nav-profile-pic"></img>
+          <img src="/profile/customer/fetch/picture" class="nav-dp" id="nav-dp-mobile"></img>
           <p class="nav-side-header">WELCOME BACK</p>
           <a href="/login" class="nav-side-item">LOG IN</a>
           <div class="nav-sep"></div>
@@ -87,7 +87,7 @@
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <img src="/profile/customer/fetch/picture" class="nav-profile-pic"></img>
+          <img src="/profile/customer/fetch/picture" class="nav-dp" id="nav-dp-desktop"></img>
           <p class="nav-side-header">PROJECTS</p>
           <a href="/profile" class="nav-side-item" data-tab="projects" onclick="passTab(this);">MY PROJECTS</a>
           <div class="nav-sep"></div>
@@ -103,19 +103,19 @@
   <form id="profile-upload-form" style="display: none;">
     <input type="file" name="picture" id="profile-upload" accept=".png, .jpg, .jpeg" onchange="loadFile(event);">
   </form>
-  <div class="profile-page">
+  <div id="profile-page">
     <div class="my-profile-section">
-      <div class="profile-pic">
+      <div id="profile-pic">
         <label for="profile-upload"><i class="far fa-edit"></i></label>
         <img src="/profile/customer/fetch/picture" id="profile-preview"></img>
       </div>
-      <p class="profile-name" data-placeholder="Display Name"></p>
-      <p class="profile-location" data-info="Edit location under the Billing tab."></p>
-      <p class="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
+      <p id="profile-name" data-placeholder="Display Name"></p>
+      <p id="profile-location" data-info="Edit location under the Billing tab."></p>
+      <p id="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
       <div class="profile-edit">
-        <div class="profile-cancel-btn">Cancel</div>
-        <div class="profile-save-btn reg-btn" onclick="profileUploadPicture();">Save</div>
-        <div class="profile-edit-btn reg-btn">Edit</div>
+        <div id="profile-cancel-btn">Cancel</div>
+        <div class="reg-btn" id="profile-save-btn" onclick="profileUploadPicture();">Save</div>
+        <div class="reg-btn" id="profile-edit-btn">Edit</div>
       </div>
     </div>
     <div class="profile-tabs-bar">

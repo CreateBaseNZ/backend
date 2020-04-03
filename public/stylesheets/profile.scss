@@ -6,7 +6,7 @@ body {
   overflow-x: hidden; 
 }
 
-.profile-page {
+#profile-page {
   margin-top: $top-bar-height;
   display: grid;
   grid-template-areas:
@@ -26,7 +26,7 @@ body {
   border: thin solid $light-1;
   cursor: default;
   
-  .profile-pic {
+  #profile-pic {
     position: relative;
     height: calc(5vh + 20vw);
     width: 20vw;
@@ -76,12 +76,12 @@ body {
     }
   }
 
-  .profile-name {
+  #profile-name {
     margin-top: 3vh;
     font-size: calc(20px + 0.5vw);
   }
   
-  .profile-location {
+  #profile-location {
     margin-top: 1vh;
     text-transform: uppercase;
     font-family: $poppins;
@@ -91,7 +91,7 @@ body {
     color: $light-3;
   }
 
-  .profile-bio {
+  #profile-bio {
     margin-top: 3vh;
     font-size: calc(10px + 0.2vw);
     line-height: 150%;
@@ -108,15 +108,15 @@ body {
       font-size: calc(10px + 0.2vw);
     }
     
-    .profile-edit-btn {
+    #profile-edit-btn {
       display: block;
     }
 
-    .profile-save-btn {
+    #profile-save-btn {
       display: none;
     }
     
-    .profile-cancel-btn {
+    #profile-cancel-btn {
       display: none;
       position: relative;
       padding: 5px;
@@ -147,14 +147,14 @@ body {
 .my-profile-section-edit {
   border: thin solid $highlight;
 
-  .profile-pic {
+  #profile-pic {
     label {
       display: inline-block;
     }
   }
 
-  .profile-name,
-  .profile-bio {
+  #profile-name,
+  #profile-bio {
     -webkit-user-modify: read-write;
     -moz-user-modify: read-write;
     border: thin solid $light-2;
@@ -172,7 +172,7 @@ body {
     }
   }
 
-  .profile-location {
+  #profile-location {
     &::after {
       display: block;
       content: attr(data-info);
@@ -186,12 +186,12 @@ body {
   }
 
   .profile-edit {
-    .profile-edit-btn {
+    #profile-edit-btn {
       display: none;
     }
 
-    .profile-save-btn, 
-    .profile-cancel-btn {
+    #profile-save-btn, 
+    #profile-cancel-btn {
       display: block;
     }
   }

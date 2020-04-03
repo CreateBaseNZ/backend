@@ -1,13 +1,17 @@
 // Previews uploaded profile picture
 var loadFile = function(event) {
-  var output = document.getElementById('profile-preview')
-  output.src = URL.createObjectURL(event.target.files[0])
-  output.onload = function() {
-    URL.revokeObjectURL(output.src) // free memory
-  }
+  document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
 }
 
 const profileInit = async() => {
+
+  // Get elements
+  const profileSection = document.querySelector('.my-profile-section')
+  const navDP = [document.getElementById('nav-dp-desktop'), document.getElementById('nav-dp-mobile'), document.getElementById('nav-user-reg')]
+  const dpEl = document.getElementById('profile-preview')
+  const nameEl = document.getElementById('profile-name')
+  const locationEl = document.getElementById('profile-location')
+  const bioEl = document.getElementById('profile-bio')
 
   // -- Prerender selected tab -- 
   document.querySelector('#' + localStorage.getItem('tab') + '-tab').checked = true
@@ -22,37 +26,36 @@ const profileInit = async() => {
     return
   }
 
-  var name = customerInfo["displayName"]
-  var bio = customerInfo["bio"]
-  var profilePic = customerInfo["profilePic"]
+  var nameTemp = customerInfo["displayName"]
+  var bioTemp = customerInfo["bio"]
+  var dpTemp = dpEl.src
   let location
 
   location = 'auckland, new zealand'
 
   // -- Update all markup (display + edit) --
-  document.querySelector('.profile-name').innerHTML = name
-  document.querySelector('.profile-location').innerHTML = location
-  document.querySelector('.profile-bio').innerHTML = bio
+  nameEl.innerHTML = nameTemp
+  locationEl.innerHTML = location
+  bioEl.innerHTML = bioTemp
   // Force everything to load before rendering the section
-  document.querySelector('.my-profile-section').style.opacity = 1
-  
-  const profileSection = document.querySelector('.my-profile-section')
+  profileSection.style.opacity = 1
 
   // -- If edit --
-  document.querySelector('.profile-edit-btn').addEventListener('click', () => {
+  document.getElementById('profile-edit-btn').addEventListener('click', () => {
     profileSection.classList.toggle('my-profile-section-edit')
   })
 
   //  -- If save --
-  document.querySelector('.profile-save-btn').addEventListener('click', async() => {
+  document.getElementById('profile-save-btn').addEventListener('click', async() => {
     profileSection.classList.toggle('my-profile-section-edit')
 
     // Save new variables
-    name = document.querySelector('.profile-name').innerHTML
-    bio = document.querySelector('.profile-bio').innerHTML
-    customerInfo["displayName"] = name
-    customerInfo["bio"] = bio
-
+    dpTemp = dpEl.src
+    nameTemp = nameEl.innerHTML
+    bioTemp = bioEl.innerHTML
+    customerInfo["displayName"] = nameTemp
+    customerInfo["bio"] = bioTemp
+    
     let data
     // Post to server
     try {
@@ -60,16 +63,20 @@ const profileInit = async() => {
     } catch (error) {
       console.log(error)
     }
+
+    // Update profile pictures in nav bar
+    for (var i = 0; i < navDP.length; i++) {
+      navDP[i].src = dpTemp 
+    }    
   })
 
   // -- If cancel --
-  document.querySelector('.profile-cancel-btn').addEventListener('click', () => {
-    
+  document.getElementById('profile-cancel-btn').addEventListener('click', () => {
     // Revert all changes back to variables
-    document.querySelector('.profile-name').innerHTML = name
-    document.querySelector('.profile-location').innerHTML = location
-    document.querySelector('.profile-bio').innerHTML = bio
+    nameEl.innerHTML = nameTemp
+    locationEl.innerHTML = location
+    bioEl.innerHTML = bioTemp
     profileSection.classList.toggle('my-profile-section-edit')
+    dpEl.src = dpTemp
   })
-
 }

@@ -925,11 +925,11 @@ Carl's Button Design (End)
   opacity: 1;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ .nav-user-reg {
+.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ #nav-user-reg {
   opacity: 0;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-reg {
+.nav-container .nav-top-bar .nav-user-icon #nav-user-reg {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
@@ -946,7 +946,7 @@ Carl's Button Design (End)
   transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-x {
+.nav-container .nav-top-bar .nav-user-icon #nav-user-x {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
@@ -960,7 +960,7 @@ Carl's Button Design (End)
   transition: all 0.15s ease-out;
 }
 
-.nav-container .nav-top-bar .nav-user-active .nav-user-reg {
+.nav-container .nav-top-bar .nav-user-active #nav-user-reg {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   opacity: 0;
@@ -974,7 +974,7 @@ Carl's Button Design (End)
   transition: all 0.15s ease-out;
 }
 
-.nav-container .nav-top-bar .nav-user-active .nav-user-x {
+.nav-container .nav-top-bar .nav-user-active #nav-user-x {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transition: all 0.15s ease-out 0.15s;
@@ -1273,7 +1273,7 @@ Carl's Button Design (End)
   color: #4bf0ea;
 }
 
-.nav-container .nav-side-menus .nav-profile-pic {
+.nav-container .nav-side-menus .nav-dp {
   height: 20vh;
   width: 20vh;
   border-radius: 50%;
@@ -1411,7 +1411,7 @@ Carl's Button Design (End)
     margin-right: 0;
     padding: 5px;
   }
-  .nav-container .nav-side-menus .nav-profile-pic {
+  .nav-container .nav-side-menus .nav-dp {
     margin-top: 5vh;
     margin-bottom: 0vh;
   }
@@ -2524,4 +2524,3 @@ body {
     }
   }
 }
-/*# sourceMappingURL=team.css.map */

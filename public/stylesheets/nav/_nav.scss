@@ -63,12 +63,12 @@ $menu-width: 100vw;
           opacity: 1;
         }
 
-        &:hover ~ .nav-user-reg {
+        &:hover ~ #nav-user-reg {
           opacity: 0;
         }
       }
   
-      .nav-user-reg {
+      #nav-user-reg {
         box-sizing: content-box;
         position: absolute;
         top: 0;
@@ -80,7 +80,7 @@ $menu-width: 100vw;
         transition: transform 0.15s ease-out 0.15s;
       }
 
-      .nav-user-x {
+      #nav-user-x {
         box-sizing: content-box;
         position: absolute;
         left: 0;
@@ -93,7 +93,7 @@ $menu-width: 100vw;
     }
 
     .nav-user-active {
-      .nav-user-reg {
+      #nav-user-reg {
         transform: scaleX(0);
         opacity: 0;
       }
@@ -102,7 +102,7 @@ $menu-width: 100vw;
         opacity: 1;
         transition: all 0.15s ease-out;
       }
-      .nav-user-x {
+      #nav-user-x {
         transform: scaleX(1);
         transition: all 0.15s ease-out 0.15s;
       }
@@ -336,7 +336,7 @@ $menu-width: 100vw;
       }
     }
 
-    .nav-profile-pic {
+    .nav-dp {
       height: 20vh;
       width: 20vh;
       border-radius: 50%;
@@ -504,7 +504,7 @@ $menu-width: 100vw;
       }
     }
 
-    .nav-profile-pic {
+    .nav-dp {
       margin-top: 5vh;
       margin-bottom: 0vh;
     }

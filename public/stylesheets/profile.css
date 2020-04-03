@@ -925,11 +925,11 @@ Carl's Button Design (End)
   opacity: 1;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ .nav-user-reg {
+.nav-container .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ #nav-user-reg {
   opacity: 0;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-reg {
+.nav-container .nav-top-bar .nav-user-icon #nav-user-reg {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
@@ -946,7 +946,7 @@ Carl's Button Design (End)
   transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
 }
 
-.nav-container .nav-top-bar .nav-user-icon .nav-user-x {
+.nav-container .nav-top-bar .nav-user-icon #nav-user-x {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
@@ -960,7 +960,7 @@ Carl's Button Design (End)
   transition: all 0.15s ease-out;
 }
 
-.nav-container .nav-top-bar .nav-user-active .nav-user-reg {
+.nav-container .nav-top-bar .nav-user-active #nav-user-reg {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   opacity: 0;
@@ -974,7 +974,7 @@ Carl's Button Design (End)
   transition: all 0.15s ease-out;
 }
 
-.nav-container .nav-top-bar .nav-user-active .nav-user-x {
+.nav-container .nav-top-bar .nav-user-active #nav-user-x {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transition: all 0.15s ease-out 0.15s;
@@ -1273,7 +1273,7 @@ Carl's Button Design (End)
   color: #4bf0ea;
 }
 
-.nav-container .nav-side-menus .nav-profile-pic {
+.nav-container .nav-side-menus .nav-dp {
   height: 20vh;
   width: 20vh;
   border-radius: 50%;
@@ -1411,7 +1411,7 @@ Carl's Button Design (End)
     margin-right: 0;
     padding: 5px;
   }
-  .nav-container .nav-side-menus .nav-profile-pic {
+  .nav-container .nav-side-menus .nav-dp {
     margin-top: 5vh;
     margin-bottom: 0vh;
   }
@@ -2039,7 +2039,7 @@ body {
   overflow-x: hidden;
 }
 
-.profile-page {
+#profile-page {
   margin-top: 60px;
   display: -ms-grid;
   display: grid;
@@ -2068,14 +2068,14 @@ body {
   cursor: default;
 }
 
-.my-profile-section .profile-pic {
+.my-profile-section #profile-pic {
   position: relative;
   height: calc(5vh + 20vw);
   width: 20vw;
   background: white;
 }
 
-.my-profile-section .profile-pic #profile-preview {
+.my-profile-section #profile-pic #profile-preview {
   margin-top: 5vh;
   height: 20vw;
   width: 20vw;
@@ -2087,18 +2087,18 @@ body {
      object-fit: cover;
 }
 
-.my-profile-section .profile-pic input {
+.my-profile-section #profile-pic input {
   display: none;
 }
 
-.my-profile-section .profile-pic label {
+.my-profile-section #profile-pic label {
   display: none;
   position: absolute;
   top: calc(5vh + 20px);
   right: calc(3vw - 20px);
 }
 
-.my-profile-section .profile-pic label i {
+.my-profile-section #profile-pic label i {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -2119,22 +2119,22 @@ body {
   cursor: pointer;
 }
 
-.my-profile-section .profile-pic label i:hover {
+.my-profile-section #profile-pic label i:hover {
   color: #2d283c;
   background: #f8f8f8;
 }
 
-.my-profile-section .profile-pic label:hover ~ #profile-preview {
+.my-profile-section #profile-pic label:hover ~ #profile-preview {
   -webkit-box-shadow: 0 0 10px -2px #4bf0ea;
           box-shadow: 0 0 10px -2px #4bf0ea;
 }
 
-.my-profile-section .profile-name {
+.my-profile-section #profile-name {
   margin-top: 3vh;
   font-size: calc(20px + 0.5vw);
 }
 
-.my-profile-section .profile-location {
+.my-profile-section #profile-location {
   margin-top: 1vh;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
@@ -2144,7 +2144,7 @@ body {
   color: #c7c2d5;
 }
 
-.my-profile-section .profile-bio {
+.my-profile-section #profile-bio {
   margin-top: 3vh;
   font-size: calc(10px + 0.2vw);
   line-height: 150%;
@@ -2167,15 +2167,15 @@ body {
   font-size: calc(10px + 0.2vw);
 }
 
-.my-profile-section .profile-edit .profile-edit-btn {
+.my-profile-section .profile-edit #profile-edit-btn {
   display: block;
 }
 
-.my-profile-section .profile-edit .profile-save-btn {
+.my-profile-section .profile-edit #profile-save-btn {
   display: none;
 }
 
-.my-profile-section .profile-edit .profile-cancel-btn {
+.my-profile-section .profile-edit #profile-cancel-btn {
   display: none;
   position: relative;
   padding: 5px;
@@ -2183,11 +2183,11 @@ body {
   color: #c7c2d5;
 }
 
-.my-profile-section .profile-edit .profile-cancel-btn:hover {
+.my-profile-section .profile-edit #profile-cancel-btn:hover {
   color: red;
 }
 
-.my-profile-section .profile-edit .profile-cancel-btn::after {
+.my-profile-section .profile-edit #profile-cancel-btn::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -2198,7 +2198,7 @@ body {
   transition: 0.2s ease-out;
 }
 
-.my-profile-section .profile-edit .profile-cancel-btn:hover:after {
+.my-profile-section .profile-edit #profile-cancel-btn:hover:after {
   width: 100%;
 }
 
@@ -2206,12 +2206,12 @@ body {
   border: thin solid #4bf0ea;
 }
 
-.my-profile-section-edit .profile-pic label {
+.my-profile-section-edit #profile-pic label {
   display: inline-block;
 }
 
-.my-profile-section-edit .profile-name,
-.my-profile-section-edit .profile-bio {
+.my-profile-section-edit #profile-name,
+.my-profile-section-edit #profile-bio {
   -webkit-user-modify: read-write;
   -moz-user-modify: read-write;
   border: thin solid #f8f8f8;
@@ -2219,20 +2219,20 @@ body {
   cursor: text;
 }
 
-.my-profile-section-edit .profile-name:empty::before,
-.my-profile-section-edit .profile-bio:empty::before {
+.my-profile-section-edit #profile-name:empty::before,
+.my-profile-section-edit #profile-bio:empty::before {
   content: attr(data-placeholder);
   color: #c7c2d5;
 }
 
-.my-profile-section-edit .profile-name:focus,
-.my-profile-section-edit .profile-bio:focus {
+.my-profile-section-edit #profile-name:focus,
+.my-profile-section-edit #profile-bio:focus {
   outline: none;
   -webkit-box-shadow: 0 0 5px #4bf0ea;
           box-shadow: 0 0 5px #4bf0ea;
 }
 
-.my-profile-section-edit .profile-location::after {
+.my-profile-section-edit #profile-location::after {
   display: block;
   content: attr(data-info);
   font-size: calc(10px + 0.1vw);
@@ -2243,12 +2243,12 @@ body {
   line-height: 100%;
 }
 
-.my-profile-section-edit .profile-edit .profile-edit-btn {
+.my-profile-section-edit .profile-edit #profile-edit-btn {
   display: none;
 }
 
-.my-profile-section-edit .profile-edit .profile-save-btn,
-.my-profile-section-edit .profile-edit .profile-cancel-btn {
+.my-profile-section-edit .profile-edit #profile-save-btn,
+.my-profile-section-edit .profile-edit #profile-cancel-btn {
   display: block;
 }
 
@@ -2329,4 +2329,3 @@ body {
 .profile-tabs-bar #billing-tab:checked ~ #billing-area {
   display: block;
 }
-/*# sourceMappingURL=profile.css.map */
