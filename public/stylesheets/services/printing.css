@@ -2040,13 +2040,188 @@ nav .nav-darken-overlay {
 /*=========================================================================================
 END
 =========================================================================================*/
+body {
+  background: white;
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+.main-page {
+  margin-top: 60px;
+}
+
 /* ---- particles.js container ---- */
 #particles-js {
-  width: 100%;
   height: 40vh;
   background-color: white;
   background-image: url("");
   background-size: cover;
-  background-position: 50% 50%;
   background-repeat: no-repeat;
+  position: relative;
+}
+
+#particles-js .banner-text {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#particles-js .banner-text h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  color: #2d283c;
+  letter-spacing: 2vmin;
+  margin-bottom: 1vh;
+}
+
+#particles-js .banner-text .reg-btn {
+  text-align: center;
+  color: #877da9;
+  font-size: 1.5vh;
+  width: 25vh;
+}
+
+#particles-js .banner-text .reg-btn:before {
+  border-top: thin solid #877da9;
+  border-left: thin solid #877da9;
+}
+
+#particles-js .banner-text .reg-btn:after {
+  border-bottom: thin solid #877da9;
+  border-right: thin solid #877da9;
+}
+
+.info-section {
+  border: thin solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.info-section h3 {
+  text-align: center;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  color: #877da9;
+  letter-spacing: 1vh;
+  padding-top: 2vh;
+  height: 5vh;
+}
+
+.step-container {
+  width: 80%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: thin solid cyan;
+}
+
+.step-container .circle-step {
+  border: 0.1vh solid #322d41;
+  border-radius: 50%;
+  background-color: white;
+  width: 7vh;
+  height: 7vh;
+  position: relative;
+}
+
+.step-container .circle-step p {
+  font-family: "Poppins", sans-serif;
+  font-size: 2vh;
+  color: #322d41;
+  position: absolute;
+  text-align: center;
+  top: 48%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.step-container img {
+  border: thin solid blue;
+  height: 80%;
+}
+
+.step-diagram-container {
+  display: none;
+}
+
+.step-diagram-text {
+  margin-left: 2vh;
+  border: thin solid red;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.step-diagram-text .diagram-description-item {
+  margin-bottom: 5vw;
+  border: thin solid orange;
+}
+
+.step-diagram-text .diagram-description-item h4 {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1vmin;
+  color: #877da9;
+  padding-bottom: 0.5vh;
+}
+
+.step-diagram-text .diagram-description-item p {
+  font-size: 1.6vh;
+  border: thin solid blue;
+}
+
+@media only screen and (min-width: 850px) {
+  .step-diagram-container {
+    border: thin solid cyan;
+    height: 50vh;
+    padding-top: 2vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
 }
