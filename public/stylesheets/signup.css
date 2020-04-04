@@ -896,7 +896,8 @@ nav .nav-top-bar .nav-home-btn .nav-logo {
   height: 100%;
 }
 
-nav .nav-top-bar .nav-user-icon {
+nav .nav-top-bar .nav-in,
+nav .nav-top-bar .nav-mobile-out {
   display: none;
   cursor: pointer;
   position: relative;
@@ -905,86 +906,78 @@ nav .nav-top-bar .nav-user-icon {
   margin-bottom: 20px;
 }
 
-nav .nav-top-bar .nav-user-icon .nav-user-hlt {
+nav .nav-top-bar .nav-in #nav-user-in,
+nav .nav-top-bar .nav-in #nav-user-out,
+nav .nav-top-bar .nav-mobile-out #nav-user-in,
+nav .nav-top-bar .nav-mobile-out #nav-user-out {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  opacity: 0;
-  padding: 10px;
-  z-index: 2;
-  -webkit-transition: -webkit-transform 0.15s ease-out 0.15s;
-  transition: -webkit-transform 0.15s ease-out 0.15s;
-  transition: transform 0.15s ease-out 0.15s;
-  transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
-}
-
-nav .nav-top-bar .nav-user-icon .nav-user-hlt:hover {
-  opacity: 1;
-}
-
-nav .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ #nav-user-reg,
-nav .nav-top-bar .nav-user-icon .nav-user-hlt:hover ~ #nav-user-out {
-  opacity: 0;
-}
-
-nav .nav-top-bar .nav-user-icon #nav-user-reg,
-nav .nav-top-bar .nav-user-icon #nav-user-out {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
+  top: 2.5px;
+  left: -2.5px;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   opacity: 1;
-  padding: 10px;
-  -webkit-transition: -webkit-transform 0.15s ease-out 0.15s;
-  transition: -webkit-transform 0.15s ease-out 0.15s;
-  transition: transform 0.15s ease-out 0.15s;
-  transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
+  border: 2px solid transparent;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+  -webkit-transition: opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  transition: opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
 }
 
-nav .nav-top-bar .nav-user-icon #nav-user-x {
+nav .nav-top-bar .nav-in #nav-user-in:hover,
+nav .nav-top-bar .nav-in #nav-user-out:hover,
+nav .nav-top-bar .nav-mobile-out #nav-user-in:hover,
+nav .nav-top-bar .nav-mobile-out #nav-user-out:hover {
+  border-color: #4bf0ea;
+}
+
+nav .nav-top-bar .nav-in #nav-user-out,
+nav .nav-top-bar .nav-mobile-out #nav-user-out {
+  height: 20px;
+  width: 20px;
+  top: 5px;
+  left: 0px;
+}
+
+nav .nav-top-bar .nav-in .nav-user-x,
+nav .nav-top-bar .nav-mobile-out .nav-user-x {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  left: 0;
-  top: 0;
+  top: 7.5px;
+  left: 2.5px;
   width: 20px;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
-  padding: 10px;
-  -webkit-transition: all 0.15s ease-out;
-  transition: all 0.15s ease-out;
+  padding: 0;
+  -webkit-transition: opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  transition: opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
 }
 
-nav .nav-top-bar .nav-user-active #nav-user-out,
-nav .nav-top-bar .nav-user-active #nav-user-reg {
+nav .nav-top-bar .nav-user-active #nav-user-in,
+nav .nav-top-bar .nav-user-active #nav-user-out {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   opacity: 0;
 }
 
-nav .nav-top-bar .nav-user-active .nav-user-hlt {
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-  opacity: 1;
-  -webkit-transition: all 0.15s ease-out;
-  transition: all 0.15s ease-out;
-}
-
-nav .nav-top-bar .nav-user-active #nav-user-x {
+nav .nav-top-bar .nav-user-active .nav-user-x {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
-  -webkit-transition: all 0.15s ease-out 0.15s;
-  transition: all 0.15s ease-out 0.15s;
+  opacity: 1;
 }
 
-nav .nav-top-bar .nav-user-button {
+nav .nav-top-bar .nav-desktop-out {
   display: none;
 }
 
@@ -1280,7 +1273,7 @@ nav .nav-side-menus #nav-dp {
   height: 20vh;
   width: 20vh;
   border-radius: 50%;
-  margin: 10vh 0;
+  margin: 10vh 0 5vh 0;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: 50% 50%;
@@ -1306,13 +1299,29 @@ nav .nav-darken-overlay {
     margin: 0 35.5vw;
     margin-bottom: 10px;
   }
-  nav .nav-top-bar .nav-user-button {
+  nav .nav-top-bar .nav-in {
+    justify-self: flex-end;
+    margin-right: calc(90px + 1vw);
+  }
+  nav .nav-top-bar .nav-in #nav-user-in,
+  nav .nav-top-bar .nav-in #nav-user-out {
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+  }
+  nav .nav-top-bar .nav-in .nav-user-x {
+    top: -2.5px;
+    left: -2.5px;
+    padding: 10px;
+  }
+  nav .nav-top-bar .nav-desktop-out {
     justify-self: flex-end;
     margin-right: calc(75px + 1vw);
     display: none;
     margin-bottom: 15px;
   }
-  nav .nav-top-bar .nav-user-button #nav-user-login {
+  nav .nav-top-bar .nav-desktop-out #nav-user-login {
     font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
     font-weight: 100;
@@ -1322,10 +1331,10 @@ nav .nav-darken-overlay {
     padding: 10px 10px;
     margin: 0px 30px;
   }
-  nav .nav-top-bar .nav-user-button #nav-user-login:hover {
+  nav .nav-top-bar .nav-desktop-out #nav-user-login:hover {
     color: #4bf0ea;
   }
-  nav .nav-top-bar .nav-user-button #nav-user-signup {
+  nav .nav-top-bar .nav-desktop-out #nav-user-signup {
     -webkit-transition: all ease 0.2s;
     transition: all ease 0.2s;
     font-family: "Poppins", sans-serif;
@@ -1337,14 +1346,10 @@ nav .nav-darken-overlay {
     border: thin solid #6853d9;
     background: transparent;
   }
-  nav .nav-top-bar .nav-user-button #nav-user-signup:hover {
+  nav .nav-top-bar .nav-desktop-out #nav-user-signup:hover {
     border: thin solid white;
     color: white;
     background: linear-gradient(60deg, #8258dc, #4e4ed6);
-  }
-  nav .nav-top-bar .nav-user-icon {
-    justify-self: flex-end;
-    margin-right: calc(75px + 1vw);
   }
   nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
@@ -2040,13 +2045,14 @@ nav .nav-darken-overlay {
 /*=========================================================================================
 END
 =========================================================================================*/
-.nav-container .nav-top-bar {
+nav .nav-top-bar {
   background: transparent;
 }
 
-.nav-container .nav-top-bar .nav-user-icon,
-.nav-container .nav-top-bar .nav-user-button {
-  display: none;
+nav .nav-top-bar .nav-in,
+nav .nav-top-bar .nav-mobile-out,
+nav .nav-top-bar .nav-desktop-out {
+  display: none !important;
 }
 
 .main-page {

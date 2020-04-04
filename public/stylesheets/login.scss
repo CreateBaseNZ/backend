@@ -4,13 +4,14 @@ $largest-font: calc(16px + 1vw);
 
 body {
 
-  .nav-container {
+  nav {
     .nav-top-bar {
       background: transparent;
   
-      .nav-user-icon,
-      .nav-user-button {
-        display: none;
+      .nav-in,
+      .nav-mobile-out,
+      .nav-desktop-out {
+        display: none !important;
       }
     }
   }
