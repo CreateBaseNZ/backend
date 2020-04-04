@@ -2,7 +2,7 @@ import os, fnmatch, re
 from bs4 import BeautifulSoup, Tag
 
 markdown = """
-  <pre>
+<pre>
   <nav>
     <div class="nav-darken-overlay"></div>
     <div class="nav-top-bar">
@@ -81,7 +81,8 @@ markdown = """
       </div>
     </div>
   </nav>
-  </pre>
+</pre>
+
 """
 
 # Turns markdown into string with formatting
@@ -102,19 +103,21 @@ for path, dirs, files in os.walk(os.path.join(os.path.dirname( __file__ ), direc
     editting = re.sub('<nav>(.|\n)*?<\/nav>\n', newHTML, editting, count=1).split('\n')
 
     try:
-      index = editting.index('<pre>')
+      start = editting.index('<pre>')
+      end = editting.index('</pre>')
     except:
       print('Not successful for: ' + filename)
       continue
 
-    # Delete line with <pre> and empty lines before it
-    del editting[index-1:index+1]
+    # Delete </pre> tag first
+    del editting[end:end+1]
+    del editting[start-1:start+1]
 
     # Rejoins strings
     editting = '\n'.join(editting)
 
     # Delete </pre> and empty line after
-    editting = re.sub('</pre>\n', '', editting)
+    # editting = re.sub('</pre>\n', '', editting)
 
     # Write to file
     with open(filepath, "w") as file:
