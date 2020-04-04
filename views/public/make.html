@@ -32,7 +32,7 @@
 </head>
 
 <body onload="navInit(); make.initialise();">
-  
+
   <nav>
     <div class="nav-darken-overlay"></div>
     <div class="nav-top-bar">
@@ -42,13 +42,13 @@
         </span>
       </button>
       <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
+        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png" />
       </a>
       <div class="nav-user-icon">
-        <img alt="User" class="nav-user-hlt" src="./../../public/images/user-out-highlight.png"/>
-        <img alt="User" id="nav-user-reg" src="/profile/customer/fetch/picture"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
-        <img alt="User" id="nav-user-x" src="./../../public/images/user-x.png"/>
+        <img alt="User" class="nav-user-hlt" src="./../../public/images/user-out-highlight.png" />
+        <img alt="User" id="nav-user-reg" src="/profile/customer/fetch/picture" />
+        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png" />
+        <img alt="User" id="nav-user-x" src="./../../public/images/user-x.png" />
       </div>
       <div class="nav-user-button">
         <a href="/login" id="nav-user-login">LOG IN</a>
@@ -98,7 +98,7 @@
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <img id="nav-dp" src="/profile/customer/fetch/picture"/>
+          <img id="nav-dp" src="/profile/customer/fetch/picture" />
           <p class="nav-side-header">PROJECTS</p>
           <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <div class="nav-sep"></div>
@@ -111,7 +111,7 @@
       </div>
     </div>
   </nav>
-      
+
   <div id="make">
     <!--INPUTS-->
     <form id="make-inputs" class="hide-element">
@@ -397,6 +397,10 @@
         <h3 class="rmv-h-css">Quick:</h3>
         <p id="make-summary-quick-build" class="rmv-p-css"></p>
       </div>
+      <div id="make-summary-process-container" class="make-summary-container">
+        <h3 class="rmv-h-css">Process:</h3>
+        <p id="make-summary-process" class="rmv-p-css"></p>
+      </div>
       <div id="make-summary-material-container" class="make-summary-container">
         <h3 class="rmv-h-css">Material:</h3>
         <p id="make-summary-material" class="rmv-p-css"></p>
@@ -415,7 +419,7 @@
       </div>
       <div id="make-summary-quantity-container" class="make-summary-container">
         <h3 class="rmv-h-css">Quantity:</h3>
-        <p id="make-summary-quantity" class="rmv-p-css"></p>
+        <p id="make-summary-quantity" class="rmv-p-css">0</p>
       </div>
     </div>
   </div>

@@ -3205,16 +3205,18 @@ DESKTOP CSS
     bottom: 3vmax;
   }
   #make-summary {
-    top: calc(60px + 2vmax);
+    bottom: 26vmax;
     left: calc((36vw - 20vmax) / 2);
     position: fixed;
-    height: calc(1.6vmax * 5);
+    height: calc(1.6vmax * 6);
     width: 20vmax;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
   }
   #make-summary #make-summary-file-container {
     width: 100%;
@@ -3239,16 +3241,18 @@ DESKTOP CSS
     font-family: "Poppins", sans-serif;
     font-size: 0.70vmax;
     letter-spacing: 0.05vmax;
-    color: #322d41;
   }
   .make-summary-container h3 {
     width: 40%;
     text-align: right;
+    color: #322d41;
   }
   .make-summary-container p {
     width: 60%;
     padding-left: 1vmax;
     text-align: left;
+    font-weight: bold;
+    color: #4e4ed6;
   }
 }
 
