@@ -40,78 +40,60 @@ nav {
       }
     }
   
-    .nav-user-icon {
+    .nav-in,
+    .nav-mobile-out {
       display: none;
       cursor: pointer;
       position: relative;
       height: 20px;
       width: 20px;
       margin-bottom: 20px;
-
-      .nav-user-hlt {
-        box-sizing: content-box;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 20px;
-        opacity: 0;
-        padding: 10px;
-        z-index: 2;
-        transition: transform 0.15s ease-out 0.15s;
-
-        &:hover {
-          opacity: 1;
-        }
-
-        &:hover ~ #nav-user-reg,
-        &:hover ~ #nav-user-out {
-          opacity: 0;
-        }
-      }
   
-      #nav-user-reg,
+      #nav-user-in,
       #nav-user-out {
         box-sizing: content-box;
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 20px;
+        top: 2.5px;
+        left: -2.5px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
         transform: scaleX(1);
         opacity: 1;
-        padding: 10px;
+        border: 2px solid transparent;
         transition: transform 0.15s ease-out 0.15s;
+
+        &:hover {
+          border-color: $highlight;
+        }
       }
 
-      #nav-user-x {
+      .nav-user-x {
         box-sizing: content-box;
         position: absolute;
-        left: 0;
-        top: 0;
+        top: 7.5px;
+        left: 2.5px;
         width: 20px;
         transform: scaleX(0);
-        padding: 10px;
+        opacity: 0;
+        padding: 0;
         transition: all 0.15s ease-out;
       }
     }
 
     .nav-user-active {
-      #nav-user-out,
-      #nav-user-reg {
+      #nav-user-in,
+      #nav-user-out {
         transform: scaleX(0);
         opacity: 0;
       }
-      .nav-user-hlt {
-        transform: scaleX(0);
-        opacity: 1;
-        transition: all 0.15s ease-out;
-      }
-      #nav-user-x {
+      .nav-user-x {
         transform: scaleX(1);
-        transition: all 0.15s ease-out 0.15s;
+        opacity: 1;
       }
     }
 
-    .nav-user-button {
+    .nav-desktop-out {
       display: none;
     }
   }
@@ -343,7 +325,7 @@ nav {
       height: 20vh;
       width: 20vh;
       border-radius: 50%;
-      margin: 10vh 0;
+      margin: 10vh 0 5vh 0;
       object-fit: cover;
       object-position: 50% 50%;
     }
@@ -377,7 +359,7 @@ nav {
       margin-bottom: $menu-icon-padding;
     }
 
-    .nav-user-button {
+    .nav-desktop-out {
       justify-self: flex-end;
       margin-right: calc(75px + 1vw);
       display: none;
@@ -417,9 +399,23 @@ nav {
       }
     }
 
-    .nav-user-icon {
+    .nav-in {
       justify-self: flex-end;
-      margin-right: calc(75px + 1vw);
+      margin-right: calc(90px + 1vw);
+
+      #nav-user-in,
+      #nav-user-out {
+        top: 0;
+        left: 0;
+        height: 30px;
+        width: 30px;
+      }
+
+      .nav-user-x {
+        top: -2.5px;
+        left: -2.5px;
+        padding: 10px;
+      }
     }
   }
   

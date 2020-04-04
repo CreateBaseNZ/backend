@@ -1,13 +1,14 @@
 @import "global/all";
 $diamond: 10vmax; 
 
-.nav-container {
+nav {
   .nav-top-bar {
     background: transparent;
 
-    .nav-user-icon,
-    .nav-user-button {
-      display: none;
+    .nav-in,
+    .nav-mobile-out,
+    .nav-desktop-out {
+      display: none !important;
     }
   }
 }
