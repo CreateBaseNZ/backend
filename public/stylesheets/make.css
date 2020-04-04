@@ -922,10 +922,14 @@ nav .nav-top-bar .nav-mobile-out #nav-user-out {
           transform: scaleX(1);
   opacity: 1;
   border: 2px solid transparent;
-  -webkit-transition: -webkit-transform 0.15s ease-out 0.15s;
-  transition: -webkit-transform 0.15s ease-out 0.15s;
-  transition: transform 0.15s ease-out 0.15s;
-  transition: transform 0.15s ease-out 0.15s, -webkit-transform 0.15s ease-out 0.15s;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+  -webkit-transition: opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  transition: opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
 }
 
 nav .nav-top-bar .nav-in #nav-user-in:hover,
@@ -933,6 +937,14 @@ nav .nav-top-bar .nav-in #nav-user-out:hover,
 nav .nav-top-bar .nav-mobile-out #nav-user-in:hover,
 nav .nav-top-bar .nav-mobile-out #nav-user-out:hover {
   border-color: #4bf0ea;
+}
+
+nav .nav-top-bar .nav-in #nav-user-out,
+nav .nav-top-bar .nav-mobile-out #nav-user-out {
+  height: 20px;
+  width: 20px;
+  top: 5px;
+  left: 0px;
 }
 
 nav .nav-top-bar .nav-in .nav-user-x,
@@ -945,10 +957,11 @@ nav .nav-top-bar .nav-mobile-out .nav-user-x {
   width: 20px;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
-  opacity: 0;
   padding: 0;
-  -webkit-transition: all 0.15s ease-out;
-  transition: all 0.15s ease-out;
+  -webkit-transition: opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  transition: opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out, -webkit-transform 0.15s ease-out;
 }
 
 nav .nav-top-bar .nav-user-active #nav-user-in,
@@ -1286,6 +1299,22 @@ nav .nav-darken-overlay {
     margin: 0 35.5vw;
     margin-bottom: 10px;
   }
+  nav .nav-top-bar .nav-in {
+    justify-self: flex-end;
+    margin-right: calc(90px + 1vw);
+  }
+  nav .nav-top-bar .nav-in #nav-user-in,
+  nav .nav-top-bar .nav-in #nav-user-out {
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+  }
+  nav .nav-top-bar .nav-in .nav-user-x {
+    top: -2.5px;
+    left: -2.5px;
+    padding: 10px;
+  }
   nav .nav-top-bar .nav-desktop-out {
     justify-self: flex-end;
     margin-right: calc(75px + 1vw);
@@ -1321,22 +1350,6 @@ nav .nav-darken-overlay {
     border: thin solid white;
     color: white;
     background: linear-gradient(60deg, #8258dc, #4e4ed6);
-  }
-  nav .nav-top-bar .nav-in {
-    justify-self: flex-end;
-    margin-right: calc(90px + 1vw);
-  }
-  nav .nav-top-bar .nav-in #nav-user-in,
-  nav .nav-top-bar .nav-in #nav-user-out {
-    top: 0;
-    left: 0;
-    height: 30px;
-    width: 30px;
-  }
-  nav .nav-top-bar .nav-in .nav-user-x {
-    top: -2.5px;
-    left: -2.5px;
-    padding: 10px;
   }
   nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;

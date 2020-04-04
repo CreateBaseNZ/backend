@@ -128,9 +128,9 @@ const navInit = async() => {
           }
         })
     
-        userIn.addEventListener("click", function () {
+        userMobileOut.addEventListener("click", function () {
           rightMenuOut.classList.toggle('nav-right-menu-active')
-          userIn.classList.toggle('nav-user-active')
+          userMobileOut.classList.toggle('nav-user-active')
     
           if (leftMenu.classList.contains('nav-left-menu-active')) {
             leftMenu.classList.remove('nav-left-menu-active')
