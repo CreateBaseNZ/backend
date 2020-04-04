@@ -403,10 +403,12 @@ make.upload.change = () => {
     // Update the displayed file name
     const name = make.upload.namer(file.name);
     document.querySelector("#make-file-name").textContent = name;
+    document.querySelector("#make-summary-file").textContent = name;
   } else {
     // Clear file name
     document.querySelector("#make-file").value = "";
     document.querySelector("#make-file-name").textContent = "No File Uploaded";
+    document.querySelector("#make-summary-file").textContent = "";
   }
   document.querySelector("#make-file-error").textContent = data.message;
 };
