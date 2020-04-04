@@ -2146,9 +2146,11 @@ body {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: name;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   -ms-flex-item-align: end;
       align-self: flex-end;
-  margin: 0 0 1vh 2vw;
+  margin: 0 2vw 1vh 2vw;
   font-size: calc(20px + 0.8vw);
 }
 
@@ -2407,6 +2409,7 @@ body {
         align-self: flex-start;
     margin: 3vh 0 0 0;
     font-size: calc(20px + 0.5vw);
+    width: 100%;
   }
   .my-profile-section #profile-location {
     margin: 1vh 0 0 0;
