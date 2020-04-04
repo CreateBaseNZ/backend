@@ -1205,7 +1205,7 @@ nav .nav-side-menus .nav-item-outer .info:hover {
 
 nav .nav-side-menus .nav-side-signout {
   position: relative;
-  margin-top: 10vh;
+  margin-top: 8vh;
   color: red;
   font-family: "Poppins", sans-serif;
   font-weight: 100;
@@ -1273,7 +1273,7 @@ nav .nav-side-menus #nav-dp {
   height: 20vh;
   width: 20vh;
   border-radius: 50%;
-  margin: 10vh 0 5vh 0;
+  margin: 8vh 0 5vh 0;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: 50% 50%;
@@ -1405,6 +1405,7 @@ nav .nav-darken-overlay {
     text-align: center;
   }
   nav .nav-side-menus .nav-side-signout {
+    margin-top: 10vh;
     font-size: calc(10px + 0.2vw);
     letter-spacing: 0.1vw;
     padding: 1vh;
@@ -1424,8 +1425,7 @@ nav .nav-darken-overlay {
     padding: 5px;
   }
   nav .nav-side-menus #nav-dp {
-    margin-top: 5vh;
-    margin-bottom: 0vh;
+    margin: 5vh 0 0 0;
   }
   nav .nav-darken-overlay {
     display: block;

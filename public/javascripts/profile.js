@@ -38,7 +38,7 @@ const profileInit = async() => {
   locationEl.innerHTML = location
   bioEl.innerHTML = bioTemp
   // Force everything to load before rendering the section
-  profileSection.style.opacity = 1
+  profileSection.style.visibility = 'visible'
 
   // -- If edit --
   document.getElementById('profile-edit-btn').addEventListener('click', () => {

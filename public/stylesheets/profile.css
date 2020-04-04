@@ -1205,7 +1205,7 @@ nav .nav-side-menus .nav-item-outer .info:hover {
 
 nav .nav-side-menus .nav-side-signout {
   position: relative;
-  margin-top: 10vh;
+  margin-top: 8vh;
   color: red;
   font-family: "Poppins", sans-serif;
   font-weight: 100;
@@ -1273,7 +1273,7 @@ nav .nav-side-menus #nav-dp {
   height: 20vh;
   width: 20vh;
   border-radius: 50%;
-  margin: 10vh 0 5vh 0;
+  margin: 8vh 0 5vh 0;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: 50% 50%;
@@ -1405,6 +1405,7 @@ nav .nav-darken-overlay {
     text-align: center;
   }
   nav .nav-side-menus .nav-side-signout {
+    margin-top: 10vh;
     font-size: calc(10px + 0.2vw);
     letter-spacing: 0.1vw;
     padding: 1vh;
@@ -1424,8 +1425,7 @@ nav .nav-darken-overlay {
     padding: 5px;
   }
   nav .nav-side-menus #nav-dp {
-    margin-top: 5vh;
-    margin-bottom: 0vh;
+    margin: 5vh 0 0 0;
   }
   nav .nav-darken-overlay {
     display: block;
@@ -2055,48 +2055,49 @@ body {
   margin-top: 60px;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "profile tabs";
-  -ms-grid-columns: 30vw 70vw;
-      grid-template-columns: 30vw 70vw;
-  min-height: calc(100vh - 60px);
+      grid-template-areas: "profile" "tabs";
 }
 
 .my-profile-section {
-  opacity: 0;
+  visibility: hidden;
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: profile;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "dp name" "dp location" "bio bio" "btn btn";
+  -ms-grid-columns: 30vw 60vw;
+      grid-template-columns: 30vw 60vw;
   font-family: "Montserrat", sans-serif;
-  margin: 5vh 2.5vw 5vh 2.5vw;
-  padding: 0 2.5vw;
+  margin: 1vh 2.5vw 2vh 2.5vw;
+  padding: 2.5vw;
   border: thin solid white;
-  cursor: default;
 }
 
 .my-profile-section #profile-pic {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: dp;
   position: relative;
-  height: calc(5vh + 20vw);
-  width: 20vw;
-  background: white;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 25vw;
 }
 
 .my-profile-section #profile-pic #profile-preview {
-  margin-top: 5vh;
-  height: 20vw;
-  width: 20vw;
+  height: 25vw;
+  width: 25vw;
   border-radius: 50%;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
 }
 
 .my-profile-section #profile-pic input {
@@ -2106,13 +2107,13 @@ body {
 .my-profile-section #profile-pic label {
   display: none;
   position: absolute;
-  top: calc(5vh + 20px);
-  right: calc(3vw - 20px);
+  bottom: -2vw;
+  left: 2vw;
 }
 
 .my-profile-section #profile-pic label i {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2142,29 +2143,46 @@ body {
 }
 
 .my-profile-section #profile-name {
-  margin-top: 3vh;
-  font-size: calc(20px + 0.5vw);
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: name;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 0 0 1vh 2vw;
+  font-size: calc(20px + 0.8vw);
 }
 
 .my-profile-section #profile-location {
-  margin-top: 1vh;
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: location;
+  margin: 0 0 0 2vw;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
   font-weight: 800;
-  font-size: calc(10px + 0.2vw);
-  letter-spacing: 3px;
+  font-size: calc(8px + 0.2vw);
+  letter-spacing: 1.5px;
   color: #c7c2d5;
 }
 
 .my-profile-section #profile-bio {
-  margin-top: 3vh;
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: bio;
+  margin: 3vh 2vw 0 2vw;
   font-size: calc(10px + 0.2vw);
   line-height: 150%;
+  overflow-wrap: break-word;
 }
 
 .my-profile-section .profile-edit {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: btn;
   position: relative;
-  margin: 6vh 0 3vh 0;
+  margin-top: 3vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2181,10 +2199,12 @@ body {
 
 .my-profile-section .profile-edit #profile-edit-btn {
   display: block;
+  padding: 8px 20px;
 }
 
 .my-profile-section .profile-edit #profile-save-btn {
   display: none;
+  padding: 8px 20px;
 }
 
 .my-profile-section .profile-edit #profile-cancel-btn {
@@ -2265,17 +2285,20 @@ body {
 }
 
 #profile-tabs-bar {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: tabs;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  width: 100%;
   font-family: "Poppins", sans-serif;
   font-weight: 200;
-  margin-top: 5vh;
 }
 
 #profile-tabs-bar input {
@@ -2288,7 +2311,9 @@ body {
 }
 
 #profile-tabs-bar label {
-  width: calc(100px + 5vw);
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   height: 5vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2303,11 +2328,9 @@ body {
   background: white;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 0.2vw;
+  letter-spacing: 2px;
   font-weight: 600;
   font-size: calc(10px + 0.2vw);
-  -webkit-transition: color 0.2s ease-out, background-color 0.2s ease-out;
-  transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
 #profile-tabs-bar label:hover {
@@ -2325,9 +2348,8 @@ body {
           flex: 1 0 100%;
   background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(white));
   background: linear-gradient(to bottom, #f8f8f8, white);
-  border-right: calc(55px + 1vw) solid white;
-  border-bottom: 5vh solid white;
-  height: calc(100% - 5vh);
+  border-bottom: 2vh solid white;
+  height: auto;
 }
 
 #profile-tabs-bar #projects-tab:checked ~ #projects-area {
@@ -2340,4 +2362,87 @@ body {
 
 #profile-tabs-bar #billing-tab:checked ~ #billing-area {
   display: block;
+}
+
+@media only screen and (min-width: 850px) {
+  #profile-page {
+        grid-template-areas: "profile tabs";
+    -ms-grid-columns: 30vw 70vw;
+        grid-template-columns: 30vw 70vw;
+    min-height: calc(100vh - 60px);
+  }
+  .my-profile-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 5vh 2.5vw 5vh 2.5vw;
+    padding: 0 2.5vw;
+  }
+  .my-profile-section #profile-pic {
+    justify-self: flex-start;
+    height: calc(5vh + 20vw);
+    width: 20vw;
+  }
+  .my-profile-section #profile-pic #profile-preview {
+    margin-top: 5vh;
+    height: 20vw;
+    width: 20vw;
+  }
+  .my-profile-section #profile-pic label {
+    top: calc(5vh + 20px);
+    right: calc(3vw - 20px);
+    bottom: auto;
+    left: auto;
+  }
+  .my-profile-section #profile-pic label i {
+    width: 40px;
+    height: 40px;
+  }
+  .my-profile-section #profile-name {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    margin: 3vh 0 0 0;
+    font-size: calc(20px + 0.5vw);
+  }
+  .my-profile-section #profile-location {
+    margin: 1vh 0 0 0;
+    font-size: calc(10px + 0.2vw);
+    letter-spacing: 3px;
+  }
+  .my-profile-section #profile-bio {
+    margin: 3vh 0 0 0;
+    font-size: calc(10px + 0.2vw);
+  }
+  .my-profile-section .profile-edit {
+    margin: 6vh 0 3vh 0;
+  }
+  .my-profile-section .profile-edit * {
+    font-size: calc(10px + 0.2vw);
+  }
+  .my-profile-section .profile-edit #profile-edit-btn,
+  .my-profile-section .profile-edit #profile-save-btn {
+    padding: 10px 20px;
+  }
+  #profile-tabs-bar {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin-top: 5vh;
+  }
+  #profile-tabs-bar label {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
+    width: calc(100px + 5vw);
+    letter-spacing: 0.2vw;
+  }
+  #profile-tabs-bar .main-area {
+    border-right: calc(55px + 1vw) solid white;
+    border-bottom: 5vh solid white;
+    height: calc(100% - 5vh);
+  }
 }
