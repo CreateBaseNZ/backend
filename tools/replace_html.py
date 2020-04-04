@@ -1,9 +1,7 @@
 import os, fnmatch, re
 from bs4 import BeautifulSoup, Tag
 
-test = True
-
-my_document = """
+markdown = """
   <pre>
   <nav>
     <div class="nav-darken-overlay"></div>
@@ -86,19 +84,38 @@ my_document = """
   </pre>
 """
 
-soup = BeautifulSoup(my_document, "html.parser")
+# Turns markdown into string with formatting
+soup = BeautifulSoup(markdown, "html.parser")
 newHTML = str(soup.encode(formatter=None).decode())
 
-directory = "C:/Users/lollo/Documents/CreateBase/website/views/public"
+# Set the directory (relative to cwd) here
+directory = "../views/public"
 
-for path, dirs, files in os.walk(os.path.abspath(directory)):
+# Iterate through every html file
+for path, dirs, files in os.walk(os.path.join(os.path.dirname( __file__ ), directory)):
   for filename in fnmatch.filter(files, "*.html"):
     filepath = os.path.join(path, filename)
     with open(filepath) as target_file:
       editting = target_file.read()
-    editting = re.sub('<nav>(.|\n)*?<\/nav>\n', newHTML, editting, count=1)
-    editting = re.sub('\(\);">(.|\n)*?<pre>', '();">\n', editting)
-    editting = re.sub('</pre>(.|\n)*?<div', '\n\t<div', editting)
+
+    # Finds existing <nav></nav> and replaces with new markdown
+    editting = re.sub('<nav>(.|\n)*?<\/nav>\n', newHTML, editting, count=1).split('\n')
+
+    try:
+      index = editting.index('<pre>')
+    except:
+      print('Not successful for: ' + filename)
+      continue
+
+    # Delete line with <pre> and empty lines before it
+    del editting[index-1:index+1]
+
+    # Rejoins strings
+    editting = '\n'.join(editting)
+
+    # Delete </pre> and empty line after
+    editting = re.sub('</pre>\n', '', editting)
+
+    # Write to file
     with open(filepath, "w") as file:
       file.write(editting)
-
