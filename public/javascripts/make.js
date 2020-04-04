@@ -403,10 +403,12 @@ make.upload.change = () => {
     // Update the displayed file name
     const name = make.upload.namer(file.name);
     document.querySelector("#make-file-name").textContent = name;
+    document.querySelector("#make-summary-file").textContent = name;
   } else {
     // Clear file name
     document.querySelector("#make-file").value = "";
     document.querySelector("#make-file-name").textContent = "No File Uploaded";
+    document.querySelector("#make-summary-file").textContent = "";
   }
   document.querySelector("#make-file-error").textContent = data.message;
 };
@@ -528,6 +530,8 @@ make.buildType.quick.select = () => {
     "click",
     make.buildType.quick.mechanical.select
   );
+  document.querySelector("#make-summary-build-type").textContent = "quick";
+  document.querySelector("#make-summary-quick-build").textContent = "";
 };
 
 make.buildType.quick.deselect = () => {
@@ -550,6 +554,7 @@ make.buildType.quick.deselect = () => {
     "click",
     make.buildType.quick.mechanical.select
   );
+  document.querySelector("#make-summary-quick-build").textContent = "N/A";
 };
 
 make.buildType.quick.prototype.select = () => {
@@ -561,10 +566,12 @@ make.buildType.quick.prototype.select = () => {
   make.buildOptions.reset();
   // Set Build Options
   make.buildType.quick.prototype.set();
+  document.querySelector("#make-summary-quick-build").textContent = "prototype";
 };
 
 make.buildType.quick.prototype.deselect = () => {
   make.button.buildType.quick.prototype.classList.remove("select");
+  document.querySelector("#make-summary-quick-build").textContent = "";
 };
 
 make.buildType.quick.prototype.set = () => {
@@ -573,6 +580,10 @@ make.buildType.quick.prototype.set = () => {
   make.orderDetails.colour.show("fdm", "pla");
   document.querySelector("#make-draft-quality").checked = true;
   document.querySelector("#make-normal-strength").checked = true;
+  document.querySelector("#make-summary-process").textContent = "fdm";
+  document.querySelector("#make-summary-material").textContent = "pla";
+  document.querySelector("#make-summary-quality").textContent = "draft";
+  document.querySelector("#make-summary-strength").textContent = "normal";
   // Edit CSS
   document
     .querySelector("#make-fdm-pla-material-input")
@@ -592,6 +603,7 @@ make.buildType.quick.mechanical.select = () => {
   make.buildOptions.reset();
   // Set Build Options
   make.buildType.quick.mechanical.set();
+  document.querySelector("#make-summary-quick-build").textContent = "mechanical";
 };
 
 make.buildType.quick.mechanical.deselect = () => {
@@ -604,6 +616,10 @@ make.buildType.quick.mechanical.set = () => {
   make.orderDetails.colour.show("fdm", "petg");
   document.querySelector("#make-normal-quality").checked = true;
   document.querySelector("#make-strong-strength").checked = true;
+  document.querySelector("#make-summary-process").textContent = "fdm";
+  document.querySelector("#make-summary-material").textContent = "petg";
+  document.querySelector("#make-summary-quality").textContent = "normal";
+  document.querySelector("#make-summary-strength").textContent = "strong";
   // Edit CSS
   document
     .querySelector("#make-fdm-petg-material-input")
@@ -618,6 +634,8 @@ make.buildType.custom.select = () => {
   document.querySelector("#make-custom-build-input").classList.add("select");
   // Reset Build Options
   make.buildOptions.reset();
+  document.querySelector("#make-summary-build-type").textContent = "custom";
+
 };
 
 make.buildType.custom.deselect = () => {
@@ -750,6 +768,10 @@ make.buildOptions.material.select = (process, material) => {
   make.buildType.reset();
   document.querySelector("#make-custom-build").checked = true;
   document.querySelector("#make-custom-build-input").classList.add("select");
+  document.querySelector("#make-summary-build-type").textContent = "custom";
+  document.querySelector("#make-summary-quick-build").textContent = "N/A";
+  document.querySelector("#make-summary-process").textContent = process;
+  document.querySelector("#make-summary-material").textContent = material;
   // Validate
   make.buildType.validation.validate(false);
   make.buildOptions.validation.validate(false);
@@ -774,6 +796,9 @@ make.buildOptions.quality.select = quality => {
   make.buildType.reset();
   document.querySelector("#make-custom-build").checked = true;
   document.querySelector("#make-custom-build-input").classList.add("select");
+  document.querySelector("#make-summary-build-type").textContent = "custom";
+  document.querySelector("#make-summary-quick-build").textContent = "N/A";
+  document.querySelector("#make-summary-quality").textContent = quality;
   // Validate
   make.buildType.validation.validate(false);
   make.buildOptions.validation.validate(false);
@@ -796,6 +821,9 @@ make.buildOptions.strength.select = strength => {
   make.buildType.reset();
   document.querySelector("#make-custom-build").checked = true;
   document.querySelector("#make-custom-build-input").classList.add("select");
+  document.querySelector("#make-summary-build-type").textContent = "custom";
+  document.querySelector("#make-summary-quick-build").textContent = "N/A";
+  document.querySelector("#make-summary-strength").textContent = strength;
   // Validate
   make.buildType.validation.validate(false);
   make.buildOptions.validation.validate(false);
@@ -914,6 +942,8 @@ make.buildOptions.reset =
         .querySelector(`#make-fdm-${material}-material-input`)
         .classList.remove("select");
     }
+    document.querySelector("#make-summary-process").textContent = "";
+    document.querySelector("#make-summary-material").textContent = "";
     // Quality
     for (let i = 0; i < make.buildOptions.quality.selection.length; i++) {
       const quality = make.buildOptions.quality.selection[i];
@@ -924,6 +954,7 @@ make.buildOptions.reset =
         .querySelector(`#make-${quality}-quality-input`)
         .classList.remove("select");
     }
+    document.querySelector("#make-summary-quality").textContent = "";
     // Strength
     for (let i = 0; i < make.buildOptions.strength.selection.length; i++) {
       const strength = make.buildOptions.strength.selection[i];
@@ -934,6 +965,7 @@ make.buildOptions.reset =
         .querySelector(`#make-${strength}-strength-input`)
         .classList.remove("select");
     }
+    document.querySelector("#make-summary-strength").textContent = "";
     // Validate
     make.buildOptions.validation.validate(false);
   };
@@ -957,6 +989,7 @@ make.orderDetails.colour.select = (process, material, colour) => {
   if (validity.valid) {
     make.complete.validation.valid();
   }
+  document.querySelector("#make-summary-colour").textContent = colour;
 };
 
 make.orderDetails.colour.deselect = (process, material, colour) => {
@@ -982,6 +1015,7 @@ make.orderDetails.colour.reset = () => {
       ).checked = false;
     }
   }
+  document.querySelector("#make-summary-colour").textContent = "";
 };
 
 make.orderDetails.colour.show = (process, material) => {
@@ -1010,6 +1044,7 @@ make.orderDetails.quantity.add = () => {
   if (validity.valid) {
     make.complete.validation.valid();
   }
+  document.querySelector("#make-summary-quantity").textContent = String(make.orderDetails.quantity.value);
 };
 
 make.orderDetails.quantity.subtract = () => {
@@ -1026,6 +1061,7 @@ make.orderDetails.quantity.subtract = () => {
   if (validity.valid) {
     make.complete.validation.valid();
   }
+  document.querySelector("#make-summary-quantity").textContent = String(make.orderDetails.quantity.value);
 };
 
 make.orderDetails.quantity.change = quantity => {
@@ -1042,6 +1078,7 @@ make.orderDetails.quantity.change = quantity => {
   if (validity.valid) {
     make.complete.validation.valid();
   }
+  document.querySelector("#make-summary-quantity").textContent = String(quantity);
 };
 
 make.orderDetails.validation.validate = check => {
