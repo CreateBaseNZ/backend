@@ -1471,6 +1471,10 @@ nav .nav-darken-overlay {
 
 .footer-section .footer-content .footer-legal-section .footer-legal-content {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  border: thin solid black;
+>>>>>>> Stashed changes
 =======
   border: thin solid black;
 >>>>>>> Stashed changes
@@ -2239,6 +2243,7 @@ body {
   border: thin solid blue;
   position: relative;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
 
 .marketplace-example-container img {
@@ -2268,6 +2273,10 @@ body {
 =======
 }
 
+=======
+}
+
+>>>>>>> Stashed changes
 .marketplace-example-container img {
   width: 100%;
   border: thin solid orange;
@@ -2292,6 +2301,9 @@ body {
   letter-spacing: 0.2vh;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 @media only screen and (min-width: 60em) and (orientation: landscape) {
   .info-section {

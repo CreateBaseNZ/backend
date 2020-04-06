@@ -1471,6 +1471,10 @@ nav .nav-darken-overlay {
 
 .footer-section .footer-content .footer-legal-section .footer-legal-content {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  border: thin solid black;
+>>>>>>> Stashed changes
 =======
   border: thin solid black;
 >>>>>>> Stashed changes
@@ -2512,6 +2516,7 @@ body .login-overlay-container {
   }
   @-webkit-keyframes noise-anim {
     0% {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< HEAD
       -webkit-clip-path: inset(44% 0 46% 0);
@@ -11889,6 +11894,323 @@ body .login-overlay-container {
       -webkit-clip-path: inset(15% 0 21% 0);
               clip-path: inset(15% 0 21% 0);
       padding: 7 px-8px;
+=======
+      -webkit-clip-path: inset(22% 0 63% 0);
+              clip-path: inset(22% 0 63% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    0.41667% {
+      -webkit-clip-path: inset(26% 0 73% 0);
+              clip-path: inset(26% 0 73% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    0.83333% {
+      -webkit-clip-path: inset(62% 0 13% 0);
+              clip-path: inset(62% 0 13% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    1.25% {
+      -webkit-clip-path: inset(27% 0 51% 0);
+              clip-path: inset(27% 0 51% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    1.66667% {
+      -webkit-clip-path: inset(55% 0 19% 0);
+              clip-path: inset(55% 0 19% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    2.08333% {
+      -webkit-clip-path: inset(46% 0 30% 0);
+              clip-path: inset(46% 0 30% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    2.5% {
+      -webkit-clip-path: inset(55% 0 23% 0);
+              clip-path: inset(55% 0 23% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    2.91667% {
+      -webkit-clip-path: inset(97% 0 2% 0);
+              clip-path: inset(97% 0 2% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    3.33333% {
+      -webkit-clip-path: inset(55% 0 2% 0);
+              clip-path: inset(55% 0 2% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    3.75% {
+      -webkit-clip-path: inset(8% 0 58% 0);
+              clip-path: inset(8% 0 58% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    4.16667% {
+      -webkit-clip-path: inset(18% 0 2% 0);
+              clip-path: inset(18% 0 2% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    4.58333% {
+      -webkit-clip-path: inset(69% 0 10% 0);
+              clip-path: inset(69% 0 10% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    5% {
+      -webkit-clip-path: inset(44% 0 38% 0);
+              clip-path: inset(44% 0 38% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    5.41667% {
+      -webkit-clip-path: inset(58% 0 27% 0);
+              clip-path: inset(58% 0 27% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    5.83333% {
+      -webkit-clip-path: inset(97% 0 2% 0);
+              clip-path: inset(97% 0 2% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    6.25% {
+      -webkit-clip-path: inset(27% 0 51% 0);
+              clip-path: inset(27% 0 51% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    6.66667% {
+      -webkit-clip-path: inset(94% 0 2% 0);
+              clip-path: inset(94% 0 2% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    7.08333% {
+      -webkit-clip-path: inset(94% 0 7% 0);
+              clip-path: inset(94% 0 7% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    7.5% {
+      -webkit-clip-path: inset(65% 0 22% 0);
+              clip-path: inset(65% 0 22% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    7.91667% {
+      -webkit-clip-path: inset(74% 0 3% 0);
+              clip-path: inset(74% 0 3% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    8.33333% {
+      -webkit-clip-path: inset(75% 0 5% 0);
+              clip-path: inset(75% 0 5% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    8.75% {
+      -webkit-clip-path: inset(9% 0 57% 0);
+              clip-path: inset(9% 0 57% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    9.16667% {
+      -webkit-clip-path: inset(8% 0 45% 0);
+              clip-path: inset(8% 0 45% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    9.58333% {
+      -webkit-clip-path: inset(97% 0 2% 0);
+              clip-path: inset(97% 0 2% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    10% {
+      -webkit-clip-path: inset(54% 0 5% 0);
+              clip-path: inset(54% 0 5% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    10.41667% {
+      -webkit-clip-path: inset(74% 0 11% 0);
+              clip-path: inset(74% 0 11% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    10.83333% {
+      -webkit-clip-path: inset(85% 0 14% 0);
+              clip-path: inset(85% 0 14% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    11.25% {
+      -webkit-clip-path: inset(91% 0 2% 0);
+              clip-path: inset(91% 0 2% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    11.66667% {
+      -webkit-clip-path: inset(4% 0 76% 0);
+              clip-path: inset(4% 0 76% 0);
+      padding: 8 px-8px;
+      visibility: visible;
+    }
+    12.08333% {
+      -webkit-clip-path: inset(69% 0 23% 0);
+              clip-path: inset(69% 0 23% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    12.5% {
+      -webkit-clip-path: inset(68% 0 19% 0);
+              clip-path: inset(68% 0 19% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    12.91667% {
+      -webkit-clip-path: inset(28% 0 49% 0);
+              clip-path: inset(28% 0 49% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    13.33333% {
+      -webkit-clip-path: inset(5% 0 85% 0);
+              clip-path: inset(5% 0 85% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    13.75% {
+      -webkit-clip-path: inset(5% 0 8% 0);
+              clip-path: inset(5% 0 8% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    14.16667% {
+      -webkit-clip-path: inset(50% 0 1% 0);
+              clip-path: inset(50% 0 1% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    14.58333% {
+      -webkit-clip-path: inset(57% 0 6% 0);
+              clip-path: inset(57% 0 6% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    15% {
+      -webkit-clip-path: inset(22% 0 64% 0);
+              clip-path: inset(22% 0 64% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    15.41667% {
+      -webkit-clip-path: inset(4% 0 29% 0);
+              clip-path: inset(4% 0 29% 0);
+      padding: 6 px-8px;
+      visibility: visible;
+    }
+    15.83333% {
+      -webkit-clip-path: inset(1% 0 48% 0);
+              clip-path: inset(1% 0 48% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    16.25% {
+      -webkit-clip-path: inset(47% 0 7% 0);
+              clip-path: inset(47% 0 7% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    16.66667% {
+      -webkit-clip-path: inset(50% 0 4% 0);
+              clip-path: inset(50% 0 4% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    17.08333% {
+      -webkit-clip-path: inset(50% 0 39% 0);
+              clip-path: inset(50% 0 39% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    17.5% {
+      -webkit-clip-path: inset(20% 0 44% 0);
+              clip-path: inset(20% 0 44% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    17.91667% {
+      -webkit-clip-path: inset(5% 0 88% 0);
+              clip-path: inset(5% 0 88% 0);
+      padding: 4 px-8px;
+      visibility: visible;
+    }
+    18.33333% {
+      -webkit-clip-path: inset(70% 0 16% 0);
+              clip-path: inset(70% 0 16% 0);
+      padding: 3 px-8px;
+      visibility: visible;
+    }
+    18.75% {
+      -webkit-clip-path: inset(20% 0 65% 0);
+              clip-path: inset(20% 0 65% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    19.16667% {
+      -webkit-clip-path: inset(20% 0 76% 0);
+              clip-path: inset(20% 0 76% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    19.58333% {
+      -webkit-clip-path: inset(72% 0 5% 0);
+              clip-path: inset(72% 0 5% 0);
+      padding: 1 px-8px;
+      visibility: visible;
+    }
+    20% {
+      -webkit-clip-path: inset(40% 0 2% 0);
+              clip-path: inset(40% 0 2% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    20.41667% {
+      -webkit-clip-path: inset(21% 0 43% 0);
+              clip-path: inset(21% 0 43% 0);
+      padding: 2 px-8px;
+      visibility: visible;
+    }
+    20.83333% {
+      -webkit-clip-path: inset(15% 0 21% 0);
+              clip-path: inset(15% 0 21% 0);
+      padding: 7 px-8px;
+      visibility: visible;
+    }
+    21.25% {
+      -webkit-clip-path: inset(51% 0 22% 0);
+              clip-path: inset(51% 0 22% 0);
+      padding: 5 px-8px;
+      visibility: visible;
+    }
+    21.66667% {
+      -webkit-clip-path: inset(40% 0 11% 0);
+              clip-path: inset(40% 0 11% 0);
+      padding: 3 px-8px;
+>>>>>>> Stashed changes
       visibility: visible;
     }
     21.25% {
@@ -16184,11 +16506,15 @@ body .login-overlay-container {
     88% {
       -webkit-clip-path: inset(29% 0 61% 0);
               clip-path: inset(29% 0 61% 0);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       padding: 5 px-10px;
       visibility: visible;
     }
     88.66667% {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       -webkit-clip-path: inset(25% 0 38% 0);
               clip-path: inset(25% 0 38% 0);
@@ -16273,10 +16599,33 @@ body .login-overlay-container {
       -webkit-clip-path: inset(50% 0 22% 0);
               clip-path: inset(50% 0 22% 0);
 >>>>>>> Stashed changes
+=======
+      -webkit-clip-path: inset(1% 0 85% 0);
+              clip-path: inset(1% 0 85% 0);
+      padding: 7 px-10px;
+      visibility: visible;
+    }
+    89.33333% {
+      -webkit-clip-path: inset(19% 0 69% 0);
+              clip-path: inset(19% 0 69% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    90% {
+      -webkit-clip-path: inset(70% 0 8% 0);
+              clip-path: inset(70% 0 8% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    90.66667% {
+      -webkit-clip-path: inset(50% 0 22% 0);
+              clip-path: inset(50% 0 22% 0);
+>>>>>>> Stashed changes
       padding: 9 px-10px;
       visibility: visible;
     }
     91.33333% {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       -webkit-clip-path: inset(6% 0 89% 0);
               clip-path: inset(6% 0 89% 0);
@@ -16383,6 +16732,65 @@ body .login-overlay-container {
       -webkit-clip-path: inset(5% 0 79% 0);
               clip-path: inset(5% 0 79% 0);
       padding: 8 px-10px;
+=======
+      -webkit-clip-path: inset(57% 0 41% 0);
+              clip-path: inset(57% 0 41% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    92% {
+      -webkit-clip-path: inset(5% 0 79% 0);
+              clip-path: inset(5% 0 79% 0);
+      padding: 8 px-10px;
+      visibility: visible;
+    }
+    92.66667% {
+      -webkit-clip-path: inset(23% 0 2% 0);
+              clip-path: inset(23% 0 2% 0);
+      padding: 5 px-10px;
+      visibility: visible;
+    }
+    93.33333% {
+      -webkit-clip-path: inset(39% 0 32% 0);
+              clip-path: inset(39% 0 32% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    94% {
+      -webkit-clip-path: inset(29% 0 17% 0);
+              clip-path: inset(29% 0 17% 0);
+      padding: 6 px-10px;
+      visibility: visible;
+    }
+    94.66667% {
+      -webkit-clip-path: inset(4% 0 67% 0);
+              clip-path: inset(4% 0 67% 0);
+      padding: 3 px-10px;
+      visibility: visible;
+    }
+    95.33333% {
+      -webkit-clip-path: inset(63% 0 22% 0);
+              clip-path: inset(63% 0 22% 0);
+      padding: 4 px-10px;
+      visibility: visible;
+    }
+    96% {
+      -webkit-clip-path: inset(50% 0 12% 0);
+              clip-path: inset(50% 0 12% 0);
+      padding: 9 px-10px;
+      visibility: visible;
+    }
+    96.66667% {
+      -webkit-clip-path: inset(19% 0 81% 0);
+              clip-path: inset(19% 0 81% 0);
+      padding: 1 px-10px;
+      visibility: visible;
+    }
+    97.33333% {
+      -webkit-clip-path: inset(8% 0 86% 0);
+              clip-path: inset(8% 0 86% 0);
+      padding: 10 px-10px;
+>>>>>>> Stashed changes
       visibility: visible;
     }
     92.66667% {
@@ -16436,6 +16844,9 @@ body .login-overlay-container {
     98% {
       -webkit-clip-path: inset(51% 0 40% 0);
               clip-path: inset(51% 0 40% 0);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       padding: 8 px-10px;
       visibility: visible;
@@ -16491,6 +16902,7 @@ body .login-overlay-container {
     }
     98.66667% {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       -webkit-clip-path: inset(83% 0 8% 0);
               clip-path: inset(83% 0 8% 0);
@@ -16537,6 +16949,20 @@ body .login-overlay-container {
       padding: 2 px-10px;
 >>>>>>> master
 =======
+=======
+      -webkit-clip-path: inset(73% 0 21% 0);
+              clip-path: inset(73% 0 21% 0);
+      padding: 10 px-10px;
+      visibility: visible;
+    }
+    99.33333% {
+      -webkit-clip-path: inset(36% 0 51% 0);
+              clip-path: inset(36% 0 51% 0);
+      padding: 2 px-10px;
+      visibility: visible;
+    }
+    100% {
+>>>>>>> Stashed changes
       -webkit-clip-path: inset(49% 0 18% 0);
               clip-path: inset(49% 0 18% 0);
       padding: 1 px-10px;
