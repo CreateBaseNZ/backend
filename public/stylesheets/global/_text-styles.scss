@@ -4,7 +4,7 @@
   font-weight: 800;
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .mini-caps-title {
     font-size: calc(10px + 0.1vw);
     letter-spacing: 4px;

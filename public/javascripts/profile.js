@@ -7,7 +7,7 @@ const profileInit = async() => {
 
   // Get elements
   const profileSection = document.querySelector('.my-profile-section')
-  const navDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-reg')]
+  const navDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-in')]
   const dpEl = document.getElementById('profile-preview')
   const nameEl = document.getElementById('profile-name')
   const locationEl = document.getElementById('profile-location')
@@ -38,7 +38,7 @@ const profileInit = async() => {
   locationEl.innerHTML = location
   bioEl.innerHTML = bioTemp
   // Force everything to load before rendering the section
-  profileSection.style.opacity = 1
+  profileSection.style.visibility = 'visible'
 
   // -- If edit --
   document.getElementById('profile-edit-btn').addEventListener('click', () => {

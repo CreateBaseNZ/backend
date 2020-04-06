@@ -153,7 +153,7 @@
   }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .load-1 {
     width: 4vmax;
     height: 4vmax;

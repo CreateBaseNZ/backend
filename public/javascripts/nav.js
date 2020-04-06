@@ -1,4 +1,5 @@
 var mq = window.matchMedia("(min-width: 850px)")
+var landscape = window.innerWidth > window.innerHeight
 
 const navInit = async() => {
 
@@ -13,16 +14,15 @@ const navInit = async() => {
   const darken = document.querySelector(".nav-darken-overlay")
   const ham = document.querySelector(".hamburger")
   const leftMenu = document.querySelector(".nav-left-menu-wrap")
-  const userIn = document.querySelector(".nav-user-icon")
-  const userOut = document.querySelector(".nav-user-button")
-  const userMobIn = document.getElementById('nav-user-reg')
-  const userMobOut = document.getElementById('nav-user-out')
+  const userIn = document.querySelector('.nav-in')
+  const userDesktopOut = document.querySelector('.nav-desktop-out')
+  const userMobileOut = document.querySelector('.nav-mobile-out')
   const rightMenuIn = document.querySelector(".nav-right-menu-in")
   const rightMenuOut = document.querySelector(".nav-right-menu-out")
 
   function mainFunction(mq) {
 
-    if (mq.matches) { /* Desktop */
+    if (mq.matches && landscape) { /* Desktop */
 
       darken.addEventListener("click", function () {
         if (leftMenu.classList.contains('nav-left-menu-active')) {
@@ -42,7 +42,8 @@ const navInit = async() => {
       if (status) { /* Logged in on desktop */
   
         userIn.style.display = "block"
-        userOut.style.display = "none"
+        userDesktopOut.style.display = "none"
+        userMobileOut.style.display = "none"
         rightMenuIn.style.display = "block"
         rightMenuOut.style.display = "none"
   
@@ -65,7 +66,8 @@ const navInit = async() => {
         })
       } else { /* Logged out on desktop */
   
-        userOut.style.display = "block"
+        userDesktopOut.style.display = "block"
+        userMobileOut.style.display = "none"
         userIn.style.display = "none"
         rightMenuOut.style.display = "block"
         rightMenuIn.style.display= "none"
@@ -81,14 +83,12 @@ const navInit = async() => {
       }
   
     } else { /* Mobile */
-
-      userIn.style.display = "block"
-      userOut.style.display = "none"
-      userMobIn.style.display = "block"
-      userMobOut.style.display = "none"
   
       if (status) { /* Logged in on mobile */
-  
+
+        userIn.style.display = "block"
+        userDesktopOut.style.display = "none"
+        userMobileOut.style.display = "none"
         rightMenuOut.style.display = "none"
         rightMenuIn.style.display = "block"
   
@@ -113,10 +113,11 @@ const navInit = async() => {
         })
       } else { /* Logged out on mobile */
   
+        userMobileOut.style.display = "block"
+        userDesktopOut.style.display = "none"
+        userIn.style.display = "none"
         rightMenuOut.style.display = "block"
         rightMenuIn.style.display = "none"
-        userMobIn.style.display = "none"
-        userMobOut.style.display = "block"
   
         ham.addEventListener("click", function () {
           leftMenu.classList.toggle('nav-left-menu-active')
@@ -128,9 +129,9 @@ const navInit = async() => {
           }
         })
     
-        userIn.addEventListener("click", function () {
+        userMobileOut.addEventListener("click", function () {
           rightMenuOut.classList.toggle('nav-right-menu-active')
-          userIn.classList.toggle('nav-user-active')
+          userMobileOut.classList.toggle('nav-user-active')
     
           if (leftMenu.classList.contains('nav-left-menu-active')) {
             leftMenu.classList.remove('nav-left-menu-active')

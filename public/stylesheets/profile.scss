@@ -10,35 +10,39 @@ body {
   margin-top: $top-bar-height;
   display: grid;
   grid-template-areas:
-  "profile tabs";
-  grid-template-columns: 30vw 70vw;
-  min-height: calc(100vh - #{$top-bar-height});
+  "profile"
+  "tabs";
 }
-  
+
 .my-profile-section {
-  opacity: 0;
+  visibility: hidden;
   grid-area: profile;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas: 
+  "dp name"
+  "dp location"
+  "bio bio"
+  "btn btn";
+  grid-template-columns: 30vw 60vw;
   font-family: $montserrat;
-  margin: 5vh 2.5vw 5vh 2.5vw;
-  padding: 0 2.5vw;
+  margin: 1vh 2.5vw 2vh 2.5vw;
+  padding: 2.5vw;
   border: thin solid $light-1;
-  cursor: default;
   
   #profile-pic {
+    grid-area: dp;
     position: relative;
-    height: calc(5vh + 20vw);
-    width: 20vw;
-    background: $light-1;
+    justify-self: center;
+    width: 25vw;
 
     #profile-preview {
-      margin-top: 5vh;
-      height: 20vw;
-      width: 20vw;
+      height: 25vw;
+      width: 25vw;
       border-radius: 50%;
       align-self: center;
+      justify-self: center;
       object-fit: cover;
+      object-position: 50% 50%;
     }
 
     input {
@@ -48,12 +52,12 @@ body {
     label {
       display: none;
       position: absolute;
-      top: calc(5vh + 20px);
-      right: calc(3vw - 20px);
+      bottom: -2vw;
+      left: 2vw;
       
       i {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -77,29 +81,36 @@ body {
   }
 
   #profile-name {
-    margin-top: 3vh;
-    font-size: calc(20px + 0.5vw);
+    grid-area: name;
+    box-sizing: border-box;
+    align-self: flex-end;
+    margin: 0 2vw 1vh 2vw;
+    font-size: calc(20px + 0.8vw);
   }
   
   #profile-location {
-    margin-top: 1vh;
+    grid-area: location;
+    margin: 0 0 0 2vw;
     text-transform: uppercase;
     font-family: $poppins;
     font-weight: 800;
-    font-size: calc(10px + 0.2vw);
-    letter-spacing: 3px;
+    font-size: calc(8px + 0.2vw);
+    letter-spacing: 1.5px;
     color: $light-3;
   }
 
   #profile-bio {
-    margin-top: 3vh;
+    grid-area: bio;
+    margin: 3vh 2vw 0 2vw;
     font-size: calc(10px + 0.2vw);
     line-height: 150%;
+    overflow-wrap: break-word;
   }
 
   .profile-edit {
+    grid-area: btn;
     position: relative;
-    margin: 6vh 0 3vh 0;
+    margin-top: 3vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -110,10 +121,12 @@ body {
     
     #profile-edit-btn {
       display: block;
+      padding: 8px 20px;
     }
-
+    
     #profile-save-btn {
       display: none;
+      padding: 8px 20px;
     }
     
     #profile-cancel-btn {
@@ -168,7 +181,7 @@ body {
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 5px $highlight;
+      box-shadow: 0 0 10px $highlight;
     }
   }
 
@@ -197,14 +210,14 @@ body {
   }
 }
 
-
 #profile-tabs-bar {
   grid-area: tabs;
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
   font-family: $poppins;
   font-weight: 200;
-  margin-top: 5vh;
 
   input {
     display: none;
@@ -216,7 +229,7 @@ body {
   }
 
   label {
-    width: calc(100px + 5vw);
+    flex: 1;
     height: 5vh;
     display: flex;
     align-items: center;
@@ -226,10 +239,9 @@ body {
     cursor: pointer;
 
     text-transform: uppercase;
-    letter-spacing: 0.2vw;
+    letter-spacing: 2px;
     font-weight: 600;
     font-size: calc(10px + 0.2vw);
-    transition: color 0.2s ease-out, background-color 0.2s ease-out;
 
     &:hover {
       color: $logo-1;
@@ -243,10 +255,9 @@ body {
   .main-area {
     display: none;
     flex: 1 0 100%;
-    background: linear-gradient(to bottom,$light-2,$light-1);
-    border-right: calc(55px + 1vw) solid $light-1;
-    border-bottom: 5vh solid $light-1;
-    height: calc(100% - 5vh);
+    background: linear-gradient(to bottom, $light-2, $light-1);
+    border-bottom: 2vh solid $light-1;
+    height: auto;
   }
 
   #projects-tab:checked ~ #projects-area {
@@ -258,6 +269,95 @@ body {
   #billing-tab:checked ~ #billing-area {
     display: block;
   }
+}
+
+@media only screen and (min-width: 850px) and (orientation: landscape) {
+
+#profile-page {
+  grid-template-areas:
+  "profile tabs";
+  grid-template-columns: 30vw 70vw;
+  min-height: calc(100vh - #{$top-bar-height});
+}
+  
+.my-profile-section {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh 2.5vw 5vh 2.5vw;
+  padding: 0 2.5vw;
+  
+  #profile-pic {
+    justify-self: flex-start;
+    height: calc(5vh + 20vw);
+    width: 20vw;
+
+    #profile-preview {
+      margin-top: 5vh;
+      height: 20vw;
+      width: 20vw;
+    }
+
+    label {
+      top: calc(5vh + 20px);
+      right: calc(3vw - 20px);
+      bottom: auto;
+      left: auto;
+      
+      i {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  #profile-name {
+    align-self: flex-start;
+    margin: 3vh 0 0 0;
+    font-size: calc(20px + 0.5vw);
+    width: 100%;
+  }
+  
+  #profile-location {
+    margin: 1vh 0 0 0;
+    font-size: calc(10px + 0.2vw);
+    letter-spacing: 3px;
+  }
+
+  #profile-bio {
+    margin: 3vh 0 0 0;
+    font-size: calc(10px + 0.2vw);
+  }
+
+  .profile-edit {
+    margin: 6vh 0 3vh 0;
+
+    * {
+      font-size: calc(10px + 0.2vw);
+    }
+    
+    #profile-edit-btn,
+    #profile-save-btn {
+      padding: 10px 20px;
+    }
+  }
+}
+
+#profile-tabs-bar {
+  align-items: flex-start;
+  margin-top: 5vh;
+
+  label {
+    flex: none;
+    width: calc(100px + 5vw);
+    letter-spacing: 0.2vw;
+  }
+
+  .main-area {
+    border-right: calc(55px + 1vw) solid $light-1;
+    border-bottom: 5vh solid $light-1;
+    height: calc(100% - 5vh);
+  }
 
 }
 
+}

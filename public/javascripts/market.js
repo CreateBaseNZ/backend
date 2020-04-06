@@ -1,5 +1,3 @@
-
-
 const marketInit = async() => {
 
     let status;

@@ -184,7 +184,7 @@ Carl's Button Design (Start)
 Carl's Button Design (End)
 ======================================================================*/
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .reg-btn {
     font-size: 12px;
     font-weight: 100;

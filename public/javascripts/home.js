@@ -1,6 +1,8 @@
 const homeInit = async() => {
   history.scrollRestoration = "manual"
-  const mq = window.matchMedia("(min-width: 850px)")
+  var mq = window.matchMedia("(min-width: 850px)")
+
+  var landscape = window.innerWidth > window.innerHeight
 
   const brycepKit = document.querySelector('.eng-kit-brycep')
   const hyelosKit = document.querySelector('.eng-kit-hyelos')
@@ -15,7 +17,7 @@ const homeInit = async() => {
   }
 
 
-  if (mq.matches) {
+  if (mq.matches && landscape)  {
     
     const landingCarousel = document.querySelector('.landing-carousel')
     const landing1 = document.querySelector('#landing-1')
@@ -143,16 +145,6 @@ const homeInit = async() => {
     activeButton = hyelosButton;
   });
 
-  stcButton.addEventListener("click", function() {
-    activeSlide.style.display = 'none'
-    stcKit.style.display = 'flex';
-    activeSlide = stcKit;
-
-    activeButton.classList.remove('eng-kit-btn-focus');
-    stcButton.classList.add('eng-kit-btn-focus');
-    activeButton = stcButton;
-  });
-
   } else {
 
     window.addEventListener("scroll", function (event) {
@@ -160,11 +152,9 @@ const homeInit = async() => {
       if (scroll > 350) {
         brycepKit.classList.add('eng-kit-load');
         hyelosKit.classList.add('eng-kit-load');
-        stcKit.classList.add('eng-kit-load');
       } else if (scroll == 0) {
         brycepKit.classList.remove('eng-kit-load');
         hyelosKit.classList.remove('eng-kit-load');
-        stcKit.classList.remove('eng-kit-load');    
       }
     });
 
