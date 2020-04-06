@@ -129,7 +129,7 @@ nav {
         width: $menu-width;
         background: $light-1;
         display: grid;
-        grid-template-rows: 85vh 15vh;
+        grid-template-rows: 90vh 10vh;
         margin-left: -5vw;
         transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   
@@ -149,11 +149,6 @@ nav {
   
       .nav-left-menu {
         margin-left: 0;
-  
-        .nav-sep {
-          width: 5vw;
-          transition: 0.2s ease-out 0.3s;
-        }
       }
     }
 
@@ -213,11 +208,6 @@ nav {
   
       .nav-right-menu {
         margin-right: 0vw;
-  
-        .nav-sep {
-          width: 5vw;
-          transition: 0.2s ease-out 0.3s;
-        }
       }
     }
   
@@ -227,13 +217,17 @@ nav {
       font-size: 2vw;
       letter-spacing: 0.5vw;
       color: $light-3;
+
+      &:not(:first-child) {
+        margin-top: 7vh;
+      }
     }
   
     .nav-side-item {
-      margin-top: 3vh;
+      margin-top: 1.5vh;
       color: $dark-3;
       font-family: $poppins;
-      font-size: 2.5vmax;
+      font-size: 2.2vmax;
       font-weight: 100;
       letter-spacing: 0.2vw;
       transition: color 0.1s ease-out;
@@ -301,14 +295,6 @@ nav {
       }
     }
   
-    .nav-sep {
-      width: 0vw;
-      height: 1px;
-      background: $light-3;
-      margin: 6vh 0;
-      transition: 0.2s ease-out;
-    }
-  
     .nav-side-socials {
       display: flex;
       flex-direction: row;
@@ -316,12 +302,12 @@ nav {
       align-items: center;
   
       .fab {
-        margin-left: 5vw;
-        margin-right: 5vw;
+        margin: 0 5vw;
         transition: color 0.1s ease-out;
+        color: $dark-2;
 
         &:visited {
-          color: $dark-1;
+          color: $dark-2;
         }
         &:hover {
           color: $highlight;
@@ -432,7 +418,7 @@ nav {
       .nav-left-menu {
         margin-left: -2vw;
         width: $menu-width;
-        grid-template-rows: 75vh 25vh;
+        grid-template-rows: 80vh 20vh;
       }  
     }
     .nav-left-menu-active {
@@ -461,13 +447,13 @@ nav {
   
     .nav-side-header {
       font-size: calc(8px + 0.1vw);
-      margin-top: 10vh;
       letter-spacing: 0.1vw;
+      margin: 8vh 0 0.5vh 0;
     }
   
     .nav-side-item {
-      margin-top: 1.5vh;
-      padding: 1vh;
+      margin-top: 0.5vh;
+      padding: 0.75vh;
       font-size: calc(10px + 0.2vw);
       letter-spacing: 0.1vw;
     }
@@ -500,16 +486,9 @@ nav {
       padding: 1vh;
     }
   
-    .nav-sep {
-      display: none;
-    }
-  
-    .nav-side-socials {
-      flex-direction: column;
-  
+    .nav-side-socials {  
       .fab {
-        margin-left: 0;
-        margin-right: 0;
+        margin: 0 0.2vw;
         padding: 5px;
       }
     }
