@@ -2030,6 +2030,10 @@ body {
   margin-top: 60px;
 }
 
+h4 {
+  font-family: "Poppins", sans-serif;
+}
+
 /* ---- particles.js container ---- */
 #particles-js {
   height: 35vh;
@@ -2112,7 +2116,6 @@ body {
 
 .step-content-wrap {
   width: 80%;
-  border: thin solid blue;
   padding-bottom: 2vh;
 }
 
@@ -2137,7 +2140,6 @@ body {
   display: -ms-flexbox;
   display: flex;
   padding-bottom: 5vh;
-  border: thin solid orange;
 }
 
 .step-content-container .icongif-container {
@@ -2147,7 +2149,6 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: thin solid black;
   margin-right: 1vw;
 }
 
@@ -2156,7 +2157,6 @@ body {
 }
 
 .step-diagram-text {
-  border: thin solid red;
   padding-top: 1vh;
   margin-left: 2vh;
   -webkit-box-flex: 0;
@@ -2179,7 +2179,6 @@ body {
 }
 
 .step-diagram-text .diagram-description-item h4 {
-  font-family: "Poppins", sans-serif;
   font-weight: 800;
   letter-spacing: 0.5vmin;
   color: #877da9;
@@ -2198,38 +2197,156 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: thin solid green;
   width: 100%;
 }
 
 .marketplace-example-container {
   width: 80%;
-  border: thin solid blue;
   position: relative;
 }
 
 .marketplace-example-container img {
   width: 100%;
-  border: thin solid orange;
 }
 
 .image-title-text {
   position: absolute;
-  border: thin solid red;
+  top: 15%;
+  left: 10%;
   text-align: left;
 }
 
 .image-title-text h4 {
-  font-family: "Poppins", sans-serif;
   color: #877da9;
   letter-spacing: 0.2vh;
+  display: block;
+  text-indent: 0.2em;
 }
 
 .image-title-text h3 {
   color: #2d283c;
   font-weight: 700;
-  font-size: 5vh;
+  font-size: 4vh;
   letter-spacing: 0.2vh;
+  display: block;
+}
+
+.image-link-text {
+  position: absolute;
+  bottom: 6%;
+  right: 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 40%;
+}
+
+.image-link-text p {
+  display: none;
+}
+
+.image-link-text a {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  font-family: "Poppins", sans-serif;
+  color: #2d283c;
+  font-weight: 800;
+  line-height: 130%;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+}
+
+.image-link-text a::after {
+  display: block;
+  height: 1em;
+  content: "";
+  border-bottom: thin solid #877da9;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+}
+
+.image-link-text a:hover {
+  color: #4bf0ea;
+}
+
+.image-link-text a:hover:after {
+  border-bottom: 0.3em solid #4bf0ea;
+}
+
+.ourtools-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 3em;
+}
+
+.ourtools-section .ourtools-text-container {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 75%;
+          flex: 0 0 75%;
+  text-align: center;
+}
+
+.ourtools-section .ourtools-text-container h3 {
+  font-size: 1em;
+  font-weight: 700;
+  color: #c7c2d5;
+  padding-bottom: 0.5em;
+}
+
+.ourtools-section .ourtools-text-container h2 {
+  font-size: 1.4em;
+  color: #2d283c;
+  padding-bottom: 1em;
+}
+
+.ourtools-section .ourtools-text-container p {
+  padding: 0.5em 1em;
+  font-size: 1em;
+  line-height: 150%;
+}
+
+.ourtools-btn-container {
+  padding: 2em 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+}
+
+.ourtools-btn-container input[type=radio] {
+  visibility: hidden;
+  display: none;
+}
+
+.ourtools-btn-container label {
+  color: #c7c2d5;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 900;
+  padding: 1em 0;
+  margin: 0  1.3em;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.2em;
+}
+
+.ourtools-btn-container label:hover {
+  color: #322d41;
+  background: white;
+  border-bottom: 0.1em solid #322d41;
+}
+
+.ourtools-btn-container input[type=radio]:checked + label {
+  color: #322d41;
+  background: white;
+  border-bottom: 0.1em solid #322d41;
 }
 
 @media only screen and (min-width: 60em) and (orientation: landscape) {
@@ -2334,7 +2451,6 @@ body {
   }
   .step-diagram-text .diagram-description-item h4 {
     font-weight: bold;
-    font-family: "Poppins", sans-serif;
     color: #877da9;
     padding-bottom: 0.5vh;
     font-size: 1.5vh;
@@ -2358,6 +2474,24 @@ body {
   .marketplace-example-section img {
     height: inherit;
     width: 48vh;
+  }
+  .image-link-text {
+    position: absolute;
+    bottom: 6%;
+    right: 2%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 40%;
+  }
+  .image-link-text p {
+    color: #877da9;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    padding-bottom: 1em;
   }
 }
 

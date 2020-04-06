@@ -11,6 +11,10 @@ body {
     margin-top: $top-bar-height;
 }
 
+h4{
+    font-family: $poppins;
+}
+
 /* ---- particles.js container ---- */
 #particles-js{
     height: 35vh;
@@ -56,13 +60,11 @@ body {
 }
 
 .info-section{
-    // border: thin solid black;
     display: flex;
     justify-content: center;
 }
 
 .info-content-wrap{
-    // border: thin solid cyan;
     padding-top: 2vh;
     display: flex;
     flex-direction: column;
@@ -71,7 +73,6 @@ body {
 
 .step-content-wrap{
     width:80%;
-    border:thin solid blue;
     padding-bottom: 2vh;
     h3{
         text-align: center;
@@ -89,7 +90,6 @@ body {
     justify-content: space-between;
     display: flex;
     padding-bottom: 5vh;
-    border: thin solid orange;
     .icongif-container{
         width:15vh;
         height:45vh;
@@ -97,7 +97,6 @@ body {
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        border:thin solid black;
         margin-right:1vw;
     }
 }
@@ -108,7 +107,6 @@ body {
 }
 
 .step-diagram-text{
-    border: thin solid red;
     padding-top: 1vh;
     margin-left:2vh;
     flex: 0 0 58%;
@@ -118,7 +116,6 @@ body {
     .diagram-description-item{
         width:100%;
         h4{
-            font-family: $poppins;
             font-weight: 800;
             letter-spacing: 0.5vmin;
             color:$dark-1;
@@ -134,35 +131,128 @@ body {
 .marketplace-example-section{
     display: flex;
     justify-content: center;
-    border:thin solid green;
     width:100%;
 }
 
 .marketplace-example-container{
     width:80%;
-    border:thin solid blue;
     position: relative;
     img{
         width:100%;
-        border:thin solid orange;
     }
 }
 
 .image-title-text{
     position: absolute;
-    border: thin solid red;
+    top:15%;
+    left:10%;
     text-align: left;
     h4{
-        font-family: $poppins;
         color: $dark-1;
         letter-spacing: 0.2vh;
+        display: block;
+        text-indent: 0.2em;
     }
     h3{
         color: $dark-3;
         font-weight: 700;
-        font-size: 5vh;
+        font-size: 4vh;
         letter-spacing: 0.2vh;
+        display: block;
     }
+}
+
+.image-link-text{
+    position: absolute;
+    bottom:6%;
+    right:2%;
+    display: flex;
+    flex-wrap: wrap;
+    width:40%;
+    p{
+        display: none;
+    }
+    a{
+        flex: 0 0 50%;
+        font-family: $poppins;
+        color: $dark-3;
+        font-weight: 800;
+        line-height: 130%;
+        transition: all ease 0.2s;
+    }
+    a::after{
+        display: block;
+        height:1em;
+        content: "";
+        border-bottom: thin solid $dark-1;
+        transition: all ease 0.2s;
+    }
+    a:hover{
+        color:$highlight;
+    }
+    a:hover:after{
+        border-bottom: 0.3em solid $highlight;
+    }
+}
+
+.ourtools-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 3em;
+    .ourtools-text-container{
+        flex: 0 0 75%;
+        text-align: center;
+        h3{
+            font-size: 1em;
+            font-weight: 700;
+            color:$light-3;
+            padding-bottom: 0.5em;
+        }
+        h2{
+            font-size: 1.4em;
+            color:$dark-3;
+            padding-bottom: 1em;
+        }
+        p{
+            padding:0.5em 1em;
+            font-size: 1em;
+            line-height:150%;
+        }
+    }
+}
+
+.ourtools-btn-container{
+    padding:2em 0;
+    flex:0 0 100%;
+    input[type=radio] {
+        visibility: hidden;
+        display: none;
+    }
+    
+    label {
+        color: $light-3;
+        display: inline-block;
+        cursor: pointer;
+        font-weight: 900;
+        padding: 1em 0;
+        margin: 0  1.3em;
+        font-family: $poppins;
+        letter-spacing: 0.2em;
+    }
+
+    label:hover{
+        color: $dark-2;
+        background: $light-1;
+        border-bottom: 0.1em solid $dark-2;
+    }
+    
+    input[type=radio]:checked + label{
+        color: $dark-2;
+        background: $light-1;
+        border-bottom: 0.1em solid $dark-2;
+    }
+
 }
 
 //tablet screen view
@@ -252,7 +342,6 @@ body {
             padding-bottom: 0vh;
             h4{
                 font-weight: bold;
-                font-family: $poppins;
                 color:$dark-1;
                 padding-bottom:0.5vh;
                 font-size: 1.5vh;
@@ -276,6 +365,20 @@ body {
         img{
             height:inherit;
             width:48vh;
+        }
+    }
+
+    .image-link-text{
+        position: absolute;
+        bottom:6%;
+        right:2%;
+        display: flex;
+        flex-wrap: wrap;
+        width:40%;
+        p{
+            color:$dark-1;
+            flex:0 0 100%;
+            padding-bottom: 1em;
         }
     }
 }
