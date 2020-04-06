@@ -71,7 +71,7 @@
   }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .footer-section{
     padding-top:2.5vw;
     h4{

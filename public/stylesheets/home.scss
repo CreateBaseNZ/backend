@@ -525,7 +525,7 @@ body {
   100% { width: 15vw; }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
 
   .main-page {
     margin-top: 0vh;

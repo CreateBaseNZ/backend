@@ -551,7 +551,7 @@ UNIVERSAL
 DESKTOP CSS
 =========================================================================================*/
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .make-file-upload-button {
     height: 10vmax;
     label {

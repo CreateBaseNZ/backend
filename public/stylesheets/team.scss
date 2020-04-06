@@ -199,7 +199,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
 
 .landing-section {
   grid-template-areas: 

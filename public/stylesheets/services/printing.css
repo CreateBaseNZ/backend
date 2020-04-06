@@ -280,7 +280,7 @@ Carl's Button Design (Start)
 /*======================================================================
 Carl's Button Design (End)
 ======================================================================*/
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .reg-btn {
     font-size: 12px;
     font-weight: 100;
@@ -672,7 +672,7 @@ Carl's Button Design (End)
   -webkit-box-shadow: 0 0 0 30px white inset;
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .input-decor {
     height: 50px;
   }
@@ -702,7 +702,7 @@ Carl's Button Design (End)
   font-weight: 800;
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .mini-caps-title {
     font-size: calc(10px + 0.1vw);
     letter-spacing: 4px;
@@ -1284,7 +1284,7 @@ nav .nav-darken-overlay {
   display: none;
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   nav .nav-top-bar {
     -ms-grid-columns: 45vw 10vw 45vw;
         grid-template-columns: 45vw 10vw 45vw;
@@ -1539,7 +1539,7 @@ nav .nav-darken-overlay {
   letter-spacing: 0.2vh;
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .footer-section {
     padding-top: 2.5vw;
   }
@@ -2010,7 +2010,7 @@ nav .nav-darken-overlay {
   }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 850px) and (orientation: landscape) {
   .load-1 {
     width: 4vmax;
     height: 4vmax;

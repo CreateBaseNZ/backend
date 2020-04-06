@@ -1,5 +1,10 @@
 const num_membs = 6
 var mq = window.matchMedia("(min-width: 850px)")
+var landscape = window.innerWidth > window.innerHeight
+
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+}
 
 const teamInit = async() => {
 
@@ -12,7 +17,7 @@ const teamInit = async() => {
   function mainFunction(mq) {
 
     // -- Desktop --
-    if (mq.matches) {
+    if (mq.matches && landscape) {
 
       // On desktop, 3 profiles per row
       var row = 3

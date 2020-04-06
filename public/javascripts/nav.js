@@ -1,4 +1,5 @@
 var mq = window.matchMedia("(min-width: 850px)")
+var landscape = window.innerWidth > window.innerHeight
 
 const navInit = async() => {
 
@@ -21,7 +22,7 @@ const navInit = async() => {
 
   function mainFunction(mq) {
 
-    if (mq.matches) { /* Desktop */
+    if (mq.matches && landscape) { /* Desktop */
 
       darken.addEventListener("click", function () {
         if (leftMenu.classList.contains('nav-left-menu-active')) {
