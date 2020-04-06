@@ -1470,6 +1470,10 @@ nav .nav-darken-overlay {
 }
 
 .footer-section .footer-content .footer-legal-section .footer-legal-content {
+<<<<<<< Updated upstream
+=======
+  border: thin solid black;
+>>>>>>> Stashed changes
   margin: 2em;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 80%;
@@ -1545,6 +1549,7 @@ nav .nav-darken-overlay {
     padding-top: 3vw;
   }
   .footer-section h4 {
+    border: thin solid red;
     display: inline-block;
     font-family: "Poppins", sans-serif;
     font-weight: 100;
@@ -2233,6 +2238,7 @@ body {
   width: 80%;
   border: thin solid blue;
   position: relative;
+<<<<<<< Updated upstream
 }
 
 .marketplace-example-container img {
@@ -2259,6 +2265,34 @@ body {
   letter-spacing: 0.2vh;
 }
 
+=======
+}
+
+.marketplace-example-container img {
+  width: 100%;
+  border: thin solid orange;
+}
+
+.image-title-text {
+  position: absolute;
+  border: thin solid red;
+  text-align: left;
+}
+
+.image-title-text h4 {
+  font-family: "Poppins", sans-serif;
+  color: #877da9;
+  letter-spacing: 0.2vh;
+}
+
+.image-title-text h3 {
+  color: #2d283c;
+  font-weight: 700;
+  font-size: 5vh;
+  letter-spacing: 0.2vh;
+}
+
+>>>>>>> Stashed changes
 @media only screen and (min-width: 60em) and (orientation: landscape) {
   .info-section {
     padding-top: 5vh;

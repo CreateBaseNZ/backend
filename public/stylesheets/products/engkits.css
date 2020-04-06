@@ -1470,6 +1470,10 @@ nav .nav-darken-overlay {
 }
 
 .footer-section .footer-content .footer-legal-section .footer-legal-content {
+<<<<<<< Updated upstream
+=======
+  border: thin solid black;
+>>>>>>> Stashed changes
   margin: 2em;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 80%;
@@ -1545,6 +1549,7 @@ nav .nav-darken-overlay {
     padding-top: 3vw;
   }
   .footer-section h4 {
+    border: thin solid red;
     display: inline-block;
     font-family: "Poppins", sans-serif;
     font-weight: 100;
