@@ -1444,6 +1444,7 @@ nav .nav-darken-overlay {
 .footer-section {
   width: 100%;
   background-color: #322d41;
+  min-height: 10em;
 }
 
 .footer-section .footer-content {
@@ -1464,7 +1465,7 @@ nav .nav-darken-overlay {
 }
 
 .footer-section .footer-content .footer-legal-section .footer-legal-content {
-  margin: 4vh;
+  margin: 2em;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 80%;
           flex: 0 0 80%;
@@ -1484,7 +1485,7 @@ nav .nav-darken-overlay {
 .footer-section .footer-content .footer-legal-section .footer-legal-content li a {
   color: white;
   font-family: "Poppins", sans-serif;
-  font-size: 1.5vh;
+  font-size: 0.8em;
   -webkit-transition: all ease 0.2s;
   transition: all ease 0.2s;
 }
@@ -1501,7 +1502,7 @@ nav .nav-darken-overlay {
 .footer-section .footer-content .footer-legal-section .footer-legal-content .list-section-divider {
   width: 1px;
   border-left: thin solid white;
-  height: 8vh;
+  height: 4.5em;
 }
 
 .footer-section .footer-content .footer-legal-section .footer-legal-content .list-section-right {
@@ -1521,22 +1522,22 @@ nav .nav-darken-overlay {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
-  padding-top: 2vh;
-  padding-bottom: 4vh;
+  padding-top: 0.8em;
+  padding-bottom: 2em;
 }
 
 .footer-section .footer-content .footer-copyright-section h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
-  font-size: 1.4vh;
+  font-size: 0.8em;
   color: white;
   text-align: center;
-  letter-spacing: 0.2vh;
+  letter-spacing: 0.1em;
 }
 
 @media only screen and (min-width: 850px) {
   .footer-section {
-    padding-top: 2.5vw;
+    padding-top: 3vw;
   }
   .footer-section h4 {
     display: inline-block;
@@ -2053,7 +2054,7 @@ body {
 
 /* ---- particles.js container ---- */
 #particles-js {
-  height: 40vh;
+  height: 35vh;
   background-color: white;
   background-image: url("");
   background-size: cover;
@@ -2088,6 +2089,7 @@ body {
   color: #2d283c;
   letter-spacing: 2vmin;
   margin-bottom: 1vh;
+  font-size: 3vh;
 }
 
 #particles-js .banner-text .reg-btn {
@@ -2108,13 +2110,19 @@ body {
 }
 
 .info-section {
-  border: thin solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.info-content-wrap {
+  padding-top: 2vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -2124,7 +2132,13 @@ body {
           align-items: center;
 }
 
-.info-section h3 {
+.step-content-wrap {
+  width: 80%;
+  border: thin solid blue;
+  padding-bottom: 2vh;
+}
+
+.step-content-wrap h3 {
   text-align: center;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
@@ -2132,87 +2146,187 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
   color: #877da9;
-  letter-spacing: 1vh;
-  padding-top: 2vh;
-  height: 5vh;
+  letter-spacing: 0.5vh;
+  padding-top: 1vh;
+  padding-bottom: 2vh;
 }
 
-.step-container {
-  width: 80%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.step-content-container {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: thin solid cyan;
+  padding-bottom: 5vh;
+  border: thin solid orange;
 }
 
-.step-container .circle-step {
-  border: 0.1vh solid #322d41;
-  border-radius: 50%;
-  background-color: white;
-  width: 7vh;
-  height: 7vh;
-  position: relative;
+.step-content-container .icongif-container {
+  width: 15vh;
+  height: 45vh;
+  background-image: url(../../images/3dinfo/icons.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: thin solid black;
+  margin-right: 1vw;
 }
 
-.step-container .circle-step p {
-  font-family: "Poppins", sans-serif;
-  font-size: 2vh;
-  color: #322d41;
-  position: absolute;
-  text-align: center;
-  top: 48%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.step-container img {
-  border: thin solid blue;
-  height: 80%;
-}
-
-.step-diagram-container {
+.step-circle-container {
   display: none;
 }
 
 .step-diagram-text {
-  margin-left: 2vh;
   border: thin solid red;
+  padding-top: 1vh;
+  margin-left: 2vh;
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 50%;
-          flex: 0 0 50%;
+      -ms-flex: 0 0 58%;
+          flex: 0 0 58%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .step-diagram-text .diagram-description-item {
-  margin-bottom: 5vw;
-  border: thin solid orange;
+  width: 100%;
 }
 
 .step-diagram-text .diagram-description-item h4 {
   font-family: "Poppins", sans-serif;
-  letter-spacing: 1vmin;
+  font-weight: 800;
+  letter-spacing: 0.5vmin;
   color: #877da9;
-  padding-bottom: 0.5vh;
+  padding-bottom: 1vh;
 }
 
 .step-diagram-text .diagram-description-item p {
+  margin-left: 1vh;
   font-size: 1.6vh;
-  border: thin solid blue;
 }
 
-@media only screen and (min-width: 850px) {
-  .step-diagram-container {
-    border: thin solid cyan;
-    height: 50vh;
-    padding-top: 2vh;
+.marketplace-example-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: thin solid green;
+  width: 100%;
+}
+
+.marketplace-example-container {
+  width: 80%;
+  border: thin solid blue;
+  position: relative;
+}
+
+.marketplace-example-container img {
+  width: 100%;
+  border: thin solid orange;
+}
+
+.image-title-text {
+  position: absolute;
+  border: thin solid red;
+  text-align: left;
+}
+
+.image-title-text h4 {
+  font-family: "Poppins", sans-serif;
+  color: #877da9;
+  letter-spacing: 0.2vh;
+}
+
+.image-title-text h3 {
+  color: #2d283c;
+  font-weight: 700;
+  font-size: 5vh;
+  letter-spacing: 0.2vh;
+}
+
+@media only screen and (min-width: 60em) and (orientation: landscape) {
+  .info-section {
+    padding-top: 5vh;
+  }
+  .info-content-wrap {
+    padding: 0 1vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: inherit;
+  }
+  .step-content-wrap {
+    width: 40%;
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+  .step-content-wrap h3 {
+    text-align: left;
+    padding-top: 0vh;
+    height: 7vh;
+    font-size: 2vh;
+  }
+  .step-content-container {
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+    height: 40vh;
+    padding-bottom: 0vh;
+  }
+  .step-content-container .circle-step {
+    border: 0.1vh solid #322d41;
+    border-radius: 50%;
+    background-color: white;
+    width: 7vh;
+    height: 7vh;
+    position: relative;
+  }
+  .step-content-container .circle-step p {
+    font-family: "Poppins", sans-serif;
+    font-size: 2vh;
+    color: #322d41;
+    position: absolute;
+    text-align: center;
+    top: 48%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  .step-content-container .icongif-container {
+    width: 20vh;
+    height: 40vh;
+    background-image: url(../../images/3dinfo/icons.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15vh 40vh;
+    margin-right: 1vh;
+    border: thin solid orange;
+  }
+  .step-circle-container {
+    position: relative;
+    height: 40vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2224,4 +2338,54 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
+  .step-circle-container .vertical-line {
+    border-right: 0.1vh solid #322d41;
+    height: inherit;
+    position: absolute;
+    left: 50%;
+  }
+  .step-diagram-text {
+    padding-top: 0;
+    margin-top: 0;
+    margin-left: 0;
+  }
+  .step-diagram-text .diagram-description-item {
+    height: 6vh;
+    width: 100%;
+    padding-bottom: 0vh;
+  }
+  .step-diagram-text .diagram-description-item h4 {
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+    color: #877da9;
+    padding-bottom: 0.5vh;
+    font-size: 1.5vh;
+  }
+  .step-diagram-text .diagram-description-item p {
+    font-size: 1.4vh;
+  }
+  .diagram-description-item {
+    width: 100%;
+  }
+  .marketplace-example-section {
+    height: 100%;
+    margin-left: 1vw;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 30%;
+            flex: 0 0 30%;
+  }
+  .marketplace-example-section .icongif-container {
+    width: 100%;
+  }
+  .marketplace-example-section img {
+    height: inherit;
+    width: 48vh;
+  }
 }
+
+@media only screen and (min-width: 75em) {
+  .step-content-wrap {
+    background-color: black;
+  }
+}
+/*# sourceMappingURL=printing.css.map */

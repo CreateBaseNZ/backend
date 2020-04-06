@@ -1444,6 +1444,7 @@ nav .nav-darken-overlay {
 .footer-section {
   width: 100%;
   background-color: #322d41;
+  min-height: 10em;
 }
 
 .footer-section .footer-content {
@@ -1464,7 +1465,7 @@ nav .nav-darken-overlay {
 }
 
 .footer-section .footer-content .footer-legal-section .footer-legal-content {
-  margin: 4vh;
+  margin: 2em;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 80%;
           flex: 0 0 80%;
@@ -1484,7 +1485,7 @@ nav .nav-darken-overlay {
 .footer-section .footer-content .footer-legal-section .footer-legal-content li a {
   color: white;
   font-family: "Poppins", sans-serif;
-  font-size: 1.5vh;
+  font-size: 0.8em;
   -webkit-transition: all ease 0.2s;
   transition: all ease 0.2s;
 }
@@ -1501,7 +1502,7 @@ nav .nav-darken-overlay {
 .footer-section .footer-content .footer-legal-section .footer-legal-content .list-section-divider {
   width: 1px;
   border-left: thin solid white;
-  height: 8vh;
+  height: 4.5em;
 }
 
 .footer-section .footer-content .footer-legal-section .footer-legal-content .list-section-right {
@@ -1521,22 +1522,22 @@ nav .nav-darken-overlay {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
-  padding-top: 2vh;
-  padding-bottom: 4vh;
+  padding-top: 0.8em;
+  padding-bottom: 2em;
 }
 
 .footer-section .footer-content .footer-copyright-section h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
-  font-size: 1.4vh;
+  font-size: 0.8em;
   color: white;
   text-align: center;
-  letter-spacing: 0.2vh;
+  letter-spacing: 0.1em;
 }
 
 @media only screen and (min-width: 850px) {
   .footer-section {
-    padding-top: 2.5vw;
+    padding-top: 3vw;
   }
   .footer-section h4 {
     display: inline-block;
@@ -2040,3 +2041,4 @@ nav .nav-darken-overlay {
 /*=========================================================================================
 END
 =========================================================================================*/
+/*# sourceMappingURL=story.css.map */
