@@ -108,6 +108,7 @@
     <div class="my-profile-section">
       <div id="profile-pic">
         <label for="profile-upload"><i class="far fa-edit"></i></label>
+        <input type="file" id="profile-upload" onchange="loadFile(event)"></input>
         <img src="/profile/customer/fetch/picture" id="profile-preview"></img>
       </div>
       <p id="profile-name" data-placeholder="Display Name"></p>

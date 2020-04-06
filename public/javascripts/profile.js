@@ -7,7 +7,7 @@ const profileInit = async() => {
 
   // Get elements
   const profileSection = document.querySelector('.my-profile-section')
-  const navDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-reg')]
+  const navDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-in')]
   const dpEl = document.getElementById('profile-preview')
   const nameEl = document.getElementById('profile-name')
   const locationEl = document.getElementById('profile-location')

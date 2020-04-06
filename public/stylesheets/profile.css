@@ -2262,8 +2262,8 @@ body {
 .my-profile-section-edit #profile-name:focus,
 .my-profile-section-edit #profile-bio:focus {
   outline: none;
-  -webkit-box-shadow: 0 0 5px #4bf0ea;
-          box-shadow: 0 0 5px #4bf0ea;
+  -webkit-box-shadow: 0 0 10px #4bf0ea;
+          box-shadow: 0 0 10px #4bf0ea;
 }
 
 .my-profile-section-edit #profile-location::after {
