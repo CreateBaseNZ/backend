@@ -1,5 +1,9 @@
 @import "../global/all";
 
+:root{
+    --swiper-navigation-color:#{$dark-2};
+}
+
 body {
     background: $light-1;
     max-width: 100%;
@@ -203,40 +207,48 @@ h4{
     .ourtools-text-container{
         flex: 0 0 75%;
         text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         h3{
             font-size: 1em;
             font-weight: 700;
             color:$light-3;
             padding-bottom: 0.5em;
+            flex:0 0 100%;
         }
         h2{
             font-size: 1.4em;
             color:$dark-3;
             padding-bottom: 1em;
+            flex:0 0 100%;
         }
         p{
             padding:0.5em 1em;
-            font-size: 1em;
+            font-size: 0.8em;
             line-height:150%;
+            flex:0 0 100%;
         }
     }
 }
 
 .ourtools-btn-container{
     padding:2em 0;
-    flex:0 0 100%;
+    width:60vw;
+    display: flex;
+    justify-content: space-between;
     input[type=radio] {
         visibility: hidden;
         display: none;
     }
     
     label {
+        font-size: 0.9em;
         color: $light-3;
         display: inline-block;
         cursor: pointer;
         font-weight: 900;
         padding: 1em 0;
-        margin: 0  1.3em;
         font-family: $poppins;
         letter-spacing: 0.2em;
     }
@@ -252,7 +264,59 @@ h4{
         background: $light-1;
         border-bottom: 0.1em solid $dark-2;
     }
+}
 
+.ourservices-section{
+    background-color: $light-2;
+    width:100%;
+}
+
+.ourservices-content{
+    padding: 3em 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    h2{
+        font-size: 1.6em;
+        color:$dark-3;
+    }
+}
+
+.swiper-slide{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .ourservices-image-container{
+        flex: 0 0 100%;
+        padding:1.5em;
+        img{
+            height: 6em;
+            display:block;
+            margin:auto;
+        }
+    }
+}
+
+.ourservices-text{
+    flex:0 0 80%;
+    padding: 1em 1em 1em 2.5em;
+    text-align: left;
+    h3{
+        font-size: 0.9em;
+        font-weight: 700;
+        padding-bottom: 1em;
+        color: $dark-3;
+    }
+    p{
+        font-size: 0.8em;
+        color: $dark-3;
+        line-height: 150%;
+    }
+}
+
+
+.swiper-button-next, .swiper-button-prev{
+    color: $dark-2;
 }
 
 //tablet screen view

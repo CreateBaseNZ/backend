@@ -16,11 +16,13 @@
   <script src="./../../public/javascripts/moment.js"></script>
   <!------------ CUSTOM JAVASCRIPTS ----------->
   <script src="./../../public/javascripts/nav.js"></script>
+  <script src="./../../public/javascripts/printing.js"></script>
   <!---------------- STYLESHEET --------------->
   <link rel="stylesheet" href="./../../public/stylesheets/services/printing.css" />
+  <link rel="stylesheet" href="./../../node_modules/swiper/css/swiper.min.css">
 </head>
 
-<body onload="navInit();">
+<body onload="navInit();printingInit();">
   
   <nav>
     <div class="nav-darken-overlay"></div>
@@ -170,13 +172,15 @@
         <p>At CreateBase, we use Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dignissim lorem et purus imperdiet phar. Nulla lacinia sagittis orci id dignissim. Aliquam erat volutpat. Nam commodo accumsan venenatis.</p>
         <form>
           <div class="ourtools-btn-container">
-            <input type="radio" id="option-one" name="selector" checked="checked">
-            <label for="option-one">TYPE 1</label>
+            <input type="radio" id="option-one" name="selector">
+            <!-- add when more machines in use -->
+            <label for="option-one">TYPE 1</label> 
             
-            <input type="radio" id="option-two" name="selector">
+            <input type="radio" id="option-two" name="selector" checked="checked">
             <label for="option-two">TYPE 2</label>
             
             <input type="radio" id="option-three" name="selector">
+            <!-- add when more machines in use -->
             <label for="option-three">TYPE 3</label>
         </form>
 
@@ -184,7 +188,48 @@
     </div>
 
     <div class="ourservices-section">
-      .
+      <div class="ourservices-content">
+        <h2>Our Services</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide ourservices">
+              <div class="ourservices-image-container">
+                <img src="./../../public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
+              </div>
+              <div class="ourservices-text">
+                <h3>Scaled manufacturing for large & small businesses</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide ourservices">
+              <div class="ourservices-image-container">
+                <img src="./../../public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
+              </div>
+              <div class="ourservices-text">
+                <h3>Lorem ipsum dolor sit amet consectetur adipisicing.</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide ourservices">
+              <div class="ourservices-image-container">
+                <img src="./../../public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
+              </div>
+              <div class="ourservices-text">
+                <h3>Lorem ipsum dolor sit, amet consectetur adipisicing.</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- <div class="swiper-pagination"></div> -->
+
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
     </div>
 
     <div class="footer-section">
@@ -247,6 +292,7 @@
 
   <script src="../../public/javascripts/particles.js"></script>
   <script src="../../public/javascripts/banner.js"></script>
+  <script src="./../../node_modules/swiper/js/swiper.min.js"></script>
 </body>
 
 </html>
