@@ -35,7 +35,6 @@ const teamInit = async() => {
         } else if (pos > inc) {
           var ind = (Math.floor((pos / inc)) - 1) * row
           for(var i = ind; i < Math.min(ind+row, num_membs); i++) {
-            console.log(i)
             for(var j = 1; j <= 3; j++) {
               team[i][j].style.display = 'block'
             }
@@ -62,7 +61,6 @@ const teamInit = async() => {
         } else if (pos > inc) {
           var ind = (Math.floor((pos / inc)) - 1) * row
           for(var i = ind; i < Math.min(ind+row, num_membs); i++) {
-            console.log(i)
             for(var j = 1; j <= 3; j++) {
               team[i][j].style.display = 'block'
             }

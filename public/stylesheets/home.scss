@@ -167,7 +167,7 @@ body {
 .eng-kit-section {
   position: relative;  
   width: 100vw;
-  height: 70vh;
+  height: calc(50px + 60vh);
   background: $light-2;
   display: flex;
   flex-direction: column;
@@ -176,6 +176,11 @@ body {
 
   .swiper-wrapper {
     width: 100vw;
+  }
+
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
   }
   
   .eng-kit-container {
@@ -254,9 +259,9 @@ body {
 
   .eng-kit-brycep {
     img {
-      top: 5vh;
+      top: calc(25px + 1.5vh);
       left: 38vw;
-      width: 50vw;
+      width: calc(50px + 35vw);
     }
     .eng-kit-text {
       .eng-kit-code {
@@ -306,33 +311,6 @@ body {
     }
   }
 
-  .eng-kit-stc {
-    img {
-      top: 11vh;
-      left: 19vw;
-      width: 70vw;
-    }
-    .eng-kit-text {
-      .eng-kit-code {
-        top: 3vh;
-        left: 22vw;
-      }
-      .eng-kit-title {
-        top: 6vh;
-        left: 14vw;
-      }
-      .eng-kit-more {
-        top: 42vh;
-        left: 25vw;
-      }
-      .eng-kit-line,
-      .eng-kit-line-overlap {
-        top: 47vh;
-        left: 25vw;
-      }
-    }
-  }
-
   .eng-kit-load {
     img {
       animation: all-img 0.4s ease-out forwards;
@@ -355,9 +333,9 @@ body {
 
   .eng-kit-coming-soon  {
     font-family: $poppins;
-    font-size: 2vw;
+    font-size: calc(8px + 1vw);
     color: $dark-1;
-    font-weight: 100;
+    font-weight: 800;
     letter-spacing: 0.3vmax;
     margin-bottom: 1vh;
   }
@@ -751,9 +729,9 @@ body {
 
     .eng-kit-coming-soon  {
       font-family: $poppins;
-      font-size: 0.6vmax;
+      font-size: calc(10px + 0.6vmax);
       color: $dark-1;
-      font-weight: 100;
+      font-weight: 800;
       letter-spacing: 0.3vmax;
       margin-top: 4vh;
       margin-bottom: 0vh;
@@ -835,6 +813,7 @@ body {
   
     .eng-kit-brycep {
       img {
+        top: 5vh;
         left: 50vw;
         width: auto;
         height: 70vh;
@@ -898,38 +877,6 @@ body {
       }
     }
   
-    .eng-kit-stc {
-      img {
-        top: 10vh;
-        left: 50vw;
-        width: 35vw;
-      }
-      .eng-kit-text {
-        .eng-kit-code {
-          top: 20vh;
-          left: 10vw;
-        }
-        .eng-kit-title {
-          top: 23vh;
-          left: 10vw;
-        }
-        .eng-kit-desc {
-          top: 47vh;
-          left: 18vw;
-          width: 22vw;
-        }
-        .eng-kit-more {
-          top: 55vh;
-          left: 18vw;
-        }
-        .eng-kit-line,
-        .eng-kit-line-overlap {
-          top: 56.2vh;
-          left: 26vw;
-        }
-      }
-    }
-  
     .eng-kit-btn-container {
       transform: rotate(90deg);
       position: absolute;
@@ -963,7 +910,7 @@ body {
         .eng-kit-btn-text {
           font-family: $poppins;
           color: $light-3;
-          font-size: 0.6vmax;
+          font-size: calc(8px + 0.4vmax);
           letter-spacing: 0.4vmax;
           font-weight: 800;
         }

@@ -1,17 +1,17 @@
-.footer-section{
+.footer-section {
   width: 100%;
   background-color: $dark-2;
   min-height: 10em;
-  .footer-content{
+  .footer-content {
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
-    .footer-legal-section{
+    .footer-legal-section {
         margin:auto;
-        h4{
+        h4 {
           display: none;
         }
-        .footer-legal-content{
+        .footer-legal-content {
           margin: 2em;
           flex:0 0 80%;
           display: flex;
@@ -19,48 +19,53 @@
         li {
           list-style-type: none;
           line-height: 180%;
-          a{
+          a {
             color:$light-1;
             font-family: $poppins;
             font-size: 0.8em;
             transition: all ease 0.2s;
           }
-          a:hover{
+          a:hover {
             color:$highlight;
           }
         }
 
-        .list-section-left{
+        .list-section-left,
+        .list-section-desktop {
           padding-right:4vw;
           text-align: right;
         }
 
-        .list-section-divider{
+        .list-section-desktop {
+          display: none;
+        }
+
+        .list-section-divider {
           width:1px;
           border-left: thin solid $light-1;
           height:4.5em;
         }
 
-        .list-section-right{
+        .list-section-right {
           padding-left:4vw;
           text-align: left;
         }
       }
     }
 
-    .footer-contact-section{
+    .footer-contact-section {
       display: none;
     }
 
-    .footer-sitemap-section{
+    .footer-sitemap-section {
       display: none;
     }
 
-    .footer-copyright-section{
+    .footer-copyright-section {
       flex: 0 0 100%;
       padding-top: 0.8em;
       padding-bottom: 2em;
-      h3{
+      h3 {
         font-family: $poppins;
         font-weight: 100;
         font-size: 0.8em;
@@ -73,9 +78,9 @@
 }
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
-  .footer-section{
+  .footer-section {
     padding-top:3vw;
-    h4{
+    h4 {
       display: inline-block;
       font-family: $poppins;
       font-weight: 100;
@@ -86,66 +91,66 @@
       letter-spacing: 2px;
       font-weight: 800;
       padding-bottom: 4vh;
-      height:2vh;
+      height: 2vh;
     }
-    .footer-content{
+    .footer-content {
       display: flex;
       justify-content: center;
-      .footer-legal-section{
-        margin:0;
-        flex:0 0 28%;
+
+      .footer-legal-section {
+        margin: 0;
+        flex: 0 0 28%;
         padding: 0;
         display: flex;
         flex-wrap: wrap;
-        font-size: 1.2vh;
         align-self: flex-start;
-        h4{
+        align-items: flex-start;
+        h4 {
           display: flex;
           justify-content: flex-end;
           flex: 0 0 100%;
         }
-        .footer-legal-content{
+        .footer-legal-content {
           margin: 0;
-          flex:0 0 100%;
+          flex: 0 0 100%;
           flex-wrap: wrap;
           align-items: flex-start;
           align-self: flex-start;
           text-align: right;
-          .list-section-left{
-            padding-right:0;
+          
+          .list-section-left,
+          .list-section-desktop {
+            padding: 0;
             width: 100%;
-            padding-top:0.5vh;
-            ul{
-              margin:0;
+            ul {
+              margin: 0;
             }
-            li{
-              margin-bottom: 1vh;
-            }
-            a{
-              line-height: 220%;
-              font-size: 1.3vh;
+            li {
+              list-style-type: none;
+              line-height: 180%;
+              margin-bottom: 0;
+              a {
+                font-size: 1.3vh;
+                color: $light-2;
+                transition: all ease 0.2s;
+                &:hover {
+                  color:$highlight;
+                }
+              }
             }
           }
-          .list-section-divider{
+          
+          .list-section-desktop {
+            display: block;
+          }
+
+          .list-section-divider,
+          .list-section-right {
             display: none;
-          }
-          .list-section-right{
-            flex:0 0 100%;
-            text-align: right;
-            ul{
-              margin:0;
-            }
-            li{
-              margin-bottom: 1vh;
-            }
-            a{
-              line-height: 220%;
-              font-size: 1.3vh;
-            }
           }
         }
       }
-      .footer-contact-section{
+      .footer-contact-section {
         display: flex;
         flex-wrap: wrap;
         flex:0 0 30%;
@@ -157,31 +162,31 @@
         border-left: thin $dark-1 solid;
         align-items: flex-start;
         align-self: flex-start;
-        h4{
+        h4 {
           display: inline-block;
         }
-        .footer-contact-content{
+        .footer-contact-content {
           flex: 0 0 100%;
-          .contact-email{
+          .contact-email {
             flex: 0 0 100%;
-            padding-bottom: 2.5vh;
+            padding-bottom: 1.5vh;
             padding-top: 0.5vh;
-            a{
+            a {
               color:$light-3;
               font-family: $poppins;
               font-size: 1.4vh;
               transition: all ease 0.2s;
-              &:hover{
+              &:hover {
                 color:$highlight;
               }
             }
           }
-          .contact-socials{
+          .contact-socials {
             flex: 0 0 100%;
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            a{
+            a {
               color:$light-2;
               font-size: 2vh;
               margin:1vw;
@@ -191,43 +196,55 @@
               }
             }
           }
-          .btn-subscribe{
-            margin:auto;
+          .btn-subscribe {
+            margin: auto;
             padding-bottom: 2vh;
-            .reg-btn{
+            .reg-btn {
               color:$light-2;
-              &:hover{
+              &:hover {
                 color:$highlight;
+              }
+            }
+          }
+          .contact-legal {
+            a {
+              font-family: $poppins;
+              font-size: 1vh;
+              color: $light-3;
+              margin: 0 1vw;
+
+              &:hover {
+                border-bottom: thin solid $light-3;
               }
             }
           }
         }
       }
-      .footer-sitemap-section{
-        flex:0 0 28%;
+      .footer-sitemap-section {
+        flex: 0 0 28%;
         display: flex;
-        flex-wrap:wrap;
+        flex-wrap: wrap;
         text-align: left;
         align-items: flex-start;
         align-self: flex-start;
-        h4{
+        h4 {
           display: inline-block;
         }
-        .footer-sitemap-content{
+        .footer-sitemap-content {
           flex: 0 0 100%;
           min-height: 10vw;
-          ul{
-            margin:0;
+          ul {
+            margin: 0;
           }
-          li{
+          li {
             list-style-type: none;
             line-height: 180%;
-            a{
+            a {
               font-family: $poppins;
               color:$light-2;
               font-size: 1.3vh;
               transition: all ease 0.2s;
-              &:hover{
+              &:hover {
                 color:$highlight;
               }
             }
@@ -235,10 +252,11 @@
         }
       }
   
-      .footer-copyright-section{
+      .footer-copyright-section {
         padding-top: 3vh;
         padding-bottom: 2vh;
-        h3{
+
+        h3 {
           font-size: 1.1vh;
         }
       }
