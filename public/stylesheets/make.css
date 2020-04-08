@@ -1696,10 +1696,10 @@ nav .nav-darken-overlay {
     margin: auto;
     padding-bottom: 2vh;
   }
-  .footer-section .footer-content .footer-contact-section .footer-contact-content .btn-subscribe .reg-btn {
+  .footer-section .footer-content .footer-contact-section .footer-contact-content .btn-subscribe #subscribe-btn {
     color: #f8f8f8;
   }
-  .footer-section .footer-content .footer-contact-section .footer-contact-content .btn-subscribe .reg-btn:hover {
+  .footer-section .footer-content .footer-contact-section .footer-contact-content .btn-subscribe #subscribe-btn:hover {
     color: #4bf0ea;
   }
   .footer-section .footer-content .footer-contact-section .footer-contact-content .contact-legal a {
