@@ -2337,8 +2337,7 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 100%;
           flex: 1 0 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(white));
-  background: linear-gradient(to bottom, #f8f8f8, white);
+  background: #f8f8f8;
   border-bottom: 2vh solid white;
   height: auto;
 }
@@ -2438,4 +2437,3 @@ body {
     height: calc(100% - 5vh);
   }
 }
-/*# sourceMappingURL=profile.css.map */
