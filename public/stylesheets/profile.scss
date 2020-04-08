@@ -255,7 +255,8 @@ body {
   .main-area {
     display: none;
     flex: 1 0 100%;
-    background: linear-gradient(to bottom, $light-2, $light-1);
+    // background: linear-gradient(to bottom, $light-2, $light-1);
+    background: $light-2;
     border-bottom: 2vh solid $light-1;
     height: auto;
   }
