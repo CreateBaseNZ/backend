@@ -15,8 +15,8 @@ body {
 }
 
 .my-profile-section {
-  visibility: hidden;
   grid-area: profile;
+  visibility: hidden;
   display: grid;
   grid-template-areas: 
   "dp name"
@@ -210,7 +210,7 @@ body {
   }
 }
 
-#profile-tabs-bar {
+.profile-tabs-section {
   grid-area: tabs;
   display: flex;
   flex-wrap: wrap;
@@ -255,7 +255,6 @@ body {
   .main-area {
     display: none;
     flex: 1 0 100%;
-    // background: linear-gradient(to bottom, $light-2, $light-1);
     background: $light-2;
     border-bottom: 2vh solid $light-1;
     height: auto;
@@ -343,7 +342,7 @@ body {
   }
 }
 
-#profile-tabs-bar {
+.profile-tabs-section {
   align-items: flex-start;
   margin-top: 5vh;
 
@@ -357,6 +356,130 @@ body {
     border-right: calc(55px + 1vw) solid $light-1;
     border-bottom: 5vh solid $light-1;
     height: calc(100% - 5vh);
+    font-family: $poppins;
+  }
+
+  #projects-area {
+    .current-projects-section,
+    .archived-projects-section {
+      margin: 2vh 1vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      * {
+        // border: 1px solid red;
+      }
+
+      .project-section-header {
+        text-transform: uppercase;
+        margin-top: 1vh;
+        color: $logo-2;
+        letter-spacing: 0.1vw;
+      }
+
+      .project-container {
+        display: flex;
+        flex-direction: column;
+        margin: 1vh 0;
+
+        h5 {
+          color: $light-1;
+          letter-spacing: 1px;
+          margin: 0 1vw;
+          justify-self: flex-end;
+          font-size: calc(10px + 0.2vw);
+        }
+
+        p {
+          word-break: break-all;
+          color: $light-1;
+          font-size: calc(8px + 0.25vw);
+          font-weight: 100;
+        }
+
+        .project-body {
+          display: grid;
+          grid-template-columns: 16vw 12vw 12vw 20vw;
+          height: calc(100px + 3vh);
+          padding: 2vmin;
+          padding-bottom: 2vmin;
+          background: $logo-2;
+
+          .project-name {
+            align-self: flex-end;
+            margin-left: 2vw;
+            color: $light-1;
+            font-size: calc(12px + 0.5vw);
+            font-weight: 100;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .project-files {
+            display: flex;
+            flex-direction: row;
+
+            p {
+              padding-right: 1vw;
+            }
+          }
+
+          .project-details {
+            display: grid;
+            grid-template-rows: auto;
+            grid-template-columns: 1fr 1fr;
+            align-content: space-between;
+
+            p {
+              align-self: center;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+          }
+
+          .project-notes {
+            display: flex;
+            flex-direction: row;
+
+            p {
+              position: relative;
+              overflow: hidden;
+              height: calc(100px + 3vh - 4vmin);
+
+              &:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient(to top, $logo-2, rgba(104, 83, 217,0));
+                height: 20px;
+                width: 100%;
+              }
+            }
+          }
+
+          &:hover {
+            background: $logo-3;
+          }
+        }
+
+        .project-dates {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+
+          p {
+
+          }
+        }
+      }
+    }
   }
 
 }
