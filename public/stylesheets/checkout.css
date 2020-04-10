@@ -1267,7 +1267,7 @@ nav .nav-darken-overlay {
   display: none;
 }
 
-@media only screen and (min-width: 850px) and (orientation: landscape) {
+@media only screen and (min-width: 850px) {
   nav .nav-top-bar {
     -ms-grid-columns: 45vw 10vw 45vw;
         grid-template-columns: 45vw 10vw 45vw;
