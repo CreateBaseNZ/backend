@@ -92,17 +92,18 @@ h4{
 }
 
 .step-content-container{
-    justify-content: space-between;
     display: flex;
+    justify-content: space-between;
     padding-bottom: 5vh;
     .icongif-container{
-        width:15vh;
         height:45vh;
-        background-image: url(../../images/3dinfo/icons.jpg);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
         margin-right:1vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        img{
+            height:20%;
+        }
     }
 }
 
@@ -128,7 +129,7 @@ h4{
         }
         p{
             margin-left: 1vh;
-            font-size: 1.6vh;
+            font-size: 0.8em;
         }
     }
 }
@@ -167,6 +168,10 @@ h4{
     }
 }
 
+.image-caption-text{
+    display: none;
+}
+
 .image-link-text{
     position: absolute;
     bottom:6%;
@@ -174,9 +179,7 @@ h4{
     display: flex;
     flex-wrap: wrap;
     width:40%;
-    p{
-        display: none;
-    }
+
     a{
         flex: 0 0 50%;
         font-family: $poppins;
@@ -200,6 +203,7 @@ h4{
     }
 }
 
+
 .ourtools-section{
     width:100%;
     display: flex;
@@ -210,8 +214,6 @@ h4{
 .outools-content-container{
     flex:0 0 80%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     padding: 3em 0;
     .ourtools-text-container{
         flex: 0 0 100%;
@@ -242,6 +244,11 @@ h4{
             margin-bottom: 1em;
         }
     }
+}
+
+
+.ourtools-machine-image{
+    display: none;
 }
 
 .ourtools-btn-container{
@@ -390,17 +397,22 @@ h4{
 
 //tablet screen view
 @media only screen and (min-width: 60em) and (orientation: landscape){
+    body{
+
+    }
     .info-section{
         padding-top: 5vh;
+        padding-left: 1.5em;
     }
 
     .info-content-wrap{
-        padding: 0 1vh;
-        display: flex;
+        // border:thin solid cyan;
+        width:100%;
+        padding: 0;
+        margin: 0;
         flex-wrap: wrap;
         justify-content: center;
         flex-direction: row;
-        align-items: center;
         height:inherit;
     }
 
@@ -408,17 +420,17 @@ h4{
         width:40%;
         margin-top: 0;
         padding-bottom: 0;
+        height:100%;
         h3{
             text-align: left;
-            padding-top:0vh;
-            height:7vh;
+            padding-top:0;
+            padding-bottom: 2vw;
             font-size: 2vh;
         }
     }
 
     .step-content-container{
         justify-content: left;
-        height:40vh;
         padding-bottom: 0vh;
         .circle-step{
             border:0.1vh solid $dark-2;
@@ -438,47 +450,41 @@ h4{
                 transform: translate(-50%, -50%);
             }
         }
-        .icongif-container{
-            width:20vh;
-            height:40vh;
-            background-image: url(../../images/3dinfo/icons.jpg);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 15vh 40vh;
-            margin-right: 1vh;
-        }
     }
+
+
+    // test
 
     .step-circle-container{
         position: relative;
-        height:40vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         .vertical-line{
-            border-right: 0.1vh solid $dark-2;
-            height:inherit;
+            border-right: thin solid $dark-2;
+            height:100%;
             position: absolute;
             left:50%;
         }
     }
 
     .step-diagram-text{
-        padding-top: 0;
-        margin-top: 0;
-        margin-left:0;
+        // border: thin solid blue;
+        padding: 0;
+        margin: 0;
         .diagram-description-item{
-            height:6vh;
+            // border: thin solid orange;
+            height:18%;
             width:100%;
             padding-bottom: 0vh;
             h4{
                 font-weight: bold;
                 color:$dark-1;
                 padding-bottom:0.5vh;
-                font-size: 1.5vh;
+                font-size: 0.9em;
             }
             p{
-                font-size: 1.4vh;
+                font-size: 0.8em;
             }
         }
     }
@@ -487,40 +493,179 @@ h4{
     }
 
     .marketplace-example-section{
+        display: flex;
         height: 100%;
-        margin-left:1vw;
-        flex: 0 0 30%;
-        border: thin solid red;
-        .icongif-container{
+        margin-left:10vw;
+        width: 40%;
+        max-width: 30em;
+        justify-content: center;
+        .marketplace-example-container{
             width:100%;
+            img{
+                margin: auto;
+                max-height: 36em;      
+                max-width: 30em;      
+            }
         }
-        img{
-            height:inherit;
-            width:48vh;
+    }
+
+    .image-title-text{
+        top:16%;
+    }
+
+    .image-caption-text{
+        position: absolute;
+        top:65%;
+        right:10%;
+        display: flex;
+        flex-wrap: wrap;
+        width:30%;
+        p{
+            font-size: 0.8em;
+            color: $dark-1;
         }
     }
 
     .image-link-text{
         position: absolute;
-        bottom:6%;
-        right:0;
-        display: flex;
-        flex-wrap: wrap;
-        width:40%;
+        bottom:3%;
+        right:15%;
+        width:25%;
         p{
+            display: inline-block;
+            font-size: 0.8em;
+            display: inline-block;
             color:$dark-1;
             flex:0 0 100%;
             padding-bottom: 1em;
         }
-        a{
-            border:thin solid red;
+    }
+
+    .outools-content-container{
+        // border: thin solid blue;
+        flex:0 0 80%;
+        display: grid;
+        padding: 3em 0;
+        .ourtools-text-container{
+            flex: 0 0 100%;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1em 1em 0 1em;
+            h3{
+                font-size: 1em;
+                font-weight: 700;
+                color:$light-3;
+                padding-bottom: 0.5em;
+                flex:0 0 100%;
+            }
+            h2{
+                font-size: 1.4em;
+                color:$dark-3;
+                padding-bottom: 1em;
+                flex:0 0 100%;
+            }
+            p{
+                text-align: center;
+                padding:0.5em 0;
+                font-size: 0.8em;
+                line-height:180%;
+                flex:0 0 100%;
+                margin-bottom: 1em;
+            }
         }
+    }
+
+    .ourtools-machine-image{
+        display: block;
+        width: 40%;
+        height:30em;
+        background-image: url(/public/images/3dInfo/machine.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
     }
 }
 
 //Large screen view
-@media only screen and (min-width: 75em) {
-    .step-content-wrap{
-        background-color: black;
+@media only screen and (min-width: 85em) {
+    .info-content-wrap{
+        padding-bottom: 3em;
     }
+
+    .step-content-wrap{
+        width: unset;
+    }
+
+    .step-circle-container{
+        margin-right: 3vw;
+    }
+
+    .step-diagram-text{
+        margin-left: 2vw;
+    }
+
+    .marketplace-example-section{
+        width:40em;
+        margin-left:3vw;
+    }
+    
+    .marketplace-example-container{
+        img{
+            width:100%;
+            max-height: 38em;      
+            max-width: 40em;   
+        }
+    }
+
+    .step-content-wrap{
+        width:40%;
+        margin-top: 0;
+        padding-bottom: 0;
+        height:100%;
+        h3{
+            text-align: left;
+            padding-top:0;
+            padding-bottom: 2vw;
+            font-size: 2vh;
+        }
+    }
+
+    .step-content-container{
+        justify-content: left;
+        padding-bottom: 0vh;
+        .circle-step{
+            border:0.1vh solid $dark-2;
+            border-radius: 50%;
+            background-color: $light-1;
+            width:7vh;
+            height:7vh;
+            position: relative;
+            p{
+                font-family: $poppins;
+                font-size: 2vh;
+                color:$dark-2;
+                position: absolute;
+                text-align: center;
+                top: 48%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+
+    .step-diagram-text{
+        flex: 0 0 48%;
+        .diagram-description-item{
+            height:12%;
+            h4{
+                padding-bottom:0.5vh;
+                // font-size: 1.5vh;
+            }
+        }
+    }
+
+    
+
 }
