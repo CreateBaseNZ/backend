@@ -45,6 +45,8 @@ const navInit = async() => {
       rightMenuIn.classList.remove('nav-right-menu-active')
       rightMenuOut.classList.remove('nav-right-menu-active')
       userIn.classList.remove('nav-user-active')
+      userDesktopOut.classList.remove('nav-user-active')
+      userMobileOut.classList.remove('nav-user-active')
     // If right menu not displayed, darken
     } else {
       darken.classList.toggle('nav-darken-overlay-active')
@@ -57,6 +59,7 @@ const navInit = async() => {
     rightMenuOut.classList.toggle('nav-right-menu-active')
     userIn.classList.toggle('nav-user-active')
     userMobileOut.classList.toggle('nav-user-active')
+    userDesktopOut.classList.toggle('nav-user-active')
 
     if (leftMenu.classList.contains('nav-left-menu-active')) {
       leftMenu.classList.remove('nav-left-menu-active')
@@ -71,6 +74,7 @@ const navInit = async() => {
     rightMenuIn.classList.toggle('nav-right-menu-active')
     rightMenuOut.classList.toggle('nav-right-menu-active')
     userIn.classList.toggle('nav-user-active')
+    userDesktopOut.classList.toggle('nav-user-active')
     userMobileOut.classList.toggle('nav-user-active')
 
     if (leftMenu.classList.contains('nav-left-menu-active')) {
@@ -99,7 +103,7 @@ const navInit = async() => {
         userDesktopOut.style.display = "block"
         userMobileOut.style.display = "none"
         userIn.style.display = "none"
-        rightMenuOut.style.display = "block"
+        rightMenuOut.style.display = "none"
         rightMenuIn.style.display= "none"
       }
   
