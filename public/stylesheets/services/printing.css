@@ -2307,6 +2307,9 @@ h4 {
 
 .ourtools-section {
   width: 100%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2315,6 +2318,9 @@ h4 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .outools-content-container {
@@ -2324,7 +2330,18 @@ h4 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 3em 0;
+}
+
+.outools-content-container form {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
 }
 
 .outools-content-container .ourtools-text-container {
@@ -2377,23 +2394,29 @@ h4 {
   display: none;
 }
 
-.ourtools-btn-container {
+form .ourtools-btn-container {
   padding: 2em 0;
-  width: 60vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.ourtools-btn-container input[type=radio] {
+.input-item {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 30%;
+          flex: 0 0 30%;
+  text-align: center;
+}
+
+.input-item input[type=radio] {
   visibility: hidden;
   display: none;
 }
 
-.ourtools-btn-container label {
+.input-item label {
   font-size: 0.9em;
   color: #c7c2d5;
   display: inline-block;
@@ -2404,13 +2427,13 @@ h4 {
   letter-spacing: 0.2em;
 }
 
-.ourtools-btn-container label:hover {
+.input-item label:hover {
   color: #322d41;
   background: white;
   border-bottom: 0.1em solid #322d41;
 }
 
-.ourtools-btn-container input[type=radio]:checked + label {
+.input-item input[type=radio]:checked + label {
   color: #322d41;
   background: white;
   border-bottom: 0.1em solid #322d41;
@@ -2728,49 +2751,58 @@ h4 {
             flex: 0 0 100%;
     padding-bottom: 1em;
   }
+  .ourtools-section {
+    padding: 5em 0;
+  }
   .outools-content-container {
+    height: 35em;
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 80%;
-            flex: 0 0 80%;
+        -ms-flex: 0 0 85%;
+            flex: 0 0 85%;
     display: -ms-grid;
     display: grid;
-    padding: 3em 0;
+    padding: 0;
+    margin: 0;
+    -ms-grid-columns: 5% 23.75% 23.75% 5% 37.5% 5%;
+        grid-template-columns: 5% 23.75% 23.75% 5% 37.5% 5%;
+    -ms-grid-rows: auto auto auto;
+        grid-template-rows: auto auto auto;
   }
   .outools-content-container .ourtools-text-container {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 100%;
-            flex: 0 0 100%;
-    text-align: center;
+    -ms-grid-column: 5;
+    grid-column: 5;
+    -ms-grid-row: 2;
+    grid-row: 2;
+    text-align: left;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    padding: 1em 1em 0 1em;
+    padding: 0;
   }
   .outools-content-container .ourtools-text-container h3 {
+    padding-top: 3em;
+    line-height: 200%;
     font-size: 1em;
     font-weight: 700;
     color: #c7c2d5;
-    padding-bottom: 0.5em;
+    padding-bottom: 0;
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
   }
   .outools-content-container .ourtools-text-container h2 {
-    font-size: 1.4em;
+    font-size: 2em;
     color: #2d283c;
-    padding-bottom: 1em;
+    padding-bottom: 0;
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
   }
   .outools-content-container .ourtools-text-container p {
-    text-align: center;
-    padding: 0.5em 0;
+    text-align: left;
+    padding: 0 0 0 3em;
     font-size: 0.8em;
     line-height: 180%;
     -webkit-box-flex: 0;
@@ -2780,16 +2812,51 @@ h4 {
   }
   .ourtools-machine-image {
     display: block;
-    width: 40%;
-    height: 30em;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 2;
+    grid-column: 2/4;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    grid-row: 1/4;
+    height: 100%;
     background-image: url(/public/images/3dInfo/machine.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
   }
+  form {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 3;
+    grid-row: 3;
+  }
+  form .ourtools-btn-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0;
+    width: 15em;
+  }
+  form .ourtools-btn-container .input-item {
+    width: 100%;
+  }
+  form .ourtools-btn-container label {
+    margin: 0;
+    padding: 0;
+    width: 3em;
+  }
 }
 
 @media only screen and (min-width: 85em) {
+  .info-section {
+    padding-left: 0;
+    padding-right: 5vw;
+  }
   .info-content-wrap {
     padding-bottom: 3em;
   }
@@ -2804,7 +2871,7 @@ h4 {
   }
   .marketplace-example-section {
     width: 40em;
-    margin-left: 3vw;
+    margin-left: 8vw;
   }
   .marketplace-example-container img {
     width: 100%;

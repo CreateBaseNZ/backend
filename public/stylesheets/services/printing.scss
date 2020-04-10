@@ -206,15 +206,22 @@ h4{
 
 .ourtools-section{
     width:100%;
+    flex: 0 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
 .outools-content-container{
     flex:0 0 80%;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 3em 0;
+    form{
+        flex: 0 0 100%;
+    }
     .ourtools-text-container{
         flex: 0 0 100%;
         text-align: center;
@@ -251,11 +258,17 @@ h4{
     display: none;
 }
 
-.ourtools-btn-container{
-    padding:2em 0;
-    width:60vw;
-    display: flex;
-    justify-content: space-between;
+form{
+    .ourtools-btn-container{
+        padding:2em 0;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.input-item{
+    flex: 0 0 30%;
+    text-align: center;
     input[type=radio] {
         visibility: hidden;
         display: none;
@@ -452,9 +465,6 @@ h4{
         }
     }
 
-
-    // test
-
     .step-circle-container{
         position: relative;
         display: flex;
@@ -541,34 +551,43 @@ h4{
         }
     }
 
+    .ourtools-section{
+        padding:5em 0;
+    }
+
     .outools-content-container{
-        // border: thin solid blue;
-        flex:0 0 80%;
+        height:35em;
+        flex:0 0 85%;
         display: grid;
-        padding: 3em 0;
+        padding: 0;
+        margin: 0;
+        grid-template-columns: 5% 23.75% 23.75% 5% 37.5% 5%;
+        grid-template-rows: auto auto auto;
         .ourtools-text-container{
-            flex: 0 0 100%;
-            text-align: center;
+            grid-column: 5;
+            grid-row: 2;
+            text-align: left;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            padding: 1em 1em 0 1em;
+            padding: 0;
             h3{
+                padding-top: 3em;
+                line-height: 200%;
                 font-size: 1em;
                 font-weight: 700;
                 color:$light-3;
-                padding-bottom: 0.5em;
+                padding-bottom: 0;
                 flex:0 0 100%;
             }
             h2{
-                font-size: 1.4em;
+                font-size: 2em;
                 color:$dark-3;
-                padding-bottom: 1em;
+                padding-bottom: 0;
                 flex:0 0 100%;
             }
             p{
-                text-align: center;
-                padding:0.5em 0;
+                text-align: left;
+                padding:0 0 0 3em;
                 font-size: 0.8em;
                 line-height:180%;
                 flex:0 0 100%;
@@ -579,17 +598,46 @@ h4{
 
     .ourtools-machine-image{
         display: block;
-        width: 40%;
-        height:30em;
+        grid-column: 2/4;
+        grid-row: 1/4;
+        height:100%;
         background-image: url(/public/images/3dInfo/machine.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
     }
+
+    form{
+        transform: rotate(-90deg);
+        align-self: center;
+        grid-column:1;
+        grid-row: 3;
+        .ourtools-btn-container{
+            display: flex;
+            padding: 0;
+            width:15em;
+            .input-item{
+                width: 100%;
+            }
+            label{
+                margin:0;
+                padding: 0;
+                width:3em;
+            }
+        }
+    }
 }
 
 //Large screen view
 @media only screen and (min-width: 85em) {
+    body{
+
+    }
+
+    .info-section{
+        padding-left: 0;
+        padding-right:5vw;
+    }
     .info-content-wrap{
         padding-bottom: 3em;
     }
@@ -608,7 +656,7 @@ h4{
 
     .marketplace-example-section{
         width:40em;
-        margin-left:3vw;
+        margin-left:8vw;
     }
     
     .marketplace-example-container{
