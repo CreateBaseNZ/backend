@@ -2442,7 +2442,10 @@ body {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    margin-top: 5vh;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 5vh calc(55px + 1vw) 5vh 0;
   }
   .profile-tabs-section label {
     -webkit-box-flex: 0;
@@ -2452,10 +2455,9 @@ body {
     letter-spacing: 0.2vw;
   }
   .profile-tabs-section .main-area {
-    border-right: calc(55px + 1vw) solid white;
-    border-bottom: 5vh solid white;
     height: calc(100% - 5vh);
     font-family: "Poppins", sans-serif;
+    border: 0;
   }
   .profile-tabs-section #projects-area .current-projects-section,
   .profile-tabs-section #projects-area .archived-projects-section {
@@ -2519,6 +2521,8 @@ body {
     padding-bottom: 2vmin;
     background: #6853d9;
     cursor: pointer;
+    -webkit-transition-duration: 0.2s;
+            transition-duration: 0.2s;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container .project-body .project-name,
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-name {
@@ -2615,6 +2619,7 @@ body {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    margin-top: 10px;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container .project-dates p,
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-dates p {
@@ -2631,6 +2636,10 @@ body {
   }
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body {
     background: white;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body * {
+    -webkit-transition-duration: 0.2s;
+            transition-duration: 0.2s;
   }
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-name {
     color: #c7c2d5;
@@ -2661,4 +2670,3 @@ body {
     color: #c7c2d5;
   }
 }
-/*# sourceMappingURL=profile.css.map */

@@ -344,7 +344,8 @@ body {
 
 .profile-tabs-section {
   align-items: flex-start;
-  margin-top: 5vh;
+  justify-content: flex-end;
+  padding: 5vh calc(55px + 1vw) 5vh 0;
 
   label {
     flex: none;
@@ -353,10 +354,9 @@ body {
   }
 
   .main-area {
-    border-right: calc(55px + 1vw) solid $light-1;
-    border-bottom: 5vh solid $light-1;
     height: calc(100% - 5vh);
     font-family: $poppins;
+    border: 0;
   }
 
   #projects-area {
@@ -404,6 +404,7 @@ body {
           padding-bottom: 2vmin;
           background: $logo-2;
           cursor: pointer;
+          transition-duration: 0.2s;
 
           .project-name {
             align-self: flex-end;
@@ -437,7 +438,6 @@ body {
               overflow: hidden;
               text-overflow: ellipsis;
             }
-
           }
 
           .project-notes {
@@ -472,6 +472,7 @@ body {
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
+          margin-top: 10px;
 
           p {
             color: $dark-1;
@@ -497,6 +498,10 @@ body {
 
         .project-body {
           background: $light-1;
+
+          * {
+            transition-duration: 0.2s;
+          }
 
           .project-name {
             color: $light-3;
