@@ -2458,6 +2458,7 @@ body {
     height: calc(100% - 5vh);
     font-family: "Poppins", sans-serif;
     border: 0;
+    border-radius: 5px;
   }
   .profile-tabs-section #projects-area .current-projects-section,
   .profile-tabs-section #projects-area .archived-projects-section {
@@ -2469,20 +2470,22 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-align: left;
-        -ms-flex-align: left;
-            align-items: left;
-    -webkit-box-pack: left;
-        -ms-flex-pack: left;
-            justify-content: left;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-section-header,
   .profile-tabs-section #projects-area .archived-projects-section .project-section-header {
-    padding: 0.5vw;
-    margin-top: 1vh;
-    color: #6853d9;
+    margin: 1vh 1vw;
+    color: #2d283c;
+    letter-spacing: 1px;
     font-weight: 800;
     font-family: "Montserrat", sans-serif;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container,
   .profile-tabs-section #projects-area .archived-projects-section .project-container {
@@ -2497,7 +2500,7 @@ body {
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container h5,
   .profile-tabs-section #projects-area .archived-projects-section .project-container h5 {
-    color: white;
+    color: #2d283c;
     letter-spacing: 1px;
     margin: 0 1vw;
     justify-self: flex-end;
@@ -2506,7 +2509,7 @@ body {
   .profile-tabs-section #projects-area .current-projects-section .project-container p,
   .profile-tabs-section #projects-area .archived-projects-section .project-container p {
     word-break: break-all;
-    color: white;
+    color: #2d283c;
     font-size: calc(8px + 0.25vw);
     font-weight: 100;
   }
@@ -2519,17 +2522,18 @@ body {
     height: calc(100px + 3vh);
     padding: 2vmin;
     padding-bottom: 2vmin;
-    background: #6853d9;
+    background: white;
     cursor: pointer;
     -webkit-transition-duration: 0.2s;
             transition-duration: 0.2s;
+    border-radius: 5px;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container .project-body .project-name,
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-name {
     -ms-flex-item-align: end;
         align-self: flex-end;
     margin-left: 1vw;
-    color: white;
+    color: #2d283c;
     font-size: calc(12px + 0.5vw);
     font-weight: 100;
     white-space: nowrap;
@@ -2586,17 +2590,6 @@ body {
     overflow: hidden;
     height: calc(100px + 3vh - 4vmin);
   }
-  .profile-tabs-section #projects-area .current-projects-section .project-container .project-body .project-notes p:after,
-  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-notes p:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: -webkit-gradient(linear, left bottom, left top, from(#6853d9), to(rgba(104, 83, 217, 0)));
-    background: linear-gradient(to top, #6853d9, rgba(104, 83, 217, 0));
-    height: 20px;
-    width: 100%;
-  }
   .profile-tabs-section #projects-area .current-projects-section .project-container .project-body:hover,
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body:hover {
     -webkit-filter: brightness(1.1);
@@ -2604,26 +2597,26 @@ body {
     -webkit-box-shadow: 0 4px 12px -8px;
             box-shadow: 0 4px 12px -8px;
   }
-  .profile-tabs-section #projects-area .current-projects-section .project-container .project-dates,
-  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-dates {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    margin-top: 10px;
+  .profile-tabs-section #projects-area .current-projects-section button,
+  .profile-tabs-section #projects-area .archived-projects-section button {
+    font-weight: 800;
+    font-size: calc(12px + 0.2vw);
+    margin: 1vh 0;
+    color: #6853d9;
   }
-  .profile-tabs-section #projects-area .current-projects-section .project-container .project-dates p,
-  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-dates p {
-    color: #877da9;
+  .profile-tabs-section #projects-area .current-projects-section button::before, .profile-tabs-section #projects-area .current-projects-section button::after,
+  .profile-tabs-section #projects-area .archived-projects-section button::before,
+  .profile-tabs-section #projects-area .archived-projects-section button::after {
+    border-color: #6853d9;
+  }
+  .profile-tabs-section #projects-area .current-projects-section button:hover,
+  .profile-tabs-section #projects-area .archived-projects-section button:hover {
+    color: #4bf0ea;
+  }
+  .profile-tabs-section #projects-area .current-projects-section button:hover:before, .profile-tabs-section #projects-area .current-projects-section button:hover:after,
+  .profile-tabs-section #projects-area .archived-projects-section button:hover:before,
+  .profile-tabs-section #projects-area .archived-projects-section button:hover:after {
+    border-color: #4bf0ea;
   }
   .profile-tabs-section #projects-area .archived-projects-section .project-section-header {
     color: #c7c2d5;
@@ -2633,6 +2626,9 @@ body {
   }
   .profile-tabs-section #projects-area .archived-projects-section .project-container p {
     color: #c7c2d5;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body {
+    background: white;
   }
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body * {
     -webkit-transition-duration: 0.2s;
@@ -2650,10 +2646,6 @@ body {
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-notes p:after {
-    background: -webkit-gradient(linear, left bottom, left top, from(white), to(rgba(0, 0, 0, 0)));
-    background: linear-gradient(to top, white, rgba(0, 0, 0, 0));
-  }
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body:hover {
     -webkit-filter: none;
             filter: none;
@@ -2663,8 +2655,4 @@ body {
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body:hover * {
     color: #877da9;
   }
-  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-dates p {
-    color: #c7c2d5;
-  }
 }
-/*# sourceMappingURL=profile.css.map */

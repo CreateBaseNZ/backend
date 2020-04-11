@@ -357,6 +357,7 @@ body {
     height: calc(100% - 5vh);
     font-family: $poppins;
     border: 0;
+    border-radius: 5px;
   }
 
   #projects-area {
@@ -370,13 +371,12 @@ body {
       justify-content: left;
 
       .project-section-header {
-        // text-transform: ;
-        padding: 0.5vw;
-        margin-top: 1vh;
-        color: $logo-2;
-        // letter-spacing: 0.1vw;
+        margin: 1vh 1vw;
+        color: $dark-3;
+        letter-spacing: 1px;
         font-weight: 800;
         font-family: $montserrat;
+        align-self: flex-start;
       }
 
       .project-container {
@@ -385,7 +385,7 @@ body {
         margin: 1vh 0;
 
         h5 {
-          color: $light-1;
+          color: $dark-3;
           letter-spacing: 1px;
           margin: 0 1vw;
           justify-self: flex-end;
@@ -394,7 +394,7 @@ body {
 
         p {
           word-break: break-all;
-          color: $light-1;
+          color: $dark-3;
           font-size: calc(8px + 0.25vw);
           font-weight: 100;
         }
@@ -405,14 +405,15 @@ body {
           height: calc(100px + 3vh);
           padding: 2vmin;
           padding-bottom: 2vmin;
-          background: $logo-2;
+          background: $light-1;
           cursor: pointer;
           transition-duration: 0.2s;
+          border-radius: 5px;
 
           .project-name {
             align-self: flex-end;
             margin-left: 1vw;
-            color: $light-1;
+            color: $dark-3;
             font-size: calc(12px + 0.5vw);
             font-weight: 100;
             white-space: nowrap;
@@ -451,16 +452,6 @@ body {
               position: relative;
               overflow: hidden;
               height: calc(100px + 3vh - 4vmin);
-
-              &:after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                background: linear-gradient(to top, $logo-2, rgba(104, 83, 217,0));
-                height: 20px;
-                width: 100%;
-              }
             }
           }
 
@@ -469,16 +460,25 @@ body {
             box-shadow: 0 4px 12px -8px;
           }
         }
+      }
 
-        .project-dates {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          margin-top: 10px;
+      button {
+        font-weight: 800;
+        font-size: calc(12px + 0.2vw);
+        margin: 1vh 0;
+        color: $logo-2;
 
-          p {
-            color: $dark-1;
+        &::before,
+        &::after {
+          border-color: $logo-2;
+        }
+
+        &:hover {
+          color: $highlight;
+
+          &:before,
+          &:after {
+            border-color: $highlight;
           }
         }
       }
@@ -513,12 +513,6 @@ body {
           .project-notes {
             display: flex;
             flex-direction: row;
-
-            p {
-              &:after {
-                background: linear-gradient(to top, $light-1, rgba(0, 0, 0, 0));
-              }
-            }
           }
 
           &:hover {
@@ -527,13 +521,6 @@ body {
             * {
               color: $dark-1;
             }
-          }
-        }
-
-        .project-dates {
-
-          p {
-            color: $light-3;
           }
         }
       }
