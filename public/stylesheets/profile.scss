@@ -368,15 +368,12 @@ body {
       align-items: center;
       justify-content: center;
 
-      * {
-        // border: 1px solid red;
-      }
-
       .project-section-header {
         text-transform: uppercase;
         margin-top: 1vh;
         color: $logo-2;
         letter-spacing: 0.1vw;
+        font-weight: 800;
       }
 
       .project-container {
@@ -401,15 +398,16 @@ body {
 
         .project-body {
           display: grid;
-          grid-template-columns: 16vw 12vw 12vw 20vw;
+          grid-template-columns: 12vw 12vw 12vw 24vw;
           height: calc(100px + 3vh);
           padding: 2vmin;
           padding-bottom: 2vmin;
           background: $logo-2;
+          cursor: pointer;
 
           .project-name {
             align-self: flex-end;
-            margin-left: 2vw;
+            margin-left: 1vw;
             color: $light-1;
             font-size: calc(12px + 0.5vw);
             font-weight: 100;
@@ -464,7 +462,8 @@ body {
           }
 
           &:hover {
-            background: $logo-3;
+            filter: brightness(1.1);
+            box-shadow: 0 4px 12px -8px;
           }
         }
 
@@ -475,7 +474,58 @@ body {
           justify-content: space-between;
 
           p {
+            color: $dark-1;
+          }
+        }
+      }
+    }
 
+    .archived-projects-section {
+      .project-section-header {
+        color: $light-3;
+      }
+
+      .project-container {
+
+        h5 {
+          color: $light-3;
+        }
+
+        p {
+          color: $light-3;
+        }
+
+        .project-body {
+          background: $light-1;
+
+          .project-name {
+            color: $light-3;
+          }
+
+          .project-notes {
+            display: flex;
+            flex-direction: row;
+
+            p {
+              &:after {
+                background: linear-gradient(to top, $light-1, rgba(0, 0, 0, 0));
+              }
+            }
+          }
+
+          &:hover {
+            filter: none;
+            box-shadow: 0 4px 12px -14px;
+            * {
+              color: $dark-1;
+            }
+          }
+        }
+
+        .project-dates {
+
+          p {
+            color: $light-3;
           }
         }
       }

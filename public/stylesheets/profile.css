@@ -2480,6 +2480,7 @@ body {
     margin-top: 1vh;
     color: #6853d9;
     letter-spacing: 0.1vw;
+    font-weight: 800;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container,
   .profile-tabs-section #projects-area .archived-projects-section .project-container {
@@ -2511,18 +2512,19 @@ body {
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 16vw 12vw 12vw 20vw;
-        grid-template-columns: 16vw 12vw 12vw 20vw;
+    -ms-grid-columns: 12vw 12vw 12vw 24vw;
+        grid-template-columns: 12vw 12vw 12vw 24vw;
     height: calc(100px + 3vh);
     padding: 2vmin;
     padding-bottom: 2vmin;
     background: #6853d9;
+    cursor: pointer;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container .project-body .project-name,
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-name {
     -ms-flex-item-align: end;
         align-self: flex-end;
-    margin-left: 2vw;
+    margin-left: 1vw;
     color: white;
     font-size: calc(12px + 0.5vw);
     font-weight: 100;
@@ -2593,7 +2595,10 @@ body {
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container .project-body:hover,
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body:hover {
-    background: #4e4ed6;
+    -webkit-filter: brightness(1.1);
+            filter: brightness(1.1);
+    -webkit-box-shadow: 0 4px 12px -8px;
+            box-shadow: 0 4px 12px -8px;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container .project-dates,
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-dates {
@@ -2610,6 +2615,50 @@ body {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+  }
+  .profile-tabs-section #projects-area .current-projects-section .project-container .project-dates p,
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-dates p {
+    color: #877da9;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-section-header {
+    color: #c7c2d5;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container h5 {
+    color: #c7c2d5;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container p {
+    color: #c7c2d5;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body {
+    background: white;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-name {
+    color: #c7c2d5;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-notes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body .project-notes p:after {
+    background: -webkit-gradient(linear, left bottom, left top, from(white), to(rgba(0, 0, 0, 0)));
+    background: linear-gradient(to top, white, rgba(0, 0, 0, 0));
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body:hover {
+    -webkit-filter: none;
+            filter: none;
+    -webkit-box-shadow: 0 4px 12px -14px;
+            box-shadow: 0 4px 12px -14px;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body:hover * {
+    color: #877da9;
+  }
+  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-dates p {
+    color: #c7c2d5;
   }
 }
 /*# sourceMappingURL=profile.css.map */
