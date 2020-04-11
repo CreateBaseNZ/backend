@@ -2469,20 +2469,20 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-align: left;
+        -ms-flex-align: left;
+            align-items: left;
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-section-header,
   .profile-tabs-section #projects-area .archived-projects-section .project-section-header {
-    text-transform: uppercase;
+    padding: 0.5vw;
     margin-top: 1vh;
     color: #6853d9;
-    letter-spacing: 0.1vw;
     font-weight: 800;
+    font-family: "Montserrat", sans-serif;
   }
   .profile-tabs-section #projects-area .current-projects-section .project-container,
   .profile-tabs-section #projects-area .archived-projects-section .project-container {
@@ -2634,9 +2634,6 @@ body {
   .profile-tabs-section #projects-area .archived-projects-section .project-container p {
     color: #c7c2d5;
   }
-  .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body {
-    background: white;
-  }
   .profile-tabs-section #projects-area .archived-projects-section .project-container .project-body * {
     -webkit-transition-duration: 0.2s;
             transition-duration: 0.2s;
@@ -2670,3 +2667,4 @@ body {
     color: #c7c2d5;
   }
 }
+/*# sourceMappingURL=profile.css.map */
