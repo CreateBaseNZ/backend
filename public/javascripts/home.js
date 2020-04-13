@@ -6,7 +6,6 @@ const homeInit = async() => {
 
   const brycepKit = document.querySelector('.eng-kit-brycep')
   const hyelosKit = document.querySelector('.eng-kit-hyelos')
-  const stcKit = document.querySelector('.eng-kit-stc')
 
   let status;
   try {
@@ -111,7 +110,6 @@ const homeInit = async() => {
 
   const brycepButton = document.querySelector('#eng-kit-btn-brycep');
   const hyelosButton = document.querySelector('#eng-kit-btn-hyelos');
-  const stcButton = document.querySelector('#eng-kit-btn-stc');
 
   let activeSlide = brycepKit;
   let activeButton = brycepButton;

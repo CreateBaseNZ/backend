@@ -8,7 +8,7 @@
   <link rel="icon" href="./../../public/images/logo-icon.png" />
   <title>My Projects • CreateBase</title>
   <!------------------ FONTS ------------------>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!------------------ ICONS ------------------>
   <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
   <!----------- DEFAULT JAVASCRIPTS ----------->
@@ -118,75 +118,20 @@
       <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this);">
       <label for="billing-tab">Billing</label>
       <div class="main-area" id="projects-area">
-        <div class="current-projects-section">
-          <h3 class="project-section-header">Current Projects</h3>
-          <div class="project-container current-project">
-            <div class="project-body">
-              <h4 class="project-name">My First Project</h4>
-              <div class="project-files">
-                <h5>FILES</h5>
-                <p>Little_Box_Pen_Holder.stl</p>
-              </div>
-              <div class="project-details">
-                <h5>MATERIAL</h5>
-                <p>PLA</p>
-                <h5>QUALITY</h5>
-                <p>Normal</p>
-                <h5>STRENGTH</h5>
-                <p>Solid</p>
-              </div>
-              <div class="project-notes">
-                <h5>NOTES</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam totam dignissimos asperiores, tenetur, quis vel sed dicta placeat pariatur consectetur ipsa repellendus sunt architecto consequatur quod, aut facere quisquam dolorem? Aliquam porro adipisci enim odio, animi quos ex, obcaecati numquam atque eveniet laborum fuga assumenda. Beatae, pariatur omnis? Ratione, cupiditate.</p>
-              </div>
-            </div>
-          </div>
-          <div class="project-container current-project">
-            <div class="project-body">
-              <h4 class="project-name">My First Project</h4>
-              <div class="project-files">
-                <h5>FILES</h5>
-                <p>Little_Box_Pen_Holder.stl</p>
-              </div>
-              <div class="project-details">
-                <h5>MATERIAL</h5>
-                <p>PLA</p>
-                <h5>QUALITY</h5>
-                <p>Normal</p>
-                <h5>STRENGTH</h5>
-                <p>Solid</p>
-              </div>
-              <div class="project-notes">
-                <h5>NOTES</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam totam dignissimos asperiores, tenetur, quis vel sed dicta placeat pariatur consectetur ipsa repellendus sunt architecto consequatur quod, aut facere quisquam dolorem? Aliquam porro adipisci enim odio, animi quos ex, obcaecati numquam atque eveniet laborum fuga assumenda. Beatae, pariatur omnis? Ratione, cupiditate.</p>
-              </div>
-            </div>
-          </div>
-          <button class="reg-btn">+ New Project</button>
+        <div class="proj-headers">
+          <p id="curr-proj-header">&lt; CURRENT PROJECTS</p>
+          <p id="arch-proj-header">ARCHIVED PROJECTS &gt;</p>
         </div>
-        <div class="archived-projects-section">
-          <h3 class="project-section-header">Archived Projects</h3>
-          <div class="project-container archived-project">
-            <div class="project-body">
-              <h4 class="project-name">My First Project</h4>
-              <div class="project-files">
-                <h5>FILES</h5>
-                <p>Little_Box_Pen_Holder.stl</p>
-              </div>
-              <div class="project-details">
-                <h5>MATERIAL</h5>
-                <p>PLA</p>
-                <h5>QUALITY</h5>
-                <p>Normal</p>
-                <h5>STRENGTH</h5>
-                <p>Solid</p>
-              </div>
-              <div class="project-notes">
-                <h5>NOTES</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam totam dignissimos asperiores, tenetur, quis vel sed dicta placeat pariatur consectetur ipsa repellendus sunt architecto consequatur quod, aut facere quisquam dolorem? Aliquam porro adipisci enim odio, animi quos ex, obcaecati numquam atque eveniet laborum fuga assumenda. Beatae, pariatur omnis? Ratione, cupiditate.</p>
-              </div>
-            </div>
+        <div class="proj-scroll-container">
+          <div class="proj-card">
+            
           </div>
+          <div class="proj-card">
+            
+          </div>
+        </div>
+        <div class="new-proj-container">
+          <button class="reg-btn">+ Start New Project</button>
         </div>
       </div>
       <div class="main-area" id="settings-area">
