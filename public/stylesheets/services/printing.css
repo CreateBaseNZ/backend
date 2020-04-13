@@ -2528,10 +2528,6 @@ form .ourtools-btn-container {
   line-height: 180%;
 }
 
-.swiper-button-next, .swiper-button-prev {
-  color: #322d41;
-}
-
 .materials-section {
   width: 100%;
   display: -webkit-box;
@@ -2871,6 +2867,61 @@ form .ourtools-btn-container {
     margin: 0;
     padding-bottom: 0.5em;
     width: 10em;
+  }
+  .ourservices-content {
+    padding: 3em 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+  }
+  .ourservices-content h2 {
+    font-size: 1.6em;
+    color: #2d283c;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+  }
+  .swiper-container {
+    width: 100%;
+  }
+  .swiper-container .swiper-wrapper {
+    width: 33.33%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .swiper-button-next, .swiper-button-prev {
+    visibility: hidden;
+  }
+  .swiper-slide.ourservices {
+    -ms-flex-negative: none;
+        flex-shrink: none;
+    list-style-position: inside;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .swiper-slide.ourservices .ourservices-image-container {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    padding: 1.5em;
+  }
+  .swiper-slide.ourservices .ourservices-image-container img {
+    height: 6em;
+    display: block;
+    margin: auto;
   }
 }
 

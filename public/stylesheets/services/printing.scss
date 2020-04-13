@@ -348,11 +348,6 @@ form{
     }
 }
 
-
-.swiper-button-next, .swiper-button-prev{
-    color: $dark-2;
-}
-
 .materials-section{
     width: 100%;
     display: flex;
@@ -627,6 +622,53 @@ form{
                 margin:0;
                 padding-bottom: 0.5em;
                 width:10em;
+            }
+        }
+    }
+
+    .ourservices-content{
+        padding: 3em 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        h2{
+            // border: thin solid blue;
+            font-size: 1.6em;
+            color:$dark-3;
+            flex:0 0 100%;
+        }
+    }
+
+    .swiper-container{
+        // border: thin solid black;
+        width:100%;
+        .swiper-wrapper{
+            width: 33.33%;
+            // background-color: orange;
+            display: flex;
+        }
+    }
+
+    .swiper-button-next, .swiper-button-prev{
+        visibility: hidden;
+    }
+
+    .swiper-slide.ourservices{
+        flex-shrink: none;
+        list-style-position: inside;
+        // border: thin solid black;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .ourservices-image-container{
+            // border: thin solid red;
+            flex: 0 0 100%;
+            padding:1.5em;
+            img{
+                height: 6em;
+                display:block;
+                margin:auto;
             }
         }
     }
