@@ -2481,6 +2481,8 @@ body {
             flex-direction: column;
     -ms-flex-pack: distribute;
         justify-content: space-around;
+    padding: 0 3vw;
+    width: 100%;
   }
   .profile-tabs-section #projects-area .proj-headers {
     display: -webkit-box;
@@ -2504,7 +2506,11 @@ body {
   .profile-tabs-section #projects-area .proj-headers #arch-proj-header {
     color: #c7c2d5;
   }
-  .profile-tabs-section #projects-area .proj-scroll-container {
+  .profile-tabs-section #projects-area .proj-scroll-wrap {
+    width: 100%;
+  }
+  .profile-tabs-section #projects-area .proj-scroll-wrap .proj-scroll-container {
+    position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2512,11 +2518,53 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+    overflow-x: auto;
+    overflow-y: scroll;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
   }
-  .profile-tabs-section #projects-area .proj-scroll-container .proj-card {
-    height: 60vh;
-    width: 20vw;
-    margin: 0 1vw;
+  .profile-tabs-section #projects-area .proj-scroll-wrap .proj-scroll-container::-webkit-scrollbar {
+    height: 10px;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+  }
+  .profile-tabs-section #projects-area .proj-scroll-wrap .proj-scroll-container::-webkit-scrollbar-track {
+    background: white;
+  }
+  .profile-tabs-section #projects-area .proj-scroll-wrap .proj-scroll-container::-webkit-scrollbar-thumb {
+    background: -webkit-gradient(linear, left bottom, left top, from(white), color-stop(44%, white), color-stop(45%, #6853d9), color-stop(55%, #6853d9), color-stop(56%, white), to(white));
+    background: linear-gradient(to top, white 0%, white 44%, #6853d9 45%, #6853d9 55%, white 56%, white 100%);
+    border-radius: 5px;
+    -webkit-transition: background-color 1s ease;
+    transition: background-color 1s ease;
+    height: 10px;
+  }
+  .profile-tabs-section #projects-area .proj-scroll-wrap .proj-scroll-container::-webkit-scrollbar-thumb:hover, .profile-tabs-section #projects-area .proj-scroll-wrap .proj-scroll-container::-webkit-scrollbar-thumb:active {
+    background: #6853d9;
+    -webkit-transition: background-color 1s ease;
+    transition: background-color 1s ease;
+    height: 20px;
+  }
+  .profile-tabs-section #projects-area .proj-scroll-wrap .proj-scroll-container .proj-card {
+    height: 55vh;
+    width: 18vw;
+    margin: 0 1vw calc(50px + 0.5vh) 1vw;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    background: #f8f8f8;
+  }
+  .profile-tabs-section #projects-area .proj-scroll-wrap .proj-scroll-container:hover ~ .scroll-cover {
+    background: transparent;
+  }
+  .profile-tabs-section #projects-area .proj-scroll-wrap .scroll-cover {
+    pointer-events: none;
+    position: fixed;
+    height: 10px;
+    width: calc(70vw - 55px - 1vw - 6vw);
+    margin-top: -10px;
+    background: white;
+    -webkit-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
   }
   .profile-tabs-section #projects-area .new-proj-container {
     display: -webkit-box;
@@ -2528,9 +2576,5 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-  }
-  .profile-tabs-section #projects-area,
-  .profile-tabs-section #projects-area * {
-    border: 1px solid red;
   }
 }

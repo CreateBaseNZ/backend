@@ -12,6 +12,8 @@ const profileInit = async() => {
   const nameEl = document.getElementById('profile-name')
   const locationEl = document.getElementById('profile-location')
   const bioEl = document.getElementById('profile-bio')
+  const projScroll = document.querySelector('.proj-scroll-container');
+
 
   // -- Prerender selected tab -- 
   document.getElementById(localStorage.getItem('tab') + '-tab').checked = true
@@ -79,4 +81,11 @@ const profileInit = async() => {
     profileSection.classList.toggle('my-profile-section-edit')
     dpEl.src = dpTemp
   })
+
+
+  // -- Horizontal scrolling --
+  projScroll.addEventListener('wheel', function(e) {
+  if (e.deltaY > 0) projScroll.scrollLeft += 100
+  else projScroll.scrollLeft -= 100
+});
 }
