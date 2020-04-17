@@ -1,1 +1,20 @@
 @import "../global/all";
+
+body{
+    background: $light-1;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: $poppins;
+}
+
+.main-page {
+    margin-top: $top-bar-height;
+    height:30em;
+    padding: 10em;
+    display: flex;
+    justify-content: center;
+}
+
+.action-btn-container{
+    margin: auto;
+}
