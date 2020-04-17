@@ -131,28 +131,6 @@ body {
     
     #profile-cancel-btn {
       display: none;
-      position: relative;
-      padding: 5px;
-      cursor: pointer;
-      color: $light-3;
-
-      &:hover {
-        color: red;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        border-bottom: thin solid red;
-        transition: 0.2s ease-out;
-      }
-
-      &:hover:after {
-        width: 100%;
-      }
     }
   }
 }
@@ -407,9 +385,145 @@ body {
         overflow-y: scroll;
         flex-wrap: nowrap;
   
+        .proj-card {
+          height: 55vh;
+          width: calc(55vh * 0.7);
+          margin: 0 1vw calc(50px + 0.5vh) 1vw;
+          padding: 0 3vw;
+          flex-shrink: 0;
+          background: $light-2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .fa-bookmark {
+            margin: 1vh 0 0 -2vw;
+            padding: 5px;
+            align-self: flex-start;
+            cursor: pointer;
+
+            &:hover {
+              color: $highlight;
+            }
+          }
+
+          .proj-date {
+            font-size: calc(8px + 0.2vw);
+            letter-spacing: 2px;
+            font-weight: 400;
+            color: $dark-3;
+            margin-top: 6vh;
+          }
+
+          .proj-name {
+            font-size: calc(14px + 0.5vw);
+            letter-spacing: 1px;
+            font-weight: 400;
+            color: $dark-3;
+            margin-top: 3vh;
+          }
+
+          .proj-files {
+            font-size: calc(8px + 0.1vw);
+            font-weight: 400;
+            color: $dark-1;
+            margin-top: 0.5vh;
+
+            i {
+              padding: 2px;
+              margin-left: 5px;
+              cursor: pointer;
+
+              &:hover {
+                color: $highlight;
+              }
+            }
+          }
+
+          .proj-details {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            margin: 3vh 0;
+
+            * {
+              font-size: calc(8px + 0.2vw);
+              text-transform: uppercase;
+              letter-spacing: 2px;
+              font-weight: 400;
+              color: $dark-1;
+            }
+          }
+
+          .proj-notes {
+            display: flex;
+            align-items: center;
+            min-height: 6vh;
+            max-height: 10vh;
+            overflow-y: auto;
+
+            p {
+              font-size: calc(8px + 0.1vw);
+              font-weight: 400;
+              color: $dark-3;
+              text-align: center;
+              line-height: 180%;
+              margin: auto;
+            }
+
+              
+            &::-webkit-scrollbar {
+              width: 2px;
+            }
+            &::-webkit-scrollbar-track {
+              background: transparent;
+            }
+            &::-webkit-scrollbar-thumb {
+              background: $dark-1;
+              transition: background-color 1s ease;
+            }
+            &::-webkit-scrollbar-thumb:hover,
+            &::-webkit-scrollbar-thumb:active {
+              background: $logo-2;
+              transition: background-color 1s ease;
+            }
+          }
+
+          .proj-sep {
+            flex: 1;
+            width: 1px;
+            background: $light-3;
+            margin: 2.5vh 0 1.5vh 0;
+          }
+
+          .proj-buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 2vh;
+
+            .proj-save,
+            .proj-cancel {
+              display: none;
+            }
+          }
+
+          .proj-modified {
+            font-size: calc(8px + 0.1vw);
+            color: $dark-1;
+            margin-bottom: 3vh;
+          }
+        }
+
+        .proj-scroll-active {
+          background: $light-1;
+        }
+
         &::-webkit-scrollbar {
           height: 10px;
-          transition: 0.3s ease-out;
         }
         &::-webkit-scrollbar-track {
           background: $light-1;
@@ -425,14 +539,6 @@ body {
           background: $logo-2;
           transition: background-color 1s ease;
           height: 20px;
-        }
-  
-        .proj-card {
-          height: 55vh;
-          width: 18vw;
-          margin: 0 1vw calc(50px + 0.5vh) 1vw;
-          flex-shrink: 0;
-          background: $light-2;
         }
       }
 

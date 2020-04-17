@@ -67,6 +67,34 @@ button {
   }
 }
 
+.cancel-btn {
+  font-family: $poppins;
+  border: none;
+  background: transparent;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  color: $light-3;
+
+  &:hover {
+    color: red;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    border-bottom: thin solid red;
+    transition: 0.2s ease-out;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
+}
+
 /*======================================================================
 Carl's Button Design (Start)
 ======================================================================*/

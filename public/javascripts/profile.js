@@ -3,6 +3,11 @@ var loadFile = function(event) {
   document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
 }
 
+var hoverNotes = false
+function onNotes(e) {
+  hoverNotes = e;
+}
+
 const profileInit = async() => {
 
   // Get elements
@@ -13,7 +18,6 @@ const profileInit = async() => {
   const locationEl = document.getElementById('profile-location')
   const bioEl = document.getElementById('profile-bio')
   const projScroll = document.querySelector('.proj-scroll-container');
-
 
   // -- Prerender selected tab -- 
   document.getElementById(localStorage.getItem('tab') + '-tab').checked = true
@@ -57,6 +61,11 @@ const profileInit = async() => {
     bioTemp = bioEl.innerHTML
     customerInfo["displayName"] = nameTemp
     customerInfo["bio"] = bioTemp
+
+    // Update profile pictures in nav bar
+    for (var i = 0; i < navDP.length; i++) {
+      navDP[i].src = dpTemp
+    }    
     
     let data
     // Post to server
@@ -65,11 +74,6 @@ const profileInit = async() => {
     } catch (error) {
       console.log(error)
     }
-
-    // Update profile pictures in nav bar
-    for (var i = 0; i < navDP.length; i++) {
-      navDP[i].src = dpTemp
-    }    
   })
 
   // -- If cancel --
@@ -82,10 +86,12 @@ const profileInit = async() => {
     dpEl.src = dpTemp
   })
 
-
   // -- Horizontal scrolling --
   projScroll.addEventListener('wheel', function(e) {
-  if (e.deltaY > 0) projScroll.scrollLeft += 100
-  else projScroll.scrollLeft -= 100
-});
+    if (!hoverNotes) {
+      if (e.deltaY > 0) projScroll.scrollLeft += 100
+      else projScroll.scrollLeft -= 100
+    }
+  })
+
 }

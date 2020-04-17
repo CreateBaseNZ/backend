@@ -128,6 +128,35 @@ button {
   color: #4bf0ea;
 }
 
+.cancel-btn {
+  font-family: "Poppins", sans-serif;
+  border: none;
+  background: transparent;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  color: #c7c2d5;
+}
+
+.cancel-btn:hover {
+  color: red;
+}
+
+.cancel-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  border-bottom: thin solid red;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.cancel-btn:hover:after {
+  width: 100%;
+}
+
 /*======================================================================
 Carl's Button Design (Start)
 ======================================================================*/
@@ -1151,7 +1180,7 @@ nav .nav-side-menus .nav-right-menu-active .nav-right-menu {
 
 nav .nav-side-menus .nav-side-header {
   font-family: "Poppins", sans-serif;
-  font-weight: 100;
+  font-weight: 600;
   font-size: 2vw;
   letter-spacing: 0.5vw;
   color: #c7c2d5;
@@ -1166,7 +1195,7 @@ nav .nav-side-menus .nav-side-item {
   color: #2d283c;
   font-family: "Poppins", sans-serif;
   font-size: 2.2vmax;
-  font-weight: 100;
+  font-weight: 400;
   letter-spacing: 0.2vw;
   -webkit-transition: color 0.1s ease-out;
   transition: color 0.1s ease-out;
@@ -1176,51 +1205,12 @@ nav .nav-side-menus .nav-side-item:hover {
   color: #4bf0ea;
 }
 
-nav .nav-side-menus .nav-item-outer {
-  margin-top: 3vh;
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-nav .nav-side-menus .nav-item-outer .nav-item-inner {
-  font-size: 2.5vmax;
-  color: #2d283c;
-  margin-right: 2vw;
-  letter-spacing: 0.2vw;
-  -webkit-transition: color 0.1s ease-out;
-  transition: color 0.1s ease-out;
-}
-
-nav .nav-side-menus .nav-item-outer .nav-item-inner:hover {
-  color: #4bf0ea;
-}
-
-nav .nav-side-menus .nav-item-outer .info {
-  height: 2vmax;
-  width: 2vmax;
-  border-radius: 50%;
-  font-size: 1.5vmax;
-  color: white;
-  background: #c7c2d5;
-  text-align: center;
-}
-
-nav .nav-side-menus .nav-item-outer .info:hover {
-  background: #4bf0ea;
-}
-
 nav .nav-side-menus .nav-side-signout {
   position: relative;
   margin-top: 8vh;
   color: red;
   font-family: "Poppins", sans-serif;
-  font-weight: 100;
+  font-weight: 400;
   letter-spacing: 0.2vw;
   -webkit-transition: color 0.1s ease-out;
   transition: color 0.1s ease-out;
@@ -1327,7 +1317,7 @@ nav .nav-darken-overlay {
   nav .nav-top-bar .nav-desktop-out #nav-user-login {
     font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
-    font-weight: 100;
+    font-weight: 400;
     letter-spacing: 0.1vmax;
     color: #2d283c;
     background: transparent;
@@ -1342,7 +1332,7 @@ nav .nav-darken-overlay {
     transition: all ease 0.2s;
     font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
-    font-weight: 100;
+    font-weight: 400;
     letter-spacing: 0.1vmax;
     color: #6853d9;
     padding: 5px 20px;
@@ -2830,4 +2820,3 @@ nav .nav-top-bar .nav-desktop-out {
     }
   }
 }
-/*# sourceMappingURL=signup.css.map */

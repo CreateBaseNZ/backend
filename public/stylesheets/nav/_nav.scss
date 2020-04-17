@@ -225,7 +225,7 @@ nav {
   
     .nav-side-header {
       font-family: $poppins;
-      font-weight: 100;
+      font-weight: 600;
       font-size: 2vw;
       letter-spacing: 0.5vw;
       color: $light-3;
@@ -240,7 +240,7 @@ nav {
       color: $dark-3;
       font-family: $poppins;
       font-size: 2.2vmax;
-      font-weight: 100;
+      font-weight: 400;
       letter-spacing: 0.2vw;
       transition: color 0.1s ease-out;
   
@@ -249,46 +249,12 @@ nav {
       }
     }
 
-    .nav-item-outer {
-      margin-top: 3vh;
-      font-family: $poppins;
-      font-weight: 100;
-      display: flex;
-      align-items: center;
-      
-      .nav-item-inner {
-        font-size: 2.5vmax;
-        color: $dark-3;
-        margin-right: 2vw;
-        letter-spacing: 0.2vw;
-        transition: color 0.1s ease-out;
-
-        &:hover {
-          color: $highlight;
-        }
-      }
-
-      .info {
-        height: 2vmax;
-        width: 2vmax;
-        border-radius: 50%;
-        font-size: 1.5vmax;
-        color: $light-1;
-        background: $light-3;
-        text-align: center;
-
-        &:hover {
-          background: $highlight;
-        }
-      }
-    }
-
     .nav-side-signout {
       position: relative;
       margin-top: 8vh;
       color: red;
       font-family: $poppins;
-      font-weight: 100;
+      font-weight: 400;
       letter-spacing: 0.2vw;
       transition: color 0.1s ease-out;
 
@@ -393,7 +359,7 @@ nav {
       #nav-user-login {
         font-family: $poppins;
         font-size: calc(8px + 0.2vmax);
-        font-weight: 100;
+        font-weight: 400;
         letter-spacing: 0.1vmax;
         color: $dark-3;
         background: transparent;
@@ -409,7 +375,7 @@ nav {
         transition: all ease 0.2s;
         font-family: $poppins;
         font-size: calc(8px + 0.2vmax);
-        font-weight: 100;
+        font-weight: 400;
         letter-spacing: 0.1vmax;
         color: $logo-2;
         padding: 5px 20px;
