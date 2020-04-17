@@ -128,6 +128,152 @@ button {
   color: #4bf0ea;
 }
 
+.action-btn {
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.2em;
+  border: thin solid #8258dc;
+  color: #8258dc;
+  background-color: transparent;
+  padding: 1em 2.5em;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #8258dc;
+  color: white;
+}
+
+/*======================================================================
+======================================================================*/
+.rmv-h-css {
+  display: inline;
+  margin: 0;
+  font-weight: normal;
+}
+
+.rmv-p-css {
+  display: inline;
+  margin: 0;
+}
+
+.rmv-link-css {
+  text-decoration: none;
+  color: black;
+}
+
+.rmv-file-css {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.rmv-btn-css {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+  text-align: inherit;
+  outline: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+button {
+  outline: none;
+}
+
+.reg-btn {
+  position: relative;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  color: #877da9;
+  border: thin solid rgba(255, 255, 255, 0);
+  background: transparent;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  -webkit-transition: color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.reg-btn:before, .reg-btn:after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  -webkit-transition: all 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.reg-btn:before {
+  top: -0.5px;
+  left: -0.5px;
+  border-top: thin solid #c7c2d5;
+  border-left: thin solid #c7c2d5;
+}
+
+.reg-btn:after {
+  bottom: -0.5px;
+  right: -0.5px;
+  border-bottom: thin solid #c7c2d5;
+  border-right: thin solid #c7c2d5;
+}
+
+.reg-btn:hover {
+  color: #4bf0ea;
+  -webkit-transition: color 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: color 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.reg-btn:hover:before, .reg-btn:hover:after {
+  height: 100%;
+  width: 100%;
+  border-color: #4bf0ea;
+  -webkit-transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+}
+
+.plain-btn {
+  position: relative;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  background: transparent;
+  border: none;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #877da9;
+}
+
+.plain-btn:hover {
+  color: #4bf0ea;
+}
+
 .cancel-btn {
   font-family: "Poppins", sans-serif;
   border: none;

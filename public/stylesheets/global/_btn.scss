@@ -95,6 +95,21 @@ button {
   }
 }
 
+.action-btn {
+  cursor: pointer;
+  font-family: $poppins;
+  letter-spacing: 0.2em;
+  border: thin solid $logo-1;
+  color: $logo-1;
+  background-color: transparent;
+  padding: 1em 2.5em;
+  transition: all ease 0.3s;
+  &:hover{
+    background-color: $logo-1;
+    color: $light-1;
+  }
+}
+
 /*======================================================================
 Carl's Button Design (Start)
 ======================================================================*/
