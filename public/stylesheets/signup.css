@@ -169,6 +169,8 @@ button {
   white-space: nowrap;
   border: 3px solid rgba(0, 0, 0, 0);
   z-index: 3;
+  -webkit-transition: color 0.45s ease-out;
+  transition: color 0.45s ease-out;
 }
 
 .action-btn::before {
@@ -185,7 +187,8 @@ button {
   width: 100%;
   background: transparent;
   border: thin solid #6853d9;
-  z-index: 1;
+  -webkit-transition: border-width 0.25s ease-out, border-top-width 0.001s ease-out 0.35s, height 0.1s ease-out 0.15s, width 0.15s ease-out, border-color 0.45s ease-out;
+  transition: border-width 0.25s ease-out, border-top-width 0.001s ease-out 0.35s, height 0.1s ease-out 0.15s, width 0.15s ease-out, border-color 0.45s ease-out;
 }
 
 .action-btn::after {
@@ -201,13 +204,12 @@ button {
   width: 0;
   margin: 0 auto;
   border: 0 solid white;
-  z-index: 1;
+  -webkit-transition: width 0.2s ease-out 0.25s, border-width 0.001s ease-out 0.45s;
+  transition: width 0.2s ease-out 0.25s, border-width 0.001s ease-out 0.45s;
 }
 
 .action-btn:hover {
   color: #4bf0ea;
-  -webkit-transition: color 0.45s ease-out;
-  transition: color 0.45s ease-out;
 }
 
 .action-btn:hover::before {

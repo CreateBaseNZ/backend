@@ -169,6 +169,8 @@ button {
   white-space: nowrap;
   border: 3px solid rgba(0, 0, 0, 0);
   z-index: 3;
+  -webkit-transition: color 0.45s ease-out;
+  transition: color 0.45s ease-out;
 }
 
 .action-btn::before {
@@ -185,7 +187,8 @@ button {
   width: 100%;
   background: transparent;
   border: thin solid #6853d9;
-  z-index: 1;
+  -webkit-transition: border-width 0.25s ease-out, border-top-width 0.001s ease-out 0.35s, height 0.1s ease-out 0.15s, width 0.15s ease-out, border-color 0.45s ease-out;
+  transition: border-width 0.25s ease-out, border-top-width 0.001s ease-out 0.35s, height 0.1s ease-out 0.15s, width 0.15s ease-out, border-color 0.45s ease-out;
 }
 
 .action-btn::after {
@@ -201,13 +204,12 @@ button {
   width: 0;
   margin: 0 auto;
   border: 0 solid white;
-  z-index: 1;
+  -webkit-transition: width 0.2s ease-out 0.25s, border-width 0.001s ease-out 0.45s;
+  transition: width 0.2s ease-out 0.25s, border-width 0.001s ease-out 0.45s;
 }
 
 .action-btn:hover {
   color: #4bf0ea;
-  -webkit-transition: color 0.45s ease-out;
-  transition: color 0.45s ease-out;
 }
 
 .action-btn:hover::before {
@@ -2119,6 +2121,7 @@ body {
   background: white;
   max-width: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #profile-page {
@@ -2569,8 +2572,10 @@ body {
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card {
     height: 55vh;
     width: calc(55vh * 0.7);
+    min-height: 400px;
+    min-width: 280px;
     margin: 0 1vw;
-    padding: 0 2.5vw;
+    padding: 0 2vw;
     -ms-flex-negative: 0;
         flex-shrink: 0;
     background: #f8f8f8;
@@ -2604,17 +2609,28 @@ body {
     margin-top: 6vh;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-name {
+    width: 100%;
     font-size: calc(14px + 0.5vw);
-    letter-spacing: 1px;
     font-weight: 400;
     color: #2d283c;
     margin-top: 3vh;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    min-height: 30px;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-files {
     font-size: calc(8px + 0.1vw);
     font-weight: 400;
     color: #877da9;
     margin-top: 0.5vh;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    min-height: 12px;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-files i {
     padding: 2px;
@@ -2639,13 +2655,19 @@ body {
         justify-content: space-around;
     width: 100%;
     margin: 3vh 0;
+    overflow: hidden;
+    min-height: 12px;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-details * {
     font-size: calc(8px + 0.2vw);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.2vmin;
     font-weight: 400;
     color: #2d283c;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-notes {
     display: -webkit-box;
@@ -2654,7 +2676,7 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    min-height: 6vh;
+    min-height: 80px;
     max-height: 10vh;
     overflow-y: auto;
   }
@@ -2759,7 +2781,7 @@ body {
     background: #4bf0ea;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-sep {
-    background: #877da9;
+    background: #c7c2d5;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons * {
     color: #8258dc;

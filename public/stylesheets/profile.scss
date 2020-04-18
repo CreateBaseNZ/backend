@@ -4,6 +4,7 @@ body {
   background: $light-1;
   max-width: 100%;
   overflow-x: hidden; 
+  overflow-y: auto;
 }
 
 #profile-page {
@@ -391,8 +392,10 @@ body {
         .proj-card {
           height: 55vh;
           width: calc(55vh * 0.7);
+          min-height: 400px;
+          min-width: 280px;
           margin: 0 1vw;
-          padding: 0 2.5vw;
+          padding: 0 2vw;
           flex-shrink: 0;
           background: $light-2;
           display: flex;
@@ -420,11 +423,16 @@ body {
           }
 
           .proj-name {
+            width: 100%;
             font-size: calc(14px + 0.5vw);
-            letter-spacing: 1px;
             font-weight: 400;
             color: $dark-3;
             margin-top: 3vh;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-align: center;
+            min-height: 30px;
           }
 
           .proj-files {
@@ -432,6 +440,12 @@ body {
             font-weight: 400;
             color: $dark-1;
             margin-top: 0.5vh;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-align: center;
+            width: 100%;
+            min-height: 12px;
 
             i {
               padding: 2px;
@@ -451,20 +465,26 @@ body {
             justify-content: space-around;
             width: 100%;
             margin: 3vh 0;
+            overflow: hidden;
+            min-height: 12px;
 
             * {
               font-size: calc(8px + 0.2vw);
               text-transform: uppercase;
-              letter-spacing: 2px;
+              letter-spacing: 0.2vmin;
               font-weight: 400;
               color: $dark-3;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              text-align: center;
             }
           }
 
           .proj-notes {
             display: flex;
             align-items: center;
-            min-height: 6vh;
+            min-height: 80px;
             max-height: 10vh;
             overflow-y: auto;
 
@@ -553,7 +573,7 @@ body {
               &::-webkit-scrollbar-thumb:hover,
               &::-webkit-scrollbar-thumb:active { background: $highlight; }
             }
-            .proj-sep { background: $dark-1; }
+            .proj-sep { background: $light-3; }
             .proj-buttons {
               * {
                 color: $logo-1;
