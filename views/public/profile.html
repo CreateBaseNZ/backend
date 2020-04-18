@@ -118,17 +118,17 @@
       <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this);">
       <label for="billing-tab">Billing</label>
       <div class="main-area" id="projects-area">
-        <div class="proj-headers">
-          <p id="curr-proj-header">&lt; CURRENT PROJECTS</p>
-          <p id="arch-proj-header">ARCHIVED PROJECTS &gt;</p>
-        </div>
-        <div class="proj-scroll-wrap">
+        <div class="proj-wrap">
+          <div class="proj-headers">
+            <p id="curr-proj-header">&lt; CURRENT PROJECTS</p>
+            <p id="arch-proj-header">ARCHIVED PROJECTS &gt;</p>
+          </div>
           <div class="proj-scroll-container">
             <div class="proj-card proj-card-active">
               <i class="far fa-bookmark"></i>
               <p class="proj-date">03/04/2020</p>
               <p class="proj-name">My First Project</p>
-              <p class="proj-files">Little_Box_Pen_holder.stl</p>
+              <p class="proj-files">Little_Box_Pen_holder.stl <i class="fas fa-save"></i></p>
               <div class="proj-details">
                 <p class="proj-material">petg</p>
                 <p class="proj-quality">normal</p>
@@ -140,13 +140,13 @@
               </div>
               <div class="proj-sep"></div>
               <div class="proj-buttons">
-                <button class="proj-edit reg-btn">Edit</button>
-                <button class="proj-cancel cancel-btn">Cancel</button>
-                <button class="proj-save reg-btn">Save</button>
+                <button class="proj-edit action-btn">Edit</button>
+                <button class="proj-cancel action-btn">Cancel</button>
+                <button class="proj-save action-btn">Save</button>
               </div>
               <p class="proj-modified">Last modified 21/05/2020</p>
             </div>
-            <div class="proj-card proj-card-active">
+            <div class="proj-card">
               <i class="far fa-bookmark"></i>
               <p class="proj-date">03/04/2020</p>
               <p class="proj-name">My First Project</p>
@@ -162,9 +162,9 @@
               </div>
               <div class="proj-sep"></div>
               <div class="proj-buttons">
-                <button class="proj-edit reg-btn">Edit</button>
-                <button class="proj-cancel cancel-btn">Cancel</button>
-                <button class="proj-save reg-btn">Save</button>
+                <button class="proj-edit action-btn">Edit</button>
+                <button class="proj-cancel action-btn">Cancel</button>
+                <button class="proj-save action-btn">Save</button>
               </div>
               <p class="proj-modified">Last modified 21/05/2020</p>
             </div>
@@ -182,7 +182,7 @@
           <div class="scroll-cover"></div>
         </div>
         <div class="new-proj-container">
-          <button class="reg-btn">+ Start New Project</button>
+          <button class="action-btn">+ Start New Project</button>
         </div>
       </div>
       <div class="main-area" id="settings-area">
