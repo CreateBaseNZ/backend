@@ -169,8 +169,8 @@ button {
   white-space: nowrap;
   border: 3px solid rgba(0, 0, 0, 0);
   z-index: 3;
-  -webkit-transition: color 0.45s ease-out;
-  transition: color 0.45s ease-out;
+  -webkit-transition: color 0.45s ease;
+  transition: color 0.45s ease;
 }
 
 .action-btn::before {
@@ -187,8 +187,8 @@ button {
   width: 100%;
   background: transparent;
   border: thin solid #6853d9;
-  -webkit-transition: border-width 0.25s ease-out, border-top-width 0.001s ease-out 0.35s, height 0.1s ease-out 0.15s, width 0.15s ease-out, border-color 0.45s ease-out;
-  transition: border-width 0.25s ease-out, border-top-width 0.001s ease-out 0.35s, height 0.1s ease-out 0.15s, width 0.15s ease-out, border-color 0.45s ease-out;
+  -webkit-transition: border-width 0.25s ease, border-top-width 0.001s ease 0.25s, height 0.1s ease 0.15s, width 0.15s ease, border-color 0.45s ease;
+  transition: border-width 0.25s ease, border-top-width 0.001s ease 0.25s, height 0.1s ease 0.15s, width 0.15s ease, border-color 0.45s ease;
 }
 
 .action-btn::after {
@@ -204,8 +204,8 @@ button {
   width: 0;
   margin: 0 auto;
   border: 0 solid white;
-  -webkit-transition: width 0.2s ease-out 0.25s, border-width 0.001s ease-out 0.45s;
-  transition: width 0.2s ease-out 0.25s, border-width 0.001s ease-out 0.45s;
+  -webkit-transition: width 0.2s ease 0.25s, border-width 0.15s ease 0.3s;
+  transition: width 0.2s ease 0.25s, border-width 0.15s ease 0.3s;
 }
 
 .action-btn:hover {
@@ -218,16 +218,16 @@ button {
   border-color: #4bf0ea;
   height: 0;
   width: 50%;
-  -webkit-transition: border-width 0.25s ease-out 0.2s, border-top-width 0.001s ease-out 0.2s, height 0.1s ease-out 0.2s, width 0.15s ease-out 0.3s, border-color 0.45s ease-out;
-  transition: border-width 0.25s ease-out 0.2s, border-top-width 0.001s ease-out 0.2s, height 0.1s ease-out 0.2s, width 0.15s ease-out 0.3s, border-color 0.45s ease-out;
+  -webkit-transition: border-width 0.25s ease 0.2s, border-top-width 0.001s ease 0.2s, height 0.1s ease 0.2s, width 0.15s ease 0.3s, border-color 0.45s ease;
+  transition: border-width 0.25s ease 0.2s, border-top-width 0.001s ease 0.2s, height 0.1s ease 0.2s, width 0.15s ease 0.3s, border-color 0.45s ease;
 }
 
 .action-btn:hover::after {
   border-width: 3px;
   border-bottom: 0px;
   width: 100%;
-  -webkit-transition: width 0.2s ease-out, border-width 0.001s ease-out;
-  transition: width 0.2s ease-out, border-width 0.001s ease-out;
+  -webkit-transition: width 0.2s ease, border-width 0.001s ease;
+  transition: width 0.2s ease, border-width 0.001s ease;
 }
 
 /*======================================================================

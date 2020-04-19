@@ -91,6 +91,7 @@ const profileInit = async() => {
     if (!hoverNotes) {
       if (e.deltaY > 0) projScroll.scrollLeft += 100
       else projScroll.scrollLeft -= 100
+      e.preventDefault()
     }
   })
 
