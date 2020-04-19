@@ -1780,6 +1780,7 @@ nav .nav-darken-overlay {
     padding-bottom: 2vh;
   }
   .footer-section .footer-content .footer-contact-section .footer-contact-content .btn-subscribe #subscribe-btn {
+    display: inline-block;
     color: #f8f8f8;
   }
   .footer-section .footer-content .footer-contact-section .footer-contact-content .btn-subscribe #subscribe-btn:hover {
@@ -2436,6 +2437,9 @@ body {
     min-height: calc(100vh - 60px);
   }
   .my-profile-section {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: profile;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2493,6 +2497,9 @@ body {
     padding: 10px 20px;
   }
   .profile-tabs-section {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: tabs;
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
@@ -2592,7 +2599,7 @@ body {
     border-radius: 2%;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark {
-    margin: 1vh 0 0 -2vw;
+    margin: 1vh 0 0 -1vw;
     padding: 5px;
     -ms-flex-item-align: start;
         align-self: flex-start;
@@ -2673,12 +2680,13 @@ body {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     min-height: 80px;
     max-height: 10vh;
     overflow-y: auto;
+    margin: auto 0;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-notes p {
     font-size: calc(8px + 0.1vw);

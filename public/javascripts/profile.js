@@ -6,6 +6,7 @@ var loadFile = function(event) {
 var hoverNotes = false
 function onNotes(e) {
   hoverNotes = e;
+  console.log('triggered')
 }
 
 const profileInit = async() => {

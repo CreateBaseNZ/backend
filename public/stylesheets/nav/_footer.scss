@@ -200,6 +200,7 @@
             margin: auto;
             padding-bottom: 2vh;
             #subscribe-btn {
+              display: inline-block;
               color:$light-2;
               &:hover {
                 color:$highlight;

@@ -29,7 +29,7 @@ body {
   margin: 1vh 2.5vw 2vh 2.5vw;
   padding: 2.5vw;
   border: thin solid $light-1;
-  
+
   #profile-pic {
     grid-area: dp;
     position: relative;
@@ -88,7 +88,7 @@ body {
     margin: 0 2vw 1vh 2vw;
     font-size: calc(20px + 0.8vw);
   }
-  
+
   #profile-location {
     grid-area: location;
     margin: 0 0 0 2vw;
@@ -271,6 +271,7 @@ body {
 }
   
 .my-profile-section {
+  grid-area: profile;
   display: flex;
   flex-direction: column;
   margin: 5vh 2.5vw 5vh 2.5vw;
@@ -333,6 +334,7 @@ body {
 }
 
 .profile-tabs-section {
+  grid-area: tabs;
   align-items: flex-start;
   justify-content: flex-end;
   padding: 5vh calc(55px + 1vw) 5vh 0;
@@ -404,7 +406,7 @@ body {
           border-radius: 2%;
 
           .fa-bookmark {
-            margin: 1vh 0 0 -2vw;
+            margin: 1vh 0 0 -1vw;
             padding: 5px;
             align-self: flex-start;
             cursor: pointer;
@@ -483,10 +485,11 @@ body {
 
           .proj-notes {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             min-height: 80px;
             max-height: 10vh;
             overflow-y: auto;
+            margin: auto 0;
 
             p {
               font-size: calc(8px + 0.1vw);

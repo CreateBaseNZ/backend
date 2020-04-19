@@ -1780,6 +1780,7 @@ nav .nav-darken-overlay {
     padding-bottom: 2vh;
   }
   .footer-section .footer-content .footer-contact-section .footer-contact-content .btn-subscribe #subscribe-btn {
+    display: inline-block;
     color: #f8f8f8;
   }
   .footer-section .footer-content .footer-contact-section .footer-contact-content .btn-subscribe #subscribe-btn:hover {

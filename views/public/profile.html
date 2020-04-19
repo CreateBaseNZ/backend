@@ -86,8 +86,8 @@
             <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
             <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
             <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
+            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
@@ -113,10 +113,10 @@
     <div class="profile-tabs-section">
       <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="passTab(this);">
       <label for="projects-tab">Projects</label>
-      <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this);">
-      <label for="settings-tab">Settings</label>
       <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this);">
       <label for="billing-tab">Billing</label>
+      <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this);">
+      <label for="settings-tab">Settings</label>
       <div class="main-area" id="projects-area">
         <div class="proj-wrap">
           <div class="proj-headers">
@@ -135,8 +135,8 @@
                 <p class="proj-strength">normal</p>
                 <p class="proj-colour">black</p>
               </div>
-              <div class="proj-notes" onmouseover="onNotes(true);" onmouseout="onNotes(false);">
-                <p>No notes</p>
+              <div class="proj-notes">
+                <p onmouseover="onNotes(true);" onmouseout="onNotes(false);">No notes</p>
               </div>
               <div class="proj-sep"></div>
               <div class="proj-buttons">
@@ -185,11 +185,11 @@
           <button class="action-btn">+ Start New Project</button>
         </div>
       </div>
-      <div class="main-area" id="settings-area">
-        <p>Settings</p>
-      </div>
       <div class="main-area" id="billing-area">
         <p>Billing</p>
+      </div>
+      <div class="main-area" id="settings-area">
+        <p>Settings</p>
       </div>
     </div>
   </div>
