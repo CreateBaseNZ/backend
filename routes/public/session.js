@@ -2,86 +2,56 @@
 REQUIRED MODULES
 =========================================================================================*/
 
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const express = require("express");
 
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
-const Schema = mongoose.Schema;
+const router = new express.Router();
 
 /*=========================================================================================
-CREATE ACCOUNT MODEL
+MODELS
 =========================================================================================*/
 
-const AccountSchema = new Schema({
-  type: {
-    type: String,
-  },
-  email: {
-    type: String,
-  },
-  password: {
-    type: String,
-  },
-});
+const Session = require("../../model/Session.js");
 
 /*=========================================================================================
-
+MIDDLEWARE
 =========================================================================================*/
-
-AccountSchema.pre("save", async function (next) {
-  // Check if password is modified
-  if (this.isModified("password")) {
-    // Hash the password
-    this.password = await bcrypt.hash(this.password, 8);
-  }
-  // Exit once hashing is completed
-  next();
-});
 
 /*=========================================================================================
-STATIC
+ROUTES
 =========================================================================================*/
 
-// @FUNC  findByEmail
-// @TYPE  STATICS
-// @DESC
-// @ARGU
-AccountSchema.statics.findByEmail = function (email) {
-  return new Promise(async (resolve, reject) => {
-    let account;
-
-    try {
-      account = await this.findOne({ email });
-    } catch (error) {
-      reject(error);
-    }
-
-    resolve(account);
-  });
-};
-
-/*=========================================================================================
-METHOD
-=========================================================================================*/
-
-AccountSchema.methods.validatePassword = async function (password) {
-  let isMatch;
+router.get("/session/create", async (req, res) => {
+  // Retrieve Session ID
+  const sessionId = req.sessionID;
+  // Create Session
+  let content;
   try {
-    isMatch = await bcrypt.compare(password, this.password);
+    content = await Session.create(sessionId);
   } catch (error) {
-    return false;
+    return res.send({ status: "failed", content: error });
   }
-  return isMatch;
-};
+  res.send({ status: "success", content });
+});
+
+router.get("/session/save", async (req, res) => {
+  req.session.cookie.expires = new Date(Date.now() + 1000 * 60 * 60 * 365);
+  res.send({ status: "success", content: "session saved" });
+});
+
+router.get("/session/unsave", async (req, res) => {
+  req.session.cookie.expires = false;
+  res.send({ status: "success", content: "session unsaved" });
+});
 
 /*=========================================================================================
-EXPORT ACCOUNT MODEL
+EXPORT ROUTE
 =========================================================================================*/
 
-module.exports = Account = mongoose.model("accounts", AccountSchema);
+module.exports = router;
 
 /*=========================================================================================
 END

@@ -12,7 +12,7 @@ VARIABLES
 
 const router = new express.Router();
 const customerRouteOptions = {
-  root: path.join(__dirname, "../../views/public")
+  root: path.join(__dirname, "../../views/public"),
 };
 
 /*=========================================================================================
@@ -102,7 +102,7 @@ router.post(
   "/signup/customer",
   passport.authenticate("local-customer-signup", {
     successRedirect: "/",
-    failureRedirect: "/signup"
+    failureRedirect: "/signup",
   })
 );
 
@@ -113,7 +113,7 @@ router.post(
   "/login/customer",
   passport.authenticate("local-customer-login", {
     successRedirect: "/",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
   })
 );
 
@@ -171,7 +171,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
   if (account) {
     const newMail = new Mail({
       accountId: account._id,
-      email
+      email,
     });
 
     try {
@@ -189,7 +189,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
     }
 
     customer.subscription = {
-      mail: true
+      mail: true,
     };
 
     try {
@@ -202,7 +202,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
   }
   // If user is not registered and not subscribed
   const newMail = new Mail({
-    email
+    email,
   });
 
   try {
@@ -232,6 +232,22 @@ router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
 
   res.send({ status: false });
+});
+
+router.get("/cookie", (req, res) => {
+  res.send(req.sessionID);
+});
+
+router.get("/cookie/save", async (req, res) => {
+  // Save Session
+  req.session.cookie.expires = new Date(Date.now() + 1000000000);
+  res.send(req.session);
+});
+
+router.get("/cookie/delete", async (req, res) => {
+  // Save Session
+  req.session.cookie.expires = false;
+  res.send(req.session);
 });
 
 /*=========================================================================================

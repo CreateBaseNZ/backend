@@ -16,11 +16,14 @@ CREATE ITEM MODEL
 
 const ItemSchema = new Schema({
   accountId: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
+  },
+  sessionId: {
+    type: String,
   },
   status: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 /*=========================================================================================
@@ -31,7 +34,7 @@ STATIC
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-ItemSchema.statics.findByAccountIdAndStatus = function(accountId, status) {
+ItemSchema.statics.findByAccountIdAndStatus = function (accountId, status) {
   return new Promise(async (resolve, reject) => {
     let items;
 

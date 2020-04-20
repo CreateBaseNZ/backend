@@ -18,7 +18,7 @@ mongoose.createConnection(
   {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   },
   (error, client) => {
     if (error) throw error;
@@ -46,63 +46,66 @@ CREATE MAKE MODEL
 
 const MakeSchema = new Schema({
   accountId: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
+  },
+  sessionId: {
+    type: String,
   },
   file: {
     id: {
-      type: Schema.Types.ObjectId
+      type: Schema.Types.ObjectId,
     },
     name: {
-      type: String
-    }
+      type: String,
+    },
   },
   status: {
-    type: String
+    type: String,
   },
   build: {
-    type: String
+    type: String,
   },
   quick: {
-    type: String
+    type: String,
   },
   process: {
-    type: String
+    type: String,
   },
   material: {
-    type: String
+    type: String,
   },
   quality: {
-    type: String
+    type: String,
   },
   strength: {
-    type: String
+    type: String,
   },
   colour: {
-    type: String
+    type: String,
   },
   quantity: {
-    type: Number
+    type: Number,
   },
   comment: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
   },
   date: {
     awaitingQuote: {
-      type: String
+      type: String,
     },
     checkout: {
-      type: String
+      type: String,
     },
     purchased: {
-      type: String
+      type: String,
     },
     modified: {
-      type: String
-    }
+      type: String,
+    },
   },
   price: {
-    type: Number
-  }
+    type: Number,
+  },
 });
 
 /*=========================================================================================
@@ -113,7 +116,7 @@ STATIC
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-MakeSchema.statics.findByAccountIdAndStatus = function(accountId, status) {
+MakeSchema.statics.findByAccountIdAndStatus = function (accountId, status) {
   return new Promise(async (resolve, reject) => {
     let makes;
 
@@ -131,7 +134,7 @@ MakeSchema.statics.findByAccountIdAndStatus = function(accountId, status) {
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-MakeSchema.statics.deleteByIdAndAccountId = function(_id, accountId) {
+MakeSchema.statics.deleteByIdAndAccountId = function (_id, accountId) {
   return new Promise(async (resolve, reject) => {
     // Find the make to be deleted
     let make;
@@ -182,7 +185,7 @@ METHOD
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-MakeSchema.methods.updateStatus = function(status) {
+MakeSchema.methods.updateStatus = function (status) {
   return new Promise((resolve, reject) => {
     const statuses = ["awaitingQuote", "checkout", "purchased"];
 
@@ -194,9 +197,7 @@ MakeSchema.methods.updateStatus = function(status) {
 
     // VALIDATION END
 
-    const date = moment()
-      .tz("Pacific/Auckland")
-      .format();
+    const date = moment().tz("Pacific/Auckland").format();
 
     this.status = status;
     this.date[status] = date;

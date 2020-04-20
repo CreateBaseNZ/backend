@@ -3,7 +3,7 @@ REQUIRED MODULES
 =========================================================================================*/
 
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const moment = require("moment-timezone");
 
 /*=========================================================================================
 VARIABLES
@@ -12,54 +12,66 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
-CREATE ACCOUNT MODEL
+CREATE SESSION MODEL
 =========================================================================================*/
 
-const AccountSchema = new Schema({
-  type: {
+const SessionSchema = new Schema({
+  sessionId: {
     type: String,
   },
-  email: {
-    type: String,
-  },
-  password: {
-    type: String,
+  date: {
+    modified: {
+      type: String,
+    },
+    visited: {
+      type: String,
+    },
   },
 });
 
-/*=========================================================================================
-
-=========================================================================================*/
-
-AccountSchema.pre("save", async function (next) {
-  // Check if password is modified
-  if (this.isModified("password")) {
-    // Hash the password
-    this.password = await bcrypt.hash(this.password, 8);
-  }
-  // Exit once hashing is completed
-  next();
-});
+const Session = mongoose.model("sessions", SessionSchema);
 
 /*=========================================================================================
 STATIC
 =========================================================================================*/
 
-// @FUNC  findByEmail
-// @TYPE  STATICS
-// @DESC
-// @ARGU
-AccountSchema.statics.findByEmail = function (email) {
+SessionSchema.statics.create = function (sessionId) {
   return new Promise(async (resolve, reject) => {
-    let account;
-
+    // Get current date
+    const date = moment().tz("Pacific/Auckland").format();
+    // Check if the session already exist
+    let session;
     try {
-      account = await this.findOne({ email });
+      session = await this.findOne({ sessionId });
     } catch (error) {
       reject(error);
     }
-
-    resolve(account);
+    if (session) {
+      // Update the sessions visited date
+      session.date.visited = date;
+      // Save session update
+      try {
+        await session.save();
+      } catch (error) {
+        reject(error);
+      }
+      resolve("session already exists");
+    }
+    // If session doesn't exist, create one
+    let newSession = new Session({
+      sessionId,
+      date: {
+        modified: date,
+        visited: date,
+      },
+    });
+    // Save the new session
+    try {
+      await newSession.save();
+    } catch (error) {
+      reject(error);
+    }
+    resolve("session created");
   });
 };
 
@@ -67,21 +79,11 @@ AccountSchema.statics.findByEmail = function (email) {
 METHOD
 =========================================================================================*/
 
-AccountSchema.methods.validatePassword = async function (password) {
-  let isMatch;
-  try {
-    isMatch = await bcrypt.compare(password, this.password);
-  } catch (error) {
-    return false;
-  }
-  return isMatch;
-};
-
 /*=========================================================================================
 EXPORT ACCOUNT MODEL
 =========================================================================================*/
 
-module.exports = Account = mongoose.model("accounts", AccountSchema);
+module.exports = Session;
 
 /*=========================================================================================
 END

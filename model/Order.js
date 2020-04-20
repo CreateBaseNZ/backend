@@ -17,28 +17,28 @@ SUB MODELS
 
 const AddressSchema = new Schema({
   unit: {
-    type: String
+    type: String,
   },
   street: {
     number: {
-      type: String
+      type: String,
     },
     name: {
-      type: String
-    }
+      type: String,
+    },
   },
   suburb: {
-    type: String
+    type: String,
   },
   city: {
-    type: String
+    type: String,
   },
   postcode: {
-    type: String
+    type: String,
   },
   country: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 /*=========================================================================================
@@ -47,107 +47,110 @@ CREATE ORDER MODEL
 
 const OrderSchema = new Schema({
   accountId: {
-    type: mongoose.Types.ObjectId
+    type: mongoose.Types.ObjectId,
+  },
+  sessionId: {
+    type: String,
   },
   status: {
     type: String,
-    default: ""
+    default: "",
   },
   makes: {
     awaitingQuote: {
       type: [mongoose.Types.ObjectId],
-      default: []
+      default: [],
     },
     checkout: {
       type: [mongoose.Types.ObjectId],
-      default: []
-    }
+      default: [],
+    },
   },
   items: {
     type: [mongoose.Types.ObjectId],
-    default: []
+    default: [],
   },
   discounts: {
     type: [mongoose.Types.ObjectId],
-    default: []
+    default: [],
   },
   manufacturingSpeed: {
     type: String,
-    default: ""
+    default: "",
   },
   shipping: {
     address: {
       option: {
         type: String,
-        default: ""
+        default: "",
       },
       saved: {
-        type: AddressSchema
+        type: AddressSchema,
       },
       new: {
-        type: AddressSchema
+        type: AddressSchema,
       },
       save: {
         type: Boolean,
-        default: true
-      }
+        default: true,
+      },
     },
     method: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   payment: {
     method: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   comments: {
     type: [mongoose.Types.ObjectId],
-    default: []
+    default: [],
   },
   date: {
     created: {
       type: String,
-      default: ""
+      default: "",
     },
     checkedout: {
       type: String,
-      default: ""
+      default: "",
     },
     validated: {
       type: String,
-      default: ""
+      default: "",
     },
     built: {
       type: String,
-      default: ""
+      default: "",
     },
     shipped: {
       type: String,
-      default: ""
+      default: "",
     },
     arrived: {
       type: String,
-      default: ""
+      default: "",
     },
     reviewed: {
-      type: String
+      type: String,
     },
     completed: {
       type: String,
-      default: ""
+      default: "",
     },
     cancelled: {
       type: String,
-      default: ""
+      default: "",
     },
     modified: {
       type: String,
-      default: ""
-    }
-  }
+      default: "",
+    },
+  },
 });
 
 /*=========================================================================================
@@ -158,7 +161,7 @@ STATIC - MODEL
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-OrderSchema.statics.findByStatus = function(status) {
+OrderSchema.statics.findByStatus = function (status) {
   return new Promise(async (resolve, reject) => {
     let order;
 
@@ -176,7 +179,7 @@ OrderSchema.statics.findByStatus = function(status) {
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-OrderSchema.statics.findOneByAccoundIdAndStatus = function(accountId, status) {
+OrderSchema.statics.findOneByAccoundIdAndStatus = function (accountId, status) {
   return new Promise(async (resolve, reject) => {
     let order;
 
@@ -198,7 +201,7 @@ METHODS - DOCUMENT
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-OrderSchema.methods.updateStatus = function(status) {
+OrderSchema.methods.updateStatus = function (status) {
   return new Promise(async (resolve, reject) => {
     const statuses = [
       "created",
@@ -209,7 +212,7 @@ OrderSchema.methods.updateStatus = function(status) {
       "arrived",
       "reviewed",
       "completed",
-      "cancelled"
+      "cancelled",
     ];
 
     // VALIDATION START
@@ -217,15 +220,13 @@ OrderSchema.methods.updateStatus = function(status) {
     if (statuses.indexOf(status) === -1) {
       reject({
         status: "failed",
-        message: "invalid status"
+        message: "invalid status",
       });
     }
 
     // VALIDATION END
 
-    const date = moment()
-      .tz("Pacific/Auckland")
-      .format();
+    const date = moment().tz("Pacific/Auckland").format();
 
     this.status = status;
     this.date[status] = date;
@@ -238,7 +239,7 @@ OrderSchema.methods.updateStatus = function(status) {
     } catch (error) {
       reject({
         status: "failed",
-        message: error
+        message: error,
       });
     }
 
@@ -250,13 +251,13 @@ OrderSchema.methods.updateStatus = function(status) {
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-OrderSchema.methods.updateSavedAddress = function() {};
+OrderSchema.methods.updateSavedAddress = function () {};
 
 // @FUNC  validateCart
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-OrderSchema.methods.validateCart = function() {
+OrderSchema.methods.validateCart = function () {
   // Check if there are prints or items ready for checkout
   if (!(this.makes.awaitingQuote.length || this.items.length)) {
     return false;
@@ -272,7 +273,7 @@ OrderSchema.methods.validateCart = function() {
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-OrderSchema.methods.validateShipping = function() {
+OrderSchema.methods.validateShipping = function () {
   // Check if a shipping option is provided
   if (!this.shipping.address.option) {
     return false;
@@ -302,7 +303,7 @@ OrderSchema.methods.validateShipping = function() {
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-OrderSchema.methods.validatePayment = function() {
+OrderSchema.methods.validatePayment = function () {
   return true;
 };
 
@@ -310,13 +311,13 @@ OrderSchema.methods.validatePayment = function() {
 FUNCTIONS
 =========================================================================================*/
 
-const checkAddressValidity = address => {
+const checkAddressValidity = (address) => {
   // VALIDATION - STREET NAME
   if (!address.street.name) {
     // Check if there is no street name provided
     return {
       status: "failed",
-      message: "no street name"
+      message: "no street name",
     };
   }
   // VALIDATION - STREET NUMBER
@@ -324,7 +325,7 @@ const checkAddressValidity = address => {
     // Check if there is no street number provided
     return {
       status: "failed",
-      message: "no street number"
+      message: "no street number",
     };
   }
   // VALIDATION - SUBURB
@@ -332,7 +333,7 @@ const checkAddressValidity = address => {
     // Check if there is no suburb provided
     return {
       status: "failed",
-      message: "no suburb"
+      message: "no suburb",
     };
   }
   // VALIDATION - CITY
@@ -340,7 +341,7 @@ const checkAddressValidity = address => {
     // Check if there is no city provided
     return {
       status: "failed",
-      message: "no city"
+      message: "no city",
     };
   }
   // VALIDATION - POSTCODE
@@ -348,20 +349,20 @@ const checkAddressValidity = address => {
     // Check if there is no postcode provided
     return {
       status: "failed",
-      message: "no postcode"
+      message: "no postcode",
     };
   }
   // VALIDATION - COUNTRY
   if (!address.country) {
     return {
       status: "failed",
-      message: "no country"
+      message: "no country",
     };
   }
   // All Valid
   return {
     status: "success",
-    message: "valid address"
+    message: "valid address",
   };
 };
 

@@ -11,6 +11,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
+const expressSession = require("express-session");
 const passport = require("passport");
 
 /*=========================================================================================
@@ -26,7 +27,7 @@ SETUP DATABASE
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 /*=========================================================================================
@@ -55,11 +56,14 @@ SETUP AUTHENTICATION (PASSPORT JS)
 =========================================================================================*/
 
 app.use(
-  cookieSession({
-    maxAge: 1000 * 60 * 60 * 24 * 365,
-    keys: [process.env.COOKIES_SECRET_KEY]
+  expressSession({
+    secret: process.env.COOKIES_SECRET_KEY,
+    saveUninitialized: true,
+    resave: true,
+    rolling: true,
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passport.js");
@@ -103,4 +107,16 @@ app.use(errorRouter);
 
 /*=========================================================================================
 END
+=========================================================================================*/
+
+/*=========================================================================================
+TEMPORARY - START
+=========================================================================================*/
+
+/*=========================================================================================
+DATABASE MAINTENANCE
+=========================================================================================*/
+
+/*=========================================================================================
+TEMPORARY - END
 =========================================================================================*/
