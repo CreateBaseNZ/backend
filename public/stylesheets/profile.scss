@@ -65,7 +65,6 @@ body {
         align-items: center;
         color: $dark-1;
         background: $light-1;
-        border-radius: 50%;
         box-shadow: 0 0 10px -5px $dark-3;
         cursor: pointer;
         
@@ -254,10 +253,10 @@ body {
     display: flex;
   }
   #settings-tab:checked ~ #settings-area {
-    display: block;
+    display: flex;
   }
   #billing-tab:checked ~ #billing-area {
-    display: block;
+    display: flex;
   }
 }
 
@@ -350,14 +349,14 @@ body {
     font-family: $poppins;
     border: 0;
     border-radius: 5px;
+    font-family: $poppins;
+    width: 100%;
   }
 
   #projects-area {
-    font-family: $poppins;
     flex-direction: column;
     justify-content: space-around;
     padding: 0 3vw;
-    width: 100%;
 
     .proj-wrap {
       width: 100%;
@@ -387,8 +386,8 @@ body {
         flex-direction: row;
         overflow-x: auto;
         overflow-y: scroll;
-        flex-wrap: nowrap;
         align-items: center;
+        justify-content: flex-start;
         padding: 4vh 0;
   
         .proj-card {
@@ -403,7 +402,7 @@ body {
           display: flex;
           flex-direction: column;
           align-items: center;
-          border-radius: 2%;
+          border-radius: 5px;
 
           .fa-bookmark {
             margin: 1vh 0 0 -1vw;
@@ -590,9 +589,18 @@ body {
             }
             .proj-modified { color: $dark-1; }
           }
-        }
 
-        
+          &:last-of-type {
+            &::after {
+              content: '';
+              width: 1vw;
+              height: 2vh;
+              align-self: flex-end;
+              margin-right: -3vw;
+              visibility: hidden;
+            }
+          }
+        }
 
         &::-webkit-scrollbar {
           height: 10px;
@@ -634,10 +642,104 @@ body {
       justify-content: center;
       align-items: center;
     }
+  }
 
-    &,
+  #billing-area {
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh 1vw;
+    color: $dark-3;
+
+    .billing-card {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 1vh 2vw;
+      width: 100%;
+      background: $light-2;
+      border-radius: 5px;
+
+      .billing-main {
+        width: 100%;
+        flex: 1 0 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .order-header {
+          margin: 1vh 0;
+          flex: 1.5 1 0;
+          h2 {
+            font-size: calc(16px + 0.7vw);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+          }
+          button {
+            color: $highlight;
+            padding: 0.6em 3em;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            &::before { border-color: $highlight; }
+            &::after { border-color: $light-1; }
+          }
+        }
+
+        .order-status,
+        .order-location,
+        .order-date,
+        .order-total {
+          font-size: calc(12px + 0.3vw);
+          flex: 0.8 1 0;
+          i {
+            margin-right: 0.5em;
+            color: $dark-1;
+          }
+          span {
+            margin-right: 0.5em;
+            font-size: calc(10px + 0.3vw);
+            color: $dark-1;
+            font-weight: 700;
+          }
+        }
+
+        .order-location {
+          flex: 1.2 1 0;
+        }
+      }
+
+      .billing-details {
+        display: none;
+      }
+  
+      .billing-show {
+        display: flex;
+        flex-direction: row;
+        flex: 1 0 100%;
+        justify-content: center;
+
+        * {
+          flex: 1 1 0;
+        }
+
+        .billing-arrow {
+          &::after {
+            content: '';
+            height: 10px;
+            width: 1px;
+            transform: rotate(30deg);
+            background: $dark-3;
+          }
+        }
+  
+        .billing-invoice,
+        .billing-contact {
+          display: none;
+        }
+      }
+    }
+
+
     * {
-      // border: 1px solid red;
+      // border: thin solid red;
     }
   }
 

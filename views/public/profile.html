@@ -32,15 +32,15 @@
         </span>
       </button>
       <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
+        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png" decoding="async"/>
       </a>
       <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture"/>
+        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png" decoding="async"/>
+        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture" decoding="async"/>
       </div>
       <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
+        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png" decoding="async"/>
+        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png" decoding="async"/>
       </div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
@@ -81,7 +81,7 @@
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <img id="nav-dp" src="/profile/customer/fetch/picture"/>
+          <img id="nav-dp" src="/profile/customer/fetch/picture" decoding="async"/>
           <p class="nav-side-header">PROJECTS</p>
             <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
@@ -99,7 +99,7 @@
       <div id="profile-pic">
         <label for="profile-upload"><i class="far fa-edit"></i></label>
         <input type="file" id="profile-upload" onchange="loadFile(event)"></input>
-        <img src="/profile/customer/fetch/picture" id="profile-preview"></img>
+        <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
       </div>
       <p id="profile-name" data-placeholder="Display Name"></p>
       <p id="profile-location" data-info="Edit location under the Billing tab."></p>
@@ -169,15 +169,11 @@
               <p class="proj-modified">Last modified 21/05/2020</p>
             </div>
             <div class="proj-card">
-                
             </div>
             <div class="proj-card">
-                
             </div>
             <div class="proj-card">
-                
             </div>
-            <div class="scroll-cover-2"></div>
           </div>
           <div class="scroll-cover"></div>
         </div>
@@ -186,7 +182,39 @@
         </div>
       </div>
       <div class="main-area" id="billing-area">
-        <p>Billing</p>
+        <div class="billing-card">
+          <div class="billing-main">
+            <div class="order-header">
+              <h2>Order #01006</h2>
+              <button class="action-btn">VIEW TRACKING</button>
+            </div>
+            <div class="order-status"><i class="fas fa-box-open"></i> Delivered</div>
+            <div class="order-total"><span>TOTAL</span> $53.80</div>
+            <div class="order-date"><i class="fas fa-credit-card"></i> April 21, 2020</div>
+            <div class="order-location"><i class="fas fa-map-marker-alt"></i> Auckland, New Zealand</div>
+          </div>
+          <div class="billing-details">
+            <div class="order-item">
+              <p class="order-item-name"></p>
+              <p class="order-item-quantity"></p>
+              <p class="order-item-price"></p>
+            </div>
+            <div class="order-item">
+
+            </div>
+            <div class="order-item">
+
+            </div>
+            <div class="order-item-total">
+              <p>Total</p>
+              <h3>$53.80</h3>
+            </div>
+          </div>
+          <div class="billing-show">
+            <p class="billing-invoice">Print an invoice</p>
+            <div class="billing-arrow"></div>
+            <p class="billing-contact">Contact us about this order</p>
+          </div>
       </div>
       <div class="main-area" id="settings-area">
         <p>Settings</p>
