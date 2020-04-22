@@ -2874,19 +2874,21 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    padding: 2vh 1vw;
+    padding: 4vh 1vw;
     color: #2d283c;
   }
   .profile-tabs-section #billing-area .billing-card {
+    cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    padding: 1vh 2vw;
+    padding: 3vh 3vw 1vh 3vw;
     width: 100%;
     background: #f8f8f8;
     border-radius: 5px;
+    margin: 1vh 0;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main {
     width: 100%;
@@ -2900,46 +2902,77 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-  .profile-tabs-section #billing-area .billing-card .billing-main .order-header {
-    margin: 1vh 0;
-    -webkit-box-flex: 1.5;
-        -ms-flex: 1.5 1 0px;
-            flex: 1.5 1 0;
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-id {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-flex: 1.8;
+        -ms-flex: 1.8 1 0px;
+            flex: 1.8 1 0;
   }
-  .profile-tabs-section #billing-area .billing-card .billing-main .order-header h2 {
-    font-size: calc(16px + 0.7vw);
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-id h2 {
+    font-size: calc(10px + 0.8vw);
     font-weight: 400;
-    letter-spacing: 0.01em;
   }
-  .profile-tabs-section #billing-area .billing-card .billing-main .order-header button {
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-id button {
+    font-size: calc(6px + 0.4vw);
     color: #4bf0ea;
-    padding: 0.6em 3em;
+    padding: 0.6em 2em;
+    margin: 0.5vh auto 0 0;
     letter-spacing: 0.1em;
     font-weight: 600;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1;
+            flex: 0 1;
   }
-  .profile-tabs-section #billing-area .billing-card .billing-main .order-header button::before {
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-id button::before {
     border-color: #4bf0ea;
   }
-  .profile-tabs-section #billing-area .billing-card .billing-main .order-header button::after {
-    border-color: white;
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-id button::after {
+    border-color: #f8f8f8;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main .order-status,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-location,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-date,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-total {
-    font-size: calc(12px + 0.3vw);
-    -webkit-box-flex: 0.8;
-        -ms-flex: 0.8 1 0px;
-            flex: 0.8 1 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0.5em 0 0 0.5vw;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 0px;
+            flex: 1 1 0;
+  }
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-status p,
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-location p,
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-date p,
+  .profile-tabs-section #billing-area .billing-card .billing-main .order-total p {
+    font-size: calc(8px + 0.4vw);
+    font-weight: 400;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main .order-status i,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-location i,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-date i,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-total i {
+    font-size: calc(8px + 0.4vw);
     margin-right: 0.5em;
     color: #877da9;
   }
@@ -2948,14 +2981,14 @@ body {
   .profile-tabs-section #billing-area .billing-card .billing-main .order-date span,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-total span {
     margin-right: 0.5em;
-    font-size: calc(10px + 0.3vw);
+    font-size: calc(4px + 0.4vw);
     color: #877da9;
     font-weight: 700;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main .order-location {
-    -webkit-box-flex: 1.2;
-        -ms-flex: 1.2 1 0px;
-            flex: 1.2 1 0;
+    -webkit-box-flex: 1.6;
+        -ms-flex: 1.6 1 0px;
+            flex: 1.6 1 0;
   }
   .profile-tabs-section #billing-area .billing-card .billing-details {
     display: none;
@@ -2971,25 +3004,194 @@ body {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 100%;
             flex: 1 0 100%;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
-  .profile-tabs-section #billing-area .billing-card .billing-show * {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 0px;
-            flex: 1 1 0;
-  }
-  .profile-tabs-section #billing-area .billing-card .billing-show .billing-arrow::after {
-    content: '';
-    height: 10px;
-    width: 1px;
-    -webkit-transform: rotate(30deg);
-            transform: rotate(30deg);
-    background: #2d283c;
+  .profile-tabs-section #billing-area .billing-card .billing-show .billing-arrow {
+    margin: auto;
+    height: 20px;
+    width: 20px;
+    -webkit-transform: rotateX(-55deg) rotateZ(45deg);
+            transform: rotateX(-55deg) rotateZ(45deg);
+    border-bottom: 2px solid #2d283c;
+    border-right: 2px solid #2d283c;
+    z-index: 2;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
   }
   .profile-tabs-section #billing-area .billing-card .billing-show .billing-invoice,
   .profile-tabs-section #billing-area .billing-card .billing-show .billing-contact {
     display: none;
+  }
+  .profile-tabs-section #billing-area .billing-card:hover {
+    background: white;
+    -webkit-box-shadow: 0 0 16px 4px #f8f8f8;
+            box-shadow: 0 0 16px 4px #f8f8f8;
+  }
+  .profile-tabs-section #billing-area .billing-card:hover .order-id h2 {
+    color: #6853d9;
+  }
+  .profile-tabs-section #billing-area .billing-card:hover .order-id button::after {
+    border-color: white;
+  }
+  .profile-tabs-section #billing-area .billing-card:hover .billing-arrow {
+    border-color: #4bf0ea;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-main {
+    width: 35%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-id {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 0px;
+            flex: 0 1 0;
+    margin-bottom: 1vh;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-status,
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-location,
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-date {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0.5vh 0 0 0;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 0px;
+            flex: 0 1 0;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-status p,
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-location p,
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-date p {
+    font-size: calc(8px + 0.3vw);
+    font-weight: 400;
+    color: #877da9;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-status i,
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-location i,
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-date i {
+    color: #2d283c;
+    font-size: calc(5px + 0.3vw);
+    text-align: center;
+    width: 2em;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-main .order-total {
+    display: none;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-details {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 65%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+    margin: auto 0;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-details .order-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    border-bottom: thin solid #c7c2d5;
+    font-size: calc(9px + 0.3vw);
+    font-weight: 400;
+    padding: 0.7em 0;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-details .order-item .order-item-name {
+    width: 50%;
+    color: #2d283c;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-details .order-item .order-item-quantity,
+  .profile-tabs-section #billing-area .billing-card-active .billing-details .order-item .order-item-price {
+    width: 25%;
+    color: #877da9;
+    text-align: right;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-details .order-item-total {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    border-top: thin solid #c7c2d5;
+    padding: 0.7em 0;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-details .order-item-total p {
+    font-size: calc(9px + 0.3vw);
+    font-weight: 400;
+    width: 75%;
+    text-align: right;
+    color: #877da9;
+    margin: auto 0;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-details .order-item-total h3 {
+    font-size: calc(12px + 0.3vw);
+    font-weight: 600;
+    width: 25%;
+    text-align: right;
+    color: #2d283c;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-show {
+    margin-top: 3vh;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-show .billing-arrow {
+    -webkit-transform: rotateX(125deg) rotateZ(45deg);
+            transform: rotateX(125deg) rotateZ(45deg);
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-show .billing-invoice,
+  .profile-tabs-section #billing-area .billing-card-active .billing-show .billing-contact {
+    display: block;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 0px;
+            flex: 1 1 0;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-show .billing-invoice a,
+  .profile-tabs-section #billing-area .billing-card-active .billing-show .billing-contact a {
+    font-size: calc(8px + 0.3vw);
+    color: #877da9;
+    padding: 5px;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-show .billing-invoice a:hover,
+  .profile-tabs-section #billing-area .billing-card-active .billing-show .billing-contact a:hover {
+    text-decoration: underline;
+  }
+  .profile-tabs-section #billing-area .billing-card-active .billing-show .billing-contact {
+    text-align: right;
+  }
+  .profile-tabs-section #billing-area .billing-card-active:hover .order-item-total h3 {
+    color: #6853d9;
   }
 }
