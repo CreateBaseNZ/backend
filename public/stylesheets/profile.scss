@@ -671,12 +671,13 @@ body {
         .order-id {
           display: flex;
           flex-direction: column;
-          flex: 1.6 1 0;
+          flex: 1.8 1 0;
           h2 {
-            font-size: calc(18px + 0.5vw);
+            font-size: calc(10px + 0.8vw);
             font-weight: 400;
           }
           button {
+            font-size: calc(6px + 0.4vw);
             color: $highlight;
             padding: 0.6em 2em;
             margin: 0.5vh auto 0 0;
@@ -699,23 +700,21 @@ body {
           display: flex;
           flex-direction: row;
           align-items: center;
-          margin: 0.5em 0 0 1vw;
+          margin: 0.5em 0 0 0.5vw;
           flex: 1 1 0;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
 
           p {
-            font-size: calc(9px + 0.4vw);
+            font-size: calc(8px + 0.4vw);
             font-weight: 400;
           }
           i {
+            font-size: calc(8px + 0.4vw);
             margin-right: 0.5em;
             color: $dark-1;
           }
           span {
             margin-right: 0.5em;
-            font-size: calc(6px + 0.4vw);
+            font-size: calc(4px + 0.4vw);
             color: $dark-1;
             font-weight: 700;
           }
@@ -776,10 +775,10 @@ body {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-start;
 
         .order-id {
-          flex: 1.6 1 0;
+          flex: 0 1 0;
           margin-bottom: 1vh;
         }
 
@@ -790,7 +789,7 @@ body {
           flex-direction: row;
           align-items: center;
           margin: 0.5vh 0 0 0;
-          flex: 1 1 0;
+          flex: 0 1 0;
 
           p {
             font-size: calc(8px + 0.3vw);

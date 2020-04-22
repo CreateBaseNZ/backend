@@ -2917,15 +2917,16 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-flex: 1.6;
-        -ms-flex: 1.6 1 0px;
-            flex: 1.6 1 0;
+    -webkit-box-flex: 1.8;
+        -ms-flex: 1.8 1 0px;
+            flex: 1.8 1 0;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main .order-id h2 {
-    font-size: calc(18px + 0.5vw);
+    font-size: calc(10px + 0.8vw);
     font-weight: 400;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main .order-id button {
+    font-size: calc(6px + 0.4vw);
     color: #4bf0ea;
     padding: 0.6em 2em;
     margin: 0.5vh auto 0 0;
@@ -2955,25 +2956,23 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin: 0.5em 0 0 1vw;
+    margin: 0.5em 0 0 0.5vw;
     -webkit-box-flex: 1;
         -ms-flex: 1 1 0px;
             flex: 1 1 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main .order-status p,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-location p,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-date p,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-total p {
-    font-size: calc(9px + 0.4vw);
+    font-size: calc(8px + 0.4vw);
     font-weight: 400;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main .order-status i,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-location i,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-date i,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-total i {
+    font-size: calc(8px + 0.4vw);
     margin-right: 0.5em;
     color: #877da9;
   }
@@ -2982,7 +2981,7 @@ body {
   .profile-tabs-section #billing-area .billing-card .billing-main .order-date span,
   .profile-tabs-section #billing-area .billing-card .billing-main .order-total span {
     margin-right: 0.5em;
-    font-size: calc(6px + 0.4vw);
+    font-size: calc(4px + 0.4vw);
     color: #877da9;
     font-weight: 700;
   }
@@ -3054,14 +3053,14 @@ body {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   .profile-tabs-section #billing-area .billing-card-active .billing-main .order-id {
-    -webkit-box-flex: 1.6;
-        -ms-flex: 1.6 1 0px;
-            flex: 1.6 1 0;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 0px;
+            flex: 0 1 0;
     margin-bottom: 1vh;
   }
   .profile-tabs-section #billing-area .billing-card-active .billing-main .order-status,
@@ -3078,9 +3077,9 @@ body {
         -ms-flex-align: center;
             align-items: center;
     margin: 0.5vh 0 0 0;
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 0px;
-            flex: 1 1 0;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 0px;
+            flex: 0 1 0;
   }
   .profile-tabs-section #billing-area .billing-card-active .billing-main .order-status p,
   .profile-tabs-section #billing-area .billing-card-active .billing-main .order-location p,
