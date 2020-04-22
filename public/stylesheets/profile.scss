@@ -647,39 +647,48 @@ body {
   #billing-area {
     flex-direction: column;
     align-items: center;
-    padding: 2vh 1vw;
+    padding: 4vh 1vw;
     color: $dark-3;
 
     .billing-card {
+      cursor: pointer;
       display: flex;
       flex-wrap: wrap;
-      padding: 1vh 2vw;
+      padding: 3vh 3vw 1vh 3vw;
       width: 100%;
       background: $light-2;
       border-radius: 5px;
+      margin: 1vh 0;
 
       .billing-main {
         width: 100%;
         flex: 1 0 100%;
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
+        justify-content: center;
 
-        .order-header {
-          margin: 1vh 0;
-          flex: 1.5 1 0;
+        .order-id {
+          display: flex;
+          flex-direction: column;
+          flex: 1.6 1 0;
           h2 {
-            font-size: calc(16px + 0.7vw);
+            font-size: calc(18px + 0.5vw);
             font-weight: 400;
-            letter-spacing: 0.01em;
           }
           button {
             color: $highlight;
-            padding: 0.6em 3em;
+            padding: 0.6em 2em;
+            margin: 0.5vh auto 0 0;
             letter-spacing: 0.1em;
             font-weight: 600;
-            &::before { border-color: $highlight; }
-            &::after { border-color: $light-1; }
+            flex: 0 1;
+            &::before { 
+              border-color: $highlight; 
+            }
+            &::after { 
+              border-color: $light-2;
+            }
           }
         }
 
@@ -687,22 +696,33 @@ body {
         .order-location,
         .order-date,
         .order-total {
-          font-size: calc(12px + 0.3vw);
-          flex: 0.8 1 0;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin: 0.5em 0 0 1vw;
+          flex: 1 1 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          p {
+            font-size: calc(9px + 0.4vw);
+            font-weight: 400;
+          }
           i {
             margin-right: 0.5em;
             color: $dark-1;
           }
           span {
             margin-right: 0.5em;
-            font-size: calc(10px + 0.3vw);
+            font-size: calc(6px + 0.4vw);
             color: $dark-1;
             font-weight: 700;
           }
         }
 
         .order-location {
-          flex: 1.2 1 0;
+          flex: 1.6 1 0;
         }
       }
 
@@ -714,20 +734,17 @@ body {
         display: flex;
         flex-direction: row;
         flex: 1 0 100%;
-        justify-content: center;
-
-        * {
-          flex: 1 1 0;
-        }
+        justify-content: space-between;
 
         .billing-arrow {
-          &::after {
-            content: '';
-            height: 10px;
-            width: 1px;
-            transform: rotate(30deg);
-            background: $dark-3;
-          }
+          margin: auto;
+          height: 20px;
+          width: 20px;
+          transform: rotateX(-55deg) rotateZ(45deg);
+          border-bottom: 2px solid $dark-3;
+          border-right: 2px solid $dark-3;
+          z-index: 2;
+          align-self: flex-start;
         }
   
         .billing-invoice,
@@ -735,8 +752,151 @@ body {
           display: none;
         }
       }
+
+      &:hover {
+        background: $light-1;
+        box-shadow: 0 0 16px 4px $light-2;
+        .order-id h2 {
+          color: $logo-2;
+        }
+        .order-id button::after {
+          border-color: $light-1;
+        }
+        .billing-arrow {
+          border-color: $highlight;
+        }
+      }
     }
 
+    .billing-card-active {
+      
+      .billing-main {
+        width: 35%;
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        .order-id {
+          flex: 1.6 1 0;
+          margin-bottom: 1vh;
+        }
+
+        .order-status,
+        .order-location,
+        .order-date {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin: 0.5vh 0 0 0;
+          flex: 1 1 0;
+
+          p {
+            font-size: calc(8px + 0.3vw);
+            font-weight: 400;
+            color: $dark-1;
+          }
+          i {
+            color: $dark-3;
+            font-size: calc(5px + 0.3vw);
+            text-align: center;
+            width: 2em;
+          }
+        }
+
+        .order-total {
+          display: none;
+        }
+      }
+
+      .billing-details {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        flex: 1 0 auto;
+        margin: auto 0;
+
+        .order-item {
+          display: flex;
+          flex-direction: row;
+          border-bottom: thin solid $light-3;
+          font-size: calc(9px + 0.3vw);
+          font-weight: 400;
+          padding: 0.7em 0;
+
+          .order-item-name {
+            width: 50%;
+            color: $dark-3;
+          }
+
+          .order-item-quantity,
+          .order-item-price {
+            width: 25%;
+            color: $dark-1;
+            text-align: right;
+          }
+        }
+
+        .order-item-total {
+          display: flex;
+          flex-direction: row;
+          border-top: thin solid $light-3;
+          padding: 0.7em 0;
+          
+          p {
+            font-size: calc(9px + 0.3vw);
+            font-weight: 400;
+            width: 75%;
+            text-align: right;
+            color: $dark-1;
+            margin: auto 0;
+          }
+          
+          h3 {
+            font-size: calc(12px + 0.3vw);
+            font-weight: 600;
+            width: 25%;
+            text-align: right;
+            color: $dark-3;
+          }
+        }
+      }
+  
+      .billing-show {
+        margin-top: 3vh;
+
+        .billing-arrow {
+          transform: rotateX(125deg) rotateZ(45deg);
+          align-self: flex-end;
+        }
+  
+        .billing-invoice,
+        .billing-contact {
+          display: block;
+          flex: 1 1 0;
+
+          a {
+            font-size: calc(8px + 0.3vw);
+            color: $dark-1;
+            padding: 5px;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .billing-contact {
+          text-align: right;
+        }
+      }
+
+      &:hover {
+        .order-item-total h3 {
+          color: $logo-2;
+        }
+      }
+    }
 
     * {
       // border: thin solid red;

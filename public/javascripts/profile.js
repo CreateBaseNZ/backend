@@ -17,7 +17,8 @@ const profileInit = async() => {
   const nameEl = document.getElementById('profile-name')
   const locationEl = document.getElementById('profile-location')
   const bioEl = document.getElementById('profile-bio')
-  const projScroll = document.querySelector('.proj-scroll-container');
+  const projScroll = document.querySelector('.proj-scroll-container')
+  const billingCards = document.getElementsByClassName('billing-card')
 
   // -- Prerender selected tab -- 
   document.getElementById(localStorage.getItem('tab') + '-tab').checked = true
@@ -94,5 +95,12 @@ const profileInit = async() => {
       e.preventDefault()
     }
   })
+
+  for (var i=0; i < billingCards.length; i++) {
+    console.log(billingCards)
+    billingCards[i].onclick = function(event) {
+      this.classList.toggle('billing-card-active')
+    }
+  }
 
 }
