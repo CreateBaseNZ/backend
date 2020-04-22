@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="./../../public/images/logo-icon.png" />
+    <title>Make • CreateBase</title>
+    <!--===================================================================================
+    CSS and JavaScript
+    ====================================================================================-->
+    <!-------------------------------------------------------------------------------------
+    Sourced CSS
+    -------------------------------------------------------------------------------------->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/b382730141.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-------------------------------------------------------------------------------------
+    Sourced JavaScript
+    -------------------------------------------------------------------------------------->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./../../public/javascripts/moment.js"></script>
+    <!-------------------------------------------------------------------------------------
+    Default JavaScript
+    -------------------------------------------------------------------------------------->
+    <script src="./../../public/javascripts/nav.js"></script>
+    <!-------------------------------------------------------------------------------------
+    Custom CSS and JavaScript
+    -------------------------------------------------------------------------------------->
+  </head>
+
+  <body">
+    <div id="test">Test</div>
+  </body>
+
+  <style>
+    #test {
+      height: 100px;
+      width: 100px;
+    }
+  </style>
+
+  <script>
+    const loadImage = async () => {
+      // Set Loading
+      document.querySelector("#test").innerHTML = "Loading";
+      // Create Image
+      let image = new Image();
+      image.decoding = "async";
+      image.src = "/files/image/carl.png";
+      image.classList = "image-class";
+      try {
+        await image.decode();
+      } catch (error) {
+        return console.log(error);
+      }
+      document.querySelector("#test").innerHTML = "";
+      document.querySelector("#test").appendChild(image);
+    }
+  </script>
+</html>

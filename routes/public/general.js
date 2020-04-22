@@ -2,9 +2,13 @@
 REQUIRED MODULES
 =========================================================================================*/
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const path = require("path");
 const passport = require("passport");
+const inlineCSS = require("inline-css");
 
 /*=========================================================================================
 VARIABLES
@@ -146,83 +150,15 @@ router.get("/profile", restrictedPages, (req, res) => {
   res.sendFile("profile.html", customerRouteOptions);
 });
 
-// @route     POST /subscribe/mailing-list
-// @desc      Subscribing to mailing list
-// @access    Public
-router.post("/subscribe/mailing-list", async (req, res) => {
-  const email = req.body.email;
-  // Check if the email is already in the mailing list
-  let mail;
-  try {
-    mail = await Mail.findByEmail(email);
-  } catch (error) {
-    return res.send({ status: "failed", data: error });
-  }
-  if (mail) {
-    return res.send({ status: "success", data: "already subscribed" });
-  }
-  // Check if the user is registered
-  let account;
-  try {
-    account = await Account.findByEmail(email);
-  } catch (error) {
-    return res.send({ status: "failed", data: error });
-  }
-  if (account) {
-    const newMail = new Mail({
-      accountId: account._id,
-      email,
-    });
+/*=========================================================================================
+DEVELOPMENT
+=========================================================================================*/
 
-    try {
-      await newMail.save();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-
-    // Update user subscription mailing status
-    let customer;
-    try {
-      customer = await Customer.findByAccountId(account._id);
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-
-    customer.subscription = {
-      mail: true,
-    };
-
-    try {
-      await customer.save();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-
-    return res.send({ status: "success", data: "subscribed" });
-  }
-  // If user is not registered and not subscribed
-  const newMail = new Mail({
-    email,
-  });
-
-  try {
-    await newMail.save();
-  } catch (error) {
-    return res.send({ status: "failed", data: error });
-  }
-
-  return res.send({ status: "success", data: "subscribed" });
-});
-
-// @route     POST /unsubscribe/mailing-list
-// @desc      Unsubscribing from mailing list
-// @access    Public
-router.post("/unsubscribe/mailing-list", async (req, res) => {
-  // Initialise Email Variable
-  // Check if Email Exist in the Mailing List
-  // Check if User is Registered
-  // If Registered Update Subscription
-  // Remove Email from the Mailing List
+// @route     Get /test
+// @desc
+// @access    Private
+router.get("/test", (req, res) => {
+  res.sendFile("test.html", customerRouteOptions);
 });
 
 // @route     Get /login-status

@@ -47,7 +47,7 @@ mongoose.createConnection(
   {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   },
   (error, client) => {
     if (error) throw error;
@@ -85,6 +85,34 @@ router.get("/files/delete/:fileId", (req, res) => {
 
     res.send("Deleted");
   });
+});
+
+// @route     Get /files/image/:filename
+// @desc      Fetch image to be displayed
+// @access    Public
+router.get("/files/image/:filename", async (req, res) => {
+  // Declare Variables
+  const filename = req.params.filename;
+  // Find the image
+  let image = undefined;
+  // If so, Send File to Front-End
+  try {
+    image = await GridFS.files.findOne({ filename });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  if (image) {
+    let readstream = GridFS.createReadStream(image.filename);
+    return readstream.pipe(res);
+  }
+  // Else, Return Temporary Profile Picture
+  try {
+    file = await GridFS.files.findOne({ filename: "default-profile.png" });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  let readstream = GridFS.createReadStream(file.filename);
+  return readstream.pipe(res);
 });
 
 /*=========================================================================================
