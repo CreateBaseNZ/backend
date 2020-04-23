@@ -25,11 +25,11 @@ CREATE MAILING MODEL
 
 const MailSchema = new Schema({
   accountId: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
   },
   email: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 /*=========================================================================================

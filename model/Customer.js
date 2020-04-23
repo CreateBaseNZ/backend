@@ -16,34 +16,34 @@ SUB MODELS
 
 const AddressSchema = new Schema({
   unit: {
-    type: String
+    type: String,
   },
   street: {
     number: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   suburb: {
     type: String,
-    required: true
+    required: true,
   },
   city: {
     type: String,
-    required: true
+    required: true,
   },
   postcode: {
     type: String,
-    required: true
+    required: true,
   },
   country: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 /*=========================================================================================
@@ -52,32 +52,32 @@ CREATE CUSTOMER MODEL
 
 const CustomerSchema = new Schema({
   accountId: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
   },
   picture: {
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
   },
   displayName: {
-    type: String
+    type: String,
   },
   bio: {
     type: String,
-    default: ""
+    default: "",
   },
   address: {
-    type: AddressSchema
+    type: AddressSchema,
   },
   subscription: {
     mail: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   wallet: {
     amount: {
       type: Number,
-      default: 0
-    }
-  }
+      default: 0,
+    },
+  },
 });
 
 /*=========================================================================================
@@ -88,7 +88,7 @@ STATUS
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-CustomerSchema.statics.findByAccountId = function(accountId) {
+CustomerSchema.statics.findByAccountId = function (accountId) {
   return new Promise(async (resolve, reject) => {
     let customer;
 
@@ -110,7 +110,7 @@ METHODS
 // @TYPE  METHODS
 // @DESC
 // @ARGU  customer - object -
-CustomerSchema.methods.update = function(customer) {
+CustomerSchema.methods.update = function (customer) {
   return new Promise(async (resolve, reject) => {
     console.log(customer);
     // Update Details
@@ -135,7 +135,7 @@ CustomerSchema.methods.update = function(customer) {
 // @TYPE  METHODS
 // @DESC
 // @ARGU  address - object -
-CustomerSchema.methods.updateAddress = function(address) {
+CustomerSchema.methods.updateAddress = function (address) {
   return new Promise(async (resolve, reject) => {
     this.address = address;
     let savedCustomer;
@@ -144,7 +144,7 @@ CustomerSchema.methods.updateAddress = function(address) {
     } catch (error) {
       reject({
         status: "failed",
-        message: error
+        message: error,
       });
     }
     resolve(savedCustomer);

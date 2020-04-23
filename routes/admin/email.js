@@ -70,8 +70,8 @@ const sendEmail = (recipient, template, options) => {
     const message = template(options);
     // Construct email
     const email = {
-      from: `CreateBase <${process.env.EMAIL_USER}>`,
-      to: `${options.recipient} ${recipient}`,
+      from: `"CreateBase" <${process.env.EMAIL_USER}>`,
+      to: `"${options.recipient}" ${recipient}`,
       subject: message.subject,
       text: message.text,
       html: message.html,
