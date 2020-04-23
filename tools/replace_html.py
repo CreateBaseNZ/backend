@@ -61,7 +61,7 @@ markdown = """
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <img id="nav-dp" src="/profile/customer/fetch/picture"/>
+          <img id="nav-dp" src="/profile/customer/fetch/picture" alt="customer profile image"/>
           <p class="nav-side-header">PROJECTS</p>
             <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
