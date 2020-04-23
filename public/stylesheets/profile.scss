@@ -251,6 +251,235 @@ body {
 
   #projects-tab:checked ~ #projects-area {
     display: flex;
+    flex-direction: column;
+    
+    .proj-wrap {
+      width: 100%;
+
+      .proj-headers {
+        display: none;
+      }
+
+      .proj-scroll-container {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2vmax 2vmax;
+        background: $light-2;
+  
+        .proj-card {
+          width: 90%;
+          margin: 2vmax auto;
+          padding: 0 4vmax;
+          flex-shrink: 0;
+          background: $light-1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-radius: 5px;
+
+          .fa-bookmark {
+            margin: 1vmax -1vmax 0 0;
+            padding: 5px;
+            align-self: flex-end;
+            cursor: pointer;
+
+            &:hover {
+              color: $highlight;
+            }
+          }
+
+          .proj-date {
+            font-size: calc(8px + 0.2vmax);
+            letter-spacing: 2px;
+            font-weight: 400;
+            color: $dark-3;
+            margin-top: 6vh;
+          }
+
+          .proj-name {
+            width: 100%;
+            font-size: calc(14px + 0.5vmax);
+            font-weight: 400;
+            color: $dark-3;
+            margin-top: 3vh;
+            text-align: center;
+            min-height: 30px;
+          }
+
+          .proj-files {
+            font-size: calc(8px + 0.1vmax);
+            font-weight: 400;
+            color: $dark-1;
+            margin-top: 0.5vh;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-align: center;
+            width: 100%;
+            min-height: 12px;
+
+            i {
+              padding: 2px;
+              margin-left: 5px;
+              cursor: pointer;
+
+              &:hover {
+                color: $highlight;
+              }
+            }
+          }
+
+          .proj-details {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            margin: 3vh 0;
+            overflow: hidden;
+            min-height: 12px;
+
+            * {
+              font-size: calc(8px + 0.2vmax);
+              text-transform: uppercase;
+              letter-spacing: 0.2vmin;
+              font-weight: 400;
+              color: $dark-3;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              text-align: center;
+            }
+          }
+
+          .proj-notes {
+            display: flex;
+            align-items: flex-start;
+            margin: auto 0;
+
+            p {
+              font-size: calc(8px + 0.1vmax);
+              font-weight: 400;
+              color: $dark-3;
+              text-align: center;
+              line-height: 180%;
+              margin: auto;
+              z-index: 2;
+              cursor: text;
+            }
+          }
+
+          .proj-sep {
+            flex: 1;
+            width: 1px;
+            background: $light-3;
+            margin: 2.5vh 0 1.5vh 0;
+          }
+
+          .proj-buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 2vh;
+
+            * {
+              color: $dark-1;
+              font-size: calc(8px + 0.2vmax);
+              padding: 0.65em 3.5em;
+
+              &::before {
+                border-color: $dark-1;
+              }
+              &::after {
+                border-color: $light-1;
+              }
+            }
+
+            .proj-save,
+            .proj-cancel {
+              display: none;
+            }
+          }
+
+          .proj-modified {
+            font-size: calc(8px + 0.1vmax);
+            color: $dark-3;
+            margin-bottom: 3vh;
+          }
+
+          &:hover {
+            background: $light-1;
+            box-shadow: 0 0 16px 4px $light-2;
+            .fa-bookmark{ 
+              color: $dark-1;
+              &:hover { color: $highlight; }
+            }
+            .proj-date { color: $dark-1; }
+            .proj-name { color: $logo-2; }
+            .proj-files { 
+              color: $dark-1;
+              i:hover { color: $highlight; } 
+            }
+            .proj-details {
+              * { color: $logo-2; }
+            }
+            .proj-notes {
+              p { color: $logo-2; }
+              &::-webkit-scrollbar-thumb { background: $highlight; }
+              &::-webkit-scrollbar-thumb:hover,
+              &::-webkit-scrollbar-thumb:active { background: $highlight; }
+            }
+            .proj-sep { background: $light-3; }
+            .proj-buttons {
+              * {
+                color: $logo-2;
+                &::before { border-color: $logo-2; }
+                &:hover { 
+                  color: $highlight;
+                  &::before { border-color: $highlight; }
+                }
+              }
+            }
+            .proj-modified { color: $dark-1; }
+          }
+        }
+
+        &::-webkit-scrollbar {
+          height: 10px;
+        }
+        &::-webkit-scrollbar-track {
+          background: $light-1;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: linear-gradient(to top, $light-1 0%, $light-1 44%, $logo-2 45%, $logo-2 55%, $light-1 56%, $light-1 100%);
+          border-radius: 5px;
+          transition: background-color 1s ease;
+          height: 10px;
+        }
+        &::-webkit-scrollbar-thumb:hover,
+        &::-webkit-scrollbar-thumb:active {
+          background: $logo-2;
+          transition: background-color 1s ease;
+          height: 20px;
+        }
+      }
+  
+      .scroll-cover {
+        display: none;
+      }
+    }
+
+    .new-proj-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5vh 0;
+    }
   }
   #settings-tab:checked ~ #settings-area {
     display: flex;
@@ -743,7 +972,7 @@ body {
           border-bottom: 2px solid $dark-3;
           border-right: 2px solid $dark-3;
           z-index: 2;
-          align-self: flex-start;
+          align-self: flex-end;
         }
   
         .billing-invoice,
@@ -754,7 +983,7 @@ body {
 
       &:hover {
         background: $light-1;
-        box-shadow: 0 0 16px 4px $light-2;
+        box-shadow: 0 0 12px 6px $light-2;
         .order-id h2 {
           color: $logo-2;
         }
@@ -876,7 +1105,7 @@ body {
           flex: 1 1 0;
 
           a {
-            font-size: calc(8px + 0.3vw);
+            font-size: calc(6px + 0.3vw);
             color: $dark-1;
             padding: 5px;
             &:hover {
