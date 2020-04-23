@@ -12,7 +12,7 @@ VARIABLES
 
 const router = new express.Router();
 const routeOptions = {
-  root: path.join(__dirname, "./../../views/admin")
+  root: path.join(__dirname, "./../../views/admin"),
 };
 
 /*=========================================================================================
@@ -26,10 +26,10 @@ MIDDLEWARE
 =========================================================================================*/
 
 const adminAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
+  if (req.isAuthenticated() && req.user.type === "admin") {
     return next();
   } else {
-    res.redirect("/login");
+    res.redirect("/");
   }
 };
 
@@ -42,24 +42,29 @@ ROUTES
 // @route     Get /admin/file/upload
 // @desc
 // @access    Admin
-router.post("/admin/file/upload", upload.single("file"), async (req, res) => {
-  // Declare Variable
-  const file = req.file;
-  // Add an Image Document
-  const image = new Image({
-    file: {
-      id: file._id,
-      name: file.filename
+router.post(
+  "/admin/file/upload",
+  upload.single("file"),
+  adminAccess,
+  async (req, res) => {
+    // Declare Variable
+    const file = req.file;
+    // Add an Image Document
+    const image = new Image({
+      file: {
+        id: file._id,
+        name: file.filename,
+      },
+    });
+    try {
+      await image.save();
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
     }
-  });
-  try {
-    await image.save();
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
+    // Send Successful Response
+    return res.send({ status: "succeeded", content: "file uploaded" });
   }
-  // Send Successful Response
-  return res.send({ status: "succeeded", content: "file uploaded" });
-});
+);
 
 /*=========================================================================================
 EXPORT ROUTE

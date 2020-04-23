@@ -12,7 +12,7 @@ VARIABLES
 
 const router = new express.Router();
 const routeOptions = {
-  root: path.join(__dirname, "../../views/admin/")
+  root: path.join(__dirname, "../../views/admin/"),
 };
 
 /*=========================================================================================
@@ -24,10 +24,10 @@ MIDDLEWARE
 =========================================================================================*/
 
 const adminAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
+  if (req.isAuthenticated() && req.user.type === "admin") {
     return next();
   } else {
-    res.redirect("/login");
+    res.redirect("/");
   }
 };
 
@@ -38,14 +38,14 @@ ROUTES
 // @route     Get /admin/file
 // @desc
 // @access    Admin
-router.get("/admin/file", (req, res) => {
+router.get("/admin/file", adminAccess, (req, res) => {
   res.sendFile("file.html", routeOptions);
 });
 
 // @route     Get /admin/test
 // @desc
 // @access    Admin
-router.get("/admin/test", (req, res) => {
+router.get("/admin/test", adminAccess, (req, res) => {
   res.sendFile("test.html", routeOptions);
 });
 

@@ -24,7 +24,13 @@ const Customer = require("../../model/Customer.js");
 MIDDLEWARE
 =========================================================================================*/
 
-// Admin Access Middleware
+const adminAccess = (req, res, next) => {
+  if (req.isAuthenticated() && req.user.type === "admin") {
+    return next();
+  } else {
+    res.redirect("/");
+  }
+};
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -37,7 +43,7 @@ ROUTES
 // @route     POST /email/send/template-one
 // @desc
 // @access    Admin
-router.post("/email/send/template-one", async (req, res) => {
+router.post("/email/send/template-one", adminAccess, async (req, res) => {
   const recipient = req.body.recipient;
   const options = req.body.options;
   let data;
@@ -48,6 +54,11 @@ router.post("/email/send/template-one", async (req, res) => {
   }
   res.send(data);
 });
+
+// @route     POST /email/newsletter
+// @desc
+// @access    Admin
+router.post("/email/newsletter", adminAccess, async (req, res) => {});
 
 /*=========================================================================================
 FUNCTIONS
