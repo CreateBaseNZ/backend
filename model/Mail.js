@@ -54,6 +54,21 @@ MailSchema.statics.findByEmail = function (email) {
   });
 };
 
+// @FUNC  deleteMail
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+MailSchema.statics.deleteMail = function (email) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await this.deleteOne({ email });
+    } catch (error) {
+      reject(error);
+    }
+    resolve("success");
+  });
+};
+
 /*=========================================================================================
 METHOD
 =========================================================================================*/

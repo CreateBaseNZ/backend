@@ -83,7 +83,7 @@ SessionSchema.statics.create = function (sessionId) {
   });
 };
 
-SessionSchema.statics.delete = function (sessionId) {
+SessionSchema.statics.deleteSession = function (sessionId) {
   return new Promise(async (resolve, reject) => {
     // Delete the Session document
     try {

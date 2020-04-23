@@ -50,15 +50,41 @@ router.post("/email/send/template-one", adminAccess, async (req, res) => {
   try {
     data = await sendEmail(recipient, templateOne, options);
   } catch (error) {
-    return res.send(error);
+    return res.send({ status: "failed", content: error });
   }
-  res.send(data);
+  res.send({ status: "success", content: "email sent" });
 });
 
 // @route     POST /email/newsletter
 // @desc
 // @access    Admin
-router.post("/email/newsletter", adminAccess, async (req, res) => {});
+router.post("/email/newsletter", adminAccess, async (req, res) => {
+  const options = req.body.options;
+  // Fetch mailing list
+  let mails;
+  try {
+    mails = await Mail.find();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // Contruct recipient array
+  let recipients = [];
+  for (let i = 0; i < mails.length(); i++) {
+    const email = mails[i].email;
+    recipients.push(email);
+  }
+  // Send the newsletter to each email
+  for (let i = 0; i < recipients.length(); i++) {
+    const recipient = recipients[i];
+    try {
+      await sendEmail(recipient, templateOne, options);
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
+    }
+  }
+  // Send the success message
+  res.send({ status: "success", content: "newsletter sent" });
+});
 
 /*=========================================================================================
 FUNCTIONS
