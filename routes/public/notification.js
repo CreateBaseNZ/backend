@@ -107,12 +107,34 @@ router.post("/subscribe/mailing-list", async (req, res) => {
 // @route     POST /unsubscribe/mailing-list
 // @desc      Unsubscribing from mailing list
 // @access    Public
-router.post("/unsubscribe/mailing-list", async (req, res) => {
+router.post("/unsubscribe/mailing-list/:email", async (req, res) => {
   // Declare Email Variable
+  const email = req.params.email;
   // Check if Email Exist in the Mailing List
+  let mail;
+  try {
+    mail = await Mail.findByEmail(email);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
   // Check if User is Registered
+  let account;
+  try {
+    account = await Account.findOne({ email });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
   // If Registered Update Subscription
+  if (account) {
+  }
   // Remove Email from the Mailing List
+  try {
+    await Mail.deleteMail(email);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // Send Success Status
+  res.send({ status: "success", content: "unsubscribed successfully" });
 });
 
 /*=========================================================================================
