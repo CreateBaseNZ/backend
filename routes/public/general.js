@@ -170,22 +170,6 @@ router.get("/login-status", (req, res) => {
   res.send({ status: false });
 });
 
-router.get("/cookie", (req, res) => {
-  res.send(req.sessionID);
-});
-
-router.get("/cookie/save", async (req, res) => {
-  // Save Session
-  req.session.cookie.expires = new Date(Date.now() + 1000000000);
-  res.send(req.session);
-});
-
-router.get("/cookie/delete", async (req, res) => {
-  // Save Session
-  req.session.cookie.expires = false;
-  res.send(req.session);
-});
-
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

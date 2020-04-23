@@ -18,9 +18,6 @@ const ItemSchema = new Schema({
   accountId: {
     type: Schema.Types.ObjectId,
   },
-  sessionId: {
-    type: String,
-  },
   status: {
     type: String,
   },

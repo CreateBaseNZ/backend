@@ -12,6 +12,13 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
+MODELS
+=========================================================================================*/
+
+const Make = require("./Make.js");
+const Order = require("./Order.js");
+
+/*=========================================================================================
 CREATE SESSION MODEL
 =========================================================================================*/
 
@@ -71,7 +78,33 @@ SessionSchema.statics.create = function (sessionId) {
     } catch (error) {
       reject(error);
     }
+    // Resolve the promise
     resolve("session created");
+  });
+};
+
+SessionSchema.statics.delete = function (sessionId) {
+  return new Promise(async (resolve, reject) => {
+    // Delete the Session document
+    try {
+      await this.deleteOne({ sessionId });
+    } catch (error) {
+      reject(error);
+    }
+    // Delete the Make documents
+    try {
+      await Make.deleteMany({ sessionId });
+    } catch (error) {
+      reject(error);
+    }
+    // Delete the Order documents
+    try {
+      await Order.deleteMany({ sessionId });
+    } catch (error) {
+      reject(error);
+    }
+    // Resolve the promise
+    resolve("deletion completed");
   });
 };
 
