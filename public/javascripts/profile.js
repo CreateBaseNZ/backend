@@ -1,3 +1,5 @@
+var mq = window.matchMedia("(min-width: 850px)");
+
 // Previews uploaded profile picture
 var loadFile = function(event) {
   document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
@@ -87,14 +89,16 @@ const profileInit = async() => {
     dpEl.src = dpTemp
   })
 
-  // -- Horizontal scrolling --
-  projScroll.addEventListener('wheel', function(e) {
-    if (!hoverNotes) {
-      if (e.deltaY > 0) projScroll.scrollLeft += 100
-      else projScroll.scrollLeft -= 100
-      e.preventDefault()
-    }
-  })
+  if (mq.matches) {
+    // -- Horizontal scrolling --
+    projScroll.addEventListener('wheel', function(e) {
+      if (!hoverNotes) {
+        if (e.deltaY > 0) projScroll.scrollLeft += 100
+        else projScroll.scrollLeft -= 100
+        e.preventDefault()
+      }
+    })
+  }
 
   for (var i=0; i < billingCards.length; i++) {
     console.log(billingCards)

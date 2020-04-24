@@ -204,8 +204,8 @@ button {
   width: 0;
   margin: 0 auto;
   border: 0 solid white;
-  -webkit-transition: width 0.2s ease 0.25s, border-width 0.01s ease 0.25s;
-  transition: width 0.2s ease 0.25s, border-width 0.01s ease 0.25s;
+  -webkit-transition: width 0.2s ease 0.25s, border-width 0.01s ease 0.45s;
+  transition: width 0.2s ease 0.25s, border-width 0.01s ease 0.45s;
 }
 
 .action-btn:hover {

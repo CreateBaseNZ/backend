@@ -224,7 +224,7 @@ body {
     font-size: calc(10px + 0.2vw);
 
     &:hover {
-      color: $logo-1;
+      color: $logo-2;
     }
 
     &:not(:last-of-type) {
@@ -252,8 +252,12 @@ body {
   #projects-tab:checked ~ #projects-area {
     display: flex;
     flex-direction: column;
+    background: $light-2;
+    border-bottom: none;
+    padding-bottom: 2vmax;
     
     .proj-wrap {
+      order: 2;
       width: 100%;
 
       .proj-headers {
@@ -267,11 +271,9 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding: 2vmax 2vmax;
-        background: $light-2;
   
         .proj-card {
-          width: 90%;
+          width: 80%;
           margin: 2vmax auto;
           padding: 0 4vmax;
           flex-shrink: 0;
@@ -414,7 +416,7 @@ body {
 
           &:hover {
             background: $light-1;
-            box-shadow: 0 0 16px 4px $light-2;
+            box-shadow: 0 0 20px -16px rgba(0,0,0,0.5);
             .fa-bookmark{ 
               color: $dark-1;
               &:hover { color: $highlight; }
@@ -475,10 +477,38 @@ body {
     }
 
     .new-proj-container {
+      cursor: pointer;
+      background: $light-1;
+      border-radius: 5px;
+      order: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 5vh 0;
+      width: 80%;
+      height: 8em;
+      margin: 4vmax auto 2vmax auto;
+      
+      &:hover {
+        box-shadow: 0 0 20px -16px rgba(0,0,0,0.5);
+        button {
+          color: $highlight;
+      
+          &::before {
+            border-width: 2px;
+            border-top-width: 0;
+            border-color: $highlight;
+            height: 0;
+            width: 50%;
+            transition: border-width 0.25s ease 0.2s, border-top-width 0.001s ease 0.2s, height 0.1s ease 0.2s, width 0.15s ease 0.3s, border-color 0.45s ease;
+          } 
+          &::after {
+            border-width: 3px;
+            border-bottom: 0px;
+            width: 100%;
+            transition: width 0.2s ease, border-width 0.001s ease;
+          }
+        }
+      }
     }
   }
   #settings-tab:checked ~ #settings-area {
@@ -790,16 +820,16 @@ body {
               &:hover { color: $highlight; }
             }
             .proj-date { color: $dark-1; }
-            .proj-name { color: $logo-1; }
+            .proj-name { color: $logo-2; }
             .proj-files { 
               color: $dark-1;
               i:hover { color: $highlight; } 
             }
             .proj-details {
-              * { color: $logo-1; }
+              * { color: $logo-2; }
             }
             .proj-notes {
-              p { color: $logo-1; }
+              p { color: $logo-2; }
               &::-webkit-scrollbar-thumb { background: $highlight; }
               &::-webkit-scrollbar-thumb:hover,
               &::-webkit-scrollbar-thumb:active { background: $highlight; }
@@ -807,8 +837,8 @@ body {
             .proj-sep { background: $light-3; }
             .proj-buttons {
               * {
-                color: $logo-1;
-                &::before { border-color: $logo-1; }
+                color: $logo-2;
+                &::before { border-color: $logo-2; }
                 &::after { border-color: $light-1; }
                 &:hover { 
                   color: $highlight;

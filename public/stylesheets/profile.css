@@ -204,8 +204,8 @@ button {
   width: 0;
   margin: 0 auto;
   border: 0 solid white;
-  -webkit-transition: width 0.2s ease 0.25s, border-width 0.01s ease 0.25s;
-  transition: width 0.2s ease 0.25s, border-width 0.01s ease 0.25s;
+  -webkit-transition: width 0.2s ease 0.25s, border-width 0.01s ease 0.45s;
+  transition: width 0.2s ease 0.25s, border-width 0.01s ease 0.45s;
 }
 
 .action-btn:hover {
@@ -2390,7 +2390,7 @@ body {
 }
 
 .profile-tabs-section label:hover {
-  color: #8258dc;
+  color: #6853d9;
 }
 
 .profile-tabs-section label:not(:last-of-type)::after {
@@ -2422,9 +2422,15 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background: #f8f8f8;
+  border-bottom: none;
+  padding-bottom: 2vmax;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
   width: 100%;
 }
 
@@ -2448,12 +2454,10 @@ body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  padding: 2vmax 2vmax;
-  background: #f8f8f8;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card {
-  width: 90%;
+  width: 80%;
   margin: 2vmax auto;
   padding: 0 4vmax;
   -ms-flex-negative: 0;
@@ -2629,8 +2633,8 @@ body {
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover {
   background: white;
-  -webkit-box-shadow: 0 0 16px 4px #f8f8f8;
-          box-shadow: 0 0 16px 4px #f8f8f8;
+  -webkit-box-shadow: 0 0 20px -16px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 20px -16px rgba(0, 0, 0, 0.5);
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .fa-bookmark {
@@ -2726,6 +2730,12 @@ body {
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container {
+  cursor: pointer;
+  background: white;
+  border-radius: 5px;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2735,7 +2745,36 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 5vh 0;
+  width: 80%;
+  height: 8em;
+  margin: 4vmax auto 2vmax auto;
+}
+
+.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container:hover {
+  -webkit-box-shadow: 0 0 20px -16px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 20px -16px rgba(0, 0, 0, 0.5);
+}
+
+.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container:hover button {
+  color: #4bf0ea;
+}
+
+.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container:hover button::before {
+  border-width: 2px;
+  border-top-width: 0;
+  border-color: #4bf0ea;
+  height: 0;
+  width: 50%;
+  -webkit-transition: border-width 0.25s ease 0.2s, border-top-width 0.001s ease 0.2s, height 0.1s ease 0.2s, width 0.15s ease 0.3s, border-color 0.45s ease;
+  transition: border-width 0.25s ease 0.2s, border-top-width 0.001s ease 0.2s, height 0.1s ease 0.2s, width 0.15s ease 0.3s, border-color 0.45s ease;
+}
+
+.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container:hover button::after {
+  border-width: 3px;
+  border-bottom: 0px;
+  width: 100%;
+  -webkit-transition: width 0.2s ease, border-width 0.001s ease;
+  transition: width 0.2s ease, border-width 0.001s ease;
 }
 
 .profile-tabs-section #settings-tab:checked ~ #settings-area {
@@ -3090,7 +3129,7 @@ body {
     color: #877da9;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-name {
-    color: #8258dc;
+    color: #6853d9;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-files {
     color: #877da9;
@@ -3099,10 +3138,10 @@ body {
     color: #4bf0ea;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-details * {
-    color: #8258dc;
+    color: #6853d9;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-notes p {
-    color: #8258dc;
+    color: #6853d9;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-notes::-webkit-scrollbar-thumb {
     background: #4bf0ea;
@@ -3114,10 +3153,10 @@ body {
     background: #c7c2d5;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons * {
-    color: #8258dc;
+    color: #6853d9;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons *::before {
-    border-color: #8258dc;
+    border-color: #6853d9;
   }
   .profile-tabs-section #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons *::after {
     border-color: white;
