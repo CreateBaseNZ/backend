@@ -34,9 +34,10 @@ const SessionSchema = new Schema({
       type: String,
     },
   },
+  status: {
+    type: String,
+  },
 });
-
-const Session = mongoose.model("sessions", SessionSchema);
 
 /*=========================================================================================
 STATIC
@@ -52,6 +53,7 @@ SessionSchema.statics.create = function (sessionId) {
       session = await this.findOne({ sessionId });
     } catch (error) {
       reject(error);
+      return;
     }
     if (session) {
       // Update the sessions visited date
@@ -63,20 +65,23 @@ SessionSchema.statics.create = function (sessionId) {
         reject(error);
       }
       resolve("session already exists");
+      return;
     }
     // If session doesn't exist, create one
-    let newSession = new Session({
+    let newSession = new this({
       sessionId,
       date: {
         modified: date,
         visited: date,
       },
+      status: "unset",
     });
     // Save the new session
     try {
       await newSession.save();
     } catch (error) {
       reject(error);
+      return;
     }
     // Resolve the promise
     resolve("session created");
@@ -90,21 +95,25 @@ SessionSchema.statics.deleteSession = function (sessionId) {
       await this.deleteOne({ sessionId });
     } catch (error) {
       reject(error);
+      return;
     }
     // Delete the Make documents
     try {
       await Make.deleteMany({ sessionId });
     } catch (error) {
       reject(error);
+      return;
     }
     // Delete the Order documents
     try {
       await Order.deleteMany({ sessionId });
     } catch (error) {
       reject(error);
+      return;
     }
     // Resolve the promise
     resolve("deletion completed");
+    return;
   });
 };
 
@@ -116,7 +125,7 @@ METHOD
 EXPORT ACCOUNT MODEL
 =========================================================================================*/
 
-module.exports = Session;
+module.exports = Session = mongoose.model("sessions", SessionSchema);
 
 /*=========================================================================================
 END

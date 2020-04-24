@@ -26,6 +26,7 @@ MODELS
 const Mail = require("../../model/Mail.js");
 const Account = require("../../model/Account.js");
 const Customer = require("../../model/Customer.js");
+const Session = require("../../model/Session.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -124,8 +125,21 @@ router.post(
 // @route     Get /logout
 // @desc      Logout the user
 // @access    Public
-router.get("/logout", (req, res) => {
+router.get("/logout", async (req, res) => {
+  // Create a session
+  // Retrieve Session ID
+  const sessionId = req.sessionID;
+  // Create Session
+  let content;
+  try {
+    content = await Session.create(sessionId);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Logout User
   req.logout();
+  // Redirect User to the Home Page
   res.redirect("/");
 });
 

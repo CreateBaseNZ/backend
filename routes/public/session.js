@@ -39,38 +39,80 @@ router.get("/session/create", async (req, res) => {
   try {
     content = await Session.create(sessionId);
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    res.send({ status: "failed", content: error });
+    return;
   }
+  // Send Success Message to the Client
   res.send({ status: "success", content });
+  return;
 });
 
 // @route     Get /session/save
 // @desc      Make the session persitent
 // @access    Public
 router.get("/session/save", async (req, res) => {
+  // Retrieve Session ID
+  const sessionId = req.sessionID;
+  // Set Session Status
+  let session;
+  try {
+    session = await Session.findOne({ sessionId });
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  session.status = "persistent";
+  // Set the Cookie Expiry Date
   req.session.cookie.expires = new Date(Date.now() + 1000 * 60 * 60 * 365);
+  // Send Success Message to the Client
   res.send({ status: "success", content: "session saved" });
+  return;
 });
 
 // @route     Get /session/unsave
 // @desc      Make the session impersistent
 // @access    Public
 router.get("/session/unsave", async (req, res) => {
+  // Retrieve Session ID
+  const sessionId = req.sessionID;
+  // Set Session Status
+  let session;
+  try {
+    session = await Session.findOne({ sessionId });
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  session.status = "impersistent";
+  // Set the Cookie Expiry Date
   req.session.cookie.expires = false;
+  // Send Success Message to the Client
   res.send({ status: "success", content: "session unsaved" });
+  return;
 });
 
 // @route     Get /session/status
 // @desc      Check the persistence of the session
 // @access    Public
 router.get("/session/status", async (req, res) => {
-  let content;
-  if (req.session.cookie.expires) {
-    content = "persistent";
-  } else {
-    content = "impersistent";
+  // Retrieve Session ID
+  const sessionId = req.sessionID;
+  // Set Session Status
+  let session;
+  try {
+    session = await Session.findOne({ sessionId });
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
   }
-  res.send({ status: "success", content });
+  // If status is persistent reset expiry
+  if (session.status === "persistent") {
+    // Set the Cookie Expiry Date
+    req.session.cookie.expires = new Date(Date.now() + 1000 * 60 * 60 * 365);
+  }
+  // Send Success Message to the Client
+  res.send({ status: "success", content: session.status });
+  return;
 });
 
 /*=========================================================================================
