@@ -3,21 +3,22 @@ REQUIRED MODULES
 =========================================================================================*/
 
 const express = require("express");
-const path = require("path");
-const passport = require("passport");
 
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const router = new express.Router();
-const routeOptions = {
-  root: path.join(__dirname, "../../views/admin/"),
-};
 
 /*=========================================================================================
 MODELS
 =========================================================================================*/
+
+const Make = require("../../model/Make.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -35,26 +36,7 @@ const adminAccess = (req, res, next) => {
 ROUTES
 =========================================================================================*/
 
-// @route     Get /admin/file
-// @desc
-// @access    Admin
-router.get("/admin/file", adminAccess, (req, res) => {
-  res.sendFile("file.html", routeOptions);
-});
-
-// @route     Get /admin/test
-// @desc
-// @access    Admin
-router.get("/admin/test", adminAccess, (req, res) => {
-  res.sendFile("test.html", routeOptions);
-});
-
-// @route     Get /admin/make
-// @desc
-// @access    Admin
-router.get("/admin/make", adminAccess, (req, res) => {
-  res.sendFile("make.html", routeOptions);
-});
+router.get("/admin/make/fetch", adminAccess, async (req, res) => {});
 
 /*=========================================================================================
 EXPORT ROUTE
