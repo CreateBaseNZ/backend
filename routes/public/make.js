@@ -46,7 +46,7 @@ router.post(
     const accountId = mongoose.Types.ObjectId(req.user._id);
     const file = {
       id: mongoose.Types.ObjectId(req.file.id),
-      name: req.file.filename
+      name: req.file.filename,
     };
     const build = req.body.build;
     const quick = req.body.quick;
@@ -69,7 +69,7 @@ router.post(
       quality,
       strength,
       colour,
-      quantity
+      quantity,
     });
 
     // Set status
@@ -78,7 +78,7 @@ router.post(
     if (message) {
       let comment = new Comment({
         accountId,
-        message
+        message,
       });
 
       try {

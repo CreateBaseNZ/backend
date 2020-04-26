@@ -186,25 +186,22 @@ METHOD
 // @DESC
 // @ARGU
 MakeSchema.methods.updateStatus = function (status) {
-  return new Promise((resolve, reject) => {
-    const statuses = ["awaitingQuote", "checkout", "purchased"];
+  const statuses = ["awaitingQuote", "checkout", "purchased"];
 
-    // VALIDATION START
+  // VALIDATION START
 
-    if (statuses.indexOf(status) === -1) {
-      reject("invalid status");
-    }
+  if (statuses.indexOf(status) === -1) {
+    reject("invalid status");
+  }
 
-    // VALIDATION END
+  // VALIDATION END
 
-    const date = moment().tz("Pacific/Auckland").format();
+  const date = moment().tz("Pacific/Auckland").format();
 
-    this.status = status;
-    this.date[status] = date;
-    this.date.modified = date;
-
-    resolve();
-  });
+  this.status = status;
+  this.date[status] = date;
+  this.date.modified = date;
+  return;
 };
 
 /*=========================================================================================

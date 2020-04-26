@@ -51,6 +51,10 @@ router.get("/session/create", async (req, res) => {
 // @desc      Make the session persitent
 // @access    Public
 router.get("/session/save", async (req, res) => {
+  // Check if the user is logged in
+  if (req.isAuthenticated()) {
+    return res.send({ status: "success", content: "a user is logged in" });
+  }
   // Retrieve Session ID
   const sessionId = req.sessionID;
   // Set Session Status
@@ -73,6 +77,10 @@ router.get("/session/save", async (req, res) => {
 // @desc      Make the session impersistent
 // @access    Public
 router.get("/session/unsave", async (req, res) => {
+  // Check if the user is logged in
+  if (req.isAuthenticated()) {
+    return res.send({ status: "success", content: "a user is logged in" });
+  }
   // Retrieve Session ID
   const sessionId = req.sessionID;
   // Set Session Status
@@ -95,6 +103,10 @@ router.get("/session/unsave", async (req, res) => {
 // @desc      Check the persistence of the session
 // @access    Public
 router.get("/session/status", async (req, res) => {
+  // Check if the user is logged in
+  if (req.isAuthenticated()) {
+    return res.send({ status: "success", content: "a user is logged in" });
+  }
   // Retrieve Session ID
   const sessionId = req.sessionID;
   // Set Session Status
