@@ -79,17 +79,6 @@ let checkout = {
       },
       delete: undefined // checkout.cart.print.delete
     },
-    items: {
-      fetch: undefined, // checkout.cart.items.fetch
-      insert: undefined, // checkout.cart.items.insert
-      load: undefined, // checkout.cart.items.load
-      resize: undefined
-    },
-    item: {
-      create: undefined, // checkout.cart.item.create
-      insert: undefined, // checkout.cart.item.insert
-      delete: undefined // checkout.cart.item.delete
-    },
     discounts: {},
     discount: {
       add: undefined, // checkout.cart.discount.add
@@ -251,15 +240,12 @@ checkout.insert = object => {
   // MAKES
   const makes = object.makes;
   checkout.cart.prints.insert(makes);
-  // ITEMS
-  const items = object.items;
-  checkout.cart.items.insert(items);
   // MANUFACTURING SPEED
   const manufacturingSpeed = object.order.manufacturingSpeed;
   if (manufacturingSpeed == "normal") {
-    document.querySelector("#checkout-mnft-spd-opt-nrml").checked = true;
+    document.querySelector("#checkout-normal-speed").checked = true;
   } else if (manufacturingSpeed == "urgent") {
-    document.querySelector("#checkout-mnft-spd-opt-urgt").checked = true;
+    document.querySelector("#checkout-urgent-speed").checked = true;
   }
   // SHIPPING ADDRESS
   let html;
@@ -271,15 +257,15 @@ checkout.insert = object => {
     );
   } else {
     // Disable click
-    document.querySelector("#checkout-shpg-adrs-svd-inp").disabled = true;
+    document.querySelector("#checkout-address-saved").disabled = true;
     document
-      .querySelector("#checkout-saved-address-label")
-      .classList.add("checkout-radio-label-disabled");
+      .querySelector("#checkout-address-saved-label")
+      .classList.add("disabled");
     // Add error to inform user that there is no saved address
-    document.querySelector("#checkout-radio-error-saved-address").innerHTML =
+    document.querySelector("#checkout-address-saved-error").innerHTML =
       "No Saved Address";
     document
-      .querySelector("#checkout-radio-error-saved-address")
+      .querySelector("#checkout-address-saved-error")
       .classList.remove("checkout-element-hide");
     html = "No Saved Address";
   }
@@ -292,11 +278,11 @@ checkout.insert = object => {
   checkout.shipping.address.selected = object.order.shipping.address.option;
   if (checkout.shipping.address.selected == "saved") {
     if (object.order.shipping.address.saved.suburb) {
-      document.querySelector("#checkout-shpg-adrs-svd-inp").checked =
+      document.querySelector("#checkout-address-saved").checked =
         object.order.shipping.address.save;
     }
   } else if (checkout.shipping.address.selected == "new") {
-    document.querySelector("#checkout-shpg-adrs-new-inp").checked = true;
+    document.querySelector("#checkout-address-new").checked = true;
   }
   checkout.shipping.address.select(checkout.shipping.address.selected);
   // SHIPPING METHOD
@@ -359,7 +345,6 @@ checkout.listener = () => {
     checkout.shipping.show
   );
   checkout.element.windowSize.addListener(checkout.cart.prints.resize);
-  checkout.element.windowSize.addListener(checkout.cart.items.resize);
   checkout.element.windowSize.addListener(checkout.cart.resize);
   checkout.element.windowSize.addListener(checkout.shipping.resize);
   checkout.element.windowSize.addListener(checkout.payment.resize);
@@ -396,9 +381,7 @@ checkout.elements.assign = () => {
   checkout.element.navigation.payment = document.querySelector(
     "#checkout-navigation-payment"
   );
-  checkout.element.button.cart.next = document.querySelector(
-    "#checkout-element-button-cart-next"
-  );
+  checkout.element.button.cart.next = document.querySelector("#checkout-cart-next");
   checkout.element.button.shipping.back = document.querySelector(
     "#checkout-element-button-shipping-back"
   );
@@ -461,18 +444,18 @@ checkout.cart.prints.insert = object => {
     numberOfPrints = makes.length;
     if (numberOfPrints) {
       // If there are prints ordered
-      document.querySelector("#checkout-prnt-cnts").innerHTML = "";
+      document.querySelector("#checkout-prints").innerHTML = "";
       for (let i = 0; i < numberOfPrints; i++) {
         checkout.cart.print.insert(makes[i]);
       }
     } else {
       // If there are no prints ordered
-      document.querySelector("#checkout-prnt-cnts").innerHTML =
+      document.querySelector("#checkout-prints").innerHTML =
         "<p>No 3D Prints</p>";
     }
   } else {
     if (!numberOfPrints) {
-      document.querySelector("#checkout-prnt-cnts").innerHTML =
+      document.querySelector("#checkout-prints").innerHTML =
         "<p>No 3D Prints</p>";
     } else {
     }
@@ -504,17 +487,17 @@ checkout.cart.prints.load = async () => {
 checkout.cart.prints.resize = () => {
   if (checkout.element.windowSize.matches) {
     if (numberOfPrints) {
-      document.querySelector("#checkout-prnt-cnts").style = `height: ${10 *
+      document.querySelector("#checkout-prints").style = `height: ${10 *
         numberOfPrints}vmax`;
     } else {
-      document.querySelector("#checkout-prnt-cnts").style = `height: 10vmax`;
+      document.querySelector("#checkout-prints").style = `height: 10vmax`;
     }
   } else {
     if (numberOfPrints) {
-      document.querySelector("#checkout-prnt-cnts").style = `height: ${16 *
+      document.querySelector("#checkout-prints").style = `height: ${16 *
         numberOfPrints}vmax`;
     } else {
-      document.querySelector("#checkout-prnt-cnts").style = `height: 16vmax`;
+      document.querySelector("#checkout-prints").style = `height: 16vmax`;
     }
   }
 };
@@ -526,46 +509,30 @@ checkout.cart.prints.resize = () => {
 checkout.cart.print.create = print => {
   const printId = String(print._id);
   // Container One
-  const icon = `<div class="checkout-prnt-cnt-img bgd-clr-wht-2"></div>`;
-  const containerOne = `<div class="checkout-prnt-cnt-cntn-1">${icon}</div>`;
+  const icon = `<div class="image"></div>`;
+  const containerOne = `<div class="checkout-print-container-1">${icon}</div>`;
 
   // Container Two
-  const fileName = `<a href="/files/download/${print.file.id}" class="rmv-a-css checkout-prnt-cnt-file-name sbtl-1 txt-clr-blk-2">${print.file.name}</a>`;
-  const buildType = `<div class="checkout-prnt-cnt-bld-type sbtl-1 txt-clr-blk-2">${print.build}</div>`;
-  const colour = `<div class="checkout-prnt-cnt-clr sbtl-1 txt-clr-blk-2">${print.colour}</div>`;
-  const quantity = `<div class="checkout-prnt-cnt-qnty-cntn">
-                      <label
-                        class="checkout-prnt-cnt-qnty-lbl sbtl-1 txt-clr-blk-2"
-                        >Quantity:</label
-                      >
-                      <input
-                        type="number"
-                        name="quantity"
-                        id="checkout-prnt-qnty-${printId}"
-                        class="checkout-prnt-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
-                        min="1"
-                        value="${print.quantity}"
-                        onchange="checkout.cart.print.update(this.value, '${print.quantity}', 'quantity', '${printId}');"
-                      />
+  const fileName = `<a href="/files/download/${print.file.id}">${print.file.name}</a>`;
+  const buildType = `<div class="build-type">${print.build}</div>`;
+  const colour = `<div class="colour">${print.colour}</div>`;
+  const quantity = `<div class="checkout-print-quantity-container">
+                      <label>Quantity:</label>
+                      <input type="number" name="quantity" id="checkout-print-quantity-${printId}" min="1" value="${print.quantity}"
+                        onchange="checkout.cart.print.update(this.value,'${print.quantity}','quantity','${printId}');"/>
                     </div>`;
-  const containerTwo = `<div class="checkout-prnt-cnt-cntn-2">${fileName +
-    buildType +
-    colour +
-    quantity}</div>`;
+  const containerTwo = `<div class="checkout-print-container-2">${fileName + buildType + colour + quantity}</div>`;
 
   // Container Three
-  const cancel = `<div class="checkout-delete" onclick="checkout.cart.print.delete('${printId}');"></div>`;
+  const cancel = `<div class="checkout-print-delete" onclick="checkout.cart.print.delete('${printId}');"></div>`;
   let price;
-  price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2">
-              $X,XXX.XX
-          </div>`;
   if (print.status === "awaitingQuote") {
-    price = `<div class="checkout-prnt-cnt-prc sbtl-1 txt-clr-blk-2">awaiting quote</div>`;
+    price = `<div class="price">awaiting quote</div>`;
   } else {
-    price = `<div class="checkout-prnt-cnt-prc sbtl-1 txt-clr-blk-2">${print.price}</div>`;
+    const totalPrice = print.price * print.quantity;
+    price = `<div class="price">$ ${totalPrice}</div>`;
   }
-  const containerThree = `<div class="checkout-prnt-cnt-cntn-3">${cancel +
-    price}</div>`;
+  const containerThree = `<div class="checkout-print-container-3">${cancel + price}</div>`;
 
   const containers = containerOne + containerTwo + containerThree;
   return containers;
@@ -580,10 +547,8 @@ checkout.cart.print.insert = (print, element) => {
   if (element) {
     element.innerHTML = containers;
   } else {
-    const html = `<div class="checkout-prnt-cnt" id="checkout-prnt-${print._id}">${containers}</div>`;
-    document
-      .querySelector("#checkout-prnt-cnts")
-      .insertAdjacentHTML("beforeend", html);
+    const html = `<div class="print" id="checkout-print-${print._id}">${containers}</div>`;
+    document.querySelector("#checkout-prints").insertAdjacentHTML("beforeend", html);
   }
 };
 
@@ -623,7 +588,7 @@ checkout.cart.print.update = async (newValue, oldValue, property, printId) => {
 // @ARGU
 checkout.cart.print.validate.quantity = (newValue, oldValue, printId) => {
   if (newValue <= 0) {
-    document.querySelector(`#checkout-prnt-qnty-${printId}`).value = oldValue;
+    document.querySelector(`#checkout-print-quantity-${printId}`).value = oldValue;
     return false;
   }
   return true;
@@ -635,7 +600,7 @@ checkout.cart.print.validate.quantity = (newValue, oldValue, printId) => {
 // @ARGU
 checkout.cart.print.delete = async printId => {
   // Remove the 3D print from the cart
-  document.querySelector(`#checkout-prnt-${printId}`).remove();
+  document.querySelector(`#checkout-print-${printId}`).remove();
   // Reduce the number of 3D prints listed
   numberOfPrints = numberOfPrints - 1;
   checkout.cart.prints.insert();
@@ -655,164 +620,13 @@ checkout.cart.print.delete = async printId => {
   return;
 };
 
-// @FUNC  checkout.cart.items.fetch
-// @TYPE  PROMISE ASYNCHRONOUS
-// @DESC
-// @ARGU
-checkout.cart.items.fetch = () => {
-  return new Promise(async (resolve, reject) => {
-    let items;
-
-    try {
-      items = (await axios.post("/customer/orders/marketplace/checkout"))[
-        "data"
-      ];
-    } catch (error) {
-      reject(error);
-    }
-
-    resolve(items);
-  });
-};
-
-// @FUNC  checkout.cart.items.insert
-// @TYPE  PROMISE ASYNCHRONOUS
-// @DESC
-// @ARGU
-checkout.cart.items.insert = items => {
-  // Process the loaded items
-  if (numberOfItems) {
-    if (items) {
-      // If there are items ordered
-      document.querySelector("#checkout-mkpl-cnts").innerHTML = "";
-      for (let i = 0; i < numberOfItems; i++) {
-        checkout.cart.item.insert(items[i]);
-      }
-    }
-  } else {
-    // If there are no items ordered
-    document.querySelector("#checkout-mkpl-cnts").innerHTML = "<p>No Items</p>";
-  }
-  checkout.cart.items.resize();
-  checkout.cart.resize();
-};
-
-// @FUNC  checkout.cart.items.load
-// @TYPE
-// @DESC
-// @ARGU
-checkout.cart.items.load = async () => {
-  let items;
-
-  try {
-    items = await checkout.cart.items.fetch();
-  } catch (error) {
-    return error;
-  }
-
-  numberOfItems = items.length;
-  checkout.cart.items.insert(items);
-};
-
-// @FUNC  checkout.cart.items.resize
-// @TYPE
-// @DESC
-// @ARGU
-checkout.cart.items.resize = () => {
-  if (checkout.element.windowSize.matches) {
-    if (numberOfItems) {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: ${10 *
-        numberOfItems}vmax`;
-    } else {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: 10vmax`;
-    }
-  } else {
-    if (numberOfItems) {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: ${16 *
-        numberOfItems}vmax`;
-    } else {
-      document.querySelector("#checkout-mkpl-cnts").style = `height: 16vmax`;
-    }
-  }
-};
-
-// @FUNC  checkout.cart.item.create
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-checkout.cart.item.create = item => {
-  // Create container one HTML
-  const icon = `<div class="checkout-mkpl-cnt-img bgd-clr-wht-2"></div>`;
-  const containerOne = `<div class="checkout-mkpl-cnt-cntn-1">${icon}</div>`;
-
-  // Create container two HTML
-  const itemName = `<div class="checkout-mkpl-cnt-item-name sbtl-1 txt-clr-blk-2">${item.itemName}</div>`;
-  const shopName = `<div class="checkout-mkpl-cnt-shop sbtl-1 txt-clr-blk-2">${item.shopName}</div>`;
-  const quantity = `<div class="checkout-mkpl-cnt-qnty-cntn">
-                       <label
-                         class="checkout-mkpl-cnt-qnty-lbl sbtl-1 txt-clr-blk-2"
-                         >Quantity:</label
-                       >
-                       <input
-                         type="number"
-                         name="quantity"
-                         class="checkout-mkpl-cnt-qnty inp-txt-2 sbtl-1 txt-clr-blk-2"
-                         min="1"
-                         value="${item.quantity}"
-                       />
-                     </div>`;
-  const containerTwo = `<div class="checkout-mkpl-cnt-cntn-2">${itemName +
-    shopName +
-    quantity}</div>`;
-
-  // Create container three HTML
-  const cancel = `<div class="checkout-delete"></div>`;
-  const price = `<div class="checkout-mkpl-cnt-prc sbtl-1 txt-clr-blk-2"></div>`;
-  const containerThree = `<div class="checkout-mkpl-cnt-cntn-3">${cancel +
-    price}</div>`;
-
-  // Return containers
-  const containers = containerOne + containerTwo + containerThree;
-  return containers;
-};
-
-// @FUNC  checkout.cart.item.insert
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-checkout.cart.item.insert = (item, element) => {
-  const containers = checkout.cart.item.create(item);
-  const html = `<div class="checkout-mkpl-cnt" id="checkout-mkpl-${item._id}">${containers}</div>`;
-  if (element) {
-    element.innerHTML = html;
-  } else {
-    document
-      .querySelector("#checkout-mkpl-cnts")
-      .insertAdjacentHTML("beforeend", html);
-  }
-};
-
-// @FUNC  checkout.cart.item.delete
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-checkout.cart.item.delete = async itemId => {
-  // Remove the item from the cart
-  document.querySelector(`#checkout-mkpl-${itemId}`).remove();
-  // Reduce the number of items listed
-  numberOfItems = numberOfItems - 1;
-  checkout.cart.items.insert();
-  // Delete the item from the database
-};
-
 // @FUNC  checkout.cart.discount.add
 // @TYPE
 // @DESC
 // @ARGU
 checkout.cart.discount.add = () => {
   // Fetch the discount code input
-  const discountCode = document.querySelector("#checkout-dsct-inp").value;
-  console.log(document.querySelector("#checkout-dsct-inp").value);
+  const discountCode = document.querySelector("#checkout-discount-input").value;
   // Perform pre-validation before sending to the backend
   let validation = {
     status: "Success",
@@ -839,12 +653,12 @@ checkout.cart.discount.add = () => {
 // @DESC
 // @ARGU
 checkout.cart.discount.insert = discount => {
-  const html = `<div class="checkout-dsct sbtl-2 txt-clr-blk-3"></div>`;
+  const html = `<div class="checkout-discount"></div>`;
   document
-    .querySelector("#checkout-dsct-list-cntn")
+    .querySelector("#checkout-discount-list-cntn")
     .insertAdjacentHTML("beforeend", html);
-  document.querySelector("#checkout-dsct-inp").value = ""; // Clear input
-  document.querySelector("#checkout-dsct-inp-err").innerHTML = ""; // Clear error
+  document.querySelector("#checkout-discount-input").value = ""; // Clear input
+  document.querySelector("#checkout-discount-input-error").innerHTML = ""; // Clear error
 };
 
 // @FUNC  checkout.cart.discount.validate
@@ -853,7 +667,7 @@ checkout.cart.discount.insert = discount => {
 // @ARGU
 checkout.cart.discount.validate = validation => {
   if (validation.status == "Failed") {
-    document.querySelector("#checkout-dsct-inp-err").innerHTML =
+    document.querySelector("#checkout-discount-input-error").innerHTML =
       validation.message;
     return false;
   }
@@ -935,8 +749,8 @@ checkout.cart.validation.valid = () => {
     checkout.shipping.show
   );
   // Update CSS
-  checkout.element.heading.shipping.classList.add("checkout-heading-valid");
-  checkout.element.button.cart.next.classList.add("checkout-button-valid");
+  checkout.element.heading.shipping.classList.add("valid");
+  checkout.element.button.cart.next.classList.add("valid");
   checkout.element.navigation.cart.classList.add("valid");
   checkout.element.navigation.shipping.classList.remove("unavailable");
 };
@@ -959,8 +773,8 @@ checkout.cart.validation.invalid = () => {
     checkout.shipping.show
   );
   // Update CSS
-  checkout.element.heading.shipping.classList.remove("checkout-heading-valid");
-  checkout.element.button.cart.next.classList.remove("checkout-button-valid");
+  checkout.element.heading.shipping.classList.remove("valid");
+  checkout.element.button.cart.next.classList.remove("valid");
   checkout.element.navigation.cart.classList.remove("valid");
   checkout.element.navigation.shipping.classList.add("unavailable");
   // Return to Cart Page
@@ -985,7 +799,6 @@ checkout.cart.resize = () => {
     heading: 8,
     subHeading: 8 * 4,
     prints: numberOfPrints ? 10 * numberOfPrints : 10,
-    items: numberOfItems ? 10 * numberOfItems : 10,
     discountInput: 9,
     manufacturingSpeed: 8,
     buttons: 12
@@ -994,20 +807,19 @@ checkout.cart.resize = () => {
     desktopHeight.heading +
     desktopHeight.subHeading +
     desktopHeight.prints +
-    desktopHeight.items +
     desktopHeight.discountInput +
     desktopHeight.manufacturingSpeed +
     desktopHeight.buttons;
   // SET THE CART PAGE SIZE
   if (checkout.element.windowSize.matches) {
     if (checkoutSelectedPage == 0) {
-      document.querySelector("#checkout-sub-pg-cart").style =
+      document.querySelector("#checkout-cart").style =
         "height: " + total + "vmax;";
     } else {
-      document.querySelector("#checkout-sub-pg-cart").style = "height: 8vmax;";
+      document.querySelector("#checkout-cart").style = "height: 6vmax;";
     }
   } else {
-    document.querySelector("#checkout-sub-pg-cart").style = "height: 100%;";
+    document.querySelector("#checkout-cart").style = "height: 100%;";
   }
 };
 
@@ -1086,7 +898,7 @@ checkout.shipping.address.saved.create = address => {
 // @DESC
 // @ARGU
 checkout.shipping.address.saved.insert = html => {
-  document.querySelector("#checkout-shpg-adrs-cntn-svd").innerHTML = html;
+  document.querySelector("#checkout-saved-address").innerHTML = html;
 };
 
 // @FUNC  checkout.shipping.address.saved.show
@@ -1096,11 +908,11 @@ checkout.shipping.address.saved.insert = html => {
 checkout.shipping.address.saved.show = show => {
   if (show) {
     document
-      .querySelector("#checkout-shpg-adrs-cntn-svd")
+      .querySelector("#checkout-saved-address")
       .classList.remove("checkout-element-hide");
   } else {
     document
-      .querySelector("#checkout-shpg-adrs-cntn-svd")
+      .querySelector("#checkout-saved-address")
       .classList.add("checkout-element-hide");
   }
 };
@@ -1110,7 +922,7 @@ checkout.shipping.address.saved.show = show => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.validate.unit = () => {
-  const unit = document.querySelector("#checkout-shpg-adrs-new-unit").value;
+  const unit = document.querySelector("#checkout-new-address-unit").value;
   let status = {
     valid: true,
     input: unit,
@@ -1125,7 +937,7 @@ checkout.shipping.address.new.validate.unit = () => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.validate.street.number = () => {
-  const streetNumber = document.querySelector("#checkout-shpg-adrs-new-st-num")
+  const streetNumber = document.querySelector("#checkout-new-address-street-number")
     .value;
   let status = {
     valid: true,
@@ -1147,7 +959,7 @@ checkout.shipping.address.new.validate.street.number = () => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.validate.street.name = () => {
-  const streetName = document.querySelector("#checkout-shpg-adrs-new-st-name")
+  const streetName = document.querySelector("#checkout-new-address-street-name")
     .value;
   let status = {
     valid: true,
@@ -1169,7 +981,7 @@ checkout.shipping.address.new.validate.street.name = () => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.validate.suburb = () => {
-  const suburb = document.querySelector("#checkout-shpg-adrs-new-sbrb").value;
+  const suburb = document.querySelector("#checkout-new-address-suburb").value;
   let status = {
     valid: true,
     input: suburb,
@@ -1190,7 +1002,7 @@ checkout.shipping.address.new.validate.suburb = () => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.validate.city = () => {
-  const city = document.querySelector("#checkout-shpg-adrs-new-cty").value;
+  const city = document.querySelector("#checkout-new-address-city").value;
   let status = {
     valid: true,
     input: city,
@@ -1211,7 +1023,7 @@ checkout.shipping.address.new.validate.city = () => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.validate.postcode = () => {
-  const postcode = document.querySelector("#checkout-shpg-adrs-new-zp-cd")
+  const postcode = document.querySelector("#checkout-new-address-postcode")
     .value;
   let status = {
     valid: true,
@@ -1233,7 +1045,7 @@ checkout.shipping.address.new.validate.postcode = () => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.validate.country = () => {
-  const country = document.querySelector("#checkout-shpg-adrs-new-cnty").value;
+  const country = document.querySelector("#checkout-new-address-country").value;
   let status = {
     valid: true,
     input: country,
@@ -1333,16 +1145,16 @@ checkout.shipping.address.new.validate.all = type => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.populate = address => {
-  document.querySelector("#checkout-shpg-adrs-new-unit").value = address.unit;
-  document.querySelector("#checkout-shpg-adrs-new-st-num").value =
+  document.querySelector("#checkout-new-address-unit").value = address.unit;
+  document.querySelector("#checkout-new-address-street-number").value =
     address.street.number;
-  document.querySelector("#checkout-shpg-adrs-new-st-name").value =
+  document.querySelector("#checkout-new-address-street-name").value =
     address.street.name;
-  document.querySelector("#checkout-shpg-adrs-new-sbrb").value = address.suburb;
-  document.querySelector("#checkout-shpg-adrs-new-cty").value = address.city;
-  document.querySelector("#checkout-shpg-adrs-new-zp-cd").value =
+  document.querySelector("#checkout-new-address-suburb").value = address.suburb;
+  document.querySelector("#checkout-new-address-city").value = address.city;
+  document.querySelector("#checkout-new-address-postcode").value =
     address.postcode;
-  document.querySelector("#checkout-shpg-adrs-new-cnty").value =
+  document.querySelector("#checkout-new-address-country").value =
     address.country;
 };
 
@@ -1404,11 +1216,11 @@ checkout.shipping.address.new.toggleSave = async save => {
 checkout.shipping.address.new.show = show => {
   if (show) {
     document
-      .querySelector("#checkout-shpg-adrs-cntn-new")
+      .querySelector("#checkout-new-address")
       .classList.remove("checkout-element-hide");
   } else {
     document
-      .querySelector("#checkout-shpg-adrs-cntn-new")
+      .querySelector("#checkout-new-address")
       .classList.add("checkout-element-hide");
   }
 };
@@ -1487,8 +1299,8 @@ checkout.shipping.validation.valid = () => {
     checkout.payment.show
   );
   // Update CSS
-  checkout.element.button.shipping.next.classList.add("checkout-button-valid");
-  checkout.element.heading.payment.classList.add("checkout-heading-valid");
+  checkout.element.button.shipping.next.classList.add("valid");
+  checkout.element.heading.payment.classList.add("valid");
   checkout.element.navigation.shipping.classList.add("valid");
   checkout.element.navigation.payment.classList.remove("unavailable");
 };
@@ -1512,7 +1324,7 @@ checkout.shipping.validation.invalid = () => {
   );
   // Update CSS
   checkout.element.button.shipping.next.classList.remove(
-    "checkout-button-valid"
+    "valid"
   );
   checkout.element.navigation.shipping.classList.remove("valid");
   checkout.element.navigation.payment.classList.add("unavailable");
@@ -1565,14 +1377,14 @@ checkout.shipping.resize = () => {
   // SET THE CART PAGE SIZE
   if (checkout.element.windowSize.matches) {
     if (checkoutSelectedPage == 1) {
-      document.querySelector("#checkout-sub-pg-shipping").style =
+      document.querySelector("#checkout-shipping").style =
         "height: " + total + "vmax;";
     } else {
-      document.querySelector("#checkout-sub-pg-shipping").style =
-        "height: 8vmax;";
+      document.querySelector("#checkout-shipping").style =
+        "height: 6vmax;";
     }
   } else {
-    document.querySelector("#checkout-sub-pg-shipping").style = "height: 100%;";
+    document.querySelector("#checkout-shipping").style = "height: 100%;";
   }
 };
 
@@ -1921,10 +1733,10 @@ checkout.payment.validation.valid = () => {
   );
   // CSS
   checkout.element.button.payment.bank.paid.classList.add(
-    "checkout-button-valid"
+    "valid"
   );
   checkout.element.button.payment.card.pay.classList.add(
-    "checkout-button-valid"
+    "valid"
   );
   checkout.element.navigation.payment.classList.add("valid");
 };
@@ -1945,10 +1757,10 @@ checkout.payment.validation.invalid = () => {
   );
   // CSS
   checkout.element.button.payment.bank.paid.classList.remove(
-    "checkout-button-valid"
+    "valid"
   );
   checkout.element.button.payment.card.pay.classList.remove(
-    "checkout-button-valid"
+    "valid"
   );
   checkout.element.navigation.payment.classList.remove("valid");
 };
@@ -1985,14 +1797,14 @@ checkout.payment.resize = () => {
   // SET THE CART PAGE SIZE
   if (checkout.element.windowSize.matches) {
     if (checkoutSelectedPage === 2) {
-      document.querySelector("#checkout-sub-pg-payment").style =
+      document.querySelector("#checkout-payment").style =
         "height: " + total + "vmax;";
     } else {
-      document.querySelector("#checkout-sub-pg-payment").style =
-        "height: 8vmax;";
+      document.querySelector("#checkout-payment").style =
+        "height: 6vmax;";
     }
   } else {
-    document.querySelector("#checkout-sub-pg-payment").style = "height: 100%;";
+    document.querySelector("#checkout-payment").style = "height: 100%;";
   }
 };
 
@@ -2049,29 +1861,29 @@ checkout.navigation.changeCSS.page = nextPage => {
   const nextPageName = checkoutPages[nextPage];
   if (nextPage > checkoutSelectedPage) {
     document
-      .querySelector(`#checkout-sub-pg-${nextPageName}`)
-      .classList.remove("checkout-sub-pg-right");
+      .querySelector(`#checkout-${nextPageName}`)
+      .classList.remove("right");
     for (let i = checkoutSelectedPage; i < nextPage; i++) {
       const currentPageName = checkoutPages[i];
       document
-        .querySelector(`#checkout-sub-pg-${currentPageName}`)
-        .classList.remove("checkout-sub-pg-right");
+        .querySelector(`#checkout-${currentPageName}`)
+        .classList.remove("right");
       document
-        .querySelector(`#checkout-sub-pg-${currentPageName}`)
-        .classList.add("checkout-sub-pg-left");
+        .querySelector(`#checkout-${currentPageName}`)
+        .classList.add("left");
     }
   } else {
     document
-      .querySelector(`#checkout-sub-pg-${nextPageName}`)
-      .classList.remove("checkout-sub-pg-left");
+      .querySelector(`#checkout-${nextPageName}`)
+      .classList.remove("left");
     for (let i = checkoutSelectedPage; i > nextPage; i--) {
       const currentPageName = checkoutPages[i];
       document
-        .querySelector(`#checkout-sub-pg-${currentPageName}`)
-        .classList.remove("checkout-sub-pg-left");
+        .querySelector(`#checkout-${currentPageName}`)
+        .classList.remove("left");
       document
-        .querySelector(`#checkout-sub-pg-${currentPageName}`)
-        .classList.add("checkout-sub-pg-right");
+        .querySelector(`#checkout-${currentPageName}`)
+        .classList.add("right");
     }
   }
 };

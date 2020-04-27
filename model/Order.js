@@ -259,7 +259,7 @@ OrderSchema.methods.updateSavedAddress = function () {};
 // @ARGU
 OrderSchema.methods.validateCart = function () {
   // Check if there are prints or items ready for checkout
-  if (!(this.makes.awaitingQuote.length || this.items.length)) {
+  if (!(this.makes.checkout.length || this.items.length)) {
     return false;
   }
   if (!this.manufacturingSpeed) {

@@ -3,133 +3,48 @@
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
+
 $diamond: 5vw;
 
-/*=========================================================================================
-MOBILE CSS
-=========================================================================================*/
+/* ---------------------------------------------------------
+ELEMENT DEFAULT CSS RESET
+--------------------------------------------------------- */
 
-/*======================================================================
-BACKGROUND COLOURS
-======================================================================*/
-
-.bgd-clr-vlt-3 {
-  background-color: $logo-3;
-}
-
-/*======================================================================
-TEXT COLOURS
-======================================================================*/
-
-.txt-clr-blk-1 {
-  color: $dark-3;
-}
-
-.txt-clr-blk-2 {
-  color: $dark-2;
-}
-
-.txt-clr-blk-3 {
-  color: $dark-1;
-}
-
-.txt-clr-wht-1 {
-  color: $light-1;
-}
-
-/*======================================================================
-INPUT FIELDS
-======================================================================*/
-
-.inp-txt-1 {
-  height: 4.8vmax;
-  // Border
-  border-width: 0.1vmax;
-  border-style: none none solid none;
-  border-bottom-color: $dark-1;
-  border-radius: 0vmax;
-  appearance: none;
-  // Spacing
-  padding: 0 1vmax;
-  letter-spacing: 0.2vmax;
-}
-
-.inp-txt-1:focus {
-  outline: none;
-  border-bottom-color: $dark-3;
-  color: $dark-3;
-}
-
-.inp-txt-1::placeholder {
-  color: $dark-1;
-}
-
-/*======================================================================
-TEXTS
-======================================================================*/
-
-.hdng-1 {
-  font-family: $poppins;
-  font-size: 2.2vmax;
-  font-weight: bold;
-}
-
-.hdng-2 {
-  font-family: $poppins;
-  font-size: 3.4vmax;
-  font-weight: bold;
-}
-
-.txt-1 {
-  font-family: $montserrat;
-  font-size: 1.8vmax;
-}
-
-.sbtl-1 {
-  font-family: $montserrat;
-  font-size: 1.4vmax;
-}
-
-.sbtl-2 {
-  font-family: $montserrat;
-  font-size: 1.8vmax;
-}
-
-/*======================================================================
-BUTTONS
-======================================================================*/
-
-.btn-1 {
-  height: 4.8vmax;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 2.4vmax;
-  letter-spacing: 0.2vmax;
-}
-
-/*-----------------------------------------------------------------------------------------
-SUMMARY
------------------------------------------------------------------------------------------*/
-
-#checkout-sub-pg-summary {
+h1,h2,h3,h4,h5 {
+  display: inline;
   margin: 0;
-  border: 0;
+  font-weight: normal;
+}
+
+p {
+  display: inline;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  border: none;
+  margin: 0;
   padding: 0;
-  height: 0;
-  overflow: hidden;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  text-align: inherit;
+  outline: none;
 }
 
-/*-----------------------------------------------------------------------------------------
-CHECKOUT
------------------------------------------------------------------------------------------*/
+/* ---------------------------------------------------------
+GLOBAL
+--------------------------------------------------------- */
 
-.checkout-sub-pg {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-}
+// HEADINGS
 
 .checkout-heading {
   height: 14vmax;
@@ -138,40 +53,226 @@ CHECKOUT
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 4vmax;
+  cursor: default;
+  // Text
+  font-family: $poppins;
+  font-size: 3.4vmax;
+  font-weight: bold;
   letter-spacing: 0.2vmax;
   color: $light-3;
-  cursor: default;
+  &.valid {
+    color: $dark-3;
+    cursor: pointer;
+  }
 }
 
-.checkout-heading-valid {
-  color: $dark-3;
-  cursor: pointer;
+.checkout-sub-heading {
+  height: 12vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-top-style: solid;
+  border-top-width: 0.15vmax;
+  border-top-color: $light-3;
+  // TEXT
+  font-family: $poppins;
+  font-size: 2.2vmax;
+  font-weight: bold;
+  letter-spacing: 0.1vmax;
+  color: $dark-1;
 }
 
-.checkout-sub-sub-pgs {
+// INPUT FIELD
+
+.checkout-input-text {
+  height: 4.8vmax;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: $dark-1;
+  border-radius: 0vmax;
+  appearance: none;
+  padding: 0 1vmax;
+  // TEXT
+  font-family: $poppins;
+  font-size: 1.8vmax;
+  letter-spacing: 0.2vmax;
+  color: $dark-2;
+  &:focus {
+    outline: none;
+    border-bottom-color: $dark-3;
+    color: $dark-3;
+  }
+  &::placeholder {
+    color: $dark-1;
+  }
+}
+
+.checkout-radio-container {
+  height: 6vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  label {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: $poppins;
+    font-size: 1.6vmax;
+    letter-spacing: 0.2vmax;
+    padding-left: 2.6vmax;
+    color: $dark-2;
+    cursor: pointer;
+    &.disabled {
+      color: $light-3;
+      cursor: default;
+    }
+  }
+}
+
+.checkout-input-error {
+  height: 2vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: $poppins;
+  font-size: 1.2vmax;
+  letter-spacing: 0.2vmax;
+  color: #bb0000;
+}
+
+// BUTTONS
+
+.checkout-buttons {
+  height: 24vmax;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 3vmax 6vmax;
+}
+
+.checkout-button {
+  height: 6vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1vmax;
+  background-color: $light-3;
+  font-family: $poppins;
+  font-size: 2vmax;
+  letter-spacing: 0.3vmax;
+  color: $dark-1;
+  &.valid {
+    border-color: $logo-3;
+    background-color: $logo-3;
+    color: $light-1;
+    cursor: pointer;
+  }
+}
+
+.checkout-button-small {
+  height: 4.8vmax;
+  width: 8vmax;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4vmax;
+  background-color: $logo-3;
+  // TEXT
+  font-family: $poppins;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+  color: $light-1;
+}
+
+// SECTIONS
+
+.checkout-section {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding-top: 60px;
+  overflow-y: scroll;
+  transition: all 0.5s ease;
+  opacity: 1;
+  &.left {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  &.right {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.checkout-sub-sections {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 0 14vmax 0 4vmax;
 }
 
-.checkout-sub-sub-pg {
+.checkout-sub-section {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.checkout-sub-sub-hdng {
-  height: 14vmax;
+// PRICING
+
+.checkout-pricing-container {
+  height: 6vmax;
   width: 100%;
   display: flex;
   align-items: center;
-  letter-spacing: 0.1vmax;
+  justify-content: space-between;
+  &.total {
+    height: 10vmax;
+    h4,p {
+      font-size: 2.2vmax;
+      font-weight: bold;
+    }
+  }
+  h4 {
+    font-family: $poppins;
+    font-size: 1.8vmax;
+    letter-spacing: 0.1vmax;
+    color: $dark-1;
+  }
+  p {
+    font-family: $poppins;
+    font-size: 1.8vmax;
+    letter-spacing: 0.1vmax;
+    color: $dark-2;
+  }
 }
 
-/*-----------------------------------------------------------------------------------------
+.checkout-prices {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2vmax 0;
+}
+
+/* ---------------------------------------------------------
+SUMMARY
+--------------------------------------------------------- */
+
+#checkout-summary {
+  display: none;
+}
+
+/* ---------------------------------------------------------
 CART
------------------------------------------------------------------------------------------*/
+--------------------------------------------------------- */
+
+// PRINTS
 
 .checkout-cart-loading-container {
   height: 16vmax;
@@ -186,250 +287,169 @@ CART
   width: 16vmax;
 }
 
-.checkout-cart-cnts {
+#checkout-prints {
   width: 100%;
   height: 16vmax;
   transition: height 0.5s ease;
   overflow: hidden;
+  p {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $poppins;
+    letter-spacing: 0.2vmax;
+    font-size: 2.4vmax;
+    color: $light-3;
+  }
+  .print {
+    height: 16vmax;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    padding: 2vmax 0;
+  }
 }
 
-.checkout-cart-cnts p {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: $poppins;
-  letter-spacing: 0.2vmax;
-  font-size: 2.4vmax;
-  color: $light-3;
-}
-
-.checkout-prnt-cnt {
-  height: 16vmax;
-  width: 100%;
-  display: flex;
-  overflow: hidden;
-  padding: 2vmax 0;
-}
-
-.checkout-prnt-cnt-cntn-1 {
+.checkout-print-container-1 {
   height: 100%;
   width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
+  .image {
+    height: 8vmax;
+    width: 8vmax;
+  }
 }
 
-.checkout-prnt-cnt-img {
-  height: 8vmax;
-  width: 8vmax;
-}
-
-.checkout-prnt-cnt-cntn-2 {
+.checkout-print-container-2 {
   height: 100%;
   width: 40%;
+  a,.build-type,.colour {
+    height: 3vmax;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    // TEXT
+    font-family: $poppins;
+    font-size: 1.4vmax;
+    color: $dark-2
+  }
+  a {
+    color: $highlight;
+  }
 }
 
-.checkout-prnt-cnt-file-name {
+.checkout-print-quantity-container {
   height: 3vmax;
   width: 100%;
   display: flex;
   align-items: center;
+  label,input {
+    font-family: $poppins;
+    font-size: 1.4vmax;
+    color: $dark-2
+  }
+  input {
+    width: 6vmax;
+    margin: 0 1vmax;
+  }
 }
 
-.checkout-prnt-cnt-bld-type {
-  height: 3vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.checkout-prnt-cnt-clr {
-  height: 3vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.checkout-prnt-cnt-qnty-cntn {
-  height: 3vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.checkout-prnt-cnt-qnty {
-  width: 6vmax;
-  margin: 0 1vmax;
-}
-
-.checkout-prnt-cnt-cntn-3 {
+.checkout-print-container-3 {
   height: 100%;
   width: 30%;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
   justify-content: flex-end;
+  .price {
+    height: 3vmax;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    // TEXT
+    font-family: $poppins;
+    font-size: 1.4vmax;
+    color: $dark-2
+  }
 }
 
-.checkout-prnt-cnt-prc {
-  height: 3vmax;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.checkout-print-delete {
+  position: relative;
+  display: inline-block;
+  width: 2.8vmax;
+  height: 2.8vmax;
+  cursor: pointer;
+  &:hover {
+    &::before,
+    &::after {
+      background: $highlight;
+    }
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    background: $dark-3;
+    height: 0.24vmax;
+    border-radius: 0.12vmax;
+    transition: all 0.1s ease;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
 }
 
-.checkout-mkpl-cnt {
-  height: 16vmax;
-  width: 100%;
-  display: flex;
-  overflow: hidden;
-  padding: 2vmax 0;
-}
+// DISCOUNT
 
-.checkout-mkpl-cnt-cntn-1 {
-  height: 100%;
-  width: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.checkout-mkpl-cnt-img {
-  height: 8vmax;
-  width: 8vmax;
-}
-
-.checkout-mkpl-cnt-cntn-2 {
-  height: 100%;
-  width: 40%;
-}
-
-.checkout-mkpl-cnt-item-name {
-  height: 4vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.checkout-mkpl-cnt-shop {
-  height: 4vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.checkout-mkpl-cnt-qnty-cntn {
-  height: 4vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.checkout-mkpl-cnt-qnty {
-  width: 6vmax;
-  margin: 0 1vmax;
-}
-
-.checkout-mkpl-cnt-cntn-3 {
-  height: 100%;
-  width: 30%;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
-  justify-content: flex-end;
-}
-
-.checkout-mkpl-cnt-prc {
-  height: 3vmax;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.checkout-dsct-inp-cntn {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 2vmax 0;
-}
-
-#checkout-dsct-inp {
-  width: 70%;
-}
-
-#checkout-dsct-inp-btn {
-  width: 25%;
-  letter-spacing: 0.2vmax;
-}
-
-#checkout-dsct-inp-err {
-  width: 70%;
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.5vmax 0;
-  letter-spacing: 0.1vmax;
-}
-
-.checkout-dsct-list-cntn {
+.checkout-discounts {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 1vmax 0;
 }
 
-.checkout-dsct {
-  width: 100%;
-  letter-spacing: 0.2vmax;
-  padding: 0.5vmax 0;
-}
-
-.checkout-cart-prcs {
+.checkout-discount {
   width: 100%;
   display: flex;
+  align-items: center;
+  padding: 0.5vmax 0;
+  // TEXT
+  font-family: $poppins;
+  font-size: 1.8vmax;
+  letter-spacing: 0.2vmax;
+  color: $dark-1;
+}
+
+.checkout-discount-input-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   padding: 2vmax 0;
+  input {
+    width: 70%;
+  }
 }
 
-.checkout-pricing-container {
-  height: 6vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+#checkout-discount-input-error {
+  width: 70%;
 }
 
-.checkout-pricing-container.total {
-  height: 10vmax;
-}
-
-.checkout-cart-prc-cntn {
-  height: 6vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.checkout-cart-prc-lbl {
-  letter-spacing: 0.1vmax;
-}
-
-.checkout-cart-prc {
-  letter-spacing: 0.1vmax;
-}
-
-/*-----------------------------------------------------------------------------------------
+/* ---------------------------------------------------------
 SHIPPING
------------------------------------------------------------------------------------------*/
+--------------------------------------------------------- */
 
-// CLASSES
-
-.checkout-shpg-adrs-cntn {
+.checkout-address {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -439,27 +459,24 @@ SHIPPING
   padding: 2vmax 0;
   overflow: hidden;
   transition: all 0.5s ease;
-}
-
-.checkout-shpg-adrs-cntn-new {
-  height: 70vmax;
-}
-
-.checkout-shpg-adrs-cntn-svd {
-  height: 16vmax;
-  padding: 2vmax 0;
-}
-
-#checkout-shpg-adrs-cntn-svd p {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: $poppins;
-  letter-spacing: 0.2vmax;
-  font-size: 2.4vmax;
-  color: $light-3;
+  &.saved {
+    height: 16vmax;
+    padding: 2vmax 0;
+    p {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $poppins;
+      letter-spacing: 0.2vmax;
+      font-size: 2.4vmax;
+      color: $light-3;
+    }
+  }
+  &.new {
+    height: 70vmax;
+  }
 }
 
 .checkout-saved-address-line {
@@ -475,68 +492,28 @@ SHIPPING
   color: $light-3;
 }
 
-.checkout-shpg-adrs-new-lbl {
-  width: 100%;
-  padding: 1vmax 1vmax 0.5vmax 0;
+#checkout-new-address {
+  label {
+    padding: 1vmax 1vmax 0.5vmax 0;
+    // TEXT
+    font-family: $poppins;
+    font-size: 1.4vmax;
+    color: $dark-1;
+  }
+  .unit,.postcode {
+    width: 60%;
+  }
+  .street-number {
+    width: 35%;
+  }
+  .street-name,.suburb,.city,.country {
+    width: 100%;
+  }
 }
 
-.checkout-shpg-adrs-new-inp {
-  width: 100%;
-}
-
-.checkout-shpg-mthd-cntn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 2vmax 0;
-}
-
-.checkout-shpg-mthd-inp {
-  margin: 0;
-}
-
-.checkout-shpg-mthd-inp-lbl {
-  letter-spacing: 0.1vmax;
-  padding: 0 0 0 1.6vmax;
-}
-
-// IDS
-
-#checkout-shpg-adrs-new-unit-lbl {
-  width: 60%;
-}
-
-#checkout-shpg-adrs-new-st-num-lbl {
-  width: 35%;
-}
-
-#checkout-shpg-adrs-new-unit {
-  width: 60%;
-}
-
-#checkout-shpg-adrs-new-st-num {
-  width: 35%;
-}
-
-#checkout-shpg-adrs-new-zp-cd-lbl {
-  width: 60%;
-}
-
-#checkout-shpg-adrs-new-zp-cd {
-  width: 60%;
-}
-
-#checkout-shipping-unit-error {
-  width: 60%;
-}
-
-#checkout-shipping-street-number-error {
-  width: 35%;
-}
-
-#checkout-shipping-postcode-error {
-  width: 60%;
-}
+/* ---------------------------------------------------------
+OPTIMISATION COMPLETED
+--------------------------------------------------------- */
 
 /*-----------------------------------------------------------------------------------------
 PAYMENT
@@ -695,26 +672,6 @@ NAVIGATION
 
 // CLASSES
 
-.checkout-sub-pg {
-  position: fixed;
-  height: 100%;
-  align-content: flex-start;
-  padding-top: 60px;
-  overflow-y: scroll;
-  transition: all 0.5s ease;
-  opacity: 1;
-}
-
-.checkout-sub-pg-left {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-.checkout-sub-pg-right {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
 .checkout-navigation-icon-container {
   width: 6vmax;
   height: 6vmax;
@@ -795,101 +752,6 @@ NAVIGATION
 GLOBAL
 -----------------------------------------------------------------------------------------*/
 
-// CLOSE BUTTON
-
-.checkout-delete {
-  position: relative;
-  display: inline-block;
-  width: 2.8vmax;
-  height: 2.8vmax;
-  cursor: pointer;
-  &:hover {
-    &::before,
-    &::after {
-      background: $highlight;
-    }
-  }
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    background: $dark-3;
-    height: 0.24vmax;
-    border-radius: 0.12vmax;
-    transition: all 0.1s ease;
-  }
-  &::before {
-    transform: rotate(45deg);
-  }
-  &::after {
-    transform: rotate(-45deg);
-  }
-}
-
-.checkout-buttons {
-  height: 24vmax;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 3vmax 6vmax;
-}
-
-.checkout-button {
-  height: 6vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1vmax;
-  background-color: $light-3;
-  font-family: $poppins;
-  font-size: 2vmax;
-  letter-spacing: 0.3vmax;
-  color: $dark-1;
-}
-
-.checkout-button-valid {
-  border-color: $logo-3;
-  background-color: $logo-3;
-  color: $light-1;
-  cursor: pointer;
-}
-
-.checkout-radio-container {
-  height: 6vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.checkout-radio {
-  height: 1.6vmax;
-  width: 1.6vmax;
-  cursor: pointer;
-}
-
-.checkout-radio-label {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-family: $poppins;
-  font-size: 1.6vmax;
-  letter-spacing: 0.2vmax;
-  padding-left: 2.6vmax;
-  color: $dark-2;
-  cursor: pointer;
-}
-
-.checkout-radio-label-disabled {
-  color: $light-3;
-  cursor: default;
-}
-
 .checkout-radio-error,
 .checkout-radio-valid {
   height: 3vmax;
@@ -900,7 +762,6 @@ GLOBAL
   font-family: $poppins;
   font-size: 1.2vmax;
   letter-spacing: 0.2vmax;
-  color: #bb0000;
 }
 
 .checkout-radio-error {
@@ -911,16 +772,7 @@ GLOBAL
   color: #008000;
 }
 
-.checkout-input-error {
-  height: 2vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  font-family: $poppins;
-  font-size: 1.2vmax;
-  letter-spacing: 0.2vmax;
-  color: #bb0000;
-}
+
 
 #checkout-loading-display {
   height: 5vmax;
@@ -988,237 +840,12 @@ DESKTOP CSS
 =========================================================================================*/
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
-  /*======================================================================
-  INPUT FIELDS
-  ======================================================================*/
 
-  .inp-txt-1 {
-    height: 2.4vmax;
-    // Border
-    border-width: 0.05vmax;
-    // Spacing
-    padding: 0 0.5vmax;
-    letter-spacing: 0.1vmax;
-  }
+  /* -------------------------------------------------------
+  GLOBAL
+  ------------------------------------------------------- */
 
-  /*======================================================================
-  TEXTS
-  ======================================================================*/
-
-  .hdng-1 {
-    font-size: 1vmax;
-  }
-
-  .hdng-2 {
-    font-size: 1.3vmax;
-    letter-spacing: 0.15vmax;
-  }
-
-  .txt-1 {
-    font-size: 1vmax;
-  }
-
-  .sbtl-1 {
-    font-size: 0.9vmax;
-  }
-
-  /*======================================================================
-  BUTTONS
-  ======================================================================*/
-
-  .btn-1 {
-    height: 2.5vmax;
-    border-radius: 1.25vmax;
-    letter-spacing: 0.1vmax;
-  }
-
-  .checkout-sub-pg {
-    width: 64vw;
-    position: relative;
-    display: flex;
-    padding: 0 12vmax 0 6vmax;
-    overflow: hidden;
-    cursor: default;
-  }
-
-  .checkout-sub-pg-cart {
-    height: 89vmax;
-  }
-
-  .checkout-sub-pg-shipping {
-    height: 90vmax;
-  }
-
-  .checkout-sub-pg-payment {
-    height: 45vmax;
-  }
-
-  .checkout-heading {
-    height: 8vmax;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    // Text CSS
-    font-size: 2vmax;
-  }
-
-  .checkout-sub-sub-pgs {
-    padding: 0;
-  }
-
-  .checkout-sub-sub-hdng {
-    height: 8vmax;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    // Text CSS
-    font-size: 1.2vmax;
-  }
-
-  .checkout-sub-pg-left {
-    height: 8vmax;
-    transform: translateX(0);
-    opacity: 1;
-  }
-  .checkout-sub-pg-right {
-    height: 8vmax;
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  .checkout-prnt-cnt {
-    height: 10vmax;
-    padding: 2vmax 0;
-  }
-
-  .checkout-prnt-cnt-file-name {
-    color: $highlight;
-  }
-
-  .checkout-prnt-cnt-cntn-1,
-  .checkout-prnt-cnt-cntn-3 {
-    width: 25%;
-  }
-
-  .checkout-prnt-cnt-cntn-2 {
-    width: 50%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .checkout-prnt-cnt-cntn-2 div,
-  .checkout-prnt-cnt-qnty-lbl,
-  .checkout-prnt-cnt-qnty,
-  .checkout-prnt-cnt-prc,
-  .checkout-shpg-adrs-new-lbl {
-    font-size: 0.8vmax;
-  }
-
-  .checkout-prnt-cnt-qnty {
-    height: 1.8vmax;
-    width: 4vmax;
-    margin: 0 0.6vmax;
-    padding: 0 0.5vmax;
-    border-width: 0.05vmax;
-    border-radius: 0.2vmax;
-  }
-
-  .checkout-prnt-cnt-img {
-    height: 6vmax;
-    width: 6vmax;
-  }
-
-  .checkout-prnt-cnt-file-name,
-  .checkout-prnt-cnt-bld-type,
-  .checkout-prnt-cnt-clr,
-  .checkout-prnt-cnt-qnty-cntn,
-  .checkout-prnt-cnt-prc {
-    height: 2vmax;
-  }
-
-  .checkout-prnt-cnt-bld-type,
-  .checkout-prnt-cnt-clr {
-    width: 50%;
-  }
-
-  .checkout-cart-cnts {
-    height: 10vmax;
-  }
-
-  .checkout-cart-cnts p {
-    font-size: 1.4vmax;
-    letter-spacing: 0.12vmax;
-  }
-
-  .checkout-dsct-inp-cntn {
-    height: 9vmax;
-    align-content: center;
-    padding: 2vmax;
-  }
-
-  #checkout-dsct-inp-btn {
-    cursor: pointer;
-  }
-
-  .checkout-dsct {
-    height: 1.4vmax;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    font-size: 0.8vmax;
-  }
-
-  .checkout-navigation-icon-container {
-    height: 3vmax;
-    width: 3vmax;
-    border-width: 0.1vmax;
-  }
-
-  .checkout-shpg-adrs-cntn {
-    padding: 1vmax 2vmax;
-  }
-
-  .checkout-shpg-adrs-cntn-new {
-    height: 38vmax;
-  }
-
-  .checkout-shpg-adrs-new-lbl {
-    padding: 0.5vmax 0.5vmax 0.25vmax 0;
-  }
-
-  .checkout-shpg-mthd-cntn {
-    padding: 1vmax 2vmax;
-  }
-
-  #checkout-pymt-sub-sub-pg {
-    padding: 1vmax 2vmax;
-  }
-
-  #checkout-navigation-container {
-    height: 30vh;
-    width: 3vmax;
-    top: 35vh;
-    right: 4.5vmax;
-    padding: 0;
-  }
-
-  #checkout-dsct-inp-err {
-    height: 1vmax;
-    align-items: center;
-    padding: 0;
-    font-size: 0.6vmax;
-  }
-
-  #checkout-dsct-list-cntn {
-    width: 100%;
-  }
-
-  // TEMPORARY
-  // #checkout-pg element is temporary
-  // padding: The 4vmax is temporary while the old navigation system exist
-  #checkout-pg {
+  #checkout {
     height: 100%;
     position: fixed;
     top: 0;
@@ -1228,62 +855,112 @@ DESKTOP CSS
     overflow-y: auto;
   }
 
-  #cart-sub-pg-prc {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    height: 0;
-    overflow: hidden;
-  }
+  // HEADINGS
 
-  #checkout-pymt-bank-tsfr,
-  #checkout-pymt-card,
-  #checkout-pymt-bank-tsfr-cntn {
+  .checkout-heading {
+    height: 6vmax;
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    // Text CSS
+    font-size: 1.6vmax;
   }
 
-  .checkout-cart-loading-container {
-    height: 8vmax;
-    width: 100%;
+  .checkout-sub-heading {
+    height: 6vmax;
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
-
-  .checkout-cart-loading {
-    height: 4vmax;
-    width: 4vmax;
-  }
-
-  /*---------------------------------------------------------------------------------------
-  SHIPPING
-  ---------------------------------------------------------------------------------------*/
-
-  .checkout-shpg-adrs-cntn-svd {
-    height: 10vmax;
-    padding: 1vmax 0;
-  }
-
-  #checkout-shpg-adrs-cntn-svd p {
-    letter-spacing: 0.1vmax;
+    // Text CSS
     font-size: 1.2vmax;
+    letter-spacing: 0.15vmax;
   }
 
-  .checkout-saved-address-line {
-    height: 2vmax;
-    padding: 0 0 0 4.1vmax;
+  // INPUT FIELDS
+
+  .checkout-input-text {
+    height: 2.4vmax;
+    border-width: 0.05vmax;
+    padding: 0 0.5vmax;
     // TEXT
-    font-size: 1vmax;
+    font-size: 0.8vmax;
     letter-spacing: 0.1vmax;
   }
 
-  /*---------------------------------------------------------------------------------------
-  SUMMARY
-  ---------------------------------------------------------------------------------------*/
+  .checkout-radio-container {
+    height: 3vmax;
+    label {
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+      padding-left: 1.6vmax;
+    }
+  }
 
-  // CLASSES
+  .checkout-input-error {
+    height: 1.6vmax;
+    font-size: 0.7vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  // BUTTONS
+
+  .checkout-buttons {
+    height: 12vmax;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .checkout-button {
+    height: 3vmax;
+    width: 14vmax;
+    border-radius: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.2vmax;
+  }
+
+  .checkout-button-small {
+    height: 2.4vmax;
+    width: 6vmax;
+    border-radius: 0.2vmax;
+    // TEXT
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  // SECTIONS
+
+  .checkout-section {
+    width: 64vw;
+    position: relative;
+    display: flex;
+    padding: 0 12vmax 0 6vmax;
+    overflow: hidden;
+    cursor: default;
+    &.left,&.right {
+      height: 6vmax;
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .cart {
+      height: 79vmax;
+    }
+    .shipping {
+      height: 90vmax;
+    }
+    .payment {
+      height: 45vmax;
+    }
+  }
+
+  .checkout-sub-sections {
+    padding: 0;
+  }
+
+  /* -------------------------------------------------------
+  SUMMARY
+  ------------------------------------------------------- */
 
   .checkout-summary-group {
     height: 3vmax;
@@ -1292,21 +969,27 @@ DESKTOP CSS
     align-items: center;
     justify-content: space-between;
     padding: 0 2vmax;
+    &.total {
+      margin-top: 1vmax;
+      height: 5vmax;
+      border-top: solid;
+      border-color: $dark-2;
+      border-width: 0.1vmax;
+    }
+    h2,p {
+      font-family: $poppins;
+      font-size: 0.8vmax;
+      letter-spacing: 0.1vmax;
+      color: $dark-3;
+      &.total {
+        font-size: 1vmax;
+        font-weight: bold;
+        color: $dark-2;
+      }
+    }
   }
 
-  .checkout-summary-label,
-  .checkout-summary-value {
-    font-family: $poppins;
-    font-size: 0.8vmax;
-    letter-spacing: 0.1vmax;
-    color: $dark-3;
-  }
-
-  // IDS
-
-  // TEMPORARY
-  // padding: The 4vmax 0 0 5vmax is temporary while the old navigation system exist
-  #checkout-sub-pg-summary {
+  #checkout-summary {
     height: 100%;
     width: 36vw;
     position: fixed;
@@ -1326,29 +1009,192 @@ DESKTOP CSS
     align-items: center;
     justify-content: center;
     margin: 0 0 4vmax 0;
+    h1 {
+      font-family: $poppins;
+      font-size: 2vmax;
+      font-weight: bold;
+      letter-spacing: 0.1vmax;
+      color: $dark-2;
+    }
   }
 
-  #checkout-summary-heading-container h1 {
-    font-family: $poppins;
-    font-size: 2vmax;
-    font-weight: bold;
+  /* -------------------------------------------------------
+  CART
+  ------------------------------------------------------- */
+
+  // PRINTS
+
+  .checkout-cart-loading-container {
+    height: 8vmax;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .checkout-cart-loading {
+    height: 4vmax;
+    width: 4vmax;
+  }
+
+  #checkout-prints {
+    height: 10vmax;
+    p {
+      font-size: 1.4vmax;
+      letter-spacing: 0.12vmax;
+    }
+    .print {
+      height: 10vmax;
+      padding: 2vmax 0;
+    }
+  }
+
+  .checkout-print-container-1 {
+    width: 25%;
+    .image {
+      height: 6vmax;
+      width: 6vmax;
+    }
+  }
+
+  .checkout-print-container-2 {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    a,.build-type,.colour {
+      height: 2vmax;
+      font-size: 0.8vmax;
+    }
+    .build-type,.colour {
+      width: 50%;
+    }
+  }
+
+  .checkout-print-quantity-container {
+    height: 2vmax;
+    label,input {
+      font-size: 0.8vmax;
+    }
+    input {
+      height: 1.8vmax;
+      width: 4vmax;
+      margin: 0 0.6vmax;
+      padding: 0 0.5vmax;
+      border-width: 0.05vmax;
+      border-radius: 0.2vmax;
+    }
+  }
+
+  .checkout-print-container-3 {
+    width: 25%;
+    .price {
+      height: 2vmax;
+      font-size: 0.8vmax;
+    }
+  }
+
+  .checkout-print-delete {
+    width: 1.4vmax;
+    height: 1.4vmax;
+    &::before,
+    &::after {
+      height: 0.12vmax;
+      border-radius: 0.06vmax;
+    }
+  }
+
+  #checkout-discounts {
+    width: 100%;
+  }
+
+  .checkout-discount {
+    height: 1.4vmax;
+    padding: 0;
+    // TEXT
+    font-size: 0.8vmax;
+    letter-spacing: 0.2vmax;
+  }
+
+  .checkout-discount-input-container {
+    height: 8vmax;
+    align-content: center;
+    padding: 0vmax 10vmax;
+    input {
+      width: 15vmax;
+    }
+  }
+
+  #checkout-cart-pricing {
+    display: none;
+  }
+
+  /* -------------------------------------------------------
+  SHIPPING
+  ------------------------------------------------------- */
+
+  .checkout-address {
+    padding: 1vmax 2vmax;
+    &.saved {
+      height: 10vmax;
+      padding: 1vmax 0;
+      p {
+        letter-spacing: 0.1vmax;
+        font-size: 1.2vmax;
+      }
+    }
+    &.new {
+      height: 38vmax;
+    }
+  }
+
+  .checkout-saved-address-line {
+    height: 2vmax;
+    padding: 0 0 0 4.1vmax;
+    // TEXT
+    font-size: 1vmax;
     letter-spacing: 0.1vmax;
-    color: $dark-2;
   }
 
-  #checkout-summary-group-total {
-    margin-top: 1vmax;
-    height: 5vmax;
-    border-top: solid;
-    border-color: $dark-2;
+
+  #checkout-new-address {
+    label {
+      padding: 0.5vmax 0.5vmax 0.25vmax 0;
+      font-size: 0.8vmax;
+    }
+  }
+
+  #checkout-shipping-pricing {
+    display: none;
+  }
+
+  /* -------------------------------------------------------
+  OPTIMISATION COMPLETED
+  ------------------------------------------------------- */
+
+  .checkout-navigation-icon-container {
+    height: 3vmax;
+    width: 3vmax;
     border-width: 0.1vmax;
   }
 
-  #checkout-summary-label-total,
-  #checkout-summary-value-total {
-    font-size: 1vmax;
-    font-weight: bold;
-    color: $dark-2;
+  #checkout-pymt-sub-sub-pg {
+    padding: 1vmax 2vmax;
+  }
+
+  #checkout-navigation-container {
+    height: 30vh;
+    width: 3vmax;
+    top: 35vh;
+    right: 4.5vmax;
+    padding: 0;
+  }
+
+  #checkout-pymt-bank-tsfr,
+  #checkout-pymt-card,
+  #checkout-pymt-bank-tsfr-cntn {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   /*---------------------------------------------------------------------------------------
@@ -1455,56 +1301,10 @@ DESKTOP CSS
     overflow: hidden;
   }
 
-  .checkout-delete {
-    width: 1.4vmax;
-    height: 1.4vmax;
-    &::before,
-    &::after {
-      height: 0.12vmax;
-      border-radius: 0.06vmax;
-    }
-  }
-
-  .checkout-buttons {
-    height: 12vmax;
-    padding: 0;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
-  .checkout-button {
-    height: 3vmax;
-    width: 14vmax;
-    border-radius: 0.5vmax;
-    font-size: 1vmax;
-    letter-spacing: 0.2vmax;
-  }
-
-  .checkout-radio-container {
-    height: 3vmax;
-  }
-
-  .checkout-radio {
-    height: 1vmax;
-    width: 1vmax;
-  }
-
-  .checkout-radio-label {
-    font-size: 1vmax;
-    letter-spacing: 0.1vmax;
-    padding-left: 1.6vmax;
-  }
-
   .checkout-radio-error,
   .checkout-radio-valid {
     height: 2vmax;
     padding-left: 2.6vmax;
-    font-size: 0.7vmax;
-    letter-spacing: 0.1vmax;
-  }
-
-  .checkout-input-error {
-    height: 1.6vmax;
     font-size: 0.7vmax;
     letter-spacing: 0.1vmax;
   }

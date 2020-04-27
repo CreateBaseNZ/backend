@@ -2121,146 +2121,42 @@ END
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
-/*=========================================================================================
-MOBILE CSS
-=========================================================================================*/
-/*======================================================================
-BACKGROUND COLOURS
-======================================================================*/
-.bgd-clr-vlt-3 {
-  background-color: #4e4ed6;
-}
-
-/*======================================================================
-TEXT COLOURS
-======================================================================*/
-.txt-clr-blk-1 {
-  color: #2d283c;
-}
-
-.txt-clr-blk-2 {
-  color: #322d41;
-}
-
-.txt-clr-blk-3 {
-  color: #877da9;
-}
-
-.txt-clr-wht-1 {
-  color: white;
-}
-
-/*======================================================================
-INPUT FIELDS
-======================================================================*/
-.inp-txt-1 {
-  height: 4.8vmax;
-  border-width: 0.1vmax;
-  border-style: none none solid none;
-  border-bottom-color: #877da9;
-  border-radius: 0vmax;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  padding: 0 1vmax;
-  letter-spacing: 0.2vmax;
-}
-
-.inp-txt-1:focus {
-  outline: none;
-  border-bottom-color: #2d283c;
-  color: #2d283c;
-}
-
-.inp-txt-1::-webkit-input-placeholder {
-  color: #877da9;
-}
-
-.inp-txt-1:-ms-input-placeholder {
-  color: #877da9;
-}
-
-.inp-txt-1::-ms-input-placeholder {
-  color: #877da9;
-}
-
-.inp-txt-1::placeholder {
-  color: #877da9;
-}
-
-/*======================================================================
-TEXTS
-======================================================================*/
-.hdng-1 {
-  font-family: "Poppins", sans-serif;
-  font-size: 2.2vmax;
-  font-weight: bold;
-}
-
-.hdng-2 {
-  font-family: "Poppins", sans-serif;
-  font-size: 3.4vmax;
-  font-weight: bold;
-}
-
-.txt-1 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.8vmax;
-}
-
-.sbtl-1 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.4vmax;
-}
-
-.sbtl-2 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.8vmax;
-}
-
-/*======================================================================
-BUTTONS
-======================================================================*/
-.btn-1 {
-  height: 4.8vmax;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 2.4vmax;
-  letter-spacing: 0.2vmax;
-}
-
-/*-----------------------------------------------------------------------------------------
-SUMMARY
------------------------------------------------------------------------------------------*/
-#checkout-sub-pg-summary {
+/* ---------------------------------------------------------
+ELEMENT DEFAULT CSS RESET
+--------------------------------------------------------- */
+h1, h2, h3, h4, h5 {
+  display: inline;
   margin: 0;
-  border: 0;
+  font-weight: normal;
+}
+
+p {
+  display: inline;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  border: none;
+  margin: 0;
   padding: 0;
-  height: 0;
-  overflow: hidden;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  text-align: inherit;
+  outline: none;
 }
 
-/*-----------------------------------------------------------------------------------------
-CHECKOUT
------------------------------------------------------------------------------------------*/
-.checkout-sub-pg {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-}
-
+/* ---------------------------------------------------------
+GLOBAL
+--------------------------------------------------------- */
 .checkout-heading {
   height: 14vmax;
   width: 100%;
@@ -2274,17 +2170,223 @@ CHECKOUT
       -ms-flex-pack: center;
           justify-content: center;
   padding-bottom: 4vmax;
+  cursor: default;
+  font-family: "Poppins", sans-serif;
+  font-size: 3.4vmax;
+  font-weight: bold;
   letter-spacing: 0.2vmax;
   color: #c7c2d5;
-  cursor: default;
 }
 
-.checkout-heading-valid {
+.checkout-heading.valid {
   color: #2d283c;
   cursor: pointer;
 }
 
-.checkout-sub-sub-pgs {
+.checkout-sub-heading {
+  height: 12vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top-style: solid;
+  border-top-width: 0.15vmax;
+  border-top-color: #c7c2d5;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.2vmax;
+  font-weight: bold;
+  letter-spacing: 0.1vmax;
+  color: #877da9;
+}
+
+.checkout-input-text {
+  height: 4.8vmax;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: #877da9;
+  border-radius: 0vmax;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0 1vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8vmax;
+  letter-spacing: 0.2vmax;
+  color: #322d41;
+}
+
+.checkout-input-text:focus {
+  outline: none;
+  border-bottom-color: #2d283c;
+  color: #2d283c;
+}
+
+.checkout-input-text::-webkit-input-placeholder {
+  color: #877da9;
+}
+
+.checkout-input-text:-ms-input-placeholder {
+  color: #877da9;
+}
+
+.checkout-input-text::-ms-input-placeholder {
+  color: #877da9;
+}
+
+.checkout-input-text::placeholder {
+  color: #877da9;
+}
+
+.checkout-radio-container {
+  height: 6vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.checkout-radio-container label {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+  padding-left: 2.6vmax;
+  color: #322d41;
+  cursor: pointer;
+}
+
+.checkout-radio-container label.disabled {
+  color: #c7c2d5;
+  cursor: default;
+}
+
+.checkout-input-error {
+  height: 2vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2vmax;
+  letter-spacing: 0.2vmax;
+  color: #bb0000;
+}
+
+.checkout-buttons {
+  height: 24vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 3vmax 6vmax;
+}
+
+.checkout-button {
+  height: 6vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 1vmax;
+  background-color: #c7c2d5;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  letter-spacing: 0.3vmax;
+  color: #877da9;
+}
+
+.checkout-button.valid {
+  border-color: #4e4ed6;
+  background-color: #4e4ed6;
+  color: white;
+  cursor: pointer;
+}
+
+.checkout-button-small {
+  height: 4.8vmax;
+  width: 8vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0.4vmax;
+  background-color: #4e4ed6;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+  color: white;
+}
+
+.checkout-section {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  padding-top: 60px;
+  overflow-y: scroll;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+
+.checkout-section.left {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  opacity: 0;
+}
+
+.checkout-section.right {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  opacity: 0;
+}
+
+.checkout-sub-sections {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2294,346 +2396,13 @@ CHECKOUT
   padding: 0 14vmax 0 4vmax;
 }
 
-.checkout-sub-sub-pg {
+.checkout-sub-section {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-}
-
-.checkout-sub-sub-hdng {
-  height: 14vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  letter-spacing: 0.1vmax;
-}
-
-/*-----------------------------------------------------------------------------------------
-CART
------------------------------------------------------------------------------------------*/
-.checkout-cart-loading-container {
-  height: 16vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.checkout-cart-loading {
-  height: 16vmax;
-  width: 16vmax;
-}
-
-.checkout-cart-cnts {
-  width: 100%;
-  height: 16vmax;
-  -webkit-transition: height 0.5s ease;
-  transition: height 0.5s ease;
-  overflow: hidden;
-}
-
-.checkout-cart-cnts p {
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.2vmax;
-  font-size: 2.4vmax;
-  color: #c7c2d5;
-}
-
-.checkout-prnt-cnt {
-  height: 16vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: hidden;
-  padding: 2vmax 0;
-}
-
-.checkout-prnt-cnt-cntn-1 {
-  height: 100%;
-  width: 30%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.checkout-prnt-cnt-img {
-  height: 8vmax;
-  width: 8vmax;
-}
-
-.checkout-prnt-cnt-cntn-2 {
-  height: 100%;
-  width: 40%;
-}
-
-.checkout-prnt-cnt-file-name {
-  height: 3vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-prnt-cnt-bld-type {
-  height: 3vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-prnt-cnt-clr {
-  height: 3vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-prnt-cnt-qnty-cntn {
-  height: 3vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-prnt-cnt-qnty {
-  width: 6vmax;
-  margin: 0 1vmax;
-}
-
-.checkout-prnt-cnt-cntn-3 {
-  height: 100%;
-  width: 30%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.checkout-prnt-cnt-prc {
-  height: 3vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-mkpl-cnt {
-  height: 16vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: hidden;
-  padding: 2vmax 0;
-}
-
-.checkout-mkpl-cnt-cntn-1 {
-  height: 100%;
-  width: 30%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.checkout-mkpl-cnt-img {
-  height: 8vmax;
-  width: 8vmax;
-}
-
-.checkout-mkpl-cnt-cntn-2 {
-  height: 100%;
-  width: 40%;
-}
-
-.checkout-mkpl-cnt-item-name {
-  height: 4vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-mkpl-cnt-shop {
-  height: 4vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-mkpl-cnt-qnty-cntn {
-  height: 4vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-mkpl-cnt-qnty {
-  width: 6vmax;
-  margin: 0 1vmax;
-}
-
-.checkout-mkpl-cnt-cntn-3 {
-  height: 100%;
-  width: 30%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.checkout-mkpl-cnt-prc {
-  height: 3vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.checkout-dsct-inp-cntn {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding: 2vmax 0;
-}
-
-#checkout-dsct-inp {
-  width: 70%;
-}
-
-#checkout-dsct-inp-btn {
-  width: 25%;
-  letter-spacing: 0.2vmax;
-}
-
-#checkout-dsct-inp-err {
-  width: 70%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  padding: 0.5vmax 0;
-  letter-spacing: 0.1vmax;
-}
-
-.checkout-dsct-list-cntn {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding: 1vmax 0;
-}
-
-.checkout-dsct {
-  width: 100%;
-  letter-spacing: 0.2vmax;
-  padding: 0.5vmax 0;
-}
-
-.checkout-cart-prcs {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding: 2vmax 0;
 }
 
 .checkout-pricing-container {
@@ -2654,8 +2423,47 @@ CART
   height: 10vmax;
 }
 
-.checkout-cart-prc-cntn {
-  height: 6vmax;
+.checkout-pricing-container.total h4, .checkout-pricing-container.total p {
+  font-size: 2.2vmax;
+  font-weight: bold;
+}
+
+.checkout-pricing-container h4 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8vmax;
+  letter-spacing: 0.1vmax;
+  color: #877da9;
+}
+
+.checkout-pricing-container p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8vmax;
+  letter-spacing: 0.1vmax;
+  color: #322d41;
+}
+
+.checkout-prices {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 2vmax 0;
+}
+
+/* ---------------------------------------------------------
+SUMMARY
+--------------------------------------------------------- */
+#checkout-summary {
+  display: none;
+}
+
+/* ---------------------------------------------------------
+CART
+--------------------------------------------------------- */
+.checkout-cart-loading-container {
+  height: 16vmax;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2663,23 +2471,232 @@ CART
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.checkout-cart-loading {
+  height: 16vmax;
+  width: 16vmax;
+}
+
+#checkout-prints {
+  width: 100%;
+  height: 16vmax;
+  -webkit-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+  overflow: hidden;
+}
+
+#checkout-prints p {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.2vmax;
+  font-size: 2.4vmax;
+  color: #c7c2d5;
+}
+
+#checkout-prints .print {
+  height: 16vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  padding: 2vmax 0;
+}
+
+.checkout-print-container-1 {
+  height: 100%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.checkout-print-container-1 .image {
+  height: 8vmax;
+  width: 8vmax;
+}
+
+.checkout-print-container-2 {
+  height: 100%;
+  width: 40%;
+}
+
+.checkout-print-container-2 a, .checkout-print-container-2 .build-type, .checkout-print-container-2 .colour {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4vmax;
+  color: #322d41;
+}
+
+.checkout-print-container-2 a {
+  color: #4bf0ea;
+}
+
+.checkout-print-quantity-container {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-print-quantity-container label, .checkout-print-quantity-container input {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4vmax;
+  color: #322d41;
+}
+
+.checkout-print-quantity-container input {
+  width: 6vmax;
+  margin: 0 1vmax;
+}
+
+.checkout-print-container-3 {
+  height: 100%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.checkout-print-container-3 .price {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4vmax;
+  color: #322d41;
+}
+
+.checkout-print-delete {
+  position: relative;
+  display: inline-block;
+  width: 2.8vmax;
+  height: 2.8vmax;
+  cursor: pointer;
+}
+
+.checkout-print-delete:hover::before, .checkout-print-delete:hover::after {
+  background: #4bf0ea;
+}
+
+.checkout-print-delete::before, .checkout-print-delete::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  background: #2d283c;
+  height: 0.24vmax;
+  border-radius: 0.12vmax;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+
+.checkout-print-delete::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.checkout-print-delete::after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.checkout-discounts {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1vmax 0;
+}
+
+.checkout-discount {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5vmax 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8vmax;
+  letter-spacing: 0.2vmax;
+  color: #877da9;
+}
+
+.checkout-discount-input-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 2vmax 0;
 }
 
-.checkout-cart-prc-lbl {
-  letter-spacing: 0.1vmax;
+.checkout-discount-input-container input {
+  width: 70%;
 }
 
-.checkout-cart-prc {
-  letter-spacing: 0.1vmax;
+#checkout-discount-input-error {
+  width: 70%;
 }
 
-/*-----------------------------------------------------------------------------------------
+/* ---------------------------------------------------------
 SHIPPING
------------------------------------------------------------------------------------------*/
-.checkout-shpg-adrs-cntn {
+--------------------------------------------------------- */
+.checkout-address {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2700,16 +2717,12 @@ SHIPPING
   transition: all 0.5s ease;
 }
 
-.checkout-shpg-adrs-cntn-new {
-  height: 70vmax;
-}
-
-.checkout-shpg-adrs-cntn-svd {
+.checkout-address.saved {
   height: 16vmax;
   padding: 2vmax 0;
 }
 
-#checkout-shpg-adrs-cntn-svd p {
+.checkout-address.saved p {
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -2725,6 +2738,10 @@ SHIPPING
   letter-spacing: 0.2vmax;
   font-size: 2.4vmax;
   color: #c7c2d5;
+}
+
+.checkout-address.new {
+  height: 70vmax;
 }
 
 .checkout-saved-address-line {
@@ -2743,71 +2760,28 @@ SHIPPING
   color: #c7c2d5;
 }
 
-.checkout-shpg-adrs-new-lbl {
-  width: 100%;
+#checkout-new-address label {
   padding: 1vmax 1vmax 0.5vmax 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4vmax;
+  color: #877da9;
 }
 
-.checkout-shpg-adrs-new-inp {
+#checkout-new-address .unit, #checkout-new-address .postcode {
+  width: 60%;
+}
+
+#checkout-new-address .street-number {
+  width: 35%;
+}
+
+#checkout-new-address .street-name, #checkout-new-address .suburb, #checkout-new-address .city, #checkout-new-address .country {
   width: 100%;
 }
 
-.checkout-shpg-mthd-cntn {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 2vmax 0;
-}
-
-.checkout-shpg-mthd-inp {
-  margin: 0;
-}
-
-.checkout-shpg-mthd-inp-lbl {
-  letter-spacing: 0.1vmax;
-  padding: 0 0 0 1.6vmax;
-}
-
-#checkout-shpg-adrs-new-unit-lbl {
-  width: 60%;
-}
-
-#checkout-shpg-adrs-new-st-num-lbl {
-  width: 35%;
-}
-
-#checkout-shpg-adrs-new-unit {
-  width: 60%;
-}
-
-#checkout-shpg-adrs-new-st-num {
-  width: 35%;
-}
-
-#checkout-shpg-adrs-new-zp-cd-lbl {
-  width: 60%;
-}
-
-#checkout-shpg-adrs-new-zp-cd {
-  width: 60%;
-}
-
-#checkout-shipping-unit-error {
-  width: 60%;
-}
-
-#checkout-shipping-street-number-error {
-  width: 35%;
-}
-
-#checkout-shipping-postcode-error {
-  width: 60%;
-}
-
+/* ---------------------------------------------------------
+OPTIMISATION COMPLETED
+--------------------------------------------------------- */
 /*-----------------------------------------------------------------------------------------
 PAYMENT
 -----------------------------------------------------------------------------------------*/
@@ -3018,30 +2992,6 @@ PAYMENT
 /*-----------------------------------------------------------------------------------------
 NAVIGATION
 -----------------------------------------------------------------------------------------*/
-.checkout-sub-pg {
-  position: fixed;
-  height: 100%;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  padding-top: 60px;
-  overflow-y: scroll;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  opacity: 1;
-}
-
-.checkout-sub-pg-left {
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-  opacity: 0;
-}
-
-.checkout-sub-pg-right {
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
-  opacity: 0;
-}
-
 .checkout-navigation-icon-container {
   width: 6vmax;
   height: 6vmax;
@@ -3142,127 +3092,6 @@ NAVIGATION
 /*-----------------------------------------------------------------------------------------
 GLOBAL
 -----------------------------------------------------------------------------------------*/
-.checkout-delete {
-  position: relative;
-  display: inline-block;
-  width: 2.8vmax;
-  height: 2.8vmax;
-  cursor: pointer;
-}
-
-.checkout-delete:hover::before, .checkout-delete:hover::after {
-  background: #4bf0ea;
-}
-
-.checkout-delete::before, .checkout-delete::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  background: #2d283c;
-  height: 0.24vmax;
-  border-radius: 0.12vmax;
-  -webkit-transition: all 0.1s ease;
-  transition: all 0.1s ease;
-}
-
-.checkout-delete::before {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.checkout-delete::after {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.checkout-buttons {
-  height: 24vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  padding: 3vmax 6vmax;
-}
-
-.checkout-button {
-  height: 6vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 1vmax;
-  background-color: #c7c2d5;
-  font-family: "Poppins", sans-serif;
-  font-size: 2vmax;
-  letter-spacing: 0.3vmax;
-  color: #877da9;
-}
-
-.checkout-button-valid {
-  border-color: #4e4ed6;
-  background-color: #4e4ed6;
-  color: white;
-  cursor: pointer;
-}
-
-.checkout-radio-container {
-  height: 6vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.checkout-radio {
-  height: 1.6vmax;
-  width: 1.6vmax;
-  cursor: pointer;
-}
-
-.checkout-radio-label {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.6vmax;
-  letter-spacing: 0.2vmax;
-  padding-left: 2.6vmax;
-  color: #322d41;
-  cursor: pointer;
-}
-
-.checkout-radio-label-disabled {
-  color: #c7c2d5;
-  cursor: default;
-}
-
 .checkout-radio-error,
 .checkout-radio-valid {
   height: 3vmax;
@@ -3277,7 +3106,6 @@ GLOBAL
   font-family: "Poppins", sans-serif;
   font-size: 1.2vmax;
   letter-spacing: 0.2vmax;
-  color: #bb0000;
 }
 
 .checkout-radio-error {
@@ -3286,21 +3114,6 @@ GLOBAL
 
 .checkout-radio-valid {
   color: #008000;
-}
-
-.checkout-input-error {
-  height: 2vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.2vmax;
-  letter-spacing: 0.2vmax;
-  color: #bb0000;
 }
 
 #checkout-loading-display {
@@ -3378,60 +3191,20 @@ GLOBAL
 DESKTOP CSS
 =========================================================================================*/
 @media only screen and (min-width: 850px) and (orientation: landscape) {
-  /*======================================================================
-  INPUT FIELDS
-  ======================================================================*/
-  .inp-txt-1 {
-    height: 2.4vmax;
-    border-width: 0.05vmax;
-    padding: 0 0.5vmax;
-    letter-spacing: 0.1vmax;
-  }
-  /*======================================================================
-  TEXTS
-  ======================================================================*/
-  .hdng-1 {
-    font-size: 1vmax;
-  }
-  .hdng-2 {
-    font-size: 1.3vmax;
-    letter-spacing: 0.15vmax;
-  }
-  .txt-1 {
-    font-size: 1vmax;
-  }
-  .sbtl-1 {
-    font-size: 0.9vmax;
-  }
-  /*======================================================================
-  BUTTONS
-  ======================================================================*/
-  .btn-1 {
-    height: 2.5vmax;
-    border-radius: 1.25vmax;
-    letter-spacing: 0.1vmax;
-  }
-  .checkout-sub-pg {
-    width: 64vw;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 0 12vmax 0 6vmax;
-    overflow: hidden;
-    cursor: default;
-  }
-  .checkout-sub-pg-cart {
-    height: 89vmax;
-  }
-  .checkout-sub-pg-shipping {
-    height: 90vmax;
-  }
-  .checkout-sub-pg-payment {
-    height: 45vmax;
+  /* -------------------------------------------------------
+  GLOBAL
+  ------------------------------------------------------- */
+  #checkout {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 8vmax 0 4vmax 36vw;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .checkout-heading {
-    height: 8vmax;
+    height: 6vmax;
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -3442,212 +3215,95 @@ DESKTOP CSS
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    font-size: 2vmax;
-  }
-  .checkout-sub-sub-pgs {
     padding: 0;
+    font-size: 1.6vmax;
   }
-  .checkout-sub-sub-hdng {
-    height: 8vmax;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 0;
-    margin: 0;
-    font-size: 1.2vmax;
-  }
-  .checkout-sub-pg-left {
-    height: 8vmax;
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-    opacity: 1;
-  }
-  .checkout-sub-pg-right {
-    height: 8vmax;
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-    opacity: 1;
-  }
-  .checkout-prnt-cnt {
-    height: 10vmax;
-    padding: 2vmax 0;
-  }
-  .checkout-prnt-cnt-file-name {
-    color: #4bf0ea;
-  }
-  .checkout-prnt-cnt-cntn-1,
-  .checkout-prnt-cnt-cntn-3 {
-    width: 25%;
-  }
-  .checkout-prnt-cnt-cntn-2 {
-    width: 50%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .checkout-prnt-cnt-cntn-2 div,
-  .checkout-prnt-cnt-qnty-lbl,
-  .checkout-prnt-cnt-qnty,
-  .checkout-prnt-cnt-prc,
-  .checkout-shpg-adrs-new-lbl {
-    font-size: 0.8vmax;
-  }
-  .checkout-prnt-cnt-qnty {
-    height: 1.8vmax;
-    width: 4vmax;
-    margin: 0 0.6vmax;
-    padding: 0 0.5vmax;
-    border-width: 0.05vmax;
-    border-radius: 0.2vmax;
-  }
-  .checkout-prnt-cnt-img {
+  .checkout-sub-heading {
     height: 6vmax;
-    width: 6vmax;
-  }
-  .checkout-prnt-cnt-file-name,
-  .checkout-prnt-cnt-bld-type,
-  .checkout-prnt-cnt-clr,
-  .checkout-prnt-cnt-qnty-cntn,
-  .checkout-prnt-cnt-prc {
-    height: 2vmax;
-  }
-  .checkout-prnt-cnt-bld-type,
-  .checkout-prnt-cnt-clr {
-    width: 50%;
-  }
-  .checkout-cart-cnts {
-    height: 10vmax;
-  }
-  .checkout-cart-cnts p {
-    font-size: 1.4vmax;
-    letter-spacing: 0.12vmax;
-  }
-  .checkout-dsct-inp-cntn {
-    height: 9vmax;
-    -ms-flex-line-pack: center;
-        align-content: center;
-    padding: 2vmax;
-  }
-  #checkout-dsct-inp-btn {
-    cursor: pointer;
-  }
-  .checkout-dsct {
-    height: 1.4vmax;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    padding: 0;
-    font-size: 0.8vmax;
-  }
-  .checkout-navigation-icon-container {
-    height: 3vmax;
-    width: 3vmax;
-    border-width: 0.1vmax;
-  }
-  .checkout-shpg-adrs-cntn {
-    padding: 1vmax 2vmax;
-  }
-  .checkout-shpg-adrs-cntn-new {
-    height: 38vmax;
-  }
-  .checkout-shpg-adrs-new-lbl {
-    padding: 0.5vmax 0.5vmax 0.25vmax 0;
-  }
-  .checkout-shpg-mthd-cntn {
-    padding: 1vmax 2vmax;
-  }
-  #checkout-pymt-sub-sub-pg {
-    padding: 1vmax 2vmax;
-  }
-  #checkout-navigation-container {
-    height: 30vh;
-    width: 3vmax;
-    top: 35vh;
-    right: 4.5vmax;
-    padding: 0;
-  }
-  #checkout-dsct-inp-err {
-    height: 1vmax;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 0;
-    font-size: 0.6vmax;
-  }
-  #checkout-dsct-list-cntn {
-    width: 100%;
-  }
-  #checkout-pg {
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 8vmax 0 4vmax 36vw;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  #cart-sub-pg-prc {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    height: 0;
-    overflow: hidden;
-  }
-  #checkout-pymt-bank-tsfr,
-  #checkout-pymt-card,
-  #checkout-pymt-bank-tsfr-cntn {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .checkout-cart-loading-container {
-    height: 8vmax;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  .checkout-cart-loading {
-    height: 4vmax;
-    width: 4vmax;
-  }
-  /*---------------------------------------------------------------------------------------
-  SHIPPING
-  ---------------------------------------------------------------------------------------*/
-  .checkout-shpg-adrs-cntn-svd {
-    height: 10vmax;
-    padding: 1vmax 0;
-  }
-  #checkout-shpg-adrs-cntn-svd p {
-    letter-spacing: 0.1vmax;
     font-size: 1.2vmax;
+    letter-spacing: 0.15vmax;
   }
-  .checkout-saved-address-line {
-    height: 2vmax;
-    padding: 0 0 0 4.1vmax;
+  .checkout-input-text {
+    height: 2.4vmax;
+    border-width: 0.05vmax;
+    padding: 0 0.5vmax;
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .checkout-radio-container {
+    height: 3vmax;
+  }
+  .checkout-radio-container label {
     font-size: 1vmax;
     letter-spacing: 0.1vmax;
+    padding-left: 1.6vmax;
   }
-  /*---------------------------------------------------------------------------------------
+  .checkout-input-error {
+    height: 1.6vmax;
+    font-size: 0.7vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .checkout-buttons {
+    height: 12vmax;
+    padding: 0;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .checkout-button {
+    height: 3vmax;
+    width: 14vmax;
+    border-radius: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.2vmax;
+  }
+  .checkout-button-small {
+    height: 2.4vmax;
+    width: 6vmax;
+    border-radius: 0.2vmax;
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .checkout-section {
+    width: 64vw;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 12vmax 0 6vmax;
+    overflow: hidden;
+    cursor: default;
+  }
+  .checkout-section.left, .checkout-section.right {
+    height: 6vmax;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  .checkout-section .cart {
+    height: 79vmax;
+  }
+  .checkout-section .shipping {
+    height: 90vmax;
+  }
+  .checkout-section .payment {
+    height: 45vmax;
+  }
+  .checkout-sub-sections {
+    padding: 0;
+  }
+  /* -------------------------------------------------------
   SUMMARY
-  ---------------------------------------------------------------------------------------*/
+  ------------------------------------------------------- */
   .checkout-summary-group {
     height: 3vmax;
     width: 100%;
@@ -3662,14 +3318,25 @@ DESKTOP CSS
             justify-content: space-between;
     padding: 0 2vmax;
   }
-  .checkout-summary-label,
-  .checkout-summary-value {
+  .checkout-summary-group.total {
+    margin-top: 1vmax;
+    height: 5vmax;
+    border-top: solid;
+    border-color: #322d41;
+    border-width: 0.1vmax;
+  }
+  .checkout-summary-group h2, .checkout-summary-group p {
     font-family: "Poppins", sans-serif;
     font-size: 0.8vmax;
     letter-spacing: 0.1vmax;
     color: #2d283c;
   }
-  #checkout-sub-pg-summary {
+  .checkout-summary-group h2.total, .checkout-summary-group p.total {
+    font-size: 1vmax;
+    font-weight: bold;
+    color: #322d41;
+  }
+  #checkout-summary {
     height: 100%;
     width: 36vw;
     position: fixed;
@@ -3705,18 +3372,166 @@ DESKTOP CSS
     letter-spacing: 0.1vmax;
     color: #322d41;
   }
-  #checkout-summary-group-total {
-    margin-top: 1vmax;
-    height: 5vmax;
-    border-top: solid;
-    border-color: #322d41;
+  /* -------------------------------------------------------
+  CART
+  ------------------------------------------------------- */
+  .checkout-cart-loading-container {
+    height: 8vmax;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .checkout-cart-loading {
+    height: 4vmax;
+    width: 4vmax;
+  }
+  #checkout-prints {
+    height: 10vmax;
+  }
+  #checkout-prints p {
+    font-size: 1.4vmax;
+    letter-spacing: 0.12vmax;
+  }
+  #checkout-prints .print {
+    height: 10vmax;
+    padding: 2vmax 0;
+  }
+  .checkout-print-container-1 {
+    width: 25%;
+  }
+  .checkout-print-container-1 .image {
+    height: 6vmax;
+    width: 6vmax;
+  }
+  .checkout-print-container-2 {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .checkout-print-container-2 a, .checkout-print-container-2 .build-type, .checkout-print-container-2 .colour {
+    height: 2vmax;
+    font-size: 0.8vmax;
+  }
+  .checkout-print-container-2 .build-type, .checkout-print-container-2 .colour {
+    width: 50%;
+  }
+  .checkout-print-quantity-container {
+    height: 2vmax;
+  }
+  .checkout-print-quantity-container label, .checkout-print-quantity-container input {
+    font-size: 0.8vmax;
+  }
+  .checkout-print-quantity-container input {
+    height: 1.8vmax;
+    width: 4vmax;
+    margin: 0 0.6vmax;
+    padding: 0 0.5vmax;
+    border-width: 0.05vmax;
+    border-radius: 0.2vmax;
+  }
+  .checkout-print-container-3 {
+    width: 25%;
+  }
+  .checkout-print-container-3 .price {
+    height: 2vmax;
+    font-size: 0.8vmax;
+  }
+  .checkout-print-delete {
+    width: 1.4vmax;
+    height: 1.4vmax;
+  }
+  .checkout-print-delete::before, .checkout-print-delete::after {
+    height: 0.12vmax;
+    border-radius: 0.06vmax;
+  }
+  #checkout-discounts {
+    width: 100%;
+  }
+  .checkout-discount {
+    height: 1.4vmax;
+    padding: 0;
+    font-size: 0.8vmax;
+    letter-spacing: 0.2vmax;
+  }
+  .checkout-discount-input-container {
+    height: 8vmax;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    padding: 0vmax 10vmax;
+  }
+  .checkout-discount-input-container input {
+    width: 15vmax;
+  }
+  #checkout-cart-pricing {
+    display: none;
+  }
+  /* -------------------------------------------------------
+  SHIPPING
+  ------------------------------------------------------- */
+  .checkout-address {
+    padding: 1vmax 2vmax;
+  }
+  .checkout-address.saved {
+    height: 10vmax;
+    padding: 1vmax 0;
+  }
+  .checkout-address.saved p {
+    letter-spacing: 0.1vmax;
+    font-size: 1.2vmax;
+  }
+  .checkout-address.new {
+    height: 38vmax;
+  }
+  .checkout-saved-address-line {
+    height: 2vmax;
+    padding: 0 0 0 4.1vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
+  }
+  #checkout-new-address label {
+    padding: 0.5vmax 0.5vmax 0.25vmax 0;
+    font-size: 0.8vmax;
+  }
+  #checkout-shipping-pricing {
+    display: none;
+  }
+  /* -------------------------------------------------------
+  OPTIMISATION COMPLETED
+  ------------------------------------------------------- */
+  .checkout-navigation-icon-container {
+    height: 3vmax;
+    width: 3vmax;
     border-width: 0.1vmax;
   }
-  #checkout-summary-label-total,
-  #checkout-summary-value-total {
-    font-size: 1vmax;
-    font-weight: bold;
-    color: #322d41;
+  #checkout-pymt-sub-sub-pg {
+    padding: 1vmax 2vmax;
+  }
+  #checkout-navigation-container {
+    height: 30vh;
+    width: 3vmax;
+    top: 35vh;
+    right: 4.5vmax;
+    padding: 0;
+  }
+  #checkout-pymt-bank-tsfr,
+  #checkout-pymt-card,
+  #checkout-pymt-bank-tsfr-cntn {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   /*---------------------------------------------------------------------------------------
   PAYMENT
@@ -3799,52 +3614,10 @@ DESKTOP CSS
     height: 0;
     overflow: hidden;
   }
-  .checkout-delete {
-    width: 1.4vmax;
-    height: 1.4vmax;
-  }
-  .checkout-delete::before, .checkout-delete::after {
-    height: 0.12vmax;
-    border-radius: 0.06vmax;
-  }
-  .checkout-buttons {
-    height: 12vmax;
-    padding: 0;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
-  .checkout-button {
-    height: 3vmax;
-    width: 14vmax;
-    border-radius: 0.5vmax;
-    font-size: 1vmax;
-    letter-spacing: 0.2vmax;
-  }
-  .checkout-radio-container {
-    height: 3vmax;
-  }
-  .checkout-radio {
-    height: 1vmax;
-    width: 1vmax;
-  }
-  .checkout-radio-label {
-    font-size: 1vmax;
-    letter-spacing: 0.1vmax;
-    padding-left: 1.6vmax;
-  }
   .checkout-radio-error,
   .checkout-radio-valid {
     height: 2vmax;
     padding-left: 2.6vmax;
-    font-size: 0.7vmax;
-    letter-spacing: 0.1vmax;
-  }
-  .checkout-input-error {
-    height: 1.6vmax;
     font-size: 0.7vmax;
     letter-spacing: 0.1vmax;
   }
