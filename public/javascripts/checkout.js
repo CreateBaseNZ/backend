@@ -267,7 +267,7 @@ checkout.insert = object => {
     document
       .querySelector("#checkout-address-saved-error")
       .classList.remove("checkout-element-hide");
-    html = "No Saved Address";
+    html = "<p>No Saved Address</p>";
   }
   checkout.shipping.address.saved.insert(html);
   // New
@@ -288,11 +288,11 @@ checkout.insert = object => {
   // SHIPPING METHOD
   const shippingMethod = object.order.shipping.method;
   if (shippingMethod == "pickup") {
-    document.querySelector("#checkout-shpg-mthd-inp-pckp").checked = true;
+    document.querySelector("#checkout-shipping-method-pickup").checked = true;
   } else if (shippingMethod == "tracked") {
-    document.querySelector("#checkout-shpg-mthd-inp-trck").checked = true;
+    document.querySelector("#checkout-shipping-method-tracked").checked = true;
   } else if (shippingMethod == "courier") {
-    document.querySelector("#checkout-shpg-mthd-inp-crr").checked = true;
+    document.querySelector("#checkout-shipping-method-courier").checked = true;
   }
   // PAYMENT METHOD
   // Assign the stored payment method to the global variable
@@ -328,10 +328,7 @@ checkout.load = async () => {
 // @ARGU
 checkout.listener = () => {
   checkout.element.heading.cart.addEventListener("click", checkout.cart.show);
-  checkout.element.navigation.cart.addEventListener(
-    "click",
-    checkout.cart.show
-  );
+  checkout.element.navigation.cart.addEventListener("click", checkout.cart.show);
   checkout.element.button.shipping.back.addEventListener(
     "click",
     checkout.cart.show
@@ -365,41 +362,19 @@ checkout.validate = async validity => {
 // @DESC
 // @ARGU
 checkout.elements.assign = () => {
-  checkout.element.heading.cart = document.querySelector("#checkout-cart-hdng");
-  checkout.element.heading.shipping = document.querySelector(
-    "#checkout-shpg-hdng"
-  );
-  checkout.element.heading.payment = document.querySelector(
-    "#checkout-pymt-hdng"
-  );
-  checkout.element.navigation.cart = document.querySelector(
-    "#checkout-navigation-cart"
-  );
-  checkout.element.navigation.shipping = document.querySelector(
-    "#checkout-navigation-shipping"
-  );
-  checkout.element.navigation.payment = document.querySelector(
-    "#checkout-navigation-payment"
-  );
+  checkout.element.heading.cart = document.querySelector("#checkout-cart-heading");
+  checkout.element.heading.shipping = document.querySelector("#checkout-shipping-heading");
+  checkout.element.heading.payment = document.querySelector("#checkout-payment-heading");
+  checkout.element.navigation.cart = document.querySelector("#checkout-navigation-cart");
+  checkout.element.navigation.shipping = document.querySelector("#checkout-navigation-shipping");
+  checkout.element.navigation.payment = document.querySelector("#checkout-navigation-payment");
   checkout.element.button.cart.next = document.querySelector("#checkout-cart-next");
-  checkout.element.button.shipping.back = document.querySelector(
-    "#checkout-element-button-shipping-back"
-  );
-  checkout.element.button.shipping.next = document.querySelector(
-    "#checkout-element-button-shipping-next"
-  );
-  checkout.element.button.payment.bank.back = document.querySelector(
-    "#checkout-element-button-payment-bank-back"
-  );
-  checkout.element.button.payment.bank.paid = document.querySelector(
-    "#checkout-element-button-payment-bank-paid"
-  );
-  checkout.element.button.payment.card.back = document.querySelector(
-    "#checkout-element-button-payment-card-back"
-  );
-  checkout.element.button.payment.card.pay = document.querySelector(
-    "#checkout-element-button-payment-card-pay"
-  );
+  checkout.element.button.shipping.back = document.querySelector("#checkout-shipping-back");
+  checkout.element.button.shipping.next = document.querySelector("#checkout-shipping-next");
+  checkout.element.button.payment.bank.back = document.querySelector("#checkout-payment-bank-back");
+  checkout.element.button.payment.bank.paid = document.querySelector("#checkout-payment-bank-paid");
+  checkout.element.button.payment.card.back = document.querySelector("#checkout-payment-card-back");
+  checkout.element.button.payment.card.pay = document.querySelector("#checkout-payment-card-pay");
   checkout.element.windowSize = window.matchMedia("(min-width: 850px)");
 };
 
@@ -873,23 +848,14 @@ checkout.shipping.address.select = async (option, update) => {
 // @ARGU
 checkout.shipping.address.saved.create = address => {
   let unit = "";
-
   if (address.unit) {
-    unit = `<div class="checkout-saved-address-line">
-            ${address.unit}</div>`;
+    unit = `<div>${address.unit}</div>`;
   }
-
-  const street = `<div class="checkout-saved-address-line">
-                  ${address.street.number} ${address.street.name}</div>`;
-  const suburb = `<div class="checkout-saved-address-line">
-                  ${address.suburb}</div>`;
-  const cityPostal = `<div class="checkout-saved-address-line">
-                      ${address.city}, ${address.postcode}</div>`;
-  const country = `<div class="checkout-saved-address-line">
-                    ${address.country}</div>`;
-
+  const street = `<div>${address.street.number} ${address.street.name}</div>`;
+  const suburb = `<div>${address.suburb}</div>`;
+  const cityPostal = `<div>${address.city}, ${address.postcode}</div>`;
+  const country = `<div>${address.country}</div>`;
   const html = unit + street + suburb + cityPostal + country;
-
   return html;
 };
 
@@ -1467,9 +1433,7 @@ checkout.payment.stripe.errorHandler = () => {
 checkout.payment.method.select = async (option, update) => {
   checkout.payment.method.selected = option;
   if (option === "bankTransfer") {
-    document.querySelector(
-      "#checkout-payment-method-bank-transfer"
-    ).checked = true;
+    document.querySelector("#checkout-payment-method-bank").checked = true;
     checkout.payment.method.bank.show(true);
     checkout.payment.method.card.show(false);
   } else if (option === "card") {
@@ -1509,11 +1473,11 @@ checkout.payment.method.select = async (option, update) => {
 checkout.payment.method.bank.show = show => {
   if (show) {
     document
-      .querySelector("#checkout-pymt-bank-tsfr-cntn")
+      .querySelector("#checkout-payment-bank-container")
       .classList.remove("checkout-element-hide");
   } else {
     document
-      .querySelector("#checkout-pymt-bank-tsfr-cntn")
+      .querySelector("#checkout-payment-bank-container")
       .classList.add("checkout-element-hide");
   }
 };
@@ -1677,11 +1641,11 @@ checkout.payment.method.card.process = async clientSecret => {
 checkout.payment.method.card.show = show => {
   if (show) {
     document
-      .querySelector("#checkout-pymt-card-cntn")
+      .querySelector("#checkout-payment-card-container")
       .classList.remove("checkout-element-hide");
   } else {
     document
-      .querySelector("#checkout-pymt-card-cntn")
+      .querySelector("#checkout-payment-card-container")
       .classList.add("checkout-element-hide");
   }
 };

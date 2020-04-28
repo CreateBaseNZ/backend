@@ -1,10 +1,14 @@
 @import "global/all";
 
-/*=========================================================================================
+/* =========================================================
 VARIABLES
-=========================================================================================*/
+========================================================= */
 
 $diamond: 5vw;
+
+/* =========================================================
+MOBILE CSS
+========================================================= */
 
 /* ---------------------------------------------------------
 ELEMENT DEFAULT CSS RESET
@@ -38,226 +42,6 @@ button {
   line-height: normal;
   text-align: inherit;
   outline: none;
-}
-
-/* ---------------------------------------------------------
-GLOBAL
---------------------------------------------------------- */
-
-// HEADINGS
-
-.checkout-heading {
-  height: 14vmax;
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 4vmax;
-  cursor: default;
-  // Text
-  font-family: $poppins;
-  font-size: 3.4vmax;
-  font-weight: bold;
-  letter-spacing: 0.2vmax;
-  color: $light-3;
-  &.valid {
-    color: $dark-3;
-    cursor: pointer;
-  }
-}
-
-.checkout-sub-heading {
-  height: 12vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  border-top-style: solid;
-  border-top-width: 0.15vmax;
-  border-top-color: $light-3;
-  // TEXT
-  font-family: $poppins;
-  font-size: 2.2vmax;
-  font-weight: bold;
-  letter-spacing: 0.1vmax;
-  color: $dark-1;
-}
-
-// INPUT FIELD
-
-.checkout-input-text {
-  height: 4.8vmax;
-  border-width: 0.1vmax;
-  border-style: none none solid none;
-  border-bottom-color: $dark-1;
-  border-radius: 0vmax;
-  appearance: none;
-  padding: 0 1vmax;
-  // TEXT
-  font-family: $poppins;
-  font-size: 1.8vmax;
-  letter-spacing: 0.2vmax;
-  color: $dark-2;
-  &:focus {
-    outline: none;
-    border-bottom-color: $dark-3;
-    color: $dark-3;
-  }
-  &::placeholder {
-    color: $dark-1;
-  }
-}
-
-.checkout-radio-container {
-  height: 6vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  label {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    font-family: $poppins;
-    font-size: 1.6vmax;
-    letter-spacing: 0.2vmax;
-    padding-left: 2.6vmax;
-    color: $dark-2;
-    cursor: pointer;
-    &.disabled {
-      color: $light-3;
-      cursor: default;
-    }
-  }
-}
-
-.checkout-input-error {
-  height: 2vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  font-family: $poppins;
-  font-size: 1.2vmax;
-  letter-spacing: 0.2vmax;
-  color: #bb0000;
-}
-
-// BUTTONS
-
-.checkout-buttons {
-  height: 24vmax;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 3vmax 6vmax;
-}
-
-.checkout-button {
-  height: 6vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1vmax;
-  background-color: $light-3;
-  font-family: $poppins;
-  font-size: 2vmax;
-  letter-spacing: 0.3vmax;
-  color: $dark-1;
-  &.valid {
-    border-color: $logo-3;
-    background-color: $logo-3;
-    color: $light-1;
-    cursor: pointer;
-  }
-}
-
-.checkout-button-small {
-  height: 4.8vmax;
-  width: 8vmax;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.4vmax;
-  background-color: $logo-3;
-  // TEXT
-  font-family: $poppins;
-  font-size: 1.6vmax;
-  letter-spacing: 0.2vmax;
-  color: $light-1;
-}
-
-// SECTIONS
-
-.checkout-section {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  padding-top: 60px;
-  overflow-y: scroll;
-  transition: all 0.5s ease;
-  opacity: 1;
-  &.left {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  &.right {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
-
-.checkout-sub-sections {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 14vmax 0 4vmax;
-}
-
-.checkout-sub-section {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-// PRICING
-
-.checkout-pricing-container {
-  height: 6vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  &.total {
-    height: 10vmax;
-    h4,p {
-      font-size: 2.2vmax;
-      font-weight: bold;
-    }
-  }
-  h4 {
-    font-family: $poppins;
-    font-size: 1.8vmax;
-    letter-spacing: 0.1vmax;
-    color: $dark-1;
-  }
-  p {
-    font-family: $poppins;
-    font-size: 1.8vmax;
-    letter-spacing: 0.1vmax;
-    color: $dark-2;
-  }
-}
-
-.checkout-prices {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 2vmax 0;
 }
 
 /* ---------------------------------------------------------
@@ -459,40 +243,38 @@ SHIPPING
   padding: 2vmax 0;
   overflow: hidden;
   transition: all 0.5s ease;
-  &.saved {
-    height: 16vmax;
-    padding: 2vmax 0;
-    p {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: $poppins;
-      letter-spacing: 0.2vmax;
-      font-size: 2.4vmax;
-      color: $light-3;
-    }
+}
+
+.checkout-saved-address {
+  height: 16vmax;
+  padding: 2vmax 0;
+  p {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $poppins;
+    letter-spacing: 0.2vmax;
+    font-size: 2.4vmax;
+    color: $light-3;
   }
-  &.new {
-    height: 70vmax;
+  div {
+    height: 3vmax;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 6.2vmax;
+    // TEXT
+    font-family: $poppins;
+    font-size: 1.6vmax;
+    letter-spacing: 0.2vmax;
+    color: $light-3;
   }
 }
 
-.checkout-saved-address-line {
-  height: 3vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 0 0 6.2vmax;
-  // TEXT
-  font-family: $poppins;
-  font-size: 1.6vmax;
-  letter-spacing: 0.2vmax;
-  color: $light-3;
-}
-
-#checkout-new-address {
+.checkout-new-address {
+  height: 70vmax;
   label {
     padding: 1vmax 1vmax 0.5vmax 0;
     // TEXT
@@ -512,27 +294,74 @@ SHIPPING
 }
 
 /* ---------------------------------------------------------
-OPTIMISATION COMPLETED
+PAYMENT
 --------------------------------------------------------- */
 
-/*-----------------------------------------------------------------------------------------
-PAYMENT
------------------------------------------------------------------------------------------*/
-
-// CARD - START
-
-#checkout-pymt-card {
+.checkout-payment-bank-container,
+.checkout-payment-card-container {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  transition: all 0.5s ease;
 }
 
-#checkout-pymt-card-cntn {
+.checkout-payment-bank-container {
+  height: 68vmax;
+}
+
+#checkout-payment-bank-instruction {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3vmax 0;
+}
+
+.checkout-payment-bank-instruction-line {
+  height: 5vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  h4 {
+    display: flex;
+    justify-content: flex-end;
+  }
+  h4,
+  p {
+    width: 50%;
+    padding-left: 1vmax;
+    font-family: $poppins;
+    font-size: 1.6vmax;
+    letter-spacing: 0.2vmax;
+  }
+}
+
+#checkout-payment-bank-instruction-comment {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  div {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    padding-top: 3vmax;
+    h3 {
+      height: 3vmax;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      font-family: $poppins;
+      font-size: 1.6vmax;
+      letter-spacing: 0.2vmax;
+    }
+  }
 }
 
 .checkout-payment-card-container {
   height: 47.6vmax;
-  overflow: hidden;
-  transition: all 0.5s ease;
 }
 
 #checkout-pymt-card-form {
@@ -569,66 +398,27 @@ PAYMENT
   width: 50%;
 }
 
-// CARD - END
-// BANK TRANSFER - START
-
-.checkout-payment-bank-transfer-container {
-  height: 68vmax;
-  overflow: hidden;
-  transition: all 0.5s ease;
-}
-
-#checkout-payment-bank-transfer-instruction {
+.StripeElement {
+  height: 4.8vmax;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 3vmax 0;
+  // Border
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: $dark-3;
+  border-radius: 0vmax;
+  appearance: none;
+  // Spacing
+  padding: 1.5vmax 1vmax;
+  // Text
+  font-family: $poppins;
+  font-size: 1.8vmax;
+  // Text Colour
+  color: $dark-2;
 }
 
-.checkout-bank-transfer-instruction-line {
-  height: 5vmax;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  h4 {
-    display: flex;
-    justify-content: flex-end;
-  }
-  h4,
-  p {
-    width: 50%;
-    padding-left: 1vmax;
-    font-family: $poppins;
-    font-size: 1.6vmax;
-    letter-spacing: 0.2vmax;
-  }
-}
-
-#checkout-bank-transfer-instruction-comment {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  div {
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    padding-top: 3vmax;
-    h3 {
-      height: 3vmax;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      font-family: $poppins;
-      font-size: 1.6vmax;
-      letter-spacing: 0.2vmax;
-    }
-  }
-}
-
-// BANK TRANSFER - END
+/* ---------------------------------------------------------
+COMPLETE
+--------------------------------------------------------- */
 
 .checkout-complete-container {
   height: 100%;
@@ -662,15 +452,9 @@ PAYMENT
   }
 }
 
-#checkout-pymt-sub-sub-pg {
-  padding: 4vmax 14vmax 4vmax 4vmax;
-}
-
-/*-----------------------------------------------------------------------------------------
+/* ---------------------------------------------------------
 NAVIGATION
------------------------------------------------------------------------------------------*/
-
-// CLASSES
+--------------------------------------------------------- */
 
 .checkout-navigation-icon-container {
   width: 6vmax;
@@ -733,8 +517,6 @@ NAVIGATION
   }
 }
 
-// IDS
-
 #checkout-navigation-container {
   width: 14vmax;
   height: calc(100% - 16vmax);
@@ -748,9 +530,95 @@ NAVIGATION
   padding: 26vh 0;
 }
 
-/*-----------------------------------------------------------------------------------------
+/* ---------------------------------------------------------
 GLOBAL
------------------------------------------------------------------------------------------*/
+--------------------------------------------------------- */
+
+// HEADINGS
+
+.checkout-heading {
+  height: 14vmax;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4vmax;
+  cursor: default;
+  // Text
+  font-family: $poppins;
+  font-size: 3.4vmax;
+  font-weight: bold;
+  letter-spacing: 0.2vmax;
+  color: $light-3;
+  &.valid {
+    color: $dark-3;
+    cursor: pointer;
+  }
+}
+
+.checkout-sub-heading {
+  height: 12vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-top-style: solid;
+  border-top-width: 0.15vmax;
+  border-top-color: $light-3;
+  // TEXT
+  font-family: $poppins;
+  font-size: 2.2vmax;
+  font-weight: bold;
+  letter-spacing: 0.1vmax;
+  color: $dark-1;
+}
+
+// INPUT FIELD
+
+.checkout-input-text {
+  height: 4.8vmax;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: $dark-1;
+  border-radius: 0vmax;
+  appearance: none;
+  padding: 0 1vmax;
+  // TEXT
+  font-family: $poppins;
+  font-size: 1.8vmax;
+  letter-spacing: 0.2vmax;
+  color: $dark-2;
+  &:focus {
+    outline: none;
+    border-bottom-color: $dark-3;
+    color: $dark-3;
+  }
+  &::placeholder {
+    color: $dark-1;
+  }
+}
+
+.checkout-radio-container {
+  height: 6vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  label {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: $poppins;
+    font-size: 1.6vmax;
+    letter-spacing: 0.2vmax;
+    padding-left: 2.6vmax;
+    color: $dark-2;
+    cursor: pointer;
+    &.disabled {
+      color: $light-3;
+      cursor: default;
+    }
+  }
+}
 
 .checkout-radio-error,
 .checkout-radio-valid {
@@ -772,7 +640,137 @@ GLOBAL
   color: #008000;
 }
 
+.checkout-input-error {
+  height: 2vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: $poppins;
+  font-size: 1.2vmax;
+  letter-spacing: 0.2vmax;
+  color: #bb0000;
+}
 
+// BUTTONS
+
+.checkout-buttons {
+  height: 24vmax;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 3vmax 6vmax;
+}
+
+.checkout-button {
+  height: 6vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1vmax;
+  background-color: $light-3;
+  font-family: $poppins;
+  font-size: 2vmax;
+  letter-spacing: 0.3vmax;
+  color: $dark-1;
+  &.valid {
+    border-color: $logo-3;
+    background-color: $logo-3;
+    color: $light-1;
+    cursor: pointer;
+  }
+}
+
+.checkout-button-small {
+  height: 4.8vmax;
+  width: 8vmax;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4vmax;
+  background-color: $logo-3;
+  // TEXT
+  font-family: $poppins;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+  color: $light-1;
+}
+
+// SECTIONS
+
+.checkout-section {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding-top: 60px;
+  overflow-y: scroll;
+  transition: all 0.5s ease;
+  opacity: 1;
+  &.left {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  &.right {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.checkout-sub-sections {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 14vmax 0 4vmax;
+}
+
+.checkout-sub-section {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// PRICING
+
+.checkout-pricing-container {
+  height: 6vmax;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &.total {
+    height: 10vmax;
+    h4,p {
+      font-size: 2.2vmax;
+      font-weight: bold;
+    }
+  }
+  h4 {
+    font-family: $poppins;
+    font-size: 1.8vmax;
+    letter-spacing: 0.1vmax;
+    color: $dark-1;
+  }
+  p {
+    font-family: $poppins;
+    font-size: 1.8vmax;
+    letter-spacing: 0.1vmax;
+    color: $dark-2;
+  }
+}
+
+.checkout-prices {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2vmax 0;
+}
+
+// OTHERS
 
 #checkout-loading-display {
   height: 5vmax;
@@ -817,146 +815,11 @@ GLOBAL
   z-index: -1;
 }
 
-.StripeElement {
-  height: 4.8vmax;
-  width: 100%;
-  // Border
-  border-width: 0.1vmax;
-  border-style: none none solid none;
-  border-bottom-color: $dark-3;
-  border-radius: 0vmax;
-  appearance: none;
-  // Spacing
-  padding: 1.5vmax 1vmax;
-  // Text
-  font-family: $poppins;
-  font-size: 1.8vmax;
-  // Text Colour
-  color: $dark-2;
-}
-
-/*=========================================================================================
+/* =========================================================
 DESKTOP CSS
-=========================================================================================*/
+========================================================= */
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
-
-  /* -------------------------------------------------------
-  GLOBAL
-  ------------------------------------------------------- */
-
-  #checkout {
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 8vmax 0 4vmax 36vw;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-  // HEADINGS
-
-  .checkout-heading {
-    height: 6vmax;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0;
-    // Text CSS
-    font-size: 1.6vmax;
-  }
-
-  .checkout-sub-heading {
-    height: 6vmax;
-    display: flex;
-    align-items: center;
-    // Text CSS
-    font-size: 1.2vmax;
-    letter-spacing: 0.15vmax;
-  }
-
-  // INPUT FIELDS
-
-  .checkout-input-text {
-    height: 2.4vmax;
-    border-width: 0.05vmax;
-    padding: 0 0.5vmax;
-    // TEXT
-    font-size: 0.8vmax;
-    letter-spacing: 0.1vmax;
-  }
-
-  .checkout-radio-container {
-    height: 3vmax;
-    label {
-      font-size: 1vmax;
-      letter-spacing: 0.1vmax;
-      padding-left: 1.6vmax;
-    }
-  }
-
-  .checkout-input-error {
-    height: 1.6vmax;
-    font-size: 0.7vmax;
-    letter-spacing: 0.1vmax;
-  }
-
-  // BUTTONS
-
-  .checkout-buttons {
-    height: 12vmax;
-    padding: 0;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
-  .checkout-button {
-    height: 3vmax;
-    width: 14vmax;
-    border-radius: 0.5vmax;
-    font-size: 1vmax;
-    letter-spacing: 0.2vmax;
-  }
-
-  .checkout-button-small {
-    height: 2.4vmax;
-    width: 6vmax;
-    border-radius: 0.2vmax;
-    // TEXT
-    font-size: 0.8vmax;
-    letter-spacing: 0.1vmax;
-  }
-
-  // SECTIONS
-
-  .checkout-section {
-    width: 64vw;
-    position: relative;
-    display: flex;
-    padding: 0 12vmax 0 6vmax;
-    overflow: hidden;
-    cursor: default;
-    &.left,&.right {
-      height: 6vmax;
-      transform: translateX(0);
-      opacity: 1;
-    }
-    .cart {
-      height: 79vmax;
-    }
-    .shipping {
-      height: 90vmax;
-    }
-    .payment {
-      height: 45vmax;
-    }
-  }
-
-  .checkout-sub-sections {
-    padding: 0;
-  }
 
   /* -------------------------------------------------------
   SUMMARY
@@ -1134,29 +997,26 @@ DESKTOP CSS
 
   .checkout-address {
     padding: 1vmax 2vmax;
-    &.saved {
-      height: 10vmax;
-      padding: 1vmax 0;
-      p {
-        letter-spacing: 0.1vmax;
-        font-size: 1.2vmax;
-      }
+  }
+
+  .checkout-saved-address {
+    height: 10vmax;
+    padding: 1vmax 0;
+    p {
+      letter-spacing: 0.1vmax;
+      font-size: 1.2vmax;
     }
-    &.new {
-      height: 38vmax;
+    div {
+      height: 2vmax;
+      padding: 0 0 0 4.1vmax;
+      // TEXT
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
     }
   }
 
-  .checkout-saved-address-line {
-    height: 2vmax;
-    padding: 0 0 0 4.1vmax;
-    // TEXT
-    font-size: 1vmax;
-    letter-spacing: 0.1vmax;
-  }
-
-
-  #checkout-new-address {
+  .checkout-new-address {
+    height: 38vmax;
     label {
       padding: 0.5vmax 0.5vmax 0.25vmax 0;
       font-size: 0.8vmax;
@@ -1168,40 +1028,42 @@ DESKTOP CSS
   }
 
   /* -------------------------------------------------------
-  OPTIMISATION COMPLETED
+  PRICING
   ------------------------------------------------------- */
 
-  .checkout-navigation-icon-container {
+  .checkout-payment-bank-container {
+    height: 38.5vmax;
+  }
+
+  
+  #checkout-payment-bank-instruction {
+    padding: 1.5vmax 0;
+  }
+
+  .checkout-payment-bank-instruction-line {
     height: 3vmax;
-    width: 3vmax;
-    border-width: 0.1vmax;
+    justify-content: center;
+    h4,
+    p {
+      width: 40%;
+      padding-right: 0.5vmax;
+      font-size: 1vmax;
+      letter-spacing: 0.1vmax;
+    }
   }
 
-  #checkout-pymt-sub-sub-pg {
-    padding: 1vmax 2vmax;
+  #checkout-payment-bank-instruction-comment {
+    div {
+      width: 50%;
+      padding-top: 1.5vmax;
+      h3 {
+        height: 2vmax;
+        width: 100%;
+        font-size: 1vmax;
+        letter-spacing: 0.1vmax;
+      }
+    }
   }
-
-  #checkout-navigation-container {
-    height: 30vh;
-    width: 3vmax;
-    top: 35vh;
-    right: 4.5vmax;
-    padding: 0;
-  }
-
-  #checkout-pymt-bank-tsfr,
-  #checkout-pymt-card,
-  #checkout-pymt-bank-tsfr-cntn {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  /*---------------------------------------------------------------------------------------
-  PAYMENT
-  ---------------------------------------------------------------------------------------*/
-
-  // CARD - START
 
   .checkout-payment-card-container {
     height: 19.5vmax;
@@ -1235,43 +1097,9 @@ DESKTOP CSS
     font-size: 0.9vmax;
   }
 
-  // CARD - END
-  // BANK TRANSFER - START
-
-  .checkout-payment-bank-transfer-container {
-    height: 38.5vmax;
-  }
-
-  #checkout-payment-bank-transfer-instruction {
-    padding: 1.5vmax 0;
-  }
-
-  .checkout-bank-transfer-instruction-line {
-    height: 3vmax;
-    justify-content: center;
-    h4,
-    p {
-      width: 40%;
-      padding-right: 0.5vmax;
-      font-size: 1vmax;
-      letter-spacing: 0.1vmax;
-    }
-  }
-
-  #checkout-bank-transfer-instruction-comment {
-    div {
-      width: 50%;
-      padding-top: 1.5vmax;
-      h3 {
-        height: 2vmax;
-        width: 100%;
-        font-size: 1vmax;
-        letter-spacing: 0.1vmax;
-      }
-    }
-  }
-
-  // BANK TRANSFER - END
+  /* -------------------------------------------------------
+  COMPLETE
+  ------------------------------------------------------- */
 
   .checkout-complete-container {
     height: 100vh;
@@ -1288,17 +1116,79 @@ DESKTOP CSS
       letter-spacing: 0.1vmax;
     }
   }
+  
+  /* -------------------------------------------------------
+  NAVIGATION
+  ------------------------------------------------------- */
+  
+  .checkout-navigation-icon-container {
+    height: 3vmax;
+    width: 3vmax;
+    border-width: 0.1vmax;
+  }
 
-  /*---------------------------------------------------------------------------------------
-  GLOBAL
-  ---------------------------------------------------------------------------------------*/
-
-  .checkout-element-hide {
-    margin: 0;
-    border: 0;
+  #checkout-navigation-container {
+    height: 30vh;
+    width: 3vmax;
+    top: 35vh;
+    right: 4.5vmax;
     padding: 0;
-    height: 0;
-    overflow: hidden;
+  }
+
+  /* -------------------------------------------------------
+  GLOBAL
+  ------------------------------------------------------- */
+
+  #checkout {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 8vmax 0 4vmax 36vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  // HEADINGS
+
+  .checkout-heading {
+    height: 6vmax;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    // Text CSS
+    font-size: 1.6vmax;
+  }
+
+  .checkout-sub-heading {
+    height: 6vmax;
+    display: flex;
+    align-items: center;
+    // Text CSS
+    font-size: 1.2vmax;
+    letter-spacing: 0.15vmax;
+  }
+
+  // INPUT FIELDS
+
+  .checkout-input-text {
+    height: 2.4vmax;
+    border-width: 0.05vmax;
+    padding: 0 0.5vmax;
+    // TEXT
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  .checkout-radio-container {
+    height: 3vmax;
+    label {
+      font-size: 0.8vmax;
+      letter-spacing: 0.1vmax;
+      padding-left: 1.6vmax;
+    }
   }
 
   .checkout-radio-error,
@@ -1309,6 +1199,69 @@ DESKTOP CSS
     letter-spacing: 0.1vmax;
   }
 
+  .checkout-input-error {
+    height: 1.6vmax;
+    font-size: 0.7vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  // BUTTONS
+
+  .checkout-buttons {
+    height: 12vmax;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .checkout-button {
+    height: 3vmax;
+    width: 14vmax;
+    border-radius: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.2vmax;
+  }
+
+  .checkout-button-small {
+    height: 2.4vmax;
+    width: 6vmax;
+    border-radius: 0.2vmax;
+    // TEXT
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
+
+  // SECTIONS
+
+  .checkout-section {
+    width: 64vw;
+    position: relative;
+    display: flex;
+    padding: 0 12vmax 0 6vmax;
+    overflow: hidden;
+    cursor: default;
+    &.left,&.right {
+      height: 6vmax;
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .cart {
+      height: 79vmax;
+    }
+    .shipping {
+      height: 90vmax;
+    }
+    .payment {
+      height: 45vmax;
+    }
+  }
+
+  .checkout-sub-sections {
+    padding: 0;
+  }
+
+  // OTHERS
+  
   #checkout-loading-display {
     height: 2.5vmax;
     width: 20vmax;
@@ -1330,8 +1283,16 @@ DESKTOP CSS
   #checkout-loading-display.hide {
     transform: translateY(2.5vmax);
   }
+
+  .checkout-element-hide {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+  }
 }
 
-/*=========================================================================================
+/* =========================================================
 END
-=========================================================================================*/
+========================================================= */

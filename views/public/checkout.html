@@ -143,7 +143,7 @@
     ---------------------------------------------------------------------------------->
 
     <div class="checkout-section cart" id="checkout-cart">
-      <h2 class="checkout-heading valid" id="checkout-cart-hdng">Cart</h2>
+      <h2 class="checkout-heading valid" id="checkout-cart-heading">Cart</h2>
 
       <div class="checkout-sub-sections">
 
@@ -242,7 +242,7 @@
     ---------------------------------------------------------------------------------->
 
     <div class="checkout-section shipping right" id="checkout-shipping">
-      <h2 class="checkout-heading" id="checkout-shpg-hdng">Shipping</h2>
+      <h2 class="checkout-heading" id="checkout-shipping-heading">Shipping</h2>
 
       <div class="checkout-sub-sections">
 
@@ -264,11 +264,11 @@
           </div>
           <div id="checkout-address-saved-error" class="checkout-radio-error checkout-element-hide"></div>
 
-          <div class="checkout-address saved checkout-element-hide" id="checkout-saved-address"></div>
+          <div class="checkout-address checkout-saved-address checkout-element-hide" id="checkout-saved-address"></div>
 
           <!---------------------------------------------------------------------------
-            NEW ADDRESS
-            ---------------------------------------------------------------------------->
+          NEW ADDRESS
+          ---------------------------------------------------------------------------->
 
           <div class="checkout-radio-container">
             <input type="radio" name="address" id="checkout-address-new" value="new"
@@ -276,7 +276,7 @@
             <label for="checkout-address-new">New Address</label>
           </div>
 
-          <div class="checkout-address new checkout-element-hide" id="checkout-new-address">
+          <div class="checkout-address checkout-new-address checkout-element-hide" id="checkout-new-address">
             <label for="checkout-new-address-unit" class="unit">Unit (optional)</label>
             <label for="checkout-new-address-street-number" class="street-number">Street No.</label>
             <input type="text" name="unit" class="checkout-input-text unit" id="checkout-new-address-unit"
@@ -322,27 +322,27 @@
         </div>
 
         <!-----------------------------------------------------------------------------
-            SHIPPING METHOD
-            ------------------------------------------------------------------------------>
+        SHIPPING METHOD
+        ------------------------------------------------------------------------------>
 
         <div class="checkout-sub-section">
           <h3 class="checkout-sub-heading">
             Shipping Method
           </h3>
           <div class="checkout-radio-container">
-            <input type="radio" name="shippingMethod" id="checkout-shpg-mthd-inp-pckp"
+            <input type="radio" name="shippingMethod" id="checkout-shipping-method-pickup"
               onchange="checkout.shipping.method.select('pickup');" />
-            <label for="checkout-shpg-mthd-inp-pckp">Pickup</label>
+            <label for="checkout-shipping-method-pickup">Pickup</label>
           </div>
           <div class="checkout-radio-container">
-            <input type="radio" name="shippingMethod" id="checkout-shpg-mthd-inp-trck"
+            <input type="radio" name="shippingMethod" id="checkout-shipping-method-tracked"
               onchange="checkout.shipping.method.select('tracked');" />
-            <label for="checkout-shpg-mthd-inp-trck">Tracked</label>
+            <label for="checkout-shipping-method-tracked">Tracked</label>
           </div>
           <div class="checkout-radio-container">
-            <input type="radio" name="shippingMethod" id="checkout-shpg-mthd-inp-crr"
+            <input type="radio" name="shippingMethod" id="checkout-shipping-method-courier"
               onchange="checkout.shipping.method.select('courier');" />
-            <label for="checkout-shpg-mthd-inp-crr">Courier</label>
+            <label for="checkout-shipping-method-courier">Courier</label>
           </div>
         </div>
 
@@ -371,53 +371,57 @@
         </div>
       </div>
       <!-----------------------------------------------------------------------------
-          CONTINUE BUTTON
-          ------------------------------------------------------------------------------>
+      CONTINUE BUTTON
+      ------------------------------------------------------------------------------>
+
       <div class="checkout-buttons">
-        <button class="checkout-button valid" id="checkout-element-button-shipping-back">
-          Back
-        </button>
-        <button class="checkout-button" id="checkout-element-button-shipping-next">
-          Next
-        </button>
+        <button class="checkout-button valid" id="checkout-shipping-back">Back</button>
+        <button class="checkout-button" id="checkout-shipping-next">Next</button>
       </div>
     </div>
 
-    <!---------------------------------------------------------------------------------
-      PAYMENT PAGE
-      ---------------------------------------------------------------------------------->
+    <!-------------------------------------------------------------------------------
+    PAYMENT PAGE
+    -------------------------------------------------------------------------------->
 
     <div class="checkout-section payment right" id="checkout-payment">
-      <h2 class="checkout-heading" id="checkout-pymt-hdng">
-        Payment
-      </h2>
-      <div class="checkout-sub-sections" id="checkout-pymt-sub-sub-pg">
-        <div id="checkout-pymt-bank-tsfr">
+      <h2 class="checkout-heading" id="checkout-payment-heading">Payment</h2>
+
+      <div class="checkout-sub-sections">
+
+        <!---------------------------------------------------------------------------
+        BANK TRANSFER
+        ---------------------------------------------------------------------------->
+
+        <div class="checkout-sub-section">
+
           <div class="checkout-radio-container">
-            <input type="radio" name="paymentMethod" id="checkout-payment-method-bank-transfer"
+            <input type="radio" name="paymentMethod" id="checkout-payment-method-bank"
               onchange="checkout.payment.method.select('bankTransfer',true);" />
-            <label for="checkout-payment-method-bank-transfer">Bank Transfer</label>
+            <label for="checkout-payment-method-bank">Bank Transfer</label>
           </div>
           <div class="checkout-radio-valid">Receive 5% Credit</div>
-          <div class="checkout-element-hide checkout-payment-bank-transfer-container" id="checkout-pymt-bank-tsfr-cntn">
-            <div id="checkout-payment-bank-transfer-instruction">
-              <div class="checkout-bank-transfer-instruction-line">
+
+          <div class="checkout-payment-bank-container checkout-element-hide checkout-element-hide"
+            id="checkout-payment-bank-container">
+            <div id="checkout-payment-bank-instruction">
+              <div class="checkout-payment-bank-instruction-line">
                 <h4>Account Number:</h4>
                 <p>12-3456-7891011-12</p>
               </div>
-              <div class="checkout-bank-transfer-instruction-line">
+              <div class="checkout-payment-bank-instruction-line">
                 <h4>Payee Name:</h4>
                 <p>CreataBase</p>
               </div>
-              <div class="checkout-bank-transfer-instruction-line">
+              <div class="checkout-payment-bank-instruction-line">
                 <h4>Reference:</h4>
                 <p id="checkout-bank-transfer-reference"></p>
               </div>
-              <div class="checkout-bank-transfer-instruction-line">
+              <div class="checkout-payment-bank-instruction-line">
                 <h4>Minimum Amount:</h4>
                 <p id="checkout-bank-transfer-amount"></p>
               </div>
-              <div id="checkout-bank-transfer-instruction-comment">
+              <div id="checkout-payment-bank-instruction-comment">
                 <div>
                   <h3>You can transfer more than</h3>
                   <h3>the minimum amount and will</h3>
@@ -427,23 +431,33 @@
                 </div>
               </div>
             </div>
+
+            <!-----------------------------------------------------------------------
+            BANK TRANSFER - CONTINUE BUTTON
+            ------------------------------------------------------------------------>
+
             <div class="checkout-buttons">
-              <button class="checkout-button valid" id="checkout-element-button-payment-bank-back">
-                Back
-              </button>
-              <button class="checkout-button" id="checkout-element-button-payment-bank-paid">
-                Paid
-              </button>
+              <button class="checkout-button valid" id="checkout-payment-bank-back">Back</button>
+              <button class="checkout-button" id="checkout-payment-bank-paid">Paid</button>
             </div>
+
           </div>
+
         </div>
-        <div id="checkout-pymt-card">
+
+        <!---------------------------------------------------------------------------
+        CARD PAYMENT
+        ---------------------------------------------------------------------------->
+
+        <div class="checkout-sub-section">
+
           <div class="checkout-radio-container">
             <input type="radio" name="paymentMethod" id="checkout-payment-method-card"
               onchange="checkout.payment.method.select('card', true);" />
             <label for="checkout-payment-method-card">Debit Card or Credit Card</label>
           </div>
-          <div class="checkout-element-hide checkout-payment-card-container" id="checkout-pymt-card-cntn">
+
+          <div class="checkout-payment-card-container checkout-element-hide" id="checkout-payment-card-container">
             <form action="/charge" method="post" id="checkout-pymt-card-form">
               <div class="checkout-payment-card-input-container" id="checkout-card-number-container">
                 <label for="checkout-card-num">Card Number</label>
@@ -461,22 +475,26 @@
                 <p class=" checkout-input-error" id="checkout-card-cvc-error"></p>
               </div>
             </form>
+
+            <!---------------------------------------------------------------------
+            CARD PAYMENT - CONTINUE BUTTON
+            ---------------------------------------------------------------------->
+
             <div class="checkout-buttons">
-              <button class="checkout-button valid" id="checkout-element-button-payment-card-back">
-                Back
-              </button>
-              <button class="checkout-button" id="checkout-element-button-payment-card-pay">
-                Pay
-              </button>
+              <button class="checkout-button valid" id="checkout-payment-card-back">Back</button>
+              <button class="checkout-button" id="checkout-payment-card-pay">Pay</button>
             </div>
+
           </div>
+
         </div>
+
       </div>
     </div>
 
     <!---------------------------------------------------------------------------------
-      COMPLETE PAGE
-      ---------------------------------------------------------------------------------->
+    COMPLETE PAGE
+    ---------------------------------------------------------------------------------->
 
     <div id="checkout-complete-container" class="checkout-complete-container checkout-element-hide">
       <div id="checkout-complete-loading-icon">

@@ -2118,9 +2118,12 @@ nav .nav-darken-overlay {
 /*=========================================================================================
 END
 =========================================================================================*/
-/*=========================================================================================
+/* =========================================================
 VARIABLES
-=========================================================================================*/
+========================================================= */
+/* =========================================================
+MOBILE CSS
+========================================================= */
 /* ---------------------------------------------------------
 ELEMENT DEFAULT CSS RESET
 --------------------------------------------------------- */
@@ -2152,304 +2155,6 @@ button {
   line-height: normal;
   text-align: inherit;
   outline: none;
-}
-
-/* ---------------------------------------------------------
-GLOBAL
---------------------------------------------------------- */
-.checkout-heading {
-  height: 14vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-bottom: 4vmax;
-  cursor: default;
-  font-family: "Poppins", sans-serif;
-  font-size: 3.4vmax;
-  font-weight: bold;
-  letter-spacing: 0.2vmax;
-  color: #c7c2d5;
-}
-
-.checkout-heading.valid {
-  color: #2d283c;
-  cursor: pointer;
-}
-
-.checkout-sub-heading {
-  height: 12vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-top-style: solid;
-  border-top-width: 0.15vmax;
-  border-top-color: #c7c2d5;
-  font-family: "Poppins", sans-serif;
-  font-size: 2.2vmax;
-  font-weight: bold;
-  letter-spacing: 0.1vmax;
-  color: #877da9;
-}
-
-.checkout-input-text {
-  height: 4.8vmax;
-  border-width: 0.1vmax;
-  border-style: none none solid none;
-  border-bottom-color: #877da9;
-  border-radius: 0vmax;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  padding: 0 1vmax;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.8vmax;
-  letter-spacing: 0.2vmax;
-  color: #322d41;
-}
-
-.checkout-input-text:focus {
-  outline: none;
-  border-bottom-color: #2d283c;
-  color: #2d283c;
-}
-
-.checkout-input-text::-webkit-input-placeholder {
-  color: #877da9;
-}
-
-.checkout-input-text:-ms-input-placeholder {
-  color: #877da9;
-}
-
-.checkout-input-text::-ms-input-placeholder {
-  color: #877da9;
-}
-
-.checkout-input-text::placeholder {
-  color: #877da9;
-}
-
-.checkout-radio-container {
-  height: 6vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.checkout-radio-container label {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.6vmax;
-  letter-spacing: 0.2vmax;
-  padding-left: 2.6vmax;
-  color: #322d41;
-  cursor: pointer;
-}
-
-.checkout-radio-container label.disabled {
-  color: #c7c2d5;
-  cursor: default;
-}
-
-.checkout-input-error {
-  height: 2vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.2vmax;
-  letter-spacing: 0.2vmax;
-  color: #bb0000;
-}
-
-.checkout-buttons {
-  height: 24vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  padding: 3vmax 6vmax;
-}
-
-.checkout-button {
-  height: 6vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 1vmax;
-  background-color: #c7c2d5;
-  font-family: "Poppins", sans-serif;
-  font-size: 2vmax;
-  letter-spacing: 0.3vmax;
-  color: #877da9;
-}
-
-.checkout-button.valid {
-  border-color: #4e4ed6;
-  background-color: #4e4ed6;
-  color: white;
-  cursor: pointer;
-}
-
-.checkout-button-small {
-  height: 4.8vmax;
-  width: 8vmax;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 0.4vmax;
-  background-color: #4e4ed6;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.6vmax;
-  letter-spacing: 0.2vmax;
-  color: white;
-}
-
-.checkout-section {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  padding-top: 60px;
-  overflow-y: scroll;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  opacity: 1;
-}
-
-.checkout-section.left {
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-  opacity: 0;
-}
-
-.checkout-section.right {
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
-  opacity: 0;
-}
-
-.checkout-sub-sections {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding: 0 14vmax 0 4vmax;
-}
-
-.checkout-sub-section {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.checkout-pricing-container {
-  height: 6vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.checkout-pricing-container.total {
-  height: 10vmax;
-}
-
-.checkout-pricing-container.total h4, .checkout-pricing-container.total p {
-  font-size: 2.2vmax;
-  font-weight: bold;
-}
-
-.checkout-pricing-container h4 {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.8vmax;
-  letter-spacing: 0.1vmax;
-  color: #877da9;
-}
-
-.checkout-pricing-container p {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.8vmax;
-  letter-spacing: 0.1vmax;
-  color: #322d41;
-}
-
-.checkout-prices {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding: 2vmax 0;
 }
 
 /* ---------------------------------------------------------
@@ -2717,12 +2422,12 @@ SHIPPING
   transition: all 0.5s ease;
 }
 
-.checkout-address.saved {
+.checkout-saved-address {
   height: 16vmax;
   padding: 2vmax 0;
 }
 
-.checkout-address.saved p {
+.checkout-saved-address p {
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -2740,11 +2445,7 @@ SHIPPING
   color: #c7c2d5;
 }
 
-.checkout-address.new {
-  height: 70vmax;
-}
-
-.checkout-saved-address-line {
+.checkout-saved-address div {
   height: 3vmax;
   width: 100%;
   display: -webkit-box;
@@ -2760,44 +2461,131 @@ SHIPPING
   color: #c7c2d5;
 }
 
-#checkout-new-address label {
+.checkout-new-address {
+  height: 70vmax;
+}
+
+.checkout-new-address label {
   padding: 1vmax 1vmax 0.5vmax 0;
   font-family: "Poppins", sans-serif;
   font-size: 1.4vmax;
   color: #877da9;
 }
 
-#checkout-new-address .unit, #checkout-new-address .postcode {
+.checkout-new-address .unit, .checkout-new-address .postcode {
   width: 60%;
 }
 
-#checkout-new-address .street-number {
+.checkout-new-address .street-number {
   width: 35%;
 }
 
-#checkout-new-address .street-name, #checkout-new-address .suburb, #checkout-new-address .city, #checkout-new-address .country {
+.checkout-new-address .street-name, .checkout-new-address .suburb, .checkout-new-address .city, .checkout-new-address .country {
   width: 100%;
 }
 
 /* ---------------------------------------------------------
-OPTIMISATION COMPLETED
---------------------------------------------------------- */
-/*-----------------------------------------------------------------------------------------
 PAYMENT
------------------------------------------------------------------------------------------*/
-#checkout-pymt-card {
+--------------------------------------------------------- */
+.checkout-payment-bank-container,
+.checkout-payment-card-container {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-#checkout-pymt-card-cntn {
+.checkout-payment-bank-container {
+  height: 68vmax;
+}
+
+#checkout-payment-bank-instruction {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 3vmax 0;
+}
+
+.checkout-payment-bank-instruction-line {
+  height: 5vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.checkout-payment-bank-instruction-line h4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.checkout-payment-bank-instruction-line h4,
+.checkout-payment-bank-instruction-line p {
+  width: 50%;
+  padding-left: 1vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+}
+
+#checkout-payment-bank-instruction-comment {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#checkout-payment-bank-instruction-comment div {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  padding-top: 3vmax;
+}
+
+#checkout-payment-bank-instruction-comment div h3 {
+  height: 3vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
 }
 
 .checkout-payment-card-container {
   height: 47.6vmax;
-  overflow: hidden;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }
 
 #checkout-pymt-card-form {
@@ -2846,93 +2634,25 @@ PAYMENT
   width: 50%;
 }
 
-.checkout-payment-bank-transfer-container {
-  height: 68vmax;
-  overflow: hidden;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-#checkout-payment-bank-transfer-instruction {
+.StripeElement {
+  height: 4.8vmax;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding: 3vmax 0;
-}
-
-.checkout-bank-transfer-instruction-line {
-  height: 5vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.checkout-bank-transfer-instruction-line h4 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.checkout-bank-transfer-instruction-line h4,
-.checkout-bank-transfer-instruction-line p {
-  width: 50%;
-  padding-left: 1vmax;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: #2d283c;
+  border-radius: 0vmax;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 1.5vmax 1vmax;
   font-family: "Poppins", sans-serif;
-  font-size: 1.6vmax;
-  letter-spacing: 0.2vmax;
+  font-size: 1.8vmax;
+  color: #322d41;
 }
 
-#checkout-bank-transfer-instruction-comment {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#checkout-bank-transfer-instruction-comment div {
-  width: 80%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  padding-top: 3vmax;
-}
-
-#checkout-bank-transfer-instruction-comment div h3 {
-  height: 3vmax;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.6vmax;
-  letter-spacing: 0.2vmax;
-}
-
+/* ---------------------------------------------------------
+COMPLETE
+--------------------------------------------------------- */
 .checkout-complete-container {
   height: 100%;
   width: 100%;
@@ -2985,13 +2705,9 @@ PAYMENT
   color: #c7c2d5;
 }
 
-#checkout-pymt-sub-sub-pg {
-  padding: 4vmax 14vmax 4vmax 4vmax;
-}
-
-/*-----------------------------------------------------------------------------------------
+/* ---------------------------------------------------------
 NAVIGATION
------------------------------------------------------------------------------------------*/
+--------------------------------------------------------- */
 .checkout-navigation-icon-container {
   width: 6vmax;
   height: 6vmax;
@@ -3089,9 +2805,127 @@ NAVIGATION
   padding: 26vh 0;
 }
 
-/*-----------------------------------------------------------------------------------------
+/* ---------------------------------------------------------
 GLOBAL
------------------------------------------------------------------------------------------*/
+--------------------------------------------------------- */
+.checkout-heading {
+  height: 14vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 4vmax;
+  cursor: default;
+  font-family: "Poppins", sans-serif;
+  font-size: 3.4vmax;
+  font-weight: bold;
+  letter-spacing: 0.2vmax;
+  color: #c7c2d5;
+}
+
+.checkout-heading.valid {
+  color: #2d283c;
+  cursor: pointer;
+}
+
+.checkout-sub-heading {
+  height: 12vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top-style: solid;
+  border-top-width: 0.15vmax;
+  border-top-color: #c7c2d5;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.2vmax;
+  font-weight: bold;
+  letter-spacing: 0.1vmax;
+  color: #877da9;
+}
+
+.checkout-input-text {
+  height: 4.8vmax;
+  border-width: 0.1vmax;
+  border-style: none none solid none;
+  border-bottom-color: #877da9;
+  border-radius: 0vmax;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0 1vmax;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8vmax;
+  letter-spacing: 0.2vmax;
+  color: #322d41;
+}
+
+.checkout-input-text:focus {
+  outline: none;
+  border-bottom-color: #2d283c;
+  color: #2d283c;
+}
+
+.checkout-input-text::-webkit-input-placeholder {
+  color: #877da9;
+}
+
+.checkout-input-text:-ms-input-placeholder {
+  color: #877da9;
+}
+
+.checkout-input-text::-ms-input-placeholder {
+  color: #877da9;
+}
+
+.checkout-input-text::placeholder {
+  color: #877da9;
+}
+
+.checkout-radio-container {
+  height: 6vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.checkout-radio-container label {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+  padding-left: 2.6vmax;
+  color: #322d41;
+  cursor: pointer;
+}
+
+.checkout-radio-container label.disabled {
+  color: #c7c2d5;
+  cursor: default;
+}
+
 .checkout-radio-error,
 .checkout-radio-valid {
   height: 3vmax;
@@ -3114,6 +2948,183 @@ GLOBAL
 
 .checkout-radio-valid {
   color: #008000;
+}
+
+.checkout-input-error {
+  height: 2vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2vmax;
+  letter-spacing: 0.2vmax;
+  color: #bb0000;
+}
+
+.checkout-buttons {
+  height: 24vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 3vmax 6vmax;
+}
+
+.checkout-button {
+  height: 6vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 1vmax;
+  background-color: #c7c2d5;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vmax;
+  letter-spacing: 0.3vmax;
+  color: #877da9;
+}
+
+.checkout-button.valid {
+  border-color: #4e4ed6;
+  background-color: #4e4ed6;
+  color: white;
+  cursor: pointer;
+}
+
+.checkout-button-small {
+  height: 4.8vmax;
+  width: 8vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0.4vmax;
+  background-color: #4e4ed6;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6vmax;
+  letter-spacing: 0.2vmax;
+  color: white;
+}
+
+.checkout-section {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  padding-top: 60px;
+  overflow-y: scroll;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+
+.checkout-section.left {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  opacity: 0;
+}
+
+.checkout-section.right {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  opacity: 0;
+}
+
+.checkout-sub-sections {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 0 14vmax 0 4vmax;
+}
+
+.checkout-sub-section {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.checkout-pricing-container {
+  height: 6vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.checkout-pricing-container.total {
+  height: 10vmax;
+}
+
+.checkout-pricing-container.total h4, .checkout-pricing-container.total p {
+  font-size: 2.2vmax;
+  font-weight: bold;
+}
+
+.checkout-pricing-container h4 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8vmax;
+  letter-spacing: 0.1vmax;
+  color: #877da9;
+}
+
+.checkout-pricing-container p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8vmax;
+  letter-spacing: 0.1vmax;
+  color: #322d41;
+}
+
+.checkout-prices {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 2vmax 0;
 }
 
 #checkout-loading-display {
@@ -3171,136 +3182,10 @@ GLOBAL
   z-index: -1;
 }
 
-.StripeElement {
-  height: 4.8vmax;
-  width: 100%;
-  border-width: 0.1vmax;
-  border-style: none none solid none;
-  border-bottom-color: #2d283c;
-  border-radius: 0vmax;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  padding: 1.5vmax 1vmax;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.8vmax;
-  color: #322d41;
-}
-
-/*=========================================================================================
+/* =========================================================
 DESKTOP CSS
-=========================================================================================*/
+========================================================= */
 @media only screen and (min-width: 850px) and (orientation: landscape) {
-  /* -------------------------------------------------------
-  GLOBAL
-  ------------------------------------------------------- */
-  #checkout {
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 8vmax 0 4vmax 36vw;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  .checkout-heading {
-    height: 6vmax;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 0;
-    font-size: 1.6vmax;
-  }
-  .checkout-sub-heading {
-    height: 6vmax;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    font-size: 1.2vmax;
-    letter-spacing: 0.15vmax;
-  }
-  .checkout-input-text {
-    height: 2.4vmax;
-    border-width: 0.05vmax;
-    padding: 0 0.5vmax;
-    font-size: 0.8vmax;
-    letter-spacing: 0.1vmax;
-  }
-  .checkout-radio-container {
-    height: 3vmax;
-  }
-  .checkout-radio-container label {
-    font-size: 1vmax;
-    letter-spacing: 0.1vmax;
-    padding-left: 1.6vmax;
-  }
-  .checkout-input-error {
-    height: 1.6vmax;
-    font-size: 0.7vmax;
-    letter-spacing: 0.1vmax;
-  }
-  .checkout-buttons {
-    height: 12vmax;
-    padding: 0;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
-  .checkout-button {
-    height: 3vmax;
-    width: 14vmax;
-    border-radius: 0.5vmax;
-    font-size: 1vmax;
-    letter-spacing: 0.2vmax;
-  }
-  .checkout-button-small {
-    height: 2.4vmax;
-    width: 6vmax;
-    border-radius: 0.2vmax;
-    font-size: 0.8vmax;
-    letter-spacing: 0.1vmax;
-  }
-  .checkout-section {
-    width: 64vw;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 0 12vmax 0 6vmax;
-    overflow: hidden;
-    cursor: default;
-  }
-  .checkout-section.left, .checkout-section.right {
-    height: 6vmax;
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-    opacity: 1;
-  }
-  .checkout-section .cart {
-    height: 79vmax;
-  }
-  .checkout-section .shipping {
-    height: 90vmax;
-  }
-  .checkout-section .payment {
-    height: 45vmax;
-  }
-  .checkout-sub-sections {
-    padding: 0;
-  }
   /* -------------------------------------------------------
   SUMMARY
   ------------------------------------------------------- */
@@ -3481,24 +3366,24 @@ DESKTOP CSS
   .checkout-address {
     padding: 1vmax 2vmax;
   }
-  .checkout-address.saved {
+  .checkout-saved-address {
     height: 10vmax;
     padding: 1vmax 0;
   }
-  .checkout-address.saved p {
+  .checkout-saved-address p {
     letter-spacing: 0.1vmax;
     font-size: 1.2vmax;
   }
-  .checkout-address.new {
-    height: 38vmax;
-  }
-  .checkout-saved-address-line {
+  .checkout-saved-address div {
     height: 2vmax;
     padding: 0 0 0 4.1vmax;
     font-size: 1vmax;
     letter-spacing: 0.1vmax;
   }
-  #checkout-new-address label {
+  .checkout-new-address {
+    height: 38vmax;
+  }
+  .checkout-new-address label {
     padding: 0.5vmax 0.5vmax 0.25vmax 0;
     font-size: 0.8vmax;
   }
@@ -3506,36 +3391,37 @@ DESKTOP CSS
     display: none;
   }
   /* -------------------------------------------------------
-  OPTIMISATION COMPLETED
+  PRICING
   ------------------------------------------------------- */
-  .checkout-navigation-icon-container {
+  .checkout-payment-bank-container {
+    height: 38.5vmax;
+  }
+  #checkout-payment-bank-instruction {
+    padding: 1.5vmax 0;
+  }
+  .checkout-payment-bank-instruction-line {
     height: 3vmax;
-    width: 3vmax;
-    border-width: 0.1vmax;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-  #checkout-pymt-sub-sub-pg {
-    padding: 1vmax 2vmax;
+  .checkout-payment-bank-instruction-line h4,
+  .checkout-payment-bank-instruction-line p {
+    width: 40%;
+    padding-right: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
   }
-  #checkout-navigation-container {
-    height: 30vh;
-    width: 3vmax;
-    top: 35vh;
-    right: 4.5vmax;
-    padding: 0;
+  #checkout-payment-bank-instruction-comment div {
+    width: 50%;
+    padding-top: 1.5vmax;
   }
-  #checkout-pymt-bank-tsfr,
-  #checkout-pymt-card,
-  #checkout-pymt-bank-tsfr-cntn {
+  #checkout-payment-bank-instruction-comment div h3 {
+    height: 2vmax;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
   }
-  /*---------------------------------------------------------------------------------------
-  PAYMENT
-  ---------------------------------------------------------------------------------------*/
   .checkout-payment-card-container {
     height: 19.5vmax;
   }
@@ -3560,35 +3446,9 @@ DESKTOP CSS
     padding: 0.75vmax 0.5vmax;
     font-size: 0.9vmax;
   }
-  .checkout-payment-bank-transfer-container {
-    height: 38.5vmax;
-  }
-  #checkout-payment-bank-transfer-instruction {
-    padding: 1.5vmax 0;
-  }
-  .checkout-bank-transfer-instruction-line {
-    height: 3vmax;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  .checkout-bank-transfer-instruction-line h4,
-  .checkout-bank-transfer-instruction-line p {
-    width: 40%;
-    padding-right: 0.5vmax;
-    font-size: 1vmax;
-    letter-spacing: 0.1vmax;
-  }
-  #checkout-bank-transfer-instruction-comment div {
-    width: 50%;
-    padding-top: 1.5vmax;
-  }
-  #checkout-bank-transfer-instruction-comment div h3 {
-    height: 2vmax;
-    width: 100%;
-    font-size: 1vmax;
-    letter-spacing: 0.1vmax;
-  }
+  /* -------------------------------------------------------
+  COMPLETE
+  ------------------------------------------------------- */
   .checkout-complete-container {
     height: 100vh;
     width: 100vw;
@@ -3604,15 +3464,73 @@ DESKTOP CSS
     font-size: 1vmax;
     letter-spacing: 0.1vmax;
   }
-  /*---------------------------------------------------------------------------------------
-  GLOBAL
-  ---------------------------------------------------------------------------------------*/
-  .checkout-element-hide {
-    margin: 0;
-    border: 0;
+  /* -------------------------------------------------------
+  NAVIGATION
+  ------------------------------------------------------- */
+  .checkout-navigation-icon-container {
+    height: 3vmax;
+    width: 3vmax;
+    border-width: 0.1vmax;
+  }
+  #checkout-navigation-container {
+    height: 30vh;
+    width: 3vmax;
+    top: 35vh;
+    right: 4.5vmax;
     padding: 0;
-    height: 0;
-    overflow: hidden;
+  }
+  /* -------------------------------------------------------
+  GLOBAL
+  ------------------------------------------------------- */
+  #checkout {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 8vmax 0 4vmax 36vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .checkout-heading {
+    height: 6vmax;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0;
+    font-size: 1.6vmax;
+  }
+  .checkout-sub-heading {
+    height: 6vmax;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 1.2vmax;
+    letter-spacing: 0.15vmax;
+  }
+  .checkout-input-text {
+    height: 2.4vmax;
+    border-width: 0.05vmax;
+    padding: 0 0.5vmax;
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .checkout-radio-container {
+    height: 3vmax;
+  }
+  .checkout-radio-container label {
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+    padding-left: 1.6vmax;
   }
   .checkout-radio-error,
   .checkout-radio-valid {
@@ -3620,6 +3538,63 @@ DESKTOP CSS
     padding-left: 2.6vmax;
     font-size: 0.7vmax;
     letter-spacing: 0.1vmax;
+  }
+  .checkout-input-error {
+    height: 1.6vmax;
+    font-size: 0.7vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .checkout-buttons {
+    height: 12vmax;
+    padding: 0;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .checkout-button {
+    height: 3vmax;
+    width: 14vmax;
+    border-radius: 0.5vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.2vmax;
+  }
+  .checkout-button-small {
+    height: 2.4vmax;
+    width: 6vmax;
+    border-radius: 0.2vmax;
+    font-size: 0.8vmax;
+    letter-spacing: 0.1vmax;
+  }
+  .checkout-section {
+    width: 64vw;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 12vmax 0 6vmax;
+    overflow: hidden;
+    cursor: default;
+  }
+  .checkout-section.left, .checkout-section.right {
+    height: 6vmax;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  .checkout-section .cart {
+    height: 79vmax;
+  }
+  .checkout-section .shipping {
+    height: 90vmax;
+  }
+  .checkout-section .payment {
+    height: 45vmax;
+  }
+  .checkout-sub-sections {
+    padding: 0;
   }
   #checkout-loading-display {
     height: 2.5vmax;
@@ -3642,8 +3617,15 @@ DESKTOP CSS
     -webkit-transform: translateY(2.5vmax);
             transform: translateY(2.5vmax);
   }
+  .checkout-element-hide {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+  }
 }
 
-/*=========================================================================================
+/* =========================================================
 END
-=========================================================================================*/
+========================================================= */
