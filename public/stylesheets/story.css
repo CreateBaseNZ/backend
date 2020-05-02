@@ -2118,3 +2118,118 @@ nav .nav-darken-overlay {
 /*=========================================================================================
 END
 =========================================================================================*/
+body {
+  background: white;
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.main-page {
+  margin-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  color: #2d283c;
+  font-weight: 700;
+  font-size: 8.5vmin;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  color: #2d283c;
+  font-weight: 700;
+  font-size: 8.5vmin;
+  color: white;
+  text-shadow: -1px -1px 0 #2d283c, 1px -1px 0 #2d283c, -1px 1px 0 #2d283c, 1px 1px 0 #2d283c;
+}
+
+h1, h2, h3 {
+  letter-spacing: 0.3vmin;
+}
+
+.beg-section-container, .story-section-container,
+.end-story-container, .current-endev-container {
+  border: thin solid red;
+  padding: 3em;
+}
+
+.beg-story-content, .story-content, .end-story-content {
+  margin: 1.5em 0 2.5em;
+  border-left: 0.1em solid #322d41;
+  padding-left: 2em;
+}
+
+.beg-story-content p, .story-content p, .end-story-content p {
+  font-size: 0.9em;
+  margin-bottom: 1.5em;
+  line-height: 190%;
+}
+
+.link-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.link-container h3 {
+  font-size: 1em;
+  margin-right: 1em;
+  color: #322d41;
+}
+
+.link-container img {
+  height: 1.5em;
+}
+
+.img-banner-container {
+  height: 5em;
+  width: 100%;
+}
+
+.story-section-container h1, .end-story-container h1 {
+  font-size: 1.6em;
+}
+
+.beg-section-container .img-banner-container {
+  background-image: url(../../public/images/landing-4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.story-section-container .img-banner-container {
+  background-image: url(../../public/images/uoa-logo.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.end-story-container .img-banner-container {
+  background-image: url(../../public/images/landing-4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.story-content .link-container img {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  height: 1.5em;
+}
+
+.current-endev-container h1 {
+  font-size: 5vmin;
+}
+/*# sourceMappingURL=story.css.map */

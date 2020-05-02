@@ -1,1 +1,127 @@
 @import "global/all";
+
+//mobile & default styling
+
+body {
+    background: $light-1;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: $poppins;
+}
+
+.main-page {
+    margin-top: $top-bar-height;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1{
+    font-family: $montserrat;
+    color: $dark-3;
+    font-weight: 700;
+    font-size: 8.5vmin;
+}
+
+h2{
+    font-family: $montserrat;
+    color: $dark-3;
+    font-weight: 700;
+    font-size: 8.5vmin;
+    color: white;
+    text-shadow:
+    -1px -1px 0 $dark-3,
+    1px -1px 0 $dark-3,
+    -1px 1px 0 $dark-3,
+    1px 1px 0 $dark-3;  
+}
+
+h1, h2, h3{
+    letter-spacing: 0.3vmin;
+}
+
+.beg-section-container, .story-section-container, 
+.end-story-container, .current-endev-container{
+    border: thin solid red;
+    padding: 3em;
+}
+
+.beg-story-content, .story-content, .end-story-content{
+    margin: 1.5em 0 2.5em;
+    border-left: 0.1em solid $dark-2;
+    padding-left: 2em;
+    p{
+        font-size: 0.9em;
+        margin-bottom: 1.5em;
+        line-height: 190%;
+    }
+}
+
+.link-container{
+    display: flex;
+    h3{
+        font-size: 1em;
+        margin-right: 1em;
+        color: $dark-2;
+    }
+    img{
+        height: 1.5em;
+    }
+}
+
+.img-banner-container{
+    height: 5em;
+    width: 100%;
+}
+
+.story-section-container, .end-story-container,{
+    h1{
+        font-size: 1.6em;
+    }
+}
+
+.beg-section-container{
+    .img-banner-container{
+        background-image: url(../../public/images/landing-4.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+.story-section-container{
+    .img-banner-container{
+        background-image: url(../../public/images/uoa-logo.png);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+.end-story-container{
+    .img-banner-container{
+        background-image: url(../../public/images/landing-4.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+.story-content{
+    .link-container{
+        img{
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+            height: 1.5em;
+        }
+    }
+}
+
+.current-endev-container{
+    h1{
+        font-size: 5vmin;
+    }
+}
