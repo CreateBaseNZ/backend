@@ -1003,9 +1003,9 @@ nav .nav-top-bar .nav-mobile-out {
   display: none;
   cursor: pointer;
   position: relative;
-  height: 20px;
-  width: 20px;
-  margin-bottom: 20px;
+  height: 25px;
+  width: 25px;
+  margin-bottom: 7.5px;
 }
 
 nav .nav-top-bar .nav-in #nav-user-in,
@@ -1013,8 +1013,8 @@ nav .nav-top-bar .nav-mobile-out #nav-user-in {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  top: 2.5px;
-  left: -25px;
+  bottom: 0;
+  left: 0;
   height: 25px;
   width: 25px;
   border-radius: 50%;
@@ -1046,8 +1046,8 @@ nav .nav-top-bar .nav-mobile-out #nav-user-out {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  top: 10px;
-  left: -20px;
+  bottom: 2.5px;
+  left: 2.5px;
   height: 20px;
   width: 20px;
   -webkit-transform: scaleX(1);
@@ -1074,9 +1074,10 @@ nav .nav-top-bar .nav-mobile-out .nav-user-x {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  top: 10px;
-  left: -20px;
+  bottom: 2.5px;
+  left: 2.5px;
   width: 20px;
+  height: 20px;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   padding: 0;
