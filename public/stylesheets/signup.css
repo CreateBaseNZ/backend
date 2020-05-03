@@ -1372,13 +1372,13 @@ nav .nav-darken-overlay {
   }
   nav .nav-top-bar .nav-in #nav-user-in,
   nav .nav-top-bar .nav-in #nav-user-out {
-    top: 0;
+    bottom: -3.25px;
     left: 0;
     height: 30px;
     width: 30px;
   }
   nav .nav-top-bar .nav-in .nav-user-x {
-    top: -2.5px;
+    bottom: -6.25px;
     left: -2.5px;
     padding: 10px;
   }
@@ -2895,4 +2895,3 @@ nav .nav-top-bar .nav-desktop-out {
     }
   }
 }
-/*# sourceMappingURL=signup.css.map */
