@@ -160,6 +160,23 @@ button {
   }
 }
 
+.grad-btn {
+  cursor: pointer;
+  color: $light-1;
+  letter-spacing: 0.1em;
+  border-radius: 5px;
+  font-family: $poppins;
+  padding: 1.2em 2.5em;
+  background-image: linear-gradient(to right, $logo-1 0%, $logo-3 50%, $logo-1 100%);
+  background-size: 200% auto;
+  transition: background-position 0.5s;
+  border: 0;
+
+  &:hover {
+    background-position: right center;
+  }
+}
+
 /*======================================================================
 Carl's Button Design (Start)
 ======================================================================*/

@@ -24,7 +24,7 @@ markdown = """
       </div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
-        <a href="/signup" id="nav-user-signup">SIGN UP</a>
+        <a href="/signup" class="grad-btn" id="nav-user-signup">SIGN UP</a>
       </div>
     </div>
     <div class="nav-side-menus">
