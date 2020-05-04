@@ -2446,10 +2446,6 @@ body {
   width: 100%;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-headers {
-  display: none;
-}
-
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container {
   width: 100%;
   position: relative;
@@ -2720,7 +2716,6 @@ body {
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container {
   cursor: pointer;
   background: white;
-  border-radius: 5px;
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
@@ -2733,27 +2728,25 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 80%;
-  height: 4em;
+  width: auto;
+  height: auto;
   margin: 4vmax auto 2vmax auto;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .action-btn {
-  color: #4bf0ea;
-  height: 100%;
-  width: 100%;
-  padding: 0;
+  color: white;
   letter-spacing: 0.1em;
-  font-weight: 300;
+  background-image: -webkit-gradient(linear, left top, right top, from(#77A1D3), color-stop(51%, #79CBCA), to(#77A1D3));
+  background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%);
+  border-radius: 5px;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .action-btn::before, .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .action-btn::after {
   display: none;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container:hover {
-  -webkit-box-shadow: 0 0 20px -16px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 0 20px -16px rgba(0, 0, 0, 0.5);
+.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .action-btn:hover {
+  background-position: right center;
 }
 
 .profile-tabs-section #settings-tab:checked ~ #settings-area {
@@ -2833,7 +2826,7 @@ body {
   }
   .my-profile-section .profile-edit #profile-edit-btn,
   .my-profile-section .profile-edit #profile-save-btn {
-    padding: 10px 20px;
+    padding: 1em 3em;
   }
   .profile-tabs-section {
     -ms-grid-row: 1;
@@ -2846,6 +2839,7 @@ body {
         -ms-flex-pack: end;
             justify-content: flex-end;
     height: calc(100vh - 60px);
+    min-height: 550px;
     padding: 5vh calc(55px + 1vw) 5vh 0;
   }
   .profile-tabs-section label {
@@ -2866,8 +2860,12 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     padding: 0 3vw;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap {
@@ -2875,29 +2873,6 @@ body {
         -ms-flex-order: 1;
             order: 1;
     width: 100%;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-headers {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    margin-top: 1vh;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-headers #curr-proj-header,
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-headers #arch-proj-header {
-    color: #6853d9;
-    font-weight: 600;
-    letter-spacing: 1px;
-    font-size: calc(12px + 0.2vw);
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-headers #arch-proj-header {
-    color: #c7c2d5;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container {
     width: auto;
@@ -2922,7 +2897,7 @@ body {
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card {
     height: 55vh;
     width: calc(55vh * 0.7);
-    min-height: 400px;
+    min-height: 320px;
     min-width: 280px;
     margin: 0 1vw;
     padding: 0 2vw;
@@ -3026,7 +3001,7 @@ body {
         -ms-flex-align: start;
             align-items: flex-start;
     min-height: 80px;
-    max-height: 10vh;
+    height: 10vh;
     overflow-y: auto;
     margin: auto 0;
   }
@@ -3054,8 +3029,9 @@ body {
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-sep {
     -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+    overflow: auto;
     width: 1px;
     background: #c7c2d5;
     margin: 2.5vh 0 1.5vh 0;
@@ -3084,7 +3060,7 @@ body {
     border-color: #877da9;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons *::after {
-    border-color: #f8f8f8;
+    border-color: white;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons .proj-save,
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons .proj-cancel {
@@ -3095,10 +3071,20 @@ body {
     color: #2d283c;
     margin-bottom: 3vh;
   }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:last-of-type::after {
+    content: '';
+    width: 1px;
+    height: 1px;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin-top: -1px;
+    margin-right: -3vw;
+    visibility: hidden;
+  }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover {
     background: white;
-    -webkit-box-shadow: 0 0 16px 4px #f8f8f8;
-            box-shadow: 0 0 16px 4px #f8f8f8;
+    -webkit-box-shadow: 0 0 30px -20px black;
+            box-shadow: 0 0 30px -20px black;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .fa-bookmark {
     color: #877da9;
@@ -3151,34 +3137,20 @@ body {
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-modified {
     color: #877da9;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:last-of-type::after {
-    content: '';
-    width: 1vw;
-    height: 2vh;
-    -ms-flex-item-align: end;
-        align-self: flex-end;
-    margin-right: -3vw;
-    visibility: hidden;
-  }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container::-webkit-scrollbar {
-    height: 10px;
+    height: 5px;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container::-webkit-scrollbar-track {
     background: #f8f8f8;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container::-webkit-scrollbar-thumb {
-    background: -webkit-gradient(linear, left bottom, left top, from(#f8f8f8), color-stop(44%, #f8f8f8), color-stop(45%, #6853d9), color-stop(55%, #6853d9), color-stop(56%, #f8f8f8), to(#f8f8f8));
-    background: linear-gradient(to top, #f8f8f8 0%, #f8f8f8 44%, #6853d9 45%, #6853d9 55%, #f8f8f8 56%, #f8f8f8 100%);
+    background: -webkit-gradient(linear, left bottom, left top, from(#f8f8f8), color-stop(39%, #f8f8f8), color-stop(40%, #c7c2d5), color-stop(60%, #c7c2d5), color-stop(61%, #f8f8f8), to(#f8f8f8));
+    background: linear-gradient(to top, #f8f8f8 0%, #f8f8f8 39%, #c7c2d5 40%, #c7c2d5 60%, #f8f8f8 61%, #f8f8f8 100%);
     border-radius: 5px;
-    -webkit-transition: background-color 1s ease;
-    transition: background-color 1s ease;
-    height: 10px;
+    height: 5px;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container::-webkit-scrollbar-thumb:hover, .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container::-webkit-scrollbar-thumb:active {
-    background: #6853d9;
-    -webkit-transition: background-color 1s ease;
-    transition: background-color 1s ease;
-    height: 20px;
+    background: #c7c2d5;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container:hover ~ .scroll-cover {
     background: transparent;
@@ -3206,6 +3178,7 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    margin: 0;
   }
   .profile-tabs-section #billing-area {
     -webkit-box-orient: vertical;

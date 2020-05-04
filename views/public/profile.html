@@ -119,12 +119,8 @@
       <label for="settings-tab"><span>Settings</span><i class="fas fa-user-cog"></i></label>
       <div class="main-area" id="projects-area">
         <div class="proj-wrap">
-          <div class="proj-headers">
-            <p id="curr-proj-header">CURRENT PROJECTS</p>
-            <p id="arch-proj-header">ARCHIVED PROJECTS</p>
-          </div>
           <div class="proj-scroll-container">
-            <div class="proj-card proj-card-active">
+            <div class="proj-card">
               <i class="far fa-bookmark"></i>
               <p class="proj-date">03/04/2020</p>
               <p class="proj-name">Project Name Is Long Too long really really long</p>
@@ -149,6 +145,50 @@
             <div class="proj-card">
               <i class="far fa-bookmark"></i>
               <p class="proj-date">03/04/2020</p>
+              <p class="proj-name">Project Name Is Long Too long really really long</p>
+              <p class="proj-files">Little_Box_Pen_holder.stl <i class="fas fa-save"></i></p>
+              <div class="proj-details">
+                <p class="proj-material">petg</p>
+                <p class="proj-quality">normal</p>
+                <p class="proj-strength">normal</p>
+                <p class="proj-colour">black</p>
+              </div>
+              <div class="proj-notes">
+                <p onmouseover="onNotes(true);" onmouseout="onNotes(false);">No notes</p>
+              </div>
+              <div class="proj-sep"></div>
+              <div class="proj-buttons">
+                <button class="proj-edit action-btn">Edit</button>
+                <button class="proj-cancel action-btn">Cancel</button>
+                <button class="proj-save action-btn">Save</button>
+              </div>
+              <p class="proj-modified">Last modified 21/05/2020</p>
+            </div>
+            <div class="proj-card">
+              <i class="far fa-bookmark"></i>
+              <p class="proj-date">03/04/2020</p>
+              <p class="proj-name">Project Name Is Long Too long really really long</p>
+              <p class="proj-files">Little_Box_Pen_holder.stl <i class="fas fa-save"></i></p>
+              <div class="proj-details">
+                <p class="proj-material">petg</p>
+                <p class="proj-quality">normal</p>
+                <p class="proj-strength">normal</p>
+                <p class="proj-colour">black</p>
+              </div>
+              <div class="proj-notes">
+                <p onmouseover="onNotes(true);" onmouseout="onNotes(false);">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa laudantium recusandae nulla ut amet, veniam magni in dolores quis blanditiis fuga debitis ullam reprehenderit illo dolor. Natus sed odio veritatis est vel! Ducimus illo excepturi nemo consectetur, praesentium provident earum dolorum sapiente! Quod quibusdam voluptatem repudiandae iste, optio totam laboriosam omnis voluptatibus temporibus. Esse harum odit blanditiis. Molestiae doloribus sed tenetur in non facilis adipisci accusamus esse voluptatem incidunt temporibus officia obcaecati commodi numquam, qui laudantium quae id illum exercitationem blanditiis quasi soluta quis quos iure? Laborum nostrum voluptates vitae ullam exercitationem eligendi incidunt possimus corrupti dolore. Dolorem, earum magnam!</p>
+              </div>
+              <div class="proj-sep"></div>
+              <div class="proj-buttons">
+                <button class="proj-edit action-btn">Edit</button>
+                <button class="proj-cancel action-btn">Cancel</button>
+                <button class="proj-save action-btn">Save</button>
+              </div>
+              <p class="proj-modified">Last modified 21/05/2020</p>
+            </div>
+            <div class="proj-card">
+              <i class="far fa-bookmark"></i>
+              <p class="proj-date">03/04/2020</p>
               <p class="proj-name">My First Project</p>
               <p class="proj-files">Little_Box_Pen_holder.stl <i class="fas fa-save"></i></p>
               <div class="proj-details">
@@ -157,8 +197,8 @@
                 <p class="proj-strength">normal</p>
                 <p class="proj-colour">black</p>
               </div>
-              <div class="proj-notes" onmouseover="onNotes(true);" onmouseout="onNotes(false);">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa laudantium recusandae nulla ut amet, veniam magni in dolores quis blanditiis fuga debitis ullam reprehenderit illo dolor. Natus sed odio veritatis est vel! Ducimus illo excepturi nemo consectetur, praesentium provident earum dolorum sapiente! Quod quibusdam voluptatem repudiandae iste, optio totam laboriosam omnis voluptatibus temporibus. Esse harum odit blanditiis. Molestiae doloribus sed tenetur in non facilis adipisci accusamus esse voluptatem incidunt temporibus officia obcaecati commodi numquam, qui laudantium quae id illum exercitationem blanditiis quasi soluta quis quos iure? Laborum nostrum voluptates vitae ullam exercitationem eligendi incidunt possimus corrupti dolore. Dolorem, earum magnam!</p>
+              <div class="proj-notes">
+                <p onmouseover="onNotes(true);" onmouseout="onNotes(false);">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa laudantium recusandae nulla ut amet, veniam magni in dolores quis blanditiis fuga debitis ullam reprehenderit illo dolor. Natus sed odio veritatis est vel! Ducimus illo excepturi nemo consectetur, praesentium provident earum dolorum sapiente! Quod quibusdam voluptatem repudiandae iste, optio totam laboriosam omnis voluptatibus temporibus. Esse harum odit blanditiis. Molestiae doloribus sed tenetur in non facilis adipisci accusamus esse voluptatem incidunt temporibus officia obcaecati commodi numquam, qui laudantium quae id illum exercitationem blanditiis quasi soluta quis quos iure? Laborum nostrum voluptates vitae ullam exercitationem eligendi incidunt possimus corrupti dolore. Dolorem, earum magnam!</p>
               </div>
               <div class="proj-sep"></div>
               <div class="proj-buttons">
