@@ -1615,7 +1615,7 @@ nav .nav-darken-overlay {
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
     font-size: 1.2vh;
-    color: #c7c2d5;
+    color: red;
     letter-spacing: 2px;
     font-weight: 800;
     padding-bottom: 4vh;
@@ -2171,11 +2171,11 @@ h4 {
 
 #particles-js .banner-text h1 {
   font-family: "Poppins", sans-serif;
-  font-weight: 100;
+  font-weight: 400;
   color: #2d283c;
   letter-spacing: 2vmin;
   margin-bottom: 1vh;
-  font-size: 3vh;
+  font-size: 5vh;
 }
 
 #particles-js .banner-text .reg-btn {

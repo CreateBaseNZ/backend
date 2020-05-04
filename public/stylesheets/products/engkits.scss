@@ -18,3 +18,41 @@ body{
 .action-btn-container{
     margin: auto;
 }
+
+.gradient-btn{
+    margin: 10px;
+    padding: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    border: none;
+    display: block;
+    background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%)
+}
+
+.gradient-btn:hover {
+    background-position: right center;
+}
+
+
+.btn-grad {
+    margin: 10px;
+    padding: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%)
+}
+
+.btn-grad:hover { background-position: right center; }

@@ -1615,7 +1615,7 @@ nav .nav-darken-overlay {
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
     font-size: 1.2vh;
-    color: #c7c2d5;
+    color: red;
     letter-spacing: 2px;
     font-weight: 800;
     padding-bottom: 4vh;

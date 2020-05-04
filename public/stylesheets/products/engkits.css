@@ -1003,9 +1003,9 @@ nav .nav-top-bar .nav-mobile-out {
   display: none;
   cursor: pointer;
   position: relative;
-  height: 25px;
-  width: 25px;
-  margin-bottom: 7.5px;
+  height: 20px;
+  width: 20px;
+  margin-bottom: 20px;
 }
 
 nav .nav-top-bar .nav-in #nav-user-in,
@@ -1013,8 +1013,8 @@ nav .nav-top-bar .nav-mobile-out #nav-user-in {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 2.5px;
+  left: -25px;
   height: 25px;
   width: 25px;
   border-radius: 50%;
@@ -1046,8 +1046,8 @@ nav .nav-top-bar .nav-mobile-out #nav-user-out {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  bottom: 2.5px;
-  left: 2.5px;
+  top: 10px;
+  left: -20px;
   height: 20px;
   width: 20px;
   -webkit-transform: scaleX(1);
@@ -1074,10 +1074,9 @@ nav .nav-top-bar .nav-mobile-out .nav-user-x {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  bottom: 2.5px;
-  left: 2.5px;
+  top: 10px;
+  left: -20px;
   width: 20px;
-  height: 20px;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   padding: 0;
@@ -1372,13 +1371,13 @@ nav .nav-darken-overlay {
   }
   nav .nav-top-bar .nav-in #nav-user-in,
   nav .nav-top-bar .nav-in #nav-user-out {
-    bottom: -3.25px;
+    top: 0;
     left: 0;
     height: 30px;
     width: 30px;
   }
   nav .nav-top-bar .nav-in .nav-user-x {
-    bottom: -6.25px;
+    top: -2.5px;
     left: -2.5px;
     padding: 10px;
   }
@@ -1615,7 +1614,7 @@ nav .nav-darken-overlay {
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
     font-size: 1.2vh;
-    color: #c7c2d5;
+    color: red;
     letter-spacing: 2px;
     font-weight: 800;
     padding-bottom: 4vh;
@@ -2141,3 +2140,49 @@ body {
 .action-btn-container {
   margin: auto;
 }
+
+.gradient-btn {
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
+  -webkit-box-shadow: 0 0 20px #eee;
+          box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  border: none;
+  display: block;
+  background-image: -webkit-gradient(linear, left top, right top, from(#314755), color-stop(51%, #26a0da), to(#314755));
+  background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+}
+
+.gradient-btn:hover {
+  background-position: right center;
+}
+
+.btn-grad {
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
+  -webkit-box-shadow: 0 0 20px #eee;
+          box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  background-image: -webkit-gradient(linear, left top, right top, from(#314755), color-stop(51%, #26a0da), to(#314755));
+  background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+}
+
+.btn-grad:hover {
+  background-position: right center;
+}
+/*# sourceMappingURL=engkits.css.map */
