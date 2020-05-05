@@ -237,8 +237,8 @@ button {
   border-radius: 5px;
   font-family: "Poppins", sans-serif;
   padding: 1.2em 2.5em;
-  background-image: -webkit-gradient(linear, left top, right top, from(#8258dc), color-stop(50%, #4e4ed6), to(#8258dc));
-  background-image: linear-gradient(to right, #8258dc 0%, #4e4ed6 50%, #8258dc 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(#4e4ed6), color-stop(50%, #8258dc), to(#4e4ed6));
+  background-image: linear-gradient(to right, #4e4ed6 0%, #8258dc 50%, #4e4ed6 100%);
   background-size: 200% auto;
   -webkit-transition: background-position 0.5s;
   transition: background-position 0.5s;

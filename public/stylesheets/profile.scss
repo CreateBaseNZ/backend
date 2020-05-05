@@ -228,7 +228,7 @@ body {
     }
 
     &:hover {
-      color: $logo-2;
+      color: $logo-1;
     }
 
     &:not(:last-of-type) {
@@ -471,8 +471,6 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: auto;
-      height: auto;
       margin: 4vmax auto 2vmax auto;
     }
   }
@@ -568,6 +566,22 @@ body {
     flex: none;
     width: calc(100px + 5vw);
     letter-spacing: 0.2vw;
+
+    i {
+      display: none;
+    }
+
+    span {
+      display: inline-block;
+    }
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
   }
 
   .main-area {
@@ -849,6 +863,10 @@ body {
       justify-content: center;
       align-items: center;
       margin: 0;
+
+      .grad-btn {
+        background-image: linear-gradient(to right, $logo-1 0%, $logo-3 50%, $logo-1 100%);
+      }
     }
   }
 
@@ -1103,10 +1121,6 @@ body {
           color: $logo-2;
         }
       }
-    }
-
-    * {
-      // border: thin solid red;
     }
   }
 
