@@ -101,7 +101,7 @@ body {
 
   #profile-bio {
     grid-area: bio;
-    margin: 3vh 2vw 0 2vw;
+    margin: 3vh 2.5vw 0 2.5vw;
     font-size: calc(10px + 0.2vw);
     line-height: 150%;
     overflow-wrap: break-word;
@@ -159,7 +159,8 @@ body {
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 10px $highlight;
+      border-color: $light-1;
+      box-shadow: 0 0 8px -2px $highlight;
     }
   }
 
@@ -201,8 +202,8 @@ body {
 
     &:checked + label {
       transition: 0.2s ease-out;
-      color: $dark-2;
-      border-bottom: 3px solid $logo-2;
+      color: $logo-2;
+      border-bottom: 2px solid $logo-2;
       box-shadow: 0 10px 10px -18px black;
     }
   }
@@ -223,8 +224,12 @@ body {
     font-weight: 600;
     font-size: calc(10px + 0.2vw);
 
+    span {
+      display: none;
+    }
+
     &:hover {
-      color: $logo-2;
+      color: $logo-1;
     }
 
     &:not(:last-of-type) {
@@ -240,29 +245,32 @@ body {
         z-index: 2;
       }
     }
+
+    &:first-of-type {
+      padding-left: 7.5vw;
+    }
+
+    &:last-of-type {
+      padding-right: 7.5vw;
+    }
   }
 
   .main-area {
     display: none;
     flex: 1 0 100%;
-    border-bottom: 2vh solid $light-1;
     height: auto;
+    border-bottom: 2vh solid $light-1;
   }
 
   #projects-tab:checked ~ #projects-area {
     display: flex;
     flex-direction: column;
     background: $light-2;
-    border-bottom: none;
     padding-bottom: 2vmax;
     
     .proj-wrap {
       order: 2;
       width: 100%;
-
-      .proj-headers {
-        display: none;
-      }
 
       .proj-scroll-container {
         width: 100%;
@@ -282,6 +290,7 @@ body {
           flex-direction: column;
           align-items: center;
           border-radius: 5px;
+          box-shadow: 0 0 30px -20px black;
 
           .fa-bookmark {
             margin: 1vmax -1vmax 0 0;
@@ -450,25 +459,6 @@ body {
             .proj-modified { color: $dark-1; }
           }
         }
-
-        &::-webkit-scrollbar {
-          height: 10px;
-        }
-        &::-webkit-scrollbar-track {
-          background: $light-1;
-        }
-        &::-webkit-scrollbar-thumb {
-          background: linear-gradient(to top, $light-1 0%, $light-1 44%, $logo-2 45%, $logo-2 55%, $light-1 56%, $light-1 100%);
-          border-radius: 5px;
-          transition: background-color 1s ease;
-          height: 10px;
-        }
-        &::-webkit-scrollbar-thumb:hover,
-        &::-webkit-scrollbar-thumb:active {
-          background: $logo-2;
-          transition: background-color 1s ease;
-          height: 20px;
-        }
       }
   
       .scroll-cover {
@@ -479,35 +469,14 @@ body {
     .new-proj-container {
       cursor: pointer;
       background: $light-1;
-      border-radius: 5px;
       order: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 80%;
-      height: 8em;
       margin: 4vmax auto 2vmax auto;
-      
-      &:hover {
-        box-shadow: 0 0 20px -16px rgba(0,0,0,0.5);
-        button {
-          color: $highlight;
-      
-          &::before {
-            border-width: 2px;
-            border-top-width: 0;
-            border-color: $highlight;
-            height: 0;
-            width: 50%;
-            transition: border-width 0.25s ease 0.2s, border-top-width 0.001s ease 0.2s, height 0.1s ease 0.2s, width 0.15s ease 0.3s, border-color 0.45s ease;
-          } 
-          &::after {
-            border-width: 3px;
-            border-bottom: 0px;
-            width: 100%;
-            transition: width 0.2s ease, border-width 0.001s ease;
-          }
-        }
+
+      .grad-btn {
+        box-shadow: 0 0 30px -10px black;
       }
     }
   }
@@ -525,7 +494,7 @@ body {
   grid-template-areas:
   "profile tabs";
   grid-template-columns: 30vw 70vw;
-  min-height: calc(100vh - #{$top-bar-height});
+  height: calc(100vh - #{$top-bar-height});
 }
   
 .my-profile-section {
@@ -586,7 +555,7 @@ body {
     
     #profile-edit-btn,
     #profile-save-btn {
-      padding: 10px 20px;
+      padding: 1em 3em;
     }
   }
 }
@@ -595,56 +564,56 @@ body {
   grid-area: tabs;
   align-items: flex-start;
   justify-content: flex-end;
+  height: calc(100vh - #{$top-bar-height});
+  min-height: 550px;
   padding: 5vh calc(55px + 1vw) 5vh 0;
 
   label {
     flex: none;
     width: calc(100px + 5vw);
     letter-spacing: 0.2vw;
+
+    i {
+      display: none;
+    }
+
+    span {
+      display: inline-block;
+    }
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
   }
 
   .main-area {
     height: calc(100% - 5vh);
-    font-family: $poppins;
     border: 0;
-    border-radius: 5px;
-    font-family: $poppins;
     width: 100%;
+    border-radius: 5px;
   }
 
-  #projects-area {
+  #projects-tab:checked ~ #projects-area {
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
     padding: 0 3vw;
 
     .proj-wrap {
+      order: 1;
       width: 100%;
 
-      .proj-headers {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-top: 1vh;
-  
-        #curr-proj-header,
-        #arch-proj-header {
-          color: $logo-2;
-          font-weight: 600;
-          letter-spacing: 1px;
-          font-size: calc(12px + 0.2vw);
-        }
-  
-        #arch-proj-header {
-          color: $light-3;
-        }
-      }
-
       .proj-scroll-container {
+        width: auto;
         position: relative;
         display: flex;
         flex-direction: row;
         overflow-x: auto;
-        overflow-y: scroll;
+        overflow-y: hidden;
         align-items: center;
         justify-content: flex-start;
         padding: 4vh 0;
@@ -652,16 +621,16 @@ body {
         .proj-card {
           height: 55vh;
           width: calc(55vh * 0.7);
-          min-height: 400px;
+          min-height: 320px;
           min-width: 280px;
           margin: 0 1vw;
           padding: 0 2vw;
           flex-shrink: 0;
-          background: $light-2;
           display: flex;
           flex-direction: column;
           align-items: center;
           border-radius: 5px;
+          box-shadow: none;
 
           .fa-bookmark {
             margin: 1vh 0 0 -1vw;
@@ -745,7 +714,7 @@ body {
             display: flex;
             align-items: flex-start;
             min-height: 80px;
-            max-height: 10vh;
+            height: 10vh;
             overflow-y: auto;
             margin: auto 0;
 
@@ -774,7 +743,8 @@ body {
           }
 
           .proj-sep {
-            flex: 1;
+            flex: auto;
+            overflow: auto;
             width: 1px;
             background: $light-3;
             margin: 2.5vh 0 1.5vh 0;
@@ -796,7 +766,7 @@ body {
                 border-color: $dark-1;
               }
               &::after {
-                border-color: $light-2;
+                border-color: $light-1;
               }
             }
 
@@ -812,9 +782,21 @@ body {
             margin-bottom: 3vh;
           }
 
+          &:last-of-type {
+            &::after {
+              content: '';
+              width: 1px;
+              height: 1px;
+              align-self: flex-end;
+              margin-top: -1px;
+              margin-right: -3vw;
+              visibility: hidden;
+            }
+          }
+
           &:hover {
             background: $light-1;
-            box-shadow: 0 0 16px 4px $light-2;
+            box-shadow: 0 0 30px -20px black;
             .fa-bookmark{ 
               color: $dark-1;
               &:hover { color: $highlight; }
@@ -848,36 +830,22 @@ body {
             }
             .proj-modified { color: $dark-1; }
           }
-
-          &:last-of-type {
-            &::after {
-              content: '';
-              width: 1vw;
-              height: 2vh;
-              align-self: flex-end;
-              margin-right: -3vw;
-              visibility: hidden;
-            }
-          }
         }
 
         &::-webkit-scrollbar {
-          height: 10px;
+          height: 5px;
         }
         &::-webkit-scrollbar-track {
-          background: $light-1;
+          background: $light-2;
         }
         &::-webkit-scrollbar-thumb {
-          background: linear-gradient(to top, $light-1 0%, $light-1 44%, $logo-2 45%, $logo-2 55%, $light-1 56%, $light-1 100%);
+          background: linear-gradient(to top, $light-2 0%, $light-2 39%, $light-3 40%, $light-3 60%, $light-2 61%, $light-2 100%);
           border-radius: 5px;
-          transition: background-color 1s ease;
-          height: 10px;
+          height: 5px;
         }
         &::-webkit-scrollbar-thumb:hover,
         &::-webkit-scrollbar-thumb:active {
-          background: $logo-2;
-          transition: background-color 1s ease;
-          height: 20px;
+          background: $light-3;
         }
       }
 
@@ -891,15 +859,21 @@ body {
         height: 10px;
         width: calc(70vw - 55px - 1vw - 6vw);
         margin-top: -10px;
-        background: $light-1;
+        background: $light-2;
         transition: background-color 0.2s ease-out;
       }
     }
 
     .new-proj-container {
+      order: 2;
       display: flex;
       justify-content: center;
       align-items: center;
+      margin: 0;
+
+      .grad-btn:hover {
+        box-shadow: 0 0 30px -8px black;
+      }
     }
   }
 
@@ -1154,10 +1128,6 @@ body {
           color: $logo-2;
         }
       }
-    }
-
-    * {
-      // border: thin solid red;
     }
   }
 

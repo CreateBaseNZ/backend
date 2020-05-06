@@ -44,7 +44,7 @@
       </div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
-        <a href="/signup" id="nav-user-signup">SIGN UP</a>
+        <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
       </div>
     </div>
     <div class="nav-side-menus">
@@ -96,11 +96,11 @@
   
 	<div id="profile-page">
     <div class="my-profile-section">
-      <div id="profile-pic">
+      <form id="profile-pic">
         <label for="profile-upload"><i class="far fa-edit"></i></label>
         <input type="file" id="profile-upload" onchange="loadFile(event)"></input>
         <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
-      </div>
+      </form>
       <p id="profile-name" data-placeholder="Display Name"></p>
       <p id="profile-location" data-info="Edit location under the Billing tab."></p>
       <p id="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
@@ -112,19 +112,15 @@
     </div>
     <div class="profile-tabs-section">
       <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="passTab(this);">
-      <label for="projects-tab">Projects</label>
+      <label for="projects-tab"><span>Projects</span><i class="fas fa-folder-open"></i></label>
       <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this);">
-      <label for="billing-tab">Billing</label>
+      <label for="billing-tab"><span>Billing</span><i class="fas fa-money-check"></i></label>
       <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this);">
-      <label for="settings-tab">Settings</label>
+      <label for="settings-tab"><span>Settings</span><i class="fas fa-user-cog"></i></label>
       <div class="main-area" id="projects-area">
         <div class="proj-wrap">
-          <div class="proj-headers">
-            <p id="curr-proj-header">CURRENT PROJECTS</p>
-            <p id="arch-proj-header">ARCHIVED PROJECTS</p>
-          </div>
           <div class="proj-scroll-container">
-            <div class="proj-card proj-card-active">
+            <div class="proj-card">
               <i class="far fa-bookmark"></i>
               <p class="proj-date">03/04/2020</p>
               <p class="proj-name">Project Name Is Long Too long really really long</p>
@@ -149,6 +145,50 @@
             <div class="proj-card">
               <i class="far fa-bookmark"></i>
               <p class="proj-date">03/04/2020</p>
+              <p class="proj-name">Project Name Is Long Too long really really long</p>
+              <p class="proj-files">Little_Box_Pen_holder.stl <i class="fas fa-save"></i></p>
+              <div class="proj-details">
+                <p class="proj-material">petg</p>
+                <p class="proj-quality">normal</p>
+                <p class="proj-strength">normal</p>
+                <p class="proj-colour">black</p>
+              </div>
+              <div class="proj-notes">
+                <p onmouseover="onNotes(true);" onmouseout="onNotes(false);">No notes</p>
+              </div>
+              <div class="proj-sep"></div>
+              <div class="proj-buttons">
+                <button class="proj-edit action-btn">Edit</button>
+                <button class="proj-cancel action-btn">Cancel</button>
+                <button class="proj-save action-btn">Save</button>
+              </div>
+              <p class="proj-modified">Last modified 21/05/2020</p>
+            </div>
+            <div class="proj-card">
+              <i class="far fa-bookmark"></i>
+              <p class="proj-date">03/04/2020</p>
+              <p class="proj-name">Project Name Is Long Too long really really long</p>
+              <p class="proj-files">Little_Box_Pen_holder.stl <i class="fas fa-save"></i></p>
+              <div class="proj-details">
+                <p class="proj-material">petg</p>
+                <p class="proj-quality">normal</p>
+                <p class="proj-strength">normal</p>
+                <p class="proj-colour">black</p>
+              </div>
+              <div class="proj-notes">
+                <p onmouseover="onNotes(true);" onmouseout="onNotes(false);">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa laudantium recusandae nulla ut amet, veniam magni in dolores quis blanditiis fuga debitis ullam reprehenderit illo dolor. Natus sed odio veritatis est vel! Ducimus illo excepturi nemo consectetur, praesentium provident earum dolorum sapiente! Quod quibusdam voluptatem repudiandae iste, optio totam laboriosam omnis voluptatibus temporibus. Esse harum odit blanditiis. Molestiae doloribus sed tenetur in non facilis adipisci accusamus esse voluptatem incidunt temporibus officia obcaecati commodi numquam, qui laudantium quae id illum exercitationem blanditiis quasi soluta quis quos iure? Laborum nostrum voluptates vitae ullam exercitationem eligendi incidunt possimus corrupti dolore. Dolorem, earum magnam!</p>
+              </div>
+              <div class="proj-sep"></div>
+              <div class="proj-buttons">
+                <button class="proj-edit action-btn">Edit</button>
+                <button class="proj-cancel action-btn">Cancel</button>
+                <button class="proj-save action-btn">Save</button>
+              </div>
+              <p class="proj-modified">Last modified 21/05/2020</p>
+            </div>
+            <div class="proj-card">
+              <i class="far fa-bookmark"></i>
+              <p class="proj-date">03/04/2020</p>
               <p class="proj-name">My First Project</p>
               <p class="proj-files">Little_Box_Pen_holder.stl <i class="fas fa-save"></i></p>
               <div class="proj-details">
@@ -157,8 +197,8 @@
                 <p class="proj-strength">normal</p>
                 <p class="proj-colour">black</p>
               </div>
-              <div class="proj-notes" onmouseover="onNotes(true);" onmouseout="onNotes(false);">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa laudantium recusandae nulla ut amet, veniam magni in dolores quis blanditiis fuga debitis ullam reprehenderit illo dolor. Natus sed odio veritatis est vel! Ducimus illo excepturi nemo consectetur, praesentium provident earum dolorum sapiente! Quod quibusdam voluptatem repudiandae iste, optio totam laboriosam omnis voluptatibus temporibus. Esse harum odit blanditiis. Molestiae doloribus sed tenetur in non facilis adipisci accusamus esse voluptatem incidunt temporibus officia obcaecati commodi numquam, qui laudantium quae id illum exercitationem blanditiis quasi soluta quis quos iure? Laborum nostrum voluptates vitae ullam exercitationem eligendi incidunt possimus corrupti dolore. Dolorem, earum magnam!</p>
+              <div class="proj-notes">
+                <p onmouseover="onNotes(true);" onmouseout="onNotes(false);">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa laudantium recusandae nulla ut amet, veniam magni in dolores quis blanditiis fuga debitis ullam reprehenderit illo dolor. Natus sed odio veritatis est vel! Ducimus illo excepturi nemo consectetur, praesentium provident earum dolorum sapiente! Quod quibusdam voluptatem repudiandae iste, optio totam laboriosam omnis voluptatibus temporibus. Esse harum odit blanditiis. Molestiae doloribus sed tenetur in non facilis adipisci accusamus esse voluptatem incidunt temporibus officia obcaecati commodi numquam, qui laudantium quae id illum exercitationem blanditiis quasi soluta quis quos iure? Laborum nostrum voluptates vitae ullam exercitationem eligendi incidunt possimus corrupti dolore. Dolorem, earum magnam!</p>
               </div>
               <div class="proj-sep"></div>
               <div class="proj-buttons">
@@ -172,7 +212,7 @@
           <div class="scroll-cover"></div>
         </div>
         <div class="new-proj-container">
-          <button class="action-btn">+ Start New Project</button>
+          <button class="grad-btn">+ Start New Project</button>
         </div>
       </div>
       <div class="main-area" id="billing-area">
@@ -334,7 +374,10 @@
 
 <script>
   const profileUploadPicture = async () => {
-    const file = new FormData(document.querySelector("#profile-upload-form"));
+    const file = new FormData(document.getElementById("profile-pic"));
+    for (var [key, value] of file.entries()) { 
+      console.log(key, value);
+    }
     let data;
     try {
       data = (await axios.post("/profile/customer/update/picture", file))["data"];

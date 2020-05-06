@@ -230,6 +230,25 @@ button {
   transition: width 0.2s ease, border-width 0.001s ease;
 }
 
+.grad-btn {
+  cursor: pointer;
+  color: white;
+  letter-spacing: 0.1em;
+  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
+  padding: 1.2em 2.5em;
+  background-image: -webkit-gradient(linear, left top, right top, from(#4e4ed6), color-stop(50%, #8258dc), to(#4e4ed6));
+  background-image: linear-gradient(to right, #4e4ed6 0%, #8258dc 50%, #4e4ed6 100%);
+  background-size: 200% auto;
+  -webkit-transition: background-position 0.5s;
+  transition: background-position 0.5s;
+  border: 0;
+}
+
+.grad-btn:hover {
+  background-position: right center;
+}
+
 /*======================================================================
 Carl's Button Design (Start)
 ======================================================================*/
@@ -1003,9 +1022,9 @@ nav .nav-top-bar .nav-mobile-out {
   display: none;
   cursor: pointer;
   position: relative;
-  height: 20px;
-  width: 20px;
-  margin-bottom: 20px;
+  height: 25px;
+  width: 25px;
+  margin-bottom: 7.5px;
 }
 
 nav .nav-top-bar .nav-in #nav-user-in,
@@ -1013,8 +1032,8 @@ nav .nav-top-bar .nav-mobile-out #nav-user-in {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  top: 2.5px;
-  left: -25px;
+  bottom: 0;
+  left: 0;
   height: 25px;
   width: 25px;
   border-radius: 50%;
@@ -1046,8 +1065,8 @@ nav .nav-top-bar .nav-mobile-out #nav-user-out {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  top: 10px;
-  left: -20px;
+  bottom: 2.5px;
+  left: 2.5px;
   height: 20px;
   width: 20px;
   -webkit-transform: scaleX(1);
@@ -1074,9 +1093,10 @@ nav .nav-top-bar .nav-mobile-out .nav-user-x {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   position: absolute;
-  top: 10px;
-  left: -20px;
+  bottom: 2.5px;
+  left: 2.5px;
   width: 20px;
+  height: 20px;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   padding: 0;
@@ -1371,13 +1391,13 @@ nav .nav-darken-overlay {
   }
   nav .nav-top-bar .nav-in #nav-user-in,
   nav .nav-top-bar .nav-in #nav-user-out {
-    top: 0;
+    bottom: -3.25px;
     left: 0;
     height: 30px;
     width: 30px;
   }
   nav .nav-top-bar .nav-in .nav-user-x {
-    top: -2.5px;
+    bottom: -6.25px;
     left: -2.5px;
     padding: 10px;
   }
@@ -1394,28 +1414,17 @@ nav .nav-darken-overlay {
     letter-spacing: 0.1vmax;
     color: #2d283c;
     background: transparent;
-    padding: 10px 10px;
-    margin: 0px 30px;
+    padding: 10px;
+    margin: 0px 20px;
   }
   nav .nav-top-bar .nav-desktop-out #nav-user-login:hover {
     color: #4bf0ea;
   }
   nav .nav-top-bar .nav-desktop-out #nav-user-signup {
-    -webkit-transition: all ease 0.2s;
-    transition: all ease 0.2s;
-    font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
-    font-weight: 400;
+    padding: 0.8em 2em;
+    border-radius: 3px;
     letter-spacing: 0.1vmax;
-    color: #6853d9;
-    padding: 5px 20px;
-    border: thin solid #6853d9;
-    background: transparent;
-  }
-  nav .nav-top-bar .nav-desktop-out #nav-user-signup:hover {
-    border: thin solid white;
-    color: white;
-    background: linear-gradient(60deg, #8258dc, #4e4ed6);
   }
   nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
@@ -2118,3 +2127,117 @@ nav .nav-darken-overlay {
 /*=========================================================================================
 END
 =========================================================================================*/
+body {
+  background: white;
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.main-page {
+  margin-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  color: #2d283c;
+  font-weight: 700;
+  font-size: 8.5vmin;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  color: #2d283c;
+  font-weight: 700;
+  font-size: 8.5vmin;
+  color: white;
+  text-shadow: -1px -1px 0 #2d283c, 1px -1px 0 #2d283c, -1px 1px 0 #2d283c, 1px 1px 0 #2d283c;
+}
+
+h1, h2, h3 {
+  letter-spacing: 0.3vmin;
+}
+
+.beg-section-container, .story-section-container,
+.end-story-container, .current-endev-container {
+  border: thin solid red;
+  padding: 3em;
+}
+
+.beg-story-content, .story-content, .end-story-content {
+  margin: 1.5em 0 2.5em;
+  border-left: 0.1em solid #322d41;
+  padding-left: 2em;
+}
+
+.beg-story-content p, .story-content p, .end-story-content p {
+  font-size: 0.9em;
+  margin-bottom: 1.5em;
+  line-height: 190%;
+}
+
+.link-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.link-container h3 {
+  font-size: 1em;
+  margin-right: 1em;
+  color: #322d41;
+}
+
+.link-container img {
+  height: 1.5em;
+}
+
+.img-banner-container {
+  height: 5em;
+  width: 100%;
+}
+
+.story-section-container h1, .end-story-container h1 {
+  font-size: 1.6em;
+}
+
+.beg-section-container .img-banner-container {
+  background-image: url(../../public/images/landing-4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.story-section-container .img-banner-container {
+  background-image: url(../../public/images/uoa-logo.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.end-story-container .img-banner-container {
+  background-image: url(../../public/images/landing-4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.story-content .link-container img {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  height: 1.5em;
+}
+
+.current-endev-container h1 {
+  font-size: 5vmin;
+}
