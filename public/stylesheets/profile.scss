@@ -159,7 +159,8 @@ body {
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 10px $highlight;
+      border-color: $light-1;
+      box-shadow: 0 0 8px -2px $highlight;
     }
   }
 
@@ -228,7 +229,7 @@ body {
     }
 
     &:hover {
-      color: $logo-2;
+      color: $logo-1;
     }
 
     &:not(:last-of-type) {
@@ -289,6 +290,7 @@ body {
           flex-direction: column;
           align-items: center;
           border-radius: 5px;
+          box-shadow: 0 0 30px -20px black;
 
           .fa-bookmark {
             margin: 1vmax -1vmax 0 0;
@@ -471,24 +473,10 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: auto;
-      height: auto;
       margin: 4vmax auto 2vmax auto;
-      
-      .action-btn {
-        color: $light-1;
-        letter-spacing: 0.1em;
-        background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%);
-        border-radius: 5px;
-    
-        &::before,
-        &::after {
-          display: none;
-        }
 
-        &:hover {
-          background-position: right center;
-        }
+      .grad-btn {
+        box-shadow: 0 0 30px -10px black;
       }
     }
   }
@@ -584,6 +572,22 @@ body {
     flex: none;
     width: calc(100px + 5vw);
     letter-spacing: 0.2vw;
+
+    i {
+      display: none;
+    }
+
+    span {
+      display: inline-block;
+    }
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
   }
 
   .main-area {
@@ -598,10 +602,6 @@ body {
     justify-content: space-evenly;
     align-items: center;
     padding: 0 3vw;
-
-    * {
-      // border: thin solid red;
-    }
 
     .proj-wrap {
       order: 1;
@@ -630,6 +630,7 @@ body {
           flex-direction: column;
           align-items: center;
           border-radius: 5px;
+          box-shadow: none;
 
           .fa-bookmark {
             margin: 1vh 0 0 -1vw;
@@ -869,6 +870,10 @@ body {
       justify-content: center;
       align-items: center;
       margin: 0;
+
+      .grad-btn:hover {
+        box-shadow: 0 0 30px -8px black;
+      }
     }
   }
 
@@ -1123,10 +1128,6 @@ body {
           color: $logo-2;
         }
       }
-    }
-
-    * {
-      // border: thin solid red;
     }
   }
 

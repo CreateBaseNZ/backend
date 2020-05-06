@@ -118,7 +118,8 @@ CART
     align-items: center;
     // TEXT
     font-family: $poppins;
-    font-size: 1.4vmax;
+    font-size: 1.6vmax;
+    letter-spacing: 0.1vmax;
     color: $dark-2
   }
   a {
@@ -134,6 +135,7 @@ CART
   label,input {
     font-family: $poppins;
     font-size: 1.4vmax;
+    letter-spacing: 0.1vmax;
     color: $dark-2
   }
   input {
@@ -157,7 +159,8 @@ CART
     align-items: center;
     // TEXT
     font-family: $poppins;
-    font-size: 1.4vmax;
+    font-size: 1.6vmax;
+    letter-spacing: 0.1vmax;
     color: $dark-2
   }
 }
@@ -732,6 +735,7 @@ GLOBAL
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 2vmax;
 }
 
 // PRICING
@@ -927,6 +931,7 @@ DESKTOP CSS
     a,.build-type,.colour {
       height: 2vmax;
       font-size: 0.8vmax;
+      letter-spacing: 0.05vmax;
     }
     .build-type,.colour {
       width: 50%;
@@ -937,6 +942,7 @@ DESKTOP CSS
     height: 2vmax;
     label,input {
       font-size: 0.8vmax;
+      letter-spacing: 0.05vmax;
     }
     input {
       height: 1.8vmax;
@@ -952,7 +958,8 @@ DESKTOP CSS
     width: 25%;
     .price {
       height: 2vmax;
-      font-size: 0.8vmax;
+      font-size: 1vmax;
+      letter-spacing: 0.05vmax;
     }
   }
 
@@ -1245,19 +1252,20 @@ DESKTOP CSS
       transform: translateX(0);
       opacity: 1;
     }
-    .cart {
-      height: 79vmax;
+    &.cart {
+      height: 66vmax;
     }
-    .shipping {
-      height: 90vmax;
-    }
-    .payment {
-      height: 45vmax;
+    &.shipping,&.payment {
+      height: 6vmax;
     }
   }
 
   .checkout-sub-sections {
     padding: 0;
+  }
+
+  .checkout-sub-sections {
+    padding-bottom: 1vmax;
   }
 
   // OTHERS

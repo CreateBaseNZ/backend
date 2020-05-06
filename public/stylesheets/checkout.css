@@ -230,6 +230,25 @@ button {
   transition: width 0.2s ease, border-width 0.001s ease;
 }
 
+.grad-btn {
+  cursor: pointer;
+  color: white;
+  letter-spacing: 0.1em;
+  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
+  padding: 1.2em 2.5em;
+  background-image: -webkit-gradient(linear, left top, right top, from(#4e4ed6), color-stop(50%, #8258dc), to(#4e4ed6));
+  background-image: linear-gradient(to right, #4e4ed6 0%, #8258dc 50%, #4e4ed6 100%);
+  background-size: 200% auto;
+  -webkit-transition: background-position 0.5s;
+  transition: background-position 0.5s;
+  border: 0;
+}
+
+.grad-btn:hover {
+  background-position: right center;
+}
+
 /*======================================================================
 Carl's Button Design (Start)
 ======================================================================*/
@@ -1395,28 +1414,17 @@ nav .nav-darken-overlay {
     letter-spacing: 0.1vmax;
     color: #2d283c;
     background: transparent;
-    padding: 10px 10px;
-    margin: 0px 30px;
+    padding: 10px;
+    margin: 0px 20px;
   }
   nav .nav-top-bar .nav-desktop-out #nav-user-login:hover {
     color: #4bf0ea;
   }
   nav .nav-top-bar .nav-desktop-out #nav-user-signup {
-    -webkit-transition: all ease 0.2s;
-    transition: all ease 0.2s;
-    font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
-    font-weight: 400;
+    padding: 0.8em 2em;
+    border-radius: 3px;
     letter-spacing: 0.1vmax;
-    color: #6853d9;
-    padding: 5px 20px;
-    border: thin solid #6853d9;
-    background: transparent;
-  }
-  nav .nav-top-bar .nav-desktop-out #nav-user-signup:hover {
-    border: thin solid white;
-    color: white;
-    background: linear-gradient(60deg, #8258dc, #4e4ed6);
   }
   nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
@@ -2257,7 +2265,8 @@ CART
       -ms-flex-align: center;
           align-items: center;
   font-family: "Poppins", sans-serif;
-  font-size: 1.4vmax;
+  font-size: 1.6vmax;
+  letter-spacing: 0.1vmax;
   color: #322d41;
 }
 
@@ -2279,6 +2288,7 @@ CART
 .checkout-print-quantity-container label, .checkout-print-quantity-container input {
   font-family: "Poppins", sans-serif;
   font-size: 1.4vmax;
+  letter-spacing: 0.1vmax;
   color: #322d41;
 }
 
@@ -2315,7 +2325,8 @@ CART
       -ms-flex-align: center;
           align-items: center;
   font-family: "Poppins", sans-serif;
-  font-size: 1.4vmax;
+  font-size: 1.6vmax;
+  letter-spacing: 0.1vmax;
   color: #322d41;
 }
 
@@ -3079,6 +3090,7 @@ GLOBAL
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  padding-bottom: 2vmax;
 }
 
 .checkout-pricing-container {
@@ -3307,6 +3319,7 @@ DESKTOP CSS
   .checkout-print-container-2 a, .checkout-print-container-2 .build-type, .checkout-print-container-2 .colour {
     height: 2vmax;
     font-size: 0.8vmax;
+    letter-spacing: 0.05vmax;
   }
   .checkout-print-container-2 .build-type, .checkout-print-container-2 .colour {
     width: 50%;
@@ -3316,6 +3329,7 @@ DESKTOP CSS
   }
   .checkout-print-quantity-container label, .checkout-print-quantity-container input {
     font-size: 0.8vmax;
+    letter-spacing: 0.05vmax;
   }
   .checkout-print-quantity-container input {
     height: 1.8vmax;
@@ -3330,7 +3344,8 @@ DESKTOP CSS
   }
   .checkout-print-container-3 .price {
     height: 2vmax;
-    font-size: 0.8vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.05vmax;
   }
   .checkout-print-delete {
     width: 1.4vmax;
@@ -3585,17 +3600,17 @@ DESKTOP CSS
             transform: translateX(0);
     opacity: 1;
   }
-  .checkout-section .cart {
-    height: 79vmax;
+  .checkout-section.cart {
+    height: 66vmax;
   }
-  .checkout-section .shipping {
-    height: 90vmax;
-  }
-  .checkout-section .payment {
-    height: 45vmax;
+  .checkout-section.shipping, .checkout-section.payment {
+    height: 6vmax;
   }
   .checkout-sub-sections {
     padding: 0;
+  }
+  .checkout-sub-sections {
+    padding-bottom: 1vmax;
   }
   #checkout-loading-display {
     height: 2.5vmax;

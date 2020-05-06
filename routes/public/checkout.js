@@ -546,50 +546,22 @@ router.post(
   }
 );
 
-// @route     POST /checkout/order/paid
+// @route     GET /checkout/order/paid
 // @desc
 // @access    Private
-router.post("/checkout/order/paid", restrictedPages, async (req, res) => {
-  const accountId = mongoose.Types.ObjectId(req.user._id);
-  let order;
-  // Find the Active Order
-  try {
-    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-  } catch (error) {
-    return res.send({ status: "failed", data: error });
-  }
-  // Check if no order was found
-  if (!order) {
-    // Create a New Order if no Active Order
-    return res.send({ status: "failed", data: "no order found" });
-  }
-  // Update each makes
-  for (let i = 0; i < order.makes.awaitingQuote.length; i++) {
-    // Get make id
-    let _id = order.makes.awaitingQuote[i];
-    // Get the make
-    let make;
-    try {
-      make = await Make.findById(_id);
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Update make
-    try {
-      await make.updateStatus("purchased");
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-  }
-  // Update the order
-  let updatedOrder;
-  try {
-    updatedOrder = await order.updateStatus("checkedout");
-  } catch (error) {
-    return res.send({ status: "failed", data: error });
-  }
-  // Success!
-  return res.send({ status: "success", data: "" });
+router.get("/checkout/order/paid", restrictedPages, async (req, res) => {
+  // Get the active order
+
+  // Update the user's address
+
+  // Update the user's wallet
+
+  // Update the makes' statuses
+
+  // Update the order's status
+
+  // Return a success message
+
 });
 
 // @route     GET /customer/orders/print/awaiting-quote
@@ -674,7 +646,6 @@ router.post("/checkout/payment-intent", async (req, res) => {
   } catch (error) {
     return res.send(error);
   }
-  console.log(paymentIntentObject);
   res.send(paymentIntentObject["client_secret"]);
 });
 
@@ -698,7 +669,7 @@ const orderMakesAwaitingQuoteGet = accountId => {
   });
 };
 
-const orderMakesAwaitingQuoteSort = (makeOne, makeTwo) => {};
+const orderMakesAwaitingQuoteSort = (makeOne, makeTwo) => { };
 
 const orderMakesCheckoutGet = accountId => {
   return new Promise(async (resolve, reject) => {
@@ -716,7 +687,7 @@ const orderMakesCheckoutGet = accountId => {
   });
 };
 
-const orderMakesCheckoutSort = (makeOne, makeTwo) => {};
+const orderMakesCheckoutSort = (makeOne, makeTwo) => { };
 
 const orderItemsCheckoutGet = accountId => {
   return new Promise(async (resolve, reject) => {
@@ -734,7 +705,7 @@ const orderItemsCheckoutGet = accountId => {
   });
 };
 
-const orderItemsCheckoutSort = (itemOne, itemTwo) => {};
+const orderItemsCheckoutSort = (itemOne, itemTwo) => { };
 
 // THE FUNCTION TO FETCH THE ARRAY OF 3D PRINT ORDERS DEPENDING ON THE STATUS
 
@@ -836,27 +807,27 @@ PAYMENT
 
 // Function to Calculate 3D Printing Orders Total Price
 const calculatePrintingOrdersTotalPrice = () => {
-  return new Promise(async (resolve, reject) => {});
+  return new Promise(async (resolve, reject) => { });
 };
 
 // Function to Calculate Marketplace Orders Total Price
 const calculateMarketplaceOrdersTotalPrice = () => {
-  return new Promise(async (resolve, reject) => {});
+  return new Promise(async (resolve, reject) => { });
 };
 
 // Function to Calculate Discount Rate
 const calculateDiscountRate = () => {
-  return new Promise(async (resolve, reject) => {});
+  return new Promise(async (resolve, reject) => { });
 };
 
 // Function to Calculate Manufacturing Speed Rate
 const calculateManufacturingSpeedRate = () => {
-  return new Promise(async (resolve, reject) => {});
+  return new Promise(async (resolve, reject) => { });
 };
 
 // Function to Calculate Shipping Cost
 const calculateShippingCost = () => {
-  return new Promise(async (resolve, reject) => {});
+  return new Promise(async (resolve, reject) => { });
 };
 
 // Function to Calculate Order Amount

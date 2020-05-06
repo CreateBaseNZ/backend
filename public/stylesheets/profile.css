@@ -230,6 +230,25 @@ button {
   transition: width 0.2s ease, border-width 0.001s ease;
 }
 
+.grad-btn {
+  cursor: pointer;
+  color: white;
+  letter-spacing: 0.1em;
+  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
+  padding: 1.2em 2.5em;
+  background-image: -webkit-gradient(linear, left top, right top, from(#4e4ed6), color-stop(50%, #8258dc), to(#4e4ed6));
+  background-image: linear-gradient(to right, #4e4ed6 0%, #8258dc 50%, #4e4ed6 100%);
+  background-size: 200% auto;
+  -webkit-transition: background-position 0.5s;
+  transition: background-position 0.5s;
+  border: 0;
+}
+
+.grad-btn:hover {
+  background-position: right center;
+}
+
 /*======================================================================
 Carl's Button Design (Start)
 ======================================================================*/
@@ -1395,28 +1414,17 @@ nav .nav-darken-overlay {
     letter-spacing: 0.1vmax;
     color: #2d283c;
     background: transparent;
-    padding: 10px 10px;
-    margin: 0px 30px;
+    padding: 10px;
+    margin: 0px 20px;
   }
   nav .nav-top-bar .nav-desktop-out #nav-user-login:hover {
     color: #4bf0ea;
   }
   nav .nav-top-bar .nav-desktop-out #nav-user-signup {
-    -webkit-transition: all ease 0.2s;
-    transition: all ease 0.2s;
-    font-family: "Poppins", sans-serif;
     font-size: calc(8px + 0.2vmax);
-    font-weight: 400;
+    padding: 0.8em 2em;
+    border-radius: 3px;
     letter-spacing: 0.1vmax;
-    color: #6853d9;
-    padding: 5px 20px;
-    border: thin solid #6853d9;
-    background: transparent;
-  }
-  nav .nav-top-bar .nav-desktop-out #nav-user-signup:hover {
-    border: thin solid white;
-    color: white;
-    background: linear-gradient(60deg, #8258dc, #4e4ed6);
   }
   nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
@@ -2313,8 +2321,9 @@ body {
 .my-profile-section-edit #profile-name:focus,
 .my-profile-section-edit #profile-bio:focus {
   outline: none;
-  -webkit-box-shadow: 0 0 10px #4bf0ea;
-          box-shadow: 0 0 10px #4bf0ea;
+  border-color: white;
+  -webkit-box-shadow: 0 0 8px -2px #4bf0ea;
+          box-shadow: 0 0 8px -2px #4bf0ea;
 }
 
 .my-profile-section-edit #profile-location::after {
@@ -2395,7 +2404,7 @@ body {
 }
 
 .profile-tabs-section label:hover {
-  color: #6853d9;
+  color: #8258dc;
 }
 
 .profile-tabs-section label:not(:last-of-type)::after {
@@ -2482,6 +2491,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 5px;
+  -webkit-box-shadow: 0 0 30px -20px black;
+          box-shadow: 0 0 30px -20px black;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark {
@@ -2728,25 +2739,12 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: auto;
-  height: auto;
   margin: 4vmax auto 2vmax auto;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .action-btn {
-  color: white;
-  letter-spacing: 0.1em;
-  background-image: -webkit-gradient(linear, left top, right top, from(#77A1D3), color-stop(51%, #79CBCA), to(#77A1D3));
-  background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%);
-  border-radius: 5px;
-}
-
-.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .action-btn::before, .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .action-btn::after {
-  display: none;
-}
-
-.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .action-btn:hover {
-  background-position: right center;
+.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .grad-btn {
+  -webkit-box-shadow: 0 0 30px -10px black;
+          box-shadow: 0 0 30px -10px black;
 }
 
 .profile-tabs-section #settings-tab:checked ~ #settings-area {
@@ -2849,6 +2847,18 @@ body {
     width: calc(100px + 5vw);
     letter-spacing: 0.2vw;
   }
+  .profile-tabs-section label i {
+    display: none;
+  }
+  .profile-tabs-section label span {
+    display: inline-block;
+  }
+  .profile-tabs-section label:first-of-type {
+    padding-left: 0;
+  }
+  .profile-tabs-section label:last-of-type {
+    padding-right: 0;
+  }
   .profile-tabs-section .main-area {
     height: calc(100% - 5vh);
     border: 0;
@@ -2914,6 +2924,8 @@ body {
         -ms-flex-align: center;
             align-items: center;
     border-radius: 5px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark {
     margin: 1vh 0 0 -1vw;
@@ -3179,6 +3191,10 @@ body {
         -ms-flex-align: center;
             align-items: center;
     margin: 0;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .grad-btn:hover {
+    -webkit-box-shadow: 0 0 30px -8px black;
+            box-shadow: 0 0 30px -8px black;
   }
   .profile-tabs-section #billing-area {
     -webkit-box-orient: vertical;

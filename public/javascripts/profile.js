@@ -98,8 +98,6 @@ const profileInit = async() => {
         e.preventDefault()
       }
     })
-  } else {
-    console.log('yes')
   }
 
   for (var i=0; i < billingCards.length; i++) {
