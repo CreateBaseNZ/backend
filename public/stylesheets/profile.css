@@ -2321,8 +2321,9 @@ body {
 .my-profile-section-edit #profile-name:focus,
 .my-profile-section-edit #profile-bio:focus {
   outline: none;
-  -webkit-box-shadow: 0 0 10px #4bf0ea;
-          box-shadow: 0 0 10px #4bf0ea;
+  border-color: white;
+  -webkit-box-shadow: 0 0 8px -2px #4bf0ea;
+          box-shadow: 0 0 8px -2px #4bf0ea;
 }
 
 .my-profile-section-edit #profile-location::after {
@@ -2490,6 +2491,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 5px;
+  -webkit-box-shadow: 0 0 30px -20px black;
+          box-shadow: 0 0 30px -20px black;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark {
@@ -2739,6 +2742,11 @@ body {
   margin: 4vmax auto 2vmax auto;
 }
 
+.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .grad-btn {
+  -webkit-box-shadow: 0 0 30px -10px black;
+          box-shadow: 0 0 30px -10px black;
+}
+
 .profile-tabs-section #settings-tab:checked ~ #settings-area {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2916,6 +2924,8 @@ body {
         -ms-flex-align: center;
             align-items: center;
     border-radius: 5px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark {
     margin: 1vh 0 0 -1vw;
@@ -3182,9 +3192,9 @@ body {
             align-items: center;
     margin: 0;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .grad-btn {
-    background-image: -webkit-gradient(linear, left top, right top, from(#8258dc), color-stop(50%, #4e4ed6), to(#8258dc));
-    background-image: linear-gradient(to right, #8258dc 0%, #4e4ed6 50%, #8258dc 100%);
+  .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .grad-btn:hover {
+    -webkit-box-shadow: 0 0 30px -8px black;
+            box-shadow: 0 0 30px -8px black;
   }
   .profile-tabs-section #billing-area {
     -webkit-box-orient: vertical;

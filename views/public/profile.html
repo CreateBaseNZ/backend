@@ -96,11 +96,11 @@
   
 	<div id="profile-page">
     <div class="my-profile-section">
-      <div id="profile-pic">
+      <form id="profile-pic">
         <label for="profile-upload"><i class="far fa-edit"></i></label>
         <input type="file" id="profile-upload" onchange="loadFile(event)"></input>
         <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
-      </div>
+      </form>
       <p id="profile-name" data-placeholder="Display Name"></p>
       <p id="profile-location" data-info="Edit location under the Billing tab."></p>
       <p id="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
@@ -374,7 +374,10 @@
 
 <script>
   const profileUploadPicture = async () => {
-    const file = new FormData(document.querySelector("#profile-upload-form"));
+    const file = new FormData(document.getElementById("profile-pic"));
+    for (var [key, value] of file.entries()) { 
+      console.log(key, value);
+    }
     let data;
     try {
       data = (await axios.post("/profile/customer/update/picture", file))["data"];
