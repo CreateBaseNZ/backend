@@ -2256,7 +2256,8 @@ CART
       -ms-flex-align: center;
           align-items: center;
   font-family: "Poppins", sans-serif;
-  font-size: 1.4vmax;
+  font-size: 1.6vmax;
+  letter-spacing: 0.1vmax;
   color: #322d41;
 }
 
@@ -2278,6 +2279,7 @@ CART
 .checkout-print-quantity-container label, .checkout-print-quantity-container input {
   font-family: "Poppins", sans-serif;
   font-size: 1.4vmax;
+  letter-spacing: 0.1vmax;
   color: #322d41;
 }
 
@@ -2314,7 +2316,8 @@ CART
       -ms-flex-align: center;
           align-items: center;
   font-family: "Poppins", sans-serif;
-  font-size: 1.4vmax;
+  font-size: 1.6vmax;
+  letter-spacing: 0.1vmax;
   color: #322d41;
 }
 
@@ -3078,6 +3081,7 @@ GLOBAL
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  padding-bottom: 2vmax;
 }
 
 .checkout-pricing-container {
@@ -3306,6 +3310,7 @@ DESKTOP CSS
   .checkout-print-container-2 a, .checkout-print-container-2 .build-type, .checkout-print-container-2 .colour {
     height: 2vmax;
     font-size: 0.8vmax;
+    letter-spacing: 0.05vmax;
   }
   .checkout-print-container-2 .build-type, .checkout-print-container-2 .colour {
     width: 50%;
@@ -3315,6 +3320,7 @@ DESKTOP CSS
   }
   .checkout-print-quantity-container label, .checkout-print-quantity-container input {
     font-size: 0.8vmax;
+    letter-spacing: 0.05vmax;
   }
   .checkout-print-quantity-container input {
     height: 1.8vmax;
@@ -3329,7 +3335,8 @@ DESKTOP CSS
   }
   .checkout-print-container-3 .price {
     height: 2vmax;
-    font-size: 0.8vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.05vmax;
   }
   .checkout-print-delete {
     width: 1.4vmax;
@@ -3584,17 +3591,17 @@ DESKTOP CSS
             transform: translateX(0);
     opacity: 1;
   }
-  .checkout-section .cart {
-    height: 79vmax;
+  .checkout-section.cart {
+    height: 66vmax;
   }
-  .checkout-section .shipping {
-    height: 90vmax;
-  }
-  .checkout-section .payment {
-    height: 45vmax;
+  .checkout-section.shipping, .checkout-section.payment {
+    height: 6vmax;
   }
   .checkout-sub-sections {
     padding: 0;
+  }
+  .checkout-sub-sections {
+    padding-bottom: 1vmax;
   }
   #checkout-loading-display {
     height: 2.5vmax;

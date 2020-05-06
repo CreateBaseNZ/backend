@@ -60,6 +60,7 @@ let checkout = {
   load: undefined, // checkout.load
   listener: undefined, // checkout.listener
   validate: undefined, // checkout.validate
+  priceFormatter: undefined,
   elements: {
     assign: undefined // checkout.elements.assign
   },
@@ -357,6 +358,27 @@ checkout.validate = async validity => {
   checkout.payment.validation.validate(validity);
 };
 
+// @FUNC  checkout.priceFormatter
+// @TYPE  DEFAULT
+// @DESC  Receives a number and converts it into a dollar format (2 DP)
+// @ARGU  value - integer - original value to be formatted to dollar format
+checkout.priceFormatter = value => {
+  const roundedValue = (Math.round(Number(value) * 100)) / 100;
+  const stringValue = String(roundedValue);
+  // Evaluate the number of decimal places
+  const pointIndex = stringValue.indexOf(".");
+  const stringLength = stringValue.length;
+  let formattedValue;
+  if (pointIndex === -1) {
+    formattedValue = stringValue + ".00";
+  } else if ((stringLength - pointIndex) === 2) {
+    formattedValue = stringValue + "0";
+  } else if ((stringLength - pointIndex) === 3) {
+    formattedValue = stringValue;
+  }
+  return formattedValue;
+};
+
 // @FUNC  checkout.elements.assign
 // @TYPE
 // @DESC
@@ -482,6 +504,7 @@ checkout.cart.prints.resize = () => {
 // @DESC
 // @ARGU
 checkout.cart.print.create = print => {
+  // DECLARE VARIABLES
   const printId = String(print._id);
   // Container One
   const icon = `<div class="image"></div>`;
@@ -504,7 +527,7 @@ checkout.cart.print.create = print => {
   if (print.status === "awaitingQuote") {
     price = `<div class="price">awaiting quote</div>`;
   } else {
-    const totalPrice = print.price * print.quantity;
+    const totalPrice = checkout.priceFormatter(print.price * print.quantity);
     price = `<div class="price">$ ${totalPrice}</div>`;
   }
   const containerThree = `<div class="checkout-print-container-3">${cancel + price}</div>`;
@@ -771,12 +794,13 @@ checkout.cart.show = () => {
 checkout.cart.resize = () => {
   // DESKTOP HEIGHT CALCULATION
   const desktopHeight = {
-    heading: 8,
-    subHeading: 8 * 4,
+    heading: 6,
+    subHeading: 6 * 3,
     prints: numberOfPrints ? 10 * numberOfPrints : 10,
-    discountInput: 9,
-    manufacturingSpeed: 8,
-    buttons: 12
+    discountInput: 8,
+    manufacturingSpeed: 3 * 2,
+    buttons: 12,
+    default: 2 * 3
   };
   const total =
     desktopHeight.heading +
@@ -784,7 +808,7 @@ checkout.cart.resize = () => {
     desktopHeight.prints +
     desktopHeight.discountInput +
     desktopHeight.manufacturingSpeed +
-    desktopHeight.buttons;
+    desktopHeight.buttons + desktopHeight.default;
   // SET THE CART PAGE SIZE
   if (checkout.element.windowSize.matches) {
     if (checkoutSelectedPage == 0) {
@@ -1541,8 +1565,6 @@ checkout.payment.method.card.pay = async () => {
     return console.log(error);
   }
 
-  console.log(clientSecret);
-
   try {
     payment = await checkout.payment.method.card.process(clientSecret);
   } catch (error) {
@@ -1551,7 +1573,7 @@ checkout.payment.method.card.pay = async () => {
 
   // Update Order
   try {
-    await axios.post("/checkout/order/paid");
+    await axios.get("/checkout/order/paid");
   } catch (error) {
     console.log(error);
     return;
