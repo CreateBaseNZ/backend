@@ -41,15 +41,13 @@ h1, h2, h3{
 }
 
 .beg-section-container, .story-section-container, 
-.end-story-container, .current-endev-container{
-    border: thin solid red;
-    padding: 5vmin 13vmin;
+.end-story-container, .current-endev-container, .future-container{
+    // border: thin solid red;
+    padding: 8vmin 13vmin;
 }
 
-.beg-story-content, .story-content, .end-story-content{
+.beg-story-content, .story-content, .end-story-content, .future-content{
     margin: 1.5em 0 2.5em;
-    border-left: 0.1em solid $dark-2;
-    padding-left: 2em;
     p{
         font-size: 0.9em;
         margin-bottom: 1.5em;
@@ -74,15 +72,19 @@ h1, h2, h3{
     width: 100%;
 }
 
-.story-section-container, .end-story-container,{
+.story-section-container, .end-story-container{
     h1{
         font-size: 1.6em;
     }
 }
 
 .beg-section-container{
+    .beg-story-content{
+        padding-left: 2em;
+        border-left: 0.1em solid $dark-2;
+    }
     .img-banner-container{
-        background-image: url(../../public/images/landing-4.png);
+        background-image: url(../../../public/images/landing-4.png);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -90,8 +92,12 @@ h1, h2, h3{
 }
 
 .story-section-container{
+    .story-content{
+        padding-right: 2em;
+        border-right: 0.1em solid $dark-2;
+    }
     .img-banner-container{
-        background-image: url(../../public/images/uoa-logo.png);
+        background-image: url(../../../public/images/uoa-logo.png);
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -99,8 +105,12 @@ h1, h2, h3{
 }
 
 .end-story-container{
+    .end-story-content{
+        padding-left: 2em;
+        border-left: 0.1em solid $dark-2;
+    }
     .img-banner-container{
-        background-image: url(../../public/images/landing-4.png);
+        background-image: url(../../../public/images/landing-4.png);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -122,6 +132,83 @@ h1, h2, h3{
 
 .current-endev-container{
     h1{
-        font-size: 5vmin;
+        text-align: center;
+        font-size: 9vmin;
+    }
+    p{
+        margin: 2em 0;
+    }
+}
+
+.envdev-img-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 22em;
+    .endev-img{
+        flex: 0 0 10em;
+        background-image: url(../../../public/images/landing-4.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        
+    }
+    .endev-img2{
+        flex: 0 0 10em;
+        background-image: url(../../../public/images/landing-4.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+    }
+}
+
+.future-container{
+    .future-content{
+        margin-top: 3em;
+        padding-left: 2em;
+        border-left: 0.1em solid $dark-2;
+    }
+    .socials-container{
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 4em;
+        a{
+            color: $dark-2;
+            font-size: 2em;
+            padding: 0.5em;
+        }
+    }
+}
+
+.future-img-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 22em;
+    .future-img-1{
+        flex: 0 0 10em;
+        background-image: url(../../../public/images/landing-4.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(0.1em);
+        -webkit-filter: blur(0.1em);
+        -moz-filter: blur(0.1em);
+        -o-filter: blur(0.1em);
+        -ms-filter: blur(0.1em);
+    }
+    .future-img-2{
+        flex: 0 0 10em;
+        background-image: url(../../../public/images/landing-4.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(0.1em);
+        -webkit-filter: blur(0.1em);
+        -moz-filter: blur(0.1em);
+        -o-filter: blur(0.1em);
+        -ms-filter: blur(0.1em);
     }
 }

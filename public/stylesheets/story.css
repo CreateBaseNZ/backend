@@ -2169,18 +2169,15 @@ h1, h2, h3 {
 }
 
 .beg-section-container, .story-section-container,
-.end-story-container, .current-endev-container {
-  border: thin solid red;
-  padding: 5vmin 13vmin;
+.end-story-container, .current-endev-container, .future-container {
+  padding: 8vmin 13vmin;
 }
 
-.beg-story-content, .story-content, .end-story-content {
+.beg-story-content, .story-content, .end-story-content, .future-content {
   margin: 1.5em 0 2.5em;
-  border-left: 0.1em solid #322d41;
-  padding-left: 2em;
 }
 
-.beg-story-content p, .story-content p, .end-story-content p {
+.beg-story-content p, .story-content p, .end-story-content p, .future-content p {
   font-size: 0.9em;
   margin-bottom: 1.5em;
   line-height: 190%;
@@ -2211,22 +2208,37 @@ h1, h2, h3 {
   font-size: 1.6em;
 }
 
+.beg-section-container .beg-story-content {
+  padding-left: 2em;
+  border-left: 0.1em solid #322d41;
+}
+
 .beg-section-container .img-banner-container {
-  background-image: url(../../public/images/landing-4.png);
+  background-image: url(../../../public/images/landing-4.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+.story-section-container .story-content {
+  padding-right: 2em;
+  border-right: 0.1em solid #322d41;
+}
+
 .story-section-container .img-banner-container {
-  background-image: url(../../public/images/uoa-logo.png);
+  background-image: url(../../../public/images/uoa-logo.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+.end-story-container .end-story-content {
+  padding-left: 2em;
+  border-left: 0.1em solid #322d41;
+}
+
 .end-story-container .img-banner-container {
-  background-image: url(../../public/images/landing-4.png);
+  background-image: url(../../../public/images/landing-4.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2239,5 +2251,111 @@ h1, h2, h3 {
 }
 
 .current-endev-container h1 {
-  font-size: 5vmin;
+  text-align: center;
+  font-size: 9vmin;
 }
+
+.current-endev-container p {
+  margin: 2em 0;
+}
+
+.envdev-img-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 22em;
+}
+
+.envdev-img-container .endev-img {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 10em;
+          flex: 0 0 10em;
+  background-image: url(../../../public/images/landing-4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.envdev-img-container .endev-img2 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 10em;
+          flex: 0 0 10em;
+  background-image: url(../../../public/images/landing-4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.future-container .future-content {
+  margin-top: 3em;
+  padding-left: 2em;
+  border-left: 0.1em solid #322d41;
+}
+
+.future-container .socials-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-bottom: 4em;
+}
+
+.future-container .socials-container a {
+  color: #322d41;
+  font-size: 2em;
+  padding: 0.5em;
+}
+
+.future-img-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 22em;
+}
+
+.future-img-container .future-img-1 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 10em;
+          flex: 0 0 10em;
+  background-image: url(../../../public/images/landing-4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(0.1em);
+  -webkit-filter: blur(0.1em);
+  -moz-filter: blur(0.1em);
+  -o-filter: blur(0.1em);
+  -ms-filter: blur(0.1em);
+}
+
+.future-img-container .future-img-2 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 10em;
+          flex: 0 0 10em;
+  background-image: url(../../../public/images/landing-4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(0.1em);
+  -webkit-filter: blur(0.1em);
+  -moz-filter: blur(0.1em);
+  -o-filter: blur(0.1em);
+  -ms-filter: blur(0.1em);
+}
+/*# sourceMappingURL=story.css.map */
