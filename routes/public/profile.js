@@ -132,7 +132,6 @@ router.post(
       }
     }
     // Update Customer's Profile Picture
-    console.log(file.id);
     customer.picture = file.id;
     try {
       customer.save();

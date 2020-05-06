@@ -394,9 +394,6 @@
 <script>
   const profileUploadPicture = async () => {
     const file = new FormData(document.querySelector("#profile-pic"));
-    for (var [key, value] of file.entries()) {
-      console.log(key, value);
-    }
     let data;
     try {
       data = (await axios.post("/profile/customer/update/picture", file))["data"];
@@ -404,7 +401,6 @@
       console.log(error);
       return;
     }
-    console.log(data);
   }
 </script>
 
