@@ -391,29 +391,18 @@ body {
             margin: 2.5vh 0 1.5vh 0;
           }
 
-          .proj-buttons {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
+          .proj-edit {
             margin-bottom: 2vh;
 
-            * {
-              color: $dark-1;
-              font-size: calc(8px + 0.2vmax);
-              padding: 0.65em 3.5em;
+            color: $dark-1;
+            font-size: calc(8px + 0.2vmax);
+            padding: 0.65em 3.5em;
 
-              &::before {
-                border-color: $dark-1;
-              }
-              &::after {
-                border-color: $light-1;
-              }
+            &::before {
+              border-color: $dark-1;
             }
-
-            .proj-save,
-            .proj-cancel {
-              display: none;
+            &::after {
+              border-color: $light-1;
             }
           }
 
@@ -446,15 +435,13 @@ body {
               &::-webkit-scrollbar-thumb:active { background: $highlight; }
             }
             .proj-sep { background: $light-3; }
-            .proj-buttons {
-              * {
-                color: $logo-2;
-                &::before { border-color: $logo-2; }
-                &::after { border-color: $light-1; }
-                &:hover { 
-                  color: $highlight;
-                  &::before { border-color: $highlight; }
-                }
+            .proj-edit {
+              color: $logo-2;
+              &::before { border-color: $logo-2; }
+              &::after { border-color: $light-1; }
+              &:hover { 
+                color: $highlight;
+                &::before { border-color: $highlight; }
               }
             }
             .proj-modified { color: $dark-1; }

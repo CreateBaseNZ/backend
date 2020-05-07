@@ -124,6 +124,30 @@ const profileInit = async() => {
 
   console.log(project)
 
-  projScroll.appendChild(document.createElement('div'))
+  let cardEl = document.createElement('div')
+  let filesEl = document.createElement('p')
+  let detailsEl = document.createElement('div')
+  let notesEl = document.createElement('div')
+  let notespEl = document.createElement('p')
+  let editEl = document.createElement('button')
+  editEl.innerHTML = 'Edit'
+  let modifiedEl = document.createElement('p')
+  modifiedEl.innerHTML = 'Last modified ' + project.modified
 
+  projScroll.appendChild(cardEl).className = 'proj-card'
+  cardEl.appendChild(document.createElement('i')).className = 'far fa-bookmark'
+  cardEl.appendChild(document.createElement('p')).className = 'proj-date'
+  cardEl.appendChild(document.createElement('p')).className = 'proj-name'
+  cardEl.appendChild(filesEl).className = 'proj-files'
+  filesEl.appendChild(document.createElement('i')).className = 'fas fa-save'
+  cardEl.appendChild(detailsEl).className = 'proj-details'
+  detailsEl.appendChild(document.createElement('p')).className = 'proj-material'
+  detailsEl.appendChild(document.createElement('p')).className = 'proj-quality'
+  detailsEl.appendChild(document.createElement('p')).className = 'proj-strength'
+  detailsEl.appendChild(document.createElement('p')).className = 'proj-colour'
+  cardEl.appendChild(notesEl).className = 'proj-notes'
+  notesEl.appendChild(notespEl).setAttribute('onmouseover', 'onNotes(true)')
+  notesEl.appendChild(notespEl).setAttribute('onmouseout', 'onNotes(false)')
+  cardEl.appendChild(editEl).className = 'proj-edit action-btn'
+  cardEl.appendChild(modifiedEl).className = 'proj-modified'
 }
