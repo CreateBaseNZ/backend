@@ -2173,11 +2173,11 @@ h1, h2, h3 {
   padding: 8vmin 13vmin;
 }
 
-.beg-story-content, .story-content, .end-story-content, .future-content {
+.beg-story-content, .story-content, .end-story-content, .endev-content, .future-content {
   margin: 1.5em 0 2.5em;
 }
 
-.beg-story-content p, .story-content p, .end-story-content p, .future-content p {
+.beg-story-content p, .story-content p, .end-story-content p, .endev-content p, .future-content p {
   font-size: 0.9em;
   margin-bottom: 1.5em;
   line-height: 190%;
@@ -2252,11 +2252,27 @@ h1, h2, h3 {
 
 .current-endev-container h1 {
   text-align: center;
-  font-size: 9vmin;
+  font-size: 8vmin;
+  padding-bottom: 1rem;
+}
+
+.current-endev-container hr {
+  border: none;
+  height: 0.1em;
+  width: 70%;
+  margin: auto;
+  color: #322d41;
+  /* old IE */
+  background-color: #322d41;
+  /* Modern Browsers */
 }
 
 .current-endev-container p {
   margin: 2em 0;
+}
+
+.current-endev-container .endev-content {
+  padding-left: 2em;
 }
 
 .envdev-img-container {
@@ -2293,8 +2309,12 @@ h1, h2, h3 {
   background-repeat: no-repeat;
 }
 
+.future-container {
+  padding-bottom: 3em;
+}
+
 .future-container .future-content {
-  margin-top: 3em;
+  margin: 3em 0;
   padding-left: 2em;
   border-left: 0.1em solid #322d41;
 }
@@ -2303,15 +2323,25 @@ h1, h2, h3 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  margin-bottom: 4em;
+}
+
+.future-container .socials-container h1 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  text-align: center;
+  font-size: 6vmin;
+  padding-bottom: 1rem;
 }
 
 .future-container .socials-container a {
   color: #322d41;
-  font-size: 2em;
+  font-size: 1.8em;
   padding: 0.5em;
 }
 
@@ -2327,6 +2357,7 @@ h1, h2, h3 {
       -ms-flex-pack: justify;
           justify-content: space-between;
   min-height: 22em;
+  margin-bottom: 3em;
 }
 
 .future-img-container .future-img-1 {
