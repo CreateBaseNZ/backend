@@ -1623,7 +1623,7 @@ nav .nav-darken-overlay {
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
     font-size: 1.2vh;
-    color: red;
+    color: #c7c2d5;
     letter-spacing: 2px;
     font-weight: 800;
     padding-bottom: 4vh;
@@ -3302,3 +3302,4 @@ body {
     color: #6853d9;
   }
 }
+/*# sourceMappingURL=profile.css.map */
