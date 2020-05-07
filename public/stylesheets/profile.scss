@@ -269,34 +269,34 @@ body {
     padding-bottom: 2vmax;
     
     .proj-wrap {
-      order: 2;
       width: 100%;
+      order: 2;
 
       .proj-scroll-container {
-        width: 100%;
         position: relative;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        width: 100%;
+        flex-direction: column;
   
         .proj-card {
-          width: 80%;
-          margin: 2vmax auto;
-          padding: 0 4vmax;
-          flex-shrink: 0;
-          background: $light-1;
           display: flex;
           flex-direction: column;
           align-items: center;
           border-radius: 5px;
-          box-shadow: 0 0 30px -20px black;
+          box-shadow: 0 0 30px -24px black;
+          background: $light-1;
+          width: 80%;
+          margin: 2vmax auto;
+          padding: 0 4vmax;
+          flex-shrink: 0;
 
           .fa-bookmark {
-            margin: 1vmax -1vmax 0 0;
             padding: 5px;
-            align-self: flex-end;
             cursor: pointer;
+            margin: 1vmax -1vmax 0 0;
+            align-self: flex-end;
 
             &:hover {
               color: $highlight;
@@ -425,7 +425,7 @@ body {
 
           &:hover {
             background: $light-1;
-            box-shadow: 0 0 20px -16px rgba(0,0,0,0.5);
+            box-shadow: 0 0 30px -18px black;
             .fa-bookmark{ 
               color: $dark-1;
               &:hover { color: $highlight; }
@@ -450,6 +450,7 @@ body {
               * {
                 color: $logo-2;
                 &::before { border-color: $logo-2; }
+                &::after { border-color: $light-1; }
                 &:hover { 
                   color: $highlight;
                   &::before { border-color: $highlight; }
@@ -460,19 +461,14 @@ body {
           }
         }
       }
-  
-      .scroll-cover {
-        display: none;
-      }
     }
 
     .new-proj-container {
-      cursor: pointer;
-      background: $light-1;
-      order: 1;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: $light-1;
+      order: 1;
       margin: 4vmax auto 2vmax auto;
 
       .grad-btn {
@@ -484,6 +480,7 @@ body {
       }
     }
   }
+
   #settings-tab:checked ~ #settings-area {
     display: flex;
   }
@@ -498,7 +495,7 @@ body {
   grid-template-areas:
   "profile tabs";
   grid-template-columns: 30vw 70vw;
-  height: calc(100vh - #{$top-bar-height});
+  min-height: calc(100vh - #{$top-bar-height});
 }
   
 .my-profile-section {
@@ -568,7 +565,6 @@ body {
   grid-area: tabs;
   align-items: flex-start;
   justify-content: flex-end;
-  height: calc(100vh - #{$top-bar-height});
   min-height: 550px;
   padding: 5vh calc(55px + 1vw) 5vh 0;
 
@@ -609,137 +605,45 @@ body {
 
     .proj-wrap {
       order: 1;
-      width: 100%;
 
       .proj-scroll-container {
         width: auto;
-        position: relative;
-        display: flex;
         flex-direction: row;
         overflow-x: auto;
         overflow-y: hidden;
-        align-items: center;
-        justify-content: flex-start;
         padding: 4vh 0;
   
         .proj-card {
-          height: 55vh;
           width: calc(55vh * 0.7);
-          min-height: 320px;
-          min-width: 280px;
           margin: 0 1vw;
           padding: 0 2vw;
-          flex-shrink: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          border-radius: 5px;
-          box-shadow: 0 0 30px -25px black;
+          height: 55vh;
+          min-height: 320px;
+          min-width: 280px;
 
           .fa-bookmark {
             margin: 1vh 0 0 -1vw;
-            padding: 5px;
             align-self: flex-start;
-            cursor: pointer;
-
-            &:hover {
-              color: $highlight;
-            }
-          }
-
-          .proj-date {
-            font-size: calc(8px + 0.2vw);
-            letter-spacing: 2px;
-            font-weight: 400;
-            color: $dark-3;
-            margin-top: 6vh;
           }
 
           .proj-name {
-            width: 100%;
-            font-size: calc(14px + 0.5vw);
-            font-weight: 400;
-            color: $dark-3;
             margin-top: 3vh;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
-            text-align: center;
-            min-height: 30px;
-          }
-
-          .proj-files {
-            font-size: calc(8px + 0.1vw);
-            font-weight: 400;
-            color: $dark-1;
-            margin-top: 0.5vh;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            text-align: center;
-            width: 100%;
-            min-height: 12px;
-
-            i {
-              padding: 2px;
-              margin-left: 5px;
-              cursor: pointer;
-
-              &:hover {
-                color: $highlight;
-              }
-            }
-          }
-
-          .proj-details {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
-            width: 100%;
-            margin: 3vh 0;
-            overflow: hidden;
-            min-height: 12px;
-
-            * {
-              font-size: calc(8px + 0.2vw);
-              text-transform: uppercase;
-              letter-spacing: 0.2vmin;
-              font-weight: 400;
-              color: $dark-3;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              text-align: center;
-            }
           }
 
           .proj-notes {
-            display: flex;
-            align-items: flex-start;
             min-height: 80px;
             height: 10vh;
             overflow-y: auto;
-            margin: auto 0;
 
             p {
-              font-size: calc(8px + 0.1vw);
-              font-weight: 400;
-              color: $dark-3;
-              text-align: center;
-              line-height: 180%;
-              margin: auto;
-              z-index: 2;
               padding-right: 10px;
-              cursor: text;
             }
 
-            &::-webkit-scrollbar {
-              width: 2px;
-            }
-            &::-webkit-scrollbar-track {
-              background: transparent;
-            }
+            &::-webkit-scrollbar { width: 2px; }
+            &::-webkit-scrollbar-track { background: transparent; }
             &::-webkit-scrollbar-thumb {
               background: $light-3;
               transition: background-color 0.2s ease;
@@ -749,41 +653,6 @@ body {
           .proj-sep {
             flex: auto;
             overflow: auto;
-            width: 1px;
-            background: $light-3;
-            margin: 2.5vh 0 1.5vh 0;
-          }
-
-          .proj-buttons {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
-            margin-bottom: 2vh;
-
-            * {
-              color: $dark-1;
-              font-size: calc(8px + 0.2vw);
-              padding: 0.65em 3.5em;
-
-              &::before {
-                border-color: $dark-1;
-              }
-              &::after {
-                border-color: $light-1;
-              }
-            }
-
-            .proj-save,
-            .proj-cancel {
-              display: none;
-            }
-          }
-
-          .proj-modified {
-            font-size: calc(8px + 0.1vw);
-            color: $dark-3;
-            margin-bottom: 3vh;
           }
 
           &:last-of-type {
@@ -796,43 +665,6 @@ body {
               margin-right: -3vw;
               visibility: hidden;
             }
-          }
-
-          &:hover {
-            background: $light-1;
-            box-shadow: 0 0 30px -20px black;
-            .fa-bookmark{ 
-              color: $dark-1;
-              &:hover { color: $highlight; }
-            }
-            .proj-date { color: $dark-1; }
-            .proj-name { color: $logo-2; }
-            .proj-files { 
-              color: $dark-1;
-              i:hover { color: $highlight; } 
-            }
-            .proj-details {
-              * { color: $logo-2; }
-            }
-            .proj-notes {
-              p { color: $logo-2; }
-              &::-webkit-scrollbar-thumb { background: $highlight; }
-              &::-webkit-scrollbar-thumb:hover,
-              &::-webkit-scrollbar-thumb:active { background: $highlight; }
-            }
-            .proj-sep { background: $light-3; }
-            .proj-buttons {
-              * {
-                color: $logo-2;
-                &::before { border-color: $logo-2; }
-                &::after { border-color: $light-1; }
-                &:hover { 
-                  color: $highlight;
-                  &::before { border-color: $highlight; }
-                }
-              }
-            }
-            .proj-modified { color: $dark-1; }
           }
         }
 
@@ -852,27 +684,10 @@ body {
           background: $light-3;
         }
       }
-
-      .proj-scroll-container:hover ~ .scroll-cover {
-        background: transparent;
-      }
-  
-      .scroll-cover {
-        pointer-events: none;
-        position: fixed;
-        height: 10px;
-        width: calc(70vw - 55px - 1vw - 6vw);
-        margin-top: -10px;
-        background: $light-2;
-        transition: background-color 0.2s ease-out;
-      }
     }
 
     .new-proj-container {
       order: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       margin: 0;
     }
   }
@@ -880,8 +695,14 @@ body {
   #billing-area {
     flex-direction: column;
     align-items: center;
-    padding: 4vh 1vw;
+    padding: 0 1vmax 1vmax 1vmax;
     color: $dark-3;
+    background: $light-2;
+    min-height: calc(100% - 5vh);
+
+    * {
+      // border: thin solid red;
+    }
 
     .billing-card {
       cursor: pointer;
@@ -889,9 +710,9 @@ body {
       flex-wrap: wrap;
       padding: 3vh 3vw 1vh 3vw;
       width: 100%;
-      background: $light-2;
+      background: $light-1;
       border-radius: 5px;
-      margin: 1vh 0;
+      margin-top: 1vmax;
 
       .billing-main {
         width: 100%;

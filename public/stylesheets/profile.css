@@ -2449,37 +2449,31 @@ body {
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap {
+  width: 100%;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
-  width: 100%;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container {
-  width: 100%;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card {
-  width: 80%;
-  margin: 2vmax auto;
-  padding: 0 4vmax;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  background: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2491,16 +2485,22 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 30px -20px black;
-          box-shadow: 0 0 30px -20px black;
+  -webkit-box-shadow: 0 0 30px -24px black;
+          box-shadow: 0 0 30px -24px black;
+  background: white;
+  width: 80%;
+  margin: 2vmax auto;
+  padding: 0 4vmax;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark {
-  margin: 1vmax -1vmax 0 0;
   padding: 5px;
+  cursor: pointer;
+  margin: 1vmax -1vmax 0 0;
   -ms-flex-item-align: end;
       align-self: flex-end;
-  cursor: pointer;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark:hover {
@@ -2652,8 +2652,8 @@ body {
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover {
   background: white;
-  -webkit-box-shadow: 0 0 20px -16px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 0 20px -16px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 30px -18px black;
+          box-shadow: 0 0 30px -18px black;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .fa-bookmark {
@@ -2708,6 +2708,10 @@ body {
   border-color: #6853d9;
 }
 
+.profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons *::after {
+  border-color: white;
+}
+
 .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons *:hover {
   color: #4bf0ea;
 }
@@ -2720,16 +2724,7 @@ body {
   color: #877da9;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .scroll-cover {
-  display: none;
-}
-
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container {
-  cursor: pointer;
-  background: white;
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2739,6 +2734,10 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: white;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
   margin: 4vmax auto 2vmax auto;
 }
 
@@ -2769,7 +2768,7 @@ body {
         grid-template-areas: "profile tabs";
     -ms-grid-columns: 30vw 70vw;
         grid-template-columns: 30vw 70vw;
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
   }
   .my-profile-section {
     -ms-grid-row: 1;
@@ -2841,7 +2840,6 @@ body {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
-    height: calc(100vh - 60px);
     min-height: 550px;
     padding: 5vh calc(55px + 1vw) 5vh 0;
   }
@@ -2887,151 +2885,43 @@ body {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
-    width: 100%;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container {
     width: auto;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
     padding: 4vh 0;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card {
-    height: 55vh;
     width: calc(55vh * 0.7);
-    min-height: 320px;
-    min-width: 280px;
     margin: 0 1vw;
     padding: 0 2vw;
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 0 30px -25px black;
-            box-shadow: 0 0 30px -25px black;
+    height: 55vh;
+    min-height: 320px;
+    min-width: 280px;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark {
     margin: 1vh 0 0 -1vw;
-    padding: 5px;
     -ms-flex-item-align: start;
         align-self: flex-start;
-    cursor: pointer;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .fa-bookmark:hover {
-    color: #4bf0ea;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-date {
-    font-size: calc(8px + 0.2vw);
-    letter-spacing: 2px;
-    font-weight: 400;
-    color: #2d283c;
-    margin-top: 6vh;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-name {
-    width: 100%;
-    font-size: calc(14px + 0.5vw);
-    font-weight: 400;
-    color: #2d283c;
     margin-top: 3vh;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    text-align: center;
-    min-height: 30px;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-files {
-    font-size: calc(8px + 0.1vw);
-    font-weight: 400;
-    color: #877da9;
-    margin-top: 0.5vh;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: center;
-    width: 100%;
-    min-height: 12px;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-files i {
-    padding: 2px;
-    margin-left: 5px;
-    cursor: pointer;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-files i:hover {
-    color: #4bf0ea;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-details {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    width: 100%;
-    margin: 3vh 0;
-    overflow: hidden;
-    min-height: 12px;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-details * {
-    font-size: calc(8px + 0.2vw);
-    text-transform: uppercase;
-    letter-spacing: 0.2vmin;
-    font-weight: 400;
-    color: #2d283c;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: center;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-notes {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
     min-height: 80px;
     height: 10vh;
     overflow-y: auto;
-    margin: auto 0;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-notes p {
-    font-size: calc(8px + 0.1vw);
-    font-weight: 400;
-    color: #2d283c;
-    text-align: center;
-    line-height: 180%;
-    margin: auto;
-    z-index: 2;
     padding-right: 10px;
-    cursor: text;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-notes::-webkit-scrollbar {
     width: 2px;
@@ -3049,44 +2939,6 @@ body {
         -ms-flex: auto;
             flex: auto;
     overflow: auto;
-    width: 1px;
-    background: #c7c2d5;
-    margin: 2.5vh 0 1.5vh 0;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    margin-bottom: 2vh;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons * {
-    color: #877da9;
-    font-size: calc(8px + 0.2vw);
-    padding: 0.65em 3.5em;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons *::before {
-    border-color: #877da9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons *::after {
-    border-color: white;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons .proj-save,
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-buttons .proj-cancel {
-    display: none;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card .proj-modified {
-    font-size: calc(8px + 0.1vw);
-    color: #2d283c;
-    margin-bottom: 3vh;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:last-of-type::after {
     content: '';
@@ -3097,62 +2949,6 @@ body {
     margin-top: -1px;
     margin-right: -3vw;
     visibility: hidden;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover {
-    background: white;
-    -webkit-box-shadow: 0 0 30px -20px black;
-            box-shadow: 0 0 30px -20px black;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .fa-bookmark {
-    color: #877da9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .fa-bookmark:hover {
-    color: #4bf0ea;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-date {
-    color: #877da9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-name {
-    color: #6853d9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-files {
-    color: #877da9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-files i:hover {
-    color: #4bf0ea;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-details * {
-    color: #6853d9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-notes p {
-    color: #6853d9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-notes::-webkit-scrollbar-thumb {
-    background: #4bf0ea;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-notes::-webkit-scrollbar-thumb:hover, .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-notes::-webkit-scrollbar-thumb:active {
-    background: #4bf0ea;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-sep {
-    background: #c7c2d5;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons * {
-    color: #6853d9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons *::before {
-    border-color: #6853d9;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons *::after {
-    border-color: white;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons *:hover {
-    color: #4bf0ea;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-buttons *:hover::before {
-    border-color: #4bf0ea;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container .proj-card:hover .proj-modified {
-    color: #877da9;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container::-webkit-scrollbar {
     height: 5px;
@@ -3169,32 +2965,10 @@ body {
   .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container::-webkit-scrollbar-thumb:hover, .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container::-webkit-scrollbar-thumb:active {
     background: #c7c2d5;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .proj-scroll-container:hover ~ .scroll-cover {
-    background: transparent;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area .proj-wrap .scroll-cover {
-    pointer-events: none;
-    position: fixed;
-    height: 10px;
-    width: calc(70vw - 55px - 1vw - 6vw);
-    margin-top: -10px;
-    background: #f8f8f8;
-    -webkit-transition: background-color 0.2s ease-out;
-    transition: background-color 0.2s ease-out;
-  }
   .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container {
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     margin: 0;
   }
   .profile-tabs-section #billing-area {
@@ -3205,8 +2979,10 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    padding: 4vh 1vw;
+    padding: 0 1vmax 1vmax 1vmax;
     color: #2d283c;
+    background: #f8f8f8;
+    min-height: calc(100% - 5vh);
   }
   .profile-tabs-section #billing-area .billing-card {
     cursor: pointer;
@@ -3217,9 +2993,9 @@ body {
         flex-wrap: wrap;
     padding: 3vh 3vw 1vh 3vw;
     width: 100%;
-    background: #f8f8f8;
+    background: white;
     border-radius: 5px;
-    margin: 1vh 0;
+    margin-top: 1vmax;
   }
   .profile-tabs-section #billing-area .billing-card .billing-main {
     width: 100%;
@@ -3526,4 +3302,3 @@ body {
     color: #6853d9;
   }
 }
-/*# sourceMappingURL=profile.css.map */
