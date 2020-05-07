@@ -10,6 +10,19 @@ function onNotes(e) {
   hoverNotes = e;
 }
 
+let Project = class {
+  constructor(id, bookmark, creation, makes, modified, name, notes, thumbnail) {
+    this.id = id
+    this.bookmark = bookmark
+    this.creation = creation
+    this.makes = makes
+    this.modified = modified
+    this.name = name
+    this.notes = notes
+    this.thumbnail = thumbnail
+  }
+}
+
 const profileInit = async() => {
 
   // Get elements
@@ -19,7 +32,7 @@ const profileInit = async() => {
   const nameEl = document.getElementById('profile-name')
   const locationEl = document.getElementById('profile-location')
   const bioEl = document.getElementById('profile-bio')
-  const projScroll = document.querySelector('.proj-scroll-container')
+  const projScroll = document.getElementById('proj-scroll-container')
   const billingCards = document.getElementsByClassName('billing-card')
 
   // -- Prerender selected tab -- 
@@ -106,5 +119,11 @@ const profileInit = async() => {
       this.classList.toggle('billing-card-active')
     }
   }
+
+  let project = new Project(123, true, "01/01/2020", [], "01/01/2020", "My First Project", "Some notes", "Photo.png")
+
+  console.log(project)
+
+  projScroll.appendChild(document.createElement('div'))
 
 }
