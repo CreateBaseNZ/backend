@@ -1623,7 +1623,7 @@ nav .nav-darken-overlay {
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
     font-size: 1.2vh;
-    color: red;
+    color: #c7c2d5;
     letter-spacing: 2px;
     font-weight: 800;
     padding-bottom: 4vh;
@@ -2159,7 +2159,7 @@ h2 {
   font-family: "Montserrat", sans-serif;
   color: #2d283c;
   font-weight: 700;
-  font-size: 8.5vmin;
+  font-size: 8vmin;
   color: white;
   text-shadow: -1px -1px 0 #2d283c, 1px -1px 0 #2d283c, -1px 1px 0 #2d283c, 1px 1px 0 #2d283c;
 }
@@ -2389,3 +2389,39 @@ h1, h2, h3 {
   -o-filter: blur(0.1em);
   -ms-filter: blur(0.1em);
 }
+
+@media only screen and (min-width: 60em) {
+  h1 {
+    font-size: 6vmin;
+  }
+  h2 {
+    font-size: 6vmin;
+  }
+  .beg-title-wrap {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .beg-section-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .beg-story-content {
+    margin-left: 1em;
+  }
+  .img-banner-container {
+    height: 50vmin;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+  }
+}
+/*# sourceMappingURL=story.css.map */

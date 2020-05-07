@@ -27,8 +27,9 @@ h2{
     font-family: $montserrat;
     color: $dark-3;
     font-weight: 700;
-    font-size: 8.5vmin;
+    font-size: 8vmin;
     color: white;
+    // -webkit-text-stroke: 1px $dark-3;
     text-shadow:
     -1px -1px 0 $dark-3,
     1px -1px 0 $dark-3,
@@ -231,5 +232,35 @@ h1, h2, h3{
         -moz-filter: blur(0.1em);
         -o-filter: blur(0.1em);
         -ms-filter: blur(0.1em);
+    }
+}
+
+//tablet screen view
+@media only screen and (min-width: 60em){
+    h1{
+        font-size: 6vmin;
+    }
+    h2{
+        font-size: 6vmin;
+    }
+    .beg-title-wrap{
+        flex: 0 0 50%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .beg-section-container{
+        display: flex;
+        flex-wrap: wrap;
+        // border: thin solid red;
+    }
+    .beg-title-container{
+        // background-color: blue;
+    }
+    .beg-story-content{
+        margin-left: 1em;
+    }
+    .img-banner-container{
+        height: 50vmin;
+        flex: 0 0 50%;
     }
 }
