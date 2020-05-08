@@ -297,7 +297,17 @@ body {
             cursor: pointer;
             margin: 1vmax -1vmax 0 0;
             align-self: flex-end;
+          }
+          
+          .fas {
+            color: $highlight;
+            &:hover {
+              filter: brightness(0.95);
+            }
+          }
 
+          .far {
+            color: $dark-3;
             &:hover {
               color: $highlight;
             }
@@ -321,7 +331,7 @@ body {
             min-height: 30px;
           }
 
-          .proj-files {
+          .proj-makes {
             font-size: calc(8px + 0.1vmax);
             font-weight: 400;
             color: $dark-1;
@@ -333,7 +343,8 @@ body {
             width: 100%;
             min-height: 12px;
 
-            i {
+            .fa-save {
+              color: $dark-1;
               padding: 2px;
               margin-left: 5px;
               cursor: pointer;
@@ -344,7 +355,7 @@ body {
             }
           }
 
-          .proj-details {
+          .proj-make-details {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -373,6 +384,7 @@ body {
             margin: auto 0;
 
             p {
+              user-select: text;
               font-size: calc(8px + 0.1vmax);
               font-weight: 400;
               color: $dark-3;
@@ -415,17 +427,13 @@ body {
           &:hover {
             background: $light-1;
             box-shadow: 0 0 30px -18px black;
-            .fa-bookmark{ 
-              color: $dark-1;
-              &:hover { color: $highlight; }
-            }
             .proj-date { color: $dark-1; }
             .proj-name { color: $logo-2; }
-            .proj-files { 
+            .proj-makes { 
               color: $dark-1;
               i:hover { color: $highlight; } 
             }
-            .proj-details {
+            .proj-make-details {
               * { color: $logo-2; }
             }
             .proj-notes {

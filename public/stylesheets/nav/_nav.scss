@@ -385,12 +385,12 @@ nav {
     .nav-left-menu-wrap {
       .nav-left-menu {
         margin-left: -2vw;
-        width: $menu-width;
+        width: #{'max(250px, #{$menu-width})'};
         grid-template-rows: 80vh 20vh;
       }  
     }
     .nav-left-menu-active {
-      width: $menu-width;
+      width: #{'max(250px, #{$menu-width})'};
       .nav-left-menu {
         margin-left: 0;
       }
@@ -398,15 +398,13 @@ nav {
   
     .nav-right-menu-in {
       .nav-right-menu {
-        width: calc(#{$menu-width} + 15px);
         margin-right: -2vw;
-        width: $menu-width;
+        width: #{'max(250px, #{$menu-width})'};
       }  
     }
   
     .nav-right-menu-active {
-      width: calc(#{$menu-width} + 15px);
-      width: $menu-width;
+      width: #{'max(250px, #{$menu-width})'};
   
       .nav-right-menu {
         margin-right: 0vw;

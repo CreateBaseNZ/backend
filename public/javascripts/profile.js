@@ -11,15 +11,25 @@ function onNotes(e) {
 }
 
 let Project = class {
-  constructor(id, bookmark, creation, makes, modified, name, notes, thumbnail) {
+  constructor(id, bookmark, created, makes, modified, name, notes, thumbnail) {
     this.id = id
     this.bookmark = bookmark
-    this.creation = creation
+    this.created = created
     this.makes = makes
     this.modified = modified
     this.name = name
     this.notes = notes
     this.thumbnail = thumbnail
+  }
+}
+
+let Make = class {
+  constructor(id, colour, material, quality, strength) {
+    this.id = id
+    this.colour = colour
+    this.material = material
+    this.quality = quality
+    this.strength = strength
   }
 }
 
@@ -120,34 +130,69 @@ const profileInit = async() => {
     }
   }
 
-  let project = new Project(123, true, "01/01/2020", [], "01/01/2020", "My First Project", "Some notes", "Photo.png")
+  let project = new Project('123', true, "01/01/2020", ['123'], "01/01/2020", "My First Project", "Some notes", "Photo.png")
+
+  let makeA = new Make('123', 'black', 'petg', 'normal', 'normal')
+  let makeB = new Make('456', 'b', 'b', 'b', 'b')
+  allMakes = [makeA, makeB]
 
   console.log(project)
 
   let cardEl = document.createElement('div')
-  let filesEl = document.createElement('p')
+  let date = document.createElement('p')
+  date.innerHTML = project.created
+  let name = document.createElement('p')
+  name.innerHTML = project.name
+  let makesEl = document.createElement('p')
   let detailsEl = document.createElement('div')
   let notesEl = document.createElement('div')
-  let notespEl = document.createElement('p')
+  let note = document.createElement('p')
+  note.innerHTML = project.notes
   let editEl = document.createElement('button')
   editEl.innerHTML = 'Edit'
   let modifiedEl = document.createElement('p')
   modifiedEl.innerHTML = 'Last modified ' + project.modified
 
   projScroll.appendChild(cardEl).className = 'proj-card'
-  cardEl.appendChild(document.createElement('i')).className = 'far fa-bookmark'
-  cardEl.appendChild(document.createElement('p')).className = 'proj-date'
-  cardEl.appendChild(document.createElement('p')).className = 'proj-name'
-  cardEl.appendChild(filesEl).className = 'proj-files'
-  filesEl.appendChild(document.createElement('i')).className = 'fas fa-save'
-  cardEl.appendChild(detailsEl).className = 'proj-details'
-  detailsEl.appendChild(document.createElement('p')).className = 'proj-material'
-  detailsEl.appendChild(document.createElement('p')).className = 'proj-quality'
-  detailsEl.appendChild(document.createElement('p')).className = 'proj-strength'
-  detailsEl.appendChild(document.createElement('p')).className = 'proj-colour'
+  if (project.bookmark) {
+    cardEl.appendChild(document.createElement('i')).className = 'fas fa-bookmark'
+  } else {
+    cardEl.appendChild(document.createElement('i')).className = 'far fa-bookmark'
+  }
+  cardEl.appendChild(date).className = 'proj-date'
+  cardEl.appendChild(name).className = 'proj-name'
+  cardEl.appendChild(makesEl).className = 'proj-makes'
+  makesEl.appendChild(document.createElement('i')).className = 'fas fa-save'
+  cardEl.appendChild(detailsEl).className = 'proj-make-details'
+  for(projectMake of project.makes) {
+    for(make of allMakes) {
+      console.log(make.id)
+      if (projectMake === make.id) {
+        let el = document.createElement('p')
+        el.innerHTML = make.colour
+        detailsEl.appendChild(el).className = 'proj-colour'
+        
+        el = document.createElement('p')
+        el.innerHTML = make.material
+        detailsEl.appendChild(el).className = 'proj-material'
+        
+        el = document.createElement('p')
+        el.innerHTML = make.quality
+        detailsEl.appendChild(el).className = 'proj-quality'
+        
+        el = document.createElement('p')
+        el.innerHTML = make.strength
+        detailsEl.appendChild(el).className = 'proj-strength'
+
+        break
+      }
+    }
+  }
+
   cardEl.appendChild(notesEl).className = 'proj-notes'
-  notesEl.appendChild(notespEl).setAttribute('onmouseover', 'onNotes(true)')
-  notesEl.appendChild(notespEl).setAttribute('onmouseout', 'onNotes(false)')
+  notesEl.appendChild(note).setAttribute('onmouseover', 'onNotes(true)')
+  notesEl.appendChild(note).setAttribute('onmouseout', 'onNotes(false)')
+  cardEl.appendChild(document.createElement('div')).className = 'proj-sep'
   cardEl.appendChild(editEl).className = 'proj-edit action-btn'
   cardEl.appendChild(modifiedEl).className = 'proj-modified'
 }

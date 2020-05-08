@@ -1428,24 +1428,22 @@ nav .nav-darken-overlay {
   }
   nav .nav-side-menus .nav-left-menu-wrap .nav-left-menu {
     margin-left: -2vw;
-    width: 20vw;
+    width: max(250px, 20vw);
     -ms-grid-rows: 80vh 20vh;
         grid-template-rows: 80vh 20vh;
   }
   nav .nav-side-menus .nav-left-menu-active {
-    width: 20vw;
+    width: max(250px, 20vw);
   }
   nav .nav-side-menus .nav-left-menu-active .nav-left-menu {
     margin-left: 0;
   }
   nav .nav-side-menus .nav-right-menu-in .nav-right-menu {
-    width: calc(20vw + 15px);
     margin-right: -2vw;
-    width: 20vw;
+    width: max(250px, 20vw);
   }
   nav .nav-side-menus .nav-right-menu-active {
-    width: calc(20vw + 15px);
-    width: 20vw;
+    width: max(250px, 20vw);
   }
   nav .nav-side-menus .nav-right-menu-active .nav-right-menu {
     margin-right: 0vw;
@@ -2424,4 +2422,3 @@ h1, h2, h3 {
             flex: 0 0 50%;
   }
 }
-/*# sourceMappingURL=story.css.map */
