@@ -10,6 +10,7 @@ body {
 }
 
 .main-page {
+    // border: thin solid red;
     margin-top: $top-bar-height;
     display: flex;
     justify-content: center;
@@ -58,6 +59,7 @@ h1, h2, h3{
 
 .link-container{
     display: flex;
+    align-items: center;
     h3{
         font-size: 1em;
         margin-right: 1em;
@@ -159,22 +161,61 @@ h1, h2, h3{
     flex-direction: column;
     justify-content: space-between;
     min-height: 22em;
+    h4{
+        position: absolute;
+        font-size: 5vmin;
+        text-align: center;
+        color: $light-1;
+        font-weight: 400;
+        letter-spacing: 1vmin;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        transition: all ease 0.2s;
+    }
+    h4:hover{
+        color: $highlight;
+    }
     .endev-img{
         flex: 0 0 10em;
-        background-image: url(../../../public/images/landing-4.png);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        
+        position: relative;
+        &:before{
+            content: '';
+            -webkit-filter:brightness(60%);
+            filter:brightness(60%);
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background-image: url(../../../public/images/landing-4.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     }
     .endev-img2{
         flex: 0 0 10em;
-        background-image: url(../../../public/images/landing-4.png);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
+        position: relative;
+        &:before{
+            content: '';
+            -webkit-filter:brightness(60%);
+            filter:brightness(60%);
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background-image: url(../../../public/images/landing-4.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     }
 }
 
@@ -235,32 +276,169 @@ h1, h2, h3{
     }
 }
 
-//tablet screen view
+//tablet/desktop screen view
 @media only screen and (min-width: 60em){
+    //global
     h1{
         font-size: 6vmin;
     }
     h2{
         font-size: 6vmin;
     }
+    .beg-section-container, .story-section-container, .end-story-container, .current-endev-container, .future-container{
+    // border: thin solid red;
+    padding: 2vmin 14vmin;
+    }
+
+    //beginning story section
+    .beg-section-container{
+        padding-top: 9vmin;
+    }
     .beg-title-wrap{
         flex: 0 0 50%;
         display: flex;
         flex-wrap: wrap;
+        box-sizing: border-box;
+        padding: 1em;
     }
     .beg-section-container{
         display: flex;
-        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
         // border: thin solid red;
     }
-    .beg-title-container{
-        // background-color: blue;
-    }
     .beg-story-content{
-        margin-left: 1em;
+        margin: 5vmin 4vmin;
     }
     .img-banner-container{
-        height: 50vmin;
+        height: 48vmin;
+        flex: 0 0 45%;
+    }
+
+    //story section
+    .story-title-wrap{
         flex: 0 0 50%;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        padding: 1em;
+    }
+    .story-section-container{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        .story-content{
+            margin: 5vmin 0 5vmin 4vmin;
+            padding-right: 0em;
+            border-right: none;
+            padding-left: 2em;
+            border-left: 0.1em solid $dark-2;
+        }
+    }
+
+    //end story section
+    .end-story-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .end-title-wrap{
+        flex: 0 0 50%;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        padding: 1em;
+    }
+    .end-section-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // border: thin solid red;
+    }
+
+    .end-story-content{
+        margin: 5vmin 4vmin;
+    }
+
+    //current endeavour section
+    .current-endev-container{
+        padding: 8vmin 0;
+        h1{
+            font-size: 4vmin;
+        }
+        hr{
+            width: 30%;
+            height: 0.15em;
+        }
+        .endev-content{
+            margin: 7vmin auto;
+            width: 50%;
+        }
+        p{
+            text-align: center;
+            margin: 5em 0 em;
+        }
+    }
+
+    .envdev-img-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        min-height: 22em;
+
+        .endev-img{
+            flex: 0 0 50%; 
+            // filter: brightness(70%);
+        }
+        .endev-img2{
+            flex: 0 0 50%;
+            // filter: brightness(70%);
+        }
+    }
+
+    .future-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h1, h2{
+            text-align: center;
+        }
+        .future-content{
+            align-self: center;
+            width: 40%;
+            p{
+                margin:0;
+            }
+        }
+        // .socials-container{
+        //     align-self: center;
+        //     width: 60%;
+        //     margin-bottom: 5vmin;
+        //     h1{
+        //         font-size: 3vmin;
+        //         padding-bottom: 1em;
+        //     }
+        //     a{
+        //         color: $dark-2;
+        //         font-size: 1.5em;
+        //         padding: 0.5em;
+        //     }
+        // }
+        .socials-container{
+            display: none;
+        }
+        .future-img-container{
+            width: 80%;
+            align-self: center;
+        }
     }
 }
+
+@media only screen and (min-width: 150em) {
+    .main-page {
+        margin: auto;
+        max-width: 140em;
+    }
+  }
