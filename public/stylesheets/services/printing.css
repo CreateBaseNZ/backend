@@ -2176,8 +2176,8 @@ h4 {
 }
 
 #particles-js .banner-text h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
   color: #2d283c;
   letter-spacing: 2vmin;
   margin-bottom: 1vh;
@@ -3154,3 +3154,4 @@ form .ourtools-btn-container {
         grid-template-rows: 25% 20% 30% 20%;
   }
 }
+/*# sourceMappingURL=printing.css.map */
