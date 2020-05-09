@@ -5,13 +5,8 @@ var loadFile = function(event) {
   document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
 }
 
-var hoverNotes = false
-function onNotes(e) {
-  hoverNotes = e;
-}
-
 let Project = class {
-  constructor(id, bookmark, created, makes, modified, name, notes, thumbnail) {
+  constructor(id, bookmark, created, makes, modified, name, notes, image) {
     this.id = id
     this.bookmark = bookmark
     this.created = created
@@ -19,15 +14,16 @@ let Project = class {
     this.modified = modified
     this.name = name
     this.notes = notes
-    this.thumbnail = thumbnail
+    this.image = image
   }
 }
 
 let Make = class {
-  constructor(id, colour, material, quality, strength) {
+  constructor(id, colour, material, name, quality, strength) {
     this.id = id
     this.colour = colour
     this.material = material
+    this.name = name
     this.quality = quality
     this.strength = strength
   }
@@ -115,11 +111,12 @@ const profileInit = async() => {
   if (mq.matches) {
     // -- Horizontal scrolling --
     projScroll.addEventListener('wheel', function(e) {
-      if (!hoverNotes) {
-        if (e.deltaY > 0) projScroll.scrollLeft += 100
-        else projScroll.scrollLeft -= 100
-        e.preventDefault()
+      if (e.deltaY > 0) {
+        projScroll.scrollLeft += 100
+      } else {
+        projScroll.scrollLeft -= 100
       }
+      e.preventDefault()
     })
   }
 
@@ -130,69 +127,94 @@ const profileInit = async() => {
     }
   }
 
-  let project = new Project('123', true, "01/01/2020", ['123'], "01/01/2020", "My First Project", "Some notes", "Photo.png")
+  let projectA = new Project('123', true, "01/01/2020", ['123', '456'], "01/01/2020", "My First Project", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia!", "./../../public/images/profile/project-thumbnail.jpeg")
+  
+  let projectB = new Project('456', false, "01/01/2020", ['456'], "01/01/2020", "Test Part", "No Notes", "./../../public/images/profile/stl.png")
+  
+  let projectC = new Project('456', false, "01/01/2020", [], "01/01/2020", "Trunk Modelling", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore perspiciatis molestias dignissimos! Voluptatibus delectus sapiente obcaecati. Delectus laborum quo dolor?", "./../../public/images/profile/trunk.png")
 
-  let makeA = new Make('123', 'black', 'petg', 'normal', 'normal')
-  let makeB = new Make('456', 'b', 'b', 'b', 'b')
-  allMakes = [makeA, makeB]
+  let projectD = new Project('456', true, "01/01/2020", ['123'], "01/01/2020", "Mini Boat", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, numquam.", "./../../public/images/profile/jank.jpg")
 
-  console.log(project)
+  let allProjects = [projectA, projectB, projectC, projectD]
 
-  let cardEl = document.createElement('div')
-  let date = document.createElement('p')
-  date.innerHTML = project.created
-  let name = document.createElement('p')
-  name.innerHTML = project.name
-  let makesEl = document.createElement('p')
-  let detailsEl = document.createElement('div')
-  let notesEl = document.createElement('div')
-  let note = document.createElement('p')
-  note.innerHTML = project.notes
-  let editEl = document.createElement('button')
-  editEl.innerHTML = 'Edit'
-  let modifiedEl = document.createElement('p')
-  modifiedEl.innerHTML = 'Last modified ' + project.modified
+  let makeA = new Make('123', 'black', 'petg', 'Make Part A', 'normal', 'normal')
+  let makeB = new Make('456', 'b', 'b', 'Make Part B', 'b', 'b')
+  let allMakes = [makeA, makeB]
 
-  projScroll.appendChild(cardEl).className = 'proj-card'
-  if (project.bookmark) {
-    cardEl.appendChild(document.createElement('i')).className = 'fas fa-bookmark'
-  } else {
-    cardEl.appendChild(document.createElement('i')).className = 'far fa-bookmark'
-  }
-  cardEl.appendChild(date).className = 'proj-date'
-  cardEl.appendChild(name).className = 'proj-name'
-  cardEl.appendChild(makesEl).className = 'proj-makes'
-  makesEl.appendChild(document.createElement('i')).className = 'fas fa-save'
-  cardEl.appendChild(detailsEl).className = 'proj-make-details'
-  for(projectMake of project.makes) {
-    for(make of allMakes) {
-      console.log(make.id)
-      if (projectMake === make.id) {
-        let el = document.createElement('p')
-        el.innerHTML = make.colour
-        detailsEl.appendChild(el).className = 'proj-colour'
-        
-        el = document.createElement('p')
-        el.innerHTML = make.material
-        detailsEl.appendChild(el).className = 'proj-material'
-        
-        el = document.createElement('p')
-        el.innerHTML = make.quality
-        detailsEl.appendChild(el).className = 'proj-quality'
-        
-        el = document.createElement('p')
-        el.innerHTML = make.strength
-        detailsEl.appendChild(el).className = 'proj-strength'
 
-        break
+  for (project of allProjects) {
+    let cardEl = document.createElement('div')
+    let imgEl = document.createElement('img')
+    imgEl.src = project.image
+    imgEl.alt = 'Project Image'
+    let date = document.createElement('p')
+    date.innerHTML = project.created
+    let name = document.createElement('p')
+    name.innerHTML = project.name
+    let makesEl = document.createElement('p')
+    let notesEl = document.createElement('div')
+    notesEl.appendChild(document.createElement('p')).innerHTML = project.notes
+    let modifiedEl = document.createElement('p')
+    modifiedEl.innerHTML = 'Last modified ' + project.modified
+    let editEl = document.createElement('p')
+    editEl.innerHTML = 'Click anywhere on this card to edit'
+  
+    projScroll.appendChild(cardEl).className = 'proj-card'
+    cardEl.appendChild(imgEl).className = 'proj-img'
+    if (project.bookmark) {
+      cardEl.appendChild(document.createElement('i')).className = 'fas fa-bookmark'
+    } else {
+      cardEl.appendChild(document.createElement('i')).className = 'far fa-bookmark'
+    }
+    cardEl.appendChild(date).className = 'proj-date'
+    cardEl.appendChild(name).className = 'proj-name'
+    cardEl.appendChild(makesEl).className = 'proj-makes'
+    for (projectMake of project.makes) {
+      for (make of allMakes) {
+        if (projectMake == make.id) {
+          if (makesEl.innerHTML !== '') {
+            makesEl.innerHTML += ', '
+          }
+          makesEl.innerHTML += make.name
+        }
       }
     }
+    cardEl.appendChild(notesEl).className = 'proj-notes'
+    cardEl.appendChild(modifiedEl).className = 'proj-modified'
+    cardEl.appendChild(editEl).className = 'proj-edit'
+  
+    cardEl.addEventListener('mouseover', () => {
+      notesEl.style.height = notesEl.scrollHeight + 'px'
+    })
+    cardEl.addEventListener('mouseout', () => {
+      notesEl.style.height = '0'
+    })
   }
 
-  cardEl.appendChild(notesEl).className = 'proj-notes'
-  notesEl.appendChild(note).setAttribute('onmouseover', 'onNotes(true)')
-  notesEl.appendChild(note).setAttribute('onmouseout', 'onNotes(false)')
-  cardEl.appendChild(document.createElement('div')).className = 'proj-sep'
-  cardEl.appendChild(editEl).className = 'proj-edit action-btn'
-  cardEl.appendChild(modifiedEl).className = 'proj-modified'
+  // for(projectMake of project.makes) {
+  //   for(make of allMakes) {
+  //     console.log(make.id)
+  //     if (projectMake === make.id) {
+  //       let el = document.createElement('p')
+  //       el.innerHTML = make.colour
+  //       detailsEl.appendChild(el).className = 'proj-colour'
+        
+  //       el = document.createElement('p')
+  //       el.innerHTML = make.material
+  //       detailsEl.appendChild(el).className = 'proj-material'
+        
+  //       el = document.createElement('p')
+  //       el.innerHTML = make.quality
+  //       detailsEl.appendChild(el).className = 'proj-quality'
+        
+  //       el = document.createElement('p')
+  //       el.innerHTML = make.strength
+  //       detailsEl.appendChild(el).className = 'proj-strength'
+
+  //       break
+  //     }
+  //   }
+  // }
+
+
 }
