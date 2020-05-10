@@ -127,30 +127,28 @@ const profileInit = async() => {
     }
   }
 
-  let projectA = new Project('000000', true, "01/01/2020", ['123', '456'], "01/01/2020", "My First Project", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia!", "./../../public/images/profile/project-thumbnail.jpeg")
+  let proj1 = new Project('000000', true, "01/01/2020", ['123', '456'], "01/01/2020", "My First Project", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia!", "./../../public/images/profile/project-thumbnail.jpeg")
   
-  let projectB = new Project('111111', false, "01/01/2020", ['456'], "01/01/2020", "Test Part", "", "./../../public/images/profile/stl.png")
+  let proj2 = new Project('111111', false, "01/01/2020", ['456'], "01/01/2020", "Test Part", "", "./../../public/images/profile/stl.png")
   
-  let projectC = new Project('222222', false, "01/01/2020", [], "01/01/2020", "Trunk Modelling", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore perspiciatis molestias dignissimos! Voluptatibus delectus sapiente obcaecati. Delectus laborum quo dolor?", "./../../public/images/profile/trunk.png")
+  let proj3 = new Project('222222', false, "01/01/2020", [], "01/01/2020", "Trunk Modelling", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore perspiciatis molestias dignissimos! Voluptatibus delectus sapiente obcaecati. Delectus laborum quo dolor?", "./../../public/images/profile/trunk.png")
 
-  let projectD = new Project('333333', true, "01/01/2020", ['123'], "01/01/2020", "Mini Boat", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, numquam.", "./../../public/images/profile/jank.jpg")
+  let proj4 = new Project('333333', true, "01/01/2020", ['123'], "01/01/2020", "Mini Boat", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, numquam.", "./../../public/images/profile/jank.jpg")
 
-  let allProjects = [projectA, projectB, projectC, projectD]
+  let allProjects = [proj1, proj2, proj3, proj4]
 
   let makeA = new Make('123', 'black', 'petg', 'Make Part A', 'normal', 'normal')
   let makeB = new Make('456', 'b', 'b', 'Make Part B', 'b', 'b')
   let allMakes = [makeA, makeB]
 
-  for (project of allProjects) {
+  allProjects.forEach(function(project, i) {
+    // IIFE
     let cardEl = document.createElement('div')
-    cardEl.id = 'proj-' + project.id
+    cardEl.id = 'proj-' + project.id 
     projScroll.appendChild(cardEl).className = 'proj-card'
-    let imgEl = document.createElement('img')
-    cardEl.appendChild(imgEl).className = 'proj-img'
-    imgEl.src = project.image
-    imgEl.alt = 'Project Image'
     let bookmarkEl = document.createElement('i')
     bookmarkEl.addEventListener('click', () => {
+      allProjects[i].bookmark = !allProjects[i].bookmark
       bookmarkEl.classList.toggle('fas')
       bookmarkEl.classList.toggle('far')
     })
@@ -159,7 +157,10 @@ const profileInit = async() => {
     } else {
       cardEl.appendChild(bookmarkEl).className = 'far fa-bookmark'
     }
-    console.log(bookmarkEl)
+    let imgEl = document.createElement('img')
+    cardEl.appendChild(imgEl).className = 'proj-img'
+    imgEl.src = project.image
+    imgEl.alt = 'Project Image'
     let date = document.createElement('p')
     date.innerHTML = project.created
     cardEl.appendChild(date).className = 'proj-date'
@@ -168,17 +169,18 @@ const profileInit = async() => {
     cardEl.appendChild(name).className = 'proj-name'
     let makesEl = document.createElement('p')
     cardEl.appendChild(makesEl).className = 'proj-makes'
-    if (project.makes.length > 0) {
-      for (projectMake of project.makes) {
-        for (make of allMakes) {
-          if (projectMake == make.id) {
+    if (project.makes.length) {
+      project.makes.forEach(function(makeInProject, j) {
+        for (let make of allMakes) {
+          if (makeInProject === make.id) {
             if (makesEl.innerHTML !== '') {
               makesEl.innerHTML += ', '
             }
             makesEl.innerHTML += make.name
+            break
           }
         }
-      }
+      })
     } else {
       makesEl.innerHTML = 'No makes added'.italics()
     }
@@ -201,9 +203,7 @@ const profileInit = async() => {
     let editEl = document.createElement('p')
     editEl.innerHTML = 'Click anywhere on this card to edit'
     cardEl.appendChild(editEl).className = 'proj-edit'
-  
-  
-  }
+  })
 
   // for(projectMake of project.makes) {
   //   for(make of allMakes) {

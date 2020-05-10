@@ -282,6 +282,7 @@ body {
   
         .proj-card {
           cursor: pointer;
+          position: relative;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -292,6 +293,7 @@ body {
           overflow: hidden;
           width: 80vw;
           margin: 2vmax auto;
+          order: 1;
 
           .proj-img {
             width: 100%;
@@ -301,10 +303,12 @@ body {
           }
 
           .fa-bookmark {
+            position: absolute;
+            top: 0;
+            right: 1vmax;
             flex-shrink: 0;
             padding: 5px;
-            align-self: flex-end;
-            margin-right: 1vmax;
+            font-size: 20px;
           }
           
           .fas {
@@ -337,7 +341,6 @@ body {
             font-weight: 400;
             color: $dark-3;
             text-align: center;
-            min-height: 30px;
             padding: 0 2vmax;
           }
 
@@ -376,8 +379,10 @@ body {
               color: $dark-3;
               text-align: center;
               line-height: 180%;
-              margin: auto;
-              padding: 2vh 2vmax;
+              margin: 2vh auto;
+              padding: 0 2vmax;
+              max-height: calc(50px + 15vh);
+              overflow: hidden;
             }
 
             &::before,
@@ -434,6 +439,10 @@ body {
               height: calc(1vh + 1vmax);
             }
           }
+        }
+
+        .end-spacer {
+          display: none;
         }
       }
     }
@@ -592,13 +601,9 @@ body {
           width: calc(55vh * 0.7);
           margin: 0 1.5vw;
           height: 55vh;
-          min-height: 320px;
+          min-height: 350px;
           min-width: 280px;
           justify-content: flex-end;
-
-          * {
-            // border: thin solid red;
-          }
 
           .proj-img {
             flex: 1 1 auto;
@@ -616,15 +621,23 @@ body {
 
           &:last-of-type {
             &::after {
-              content: '';
+              content: 'hello';
               width: 1px;
               height: 1px;
               align-self: flex-end;
               margin-top: -1px;
               margin-right: -3.5vw;
               visibility: hidden;
+              border-right: 1.5vw solid transparent;
             }
           }
+        }
+
+        .end-spacer {
+          display: inline-block;
+          order: 2;
+          min-width: 1px;
+          min-height: 1px;
         }
 
         &::-webkit-scrollbar {

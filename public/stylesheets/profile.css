@@ -2473,6 +2473,7 @@ body {
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card {
   cursor: pointer;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2492,6 +2493,9 @@ body {
   overflow: hidden;
   width: 80vw;
   margin: 2vmax auto;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-img {
@@ -2505,12 +2509,13 @@ body {
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fa-bookmark {
+  position: absolute;
+  top: 0;
+  right: 1vmax;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   padding: 5px;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  margin-right: 1vmax;
+  font-size: 20px;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fas {
@@ -2548,7 +2553,6 @@ body {
   font-weight: 400;
   color: #2d283c;
   text-align: center;
-  min-height: 30px;
   padding: 0 2vmax;
 }
 
@@ -2599,8 +2603,10 @@ body {
   color: #2d283c;
   text-align: center;
   line-height: 180%;
-  margin: auto;
-  padding: 2vh 2vmax;
+  margin: 2vh auto;
+  padding: 0 2vmax;
+  max-height: calc(50px + 15vh);
+  overflow: hidden;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-notes::before, .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-notes::after {
@@ -2665,6 +2671,10 @@ body {
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover .proj-edit {
   height: calc(1vh + 1vmax);
+}
+
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .end-spacer {
+  display: none;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container {
@@ -2843,7 +2853,7 @@ body {
     width: calc(55vh * 0.7);
     margin: 0 1.5vw;
     height: 55vh;
-    min-height: 320px;
+    min-height: 350px;
     min-width: 280px;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
@@ -2863,7 +2873,7 @@ body {
     justify-self: flex-end;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:last-of-type::after {
-    content: '';
+    content: 'hello';
     width: 1px;
     height: 1px;
     -ms-flex-item-align: end;
@@ -2871,6 +2881,15 @@ body {
     margin-top: -1px;
     margin-right: -3.5vw;
     visibility: hidden;
+    border-right: 1.5vw solid transparent;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .end-spacer {
+    display: inline-block;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    min-width: 1px;
+    min-height: 1px;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container::-webkit-scrollbar {
     height: 5px;
@@ -3224,4 +3243,3 @@ body {
     color: #6853d9;
   }
 }
-/*# sourceMappingURL=profile.css.map */
