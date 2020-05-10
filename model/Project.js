@@ -3,6 +3,7 @@ REQUIRED MODULES
 =========================================================================================*/
 
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
 
 /*=========================================================================================
 VARIABLES
@@ -53,6 +54,62 @@ const ProjectSchema = new Schema({
 /*=========================================================================================
 STATIC
 =========================================================================================*/
+
+ProjectSchema.statics.create = function (account, name, options) {
+  return new Promise(async (resolve, reject) => {
+    // INITIALISE NEW PROJECT INSTANCE
+    let project = new this();
+    // SET PROPERTY VALUES
+    // Account and name
+    project.account = account;
+    project.name = name;
+    // Options
+    for (const property in options) {
+      project[property] = options[property];
+    }
+    // Dates
+    const date = moment().tz("Pacific/Auckland").format();
+    project.date.creation = date;
+    project.date.modified = date;
+    // SAVE THE NEW PROJECT INSTANCE
+    try {
+      await project.save();
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    resolve("success");
+    return;
+  })
+}
+
+ProjectSchema.statics.retrieve = function (account) {
+  return new Promise(async (resolve, reject) => {
+    // INITIALISE RETRIEVED PROJECT INSTANCE ARRAY
+    let projects = [];
+    // IF NO PROJECT IS PROVIDED, RETRIEVE ALL
+    try {
+      projects = this.find({ account });
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // RECREATE PROJECTS REMOVING SENSITIVE PROPERTIES
+    const mappedProjects = projects.map((project) => {
+      let mappedProject = {
+        name: project.name,
+        thumbnail: project.thumbnail,
+        bookmark: project.bookmark,
+        date: project.date,
+        note: project.note
+      };
+      return mappedProject;
+    })
+    // RESOLVE AND RETURN THE MAPPED PROJECTS
+    resolve(mappedProjects);
+    return;
+  })
+}
 
 /*=========================================================================================
 METHOD
