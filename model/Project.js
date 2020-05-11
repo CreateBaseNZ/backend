@@ -111,6 +111,40 @@ ProjectSchema.statics.retrieve = function (account) {
   })
 }
 
+ProjectSchema.statics.update = function (account, projectId, updates) {
+  return new Promise(async (resolve, reject) => {
+    // FETCH THE PROJECT TO BE UPDATED
+    let project;
+    try {
+      project = await this.findOne({ _id: projectId, account });
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // VALIDATE THE PROJECT
+    if (!project) {
+      reject("no project found");
+      return;
+    }
+    // UPDATE THE PROJECT
+    for (const property in updates) {
+      project[property] = updates[property];
+    }
+    // Update Modified Date
+    const date = moment().tz("Pacific/Auckland").format();
+    project.date.modified = date;
+    // SAVE THE UPDATES OF THE PROJECT INSTANCE
+    try {
+      await project.save();
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    resolve("success");
+    return;
+  })
+}
+
 /*=========================================================================================
 METHOD
 =========================================================================================*/

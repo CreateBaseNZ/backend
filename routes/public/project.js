@@ -91,6 +91,33 @@ router.get("/profile/customer/fetch/all_proj", restrictedPages, async (req, res)
   return;
 })
 
+router.post("/profile/customer/update/proj", restrictedPages, async (req, res) => {
+  // INITIALISE AND DECLARE VARIABLES
+  const account = req.user._id;
+  const projectId = mongoose.Types.ObjectId(req.body.id);
+  const updates = req.body.updates;
+  // VALIDATE REQUIRED VARIABLES
+  if (!account) {
+    res.send({ status: "failed", content: "invalid user ID" });
+    return;
+  }
+  if (!projectId) {
+    res.send({ status: "failed", content: "invalid project ID" });
+    return;
+  }
+  // UPDATE THE PROJECT
+  let message;
+  try {
+    message = await Project.update(account, projectId, updates);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // SEND SUCCESS MESSAGE TO CLIENT
+  res.send({ status: "success", content: message });
+  return;
+})
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/
