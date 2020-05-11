@@ -70,6 +70,27 @@ router.post("/profile/customer/new/proj", restrictedPages, async (req, res) => {
   return;
 })
 
+router.get("/profile/customer/fetch/all_proj", restrictedPages, async (req, res) => {
+  // INITIALISE AND DECLARE VARIABLES
+  const account = req.user._id;
+  // VALIDATE REQUIRED VARIABLES
+  if (!account) {
+    res.send({ status: "failed", content: "invalid user ID" });
+    return;
+  }
+  // RETRIEVE ALL PROJECTS
+  let projects;
+  try {
+    projects = await Project.retrieve(account);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // RETURN ALL PROJECTS TO CLIENT
+  res.send({ status: "success", content: projects });
+  return;
+})
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/
