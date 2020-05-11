@@ -112,6 +112,41 @@ const MakeSchema = new Schema({
 STATIC
 =========================================================================================*/
 
+MakeSchema.statics.retrieve = function (account) {
+  return new Promise(async (resolve, reject) => {
+    // INITIALISE RETRIEVED MAKE INSTANCE ARRAY
+    let makes;
+    try {
+      makes = this.find({ accountId: account });
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // RECREATE PROJECTS REMOVING SENSITIVE PROPERTIES
+    const mappedMakes = makes.map((make) => {
+      let mappedMake = {
+        id: make._id,
+        file: make.file,
+        build: make.build,
+        quick: make.quick,
+        process: make.process,
+        material: make.material,
+        quality: make.quality,
+        strength: make.strength,
+        colour: make.colour,
+        quantity: make.quantity,
+        comment: make.comment,
+        date: make.date,
+        price: make.price
+      }
+      return mappedMake;
+    })
+    // RESOLVE AND RETURN THE MAPPED MAKES
+    resolve(mappedMakes);
+    return;
+  })
+}
+
 // @FUNC  findByAccountIdAndStatus
 // @TYPE  STATICS
 // @DESC

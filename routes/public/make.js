@@ -110,6 +110,27 @@ router.post(
   }
 );
 
+router.get("/profile/customer/fetch/makes", restrictedPages, async (req, res) => {
+  // INITIALISE AND DECLARE VARIABLES
+  const account = req.user._id;
+  // VALIDATE REQUIRED VARIABLES
+  if (!account) {
+    res.send({ status: "failed", content: "invalid user ID" });
+    return;
+  }
+  // RETRIEVE ALL MAKES
+  let makes;
+  try {
+    makes = await makes.retrieve(account);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // RETURN ALL MAKES TO CLIENT
+  res.send({ status: "success", content: makes });
+  return;
+})
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

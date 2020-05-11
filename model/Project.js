@@ -86,8 +86,7 @@ ProjectSchema.statics.create = function (account, name, options) {
 ProjectSchema.statics.retrieve = function (account) {
   return new Promise(async (resolve, reject) => {
     // INITIALISE RETRIEVED PROJECT INSTANCE ARRAY
-    let projects = [];
-    // IF NO PROJECT IS PROVIDED, RETRIEVE ALL
+    let projects;
     try {
       projects = this.find({ account });
     } catch (error) {
@@ -97,6 +96,7 @@ ProjectSchema.statics.retrieve = function (account) {
     // RECREATE PROJECTS REMOVING SENSITIVE PROPERTIES
     const mappedProjects = projects.map((project) => {
       let mappedProject = {
+        id: project._id,
         name: project.name,
         thumbnail: project.thumbnail,
         bookmark: project.bookmark,
