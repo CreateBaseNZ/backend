@@ -121,7 +121,7 @@ router.get("/profile/customer/fetch/makes", restrictedPages, async (req, res) =>
   // RETRIEVE ALL MAKES
   let makes;
   try {
-    makes = await makes.retrieve(account);
+    makes = await Make.retrieve(account);
   } catch (error) {
     res.send({ status: "failed", content: error });
     return;
