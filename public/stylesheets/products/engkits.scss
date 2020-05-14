@@ -9,50 +9,75 @@ body{
 
 .main-page {
     margin-top: $top-bar-height;
-    height:30em;
+    min-height:100vh;
     padding: 10em;
     display: flex;
     justify-content: center;
 }
 
-.action-btn-container{
-    margin: auto;
-}
-
-.gradient-btn{
-    margin: 10px;
-    padding: 30px;
+.comingSoon-container{
     text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    border: none;
-    display: block;
-    background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%)
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    h1{
+        color: $dark-2;
+        letter-spacing: 0.1em;
+    }
 }
 
-.gradient-btn:hover {
-    background-position: right center;
-}
-
-
-.btn-grad {
-    margin: 10px;
-    padding: 30px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2); */
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
-    background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%)
-}
-
-.btn-grad:hover { background-position: right center; }
+// -----------------------------------
+    // Glitch animation
+    // -----------------------------------
+    .glitch {
+        position: relative;
+        padding: 10px;
+      }
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 1px;
+        text-shadow: 1px 0 greenyellow;
+        background: $light-1;
+        overflow: hidden;
+        visibility: hidden;
+        animation: noise-anim 10s infinite linear alternate-reverse;
+      }
+      .glitch::before {
+        content: attr(data-text);
+        position: absolute;
+        left: -1px;
+        text-shadow: -1px 0 magenta;
+        background: $light-1;
+        overflow: hidden;
+        visibility: hidden;
+        animation: noise-anim-2 8s infinite linear alternate-reverse;
+      }
+    
+      @keyframes noise-anim {
+        $steps: 240;
+        @for $i from 0 through $steps {
+          #{percentage($i*(1/$steps))} {
+            $top: random(100);
+            $bottom: random(101 - $top);
+            clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+            padding: random(8)px - 8px;
+            visibility: visible;
+          }
+        }
+      }
+      @keyframes noise-anim-2 {
+        $steps: 150;
+        @for $i from 0 through $steps {
+          #{percentage($i*(1/$steps))} {
+            $top: random(100);
+            $bottom: random(101 - $top);
+            clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+            padding: random(10)px - 10px;
+            visibility: visible;
+          }
+        }
+      }

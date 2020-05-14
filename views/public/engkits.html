@@ -14,13 +14,14 @@
   <!--============== DEFAULT JAVASCRIPTS ==============-->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="./../../public/javascripts/moment.js"></script>
-  <!--============== CUSTOM JAVASCRIPTS ==============-->
   <script src="./../../public/javascripts/nav.js"></script>
+  <!--============== CUSTOM JAVASCRIPTS ==============-->
+  <script src="./../../public/javascripts/login.js"></script>
   <!--============== STYLESHEET ==============-->
   <link rel="stylesheet" href="./../../public/stylesheets/products/engkits.css" />
 </head>
 
-<body onload="navInit();">
+<body onload="navInit();engKitsInit();">
   
   <nav>
     <div class="nav-darken-overlay"></div>
@@ -93,19 +94,12 @@
     </div>
   </nav>
 
+  <div class="comingSoon-container">
+    <h1><span class="glitch" id="change-text" data-text="ENG KITS">ENG KITS</span></h1>
+  </div>
+
   <div class="main-page">
-    <div class="action-btn-container">
-      <button type="button" class="action-btn">+ Start New Project</button>
-    </div>
-    <div class="action-btn-container">
-      <button type="button" class="action-btn">Edit</button>
-    </div>
 
-    <div class="action-btn-container">
-      <button type="button" class="gradient-btn">Edit</button>
-    </div>
-
-    <!-- <a class="btn-grad">Hover me</a> -->
   </div>
   
   <div class="footer-section">
