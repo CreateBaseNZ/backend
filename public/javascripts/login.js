@@ -25,5 +25,4 @@ function textSequence(i, words) {
             }, (100 + Math.random()*100))
         }, (500 + Math.random()*1500))
     }, (50 + Math.random()*50))
-
 }
