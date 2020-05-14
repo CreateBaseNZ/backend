@@ -13,21 +13,11 @@ body{
     padding: 10em;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .comingSoon-container{
-    width: 100vw;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    margin: auto;
-    left: 50%;
-    right: 0;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
     h1{
-        text-align: center;
         color: $dark-2;
         letter-spacing: 0.1em;
     }
