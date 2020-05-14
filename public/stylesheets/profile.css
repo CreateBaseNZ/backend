@@ -2704,6 +2704,15 @@ body {
           box-shadow: 0 5px 25px -8px black;
 }
 
+.profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-screen {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 50vh;
+  width: 50vw;
+  background: white;
+}
+
 .profile-tabs-section #settings-tab:checked ~ #settings-area {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2758,18 +2767,29 @@ body {
     height: 40px;
   }
   .my-profile-section #profile-name {
-    -ms-flex-item-align: start;
-        align-self: flex-start;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    text-align: center;
     margin: 3vh 0 0 0;
     font-size: calc(20px + 0.5vw);
     width: 100%;
   }
   .my-profile-section #profile-location {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
     margin: 1vh 0 0 0;
     font-size: calc(10px + 0.2vw);
     letter-spacing: 3px;
   }
+  .my-profile-section #profile-location::after {
+    text-align: center;
+  }
   .my-profile-section #profile-bio {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
     margin: 3vh 0 0 0;
     font-size: calc(10px + 0.2vw);
   }
@@ -2820,6 +2840,7 @@ body {
     border: 0;
     width: 100%;
     border-radius: 5px;
+    position: relative;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area {
     -webkit-box-orient: vertical;
@@ -2833,6 +2854,24 @@ body {
         -ms-flex-align: center;
             align-items: center;
     padding: 0 3vw;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: black;
+    border-radius: 5px;
+    -webkit-filter: opacity(0.1);
+            filter: opacity(0.1);
+    z-index: 2;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen {
+    position: absolute;
+    height: 90%;
+    width: 87%;
+    background: white;
+    border-radius: 1px;
+    z-index: 2;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap {
     -webkit-box-ordinal-group: 2;

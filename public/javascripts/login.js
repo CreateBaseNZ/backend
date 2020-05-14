@@ -1,14 +1,18 @@
 const loginInit = () => {
-    textSequence(0)
+    textSequence(0, ['Creator', 'Maverick', 'Trailblazer', 'Innovator'])
+}
+
+const engKitsInit = () => {
+    textSequence(0, ['COMING SOON', 'ENG KITS'])
 }
 
 const toggleContainer = () => {
     container.classList.toggle("right-panel-active")
 }
 
-function textSequence(i) {
+function textSequence(i, words) {
     // Cycle through words
-    let words = ['Creator', 'Maverick', 'Trailblazer', 'Innovator']
+    // let words = ['Creator', 'Maverick', 'Trailblazer', 'Innovator']
 
     document.getElementById("change-text").innerHTML = words[i];
     document.getElementById("change-text").setAttribute("data-text", words[i])

@@ -141,6 +141,10 @@ const profileInit = async() => {
   let makeB = new Make('456', 'b', 'b', 'Make Part B', 'b', 'b')
   let allMakes = [makeA, makeB]
 
+  // fetch all projects
+  // fetch all makes
+  // store makes
+
   allProjects.forEach(function(project, i) {
     // IIFE
     let cardEl = document.createElement('div')
