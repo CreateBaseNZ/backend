@@ -8,7 +8,7 @@ body{
 }
 
 .main-page {
-    margin-top: $top-bar-height;
+    padding-top: $top-bar-height;
     min-height:100vh;
     padding: 10em;
     display: flex;
