@@ -66,6 +66,13 @@ router.get("/session/save", async (req, res) => {
     return;
   }
   session.status = "persistent";
+  // Save update
+  try {
+    await session.save();
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
   // Set the Cookie Expiry Date
   req.session.cookie.expires = new Date(Date.now() + 1000 * 60 * 60 * 365);
   // Send Success Message to the Client
@@ -92,6 +99,13 @@ router.get("/session/unsave", async (req, res) => {
     return;
   }
   session.status = "impersistent";
+  // Save update
+  try {
+    await session.save();
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
   // Set the Cookie Expiry Date
   req.session.cookie.expires = false;
   // Send Success Message to the Client

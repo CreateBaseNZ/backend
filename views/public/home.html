@@ -17,6 +17,7 @@
   <script src="./../../public/javascripts/nav.js"></script>
   <script src="./../../public/javascripts/session.js"></script>
   <script src="./../../public/javascripts/home.js"></script>
+  <script src="./../../public/javascripts/cookie.js"></script>
   <!--============== STYLESHEET ==============-->
   <link rel="stylesheet" href="./../../public/stylesheets/home.css">
   <link rel="stylesheet" href="./../../node_modules/swiper/css/swiper.min.css">
@@ -95,7 +96,29 @@
     </div>
   </nav>
 
+  <div id="cookie-container" class="hide">
+    <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse our traffic.</p>
+    <div class="check-list-container">
+      <div class="check-item">
+        <input type="checkbox" id="necessaryCheck" name="necessaryCheck" value="necessary">
+        <span class="custcheckbox"></span>
+        <label for="necessaryCheck">Necessary</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="personalCheck" name="personalCheck" value="personalised">
+        <span class="custcheckbox"></span>
+        <label for="personalCheck">Personalised</label>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button id="cancel" onclick="session.cancel();" >DON'T ALLOW</button>
+      <button id="allowSome">ALLOW SELECTED</button>
+      <button id="submit" onclick="session.allow();">ALLOW ALL</button>
+    </div>
+  </div>
+
   <div class="main-page">
+
     <div class="landing-section">
       <div class="landing-carousel">
         <div class="landing-slide landing-slide-left" id="landing-1">

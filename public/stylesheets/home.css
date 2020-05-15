@@ -454,6 +454,117 @@ Carl's Button Design (End)
   ======================================================================*/
 }
 
+#cookie-container {
+  position: fixed;
+  bottom: 7%;
+  right: 4%;
+  z-index: 9999;
+  padding: 1.5em 2em;
+  background-color: white;
+  max-width: 35em;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+  box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+  border-radius: 0.2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#cookie-container p {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8em;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 72%;
+          flex: 0 0 72%;
+  margin-right: 3%;
+  line-height: 150%;
+}
+
+#cookie-container .check-list-container {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#cookie-container .check-item {
+  position: relative;
+}
+
+#cookie-container .check-item label {
+  -ms-flex-item-align: right;
+      -ms-grid-row-align: right;
+      align-self: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8em;
+  text-align: right;
+}
+
+#cookie-container .check-item input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+#cookie-container .check-item .custcheckbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.5em;
+  width: 1.5em;
+  border: thin solid #4e4ed6;
+}
+
+#cookie-container .btn-group {
+  margin-top: 1.5em;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#cookie-container button {
+  font-size: 0.8em;
+  background-color: white;
+  border: thin solid #4e4ed6;
+  padding: 0.5em 1em;
+  width: 12em;
+  color: #4e4ed6;
+  cursor: pointer;
+  border-radius: 0.2em;
+}
+
+#cookie-container #submit {
+  background-color: #4e4ed6;
+  color: white;
+}
+
+#cookie-container.hide {
+  display: none;
+}
+
 .loading-icon {
   display: -webkit-box;
   display: -ms-flexbox;

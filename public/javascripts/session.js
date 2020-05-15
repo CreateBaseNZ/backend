@@ -8,6 +8,9 @@ let session = {
   save: undefined,
   unsave: undefined,
   status: undefined,
+  cancel: undefined,
+  show: undefined,
+  allow: undefined
 };
 
 /*=========================================================================================
@@ -30,10 +33,12 @@ session.initialise = async () => {
     console.log(error);
     return;
   }
+  console.log(sessionStatus);
   if (sessionStatus !== "unset") {
     return;
   }
   // Cookies Popup
+  session.show();
   return;
 };
 
@@ -112,6 +117,41 @@ session.status = () => {
     return;
   });
 };
+
+session.cancel = async () => {
+  document.querySelector('#cookie-container').classList.add("hide");
+  // Update backend of Cookie Status
+  let data;
+  try {
+    data = await session.unsave();
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  console.log(data);
+  return;
+}
+
+session.show = () => {
+  document.querySelector('#cookie-container').classList.remove("hide");
+  return;
+}
+
+session.allow = async () => {
+  document.querySelector('#cookie-container').classList.add("hide");
+    // Update backend of Cookie Status
+    let data;
+    try {
+      data = await session.save();
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    console.log(data);
+    return;
+}
+
+
 
 /*=========================================================================================
 END
