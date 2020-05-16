@@ -193,11 +193,6 @@ OrderSchema.statics.findOneByAccoundIdAndStatus = function (accountId, status) {
       reject(error);
       return;
     }
-    // Validate if an order is found
-    if (!order) {
-      reject("no order found");
-      return;
-    }
     // If successful, resolve by returning the order
     resolve(order);
     return;

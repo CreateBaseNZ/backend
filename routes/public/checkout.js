@@ -68,7 +68,8 @@ ROUTES
 // @desc
 // @access    Private
 router.post("/checkout/order", restrictedPages, async (req, res) => {
-  const accountId = mongoose.Types.ObjectId(req.user._id);
+  // DECLARE VARIABLES
+  const accountId = req.user._id;
   let order;
   // Find an Active Order
   try {
@@ -549,7 +550,8 @@ router.post(
 );
 
 // @route     GET /checkout/bank-transfer
-// @desc
+// @desc      This route processes the bank transfer payment for
+//            the customer's order.
 // @access    Private
 router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   // Initialise and Declare Variables
@@ -560,7 +562,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   try {
     order = await Order.findOneByAccoundIdAndStatus(account, orderStatus);
   } catch (error) {
-    res.send({ status: "failed", content: order });
+    res.send({ status: "failed", content: error });
     return;
   }
   // Get the customer details
@@ -568,7 +570,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   try {
     customer = await Customer.findByAccountId(account);
   } catch (error) {
-    res.send({ status: "failed", content: order });
+    res.send({ status: "failed", content: error });
     return;
   }
   // Update the customer's address
@@ -583,7 +585,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   try {
     price = await calculate.all(account, order);
   } catch (error) {
-    res.send({ status: "failed", content: order });
+    res.send({ status: "failed", content: error });
     return;
   }
   const creditRate = 0.05;
@@ -594,7 +596,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   try {
     await customer.save();
   } catch (error) {
-    res.send({ status: "failed", content: order });
+    res.send({ status: "failed", content: error });
     return;
   }
   // Update the makes' statuses
@@ -603,7 +605,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   try {
     makes = await Make.find({ accountId: account, _id: order.makes.checkout });
   } catch (error) {
-    res.send({ status: "failed", content: order });
+    res.send({ status: "failed", content: error });
     return;
   }
   // Update each make and prepare promises
@@ -617,7 +619,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   try {
     await Promise.all(promises);
   } catch (error) {
-    res.send({ status: "failed", content: order });
+    res.send({ status: "failed", content: error });
     return;
   }
   // Update the order's status
@@ -625,14 +627,14 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   try {
     await order.updateStatus("checkedout");
   } catch (error) {
-    res.send({ status: "failed", content: order });
+    res.send({ status: "failed", content: error });
     return;
   }
   // Save the updated order
   try {
     await order.save();
   } catch (error) {
-    res.send({ status: "failed", content: order });
+    res.send({ status: "failed", content: error });
     return;
   }
   // Return a success message
@@ -901,7 +903,7 @@ calculate.makes = (account, order) => {
     }
     // Calculate total price of makes
     let price = 0;
-    for (let i = 0; i < makes.length(); i++) {
+    for (let i = 0; i < makes.length; i++) {
       let make = makes[i];
       let quantity = make.quantity;
       let unitPrice = make.price;

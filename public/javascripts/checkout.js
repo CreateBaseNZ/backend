@@ -1506,42 +1506,31 @@ checkout.payment.method.bank.show = show => {
   }
 };
 
+// @FUNC  checkout.payment.method.bank.paid
+// @TYPE  ASYNC
+// @DESC  Processes the payment of the order via bank transfer
+// @ARGU
 checkout.payment.method.bank.paid = async () => {
   // PREPARE PAGE USING LOADING ICON
-  document
-    .querySelector("#checkout-complete-container")
-    .classList.remove("checkout-element-hide");
-  document.querySelector("#checkout-complete-text").textContent =
-    "Processing Your Order...";
+  document.querySelector("#checkout-complete-container").classList.remove("checkout-element-hide");
+  document.querySelector("#checkout-complete-text").textContent = "Processing Your Order...";
   // PROCESS THE ORDER
   try {
-    await axios.post("/checkout/order/paid");
+    await axios.get("/checkout/bank-transfer");
   } catch (error) {
     console.log(error);
     return;
   }
-  // COMPLETE PROCESSING
-  document.querySelector(
-    "#checkout-complete-loading-icon"
-  ).innerHTML = `<svg class="checkmark-2" viewBox="0 0 52 52">
-                    <circle
-                      class="checkmark__circle-2"
-                      cx="26"
-                      cy="26"
-                      r="25"
-                      fill="none"
-                    ></circle>
-                    <path
-                      class="checkmark__check-2"
-                      fill="none"
-                      d="M14.1 27.2l7.1 7.2 16.7-16.8"
-                    ></path>
-                  </svg>`;
-  document.querySelector("#checkout-complete-text").textContent =
-    "Successfully Processed Your Order!";
-  setTimeout(() => {
-    window.location.href = "/";
-  }, 2000);
+  // UPDATE DISPLAY TO SUCCESS CSS
+  document.querySelector("#checkout-complete-loading-icon").innerHTML = `
+    <svg class="checkmark-2" viewBox="0 0 52 52">
+      <circle class="checkmark__circle-2" cx="26" cy="26" r="25" fill="none"></circle>
+      <path class="checkmark__check-2" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+    </svg>
+  `;
+  document.querySelector("#checkout-complete-text").textContent = "Successfully Processed Your Order!";
+  // REDIRECT TO HOME PAGE UPON COMPLETION
+  setTimeout(() => { window.location.href = "/"; }, 2000);
 };
 
 // @FUNC  checkout.payment.method.card.pay
@@ -1709,14 +1698,8 @@ checkout.payment.validation.validate = async validity => {
 // @ARGU
 checkout.payment.validation.valid = () => {
   // Event Listeners
-  checkout.element.button.payment.bank.paid.addEventListener(
-    "click",
-    checkout.payment.method.bank.paid
-  );
-  checkout.element.button.payment.card.pay.addEventListener(
-    "click",
-    checkout.payment.method.card.pay
-  );
+  checkout.element.button.payment.bank.paid.addEventListener("click", checkout.payment.method.bank.paid);
+  checkout.element.button.payment.card.pay.addEventListener("click", checkout.payment.method.card.pay);
   // CSS
   checkout.element.button.payment.bank.paid.classList.add(
     "valid"
