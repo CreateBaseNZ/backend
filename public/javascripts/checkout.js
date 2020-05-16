@@ -1539,109 +1539,77 @@ checkout.payment.method.bank.paid = async () => {
 // @ARGU
 checkout.payment.method.card.pay = async () => {
   // PREPARE PAGE USING LOADING ICON
-  document
-    .querySelector("#checkout-complete-container")
-    .classList.remove("checkout-element-hide");
-  document.querySelector("#checkout-complete-text").textContent =
-    "Processing Your Order...";
-  // PROCESS THE CARD PAYMENT
-  let clientSecret;
-  let payment;
-
+  document.querySelector("#checkout-complete-container").classList.remove("checkout-element-hide");
+  document.querySelector("#checkout-complete-text").textContent = "Processing Your Order...";
+  // FETCH A CLIENT SECRET
+  let data;
   try {
-    clientSecret = await checkout.payment.method.card.paymentIntent();
-  } catch (error) {
-    return console.log(error);
-  }
-
-  try {
-    payment = await checkout.payment.method.card.process(clientSecret);
-  } catch (error) {
-    return console.log(error);
-  }
-
-  // Update Order
-  try {
-    await axios.get("/checkout/order/paid");
+    data = (await axios.get("/checkout/payment-intent"))["data"];
   } catch (error) {
     console.log(error);
     return;
   }
-
-  console.log(payment["status"]);
+  // Validate the payment intent creation
+  if (data.status === "failed") {
+    console.log(data.content);
+    return;
+  }
+  const clientSecret = data.content;
+  // PROCESS PAYMENT
+  let paymentIntent;
+  try {
+    paymentIntent = await checkout.payment.method.card.process(clientSecret);
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // UPDATE ORDER
+  try {
+    await axios.post("/checkout/card-payment", { clientSecret });
+  } catch (error) {
+    console.log(error);
+    return;
+  }
   // COMPLETE PROCESSING
-  document.querySelector(
-    "#checkout-complete-loading-icon"
-  ).innerHTML = `<svg class="checkmark-2" viewBox="0 0 52 52">
-                    <circle
-                      class="checkmark__circle-2"
-                      cx="26"
-                      cy="26"
-                      r="25"
-                      fill="none"
-                    ></circle>
-                    <path
-                      class="checkmark__check-2"
-                      fill="none"
-                      d="M14.1 27.2l7.1 7.2 16.7-16.8"
-                    ></path>
-                  </svg>`;
-  document.querySelector("#checkout-complete-text").textContent =
-    "Successfully Processed Your Order!";
-  setTimeout(() => {
-    window.location.href = "/";
-  }, 2000);
-};
-
-// @FUNC  checkout.payment.method.card.paymentIntent
-// @TYPE
-// @DESC
-// @ARGU
-checkout.payment.method.card.paymentIntent = () => {
-  return new Promise(async (resolve, reject) => {
-    let clientSecret;
-
-    try {
-      clientSecret = (await axios.post("/checkout/payment-intent", "Pay"))[
-        "data"
-      ];
-    } catch (error) {
-      reject(error);
-    }
-
-    resolve(clientSecret);
-  });
+  document.querySelector("#checkout-complete-loading-icon").innerHTML = `
+    <svg class="checkmark-2" viewBox="0 0 52 52">
+      <circle class="checkmark__circle-2" cx="26" cy="26" r="25" fill="none"></circle>
+      <path class="checkmark__check-2" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+    </svg>
+  `;
+  document.querySelector("#checkout-complete-text").textContent = "Successfully Processed Your Order!";
+  // REDIRECT TO HOME PAGE UPON COMPLETION
+  setTimeout(() => { window.location.href = "/"; }, 2000);
 };
 
 // @FUNC  checkout.payment.method.card.process
 // @TYPE
 // @DESC
 // @ARGU
-checkout.payment.method.card.process = async clientSecret => {
+checkout.payment.method.card.process = (clientSecret, options) => {
   return new Promise(async (resolve, reject) => {
-    let result;
-
-    try {
-      result = await checkout.payment.stripe.element.stripe.confirmCardPayment(
-        clientSecret,
-        {
-          payment_method: {
-            card: checkout.payment.stripe.element.card.number,
-            billing_details: {
-              name: "test test"
-            }
-          }
-        }
-      );
-
-      if (result.error) {
-        reject(result.error.message);
-      } else {
-        resolve(result.paymentIntent);
+    // CREATE THE OBJECT FOR PAYMENT CONFIRMATION
+    const object = {
+      payment_method: {
+        card: checkout.payment.stripe.element.card.number
       }
+    }
+    // PROCESS THE PAYMENT
+    let result;
+    try {
+      result = await checkout.payment.stripe.element.stripe.confirmCardPayment(clientSecret, object);
     } catch (error) {
       reject(error);
+      return;
     }
+    // VALIDATE RESULTS
+    if (result.error) {
+      reject(result.error.message);
+      return;
+    }
+    // RETURN SUCCESSFUL RESULT
+    resolve(result.paymentIntent);
+    return;
   });
 };
 
@@ -1701,12 +1669,8 @@ checkout.payment.validation.valid = () => {
   checkout.element.button.payment.bank.paid.addEventListener("click", checkout.payment.method.bank.paid);
   checkout.element.button.payment.card.pay.addEventListener("click", checkout.payment.method.card.pay);
   // CSS
-  checkout.element.button.payment.bank.paid.classList.add(
-    "valid"
-  );
-  checkout.element.button.payment.card.pay.classList.add(
-    "valid"
-  );
+  checkout.element.button.payment.bank.paid.classList.add("valid");
+  checkout.element.button.payment.card.pay.classList.add("valid");
   checkout.element.navigation.payment.classList.add("valid");
 };
 
@@ -1716,21 +1680,11 @@ checkout.payment.validation.valid = () => {
 // @ARGU
 checkout.payment.validation.invalid = () => {
   // Event Listeners
-  checkout.element.button.payment.bank.paid.removeEventListener(
-    "click",
-    checkout.payment.method.bank.paid
-  );
-  checkout.element.button.payment.card.pay.removeEventListener(
-    "click",
-    checkout.payment.method.card.pay
-  );
+  checkout.element.button.payment.bank.paid.removeEventListener("click", checkout.payment.method.bank.paid);
+  checkout.element.button.payment.card.pay.removeEventListener("click", checkout.payment.method.card.pay);
   // CSS
-  checkout.element.button.payment.bank.paid.classList.remove(
-    "valid"
-  );
-  checkout.element.button.payment.card.pay.classList.remove(
-    "valid"
-  );
+  checkout.element.button.payment.bank.paid.classList.remove("valid");
+  checkout.element.button.payment.card.pay.classList.remove("valid");
   checkout.element.navigation.payment.classList.remove("valid");
 };
 

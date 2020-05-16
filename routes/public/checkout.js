@@ -19,6 +19,7 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
+const Account = require("../../model/Account.js");
 const Customer = require("../../model/Customer.js");
 const Discount = require("../../model/Discount.js");
 const Order = require("../../model/Order.js");
@@ -642,6 +643,13 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   return;
 });
 
+// @route     POST /checkout/card-payment
+// @desc      
+// @access    Private
+router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
+
+})
+
 // @route     GET /customer/orders/print/awaiting-quote
 // @desc      Get customer's 3D print orders that are awaiting quotation
 // @access    Private
@@ -717,14 +725,37 @@ router.post("/orders/print/update", restrictedPages, async (req, res) => {
 PAYMENT
 -----------------------------------------------------------------------------------------*/
 
-router.post("/checkout/payment-intent", async (req, res) => {
-  let paymentIntentObject;
+router.get("/checkout/payment-intent", async (req, res) => {
+  // Initialise and Declare Variables
+  const account = req.user._id;
+  const orderStatus = "created";
+  // Get the active order
+  let order;
   try {
-    paymentIntentObject = await createPaymentIntent();
+    order = await Order.findOneByAccoundIdAndStatus(account, orderStatus);
   } catch (error) {
-    return res.send(error);
+    res.send({ status: "failed", content: error });
+    return;
   }
-  res.send(paymentIntentObject["client_secret"]);
+  // CREATE THE PAYMENT INTENT OBJECT
+  let object;
+  try {
+    object = await createPaymentIntentObject(account, order);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // CREATE PAYMENT INTENT
+  let paymentIntent;
+  try {
+    paymentIntent = await stripe.paymentIntents.create(object);
+  } catch (error) {
+    reject(error);
+  }
+  // RETURN THE CLIENT SECRET TO THE FRONT END
+  const clientSecret = paymentIntent["client_secret"];
+  res.send({ status: "success", content: clientSecret });
+  return;
 });
 
 /*=========================================================================================
@@ -1048,61 +1079,37 @@ calculate.all = (account, order) => {
 // Details:     Create the Payment Intent Object
 // Required:    amount (integer)
 //              currency (string)
-const createPaymentIntentObject = (userId, userEmail, shippingMethod) => {
+const createPaymentIntentObject = (accountId, order, options) => {
   return new Promise(async (resolve, reject) => {
-    // Declare Variables
-
-    let amount;
-    let orderNumber;
-
-    // Set Variables
-
-    const currency = "nzd";
-    const confirm = false;
-    const customer = userId;
-    const payment_method_types = ["card"];
-    const receipt_email = userEmail;
-    const shipping = shippingMethod;
-
+    // FETCH USER DETAILS
+    let account;
     try {
-      amount = await calculateOrderAmount();
+      account = await Account.findById(accountId);
     } catch (error) {
       reject(error);
+      return;
     }
-
-    resolve({
-      amount,
-      currency,
-      confirm,
-      customer,
-      payment_method_types,
-      receipt_email,
-      shipping,
-      metadata: {
-        orderNumber
-      }
-    });
-  });
-};
-
-const createPaymentIntent = () => {
-  return new Promise(async (resolve, reject) => {
-    let paymentIntentObject;
-    let paymentIntent;
-
+    // CALCULATE ORDER PRICE
+    let price;
     try {
-      paymentIntentObject = await createPaymentIntentObject();
+      price = await calculate.all(account._id, order);
     } catch (error) {
       reject(error);
+      return;
     }
-
-    try {
-      paymentIntent = await stripe.paymentIntents.create(paymentIntentObject);
-    } catch (error) {
-      reject(error);
+    // CREATE THE PAYMENT INTENT OBJECT
+    const object = {
+      amount: price.total,
+      currency: "nzd",
+      confirm: false,
+      customer: account._id,
+      payment_method_types: ["card"],
+      receipt_email: account.email,
+      shipping = order.shipping.method
     }
-
-    resolve(paymentIntent);
+    // RETURN SUCCESS MESSAGE
+    resolve(object);
+    return;
   });
 };
 
