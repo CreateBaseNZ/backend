@@ -181,15 +181,22 @@ OrderSchema.statics.findByStatus = function (status) {
 // @ARGU
 OrderSchema.statics.findOneByAccoundIdAndStatus = function (accountId, status) {
   return new Promise(async (resolve, reject) => {
+    // Fetch the order from the database
     let order;
-
     try {
       order = await this.findOne({ accountId, status });
     } catch (error) {
       reject(error);
+      return;
     }
-
+    // Validate if an order is found
+    if (!order) {
+      reject("no order found");
+      return;
+    }
+    // If successful, resolve by returning the order
     resolve(order);
+    return;
   });
 };
 
@@ -251,7 +258,7 @@ OrderSchema.methods.updateStatus = function (status) {
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-OrderSchema.methods.updateSavedAddress = function () {};
+OrderSchema.methods.updateSavedAddress = function () { };
 
 // @FUNC  validateCart
 // @TYPE  METHODS

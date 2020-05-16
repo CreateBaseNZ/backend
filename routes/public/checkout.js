@@ -19,6 +19,8 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
+const Customer = require("../../model/Customer.js");
+const Discount = require("../../model/Discount.js");
 const Order = require("../../model/Order.js");
 const Make = require("../../model/Make.js");
 const Item = require("../../model/Item.js");
@@ -546,14 +548,36 @@ router.post(
   }
 );
 
-// @route     GET /checkout/order/paid
+// @route     GET /checkout/bank-transfer
 // @desc
 // @access    Private
-router.get("/checkout/order/paid", restrictedPages, async (req, res) => {
+router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
+  // Initialise and Declare Variables
+  const account = req.user._id;
+  const orderStatus = "created";
+  const makeStatus = "checkout";
   // Get the active order
-
-  // Update the user's address
-
+  let order;
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(account, status);
+  } catch (error) {
+    res.send({ status: "failed", content: order });
+    return;
+  }
+  // Get the customer details
+  let customer;
+  try {
+    customer = await Customer.findByAccountId(account);
+  } catch (error) {
+    res.send({ status: "failed", content: order });
+    return;
+  }
+  // Update the customer's address
+  // Check if the order's shipping address type is new
+  // and if the address save option is set to true
+  if (order.shipping.address.option === "new" && order.shipping.address.save) {
+    customer.address = order.shipping.address.new;
+  }
   // Update the user's wallet
 
   // Update the makes' statuses
@@ -805,37 +829,73 @@ PAYMENT
 
 // PAYMENT AMOUNT CALCULATION
 
-// Function to Calculate 3D Printing Orders Total Price
-const calculatePrintingOrdersTotalPrice = () => {
-  return new Promise(async (resolve, reject) => { });
+let calculate = {
+  makes: undefined,
+  manufacturing: undefined,
+  discount: undefined,
+  shipping: undefined,
+  total: undefined
+}
+
+calculate.makes = (account, order) => {
+  return new Promise(async (resolve, reject) => {
+    // Fetch the makes
+    let makes = [];
+    try {
+      makes = await Make.find({ accountId: account, _id: order.makes.checkout });
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // Calculate total price of makes
+    let price = 0;
+    for (let i = 0; i < makes.length(); i++) {
+      let make = makes[i];
+      let quantity = make.quantity;
+      let unitPrice = make.price;
+      price = price + (quantity * unitPrice);
+    }
+    // Send the price total
+    resolve(price);
+    return;
+  })
 };
 
-// Function to Calculate Marketplace Orders Total Price
-const calculateMarketplaceOrdersTotalPrice = () => {
-  return new Promise(async (resolve, reject) => { });
-};
+calculate.manufacturing = (order) => {
+  return new Promise((resolve, reject) => {
+    // Initialise and declare variables
+    const manufacturing = order.manufacturingSpeed;
+    let rate;
+    // Set the rate value
+    switch (manufacturing) {
+      case "normal":
+        rate = 0;
+        break;
+      case "urgent":
+        rate = 0.3;
+        break;
+      default:
+        reject("invalid manufacturing");
+        return;
+    }
+    // Return the rate;
+    resolve(rate);
+    return;
+  })
+}
 
-// Function to Calculate Discount Rate
-const calculateDiscountRate = () => {
-  return new Promise(async (resolve, reject) => { });
-};
+calculate.discount = (order) => {
+  return new Promise(async (resolve, reject) => {
 
-// Function to Calculate Manufacturing Speed Rate
-const calculateManufacturingSpeedRate = () => {
-  return new Promise(async (resolve, reject) => { });
-};
-
-// Function to Calculate Shipping Cost
-const calculateShippingCost = () => {
-  return new Promise(async (resolve, reject) => { });
-};
+  })
+}
 
 // Function to Calculate Order Amount
-const calculateOrderAmount = () => {
+calculate.total = () => {
   return new Promise(async (resolve, reject) => {
-    resolve(100); // Temporarily just set to $1.00 NZD
-  });
-};
+
+  })
+}
 
 // STRIPE PAYMENT INTENT
 

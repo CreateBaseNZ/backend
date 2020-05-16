@@ -34,6 +34,7 @@ const SessionSchema = new Schema({
       type: String,
     },
   },
+  // Sets status selected by the user default value is "unset"
   status: {
     type: String,
   },
