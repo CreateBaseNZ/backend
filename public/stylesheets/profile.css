@@ -2983,6 +2983,148 @@ body {
     background: white;
     border-radius: 1px;
     z-index: 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    padding: 5vw;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 100%;
+    width: 65%;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: calc(20px + 0.2vw);
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    margin: 1em 0;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin: 0.5em 0;
+    text-transform: uppercase;
+    font-size: calc(16px + 0.2vw);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj input,
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj textarea {
+    display: block;
+    width: 100%;
+    background: #f8f8f8;
+    border: 0;
+    outline: none;
+    padding: 1em;
+    margin-bottom: 2em;
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj input:focus,
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj textarea:focus {
+    color: #6853d9;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj #new-edit-proj-name {
+    height: 3em;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj #new-edit-proj-notes {
+    height: 7em;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 4vh;
+    font-size: calc(1vw);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj {
+    background: #877da9;
+    height: 2.5em;
+    border-radius: 1.25em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-right: 1.5em;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    color: white;
+    margin: 0 0.5em 0 1.5em;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x {
+    margin: 0 1.5em 0 0.5em;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x div {
+    position: relative;
+    height: 1em;
+    width: 1em;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x div::before, .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x div::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 1px;
+    width: 1em;
+    background: white;
+    margin: auto;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x div::after {
+    height: 1em;
+    width: 1px;
+    top: 0;
+    left: 50%;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .save-proj-container {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .save-proj-container #save-proj {
+    -webkit-box-shadow: 0 5px 20px -10px black;
+            box-shadow: 0 5px 20px -10px black;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .save-proj-container #save-proj:hover {
+    -webkit-box-shadow: 0 5px 20px -9px black;
+            box-shadow: 0 5px 20px -9px black;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap {
     -webkit-box-ordinal-group: 2;
@@ -3393,4 +3535,3 @@ body {
     color: #6853d9;
   }
 }
-/*# sourceMappingURL=profile.css.map */
