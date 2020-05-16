@@ -1105,7 +1105,7 @@ const createPaymentIntentObject = (accountId, order, options) => {
       customer: account._id,
       payment_method_types: ["card"],
       receipt_email: account.email,
-      shipping = order.shipping.method
+      shipping: order.shipping.method
     }
     // RETURN SUCCESS MESSAGE
     resolve(object);
