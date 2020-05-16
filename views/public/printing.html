@@ -16,13 +16,15 @@
   <script src="./../../public/javascripts/moment.js"></script>
   <!--============== CUSTOM JAVASCRIPTS ==============-->
   <script src="./../../public/javascripts/nav.js"></script>
+  <script src="./../../public/javascripts/session.js"></script>
+  <script src="./../../public/javascripts/global.js"></script>
   <script src="./../../public/javascripts/printing.js"></script>
   <!--============== STYLESHEET ==============-->
   <link rel="stylesheet" href="./../../public/stylesheets/services/printing.css" />
   <link rel="stylesheet" href="./../../node_modules/swiper/css/swiper.min.css">
 </head>
 
-<body onload="navInit();printingInit();">
+<body onload="navInit(); session.initialise(); printingInit();">
   
   <nav>
     <div class="nav-darken-overlay"></div>
@@ -94,7 +96,27 @@
       </div>
     </div>
   </nav>
+
+  <div id="cookie-container" class="hide">
+    <div class="cookie-message-container">
+      <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse our traffic.</p>
+    </div>
+    <div class="btn-group">
+      <button id="cancel" onclick="session.cancel();" >DON'T ALLOW</button>
+      <button id="submit" onclick="session.allow();">ALLOW ALL</button>
+    </div>
+  </div>
   
+  <div id="cookie-container" class="hide">
+    <div class="cookie-message-container">
+      <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse our traffic.</p>
+    </div>
+    <div class="btn-group">
+      <button id="cancel" onclick="session.cancel();" >DON'T ALLOW</button>
+      <button id="submit" onclick="session.allow();">ALLOW ALL</button>
+    </div>
+  </div>
+
   <div class="main-page">
 
     <div class="banner-wrap">
