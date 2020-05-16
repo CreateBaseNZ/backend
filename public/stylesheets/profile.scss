@@ -619,6 +619,128 @@ body {
       background: $light-1;
       border-radius: 1px;
       z-index: 2;
+      display: flex;
+      flex-direction: row;
+      padding: 5vw;
+
+      .new-edit-proj {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        width: 65%;
+
+        h3 {
+          font-family: $poppins;
+          font-weight: 600;
+          font-size: calc(20px + 0.2vw);
+          align-self: center;
+          margin: 1em 0;
+        }
+  
+        h4 {
+          font-family: $poppins;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          margin: 0.5em 0;
+          text-transform: uppercase;
+          font-size: calc(16px + 0.2vw);
+        } 
+
+        input,
+        textarea {
+          display: block;
+          width: 100%;
+          background: $light-2;
+          border: 0;
+          outline: none;
+          padding: 1em;
+          margin-bottom: 2em;
+          font-family: $poppins;
+          border-radius: 5px;
+
+          &:focus {
+            color: $logo-2;
+          }
+        }
+
+        #new-edit-proj-name {
+          height: 3em;
+        }
+
+        #new-edit-proj-notes {
+          height: 7em;
+        }
+  
+        .proj-added-makes {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          margin-bottom: 4vh;
+          font-size: calc(1vw);
+  
+          .make-in-proj {
+            background: $dark-1;
+            height: 2.5em;
+            border-radius: 1.25em;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1.5em;
+            
+            p {
+              font-family: $poppins;
+              font-weight: 400;
+              color: $light-1;
+              margin: 0 0.5em 0 1.5em;
+            }
+  
+            .make-in-proj-x {
+              margin: 0 1.5em 0 0.5em;
+
+              div {
+                position: relative;
+                height: 1em;
+                width: 1em;
+                transform: rotate(45deg);
+
+                &::before,
+                &::after {
+                  content: '';
+                  position: absolute;
+                  top: 50%;
+                  left: 0;
+                  height: 1px;
+                  width: 1em;
+                  background: $light-1;
+                  margin: auto;
+                }
+                
+                &::after {
+                  height: 1em;
+                  width: 1px;
+                  top: 0;
+                  left: 50%;
+                }
+              }
+            }
+          }
+        }
+
+        .save-proj-container {
+          align-self: center;
+
+          #save-proj {
+            box-shadow: 0 5px 20px -10px black;
+            
+            &:hover {
+              box-shadow: 0 5px 20px -9px black;
+            }
+          }
+        }
+      }
     }
 
     #proj-wrap {
