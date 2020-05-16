@@ -555,11 +555,10 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   // Initialise and Declare Variables
   const account = req.user._id;
   const orderStatus = "created";
-  const makeStatus = "checkout";
   // Get the active order
   let order;
   try {
-    order = await Order.findOneByAccoundIdAndStatus(account, status);
+    order = await Order.findOneByAccoundIdAndStatus(account, orderStatus);
   } catch (error) {
     res.send({ status: "failed", content: order });
     return;
@@ -579,13 +578,66 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
     customer.address = order.shipping.address.new;
   }
   // Update the user's wallet
-
+  // Calculate Order Price
+  let price;
+  try {
+    price = await calculate.all(account, order);
+  } catch (error) {
+    res.send({ status: "failed", content: order });
+    return;
+  }
+  const creditRate = 0.05;
+  const rawPayment = price.total / (1 + creditRate);
+  const payment = (Math.ceil(rawPayment * 100)) / 100;
+  customer.wallet.amount = customer.wallet.amount - payment;
+  // Save customer updates
+  try {
+    await customer.save();
+  } catch (error) {
+    res.send({ status: "failed", content: order });
+    return;
+  }
   // Update the makes' statuses
-
+  // Fetch the makes
+  let makes = [];
+  try {
+    makes = await Make.find({ accountId: account, _id: order.makes.checkout });
+  } catch (error) {
+    res.send({ status: "failed", content: order });
+    return;
+  }
+  // Update each make and prepare promises
+  let promises = [];
+  for (let i = 0; i < makes.length; i++) {
+    const make = makes[i];
+    make.updateStatus("purchased");
+    promises.push(make.save());
+  }
+  // Save all makes
+  try {
+    await Promise.all(promises);
+  } catch (error) {
+    res.send({ status: "failed", content: order });
+    return;
+  }
   // Update the order's status
-
+  order.payment.amount = payment;
+  try {
+    await order.updateStatus("checkedout");
+  } catch (error) {
+    res.send({ status: "failed", content: order });
+    return;
+  }
+  // Save the updated order
+  try {
+    await order.save();
+  } catch (error) {
+    res.send({ status: "failed", content: order });
+    return;
+  }
   // Return a success message
-
+  res.send({ status: "success", content: "bank transfer processed" });
+  return;
 });
 
 // @route     GET /customer/orders/print/awaiting-quote
@@ -834,7 +886,7 @@ let calculate = {
   manufacturing: undefined,
   discount: undefined,
   shipping: undefined,
-  total: undefined
+  all: undefined
 }
 
 calculate.makes = (account, order) => {
@@ -886,14 +938,106 @@ calculate.manufacturing = (order) => {
 
 calculate.discount = (order) => {
   return new Promise(async (resolve, reject) => {
+    // Fetch discounts
+    let discounts;
+    try {
+      discounts = await Discount.find({ _id: order.discounts });
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // Calculate the total discount rate
+    const rateCap = 0.8;
+    let rate = 0;
+    for (let i = 0; i < discounts.length; i++) {
+      const discount = discounts[i];
+      rate = rate + discount.rate;
+    }
+    // Adjust rates if it exceed the cap value
+    if (rate > rateCap) {
+      rate = rateCap;
+    }
+    // Return the discount rate
+    resolve(rate);
+    return;
+  })
+}
 
+calculate.shipping = (order) => {
+  return new Promise((resolve, reject) => {
+    // Initialise variables
+    let shipping;
+    // Set the shipping price
+    switch (order.shipping.method) {
+      case "pickup":
+        shipping = 0;
+        break;
+      case "tracked":
+        shipping = 6.5;
+        break;
+      case "courier":
+        shipping = 8;
+        break;
+      default:
+        reject("invalid shipping");
+        return;
+    }
+    // Return the shipping cost
+    resolve(shipping);
+    return;
   })
 }
 
 // Function to Calculate Order Amount
-calculate.total = () => {
+calculate.all = (account, order) => {
   return new Promise(async (resolve, reject) => {
-
+    // Calculate Makes
+    let makes;
+    try {
+      makes = await calculate.makes(account, order);
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // Calculate Manufacturing
+    let manufacturingRate;
+    try {
+      manufacturingRate = await calculate.manufacturing(order);
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    const manufacturing = makes * manufacturingRate;
+    // Calculate Discount
+    let discountRate;
+    try {
+      discountRate = await calculate.discount(order);
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    const discount = (makes + manufacturing) * discountRate;
+    // Calculate Shipping
+    let shipping;
+    try {
+      shipping = await calculate.shipping(order);
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // Calculate Total
+    const total = ((makes + manufacturing) - discount) + shipping;
+    // Create the Price Object
+    const price = {
+      makes,
+      manufacturing,
+      discount,
+      shipping,
+      total
+    }
+    // Return Price object
+    resolve(price);
+    return;
   })
 }
 

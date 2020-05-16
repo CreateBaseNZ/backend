@@ -47,7 +47,7 @@ CREATE ORDER MODEL
 
 const OrderSchema = new Schema({
   accountId: {
-    type: mongoose.Types.ObjectId,
+    type: Schema.Types.ObjectId,
   },
   sessionId: {
     type: String,
@@ -58,20 +58,20 @@ const OrderSchema = new Schema({
   },
   makes: {
     awaitingQuote: {
-      type: [mongoose.Types.ObjectId],
+      type: [Schema.Types.ObjectId],
       default: [],
     },
     checkout: {
-      type: [mongoose.Types.ObjectId],
+      type: [Schema.Types.ObjectId],
       default: [],
     },
   },
   items: {
-    type: [mongoose.Types.ObjectId],
+    type: [Schema.Types.ObjectId],
     default: [],
   },
   discounts: {
-    type: [mongoose.Types.ObjectId],
+    type: [Schema.Types.ObjectId],
     default: [],
   },
   manufacturingSpeed: {
@@ -105,9 +105,13 @@ const OrderSchema = new Schema({
       type: String,
       default: "",
     },
+    amount: {
+      type: Number,
+      default: 0
+    }
   },
   comments: {
-    type: [mongoose.Types.ObjectId],
+    type: [Schema.Types.ObjectId],
     default: [],
   },
   date: {
@@ -225,10 +229,7 @@ OrderSchema.methods.updateStatus = function (status) {
     // VALIDATION START
 
     if (statuses.indexOf(status) === -1) {
-      reject({
-        status: "failed",
-        message: "invalid status",
-      });
+      reject("invalid status");
     }
 
     // VALIDATION END
@@ -239,18 +240,8 @@ OrderSchema.methods.updateStatus = function (status) {
     this.date[status] = date;
     this.date.modified = date;
 
-    let savedOrder;
-
-    try {
-      savedOrder = await this.save();
-    } catch (error) {
-      reject({
-        status: "failed",
-        message: error,
-      });
-    }
-
-    resolve(savedOrder);
+    resolve("order updated");
+    return;
   });
 };
 
