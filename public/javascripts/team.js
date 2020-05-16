@@ -7,9 +7,16 @@ window.onbeforeunload = function () {
 }
 
 const teamInit = async () => {
+  const objects = [{ src: "./../../public/images/team/carl.png", id: "indiv-photo-carl-default" },
+  { src: "./../../public/images/team/carlos.png", id: "indiv-photo-carlos-default" },
+  { src: "./../../public/images/team/louis.png", id: "indiv-photo-louis-default" },
+  { src: "./../../public/images/team/hyesu.png", id: "indiv-photo-hyesu-default" },
+  { src: "./../../public/images/team/brad.jpg", id: "indiv-photo-brad-default" },
+  { src: "./../../public/images/team/brydon.jpg", id: "indiv-photo-brydon-default" }];
+  const classes = ["indiv-photo"];
   // Pre-Load
   try {
-    await imageLoad();
+    await imageLoader(objects, classes);
   } catch (error) {
     console.log(error);
     return;
@@ -80,49 +87,4 @@ const teamInit = async () => {
 
   mainFunction(mq)
   mq.addListener(mainFunction)
-}
-
-const imageLoad = () => {
-  return new Promise(async (resolve, reject) => {
-    // Create Image Elements
-    let carlImage = new Image();
-    let carlosImage = new Image();
-    let louisImage = new Image();
-    let bradImage = new Image();
-    let hyesuImage = new Image();
-    let brydonImage = new Image();
-    // Set Image Attributes;
-    // Decoding
-    carlImage.decoding = "async";
-    carlosImage.decoding = "async";
-    louisImage.decoding = "async";
-    bradImage.decoding = "async";
-    hyesuImage.decoding = "async";
-    brydonImage.decoding = "async";
-
-    carlImage.classList.add("indiv-photo");
-    // Source
-    carlImage.src = "./../../public/images/team/carl.png";
-    carlosImage.src = "./../../public/images/team/carlos.png";
-    louisImage.src = "./../../public/images/team/louis.png";
-    bradImage.src = "./../../public/images/team/brad.jpg";
-    hyesuImage.src = "./../../public/images/team/hyesu.png";
-    brydonImage.src = "./../../public/images/team/brydon.jpg";
-    // Decoding Promise
-    try {
-      await Promise.all([carlImage.decode(),
-      carlosImage.decode(),
-      louisImage.decode(),
-      bradImage.decode(),
-      hyesuImage.decode(),
-      brydonImage.decode()]);
-    } catch (error) {
-      reject(error);
-      return;
-    }
-    // Insert to document
-    document.querySelector("#indiv-photo-carl-default").appendChild(carlImage);
-    resolve("loaded");
-    return;
-  })
 }
