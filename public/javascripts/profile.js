@@ -29,6 +29,50 @@ let Make = class {
   }
 }
 
+function renderMakeBlobs(make) {
+  let el = document.createElement('div')
+  el.className = 'make-blob'
+  el.id = 'make-blob-' + make.id
+  el.appendChild(document.createElement('p')).innerHTML = make.name
+  el.appendChild(document.createElement('div')).className = 'make-blob-x'
+  el.addEventListener('click', () => {
+    let label = document.getElementById('make-label-' + make.id)
+    label.classList.toggle('make-label-active')
+    label.childNodes[1].classList.toggle('fas')
+    label.childNodes[1].classList.toggle('far')
+    el.remove()
+  })
+  makeBlobContainer.appendChild(el)
+}
+
+function hideProjPopup() {
+  newEditProjScreen.style.display = 'none'
+  newEditProjScreenOverlay.style.display = 'none'
+  // Reset blobs
+  makeBlobContainer.innerHTML = ''
+  // Reset labels
+  let children = makeLabelContainer.children
+  for (var i = 0; i < children.length; i++) {
+    children[i].className = 'make-label'
+    children[i].childNodes[1].className = 'far fa-check-circle'
+  }
+}
+
+function showProjPopup(status, project = undefined) {
+  newEditProjScreen.style.display = 'flex'
+  newEditProjScreenOverlay.style.display = 'block'
+
+  if (status === 'new') {
+    document.getElementById('new-edit-proj-header').innerHTML = 'Create a New Project'
+    document.getElementById('new-edit-proj-name').value = ''
+    document.getElementById('new-edit-proj-notes').value = ''
+  } else {
+    document.getElementById('new-edit-proj-header').innerHTML = 'Edit an Existing Project'
+    document.getElementById('new-edit-proj-name').value = project.name
+    document.getElementById('new-edit-proj-notes').value = project.notes
+  }
+}
+
 const profileInit = async() => {
 
   // Get elements
@@ -57,9 +101,7 @@ const profileInit = async() => {
   var nameTemp = customerInfo["displayName"]
   var bioTemp = customerInfo["bio"]
   var dpTemp = dpEl.src
-  let location
-
-  location = 'auckland, new zealand'
+  let location = 'auckland, new zealand'
 
   // -- Update all markup (display + edit) --
   nameEl.innerHTML = nameTemp
@@ -127,34 +169,80 @@ const profileInit = async() => {
     }
   }
 
-  let proj1 = new Project('000000', true, "01/01/2020", ['123', '456'], "01/01/2020", "My First Project", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia!", "./../../public/images/profile/project-thumbnail.jpeg")
-  
-  let proj2 = new Project('111111', false, "01/01/2020", ['456'], "01/01/2020", "Test Part", "", "./../../public/images/profile/stl.png")
-  
-  let proj3 = new Project('222222', false, "01/01/2020", [], "01/01/2020", "Trunk Modelling", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore perspiciatis molestias dignissimos! Voluptatibus delectus sapiente obcaecati. Delectus laborum quo dolor?", "./../../public/images/profile/trunk.png")
-
-  let proj4 = new Project('333333', true, "01/01/2020", ['123'], "01/01/2020", "Mini Boat", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, numquam.", "./../../public/images/profile/jank.jpg")
-
-  let allProjects = [proj1, proj2, proj3, proj4]
-
   let makeA = new Make('123', 'black', 'petg', 'Make Part A', 'normal', 'normal')
   let makeB = new Make('456', 'b', 'b', 'Make Part B', 'b', 'b')
   let allMakes = [makeA, makeB]
 
-  // fetch all projects
-  // fetch all makes
-  // store makes
+  let proj1 = new Project('000000', true, "01/01/2020", ['123', '456'], "01/01/2020", "My First Project", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia!", "./../../public/images/profile/project-thumbnail.jpeg")
+  let proj2 = new Project('111111', false, "01/01/2020", ['456'], "01/01/2020", "Test Part", "", "./../../public/images/profile/stl.png")
+  let proj3 = new Project('222222', false, "01/01/2020", [], "01/01/2020", "Trunk Modelling", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore perspiciatis molestias dignissimos! Voluptatibus delectus sapiente obcaecati. Delectus laborum quo dolor?", "./../../public/images/profile/trunk.png")
+  let proj4 = new Project('333333', true, "01/01/2020", ['123'], "01/01/2020", "Mini Boat", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, numquam.", "./../../public/images/profile/jank.jpg")
+  let allProjects = [proj1, proj2, proj3, proj4]
+
+  var makeKeys = new Object()
+  allMakes.forEach(function(make, i) {
+    makeKeys[make.id] = i
+  })
+
+  newEditProjScreen = document.getElementById('new-edit-proj-screen')
+  newEditProjScreenOverlay = document.getElementById('new-edit-proj-screen-overlay')
+
+  makeLabelContainer = document.getElementById('make-labels-container')
+  makeBlobContainer = document.getElementById('make-blobs-container')
+
+  // Render all make labels
+  allMakes.forEach(function(make, i) {
+
+    // Create make label markup
+    let el = document.createElement('div')
+    el.className = 'make-label'
+    el.id = 'make-label-' + make.id
+    makeLabelContainer.appendChild(el)
+    el.appendChild(document.createElement('p')).innerHTML = make.name
+    let tick = document.createElement('i')
+    tick.className = 'fas fa-check-circle'
+    el.appendChild(document.createElement('i')).className = 'far fa-check-circle'
+
+    // Event listener for toggling label
+    el.addEventListener('click', () => {
+      if (el.classList.contains('make-label-active')) {
+        document.getElementById('make-blob-' + make.id).remove()
+      } else {
+        renderMakeBlobs(make)
+      }
+      el.childNodes[1].classList.toggle('fas')
+      el.childNodes[1].classList.toggle('far')
+      el.classList.toggle('make-label-active')
+    })
+  })
 
   allProjects.forEach(function(project, i) {
     // IIFE
     let cardEl = document.createElement('div')
     cardEl.id = 'proj-' + project.id 
+
+    // Edit a project
+    cardEl.addEventListener('click', () => {
+
+      // Show new/edit project screen
+      showProjPopup('edit', project)
+
+      project.makes.forEach(function(makeInProject, k) {
+        // Add project blobs
+        renderMakeBlobs(allMakes[makeKeys[makeInProject]])
+        // Activate project labels
+        document.getElementById('make-label-' + makeInProject).classList.toggle('make-label-active')
+        document.getElementById('make-label-' + makeInProject).childNodes[1].className = 'fas fa-check-circle'
+      })
+    })
+
     projScroll.appendChild(cardEl).className = 'proj-card'
     let bookmarkEl = document.createElement('i')
-    bookmarkEl.addEventListener('click', () => {
+    bookmarkEl.addEventListener('click', (e) => {
       allProjects[i].bookmark = !allProjects[i].bookmark
       bookmarkEl.classList.toggle('fas')
       bookmarkEl.classList.toggle('far')
+      e.stopPropagation()
     })
     if (project.bookmark) {
       cardEl.appendChild(bookmarkEl).className = 'fas fa-bookmark'
@@ -173,21 +261,15 @@ const profileInit = async() => {
     cardEl.appendChild(name).className = 'proj-name'
     let makesEl = document.createElement('p')
     cardEl.appendChild(makesEl).className = 'proj-makes'
-    if (project.makes.length) {
-      project.makes.forEach(function(makeInProject, j) {
-        for (let make of allMakes) {
-          if (makeInProject === make.id) {
-            if (makesEl.innerHTML !== '') {
-              makesEl.innerHTML += ', '
-            }
-            makesEl.innerHTML += make.name
-            break
-          }
-        }
-      })
-    } else {
-      makesEl.innerHTML = 'No makes added'.italics()
-    }
+
+    // Add makes to project cards
+    project.makes.forEach(function(make, j) {
+      if (makesEl.innerHTML !== '') {
+        makesEl.innerHTML += ', '
+      }
+      makesEl.innerHTML += allMakes[makeKeys[make]].name
+    })
+
     let notesEl = document.createElement('div')
     cardEl.appendChild(notesEl).className = 'proj-notes'
     if (project.notes === '') {
@@ -209,30 +291,15 @@ const profileInit = async() => {
     cardEl.appendChild(editEl).className = 'proj-edit'
   })
 
-  // for(projectMake of project.makes) {
-  //   for(make of allMakes) {
-  //     console.log(make.id)
-  //     if (projectMake === make.id) {
-  //       let el = document.createElement('p')
-  //       el.innerHTML = make.colour
-  //       detailsEl.appendChild(el).className = 'proj-colour'
-        
-  //       el = document.createElement('p')
-  //       el.innerHTML = make.material
-  //       detailsEl.appendChild(el).className = 'proj-material'
-        
-  //       el = document.createElement('p')
-  //       el.innerHTML = make.quality
-  //       detailsEl.appendChild(el).className = 'proj-quality'
-        
-  //       el = document.createElement('p')
-  //       el.innerHTML = make.strength
-  //       detailsEl.appendChild(el).className = 'proj-strength'
+  newEditProjScreenOverlay.addEventListener('click', () => {
+    hideProjPopup()
+  })
+  document.getElementById('new-edit-proj-x').addEventListener('click', () => {
+    hideProjPopup()
+  })
 
-  //       break
-  //     }
-  //   }
-  // }
-
+  document.getElementById('new-edit-proj-btn').addEventListener('click', () => {
+    showProjPopup('new')
+  })
 
 }

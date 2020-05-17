@@ -2648,7 +2648,7 @@ body {
   letter-spacing: 2px;
   font-weight: 400;
   color: #877da9;
-  padding: 1vh 0;
+  padding: 2vh 0;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-name {
@@ -2678,6 +2678,11 @@ body {
   height: 0;
   -webkit-transition: height 0.4s ease-out, padding 0.4s ease-out;
   transition: height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-makes:empty:after {
+  content: 'No Makes added';
+  font-style: italic;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-notes {
@@ -2754,8 +2759,8 @@ body {
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover {
-  -webkit-box-shadow: 0 0 30px -18px black;
-          box-shadow: 0 0 30px -18px black;
+  -webkit-box-shadow: 0 0 30px -10px #4bf0ea;
+          box-shadow: 0 0 30px -10px #4bf0ea;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover .proj-date {
@@ -2961,7 +2966,8 @@ body {
             align-items: center;
     padding: 0 3vw;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen-overlay {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen-overlay {
+    display: none;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -2971,23 +2977,57 @@ body {
             filter: opacity(0.1);
     z-index: 2;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen {
+    display: none;
     position: absolute;
     height: 90%;
     width: 87%;
     background: white;
     border-radius: 1px;
     z-index: 2;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    padding: 5vw;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj-x {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.8em;
+    padding: 0.2em;
+    z-index: 2;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj-x div {
+    position: relative;
+    height: 1.5em;
+    width: 1.5em;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj-x div::before, .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj-x div::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 0;
+    height: 2px;
+    width: 1.5em;
+    background: #877da9;
+    margin: auto;
+    -webkit-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj-x div::after {
+    height: 1.5em;
+    width: 2px;
+    top: 0;
+    left: calc(50% - 1px);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj-x div:hover:after, .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj-x div:hover:before {
+    background: red;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3000,47 +3040,88 @@ body {
             justify-content: center;
     height: 100%;
     width: 65%;
+    padding: 0 5vw;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj h3 {
-    font-family: "Poppins", sans-serif;
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-header {
+    font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    font-size: calc(20px + 0.2vw);
+    font-size: calc(10px + 1.1vw);
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
-    margin: 1em 0;
+    margin: 6vh 0 2vh 0;
+    height: 2.5vw;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj h4 {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj h4 {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     letter-spacing: 0.05em;
-    margin: 0.5em 0;
-    text-transform: uppercase;
-    font-size: calc(16px + 0.2vw);
+    margin: 4vh 0 0.5vh 0;
+    font-size: calc(12px + 0.2vw);
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj input,
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj textarea {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name,
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes {
     display: block;
     width: 100%;
     background: #f8f8f8;
-    border: 0;
     outline: none;
-    padding: 1em;
-    margin-bottom: 2em;
     font-family: "Poppins", sans-serif;
-    border-radius: 5px;
+    padding: 0.5em;
+    border: solid thin #f8f8f8;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj input:focus,
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj textarea:focus {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name:focus,
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes:focus {
     color: #6853d9;
+    background: transparent;
+    border: solid thin #6853d9;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj #new-edit-proj-name {
-    height: 3em;
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name::-webkit-input-placeholder,
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::-webkit-input-placeholder {
+    color: #c7c2d5;
+    font-weight: 300;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj #new-edit-proj-notes {
-    height: 7em;
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name:-ms-input-placeholder,
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes:-ms-input-placeholder {
+    color: #c7c2d5;
+    font-weight: 300;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name::-ms-input-placeholder,
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::-ms-input-placeholder {
+    color: #c7c2d5;
+    font-weight: 300;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name::placeholder,
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::placeholder {
+    color: #c7c2d5;
+    font-weight: 300;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name {
+    font-size: calc(12px + 0.2vw);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes {
+    font-size: calc(10px + 0.2vw);
+    display: block;
+    resize: none;
+    height: 12vh;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::-webkit-scrollbar {
+    width: 5px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::-webkit-scrollbar-track {
+    background: transparent;
+    width: 5px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::-webkit-scrollbar-thumb {
+    background: #c7c2d5;
+    width: 5px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::-webkit-scrollbar-thumb:hover, .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::-webkit-scrollbar-thumb:active {
+    background: #877da9;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes:focus::-webkit-scrollbar-thumb {
+    background: #6853d9;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3054,10 +3135,17 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-bottom: 4vh;
-    font-size: calc(1vw);
+    font-size: calc(10px + 0.1vw);
+    font-family: "Poppins", sans-serif;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    height: 6vh;
+    max-height: 12vh;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob {
+    cursor: pointer;
     background: #877da9;
     height: 2.5em;
     border-radius: 1.25em;
@@ -3074,52 +3162,192 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-right: 1.5em;
+    margin: 0.1em 1em 0.1em 0;
+    -webkit-transition: -webkit-filter 0.2s ease-out;
+    transition: -webkit-filter 0.2s ease-out;
+    transition: filter 0.2s ease-out;
+    transition: filter 0.2s ease-out, -webkit-filter 0.2s ease-out;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj p {
-    font-family: "Poppins", sans-serif;
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob p {
     font-weight: 400;
     color: white;
     margin: 0 0.5em 0 1.5em;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x {
-    margin: 0 1.5em 0 0.5em;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x div {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob .make-blob-x {
     position: relative;
+    margin: 0 1em 0 0.5em;
     height: 1em;
     width: 1em;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob .make-blob-x::before, .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob .make-blob-x::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 2px;
+    width: 1em;
+    background: white;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob .make-blob-x::before {
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x div::before, .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x div::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    height: 1px;
-    width: 1em;
-    background: white;
-    margin: auto;
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob .make-blob-x::after {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .proj-added-makes .make-in-proj .make-in-proj-x div::after {
-    height: 1em;
-    width: 1px;
-    top: 0;
-    left: 50%;
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob:hover {
+    -webkit-filter: brightness(1.1);
+            filter: brightness(1.1);
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .save-proj-container {
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container:empty::after {
+    content: 'Add Makes to this project';
+    color: #c7c2d5;
+    margin-left: 0.5em;
+    font-weight: 300;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj .save-proj-container {
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
+    margin: 4vh 0 6vh 0;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .save-proj-container #save-proj {
-    -webkit-box-shadow: 0 5px 20px -10px black;
-            box-shadow: 0 5px 20px -10px black;
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj .save-proj-container #save-proj {
+    -webkit-box-shadow: 0 5px 20px -16px black;
+            box-shadow: 0 5px 20px -16px black;
+    padding: 0.8em 2.5em;
   }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-proj-screen .new-edit-proj .save-proj-container #save-proj:hover {
-    -webkit-box-shadow: 0 5px 20px -9px black;
-            box-shadow: 0 5px 20px -9px black;
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj .save-proj-container #save-proj:hover {
+    -webkit-box-shadow: 0 5px 20px -14px black;
+            box-shadow: 0 5px 20px -14px black;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make {
+    position: relative;
+    height: 100%;
+    width: 35%;
+    margin-bottom: 0.5em;
+    background: #f8f8f8;
+    -webkit-box-shadow: inset 10px 0 15px -25px black;
+            box-shadow: inset 10px 0 15px -25px black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 10vh 3vw;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: calc(12px + 0.2vw);
+    color: #c7c2d5;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow-y: scroll;
+    padding-right: 1em;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container::-webkit-scrollbar {
+    width: 10px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container::-webkit-scrollbar-track {
+    background: #f8f8f8;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container::-webkit-scrollbar-thumb {
+    background: -webkit-gradient(linear, left top, right top, from(#f8f8f8), color-stop(39%, #f8f8f8), color-stop(40%, #c7c2d5), color-stop(60%, #c7c2d5), color-stop(61%, #f8f8f8), to(#f8f8f8));
+    background: linear-gradient(to right, #f8f8f8 0%, #f8f8f8 39%, #c7c2d5 40%, #c7c2d5 60%, #f8f8f8 61%, #f8f8f8 100%);
+    border-radius: 10px;
+    width: 10px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container::-webkit-scrollbar-thumb:hover, .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container::-webkit-scrollbar-thumb:active {
+    background: #c7c2d5;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label {
+    cursor: pointer;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    border-radius: 5px;
+    font-size: calc(12px + 0.1vw);
+    margin: 0.5em 0;
+    border: thin solid #c7c2d5;
+    background: transparent;
+    color: #c7c2d5;
+    -webkit-transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, -webkit-filter 0.2s ease-out;
+    transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, -webkit-filter 0.2s ease-out;
+    transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, filter 0.2s ease-out;
+    transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, filter 0.2s ease-out, -webkit-filter 0.2s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label p {
+    padding-left: 1.2em;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label i {
+    padding: 0.8em;
+    font-size: calc(16px + 0.1vw);
+    -webkit-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label:hover {
+    -webkit-filter: brightness(0.8);
+            filter: brightness(0.8);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label-active {
+    border: thin solid #877da9;
+    background: #877da9;
+    color: white;
+    -webkit-transition: -webkit-filter 0.2s ease-out;
+    transition: -webkit-filter 0.2s ease-out;
+    transition: filter 0.2s ease-out;
+    transition: filter 0.2s ease-out, -webkit-filter 0.2s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label-active:hover {
+    -webkit-filter: brightness(1.1);
+            filter: brightness(1.1);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make h5 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin: 1em 0;
+    font-size: calc(8px + 0.1vw);
+    color: #c7c2d5;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    text-align: center;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap {
     -webkit-box-ordinal-group: 2;

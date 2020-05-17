@@ -8,7 +8,7 @@
   <link rel="icon" href="./../../public/images/logo-icon.png" />
   <title>My Projects • CreateBase</title>
   <!--============== FONTS ==============-->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;600;700&family=Didact+Gothic:wght@300;400;600;700&family=Questrial:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!--============== ICONS ==============-->
   <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
   <!--============== DEFAULT JAVASCRIPTS ==============-->
@@ -118,61 +118,54 @@
       <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this);">
       <label for="settings-tab"><span>Settings</span><i class="fas fa-user-cog"></i></label>
       <div class="main-area" id="projects-area">
-        <div id="new-proj-screen-overlay"></div>
-        <div id="new-proj-screen">
-          <div class="new-edit-proj">
-            <h3>Create a New Project</h3>
+        <div id="new-edit-proj-screen-overlay"></div>
+        <div id="new-edit-proj-screen">
+          <div id="new-edit-proj-x">
+            <div></div>
+          </div>
+          <div id="new-edit-proj">
+            <h3 id="new-edit-proj-header"></h3>
             <h4>Name</h4>
             <input type="text" id="new-edit-proj-name" placeholder="Give your project a name">
             <h4>Makes</h4>
-            <div class="proj-added-makes">
-              <div class="make-in-proj">
-                <p>Make A</p>
-                <div class="make-in-proj-x">
-                  <div></div>
-                </div>
-              </div>
-              <div class="make-in-proj">
-                <p>Another make</p>
-                <div class="make-in-proj-x">
-                  <div></div>
-                </div>
-              </div>
-            </div>
+            <div id="make-blobs-container"></div>
+            <!-- <div class="make-blob" id="make-blob-456"><p>Another make</p><div class="make-blob-x"></div></div> -->
             <h4>Notes</h4>
-            <textarea id="new-edit-proj-notes" placeholder="Add notes to your project"></textarea>
+            <textarea id="new-edit-proj-notes" placeholder="Add notes to your project" style="resize: none;"></textarea>
             <div class="save-proj-container">
               <button class="grad-btn" id="save-proj">Save</button>
             </div>
           </div>
-          <div class="add-make"></div>
+          <div class="add-make">
+            <h4>Add to your project</h4>
+            <div id="make-labels-container">
+              <!-- <div class="make-label">
+                <p>A very nice</p>
+                <i class="fas fa-check-circle"></i>
+              </div> -->
+            </div>
+            <h5>You can add Makes to this project later.</h5>
+          </div>
         </div>
         <div id="proj-wrap">
           <div id="proj-scroll-container">
+            <!-- <div class="proj-card">
+              <i class="far fa-bookmark"></i>
+              <img class="proj-img" src="./../../public/images/profile/project-thumbnail.jpeg" alt="Project Image">
+              <p class="proj-date">03/04/2020</p>
+              <p class="proj-name">Project Name Is Long Too long really really long</p>
+              <div class="proj-makes">Make A, Make B, Make C</div>
+              <div class="proj-notes">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia!</p>
+              </div>
+              <p class="proj-modified">Last modified 21/05/2020</p>
+              <p class="proj-edit">Click anywhere on this card to edit</p>
+            </div> -->
             <div class="end-spacer"></div>
           </div>
-              <!-- <div class="proj-card">
-                <i class="far fa-bookmark"></i>
-                <img class="proj-img" src="./../../public/images/profile/project-thumbnail.jpeg" alt="Project Image">
-                <p class="proj-date">03/04/2020</p>
-                <p class="proj-name">Project Name Is Long Too long really really long</p>
-                <div class="proj-makes">Make A, Make B, Make C</div>
-                <div class="proj-notes">
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia!</p>
-                </div>
-                <p class="proj-modified">Last modified 21/05/2020</p>
-                <p class="proj-edit">Click anywhere on this card to edit</p>
-              </div>             -->
-
-              <!-- <div class="proj-make-details">
-                <p class="proj-make-material">petg</p>
-                <p class="proj-make-quality">normal</p>
-                <p class="proj-make-strength">normal</p>
-                <p class="proj-make-colour">black</p>
-              </div> -->
         </div>
         <div class="new-proj-container">
-          <button class="grad-btn">+ Start New Project</button>
+          <button class="grad-btn" id="new-edit-proj-btn">+ Start New Project</button>
         </div>
       </div>
       <div class="main-area" id="billing-area">

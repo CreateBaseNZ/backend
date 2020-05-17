@@ -331,7 +331,7 @@ body {
             letter-spacing: 2px;
             font-weight: 400;
             color: $dark-1;
-            padding: 1vh 0;
+            padding: 2vh 0;
           }
           
           .proj-name {
@@ -358,6 +358,13 @@ body {
             overflow: hidden;
             height: 0;
             transition: height 0.4s ease-out, padding 0.4s ease-out;
+
+            &:empty {
+              &:after {
+                content: 'No Makes added';
+                font-style: italic;
+              }
+            }
           }
 
           .proj-notes {
@@ -421,7 +428,7 @@ body {
           }
 
           &:hover {
-            box-shadow: 0 0 30px -18px black;
+            box-shadow: 0 0 30px -10px $highlight;
             .proj-date {
               color: $dark-3;
             }
@@ -602,7 +609,8 @@ body {
     align-items: center;
     padding: 0 3vw;
 
-    #new-proj-screen-overlay {
+    #new-edit-proj-screen-overlay {
+      display: none;
       position: absolute;
       height: 100%;
       width: 100%;
@@ -612,75 +620,153 @@ body {
       z-index: 2;
     }
 
-    #new-proj-screen {
+    #new-edit-proj-screen {
+      display: none;
       position: absolute;
       height: 90%;
       width: 87%;
       background: $light-1;
       border-radius: 1px;
       z-index: 2;
-      display: flex;
       flex-direction: row;
-      padding: 5vw;
 
-      .new-edit-proj {
+      #new-edit-proj-x {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0.8em;
+        padding: 0.2em;
+        z-index: 2;
+
+        div {
+          position: relative;
+          height: 1.5em;
+          width: 1.5em;
+          transform: rotate(45deg);
+
+          &::before,
+          &::after {
+            content: '';
+            position: absolute;
+            top: calc(50% - 1px);
+            left: 0;
+            height: 2px;
+            width: 1.5em;
+            background: $dark-1;
+            margin: auto;
+            transition: background-color 0.2s ease-out;
+          }
+          
+          &::after {
+            height: 1.5em;
+            width: 2px;
+            top: 0;
+            left: calc(50% - 1px);
+          }
+
+          &:hover:after,
+          &:hover:before {
+            background: red;
+          }
+        }
+      }
+      
+      #new-edit-proj {
         display: flex;
         flex-direction: column;
         justify-content: center;
         height: 100%;
         width: 65%;
+        padding: 0 5vw;
 
-        h3 {
-          font-family: $poppins;
+        #new-edit-proj-header {
+          font-family: $montserrat;
           font-weight: 600;
-          font-size: calc(20px + 0.2vw);
+          font-size: calc(10px + 1.1vw);
           align-self: center;
-          margin: 1em 0;
+          margin: 6vh 0 2vh 0;
+          height: 2.5vw;
         }
   
         h4 {
           font-family: $poppins;
           font-weight: 600;
           letter-spacing: 0.05em;
-          margin: 0.5em 0;
-          text-transform: uppercase;
-          font-size: calc(16px + 0.2vw);
-        } 
+          margin: 4vh 0 0.5vh 0;
+          font-size: calc(12px + 0.2vw);
+        }
 
-        input,
-        textarea {
+        #new-edit-proj-name,
+        #new-edit-proj-notes {
           display: block;
           width: 100%;
           background: $light-2;
-          border: 0;
           outline: none;
-          padding: 1em;
-          margin-bottom: 2em;
           font-family: $poppins;
-          border-radius: 5px;
-
+          padding: 0.5em;
+          border: solid thin $light-2;
+          
           &:focus {
             color: $logo-2;
+            background: transparent;
+            border: solid thin $logo-2;
+          }
+          
+          &::placeholder {
+            color: $light-3;
+            font-weight: 300;
           }
         }
-
+        
         #new-edit-proj-name {
-          height: 3em;
+          font-size: calc(12px + 0.2vw);
         }
-
+        
         #new-edit-proj-notes {
-          height: 7em;
+          font-size: calc(10px + 0.2vw);
+          display: block;
+          resize: none;
+          height: 12vh;
+
+          &::-webkit-scrollbar {
+            width: 5px;
+          }
+          &::-webkit-scrollbar-track {
+            background: transparent;
+            width: 5px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: $light-3;
+            width: 5px;
+          }
+          &::-webkit-scrollbar-thumb:hover,
+          &::-webkit-scrollbar-thumb:active {
+            background: $dark-1;
+          }
+
+          &:focus {
+            &::-webkit-scrollbar-thumb {
+              background: $logo-2;
+            }
+          }
         }
   
-        .proj-added-makes {
+        #make-blobs-container {
           display: flex;
           flex-direction: row;
           justify-content: flex-start;
           align-items: center;
-          margin-bottom: 4vh;
-          font-size: calc(1vw);
-  
-          .make-in-proj {
+          font-size: calc(10px + 0.1vw);
+          font-family: $poppins;
+          flex-wrap: wrap;
+          height: 6vh;
+          max-height: 12vh;
+          overflow-y: auto;
+          overflow-x: hidden;
+
+          .make-blob {
+            cursor: pointer;
             background: $dark-1;
             height: 2.5em;
             border-radius: 1.25em;
@@ -688,57 +774,173 @@ body {
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            margin-right: 1.5em;
+            margin: 0.1em 1em 0.1em 0;
+            transition: filter 0.2s ease-out;
+            flex-shrink: 0;
             
             p {
-              font-family: $poppins;
               font-weight: 400;
               color: $light-1;
               margin: 0 0.5em 0 1.5em;
             }
   
-            .make-in-proj-x {
-              margin: 0 1.5em 0 0.5em;
+            .make-blob-x {
+              position: relative;
+              margin: 0 1em 0 0.5em;
+              height: 1em;
+              width: 1em;
 
-              div {
-                position: relative;
-                height: 1em;
+              &::before,
+              &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                height: 2px;
                 width: 1em;
-                transform: rotate(45deg);
-
-                &::before,
-                &::after {
-                  content: '';
-                  position: absolute;
-                  top: 50%;
-                  left: 0;
-                  height: 1px;
-                  width: 1em;
-                  background: $light-1;
-                  margin: auto;
-                }
-                
-                &::after {
-                  height: 1em;
-                  width: 1px;
-                  top: 0;
-                  left: 50%;
-                }
+                background: $light-1;
+                transform-origin: 50% 50%;
               }
+              
+              &::before {
+                transform: rotate(45deg);
+              }
+              
+              &::after {
+                transform: rotate(-45deg);
+              }
+            }
+
+            &:hover {
+              filter: brightness(1.1);
+            }
+          }
+
+          &:empty {
+            &::after {
+              content: 'Add Makes to this project';
+              color: $light-3;
+              margin-left: 0.5em;
+              font-weight: 300;
             }
           }
         }
 
         .save-proj-container {
           align-self: center;
+          margin: 4vh 0 6vh 0;
 
           #save-proj {
-            box-shadow: 0 5px 20px -10px black;
+            box-shadow: 0 5px 20px -16px black;
+            padding: 0.8em 2.5em;
             
             &:hover {
-              box-shadow: 0 5px 20px -9px black;
+              box-shadow: 0 5px 20px -14px black;
             }
           }
+        }
+      }
+
+      .add-make {
+        position: relative;
+        height: 100%;
+        width: 35%;
+        margin-bottom: 0.5em;
+        background: $light-2;
+        box-shadow: inset 10px 0 15px -25px black;
+        display: flex;
+        flex-direction: column;
+        padding: 10vh 3vw;
+
+        h4 {
+          font-family: $poppins;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          font-size: calc(12px + 0.2vw);
+          color: $light-3;
+        }
+
+        #make-labels-container {
+          display: flex;
+          flex-direction: column;
+          overflow-y: scroll;
+          padding-right: 1em;
+
+          &::-webkit-scrollbar {
+            width: 10px;
+          }
+          &::-webkit-scrollbar-track {
+            background: $light-2;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: linear-gradient(to right, $light-2 0%, $light-2 39%, $light-3 40%, $light-3 60%, $light-2 61%, $light-2 100%);
+            border-radius: 10px;
+            width: 10px;
+          }
+          &::-webkit-scrollbar-thumb:hover,
+          &::-webkit-scrollbar-thumb:active {
+            background: $light-3;
+          }
+
+          .make-label {
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 5px;
+            font-size: calc(12px + 0.1vw);
+            margin: 0.5em 0;
+            border: thin solid $light-3;
+            background: transparent;
+            color: $light-3;
+            transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, filter 0.2s ease-out;
+  
+            p {
+              padding-left: 1.2em;
+              font-weight: 300;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              transition: color 0.2s ease-out;
+            }
+  
+            i {
+              padding: 0.8em;
+              font-size: calc(16px + 0.1vw);
+              transition: color 0.2s ease-out;
+            }
+
+            &:hover {
+              filter: brightness(0.8);
+            }
+          }
+  
+          .make-label-active {
+            border: thin solid $dark-1;
+            background: $dark-1;
+            color: $light-1;
+            transition: filter 0.2s ease-out;
+  
+            &:hover {
+              filter: brightness(1.1);
+            }
+          }
+        }
+
+        h5 {
+          font-family: $poppins;
+          font-weight: 300;
+          letter-spacing: 0.05em;
+          margin: 1em 0;
+          font-size: calc(8px + 0.1vw);
+          color: $light-3;
+          align-self: center;
+          text-align: center;
         }
       }
     }
