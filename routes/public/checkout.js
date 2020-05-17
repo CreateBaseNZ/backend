@@ -647,7 +647,109 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
 // @desc      
 // @access    Private
 router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
-
+  // VALIDATE THE PAYMENT INTENT
+  // Declare Variables
+  const paymentIntentId = req.body.paymentIntentId;
+  // Check if client secret is provided
+  if (!paymentIntentId) {
+    res.send({ status: "failed", content: "no payment intent ID provided" });
+    return;
+  }
+  // Retrieve payment intent
+  let paymentIntent;
+  try {
+    paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Validate the success of the payment
+  if (paymentIntent.status !== "succeeded") {
+    res.send({ status: "failed", content: "payment unsuccessful" });
+    return;
+  }
+  // UPDATE ORDER DETAILS
+  // Initialise and Declare Variables
+  const account = req.user._id;
+  const orderStatus = "created";
+  // Get the active order
+  let order;
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(account, orderStatus);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Update the customer's address
+  // Check if the order's shipping address type is new
+  // and if the address save option is set to true
+  if (order.shipping.address.option === "new" && order.shipping.address.save) {
+    // Get the customer details
+    let customer;
+    try {
+      customer = await Customer.findByAccountId(account);
+    } catch (error) {
+      res.send({ status: "failed", content: error });
+      return;
+    }
+    customer.address = order.shipping.address.new;
+    // Save customer updates
+    try {
+      await customer.save();
+    } catch (error) {
+      res.send({ status: "failed", content: error });
+      return;
+    }
+  }
+  // Update the makes' statuses
+  // Fetch the makes
+  let makes = [];
+  try {
+    makes = await Make.find({ accountId: account, _id: order.makes.checkout });
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Update each make and prepare promises
+  let promises = [];
+  for (let i = 0; i < makes.length; i++) {
+    const make = makes[i];
+    make.updateStatus("purchased");
+    promises.push(make.save());
+  }
+  // Save all makes
+  try {
+    await Promise.all(promises);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Update the order's status
+  // Calculate Order Price
+  let price;
+  try {
+    price = await calculate.all(account, order);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  order.payment.amount = price.total;
+  try {
+    await order.updateStatus("checkedout");
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Save the updated order
+  try {
+    await order.save();
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Return a success message
+  res.send({ status: "success", content: "card payment processed" });
+  return;
 })
 
 // @route     GET /customer/orders/print/awaiting-quote
@@ -750,7 +852,8 @@ router.get("/checkout/payment-intent", async (req, res) => {
   try {
     paymentIntent = await stripe.paymentIntents.create(object);
   } catch (error) {
-    reject(error);
+    res.send({ status: "failed", content: error });
+    return;
   }
   // RETURN THE CLIENT SECRET TO THE FRONT END
   const clientSecret = paymentIntent["client_secret"];
@@ -1097,15 +1200,14 @@ const createPaymentIntentObject = (accountId, order, options) => {
       reject(error);
       return;
     }
+    const amount = Math.floor(price.total * 100);
     // CREATE THE PAYMENT INTENT OBJECT
     const object = {
-      amount: price.total,
+      amount,
       currency: "nzd",
       confirm: false,
-      customer: account._id,
       payment_method_types: ["card"],
-      receipt_email: account.email,
-      shipping: order.shipping.method
+      receipt_email: account.email
     }
     // RETURN SUCCESS MESSAGE
     resolve(object);
