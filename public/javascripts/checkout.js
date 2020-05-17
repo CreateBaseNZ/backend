@@ -1542,19 +1542,19 @@ checkout.payment.method.card.pay = async () => {
   document.querySelector("#checkout-complete-container").classList.remove("checkout-element-hide");
   document.querySelector("#checkout-complete-text").textContent = "Processing Your Order...";
   // FETCH A CLIENT SECRET
-  let data;
+  let dataOne;
   try {
-    data = (await axios.get("/checkout/payment-intent"))["data"];
+    dataOne = (await axios.get("/checkout/payment-intent"))["data"];
   } catch (error) {
     console.log(error);
     return;
   }
   // Validate the payment intent creation
-  if (data.status === "failed") {
-    console.log(data.content);
+  if (dataOne.status === "failed") {
+    console.log(dataOne.content);
     return;
   }
-  const clientSecret = data.content;
+  const clientSecret = dataOne.content;
   // PROCESS PAYMENT
   let paymentIntent;
   try {
@@ -1564,10 +1564,16 @@ checkout.payment.method.card.pay = async () => {
     return;
   }
   // UPDATE ORDER
+  const paymentIntentId = paymentIntent.id;
+  let dataTwo;
   try {
-    await axios.post("/checkout/card-payment", { clientSecret });
+    dataTwo = (await axios.post("/checkout/card-payment", { paymentIntentId }))["data"];
   } catch (error) {
     console.log(error);
+    return;
+  }
+  if (dataTwo.status === "failed") {
+    console.log(dataTwo.content);
     return;
   }
   // COMPLETE PROCESSING
