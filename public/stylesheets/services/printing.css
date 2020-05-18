@@ -517,6 +517,8 @@ Carl's Button Design (End)
   color: #4e4ed6;
   cursor: pointer;
   border-radius: 0.2em;
+  letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
 #cookie-container #submit {
@@ -3261,3 +3263,4 @@ form .ourtools-btn-container {
         grid-template-rows: 25% 20% 30% 20%;
   }
 }
+/*# sourceMappingURL=printing.css.map */
