@@ -106,8 +106,30 @@ const OrderSchema = new Schema({
       default: "",
     },
     amount: {
-      type: Number,
-      default: 0
+      makes: {
+        type: Number,
+        default: 0
+      },
+      manufacturing: {
+        type: Number,
+        default: 0
+      },
+      discount: {
+        type: Number,
+        default: 0
+      },
+      gst: {
+        type: Number,
+        default: 0
+      },
+      shipping: {
+        type: Number,
+        default: 0
+      },
+      total: {
+        type: Number,
+        default: 0
+      }
     }
   },
   comments: {

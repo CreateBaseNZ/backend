@@ -582,15 +582,16 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   }
   // Update the user's wallet
   // Calculate Order Price
-  let price;
+  // Calculate Order Amounts and Update Orders Payment Amount Object
+  let amount;
   try {
-    price = await calculate.all(account, order);
+    amount = await calculate.all(account, order);
   } catch (error) {
     res.send({ status: "failed", content: error });
     return;
   }
   const creditRate = 0.05;
-  const rawPayment = price.total / (1 + creditRate);
+  const rawPayment = amount.total.total / (1 + creditRate);
   const payment = (Math.ceil(rawPayment * 100)) / 100;
   customer.wallet.amount = customer.wallet.amount - payment;
   // Save customer updates
@@ -624,7 +625,12 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
     return;
   }
   // Update the order's status
-  order.payment.amount = payment;
+  order.payment.amount.makes = amount.makes;
+  order.payment.amount.manufacturing = amount.manufacturing.total;
+  order.payment.amount.discount = amount.discount.total;
+  order.payment.amount.gst = amount.gst.total;
+  order.payment.amount.shipping = amount.shipping.total;
+  order.payment.amount.total = amount.total.total;
   try {
     await order.updateStatus("checkedout");
   } catch (error) {
@@ -724,16 +730,21 @@ router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
     res.send({ status: "failed", content: error });
     return;
   }
-  // Update the order's status
-  // Calculate Order Price
-  let price;
+  // Calculate Order Amounts and Update Orders Payment Amount Object
+  let amount;
   try {
-    price = await calculate.all(account, order);
+    amount = await calculate.all(account, order);
   } catch (error) {
     res.send({ status: "failed", content: error });
     return;
   }
-  order.payment.amount = price.total;
+  order.payment.amount.makes = amount.makes;
+  order.payment.amount.manufacturing = amount.manufacturing.total;
+  order.payment.amount.discount = amount.discount.total;
+  order.payment.amount.gst = amount.gst.total;
+  order.payment.amount.shipping = amount.shipping.total;
+  order.payment.amount.total = amount.total.total;
+  // Update the order's status
   try {
     await order.updateStatus("checkedout");
   } catch (error) {
@@ -1050,26 +1061,28 @@ calculate.makes = (account, order) => {
 };
 
 calculate.manufacturing = (order) => {
-  return new Promise((resolve, reject) => {
-    // Initialise and declare variables
-    const manufacturing = order.manufacturingSpeed;
-    let rate;
-    // Set the rate value
-    switch (manufacturing) {
-      case "normal":
-        rate = 0;
-        break;
-      case "urgent":
-        rate = 0.3;
-        break;
-      default:
-        reject("invalid manufacturing");
-        return;
-    }
-    // Return the rate;
-    resolve(rate);
-    return;
-  })
+  // Initialise and declare variables
+  let manufacturing = {
+    status: "",
+    rate: 0,
+    total: 0
+  };
+  // Set the rate value
+  switch (order.manufacturingSpeed) {
+    case "normal":
+      manufacturing.status = "valid";
+      manufacturing.rate = 0;
+      break;
+    case "urgent":
+      manufacturing.status = "valid";
+      manufacturing.rate = 0.3;
+      break;
+    default:
+      manufacturing.status = "invalid";
+      manufacturing.rate = 0;
+  }
+  // Return the rate;
+  return manufacturing;
 }
 
 calculate.discount = (order) => {
@@ -1100,28 +1113,31 @@ calculate.discount = (order) => {
 }
 
 calculate.shipping = (order) => {
-  return new Promise((resolve, reject) => {
-    // Initialise variables
-    let shipping;
-    // Set the shipping price
-    switch (order.shipping.method) {
-      case "pickup":
-        shipping = 0;
-        break;
-      case "tracked":
-        shipping = 6.5;
-        break;
-      case "courier":
-        shipping = 8;
-        break;
-      default:
-        reject("invalid shipping");
-        return;
-    }
-    // Return the shipping cost
-    resolve(shipping);
-    return;
-  })
+  // Initialise variables
+  let shipping = {
+    status: "",
+    total: 0
+  }
+  // Set the shipping price
+  switch (order.shipping.method) {
+    case "pickup":
+      shipping.status = "valid";
+      shipping.total = 0;
+      break;
+    case "tracked":
+      shipping.status = "valid";
+      shipping.total = 6.5;
+      break;
+    case "courier":
+      shipping.status = "valid";
+      shipping.total = 8;
+      break;
+    default:
+      shipping.status = "invalid";
+      shipping.total = 0;
+  }
+  // Return the shipping cost
+  return shipping;
 }
 
 // Function to Calculate Order Amount
@@ -1136,38 +1152,60 @@ calculate.all = (account, order) => {
       return;
     }
     // Calculate Manufacturing
-    let manufacturingRate;
-    try {
-      manufacturingRate = await calculate.manufacturing(order);
-    } catch (error) {
-      reject(error);
-      return;
-    }
-    const manufacturing = makes * manufacturingRate;
+    let manufacturing = calculate.manufacturing(order);
+    manufacturing.total = makes * manufacturing.rate;
     // Calculate Discount
-    let discountRate;
+    let discount = {
+      status: "",
+      rate: 0,
+      total: 0
+    }
     try {
-      discountRate = await calculate.discount(order);
+      discount.rate = await calculate.discount(order);
     } catch (error) {
       reject(error);
       return;
     }
-    const discount = (makes + manufacturing) * discountRate;
+    if (manufacturing.status === "valid") {
+      discount.status = "valid";
+      discount.total = (makes + manufacturing) * discountRate;
+    } else {
+      discount.status = "invalid";
+      discount.total = 0;
+    }
+    // Calculate GST
+    let gst = {
+      status: "",
+      rate: 0.15,
+      total: 0
+    }
+    if (manufacturing.status === "valid") {
+      gst.status = "valid";
+      gst.total = ((makes + manufacturing.total) - discount.total) * gst.rate;
+    } else {
+      gst.status = "invalid";
+      gst.total = 0;
+    }
     // Calculate Shipping
-    let shipping;
-    try {
-      shipping = await calculate.shipping(order);
-    } catch (error) {
-      reject(error);
-      return;
-    }
+    const shipping = calculate.shipping(order);
     // Calculate Total
-    const total = ((makes + manufacturing) - discount) + shipping;
+    let total = {
+      status: "",
+      total: 0
+    }
+    if (manufacturing.status === "valid") {
+      total.status = "valid";
+      total.total = (((makes + manufacturing.total) - discount.total) + gst.total) + shipping;
+    } else {
+      total.status = "invalid";
+      total.total = 0;
+    }
     // Create the Price Object
     const price = {
       makes,
       manufacturing,
       discount,
+      gst,
       shipping,
       total
     }
