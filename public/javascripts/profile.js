@@ -1,4 +1,5 @@
-var mq = window.matchMedia("(min-width: 850px)");
+var mq = window.matchMedia("(min-width: 850px)")
+var activeProjID = undefined
 
 // Previews uploaded profile picture
 var loadFile = function(event) {
@@ -46,10 +47,15 @@ function renderMakeBlobs(make) {
 }
 
 function hideProjPopup() {
+
+  // Hide screen and overlay
   newEditProjScreen.style.display = 'none'
   newEditProjScreenOverlay.style.display = 'none'
+  newEditProjScreen.className = ''
+
   // Reset blobs
   makeBlobContainer.innerHTML = ''
+
   // Reset labels
   let children = makeLabelContainer.children
   for (var i = 0; i < children.length; i++) {
@@ -63,13 +69,17 @@ function showProjPopup(status, project = undefined) {
   newEditProjScreenOverlay.style.display = 'block'
 
   if (status === 'new') {
+    // Create new project
     document.getElementById('new-edit-proj-header').innerHTML = 'Create a New Project'
     document.getElementById('new-edit-proj-name').value = ''
     document.getElementById('new-edit-proj-notes').value = ''
+    activeProjID = undefined
   } else {
+    // Edit existing project
     document.getElementById('new-edit-proj-header').innerHTML = 'Edit an Existing Project'
     document.getElementById('new-edit-proj-name').value = project.name
     document.getElementById('new-edit-proj-notes').value = project.notes
+    activeProjID = project.id
   }
 }
 
@@ -131,10 +141,9 @@ const profileInit = async() => {
       navDP[i].src = dpTemp
     }    
     
-    let data
     // Post to server
     try {
-      data = (await axios.post("/profile/customer/update", customerInfo))
+      let data = (await axios.post("/profile/customer/update", customerInfo))
     } catch (error) {
       console.log(error)
     }
@@ -169,15 +178,23 @@ const profileInit = async() => {
     }
   }
 
-  let makeA = new Make('123', 'black', 'petg', 'Make Part A', 'normal', 'normal')
-  let makeB = new Make('456', 'b', 'b', 'Make Part B', 'b', 'b')
-  let allMakes = [makeA, makeB]
+  // make = new Make('123', 'black', 'petg', 'Make Part A', 'normal', 'normal')
 
-  let proj1 = new Project('000000', true, "01/01/2020", ['123', '456'], "01/01/2020", "My First Project", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam placeat fugiat atque sed qui magni, blanditiis molestiae neque non modi, hic quaerat nobis distinctio tenetur soluta sunt debitis molestias quam beatae esse consectetur. Dolorum qui placeat praesentium voluptates, culpa temporibus. Sint accusantium iure deleniti corrupti incidunt dolore pariatur possimus quia!", "./../../public/images/profile/project-thumbnail.jpeg")
-  let proj2 = new Project('111111', false, "01/01/2020", ['456'], "01/01/2020", "Test Part", "", "./../../public/images/profile/stl.png")
-  let proj3 = new Project('222222', false, "01/01/2020", [], "01/01/2020", "Trunk Modelling", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore perspiciatis molestias dignissimos! Voluptatibus delectus sapiente obcaecati. Delectus laborum quo dolor?", "./../../public/images/profile/trunk.png")
-  let proj4 = new Project('333333', true, "01/01/2020", ['123'], "01/01/2020", "Mini Boat", "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel, numquam.", "./../../public/images/profile/jank.jpg")
-  let allProjects = [proj1, proj2, proj3, proj4]
+  try {
+    allMakes = (await axios.get("/profile/customer/fetch/makes"))["data"]["content"]
+  } catch (error) {
+    console.log(error)
+    return
+  }
+
+  // proj = new Project('111111', false, "01/01/2020", ['456'], "01/01/2020", "Test Part", "", "./../../public/images/profile/stl.png")
+
+  try {
+    allProjects = (await axios.get("/profile/customer/fetch/all_proj"))["data"]["content"]
+  } catch (error) {
+    console.log(error)
+    return
+  }
 
   var makeKeys = new Object()
   allMakes.forEach(function(make, i) {
@@ -216,6 +233,7 @@ const profileInit = async() => {
     })
   })
 
+  // Render all project cards
   allProjects.forEach(function(project, i) {
     // IIFE
     let cardEl = document.createElement('div')
@@ -300,6 +318,53 @@ const profileInit = async() => {
 
   document.getElementById('new-edit-proj-btn').addEventListener('click', () => {
     showProjPopup('new')
+  })
+
+  document.getElementById('save-proj').addEventListener('click', async() => {
+    let proj = new Project(
+      undefined,
+      // Enable bookmarking
+      // !!!!!!!!!!!!!
+      'false',
+      // Verify created and modified works for both new and existing
+      // !!!!!!!!!!!!!
+      undefined,
+      // Add makes
+      // !!!!!!!!!!!!!
+      [],
+      undefined,
+      document.getElementById('new-edit-proj-name').value,
+      document.getElementById('new-edit-proj-notes').value,
+      // FUTURE: image upload
+      // !!!!!!!!!!!!!
+      undefined
+    )
+
+    if (activeProjID) {
+      // Update existing project
+      proj.id = activeProjID
+      try {
+        let data = (await axios.post("/profile/customer/update/proj", proj))
+      } catch (error) {
+        console.log(error)
+      }
+      console.log(proj)
+      // Re-render project card
+      // !!!!!!!!!!!!!
+
+    } else {
+      // Add new project
+      try {
+        let data = (await axios.post("/profile/customer/new/proj", proj))
+      } catch (error) {
+        console.log(error)
+      }
+      // Render project card
+      // !!!!!!!!!!!!!
+
+    }
+
+
   })
 
 }

@@ -117,7 +117,7 @@ MakeSchema.statics.retrieve = function (account) {
     // INITIALISE RETRIEVED MAKE INSTANCE ARRAY
     let makes;
     try {
-      makes = this.find({ accountId: account });
+      makes = await this.find({ accountId: account });
     } catch (error) {
       reject(error);
       return;

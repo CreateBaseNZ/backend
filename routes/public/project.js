@@ -42,11 +42,11 @@ router.post("/profile/customer/new/proj", restrictedPages, async (req, res) => {
   const name = req.body.name;
   const bookmark = req.body.bookmark;
   const makes = req.body.makes;
-  const note = req.body.note;
+  const notes = req.body.notes;
   const options = {
     bookmark,
     makes,
-    note
+    notes
   };
   // VALIDATE REQUIRED VARIABLES
   if (!account) {

@@ -45,7 +45,7 @@ const ProjectSchema = new Schema({
       required: true
     }
   },
-  note: {
+  notes: {
     type: String,
     default: ""
   }
@@ -85,7 +85,8 @@ ProjectSchema.statics.create = function (account, name, options) {
       thumbnail: savedProject.thumbnail,
       bookmark: savedProject.bookmark,
       date: savedProject.date,
-      note: savedProject.note
+      notes: savedProject.notes,
+      makes: savedProject.makes
     };
     resolve(mappedProject);
     return;
@@ -110,7 +111,8 @@ ProjectSchema.statics.retrieve = function (account) {
         thumbnail: project.thumbnail,
         bookmark: project.bookmark,
         date: project.date,
-        note: project.note
+        notes: project.notes,
+        makes: project.makes
       };
       return mappedProject;
     })

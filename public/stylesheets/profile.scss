@@ -428,7 +428,8 @@ body {
           }
 
           &:hover {
-            box-shadow: 0 0 30px -10px $highlight;
+            box-shadow: 0 0 30px -20px $logo-2;
+
             .proj-date {
               color: $dark-3;
             }
@@ -463,10 +464,10 @@ body {
       margin: 4vmax auto 2vmax auto;
 
       .grad-btn {
-        box-shadow: 0 5px 25px -10px black;
+        box-shadow: 0 5px 25px -15px black;
 
         &:hover {
-          box-shadow: 0 5px 25px -8px black;
+          box-shadow: 0 5px 25px -13px black;
         }
       }
     }
@@ -685,7 +686,7 @@ body {
           font-weight: 600;
           font-size: calc(10px + 1.1vw);
           align-self: center;
-          margin: 6vh 0 2vh 0;
+          margin-top: 6vh;
           height: 2.5vw;
         }
   
@@ -962,6 +963,7 @@ body {
           min-height: 350px;
           min-width: 280px;
           justify-content: flex-end;
+          transition: width 0.2s ease-out;
 
           .proj-img {
             flex: 1 1 auto;
@@ -988,6 +990,10 @@ body {
               visibility: hidden;
               border-right: 1.5vw solid transparent;
             }
+          }
+
+          &:hover {
+            width: calc(55vh * 0.8);
           }
         }
 

@@ -2759,8 +2759,8 @@ body {
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover {
-  -webkit-box-shadow: 0 0 30px -10px #4bf0ea;
-          box-shadow: 0 0 30px -10px #4bf0ea;
+  -webkit-box-shadow: 0 0 30px -20px #6853d9;
+          box-shadow: 0 0 30px -20px #6853d9;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover .proj-date {
@@ -2806,13 +2806,13 @@ body {
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .grad-btn {
-  -webkit-box-shadow: 0 5px 25px -10px black;
-          box-shadow: 0 5px 25px -10px black;
+  -webkit-box-shadow: 0 5px 25px -15px black;
+          box-shadow: 0 5px 25px -15px black;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-container .grad-btn:hover {
-  -webkit-box-shadow: 0 5px 25px -8px black;
-          box-shadow: 0 5px 25px -8px black;
+  -webkit-box-shadow: 0 5px 25px -13px black;
+          box-shadow: 0 5px 25px -13px black;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area .new-proj-screen {
@@ -3049,7 +3049,7 @@ body {
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
-    margin: 6vh 0 2vh 0;
+    margin-top: 6vh;
     height: 2.5vw;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj h4 {
@@ -3373,6 +3373,8 @@ body {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
+    -webkit-transition: width 0.2s ease-out;
+    transition: width 0.2s ease-out;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-img {
     -webkit-box-flex: 1;
@@ -3397,6 +3399,9 @@ body {
     margin-right: -3.5vw;
     visibility: hidden;
     border-right: 1.5vw solid transparent;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover {
+    width: calc(55vh * 0.8);
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .end-spacer {
     display: inline-block;
