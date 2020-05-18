@@ -106,7 +106,7 @@ ProjectSchema.statics.retrieve = function (account) {
       return mappedProject;
     })
     // RESOLVE AND RETURN THE MAPPED PROJECTS
-    resolve(mappedProjects);
+    resolve(project);
     return;
   })
 }
