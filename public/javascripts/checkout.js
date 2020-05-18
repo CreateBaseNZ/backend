@@ -182,6 +182,10 @@ let checkout = {
     success: undefined, // checkout.load.success
     load: undefined, // checkout.load.load
     time: undefined // checkout.load.time
+  },
+  amount: {
+    fetch: undefined,
+    load: undefined
   }
 };
 
@@ -399,6 +403,116 @@ checkout.elements.assign = () => {
   checkout.element.button.payment.card.pay = document.querySelector("#checkout-payment-card-pay");
   checkout.element.windowSize = window.matchMedia("(min-width: 850px)");
 };
+
+/*-----------------------------------------------------------------------------------------
+AMOUNT
+-----------------------------------------------------------------------------------------*/
+
+// @FUNC  checkout.amount.fetch
+// @TYPE  PROMISE ASYNCHRONOUS
+// @DESC
+// @ARGU
+checkout.amount.fetch = () => {
+  return new Promise(async (resolve, reject) => {
+    // Fetch the amount object from the database
+    let data;
+    try {
+      data = (await axios.get("/checkout/order-amount"))["data"];
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // Check if an error was encountered
+    if (data.status === "failed") {
+      reject(data.content);
+      return;
+    }
+    // Resolve, return the amount object
+    resolve(data.content);
+    return;
+  })
+}
+
+// @FUNC  checkout.amount.load
+// @TYPE  ASYNCHRONOUS
+// @DESC
+// @ARGU
+checkout.amount.load = async (amount) => {
+  // Add Loader
+
+  // Fetch the amount object
+  if (!amount) {
+    try {
+      amount = await checkout.amount.fetch();
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
+  // Populate the HTML
+  // Declare and Initialise amount variables
+  let makes;
+  if (amount.makes.status === "invalid") {
+    makes = "-";
+  } else {
+    makes = "$ " + checkout.priceFormatter(amount.makes.total);
+  }
+  let manufacturing;
+  if (amount.manufacturing.status === "invalid") {
+    manufacturing = "-";
+  } else {
+    manufacturing = "$ " + checkout.priceFormatter(amount.manufacturing.total);
+  }
+  let discount;
+  if (amount.discount.status === "invalid") {
+    discount = "-";
+  } else {
+    discount = "-$ " + checkout.priceFormatter(amount.discount.total);
+  }
+  let gst;
+  if (amount.gst.status === "invalid") {
+    gst = "-";
+  } else {
+    gst = "$ " + checkout.priceFormatter(amount.gst.total);
+  }
+  let shipping;
+  if (amount.shipping.status === "invalid") {
+    shipping = "-";
+  } else {
+    shipping = "$ " + checkout.priceFormatter(amount.shipping.total);
+  }
+  let total;
+  if (amount.total.status === "invalid") {
+    total = "-";
+  } else {
+    total = "$ " + checkout.priceFormatter(amount.total.total);
+  }
+  let preShippingTotal;
+  if (amount.manufacturing.status === "invalid") {
+    preShippingTotal = "-";
+  } else {
+    preShippingTotal = "$ " + checkout.priceFormatter(((amount.makes.total + amount.manufacturing.total)
+      - amount.discount.total) + amount.gst.total);
+  }
+  // Insert the amount variables onto HTML
+  // Order Summary HTML
+  document.querySelector("#checkout-summary-value-subtotal").innerHTML = makes;
+  document.querySelector("#checkout-summary-value-manufacturing").innerHTML = manufacturing;
+  document.querySelector("#checkout-summary-value-discount").innerHTML = discount;
+  document.querySelector("#checkout-summary-value-gst").innerHTML = gst;
+  document.querySelector("#checkout-summary-value-shipping").innerHTML = shipping;
+  document.querySelector("#checkout-summary-total").innerHTML = total;
+  // Pre-Shipping Total
+  document.querySelector("#checkout-cart-subtotal").innerHTML = makes;
+  document.querySelector("#checkout-cart-manufacturing").innerHTML = manufacturing;
+  document.querySelector("#checkout-cart-discount").innerHTML = discount;
+  document.querySelector("#checkout-cart-gst").innerHTML = gst;
+  document.querySelector("#checkout-cart-total").innerHTML = preShippingTotal;
+  // Order Total
+  document.querySelector("#checkout-shipping-subtotal").innerHTML = preShippingTotal;
+  document.querySelector("#checkout-shipping-shipping-fee").innerHTML = shipping;
+  document.querySelector("#checkout-shipping-total").innerHTML = total;
+}
 
 /*-----------------------------------------------------------------------------------------
 CART
