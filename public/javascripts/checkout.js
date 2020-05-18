@@ -182,6 +182,9 @@ let checkout = {
     success: undefined, // checkout.load.success
     load: undefined, // checkout.load.load
     time: undefined // checkout.load.time
+  },
+  amount: {
+    fetch: undefined
   }
 };
 
@@ -399,6 +402,35 @@ checkout.elements.assign = () => {
   checkout.element.button.payment.card.pay = document.querySelector("#checkout-payment-card-pay");
   checkout.element.windowSize = window.matchMedia("(min-width: 850px)");
 };
+
+/*-----------------------------------------------------------------------------------------
+AMOUNT
+-----------------------------------------------------------------------------------------*/
+
+// @FUNC  checkout.amount.fetch
+// @TYPE  PROMISE ASYNCHRONOUS
+// @DESC
+// @ARGU
+checkout.amount.fetch = () => {
+  return new Promise(async (resolve, reject) => {
+    // Fetch the amount object from the database
+    let data;
+    try {
+      data = (await axios.get("/checkout/order-amount"))["data"];
+    } catch (error) {
+      reject(error);
+      return;
+    }
+    // Check if an error was encountered
+    if (data.status === "failed") {
+      reject(data.content);
+      return;
+    }
+    // Resolve, return the amount object
+    resolve(data.content);
+    return;
+  })
+}
 
 /*-----------------------------------------------------------------------------------------
 CART

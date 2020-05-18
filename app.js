@@ -82,6 +82,7 @@ const validationRouter = require("./routes/public/validation.js");
 const makeRouter = require("./routes/public/make.js");
 const checkoutRouter = require("./routes/public/checkout.js");
 const profileRouter = require("./routes/public/profile.js");
+const projectRouter = require("./routes/public/project.js");
 const sessionRouter = require("./routes/public/session.js");
 app.use(generalRouter);
 app.use(fileRouter);
@@ -89,6 +90,7 @@ app.use(validationRouter);
 app.use(makeRouter);
 app.use(checkoutRouter);
 app.use(profileRouter);
+app.use(projectRouter);
 app.use(sessionRouter);
 
 /*-----------------------------------------------------------------------------------------

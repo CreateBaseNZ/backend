@@ -302,253 +302,253 @@ router.post(
 // @route     POST /checkout/order/update/new-shipping-address-save
 // @desc
 // @access    Private
-router.post(
-  "/checkout/order/update/new-shipping-address-save",
-  restrictedPages,
-  async (req, res) => {
-    const accountId = mongoose.Types.ObjectId(req.user._id);
-    const save = req.body.save;
-    let order;
-    // Find an Active Order
-    try {
-      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Update order
-    order.shipping.address.save = save;
-    // Save order
-    let savedOrder;
-    try {
-      savedOrder = await order.save();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Validation
-    validity = {
-      cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping(),
-      payment: savedOrder.validatePayment()
-    };
-
-    return res.send({
-      status: "success",
-      data: {
-        order: savedOrder,
-        price: {},
-        validity
-      }
-    });
+router.post("/checkout/order/update/new-shipping-address-save", restrictedPages, async (req, res) => {
+  const accountId = mongoose.Types.ObjectId(req.user._id);
+  const save = req.body.save;
+  let order;
+  // Find an Active Order
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
   }
-);
+  // Update order
+  order.shipping.address.save = save;
+  // Save order
+  let savedOrder;
+  try {
+    savedOrder = await order.save();
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  // Validation
+  validity = {
+    cart: savedOrder.validateCart(),
+    shipping: savedOrder.validateShipping(),
+    payment: savedOrder.validatePayment()
+  };
+
+  return res.send({
+    status: "success",
+    data: {
+      order: savedOrder,
+      price: {},
+      validity
+    }
+  });
+});
 
 // @route     POST /checkout/order/update/shipping-method
 // @desc
 // @access    Private
-router.post(
-  "/checkout/order/update/shipping-method",
-  restrictedPages,
-  async (req, res) => {
-    const accountId = mongoose.Types.ObjectId(req.user._id);
-    const option = req.body.option;
-    let order;
-    // Find an Active Order
-    try {
-      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Update order
-    order.shipping.method = option;
-    // Save order
-    let savedOrder;
-    try {
-      savedOrder = await order.save();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Validation
-    validity = {
-      cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping(),
-      payment: savedOrder.validatePayment()
-    };
-
-    return res.send({
-      status: "success",
-      data: {
-        order: savedOrder,
-        price: {},
-        validity
-      }
-    });
+router.post("/checkout/order/update/shipping-method", restrictedPages, async (req, res) => {
+  const accountId = mongoose.Types.ObjectId(req.user._id);
+  const option = req.body.option;
+  let order;
+  // Find an Active Order
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
   }
-);
+  // Update order
+  order.shipping.method = option;
+  // Save order
+  let savedOrder;
+  try {
+    savedOrder = await order.save();
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  // Validation
+  validity = {
+    cart: savedOrder.validateCart(),
+    shipping: savedOrder.validateShipping(),
+    payment: savedOrder.validatePayment()
+  };
+
+  return res.send({
+    status: "success",
+    data: {
+      order: savedOrder,
+      price: {},
+      validity
+    }
+  });
+});
 
 // @route     POST /checkout/order/update/payment-method
 // @desc
 // @access    Private
-router.post(
-  "/checkout/order/update/payment-method",
-  restrictedPages,
-  async (req, res) => {
-    const accountId = mongoose.Types.ObjectId(req.user._id);
-    const option = req.body.option;
-    let order;
-    // Find an Active Order
-    try {
-      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Update order
-    order.payment.method = option;
-    // Save order
-    let savedOrder;
-    try {
-      savedOrder = await order.save();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Validation
-    validity = {
-      cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping(),
-      payment: savedOrder.validatePayment()
-    };
-
-    return res.send({
-      status: "success",
-      data: {
-        order: savedOrder,
-        price: {},
-        validity
-      }
-    });
+router.post("/checkout/order/update/payment-method", restrictedPages, async (req, res) => {
+  const accountId = mongoose.Types.ObjectId(req.user._id);
+  const option = req.body.option;
+  let order;
+  // Find an Active Order
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
   }
-);
+  // Update order
+  order.payment.method = option;
+  // Save order
+  let savedOrder;
+  try {
+    savedOrder = await order.save();
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  // Validation
+  validity = {
+    cart: savedOrder.validateCart(),
+    shipping: savedOrder.validateShipping(),
+    payment: savedOrder.validatePayment()
+  };
+
+  return res.send({
+    status: "success",
+    data: {
+      order: savedOrder,
+      price: {},
+      validity
+    }
+  });
+});
 
 // @route     POST /checkout/order/validate/cart
 // @desc
 // @access    Private
-router.post(
-  "/checkout/order/validate/cart",
-  restrictedPages,
-  async (req, res) => {
-    const accountId = mongoose.Types.ObjectId(req.user._id);
-    let order;
-    // Find an Active Order
-    try {
-      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    valid = order.validateCart();
-    return res.send({ status: "success", data: valid });
+router.post("/checkout/order/validate/cart", restrictedPages, async (req, res) => {
+  const accountId = mongoose.Types.ObjectId(req.user._id);
+  let order;
+  // Find an Active Order
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
   }
-);
+  valid = order.validateCart();
+  return res.send({ status: "success", data: valid });
+});
 
 // @route     POST /checkout/order/validate/shipping
 // @desc
 // @access    Private
-router.post(
-  "/checkout/order/validate/shipping",
-  restrictedPages,
-  async (req, res) => {
-    const accountId = mongoose.Types.ObjectId(req.user._id);
-    let order;
-    // Find an Active Order
-    try {
-      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    valid = order.validateCart() && order.validateShipping();
-    return res.send({ status: "success", data: valid });
+router.post("/checkout/order/validate/shipping", restrictedPages, async (req, res) => {
+  const accountId = mongoose.Types.ObjectId(req.user._id);
+  let order;
+  // Find an Active Order
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
   }
-);
+  valid = order.validateCart() && order.validateShipping();
+  return res.send({ status: "success", data: valid });
+});
 
 // @route     POST /checkout/order/validate/payment
 // @desc
 // @access    Private
-router.post(
-  "/checkout/order/validate/payment",
-  restrictedPages,
-  async (req, res) => {
-    const accountId = mongoose.Types.ObjectId(req.user._id);
-    let order;
-    // Find an Active Order
-    try {
-      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    valid =
-      order.validateCart() &&
-      order.validateShipping() &&
-      order.validatePayment();
-    return res.send({ status: "success", data: valid });
+router.post("/checkout/order/validate/payment", restrictedPages, async (req, res) => {
+  const accountId = mongoose.Types.ObjectId(req.user._id);
+  let order;
+  // Find an Active Order
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
   }
-);
+  valid =
+    order.validateCart() &&
+    order.validateShipping() &&
+    order.validatePayment();
+  return res.send({ status: "success", data: valid });
+});
 
 // @route     POST /checkout/order/delete/print
 // @desc
 // @access    Private
-router.post(
-  "/checkout/order/delete/print",
-  restrictedPages,
-  async (req, res) => {
-    // Delete the make document and the corresponding file from the database
-    const accountId = mongoose.Types.ObjectId(req.user._id);
-    const makeId = mongoose.Types.ObjectId(req.body.printId);
-    let deletedMake;
-    try {
-      deletedMake = await Make.deleteByIdAndAccountId(makeId, accountId);
-    } catch (error) {
-      // If error was encountered, send a failed status
-      return res.send({ status: "failed", data: error });
-    }
-    // Update the order
-    let order;
-    // Find an Active Order
-    try {
-      order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Update the Make
-    let makesAwaitingQuote;
-    let makesCheckout;
-    try {
-      [makesAwaitingQuote, makesCheckout] = await Promise.all([
-        orderMakesAwaitingQuoteGet(accountId),
-        orderMakesCheckoutGet(accountId)
-      ]);
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    order.makes.awaitingQuote = makesAwaitingQuote;
-    order.makes.checkout = makesCheckout;
-    // Save the make
-    let savedOrder;
-    try {
-      savedOrder = await order.save();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-    // Validate the checkout
-    validity = {
-      cart: savedOrder.validateCart(),
-      shipping: savedOrder.validateShipping(),
-      payment: savedOrder.validatePayment()
-    };
-    // Send back a success status
-    return res.send({
-      status: "success",
-      data: { order: savedOrder, validity }
-    });
+router.post("/checkout/order/delete/print", restrictedPages, async (req, res) => {
+  // Delete the make document and the corresponding file from the database
+  const accountId = mongoose.Types.ObjectId(req.user._id);
+  const makeId = mongoose.Types.ObjectId(req.body.printId);
+  let deletedMake;
+  try {
+    deletedMake = await Make.deleteByIdAndAccountId(makeId, accountId);
+  } catch (error) {
+    // If error was encountered, send a failed status
+    return res.send({ status: "failed", data: error });
   }
-);
+  // Update the order
+  let order;
+  // Find an Active Order
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  // Update the Make
+  let makesAwaitingQuote;
+  let makesCheckout;
+  try {
+    [makesAwaitingQuote, makesCheckout] = await Promise.all([
+      orderMakesAwaitingQuoteGet(accountId),
+      orderMakesCheckoutGet(accountId)
+    ]);
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  order.makes.awaitingQuote = makesAwaitingQuote;
+  order.makes.checkout = makesCheckout;
+  // Save the make
+  let savedOrder;
+  try {
+    savedOrder = await order.save();
+  } catch (error) {
+    return res.send({ status: "failed", data: error });
+  }
+  // Validate the checkout
+  validity = {
+    cart: savedOrder.validateCart(),
+    shipping: savedOrder.validateShipping(),
+    payment: savedOrder.validatePayment()
+  };
+  // Send back a success status
+  return res.send({
+    status: "success",
+    data: { order: savedOrder, validity }
+  });
+});
+
+// @route     GET /checkout/order-amount
+// @desc      Fetch the object containing the amounts of the order
+// @access    Private
+router.get("/checkout/order-amount", restrictedPages, async (req, res) => {
+  // Initialise and Declare Variables
+  const account = req.user._id;
+  const orderStatus = "created";
+  // Get the active order
+  let order;
+  try {
+    order = await Order.findOneByAccoundIdAndStatus(account, orderStatus);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Calculate Order Amounts 
+  let amount;
+  try {
+    amount = await calculate.all(account, order);
+  } catch (error) {
+    res.send({ status: "failed", content: error });
+    return;
+  }
+  // Send the amount object to the client
+  res.send({ status: "success", content: amount });
+  return;
+})
 
 // @route     GET /checkout/bank-transfer
 // @desc      This route processes the bank transfer payment for
@@ -581,8 +581,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
     customer.address = order.shipping.address.new;
   }
   // Update the user's wallet
-  // Calculate Order Price
-  // Calculate Order Amounts and Update Orders Payment Amount Object
+  // Calculate Order Amounts 
   let amount;
   try {
     amount = await calculate.all(account, order);
@@ -624,13 +623,14 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
     res.send({ status: "failed", content: error });
     return;
   }
-  // Update the order's status
+  // Update Orders Payment Amount Object
   order.payment.amount.makes = amount.makes;
   order.payment.amount.manufacturing = amount.manufacturing.total;
   order.payment.amount.discount = amount.discount.total;
   order.payment.amount.gst = amount.gst.total;
   order.payment.amount.shipping = amount.shipping.total;
   order.payment.amount.total = amount.total.total;
+  // Update the order's status
   try {
     await order.updateStatus("checkedout");
   } catch (error) {
@@ -766,20 +766,16 @@ router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
 // @route     GET /customer/orders/print/awaiting-quote
 // @desc      Get customer's 3D print orders that are awaiting quotation
 // @access    Private
-router.post(
-  "/customer/orders/print/awaiting-quote",
-  restrictedPages,
-  async (req, res) => {
-    let accountId = req.user._id;
-    let orders;
-    try {
-      orders = await getMakeOrders(accountId, "awaiting quote");
-    } catch {
-      throw error;
-    }
-    return res.send(orders);
+router.post("/customer/orders/print/awaiting-quote", restrictedPages, async (req, res) => {
+  let accountId = req.user._id;
+  let orders;
+  try {
+    orders = await getMakeOrders(accountId, "awaiting quote");
+  } catch {
+    throw error;
   }
-);
+  return res.send(orders);
+});
 
 // @route     GET /customer/orders/print/checkout
 // @desc      Get customer's 3D print orders that are ready for checkout
@@ -1168,7 +1164,7 @@ calculate.all = (account, order) => {
     }
     if (manufacturing.status === "valid") {
       discount.status = "valid";
-      discount.total = (makes + manufacturing) * discountRate;
+      discount.total = (makes + manufacturing.total) * discount.rate;
     } else {
       discount.status = "invalid";
       discount.total = 0;
