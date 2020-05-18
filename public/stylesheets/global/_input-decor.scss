@@ -1,4 +1,4 @@
-$input-width: 75vmin;
+$input-width: 60vmin;
 
 .input-decor {
   position: relative;
@@ -16,6 +16,7 @@ $input-width: 75vmin;
 
     &:focus {
       outline: none;
+      padding-left: 10px;
     }
   }
 
@@ -72,12 +73,13 @@ $input-width: 75vmin;
 
   input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px white inset;
+    box-shadow: 0 0 0 30px white inset;
   }
 }
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
 
-$input-width: 20vmax;
+$input-width: 27em;
 
 .input-decor {
   height: 50px;
