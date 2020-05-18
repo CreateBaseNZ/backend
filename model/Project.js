@@ -72,13 +72,22 @@ ProjectSchema.statics.create = function (account, name, options) {
     project.date.creation = date;
     project.date.modified = date;
     // SAVE THE NEW PROJECT INSTANCE
+    let savedProject;
     try {
-      await project.save();
+      savedProject = await project.save();
     } catch (error) {
       reject(error);
       return;
     }
-    resolve("success");
+    let mappedProject = {
+      id: savedProject._id,
+      name: savedProject.name,
+      thumbnail: savedProject.thumbnail,
+      bookmark: savedProject.bookmark,
+      date: savedProject.date,
+      note: savedProject.note
+    };
+    resolve(mappedProject);
     return;
   })
 }
@@ -88,7 +97,7 @@ ProjectSchema.statics.retrieve = function (account) {
     // INITIALISE RETRIEVED PROJECT INSTANCE ARRAY
     let projects;
     try {
-      projects = this.find({ account });
+      projects = await this.find({ account });
     } catch (error) {
       reject(error);
       return;
