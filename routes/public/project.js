@@ -118,6 +118,31 @@ router.post("/profile/customer/update/proj", restrictedPages, async (req, res) =
   return;
 })
 
+router.post("/profile/customer/delete/proj", restrictedPages, async (req, res) => {
+  // INITIALISE AND DECLARE VARIABLES
+  const account = req.user._id;
+  const project = mongoose.Types.ObjectId(req.body.id);
+  // VALIDATE REQUIRED VARIABLES
+  if (!account) {
+    res.send({ status: "failed", content: "invalid user ID" });
+    return;
+  }
+  if (!project) {
+    res.send({ status: "failed", content: "invalid project ID" });
+    return;
+  }
+  // DELETE THE PROJECT
+  try {
+    await Project.deleteOne({ _id: project });
+  } catch (error) {
+    res.send({ status: "failed", content: "invalid project ID" });
+    return;
+  }
+  // SEND SUCCESS MESSAGE TO CLIENT
+  res.send({ status: "success", content: "project deleted" });
+  return;
+})
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/
