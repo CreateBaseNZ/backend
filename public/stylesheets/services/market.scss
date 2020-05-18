@@ -1,285 +1,111 @@
 @import "../global/all";
 
-body {
-  background: $light-1;
-  max-width: 100%;
-  overflow-x: hidden; 
-}
-
-.main-section {
-  margin-top: $top-bar-height;
-  height: calc(100vh - #{$top-bar-height});
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 49.5vw 1vw 49.5vw;
-
-  .market-bg {
-    object-fit: cover;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .market-left {
-    justify-self: flex-end;
-    object-position: 100% 0;
-    animation: left-before 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-  }
-  
-  .market-right {
-    justify-self: flex-start;
-    object-position: 0 0;
-    animation: right-before 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-  }
-  
-  .market-mid {
+body{
+    background: $light-1;
+    max-width: 100%;
+    overflow-x: hidden;
     font-family: $poppins;
-    height: calc(100vh - #{$top-bar-height});
+}
+
+.main-page {
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    
-    .market-title {
-      font-weight: 800;
-      color: $dark-3;
-      animation: title-anim-before 0.5s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-    }
-
-    .market-body {
+    padding-top: $top-bar-height;
+    .temp-wrap{
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 0;
-      filter: blur(10px);
-      font-size: calc(12px + 0.1vw);
-      font-weight: 100;
-      font-family: $montserrat;
-      color: $dark-3;
-      line-height: 150%;
-
-      .market-desc {
-        margin-top: 15vh;
-        width: 30vw;
-        text-align: center;
-  
-        pointer-events: none;
-        transition: blur 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-      }
-  
-      .market-already-updated {
-        display: none;
-        margin-top: 10vh;
-        width: 30vw;
-        text-align: center;
-        line-height: 150%;
-      }
-
-      .market-get-updates {
-        display: none;
-        margin-top: 10vh;
-        white-space: nowrap;
-      }
-  
-      .market-fld {
-        display: none;
-        margin-top: 10px;
-  
-        pointer-events: none;
-        transition: 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-      }
-  
-      .market-btn {
-        display: none;
-        width: 150px;
-        margin-top: 50px;
-  
-        transition: filter 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99), opacity 0.3s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-      }
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 45vmin;
+      // border: thin solid blue;
+      text-align: center;
+      padding:5vmin;
     }
-
-
-    .market-show {
-      position: absolute;
-      top: 65vh;
-      padding: 0.2vmin;
-      color: $light-3;
-      font-size: calc(10px + 0.1vmin);
-      letter-spacing: 0.3vmin;
-      white-space: nowrap;
-      border-bottom: 1px $light-3 solid;
-      cursor: pointer;
-      transition: top 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99);
-      z-index: 100;
-
-      &:hover {
-        color: $highlight;
-        font-weight: 800;
-        border-bottom: 1px $highlight solid;
-      }
+    .subscribe-message{
+      font-size: 0.8em;
+      color: $dark-1;
     }
+}
+
+.comingSoon-container{
+  margin-bottom: 2em;
+    h1{
+        color: $dark-2;
+        letter-spacing: 0.1em;
+        height: 3em;
+    }
+}
+
+$input-width: 100vmin;
+
+.subscribe-container{
+  .market-get-updates{
+    font-size: 0.8em;
   }
-
-  .market-left-active {
-    animation: left-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
+  p{
+    margin-bottom: 2em;
   }
-  
-  .market-right-active {
-    animation: right-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-  }
-
-  .market-mid-active-out {
-    .market-title {
-      animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-    }
-
-    .market-body {
-      filter: blur(0);
-      opacity: 1;
-      transition-delay: 0.5s;
-  
-      .market-fld {
-        pointer-events: auto;
-      }
-    }
-
-    .market-show {
-      top: 95vh;
-    }
-  }
-
-  .market-mid-active-in {
-    .market-title {
-      animation: title-anim-after 0.8s cubic-bezier(0.21, 0.65, 0.44, 0.99) forwards;
-    }
-
-    .market-body {
-      filter: blur(0);
-      opacity: 1;
-      transition-delay: 0.5s;
-  
-      .market-desc {
-        margin-top: 15vh;
-      }
-    }
-
-    .market-show {
-      top: 85vh;
-    }
+  .reg-btn{
+    margin-top: 3.5em;
   }
 }
 
+// -----------------------------------
+    // Glitch animation
+    // -----------------------------------
+    .glitch {
+        position: relative;
+      }
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 1px;
+        text-shadow: 1px 0 greenyellow;
+        background: $light-1;
+        overflow: hidden;
+        visibility: hidden;
+        animation: noise-anim 10s infinite linear alternate-reverse;
+      }
+      .glitch::before {
+        content: attr(data-text);
+        position: absolute;
+        left: -1px;
+        text-shadow: -1px 0 magenta;
+        background: $light-1;
+        overflow: hidden;
+        visibility: hidden;
+        animation: noise-anim-2 8s infinite linear alternate-reverse;
+      }
+    
+      @keyframes noise-anim {
+        $steps: 240;
+        @for $i from 0 through $steps {
+          #{percentage($i*(1/$steps))} {
+            $top: random(100);
+            $bottom: random(101 - $top);
+            clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+            padding: random(8)px - 8px;
+            visibility: visible;
+          }
+        }
+      }
+      @keyframes noise-anim-2 {
+        $steps: 150;
+        @for $i from 0 through $steps {
+          #{percentage($i*(1/$steps))} {
+            $top: random(100);
+            $bottom: random(101 - $top);
+            clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+            padding: random(10)px - 10px;
+            visibility: visible;
+          }
+        }
+      }
 
-@keyframes title-anim-before {
-  0% {
-    margin-top: 15vh;
-    filter: blur(0);
-    opacity: 1;
-    font-size: calc(16px + 1vmin);
-    letter-spacing: 2vmin;
-  }
-  40% {
-    margin-top: 15vh;
-    filter: blur(10px);
-    font-size: calc(16px + 1vmin);
-    letter-spacing: 2vmin;
-    opacity: 0;
-    z-index: 3;
-  }
-  41% {
-    margin-top: 44vh;
-    filter: blur(20px);
-    opacity: 0;
-    font-size: 3.5vmin;
-    letter-spacing: 1.5vmin;
-    z-index: 1;
-  }
-  100% {
-    margin-top: 40vh;
-    filter: blur(0);
-    opacity: 1;
-    font-size: 7vmin;
-    letter-spacing: 3vmin;
-  }
-}
 
-@keyframes title-anim-after {
-  0% {
-    margin-top: 40vh;
-    filter: blur(0);
-    opacity: 1;
-    font-size: 7vmin;
-    letter-spacing: 3vmin;
-  }
-  60% {
-    margin-top: 44vh;
-    filter: blur(20px);
-    opacity: 0;
-    font-size: 3.5vmin;
-    letter-spacing: 1.5vmin;
-    z-index: 1;
-  }
-  61% {
-    margin-top: 15vh;
-    filter: blur(10px);
-    font-size: calc(10px + 0.8vmin);
-    letter-spacing: 2vmin;
-    opacity: 0;
-    z-index: 3;
-  }
-  100% {
-    margin-top: 15vh;
-    filter: blur(0);
-    opacity: 1;
-    font-size: calc(10px + 0.8vmin);
-    letter-spacing: 2vmin;
-  }
-}
-
-@keyframes left-before {
-  0% {
-    margin-top: calc(40vh - #{$top-bar-height});
-    height: 60vh;
-    margin-right: 20vw;
-  }
-  100% {
-    margin-top: 8vh;
-    height: 150vh;
-    margin-right: 0;
-  }
-}
-@keyframes left-after {
-  0% {
-    margin-top: 8vh;
-    height: 150vh;
-    margin-right: 0;
-  }
-  100% {
-    margin-top: calc(40vh - #{$top-bar-height});
-    height: 60vh;
-    margin-right: 20vw;
-  }
-}
-
-@keyframes right-before {
-  0% {
-    margin-top: calc(40vh - #{$top-bar-height});
-    height: 60vh;
-    margin-left: 20vw;
-  }
-  100% {
-    margin-top: 8vh;
-    height: 150vh;
-    margin-left: 0;
-  }
-}
-@keyframes right-after {
-  0% {
-    margin-top: 8vh;
-    height: 150vh;
-    margin-left: 0;
-  }
-  100% {
-    margin-top: calc(40vh - #{$top-bar-height});
-    height: 60vh;
-    margin-left: 20vw;
+@media only screen and (min-width: 53em){
+  .comingSoon-container{
+    margin-bottom: 1em;
   }
 }

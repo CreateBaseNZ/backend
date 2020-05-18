@@ -28,10 +28,6 @@ body{
     }
 }
 
-.reg-btn{
-  margin-top: 3.5em;
-}
-
 .comingSoon-container{
   margin-bottom: 2em;
     h1{
@@ -49,6 +45,9 @@ $input-width: 100vmin;
   }
   p{
     margin-bottom: 2em;
+  }
+  .reg-btn{
+    margin-top: 3.5em;
   }
 }
 

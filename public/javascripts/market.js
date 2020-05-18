@@ -1,44 +1,22 @@
-const marketInit = async() => {
+const marketInit = () => {
+    textSequence(0, ['COMING SOON', 'MARKETPLACE'])
+}
 
-    let status;
-    try {
-    status = (await axios.get("/login-status"))["data"]["status"]
-    } catch (error) {
-    console.log(error)
-    return
-    }
-
-    const left = document.querySelector('.market-left')
-    const right = document.querySelector('.market-right')
-    const text = document.querySelector('.market-mid')
-    const show = document.querySelector('.market-show')
-
-    if (status) {
-        show.addEventListener('click', function() {  
-            document.querySelector('.market-already-updated').style.display = 'inline-block'
-            left.classList.toggle('market-left-active')
-            right.classList.toggle('market-right-active')
-            text.classList.toggle('market-mid-active-in')
-            if (show.innerHTML == "SHOW MORE") {
-                show.innerHTML = "SHOW LESS"
-            } else {
-                show.innerHTML = "SHOW MORE"
-            }
-        })
-    } else {
-        document.querySelector('.market-fld').style.display = 'inline-block'
-        document.querySelector('.market-get-updates').style.display = 'inline-block'
-        document.querySelector('.market-btn').style.display = 'inline-block'
-        show.addEventListener('click', function() {  
-            left.classList.toggle('market-left-active')
-            right.classList.toggle('market-right-active')
-            text.classList.toggle('market-mid-active-out')
-            if (show.innerHTML == "SHOW MORE") {
-                show.innerHTML = "SHOW LESS"
-            } else {
-                show.innerHTML = "SHOW MORE"
-            }
-        })
-    }
-
+function textSequence(i, words) {
+    // Cycle through words
+    document.getElementById("change-text").innerHTML = words[i]
+    document.getElementById("change-text").setAttribute('data-text', words[i])
+    setTimeout(function() {
+        document.getElementById("change-text").classList.remove("glitch")
+        setTimeout(function() {
+            document.getElementById("change-text").classList.add("glitch")
+            setTimeout(function() {
+                i += 1
+                if (i >= words.length){
+                    i = 0
+                }
+                textSequence(i,words)
+            }, (100 + Math.random()*100))
+        }, (500 + Math.random()*1500))
+    }, (50 + Math.random()*50))
 }
