@@ -184,7 +184,8 @@ let checkout = {
     time: undefined // checkout.load.time
   },
   amount: {
-    fetch: undefined
+    fetch: undefined,
+    load: undefined
   }
 };
 
@@ -430,6 +431,46 @@ checkout.amount.fetch = () => {
     resolve(data.content);
     return;
   })
+}
+
+// @FUNC  checkout.amount.load
+// @TYPE  ASYNCHRONOUS
+// @DESC
+// @ARGU
+checkout.amount.load = async () => {
+  // Fetch the amount object
+  let amount;
+  try {
+    amount = await checkout.amount.fetch();
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // Populate the HTML
+  let makes;
+  if (amount.makes.status === "invalid") {
+    makes = "-";
+  } else {
+    makes = amount.makes.total;
+  }
+  let manufacturing;
+  if (amount.manufacturing.status === "invalid") {
+    manufacturing = "-";
+  } else {
+    manufacturing = amount.manufacturing.total;
+  }
+  let discount;
+  if (amount.discount.status === "invalid") {
+    discount = "-";
+  } else {
+    discount = amount.discount.total;
+  }
+  let gst;
+  if (amount.gst.status === "invalid") {
+    gst = "-";
+  } else {
+    gst = amount.gst.total;
+  }
 }
 
 /*-----------------------------------------------------------------------------------------

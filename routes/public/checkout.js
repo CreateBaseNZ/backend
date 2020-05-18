@@ -1042,16 +1042,25 @@ calculate.makes = (account, order) => {
       reject(error);
       return;
     }
+    let subtotal = {
+      status: "",
+      total: 0
+    }
+    if (!(makes.length)) {
+      subtotal.status = "invalid";
+      subtotal.total = 0;
+    } else {
+      subtotal.status = "valid";
+    }
     // Calculate total price of makes
-    let price = 0;
     for (let i = 0; i < makes.length; i++) {
       let make = makes[i];
       let quantity = make.quantity;
       let unitPrice = make.price;
-      price = price + (quantity * unitPrice);
+      subtotal.total = subtotal.total + (quantity * unitPrice);
     }
     // Send the price total
-    resolve(price);
+    resolve(subtotal);
     return;
   })
 };
@@ -1148,8 +1157,17 @@ calculate.all = (account, order) => {
       return;
     }
     // Calculate Manufacturing
-    let manufacturing = calculate.manufacturing(order);
-    manufacturing.total = makes * manufacturing.rate;
+    let manufacturing = {
+      status: "",
+      total: 0
+    };
+    if (makes.status === "valid") {
+      manufacturing = calculate.manufacturing(order);
+      manufacturing.total = makes.total * manufacturing.rate;
+    } else {
+      manufacturing.status = "invalid";
+      manufacturing.total = 0;
+    }
     // Calculate Discount
     let discount = {
       status: "",
@@ -1164,7 +1182,7 @@ calculate.all = (account, order) => {
     }
     if (manufacturing.status === "valid") {
       discount.status = "valid";
-      discount.total = (makes + manufacturing.total) * discount.rate;
+      discount.total = (makes.total + manufacturing.total) * discount.rate;
     } else {
       discount.status = "invalid";
       discount.total = 0;
@@ -1177,7 +1195,7 @@ calculate.all = (account, order) => {
     }
     if (manufacturing.status === "valid") {
       gst.status = "valid";
-      gst.total = ((makes + manufacturing.total) - discount.total) * gst.rate;
+      gst.total = ((makes.total + manufacturing.total) - discount.total) * gst.rate;
     } else {
       gst.status = "invalid";
       gst.total = 0;
@@ -1191,7 +1209,7 @@ calculate.all = (account, order) => {
     }
     if (manufacturing.status === "valid") {
       total.status = "valid";
-      total.total = (((makes + manufacturing.total) - discount.total) + gst.total) + shipping;
+      total.total = (((makes.total + manufacturing.total) - discount.total) + gst.total) + shipping;
     } else {
       total.status = "invalid";
       total.total = 0;
