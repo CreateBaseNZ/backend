@@ -1209,7 +1209,7 @@ calculate.all = (account, order) => {
     }
     if (manufacturing.status === "valid") {
       total.status = "valid";
-      total.total = (((makes.total + manufacturing.total) - discount.total) + gst.total) + shipping;
+      total.total = (((makes.total + manufacturing.total) - discount.total) + gst.total) + shipping.total;
     } else {
       total.status = "invalid";
       total.total = 0;
