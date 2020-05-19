@@ -2610,8 +2610,8 @@ body {
      object-fit: cover;
   -o-object-position: 50% 50%;
      object-position: 50% 50%;
-  -webkit-transition: height 0.4s ease-out;
-  transition: height 0.4s ease-out;
+  -webkit-transition: height 0.2s ease-out;
+  transition: height 0.2s ease-out;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fa-bookmark {
@@ -2676,8 +2676,8 @@ body {
   padding: 0 2vmax;
   overflow: hidden;
   height: 0;
-  -webkit-transition: height 0.4s ease-out, padding 0.4s ease-out;
-  transition: height 0.4s ease-out, padding 0.4s ease-out;
+  -webkit-transition: height 0.2s ease-out, padding 0.2s ease-out;
+  transition: height 0.2s ease-out, padding 0.2s ease-out;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-makes:empty:after {
@@ -2701,11 +2701,11 @@ body {
   height: 0;
   width: 100%;
   overflow: hidden;
-  -webkit-transition: height 0.4s ease-out;
-  transition: height 0.4s ease-out;
+  -webkit-transition: height 0.2s ease-out;
+  transition: height 0.2s ease-out;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-notes p {
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-notes .proj-notes-content {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   font-size: calc(8px + 0.1vmax);
@@ -2718,6 +2718,11 @@ body {
   padding: 0 2vmax;
   max-height: calc(50px + 15vh);
   overflow: hidden;
+}
+
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-notes .proj-notes-content:empty:after {
+  content: 'No notes added';
+  font-style: italic;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-notes::before, .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-notes::after {
@@ -2754,8 +2759,8 @@ body {
   font-size: calc(6px + 0.1vmax);
   color: #c7c2d5;
   letter-spacing: 0.1em;
-  -webkit-transition: height 0.4s ease-out;
-  transition: height 0.4s ease-out;
+  -webkit-transition: height 0.2s ease-out;
+  transition: height 0.2s ease-out;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover {
@@ -3399,9 +3404,6 @@ body {
     margin-right: -3.5vw;
     visibility: hidden;
     border-right: 1.5vw solid transparent;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover {
-    width: calc(55vh * 0.8);
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .end-spacer {
     display: inline-block;

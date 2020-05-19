@@ -37,6 +37,97 @@ const imageLoader = (objects, classes) => {
   })
 }
 
+const subscribe = (input) => {
+  return new Promise(async (resolve, reject) => {
+    // Validate if user is online
+    let dataOne;
+    try {
+      dataOne = (await axios.get("/login-status"))["data"];
+    } catch (error) {
+      return reject(error);
+    }
+    // Validate if email is provided
+    let email = "";
+    if (!dataOne.status) {
+      if (!input) {
+        return reject("no email provided");
+      } else {
+        email = input;
+      }
+    }
+    // Send the subscription request to backend
+    let dataTwo;
+    try {
+      dataTwo = (await axios.post("/subscribe/mailing-list", {email}))["data"];
+    } catch (error) {
+      return reject(error);
+    }
+    // Validate Data
+    if (dataTwo.status === "failed") {
+      return reject(dataTwo.content);
+    }
+    // Return Success
+    return resolve(dataTwo.content);
+  })
+}
+
+const unsubscribe = (input) => {
+  return new Promise(async (resolve, reject) => {
+    //Validate user is logged in
+    let dataOne;
+    try {
+      dataOne = (await axios.get("/login-status"))["data"];
+    } catch (error) {
+      return reject(error);
+    }
+
+    // Validate if email is provided
+    let email = "";
+    if (!dataOne.status) {
+      if (!input) {
+        return reject("no email provided");
+      } else {
+        email = input;
+      }
+    }
+
+    //Send unsubscribe request to backend
+    let dataTwo;
+    try {
+      dataTwo = (await axios.post("/unsubscribe/mailing-list", {email}))["data"];
+    } catch (error){
+      return reject(error);
+    }
+
+    //Validate Data
+    if(dataTwo.status === "failed") {
+      return reject(dataTwo.content);
+    }
+
+    //Return Success
+    return resolve(dataTwo.content)
+  })
+}
+
+// const footerSubscribe = async () => {
+//   // Fetch Email if user not login
+//   let email = "";
+
+//   // Loading animation
+
+//   // Subscribe User
+//   let data;
+//   try {
+//     data = await subscribe(email);
+//   } catch (error) {
+//     // Failed animation
+//     return console.log(error);
+//   }
+//   // Success animation
+
+//   return;
+// }
+
 /*=========================================================================================
 END
 =========================================================================================*/

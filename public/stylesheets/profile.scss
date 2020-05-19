@@ -299,7 +299,7 @@ body {
             width: 100%;
             object-fit: cover;
             object-position: 50% 50%;
-            transition: height 0.4s ease-out;
+            transition: height 0.2s ease-out;
           }
 
           .fa-bookmark {
@@ -357,7 +357,7 @@ body {
             padding: 0 2vmax;
             overflow: hidden;
             height: 0;
-            transition: height 0.4s ease-out, padding 0.4s ease-out;
+            transition: height 0.2s ease-out, padding 0.2s ease-out;
 
             &:empty {
               &:after {
@@ -376,9 +376,9 @@ body {
             height: 0;
             width: 100%;
             overflow: hidden;
-            transition: height 0.4s ease-out;
+            transition: height 0.2s ease-out;
             
-            p {
+            .proj-notes-content {
               flex-shrink: 0;
               font-size: calc(8px + 0.1vmax);
               font-weight: 400;
@@ -390,6 +390,13 @@ body {
               padding: 0 2vmax;
               max-height: calc(50px + 15vh);
               overflow: hidden;
+
+              &:empty {
+                &:after {
+                  content: 'No notes added';
+                  font-style: italic;
+                }
+              }
             }
 
             &::before,
@@ -424,7 +431,7 @@ body {
             font-size: calc(6px + 0.1vmax);
             color: $light-3;
             letter-spacing: 0.1em;
-            transition: height 0.4s ease-out;
+            transition: height 0.2s ease-out;
           }
 
           &:hover {
@@ -990,10 +997,6 @@ body {
               visibility: hidden;
               border-right: 1.5vw solid transparent;
             }
-          }
-
-          &:hover {
-            width: calc(55vh * 0.8);
           }
         }
 
