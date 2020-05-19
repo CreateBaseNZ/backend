@@ -7,26 +7,122 @@ var loadFile = function(event) {
 }
 
 let Project = class {
-  constructor(id, bookmark, created, makes, modified, name, notes, image) {
-    this.id = id
+  constructor(bookmark, makes = [], name, notes, image) {
     this.bookmark = bookmark
-    this.created = created
-    this.makes = makes
-    this.modified = modified
+    if (makes.constructor === Array) {
+      this.makes = makes
+    } else {
+      this.makes = [makes]
+    }
     this.name = name
     this.notes = notes
     this.image = image
   }
 }
 
-let Make = class {
-  constructor(id, colour, material, name, quality, strength) {
-    this.id = id
-    this.colour = colour
-    this.material = material
-    this.name = name
-    this.quality = quality
-    this.strength = strength
+function renderProjCard(newProj, project) {
+  if (newProj) {
+
+    let cardEl = document.createElement('div')
+    cardEl.id = 'proj-' + project.id 
+
+    // Edit a project
+    cardEl.addEventListener('click', () => {
+
+      // Show new/edit project screen
+      showProjPopup('edit', project.id)
+
+      project.makes.forEach(function(makeInProject, k) {
+        // Add project blobs
+        renderMakeBlobs(allMakes[makeKeys[makeInProject]])
+        // Activate project labels
+        document.getElementById('make-label-' + makeInProject).classList.toggle('make-label-active')
+        document.getElementById('make-label-' + makeInProject).childNodes[1].className = 'fas fa-check-circle'
+      })
+    })
+
+    projScroll.appendChild(cardEl).className = 'proj-card'
+    let bookmarkEl = document.createElement('i')
+
+    // TO DO: bookmark and update route
+    bookmarkEl.addEventListener('click', (e) => {
+      allProjects[i].bookmark = !allProjects[i].bookmark
+      bookmarkEl.classList.toggle('fas')
+      bookmarkEl.classList.toggle('far')
+      e.stopPropagation()
+    })
+    if (project.bookmark) {
+      cardEl.appendChild(bookmarkEl).className = 'fas fa-bookmark'
+    } else {
+      cardEl.appendChild(bookmarkEl).className = 'far fa-bookmark'
+    }
+    let imgEl = document.createElement('img')
+    cardEl.appendChild(imgEl).className = 'proj-img'
+    imgEl.src = project.image
+    imgEl.alt = 'Project Image'
+    dateCreation = new Date(project.date.creation)
+    let dateEl = document.createElement('p')
+    dateEl.innerHTML =  dateCreation.toLocaleString('default', { month: 'short' }).toUpperCase() + ' ' + dateCreation.getDate() + ' ' + dateCreation.getFullYear()
+    cardEl.appendChild(dateEl).className = 'proj-date'
+    let nameEl = document.createElement('p')
+    nameEl.innerHTML = project.name
+    cardEl.appendChild(nameEl).className = 'proj-name'
+    let makesEl = document.createElement('p')
+    cardEl.appendChild(makesEl).className = 'proj-makes'
+
+    // Add makes to project cards
+    project.makes.forEach(function(make, j) {
+      if (makesEl.innerHTML !== '') {
+        makesEl.innerHTML += ', '
+      }
+      makesEl.innerHTML += allMakes[makeKeys[make]].file.name
+    })
+
+    let notesEl = document.createElement('div')
+    cardEl.appendChild(notesEl).className = 'proj-notes'
+    let notesText = document.createElement('p')
+    notesEl.appendChild(notesText).className = 'proj-notes-content'
+    // TO DO: :empty
+      notesText.innerHTML = project.notes
+    cardEl.addEventListener('mouseover', () => {
+      notesEl.style.height = notesEl.scrollHeight + 'px'
+    })
+    cardEl.addEventListener('mouseout', () => {
+      notesEl.style.height = '0'
+    })
+    dateModified = new Date(project.date.modified)
+    let modifiedEl = document.createElement('p')
+    modifiedEl.innerHTML = 'Last modified ' + dateModified.toLocaleString('default', { month: 'long' }) + ' ' + dateModified.getDate() + ' ' + dateModified.getFullYear()
+    cardEl.appendChild(modifiedEl).className = 'proj-modified'
+    let editEl = document.createElement('p')
+    editEl.innerHTML = 'Click anywhere on this card to edit'
+    cardEl.appendChild(editEl).className = 'proj-edit'
+
+  } else {
+
+    let cardEl = document.getElementById('proj-' + activeProjID)
+
+    let bookmarkEl = cardEl.querySelector('.fa-bookmark')
+    if (project.bookmark) {
+      cardEl.appendChild(bookmarkEl).className = 'fas fa-bookmark'
+    } else {
+      cardEl.appendChild(bookmarkEl).className = 'far fa-bookmark'
+    }
+
+    let makesEl = cardEl.querySelector('.proj-makes')
+    makesEl.innerHTML = ''
+    project.makes.forEach(function(make, j) {
+      if (makesEl.innerHTML !== '') {
+        makesEl.innerHTML += ', '
+      }
+      makesEl.innerHTML += allMakes[makeKeys[make]].file.name
+    })
+
+    let nameEl = cardEl.querySelector('.proj-name')
+    nameEl.innerHTML = project.name
+
+    let notesContent = cardEl.querySelector('.proj-notes-content')
+    notesContent.innerHTML = project.notes
   }
 }
 
@@ -34,7 +130,7 @@ function renderMakeBlobs(make) {
   let el = document.createElement('div')
   el.className = 'make-blob'
   el.id = 'make-blob-' + make.id
-  el.appendChild(document.createElement('p')).innerHTML = make.name
+  el.appendChild(document.createElement('p')).innerHTML = make.file.name
   el.appendChild(document.createElement('div')).className = 'make-blob-x'
   el.addEventListener('click', () => {
     let label = document.getElementById('make-label-' + make.id)
@@ -77,9 +173,9 @@ function showProjPopup(status, project = undefined) {
   } else {
     // Edit existing project
     document.getElementById('new-edit-proj-header').innerHTML = 'Edit an Existing Project'
-    document.getElementById('new-edit-proj-name').value = project.name
-    document.getElementById('new-edit-proj-notes').value = project.notes
-    activeProjID = project.id
+    document.getElementById('new-edit-proj-name').value = document.getElementById('proj-' + project).querySelector('.proj-name').innerHTML
+    document.getElementById('new-edit-proj-notes').value = document.getElementById('proj-' + project).querySelector('.proj-notes-content').innerHTML
+    activeProjID = project
   }
 }
 
@@ -92,7 +188,7 @@ const profileInit = async() => {
   const nameEl = document.getElementById('profile-name')
   const locationEl = document.getElementById('profile-location')
   const bioEl = document.getElementById('profile-bio')
-  const projScroll = document.getElementById('proj-scroll-container')
+  projScroll = document.getElementById('proj-scroll-container')
   const billingCards = document.getElementsByClassName('billing-card')
 
   // -- Prerender selected tab -- 
@@ -178,8 +274,6 @@ const profileInit = async() => {
     }
   }
 
-  // make = new Make('123', 'black', 'petg', 'Make Part A', 'normal', 'normal')
-
   try {
     allMakes = (await axios.get("/profile/customer/fetch/makes"))["data"]["content"]
   } catch (error) {
@@ -195,8 +289,9 @@ const profileInit = async() => {
     console.log(error)
     return
   }
+  console.log(allProjects)
 
-  var makeKeys = new Object()
+  makeKeys = new Object()
   allMakes.forEach(function(make, i) {
     makeKeys[make.id] = i
   })
@@ -215,7 +310,7 @@ const profileInit = async() => {
     el.className = 'make-label'
     el.id = 'make-label-' + make.id
     makeLabelContainer.appendChild(el)
-    el.appendChild(document.createElement('p')).innerHTML = make.name
+    el.appendChild(document.createElement('p')).innerHTML = make.file.name
     let tick = document.createElement('i')
     tick.className = 'fas fa-check-circle'
     el.appendChild(document.createElement('i')).className = 'far fa-check-circle'
@@ -236,77 +331,7 @@ const profileInit = async() => {
   // Render all project cards
   allProjects.forEach(function(project, i) {
     // IIFE
-    let cardEl = document.createElement('div')
-    cardEl.id = 'proj-' + project.id 
-
-    // Edit a project
-    cardEl.addEventListener('click', () => {
-
-      // Show new/edit project screen
-      showProjPopup('edit', project)
-
-      project.makes.forEach(function(makeInProject, k) {
-        // Add project blobs
-        renderMakeBlobs(allMakes[makeKeys[makeInProject]])
-        // Activate project labels
-        document.getElementById('make-label-' + makeInProject).classList.toggle('make-label-active')
-        document.getElementById('make-label-' + makeInProject).childNodes[1].className = 'fas fa-check-circle'
-      })
-    })
-
-    projScroll.appendChild(cardEl).className = 'proj-card'
-    let bookmarkEl = document.createElement('i')
-    bookmarkEl.addEventListener('click', (e) => {
-      allProjects[i].bookmark = !allProjects[i].bookmark
-      bookmarkEl.classList.toggle('fas')
-      bookmarkEl.classList.toggle('far')
-      e.stopPropagation()
-    })
-    if (project.bookmark) {
-      cardEl.appendChild(bookmarkEl).className = 'fas fa-bookmark'
-    } else {
-      cardEl.appendChild(bookmarkEl).className = 'far fa-bookmark'
-    }
-    let imgEl = document.createElement('img')
-    cardEl.appendChild(imgEl).className = 'proj-img'
-    imgEl.src = project.image
-    imgEl.alt = 'Project Image'
-    let date = document.createElement('p')
-    date.innerHTML = project.created
-    cardEl.appendChild(date).className = 'proj-date'
-    let name = document.createElement('p')
-    name.innerHTML = project.name
-    cardEl.appendChild(name).className = 'proj-name'
-    let makesEl = document.createElement('p')
-    cardEl.appendChild(makesEl).className = 'proj-makes'
-
-    // Add makes to project cards
-    project.makes.forEach(function(make, j) {
-      if (makesEl.innerHTML !== '') {
-        makesEl.innerHTML += ', '
-      }
-      makesEl.innerHTML += allMakes[makeKeys[make]].name
-    })
-
-    let notesEl = document.createElement('div')
-    cardEl.appendChild(notesEl).className = 'proj-notes'
-    if (project.notes === '') {
-      notesEl.appendChild(document.createElement('p')).innerHTML = 'No notes added'.italics()
-    } else {
-      notesEl.appendChild(document.createElement('p')).innerHTML = project.notes
-    }
-    cardEl.addEventListener('mouseover', () => {
-      notesEl.style.height = notesEl.scrollHeight + 'px'
-    })
-    cardEl.addEventListener('mouseout', () => {
-      notesEl.style.height = '0'
-    })
-    let modifiedEl = document.createElement('p')
-    modifiedEl.innerHTML = 'Last modified ' + project.modified
-    cardEl.appendChild(modifiedEl).className = 'proj-modified'
-    let editEl = document.createElement('p')
-    editEl.innerHTML = 'Click anywhere on this card to edit'
-    cardEl.appendChild(editEl).className = 'proj-edit'
+    renderProjCard(true, project)
   })
 
   newEditProjScreenOverlay.addEventListener('click', () => {
@@ -321,50 +346,75 @@ const profileInit = async() => {
   })
 
   document.getElementById('save-proj').addEventListener('click', async() => {
-    let proj = new Project(
-      undefined,
-      // Enable bookmarking
-      // !!!!!!!!!!!!!
-      'false',
-      // Verify created and modified works for both new and existing
-      // !!!!!!!!!!!!!
-      undefined,
-      // Add makes
-      // !!!!!!!!!!!!!
-      [],
-      undefined,
-      document.getElementById('new-edit-proj-name').value,
-      document.getElementById('new-edit-proj-notes').value,
-      // FUTURE: image upload
-      // !!!!!!!!!!!!!
-      undefined
-    )
+
 
     if (activeProjID) {
+      let proj = new Object()
+      proj.updates = new Object()
+
       // Update existing project
       proj.id = activeProjID
+
+      // TO DO
+      proj.updates.bookmark = false
+
+      proj.updates.makes = []
+      let children = makeBlobContainer.children
+      for (var i = 0; i < children.length; i++) {
+        proj.updates.makes[i] = children[i].id.split('-')[2]
+      }
+
+      proj.updates.name = document.getElementById('new-edit-proj-name').value
+      if (!proj.updates.name) {
+        proj.updates.name = 'Unnamed Project'
+      }
+      proj.updates.notes = document.getElementById('new-edit-proj-notes').value
+
+      // TO DO: future
+      proj.updates.image = undefined
+
       try {
-        let data = (await axios.post("/profile/customer/update/proj", proj))
+        let data = (await axios.post("/profile/customer/update/proj", proj))["data"]
       } catch (error) {
         console.log(error)
       }
-      console.log(proj)
+
       // Re-render project card
-      // !!!!!!!!!!!!!
+      renderProjCard(false, proj.updates)
 
     } else {
-      // Add new project
+      // New project
+      let proj = new Project()
+
+      // TO DO: future
+      proj.bookmark = false
+
+      let children = makeBlobContainer.children
+      for (var i = 0; i < children.length; i++) {
+        proj.makes[i] = children[i].id.split('-')[2]
+      }
+
+      proj.name = document.getElementById('new-edit-proj-name').value
+      if (!proj.name) {
+        proj.name = 'Unnamed Project'
+      }
+      proj.notes = document.getElementById('new-edit-proj-notes').value
+
+      // TO DO: future
+      proj.image = undefined
+
       try {
-        let data = (await axios.post("/profile/customer/new/proj", proj))
+        proj = (await axios.post("/profile/customer/new/proj", proj))["data"]["content"]
       } catch (error) {
         console.log(error)
       }
+      
       // Render project card
-      // !!!!!!!!!!!!!
+      renderProjCard(true, proj)
 
     }
 
-
+    hideProjPopup()
   })
 
 }
