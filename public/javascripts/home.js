@@ -166,5 +166,23 @@ const homeInit = async() => {
   }
 }
 
+// const homeSubscribe = async () => {
+//   // Fetch Email if user not login
+//   let email = "";
+
+//   // Loading animation
+
+//   // Subscribe User
+//   let data;
+//   try {
+//     data = await subscribe(email);
+//   } catch (error) {
+//     // Failed animation
+//     return console.log(error);
+//   }
+//   // Success animation
+
+//   return;
+// }
 
 

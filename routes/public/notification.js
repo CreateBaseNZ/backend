@@ -46,17 +46,17 @@ router.post("/subscribe/mailing-list", async (req, res) => {
   try {
     mail = await Mail.findByEmail(email);
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
   if (mail) {
-    return res.send({ status: "success", data: "already subscribed" });
+    return res.send({ status: "success", content: "already subscribed" });
   }
   // Check if the user is registered
   let account;
   try {
     account = await Account.findByEmail(email);
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
   if (account) {
     const newMail = new Mail({
@@ -67,7 +67,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
     try {
       await newMail.save();
     } catch (error) {
-      return res.send({ status: "failed", data: error });
+      return res.send({ status: "failed", content: error });
     }
 
     // Update user subscription mailing status
@@ -75,7 +75,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
     try {
       customer = await Customer.findByAccountId(account._id);
     } catch (error) {
-      return res.send({ status: "failed", data: error });
+      return res.send({ status: "failed", content: error });
     }
 
     customer.subscription = {
@@ -85,10 +85,10 @@ router.post("/subscribe/mailing-list", async (req, res) => {
     try {
       await customer.save();
     } catch (error) {
-      return res.send({ status: "failed", data: error });
+      return res.send({ status: "failed", content: error });
     }
 
-    return res.send({ status: "success", data: "subscribed" });
+    return res.send({ status: "success", content: "subscribed" });
   }
   // If user is not registered and not subscribed
   const newMail = new Mail({
@@ -98,18 +98,52 @@ router.post("/subscribe/mailing-list", async (req, res) => {
   try {
     await newMail.save();
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
 
-  return res.send({ status: "success", data: "subscribed" });
+  return res.send({ status: "success", content: "subscribed" });
 });
 
 // @route     POST /unsubscribe/mailing-list
 // @desc      Unsubscribing from mailing list
 // @access    Public
-router.post("/unsubscribe/mailing-list/:email", async (req, res) => {
+router.get("/unsubscribe/mailing-list/:email", async (req, res) => {
   // Declare Email Variable
   const email = req.params.email;
+  // Check if Email Exist in the Mailing List
+  let mail;
+  try {
+    mail = await Mail.findByEmail(email);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // Check if User is Registered
+  let account;
+  try {
+    account = await Account.findOne({ email });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // If Registered Update Subscription
+  if (account) {
+  }
+  // Remove Email from the Mailing List
+  try {
+    await Mail.deleteMail(email);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // Send Success Status
+  // res.send({ status: "success", content: "unsubscribed successfully" });
+  res.redirect("/login");
+});
+
+// @route     POST /unsubscribe/mailing-list
+// @desc      Unsubscribing from mailing list
+// @access    Public
+router.post("/unsubscribe/mailing-list", async (req, res) => {
+  // Declare Email Variable
+  const email = req.body.email;
   // Check if Email Exist in the Mailing List
   let mail;
   try {
