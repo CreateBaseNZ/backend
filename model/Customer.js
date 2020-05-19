@@ -70,6 +70,7 @@ const CustomerSchema = new Schema({
   subscription: {
     mail: {
       type: Boolean,
+      default: false
     },
   },
   wallet: {
@@ -77,6 +78,10 @@ const CustomerSchema = new Schema({
       type: Number,
       default: 0,
     },
+    reference: {
+      type: String,
+      default: 0
+    }
   },
 });
 
@@ -101,6 +106,14 @@ CustomerSchema.statics.findByAccountId = function (accountId) {
     resolve(customer);
   });
 };
+
+// @FUNC  create
+// @TYPE  STATICS PROMISE ASYNC
+// @DESC
+// @ARGU
+CustomerSchema.statics.create = function (account) {
+
+}
 
 /*=========================================================================================
 METHODS

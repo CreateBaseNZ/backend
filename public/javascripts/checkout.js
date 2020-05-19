@@ -220,19 +220,16 @@ checkout.initialise = async () => {
 // @ARGU
 checkout.fetch = () => {
   return new Promise(async (resolve, reject) => {
-    let order;
-
+    let data;
     try {
-      order = (await axios.post("/checkout/order"))["data"];
+      data = (await axios.post("/checkout/order"))["data"];
     } catch (error) {
-      reject(error);
+      return reject(error);
     }
-
-    if (order.status == "failed") {
-      reject(order.data);
+    if (data.status === "failed") {
+      return reject(data.content);
     }
-
-    resolve(order.data);
+    return resolve(data.content);
   });
 };
 
@@ -257,36 +254,27 @@ checkout.insert = object => {
   // Check if there is a saved address
   if (object.order.shipping.address.saved.suburb) {
     // Saved - Populate Element
-    html = checkout.shipping.address.saved.create(
-      object.order.shipping.address.saved
-    );
+    html = checkout.shipping.address.saved.create(object.order.shipping.address.saved);
   } else {
     // Disable click
     document.querySelector("#checkout-address-saved").disabled = true;
-    document
-      .querySelector("#checkout-address-saved-label")
-      .classList.add("disabled");
+    document.querySelector("#checkout-address-saved-label").classList.add("disabled");
     // Add error to inform user that there is no saved address
-    document.querySelector("#checkout-address-saved-error").innerHTML =
-      "No Saved Address";
-    document
-      .querySelector("#checkout-address-saved-error")
-      .classList.remove("checkout-element-hide");
+    document.querySelector("#checkout-address-saved-error").innerHTML = "No Saved Address";
+    document.querySelector("#checkout-address-saved-error").classList.remove("checkout-element-hide");
     html = "<p>No Saved Address</p>";
   }
   checkout.shipping.address.saved.insert(html);
   // New
   checkout.shipping.address.new.populate(object.order.shipping.address.new);
-  document.querySelector("#checkout-shipping-save-address-input").checked =
-    object.order.shipping.address.save;
+  document.querySelector("#checkout-shipping-save-address-input").checked = object.order.shipping.address.save;
   // Selection
   checkout.shipping.address.selected = object.order.shipping.address.option;
-  if (checkout.shipping.address.selected == "saved") {
+  if (checkout.shipping.address.selected === "saved") {
     if (object.order.shipping.address.saved.suburb) {
-      document.querySelector("#checkout-address-saved").checked =
-        object.order.shipping.address.save;
+      document.querySelector("#checkout-address-saved").checked = true;
     }
-  } else if (checkout.shipping.address.selected == "new") {
+  } else if (checkout.shipping.address.selected === "new") {
     document.querySelector("#checkout-address-new").checked = true;
   }
   checkout.shipping.address.select(checkout.shipping.address.selected);
@@ -312,16 +300,13 @@ checkout.insert = object => {
 // @ARGU
 checkout.load = async () => {
   let object;
-
   try {
     object = await checkout.fetch();
   } catch (error) {
     console.log(error);
     return;
   }
-
   checkout.insert(object);
-
   // Perform Validation
   checkout.validate(object.validity);
   return;
@@ -1127,8 +1112,7 @@ checkout.shipping.address.new.validate.city = () => {
 // @DESC
 // @ARGU
 checkout.shipping.address.new.validate.postcode = () => {
-  const postcode = document.querySelector("#checkout-new-address-postcode")
-    .value;
+  const postcode = document.querySelector("#checkout-new-address-postcode").value;
   let status = {
     valid: true,
     input: postcode,
@@ -1179,51 +1163,30 @@ checkout.shipping.address.new.validate.all = type => {
   const postcode = checkout.shipping.address.new.validate.postcode();
   const country = checkout.shipping.address.new.validate.country();
   // Check Validity
-  const valid =
-    unit.valid &&
-    streetNumber.valid &&
-    streetName.valid &&
-    suburb.valid &&
-    city.valid &&
-    postcode.valid &&
-    country.valid;
+  const valid = unit.valid && streetNumber.valid && streetName.valid && suburb.valid && city.valid && postcode.valid && country.valid;
   // Error Handling
   if (type == "unit") {
-    document.querySelector("#checkout-shipping-unit-error").innerHTML =
-      unit.message;
+    document.querySelector("#checkout-shipping-unit-error").innerHTML = unit.message;
   } else if (type == "streetNumber") {
-    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
-      streetNumber.message;
+    document.querySelector("#checkout-shipping-street-number-error").innerHTML = streetNumber.message;
   } else if (type == "streetName") {
-    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
-      streetName.message;
+    document.querySelector("#checkout-shipping-street-name-error").innerHTML = streetName.message;
   } else if (type == "suburb") {
-    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
-      suburb.message;
+    document.querySelector("#checkout-shipping-suburb-error").innerHTML = suburb.message;
   } else if (type == "city") {
-    document.querySelector("#checkout-shipping-city-error").innerHTML =
-      city.message;
+    document.querySelector("#checkout-shipping-city-error").innerHTML = city.message;
   } else if (type == "postcode") {
-    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
-      postcode.message;
+    document.querySelector("#checkout-shipping-postcode-error").innerHTML = postcode.message;
   } else if (type == "country") {
-    document.querySelector("#checkout-shipping-country-error").innerHTML =
-      country.message;
+    document.querySelector("#checkout-shipping-country-error").innerHTML = country.message;
   } else {
-    document.querySelector("#checkout-shipping-unit-error").innerHTML =
-      unit.message;
-    document.querySelector("#checkout-shipping-street-number-error").innerHTML =
-      streetNumber.message;
-    document.querySelector("#checkout-shipping-street-name-error").innerHTML =
-      streetName.message;
-    document.querySelector("#checkout-shipping-suburb-error").innerHTML =
-      suburb.message;
-    document.querySelector("#checkout-shipping-city-error").innerHTML =
-      city.message;
-    document.querySelector("#checkout-shipping-postcode-error").innerHTML =
-      postcode.message;
-    document.querySelector("#checkout-shipping-country-error").innerHTML =
-      country.message;
+    document.querySelector("#checkout-shipping-unit-error").innerHTML = unit.message;
+    document.querySelector("#checkout-shipping-street-number-error").innerHTML = streetNumber.message;
+    document.querySelector("#checkout-shipping-street-name-error").innerHTML = streetName.message;
+    document.querySelector("#checkout-shipping-suburb-error").innerHTML = suburb.message;
+    document.querySelector("#checkout-shipping-city-error").innerHTML = city.message;
+    document.querySelector("#checkout-shipping-postcode-error").innerHTML = postcode.message;
+    document.querySelector("#checkout-shipping-country-error").innerHTML = country.message;
   }
   if (valid) {
   } else {
@@ -1250,16 +1213,12 @@ checkout.shipping.address.new.validate.all = type => {
 // @ARGU
 checkout.shipping.address.new.populate = address => {
   document.querySelector("#checkout-new-address-unit").value = address.unit;
-  document.querySelector("#checkout-new-address-street-number").value =
-    address.street.number;
-  document.querySelector("#checkout-new-address-street-name").value =
-    address.street.name;
+  document.querySelector("#checkout-new-address-street-number").value = address.street.number;
+  document.querySelector("#checkout-new-address-street-name").value = address.street.name;
   document.querySelector("#checkout-new-address-suburb").value = address.suburb;
   document.querySelector("#checkout-new-address-city").value = address.city;
-  document.querySelector("#checkout-new-address-postcode").value =
-    address.postcode;
-  document.querySelector("#checkout-new-address-country").value =
-    address.country;
+  document.querySelector("#checkout-new-address-postcode").value = address.postcode;
+  document.querySelector("#checkout-new-address-country").value = address.country;
 };
 
 // @FUNC  checkout.shipping.address.new.update
@@ -1296,15 +1255,9 @@ checkout.shipping.address.new.toggleSave = async save => {
   checkout.load.load("updating order");
   let object;
   try {
-    object = await axios.post(
-      "/checkout/order/update/new-shipping-address-save",
-      {
-        save
-      }
-    );
+    object = await axios.post("/checkout/order/update/new-shipping-address-save", { save });
   } catch (error) {
-    console.log(error);
-    return;
+    return console.log(error);
   }
   checkout.load.success("saved");
   // Update Price
@@ -1319,13 +1272,9 @@ checkout.shipping.address.new.toggleSave = async save => {
 // @ARGU
 checkout.shipping.address.new.show = show => {
   if (show) {
-    document
-      .querySelector("#checkout-new-address")
-      .classList.remove("checkout-element-hide");
+    document.querySelector("#checkout-new-address").classList.remove("checkout-element-hide");
   } else {
-    document
-      .querySelector("#checkout-new-address")
-      .classList.add("checkout-element-hide");
+    document.querySelector("#checkout-new-address").classList.add("checkout-element-hide");
   }
 };
 
@@ -1340,14 +1289,9 @@ checkout.shipping.method.select = async option => {
   checkout.load.load("updating order");
   let object;
   try {
-    object = (
-      await axios.post("/checkout/order/update/shipping-method", {
-        option
-      })
-    )["data"]["data"];
+    object = (await axios.post("/checkout/order/update/shipping-method", { option }))["data"]["data"];
   } catch (error) {
-    console.log(error);
-    return;
+    return console.log(error);
   }
   checkout.load.success("saved");
   // Update Price
@@ -1362,22 +1306,17 @@ checkout.shipping.method.select = async option => {
 // @ARGU
 checkout.shipping.validation.validate = async validity => {
   let valid;
-
   if (validity) {
     valid = validity.cart && validity.shipping;
   } else {
     try {
-      valid = (await axios.post("/checkout/order/validate/shipping"))["data"][
-        "data"
-      ];
+      valid = (await axios.post("/checkout/order/validate/shipping"))["data"]["data"];
     } catch (error) {
       console.log(error);
       return;
     }
   }
-
   checkout.element.validity.shipping = valid;
-
   if (valid) {
     checkout.shipping.validation.valid();
   } else {
@@ -1390,18 +1329,9 @@ checkout.shipping.validation.validate = async validity => {
 // @DESC
 // @ARGU
 checkout.shipping.validation.valid = () => {
-  checkout.element.heading.payment.addEventListener(
-    "click",
-    checkout.payment.show
-  );
-  checkout.element.navigation.payment.addEventListener(
-    "click",
-    checkout.payment.show
-  );
-  checkout.element.button.shipping.next.addEventListener(
-    "click",
-    checkout.payment.show
-  );
+  checkout.element.heading.payment.addEventListener("click", checkout.payment.show);
+  checkout.element.navigation.payment.addEventListener("click", checkout.payment.show);
+  checkout.element.button.shipping.next.addEventListener("click", checkout.payment.show);
   // Update CSS
   checkout.element.button.shipping.next.classList.add("valid");
   checkout.element.heading.payment.classList.add("valid");
@@ -1414,22 +1344,11 @@ checkout.shipping.validation.valid = () => {
 // @DESC
 // @ARGU
 checkout.shipping.validation.invalid = () => {
-  checkout.element.heading.payment.removeEventListener(
-    "click",
-    checkout.payment.show
-  );
-  checkout.element.navigation.payment.removeEventListener(
-    "click",
-    checkout.payment.show
-  );
-  checkout.element.button.shipping.next.removeEventListener(
-    "click",
-    checkout.payment.show
-  );
+  checkout.element.heading.payment.removeEventListener("click", checkout.payment.show);
+  checkout.element.navigation.payment.removeEventListener("click", checkout.payment.show);
+  checkout.element.button.shipping.next.removeEventListener("click", checkout.payment.show);
   // Update CSS
-  checkout.element.button.shipping.next.classList.remove(
-    "valid"
-  );
+  checkout.element.button.shipping.next.classList.remove("valid");
   checkout.element.navigation.shipping.classList.remove("valid");
   checkout.element.navigation.payment.classList.add("unavailable");
 };
@@ -1438,25 +1357,22 @@ checkout.shipping.validation.invalid = () => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.shipping.show = () => {
-  checkout.navigation.navigate(1);
-};
+checkout.shipping.show = () => { checkout.navigation.navigate(1); };
 
 checkout.shipping.resize = () => {
   // DESKTOP HEIGHT CALCULATION
   const heading = 8;
   const subHeading = 8 * 2;
   let address;
-
-  if (checkout.shipping.address.selected == "saved") {
+  if (checkout.shipping.address.selected === "saved") {
     address = {
-      saved: 13,
+      saved: 10,
       new: 3
     };
-  } else if (checkout.shipping.address.selected == "new") {
+  } else if (checkout.shipping.address.selected === "new") {
     address = {
       saved: 3,
-      new: 41
+      new: 40.5
     };
   } else {
     address = {
@@ -1464,28 +1380,18 @@ checkout.shipping.resize = () => {
       new: 3
     };
   }
-
   const error = 2;
-
+  const padding = 2;
   const method = 3 * 3;
   const buttons = 12;
-  const total =
-    heading +
-    subHeading +
-    address.saved +
-    address.new +
-    error +
-    method +
-    buttons;
+  const total = heading + subHeading + address.saved + address.new + error + padding + method + buttons;
 
   // SET THE CART PAGE SIZE
   if (checkout.element.windowSize.matches) {
     if (checkoutSelectedPage == 1) {
-      document.querySelector("#checkout-shipping").style =
-        "height: " + total + "vmax;";
+      document.querySelector("#checkout-shipping").style = "height: " + total + "vmax;";
     } else {
-      document.querySelector("#checkout-shipping").style =
-        "height: 6vmax;";
+      document.querySelector("#checkout-shipping").style = "height: 6vmax;";
     }
   } else {
     document.querySelector("#checkout-shipping").style = "height: 100%;";
