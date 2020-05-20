@@ -37,6 +37,10 @@ const imageLoader = (objects, classes) => {
   })
 }
 
+/*=========================================================================================
+SUBSCRIBE/UNSUBSCRIBE FUNCTIONS
+=========================================================================================*/
+
 const subscribe = (input) => {
   return new Promise(async (resolve, reject) => {
     // Validate if user is online

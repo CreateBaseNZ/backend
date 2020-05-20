@@ -11,6 +11,8 @@ MODELS
 
 const Account = require("./../model/Account.js");
 const Customer = require("./../model/Customer.js");
+const Make = require("./../model/Make.js");
+const Order = require("./../model/Order.js");
 
 /*=========================================================================================
 SESSIONS
@@ -36,39 +38,40 @@ const LocalCustomerSignup = new LocalStrategy(
     usernameField: "email",
     passwordField: "password",
     passReqToCallback: true // Allows us to pass back the entire request to the callback
-  },
-  (req, email, password, done) => {
-    process.nextTick(() => {
-      Account.findOne({ email }, (err, user) => {
-        // Check if there is an error found when fetching user
-        if (err) return done(err);
-        // Check if a user was found
-        if (user) return done(null, false);
-        // If there's no error nor existing user with the same email
-        // Create a new user
-        let newUser = new Account({
-          type: "customer",
-          email,
-          password
-        });
-        // Save the new user
-        newUser.save((err, user) => {
-          // Check if there is an error found when saving the new user
-          if (err) return done(err);
-          // Initiate the new customer detail object and assign values
-          let newCustomer = new Customer({
-            accountId: user._id,
-            displayName: req.body.displayName
-          });
-          // Save the new customer detail object to the database
-          newCustomer.save((err, customer) => {
-            // Check if there is an error
-            if (err) return done(err);
-            // Return the user if signup is successful
-            return done(null, user);
-          });
-        });
-      });
+  }, (req, email, password, done) => {
+    process.nextTick(async () => {
+      // DECLARE AND INITIALISE VARIABLES
+      const sessionId = req.sessionID;
+      const displayName = req.body.displayName;
+      // VALIDATION
+      try {
+        await Customer.validateDisplayName(displayName);
+      } catch (error) {
+        return done(error);
+      }
+      // CREATE AN ACCOUNT INSTANCE
+      let account;
+      try {
+        account = await Account.create("customer", email, password);
+      } catch (error) {
+        return done(error);
+      }
+      // CREATE A CUSTOMER INSTANCE
+      try {
+        await Customer.create(account._id, email, displayName);
+      } catch (error) {
+        // TO DO.....
+        // Delete the newly created account instance
+        // TO DO.....
+        return done(error);
+      }
+      // ASSIGN MAKES ASSOCIATED WITH THE SESSION
+      // TO THE NEW ACCOUNT
+      // TO DO.....
+      // Assign the makes and orders associated with the session
+      // TO DO.....
+      // SUCCESS HANDLER
+      return done(null, account);
     });
   }
 );
@@ -95,7 +98,7 @@ const LocalCustomerLogin = new LocalStrategy(
       // Validate the password of the user
       let isMatch;
       try {
-        isMatch = await user.validatePassword(password);
+        isMatch = await user.comparePassword(password);
       } catch (error) {
         return done(error);
       }

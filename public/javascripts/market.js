@@ -1,5 +1,13 @@
 const marketInit = () => {
     textSequence(0, ['COMING SOON', 'MARKETPLACE'])
+
+    let input = document.getElementById('sign-up-eml');
+    let btn = document.getElementById('subscribe-main');
+
+    btn.addEventListener('click', ()=>{
+    console.log('hi')
+    // subscribe(input.value)
+    })
 }
 
 function textSequence(i, words) {
