@@ -570,7 +570,9 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   const creditRate = 0.05;
   const rawPayment = amount.total.total / (1 + creditRate);
   const payment = (Math.ceil(rawPayment * 100)) / 100;
-  customer.wallet.amount = customer.wallet.amount - payment;
+  // TO DO.....
+  // Create transaction instances
+  // TO DO.....
   // Save customer updates
   try {
     await customer.save();
@@ -590,7 +592,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
   // Update each make and prepare promises
   let promises = [];
   for (let i = 0; i < makes.length; i++) {
-    const make = makes[i];
+    let make = makes[i];
     make.updateStatus("purchased");
     promises.push(make.save());
   }
@@ -697,7 +699,7 @@ router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
   // Update each make and prepare promises
   let promises = [];
   for (let i = 0; i < makes.length; i++) {
-    const make = makes[i];
+    let make = makes[i];
     make.updateStatus("purchased");
     promises.push(make.save());
   }
@@ -722,6 +724,9 @@ router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
   order.payment.amount.gst = amount.gst.total;
   order.payment.amount.shipping = amount.shipping.total;
   order.payment.amount.total = amount.total.total;
+  // TO DO.....
+  // Create transaction instances
+  // TO DO.....
   // Update the order's status
   try {
     await order.updateStatus("checkedout");

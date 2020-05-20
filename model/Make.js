@@ -147,6 +147,37 @@ MakeSchema.statics.retrieve = function (account) {
   })
 }
 
+// @FUNC  merge
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+MakeSchema.statics.merge = function (accountId, sessionId) {
+  return new Promise(async (resolve, reject) => {
+    // FETCH THE MAKES WITH THE CORRESPONDING SESSION ID
+    let makes = [];
+    try {
+      makes = await this.find({ sessionId });
+    } catch (error) {
+      return reject(error);
+    }
+    // UPDATE THE MAKES
+    let promises = [];
+    for (let i = 0; i < makes.length; i++) {
+      let make = makes[i];
+      make.accountId = accountId;
+      promises.push(make.save());
+    }
+    // SAVE ALL MAKES
+    try {
+      await Promise.all(promises);
+    } catch (error) {
+      return reject(error);
+    }
+    // RETURN PROMISE RESOLVE
+    return resolve();
+  })
+}
+
 // @FUNC  findByAccountIdAndStatus
 // @TYPE  STATICS
 // @DESC

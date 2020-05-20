@@ -44,17 +44,20 @@ const LocalCustomerSignup = new LocalStrategy(
       const sessionId = req.sessionID;
       const displayName = req.body.displayName;
       // VALIDATION
+      if (!sessionId) {
+        return done("no session id provided");
+      }
       try {
         await Customer.validateDisplayName(displayName);
       } catch (error) {
-        return done(error);
+        return done(error, false);
       }
       // CREATE AN ACCOUNT INSTANCE
       let account;
       try {
         account = await Account.create("customer", email, password);
       } catch (error) {
-        return done(error);
+        return done(error, false);
       }
       // CREATE A CUSTOMER INSTANCE
       try {
@@ -63,13 +66,26 @@ const LocalCustomerSignup = new LocalStrategy(
         // TO DO.....
         // Delete the newly created account instance
         // TO DO.....
-        return done(error);
+        return done(error, false);
       }
       // ASSIGN MAKES ASSOCIATED WITH THE SESSION
-      // TO THE NEW ACCOUNT
-      // TO DO.....
-      // Assign the makes and orders associated with the session
-      // TO DO.....
+      try {
+        await Make.merge(account._id, sessionId);
+      } catch (error) {
+        // TO DO.....
+        // Delete the newly created account and customer instances
+        // TO DO.....
+        return done(error, false);
+      }
+      try {
+        await Order.merge(account._id, sessionId);
+      } catch (error) {
+        // TO DO.....
+        // Delete the newly created account and customer instances
+        // AND demerge makes
+        // TO DO.....
+        return done(error, false);
+      }
       // SUCCESS HANDLER
       return done(null, account);
     });

@@ -103,24 +103,18 @@ router.get("/services/marketplace", (req, res) => {
 // @route     Get /signup/customer
 // @desc      Signup a New Customer Account
 // @access    Public
-router.post(
-  "/signup/customer",
-  passport.authenticate("local-customer-signup", {
-    successRedirect: "/",
-    failureRedirect: "/signup",
-  })
-);
+router.post("/signup/customer", passport.authenticate("local-customer-signup", {
+  successRedirect: "/",
+  failureRedirect: "/signup",
+}));
 
 // @route     Get /login/customer
 // @desc      Login Request
 // @access    Public
-router.post(
-  "/login/customer",
-  passport.authenticate("local-customer-login", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
+router.post("/login/customer", passport.authenticate("local-customer-login", {
+  successRedirect: "/",
+  failureRedirect: "/login",
+}));
 
 // @route     Get /logout
 // @desc      Logout the user

@@ -183,6 +183,52 @@ const OrderSchema = new Schema({
 STATIC - MODEL
 =========================================================================================*/
 
+// @FUNC  merge
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+OrderSchema.statics.merge = function (accountId, sessionId) {
+  return new Promise(async (resolve, reject) => {
+    // DECLARE AND INITIALISE VARIABLES
+    const status = "created";
+    // FETCH THE ORDER WITH THE CORRESPONDING SESSION ID
+    let sessionOrder;
+    try {
+      sessionOrder = await this.findOne({ sessionId, status });
+    } catch (error) {
+      return reject(error);
+    }
+    // FETCH THE ORDER WITH THE CORRESPONDING ACCOUNT ID
+    let accoundOrder;
+    try {
+      accoundOrder = await this.findOne({ accountId, status });
+    } catch (error) {
+      return reject(error);
+    }
+    // MERGE ORDER PROCESS
+    // TO DO.....
+    // Merge properties of each order more intelligently
+    // TO DO.....
+    let order;
+    if (accoundOrder) {
+      order = accoundOrder;
+    } else if (sessionOrder) {
+      order = sessionOrder;
+      order.accountId = accountId;
+    }
+    // SAVE ORDER
+    if (order) {
+      try {
+        await order.save();
+      } catch (error) {
+        return reject(error);
+      }
+    }
+    // RETURN PROMISE RESOLVE
+    return resolve();
+  })
+}
+
 // @FUNC  findByStatus
 // @TYPE  STATICS
 // @DESC
