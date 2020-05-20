@@ -451,13 +451,23 @@ Carl's Button Design (End)
   ======================================================================*/
 }
 
-#cookie-container {
+#notification-wrap {
   position: fixed;
   bottom: 0;
   z-index: 9999;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#notification-wrap #cookie-container {
   padding: 1.5em 2em;
   background-color: white;
-  width: 100%;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
   box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
   border-radius: 0.2em;
@@ -471,13 +481,13 @@ Carl's Button Design (End)
           justify-content: center;
 }
 
-#cookie-container .cookie-message-container {
+#notification-wrap #cookie-container .cookie-message-container {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 90%;
           flex: 0 0 90%;
 }
 
-#cookie-container p {
+#notification-wrap #cookie-container p {
   color: #4e4ed6;
   display: inline-block;
   -webkit-box-flex: 0;
@@ -488,7 +498,7 @@ Carl's Button Design (End)
   line-height: 150%;
 }
 
-#cookie-container .btn-group {
+#notification-wrap #cookie-container .btn-group {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 90%;
           flex: 0 0 90%;
@@ -505,7 +515,7 @@ Carl's Button Design (End)
           justify-content: flex-end;
 }
 
-#cookie-container button {
+#notification-wrap #cookie-container button {
   font-size: calc(8px + 0.5vmax);
   background-color: white;
   border: thin solid #4e4ed6;
@@ -517,19 +527,19 @@ Carl's Button Design (End)
   letter-spacing: 0.1em;
 }
 
-#cookie-container #submit {
+#notification-wrap #cookie-container #submit {
   background-color: #4e4ed6;
   color: white;
   margin-left: 1.5em;
 }
 
-#cookie-container #cancel {
+#notification-wrap #cookie-container #cancel {
   position: relative;
   -webkit-transition: border-color 0.2s ease-out, color 0.2s ease-out;
   transition: border-color 0.2s ease-out, color 0.2s ease-out;
 }
 
-#cookie-container #cancel:after {
+#notification-wrap #cookie-container #cancel:after {
   content: '';
   width: 0;
   position: absolute;
@@ -540,48 +550,88 @@ Carl's Button Design (End)
   border-bottom: thin solid red;
 }
 
-#cookie-container #cancel:hover {
+#notification-wrap #cookie-container #cancel:hover {
   border-color: white;
   color: red;
 }
 
-#cookie-container #cancel:hover:after {
+#notification-wrap #cookie-container #cancel:hover:after {
   -webkit-transition: width 0.2s ease-out;
   transition: width 0.2s ease-out;
   width: 50%;
 }
 
-#cookie-container.hide {
+#notification-wrap #cookie-container.hide {
   display: none;
 }
 
+#notification-wrap .subbed-notif {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: white;
+  padding: 2rem;
+  width: 100%;
+  margin-top: 3rem;
+  font-size: 0.8em;
+  color: #4e4ed6;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+  box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+}
+
+#notification-wrap .subbed-notif .subMsgWrap {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#notification-wrap .subbed-notif .subMsgWrap .fab {
+  font-size: 2em;
+}
+
+#notification-wrap .subbed-notif .subMsgWrap p {
+  height: 1rem;
+  line-height: 1rem;
+}
+
 @media only screen and (min-width: 53em) {
-  #cookie-container {
+  #notification-wrap {
     bottom: 7%;
     right: 4%;
     max-width: 29em;
   }
-  #cookie-container .cookie-message-container {
+  #notification-wrap #cookie-container .cookie-message-container {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
   }
-  #cookie-container p {
+  #notification-wrap #cookie-container p {
     font-size: 0.8em;
     -webkit-box-flex: 0;
         -ms-flex: 0 0 72%;
             flex: 0 0 72%;
   }
-  #cookie-container .btn-group {
+  #notification-wrap #cookie-container .btn-group {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
             flex: 0 0 100%;
   }
-  #cookie-container button {
+  #notification-wrap #cookie-container button {
     font-size: calc(6px + 0.2vmax);
     padding: 1em 0;
   }
-  #cookie-container.hide {
+  #notification-wrap #cookie-container.hide {
     display: none;
   }
 }
