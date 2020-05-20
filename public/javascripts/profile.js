@@ -1,6 +1,10 @@
 var mq = window.matchMedia("(min-width: 850px)")
 var activeProjID = undefined
 
+function capitaliseFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Previews uploaded profile picture
 var loadFile = function(event) {
   document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
@@ -314,6 +318,18 @@ const profileInit = async() => {
     let tick = document.createElement('i')
     tick.className = 'fas fa-check-circle'
     el.appendChild(document.createElement('i')).className = 'far fa-check-circle'
+    let tooltipWrapper = document.createElement('div')
+    tooltipWrapper.className = 'tooltip-wrapper'
+    let tooltipEl = document.createElement('div')
+    tooltipEl.className = 'make-label-tooltip'
+    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'M: ' + make.material.toUpperCase()
+    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'Q: ' + capitaliseFirstLetter(make.quality)
+    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'S: ' + 
+    capitaliseFirstLetter(make.strength)
+    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'C: ' + 
+    capitaliseFirstLetter(make.colour)
+    tooltipWrapper.appendChild(tooltipEl)
+    el.appendChild(tooltipWrapper)
 
     // Event listener for toggling label
     el.addEventListener('click', () => {

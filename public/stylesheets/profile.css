@@ -3149,6 +3149,21 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
   }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container::-webkit-scrollbar {
+    width: 10px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container::-webkit-scrollbar-track {
+    background: white;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container::-webkit-scrollbar-thumb {
+    background: -webkit-gradient(linear, left top, right top, from(white), color-stop(39%, white), color-stop(40%, #c7c2d5), color-stop(60%, #c7c2d5), color-stop(61%, white), to(white));
+    background: linear-gradient(to right, white 0%, white 39%, #c7c2d5 40%, #c7c2d5 60%, white 61%, white 100%);
+    border-radius: 10px;
+    width: 10px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container::-webkit-scrollbar-thumb:hover, .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container::-webkit-scrollbar-thumb:active {
+    background: #c7c2d5;
+  }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #make-blobs-container .make-blob {
     cursor: pointer;
     background: #877da9;
@@ -3265,7 +3280,8 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding-right: 1em;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container::-webkit-scrollbar {
@@ -3285,6 +3301,7 @@ body {
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label {
     cursor: pointer;
+    position: static;
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -3305,10 +3322,6 @@ body {
     border: thin solid #c7c2d5;
     background: transparent;
     color: #c7c2d5;
-    -webkit-transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, -webkit-filter 0.2s ease-out;
-    transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, -webkit-filter 0.2s ease-out;
-    transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, filter 0.2s ease-out;
-    transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out, filter 0.2s ease-out, -webkit-filter 0.2s ease-out;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label p {
     padding-left: 1.2em;
@@ -3316,31 +3329,61 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    -webkit-transition: color 0.2s ease-out;
-    transition: color 0.2s ease-out;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label i {
     padding: 0.8em;
     font-size: calc(16px + 0.1vw);
-    -webkit-transition: color 0.2s ease-out;
-    transition: color 0.2s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label .tooltip-wrapper {
+    position: absolute;
+    pointer-events: none;
+    display: none;
+    left: 83%;
+    z-index: 2;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label .tooltip-wrapper .make-label-tooltip {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    background: rgba(55, 45, 85, 0.5);
+    font-size: calc(10px + 0.1vw);
+    padding: 1em 1.5em;
+    border-radius: 5px;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label .tooltip-wrapper .make-label-tooltip p {
+    color: white;
+    padding: 0;
+    letter-spacing: 0.1em;
+    margin-top: 0.5em;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label:hover {
-    -webkit-filter: brightness(0.8);
-            filter: brightness(0.8);
+    border: thin solid #b0a9c4;
+    color: #b0a9c4;
+    -webkit-transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out;
+    transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label:hover .tooltip-wrapper {
+    display: block;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label-active {
     border: thin solid #877da9;
     background: #877da9;
     color: white;
-    -webkit-transition: -webkit-filter 0.2s ease-out;
-    transition: -webkit-filter 0.2s ease-out;
-    transition: filter 0.2s ease-out;
-    transition: filter 0.2s ease-out, -webkit-filter 0.2s ease-out;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make #make-labels-container .make-label-active:hover {
-    -webkit-filter: brightness(1.1);
-            filter: brightness(1.1);
+    border: thin solid #766b9d;
+    background: #766b9d;
+    color: white;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen .add-make h5 {
     font-family: "Poppins", sans-serif;
