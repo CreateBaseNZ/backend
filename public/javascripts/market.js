@@ -22,5 +22,10 @@ function textSequence(i, words) {
 }
 
 subscribe.listener = () => {
-    subscribe(document.getElementById('sign-up-eml').value)
+    let input = document.getElementById('sign-up-eml')
+    let subBtn = document.getElementById('subscribe-main')
+    subscribe(input.value)
+
+    input.value = ''
+    subBtn.innerHTML = 'SUBSCRIBE NEW EMAIL'
 }
