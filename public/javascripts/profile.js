@@ -46,35 +46,49 @@ function renderProjCard(newProj, project) {
     })
 
     projScroll.appendChild(cardEl).className = 'proj-card'
-    let bookmarkEl = document.createElement('i')
 
-    // TO DO: bookmark and update route
-    bookmarkEl.addEventListener('click', (e) => {
-      allProjects[i].bookmark = !allProjects[i].bookmark
+    let bookmarkEl = document.createElement('i')
+    bookmarkEl.addEventListener('click', async(e) => {
+      e.stopPropagation()
+
+      let proj = new Object()
+      proj.updates = new Object()
+
+      proj.id = project.id
+      proj.updates.bookmark = !project.bookmark
+      
       bookmarkEl.classList.toggle('fas')
       bookmarkEl.classList.toggle('far')
-      e.stopPropagation()
+      
+      try {
+        proj = (await axios.post("/profile/customer/update/proj", proj))
+      } catch (error) {
+        console.log(error)
+      }
     })
     if (project.bookmark) {
       cardEl.appendChild(bookmarkEl).className = 'fas fa-bookmark'
     } else {
       cardEl.appendChild(bookmarkEl).className = 'far fa-bookmark'
     }
+
     let imgEl = document.createElement('img')
     cardEl.appendChild(imgEl).className = 'proj-img'
     imgEl.src = project.image
     imgEl.alt = 'Project Image'
+
     dateCreation = new Date(project.date.creation)
     let dateEl = document.createElement('p')
     dateEl.innerHTML =  dateCreation.toLocaleString('default', { month: 'short' }).toUpperCase() + ' ' + dateCreation.getDate() + ' ' + dateCreation.getFullYear()
     cardEl.appendChild(dateEl).className = 'proj-date'
+
     let nameEl = document.createElement('p')
     nameEl.innerHTML = project.name
     cardEl.appendChild(nameEl).className = 'proj-name'
-    let makesEl = document.createElement('p')
-    cardEl.appendChild(makesEl).className = 'proj-makes'
 
     // Add makes to project cards
+    let makesEl = document.createElement('p')
+    cardEl.appendChild(makesEl).className = 'proj-makes'
     project.makes.forEach(function(make, j) {
       if (makesEl.innerHTML !== '') {
         makesEl.innerHTML += ', '
@@ -86,18 +100,20 @@ function renderProjCard(newProj, project) {
     cardEl.appendChild(notesEl).className = 'proj-notes'
     let notesText = document.createElement('p')
     notesEl.appendChild(notesText).className = 'proj-notes-content'
-    // TO DO: :empty
-      notesText.innerHTML = project.notes
+    notesText.innerHTML = project.notes
+    
     cardEl.addEventListener('mouseover', () => {
       notesEl.style.height = notesEl.scrollHeight + 'px'
     })
     cardEl.addEventListener('mouseout', () => {
       notesEl.style.height = '0'
     })
+
     dateModified = new Date(project.date.modified)
     let modifiedEl = document.createElement('p')
     modifiedEl.innerHTML = 'Last modified ' + dateModified.toLocaleString('default', { month: 'long' }) + ' ' + dateModified.getDate() + ' ' + dateModified.getFullYear()
     cardEl.appendChild(modifiedEl).className = 'proj-modified'
+
     let editEl = document.createElement('p')
     editEl.innerHTML = 'Click anywhere on this card to edit'
     cardEl.appendChild(editEl).className = 'proj-edit'
@@ -165,22 +181,25 @@ function hideProjPopup() {
 }
 
 function showProjPopup(status, project = undefined) {
-  newEditProjScreen.style.display = 'flex'
-  newEditProjScreenOverlay.style.display = 'block'
 
   if (status === 'new') {
     // Create new project
     document.getElementById('new-edit-proj-header').innerHTML = 'Create a New Project'
     document.getElementById('new-edit-proj-name').value = ''
     document.getElementById('new-edit-proj-notes').value = ''
+    document.getElementById('new-edit-proj-bookmark').className = 'far fa-bookmark'
     activeProjID = undefined
   } else {
     // Edit existing project
     document.getElementById('new-edit-proj-header').innerHTML = 'Edit an Existing Project'
     document.getElementById('new-edit-proj-name').value = document.getElementById('proj-' + project).querySelector('.proj-name').innerHTML
     document.getElementById('new-edit-proj-notes').value = document.getElementById('proj-' + project).querySelector('.proj-notes-content').innerHTML
+    document.getElementById('new-edit-proj-bookmark').className = document.getElementById('proj-' + project).querySelector('.fa-bookmark').className
     activeProjID = project
   }
+
+  newEditProjScreen.style.display = 'flex'
+  newEditProjScreenOverlay.style.display = 'block'
 }
 
 const profileInit = async() => {
@@ -285,15 +304,12 @@ const profileInit = async() => {
     return
   }
 
-  // proj = new Project('111111', false, "01/01/2020", ['456'], "01/01/2020", "Test Part", "", "./../../public/images/profile/stl.png")
-
   try {
     allProjects = (await axios.get("/profile/customer/fetch/all_proj"))["data"]["content"]
   } catch (error) {
     console.log(error)
     return
   }
-  console.log(allProjects)
 
   makeKeys = new Object()
   allMakes.forEach(function(make, i) {
@@ -356,6 +372,11 @@ const profileInit = async() => {
   document.getElementById('new-edit-proj-x').addEventListener('click', () => {
     hideProjPopup()
   })
+  document.getElementById('new-edit-proj-bookmark').addEventListener('click', (e) => {
+    e.stopPropagation()
+    e.target.classList.toggle('fas')
+    e.target.classList.toggle('far')
+  })
 
   document.getElementById('new-edit-proj-btn').addEventListener('click', () => {
     showProjPopup('new')
@@ -371,8 +392,7 @@ const profileInit = async() => {
       // Update existing project
       proj.id = activeProjID
 
-      // TO DO
-      proj.updates.bookmark = false
+      proj.updates.bookmark = document.getElementById('new-edit-proj-bookmark').classList.contains('fas')
 
       proj.updates.makes = []
       let children = makeBlobContainer.children
@@ -402,8 +422,7 @@ const profileInit = async() => {
       // New project
       let proj = new Project()
 
-      // TO DO: future
-      proj.bookmark = false
+      proj.bookmark = document.getElementById('new-edit-proj-bookmark').classList.contains('fas')
 
       let children = makeBlobContainer.children
       for (var i = 0; i < children.length; i++) {
