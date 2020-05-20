@@ -5,12 +5,24 @@ REQUIRED MODULES
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const moment = require("moment-timezone");
+const nodemailer = require("nodemailer");
+const inlineCSS = require("inline-css");
 
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
 const Schema = mongoose.Schema;
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+/*=========================================================================================
+EXTERNAL MODELS
+=========================================================================================*/
+
+const Customer = require("./Customer.js");
 
 /*=========================================================================================
 CREATE ACCOUNT MODEL
@@ -82,7 +94,7 @@ AccountSchema.pre("save", async function (next) {
 });
 
 /*=========================================================================================
-STATIC
+STATICS
 =========================================================================================*/
 
 // @FUNC  findByEmail
@@ -290,18 +302,157 @@ AccountSchema.statics.validateWalletCode = function (code) {
   })
 }
 
+// @FUNC  verification
+// @TYPE  STATICS - PROMISE - ASYNC
+// @DESC  Sends the verification email
+// @ARGU  
+AccountSchema.statics.verification = function (email) {
+  return new Promise(async (resolve, reject) => {
+    // FETCH ACCOUNT AND CUSTOMER INSTANCES
+    let account;
+    try {
+      account = await this.findOne({ email });
+    } catch (error) {
+      return reject(error);
+    }
+    let customer;
+    try {
+      customer = await Customer.findOne({ accountId: account._id });
+    } catch (error) {
+      return reject(error);
+    }
+    // Configure Transport Options
+    const transportOptions = {
+      service: "Gmail",
+      auth: {
+        type: "login",
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    };
+    // Create Transporter
+    const transporter = nodemailer.createTransport(transportOptions);
+    // Create the Text and HTML to send
+    let message;
+    try {
+      message = await template(account, customer);
+    } catch (error) {
+      return reject(error);
+    }
+    // Construct mail
+    const mail = {
+      from: `"CreateBase" <${process.env.EMAIL_USER}>`,
+      to: `"${customer.displayName}" ${email}`,
+      subject: message.subject,
+      text: message.text,
+      html: message.html
+    };
+    // Send the mail
+    let data;
+    try {
+      data = await transporter.sendMail(mail);
+    } catch (error) {
+      return reject(error);
+    }
+    return resolve();
+  })
+}
+
+// @FUNC  verify
+// @TYPE  STATICS - PROMISE - ASYNC
+// @DESC  Verifies the account
+// @ARGU  
+AccountSchema.statics.verify = function (email, code) {
+  return new Promise(async (resolve, reject) => {
+    // FETCH THE ACCOUNT ASSOCIATED TO THE EMAIL
+    let account;
+    try {
+      account = await this.findOne({ email });
+    } catch (error) {
+      return reject(error);
+    }
+    // COMPARE CODE
+    if (account.verification.code !== code) {
+      return reject("incorrect code");
+    }
+    // UPDATE ACCOUNT VERIFICATION STATUS
+    account.verification.status = true;
+    // SAVE ACCOUNT UPDATE
+    try {
+      await account.save();
+    } catch (error) {
+      return reject(error);
+    }
+    // RETURN RESOLVE
+    return resolve();
+  })
+}
+
 /*=========================================================================================
-METHOD
+METHODS
 =========================================================================================*/
 
-AccountSchema.methods.comparePassword = async function (password) {
-  let isMatch;
-  try {
-    isMatch = await bcrypt.compare(password, this.password);
-  } catch (error) {
-    return false;
-  }
-  return isMatch;
+AccountSchema.methods.login = function (password) {
+  return new Promise(async (resolve, reject) => {
+    let match;
+    try {
+      match = await bcrypt.compare(password, this.password);
+    } catch (error) {
+      return reject(error);
+    }
+    // IF MATCH IS SUCCESSFUL, UPDATE THE LAST VISITED DATE
+    if (match) {
+      const now = moment().tz("Pacific/Auckland").format();
+      this.date.lastVisited = now;
+      try {
+        await this.save();
+      } catch (error) {
+        return reject(error);
+      }
+    }
+    return resolve(match);
+  })
+};
+
+/*=========================================================================================
+FUNCTIONS
+=========================================================================================*/
+
+const template = (account, customer) => {
+  return new Promise(async (resolve, reject) => {
+    // Create the Subject
+    const subject = `Account Verification`;
+    // Create the Text
+    const text = `
+      Hi ${customer.displayName},
+
+
+      Verify your account by clicking this link: http://localhost/account-verification/${account.email}/${account.verification.code}
+
+
+      Regards,
+
+      CreateBase
+    `;
+    // Create the HTML
+    const html = ``;
+    // Create the CSS Styling
+    const css = ``;
+    // Combine the HTML and CSS
+    const combined = html + css;
+    // Inline the CSS
+    const inlineCSSOptions = {
+      url: "/",
+    };
+    let inline;
+    try {
+      inline = await inlineCSS(combined, inlineCSSOptions);
+    } catch (error) {
+      return reject(error);
+    }
+    // Return the email object
+    return resolve({ subject, text, html: inline });
+  })
 };
 
 /*=========================================================================================

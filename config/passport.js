@@ -86,6 +86,16 @@ const LocalCustomerSignup = new LocalStrategy(
         // TO DO.....
         return done(error, false);
       }
+      // SEND ACCOUNT VERIFICATION
+      try {
+        await Account.verification(email);
+      } catch (error) {
+        // TO DO.....
+        // Delete the newly created account and customer instances
+        // AND demerge makes
+        // TO DO.....
+        return done(error, false);
+      }
       // SUCCESS HANDLER
       return done(null, account);
     });
@@ -103,25 +113,25 @@ const LocalCustomerLogin = new LocalStrategy(
     // By default, local strategy uses username and password, we will override with email
     usernameField: "email",
     passwordField: "password"
-  },
-  (email, password, done) => {
-    // Find the user that is signing in
-    Account.findOne({ email }, async (err, user) => {
-      // Check if there is an error found when fetching user
-      if (err) return done(err);
-      // Check if no user was found
-      if (!user) return done(null, false);
-      // Validate the password of the user
-      let isMatch;
-      try {
-        isMatch = await user.comparePassword(password);
-      } catch (error) {
-        return done(error);
-      }
-      if (!isMatch) return done(null, false);
-      // Return the user if all is successful
-      return done(null, user);
-    });
+  }, async (email, password, done) => {
+    // FETCH ACCOUNT WHICH THE EMAIL IS ASSOCIATED WITH
+    let account;
+    try {
+      account = await Account.findOne({ email });
+    } catch (error) {
+      return done(error, false);
+    }
+    // MATCH THE ENTERED PASSWORD WITH THE ACCOUNTS PASSWORD
+    let match;
+    try {
+      match = await account.login(password);
+    } catch (error) {
+      return done(error, false);
+    }
+    if (!match) return done(null, false);
+    // UPDATE ACCOUNT LAST VISITED
+    // Return the user if all is successful
+    return done(null, account);
   }
 );
 // Enable use of the local strategy

@@ -139,7 +139,7 @@ const templateOne = (options) => {
   const inlineCSSOptions = {
     url: "/",
   };
-  const inline = inlineCss(combined, inlineCSSOptions);
+  const inline = inlineCSS(combined, inlineCSSOptions);
   // Return the email object
   return { subject, text, html: inline };
 };
