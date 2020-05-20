@@ -72,36 +72,30 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   let order;
+  // Get customer details to update saved address
+  let customer;
+  try {
+    customer = await Customer.findOne({ accountId });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
   // Find an Active Order
   try {
     order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
   // Check if no order was found
   if (!order) {
     // Create a New Order if no Active Order
-    order = new Order({
-      accountId
-    });
+    order = new Order({ accountId });
     // Update status of the order
     try {
       await order.updateStatus("created");
     } catch (error) {
-      return res.send({ status: "failed", data: error });
+      return res.send({ status: "failed", content: error });
     }
-    // Preset the New and Saved Shipping Address
-    order.shipping.address.saved = {
-      unit: "",
-      street: {
-        number: "",
-        name: ""
-      },
-      suburb: "",
-      city: "",
-      postcode: "",
-      country: ""
-    };
+    // Preset the New Shipping Address
     order.shipping.address.new = {
       unit: "",
       street: {
@@ -114,44 +108,29 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
       country: ""
     };
   }
-
   // Makes and Items
-
   let makesAwaitingQuote;
   let makesCheckout;
-  let itemsCheckout;
-
   try {
-    [makesAwaitingQuote, makesCheckout, itemsCheckout] = await Promise.all([
+    [makesAwaitingQuote, makesCheckout] = await Promise.all([
       orderMakesAwaitingQuoteGet(accountId),
-      orderMakesCheckoutGet(accountId),
-      orderItemsCheckoutGet(accountId)
+      orderMakesCheckoutGet(accountId)
     ]);
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
-
   order.makes.awaitingQuote = makesAwaitingQuote;
   order.makes.checkout = makesCheckout;
-
-  order.items = [];
-
-  // Discounts
-
-  order.discounts = [];
-
-  // Saved Shipping Address
-
+  // Update the Recreate the Discount Array
+  // Set saved shipping address
+  order.shipping.address.saved = customer.address;
   // Save and Send Response
-
   let savedOrder;
-
   try {
     savedOrder = await order.save();
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
-
   // Validate the checkout
   validity = {
     cart: savedOrder.validateCart(),
@@ -161,10 +140,9 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
 
   return res.send({
     status: "success",
-    data: {
+    content: {
       order: savedOrder,
       makes: { awaitingQuote: makesAwaitingQuote, checkout: makesCheckout },
-      items: itemsCheckout,
       validity
     }
   });

@@ -2578,11 +2578,18 @@ SHIPPING
 }
 
 .checkout-new-address {
-  height: 70vmax;
+  height: 67.8vmax;
 }
 
 .checkout-new-address label {
-  padding: 1vmax 1vmax 0.5vmax 0;
+  height: 3vmax;
+  padding: 0 1vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-family: "Poppins", sans-serif;
   font-size: 1.4vmax;
   color: #877da9;
@@ -2598,6 +2605,28 @@ SHIPPING
 
 .checkout-new-address .street-name, .checkout-new-address .suburb, .checkout-new-address .city, .checkout-new-address .country {
   width: 100%;
+}
+
+#checkout-shipping-save-address {
+  height: 5vmax;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1vmax;
+}
+
+#checkout-shipping-save-address input {
+  height: 2vmax;
+  width: 2vmax;
+  margin: 0 0.5vmax;
+}
+
+#checkout-shipping-save-address label {
+  height: 100%;
 }
 
 /* ---------------------------------------------------------
@@ -3293,7 +3322,8 @@ GLOBAL
 .checkout-element-hide {
   margin: 0;
   border: 0;
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   height: 0;
   overflow: hidden;
   z-index: -1;
@@ -3501,11 +3531,21 @@ DESKTOP CSS
     letter-spacing: 0.1vmax;
   }
   .checkout-new-address {
-    height: 38vmax;
+    height: 40.5vmax;
   }
   .checkout-new-address label {
-    padding: 0.5vmax 0.5vmax 0.25vmax 0;
+    height: 2vmax;
+    padding: 0 0.5vmax;
     font-size: 0.8vmax;
+  }
+  #checkout-shipping-save-address {
+    height: 2.5vmax;
+    padding: 0 0.5vmax;
+  }
+  #checkout-shipping-save-address input {
+    height: 1vmax;
+    width: 1vmax;
+    margin: 0 0.25vmax;
   }
   #checkout-shipping-pricing {
     display: none;
@@ -3740,7 +3780,8 @@ DESKTOP CSS
   .checkout-element-hide {
     margin: 0;
     border: 0;
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     height: 0;
     overflow: hidden;
   }

@@ -18,13 +18,52 @@ CREATE ACCOUNT MODEL
 const AccountSchema = new Schema({
   type: {
     type: String,
+    required: true
   },
   email: {
     type: String,
+    required: true
   },
   password: {
     type: String,
+    required: true
   },
+  verification: {
+    status: {
+      type: Boolean,
+      default: false
+    },
+    code: {
+      type: String,
+      required: true
+    }
+  },
+  date: {
+    created: {
+      type: String,
+      required: true
+    },
+    lastVisited: {
+      type: String,
+      required: true
+    }
+  },
+  wallet: {
+    code: {
+      type: String,
+      required: true
+    },
+    bank: {
+      number: {
+        type: String,
+        default: ""
+      },
+      status: {
+        type: Boolean,
+        default: false
+      }
+    }
+  }
 });
 
 /*=========================================================================================
