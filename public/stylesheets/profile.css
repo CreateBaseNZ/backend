@@ -2650,22 +2650,23 @@ body {
       flex-shrink: 0;
   padding: 5px;
   font-size: 20px;
+  -webkit-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fas {
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fa-bookmark.fas {
   color: #4bf0ea;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fas:hover {
-  -webkit-filter: brightness(0.95);
-          filter: brightness(0.95);
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fa-bookmark.fas:hover {
+  color: #4ae2dd;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .far {
-  color: #2d283c;
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fa-bookmark.far {
+  color: #322d41;
 }
 
-.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .far:hover {
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .fa-bookmark.far:hover {
   color: #4bf0ea;
 }
 
@@ -3028,8 +3029,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 0.8em;
-    padding: 0.2em;
+    margin: 1vmax;
     z-index: 2;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj-x div {
@@ -3061,6 +3061,7 @@ body {
     background: red;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj {
+    position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3091,6 +3092,44 @@ body {
     letter-spacing: 0.05em;
     margin: 4vh 0 0.5vh 0;
     font-size: calc(12px + 0.2vw);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name-wrapper {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name-wrapper #new-edit-proj-name {
+    font-size: calc(12px + 0.2vw);
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name-wrapper #new-edit-proj-bookmark {
+    cursor: pointer;
+    font-size: 1.5em;
+    margin: 0 0.5em;
+    -webkit-transition: color 0.1s ease-out, padding 0.1s ease-out;
+    transition: color 0.1s ease-out, padding 0.1s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name-wrapper #new-edit-proj-bookmark:hover {
+    padding-bottom: 0.2em;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name-wrapper #new-edit-proj-bookmark.fas {
+    color: #4bf0ea;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name-wrapper #new-edit-proj-bookmark.fas:hover {
+    color: #4ae2dd;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name-wrapper #new-edit-proj-bookmark.far {
+    color: #877da9;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name-wrapper #new-edit-proj-bookmark.far:hover {
+    color: #4bf0ea;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name,
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes {
@@ -3127,9 +3166,6 @@ body {
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes::placeholder {
     color: #c7c2d5;
     font-weight: 300;
-  }
-  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-name {
-    font-size: calc(12px + 0.2vw);
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj #new-edit-proj-notes {
     font-size: calc(10px + 0.2vw);
@@ -3262,10 +3298,33 @@ body {
     font-weight: 300;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj .save-proj-container {
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
+    width: 100%;
     margin: 4vh 0 6vh 0;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr auto 1fr;
+        grid-template-columns: 1fr auto 1fr;
+    justify-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj .save-proj-container #delete-proj {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: #c7c2d5;
+    border-bottom: thin solid #c7c2d5;
+    margin-right: auto;
+    padding: 0.5em 0.8em;
+    -webkit-transition: color 0.2s ease-out, border-color 0.2s ease-out, padding 0.2s ease-out;
+    transition: color 0.2s ease-out, border-color 0.2s ease-out, padding 0.2s ease-out;
+  }
+  .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj .save-proj-container #delete-proj:hover {
+    color: red;
+    border-bottom: thin solid red;
+    padding: 0.2em 0.8em 0.8em 0.8em;
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #new-edit-proj-screen #new-edit-proj .save-proj-container #save-proj {
     -webkit-box-shadow: 0 5px 20px -16px black;
@@ -3836,4 +3895,3 @@ body {
     color: #6853d9;
   }
 }
-/*# sourceMappingURL=profile.css.map */

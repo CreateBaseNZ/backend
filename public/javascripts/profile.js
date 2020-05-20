@@ -188,6 +188,7 @@ function showProjPopup(status, project = undefined) {
     document.getElementById('new-edit-proj-name').value = ''
     document.getElementById('new-edit-proj-notes').value = ''
     document.getElementById('new-edit-proj-bookmark').className = 'far fa-bookmark'
+    document.getElementById('delete-proj').style.visibility = 'hidden'
     activeProjID = undefined
   } else {
     // Edit existing project
@@ -195,6 +196,7 @@ function showProjPopup(status, project = undefined) {
     document.getElementById('new-edit-proj-name').value = document.getElementById('proj-' + project).querySelector('.proj-name').innerHTML
     document.getElementById('new-edit-proj-notes').value = document.getElementById('proj-' + project).querySelector('.proj-notes-content').innerHTML
     document.getElementById('new-edit-proj-bookmark').className = document.getElementById('proj-' + project).querySelector('.fa-bookmark').className
+    document.getElementById('delete-proj').style.visibility = 'visible'
     activeProjID = project
   }
 
@@ -382,8 +384,19 @@ const profileInit = async() => {
     showProjPopup('new')
   })
 
-  document.getElementById('save-proj').addEventListener('click', async() => {
+  // TO DO: fix route
+  document.getElementById('delete-proj').addEventListener('click', async() => {
+    try {
+      let data = (await axios.post("/profile/customer/delete/proj", activeProjID))
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+    document.getElementById('proj-' + activeProjID).remove()
+    hideProjPopup()
+  })
 
+  document.getElementById('save-proj').addEventListener('click', async() => {
 
     if (activeProjID) {
       let proj = new Object()

@@ -124,15 +124,18 @@
             <div></div>
           </div>
           <div id="new-edit-proj">
-            <i id="new-edit-proj-bookmark" class="fa-bookmark"></i>
             <h3 id="new-edit-proj-header"></h3>
             <h4>Name</h4>
-            <input type="text" id="new-edit-proj-name" placeholder="Give your project a name">
+            <div id="new-edit-proj-name-wrapper">
+              <input type="text" id="new-edit-proj-name" placeholder="Give your project a name">
+              <i id="new-edit-proj-bookmark" class="fa-bookmark"></i>
+            </div>
             <h4>Makes</h4>
             <div id="make-blobs-container"></div>
             <h4>Notes</h4>
             <textarea id="new-edit-proj-notes" placeholder="Add notes to your project" style="resize: none;"></textarea>
             <div class="save-proj-container">
+              <i class="far fa-trash-alt" id="delete-proj"></i>
               <button class="grad-btn" id="save-proj">Save</button>
             </div>
           </div>

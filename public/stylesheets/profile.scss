@@ -309,19 +309,20 @@ body {
             flex-shrink: 0;
             padding: 5px;
             font-size: 20px;
-          }
-          
-          .fas {
-            color: $highlight;
-            &:hover {
-              filter: brightness(0.95);
-            }
-          }
-          
-          .far {
-            color: $dark-3;
-            &:hover {
+            transition: color 0.2s ease-out;
+
+            &.fas {
               color: $highlight;
+              &:hover {
+                color: rgb(74, 226, 221);
+              }
+            }
+
+            &.far {
+              color: $dark-2;
+              &:hover {
+                color: $highlight;
+              }
             }
           }
 
@@ -643,8 +644,7 @@ body {
         position: absolute;
         top: 0;
         right: 0;
-        margin: 0.8em;
-        padding: 0.2em;
+        margin: 1vmax;
         z-index: 2;
 
         div {
@@ -681,6 +681,7 @@ body {
       }
       
       #new-edit-proj {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -705,6 +706,42 @@ body {
           font-size: calc(12px + 0.2vw);
         }
 
+        #new-edit-proj-name-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          #new-edit-proj-name {
+            font-size: calc(12px + 0.2vw);
+          }
+
+          #new-edit-proj-bookmark {
+            cursor: pointer;
+            font-size: 1.5em;
+            margin: 0 0.5em;
+            transition: color 0.1s ease-out, padding 0.1s ease-out;
+
+            &:hover {
+              padding-bottom: 0.2em;
+            }
+    
+            &.fas {
+              color: $highlight;
+              &:hover {
+                color: rgb(74, 226, 221);
+              }
+            }
+    
+            &.far {
+              color: $dark-1;
+              &:hover {
+                color: $highlight;
+              }
+            }
+          }
+        }
+
         #new-edit-proj-name,
         #new-edit-proj-notes {
           display: block;
@@ -725,10 +762,6 @@ body {
             color: $light-3;
             font-weight: 300;
           }
-        }
-        
-        #new-edit-proj-name {
-          font-size: calc(12px + 0.2vw);
         }
         
         #new-edit-proj-notes {
@@ -854,8 +887,30 @@ body {
         }
 
         .save-proj-container {
-          align-self: center;
+          width: 100%;
           margin: 4vh 0 6vh 0;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          justify-items: center;
+          align-items: center;
+
+          #delete-proj {
+            cursor: pointer;
+            outline: none;
+            border: none;
+            background: transparent;
+            color: $light-3;
+            border-bottom: thin solid $light-3;
+            margin-right: auto;
+            padding: 0.5em 0.8em;
+            transition: color 0.2s ease-out, border-color 0.2s ease-out, padding 0.2s ease-out;
+
+            &:hover {
+              color: red;
+              border-bottom: thin solid red;
+              padding: 0.2em 0.8em 0.8em 0.8em;
+            }
+          }
 
           #save-proj {
             box-shadow: 0 5px 20px -16px black;
