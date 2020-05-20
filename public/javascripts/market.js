@@ -19,6 +19,22 @@ function textSequence(i, words) {
             }, (100 + Math.random()*100))
         }, (500 + Math.random()*1500))
     }, (50 + Math.random()*50))
+
+}
+
+function subscribeNotif(){
+    var newDiv = document.createElement('div')
+    newDiv.className = 'subbed-notif'
+    let messageWrap = document.createElement('div')
+    newDiv.appendChild(messageWrap).className = 'subMsgWrap'
+    messageWrap.appendChild(document.createElement('i')).className = 'fab fa-telegram-plane'
+    messageWrap.appendChild(document.createElement('p')).innerHTML = 'Thank you for subscribing to the newsletter!'
+
+
+    var notifDiv = document.getElementById('notification-wrap')
+    var cookieDiv = document.getElementById('cookie-container')
+
+    notifDiv.insertBefore(newDiv, cookieDiv.nextSibling)
 }
 
 subscribe.listener = () => {
@@ -28,4 +44,6 @@ subscribe.listener = () => {
 
     input.value = ''
     subBtn.innerHTML = 'SUBSCRIBE NEW EMAIL'
+    subscribeNotif()
 }
+
