@@ -2336,9 +2336,10 @@ nav .nav-top-bar .nav-desktop-out {
   left: 0;
   height: 100vh;
   width: 100vw;
-  -o-object-fit: cover;
-     object-fit: cover;
+  background-size: cover;
   overflow: hidden;
+  background-position: 80%;
+  background-image: url(../../../public/images/signup-desktop2.jpg);
 }
 
 .main-page .logo-anim-container {
@@ -3090,3 +3091,4 @@ nav .nav-top-bar .nav-desktop-out {
     }
   }
 }
+/*# sourceMappingURL=signup.css.map */
