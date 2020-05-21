@@ -163,12 +163,14 @@ function renderMakeBlobs(make) {
   makeBlobContainer.appendChild(el)
 }
 
-function hideProjPopup() {
+function hideProjPopup(callback, status) {
 
   // Hide screen and overlay
   newEditProjScreen.style.display = 'none'
   newEditProjScreenOverlay.style.display = 'none'
   newEditProjScreen.className = ''
+
+  projectNotif(callback, status)
 
   // Reset blobs
   makeBlobContainer.innerHTML = ''
@@ -389,19 +391,16 @@ const profileInit = async() => {
     showProjPopup('new')
   })
 
-  // TO DO: fix route
   document.getElementById('delete-proj').addEventListener('click', async() => {
-    let data
+    let callback
     try {
-      data = (await axios.post("/profile/customer/delete/proj", {id: activeProjID}))
+      callback = (await axios.post("/profile/customer/delete/proj", {id: activeProjID}))
     } catch (error) {
       return console.log(error)
     }
-    if (data.status === 'failed') {
-      return console.log(data.content)
-    }
+    console.log(callback)
     document.getElementById('proj-' + activeProjID).remove()
-    hideProjPopup()
+    hideProjPopup(callback["data"]["status"], 'delete')
   })
 
   document.getElementById('save-proj').addEventListener('click', async() => {
@@ -430,14 +429,17 @@ const profileInit = async() => {
       // TO DO: future
       proj.updates.image = undefined
 
+      let callback
       try {
-        let data = (await axios.post("/profile/customer/update/proj", proj))["data"]
+        callback = (await axios.post("/profile/customer/update/proj", proj))
       } catch (error) {
         console.log(error)
       }
 
+      console.log(callback)
       // Re-render project card
       renderProjCard(false, proj.updates)
+      hideProjPopup(callback["data"]["status"], 'edit')
 
     } else {
       // New project
@@ -459,18 +461,18 @@ const profileInit = async() => {
       // TO DO: future
       proj.image = undefined
 
+      let callback
       try {
-        proj = (await axios.post("/profile/customer/new/proj", proj))["data"]["content"]
+        callback = (await axios.post("/profile/customer/new/proj", proj))
       } catch (error) {
         console.log(error)
       }
       
+      console.log(callback)
       // Render project card
-      renderProjCard(true, proj)
-
+      renderProjCard(true, callback["data"]["content"])
+      hideProjPopup(callback["data"]["status"], 'new')
     }
-
-    hideProjPopup()
   })
 
 }

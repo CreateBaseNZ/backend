@@ -135,12 +135,12 @@ const unsubscribe = (input) => {
 Global notifs
 =========================================================================================*/
 
-function  subscribeNotif() {
+function subscribeNotif() {
   //Create div to insert
   let newDiv = document.createElement('div')
   newDiv.className = 'subbed-notif'
   let messageWrap = document.createElement('div')
-  newDiv.appendChild(messageWrap).className = 'subMsgWrap'
+  newDiv.appendChild(messageWrap).className = 'msg-wrap'
   messageWrap.appendChild(document.createElement('i')).className = 'fab fa-telegram-plane'
   messageWrap.appendChild(document.createElement('p')).innerHTML = 'Thank you for subscribing to the newsletter!'
 
@@ -153,13 +153,56 @@ function  subscribeNotif() {
 
   // Fade out
   setTimeout(() => {
-      newDiv.style.transition = 'all 2s';
-      newDiv.style.opacity = 0;
+      newDiv.style.transition = 'all 2s'
+      newDiv.style.opacity = 0
       // Hide
       setTimeout(() => {
-          newDiv.style.display = 'none';
-      }, 1000);
-  }, 3000);
+          newDiv.style.display = 'none'
+      }, 1000)
+  }, 3000)
+}
+
+function projectNotif(callback, status) {
+    //Create div to insert
+    let newDiv = document.createElement('div')
+    newDiv.className = 'project-notif'
+    let messageWrap = document.createElement('div')
+    newDiv.appendChild(messageWrap).className = 'msg-wrap'
+    if (callback === 'success') {
+      if (status === 'new') {
+        messageWrap.appendChild(document.createElement('i')).className = 'far fa-check-circle'
+        messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your new project has been saved.'
+      } else if (status === 'edit') {
+        messageWrap.appendChild(document.createElement('i')).className = 'far fa-edit'
+        messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your newest edits have been saved.'
+      } else {
+        messageWrap.appendChild(document.createElement('i')).className = 'far fa-trash-alt'
+        messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your project has been deleted.'
+      }
+    } else {
+      messageWrap.appendChild(document.createElement('i')).className = 'far fa-times-circle'
+      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Oops! Something went wrong, please try again later.'
+      newDiv.style.color = 'red'
+    }
+  
+    //Find location to insert div
+    let notifDiv = document.getElementById('notification-wrap')
+    let cookieDiv = document.getElementById('cookie-container')
+  
+    //Insert div
+    notifDiv.insertBefore(newDiv, cookieDiv.nextSibling)
+  
+    setTimeout(() => {
+      // Fade out
+      setTimeout(() => {
+          newDiv.style.transition = 'all 2s'
+          newDiv.style.opacity = 0
+          // Hide
+          setTimeout(() => {
+              newDiv.style.display = 'none'
+          }, 1000)
+      }, 3000)
+    }, 1000)
 }
 
 subscribe.listener = async () => {

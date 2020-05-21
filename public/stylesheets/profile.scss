@@ -630,7 +630,7 @@ body {
       background: black;
       border-radius: 5px;
       filter: opacity(0.1);
-      z-index: 2;
+      z-index: 1000;
     }
 
     #new-edit-proj-screen {
@@ -640,7 +640,7 @@ body {
       width: 87%;
       background: $light-1;
       border-radius: 1px;
-      z-index: 2;
+      z-index: 1000;
       flex-direction: row;
 
       #new-edit-proj-x {

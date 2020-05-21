@@ -454,7 +454,7 @@ Carl's Button Design (End)
 #notification-wrap {
   position: fixed;
   bottom: 0;
-  z-index: 9999;
+  z-index: 999;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -463,6 +463,12 @@ Carl's Button Design (End)
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  -webkit-transition: height 0.2s ease-out;
+  transition: height 0.2s ease-out;
 }
 
 #notification-wrap #cookie-container {
@@ -495,7 +501,6 @@ Carl's Button Design (End)
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
-  font-family: "Poppins", sans-serif;
   font-size: calc(8px + 0.8vmax);
   line-height: 150%;
 }
@@ -567,7 +572,8 @@ Carl's Button Design (End)
   display: none;
 }
 
-#notification-wrap .subbed-notif {
+#notification-wrap .subbed-notif,
+#notification-wrap .project-notif {
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s;
   display: -webkit-box;
@@ -585,9 +591,11 @@ Carl's Button Design (End)
   -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
   box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
   border-radius: 0.2em;
+  font-family: "Poppins", sans-serif;
 }
 
-#notification-wrap .subbed-notif .subMsgWrap {
+#notification-wrap .subbed-notif .msg-wrap,
+#notification-wrap .project-notif .msg-wrap {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
@@ -601,11 +609,13 @@ Carl's Button Design (End)
       justify-content: space-around;
 }
 
-#notification-wrap .subbed-notif .subMsgWrap .fab {
+#notification-wrap .subbed-notif .msg-wrap i,
+#notification-wrap .project-notif .msg-wrap i {
   font-size: 2em;
 }
 
-#notification-wrap .subbed-notif .subMsgWrap p {
+#notification-wrap .subbed-notif .msg-wrap p,
+#notification-wrap .project-notif .msg-wrap p {
   height: 1rem;
   line-height: 1rem;
 }
@@ -2829,4 +2839,3 @@ h1, h2, h3 {
     max-width: 140em;
   }
 }
-/*# sourceMappingURL=story.css.map */
