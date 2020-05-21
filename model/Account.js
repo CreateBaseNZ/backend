@@ -383,6 +383,22 @@ AccountSchema.statics.verify = function (email, code) {
     } catch (error) {
       return reject(error);
     }
+    // UPDATE CUSTOMER'S MAIL SUBSCRIPTION
+    // Fetch Customer
+    let customer;
+    try {
+      customer = await Customer.findOne({ accountId: account._id });
+    } catch (error) {
+      return reject(error);
+    }
+    // Subscribe Customer
+    customer.subscribeMail(account.email);
+    // Save Customer Updates
+    try {
+      await customer.save();
+    } catch (error) {
+      return reject(error);
+    }
     // RETURN RESOLVE
     return resolve();
   })

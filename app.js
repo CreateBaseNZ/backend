@@ -77,6 +77,7 @@ PUBLIC
 -----------------------------------------------------------------------------------------*/
 
 const generalRouter = require("./routes/public/general.js");
+const accountRouter = require("./routes/public/account.js");
 const fileRouter = require("./routes/public/file.js");
 const validationRouter = require("./routes/public/validation.js");
 const makeRouter = require("./routes/public/make.js");
@@ -86,6 +87,7 @@ const profileRouter = require("./routes/public/profile.js");
 const projectRouter = require("./routes/public/project.js");
 const sessionRouter = require("./routes/public/session.js");
 app.use(generalRouter);
+app.use(accountRouter);
 app.use(fileRouter);
 app.use(validationRouter);
 app.use(makeRouter);

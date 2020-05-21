@@ -80,7 +80,7 @@ const CustomerSchema = new Schema({
   subscription: {
     mail: {
       type: Boolean,
-      default: true
+      default: false
     }
   }
 });
@@ -138,15 +138,6 @@ CustomerSchema.statics.create = function (accountId, email, displayName) {
     const object = { accountId, displayName };
     // CREATE CUSTOMER INSTANCE
     const customer = new this(object);
-    // SUBSCRIBE CUSTOMER TO MAILING LIST
-    // TO DO.....
-    // Move the subscribe to mailing list on account verification
-    // TO DO.....
-    try {
-      await customer.subscribeMail(email);
-    } catch (error) {
-      return reject(error);
-    }
     // SAVE CUSTOMER INSTANCE
     try {
       await customer.save();

@@ -7,7 +7,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 const express = require("express");
 const path = require("path");
-const passport = require("passport");
 const inlineCSS = require("inline-css");
 
 /*=========================================================================================
@@ -18,15 +17,6 @@ const router = new express.Router();
 const customerRouteOptions = {
   root: path.join(__dirname, "../../views/public"),
 };
-
-/*=========================================================================================
-MODELS
-=========================================================================================*/
-
-const Mail = require("../../model/Mail.js");
-const Account = require("../../model/Account.js");
-const Customer = require("../../model/Customer.js");
-const Session = require("../../model/Session.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -100,43 +90,6 @@ router.get("/services/marketplace", (req, res) => {
   res.sendFile("market.html", customerRouteOptions);
 });
 
-// @route     Get /signup/customer
-// @desc      Signup a New Customer Account
-// @access    Public
-router.post("/signup/customer", passport.authenticate("local-customer-signup", {
-  successRedirect: "/",
-  failureRedirect: "/signup",
-}));
-
-// @route     Get /login/customer
-// @desc      Login Request
-// @access    Public
-router.post("/login/customer", passport.authenticate("local-customer-login", {
-  successRedirect: "/",
-  failureRedirect: "/login",
-}));
-
-// @route     Get /logout
-// @desc      Logout the user
-// @access    Public
-router.get("/logout", async (req, res) => {
-  // Create a session
-  // Retrieve Session ID
-  const sessionId = req.sessionID;
-  // Create Session
-  let content;
-  try {
-    content = await Session.create(sessionId);
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Logout User
-  req.logout();
-  // Redirect User to the Home Page
-  res.redirect("/");
-});
-
 // @route     Get /3d-printing
 // @desc      Get the Make Page
 // @access    Private
@@ -167,15 +120,6 @@ DEVELOPMENT
 // @access    Private
 router.get("/test", (req, res) => {
   res.sendFile("test.html", customerRouteOptions);
-});
-
-// @route     Get /login-status
-// @desc      Get the Login Status
-// @access    Public
-router.get("/login-status", (req, res) => {
-  if (req.isAuthenticated()) return res.send({ status: true });
-
-  res.send({ status: false });
 });
 
 /*=========================================================================================
