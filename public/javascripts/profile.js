@@ -361,6 +361,10 @@ const profileInit = async() => {
       el.childNodes[1].classList.toggle('far')
       el.classList.toggle('make-label-active')
     })
+
+    el.addEventListener('mouseover', () => {
+      tooltipWrapper.style.top = el.offsetTop - makeLabelContainer.scrollTop - tooltipWrapper.offsetHeight/2 + el.offsetHeight/2 + 'px'
+    })
   })
 
   // Render all project cards
