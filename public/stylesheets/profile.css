@@ -2677,9 +2677,9 @@ body {
   overflow: hidden;
   width: 80vw;
   margin: 2vmax auto;
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-img {
@@ -2866,6 +2866,12 @@ body {
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card:hover .proj-edit {
   height: calc(1vh + 1vmax);
+}
+
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-bookmark-prior {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
 }
 
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .end-spacer {
@@ -3587,9 +3593,9 @@ body {
   }
   .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .end-spacer {
     display: inline-block;
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
     min-width: 1px;
     min-height: 1px;
   }

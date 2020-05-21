@@ -68,6 +68,7 @@ function renderProjCard(newProj, project) {
     })
     if (project.bookmark) {
       cardEl.appendChild(bookmarkEl).className = 'fas fa-bookmark'
+      cardEl.classList.add('proj-bookmark-prior')
     } else {
       cardEl.appendChild(bookmarkEl).className = 'far fa-bookmark'
     }
@@ -386,11 +387,14 @@ const profileInit = async() => {
 
   // TO DO: fix route
   document.getElementById('delete-proj').addEventListener('click', async() => {
+    let data
     try {
-      let data = (await axios.post("/profile/customer/delete/proj", activeProjID))
-      console.log(data)
+      data = (await axios.post("/profile/customer/delete/proj", {id: activeProjID}))
     } catch (error) {
-      console.log(error)
+      return console.log(error)
+    }
+    if (data.status === 'failed') {
+      return console.log(data.content)
     }
     document.getElementById('proj-' + activeProjID).remove()
     hideProjPopup()

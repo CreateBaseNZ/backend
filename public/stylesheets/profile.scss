@@ -293,7 +293,7 @@ body {
           overflow: hidden;
           width: 80vw;
           margin: 2vmax auto;
-          order: 1;
+          order: 2;
 
           .proj-img {
             width: 100%;
@@ -455,6 +455,10 @@ body {
               height: calc(1vh + 1vmax);
             }
           }
+        }
+
+        .proj-bookmark-prior {
+          order: 1;
         }
 
         .end-spacer {
@@ -1106,7 +1110,7 @@ body {
 
         .end-spacer {
           display: inline-block;
-          order: 2;
+          order: 3;
           min-width: 1px;
           min-height: 1px;
         }
