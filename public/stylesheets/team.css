@@ -567,7 +567,7 @@ Carl's Button Design (End)
   display: none;
 }
 
-#notification-wrap .subbed-notif {
+#notification-wrap .subbed-notif, #notification-wrap .alreadysubbed-notif {
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s;
   display: -webkit-box;
@@ -587,7 +587,7 @@ Carl's Button Design (End)
   border-radius: 0.2em;
 }
 
-#notification-wrap .subbed-notif .subMsgWrap {
+#notification-wrap .subbed-notif .subMsgWrap, #notification-wrap .alreadysubbed-notif .subMsgWrap {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
@@ -597,15 +597,13 @@ Carl's Button Design (End)
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 
-#notification-wrap .subbed-notif .subMsgWrap .fab {
+#notification-wrap .subbed-notif .subMsgWrap .fab, #notification-wrap .alreadysubbed-notif .subMsgWrap .fab {
   font-size: 2em;
 }
 
-#notification-wrap .subbed-notif .subMsgWrap p {
+#notification-wrap .subbed-notif .subMsgWrap p, #notification-wrap .alreadysubbed-notif .subMsgWrap p {
   height: 1rem;
   line-height: 1rem;
 }
