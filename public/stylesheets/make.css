@@ -580,6 +580,7 @@ Carl's Button Design (End)
   color: #4e4ed6;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
   box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+  border-radius: 0.2em;
 }
 
 #notification-wrap .subbed-notif .subMsgWrap {
@@ -3528,3 +3529,4 @@ DESKTOP CSS
 /*=========================================================================================
 END
 =========================================================================================*/
+/*# sourceMappingURL=make.css.map */

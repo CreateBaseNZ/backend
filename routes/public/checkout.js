@@ -24,7 +24,6 @@ const Customer = require("../../model/Customer.js");
 const Discount = require("../../model/Discount.js");
 const Order = require("../../model/Order.js");
 const Make = require("../../model/Make.js");
-const Item = require("../../model/Item.js");
 
 /*=========================================================================================
 MIDDLEWARE
