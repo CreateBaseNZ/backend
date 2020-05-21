@@ -12,6 +12,12 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
+MODELS
+=========================================================================================*/
+
+const Transaction = require("./Transaction.js");
+
+/*=========================================================================================
 SUB MODELS
 =========================================================================================*/
 
@@ -22,23 +28,29 @@ const AddressSchema = new Schema({
   street: {
     number: {
       type: String,
+      required: true
     },
     name: {
       type: String,
+      required: true
     },
   },
   suburb: {
     type: String,
+    required: true
   },
   city: {
     type: String,
+    required: true
   },
   postcode: {
     type: String,
+    required: true
   },
   country: {
     type: String,
-  },
+    required: true
+  }
 });
 
 /*=========================================================================================
@@ -65,10 +77,6 @@ const OrderSchema = new Schema({
       type: [Schema.Types.ObjectId],
       default: [],
     },
-  },
-  items: {
-    type: [Schema.Types.ObjectId],
-    default: [],
   },
   discounts: {
     type: [Schema.Types.ObjectId],
@@ -105,31 +113,8 @@ const OrderSchema = new Schema({
       type: String,
       default: "",
     },
-    amount: {
-      makes: {
-        type: Number,
-        default: 0
-      },
-      manufacturing: {
-        type: Number,
-        default: 0
-      },
-      discount: {
-        type: Number,
-        default: 0
-      },
-      gst: {
-        type: Number,
-        default: 0
-      },
-      shipping: {
-        type: Number,
-        default: 0
-      },
-      total: {
-        type: Number,
-        default: 0
-      }
+    transaction: {
+      type: Schema.Types.ObjectId
     }
   },
   comments: {
@@ -267,9 +252,60 @@ OrderSchema.statics.findOneByAccoundIdAndStatus = function (accountId, status) {
   });
 };
 
+// @FUNC  bankTransfer
+// @TYPE  STATICS
+// @DESC  
+// @ARGU  
+
+// @FUNC  cardPayment
+// @TYPE  STATICS
+// @DESC  
+// @ARGU  
+
 /*=========================================================================================
 METHODS - DOCUMENT
 =========================================================================================*/
+
+// @FUNC  transact
+// @TYPE  METHODS
+// @DESC  Creates the transaction instance and update the order's transaction-related
+//        properties
+// @ARGU  
+OrderSchema.methods.transact = function () { }
+
+/* ----------------------------------------------------------------------------------------
+AMOUNT CALCULATION
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  amountMakes
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.amountMakes = function () { }
+
+// @FUNC  amountManufacturing
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.amountManufacturing = function () { }
+
+// @FUNC  amountDiscount
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.amountDiscount = function () { }
+
+// @FUNC  amountShipping
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.amountShipping = function () { }
+
+// @FUNC  amount
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.amount = function () { }
 
 // @FUNC  updateStatus
 // @TYPE  METHODS
@@ -277,42 +313,30 @@ METHODS - DOCUMENT
 // @ARGU
 OrderSchema.methods.updateStatus = function (status) {
   return new Promise(async (resolve, reject) => {
-    const statuses = [
-      "created",
-      "checkedout",
-      "validated",
-      "built",
-      "shipped",
-      "arrived",
-      "reviewed",
-      "completed",
-      "cancelled",
-    ];
-
-    // VALIDATION START
-
+    // DECLARE AND INITIALISE VARIABLES
+    const statuses = ["created", "checkedout", "validated", "built",
+      "shipped", "arrived", "reviewed", "completed", "cancelled"];
+    // VALIDATION
     if (statuses.indexOf(status) === -1) {
-      reject("invalid status");
+      return reject("invalid status");
     }
-
-    // VALIDATION END
-
+    // SET THE ORDER'S RELEVANT PROPERTIES
+    // Date
     const date = moment().tz("Pacific/Auckland").format();
-
-    this.status = status;
     this.date[status] = date;
     this.date.modified = date;
-
-    resolve("order updated");
-    return;
+    // Status
+    this.status = status;
+    // RESOLVE PROMISE
+    return resolve("order updated");
   });
 };
 
-// @FUNC  updateSavedAddress
+// @FUNC  saveAddress
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-OrderSchema.methods.updateSavedAddress = function () { };
+OrderSchema.methods.saveAddress = function () { };
 
 // @FUNC  validateCart
 // @TYPE  METHODS
@@ -367,6 +391,8 @@ OrderSchema.methods.validateShipping = function () {
 OrderSchema.methods.validatePayment = function () {
   return true;
 };
+
+
 
 /*=========================================================================================
 FUNCTIONS

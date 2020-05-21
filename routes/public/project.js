@@ -44,6 +44,7 @@ router.post("/profile/customer/new/proj", restrictedPages, async (req, res) => {
   const makes = req.body.makes;
   const notes = req.body.notes;
   const options = {
+    name,
     bookmark,
     makes,
     notes
@@ -60,7 +61,7 @@ router.post("/profile/customer/new/proj", restrictedPages, async (req, res) => {
   // CREATE THE PROJECT
   let message;
   try {
-    message = await Project.create(account, name, options);
+    message = await Project.create(account, options);
   } catch (error) {
     res.send({ status: "failed", content: error });
     return;

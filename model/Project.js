@@ -22,7 +22,7 @@ const ProjectSchema = new Schema({
   },
   name: {
     type: String,
-    required: true
+    default: ""
   },
   thumbnail: {
     type: Schema.Types.ObjectId
@@ -55,14 +55,13 @@ const ProjectSchema = new Schema({
 STATIC
 =========================================================================================*/
 
-ProjectSchema.statics.create = function (account, name, options) {
+ProjectSchema.statics.create = function (account, options) {
   return new Promise(async (resolve, reject) => {
     // INITIALISE NEW PROJECT INSTANCE
     let project = new this();
     // SET PROPERTY VALUES
     // Account and name
     project.account = account;
-    project.name = name;
     // Options
     for (const property in options) {
       project[property] = options[property];
