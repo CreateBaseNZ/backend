@@ -463,6 +463,7 @@ Carl's Button Design (End)
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  font-family: "Poppins", sans-serif;
 }
 
 #notification-wrap #cookie-container {
@@ -567,47 +568,6 @@ Carl's Button Design (End)
   display: none;
 }
 
-#notification-wrap .subbed-notif, #notification-wrap .alreadysubbed-notif {
-  -webkit-transition: all ease 0.3s;
-  transition: all ease 0.3s;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: white;
-  padding: 2rem;
-  width: 100%;
-  margin-top: 3rem;
-  font-size: 0.8em;
-  color: #4e4ed6;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
-  box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
-  border-radius: 0.2em;
-}
-
-#notification-wrap .subbed-notif .subMsgWrap, #notification-wrap .alreadysubbed-notif .subMsgWrap {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 100%;
-          flex: 0 0 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#notification-wrap .subbed-notif .subMsgWrap .fab, #notification-wrap .alreadysubbed-notif .subMsgWrap .fab {
-  font-size: 2em;
-}
-
-#notification-wrap .subbed-notif .subMsgWrap p, #notification-wrap .alreadysubbed-notif .subMsgWrap p {
-  height: 1rem;
-  line-height: 1rem;
-}
-
 @media only screen and (min-width: 53em) {
   #notification-wrap {
     bottom: 7%;
@@ -636,6 +596,44 @@ Carl's Button Design (End)
   }
   #notification-wrap #cookie-container.hide {
     display: none;
+  }
+  #notification-wrap .subbed-notif, #notification-wrap .alreadysubbed-notif {
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background-color: white;
+    padding: 2rem;
+    width: 100%;
+    margin-top: 3rem;
+    font-size: 0.8em;
+    color: #4e4ed6;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+    box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+    border-radius: 0.2em;
+  }
+  #notification-wrap .subbed-notif .subMsgWrap, #notification-wrap .alreadysubbed-notif .subMsgWrap {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: center;
+  }
+  #notification-wrap .subbed-notif .subMsgWrap i, #notification-wrap .alreadysubbed-notif .subMsgWrap i {
+    margin-right: 1em;
+  }
+  #notification-wrap .subbed-notif .subMsgWrap .far, #notification-wrap .alreadysubbed-notif .subMsgWrap .far {
+    font-size: 1.5em;
+  }
+  #notification-wrap .subbed-notif .subMsgWrap p, #notification-wrap .alreadysubbed-notif .subMsgWrap p {
+    height: 1.2rem;
+    line-height: 1.2rem;
   }
 }
 
