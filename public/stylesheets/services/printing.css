@@ -2370,26 +2370,12 @@ h4 {
   font-weight: 700;
   color: #2d283c;
   letter-spacing: 2vmin;
-  margin-bottom: 1vh;
+  margin: 5vh 0 3vh 0;
   font-size: 5vh;
 }
 
-#particles-js .banner-text .reg-btn {
-  text-align: center;
-  color: #877da9;
-  font-size: 1.5vh;
-  width: 25vh;
-  font-weight: 800;
-}
-
-#particles-js .banner-text .reg-btn:before {
-  border-top: thin solid #877da9;
-  border-left: thin solid #877da9;
-}
-
-#particles-js .banner-text .reg-btn:after {
-  border-bottom: thin solid #877da9;
-  border-right: thin solid #877da9;
+#particles-js .banner-text .grad-btn {
+  padding: 1em 2.5em;
 }
 
 .info-section {

@@ -30,21 +30,6 @@ function renderProjCard(newProj, project) {
     let cardEl = document.createElement('div')
     cardEl.id = 'proj-' + project.id 
 
-    // Edit a project
-    cardEl.addEventListener('click', () => {
-
-      // Show new/edit project screen
-      showProjPopup('edit', project.id)
-
-      project.makes.forEach(function(makeInProject, k) {
-        // Add project blobs
-        renderMakeBlobs(allMakes[makeKeys[makeInProject]])
-        // Activate project labels
-        document.getElementById('make-label-' + makeInProject).classList.toggle('make-label-active')
-        document.getElementById('make-label-' + makeInProject).childNodes[1].className = 'fas fa-check-circle'
-      })
-    })
-
     projScroll.appendChild(cardEl).className = 'proj-card'
 
     let bookmarkEl = document.createElement('i')
@@ -93,6 +78,9 @@ function renderProjCard(newProj, project) {
     project.makes.forEach(function(make, j) {
       if (makesEl.innerHTML !== '') {
         makesEl.innerHTML += ', '
+        makesEl.id += ' ' + make
+      } else {
+        makesEl.id += make
       }
       makesEl.innerHTML += allMakes[makeKeys[make]].file.name
     })
@@ -119,6 +107,26 @@ function renderProjCard(newProj, project) {
     editEl.innerHTML = 'Click anywhere on this card to edit'
     cardEl.appendChild(editEl).className = 'proj-edit'
 
+    // Edit a project
+    cardEl.addEventListener('click', () => {
+
+      // Show new/edit project screen
+      showProjPopup('edit', project.id)
+
+      if (makesEl.id !== "") {
+        let projMakesList
+        makesEl.id.split(' ')
+        projMakesList.forEach(function(makeInProject, k) {
+          // Add project blobs
+          renderMakeBlobs(allMakes[makeKeys[makeInProject]])
+          // Activate project labels
+          document.getElementById('make-label-' + makeInProject).classList.toggle('make-label-active')
+          document.getElementById('make-label-' + makeInProject).childNodes[1].className = 'fas fa-check-circle'
+        })
+      }
+
+    })
+
   } else {
 
     let cardEl = document.getElementById('proj-' + activeProjID)
@@ -132,9 +140,13 @@ function renderProjCard(newProj, project) {
 
     let makesEl = cardEl.querySelector('.proj-makes')
     makesEl.innerHTML = ''
+    makesEl.id = ''
     project.makes.forEach(function(make, j) {
       if (makesEl.innerHTML !== '') {
         makesEl.innerHTML += ', '
+        makesEl.id += ' ' + make
+      } else {
+        makesEl.id += make
       }
       makesEl.innerHTML += allMakes[makeKeys[make]].file.name
     })
@@ -170,7 +182,9 @@ function hideProjPopup(callback, status) {
   newEditProjScreenOverlay.style.display = 'none'
   newEditProjScreen.className = ''
 
-  projectNotif(callback, status)
+  if (callback) {
+    projectNotif(callback, status)
+  }
 
   // Reset blobs
   makeBlobContainer.innerHTML = ''
@@ -398,7 +412,7 @@ const profileInit = async() => {
     } catch (error) {
       return console.log(error)
     }
-    console.log(callback)
+
     document.getElementById('proj-' + activeProjID).remove()
     hideProjPopup(callback["data"]["status"], 'delete')
   })
@@ -421,9 +435,6 @@ const profileInit = async() => {
       }
 
       proj.updates.name = document.getElementById('new-edit-proj-name').value
-      if (!proj.updates.name) {
-        proj.updates.name = 'Unnamed Project'
-      }
       proj.updates.notes = document.getElementById('new-edit-proj-notes').value
 
       // TO DO: future
@@ -437,6 +448,7 @@ const profileInit = async() => {
       }
 
       console.log(callback)
+
       // Re-render project card
       renderProjCard(false, proj.updates)
       hideProjPopup(callback["data"]["status"], 'edit')
@@ -453,9 +465,6 @@ const profileInit = async() => {
       }
 
       proj.name = document.getElementById('new-edit-proj-name').value
-      if (!proj.name) {
-        proj.name = 'Unnamed Project'
-      }
       proj.notes = document.getElementById('new-edit-proj-notes').value
 
       // TO DO: future
@@ -468,7 +477,6 @@ const profileInit = async() => {
         console.log(error)
       }
       
-      console.log(callback)
       // Render project card
       renderProjCard(true, callback["data"]["content"])
       hideProjPopup(callback["data"]["status"], 'new')

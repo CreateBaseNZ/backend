@@ -343,6 +343,13 @@ body {
             color: $dark-3;
             text-align: center;
             padding: 0 2vmax;
+
+            &:empty {
+              &:after {
+                content: 'Unnamed Project';
+                font-style: italic;
+              }
+            }
           }
 
           .proj-makes {

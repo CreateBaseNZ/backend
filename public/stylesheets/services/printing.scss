@@ -44,23 +44,11 @@ h4{
             font-weight: 700;
             color: #2d283c;
             letter-spacing: 2vmin;
-            margin-bottom: 1vh;
+            margin: 5vh 0 3vh 0;
             font-size: 5vh;
         }
-        .reg-btn{
-            text-align: center;
-            color:$dark-1;
-            font-size: 1.5vh;
-            width: 25vh;
-            font-weight: 800;
-            &:before {
-                border-top: thin solid $dark-1;
-                border-left: thin solid $dark-1;
-              }
-              &:after {
-                border-bottom: thin solid $dark-1;
-                border-right: thin solid $dark-1;
-              }
+        .grad-btn{
+            padding: 1em 2.5em;
         }
     }
 

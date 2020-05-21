@@ -2746,6 +2746,11 @@ body {
   padding: 0 2vmax;
 }
 
+.profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-name:empty:after {
+  content: 'Unnamed Project';
+  font-style: italic;
+}
+
 .profile-tabs-section #projects-tab:checked ~ #projects-area #proj-wrap #proj-scroll-container .proj-card .proj-makes {
   -ms-flex-negative: 0;
       flex-shrink: 0;
