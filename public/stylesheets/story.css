@@ -454,7 +454,7 @@ Carl's Button Design (End)
 #notification-wrap {
   position: fixed;
   bottom: 0;
-  z-index: 9999;
+  z-index: 999;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -463,7 +463,12 @@ Carl's Button Design (End)
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-family: "Poppins", sans-serif;
+  -webkit-transition: height 0.2s ease-out;
+  transition: height 0.2s ease-out;
 }
 
 #notification-wrap #cookie-container {
@@ -496,7 +501,6 @@ Carl's Button Design (End)
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
-  font-family: "Poppins", sans-serif;
   font-size: calc(8px + 0.8vmax);
   line-height: 150%;
 }
@@ -597,7 +601,7 @@ Carl's Button Design (End)
   #notification-wrap #cookie-container.hide {
     display: none;
   }
-  #notification-wrap .subbed-notif, #notification-wrap .alreadysubbed-notif {
+  #notification-wrap .subbed-notif, #notification-wrap .alreadysubbed-notif, #notification-wrap .project-notif {
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s;
     display: -webkit-box;
@@ -616,7 +620,7 @@ Carl's Button Design (End)
     box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
     border-radius: 0.2em;
   }
-  #notification-wrap .subbed-notif .subMsgWrap, #notification-wrap .alreadysubbed-notif .subMsgWrap {
+  #notification-wrap .subbed-notif .subMsgWrap, #notification-wrap .alreadysubbed-notif .subMsgWrap, #notification-wrap .project-notif .subMsgWrap {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
@@ -625,13 +629,13 @@ Carl's Button Design (End)
     display: flex;
     text-align: center;
   }
-  #notification-wrap .subbed-notif .subMsgWrap i, #notification-wrap .alreadysubbed-notif .subMsgWrap i {
+  #notification-wrap .subbed-notif .subMsgWrap i, #notification-wrap .alreadysubbed-notif .subMsgWrap i, #notification-wrap .project-notif .subMsgWrap i {
     margin-right: 1em;
   }
-  #notification-wrap .subbed-notif .subMsgWrap .far, #notification-wrap .alreadysubbed-notif .subMsgWrap .far {
+  #notification-wrap .subbed-notif .subMsgWrap .far, #notification-wrap .alreadysubbed-notif .subMsgWrap .far, #notification-wrap .project-notif .subMsgWrap .far {
     font-size: 1.5em;
   }
-  #notification-wrap .subbed-notif .subMsgWrap p, #notification-wrap .alreadysubbed-notif .subMsgWrap p {
+  #notification-wrap .subbed-notif .subMsgWrap p, #notification-wrap .alreadysubbed-notif .subMsgWrap p, #notification-wrap .project-notif .subMsgWrap p {
     height: 1.2rem;
     line-height: 1.2rem;
   }
