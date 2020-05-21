@@ -22,9 +22,16 @@ const Account = require("../../model/Account.js");
 MIDDLEWARE
 =========================================================================================*/
 
-const restrictedPages = (req, res, next) => {
+const restrictedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return next();
+    if (req.user.verification.status) {
+      return next();
+    } else {
+      return next(); // TEMPORARY
+      // TO DO.....
+      // TAKE TO VERIFICATION PAGE
+      // TO DO.....
+    }
   } else {
     res.redirect("/login");
   }
@@ -76,7 +83,6 @@ router.get("/logout", async (req, res) => {
 // @access    Public
 router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
-
   res.send({ status: false });
 });
 
