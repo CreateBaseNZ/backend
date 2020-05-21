@@ -632,7 +632,10 @@ Carl's Button Design (End)
   #notification-wrap .subbed-notif .msg-wrap i, #notification-wrap .alreadysubbed-notif .msg-wrap i, #notification-wrap .project-notif .msg-wrap i {
     margin-right: 1em;
   }
-  #notification-wrap .subbed-notif .msg-wrap .far, #notification-wrap .alreadysubbed-notif .msg-wrap .far, #notification-wrap .project-notif .msg-wrap .far {
+  #notification-wrap .subbed-notif .msg-wrap .far, #notification-wrap .subbed-notif .msg-wrap .fas, #notification-wrap .alreadysubbed-notif .msg-wrap .far, #notification-wrap .alreadysubbed-notif .msg-wrap .fas, #notification-wrap .project-notif .msg-wrap .far, #notification-wrap .project-notif .msg-wrap .fas {
+    font-size: 1.5em;
+  }
+  #notification-wrap .subbed-notif .msg-wrap .fab, #notification-wrap .alreadysubbed-notif .msg-wrap .fab, #notification-wrap .project-notif .msg-wrap .fab {
     font-size: 1.5em;
   }
   #notification-wrap .subbed-notif .msg-wrap p, #notification-wrap .alreadysubbed-notif .msg-wrap p, #notification-wrap .project-notif .msg-wrap p {
@@ -2805,3 +2808,4 @@ body {
     }
   }
 }
+/*# sourceMappingURL=team.css.map */

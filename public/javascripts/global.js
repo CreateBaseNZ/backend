@@ -210,7 +210,7 @@ function  alreadysubscribedNotif() {
   let newDiv = document.createElement('div')
   newDiv.className = 'alreadysubbed-notif'
   let messageWrap = document.createElement('div')
-  newDiv.appendChild(messageWrap).className = 'subMsgWrap'
+  newDiv.appendChild(messageWrap).className = 'msg-wrap'
   messageWrap.appendChild(document.createElement('i')).className = 'far fa-times-circle'
   messageWrap.appendChild(document.createElement('p')).innerHTML = 'This email is already subscribed'
 
@@ -221,15 +221,15 @@ function  alreadysubscribedNotif() {
   //Insert div
   notifDiv.insertBefore(newDiv, cookieDiv.nextSibling)
 
-  // // Fade out
-  // setTimeout(() => {
-  //     newDiv.style.transition = 'all 2s';
-  //     newDiv.style.opacity = 0;
-  //     // Hide
-  //     setTimeout(() => {
-  //         newDiv.style.display = 'none';
-  //     }, 1000);
-  // }, 3000);
+  // Fade out
+  setTimeout(() => {
+      newDiv.style.transition = 'all 2s';
+      newDiv.style.opacity = 0;
+      // Hide
+      setTimeout(() => {
+          newDiv.style.display = 'none';
+      }, 1000);
+  }, 3000);
 }
 
 subscribe.listener = async () => {

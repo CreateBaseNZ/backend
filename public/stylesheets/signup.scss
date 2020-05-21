@@ -17,15 +17,16 @@ nav {
   height: 100vh;
   width: 100vw;
   font-family: $poppins;
-
   .signup-mobile-bg {
     position: absolute;
     top: 0;
     left: 0;
     height: 100vh;
     width: 100vw;
-    object-fit: cover;
+    background-size: cover;
     overflow: hidden;
+    background-position: 80%;
+    background-image: url(../../../public/images/signup-desktop2.jpg);
   }
 
   // Logo animation
