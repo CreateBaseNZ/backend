@@ -114,32 +114,32 @@
       <div class="landing-carousel">
         <div class="landing-slide landing-slide-left" id="landing-1">
           <img src="./../../public/images/landing-7.png" alt="Landing 1" />
-          <div class="landing-slide-text">
+          <a href="/services/marketplace" class="landing-slide-text">
             <p class="landing-slide-title">THEY DESERVE TO BE OUT THERE</p>
             <div class="landing-slide-text-sep"></div>
-            <a href="#" class="landing-slide-sub" text-content="EXPLORE MARKETPLACE">EXPLORE MARKETPLACE</a>
+            <p class="landing-slide-sub" text-content="EXPLORE MARKETPLACE">EXPLORE MARKETPLACE</p>
             <div class="landing-slide-text-sep-2"></div>
-          </div>
+          </a>
           <div class="landing-slide-btn"></div>
         </div>
         <div class="landing-slide landing-slide-middle" id="landing-2">
           <img src="./../../public/images/landing-5.png" alt="Landing 2" />
-          <div class="landing-slide-text">
+          <a href="/services/3d-printing" class="landing-slide-text">
             <p class="landing-slide-title">GIVE YOUR IDEAS SOME DIMENSIONS</p>
             <div class="landing-slide-text-sep"></div>
-            <a href="#" class="landing-slide-sub" text-content="EXPLORE 3D PRINTING">EXPLORE 3D PRINTING</a>
+            <p class="landing-slide-sub" text-content="EXPLORE 3D PRINTING">EXPLORE 3D PRINTING</p>
             <div class="landing-slide-text-sep-2"></div>
-          </div>
+          </a>
           <div class="landing-slide-btn"></div>
         </div>
         <div class="landing-slide landing-slide-right" id="landing-3">
           <img src="./../../public/images/landing-6.png" alt="Landing 3" />
-          <div class="landing-slide-text">
+          <a href="/services/marketplace" class="landing-slide-text">
             <p class="landing-slide-title">UPSKILL AND UPGRADE</p>
             <div class="landing-slide-text-sep"></div>
-            <a href="#" class="landing-slide-sub" text-content="EXPLORE ENG. KITS">EXPLORE ENG. KITS</a>
+            <p class="landing-slide-sub" text-content="EXPLORE ENG. KITS">EXPLORE ENG. KITS</p>
             <div class="landing-slide-text-sep-2"></div>
-          </div>
+          </a>
           <div class="landing-slide-btn"></div>
         </div>
       </div>
@@ -156,47 +156,20 @@
       </div>
     </div>
 
-    <div class="eng-kit-section">
-      <div class="eng-kit-coming-soon">— COMING SOON —</div>
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide eng-kit-container eng-kit-brycep">
-            <div class="eng-kit-text">
-              <p class="eng-kit-code">ENG • KIT • 01</p>
-              <p class="eng-kit-title">Brycep</p>
-              <p class="eng-kit-desc">Explore dexterity, precision, kinematics, and strength in the realm of
-                mechatronics with the 6-axis Brycep.</p>
-              <a href="#" class="eng-kit-more">LEARN MORE</a>
-              <div class="eng-kit-line"></div>
-              <div class="eng-kit-line-overlap"></div>
-            </div>
-            <img src="./../../public/images/arm.jpg" alt="Brycep" />
-          </div>
-          <div class="swiper-slide eng-kit-container eng-kit-hyelos">
-            <div class="eng-kit-text">
-              <p class="eng-kit-code">ENG • KIT • 02</p>
-              <p class="eng-kit-title">Hyelos</p>
-              <p class="eng-kit-desc">As the automotive industry converges toward the cusp of full autonomy, the
-                advantages of fully-connected vehicular networks are being realised.</p>
-              <a href="#" class="eng-kit-more">LEARN MORE</a>
-              <div class="eng-kit-line"></div>
-              <div class="eng-kit-line-overlap"></div>
-            </div>
-            <img src="./../../public/images/car.png" alt="Hyelos" />
-            <p class=""></p>
-          </div>
+
+    <div class="temp-wrap">
+      <span class="glitch" id="change-text" data-text="MARKETPLACE">MARKETPLACE</span>
+  
+      <div class="subscribe-container">
+        <p class="subscribe-message">
+          Get the latest updates on release:
+        </p>
+        <div class="kit-fld input-decor" id="signup-email">
+          <input type="text" name="email" id="sign-up-eml" required />
+          <label class="input-label" for="email">Email</label>
+          <!-- <label class="input-error" for="displayName">Invalid email, please try again.</label> -->
         </div>
-        <div class="swiper-pagination"></div>
-      </div>
-      <div class="eng-kit-btn-container">
-        <div class="eng-kit-btn eng-kit-btn-focus" id="eng-kit-btn-brycep">
-          <div class="eng-kit-btn-text">BRYCEP</div>
-          <div class="eng-kit-btn-dot"></div>
-        </div>
-        <div class="eng-kit-btn" id="eng-kit-btn-hyelos">
-          <div class="eng-kit-btn-text">HYELOS</div>
-          <div class="eng-kit-btn-dot"></div>
-        </div>
+        <button class="market-btn reg-btn subscribe-btn" id="subscribe-main" onclick="subscribe.listener();">SUBSCRIBE</button>
       </div>
     </div>
 

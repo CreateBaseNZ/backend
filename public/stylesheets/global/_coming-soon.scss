@@ -1,0 +1,101 @@
+.temp-wrap {
+  font-family: $poppins;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5vmin;
+
+  #change-text {
+    font-size: calc(20px + 1vmax);
+    font-weight: 700;
+    color: $dark-2;
+    letter-spacing: 0.1em;
+    height: 3em;
+  }
+
+  .subscribe-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    
+    .subscribe-message {
+      font-size: 0.8em;
+      color: $dark-1;
+    }
+
+    .market-get-updates {
+      font-size: 0.8em;
+    }
+    p{
+      margin-bottom: 2em;
+    }
+    .reg-btn{
+      margin-top: 3.5em;
+    }
+  }
+}
+
+
+// -----------------------------------
+// Glitch animation
+// -----------------------------------
+.glitch {
+    position: relative;
+  }
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 1px;
+    white-space: nowrap;
+    text-shadow: 1px 0 greenyellow;
+    background: $light-1;
+    overflow: hidden;
+    visibility: visible;
+    visibility: hidden;
+    animation: noise-anim 10s infinite linear alternate-reverse;
+  }
+  .glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -1px;
+    text-shadow: -1px 0 magenta;
+    background: $light-1;
+    overflow: hidden;
+    visibility: hidden;
+    animation: noise-anim-2 8s infinite linear alternate-reverse;
+  }
+
+  @keyframes noise-anim {
+    $steps: 240;
+    @for $i from 0 through $steps {
+      #{percentage($i*(1/$steps))} {
+        $top: random(100);
+        $bottom: random(101 - $top);
+        clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+        padding: random(8)px - 8px;
+        visibility: visible;
+      }
+    }
+  }
+  @keyframes noise-anim-2 {
+    $steps: 150;
+    @for $i from 0 through $steps {
+      #{percentage($i*(1/$steps))} {
+        $top: random(100);
+        $bottom: random(101 - $top);
+        clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+        padding: random(10)px - 10px;
+        visibility: visible;
+      }
+    }
+  }
+
+
+@media only screen and (min-width: 53em){
+  .comingSoon-container {
+    margin-bottom: 1em;
+  }
+}
