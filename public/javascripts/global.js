@@ -146,10 +146,19 @@ function subscribeNotif() {
 
   //Find location to insert div
   let notifDiv = document.getElementById('notification-wrap')
-  let cookieDiv = document.getElementById('cookie-container')
+  let mobileDiv = document.getElementById('mobile-notif-wrap')
+
+  //Add slide in animation
+  newDiv.classList.add("slide-in");
 
   //Insert div
-  notifDiv.insertBefore(newDiv, cookieDiv.nextSibling)
+  var mq = window.matchMedia( "(min-width: 53em)" );
+  if (mq.matches) {
+    notifDiv.appendChild(newDiv)
+  }
+  else {
+    mobileDiv.appendChild(newDiv)
+  }
 
   // Fade out
   setTimeout(() => {
@@ -187,10 +196,12 @@ function projectNotif(callback, status) {
   
     //Find location to insert div
     let notifDiv = document.getElementById('notification-wrap')
-    let cookieDiv = document.getElementById('cookie-container')
   
+    //Add slide in animation
+    newDiv.classList.add("slide-in");
+
     //Insert div
-    notifDiv.insertBefore(newDiv, cookieDiv.nextSibling)
+    notifDiv.appendChild(newDiv)
   
     setTimeout(() => {
       // Fade out
@@ -216,10 +227,19 @@ function  alreadysubscribedNotif() {
 
   //Find location to insert div
   let notifDiv = document.getElementById('notification-wrap')
-  let cookieDiv = document.getElementById('cookie-container')
+  let mobileDiv = document.getElementById('mobile-notif-wrap')
+
+  //Add slide in animation
+  newDiv.classList.add("slide-in");
 
   //Insert div
-  notifDiv.insertBefore(newDiv, cookieDiv.nextSibling)
+  var mq = window.matchMedia( "(min-width: 53em)" );
+  if (mq.matches) {
+    notifDiv.appendChild(newDiv)
+  }
+  else {
+    mobileDiv.insertAdjacentElement('afterbegin', newDiv)
+  }
 
   // Fade out
   setTimeout(() => {
