@@ -61,7 +61,7 @@ const LocalCustomerSignup = new LocalStrategy(
       }
       // CREATE A CUSTOMER INSTANCE
       try {
-        await Customer.create(account._id, email, displayName);
+        await Customer.create(account._id, displayName);
       } catch (error) {
         // TO DO.....
         // Delete the newly created account instance

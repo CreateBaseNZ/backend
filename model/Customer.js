@@ -111,7 +111,7 @@ CustomerSchema.statics.findByAccountId = function (accountId) {
 // @TYPE  STATICS PROMISE ASYNC
 // @DESC
 // @ARGU
-CustomerSchema.statics.create = function (accountId, email, displayName) {
+CustomerSchema.statics.create = function (accountId, displayName) {
   return new Promise(async (resolve, reject) => {
     // DECLARE AND INITIALISE VARIABLES
     let valid = true;

@@ -69,7 +69,7 @@ const OrderSchema = new Schema({
   },
   status: {
     type: String,
-    default: "",
+    required: true
   },
   makes: {
     awaitingQuote: {
@@ -93,7 +93,7 @@ const OrderSchema = new Schema({
     address: {
       option: {
         type: String,
-        default: "",
+        default: ""
       },
       saved: {
         type: AddressSchema,
@@ -103,7 +103,7 @@ const OrderSchema = new Schema({
       },
       save: {
         type: Boolean,
-        default: true,
+        default: true
       },
     },
     method: {
@@ -171,6 +171,31 @@ const OrderSchema = new Schema({
 STATIC - MODEL
 =========================================================================================*/
 
+// @FUNC  create
+// @TYPE  STATICS
+// @DESC
+// @ARGU
+OrderSchema.statics.create = function (access, id) {
+  // VALIDATION
+  // CREATE ORDER INSTANCE
+  let order = new this();
+  // CREATE OBJECT PROPERTIES
+  // Set Owner
+  if (access === "public") {
+    order.sessionId = id;
+  } else {
+    order.accountId = id;
+  }
+  // Status
+  order.updateStatus("created");
+  // New Address
+  order.shipping.address.new = {
+    unit: "", street: { number: "", name: "" },
+    suburb: "", city: "", postcode: "", country: ""
+  };
+  return order;
+}
+
 // @FUNC  merge
 // @TYPE  STATICS
 // @DESC
@@ -187,9 +212,9 @@ OrderSchema.statics.merge = function (accountId, sessionId) {
       return reject(error);
     }
     // FETCH THE ORDER WITH THE CORRESPONDING ACCOUNT ID
-    let accoundOrder;
+    let accountOrder;
     try {
-      accoundOrder = await this.findOne({ accountId, status });
+      accountOrder = await this.findOne({ accountId, status });
     } catch (error) {
       return reject(error);
     }
@@ -198,8 +223,8 @@ OrderSchema.statics.merge = function (accountId, sessionId) {
     // Merge properties of each order more intelligently
     // TO DO.....
     let order;
-    if (accoundOrder) {
-      order = accoundOrder;
+    if (accountOrder) {
+      order = accountOrder;
     } else if (sessionOrder) {
       order = sessionOrder;
       order.accountId = accountId;
@@ -274,24 +299,22 @@ METHODS - DOCUMENT
 // @DESC
 // @ARGU
 OrderSchema.methods.updateStatus = function (status) {
-  return new Promise(async (resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    const statuses = ["created", "checkedout", "validated", "built",
-      "shipped", "arrived", "reviewed", "completed", "cancelled"];
-    // VALIDATION
-    if (statuses.indexOf(status) === -1) {
-      return reject("invalid status");
-    }
-    // SET THE ORDER'S RELEVANT PROPERTIES
-    // Date
-    const date = moment().tz("Pacific/Auckland").format();
-    this.date[status] = date;
-    this.date.modified = date;
-    // Status
-    this.status = status;
-    // RESOLVE PROMISE
-    return resolve("order updated");
-  });
+  // DECLARE AND INITIALISE VARIABLES
+  const statuses = ["created", "checkedout", "validated", "built",
+    "shipped", "arrived", "reviewed", "completed", "cancelled"];
+  // VALIDATION
+  if (statuses.indexOf(status) === -1) {
+    return reject("invalid status");
+  }
+  // SET THE ORDER'S RELEVANT PROPERTIES
+  // Date
+  const date = moment().tz("Pacific/Auckland").format();
+  this.date[status] = date;
+  this.date.modified = date;
+  // Status
+  this.status = status;
+  // RESOLVE PROMISE
+  return;
 };
 
 // @FUNC  transact
@@ -314,7 +337,7 @@ OrderSchema.methods.amountMakes = function () {
     // FETCH THE ORDER'S MAKES
     let makes = [];
     try {
-      makes = await Make.find({ accountId: this.accountId, _id: this.makes.checkout });
+      makes = await Make.find({ _id: this.makes.checkout });
     } catch (error) {
       return reject(error);
     }
@@ -470,18 +493,29 @@ UPDATE
 // @ARGU  
 OrderSchema.methods.updateMakes = function () {
   return new Promise(async (resolve, reject) => {
+    // CREATE THE ORDER FIND OBJECT
+    let object;
+    if (this.accountId) {
+      object = { accountId: this.accountId };
+    } else {
+      object = { sessionId: this.sessionId };
+    }
     // FETCH THE MAKES OF THE OWNER OF THE ORDER
     let makes;
     try {
-      makes = await Make.find({ accountId: this.accountId });
+      makes = await Make.find(object);
     } catch (error) {
       return reject(error);
     }
     // UPDATE ORDER'S MAKES
-    this.makes.awaitingQuote = makes.filter(make => make.status === "awaitingQuote");
-    this.makes.checkout = makes.filter(make => make.status === "checkout");
+    const makes = {
+      awaitingQuote: makes.filter(make => make.status === "awaitingQuote"),
+      checkout: makes.filter(make => make.status === "checkout")
+    }
+    this.makes.awaitingQuote = makes.awaitingQuote.map(make => make._id);
+    this.makes.checkout = makes.checkout.map(make => make._id);
     // RETURN SUCCESS RESPONSE
-    return resolve();
+    return resolve(makes);
   })
 }
 
@@ -491,6 +525,10 @@ OrderSchema.methods.updateMakes = function () {
 // @ARGU  
 OrderSchema.methods.updateSavedAddress = function () {
   return new Promise(async (resolve, reject) => {
+    // CHECK IF THE ORDER HAS AN OWNER
+    if (!(this.accountId)) {
+      return resolve();
+    }
     // FETCH THE ORDER OWNER'S DETAIL
     let customer;
     try {

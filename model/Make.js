@@ -112,12 +112,12 @@ const MakeSchema = new Schema({
 STATIC
 =========================================================================================*/
 
-MakeSchema.statics.retrieve = function (account) {
+MakeSchema.statics.retrieve = function (accountId) {
   return new Promise(async (resolve, reject) => {
     // INITIALISE RETRIEVED MAKE INSTANCE ARRAY
     let makes;
     try {
-      makes = await this.find({ accountId: account });
+      makes = await this.find({ accountId });
     } catch (error) {
       reject(error);
       return;
