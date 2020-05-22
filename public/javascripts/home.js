@@ -1,11 +1,28 @@
+function textSequence(i, words) {
+  // Cycle through words
+  document.getElementById("change-text").innerHTML = words[i]
+  document.getElementById("change-text").setAttribute('data-text', words[i])
+  setTimeout(function () {
+      document.getElementById("change-text").classList.remove("glitch")
+      setTimeout(function () {
+          document.getElementById("change-text").classList.add("glitch")
+          setTimeout(function () {
+              i += 1
+              if (i >= words.length) {
+                i = 0
+              }
+              textSequence(i, words)
+          }, (100 + Math.random() * 100))
+      }, (500 + Math.random() * 1500))
+  }, (50 + Math.random() * 50))
+
+}
+
 const homeInit = async() => {
   history.scrollRestoration = "manual"
   var mq = window.matchMedia("(min-width: 850px)")
 
   var landscape = window.innerWidth > window.innerHeight
-
-  const brycepKit = document.querySelector('.eng-kit-brycep')
-  const hyelosKit = document.querySelector('.eng-kit-hyelos')
 
   let status;
   try {
@@ -15,6 +32,7 @@ const homeInit = async() => {
     return
   }
 
+  textSequence(0, ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'])
 
   if (mq.matches && landscape)  {
     
@@ -106,61 +124,6 @@ const homeInit = async() => {
     });
     landing3.addEventListener("click", function() {
       slide3Click();
-    });  
-
-  const brycepButton = document.querySelector('#eng-kit-btn-brycep');
-  const hyelosButton = document.querySelector('#eng-kit-btn-hyelos');
-
-  let activeSlide = brycepKit;
-  let activeButton = brycepButton;
-
-  window.addEventListener("scroll", function () {
-    var scrollPos = this.scrollY;
-    if (scrollPos > 380) {
-      activeSlide.style.display = 'flex';
-    } else if (scrollPos == 0) {
-      activeSlide.style.display = 'none';
-    }
-  });
-  
-  brycepButton.addEventListener("click", function() {
-    activeSlide.style.display = 'none';
-    brycepKit.style.display = 'flex';
-    activeSlide = brycepKit;
-
-    activeButton.classList.remove('eng-kit-btn-focus');
-    brycepButton.classList.add('eng-kit-btn-focus');
-    activeButton = brycepButton;
-  });
-
-  hyelosButton.addEventListener("click", function() {
-    activeSlide.style.display = 'none';
-    hyelosKit.style.display = 'flex';
-    activeSlide = hyelosKit;
-
-    activeButton.classList.remove('eng-kit-btn-focus');
-    hyelosButton.classList.add('eng-kit-btn-focus');
-    activeButton = hyelosButton;
-  });
-
-  } else {
-
-    window.addEventListener("scroll", function (event) {
-      var scroll = this.scrollY;
-      if (scroll > 350) {
-        brycepKit.classList.add('eng-kit-load');
-        hyelosKit.classList.add('eng-kit-load');
-      } else if (scroll == 0) {
-        brycepKit.classList.remove('eng-kit-load');
-        hyelosKit.classList.remove('eng-kit-load');
-      }
-    });
-
-    var swiper = new Swiper('.swiper-container', {
-      pagination: {
-        el: '.swiper-pagination',
-        dynamicBullets: true,
-      },
     });
 
   }
