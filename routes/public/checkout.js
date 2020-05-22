@@ -21,7 +21,6 @@ MODELS
 
 const Account = require("../../model/Account.js");
 const Customer = require("../../model/Customer.js");
-const Discount = require("../../model/Discount.js");
 const Order = require("../../model/Order.js");
 const Make = require("../../model/Make.js");
 
@@ -71,13 +70,6 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   let order;
-  // Get customer details to update saved address
-  let customer;
-  try {
-    customer = await Customer.findOne({ accountId });
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
   // Find an Active Order
   try {
     order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
@@ -108,21 +100,18 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
     };
   }
   // Makes and Items
-  let makesAwaitingQuote;
-  let makesCheckout;
   try {
-    [makesAwaitingQuote, makesCheckout] = await Promise.all([
-      orderMakesAwaitingQuoteGet(accountId),
-      orderMakesCheckoutGet(accountId)
-    ]);
+    await order.updateMakes();
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
-  order.makes.awaitingQuote = makesAwaitingQuote;
-  order.makes.checkout = makesCheckout;
   // Update the Recreate the Discount Array
   // Set saved shipping address
-  order.shipping.address.saved = customer.address;
+  try {
+    await order.updateSavedAddress();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
   // Save and Send Response
   let savedOrder;
   try {
@@ -889,24 +878,6 @@ const orderMakesCheckoutGet = accountId => {
 };
 
 const orderMakesCheckoutSort = (makeOne, makeTwo) => { };
-
-const orderItemsCheckoutGet = accountId => {
-  return new Promise(async (resolve, reject) => {
-    let items;
-
-    try {
-      items = await Item.findByAccountIdAndStatus(accountId, "checkout");
-    } catch (error) {
-      reject(error);
-    }
-
-    // items.sort(orderItemsCheckoutSort);
-
-    resolve(items);
-  });
-};
-
-const orderItemsCheckoutSort = (itemOne, itemTwo) => { };
 
 // THE FUNCTION TO FETCH THE ARRAY OF 3D PRINT ORDERS DEPENDING ON THE STATUS
 

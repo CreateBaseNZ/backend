@@ -16,6 +16,7 @@ MODELS
 =========================================================================================*/
 
 const Transaction = require("./Transaction.js");
+const Customer = require("./Customer.js");
 const Make = require("./Make.js");
 const Discount = require("./Discount.js");
 
@@ -268,6 +269,31 @@ OrderSchema.statics.findOneByAccoundIdAndStatus = function (accountId, status) {
 METHODS - DOCUMENT
 =========================================================================================*/
 
+// @FUNC  updateStatus
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+OrderSchema.methods.updateStatus = function (status) {
+  return new Promise(async (resolve, reject) => {
+    // DECLARE AND INITIALISE VARIABLES
+    const statuses = ["created", "checkedout", "validated", "built",
+      "shipped", "arrived", "reviewed", "completed", "cancelled"];
+    // VALIDATION
+    if (statuses.indexOf(status) === -1) {
+      return reject("invalid status");
+    }
+    // SET THE ORDER'S RELEVANT PROPERTIES
+    // Date
+    const date = moment().tz("Pacific/Auckland").format();
+    this.date[status] = date;
+    this.date.modified = date;
+    // Status
+    this.status = status;
+    // RESOLVE PROMISE
+    return resolve("order updated");
+  });
+};
+
 // @FUNC  transact
 // @TYPE  METHODS
 // @DESC  Creates the transaction instance and update the order's transaction-related
@@ -434,30 +460,54 @@ OrderSchema.methods.amount = function () {
   })
 }
 
-// @FUNC  updateStatus
+/* ----------------------------------------------------------------------------------------
+UPDATE
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  updateMakes
 // @TYPE  METHODS
-// @DESC
-// @ARGU
-OrderSchema.methods.updateStatus = function (status) {
+// @DESC  
+// @ARGU  
+OrderSchema.methods.updateMakes = function () {
   return new Promise(async (resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    const statuses = ["created", "checkedout", "validated", "built",
-      "shipped", "arrived", "reviewed", "completed", "cancelled"];
-    // VALIDATION
-    if (statuses.indexOf(status) === -1) {
-      return reject("invalid status");
+    // FETCH THE MAKES OF THE OWNER OF THE ORDER
+    let makes;
+    try {
+      makes = await Make.find({ accountId: this.accountId });
+    } catch (error) {
+      return reject(error);
     }
-    // SET THE ORDER'S RELEVANT PROPERTIES
-    // Date
-    const date = moment().tz("Pacific/Auckland").format();
-    this.date[status] = date;
-    this.date.modified = date;
-    // Status
-    this.status = status;
-    // RESOLVE PROMISE
-    return resolve("order updated");
-  });
-};
+    // UPDATE ORDER'S MAKES
+    this.makes.awaitingQuote = makes.filter(make => make.status === "awaitingQuote");
+    this.makes.checkout = makes.filter(make => make.status === "checkout");
+    // RETURN SUCCESS RESPONSE
+    return resolve();
+  })
+}
+
+// @FUNC  updateSavedAddress
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.updateSavedAddress = function () {
+  return new Promise(async (resolve, reject) => {
+    // FETCH THE ORDER OWNER'S DETAIL
+    let customer;
+    try {
+      customer = await Customer.find({ accountId: this.accountId });
+    } catch (error) {
+      return reject(error);
+    }
+    // UPDATE ORDER'S SAVED ADDRESS
+    this.shipping.address.saved = customer.address;
+    // RETURN SUCCESS RESPONSE
+    return resolve();
+  })
+}
+
+/* ----------------------------------------------------------------------------------------
+VALIDATION
+---------------------------------------------------------------------------------------- */
 
 // @FUNC  saveAddress
 // @TYPE  METHODS
