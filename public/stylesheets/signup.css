@@ -572,7 +572,81 @@ Carl's Button Design (End)
   display: none;
 }
 
+#mobile-notif-wrap {
+  margin-top: 64px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 990;
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  -webkit-transition: height 0.2s ease-out;
+  transition: height 0.2s ease-out;
+}
+
+.subbed-notif, .alreadysubbed-notif, .project-notif {
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: white;
+  padding: 2rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  font-size: 0.8em;
+  color: #4e4ed6;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+  box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
+  border-radius: 0.2em;
+}
+
+.subbed-notif .msg-wrap, .alreadysubbed-notif .msg-wrap, .project-notif .msg-wrap {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+}
+
+.subbed-notif .msg-wrap i, .alreadysubbed-notif .msg-wrap i, .project-notif .msg-wrap i {
+  margin-right: 1em;
+}
+
+.subbed-notif .msg-wrap .far, .subbed-notif .msg-wrap .fas, .alreadysubbed-notif .msg-wrap .far, .alreadysubbed-notif .msg-wrap .fas, .project-notif .msg-wrap .far, .project-notif .msg-wrap .fas {
+  font-size: 1.5em;
+}
+
+.subbed-notif .msg-wrap .fab, .alreadysubbed-notif .msg-wrap .fab, .project-notif .msg-wrap .fab {
+  font-size: 1.5em;
+}
+
+.subbed-notif .msg-wrap p, .alreadysubbed-notif .msg-wrap p, .project-notif .msg-wrap p {
+  height: 1.2rem;
+  line-height: 1.2rem;
+}
+
 @media only screen and (min-width: 53em) {
+  #mobile-notif-wrap {
+    display: none;
+  }
   #notification-wrap {
     bottom: 7%;
     right: 4%;
@@ -614,11 +688,14 @@ Carl's Button Design (End)
     padding: 2rem;
     width: 100%;
     margin-top: 3rem;
+    margin-bottom: 0;
     font-size: 0.8em;
     color: #4e4ed6;
     -webkit-box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
     box-shadow: 0px 0px 10px 0px rgba(89, 80, 215, 0.25);
     border-radius: 0.2em;
+    transform: translateX(300%);
+    -webkit-transform: translateX(300%);
   }
   #notification-wrap .subbed-notif .msg-wrap, #notification-wrap .alreadysubbed-notif .msg-wrap, #notification-wrap .project-notif .msg-wrap {
     -webkit-box-align: start;
@@ -641,6 +718,31 @@ Carl's Button Design (End)
   #notification-wrap .subbed-notif .msg-wrap p, #notification-wrap .alreadysubbed-notif .msg-wrap p, #notification-wrap .project-notif .msg-wrap p {
     height: 1.2rem;
     line-height: 1.2rem;
+  }
+  #notification-wrap .subbed-notif.slide-in, #notification-wrap .alreadysubbed-notif.slide-in, #notification-wrap .project-notif.slide-in {
+    -webkit-animation: slide-in 0.5s;
+            animation: slide-in 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+  }
+  @keyframes slide-in {
+    0% {
+      -webkit-transform: translateX(300%);
+              transform: translateX(300%);
+    }
+    100% {
+      -webkit-transform: translateX(0%);
+              transform: translateX(0%);
+    }
+  }
+  @-webkit-keyframes slide-in {
+    0% {
+      -webkit-transform: translateX(300%);
+    }
+    100% {
+      -webkit-transform: translateX(0%);
+    }
   }
 }
 

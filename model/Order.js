@@ -16,6 +16,8 @@ MODELS
 =========================================================================================*/
 
 const Transaction = require("./Transaction.js");
+const Make = require("./Make.js");
+const Discount = require("./Discount.js");
 
 /*=========================================================================================
 SUB MODELS
@@ -281,31 +283,156 @@ AMOUNT CALCULATION
 // @TYPE  METHODS
 // @DESC  
 // @ARGU  
-OrderSchema.methods.amountMakes = function () { }
+OrderSchema.methods.amountMakes = function () {
+  return new Promise(async (resolve, reject) => {
+    // FETCH THE ORDER'S MAKES
+    let makes = [];
+    try {
+      makes = await Make.find({ accountId: this.accountId, _id: this.makes.checkout });
+    } catch (error) {
+      return reject(error);
+    }
+    // CONSTRUCT THE AMOUNT OBJECT
+    let amount = { status: "", total: 0 };
+    amount.status = (makes.length ? "valid" : "invalid");
+    // Calculate total amount
+    for (let i = 0; i < makes.length; i++) {
+      const make = makes[i];
+      amount.total += (make.quantity * make.price);
+    }
+    // RETURN SUCCESS RESPONSE
+    return resolve(amount);
+  })
+}
 
 // @FUNC  amountManufacturing
 // @TYPE  METHODS
 // @DESC  
 // @ARGU  
-OrderSchema.methods.amountManufacturing = function () { }
+OrderSchema.methods.amountManufacturing = function () {
+  // CREATE THE AMOUNT OBJECT
+  let amount = { status: "", rate: 0, total: 0 };
+  switch (this.manufacturingSpeed) {
+    case "normal":
+      amount.status = "valid";
+      break;
+    case "urgent":
+      amount.status = "valid";
+      amount.rate = 0.3;
+      break;
+    default:
+      amount.status = "invalid";
+  }
+  // RETURN SUCCESS RESPONSE
+  return amount;
+}
 
 // @FUNC  amountDiscount
 // @TYPE  METHODS
 // @DESC  
 // @ARGU  
-OrderSchema.methods.amountDiscount = function () { }
+OrderSchema.methods.amountDiscount = function () {
+  return new Promise(async (resolve, reject) => {
+    // FETCH THE ORDER'S DISCOUNTS
+    let discounts = [];
+    try {
+      discounts = await Discount.find({ _id: this.discounts });
+    } catch (error) {
+      return reject(error);
+    }
+    // CONSTRUCT THE AMOUNT OBJECT
+    let amount = { status: "valid", rate: 0, total: 0 };
+    for (let i = 0; i < discounts.length; i++) {
+      const discount = discounts[i];
+      amount.rate += discount.rate;
+    }
+    if (amount.rate > 0.6) amount.rate = 0.6;
+    // RETURN SUCCESS RESPONSE
+    return resolve(amount);
+  })
+}
+
+// @FUNC  amountGST
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.amountGST = function () {
+  // CONSTRUCT THE AMOUNT OBJECT
+  const amount = { status: "valid", rate: 0.15, total: 0 };
+  // RETURN SUCCESS RESPONSE
+  return amount;
+}
 
 // @FUNC  amountShipping
 // @TYPE  METHODS
 // @DESC  
 // @ARGU  
-OrderSchema.methods.amountShipping = function () { }
+OrderSchema.methods.amountShipping = function () {
+  // CREATE THE AMOUNT OBJECT
+  let amount = { status: "", total: 0 };
+  switch (this.shipping.method) {
+    case "pickup":
+      amount.status = "valid";
+      break;
+    case "tracked":
+      amount.status = "valid";
+      amount.total = 6.5;
+      break;
+    case "courier":
+      amount.status = "valid";
+      amount.total = 8;
+      break;
+    default:
+      amount.status = "invalid";
+  }
+  // RETURN SUCCESS RESPONSE
+  return amount;
+}
 
 // @FUNC  amount
 // @TYPE  METHODS
 // @DESC  
 // @ARGU  
-OrderSchema.methods.amount = function () { }
+OrderSchema.methods.amount = function () {
+  return new Promise(async (resolve, reject) => {
+    // DECLARE AND INITIALISE VARIABLES
+    // Make
+    let makes;
+    try {
+      makes = await this.amountMakes();
+    } catch (error) {
+      return reject(error);
+    }
+    // Manufacturing
+    let manufacturing = this.amountManufacturing();
+    // Discount
+    let discount;
+    try {
+      discount = await this.amountDiscount();
+    } catch (error) {
+      reject(error);
+    }
+    // GST
+    let gst = this.amountGST();
+    // Shipping
+    const shipping = this.amountShipping();
+    // CREATE THE AMOUNT OBJECT
+    let total = { status: "", total: 0 };
+    if (manufacturing.status === "valid") {
+      manufacturing.total = makes.total * manufacturing.rate;
+      discount.total = (makes.total + manufacturing.total) * discount.rate;
+      gst.total = ((makes.total + manufacturing.total) - discount.total) * gst.rate;
+      total.total = (((makes.total + manufacturing.total) - discount.total) + gst.total) + shipping.total;
+    } else {
+      discount.status = "invalid";
+      gst.status = "invalid";
+      total.status = "invalid";
+    }
+    const amount = { makes, manufacturing, discount, gst, shipping, total };
+    // RETURN SUCCESS RESPONSE
+    return resolve(amount);
+  })
+}
 
 // @FUNC  updateStatus
 // @TYPE  METHODS
