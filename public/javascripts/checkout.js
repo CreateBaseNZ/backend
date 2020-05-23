@@ -7,8 +7,8 @@ VARIABLES
 =========================================================================================*/
 
 // Track the current page the user is on
-let numberOfPrints;
-let numberOfDiscounts;
+let numberOfPrints = 0;
+let numberOfDiscounts = 0;
 
 /*-----------------------------------------------------------------------------------------
 ELEMENTS
@@ -836,12 +836,12 @@ checkout.cart.resize = () => {
   // DESKTOP HEIGHT CALCULATION
   const heading = 6;
   const subHeading = 6 * 3;
-  const prints = numberOfPrints ? 10 * numberOfPrints : 10;
+  const prints = (numberOfPrints ? 10 * numberOfPrints : 10);
   const discountInput = 8;
   const discounts = numberOfDiscounts * 1.4;
   const manufacturingSpeed = 3 * 2;
   const buttons = 12;
-  const extra = 2 * 3; // Padding for Makes
+  const extra = (2 * 3) + 1; // Padding for Makes
   const total = heading + subHeading + prints + discountInput + discounts +
     manufacturingSpeed + buttons + extra;
   // SET THE CART PAGE SIZE

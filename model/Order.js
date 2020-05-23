@@ -271,6 +271,11 @@ OrderSchema.statics.transaction = function (object) {
     } catch (error) {
       return reject(error);
     }
+    // VALIDATE THE ORDER
+    const validity = order.validateAll();
+    if ((validity.cart && validity.shipping && validity.payment)) {
+      return reject("order is not valid");
+    }
     // UPDATE CUSTOMER ADDRESS (if required)
     if (order.shipping.address.option === "new" && order.shipping.address.save) {
       try {
@@ -679,21 +684,16 @@ OrderSchema.methods.update = function (updates) {
 VALIDATION
 ---------------------------------------------------------------------------------------- */
 
-
-
 // @FUNC  validateCart
 // @TYPE  METHODS
 // @DESC
 // @ARGU
 OrderSchema.methods.validateCart = function () {
-  // Check if there are prints or items ready for checkout
-  if (!(this.makes.checkout.length)) {
-    return false;
-  }
-  if (!this.manufacturingSpeed) {
-    return false;
-  }
-
+  // MAKES
+  if (!(this.makes.checkout.length)) return false;
+  // MANUFACTURING SPEED
+  if (!this.manufacturingSpeed) return false;
+  // SUCCESS RESPONSE
   return true;
 };
 
@@ -702,98 +702,63 @@ OrderSchema.methods.validateCart = function () {
 // @DESC
 // @ARGU
 OrderSchema.methods.validateShipping = function () {
-  // Check if a shipping option is provided
-  if (!this.shipping.address.option) {
-    return false;
-  }
-  // Check if a shipping address is provided
+  // ADDRESS OPTION
+  if (!this.shipping.address.option) return false;
+  // ADDRESSES
   if (this.shipping.address.option === "saved") {
-    // Saved Address
     const data = checkAddressValidity(this.shipping.address.saved);
-    if (data.status === "failed") {
-      return false;
-    }
+    if (data.status === "failed") return false;
   } else if (this.shipping.address.option === "new") {
-    // New Address
     const data = checkAddressValidity(this.shipping.address.new);
-    if (data.status === "failed") {
-      return false;
-    }
+    if (data.status === "failed") return false;
   }
-  // Check if a shipping method is provided
-  if (!this.shipping.method) {
-    return false;
-  }
+  // METHOD
+  if (!this.shipping.method) return false;
+  // SUCCESS RESPONSE
   return true;
 };
 
-// @FUNC  validatePayment
+// @FUNC  validate
 // @TYPE  METHODS
 // @DESC
 // @ARGU
-OrderSchema.methods.validatePayment = function () {
-  return true;
+OrderSchema.methods.validateAll = function () {
+  const cart = this.validateCart();
+  const shipping = this.validateShipping();
+  return { cart, shipping: (cart && shipping), payment: (cart && shipping) };
 };
-
-
 
 /*=========================================================================================
 FUNCTIONS
 =========================================================================================*/
 
 const checkAddressValidity = (address) => {
-  // VALIDATION - STREET NAME
+  // STREET NAME
   if (!address.street.name) {
-    // Check if there is no street name provided
-    return {
-      status: "failed",
-      message: "no street name",
-    };
+    return { status: "failed", content: "no street name" };
   }
-  // VALIDATION - STREET NUMBER
+  // STREET NUMBER
   if (!address.street.number) {
-    // Check if there is no street number provided
-    return {
-      status: "failed",
-      message: "no street number",
-    };
+    return { status: "failed", content: "no street number" };
   }
-  // VALIDATION - SUBURB
+  // SUBURB
   if (!address.suburb) {
-    // Check if there is no suburb provided
-    return {
-      status: "failed",
-      message: "no suburb",
-    };
+    return { status: "failed", content: "no suburb" };
   }
-  // VALIDATION - CITY
+  // CITY
   if (!address.city) {
-    // Check if there is no city provided
-    return {
-      status: "failed",
-      message: "no city",
-    };
+    return { status: "failed", content: "no city" };
   }
-  // VALIDATION - POSTCODE
+  // POSTCODE
   if (!address.postcode) {
-    // Check if there is no postcode provided
-    return {
-      status: "failed",
-      message: "no postcode",
-    };
+    return { status: "failed", content: "no postcode" };
   }
-  // VALIDATION - COUNTRY
+  // COUNTRY
   if (!address.country) {
-    return {
-      status: "failed",
-      message: "no country",
-    };
+    return { status: "failed", content: "no country" };
   }
-  // All Valid
-  return {
-    status: "success",
-    message: "valid address",
-  };
+  // SUCCESS RESPONSE
+  return { status: "success", content: "valid address" };
 };
 
 const price = value => (Math.round(Number(value) * 100)) / 100;
