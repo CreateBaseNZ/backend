@@ -280,15 +280,45 @@ OrderSchema.statics.findOneByAccoundIdAndStatus = function (accountId, status) {
   });
 };
 
-// @FUNC  bankTransfer
+// @FUNC  transaction
 // @TYPE  STATICS
 // @DESC  
 // @ARGU  
-
-// @FUNC  cardPayment
-// @TYPE  STATICS
-// @DESC  
-// @ARGU  
+OrderSchema.statics.transaction = function (object) {
+  return new Promise(async (resolve, reject) => {
+    let order;
+    // Fetch existing active order
+    try {
+      order = await this.find(object);
+    } catch (error) {
+      return reject(error);
+    }
+    // UPDATE CUSTOMER ADDRESS (if required)
+    if (order.shipping.address.option === "new" && order.shipping.address.save) {
+      try {
+        await order.saveAddress();
+      } catch (error) {
+        return reject(error);
+      }
+    }
+    // PROCESS TRANSACTION - CREATE TRANSACTION INSTANCE AND UPDATE MAKES
+    try {
+      await order.transact();
+    } catch (error) {
+      return reject(error);
+    }
+    // Update the order's status
+    order.updateStatus("checkedout");
+    // Save the updated order
+    try {
+      await order.save();
+    } catch (error) {
+      return reject(error);
+    }
+    // SUCCESS RESPONSE
+    return resolve();
+  })
+}
 
 /*=========================================================================================
 METHODS - DOCUMENT
@@ -317,12 +347,105 @@ OrderSchema.methods.updateStatus = function (status) {
   return;
 };
 
+// @FUNC  saveAddress
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+OrderSchema.methods.saveAddress = function () {
+  return new Promise(async (resolve, reject) => {
+    // FETCH THE ORDER OWNER'S DETAILS
+    let customer;
+    try {
+      customer = await Customer.find({ accountId: this.accountId });
+    } catch (error) {
+      return reject(error);
+    }
+    // UPDATE ADDRESS
+    customer.address = this.shipping.address.saved;
+    // SAVE CUSTOMER
+    try {
+      await customer.save();
+    } catch (error) {
+      return reject(error);
+    }
+    // SUCCESS RESPONSE
+    return resolve();
+  })
+};
+
+/* ----------------------------------------------------------------------------------------
+TRANSACT
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  transactMakes
+// @TYPE  METHODS
+// @DESC  Creates the transaction instance and update the order's transaction-related
+//        properties
+// @ARGU  
+OrderSchema.methods.transactMakes = function () {
+  return new Promise(async (resolve, reject) => {
+    // FETCH MAKES
+    let makes = [];
+    try {
+      makes = await Make.find({ accountId, _id: this.makes.checkout });
+    } catch (error) {
+      return reject(error);
+    }
+    // Update each make and prepare promises
+    let promises = [];
+    for (let i = 0; i < makes.length; i++) {
+      let make = makes[i];
+      make.updateStatus("purchased");
+      promises.push(make.save());
+    }
+    // Save all makes
+    try {
+      await Promise.all(promises);
+    } catch (error) {
+      return reject(error);
+    }
+    // SUCCESS RESPONSE
+    return resolve();
+  })
+}
+
 // @FUNC  transact
 // @TYPE  METHODS
 // @DESC  Creates the transaction instance and update the order's transaction-related
 //        properties
 // @ARGU  
-OrderSchema.methods.transact = function () { }
+OrderSchema.methods.transact = function () {
+  return new Promise(async (resolve, reject) => {
+    // DECLARE AND INITIALISE VARIABLES
+    const type = this.payment.method;
+    const sender = this.accountId;
+    // Amount details
+    let metadata;
+    try {
+      metadata = await this.amount();
+    } catch (error) {
+      return reject(error);
+    }
+    const amount = metadata.total.total;
+    // CREATE THE TRANSACTION INSTANCE
+    let transaction;
+    try {
+      transaction = await Transaction.createCheckout(type, sender, amount, metadata);
+    } catch (error) {
+      return reject(error);
+    }
+    // UPDATE THE ORDER'S TRANSACTION DETAILS
+    this.payment.transaction = transaction._id;
+    // UPDATE MAKES
+    try {
+      await this.transactMakes();
+    } catch (error) {
+      return reject(error);
+    }
+    // SUCCESS RESPONSE
+    return resolve();
+  })
+}
 
 /* ----------------------------------------------------------------------------------------
 AMOUNT CALCULATION
@@ -547,11 +670,7 @@ OrderSchema.methods.updateSavedAddress = function () {
 VALIDATION
 ---------------------------------------------------------------------------------------- */
 
-// @FUNC  saveAddress
-// @TYPE  METHODS
-// @DESC
-// @ARGU
-OrderSchema.methods.saveAddress = function () { };
+
 
 // @FUNC  validateCart
 // @TYPE  METHODS

@@ -227,26 +227,6 @@ CustomerSchema.methods.update = function (customer) {
   });
 };
 
-// @FUNC  updateAddress
-// @TYPE  METHODS
-// @DESC
-// @ARGU  address - object -
-CustomerSchema.methods.updateAddress = function (address) {
-  return new Promise(async (resolve, reject) => {
-    this.address = address;
-    let savedCustomer;
-    try {
-      savedCustomer = await this.save();
-    } catch (error) {
-      reject({
-        status: "failed",
-        message: error,
-      });
-    }
-    resolve(savedCustomer);
-  });
-};
-
 /*=========================================================================================
 EXPORT CUSTOMER MODEL
 =========================================================================================*/

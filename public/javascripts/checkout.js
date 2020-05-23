@@ -66,9 +66,7 @@ let checkout = {
   },
   cart: {
     prints: {
-      fetch: undefined, // checkout.cart.prints.fetch
       insert: undefined, // checkout.cart.prints.insert
-      load: undefined, // checkout.cart.prints.load
       resize: undefined // checkout.cart.prints.resize
     },
     print: {
@@ -319,18 +317,9 @@ checkout.load = async () => {
 checkout.listener = () => {
   checkout.element.heading.cart.addEventListener("click", checkout.cart.show);
   checkout.element.navigation.cart.addEventListener("click", checkout.cart.show);
-  checkout.element.button.shipping.back.addEventListener(
-    "click",
-    checkout.cart.show
-  );
-  checkout.element.button.payment.bank.back.addEventListener(
-    "click",
-    checkout.shipping.show
-  );
-  checkout.element.button.payment.card.back.addEventListener(
-    "click",
-    checkout.shipping.show
-  );
+  checkout.element.button.shipping.back.addEventListener("click", checkout.cart.show);
+  checkout.element.button.payment.bank.back.addEventListener("click", checkout.shipping.show);
+  checkout.element.button.payment.card.back.addEventListener("click", checkout.shipping.show);
   checkout.element.windowSize.addListener(checkout.cart.prints.resize);
   checkout.element.windowSize.addListener(checkout.cart.resize);
   checkout.element.windowSize.addListener(checkout.shipping.resize);
@@ -503,33 +492,6 @@ checkout.amount.load = async (amount) => {
 CART
 -----------------------------------------------------------------------------------------*/
 
-// @FUNC  checkout.cart.prints.fetch
-// @TYPE  PROMISE ASYNCHRONOUS
-// @DESC
-// @ARGU
-checkout.cart.prints.fetch = () => {
-  return new Promise(async (resolve, reject) => {
-    let awaitingQuote = [];
-    let checkout = [];
-
-    try {
-      awaitingQuote = (
-        await axios.post("/customer/orders/print/awaiting-quote")
-      )["data"];
-    } catch (error) {
-      reject(error);
-    }
-
-    try {
-      checkout = (await axios.post("/customer/orders/print/checkout"))["data"];
-    } catch (error) {
-      reject(error);
-    }
-
-    resolve({ awaitingQuote, checkout });
-  });
-};
-
 // @FUNC  checkout.cart.prints.insert
 // @TYPE  SIMPLE
 // @DESC
@@ -560,22 +522,6 @@ checkout.cart.prints.insert = object => {
   checkout.cart.resize();
 };
 
-// @FUNC  checkout.cart.prints.load
-// @TYPE  SIMPLE
-// @DESC
-// @ARGU
-checkout.cart.prints.load = async () => {
-  let object;
-
-  try {
-    object = await checkout.cart.prints.fetch();
-  } catch (error) {
-    return error;
-  }
-
-  checkout.cart.prints.insert(object);
-};
-
 // @FUNC  checkout.cart.prints.resize
 // @TYPE
 // @DESC
@@ -583,15 +529,13 @@ checkout.cart.prints.load = async () => {
 checkout.cart.prints.resize = () => {
   if (checkout.element.windowSize.matches) {
     if (numberOfPrints) {
-      document.querySelector("#checkout-prints").style = `height: ${10 *
-        numberOfPrints}vmax`;
+      document.querySelector("#checkout-prints").style = `height: ${10 * numberOfPrints}vmax`;
     } else {
       document.querySelector("#checkout-prints").style = `height: 10vmax`;
     }
   } else {
     if (numberOfPrints) {
-      document.querySelector("#checkout-prints").style = `height: ${16 *
-        numberOfPrints}vmax`;
+      document.querySelector("#checkout-prints").style = `height: ${16 * numberOfPrints}vmax`;
     } else {
       document.querySelector("#checkout-prints").style = `height: 16vmax`;
     }
@@ -703,18 +647,15 @@ checkout.cart.print.delete = async printId => {
   checkout.cart.prints.insert();
   // Delete the 3D print from the database
   checkout.load.load("deleting 3D print");
-  let object;
+  let data;
   try {
-    object = (await axios.post("/checkout/order/delete/print", { printId }))[
-      "data"
-    ]["data"];
+    data = (await axios.post("/checkout/order/delete/print", { printId }))["data"];
   } catch (error) {
-    return { status: "failed", contents: error };
+    return console.log(error);
   }
   checkout.load.success("deleted");
   // Perform Validation
-  checkout.validate(object.validity);
-  return;
+  return checkout.validate(data.content);
 };
 
 // @FUNC  checkout.cart.discount.add
@@ -1407,21 +1348,13 @@ PAYMENT
 // @DESC
 // @ARGU
 checkout.payment.stripe.initialise = () => {
-  checkout.payment.stripe.element.stripe = Stripe(
-    "pk_test_cyWnxjuNQGbF42g88sLseXpJ003JGn4TCC"
-  );
+  checkout.payment.stripe.element.stripe = Stripe("pk_test_cyWnxjuNQGbF42g88sLseXpJ003JGn4TCC");
   checkout.payment.stripe.element.elements = checkout.payment.stripe.element.stripe.elements();
-  checkout.payment.stripe.element.card.number = checkout.payment.stripe.element.elements.create(
-    "cardNumber"
-  );
+  checkout.payment.stripe.element.card.number = checkout.payment.stripe.element.elements.create("cardNumber");
   checkout.payment.stripe.element.card.number.mount("#checkout-card-num");
-  checkout.payment.stripe.element.card.expiry = checkout.payment.stripe.element.elements.create(
-    "cardExpiry"
-  );
+  checkout.payment.stripe.element.card.expiry = checkout.payment.stripe.element.elements.create("cardExpiry");
   checkout.payment.stripe.element.card.expiry.mount("#checkout-card-exp");
-  checkout.payment.stripe.element.card.cvc = checkout.payment.stripe.element.elements.create(
-    "cardCvc"
-  );
+  checkout.payment.stripe.element.card.cvc = checkout.payment.stripe.element.elements.create("cardCvc");
   checkout.payment.stripe.element.card.cvc.mount("#checkout-card-cvc");
   // ERROR HANDLER
   checkout.payment.stripe.errorHandler();

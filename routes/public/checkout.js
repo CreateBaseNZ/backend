@@ -87,7 +87,7 @@ router.post("/checkout/order", restrictedPages, async (req, res) => {
   }
   // Create a new order if there is no order found
   if (!order) order = Order.create();
-  // Makes and Items
+  // Update makes
   let makes;
   try {
     makes = await order.updateMakes();
@@ -407,10 +407,7 @@ router.post("/checkout/order/validate/payment", restrictedPages, async (req, res
   } catch (error) {
     return res.send({ status: "failed", data: error });
   }
-  valid =
-    order.validateCart() &&
-    order.validateShipping() &&
-    order.validatePayment();
+  valid = (order.validateCart() && order.validateShipping() && order.validatePayment());
   return res.send({ status: "success", data: valid });
 });
 
@@ -420,53 +417,49 @@ router.post("/checkout/order/validate/payment", restrictedPages, async (req, res
 router.post("/checkout/order/delete/print", restrictedPages, async (req, res) => {
   // Delete the make document and the corresponding file from the database
   const accountId = mongoose.Types.ObjectId(req.user._id);
+  const sessionId = req.sessionID;
   const makeId = mongoose.Types.ObjectId(req.body.printId);
+  // DELETE THE MAKE
   let deletedMake;
   try {
     deletedMake = await Make.deleteByIdAndAccountId(makeId, accountId);
   } catch (error) {
     // If error was encountered, send a failed status
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
-  // Update the order
+  // UPDATE THE ORDER INSTANCE
   let order;
-  // Find an Active Order
-  try {
-    order = await Order.findOneByAccoundIdAndStatus(accountId, "created");
-  } catch (error) {
-    return res.send({ status: "failed", data: error });
+  // Create the find object
+  let object;
+  if (accountId) {
+    object = { accountId, status: "created" };
+  } else {
+    object = { sessionId, status: "created" };
   }
-  // Update the Make
-  let makesAwaitingQuote;
-  let makesCheckout;
+  // Fetch existing active order
   try {
-    [makesAwaitingQuote, makesCheckout] = await Promise.all([
-      orderMakesAwaitingQuoteGet(accountId),
-      orderMakesCheckoutGet(accountId)
-    ]);
+    order = await Order.find(object);
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
-  order.makes.awaitingQuote = makesAwaitingQuote;
-  order.makes.checkout = makesCheckout;
+  // Update makes
+  try {
+    await order.updateMakes();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
   // Save the make
-  let savedOrder;
   try {
-    savedOrder = await order.save();
+    await order.save();
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
   // Validate the checkout
   validity = {
-    cart: savedOrder.validateCart(),
-    shipping: savedOrder.validateShipping(),
-    payment: savedOrder.validatePayment()
+    cart: order.validateCart(), shipping: order.validateShipping(), payment: order.validatePayment()
   };
   // Send back a success status
-  return res.send({
-    status: "success",
-    data: { order: savedOrder, validity }
-  });
+  return res.send({ status: "success", content: validity });
 });
 
 // @route     GET /checkout/order-amount
@@ -502,95 +495,26 @@ router.get("/checkout/order-amount", restrictedPages, async (req, res) => {
 //            the customer's order.
 // @access    Private
 router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
-  // Initialise and Declare Variables
-  const account = req.user._id;
-  const orderStatus = "created";
-  // Get the active order
+  // DECLARE VARIABLES
+  const accountId = req.user._id;
+  const sessionId = req.sessionID;
+  // BUILD THE ORDER
   let order;
+  // Create the find object
+  let object;
+  if (accountId) {
+    object = { accountId, status: "created" };
+  } else {
+    object = { sessionId, status: "created" };
+  }
+  // Fetch existing active order
   try {
-    order = await Order.findOneByAccoundIdAndStatus(account, orderStatus);
+    order = await Order.transaction(object);
   } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Get the customer details
-  let customer;
-  try {
-    customer = await Customer.findByAccountId(account);
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Update the customer's address
-  // Check if the order's shipping address type is new
-  // and if the address save option is set to true
-  if (order.shipping.address.option === "new" && order.shipping.address.save) {
-    customer.address = order.shipping.address.new;
-  }
-  // Update the user's wallet
-  // Calculate Order Amounts 
-  let amount;
-  try {
-    amount = await order.amount();
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  const creditRate = 0.05;
-  const rawPayment = amount.total.total / (1 + creditRate);
-  const payment = (Math.ceil(rawPayment * 100)) / 100;
-  // TO DO.....
-  // Create transaction instances
-  // TO DO.....
-  // Save customer updates
-  try {
-    await customer.save();
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Update the makes' statuses
-  // Fetch the makes
-  let makes = [];
-  try {
-    makes = await Make.find({ accountId: account, _id: order.makes.checkout });
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Update each make and prepare promises
-  let promises = [];
-  for (let i = 0; i < makes.length; i++) {
-    let make = makes[i];
-    make.updateStatus("purchased");
-    promises.push(make.save());
-  }
-  // Save all makes
-  try {
-    await Promise.all(promises);
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Update Orders Payment Amount Object
-  order.payment.amount.makes = amount.makes;
-  order.payment.amount.manufacturing = amount.manufacturing.total;
-  order.payment.amount.discount = amount.discount.total;
-  order.payment.amount.gst = amount.gst.total;
-  order.payment.amount.shipping = amount.shipping.total;
-  order.payment.amount.total = amount.total.total;
-  // Update the order's status
-  order.updateStatus("checkedout");
-  // Save the updated order
-  try {
-    await order.save();
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
+    return res.send({ status: "failed", content: error });
   }
   // Return a success message
-  res.send({ status: "success", content: "bank transfer processed" });
-  return;
+  return res.send({ status: "success", content: "bank transfer processed" });
 });
 
 // @route     POST /checkout/card-payment
@@ -602,158 +526,41 @@ router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
   const paymentIntentId = req.body.paymentIntentId;
   // Check if client secret is provided
   if (!paymentIntentId) {
-    res.send({ status: "failed", content: "no payment intent ID provided" });
-    return;
+    return res.send({ status: "failed", content: "no payment intent ID provided" });
   }
   // Retrieve payment intent
   let paymentIntent;
   try {
     paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
   } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
+    return res.send({ status: "failed", content: error });
   }
   // Validate the success of the payment
   if (paymentIntent.status !== "succeeded") {
-    res.send({ status: "failed", content: "payment unsuccessful" });
-    return;
+    return res.send({ status: "failed", content: "payment unsuccessful" });
   }
   // UPDATE ORDER DETAILS
-  // Initialise and Declare Variables
-  const account = req.user._id;
-  const orderStatus = "created";
-  // Get the active order
+  // Declare variables
+  const accountId = req.user._id;
+  const sessionId = req.sessionID;
+  // Build the order
   let order;
+  // Create the find object
+  let object;
+  if (accountId) {
+    object = { accountId, status: "created" };
+  } else {
+    object = { sessionId, status: "created" };
+  }
+  // Fetch existing active order
   try {
-    order = await Order.findOneByAccoundIdAndStatus(account, orderStatus);
+    order = await Order.transaction(object);
   } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Update the customer's address
-  // Check if the order's shipping address type is new
-  // and if the address save option is set to true
-  if (order.shipping.address.option === "new" && order.shipping.address.save) {
-    // Get the customer details
-    let customer;
-    try {
-      customer = await Customer.findByAccountId(account);
-    } catch (error) {
-      res.send({ status: "failed", content: error });
-      return;
-    }
-    customer.address = order.shipping.address.new;
-    // Save customer updates
-    try {
-      await customer.save();
-    } catch (error) {
-      res.send({ status: "failed", content: error });
-      return;
-    }
-  }
-  // Update the makes' statuses
-  // Fetch the makes
-  let makes = [];
-  try {
-    makes = await Make.find({ accountId: account, _id: order.makes.checkout });
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Update each make and prepare promises
-  let promises = [];
-  for (let i = 0; i < makes.length; i++) {
-    let make = makes[i];
-    make.updateStatus("purchased");
-    promises.push(make.save());
-  }
-  // Save all makes
-  try {
-    await Promise.all(promises);
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // Calculate Order Amounts and Update Orders Payment Amount Object
-  let amount;
-  try {
-    amount = await order.amount();
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  order.payment.amount.makes = amount.makes;
-  order.payment.amount.manufacturing = amount.manufacturing.total;
-  order.payment.amount.discount = amount.discount.total;
-  order.payment.amount.gst = amount.gst.total;
-  order.payment.amount.shipping = amount.shipping.total;
-  order.payment.amount.total = amount.total.total;
-  // TO DO.....
-  // Create transaction instances
-  // TO DO.....
-  // Update the order's status
-  order.updateStatus("checkedout");
-  // Save the updated order
-  try {
-    await order.save();
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
+    return res.send({ status: "failed", content: error });
   }
   // Return a success message
-  res.send({ status: "success", content: "card payment processed" });
-  return;
+  return res.send({ status: "success", content: "card payment processed" });
 })
-
-// @route     GET /customer/orders/print/awaiting-quote
-// @desc      Get customer's 3D print orders that are awaiting quotation
-// @access    Private
-router.post("/customer/orders/print/awaiting-quote", restrictedPages, async (req, res) => {
-  let accountId = req.user._id;
-  let orders;
-  try {
-    orders = await getMakeOrders(accountId, "awaiting quote");
-  } catch {
-    throw error;
-  }
-  return res.send(orders);
-});
-
-// @route     GET /customer/orders/print/checkout
-// @desc      Get customer's 3D print orders that are ready for checkout
-// @access    Private
-router.post(
-  "/customer/orders/print/checkout",
-  restrictedPages,
-  async (req, res) => {
-    let accountId = req.user._id;
-    let orders;
-    try {
-      orders = await getMakeOrders(accountId, "checkout");
-    } catch {
-      throw error;
-    }
-    return res.send(orders);
-  }
-);
-
-// @route     GET /customer/orders/marketplace/checkout
-// @desc      Get customer's Marketplace orders that are ready for checkout
-// @access    Private
-router.post(
-  "/customer/orders/marketplace/checkout",
-  restrictedPages,
-  async (req, res) => {
-    let accountId = req.user._id;
-    let orders;
-    try {
-      orders = await getPurchaseOrders(accountId, "checkout");
-    } catch {
-      throw error;
-    }
-    return res.send(orders);
-  }
-);
 
 // @route     GET /orders/print/update
 // @desc      Update the quantity of the 3D print order
@@ -763,9 +570,7 @@ router.post("/orders/print/update", restrictedPages, async (req, res) => {
   let printQuantity = req.body.quantity;
   let order;
   try {
-    order = (
-      await updateMakeOrder(printId, "quantity", printQuantity)
-    ).toJSON();
+    order = (await updateMakeOrder(printId, "quantity", printQuantity)).toJSON();
   } catch (error) {
     return res.send(error);
   }
@@ -813,109 +618,6 @@ router.get("/checkout/payment-intent", async (req, res) => {
 /*=========================================================================================
 FUNCTIONS
 =========================================================================================*/
-
-const orderMakesAwaitingQuoteGet = accountId => {
-  return new Promise(async (resolve, reject) => {
-    let makes;
-
-    try {
-      makes = await Make.findByAccountIdAndStatus(accountId, "awaitingQuote");
-    } catch (error) {
-      reject(error);
-    }
-
-    // makes.sort(orderMakesAwaitingQuoteSort);
-
-    resolve(makes);
-  });
-};
-
-const orderMakesCheckoutGet = accountId => {
-  return new Promise(async (resolve, reject) => {
-    let makes;
-
-    try {
-      makes = await Make.findByAccountIdAndStatus(accountId, "checkout");
-    } catch (error) {
-      reject(error);
-    }
-
-    // makes.sort(orderMakesCheckoutSort);
-
-    resolve(makes);
-  });
-};
-
-// THE FUNCTION TO FETCH THE ARRAY OF 3D PRINT ORDERS DEPENDING ON THE STATUS
-
-const getMakeOrders = (accountId, status) => {
-  return new Promise(async (resolve, reject) => {
-    let orders;
-    // If status is provided, return the array of orders containing the given status
-    if (status) {
-      try {
-        orders = await Make.find({ accountId, status });
-      } catch (error) {
-        reject(error);
-      }
-    } else {
-      try {
-        orders = await Make.find({ accountId });
-      } catch (error) {
-        reject(error);
-      }
-    }
-    let revisedOrders = [];
-    for (let i = 0; i < orders.length; i++) {
-      const order = orders[i].toJSON();
-      let fileName;
-      try {
-        fileName = await getFileName(order.fileId);
-      } catch (error) {
-        reject(error);
-      }
-      revisedOrders[i] = { ...order, ...{ fileName } };
-    }
-    resolve(revisedOrders);
-  });
-};
-
-// THE FUNCTION TO FETCH THE ARRAY OF MARKETPLACE ORDERS DEPENDING ON THE STATUS
-
-const getPurchaseOrders = (accountId, status) => {
-  return new Promise(async (resolve, reject) => {
-    let orders;
-    // If status is provided, return the array of orders containing the given status
-    if (status) {
-      try {
-        orders = await Purchase.find({ accountId, status });
-      } catch (error) {
-        reject(error);
-      }
-    } else {
-      try {
-        orders = await Purchase.find({ accountId });
-      } catch (error) {
-        reject(error);
-      }
-    }
-    resolve(orders);
-  });
-};
-
-// THE FUNCTION TO FETCH THE NAME OF THE FILE
-
-const getFileName = _id => {
-  return new Promise(async (resolve, reject) => {
-    let fileName;
-    try {
-      fileName = (await GridFS.files.findOne({ _id }))["filename"];
-    } catch (error) {
-      reject(error);
-    }
-    resolve(fileName);
-  });
-};
 
 // THE FUNCTION TO UPDATE A PROPERTY OF A 3D PRINT ORDER
 
