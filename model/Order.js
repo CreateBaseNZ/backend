@@ -75,11 +75,11 @@ const OrderSchema = new Schema({
   makes: {
     awaitingQuote: {
       type: [Schema.Types.ObjectId],
-      default: [],
+      default: []
     },
     checkout: {
       type: [Schema.Types.ObjectId],
-      default: [],
+      default: []
     },
   },
   discounts: {
@@ -267,7 +267,7 @@ OrderSchema.statics.transaction = function (object) {
     let order;
     // Fetch existing active order
     try {
-      order = await this.find(object);
+      order = await this.findOne(object);
     } catch (error) {
       return reject(error);
     }
@@ -342,7 +342,7 @@ OrderSchema.methods.transactMakes = function () {
     // FETCH MAKES
     let makes = [];
     try {
-      makes = await Make.find({ accountId, _id: this.makes.checkout });
+      makes = await Make.find({ _id: this.makes.checkout });
     } catch (error) {
       return reject(error);
     }
@@ -546,10 +546,10 @@ OrderSchema.methods.amount = function () {
     // CREATE THE AMOUNT OBJECT
     let total = { status: "", total: 0 };
     if (manufacturing.status === "valid") {
-      manufacturing.total = makes.total * manufacturing.rate;
-      discount.total = (makes.total + manufacturing.total) * discount.rate;
-      gst.total = ((makes.total + manufacturing.total) - discount.total) * gst.rate;
-      total.total = (((makes.total + manufacturing.total) - discount.total) + gst.total) + shipping.total;
+      manufacturing.total = price(makes.total * manufacturing.rate);
+      discount.total = price((makes.total + manufacturing.total) * discount.rate);
+      gst.total = price(((makes.total + manufacturing.total) - discount.total) * gst.rate);
+      total.total = price((((makes.total + manufacturing.total) - discount.total) + gst.total) + shipping.total);
     } else {
       discount.status = "invalid";
       gst.status = "invalid";
@@ -687,7 +687,7 @@ VALIDATION
 // @ARGU
 OrderSchema.methods.validateCart = function () {
   // Check if there are prints or items ready for checkout
-  if (!(this.makes.checkout.length || this.items.length)) {
+  if (!(this.makes.checkout.length)) {
     return false;
   }
   if (!this.manufacturingSpeed) {
@@ -795,6 +795,8 @@ const checkAddressValidity = (address) => {
     message: "valid address",
   };
 };
+
+const price = value => (Math.round(Number(value) * 100)) / 100;
 
 /*=========================================================================================
 EXPORT ORDER MODEL

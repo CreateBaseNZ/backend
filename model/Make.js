@@ -270,6 +270,10 @@ MakeSchema.methods.updateStatus = function (status) {
   return;
 };
 
+// @FUNC  update
+// @TYPE  METHODS
+// @DESC
+// @ARGU
 MakeSchema.methods.update = function (updates) {
   // UPDATE ORDER
   for (let i = 0; i < updates.length; i++) {

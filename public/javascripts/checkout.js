@@ -147,6 +147,7 @@ let checkout = {
       select: undefined, // checkout.payment.method.select
       selected: undefined, // checkout.payment.method.selected
       bank: {
+        detail: undefined, // checkout.payment.method.bank.detail
         show: undefined, // checkout.payment.method.bank.show
         paid: undefined // checkout.payment.method.bank.paid
       },
@@ -302,8 +303,10 @@ checkout.load = async () => {
     return;
   }
   checkout.insert(content);
-  // UPDATE DISPLAYED AMOUNTS
+  // Update Order Amounts
   checkout.amount.load(content.amount);
+  // Update Bank Transfer Details
+  checkout.payment.method.bank.detail(content.amount, content.wallet);
   // Perform Validation
   checkout.validate(content.validity);
   return;
@@ -622,8 +625,10 @@ checkout.cart.print.update = async (newValue, oldValue, property, makeId) => {
   }
   // SUCCESS HANDLER
   checkout.load.success("success");
-  // UPDATE DISPLAYED AMOUNTS
+  // Update Order Amounts
   checkout.amount.load(data.content);
+  // Update Bank Transfer Details
+  checkout.payment.method.bank.detail(data.content);
   return;
 };
 
@@ -744,8 +749,10 @@ checkout.cart.manufacturingSpeed.select = async option => {
   }
   // SUCCESS HANDLER
   checkout.load.success("saved");
-  // Update Price
+  // Update Order Amounts
   checkout.amount.load(data.content.amount);
+  // Update Bank Transfer Details
+  checkout.payment.method.bank.detail(data.content.amount);
   // Perform Validation
   checkout.validate(data.content.validity);
 };
@@ -906,6 +913,8 @@ checkout.shipping.address.select = async (option, update) => {
     checkout.load.success("saved");
     // Update Price
     checkout.amount.load(data.content.amount);
+    // Update Bank Transfer Details
+    checkout.payment.method.bank.detail(data.content.amount);
     // Perform Validation
     checkout.validate(data.content.validity);
   }
@@ -1198,6 +1207,8 @@ checkout.shipping.address.new.update = async type => {
   checkout.load.success("saved");
   // Update Price
   checkout.amount.load(data.content.amount);
+  // Update Bank Transfer Details
+  checkout.payment.method.bank.detail(data.content.amount);
   // Perform Validation
   checkout.validate(data.content.validity);
 };
@@ -1232,6 +1243,8 @@ checkout.shipping.address.new.toggleSave = async option => {
   checkout.load.success("saved");
   // Update Price
   checkout.amount.load(data.content.amount);
+  // Update Bank Transfer Details
+  checkout.payment.method.bank.detail(data.content.amount);
   // Perform Validation
   checkout.validate(data.content.validity);
 };
@@ -1278,6 +1291,8 @@ checkout.shipping.method.select = async option => {
   checkout.load.success("saved");
   // Update Price
   checkout.amount.load(data.content.amount);
+  // Update Bank Transfer Details
+  checkout.payment.method.bank.detail(data.content.amount);
   // Perform Validation
   checkout.validate(data.content.validity);
 };
@@ -1455,6 +1470,7 @@ checkout.payment.stripe.errorHandler = () => {
   );
 };
 
+
 // @FUNC  checkout.payment.method.select
 // @TYPE
 // @DESC
@@ -1498,10 +1514,30 @@ checkout.payment.method.select = async (option, update) => {
     checkout.load.success("saved");
     // Update Price
     checkout.amount.load(data.content.amount);
+    // Update Bank Transfer Details
+    checkout.payment.method.bank.detail(data.content.amount);
     // Perform Validation
     checkout.validate(data.content.validity);
   }
 };
+
+// @FUNC  checkout.payment.method.bank.detail
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.method.bank.detail = (amount, wallet) => {
+  if (amount) {
+    // CALCULATE MINIMUM AMOUNT TO BANK TRANSFER
+    const bonusRate = 0.05;
+    const minimumAmount = checkout.priceFormatter(amount.total.total / (1 + bonusRate));
+    document.querySelector("#checkout-bank-transfer-amount").innerHTML = `$${minimumAmount}`;
+  }
+  if (wallet) {
+    // SET THE BANK TRANSFER REFERENCE
+    document.querySelector("#checkout-bank-transfer-reference").innerHTML = wallet.code;
+  }
+  return;
+}
 
 // @FUNC  checkout.payment.method.bank.show
 // @TYPE

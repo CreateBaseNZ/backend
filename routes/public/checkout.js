@@ -70,6 +70,7 @@ router.get("/checkout/order", restrictedPages, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   const sessionId = req.sessionID;
+  const wallet = req.user.wallet;
   // BUILD THE ORDER
   let order;
   let access;
@@ -123,7 +124,7 @@ router.get("/checkout/order", restrictedPages, async (req, res) => {
   // VALIDATE THE ORDER'S SECTIONS
   validity = { cart: order.validateCart(), shipping: order.validateShipping(), payment: order.validatePayment() };
   // RETURN SUCCESS RESPONSE TO THE CLIENT
-  return res.send({ status: "success", content: { order, makes, amount, validity } });
+  return res.send({ status: "success", content: { order, makes, amount, validity, wallet } });
 });
 
 // @route     POST /checkout/update
@@ -412,18 +413,12 @@ router.get("/checkout/payment-intent", async (req, res) => {
   const sessionId = req.sessionID;
   // BUILD THE ORDER
   let order;
-  let access;
-  let id;
   // Create the find object
   let query;
   if (accountId) {
     query = { accountId, status: "created" };
-    access = "private";
-    id = accountId;
   } else {
     query = { sessionId, status: "created" };
-    access = "public";
-    id = sessionId;
   }
   // Fetch existing active order
   try {
@@ -434,7 +429,7 @@ router.get("/checkout/payment-intent", async (req, res) => {
   // CREATE THE PAYMENT INTENT OBJECT
   let object;
   try {
-    object = await createPaymentIntentObject(account, order);
+    object = await createPaymentIntentObject(accountId, order);
   } catch (error) {
     res.send({ status: "failed", content: error });
     return;
@@ -471,21 +466,19 @@ const createPaymentIntentObject = (accountId, order, options) => {
     try {
       account = await Account.findById(accountId);
     } catch (error) {
-      reject(error);
-      return;
+      return reject(error);
     }
     // CALCULATE ORDER PRICE
-    let price;
+    let amount;
     try {
-      price = await order.amount();
+      amount = await order.amount();
     } catch (error) {
-      reject(error);
-      return;
+      return reject(error);
     }
-    const amount = Math.floor(price.total * 100);
+
     // CREATE THE PAYMENT INTENT OBJECT
     const object = {
-      amount,
+      amount: (Math.floor(amount.total.total * 100)),
       currency: "nzd",
       confirm: false,
       payment_method_types: ["card"],

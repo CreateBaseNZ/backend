@@ -30,7 +30,7 @@ const TransactionSchema = new Schema({
       required: true
     },
     receiver: {
-      type: Schema.Types.ObjectId,
+      type: String, // TEMPORARY
       required: true
     }
   },
@@ -56,7 +56,7 @@ STATIC
 // @TYPE  STATIC - PROMISE - ASYNC
 // @DESC  Create a transaction instance for a checkout payment
 // @ARGU  
-TransactionSchema.statics.createCheckout = (type, sender, amount, metadata) => {
+TransactionSchema.statics.createCheckout = function (type, sender, amount, metadata) {
   return new Promise(async (resolve, reject) => {
     // DECLARE AND INITIALISE VARIABLES
     const service = "checkout";
