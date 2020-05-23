@@ -27,32 +27,33 @@ SUB MODELS
 const AddressSchema = new Schema({
   unit: {
     type: String,
+    default: ""
   },
   street: {
     number: {
       type: String,
-      required: true
+      default: ""
     },
     name: {
       type: String,
-      required: true
+      default: ""
     },
   },
   suburb: {
     type: String,
-    required: true
+    default: ""
   },
   city: {
     type: String,
-    required: true
+    default: ""
   },
   postcode: {
     type: String,
-    required: true
+    default: ""
   },
   country: {
     type: String,
-    required: true
+    default: ""
   }
 });
 
@@ -97,9 +98,11 @@ const OrderSchema = new Schema({
       },
       saved: {
         type: AddressSchema,
+        default: AddressSchema
       },
       new: {
         type: AddressSchema,
+        default: AddressSchema
       },
       save: {
         type: Boolean,
@@ -188,11 +191,6 @@ OrderSchema.statics.create = function (access, id) {
   }
   // Status
   order.updateStatus("created");
-  // New Address
-  order.shipping.address.new = {
-    unit: "", street: { number: "", name: "" },
-    suburb: "", city: "", postcode: "", country: ""
-  };
   return order;
 }
 
@@ -260,26 +258,6 @@ OrderSchema.statics.findByStatus = function (status) {
   });
 };
 
-// @FUNC  findOneByAccoundIdAndStatus
-// @TYPE  STATICS
-// @DESC
-// @ARGU
-OrderSchema.statics.findOneByAccoundIdAndStatus = function (accountId, status) {
-  return new Promise(async (resolve, reject) => {
-    // Fetch the order from the database
-    let order;
-    try {
-      order = await this.findOne({ accountId, status });
-    } catch (error) {
-      reject(error);
-      return;
-    }
-    // If successful, resolve by returning the order
-    resolve(order);
-    return;
-  });
-};
-
 // @FUNC  transaction
 // @TYPE  STATICS
 // @DESC  
@@ -323,29 +301,6 @@ OrderSchema.statics.transaction = function (object) {
 /*=========================================================================================
 METHODS - DOCUMENT
 =========================================================================================*/
-
-// @FUNC  updateStatus
-// @TYPE  METHODS
-// @DESC
-// @ARGU
-OrderSchema.methods.updateStatus = function (status) {
-  // DECLARE AND INITIALISE VARIABLES
-  const statuses = ["created", "checkedout", "validated", "built",
-    "shipped", "arrived", "reviewed", "completed", "cancelled"];
-  // VALIDATION
-  if (statuses.indexOf(status) === -1) {
-    return reject("invalid status");
-  }
-  // SET THE ORDER'S RELEVANT PROPERTIES
-  // Date
-  const date = moment().tz("Pacific/Auckland").format();
-  this.date[status] = date;
-  this.date.modified = date;
-  // Status
-  this.status = status;
-  // RESOLVE PROMISE
-  return;
-};
 
 // @FUNC  saveAddress
 // @TYPE  METHODS
@@ -610,6 +565,29 @@ OrderSchema.methods.amount = function () {
 UPDATE
 ---------------------------------------------------------------------------------------- */
 
+// @FUNC  updateStatus
+// @TYPE  METHODS
+// @DESC
+// @ARGU
+OrderSchema.methods.updateStatus = function (status) {
+  // DECLARE AND INITIALISE VARIABLES
+  const statuses = ["created", "checkedout", "validated", "built",
+    "shipped", "arrived", "reviewed", "completed", "cancelled"];
+  // VALIDATION
+  if (statuses.indexOf(status) === -1) {
+    return reject("invalid status");
+  }
+  // SET THE ORDER'S RELEVANT PROPERTIES
+  // Date
+  const date = moment().tz("Pacific/Auckland").format();
+  this.date[status] = date;
+  this.date.modified = date;
+  // Status
+  this.status = status;
+  // RESOLVE PROMISE
+  return;
+};
+
 // @FUNC  updateMakes
 // @TYPE  METHODS
 // @DESC  
@@ -631,14 +609,14 @@ OrderSchema.methods.updateMakes = function () {
       return reject(error);
     }
     // UPDATE ORDER'S MAKES
-    const makes = {
+    const filteredMakes = {
       awaitingQuote: makes.filter(make => make.status === "awaitingQuote"),
       checkout: makes.filter(make => make.status === "checkout")
     }
-    this.makes.awaitingQuote = makes.awaitingQuote.map(make => make._id);
-    this.makes.checkout = makes.checkout.map(make => make._id);
+    this.makes.awaitingQuote = filteredMakes.awaitingQuote.map(make => make._id);
+    this.makes.checkout = filteredMakes.checkout.map(make => make._id);
     // RETURN SUCCESS RESPONSE
-    return resolve(makes);
+    return resolve(filteredMakes);
   })
 }
 
@@ -655,7 +633,7 @@ OrderSchema.methods.updateSavedAddress = function () {
     // FETCH THE ORDER OWNER'S DETAIL
     let customer;
     try {
-      customer = await Customer.find({ accountId: this.accountId });
+      customer = await Customer.findOne({ accountId: this.accountId });
     } catch (error) {
       return reject(error);
     }
@@ -664,6 +642,37 @@ OrderSchema.methods.updateSavedAddress = function () {
     // RETURN SUCCESS RESPONSE
     return resolve();
   })
+}
+
+// @FUNC  update
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.update = function (updates) {
+  // UPDATE ORDER
+  for (let i = 0; i < updates.length; i++) {
+    const update = updates[i];
+    switch (update.property.length) {
+      case 1:
+        this[update.property[0]] = update.value;
+        break;
+      case 2:
+        this[update.property[0]][update.property[1]] = update.value;
+        break;
+      case 3:
+        this[update.property[0]][update.property[1]]
+        [update.property[2]] = update.value;
+        break;
+      case 4:
+        this[update.property[0]][update.property[1]]
+        [update.property[2]][update.property[3]] = update.value;
+        break;
+      default:
+        return;
+    }
+  }
+  // SUCCESS RESPONSE
+  return;
 }
 
 /* ----------------------------------------------------------------------------------------

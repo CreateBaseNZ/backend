@@ -270,6 +270,33 @@ MakeSchema.methods.updateStatus = function (status) {
   return;
 };
 
+MakeSchema.methods.update = function (updates) {
+  // UPDATE ORDER
+  for (let i = 0; i < updates.length; i++) {
+    const update = updates[i];
+    switch (update.property.length) {
+      case 1:
+        this[update.property[0]] = update.value;
+        break;
+      case 2:
+        this[update.property[0]][update.property[1]] = update.value;
+        break;
+      case 3:
+        this[update.property[0]][update.property[1]]
+        [update.property[2]] = update.value;
+        break;
+      case 4:
+        this[update.property[0]][update.property[1]]
+        [update.property[2]][update.property[3]] = update.value;
+        break;
+      default:
+        return;
+    }
+  }
+  // SUCCESS RESPONSE
+  return;
+}
+
 /*=========================================================================================
 EXPORT MAKE MODEL
 =========================================================================================*/

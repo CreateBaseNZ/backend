@@ -41,11 +41,6 @@ let checkout = {
         }
       }
     },
-    validity: {
-      cart: undefined, // checkout.element.validity.cart
-      shipping: undefined, // checkout.element.validity.shipping
-      payment: undefined // checkout.element.validity.payment
-    },
     navigation: {
       cart: undefined, // checkout.element.navigation.cart
       shipping: undefined, // checkout.element.navigation.shipping
@@ -220,10 +215,11 @@ checkout.fetch = () => {
   return new Promise(async (resolve, reject) => {
     let data;
     try {
-      data = (await axios.post("/checkout/order"))["data"];
+      data = (await axios.get("/checkout/order"))["data"];
     } catch (error) {
       return reject(error);
     }
+    console.log(data);
     if (data.status === "failed") {
       return reject(data.content);
     }
@@ -235,13 +231,14 @@ checkout.fetch = () => {
 // @TYPE
 // @DESC
 // @ARGU
-checkout.insert = object => {
-  console.log(object);
+checkout.insert = content => {
+  // DECLARE VARIABLES
+  const makes = content.makes;
+  const order = content.order;
   // MAKES
-  const makes = object.makes;
   checkout.cart.prints.insert(makes);
   // MANUFACTURING SPEED
-  const manufacturingSpeed = object.order.manufacturingSpeed;
+  const manufacturingSpeed = order.manufacturingSpeed;
   if (manufacturingSpeed == "normal") {
     document.querySelector("#checkout-normal-speed").checked = true;
   } else if (manufacturingSpeed == "urgent") {
@@ -250,9 +247,9 @@ checkout.insert = object => {
   // SHIPPING ADDRESS
   let html;
   // Check if there is a saved address
-  if (object.order.shipping.address.saved.suburb) {
+  if (order.shipping.address.saved.suburb) {
     // Saved - Populate Element
-    html = checkout.shipping.address.saved.create(object.order.shipping.address.saved);
+    html = checkout.shipping.address.saved.create(order.shipping.address.saved);
   } else {
     // Disable click
     document.querySelector("#checkout-address-saved").disabled = true;
@@ -264,12 +261,12 @@ checkout.insert = object => {
   }
   checkout.shipping.address.saved.insert(html);
   // New
-  checkout.shipping.address.new.populate(object.order.shipping.address.new);
-  document.querySelector("#checkout-shipping-save-address-input").checked = object.order.shipping.address.save;
+  checkout.shipping.address.new.populate(order.shipping.address.new);
+  document.querySelector("#checkout-shipping-save-address-input").checked = order.shipping.address.save;
   // Selection
-  checkout.shipping.address.selected = object.order.shipping.address.option;
+  checkout.shipping.address.selected = order.shipping.address.option;
   if (checkout.shipping.address.selected === "saved") {
-    if (object.order.shipping.address.saved.suburb) {
+    if (order.shipping.address.saved.suburb) {
       document.querySelector("#checkout-address-saved").checked = true;
     }
   } else if (checkout.shipping.address.selected === "new") {
@@ -277,7 +274,7 @@ checkout.insert = object => {
   }
   checkout.shipping.address.select(checkout.shipping.address.selected);
   // SHIPPING METHOD
-  const shippingMethod = object.order.shipping.method;
+  const shippingMethod = order.shipping.method;
   if (shippingMethod == "pickup") {
     document.querySelector("#checkout-shipping-method-pickup").checked = true;
   } else if (shippingMethod == "tracked") {
@@ -287,7 +284,7 @@ checkout.insert = object => {
   }
   // PAYMENT METHOD
   // Assign the stored payment method to the global variable
-  checkout.payment.method.selected = object.order.payment.method;
+  checkout.payment.method.selected = order.payment.method;
   // Perform an operation based on the selected method
   checkout.payment.method.select(checkout.payment.method.selected);
 };
@@ -297,16 +294,18 @@ checkout.insert = object => {
 // @DESC
 // @ARGU
 checkout.load = async () => {
-  let object;
+  let content;
   try {
-    object = await checkout.fetch();
+    content = await checkout.fetch();
   } catch (error) {
     console.log(error);
     return;
   }
-  checkout.insert(object);
+  checkout.insert(content);
+  // UPDATE DISPLAYED AMOUNTS
+  checkout.amount.load(content.amount);
   // Perform Validation
-  checkout.validate(object.validity);
+  checkout.validate(content.validity);
   return;
 };
 
@@ -412,8 +411,6 @@ checkout.amount.fetch = () => {
 // @DESC
 // @ARGU
 checkout.amount.load = async (amount) => {
-  // Add Loader
-
   // Fetch the amount object
   if (!amount) {
     try {
@@ -597,30 +594,37 @@ checkout.cart.print.insert = (print, element) => {
 // @TYPE  SIMPLE
 // @DESC
 // @ARGU
-checkout.cart.print.update = async (newValue, oldValue, property, printId) => {
-  if (!checkout.cart.print.validate[property](newValue, oldValue, printId)) {
+checkout.cart.print.update = async (newValue, oldValue, property, makeId) => {
+  // VALIDATE REQUEST
+  if (!checkout.cart.print.validate[property](newValue, oldValue, makeId)) {
     return;
   }
-
-  let print;
-
+  // CREATE UPDATES OBJECT 
+  const update = { property: [property], value: newValue }
+  // LOADER
   checkout.load.load("updating quantity");
-
+  // SEND UPDATE REQUEST
+  let data;
   try {
-    print = (
-      await axios.post("/orders/print/update", {
-        printId,
-        quantity: newValue
-      })
-    )["data"];
+    data = (await axios.post("/checkout/make/update", { makeId, updates: [update] }))["data"];
   } catch (error) {
-    return {
-      status: "failed",
-      message: error
-    };
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return console.log(error);
   }
-
+  // ERROR HANDLER
+  if (data.status === "failed") {
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return console.log(data.content);
+  }
+  // SUCCESS HANDLER
   checkout.load.success("success");
+  // UPDATE DISPLAYED AMOUNTS
+  checkout.amount.load(data.content);
+  return;
 };
 
 // @FUNC  checkout.cart.print.validate.quantity
@@ -717,26 +721,33 @@ checkout.cart.discount.validate = validation => {
 // @DESC
 // @ARGU
 checkout.cart.manufacturingSpeed.select = async option => {
+  // CREATE UPDATES OBJECT
+  const update = { property: ["manufacturingSpeed"], value: option };
   // Place Loaders
-
-  // Update the Database
   checkout.load.load("updating order");
-  let object;
+  // Update the Database
+  let data;
   try {
-    object = (
-      await axios.post("/checkout/order/update/manufacturing-speed", {
-        option
-      })
-    )["data"]["data"];
+    data = (await axios.post("/checkout/update", { updates: [update] }))["data"];
   } catch (error) {
-    console.log(error);
+    // TO DO.....
+    // Error handling
+    // TO DO.....
     return;
   }
+  // ERROR HANDLER
+  if (data.status === "failed") {
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return;
+  }
+  // SUCCESS HANDLER
   checkout.load.success("saved");
   // Update Price
-
+  checkout.amount.load(data.content.amount);
   // Perform Validation
-  checkout.validate(object.validity);
+  checkout.validate(data.content.validity);
 };
 
 // @FUNC  checkout.cart.validation.validate
@@ -745,22 +756,28 @@ checkout.cart.manufacturingSpeed.select = async option => {
 // @ARGU
 checkout.cart.validation.validate = async validity => {
   let valid;
-
   if (validity) {
     valid = validity.cart;
   } else {
+    let data;
     try {
-      valid = (await axios.post("/checkout/order/validate/cart"))["data"][
-        "data"
-      ];
+      data = (await axios.get("/checkout/validate"))["data"];
     } catch (error) {
-      console.log(error);
+      // TO DO.....
+      // Error handling
+      // TO DO.....
       return;
     }
+    // ERROR HANDLER
+    if (data.status === "failed") {
+      // TO DO.....
+      // Error handling
+      // TO DO.....
+      return;
+    }
+    // SUCCESS HANDLER
+    valid = data.content.cart;
   }
-
-  checkout.element.validity.cart = valid;
-
   if (valid) {
     checkout.cart.validation.valid();
   } else {
@@ -774,18 +791,9 @@ checkout.cart.validation.validate = async validity => {
 // @ARGU
 checkout.cart.validation.valid = () => {
   // Add Event Listeners
-  checkout.element.heading.shipping.addEventListener(
-    "click",
-    checkout.shipping.show
-  );
-  checkout.element.navigation.shipping.addEventListener(
-    "click",
-    checkout.shipping.show
-  );
-  checkout.element.button.cart.next.addEventListener(
-    "click",
-    checkout.shipping.show
-  );
+  checkout.element.heading.shipping.addEventListener("click", checkout.shipping.show);
+  checkout.element.navigation.shipping.addEventListener("click", checkout.shipping.show);
+  checkout.element.button.cart.next.addEventListener("click", checkout.shipping.show);
   // Update CSS
   checkout.element.heading.shipping.classList.add("valid");
   checkout.element.button.cart.next.classList.add("valid");
@@ -798,18 +806,9 @@ checkout.cart.validation.valid = () => {
 // @DESC
 // @ARGU
 checkout.cart.validation.invalid = () => {
-  checkout.element.heading.shipping.removeEventListener(
-    "click",
-    checkout.shipping.show
-  );
-  checkout.element.navigation.shipping.removeEventListener(
-    "click",
-    checkout.shipping.show
-  );
-  checkout.element.button.cart.next.removeEventListener(
-    "click",
-    checkout.shipping.show
-  );
+  checkout.element.heading.shipping.removeEventListener("click", checkout.shipping.show);
+  checkout.element.navigation.shipping.removeEventListener("click", checkout.shipping.show);
+  checkout.element.button.cart.next.removeEventListener("click", checkout.shipping.show);
   // Update CSS
   checkout.element.heading.shipping.classList.remove("valid");
   checkout.element.button.cart.next.classList.remove("valid");
@@ -880,29 +879,35 @@ checkout.shipping.address.select = async (option, update) => {
     checkout.shipping.address.new.show(true);
   }
   checkout.shipping.resize();
-  // UPDATE THE DATABASE
-  // Place Loaders
-
-  // Update the Database
+  // UPDATE THE DATABASE (if required)
   if (update) {
+    // CREATE UPDATES OBJECT
+    const update = { property: ["shipping", "address", "option"], value: option };
+    // PLACE LOADER
     checkout.load.load("updating order");
-    let object;
+    // Update the Database
+    let data;
     try {
-      object = await axios.post(
-        "/checkout/order/update/shipping-address-option",
-        {
-          option
-        }
-      );
+      data = (await axios.post("/checkout/update", { updates: [update] }))["data"];
     } catch (error) {
-      console.log(error);
+      // TO DO.....
+      // Error handling
+      // TO DO.....
       return;
     }
+    // ERROR HANDLER
+    if (data.status === "failed") {
+      // TO DO.....
+      // Error handling
+      // TO DO.....
+      return;
+    }
+    // SUCCESS HANDLER
     checkout.load.success("saved");
     // Update Price
-
+    checkout.amount.load(data.content.amount);
     // Perform Validation
-    checkout.validate(object.validity);
+    checkout.validate(data.content.validity);
   }
 };
 
@@ -1168,43 +1173,67 @@ checkout.shipping.address.new.populate = address => {
 // @ARGU
 checkout.shipping.address.new.update = async type => {
   const address = checkout.shipping.address.new.validate.all(type);
-
+  // CREATE UPDATES OBJECT
+  const update = { property: ["shipping", "address", "new"], value: address };
+  // LOADER
   checkout.load.load("updating order");
-  let object;
+  // Update the Database
+  let data;
   try {
-    object = (
-      await axios.post("/checkout/order/update/new-shipping-address", {
-        address
-      })
-    )["data"]["data"];
+    data = (await axios.post("/checkout/update", { updates: [update] }))["data"];
   } catch (error) {
-    console.log(error);
+    // TO DO.....
+    // Error handling
+    // TO DO.....
     return;
   }
+  // ERROR HANDLER
+  if (data.status === "failed") {
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return;
+  }
+  // SUCCESS HANDLER
   checkout.load.success("saved");
-  checkout.validate(object.validity);
+  // Update Price
+  checkout.amount.load(data.content.amount);
+  // Perform Validation
+  checkout.validate(data.content.validity);
 };
 
 // @FUNC  checkout.shipping.address.new.toggleSave
 // @TYPE
 // @DESC
 // @ARGU
-checkout.shipping.address.new.toggleSave = async save => {
-  // Place Loaders
-
-  // Update the Database
+checkout.shipping.address.new.toggleSave = async option => {
+  // CREATE UPDATES OBJECT
+  const update = { property: ["shipping", "address", "save"], value: option };
+  // LOADER
   checkout.load.load("updating order");
-  let object;
+  // Update the Database
+  let data;
   try {
-    object = await axios.post("/checkout/order/update/new-shipping-address-save", { save });
+    data = (await axios.post("/checkout/update", { updates: [update] }))["data"];
   } catch (error) {
-    return console.log(error);
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return;
   }
+  // ERROR HANDLER
+  if (data.status === "failed") {
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return;
+  }
+  // SUCCESS HANDLER
   checkout.load.success("saved");
   // Update Price
-
+  checkout.amount.load(data.content.amount);
   // Perform Validation
-  checkout.validate(object.validity);
+  checkout.validate(data.content.validity);
 };
 
 // @FUNC  checkout.shipping.address.new.show
@@ -1224,21 +1253,33 @@ checkout.shipping.address.new.show = show => {
 // @DESC
 // @ARGU
 checkout.shipping.method.select = async option => {
-  // Place Loaders
-
-  // Update the Database
+  // CREATE UPDATES OBJECT
+  const update = { property: ["shipping", "method"], value: option };
+  // LOADER
   checkout.load.load("updating order");
-  let object;
+  // Update the Database
+  let data;
   try {
-    object = (await axios.post("/checkout/order/update/shipping-method", { option }))["data"]["data"];
+    data = (await axios.post("/checkout/update", { updates: [update] }))["data"];
   } catch (error) {
-    return console.log(error);
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return;
   }
+  // ERROR HANDLER
+  if (data.status === "failed") {
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return;
+  }
+  // SUCCESS HANDLER
   checkout.load.success("saved");
   // Update Price
-
+  checkout.amount.load(data.content.amount);
   // Perform Validation
-  checkout.validate(object.validity);
+  checkout.validate(data.content.validity);
 };
 
 // @FUNC  checkout.shipping.validation.validate
@@ -1250,14 +1291,25 @@ checkout.shipping.validation.validate = async validity => {
   if (validity) {
     valid = validity.cart && validity.shipping;
   } else {
+    let data;
     try {
-      valid = (await axios.post("/checkout/order/validate/shipping"))["data"]["data"];
+      data = (await axios.get("/checkout/validate"))["data"];
     } catch (error) {
-      console.log(error);
+      // TO DO.....
+      // Error handling
+      // TO DO.....
       return;
     }
+    // ERROR HANDLER
+    if (data.status === "failed") {
+      // TO DO.....
+      // Error handling
+      // TO DO.....
+      return;
+    }
+    // SUCCESS HANDLER
+    valid = data.content.cart && data.content.shipping;
   }
-  checkout.element.validity.shipping = valid;
   if (valid) {
     checkout.shipping.validation.valid();
   } else {
@@ -1420,26 +1472,34 @@ checkout.payment.method.select = async (option, update) => {
   }
   checkout.payment.resize();
 
-  // UPDATE THE DATABASE
-  // Place Loaders
-
   if (update) {
+    // CREATE UPDATES OBJECT
+    const update = { property: ["payment", "method"], value: option };
+    // LOADER
     checkout.load.load("updating order");
     // Update the Database
-    let object;
+    let data;
     try {
-      object = await axios.post("/checkout/order/update/payment-method", {
-        option
-      });
+      data = (await axios.post("/checkout/update", { updates: [update] }))["data"];
     } catch (error) {
-      console.log(error);
+      // TO DO.....
+      // Error handling
+      // TO DO.....
       return;
     }
-    // Update Price
-
-    // Perform Validation
-    checkout.validate(object.validity);
+    // ERROR HANDLER
+    if (data.status === "failed") {
+      // TO DO.....
+      // Error handling
+      // TO DO.....
+      return;
+    }
+    // SUCCESS HANDLER
     checkout.load.success("saved");
+    // Update Price
+    checkout.amount.load(data.content.amount);
+    // Perform Validation
+    checkout.validate(data.content.validity);
   }
 };
 
@@ -1594,24 +1654,29 @@ checkout.payment.method.card.show = show => {
 // @ARGU
 checkout.payment.validation.validate = async validity => {
   let valid;
-
   if (validity) {
     // Check if the validity object is provided
     valid = validity.cart && validity.shipping && validity.payment;
   } else {
-    // Fetch Validity from Backend if Validity Object is NOT provided
+    let data;
     try {
-      valid = (await axios.post("/checkout/order/validate/payment"))["data"][
-        "data"
-      ];
+      data = (await axios.get("/checkout/validate"))["data"];
     } catch (error) {
-      console.log(error);
+      // TO DO.....
+      // Error handling
+      // TO DO.....
       return;
     }
+    // ERROR HANDLER
+    if (data.status === "failed") {
+      // TO DO.....
+      // Error handling
+      // TO DO.....
+      return;
+    }
+    // SUCCESS HANDLER
+    valid = data.content.cart && data.content.shipping && data.content.payment;
   }
-
-  checkout.element.validity.payment = valid;
-
   if (valid) {
     checkout.payment.validation.valid();
   } else {
