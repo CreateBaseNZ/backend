@@ -3,6 +3,7 @@ button {
 }
 
 .reg-btn {
+  pointer-events: auto;
   position: relative;
   cursor: pointer;
   font-family: $poppins;
@@ -51,6 +52,7 @@ button {
 }
 
 .plain-btn {
+  pointer-events: auto;
   position: relative;
   cursor: pointer;
   font-family: $poppins;
@@ -68,6 +70,7 @@ button {
 }
 
 .cancel-btn {
+  pointer-events: auto;
   font-family: $poppins;
   border: none;
   background: transparent;
@@ -96,6 +99,7 @@ button {
 }
 
 .action-btn {
+  pointer-events: auto;
   position: relative;
   cursor: pointer;
   font-family: $poppins;
@@ -161,6 +165,7 @@ button {
 }
 
 .grad-btn {
+  pointer-events: auto;
   cursor: pointer;
   color: $light-1;
   letter-spacing: 0.1em;

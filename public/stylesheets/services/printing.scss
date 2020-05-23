@@ -29,6 +29,7 @@ h4{
     background-repeat: no-repeat;
     position: relative;
     .banner-text{
+        pointer-events: none;
         width:70%;
         position: absolute;
         top: 50%;

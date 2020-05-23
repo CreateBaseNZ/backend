@@ -98,7 +98,7 @@ function renderProjCard(newProj, project) {
       notesEl.style.height = '0'
     })
 
-    dateModified = new Date(project.date.modified)
+    let dateModified = new Date(project.date.modified)
     let modifiedEl = document.createElement('p')
     modifiedEl.innerHTML = 'Last modified ' + dateModified.toLocaleString('default', { month: 'long' }) + ' ' + dateModified.getDate() + ' ' + dateModified.getFullYear()
     cardEl.appendChild(modifiedEl).className = 'proj-modified'
@@ -114,9 +114,7 @@ function renderProjCard(newProj, project) {
       showProjPopup('edit', project.id)
 
       if (makesEl.id !== "") {
-        let projMakesList
-        makesEl.id.split(' ')
-        projMakesList.forEach(function(makeInProject, k) {
+        makesEl.id.split(' ').forEach(function(makeInProject, k) {
           // Add project blobs
           renderMakeBlobs(allMakes[makeKeys[makeInProject]])
           // Activate project labels
@@ -128,6 +126,8 @@ function renderProjCard(newProj, project) {
     })
 
   } else {
+
+    console.log(project)
 
     let cardEl = document.getElementById('proj-' + activeProjID)
 
@@ -156,6 +156,10 @@ function renderProjCard(newProj, project) {
 
     let notesContent = cardEl.querySelector('.proj-notes-content')
     notesContent.innerHTML = project.notes
+
+    let modifiedEl = cardEl.querySelector('.proj-modified')
+    let dateModified = new Date()
+    modifiedEl.innerHTML = 'Last modified ' + dateModified.toLocaleString('default', { month: 'long' }) + ' ' + dateModified.getDate() + ' ' + dateModified.getFullYear()
   }
 }
 
@@ -477,6 +481,7 @@ const profileInit = async() => {
         console.log(error)
       }
       
+      console.log(callback)
       // Render project card
       renderProjCard(true, callback["data"]["content"])
       hideProjPopup(callback["data"]["status"], 'new')
