@@ -54,10 +54,6 @@ router.post("/profile/customer/new/proj", restrictedPages, async (req, res) => {
     res.send({ status: "failed", content: "invalid user ID" });
     return;
   }
-  if (!name) {
-    res.send({ status: "failed", content: "invalid project name" });
-    return;
-  }
   // CREATE THE PROJECT
   let message;
   try {

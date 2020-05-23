@@ -8,7 +8,7 @@ VARIABLES
 
 // Track the current page the user is on
 let numberOfPrints;
-let numberOfItems;
+let numberOfDiscounts;
 
 /*-----------------------------------------------------------------------------------------
 ELEMENTS
@@ -675,13 +675,10 @@ checkout.cart.discount.add = () => {
   // Fetch the discount code input
   const discountCode = document.querySelector("#checkout-discount-input").value;
   // Perform pre-validation before sending to the backend
-  let validation = {
-    status: "Success",
-    message: ""
-  };
+  let validation = { status: "success", message: "" };
   if (!discountCode) {
     // Check if input code exist
-    validation.status = "Failed";
+    validation.status = "failed";
     validation.message = "Input Discount Code";
   }
   if (!checkout.cart.discount.validate(validation)) return; // Validation
@@ -701,9 +698,7 @@ checkout.cart.discount.add = () => {
 // @ARGU
 checkout.cart.discount.insert = discount => {
   const html = `<div class="checkout-discount"></div>`;
-  document
-    .querySelector("#checkout-discount-list-cntn")
-    .insertAdjacentHTML("beforeend", html);
+  document.querySelector("#checkout-discount-list-cntn").insertAdjacentHTML("beforeend", html);
   document.querySelector("#checkout-discount-input").value = ""; // Clear input
   document.querySelector("#checkout-discount-input-error").innerHTML = ""; // Clear error
 };
@@ -713,7 +708,7 @@ checkout.cart.discount.insert = discount => {
 // @DESC
 // @ARGU
 checkout.cart.discount.validate = validation => {
-  if (validation.status == "Failed") {
+  if (validation.status == "failed") {
     document.querySelector("#checkout-discount-input-error").innerHTML =
       validation.message;
     return false;
@@ -839,27 +834,20 @@ checkout.cart.show = () => {
 // @ARGU
 checkout.cart.resize = () => {
   // DESKTOP HEIGHT CALCULATION
-  const desktopHeight = {
-    heading: 6,
-    subHeading: 6 * 3,
-    prints: numberOfPrints ? 10 * numberOfPrints : 10,
-    discountInput: 8,
-    manufacturingSpeed: 3 * 2,
-    buttons: 12,
-    default: 2 * 3
-  };
-  const total =
-    desktopHeight.heading +
-    desktopHeight.subHeading +
-    desktopHeight.prints +
-    desktopHeight.discountInput +
-    desktopHeight.manufacturingSpeed +
-    desktopHeight.buttons + desktopHeight.default;
+  const heading = 6;
+  const subHeading = 6 * 3;
+  const prints = numberOfPrints ? 10 * numberOfPrints : 10;
+  const discountInput = 8;
+  const discounts = numberOfDiscounts * 1.4;
+  const manufacturingSpeed = 3 * 2;
+  const buttons = 12;
+  const extra = 2 * 3; // Padding for Makes
+  const total = heading + subHeading + prints + discountInput + discounts +
+    manufacturingSpeed + buttons + extra;
   // SET THE CART PAGE SIZE
   if (checkout.element.windowSize.matches) {
     if (checkoutSelectedPage == 0) {
-      document.querySelector("#checkout-cart").style =
-        "height: " + total + "vmax;";
+      document.querySelector("#checkout-cart").style = `height: ${total}vmax;`;
     } else {
       document.querySelector("#checkout-cart").style = "height: 6vmax;";
     }

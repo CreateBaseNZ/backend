@@ -60,7 +60,7 @@ ProjectSchema.statics.create = function (account, options) {
     // INITIALISE NEW PROJECT INSTANCE
     let project = new this();
     // SET PROPERTY VALUES
-    // Account and name
+    // Account
     project.account = account;
     // Options
     for (const property in options) {
