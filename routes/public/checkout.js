@@ -94,35 +94,22 @@ router.get("/checkout/order", restrictedPages, async (req, res) => {
   }
   // Create a new order if there is no order found
   if (!order) order = Order.create(access, id);
-  // Update makes
+  // UPDATE MAKES, DISCOUNTS AND SAVED ADDRESS
   let makes;
   try {
-    makes = await order.updateMakes();
+    [makes] = await Promise.all([order.updateMakes(), order.updateSavedAddress()]);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
-  // Update the Recreate the Discount Array
-  // Set saved shipping address
-  try {
-    await order.updateSavedAddress();
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
-  // SAVE THE ORDER UPDATES
-  try {
-    await order.save();
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
-  // CALCULATE ORDER'S AMOUNT 
+  // SAVE THE ORDER UPDATES AND CALCULATE ORDER'S AMOUNT 
   let amount;
   try {
-    amount = await order.amount();
+    [amount] = await Promise.all([order.amount(), order.save()]);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
   // VALIDATE THE ORDER'S SECTIONS
-  validity = { cart: order.validateCart(), shipping: order.validateShipping(), payment: order.validatePayment() };
+  const validity = order.validateAll();
   // RETURN SUCCESS RESPONSE TO THE CLIENT
   return res.send({ status: "success", content: { order, makes, amount, validity, wallet } });
 });
@@ -166,7 +153,7 @@ router.post("/checkout/update", restrictedPages, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // VALIDATION
-  const validity = { cart: order.validateCart(), shipping: order.validateShipping(), payment: order.validatePayment() };
+  const validity = order.validateAll();
   return res.send({ status: "success", content: { order, amount, validity } });
 });
 
@@ -193,7 +180,7 @@ router.get("/checkout/validate", restrictedPages, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // VALIDATION
-  const validity = { cart: order.validateCart(), shipping: order.validateShipping(), payment: order.validatePayment() };
+  const validity = order.validateAll();
   return res.send({ status: "success", content: validity });
 });
 
@@ -241,9 +228,7 @@ router.post("/checkout/order/delete/print", restrictedPages, async (req, res) =>
     return res.send({ status: "failed", content: error });
   }
   // Validate the checkout
-  validity = {
-    cart: order.validateCart(), shipping: order.validateShipping(), payment: order.validatePayment()
-  };
+  const validity = order.validateAll();
   // Send back a success status
   return res.send({ status: "success", content: validity });
 });
@@ -431,21 +416,18 @@ router.get("/checkout/payment-intent", async (req, res) => {
   try {
     object = await createPaymentIntentObject(accountId, order);
   } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
+    return res.send({ status: "failed", content: error });
   }
   // CREATE PAYMENT INTENT
   let paymentIntent;
   try {
     paymentIntent = await stripe.paymentIntents.create(object);
   } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
+    return res.send({ status: "failed", content: error });
   }
   // RETURN THE CLIENT SECRET TO THE FRONT END
   const clientSecret = paymentIntent["client_secret"];
-  res.send({ status: "success", content: clientSecret });
-  return;
+  return res.send({ status: "success", content: clientSecret });
 });
 
 /*=========================================================================================
