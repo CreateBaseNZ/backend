@@ -58,10 +58,13 @@ function renderProjCard(newProj, project) {
       cardEl.appendChild(bookmarkEl).className = 'far fa-bookmark'
     }
 
-    let imgEl = document.createElement('img')
+    // let imgEl = document.createElement('img')
+    let imgEl = document.createElement('div')
     cardEl.appendChild(imgEl).className = 'proj-img'
-    imgEl.src = project.image
+    // imgEl.src = project.image
     imgEl.alt = 'Project Image'
+    const randDeg = Math.floor(Math.random() * 360)
+    imgEl.style.background = 'linear-gradient(' + randDeg + 'deg, #8258dc, #4e4ed6)'
 
     dateCreation = new Date(project.date.creation)
     let dateEl = document.createElement('p')
