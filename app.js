@@ -55,14 +55,10 @@ app.use(cookieParser());
 SETUP AUTHENTICATION (PASSPORT JS)
 =========================================================================================*/
 
-app.use(
-  expressSession({
-    secret: process.env.COOKIES_SECRET_KEY,
-    saveUninitialized: true,
-    resave: true,
-    rolling: true,
-  })
-);
+app.use(expressSession({
+  secret: process.env.COOKIES_SECRET_KEY, saveUninitialized: true,
+  resave: true, rolling: true
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -104,9 +100,11 @@ ADMIN
 const adminGeneralRoute = require("./routes/admin/general.js");
 const adminFileRoute = require("./routes/admin/file.js");
 const adminMakeRoute = require("./routes/admin/make.js");
+const adminDiscountRoute = require("./routes/admin/discount.js");
 app.use(adminGeneralRoute);
 app.use(adminFileRoute);
 app.use(adminMakeRoute);
+app.use(adminDiscountRoute);
 
 /*-----------------------------------------------------------------------------------------
 ERROR PAGE

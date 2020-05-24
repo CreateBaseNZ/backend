@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin • Discount • CreateBase</title>
+  <!-- ==================================================
+  CSS and JavaScript
+  =================================================== -->
+  <!-- --------------------------------------------------
+  Sourced
+  --------------------------------------------------- -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- --------------------------------------------------
+  Local
+  --------------------------------------------------- -->
+  <link rel="stylesheet" href="./../../admin/stylesheets/discount.css" />
+  <script src="./../../admin/javascripts/discount.js"></script>
+
+</head>
+
+<body onload="discount.initialise();">
+  <form id="discount-form">
+    <input type="text" name="name" placeholder="Name...">
+    <input type="text" name="code" placeholder="Code...">
+    <input type="number" name="rate" placeholder="Rate...">
+    <select name="duration-type">
+      <option value="" selected>--Duration Type--</option>
+      <option value="unlimited">Unlimited</option>
+      <option value="limited">Limited</option>
+    </select>
+    <input type="text" name="duration-start" placeholder="Duration Start...">
+    <input type="text" name="duration-end" placeholder="Duration End...">
+    <select name="audience-type">
+      <option value="" selected>--Audience Type--</option>
+      <option value="global">Global</option>
+      <option value="account">Account</option>
+      <option value="customer">Customer</option>
+    </select>
+  </form>
+  <button onclick="discount.create();">Create</button>
+  <div id="discounts"></div>
+</body>
+
+</html>
