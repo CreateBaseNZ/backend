@@ -3,6 +3,7 @@ let discount = {
   load: undefined,
   fetch: undefined,
   insert: undefined,
+  collect: undefined,
   create: undefined
 }
 
@@ -59,18 +60,24 @@ discount.insert = (object) => {
   return document.querySelector("#discounts").insertAdjacentHTML("afterbegin", html);
 }
 
-discount.create = async () => {
-  // COLLECT
+discount.collect = () => {
   const form = document.querySelector("#discount-form");
   const formData = new FormData(form);
-  // VALIDATE
-  for (const pair of formData.entries()) {
-    if (!pair[1]) return console.log(`invalid ${pair[0]}`);
+  // CREATE THE PROPERTY OBJECT
+  let properties = {};
+  for (const [property, value] of formData.entries()) {
+    properties[property] = value;
   }
+  return properties;
+}
+
+discount.create = async () => {
+  // COLLECT
+  const properties = discount.collect();
   // PROCESS
   let data;
   try {
-    data = (await axios.post("/admin/discount/create", formData))["data"];
+    data = (await axios.post("/admin/discount/create", properties))["data"];
   } catch (error) {
     return console.log(error);
   }

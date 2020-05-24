@@ -72,27 +72,28 @@ DiscountSchema.statics.create = function (properties) {
     let data;
     for (const property in properties) {
       data = this.validate(property, properties[property]);
-      if (data.status === "invalid") {
-        reject(data.content);
-        return;
-      }
+      if (data.status === "invalid") return reject(data.content);
     }
+    // Check if the discount code already exist
+    let discount;
+    try {
+      discount = await this.findOne({ code: properties.code });
+    } catch (error) {
+      return reject(error);
+    }
+    if (discount) return reject("overlapping discount code");
     // CREATE A DISCOUNT INSTANCE
-    let discount = new this();
-    // ASSIGN DISCOUNT INSTANCE PROPERTIES
-    discount = properties;
+    discount = new this(properties);
     // SET DEFAULT VALUES;
     discount.setDefault();
     // SAVE THE NEW DISCOUNT INSTANCE
     try {
       await discount.save();
     } catch (error) {
-      reject(error);
-      return;
+      return reject(error);
     }
     // RESOLVE THE PROMISE
-    resolve();
-    return;
+    return resolve(discount);
   });
 };
 
@@ -106,18 +107,14 @@ DiscountSchema.statics.update = function (code, updates) {
     let data;
     for (const property in updates) {
       data = this.validate(property, updates[property]);
-      if (data.status === "invalid") {
-        reject(data.content);
-        return;
-      }
+      if (data.status === "invalid") return reject(data.content);
     }
     // FETCH THE DISCOUNT INSTANCE
     let discount;
     try {
       discount = await this.findOne({ code });
     } catch (error) {
-      reject(error);
-      return;
+      return reject(error);
     }
     // UPDATE THE DISCOUNT INSTANCE
     for (const property in updates) {
@@ -127,12 +124,10 @@ DiscountSchema.statics.update = function (code, updates) {
     try {
       await discount.save();
     } catch (error) {
-      reject(error);
-      return;
+      return reject(error);
     }
     // RESOLVE THE PROMISE
-    resolve();
-    return;
+    return resolve(discount);
   });
 };
 
@@ -150,47 +145,41 @@ DiscountSchema.statics.validate = function (property, value) {
     if (!name) {
       data.status = "invalid";
       data.content = "no name is provided";
-      return;
     }
   } else if (property === "code") {
     const code = value;
     if (!code) {
       data.status = "invalid";
       data.content = "no code is provided";
-      return;
     }
   } else if (property === "rate") {
     const rate = value;
     if (!rate) {
       data.status = "invalid";
       data.content = "no rate is provided";
-      return;
     }
   } else if (property === "duration") {
     const duration = value;
     if (!duration) {
       data.status = "invalid";
       data.content = "no duration object is provided";
-      return;
     }
     if (!(duration.type)) {
       data.status = "invalid";
       data.content = "no duration type is provided";
-      return;
     }
   } else if (property === "audience") {
     const audience = value;
     if (!audience) {
       data.status = "invalid";
       data.content = "no audience object is provided";
-      return;
     }
     if (!(audience.type)) {
       data.status = "invalid";
       data.content = "no audience type is provided";
-      return;
     }
   }
+  return data;
 }
 
 /*=========================================================================================

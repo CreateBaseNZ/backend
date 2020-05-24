@@ -73,7 +73,9 @@ let checkout = {
       },
       delete: undefined // checkout.cart.print.delete
     },
-    discounts: {},
+    discounts: {
+      load: undefined // checkout.cart.discounts.load
+    },
     discount: {
       add: undefined, // checkout.cart.discount.add
       insert: undefined, // checkout.cart.discount.insert
@@ -299,14 +301,15 @@ checkout.load = async () => {
   try {
     content = await checkout.fetch();
   } catch (error) {
-    console.log(error);
-    return;
+    return console.log(error);
   }
   checkout.insert(content);
   // Update Order Amounts
   checkout.amount.load(content.amount);
   // Update Bank Transfer Details
   checkout.payment.method.bank.detail(content.amount, content.wallet);
+  // Update Discounts
+  checkout.cart.discounts.load(content.discounts);
   // Perform Validation
   checkout.validate(content.validity);
   return;
@@ -667,6 +670,16 @@ checkout.cart.print.delete = async printId => {
   return checkout.validate(data.content);
 };
 
+// @FUNC  checkout.cart.discounts.load
+// @TYPE
+// @DESC
+// @ARGU
+checkout.cart.discounts.load = async (discounts = []) => {
+  for (let i = 0; i < discounts.length; i++) {
+    checkout.cart.discount.insert(discounts[i]);
+  }
+}
+
 // @FUNC  checkout.cart.discount.add
 // @TYPE
 // @DESC
@@ -697,8 +710,8 @@ checkout.cart.discount.add = () => {
 // @DESC
 // @ARGU
 checkout.cart.discount.insert = discount => {
-  const html = `<div class="checkout-discount"></div>`;
-  document.querySelector("#checkout-discount-list-cntn").insertAdjacentHTML("beforeend", html);
+  const html = `<div class="checkout-discount">${discount.name} (${discount.rate * 100}% OFF)</div>`;
+  document.querySelector("#checkout-discounts").insertAdjacentHTML("beforeend", html);
   document.querySelector("#checkout-discount-input").value = ""; // Clear input
   document.querySelector("#checkout-discount-input-error").innerHTML = ""; // Clear error
 };
@@ -838,7 +851,7 @@ checkout.cart.resize = () => {
   const subHeading = 6 * 3;
   const prints = (numberOfPrints ? 10 * numberOfPrints : 10);
   const discountInput = 8;
-  const discounts = numberOfDiscounts * 1.4;
+  const discounts = numberOfDiscounts * 2;
   const manufacturingSpeed = 3 * 2;
   const buttons = 12;
   const extra = (2 * 3) + 1; // Padding for Makes
@@ -1831,30 +1844,18 @@ checkout.navigation.changeCSS.navigation = (nextPage, type) => {
 checkout.navigation.changeCSS.page = nextPage => {
   const nextPageName = checkoutPages[nextPage];
   if (nextPage > checkoutSelectedPage) {
-    document
-      .querySelector(`#checkout-${nextPageName}`)
-      .classList.remove("right");
+    document.querySelector(`#checkout-${nextPageName}`).classList.remove("right");
     for (let i = checkoutSelectedPage; i < nextPage; i++) {
       const currentPageName = checkoutPages[i];
-      document
-        .querySelector(`#checkout-${currentPageName}`)
-        .classList.remove("right");
-      document
-        .querySelector(`#checkout-${currentPageName}`)
-        .classList.add("left");
+      document.querySelector(`#checkout-${currentPageName}`).classList.remove("right");
+      document.querySelector(`#checkout-${currentPageName}`).classList.add("left");
     }
   } else {
-    document
-      .querySelector(`#checkout-${nextPageName}`)
-      .classList.remove("left");
+    document.querySelector(`#checkout-${nextPageName}`).classList.remove("left");
     for (let i = checkoutSelectedPage; i > nextPage; i--) {
       const currentPageName = checkoutPages[i];
-      document
-        .querySelector(`#checkout-${currentPageName}`)
-        .classList.remove("left");
-      document
-        .querySelector(`#checkout-${currentPageName}`)
-        .classList.add("right");
+      document.querySelector(`#checkout-${currentPageName}`).classList.remove("left");
+      document.querySelector(`#checkout-${currentPageName}`).classList.add("right");
     }
   }
 };

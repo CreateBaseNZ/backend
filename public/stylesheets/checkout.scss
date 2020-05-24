@@ -212,9 +212,10 @@ CART
   padding: 0.5vmax 0;
   // TEXT
   font-family: $poppins;
-  font-size: 1.8vmax;
+  font-size: 2vmax;
+  font-weight: bold;
   letter-spacing: 0.2vmax;
-  color: $dark-1;
+  color: $dark-2;
 }
 
 .checkout-discount-input-container {
@@ -998,11 +999,11 @@ DESKTOP CSS
   }
 
   .checkout-discount {
-    height: 1.4vmax;
+    height: 2vmax;
     padding: 0;
     // TEXT
-    font-size: 0.8vmax;
-    letter-spacing: 0.2vmax;
+    font-size: 1vmax;
+    letter-spacing: 0.1vmax;
   }
 
   .checkout-discount-input-container {

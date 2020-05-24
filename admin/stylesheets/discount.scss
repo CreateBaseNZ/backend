@@ -28,6 +28,35 @@ button {
   margin: calc(10px + 1vmax);
 }
 
+#discounts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discount {
+  width: calc(150px + 15vmax);
+  display: flex;
+  flex-direction: column;
+  padding: calc(6px + 0.6vmax) 0;
+}
+
+.field {
+  display: flex;
+  h3, p {
+    width: 50%;
+    display: flex;
+    font-family: sans-serif;
+    font-size: calc(8px + 0.8vmax);
+    font-weight: normal;
+    margin: calc(2px + 0.2vmax) calc(6px + 0.6vmax);
+  }
+  h3 {
+    justify-content: flex-end;
+    font-weight: bold;
+  }
+}
+
 @media only screen and (min-width: 850px) {
 
 }

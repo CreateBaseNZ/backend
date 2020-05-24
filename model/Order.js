@@ -15,6 +15,7 @@ const Schema = mongoose.Schema;
 MODELS
 =========================================================================================*/
 
+const Account = require("./Account.js");
 const Transaction = require("./Transaction.js");
 const Customer = require("./Customer.js");
 const Make = require("./Make.js");
@@ -622,6 +623,61 @@ OrderSchema.methods.updateMakes = function () {
     this.makes.checkout = filteredMakes.checkout.map(make => make._id);
     // RETURN SUCCESS RESPONSE
     return resolve(filteredMakes);
+  })
+}
+
+// @FUNC  updateDiscounts
+// @TYPE  METHODS
+// @DESC  
+// @ARGU  
+OrderSchema.methods.updateDiscounts = function () {
+  return new Promise(async (resolve, reject) => {
+    const today = moment().tz("Pacific/Auckland").format("YYYY-MM-DD");
+    const todayMoment = moment(today);
+    // FETCH REQUIRED INSTANCES
+    let discounts, account;
+    try {
+      [discounts, account] = await Promise.all([Discount.find(), Account.findOne({ accountId: this.accountId })]);
+    } catch (error) {
+      return reject(error);
+    }
+    // EVALUATION
+    // Duration
+    discounts = discounts.filter(discount => {
+      const startMoment = moment(discount.duration.start);
+      switch (discount.duration.type) {
+        case "unlimited":
+          if (todayMoment.diff(startMoment) >= 0) return true;
+          break;
+        case "limited":
+          const endMoment = moment(discount.duration.end);
+          if ((todayMoment.diff(startMoment) >= 0) && (endMoment.diff(todayMoment) >= 0)) return true;
+          break;
+        default:
+          break;
+      }
+      return false
+    });
+    // Audience
+    discounts = discounts.filter(discount => {
+      switch (discount.audience.type) {
+        case "global":
+          return true;
+        case "account":
+          if (discount.audience.accounts.indexOf(account.type) !== -1) return true;
+          break;
+        case "customer":
+          if (discount.audience.customers.indexOf(account._id) !== -1) return true;
+          break;
+        default:
+          break;
+      }
+      return false
+    });
+    // UPDATE ORDER'S DISCOUNTS
+    this.discounts = discounts.map(discount => discount._id);
+    // SUCCESS RESPONSE
+    return resolve(discounts);
   })
 }
 

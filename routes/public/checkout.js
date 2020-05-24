@@ -95,9 +95,9 @@ router.get("/checkout/order", restrictedPages, async (req, res) => {
   // Create a new order if there is no order found
   if (!order) order = Order.create(access, id);
   // UPDATE MAKES, DISCOUNTS AND SAVED ADDRESS
-  let makes;
+  let makes, discounts;
   try {
-    [makes] = await Promise.all([order.updateMakes(), order.updateSavedAddress()]);
+    [makes, discounts] = await Promise.all([order.updateMakes(), order.updateDiscounts(), order.updateSavedAddress()]);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
@@ -111,7 +111,7 @@ router.get("/checkout/order", restrictedPages, async (req, res) => {
   // VALIDATE THE ORDER'S SECTIONS
   const validity = order.validateAll();
   // RETURN SUCCESS RESPONSE TO THE CLIENT
-  return res.send({ status: "success", content: { order, makes, amount, validity, wallet } });
+  return res.send({ status: "success", content: { order, makes, discounts, amount, validity, wallet } });
 });
 
 // @route     POST /checkout/update
