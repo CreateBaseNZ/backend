@@ -55,6 +55,16 @@ const DiscountSchema = new Schema({
       type: [Schema.Types.ObjectId],
       default: []
     }
+  },
+  usage: {
+    type: {
+      type: String,
+      required: true
+    },
+    limit: {
+      type: Number,
+      default: 0
+    }
   }
 });
 
@@ -177,6 +187,16 @@ DiscountSchema.statics.validate = function (property, value) {
     if (!(audience.type)) {
       data.status = "invalid";
       data.content = "no audience type is provided";
+    }
+  } else if (property === "usage") {
+    const usage = value;
+    if (!usage) {
+      data.status = "invalid";
+      data.content = "no usage object is provided";
+    }
+    if (!(usage.type)) {
+      data.status = "invalid";
+      data.content = "no usage type is provided";
     }
   }
   return data;

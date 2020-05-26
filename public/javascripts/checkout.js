@@ -208,6 +208,8 @@ checkout.initialise = async () => {
   checkout.listener();
   // Update Loader
   checkout.load.success("loaded");
+  // ENSURE CORRECT SIZING
+  checkout.cart.resize();
 };
 
 // @FUNC  checkout.fetch
@@ -678,6 +680,8 @@ checkout.cart.discounts.load = async (discounts = []) => {
   for (let i = 0; i < discounts.length; i++) {
     checkout.cart.discount.insert(discounts[i]);
   }
+  // Update number of discounts
+  return numberOfDiscounts = discounts.length;
 }
 
 // @FUNC  checkout.cart.discount.add
@@ -686,23 +690,29 @@ checkout.cart.discounts.load = async (discounts = []) => {
 // @ARGU
 checkout.cart.discount.add = () => {
   // Fetch the discount code input
-  const discountCode = document.querySelector("#checkout-discount-input").value;
-  // Perform pre-validation before sending to the backend
-  let validation = { status: "success", message: "" };
-  if (!discountCode) {
+  const code = document.querySelector("#checkout-discount-input").value;
+  // VALIDATION
+  let validation = { status: "", content: "" };
+  if (!code) {
     // Check if input code exist
     validation.status = "failed";
-    validation.message = "Input Discount Code";
+    validation.content = "Input Discount Code";
   }
-  if (!checkout.cart.discount.validate(validation)) return; // Validation
-
-  /* Send to the backend to perform validation and if successful,
-  retrieve the discount object */
-
-  let discount;
-  if (!checkout.cart.discount.validate(validation)) return; // Validation
-  // Display the discount to the page
-  checkout.cart.discount.insert(discount);
+  if (!(checkout.cart.discount.validation(validation))) return;
+  // SEND REQUEST TO THE BACKEND
+  let data;
+  try {
+    data = (await axios.post("/checkout/discount/add", code))["data"];
+  } catch (error) {
+    // TO DO.....
+    // Error handling
+    // TO DO.....
+    return console.log(error);
+  }
+  // ERROR HANDLING
+  if (!(checkout.cart.discount.validation(data))) return;
+  // SUCCESS HANDLER
+  return checkout.cart.discount.insert(data.content);
 };
 
 // @FUNC  checkout.cart.discount.insert
@@ -716,14 +726,13 @@ checkout.cart.discount.insert = discount => {
   document.querySelector("#checkout-discount-input-error").innerHTML = ""; // Clear error
 };
 
-// @FUNC  checkout.cart.discount.validate
+// @FUNC  checkout.cart.discount.validation
 // @TYPE
 // @DESC
 // @ARGU
-checkout.cart.discount.validate = validation => {
-  if (validation.status == "failed") {
-    document.querySelector("#checkout-discount-input-error").innerHTML =
-      validation.message;
+checkout.cart.discount.validation = validation => {
+  if (validation.status === "failed") {
+    document.querySelector("#checkout-discount-input-error").innerHTML = validation.content;
     return false;
   }
   return true;
@@ -1781,11 +1790,9 @@ checkout.payment.resize = () => {
   // SET THE CART PAGE SIZE
   if (checkout.element.windowSize.matches) {
     if (checkoutSelectedPage === 2) {
-      document.querySelector("#checkout-payment").style =
-        "height: " + total + "vmax;";
+      document.querySelector("#checkout-payment").style = `height: ${total}vmax;`;
     } else {
-      document.querySelector("#checkout-payment").style =
-        "height: 6vmax;";
+      document.querySelector("#checkout-payment").style = "height: 6vmax;";
     }
   } else {
     document.querySelector("#checkout-payment").style = "height: 100%;";

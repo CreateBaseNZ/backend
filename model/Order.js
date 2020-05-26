@@ -263,20 +263,18 @@ OrderSchema.statics.findByStatus = function (status) {
 // @TYPE  STATICS
 // @DESC  
 // @ARGU  
-OrderSchema.statics.transaction = function (object) {
+OrderSchema.statics.transaction = function (query) {
   return new Promise(async (resolve, reject) => {
     let order;
     // Fetch existing active order
     try {
-      order = await this.findOne(object);
+      order = await this.findOne(query);
     } catch (error) {
       return reject(error);
     }
     // VALIDATE THE ORDER
     const validity = order.validateAll();
-    if ((validity.cart && validity.shipping && validity.payment)) {
-      return reject("order is not valid");
-    }
+    if (!(validity.cart && validity.shipping && validity.payment)) return reject("order is not valid");
     // UPDATE CUSTOMER ADDRESS (if required)
     if (order.shipping.address.option === "new" && order.shipping.address.save) {
       try {
@@ -674,6 +672,18 @@ OrderSchema.methods.updateDiscounts = function () {
       }
       return false
     });
+    // Usage
+    discounts = discounts.filter(discount => {
+      switch (discount.usage.type) {
+        case "unlimited":
+          return true;
+        case "limited":
+          break;
+        default:
+          break;
+      }
+      return false;
+    })
     // UPDATE ORDER'S DISCOUNTS
     this.discounts = discounts.map(discount => discount._id);
     // SUCCESS RESPONSE
