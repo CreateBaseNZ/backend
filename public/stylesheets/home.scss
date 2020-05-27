@@ -166,8 +166,19 @@ body {
 .landing-slide-nav-container {
   display: none;
 }
+// .temp-wrap {
+//   height: calc(100vh - #{$top-bar-height});
+// }
+
 .temp-wrap {
-  height: calc(100vh - #{$top-bar-height});
+  height: 60vh;
+  // border: thin solid red;
+}
+
+.divider{
+  border-bottom: thin solid $light-2;
+  width: 100%;
+  margin-bottom: 3em;
 }
 
 .test-section {
