@@ -87,6 +87,11 @@ router.get("/account-verification/:email/:code", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const email = req.params.email;
   const code = req.params.code;
+  // VALIDATE USER VERIFICATION
+  const verification = req.user.verification.status;
+  if (verification) {
+    return res.redirect("/verified");
+  }
   // VERIFY ACCOUNT
   try {
     await Account.verify(email, code);
