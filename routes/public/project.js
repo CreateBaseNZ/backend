@@ -24,7 +24,7 @@ const Project = require("../../model/Project.js");
 MIDDLEWARE
 =========================================================================================*/
 
-const restrictedAccess = (req, res, next) => {
+const verifiedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     if (req.user.verification.status) {
       return next();
@@ -35,11 +35,20 @@ const restrictedAccess = (req, res, next) => {
     return res.redirect("/login");
   }
 };
+
+const restrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    return res.redirect("/login");
+  }
+};
+
 /*=========================================================================================
 ROUTES
 =========================================================================================*/
 
-router.post("/profile/customer/new/proj", restrictedAccess, async (req, res) => {
+router.post("/profile/customer/new/proj", verifiedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const name = req.body.name;
@@ -70,7 +79,7 @@ router.post("/profile/customer/new/proj", restrictedAccess, async (req, res) => 
   return;
 })
 
-router.get("/profile/customer/fetch/all_proj", restrictedAccess, async (req, res) => {
+router.get("/profile/customer/fetch/all_proj", verifiedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   // VALIDATE REQUIRED VARIABLES
@@ -91,7 +100,7 @@ router.get("/profile/customer/fetch/all_proj", restrictedAccess, async (req, res
   return;
 })
 
-router.post("/profile/customer/update/proj", restrictedAccess, async (req, res) => {
+router.post("/profile/customer/update/proj", verifiedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const projectId = mongoose.Types.ObjectId(req.body.id);
@@ -118,7 +127,7 @@ router.post("/profile/customer/update/proj", restrictedAccess, async (req, res) 
   return;
 })
 
-router.post("/profile/customer/delete/proj", restrictedAccess, async (req, res) => {
+router.post("/profile/customer/delete/proj", verifiedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const project = mongoose.Types.ObjectId(req.body.id);

@@ -25,13 +25,21 @@ const Comment = require("../../model/Comment.js");
 MIDDLEWARE
 =========================================================================================*/
 
-const restrictedAccess = (req, res, next) => {
+const verifiedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     if (req.user.verification.status) {
       return next();
     } else {
       return res.redirect("/verification");
     }
+  } else {
+    return res.redirect("/login");
+  }
+};
+
+const restrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
   } else {
     return res.redirect("/login");
   }

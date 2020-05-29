@@ -25,13 +25,21 @@ const Comment = require("../../model/Comment.js");
 MIDDLEWARE
 =========================================================================================*/
 
-const restrictedAccess = (req, res, next) => {
+const verifiedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     if (req.user.verification.status) {
       return next();
     } else {
       return res.redirect("/verification");
     }
+  } else {
+    return res.redirect("/login");
+  }
+};
+
+const restrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
   } else {
     return res.redirect("/login");
   }
@@ -46,7 +54,7 @@ ROUTES
 router.post(
   "/make/submit",
   upload.single("file"),
-  restrictedAccess,
+  verifiedAccess,
   async (req, res) => {
     const accountId = mongoose.Types.ObjectId(req.user._id);
     const file = {
@@ -115,7 +123,7 @@ router.post(
   }
 );
 
-router.get("/profile/customer/fetch/makes", restrictedAccess, async (req, res) => {
+router.get("/profile/customer/fetch/makes", verifiedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   // VALIDATE REQUIRED VARIABLES

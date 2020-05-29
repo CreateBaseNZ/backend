@@ -22,13 +22,21 @@ const customerRouteOptions = {
 MIDDLEWARE
 =========================================================================================*/
 
-const restrictedAccess = (req, res, next) => {
+const verifiedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     if (req.user.verification.status) {
       return next();
     } else {
       return res.redirect("/verification");
     }
+  } else {
+    return res.redirect("/login");
+  }
+};
+
+const restrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
   } else {
     return res.redirect("/login");
   }
@@ -119,21 +127,21 @@ router.get("/verified", (req, res) => {
 // @route     Get /3d-printing
 // @desc      Get the Make Page
 // @access    Private
-router.get("/3d-printing", restrictedAccess, (req, res) => {
+router.get("/3d-printing", verifiedAccess, (req, res) => {
   res.sendFile("make.html", customerRouteOptions);
 });
 
 // @route     Get /checkout
 // @desc      Get the Make Page
 // @access    Private
-router.get("/checkout", restrictedAccess, (req, res) => {
+router.get("/checkout", verifiedAccess, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
 });
 
 // @route     Get /profile
 // @desc
 // @access    Private
-router.get("/profile", restrictedAccess, (req, res) => {
+router.get("/profile", verifiedAccess, (req, res) => {
   res.sendFile("profile.html", customerRouteOptions);
 });
 

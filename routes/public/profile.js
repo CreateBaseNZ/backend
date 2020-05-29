@@ -27,13 +27,21 @@ const Customer = require("../../model/Customer.js");
 MIDDLEWARE
 =========================================================================================*/
 
-const restrictedAccess = (req, res, next) => {
+const verifiedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     if (req.user.verification.status) {
       return next();
     } else {
       return res.redirect("/verification");
     }
+  } else {
+    return res.redirect("/login");
+  }
+};
+
+const restrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
   } else {
     return res.redirect("/login");
   }
@@ -73,7 +81,7 @@ ROUTES
 // @access    Private
 router.get(
   "/profile/customer/fetch/picture",
-  restrictedAccess,
+  verifiedAccess,
   async (req, res) => {
     // Declare Variables
     const user = req.user;
@@ -115,7 +123,7 @@ router.get(
 router.post(
   "/profile/customer/update/picture",
   upload.single("picture"),
-  restrictedAccess,
+  verifiedAccess,
   async (req, res) => {
     // Declare Variables
     const file = req.file;
@@ -150,7 +158,7 @@ router.post(
 // @route     Get /profile/customer/fetch
 // @desc
 // @access    Private
-router.get("/profile/customer/fetch", restrictedAccess, async (req, res) => {
+router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
   // Declare Variables
   const accountId = req.user._id;
   // Fetch Customer
@@ -181,7 +189,7 @@ router.get("/profile/customer/fetch", restrictedAccess, async (req, res) => {
 // @route     Get /profile/customer/update
 // @desc
 // @access    Private
-router.post("/profile/customer/update", restrictedAccess, async (req, res) => {
+router.post("/profile/customer/update", verifiedAccess, async (req, res) => {
   // Declare Variables
   const details = req.body;
   const accountId = req.user._id;
