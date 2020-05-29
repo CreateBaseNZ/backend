@@ -101,6 +101,13 @@ router.get("/verification", (req, res) => {
   res.sendFile("verification.html", customerRouteOptions);
 });
 
+// @route     Get /verified
+// @desc      Verification confirmation page
+// @access    Public
+router.get("/verified", (req, res) => {
+  res.sendFile("verified.html", customerRouteOptions);
+});
+
 // @route     Get /3d-printing
 // @desc      Get the Make Page
 // @access    Private
