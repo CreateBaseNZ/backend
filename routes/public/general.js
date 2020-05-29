@@ -90,6 +90,13 @@ router.get("/services/marketplace", (req, res) => {
   res.sendFile("market.html", customerRouteOptions);
 });
 
+// @route     Get /verfication
+// @desc      Verification of account page
+// @access    Public
+router.get("/verification", (req, res) => {
+  res.sendFile("verification.html", customerRouteOptions);
+});
+
 // @route     Get /3d-printing
 // @desc      Get the Make Page
 // @access    Private
@@ -110,6 +117,8 @@ router.get("/checkout", restrictedPages, (req, res) => {
 router.get("/profile", restrictedPages, (req, res) => {
   res.sendFile("profile.html", customerRouteOptions);
 });
+
+
 
 /*=========================================================================================
 DEVELOPMENT
