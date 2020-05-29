@@ -96,15 +96,17 @@ router.get("/account-verification/:email/:code", async (req, res) => {
     // TO DO.....
     return res.redirect("/login");
   }
-  // TO DO.....
-  // REDIRECT TO A SUCCESS PAGE
-  // TO DO.....
-  return res.redirect("/");
+  return res.redirect("/verified");
 });
 
 router.get("/account/email-verification", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const email = req.user.email;
+  // VALIDATE USER VERIFICATION
+  const verification = req.user.verification.status;
+  if (verification) {
+    return res.redirect("/verified");
+  }
   // SEND VEIFICATION
   try {
     await Account.verification(email);
@@ -114,6 +116,21 @@ router.get("/account/email-verification", async (req, res) => {
   // SUCCESS RESPONSE
   return res.send({ status: "success", content: "success" });
 });
+
+router.post("/account/verify", async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const email = req.user.email;
+  const code = req.body;
+  try {
+    await Account.verify(email, code);
+  } catch (error) {
+    // TO DO.....
+    // REDIRECT TO A FAILED PAGE
+    // TO DO.....
+    return res.redirect("/login");
+  }
+  return res.redirect("/verified");
+})
 
 /*=========================================================================================
 EXPORT ROUTE
