@@ -27,13 +27,18 @@ const Customer = require("../../model/Customer.js");
 MIDDLEWARE
 =========================================================================================*/
 
-const restrictedPages = (req, res, next) => {
+const restrictedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return next();
+    if (req.user.verification.status) {
+      return next();
+    } else {
+      return res.redirect("/verification");
+    }
   } else {
-    res.redirect("/login");
+    return res.redirect("/login");
   }
 };
+
 const upload = require("../../config/upload.js");
 
 /*=========================================================================================

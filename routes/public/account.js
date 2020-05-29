@@ -27,13 +27,10 @@ const restrictedAccess = (req, res, next) => {
     if (req.user.verification.status) {
       return next();
     } else {
-      return next(); // TEMPORARY
-      // TO DO.....
-      // TAKE TO VERIFICATION PAGE
-      // TO DO.....
+      return res.redirect("/verification");
     }
   } else {
-    res.redirect("/login");
+    return res.redirect("/login");
   }
 };
 
@@ -103,7 +100,20 @@ router.get("/account-verification/:email/:code", async (req, res) => {
   // REDIRECT TO A SUCCESS PAGE
   // TO DO.....
   return res.redirect("/");
-})
+});
+
+router.get("/account/email-verification", async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const email = req.user.email;
+  // SEND VEIFICATION
+  try {
+    await Account.verification(email);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // SUCCESS RESPONSE
+  return res.send({ status: "success", content: "success" });
+});
 
 /*=========================================================================================
 EXPORT ROUTE

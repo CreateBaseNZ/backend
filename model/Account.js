@@ -348,9 +348,8 @@ AccountSchema.statics.verification = function (email) {
       html: message.html
     };
     // Send the mail
-    let data;
     try {
-      data = await transporter.sendMail(mail);
+      await transporter.sendMail(mail);
     } catch (error) {
       return reject(error);
     }
