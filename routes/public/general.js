@@ -98,6 +98,11 @@ router.get("/services/marketplace", (req, res) => {
 // @desc      Verification of account page
 // @access    Public
 router.get("/verification", (req, res) => {
+  // VALIDATE USER VERIFICATION
+  const verification = req.user.verification.status;
+  if (verification) {
+    return res.redirect("/verified");
+  }
   res.sendFile("verification.html", customerRouteOptions);
 });
 

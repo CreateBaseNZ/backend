@@ -121,6 +121,11 @@ router.post("/account/verify", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const email = req.user.email;
   const code = req.body;
+  // VALIDATE USER VERIFICATION
+  const verification = req.user.verification.status;
+  if (verification) {
+    return res.redirect("/verified");
+  }
   try {
     await Account.verify(email, code);
   } catch (error) {
