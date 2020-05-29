@@ -99,9 +99,12 @@ router.get("/services/marketplace", (req, res) => {
 // @access    Public
 router.get("/verification", (req, res) => {
   // VALIDATE USER VERIFICATION
-  const verification = req.user.verification.status;
-  if (verification) {
-    return res.redirect("/verified");
+  if (req.isAuthenticated()) {
+    if (req.user.verification.status) {
+      return res.redirect("/verified");
+    } else {
+      return res.redirect("/verification");
+    }
   }
   res.sendFile("verification.html", customerRouteOptions);
 });

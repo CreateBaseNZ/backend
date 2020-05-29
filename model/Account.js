@@ -371,9 +371,9 @@ AccountSchema.statics.verify = function (email, code) {
       return reject(error);
     }
     // COMPARE CODE
-    if (account.verification.code !== code) {
-      return reject("incorrect code");
-    }
+    if (account.verification.code !== code) return reject("incorrect code");
+    // CHECK IF ACCOUNT IS ALREADY VERIFIED
+    if (account.verification.status) return resolve();
     // UPDATE ACCOUNT VERIFICATION STATUS
     account.verification.status = true;
     // SAVE ACCOUNT UPDATE

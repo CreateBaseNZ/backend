@@ -87,11 +87,6 @@ router.get("/account-verification/:email/:code", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const email = req.params.email;
   const code = req.params.code;
-  // VALIDATE USER VERIFICATION
-  const verification = req.user.verification.status;
-  if (verification) {
-    return res.redirect("/verified");
-  }
   // VERIFY ACCOUNT
   try {
     await Account.verify(email, code);
@@ -109,9 +104,7 @@ router.get("/account/email-verification", async (req, res) => {
   const email = req.user.email;
   // VALIDATE USER VERIFICATION
   const verification = req.user.verification.status;
-  if (verification) {
-    return res.redirect("/verified");
-  }
+  if (verification) return res.redirect("/verified");
   // SEND VEIFICATION
   try {
     await Account.verification(email);
@@ -128,9 +121,8 @@ router.post("/account/verify", async (req, res) => {
   const code = req.body;
   // VALIDATE USER VERIFICATION
   const verification = req.user.verification.status;
-  if (verification) {
-    return res.redirect("/verified");
-  }
+  if (verification) return res.redirect("/verified");
+  // VERIFY ACCOUNT
   try {
     await Account.verify(email, code);
   } catch (error) {
