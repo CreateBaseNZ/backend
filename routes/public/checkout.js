@@ -71,7 +71,7 @@ ROUTES
 // @route     GET /checkout/order
 // @desc
 // @access    Private
-router.get("/checkout/order", restrictedPages, async (req, res) => {
+router.get("/checkout/order", restrictedAccess, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   const sessionId = req.sessionID;
@@ -122,7 +122,7 @@ router.get("/checkout/order", restrictedPages, async (req, res) => {
 // @route     POST /checkout/update
 // @desc
 // @access    Private
-router.post("/checkout/update", restrictedPages, async (req, res) => {
+router.post("/checkout/update", restrictedAccess, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   const sessionId = req.sessionID;
@@ -165,7 +165,7 @@ router.post("/checkout/update", restrictedPages, async (req, res) => {
 // @route GET /checkout/validate
 // @desc
 // @access    Private
-router.get("/checkout/validate", restrictedPages, async (req, res) => {
+router.get("/checkout/validate", restrictedAccess, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   const sessionId = req.sessionID;
@@ -192,7 +192,7 @@ router.get("/checkout/validate", restrictedPages, async (req, res) => {
 // @route     POST /checkout/order/delete/print
 // @desc
 // @access    Private
-router.post("/checkout/order/delete/print", restrictedPages, async (req, res) => {
+router.post("/checkout/order/delete/print", restrictedAccess, async (req, res) => {
   // Delete the make document and the corresponding file from the database
   const accountId = mongoose.Types.ObjectId(req.user._id);
   const sessionId = req.sessionID;
@@ -241,7 +241,7 @@ router.post("/checkout/order/delete/print", restrictedPages, async (req, res) =>
 // @route     GET /checkout/order-amount
 // @desc      Fetch the object containing the amounts of the order
 // @access    Private
-router.get("/checkout/order-amount", restrictedPages, async (req, res) => {
+router.get("/checkout/order-amount", restrictedAccess, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   const sessionId = req.sessionID;
@@ -275,7 +275,7 @@ router.get("/checkout/order-amount", restrictedPages, async (req, res) => {
 // @desc      This route processes the bank transfer payment for
 //            the customer's order.
 // @access    Private
-router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
+router.get("/checkout/bank-transfer", restrictedAccess, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   const sessionId = req.sessionID;
@@ -301,7 +301,7 @@ router.get("/checkout/bank-transfer", restrictedPages, async (req, res) => {
 // @route     POST /checkout/card-payment
 // @desc      
 // @access    Private
-router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
+router.post("/checkout/card-payment", restrictedAccess, async (req, res) => {
   // VALIDATE THE PAYMENT INTENT
   // Declare Variables
   const paymentIntentId = req.body.paymentIntentId;
@@ -346,7 +346,7 @@ router.post("/checkout/card-payment", restrictedPages, async (req, res) => {
 // @route     GET /orders/print/update
 // @desc      Update the quantity of the 3D print order
 // @access    Private
-router.post("/checkout/make/update", restrictedPages, async (req, res) => {
+router.post("/checkout/make/update", restrictedAccess, async (req, res) => {
   // DECLARE VARIABLES
   const accountId = req.user._id;
   const sessionId = req.sessionID;
@@ -396,7 +396,7 @@ router.post("/checkout/make/update", restrictedPages, async (req, res) => {
 // @route     POST /checkout/discount/add
 // @desc      
 // @access    Private
-router.post("/checkout/discount/add", restrictedPages, async (req, res) => {
+router.post("/checkout/discount/add", restrictedAccess, async (req, res) => {
   // FETCH DISCOUNT WITH THE SAID CODE
   const account = req.user;
   const code = req.body;

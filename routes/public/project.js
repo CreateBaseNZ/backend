@@ -39,7 +39,7 @@ const restrictedAccess = (req, res, next) => {
 ROUTES
 =========================================================================================*/
 
-router.post("/profile/customer/new/proj", restrictedPages, async (req, res) => {
+router.post("/profile/customer/new/proj", restrictedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const name = req.body.name;
@@ -70,7 +70,7 @@ router.post("/profile/customer/new/proj", restrictedPages, async (req, res) => {
   return;
 })
 
-router.get("/profile/customer/fetch/all_proj", restrictedPages, async (req, res) => {
+router.get("/profile/customer/fetch/all_proj", restrictedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   // VALIDATE REQUIRED VARIABLES
@@ -91,7 +91,7 @@ router.get("/profile/customer/fetch/all_proj", restrictedPages, async (req, res)
   return;
 })
 
-router.post("/profile/customer/update/proj", restrictedPages, async (req, res) => {
+router.post("/profile/customer/update/proj", restrictedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const projectId = mongoose.Types.ObjectId(req.body.id);
@@ -118,7 +118,7 @@ router.post("/profile/customer/update/proj", restrictedPages, async (req, res) =
   return;
 })
 
-router.post("/profile/customer/delete/proj", restrictedPages, async (req, res) => {
+router.post("/profile/customer/delete/proj", restrictedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const project = mongoose.Types.ObjectId(req.body.id);

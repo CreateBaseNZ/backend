@@ -104,21 +104,21 @@ router.get("/verification", (req, res) => {
 // @route     Get /3d-printing
 // @desc      Get the Make Page
 // @access    Private
-router.get("/3d-printing", restrictedPages, (req, res) => {
+router.get("/3d-printing", restrictedAccess, (req, res) => {
   res.sendFile("make.html", customerRouteOptions);
 });
 
 // @route     Get /checkout
 // @desc      Get the Make Page
 // @access    Private
-router.get("/checkout", restrictedPages, (req, res) => {
+router.get("/checkout", restrictedAccess, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
 });
 
 // @route     Get /profile
 // @desc
 // @access    Private
-router.get("/profile", restrictedPages, (req, res) => {
+router.get("/profile", restrictedAccess, (req, res) => {
   res.sendFile("profile.html", customerRouteOptions);
 });
 

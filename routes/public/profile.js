@@ -73,7 +73,7 @@ ROUTES
 // @access    Private
 router.get(
   "/profile/customer/fetch/picture",
-  restrictedPages,
+  restrictedAccess,
   async (req, res) => {
     // Declare Variables
     const user = req.user;
@@ -115,7 +115,7 @@ router.get(
 router.post(
   "/profile/customer/update/picture",
   upload.single("picture"),
-  restrictedPages,
+  restrictedAccess,
   async (req, res) => {
     // Declare Variables
     const file = req.file;
@@ -150,7 +150,7 @@ router.post(
 // @route     Get /profile/customer/fetch
 // @desc
 // @access    Private
-router.get("/profile/customer/fetch", restrictedPages, async (req, res) => {
+router.get("/profile/customer/fetch", restrictedAccess, async (req, res) => {
   // Declare Variables
   const accountId = req.user._id;
   // Fetch Customer
@@ -181,7 +181,7 @@ router.get("/profile/customer/fetch", restrictedPages, async (req, res) => {
 // @route     Get /profile/customer/update
 // @desc
 // @access    Private
-router.post("/profile/customer/update", restrictedPages, async (req, res) => {
+router.post("/profile/customer/update", restrictedAccess, async (req, res) => {
   // Declare Variables
   const details = req.body;
   const accountId = req.user._id;

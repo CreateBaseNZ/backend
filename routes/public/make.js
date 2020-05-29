@@ -46,7 +46,7 @@ ROUTES
 router.post(
   "/make/submit",
   upload.single("file"),
-  restrictedPages,
+  restrictedAccess,
   async (req, res) => {
     const accountId = mongoose.Types.ObjectId(req.user._id);
     const file = {
@@ -115,7 +115,7 @@ router.post(
   }
 );
 
-router.get("/profile/customer/fetch/makes", restrictedPages, async (req, res) => {
+router.get("/profile/customer/fetch/makes", restrictedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   // VALIDATE REQUIRED VARIABLES
