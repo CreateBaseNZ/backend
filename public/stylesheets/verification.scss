@@ -67,3 +67,17 @@ body {
         margin: 2em;
     }
 }
+
+.loginLink{
+    color: $dark-1;
+    display: block;
+    margin-top: 1.5em;
+    transition: all ease 0.2s;
+    &:hover{
+        color: $light-3;
+    }
+    &.hide{
+        display: none;
+    }
+}
+

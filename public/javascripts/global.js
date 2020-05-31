@@ -37,6 +37,18 @@ const imageLoader = (objects, classes) => {
   })
 }
 
+const checkLoginStatus = () => {
+  return new Promise(async (resolve, reject) => {
+    let data;
+    try {
+      data = (await axios.get("/login-status"))["data"];
+    } catch (error) {
+      return reject(error);
+    }
+    return resolve(data.status);
+  })
+}
+
 /*=========================================================================================
 SUBSCRIBE/UNSUBSCRIBE FUNCTIONS
 =========================================================================================*/
