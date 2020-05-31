@@ -41,6 +41,7 @@ const emailVerification = async () => {
   return console.log(data.content);
 }
 
+//Verfication submit with button
 const verifyCode = () => {
   let verifyBtn = document.querySelector('.verifyBtn')
   concatInput()
@@ -57,16 +58,10 @@ const concatInput = () => {
     console.log(code)
 }
 
+//Input listener
+const checkRegex = () => {
 
-
-
-
-
-
-
-// const checkRegex = () => {
-
-// }
+}
 
 function moveNext(input){
   let firstInput = input
@@ -77,20 +72,30 @@ function moveNext(input){
 }
 
 const inputListener = () => {  
-  let form = document.querySelector('#codeForm')
-  let children = form.elements
+  // let form = document.querySelector('#codeForm')
+  // let children = form.elements
 
-  console.log(children)
+  // console.log(children)
 
   // for (let i = 0; i < form.elements.length; i++) {
   //   // form.elements.addEventListener("input", checkRegex())
   //   form.elements[i].addEventListener("keypress", moveNext(form.elements[i]))
   // }
 
-  Array.from(children).forEach(function(el, i){
-    // form.elements.addEventListener("input", checkRegex())
-    el.addEventListener("keypress", moveNext(el))
-  });
+  // Array.from(children).forEach(function(el, i){
+  //   // form.elements.addEventListener("input", checkRegex())
+  //   el.addEventListener("keypress", moveNext(el))
+  // });
 
-
+  let allElements = document.querySelectorAll('.verifyClass');
+  let i;
+  for (i = 0; i < allElements.length; i++) {
+    let el = allElements[i];
+    el.addEventListener("keypress", function () {
+      if (this.nextSibling.nextSibling != null){
+        this.nextSibling.nextSibling.focus();
+      }
+      console.log(this.value)
+    });
+  }
 }
