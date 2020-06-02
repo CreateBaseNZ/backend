@@ -44,7 +44,20 @@ const emailVerification = async () => {
 //Verfication submit with button
 const verifyCode = () => {
   let verifyBtn = document.querySelector('.verifyBtn')
-  concatInput()
+  let allElements = document.querySelectorAll('.verifyClass');
+  let completeCode = concatInput()
+  let i;
+  if (completeCode == undefined  || completeCode.length < allElements.length){
+    for (i = 0; i < allElements.length; i++) {
+      let el = allElements[i];
+      el.classList.add('inputError');
+      setTimeout(function(){
+        el.classList.remove('inputError');
+      }, 1000);
+      document.querySelector('#instrucText').innerHTML = "Input complete code"
+      document.querySelector('#instrucText').style.color = 'red'
+    }
+  }
 }
 
 const concatInput = () => {
@@ -56,46 +69,38 @@ const concatInput = () => {
     }
 
     console.log(code)
+    return code
 }
 
 //Input listener
-const checkRegex = () => {
+const checkRegex = (event) => {
+  //Regex checks if input is non number or digit
+  let regex = RegExp(/[^\W_]+/)
+  let keyValue = event.key
 
-}
-
-function moveNext(input){
-  let firstInput = input
-  if (firstInput.nextElementSibling != null) {
-    firstInput.nextElementSibling.focus()
-    console.log('keypress')
+  if (regex.test(keyValue)) { //input is valid
+    return true
+  } else{
+    return false
   }
 }
 
 const inputListener = () => {  
-  // let form = document.querySelector('#codeForm')
-  // let children = form.elements
-
-  // console.log(children)
-
-  // for (let i = 0; i < form.elements.length; i++) {
-  //   // form.elements.addEventListener("input", checkRegex())
-  //   form.elements[i].addEventListener("keypress", moveNext(form.elements[i]))
-  // }
-
-  // Array.from(children).forEach(function(el, i){
-  //   // form.elements.addEventListener("input", checkRegex())
-  //   el.addEventListener("keypress", moveNext(el))
-  // });
-
   let allElements = document.querySelectorAll('.verifyClass');
   let i;
   for (i = 0; i < allElements.length; i++) {
     let el = allElements[i];
-    el.addEventListener("keypress", function () {
-      if (this.nextSibling.nextSibling != null){
-        this.nextSibling.nextSibling.focus();
+    el.addEventListener("keypress", function(event) {
+      if (checkRegex(event)){
+        if (this.nextSibling.nextSibling != null){
+          this.nextSibling.nextSibling.focus();
+        }
+      } 
+      else {
+        event.preventDefault();
+        //Failed regex - replace input to avoid false inputs to server
+        el.value = "";
       }
-      console.log(this.value)
     });
   }
 }
