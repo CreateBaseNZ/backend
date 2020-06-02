@@ -123,13 +123,35 @@
         <div class="action-btn" id="profile-edit-btn">Edit</div>
       </div>
     </div>
+
     <div class="profile-tabs-section">
-      <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="passTab(this);">
-      <label for="projects-tab"><span>Projects</span><i class="fas fa-folder-open"></i></label>
-      <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this);">
-      <label for="billing-tab"><span>Billing</span><i class="fas fa-money-check"></i></label>
-      <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this);">
-      <label for="settings-tab"><span>Settings</span><i class="fas fa-user-cog"></i></label>
+      <div id="tab-wrap">
+        <input type="radio" id="profile-tab" name="tab" data-tab="profile" onclick="passTab(this);">
+        <label for="profile-tab"><span>Profile</span><i class="fas fa-user"></i></label>
+        <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="passTab(this);">
+        <label for="projects-tab"><span>Projects</span><i class="fas fa-folder"></i></label>
+        <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this);">
+        <label for="billing-tab"><span>Billing</span><i class="fas fa-credit-card"></i></label>
+        <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this);">
+        <label for="settings-tab"><span>Settings</span><i class="fas fa-cog"></i></label>
+      </div>
+
+      <div class="main-area" id="profile-area">
+        <form id="profile-pic">
+          <label for="profile-upload"><i class="far fa-edit"></i></label>
+          <input type="file" name="picture" id="profile-upload" onchange="loadFile(event)"></input>
+          <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
+        </form>
+        <p id="profile-name" data-placeholder="Display Name"></p>
+        <p id="profile-location" data-info="Edit location under the Billing tab."></p>
+        <p id="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
+        <div class="profile-edit">
+          <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
+          <div class="reg-btn" id="profile-save-btn" onclick="profileUploadPicture();">Save</div>
+          <div class="action-btn" id="profile-edit-btn">Edit</div>
+        </div>
+      </div>
+      
       <div class="main-area" id="projects-area">
         <div id="new-edit-proj-screen-overlay"></div>
         <div id="new-edit-proj-screen">
@@ -169,6 +191,7 @@
           <button class="grad-btn" id="new-edit-proj-btn">+ Start New Project</button>
         </div>
       </div>
+      
       <div class="main-area" id="billing-area">
         <div class="billing-card">
           <div class="billing-main">

@@ -197,63 +197,68 @@ body {
   width: 100%;
   font-family: $poppins;
 
-  input {
-    display: none;
-
-    &:checked + label {
-      color: $logo-2;
-      border-bottom: 2px solid $logo-2;
-      box-shadow: 0 10px 10px -18px black;
-      transition: border-bottom 0.2s ease-out;
-    }
-  }
-
-  label {
-    position: relative;
-    flex: 1;
-    height: 5vh;
+  #tab-wrap {
+    position: absolute;
+    bottom: 0;
+    height: $top-bar-height;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $light-3;
-    background: $light-1;
-    cursor: pointer;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    box-shadow: 0 -5px 20px -20px $dark-1;
 
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    font-size: calc(10px + 0.2vw);
-
-    span {
+    input {
       display: none;
-    }
-
-    &:hover {
-      color: $logo-1;
-    }
-
-    &:not(:last-of-type) {
-      &::after {
-        content: '';
-        display: inline-block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        border-right: thin solid $light-2;
-        z-index: 2;
+  
+      &:checked + label {
+        color: $logo-2;
+        // border-bottom: 2px solid $logo-2;
+        // box-shadow: 0 10px 10px -18px black;
+        // transition: border-bottom 0.2s ease-out;
       }
     }
-
-    &:first-of-type {
-      padding-left: 7.5vw;
-    }
-
-    &:last-of-type {
-      padding-right: 7.5vw;
+  
+    label {
+      position: relative;
+      flex: 1;
+      margin: 10px 0;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $light-3;
+      background: $light-1;
+      cursor: pointer;
+  
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      font-size: calc(16px + 0.2vw);
+  
+      span {
+        display: none;
+      }
+  
+      &:hover {
+        color: $logo-1;
+      }
+  
+      // &:not(:last-of-type) {
+      //   &::after {
+      //     content: '';
+      //     display: inline-block;
+      //     position: absolute;
+      //     top: 0;
+      //     left: 0;
+      //     height: 100%;
+      //     width: 100%;
+      //     border-right: thin solid $light-2;
+      //     z-index: 2;
+      //   }
+      // }
     }
   }
+
 
   .main-area {
     display: none;
