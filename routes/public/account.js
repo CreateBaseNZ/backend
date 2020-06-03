@@ -132,6 +132,7 @@ router.post("/account/verify", async (req, res) => {
   } else {
     email = req.body.email;
   }
+  if (!email) return res.send({ status: "failed", content: "no email" });
   // VALIDATE USER VERIFICATION
   const verification = req.user.verification.status;
   if (verification) return res.redirect("/verified");
