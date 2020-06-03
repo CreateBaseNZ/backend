@@ -110,8 +110,6 @@ router.get("/verification", (req, res) => {
   if (req.isAuthenticated()) {
     if (req.user.verification.status) {
       return res.redirect("/verified");
-    } else {
-      return res.redirect("/verification");
     }
   }
   res.sendFile("verification.html", customerRouteOptions);

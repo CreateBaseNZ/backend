@@ -18,12 +18,12 @@
   <script src="./../../public/javascripts/nav.js"></script>
   <script src="./../../public/javascripts/session.js"></script>
   <script src="./../../public/javascripts/global.js"></script>
-  <script src="./../../public/javascripts/verification.js"></script>
+  <script src="./../../public/javascripts/verified.js"></script>
   <!--============== STYLESHEET ==============-->
   <link rel="stylesheet" href="./../../public/stylesheets/verification.css"/>
 </head>
 
-<body onload="navInit(); verificationInit();">
+<body onload="navInit(); verifiedInit();">
 
   <nav>
     <div class="nav-darken-overlay"></div>
@@ -102,8 +102,8 @@
           <h1>Your account has been verified</h1>
       </div>
 
-          <button class="codeSubmit-btn grad-btn" id="homeBtn" onclick="location.href = '/';">Back to Home</button>
-          <a class="loginLink" href="/login">Log in</a>
+          <button class="codeSubmit-btn grad-btn" id="homeBtn" onclick="homeRedirect()">Back to Home</button>
+          <a class="loginLink hide" href="/login">Log in</a>
     </div>
 
   </div>
