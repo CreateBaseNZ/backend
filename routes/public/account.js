@@ -125,8 +125,13 @@ router.get("/account/email-verification", async (req, res) => {
 
 router.post("/account/verify", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
-  const email = req.user.email;
-  const code = req.body;
+  let email;
+  const code = req.body.code;
+  if (req.user) {
+    email = req.user.email;
+  } else {
+    email = req.body.email;
+  }
   // VALIDATE USER VERIFICATION
   const verification = req.user.verification.status;
   if (verification) return res.redirect("/verified");
