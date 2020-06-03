@@ -143,7 +143,7 @@ router.post("/account/verify", async (req, res) => {
     // TO DO.....
     // REDIRECT TO A FAILED PAGE
     // TO DO.....
-    return res.send({ status: "failed", content: "error" });
+    return res.send({ status: "failed", content: error });
   }
   return res.redirect("/verified");
 });

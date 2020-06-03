@@ -7,8 +7,6 @@ const verificationInit = async () => {
         return console.log(error);
     }
 
-    if (loginStatus) loginBtnHide();
-
     inputListener()
 }
 
@@ -42,10 +40,12 @@ const emailVerification = async () => {
 }
 
 //Verfication submit with button
-const verifyCode = () => {
+const verifyCode = async () => {
   let verifyBtn = document.querySelector('.verifyBtn')
   let allElements = document.querySelectorAll('.verifyClass');
-  let completeCode = concatInput()
+  let completeCode = concatInput();
+
+  //Regex - error handling of input
   let i;
   if (completeCode == undefined  || completeCode.length < allElements.length){
     for (i = 0; i < allElements.length; i++) {
@@ -57,7 +57,33 @@ const verifyCode = () => {
       document.querySelector('#instrucText').innerHTML = "Input complete code"
       document.querySelector('#instrucText').style.color = 'red'
     }
+    return;
   }
+  const query = {  code: completeCode };
+  // Check Backend
+  let data;
+  try{
+    data = (await axios.post("/account/verify", query))["data"];
+  } catch (error){
+    return console.log(error);
+  }
+  if (data.status === "failed"){
+    //add error classes & animation
+    for (i = 0; i < allElements.length; i++) {
+      let el = allElements[i];
+      el.classList.add('inputError');
+      setTimeout(function(){
+        el.classList.remove('inputError');
+      }, 1000);
+      if (data.content === "incorrect code"){
+        document.querySelector('#instrucText').innerHTML = "Incorrect code"
+        document.querySelector('#instrucText').style.color = 'red'
+      }
+    }
+    return
+  }
+
+  window.location.href = "/verified";
 }
 
 const concatInput = () => {
@@ -75,7 +101,7 @@ const concatInput = () => {
 //Input listener
 const checkRegex = (event) => {
   //Regex checks if input is non number or digit
-  let regex = RegExp(/[^\W_]+/)
+  let regex = RegExp(/[\d]+/)
   let keyValue = event.key
 
   if (regex.test(keyValue)) { //input is valid
