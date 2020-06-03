@@ -304,6 +304,10 @@ const profileInit = async() => {
     dpEl.src = dpTemp
   })
 
+  document.getElementById('profile-tab').addEventListener('click', () => {
+    document.getElementById('profile-area').style.display = 'block'
+  })
+
   if (mq.matches) {
     // -- Horizontal scrolling --
     projScroll.addEventListener('wheel', function(e) {

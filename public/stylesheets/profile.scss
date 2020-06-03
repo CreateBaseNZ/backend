@@ -18,7 +18,7 @@ body {
 .my-profile-section {
   grid-area: profile;
   visibility: hidden;
-  display: grid;
+  display: none;
   grid-template-areas: 
   "dp name"
   "dp location"
@@ -264,7 +264,6 @@ body {
     display: none;
     flex: 1 0 100%;
     height: auto;
-    border-bottom: 2vh solid $light-1;
   }
 
   #projects-tab:checked ~ #projects-area {

@@ -36,42 +36,46 @@
         </span>
       </button>
       <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png" />
+        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
       </a>
-      <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png" />
-        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture" />
+      <div class="nav-user-icon">
+        <img alt="User" class="nav-user-hlt" src="./../../public/images/user-out-highlight.png"/>
+        <img alt="User" id="nav-user-reg" src="/profile/customer/fetch/picture"/>
+        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
+        <img alt="User" id="nav-user-x" src="./../../public/images/user-x.png"/>
       </div>
-      <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png" />
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png" />
-      </div>
-      <div class="nav-desktop-out">
+      <div class="nav-user-button">
         <a href="/login" id="nav-user-login">LOG IN</a>
-        <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
+        <a href="/signup" id="nav-user-signup">SIGN UP</a>
       </div>
     </div>
     <div class="nav-side-menus">
       <div class="nav-left-menu-wrap">
         <div class="nav-left-menu">
           <div class="nav-side-menu-links">
+            <p class="nav-side-header">SERVICES</p>
+            <span class="nav-item-outer">
+              <a class="nav-item-inner" href="/3d-printing">3D PRINTING</a>
+              <a class="info" href="/services/3d-printing">i</a>
+            </span>
+            <span class="nav-item-outer">
+              <a class="nav-item-inner" href="/services/marketplace">MARKETPLACE</a>
+              <a class="info" href="/services/marketplace">i</a>
+            </span>
+            <div class="nav-sep"></div>
+            <p class="nav-side-header">PRODUCTS</p>
+            <span class="nav-item-outer">
+              <a class="nav-item-inner" href="/products/engkits">ENGINEERING KITS</a>
+              <a class="info" href="/products/engkits">i</a>
+            </span>
+            <div class="nav-sep"></div>
             <p class="nav-side-header">CREATEBASE</p>
-            <a class="nav-side-item" href="/3d-printing">MAKE</a>
-            <a class="nav-side-item" href="/products/engkits">KITS</a>
-            <a class="nav-side-item" href="/services/marketplace">SHOP</a>
-            <p class="nav-side-header">INFO</p>
-            <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-            <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
-            <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
-            <p class="nav-side-header">ABOUT</p>
             <a class="nav-side-item" href="/story">OUR STORY</a>
             <a class="nav-side-item" href="/team">OUR TEAM</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square"
-              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
-              target="_blank"></a>
-            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+            <a class="fab fa-facebook-square" href="https://www.facebook.com/" target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/" target="_blank"></a>
             <a class="fab fa-twitter" href="https://twitter.com/" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
           </div>
@@ -81,26 +85,28 @@
         <div class="nav-right-menu">
           <p class="nav-side-header">WELCOME BACK</p>
           <a class="nav-side-item" href="/login">LOG IN</a>
+          <div class="nav-sep"></div>
           <p class="nav-side-header">FIRST TIME?</p>
           <a class="nav-side-item" href="/signup">SIGN UP</a>
         </div>
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture" />
+          <img id="nav-dp" src="/profile/customer/fetch/picture"/>
           <p class="nav-side-header">PROJECTS</p>
           <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <div class="nav-sep"></div>
           <p class="nav-side-header">ACCOUNT</p>
-          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
+          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
           <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
     </div>
   </nav>
-
-  <div id="notification-wrap">
+  
+	<div id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
         <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse our traffic.</p>
