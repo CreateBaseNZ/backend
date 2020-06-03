@@ -91,7 +91,7 @@ ROUTES
 // @route     Get /profile/customer/fetch/picture
 // @desc
 // @access    Private
-router.get("/profile/customer/fetch/picture", verifiedDataAccess, async (req, res) => {
+router.get("/profile/customer/fetch/picture", restrictedAccess, async (req, res) => {
   // Declare Variables
   const user = req.user;
   // Fetch Customer Details
@@ -129,7 +129,7 @@ router.get("/profile/customer/fetch/picture", verifiedDataAccess, async (req, re
 // @route     Get /profile/customer/update/picture
 // @desc
 // @access    Private
-router.post("/profile/customer/update/picture", upload.single("picture"), verifiedDataAccess, async (req, res) => {
+router.post("/profile/customer/update/picture", upload.single("picture"), restrictedAccess, async (req, res) => {
   // Declare Variables
   const file = req.file;
   const user = req.user;
