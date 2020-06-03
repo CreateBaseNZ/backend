@@ -44,7 +44,7 @@ const verifiedDataAccess = (req, res, next) => {
     if (req.user.verification.status) {
       return next();
     } else {
-      return;
+      return res.send({ status: "failed", content: "need to verify" });
     }
   } else {
     return res.redirect("/login");
@@ -91,42 +91,39 @@ ROUTES
 // @route     Get /profile/customer/fetch/picture
 // @desc
 // @access    Private
-router.get(
-  "/profile/customer/fetch/picture",
-  verifiedDataAccess,
-  async (req, res) => {
-    // Declare Variables
-    const user = req.user;
-    // Fetch Customer Details
-    let customer;
-    try {
-      customer = await Customer.findByAccountId(user._id);
-    } catch (error) {
-      return res.send({ status: "failed", content: error });
-    }
-    // Check if Customer has Profile Picture
-    let file = undefined;
-    if (customer.picture) {
-      // If so, Send File to Front-End
-      try {
-        file = await GridFS.files.findOne({ _id: customer.picture });
-      } catch (error) {
-        return res.send({ status: "failed", content: error });
-      }
-      if (file) {
-        let readstream = GridFS.createReadStream(file.filename);
-        return readstream.pipe(res);
-      }
-    }
-    // Else, Return Temporary Profile Picture
-    try {
-      file = await GridFS.files.findOne({ filename: "default-profile.png" });
-    } catch (error) {
-      return res.send({ status: "failed", content: error });
-    }
-    let readstream = GridFS.createReadStream(file.filename);
-    return readstream.pipe(res);
+router.get("/profile/customer/fetch/picture", verifiedDataAccess, async (req, res) => {
+  // Declare Variables
+  const user = req.user;
+  // Fetch Customer Details
+  let customer;
+  try {
+    customer = await Customer.findByAccountId(user._id);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
   }
+  // Check if Customer has Profile Picture
+  let file = undefined;
+  if (customer.picture) {
+    // If so, Send File to Front-End
+    try {
+      file = await GridFS.files.findOne({ _id: customer.picture });
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
+    }
+    if (file) {
+      let readstream = GridFS.createReadStream(file.filename);
+      return readstream.pipe(res);
+    }
+  }
+  // Else, Return Temporary Profile Picture
+  try {
+    file = await GridFS.files.findOne({ filename: "default-profile.png" });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  let readstream = GridFS.createReadStream(file.filename);
+  return readstream.pipe(res);
+}
 );
 
 // @route     Get /profile/customer/update/picture
