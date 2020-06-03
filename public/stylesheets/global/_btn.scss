@@ -78,6 +78,7 @@ button {
   padding: 5px;
   cursor: pointer;
   color: $light-3;
+  transition: color 0.2s ease-out;
 
   &:hover {
     color: red;

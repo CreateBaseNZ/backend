@@ -19,7 +19,8 @@
   <script src="./../../public/javascripts/profile.js"></script>
   <script src="./../../public/javascripts/global.js"></script>
   <!--============== STYLESHEET ==============-->
-  <link rel="stylesheet" href="./../../public/stylesheets/profile.css" />
+  <link rel="stylesheet" href="./../../public/stylesheets/profile/profile-all.css" />
+  <link rel="stylesheet" href="./../../public/stylesheets/profile/profile.css" />
 </head>
 
 <body onload="navInit(); profileInit();">
@@ -108,246 +109,237 @@
   </div>
 
   <div id="profile-page">
-    <div class="my-profile-section">
-      <form id="profile-pic">
-        <label for="profile-upload"><i class="far fa-edit"></i></label>
-        <input type="file" name="picture" id="profile-upload" onchange="loadFile(event)"></input>
-        <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
-      </form>
-      <p id="profile-name" data-placeholder="Display Name"></p>
-      <p id="profile-location" data-info="Edit location under the Billing tab."></p>
-      <p id="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
-      <div class="profile-edit">
-        <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
-        <div class="reg-btn" id="profile-save-btn" onclick="profileUploadPicture();">Save</div>
-        <div class="action-btn" id="profile-edit-btn">Edit</div>
+
+    <div class="main-area" id="profile-area">
+      <div id="backdrop">
+        <img src="/profile/customer/fetch/picture" id="profile-backdrop" decoding="async"></img>
       </div>
-    </div>
-
-    <div class="profile-tabs-section">
-
-      <div class="main-area" id="profile-area">
+      <div id="profile-wrapper">
+        <button class="fas fa-pen-square" id="profile-edit-btn"></button>
         <form id="profile-pic">
           <label for="profile-upload"><i class="far fa-edit"></i></label>
           <input type="file" name="picture" id="profile-upload" onchange="loadFile(event)"></input>
           <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
         </form>
         <p id="profile-name" data-placeholder="Display Name"></p>
-        <p id="profile-location" data-info="Edit location under the Billing tab."></p>
-        <p id="profile-bio" data-placeholder="Tell us a bit about yourself!"></p>
-        <div class="profile-edit">
+        <p id="profile-location" data-info="Your location can be modified in the Settings tab."></p>
+        <div class="sep"></div>
+        <p id="profile-bio" data-placeholder="Tell us a bit about yourself."></p>
+        <div id="profile-edit">
           <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
-          <div class="reg-btn" id="profile-save-btn" onclick="profileUploadPicture();">Save</div>
-          <div class="action-btn" id="profile-edit-btn">Edit</div>
+          <div class="grad-btn" id="profile-save-btn" onclick="profileUploadPicture();">Save</div>
         </div>
-      </div>
-
-
-      <div id="tab-wrap">
-        <input type="radio" id="profile-tab" name="tab" data-tab="profile" onclick="passTab(this);">
-        <label for="profile-tab"><span>Profile</span><i class="fas fa-user"></i></label>
-        <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="passTab(this);">
-        <label for="projects-tab"><span>Projects</span><i class="fas fa-folder"></i></label>
-        <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="passTab(this);">
-        <label for="billing-tab"><span>Billing</span><i class="fas fa-credit-card"></i></label>
-        <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="passTab(this);">
-        <label for="settings-tab"><span>Settings</span><i class="fas fa-cog"></i></label>
-      </div>
-      
-      <div class="main-area" id="projects-area">
-        <div id="new-edit-proj-screen-overlay"></div>
-        <div id="new-edit-proj-screen">
-          <div id="new-edit-proj-x">
-            <div></div>
-          </div>
-          <div id="new-edit-proj">
-            <h3 id="new-edit-proj-header"></h3>
-            <h4>Name</h4>
-            <div id="new-edit-proj-name-wrapper">
-              <input type="text" id="new-edit-proj-name" placeholder="Give your project a name">
-              <i id="new-edit-proj-bookmark" class="fa-bookmark"></i>
-            </div>
-            <h4>Makes</h4>
-            <div id="make-blobs-container"></div>
-            <h4>Notes</h4>
-            <textarea id="new-edit-proj-notes" placeholder="Add notes to your project" style="resize: none;"></textarea>
-            <div class="save-proj-container">
-              <i class="far fa-trash-alt" id="delete-proj"></i>
-              <button class="grad-btn" id="save-proj">Save</button>
-            </div>
-          </div>
-          <div class="add-make">
-            <h4>Add to your project</h4>
-            <div id="make-labels-wrapper">
-              <div id="make-labels-container"></div>
-            </div>
-            <h5>You can add Makes to this project later.</h5>
-          </div>
-        </div>
-        <div id="proj-wrap">
-          <div id="proj-scroll-container">
-            <div class="end-spacer"></div>
-          </div>
-        </div>
-        <div class="new-proj-container">
-          <button class="grad-btn" id="new-edit-proj-btn">+ Start New Project</button>
-        </div>
-      </div>
-      
-      <div class="main-area" id="billing-area">
-        <div class="billing-card">
-          <div class="billing-main">
-            <div class="order-id">
-              <h2>Order #80085</h2>
-              <button class="action-btn">VIEW TRACKING</button>
-            </div>
-            <div class="order-status">
-              <i class="fas fa-box-open"></i>
-              <p>Packing</p>
-            </div>
-            <div class="order-total">
-              <span>TOTAL</span>
-              <p>$53.80</p>
-            </div>
-            <div class="order-date">
-              <i class="fas fa-credit-card"></i>
-              <p>April 21, 2020</p>
-            </div>
-            <div class="order-location">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>Auckland, New Zealand</p>
-            </div>
-          </div>
-          <div class="billing-details">
-            <div class="order-item">
-              <p class="order-item-name">Collar stay</p>
-              <p class="order-item-quantity">2 pcs</p>
-              <p class="order-item-price">$8.00</p>
-            </div>
-            <div class="order-item">
-              <p class="order-item-name">Poop emoji keychain</p>
-              <p class="order-item-quantity">4 pcs</p>
-              <p class="order-item-price">$10.80</p>
-            </div>
-            <div class="order-item">
-              <p class="order-item-name">Gimbal adapter</p>
-              <p class="order-item-quantity">1 pc</p>
-              <p class="order-item-price">$35.00</p>
-            </div>
-            <div class="order-item-total">
-              <p>Total</p>
-              <h3>$53.80</h3>
-            </div>
-          </div>
-          <div class="billing-show">
-            <div class="billing-invoice">
-              <a href="#">Print an invoice</a>
-            </div>
-            <div class="billing-arrow"></div>
-            <div class="billing-contact">
-              <a href="#">Contact us about this order</a>
-            </div>
-          </div>
-        </div>
-        <div class="billing-card">
-          <div class="billing-main">
-            <div class="order-id">
-              <h2>Order #10831</h2>
-              <button class="action-btn">VIEW TRACKING</button>
-            </div>
-            <div class="order-status">
-              <i class="fas fa-truck-loading"></i>
-              <p>In transit</p>
-            </div>
-            <div class="order-total">
-              <span>TOTAL</span>
-              <p>$12.00</p>
-            </div>
-            <div class="order-date">
-              <i class="fas fa-credit-card"></i>
-              <p>April 20, 2020</p>
-            </div>
-            <div class="order-location">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>Auckland, New Zealand</p>
-            </div>
-          </div>
-          <div class="billing-details">
-            <div class="order-item">
-              <p class="order-item-name">Pen holder</p>
-              <p class="order-item-quantity">1 pc</p>
-              <p class="order-item-price">$12.00</p>
-            </div>
-            <div class="order-item-total">
-              <p>Total</p>
-              <h3>$12.00</h3>
-            </div>
-          </div>
-          <div class="billing-show">
-            <div class="billing-invoice">
-              <a href="#">Print an invoice</a>
-            </div>
-            <div class="billing-arrow"></div>
-            <div class="billing-contact">
-              <a href="#">Contact us about this order</a>
-            </div>
-          </div>
-        </div>
-        <div class="billing-card">
-          <div class="billing-main">
-            <div class="order-id">
-              <h2>Order #10421</h2>
-              <!-- <button class="action-btn">VIEW TRACKING</button> -->
-            </div>
-            <div class="order-status">
-              <i class="fas fa-check-circle"></i>
-              <p>Delivered</p>
-            </div>
-            <div class="order-total">
-              <span>TOTAL</span>
-              <p>$20.50</p>
-            </div>
-            <div class="order-date">
-              <i class="fas fa-credit-card"></i>
-              <p>March 3, 2019</p>
-            </div>
-            <div class="order-location">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>Auckland, New Zealand</p>
-            </div>
-          </div>
-          <div class="billing-details">
-            <div class="order-item">
-              <p class="order-item-name">Trophy display stand</p>
-              <p class="order-item-quantity">2 pcs</p>
-              <p class="order-item-price">$11.00</p>
-            </div>
-            <div class="order-item">
-              <p class="order-item-name">Watch case</p>
-              <p class="order-item-quantity">1 pc</p>
-              <p class="order-item-price">$9.50</p>
-            </div>
-            <div class="order-item-total">
-              <p>Total</p>
-              <h3>$20.50</h3>
-            </div>
-          </div>
-          <div class="billing-show">
-            <div class="billing-invoice">
-              <a href="#">Print an invoice</a>
-            </div>
-            <div class="billing-arrow"></div>
-            <div class="billing-contact">
-              <a href="#">Contact us about this order</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="main-area" id="settings-area">
-        <p>Settings</p>
+        <div id="profile-since"></div>
       </div>
     </div>
+
+    <div class="main-area" id="projects-area">
+      <div id="new-edit-proj-screen-overlay"></div>
+      <div id="new-edit-proj-screen">
+        <div id="new-edit-proj-x">
+          <div></div>
+        </div>
+        <div id="new-edit-proj">
+          <h3 id="new-edit-proj-header"></h3>
+          <h4>Name</h4>
+          <div id="new-edit-proj-name-wrapper">
+            <input type="text" id="new-edit-proj-name" placeholder="Give your project a name">
+            <i id="new-edit-proj-bookmark" class="fa-bookmark"></i>
+          </div>
+          <h4>Makes</h4>
+          <div id="make-blobs-container"></div>
+          <h4>Notes</h4>
+          <textarea id="new-edit-proj-notes" placeholder="Add notes to your project" style="resize: none;"></textarea>
+          <div class="save-proj-container">
+            <i class="far fa-trash-alt" id="delete-proj"></i>
+            <button class="grad-btn" id="save-proj">Save</button>
+          </div>
+        </div>
+        <div class="add-make">
+          <h4>Add to your project</h4>
+          <div id="make-labels-wrapper">
+            <div id="make-labels-container"></div>
+          </div>
+          <h5>You can add Makes to this project later.</h5>
+        </div>
+      </div>
+      <div id="proj-wrap">
+        <div id="proj-scroll-container">
+          <div class="end-spacer"></div>
+        </div>
+      </div>
+      <div class="new-proj-container">
+        <button class="grad-btn" id="new-edit-proj-btn">+ Start New Project</button>
+      </div>
+    </div>
+    
+    <div class="main-area" id="billing-area">
+      <div class="billing-card">
+        <div class="billing-main">
+          <div class="order-id">
+            <h2>Order #80085</h2>
+            <button class="action-btn">VIEW TRACKING</button>
+          </div>
+          <div class="order-status">
+            <i class="fas fa-box-open"></i>
+            <p>Packing</p>
+          </div>
+          <div class="order-total">
+            <span>TOTAL</span>
+            <p>$53.80</p>
+          </div>
+          <div class="order-date">
+            <i class="fas fa-credit-card"></i>
+            <p>April 21, 2020</p>
+          </div>
+          <div class="order-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Auckland, New Zealand</p>
+          </div>
+        </div>
+        <div class="billing-details">
+          <div class="order-item">
+            <p class="order-item-name">Collar stay</p>
+            <p class="order-item-quantity">2 pcs</p>
+            <p class="order-item-price">$8.00</p>
+          </div>
+          <div class="order-item">
+            <p class="order-item-name">Poop emoji keychain</p>
+            <p class="order-item-quantity">4 pcs</p>
+            <p class="order-item-price">$10.80</p>
+          </div>
+          <div class="order-item">
+            <p class="order-item-name">Gimbal adapter</p>
+            <p class="order-item-quantity">1 pc</p>
+            <p class="order-item-price">$35.00</p>
+          </div>
+          <div class="order-item-total">
+            <p>Total</p>
+            <h3>$53.80</h3>
+          </div>
+        </div>
+        <div class="billing-show">
+          <div class="billing-invoice">
+            <a href="#">Print an invoice</a>
+          </div>
+          <div class="billing-arrow"></div>
+          <div class="billing-contact">
+            <a href="#">Contact us about this order</a>
+          </div>
+        </div>
+      </div>
+      <div class="billing-card">
+        <div class="billing-main">
+          <div class="order-id">
+            <h2>Order #10831</h2>
+            <button class="action-btn">VIEW TRACKING</button>
+          </div>
+          <div class="order-status">
+            <i class="fas fa-truck-loading"></i>
+            <p>In transit</p>
+          </div>
+          <div class="order-total">
+            <span>TOTAL</span>
+            <p>$12.00</p>
+          </div>
+          <div class="order-date">
+            <i class="fas fa-credit-card"></i>
+            <p>April 20, 2020</p>
+          </div>
+          <div class="order-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Auckland, New Zealand</p>
+          </div>
+        </div>
+        <div class="billing-details">
+          <div class="order-item">
+            <p class="order-item-name">Pen holder</p>
+            <p class="order-item-quantity">1 pc</p>
+            <p class="order-item-price">$12.00</p>
+          </div>
+          <div class="order-item-total">
+            <p>Total</p>
+            <h3>$12.00</h3>
+          </div>
+        </div>
+        <div class="billing-show">
+          <div class="billing-invoice">
+            <a href="#">Print an invoice</a>
+          </div>
+          <div class="billing-arrow"></div>
+          <div class="billing-contact">
+            <a href="#">Contact us about this order</a>
+          </div>
+        </div>
+      </div>
+      <div class="billing-card">
+        <div class="billing-main">
+          <div class="order-id">
+            <h2>Order #10421</h2>
+            <!-- <button class="action-btn">VIEW TRACKING</button> -->
+          </div>
+          <div class="order-status">
+            <i class="fas fa-check-circle"></i>
+            <p>Delivered</p>
+          </div>
+          <div class="order-total">
+            <span>TOTAL</span>
+            <p>$20.50</p>
+          </div>
+          <div class="order-date">
+            <i class="fas fa-credit-card"></i>
+            <p>March 3, 2019</p>
+          </div>
+          <div class="order-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Auckland, New Zealand</p>
+          </div>
+        </div>
+        <div class="billing-details">
+          <div class="order-item">
+            <p class="order-item-name">Trophy display stand</p>
+            <p class="order-item-quantity">2 pcs</p>
+            <p class="order-item-price">$11.00</p>
+          </div>
+          <div class="order-item">
+            <p class="order-item-name">Watch case</p>
+            <p class="order-item-quantity">1 pc</p>
+            <p class="order-item-price">$9.50</p>
+          </div>
+          <div class="order-item-total">
+            <p>Total</p>
+            <h3>$20.50</h3>
+          </div>
+        </div>
+        <div class="billing-show">
+          <div class="billing-invoice">
+            <a href="#">Print an invoice</a>
+          </div>
+          <div class="billing-arrow"></div>
+          <div class="billing-contact">
+            <a href="#">Contact us about this order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-area" id="settings-area">
+      <p>Settings</p>
+    </div>
+
+    <div id="tab-container">
+      <input type="radio" id="profile-tab" name="tab" data-tab="profile" onclick="changeTabArea(this);">
+      <label for="profile-tab"><span>Profile</span><i class="fas fa-user"></i></label>
+      <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="changeTabArea(this);">
+      <label for="projects-tab"><span>Projects</span><i class="fas fa-folder"></i></label>
+      <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="changeTabArea(this);">
+      <label for="billing-tab"><span>Billing</span><i class="fas fa-credit-card"></i></label>
+      <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="changeTabArea(this);">
+      <label for="settings-tab"><span>Settings</span><i class="fas fa-cog"></i></label>
+    </div>
   </div>
+
+    
 
 </body>
 

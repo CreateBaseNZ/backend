@@ -1,0 +1,237 @@
+@import "../global/all";
+
+#profile-area {
+  height: 100%;
+  overflow: hidden;
+  margin-bottom: 0;
+  flex-direction: column;
+  align-items: center;
+
+  #backdrop {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    #profile-backdrop {
+      width: 120%;
+      height: 120%;
+      filter: blur(10px);
+      object-fit: cover;
+    }
+  }
+
+  #profile-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 60%;
+    padding: 0 10%;
+    background: $light-1;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -5px 25px -15px $dark-1;
+    transition: margin-top 0.2s ease-out;
+
+    #profile-edit-btn {
+      position: absolute;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      top: 15px;
+      right: 15px;
+      padding: 5px;
+      font-size: 7vw;
+      color: $light-3;
+      transition: color 0.2s ease-out;
+
+      &:hover {
+        color: $logo-3;
+      }
+    }
+
+    #profile-pic {
+      margin-top: -20vw;
+      position: relative;
+      justify-self: center;
+      width: 40vw;
+      height: 40vw;
+      border-radius: 20px;
+      box-shadow: 0 0 15px -10px $dark-1;
+  
+      #profile-preview {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+  
+      input {
+        display: none;
+      }
+  
+      label {
+        display: none;
+        position: absolute;
+        bottom: -2vw;
+        left: 2vw;
+        
+        i {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $dark-1;
+          background: $light-1;
+          box-shadow: 0 0 10px -5px $dark-3;
+          cursor: pointer;
+          
+          &:hover {
+            color: $dark-3;
+            background: $light-2;
+          }
+        }
+  
+        &:hover ~ #profile-preview {
+          box-shadow: 0 0 10px -2px $highlight;
+        }
+      }
+    }
+  
+    #profile-name {
+      width: 100%;
+      margin-top: 4vh;
+      font-size: calc(20px + 1vmax);
+      font-family: $montserrat;
+      text-align: center;
+      transition: margin-top 0.2s ease-out;
+    }
+  
+    #profile-location {
+      margin-top: 1vh;
+      text-transform: uppercase;
+      font-family: $poppins;
+      font-weight: 600;
+      font-size: calc(8px + 0.2vmax);
+      letter-spacing: 1.5px;
+      color: $light-3;
+      text-align: center;
+      transition: margin-top 0.2s ease-out;
+    }
+
+    .sep {
+      width: 70%;
+      border-bottom: thin solid $light-2;
+      margin: 3vh 0;
+      transition: margin 0.2s ease-out;
+    }
+  
+    #profile-bio {
+      width: 100%;
+      height: 10vh;
+      text-align: center;
+      font-size: calc(10px + 0.2vmax);
+      line-height: 150%;
+      overflow-wrap: break-word;
+    }
+
+    #profile-edit {
+      display: none;
+    }
+  }
+}
+
+.profile-wrapper-edit {
+  height: calc(80% + 20vh) !important;
+  margin-top: -20vh;
+
+  #profile-pic {
+    label {
+      display: inline-block;
+    }
+  }
+
+  #profile-edit-btn {
+    display: none;
+  }
+
+  #profile-name,
+  #profile-bio {
+    -webkit-user-modify: read-write;
+    -moz-user-modify: read-write;
+    border: thin solid $light-3;
+    padding: 5px;
+    cursor: text;
+
+    &:empty::before {
+      content: attr(data-placeholder);
+      color: $light-3;
+      font-weight: 300;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $highlight;
+    }
+  }
+
+  #profile-name {
+    margin-top: 5vh !important;
+    transition: margin-top 0.3s ease-out !important;
+  }
+
+  #profile-location {
+    margin-top: 2vh !important;
+    transition: margin-top 0.3s ease-out !important;
+
+    &::after {
+      display: block;
+      width: 100%;
+      text-align: center;
+      content: attr(data-info);
+      font-size: calc(10px + 0.1vw);
+      color: $light-3;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 100%;
+      margin-top: 0.5vh;
+    }
+  }
+
+  #profile-bio {
+    height: 15vh !important;
+  }
+
+  .sep {
+    margin: 4vh 0 !important;
+    transition: margin 0.3s ease-out !important;
+  }
+
+  #profile-edit {
+    display: flex !important;
+    margin-top: 4vh;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    font-size: calc(10px + 0.2vw);
+
+    #profile-save-btn {
+      padding: 1em 2.5em;
+    }
+  }
+}
+
+// #############################################################################
+// MEDIA QUERY
+// #############################################################################
+
+@media only screen and (min-width: 850px) and (orientation: landscape) {
+
+
+}

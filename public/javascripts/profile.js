@@ -1,5 +1,6 @@
 var mq = window.matchMedia("(min-width: 850px)")
 var activeProjID = undefined
+var tabs = ['profile', 'projects', 'billing', 'settings']
 
 function capitaliseFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -8,6 +9,18 @@ function capitaliseFirstLetter(string) {
 // Previews uploaded profile picture
 var loadFile = function(event) {
   document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
+}
+
+function changeTabArea(el) {
+  passTab(el)
+
+  for (const tab of tabs) {
+    if (document.getElementById(tab + '-tab').checked === true) {
+      document.getElementById(tab + '-area').style.display = 'flex'
+    } else {
+      document.getElementById(tab + '-area').style.display = 'none'
+    }
+  }
 }
 
 let Project = class {
@@ -231,7 +244,7 @@ function showProjPopup(status, project = undefined) {
 const profileInit = async() => {
 
   // Get elements
-  const profileSection = document.querySelector('.my-profile-section')
+  const profileWrapper = document.getElementById('profile-wrapper')
   const navDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-in')]
   const dpEl = document.getElementById('profile-preview')
   const nameEl = document.getElementById('profile-name')
@@ -239,9 +252,6 @@ const profileInit = async() => {
   const bioEl = document.getElementById('profile-bio')
   projScroll = document.getElementById('proj-scroll-container')
   const billingCards = document.getElementsByClassName('billing-card')
-
-  // -- Prerender selected tab -- 
-  document.getElementById(localStorage.getItem('tab') + '-tab').checked = true
 
   // -- Get customer info --
   let customerInfo
@@ -262,17 +272,15 @@ const profileInit = async() => {
   nameEl.innerHTML = nameTemp
   locationEl.innerHTML = location
   bioEl.innerHTML = bioTemp
-  // Force everything to load before rendering the section
-  profileSection.style.visibility = 'visible'
 
   // -- If edit --
   document.getElementById('profile-edit-btn').addEventListener('click', () => {
-    profileSection.classList.toggle('my-profile-section-edit')
+    profileWrapper.classList.toggle('profile-wrapper-edit')
   })
 
   //  -- If save --
   document.getElementById('profile-save-btn').addEventListener('click', async() => {
-    profileSection.classList.toggle('my-profile-section-edit')
+    profileWrapper.classList.toggle('profile-wrapper-edit')
 
     // Save new variables
     dpTemp = dpEl.src
@@ -300,12 +308,8 @@ const profileInit = async() => {
     nameEl.innerHTML = nameTemp
     locationEl.innerHTML = location
     bioEl.innerHTML = bioTemp
-    profileSection.classList.toggle('my-profile-section-edit')
+    profileWrapper.classList.toggle('profile-wrapper-edit')
     dpEl.src = dpTemp
-  })
-
-  document.getElementById('profile-tab').addEventListener('click', () => {
-    document.getElementById('profile-area').style.display = 'block'
   })
 
   if (mq.matches) {
@@ -494,5 +498,9 @@ const profileInit = async() => {
       hideProjPopup(callback["data"]["status"], 'new')
     }
   })
+
+  // -- Prerender selected tab -- 
+  document.getElementById(localStorage.getItem('tab') + '-tab').checked = true
+  document.getElementById(localStorage.getItem('tab') + '-area').style.display = "flex"
 
 }
