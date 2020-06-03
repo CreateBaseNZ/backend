@@ -39,6 +39,18 @@ const verifiedAccess = (req, res, next) => {
   }
 };
 
+const verifiedDataAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    if (req.user.verification.status) {
+      return next();
+    } else {
+      return;
+    }
+  } else {
+    return res.redirect("/login");
+  }
+};
+
 const restrictedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
@@ -81,7 +93,7 @@ ROUTES
 // @access    Private
 router.get(
   "/profile/customer/fetch/picture",
-  verifiedAccess,
+  verifiedDataAccess,
   async (req, res) => {
     // Declare Variables
     const user = req.user;
@@ -120,39 +132,35 @@ router.get(
 // @route     Get /profile/customer/update/picture
 // @desc
 // @access    Private
-router.post(
-  "/profile/customer/update/picture",
-  upload.single("picture"),
-  verifiedAccess,
-  async (req, res) => {
-    // Declare Variables
-    const file = req.file;
-    const user = req.user;
-    // Fetch Customer Details
-    let customer;
-    try {
-      customer = await Customer.findByAccountId(user._id);
-    } catch (error) {
-      return res.send({ status: "failed", content: error });
-    }
-    // Check if Customer has Profile Picture
-    if (customer.picture) {
-      // If so, Delete Profile Picture
-      try {
-        await GridFS.remove({ _id: customer.picture, root: "fs" });
-      } catch (error) {
-        return res.send({ status: "failed", content: error });
-      }
-    }
-    // Update Customer's Profile Picture
-    customer.picture = file.id;
-    try {
-      customer.save();
-    } catch (error) {
-      return res.send({ status: "failed", content: error });
-    }
-    return res.send({ status: "success", content: "profile picture updated" });
+router.post("/profile/customer/update/picture", upload.single("picture"), verifiedDataAccess, async (req, res) => {
+  // Declare Variables
+  const file = req.file;
+  const user = req.user;
+  // Fetch Customer Details
+  let customer;
+  try {
+    customer = await Customer.findByAccountId(user._id);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
   }
+  // Check if Customer has Profile Picture
+  if (customer.picture) {
+    // If so, Delete Profile Picture
+    try {
+      await GridFS.remove({ _id: customer.picture, root: "fs" });
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
+    }
+  }
+  // Update Customer's Profile Picture
+  customer.picture = file.id;
+  try {
+    customer.save();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  return res.send({ status: "success", content: "profile picture updated" });
+}
 );
 
 // @route     Get /profile/customer/fetch
