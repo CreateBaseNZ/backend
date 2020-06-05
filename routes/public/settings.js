@@ -15,6 +15,7 @@ MODELS
 =========================================================================================*/
 
 const Account = require("../../model/Account.js");
+const Customer = require("../../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -51,21 +52,32 @@ ROUTES
 // @access    
 router.post("/settings/change-email", verifiedAccess, async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
+  const accountId = req.user._id;
   const email = req.body;
-  // CHECK IF EMAIL IS TAKEN
-  let account;
+  // CHECK IF EMAIL IS TAKEN, GET THE USER'S ACCOUNT AND DETAILS
+  const promises1 = [Account.findOne({ email }), Account.findOne({ _id: accountId }), Customer.findOne({ accountId })];
   try {
-    account = await Account.findOne({ email });
+    [account1, account2, customer] = await Promise.all(promises1);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
-  if (account) return res.send({ status: "failed", content: "registered email" });
+  if (account1) return res.send({ status: "failed", content: "registered email" });
   // CHANGE EMAIL
-  // TO DO .....
   // Unsubscribe user
+  try {
+    await customer.unsubscribeMail();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
   // Update user details
-  // Send verification email
-  // TO DO .....
+  account2.updateEmail(email);
+  // SAVE UPDATES AND SEND EMAIL VERIFICATION
+  const promises2 = [customer.save(), account2.save(), Account.verification(email)];
+  try {
+    await Promise.all(promises2);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
   // RETURN SUCCESS
   return res.send({ status: "success", content: "email changed" });
 });

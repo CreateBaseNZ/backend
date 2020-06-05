@@ -141,7 +141,7 @@ router.get("/unsubscribe/mailing-list/:email", async (req, res) => {
   }
   // Remove Email from the Mailing List
   try {
-    await Mail.deleteMail(email);
+    await Mail.delete(email);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
@@ -175,7 +175,7 @@ router.post("/unsubscribe/mailing-list", async (req, res) => {
   }
   // Remove Email from the Mailing List
   try {
-    await Mail.deleteMail(email);
+    await Mail.delete(email);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }

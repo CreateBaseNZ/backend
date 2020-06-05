@@ -202,6 +202,22 @@ CustomerSchema.methods.subscribeMail = function (email) {
   })
 }
 
+CustomerSchema.methods.unsubscribeMail = function (email) {
+  return new Promise(async (resolve, reject) => {
+    // UNSUBSCRIBE USER
+    // Update customer's subscription status
+    this.subscription.mail = false;
+    // Create a new mail instance
+    try {
+      await Mail.delete(email);
+    } catch (error) {
+      return reject(error);
+    }
+    // RETURN PROMISE RESPONSE
+    return resolve();
+  })
+}
+
 // @FUNC  update
 // @TYPE  METHODS
 // @DESC
