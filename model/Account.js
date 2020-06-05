@@ -403,9 +403,9 @@ AccountSchema.statics.verify = function (email, code) {
   })
 }
 
-/*=========================================================================================
+/* ========================================================================================
 METHODS
-=========================================================================================*/
+======================================================================================== */
 
 // @FUNC  login
 // @TYPE  STATICS - PROMISE - ASYNC
@@ -432,6 +432,27 @@ AccountSchema.methods.login = function (password) {
     return resolve(match);
   })
 };
+
+/* ----------------------------------------------------------------------------------------
+UPDATE
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  updateEmail
+// @TYPE  METHODS - NORMAL
+// @DESC  
+// @ARGU  
+AccountSchema.methods.updateEmail = function (email) {
+  // UPDATE
+  this.email = email;
+  this.verification.code = Math.floor(100000 + Math.random() * 900000);
+  this.verification.status = false;
+  // RETURN SUCCESS;
+  return;
+}
+
+/* ----------------------------------------------------------------------------------------
+VALIDATE
+---------------------------------------------------------------------------------------- */
 
 // @FUNC  validatePassword
 // @TYPE  STATICS - PROMISE - ASYNC
