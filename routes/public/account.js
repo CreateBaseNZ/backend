@@ -74,13 +74,12 @@ router.get("/logout", async (req, res) => {
   try {
     content = await Session.create(sessionId);
   } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
+    return res.send({ status: "failed", content: error });
   }
   // Logout User
   req.logout();
   // Redirect User to the Home Page
-  res.redirect("/");
+  return res.redirect("/");
 });
 
 // @route     Get /login-status
@@ -91,6 +90,9 @@ router.get("/login-status", (req, res) => {
   res.send({ status: false });
 });
 
+// @route     Get /account-verification/:email/:code
+// @desc      Verify the account for a given email
+// @access    Public
 router.get("/account-verification/:email/:code", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const email = req.params.email;
@@ -107,6 +109,9 @@ router.get("/account-verification/:email/:code", async (req, res) => {
   return res.redirect("/verified");
 });
 
+// @route     Get /account/email-verification
+// @desc      Send the verification email
+// @access    Public
 router.get("/account/email-verification", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const email = req.user.email;
@@ -123,6 +128,9 @@ router.get("/account/email-verification", async (req, res) => {
   return res.send({ status: "success", content: "success" });
 });
 
+// @route     Get /account/verify
+// @desc      Verify the account
+// @access    Public
 router.post("/account/verify", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   let email;
@@ -147,6 +155,62 @@ router.post("/account/verify", async (req, res) => {
   }
   return res.redirect("/verified");
 });
+
+// @route     POST /account/login/validate
+// @desc      Validate the login inputs
+// @access    Public
+router.post("/account/login/validate", async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const inputs = req.body.inputs;
+  // VALIDATION
+  let validation = {
+    email: { valid: undefined, message: undefined },
+    password: { valid: undefined, message: undefined }
+  };
+  // Email
+  let account = undefined;
+  if (inputs.email) {
+    try {
+      account = await Account.fineOne({ email: inputs.email });
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
+    }
+    if (!account) {
+      validation.email.valid = false;
+      validation.email.message = "unregistered email";
+    } else {
+      validation.email.valid = true;
+      validation.email.message = "registered email";
+    }
+  }
+  // Password
+  if (inputs.password) {
+    if (!account) {
+      validation.password.valid = false;
+      validation.password.message = "registered email required";
+    } else {
+      let message;
+      try {
+        message = await account.validatePassword(inputs.password);
+      } catch (error) {
+        return res.send({ status: "failed", content: error });
+      }
+      validation.password.message = message;
+      if (message === "incorrect password") {
+        validation.password.valid = false;
+      } else if (message === "password match") {
+        validation.password.valid = true;
+      }
+    }
+  }
+  // Return Validation Outcome to Client
+  return res.send({ status: "success", content: validation });
+});
+
+// @route     POST /account/signup/validate
+// @desc      Validate the signup inputs
+// @access    Public
+router.post("/account/signup/validate", async (req, res) => { });
 
 /*=========================================================================================
 EXPORT ROUTE
