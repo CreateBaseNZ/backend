@@ -210,7 +210,31 @@ router.post("/account/login/validate", async (req, res) => {
 // @route     POST /account/signup/validate
 // @desc      Validate the signup inputs
 // @access    Public
-router.post("/account/signup/validate", async (req, res) => { });
+router.post("/account/signup/validate", async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const inputs = req.body.inputs;
+  // VALIDATION
+  let validation = { email: { valid: undefined, message: undefined } };
+  // Email
+  // Email
+  let account = undefined;
+  if (inputs.email) {
+    try {
+      account = await Account.fineOne({ email: inputs.email });
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
+    }
+    if (!account) {
+      validation.email.valid = true;
+      validation.email.message = "unregistered email";
+    } else {
+      validation.email.valid = false;
+      validation.email.message = "registered email";
+    }
+  }
+  // RETURN SUCCESS
+  return res.send({ status: "success", content: validation });
+});
 
 /*=========================================================================================
 EXPORT ROUTE
