@@ -16,6 +16,7 @@ MODELS
 
 const Account = require("../../model/Account.js");
 const Customer = require("../../model/Customer.js");
+const Transaction = require("../../model/Transaction.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -163,7 +164,8 @@ router.get("/settings/fetch-customer-details", verifiedAccess, async (req, res) 
   const account = req.user;
   let details = {
     account: { type: account.type, email: account.email, wallet: account.wallet },
-    customer: { address: undefined, subscription: undefined }
+    customer: { address: undefined, subscription: undefined },
+    balance: undefined
   }
   // GET USER DETAILS
   let customer;
@@ -174,6 +176,14 @@ router.get("/settings/fetch-customer-details", verifiedAccess, async (req, res) 
   }
   details.customer.address = customer.address;
   details.customer.subscription = customer.subscription;
+  // GET BALANCE DETAILS
+  let balance;
+  try {
+    balance = await Transaction.fetchBalance(account._id);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  details.balance = balance;
   // RETURN SUCCESS
   return res.send({ status: "success", content: details });
 })
