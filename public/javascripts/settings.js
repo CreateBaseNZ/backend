@@ -10,7 +10,8 @@ let settings = {
   changePassword: undefined,
   changePasswordCollect: undefined,
   changePasswordValidate: undefined,
-  changePasswordSubmit: undefined
+  changePasswordSubmit: undefined,
+  updateSubmit: undefined
 }
 
 /* ========================================================================================
@@ -103,6 +104,22 @@ settings.changePasswordSubmit = (password) => {
     let data;
     try {
       data = (await axios.post("/settings/change-password", password))["data"];
+    } catch (error) {
+      return reject(error);
+    }
+    // RESOLVE PROMISE
+    return resolve(data);
+  })
+}
+
+// @func  settings.updateSubmit
+// @desc  Sends the change password request to the backend
+settings.updateSubmit = (updates) => {
+  return new Promise(async (resolve, reject) => {
+    // SEND REQUEST TO THE BACKEND
+    let data;
+    try {
+      data = (await axios.post("/settings/update", updates))["data"];
     } catch (error) {
       return reject(error);
     }

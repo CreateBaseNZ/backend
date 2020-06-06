@@ -108,6 +108,53 @@ router.post("/settings/change-password", verifiedAccess, async (req, res) => {
   return res.send({ status: "success", content: "password changed" });
 });
 
+// @route     POST /settings/update
+// @desc      
+// @access    
+router.post("/settings/update", verifiedAccess, async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const account = req.user;
+  const updates = req.body;
+  // GET USER DETAILS
+  let customer;
+  try {
+    customer = await Customer.findOne({ accountId: account._id });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // UPDATE
+  // Subscription Mail
+  if (updates.subscription.mail !== undefined) {
+    if (customer.subscription.mail !== updates.subscription.mail) {
+      if (updates.subscription.mail) {
+        try {
+          await customer.subscribeMail(account.email);
+        } catch (error) {
+          return res.send({ status: "failed", content: error });
+        }
+      } else {
+        try {
+          await customer.unsubscribeMail(account.email);
+        } catch (error) {
+          return res.send({ status: "failed", content: error });
+        }
+      }
+    }
+  }
+  // Address
+  if (updates.address !== undefined) {
+    customer.address = updates.address;
+  }
+  // SAVE
+  try {
+    await customer.save();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // RETURN SUCCESS
+  return res.send({ status: "success", content: "update successful" });
+});
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/
