@@ -50,6 +50,28 @@ const checkLoginStatus = () => {
 }
 
 /*=========================================================================================
+SEND EMAIL
+=========================================================================================*/
+
+const sendEmail = async (email, subject, div, style) => {
+  // LOADER
+  console.log(`Sending an email to: ${email}`);
+  // SEND EMAIL REQUEST
+  let data;
+  try {
+    data = (await axios.post("/send-email", { email, subject, div, style }))["data"];
+  } catch (error) {
+    return console.log(error);
+  }
+  // ERROR HANDLER
+  if (data.status === "failed") {
+    return console.log(data.content);
+  }
+  // SUCCESS HANDLER
+  return console.log("Email sent successfully");
+};
+
+/*=========================================================================================
 SUBSCRIBE/UNSUBSCRIBE FUNCTIONS
 =========================================================================================*/
 
@@ -74,7 +96,7 @@ const subscribe = (input) => {
     // Send the subscription request to backend
     let dataTwo;
     try {
-      dataTwo = (await axios.post("/subscribe/mailing-list", {email}))["data"];
+      dataTwo = (await axios.post("/subscribe/mailing-list", { email }))["data"];
     } catch (error) {
       return reject(error);
     }
@@ -110,13 +132,13 @@ const unsubscribe = (input) => {
     //Send unsubscribe request to backend
     let dataTwo;
     try {
-      dataTwo = (await axios.post("/unsubscribe/mailing-list", {email}))["data"];
-    } catch (error){
+      dataTwo = (await axios.post("/unsubscribe/mailing-list", { email }))["data"];
+    } catch (error) {
       return reject(error);
     }
 
     //Validate Data
-    if(dataTwo.status === "failed") {
+    if (dataTwo.status === "failed") {
       return reject(dataTwo.content);
     }
 
@@ -164,7 +186,7 @@ function subscribeNotif() {
   newDiv.classList.add("slide-in");
 
   //Insert div
-  var mq = window.matchMedia( "(min-width: 53em)" );
+  var mq = window.matchMedia("(min-width: 53em)");
   if (mq.matches) {
     notifDiv.appendChild(newDiv)
   }
@@ -174,61 +196,61 @@ function subscribeNotif() {
 
   // Fade out
   setTimeout(() => {
-      newDiv.style.transition = 'all 2s'
-      newDiv.style.opacity = 0
-      // Hide
-      setTimeout(() => {
-          newDiv.style.display = 'none'
-      }, 1000)
+    newDiv.style.transition = 'all 2s'
+    newDiv.style.opacity = 0
+    // Hide
+    setTimeout(() => {
+      newDiv.style.display = 'none'
+    }, 1000)
   }, 3000)
 }
 
 function projectNotif(callback, status) {
-    //Create div to insert
-    let newDiv = document.createElement('div')
-    newDiv.className = 'project-notif'
-    let messageWrap = document.createElement('div')
-    newDiv.appendChild(messageWrap).className = 'msg-wrap'
-    if (callback === 'success') {
-      if (status === 'new') {
-        messageWrap.appendChild(document.createElement('i')).className = 'far fa-check-circle'
-        messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your new project has been saved.'
-      } else if (status === 'edit') {
-        messageWrap.appendChild(document.createElement('i')).className = 'far fa-edit'
-        messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your newest edits have been saved.'
-      } else {
-        messageWrap.appendChild(document.createElement('i')).className = 'far fa-trash-alt'
-        messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your project has been deleted.'
-      }
+  //Create div to insert
+  let newDiv = document.createElement('div')
+  newDiv.className = 'project-notif'
+  let messageWrap = document.createElement('div')
+  newDiv.appendChild(messageWrap).className = 'msg-wrap'
+  if (callback === 'success') {
+    if (status === 'new') {
+      messageWrap.appendChild(document.createElement('i')).className = 'far fa-check-circle'
+      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your new project has been saved.'
+    } else if (status === 'edit') {
+      messageWrap.appendChild(document.createElement('i')).className = 'far fa-edit'
+      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your newest edits have been saved.'
     } else {
-      messageWrap.appendChild(document.createElement('i')).className = 'far fa-times-circle'
-      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Oops! Something went wrong, please try again later.'
-      newDiv.style.color = 'red'
+      messageWrap.appendChild(document.createElement('i')).className = 'far fa-trash-alt'
+      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your project has been deleted.'
     }
-  
-    //Find location to insert div
-    let notifDiv = document.getElementById('notification-wrap')
-  
-    //Add slide in animation
-    newDiv.classList.add("slide-in");
+  } else {
+    messageWrap.appendChild(document.createElement('i')).className = 'far fa-times-circle'
+    messageWrap.appendChild(document.createElement('p')).innerHTML = 'Oops! Something went wrong, please try again later.'
+    newDiv.style.color = 'red'
+  }
 
-    //Insert div
-    notifDiv.appendChild(newDiv)
-  
+  //Find location to insert div
+  let notifDiv = document.getElementById('notification-wrap')
+
+  //Add slide in animation
+  newDiv.classList.add("slide-in");
+
+  //Insert div
+  notifDiv.appendChild(newDiv)
+
+  setTimeout(() => {
+    // Fade out
     setTimeout(() => {
-      // Fade out
+      newDiv.style.transition = 'all 2s'
+      newDiv.style.opacity = 0
+      // Hide
       setTimeout(() => {
-          newDiv.style.transition = 'all 2s'
-          newDiv.style.opacity = 0
-          // Hide
-          setTimeout(() => {
-              newDiv.style.display = 'none'
-          }, 1000)
-      }, 3000)
-    }, 1000)
+        newDiv.style.display = 'none'
+      }, 1000)
+    }, 3000)
+  }, 1000)
 }
 
-function  alreadysubscribedNotif() {
+function alreadysubscribedNotif() {
   //Create div to insert
   let newDiv = document.createElement('div')
   newDiv.className = 'alreadysubbed-notif'
@@ -245,7 +267,7 @@ function  alreadysubscribedNotif() {
   newDiv.classList.add("slide-in");
 
   //Insert div
-  var mq = window.matchMedia( "(min-width: 53em)" );
+  var mq = window.matchMedia("(min-width: 53em)");
   if (mq.matches) {
     notifDiv.appendChild(newDiv)
   }
@@ -255,12 +277,12 @@ function  alreadysubscribedNotif() {
 
   // Fade out
   setTimeout(() => {
-      newDiv.style.transition = 'all 2s';
-      newDiv.style.opacity = 0;
-      // Hide
-      setTimeout(() => {
-          newDiv.style.display = 'none';
-      }, 1000);
+    newDiv.style.transition = 'all 2s';
+    newDiv.style.opacity = 0;
+    // Hide
+    setTimeout(() => {
+      newDiv.style.display = 'none';
+    }, 1000);
   }, 3000);
 }
 
@@ -273,7 +295,7 @@ subscribe.listener = async () => {
   try {
     data = await subscribe(input.value);
   } catch (error) {
-      return console.log(error);
+    return console.log(error);
   }
   if (data === "already subscribed") {
     // Success Handler

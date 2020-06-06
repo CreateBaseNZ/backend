@@ -12,6 +12,10 @@ VARIABLES
 
 const router = new express.Router();
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 /*=========================================================================================
 MODELS
 =========================================================================================*/
@@ -141,7 +145,7 @@ router.get("/unsubscribe/mailing-list/:email", async (req, res) => {
   }
   // Remove Email from the Mailing List
   try {
-    await Mail.deleteMail(email);
+    await Mail.delete(email);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
@@ -175,13 +179,90 @@ router.post("/unsubscribe/mailing-list", async (req, res) => {
   }
   // Remove Email from the Mailing List
   try {
-    await Mail.deleteMail(email);
+    await Mail.delete(email);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
   // Send Success Status
   res.send({ status: "success", content: "unsubscribed successfully" });
 });
+
+// @route     POST /send-email
+// @desc      Send an email
+// @access    Public
+router.post("/send-email", async (req, res) => {
+  const email = req.body.email;
+  const subject = req.body.subject;
+  const div = req.body.div;
+  const style = req.body.style;
+  // Configure Transport Options
+  const transportOptions = {
+    service: "Gmail",
+    auth: {
+      type: "login",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  };
+  // Create Transporter
+  const transporter = nodemailer.createTransport(transportOptions);
+  // Create the Text and HTML to send
+  let message;
+  try {
+    message = await template({ subject, div, style });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // Construct mail
+  const mail = {
+    from: `"CreateBase" <${process.env.EMAIL_USER}>`,
+    to: `${email}`,
+    subject: message.subject,
+    text: message.text,
+    html: message.html
+  };
+  // Send the mail
+  try {
+    await transporter.sendMail(mail);
+  } catch (error) {
+    console.log(error);
+    return res.send({ status: "failed", content: error });
+  }
+  //
+  return res.send({ status: "success", content: "Email sent successfully" });
+})
+
+
+/*=========================================================================================
+FUNCTION
+=========================================================================================*/
+
+const template = (object) => {
+  return new Promise(async (resolve, reject) => {
+    // Create the Subject
+    const subject = object.subject;
+    // Create the Text
+    const text = ``;
+    // Create the HTML
+    const div = object.div;
+    // Create the CSS Styling
+    const css = object.style;
+    // Combine the HTML and CSS
+    const combined = div + css;
+    // Inline the CSS
+    const inlineCSSOptions = {
+      url: "/",
+    };
+    let html;
+    try {
+      html = await inlineCSS(combined, inlineCSSOptions);
+    } catch (error) {
+      return reject(error);
+    }
+    // Return the email object
+    return resolve({ subject, text, html });
+  })
+};
 
 /*=========================================================================================
 EXPORT ROUTE

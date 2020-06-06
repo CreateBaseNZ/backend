@@ -1,6 +1,6 @@
-/*=========================================================================================
+/* ========================================================================================
 REQUIRED MODULES
-=========================================================================================*/
+======================================================================================== */
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -44,23 +44,22 @@ const restrictedAccess = (req, res, next) => {
   }
 };
 
+const upload = require("../../config/upload.js");
+
 /*=========================================================================================
 ROUTES
 =========================================================================================*/
 
-router.post("/profile/customer/new/proj", verifiedAccess, async (req, res) => {
+router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const name = req.body.name;
+  let thumbnail;
+  if (req.file) thumbnail = req.file.id;
   const bookmark = req.body.bookmark;
   const makes = req.body.makes;
   const notes = req.body.notes;
-  const options = {
-    name,
-    bookmark,
-    makes,
-    notes
-  };
+  const options = { name, bookmark, makes, notes };
   // VALIDATE REQUIRED VARIABLES
   if (!account) {
     res.send({ status: "failed", content: "invalid user ID" });
@@ -100,31 +99,46 @@ router.get("/profile/customer/fetch/all_proj", verifiedAccess, async (req, res) 
   return;
 })
 
-router.post("/profile/customer/update/proj", verifiedAccess, async (req, res) => {
+router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifiedAccess, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const projectId = mongoose.Types.ObjectId(req.body.id);
   const updates = req.body.updates;
   // VALIDATE REQUIRED VARIABLES
-  if (!account) {
-    res.send({ status: "failed", content: "invalid user ID" });
-    return;
-  }
-  if (!projectId) {
-    res.send({ status: "failed", content: "invalid project ID" });
-    return;
-  }
+  if (!account) return res.send({ status: "failed", content: "invalid user ID" });
+  if (!projectId) return res.send({ status: "failed", content: "invalid project ID" });
   // UPDATE THE PROJECT
-  let message;
+  // FETCH THE PROJECT TO BE UPDATED
+  let project;
   try {
-    message = await Project.update(account, projectId, updates);
+    project = await this.findOne({ _id: projectId, account });
   } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
+    return reject(error);
+  }
+  // VALIDATE THE PROJECT
+  if (!project) return reject("no project found");
+  // UPDATE THE PROJECT
+  try {
+    await project.update(updates);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // Update the Thumbnail (if provided)
+  if (req.file) {
+    try {
+      await project.updateThumbnail(req.file.id);
+    } catch (error) {
+      return res.send({ status: "failed", content: error });
+    }
+  }
+  // SAVE UPDATES
+  try {
+    await project.save();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
   }
   // SEND SUCCESS MESSAGE TO CLIENT
-  res.send({ status: "success", content: message });
-  return;
+  return res.send({ status: "success", content: message });
 })
 
 router.post("/profile/customer/delete/proj", verifiedAccess, async (req, res) => {

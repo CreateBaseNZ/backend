@@ -117,11 +117,11 @@ MailSchema.statics.findByEmail = function (email) {
   });
 };
 
-// @FUNC  deleteMail
+// @FUNC  delete
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-MailSchema.statics.deleteMail = function (email) {
+MailSchema.statics.delete = function (email) {
   return new Promise(async (resolve, reject) => {
     try {
       await this.deleteOne({ email });

@@ -80,6 +80,35 @@ TransactionSchema.statics.createCheckout = function (type, sender, amount, metad
   })
 }
 
+// @FUNC  fetchBalance
+// @TYPE  STATIC - PROMISE - ASYNC
+// @DESC  Fetch the balance of the associated account ID
+// @ARGU  
+TransactionSchema.statics.fetchBalance = function (accountId) {
+  return new Promise(async (resolve, reject) => {
+    // DECLARE AND INITIALISE VARIABLES
+    const promises = [this.find({ "entity.sender": accountId }), this.find({ "entity.receiver": accountId })];
+    let payments = [];
+    let receivables = [];
+    try {
+      [payments, receivables] = await Promise.all(promises);
+    } catch (error) {
+      return reject(error);
+    }
+    // CALCULATE
+    let balance = 0;
+    for (let i = 0; i < payments.length; i++) {
+      const payment = payments[i];
+      balance -= payment.amount;
+    }
+    for (let i = 0; i < receivables.length; i++) {
+      const receivable = receivables[i];
+      balance += receivable.amount;
+    }
+    return resolve(balance);
+  })
+}
+
 /*=========================================================================================
 EXPORT ITEM MODEL
 =========================================================================================*/

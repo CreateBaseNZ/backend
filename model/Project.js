@@ -121,43 +121,69 @@ ProjectSchema.statics.retrieve = function (account) {
   })
 }
 
-ProjectSchema.statics.update = function (account, projectId, updates) {
+/* ========================================================================================
+METHOD
+======================================================================================== */
+
+/* ----------------------------------------------------------------------------------------
+UPDATE
+---------------------------------------------------------------------------------------- */
+
+ProjectSchema.methods.updateThumbnail = function (thumbnail) {
   return new Promise(async (resolve, reject) => {
-    // FETCH THE PROJECT TO BE UPDATED
-    let project;
+    // Delete Current Thumbnail
     try {
-      project = await this.findOne({ _id: projectId, account });
+      await this.deleteThumbnail();
     } catch (error) {
-      reject(error);
-      return;
+      return reject(error);
     }
-    // VALIDATE THE PROJECT
-    if (!project) {
-      reject("no project found");
-      return;
-    }
-    // UPDATE THE PROJECT
-    for (const property in updates) {
-      project[property] = updates[property];
-    }
-    // Update Modified Date
-    const date = moment().tz("Pacific/Auckland").format();
-    project.date.modified = date;
-    // SAVE THE UPDATES OF THE PROJECT INSTANCE
-    try {
-      await project.save();
-    } catch (error) {
-      reject(error);
-      return;
-    }
-    resolve("success");
-    return;
+    // Update Thumbnail
+    this.thumbnail = thumbnail;
+    return resolve();
   })
 }
 
-/*=========================================================================================
-METHOD
-=========================================================================================*/
+ProjectSchema.methods.update = function (updates) {
+  return new Promise(async (resolve, reject) => {
+    // UPDATE THE PROJECT
+    for (const property in updates) {
+      if (property === "thumbnail") {
+        if (updates[property] === undefined) {
+          try {
+            await this.deleteThumbnail();
+          } catch (error) {
+            return reject(error);
+          }
+        }
+      } else {
+        this[property] = updates[property];
+      }
+    }
+    // Update Modified Date
+    const date = moment().tz("Pacific/Auckland").format();
+    this.date.modified = date;
+    // SAVE THE UPDATES OF THE PROJECT INSTANCE
+    return resolve();
+  })
+}
+
+/* ----------------------------------------------------------------------------------------
+DELETE
+---------------------------------------------------------------------------------------- */
+
+ProjectSchema.methods.deleteThumbnail = function () {
+  return new Promise(async (resolve, reject) => {
+    if (this.thumbnail) {
+      try {
+        await GridFS.remove({ _id: customer.picture, root: "fs" });
+      } catch (error) {
+        return reject(error);
+      }
+    }
+    this.thumbnail = undefined;
+    return resolve();
+  })
+}
 
 /*=========================================================================================
 EXPORT ACCOUNT MODEL

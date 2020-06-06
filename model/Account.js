@@ -391,7 +391,11 @@ AccountSchema.statics.verify = function (email, code) {
       return reject(error);
     }
     // Subscribe Customer
-    customer.subscribeMail(account.email);
+    try {
+      await customer.subscribeMail(account.email);
+    } catch (error) {
+      return reject(error);
+    }
     // Save Customer Updates
     try {
       await customer.save();
@@ -403,10 +407,14 @@ AccountSchema.statics.verify = function (email, code) {
   })
 }
 
-/*=========================================================================================
+/* ========================================================================================
 METHODS
-=========================================================================================*/
+======================================================================================== */
 
+// @FUNC  login
+// @TYPE  STATICS - PROMISE - ASYNC
+// @DESC  Verifies the account
+// @ARGU  
 AccountSchema.methods.login = function (password) {
   return new Promise(async (resolve, reject) => {
     let match;
@@ -428,6 +436,45 @@ AccountSchema.methods.login = function (password) {
     return resolve(match);
   })
 };
+
+/* ----------------------------------------------------------------------------------------
+UPDATE
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  updateEmail
+// @TYPE  METHODS - NORMAL
+// @DESC  
+// @ARGU  
+AccountSchema.methods.updateEmail = function (email) {
+  // UPDATE
+  this.email = email;
+  this.verification.code = Math.floor(100000 + Math.random() * 900000);
+  this.verification.status = false;
+  // RETURN SUCCESS;
+  return;
+}
+
+/* ----------------------------------------------------------------------------------------
+VALIDATE
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  validatePassword
+// @TYPE  STATICS - PROMISE - ASYNC
+// @DESC  Verifies the account
+// @ARGU  
+AccountSchema.methods.validatePassword = function (password) {
+  return new Promise(async (resolve, reject) => {
+    // CHECK IF PASSWORD MATCH
+    let match;
+    try {
+      match = await bcrypt.compare(password, this.password);
+    } catch (error) {
+      return reject(error);
+    }
+    if (!match) return resolve("incorrect password");
+    return resolve("password match");
+  })
+}
 
 /*=========================================================================================
 FUNCTIONS
