@@ -155,6 +155,29 @@ router.post("/settings/update", verifiedAccess, async (req, res) => {
   return res.send({ status: "success", content: "update successful" });
 });
 
+// @route     GET /settings/fetch-customer-details
+// @desc      
+// @access    
+router.get("/settings/fetch-customer-details", verifiedAccess, async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const account = req.user;
+  let details = {
+    account: { type: account.type, email: account.email, wallet: account.wallet },
+    customer: { address: undefined, subscription: undefined }
+  }
+  // GET USER DETAILS
+  let customer;
+  try {
+    customer = await Customer.findOne({ accountId: account._id });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  details.customer.address = customer.address;
+  details.customer.subscription = customer.subscription;
+  // RETURN SUCCESS
+  return res.send({ status: "success", content: details });
+})
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

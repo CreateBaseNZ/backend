@@ -3,6 +3,7 @@ VARIABLES
 ======================================================================================== */
 
 let settings = {
+  fetchCustomerDetails: undefined,
   changeEmail: undefined,
   changeEmailCollect: undefined,
   changeEmailValidate: undefined,
@@ -18,9 +19,25 @@ let settings = {
 FUNCTIONS
 ======================================================================================== */
 
+// @func  settings.fetchCustomerDetails
+// @desc  
+settings.fetchCustomerDetails = () => {
+  return new Promise(async (resolve, reject) => {
+    // SEND REQUEST TO THE BACKEND
+    let data;
+    try {
+      data = (await axios.get("/settings/fetch-customer-details"))["data"];
+    } catch (error) {
+      return reject(error);
+    }
+    // RESOLVE PROMISE
+    return resolve(data);
+  })
+}
+
 // @func  settings.changeEmail
 // @desc  Initiate the Change Email
-settings.changeEmail = () => {
+settings.changeEmail = async () => {
   // TO DO .....
   // LOADER
   // COLLECT INPUTS
@@ -113,7 +130,7 @@ settings.changePasswordSubmit = (password) => {
 }
 
 // @func  settings.updateSubmit
-// @desc  Sends the change password request to the backend
+// @desc  
 settings.updateSubmit = (updates) => {
   return new Promise(async (resolve, reject) => {
     // SEND REQUEST TO THE BACKEND
