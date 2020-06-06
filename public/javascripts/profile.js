@@ -244,8 +244,8 @@ function showProjPopup(status, project = undefined) {
 const profileInit = async() => {
 
   // Get elements
-  const profileWrapper = document.getElementById('profile-wrapper')
-  const navDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-in')]
+  const profileWrapper = document.querySelector('.profile-wrapper')
+  const allDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-in'), document.getElementById('profile-backdrop')]
   const dpEl = document.getElementById('profile-preview')
   const nameEl = document.getElementById('profile-name')
   const locationEl = document.getElementById('profile-location')
@@ -284,14 +284,15 @@ const profileInit = async() => {
 
     // Save new variables
     dpTemp = dpEl.src
+
     nameTemp = nameEl.innerHTML
     bioTemp = bioEl.innerHTML
     customerInfo["displayName"] = nameTemp
     customerInfo["bio"] = bioTemp
 
     // Update profile pictures in nav bar
-    for (var i = 0; i < navDP.length; i++) {
-      navDP[i].src = dpTemp
+    for (var i = 0; i < allDP.length; i++) {
+      allDP[i].src = dpTemp
     }    
     
     // Post to server
@@ -312,192 +313,192 @@ const profileInit = async() => {
     dpEl.src = dpTemp
   })
 
-  if (mq.matches) {
-    // -- Horizontal scrolling --
-    projScroll.addEventListener('wheel', function(e) {
-      if (e.deltaY > 0) {
-        projScroll.scrollLeft += 100
-      } else {
-        projScroll.scrollLeft -= 100
-      }
-      e.preventDefault()
-    })
-  }
+  // if (mq.matches) {
+  //   // -- Horizontal scrolling --
+  //   projScroll.addEventListener('wheel', function(e) {
+  //     if (e.deltaY > 0) {
+  //       projScroll.scrollLeft += 100
+  //     } else {
+  //       projScroll.scrollLeft -= 100
+  //     }
+  //     e.preventDefault()
+  //   })
+  // }
 
-  for (var i=0; i < billingCards.length; i++) {
-    console.log(billingCards)
-    billingCards[i].onclick = function(event) {
-      this.classList.toggle('billing-card-active')
-    }
-  }
+  // for (var i=0; i < billingCards.length; i++) {
+  //   console.log(billingCards)
+  //   billingCards[i].onclick = function(event) {
+  //     this.classList.toggle('billing-card-active')
+  //   }
+  // }
 
-  try {
-    allMakes = (await axios.get("/profile/customer/fetch/makes"))["data"]["content"]
-  } catch (error) {
-    console.log(error)
-    return
-  }
+  // try {
+  //   allMakes = (await axios.get("/profile/customer/fetch/makes"))["data"]["content"]
+  // } catch (error) {
+  //   console.log(error)
+  //   return
+  // }
 
-  try {
-    allProjects = (await axios.get("/profile/customer/fetch/all_proj"))["data"]["content"]
-  } catch (error) {
-    console.log(error)
-    return
-  }
+  // try {
+  //   allProjects = (await axios.get("/profile/customer/fetch/all_proj"))["data"]["content"]
+  // } catch (error) {
+  //   console.log(error)
+  //   return
+  // }
 
-  makeKeys = new Object()
-  allMakes.forEach(function(make, i) {
-    makeKeys[make.id] = i
-  })
+  // makeKeys = new Object()
+  // allMakes.forEach(function(make, i) {
+  //   makeKeys[make.id] = i
+  // })
 
-  newEditProjScreen = document.getElementById('new-edit-proj-screen')
-  newEditProjScreenOverlay = document.getElementById('new-edit-proj-screen-overlay')
+  // newEditProjScreen = document.getElementById('new-edit-proj-screen')
+  // newEditProjScreenOverlay = document.getElementById('new-edit-proj-screen-overlay')
 
-  makeLabelContainer = document.getElementById('make-labels-container')
-  makeBlobContainer = document.getElementById('make-blobs-container')
+  // makeLabelContainer = document.getElementById('make-labels-container')
+  // makeBlobContainer = document.getElementById('make-blobs-container')
 
-  // Render all make labels
-  allMakes.forEach(function(make, i) {
+  // // Render all make labels
+  // allMakes.forEach(function(make, i) {
 
-    // Create make label markup
-    let el = document.createElement('div')
-    el.className = 'make-label'
-    el.id = 'make-label-' + make.id
-    makeLabelContainer.appendChild(el)
-    el.appendChild(document.createElement('p')).innerHTML = make.file.name
-    let tick = document.createElement('i')
-    tick.className = 'fas fa-check-circle'
-    el.appendChild(document.createElement('i')).className = 'far fa-check-circle'
-    let tooltipWrapper = document.createElement('div')
-    tooltipWrapper.className = 'tooltip-wrapper'
-    let tooltipEl = document.createElement('div')
-    tooltipEl.className = 'make-label-tooltip'
-    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'M: ' + make.material.toUpperCase()
-    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'Q: ' + capitaliseFirstLetter(make.quality)
-    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'S: ' + 
-    capitaliseFirstLetter(make.strength)
-    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'C: ' + 
-    capitaliseFirstLetter(make.colour)
-    tooltipWrapper.appendChild(tooltipEl)
-    el.appendChild(tooltipWrapper)
+  //   // Create make label markup
+  //   let el = document.createElement('div')
+  //   el.className = 'make-label'
+  //   el.id = 'make-label-' + make.id
+  //   makeLabelContainer.appendChild(el)
+  //   el.appendChild(document.createElement('p')).innerHTML = make.file.name
+  //   let tick = document.createElement('i')
+  //   tick.className = 'fas fa-check-circle'
+  //   el.appendChild(document.createElement('i')).className = 'far fa-check-circle'
+  //   let tooltipWrapper = document.createElement('div')
+  //   tooltipWrapper.className = 'tooltip-wrapper'
+  //   let tooltipEl = document.createElement('div')
+  //   tooltipEl.className = 'make-label-tooltip'
+  //   tooltipEl.appendChild(document.createElement('p')).innerHTML = 'M: ' + make.material.toUpperCase()
+  //   tooltipEl.appendChild(document.createElement('p')).innerHTML = 'Q: ' + capitaliseFirstLetter(make.quality)
+  //   tooltipEl.appendChild(document.createElement('p')).innerHTML = 'S: ' + 
+  //   capitaliseFirstLetter(make.strength)
+  //   tooltipEl.appendChild(document.createElement('p')).innerHTML = 'C: ' + 
+  //   capitaliseFirstLetter(make.colour)
+  //   tooltipWrapper.appendChild(tooltipEl)
+  //   el.appendChild(tooltipWrapper)
 
-    // Event listener for toggling label
-    el.addEventListener('click', () => {
-      if (el.classList.contains('make-label-active')) {
-        document.getElementById('make-blob-' + make.id).remove()
-      } else {
-        renderMakeBlobs(make)
-      }
-      el.childNodes[1].classList.toggle('fas')
-      el.childNodes[1].classList.toggle('far')
-      el.classList.toggle('make-label-active')
-    })
+  //   // Event listener for toggling label
+  //   el.addEventListener('click', () => {
+  //     if (el.classList.contains('make-label-active')) {
+  //       document.getElementById('make-blob-' + make.id).remove()
+  //     } else {
+  //       renderMakeBlobs(make)
+  //     }
+  //     el.childNodes[1].classList.toggle('fas')
+  //     el.childNodes[1].classList.toggle('far')
+  //     el.classList.toggle('make-label-active')
+  //   })
 
-    el.addEventListener('mouseover', () => {
-      tooltipWrapper.style.top = el.offsetTop - makeLabelContainer.scrollTop - tooltipWrapper.offsetHeight/2 + el.offsetHeight/2 + 'px'
-    })
-  })
+  //   el.addEventListener('mouseover', () => {
+  //     tooltipWrapper.style.top = el.offsetTop - makeLabelContainer.scrollTop - tooltipWrapper.offsetHeight/2 + el.offsetHeight/2 + 'px'
+  //   })
+  // })
 
-  // Render all project cards
-  allProjects.forEach(function(project, i) {
-    // IIFE
-    renderProjCard(true, project)
-  })
+  // // Render all project cards
+  // allProjects.forEach(function(project, i) {
+  //   // IIFE
+  //   renderProjCard(true, project)
+  // })
 
-  newEditProjScreenOverlay.addEventListener('click', () => {
-    hideProjPopup()
-  })
-  document.getElementById('new-edit-proj-x').addEventListener('click', () => {
-    hideProjPopup()
-  })
-  document.getElementById('new-edit-proj-bookmark').addEventListener('click', (e) => {
-    e.stopPropagation()
-    e.target.classList.toggle('fas')
-    e.target.classList.toggle('far')
-  })
+  // newEditProjScreenOverlay.addEventListener('click', () => {
+  //   hideProjPopup()
+  // })
+  // document.getElementById('new-edit-proj-x').addEventListener('click', () => {
+  //   hideProjPopup()
+  // })
+  // document.getElementById('new-edit-proj-bookmark').addEventListener('click', (e) => {
+  //   e.stopPropagation()
+  //   e.target.classList.toggle('fas')
+  //   e.target.classList.toggle('far')
+  // })
 
-  document.getElementById('new-edit-proj-btn').addEventListener('click', () => {
-    showProjPopup('new')
-  })
+  // document.getElementById('new-edit-proj-btn').addEventListener('click', () => {
+  //   showProjPopup('new')
+  // })
 
-  document.getElementById('delete-proj').addEventListener('click', async() => {
-    let callback
-    try {
-      callback = (await axios.post("/profile/customer/delete/proj", {id: activeProjID}))
-    } catch (error) {
-      return console.log(error)
-    }
+  // document.getElementById('delete-proj').addEventListener('click', async() => {
+  //   let callback
+  //   try {
+  //     callback = (await axios.post("/profile/customer/delete/proj", {id: activeProjID}))
+  //   } catch (error) {
+  //     return console.log(error)
+  //   }
 
-    document.getElementById('proj-' + activeProjID).remove()
-    hideProjPopup(callback["data"]["status"], 'delete')
-  })
+  //   document.getElementById('proj-' + activeProjID).remove()
+  //   hideProjPopup(callback["data"]["status"], 'delete')
+  // })
 
-  document.getElementById('save-proj').addEventListener('click', async() => {
+  // document.getElementById('save-proj').addEventListener('click', async() => {
 
-    if (activeProjID) {
-      let proj = new Object()
-      proj.updates = new Object()
+  //   if (activeProjID) {
+  //     let proj = new Object()
+  //     proj.updates = new Object()
 
-      // Update existing project
-      proj.id = activeProjID
+  //     // Update existing project
+  //     proj.id = activeProjID
 
-      proj.updates.bookmark = document.getElementById('new-edit-proj-bookmark').classList.contains('fas')
+  //     proj.updates.bookmark = document.getElementById('new-edit-proj-bookmark').classList.contains('fas')
 
-      proj.updates.makes = []
-      let children = makeBlobContainer.children
-      for (var i = 0; i < children.length; i++) {
-        proj.updates.makes[i] = children[i].id.split('-')[2]
-      }
+  //     proj.updates.makes = []
+  //     let children = makeBlobContainer.children
+  //     for (var i = 0; i < children.length; i++) {
+  //       proj.updates.makes[i] = children[i].id.split('-')[2]
+  //     }
 
-      proj.updates.name = document.getElementById('new-edit-proj-name').value
-      proj.updates.notes = document.getElementById('new-edit-proj-notes').value
+  //     proj.updates.name = document.getElementById('new-edit-proj-name').value
+  //     proj.updates.notes = document.getElementById('new-edit-proj-notes').value
 
-      // TO DO: future
-      proj.updates.image = undefined
+  //     // TO DO: future
+  //     proj.updates.image = undefined
 
-      let callback
-      try {
-        callback = (await axios.post("/profile/customer/update/proj", proj))
-      } catch (error) {
-        console.log(error)
-      }
+  //     let callback
+  //     try {
+  //       callback = (await axios.post("/profile/customer/update/proj", proj))
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
 
-      console.log(callback)
+  //     console.log(callback)
 
-      // Re-render project card
-      renderProjCard(false, proj.updates)
-      hideProjPopup(callback["data"]["status"], 'edit')
+  //     // Re-render project card
+  //     renderProjCard(false, proj.updates)
+  //     hideProjPopup(callback["data"]["status"], 'edit')
 
-    } else {
-      // New project
-      let proj = new Project()
+  //   } else {
+  //     // New project
+  //     let proj = new Project()
 
-      proj.bookmark = document.getElementById('new-edit-proj-bookmark').classList.contains('fas')
+  //     proj.bookmark = document.getElementById('new-edit-proj-bookmark').classList.contains('fas')
 
-      let children = makeBlobContainer.children
-      for (var i = 0; i < children.length; i++) {
-        proj.makes[i] = children[i].id.split('-')[2]
-      }
+  //     let children = makeBlobContainer.children
+  //     for (var i = 0; i < children.length; i++) {
+  //       proj.makes[i] = children[i].id.split('-')[2]
+  //     }
 
-      proj.name = document.getElementById('new-edit-proj-name').value
-      proj.notes = document.getElementById('new-edit-proj-notes').value
+  //     proj.name = document.getElementById('new-edit-proj-name').value
+  //     proj.notes = document.getElementById('new-edit-proj-notes').value
 
-      // TO DO: future
-      proj.image = undefined
+  //     // TO DO: future
+  //     proj.image = undefined
 
-      let callback
-      try {
-        callback = (await axios.post("/profile/customer/new/proj", proj))
-      } catch (error) {
-        console.log(error)
-      }
+  //     let callback
+  //     try {
+  //       callback = (await axios.post("/profile/customer/new/proj", proj))
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
       
-      console.log(callback)
-      // Render project card
-      renderProjCard(true, callback["data"]["content"])
-      hideProjPopup(callback["data"]["status"], 'new')
-    }
-  })
+  //     console.log(callback)
+  //     // Render project card
+  //     renderProjCard(true, callback["data"]["content"])
+  //     hideProjPopup(callback["data"]["status"], 'new')
+  //   }
+  // })
 
   // -- Prerender selected tab -- 
   document.getElementById(localStorage.getItem('tab') + '-tab').checked = true

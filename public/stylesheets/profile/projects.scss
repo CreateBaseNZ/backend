@@ -1,239 +1,177 @@
 @import "../global/all";
 
 #projects-area {
-  flex-direction: column;
-  background: $light-2;
-  padding-bottom: 2vmax;
+  flex-direction: column;  
+  background: $light-1;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
   
-  #proj-wrap {
+  #proj-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4vh;
     width: 100%;
-    order: 2;
+    padding: 0 12vw;
+    
+    h1 {
+      font-family: $montserrat;
+      font-weight: 600;
+      color: $dark-3;
+      font-size: calc(20px + 1vmax);
+      flex: 1 1;
+    }
+    
+    i {
+      font-size: calc(14px + 1vmax);
+      color: $logo-2;
+      margin-left: 5vw;
+    }
+  }
 
-    #proj-scroll-container {
-      position: relative;
+  #proj-fav-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 2vh;
+
+    h2 {
+      font-size: calc(12px + 0.8vmax);
+      color: $light-3;
+      font-family: $montserrat;
+      font-weight: 600;
+      margin-left: 12vw;
+    }
+
+    #proj-fav-container {
       display: flex;
-      align-items: center;
+      flex-direction: row;
+      align-items: flex-start;
       justify-content: flex-start;
-      width: 100%;
-      flex-direction: column;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
 
-      .proj-card {
-        cursor: pointer;
-        position: relative;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      .proj-fav {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        border-radius: 5px;
-        box-shadow: 0 0 30px -24px black;
-        background: $light-1;
-        flex-shrink: 0;
-        overflow: hidden;
-        width: 80vw;
-        margin: 2vmax auto;
-        order: 2;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 0 3vw;
 
-        .proj-img {
-          width: 100%;
-          // object-fit: cover;
-          // object-position: 50% 50%;
-          // transition: height 0.2s ease-out;
+        .proj-fav-thumbnail {
+          height: 50vw;
+          width: 50vw;
+          object-fit: cover;
+          border-radius: 5%;
+          margin: 1vh 0;
+          box-shadow: 0 5px 20px -10px $dark-1;
         }
+
+        .proj-fav-name {
+          font-family: $poppins;
+          font-weight: 400;
+          color: $logo-2;
+          font-size: calc(6px + 1vmax);
+        }
+
+        .proj-fav-makes {
+          font-family: $poppins;
+          font-weight: 400;
+          color: $dark-1;
+          font-size: calc(2px + 1vmax);
+        }
+
+        &:first-of-type {
+          padding-left: 12vw;
+        }
+
+        &:last-of-type {
+          padding-right: 12vw;
+        }
+      }
+    }
+  }
+
+  #proj-all-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 4vh 0;
+    padding: 0 10vw;
+
+    h2 {
+      font-size: calc(12px + 0.8vmax);
+      color: $light-3;
+      font-family: $montserrat;
+      font-weight: 600;
+      margin: 0 0 0 2vw;
+    }
+
+    #proj-all-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 2vw;
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      .proj-small {
+        position: relative;
+        height: 25vw;
+        width: 35vw;
+        border-radius: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: 0 0 20px -12px $dark-1;
 
         .fa-bookmark {
           position: absolute;
-          top: 0;
-          right: 1vmax;
-          flex-shrink: 0;
-          padding: 5px;
-          font-size: 20px;
-          transition: color 0.2s ease-out;
-
-          &.fas {
-            color: $highlight;
-            &:hover {
-              color: rgb(74, 226, 221);
-            }
-          }
-
-          &.far {
-            color: $dark-2;
-            &:hover {
-              color: $highlight;
-            }
-          }
+          top: -10px;
+          right: 1vw;
         }
 
-        .proj-date {
-          flex-shrink: 0;
-          font-size: calc(8px + 0.2vmax);
-          letter-spacing: 2px;
-          font-weight: 400;
-          color: $dark-1;
-          padding: 2vh 0;
-        }
-        
-        .proj-name {
-          flex-shrink: 0;
+        .proj-small-thumbnail {
+          height: 60%;
           width: 100%;
-          font-size: calc(14px + 0.5vmax);
-          font-weight: 400;
-          color: $dark-3;
-          text-align: center;
-          padding: 0 2vmax;
-
-          &:empty {
-            &:after {
-              content: 'Unnamed Project';
-              font-style: italic;
-            }
-          }
+          object-fit: cover;
         }
 
-        .proj-makes {
-          flex-shrink: 0;
-          font-size: calc(8px + 0.1vmax);
-          font-weight: 400;
-          color: $logo-2;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          text-align: center;
-          width: 100%;
-          padding: 0 2vmax;
-          overflow: hidden;
-          height: 0;
-          transition: height 0.2s ease-out, padding 0.2s ease-out;
-
-          &:empty {
-            &:after {
-              content: 'No Makes added';
-              font-style: italic;
-            }
-          }
-        }
-
-        .proj-notes {
-          flex-shrink: 0;
-          position: relative;
+        .proj-small-name {
           display: flex;
-          align-items: flex-start;
           justify-content: center;
-          height: 0;
+          align-items: center;
+          height: 40%;
           width: 100%;
-          overflow: hidden;
-          transition: height 0.2s ease-out;
+          background: $light-1;
           
-          .proj-notes-content {
-            flex-shrink: 0;
-            font-size: calc(8px + 0.1vmax);
-            font-weight: 400;
-            width: 100%;
-            color: $dark-3;
-            text-align: center;
-            line-height: 180%;
-            margin: 2vh auto;
-            padding: 0 2vmax;
-            max-height: calc(50px + 15vh);
+          p {
+            color: $dark-1;
+            font-size: calc(6px + 0.8vmax);
+            margin: 2vw;
             overflow: hidden;
-
-            &:empty {
-              &:after {
-                content: 'No notes added';
-                font-style: italic;
-              }
-            }
-          }
-
-          &::before,
-          &::after {
-            content: '';
-            position: absolute;
-            height: 1px;
-            width: 50%;
-            left: 50%;
-            margin-left: -25%;
-            background: $light-2;
-          }
-          &::before {
-            top: 0;
-          }
-          &::after {
-            bottom: 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
         }
-
-        .proj-modified {
-          flex-shrink: 0;
-          font-size: calc(8px + 0.1vmax);
-          color: $dark-3;
-          padding: 2vh 0;
-          letter-spacing: 0.1em;
-        }
-
-        .proj-edit {
-          flex-shrink: 0;
-          height: 0;
-          font-size: calc(6px + 0.1vmax);
-          color: $light-3;
-          letter-spacing: 0.1em;
-          transition: height 0.2s ease-out;
-        }
-
-        &:hover {
-          box-shadow: 0 0 30px -20px $logo-2;
-
-          .proj-date {
-            color: $dark-3;
-          }
-          .proj-name { 
-            color: $logo-2; 
-          }
-          .proj-makes {
-            padding: 2vh 2vmax;
-            height: calc(4vh + 1vmax);
-          }
-          .proj-modified { 
-            color: $logo-2; 
-          }
-          .proj-edit {
-            height: calc(1vh + 1vmax);
-          }
-        }
-      }
-
-      .proj-bookmark-prior {
-        order: 1;
-      }
-
-      .end-spacer {
-        display: none;
       }
     }
-  }
-
-  .new-proj-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: $light-1;
-    order: 1;
-    margin: 4vmax auto 2vmax auto;
-
-    .grad-btn {
-      box-shadow: 0 5px 25px -15px black;
-
-      &:hover {
-        box-shadow: 0 5px 25px -13px black;
-      }
-    }
-  }
-
-  .new-proj-screen {
-    position: sticky;
-    top: 0;
-    height: 50vh;
-    width: 50vw;
-    background: $light-1;
   }
 }
 

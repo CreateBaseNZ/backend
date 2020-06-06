@@ -21,6 +21,7 @@
   <!--============== STYLESHEET ==============-->
   <link rel="stylesheet" href="./../../public/stylesheets/profile/profile-all.css" />
   <link rel="stylesheet" href="./../../public/stylesheets/profile/profile.css" />
+  <link rel="stylesheet" href="./../../public/stylesheets/profile/projects.css" />
 </head>
 
 <body onload="navInit(); profileInit();">
@@ -112,9 +113,9 @@
 
     <div class="main-area" id="profile-area">
       <div id="backdrop">
-        <img src="/profile/customer/fetch/picture" id="profile-backdrop" decoding="async"></img>
+        <img alt="User" src="/profile/customer/fetch/picture" id="profile-backdrop" decoding="async"></img>
       </div>
-      <div id="profile-wrapper">
+      <div class="profile-wrapper">
         <button class="fas fa-pen-square" id="profile-edit-btn"></button>
         <form id="profile-pic">
           <label for="profile-upload"><i class="far fa-edit"></i></label>
@@ -134,6 +135,47 @@
     </div>
 
     <div class="main-area" id="projects-area">
+      <div id="proj-header">
+        <h1>Projects</h1>
+        <i class="fas fa-search"></i>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div id="proj-fav-wrapper">
+        <h2>Favourites (?)</h2>
+        <div id="proj-fav-container">
+          <div class="proj-fav">
+            <img src="./../../public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" class="proj-fav-thumbnail">
+            <div class="proj-fav-name">My First Project</div>
+            <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part</div>
+          </div>
+          <div class="proj-fav">
+            <img src="./../../public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" class="proj-fav-thumbnail">
+            <div class="proj-fav-name">Water flask</div>
+            <div class="proj-fav-makes">Flask first draft</div>
+          </div>
+        </div>
+      </div>
+      <div id="proj-all-wrapper">
+        <h2>All (?)</h2>
+        <div id="proj-all-container">
+          <div class="proj-small">
+            <i class="far fa-bookmark"></i>
+            <img src="./../../public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" class="proj-small-thumbnail">
+            <div class="proj-small-name"><p>My First Project</p></div>
+          </div>
+          <div class="proj-small">
+            <img src="./../../public/images/profile/trunk.png" alt="Project Thumbnail" class="proj-small-thumbnail">
+            <div class="proj-small-name"><p>Second Project with a Really Long Name</p></div>
+          </div>
+          <div class="proj-small">
+            <img src="./../../public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" class="proj-small-thumbnail">
+            <div class="proj-small-name"><p>Water Flask</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="main-area" id="projects-area">
       <div id="new-edit-proj-screen-overlay"></div>
       <div id="new-edit-proj-screen">
         <div id="new-edit-proj-x">
@@ -171,7 +213,7 @@
       <div class="new-proj-container">
         <button class="grad-btn" id="new-edit-proj-btn">+ Start New Project</button>
       </div>
-    </div>
+    </div> -->
     
     <div class="main-area" id="billing-area">
       <div class="billing-card">

@@ -1,5 +1,5 @@
 // @import "profile";
-@import "projects";
+// @import "projects";
 @import "billing";
 @import "settings";
 
@@ -33,40 +33,41 @@ body {
 
     &:checked + label {
       color: $logo-2;
+      border-bottom: 2px solid $logo-2;
     }
   }
 
   label {
     position: relative;
     flex: 1;
-    margin: 10px 0;
-    padding: 10px;
+    padding: 20px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $light-3;
     background: $light-1;
+    border-bottom: 2px solid transparent;
     cursor: pointer;
 
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 600;
     font-size: calc(16px + 0.2vw);
-    transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out, border-color 0.2s ease-out;
 
     span {
       display: none;
     }
 
     &:hover {
-      color: $logo-1;
+      color: $dark-1;
     }
   }
 }
 
 .main-area {
   display: none;
-  max-height: 100%;
+  max-height: calc(100% - #{$top-bar-height});
   width: 100%;
 }
 
