@@ -82,6 +82,32 @@ router.post("/settings/change-email", verifiedAccess, async (req, res) => {
   return res.send({ status: "success", content: "email changed" });
 });
 
+// @route     POST /settings/change-password
+// @desc      
+// @access    
+router.post("/settings/change-password", verifiedAccess, async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const accountId = req.user._id;
+  const password = req.body;
+  // GET THE USER'S ACCOUNT
+  let account;
+  try {
+    account = await Account.findOne({ _id: accountId });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // CHANGE THE PASSWORD
+  account.password = password;
+  // SAVE UPDATE
+  try {
+    await account.save();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // RETURN SUCCESS
+  return res.send({ status: "success", content: "password changed" });
+});
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

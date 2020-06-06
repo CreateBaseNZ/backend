@@ -391,7 +391,11 @@ AccountSchema.statics.verify = function (email, code) {
       return reject(error);
     }
     // Subscribe Customer
-    customer.subscribeMail(account.email);
+    try {
+      await customer.subscribeMail(account.email);
+    } catch (error) {
+      return reject(error);
+    }
     // Save Customer Updates
     try {
       await customer.save();
