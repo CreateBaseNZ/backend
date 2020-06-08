@@ -578,9 +578,7 @@ OrderSchema.methods.updateStatus = function (status) {
   const statuses = ["created", "checkedout", "validated", "built",
     "shipped", "arrived", "reviewed", "completed", "cancelled"];
   // VALIDATION
-  if (statuses.indexOf(status) === -1) {
-    return reject("invalid status");
-  }
+  if (statuses.indexOf(status) === -1) return reject("invalid status");
   // SET THE ORDER'S RELEVANT PROPERTIES
   // Date
   const date = moment().tz("Pacific/Auckland").format();
