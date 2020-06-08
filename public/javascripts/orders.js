@@ -3,16 +3,17 @@ VARIABLES
 ======================================================================================== */
 
 let orders = {
-  fetchOrder: undefined
+  fetchOrders: undefined,
+  postComment: undefined
 }
 
 /* ========================================================================================
 FUNCTIONS
 ======================================================================================== */
 
-// @func  orders.fetchOrder
+// @func  orders.fetchOrders
 // @desc  
-orders.fetchOrder = () => {
+orders.fetchOrders = () => {
   return new Promise(async (resolve, reject) => {
     let data;
     try {
@@ -21,7 +22,21 @@ orders.fetchOrder = () => {
       return reject(error);
     }
     return resolve(data);
-  })
+  });
+}
+
+// @func  orders.postComment
+// @desc  
+orders.postComment = (orderId, message) => {
+  return new Promise(async (resolve, reject) => {
+    let data;
+    try {
+      data = (await axios.post("/orders/post-comment", { orderId, message }))["data"];
+    } catch (error) {
+      return reject(error);
+    }
+    return resolve(data);
+  });
 }
 
 /* ========================================================================================

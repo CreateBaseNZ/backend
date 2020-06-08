@@ -20,26 +20,51 @@ const CommentSchema = new Schema({
     type: Schema.Types.ObjectId
   },
   message: {
-    type: String
+    type: String,
+    default: ""
   },
   date: {
     created: {
-      type: String
+      type: String,
+      default: ""
     },
     modified: {
-      type: String
+      type: String,
+      default: ""
     }
   },
   attachments: {
-    type: [Schema.Types.ObjectId]
+    type: [Schema.Types.ObjectId],
+    default: []
   }
 });
+
+/*=========================================================================================
+STATIC
+=========================================================================================*/
+
+CommentSchema.statics.create = function (accountId, message = "", attachments = []) {
+  return new Promise(async (resolve, reject) => {
+    // CREATE COMMENT
+    let comment = new this({ accountId, message, attachments });
+    // SET DATES
+    const date = moment().tz("Pacific/Auckland").format();
+    comment.date = { created: date, modified: date };
+    // SAVE COMMENT
+    try {
+      await comment.save();
+    } catch (error) {
+      return reject(error);
+    }
+    return resolve(comment);
+  });
+}
 
 /*=========================================================================================
 METHODS
 =========================================================================================*/
 
-CommentSchema.methods.setDate = function() {
+CommentSchema.methods.setDate = function () {
   return new Promise(async (resolve, reject) => {
     const date = moment()
       .tz("Pacific/Auckland")
@@ -60,7 +85,7 @@ CommentSchema.methods.setDate = function() {
   });
 };
 
-CommentSchema.methods.updateDate = function() {
+CommentSchema.methods.updateDate = function () {
   return new Promise(async (resolve, reject) => {
     const date = moment()
       .tz("Pacific/Auckland")

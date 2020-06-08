@@ -15,6 +15,7 @@ MODELS
 =========================================================================================*/
 
 const Order = require("../../model/Order.js");
+const Comment = require("../../model/Comment.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -71,8 +72,47 @@ router.get("/orders/fetch-orders", verifiedContent, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
+  // FETCH COMMENTS
+  let comments = [];
+  // TO DO .....
+  // FETCH COMMENTS
+  // TO DO .....
   // SUCCESS HANDLER
-  return res.send({ status: "success", content: orders });
+  return res.send({ status: "success", content: { orders, comments } });
+});
+
+// @route     POST /orders/post-comment
+// @desc      
+// @access    CONTENT - VERIFIED
+router.post("/orders/post-comment", verifiedContent, async (req, res) => {
+  // DECLARE VARIABLES
+  const account = req.user;
+  const orderId = req.body.orderId;
+  const message = req.body.message;
+  // FETCH ORDER
+  let order;
+  try {
+    order = await Order.findOne({ _id: orderId });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // CREATE NEW COMMENT
+  let comment;
+  try {
+    comment = await Comment.create(account._id, message);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // UPDATE ORDER COMMENTS
+  order.comments.push(comment._id);
+  // SAVE ORDER UPDATE
+  try {
+    await order.save();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // SUCCESS HANDLER
+  return res.send({ status: "success", content: { comment } });
 });
 
 /* ----------------------------------------------------------------------------------------
