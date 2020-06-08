@@ -54,7 +54,8 @@ ROUTES
 router.post("/settings/change-email", verifiedAccess, async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const accountId = req.user._id;
-  const email = req.body;
+  const email = req.body.email;
+  const password = req.body.password;
   // CHECK IF EMAIL IS TAKEN, GET THE USER'S ACCOUNT AND DETAILS
   const promises1 = [Account.findOne({ email }), Account.findOne({ _id: accountId }), Customer.findOne({ accountId })];
   try {
@@ -62,6 +63,16 @@ router.post("/settings/change-email", verifiedAccess, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
+  // VALIDATE
+  // Password Match
+  let message;
+  try {
+    message = await account2.validatePassword(password);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  if (message === "incorrect password") return res.send({ status: "failed", content: message });
+  // Email is Taken
   if (account1) return res.send({ status: "failed", content: "registered email" });
   // CHANGE EMAIL
   // Unsubscribe user
@@ -89,7 +100,8 @@ router.post("/settings/change-email", verifiedAccess, async (req, res) => {
 router.post("/settings/change-password", verifiedAccess, async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const accountId = req.user._id;
-  const password = req.body;
+  const newPassword = req.body.newPassword;
+  const password = req.body.password;
   // GET THE USER'S ACCOUNT
   let account;
   try {
@@ -97,8 +109,16 @@ router.post("/settings/change-password", verifiedAccess, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
+  // VALIDATE PASSWORD MATCH
+  let message;
+  try {
+    message = await account2.validatePassword(password);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  if (message === "incorrect password") return res.send({ status: "failed", content: message });
   // CHANGE THE PASSWORD
-  account.password = password;
+  account.password = newPassword;
   // SAVE UPDATE
   try {
     await account.save();

@@ -46,7 +46,7 @@ settings.changeEmail = async () => {
   // SUBMIT REQUEST
   let data;
   try {
-    data = await settings.changeEmailSubmit(email);
+    data = await settings.changeEmailSubmit(email, password);
   } catch (error) {
     // TO DO .....
     // ERROR HANDLER
@@ -68,12 +68,12 @@ settings.changeEmail = async () => {
 
 // @func  settings.changeEmailSubmit
 // @desc  Sends the change email request to the backend
-settings.changeEmailSubmit = (email) => {
+settings.changeEmailSubmit = (email, password) => {
   return new Promise(async (resolve, reject) => {
     // SEND REQUEST TO THE BACKEND
     let data;
     try {
-      data = (await axios.post("/settings/change-email", email))["data"];
+      data = (await axios.post("/settings/change-email", { email, password }))["data"];
     } catch (error) {
       return reject(error);
     }
@@ -93,7 +93,7 @@ settings.changePassword = async () => {
   // SUBMIT REQUEST
   let data;
   try {
-    data = await settings.changePasswordSubmit(password);
+    data = await settings.changePasswordSubmit(newPassword, password);
   } catch (error) {
     // TO DO .....
     // ERROR HANDLER
@@ -115,12 +115,12 @@ settings.changePassword = async () => {
 
 // @func  settings.changePasswordSubmit
 // @desc  Sends the change password request to the backend
-settings.changePasswordSubmit = (password) => {
+settings.changePasswordSubmit = (newPassword, password) => {
   return new Promise(async (resolve, reject) => {
     // SEND REQUEST TO THE BACKEND
     let data;
     try {
-      data = (await axios.post("/settings/change-password", password))["data"];
+      data = (await axios.post("/settings/change-password", { newPassword, password }))["data"];
     } catch (error) {
       return reject(error);
     }
