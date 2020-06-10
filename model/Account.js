@@ -315,6 +315,7 @@ AccountSchema.statics.verification = function (email) {
     } catch (error) {
       return reject(error);
     }
+    if (!account) return reject("no account found");
     let customer;
     try {
       customer = await Customer.findOne({ accountId: account._id });

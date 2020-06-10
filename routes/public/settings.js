@@ -73,7 +73,7 @@ router.post("/settings/change-email", verifiedAccess, async (req, res) => {
   }
   if (message === "incorrect password") return res.send({ status: "failed", content: message });
   // Email is Taken
-  if (account1) return res.send({ status: "failed", content: "registered email" });
+  if (account1) return res.send({ status: "failed", content: "email is taken" });
   // CHANGE EMAIL
   // Unsubscribe user
   try {
@@ -83,10 +83,16 @@ router.post("/settings/change-email", verifiedAccess, async (req, res) => {
   }
   // Update user details
   account2.updateEmail(email);
-  // SAVE UPDATES AND SEND EMAIL VERIFICATION
-  const promises2 = [customer.save(), account2.save(), Account.verification(email)];
+  // SAVE UPDATES
+  const promises2 = [customer.save(), account2.save()];
   try {
     await Promise.all(promises2);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // SEND EMAIL VERIFICATION
+  try {
+    await Account.verification(email);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }

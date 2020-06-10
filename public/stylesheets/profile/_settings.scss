@@ -100,16 +100,24 @@ input::placeholder{
     }
 }
 
-// .hide{
-//     // -webkit-transition: ease-out 0.5s;
-//     // transition: ease-out 0.5s;
-//     // height: 0em;
-//     // overflow: hidden;
-//     // opacity: 0;
-//     // padding: 0;
-//     // border: none;
-//     display: none;
-// }
+#settings-edit-email {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-self: center;
+}
+
+.hide {
+   // -webkit-transition: ease-out 0.5s;
+    // transition: ease-out 0.5s;
+    height: 0em;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    display: none;
+}
 
 // #############################################################################
 // MEDIA QUERY

@@ -7,6 +7,7 @@ let settings = {
   fetchCustomerDetails: undefined,
   updateSubmit: undefined,
   // EMAIL SECTION
+  editEmail: undefined,
   populateEmail: undefined,
   changeEmail: undefined,
   changeEmailCollect: undefined,
@@ -52,7 +53,7 @@ settings.initialise = async () => {
   // Email
   settings.populateEmail(details.account.email);
   // Address
-  settings.populateAddress(details.customer.address);
+  // settings.populateAddress(details.customer.address);
 }
 
 // @func  settings.fetchCustomerDetails
@@ -91,18 +92,27 @@ settings.updateSubmit = (updates) => {
 EMAIL
 ---------------------------------------------------------------------------------------- */
 
+// @func  settings.editEmail
+// @desc  
+settings.editEmail = () => {
+  document.querySelector("#settings-edit-email").classList.toggle("hide");
+  document.querySelector("#newEmail-container").classList.toggle("hide");
+  document.querySelector("#emailPassword-container").classList.toggle("hide");
+  document.querySelector("#email-error").classList.toggle("hide");
+  document.querySelector("#email-btn-group").classList.toggle("hide");
+}
+
 // @func  settings.populateEmail
 // @desc  
-
 settings.populateEmail = (email) => {
   // TO DO .....
   // Assign ID of the email display element
-  document.querySelector("#").innerHTML = email;
+  document.querySelector("#settingEmail").value = email;
   // TO DO .....
 
   // TO DO .....
   // Assign ID of the email loader element
-  document.querySelector("#").classList.add("hide");
+  // document.querySelector("#").classList.add("hide");
   // TO DO .....
   return;
 };
@@ -113,7 +123,7 @@ settings.changeEmail = async () => {
   // LOADER
   // TO DO .....
   // Assign ID of the email loader element
-  document.querySelector("#").classList.remove("hide");
+  // document.querySelector("#").classList.remove("hide");
   // TO DO .....
   // COLLECT INPUTS
   const [email, password] = settings.changeEmailCollect();
@@ -121,7 +131,7 @@ settings.changeEmail = async () => {
   if (!settings.changeEmailValidate(email, password)) {
     // TO DO .....
     // Assign ID of the email loader element
-    return document.querySelector("#").classList.add("hide");
+    // return document.querySelector("#").classList.add("hide");
     // TO DO .....
   };
   // SUBMIT REQUEST
@@ -129,46 +139,34 @@ settings.changeEmail = async () => {
   try {
     data = await settings.changeEmailSubmit(email, password);
   } catch (error) {
+    document.querySelector("#email-error").innerHTML = "failed";
     // TO DO .....
     // Assign ID of the email loader element
-    document.querySelector("#").classList.add("hide");
+    // document.querySelector("#").classList.add("hide");
     // TO DO .....
     return console.log(error);
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    // TO DO .....
-    // Assign the email error ID
-    document.querySelector("#").innerHTML = data.content;
-    // TO DO .....
+    document.querySelector("#email-error").innerHTML = data.content;
+    console.log(data.content);
     // TO DO .....
     // Assign ID of the email loader element
-    return document.querySelector("#").classList.add("hide");
+    // return document.querySelector("#").classList.add("hide");
     // TO DO .....
+    return;
   }
-  // TO DO .....
   // SUCCESS HANDLER
-  // Add a notification
-  // TO DO .....
-  // TO DO .....
-  // Assign ID of the email loader element
-  return document.querySelector("#").classList.add("hide");
-  // TO DO .....
+  return window.location.href = "/verification";
 }
 
 // @func  settings.changeEmailCollect
 // @desc  
 settings.changeEmailCollect = () => {
-  // TO DO .....
-  // Assign the email input ID
-  const email = document.querySelector("#").value;
-  // TO DO .....
-
-  // TO DO .....
-  // Assign the email password input ID
-  const password = document.querySelector("#").value;
-  // TO DO .....
-
+  // COLLECT
+  const email = document.querySelector("#newEmail").value;
+  const password = document.querySelector("#emailPassword").value;
+  // SUCCESS HANDLER
   return [email, password];
 }
 
@@ -177,21 +175,19 @@ settings.changeEmailCollect = () => {
 settings.changeEmailValidate = (email, password) => {
   let valid = true;
   let error = "";
-  // EMAIL
-  if (!email) {
-    valid = false;
-    error = "email required";
-  }
   // PASSWORD
   if (!password) {
     valid = false;
     error = "password required";
   }
+  // EMAIL
+  if (!email) {
+    valid = false;
+    error = "email required";
+  }
   // SET ERROR
-  // TO DO .....
-  // Assign the email error ID
-  document.querySelector("#").innerHTML = error;
-  // TO DO .....
+  document.querySelector("#email-error").innerHTML = error;
+  // SUCCESS HANDLER
   return valid;
 }
 

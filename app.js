@@ -81,6 +81,7 @@ const notificationRouter = require("./routes/public/notification.js");
 const checkoutRouter = require("./routes/public/checkout.js");
 const profileRouter = require("./routes/public/profile.js");
 const projectRouter = require("./routes/public/project.js");
+const settingsRouter = require("./routes/public/settings.js");
 const sessionRouter = require("./routes/public/session.js");
 app.use(generalRouter);
 app.use(accountRouter);
@@ -91,6 +92,7 @@ app.use(notificationRouter);
 app.use(checkoutRouter);
 app.use(profileRouter);
 app.use(projectRouter);
+app.use(settingsRouter);
 app.use(sessionRouter);
 
 /*-----------------------------------------------------------------------------------------
