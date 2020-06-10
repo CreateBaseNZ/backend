@@ -20,6 +20,7 @@ let settings = {
   // PASSWORD SECTION
   changePassword: undefined,
   changePasswordValidate: undefined,
+  changePasswordCollect: undefined,
   changePasswordSubmit: undefined
 }
 
@@ -109,6 +110,7 @@ settings.populateEmail = (email) => {
 // @func  settings.changeEmail
 // @desc  Initiate the Change Email
 settings.changeEmail = async () => {
+  // LOADER
   // TO DO .....
   // Assign ID of the email loader element
   document.querySelector("#").classList.remove("hide");
@@ -237,6 +239,7 @@ settings.populateAddress = (address) => {
 // @func  settings.changeAddress
 // @desc  
 settings.changeAddress = async () => {
+  // LOADER
   // TO DO .....
   // Assign ID of the address loader element
   document.querySelector("#").classList.remove("hide");
@@ -352,11 +355,20 @@ PASSWORD
 // @func  settings.changePassword
 // @desc  Initiate the Change Password
 settings.changePassword = async () => {
-  // TO DO .....
   // LOADER
-  // COLLECT INPUTS
-  // VALIDATE INPUTS
   // TO DO .....
+  // Assign ID of the address loader element
+  document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+  // COLLECT INPUTS
+  const [newPassword, newPasswordConfirm, password] = changePasswordCollect();
+  // VALIDATE INPUTS
+  if (!settings.changePasswordValidate(newPassword, newPasswordConfirm, password)) {
+    // TO DO .....
+    // Assign ID of the email loader element
+    return document.querySelector("#").classList.add("hide");
+    // TO DO .....
+  };
   // SUBMIT REQUEST
   let data;
   try {
@@ -376,8 +388,66 @@ settings.changePassword = async () => {
   }
   // TO DO .....
   // SUCCESS HANDLER
+  // Add a notification
   // TO DO .....
-  return;
+  // TO DO .....
+  // Assign ID of the email loader element
+  return document.querySelector("#").classList.add("hide");
+  // TO DO .....
+}
+
+// @func  settings.changePasswordCollect
+// @desc  
+settings.changePasswordCollect = () => {
+  // TO DO .....
+  // Assign the password new password input ID
+  const newPassword = document.querySelector("#").value;
+  // TO DO .....
+
+  // TO DO .....
+  // Assign the password new password confirm input ID
+  const newPasswordConfirm = document.querySelector("#").value;
+  // TO DO .....
+
+  // TO DO .....
+  // Assign the password password input ID
+  const password = document.querySelector("#").value;
+  // TO DO .....
+
+  return [newPassword, newPasswordConfirm, password];
+}
+
+// @func  settings.changePasswordValidate
+// @desc  
+settings.changePasswordValidate = (newPassword, newPasswordConfirm, password) => {
+  let valid = true;
+  let error = "";
+  // NEW PASSWORD
+  if (!newPassword) {
+    valid = false;
+    error = "new password required";
+  }
+  // NEW PASSWORD CONFIRM
+  if (!newPasswordConfirm) {
+    valid = false;
+    error = "confirm new password required";
+  }
+  // PASSWORD MATCH
+  if (newPassword !== newPasswordConfirm) {
+    valid = false;
+    error = "new password does not match";
+  }
+  // PASSWORD
+  if (!password) {
+    valid = false;
+    error = "password required";
+  }
+  // SET ERROR
+  // TO DO .....
+  // Assign the email error ID
+  document.querySelector("#").innerHTML = error;
+  // TO DO .....
+  return valid;
 }
 
 // @func  settings.changePasswordSubmit
