@@ -366,7 +366,79 @@
     </div>
 
     <div class="main-area" id="settings-area">
-      <p>Settings</p>
+      <h1>Settings</h1>
+
+      <div id="settings-content-wrap">
+        <div id="email-container">
+
+          <label for="settingEmail"><h2>Email</h2></label>
+          <div id="current-email">
+            <input type="text" id="settingEmail" name="settingEmail" placeholder="[Example@gmail.com]" disabled="disabled">
+  
+            <div class="editSetting">Edit</div>
+          </div>
+
+          <div id="newEmail-container">
+            <label for="newEmail" class="hide"><h2>New Email</h2></label>
+            <input type="text" id="newEmail" name="newEmail" placeholder="[New Email]" class="hide">
+          </div>
+
+          <div id="emailPassword-container">
+            <label for="emailPassword" class="hide"><h2>Enter password</h2></label>
+            <input type="password" id="emailPassword" name="emailPassword" placeholder="[Email Password]" class="hide">
+          </div>
+
+          <div class="hide" id="email-error" >Email is already in use!</div>
+
+          <div id="email-btn-group">
+
+            <button id="submit" class="grad-btn" onclick="">Save</button>
+            <button id="cancel" class="cancel-btn" onclick="" >Cancel</button>
+
+          </div>
+        </div>
+
+        <div id="address-container">
+          <label for="addressName"><h2>Name/Company Name</h2></label>
+          <input type="text" id="addressName" name="addressName" placeholder="[Name/Company Name]">
+
+          <label for="streetNum"><h2>Street Number</h2></label>
+          <input type="number" id="streetNum" name="streetNum" placeholder="[Street Number]">
+
+          <label for="streetName"><h2>Street Name</h2></label>
+          <input type="text" id="streetName" name="streetName" placeholder="[Street Name]">
+
+          <label for="addressUnit"><h2>Unit</h2></label>
+          <input type="text" id="addressUnit" name="addressUnit" placeholder="[Unit]">
+
+          <label for="addressSuburb"><h2>Suburb</h2></label>
+          <input type="text" id="addressSuburb" name="addressSuburb" placeholder="[Suburb]">
+
+          <label for="addressCity"><h2>City</h2></label>
+          <input type="text" id="addressCity" name="addressCity" placeholder="[City]">
+
+          <label for="postCode"><h2>Postcode</h2></label>
+          <input type="number" id="postCode" name="postCode" placeholder="[postCode]">
+
+          <label for="addressCountry"><h2>Street Number</h2></label>
+          <input type="text" id="addressCountry" name="addressCountry" placeholder="[Country]">
+        </div>
+
+        <div id="password-container">
+          <label for="SettingEmail"><h2>Email</h2></label>
+          <input type="text" id="SettingEmail" name="SettingEmail" placeholder="[Email]">
+        </div>
+
+        <div id="subscription-container">
+          <label for="SettingEmail"><h2>Email</h2></label>
+          <input type="text" id="SettingEmail" name="SettingEmail" placeholder="[Email]">
+        </div>
+
+        <div id="removeAccount-container">
+          <h2>Email</h2>
+          <p>[Email]</p>
+        </div>
+      </div>
     </div>
 
     <div id="tab-container">

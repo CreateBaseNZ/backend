@@ -1,5 +1,116 @@
 @import "../global/all";
 
+h1{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    color: $dark-2;
+    font-size: calc(20px + 1vmax);
+}
+
+h2{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: $dark-1;
+    font-size: calc(10px + 1vmax);
+    margin-bottom: 0.2em;
+}
+
+.editSetting{
+    color: $logo-2;
+    cursor: pointer;
+}
+#settings-area{
+    display: flex;
+    flex-direction: column;
+    padding: 2em 13vw 0 13vw;
+    font-family: $poppins;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#settings-content-wrap{
+    padding-top:1.5em;
+}
+
+#email-container, #address-container, #password-container, #subscription-container, #removeAccount-container{
+    margin-bottom: 2em;
+}
+
+#email-container{
+    max-width: 25em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input{
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+input::placeholder{
+    color: $dark-2;
+}
+
+#current-email, #newEmail-container, #emailPassword-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    label{
+        flex: 0 0 100%;
+        margin: 1em 0;
+    }
+    input{
+        flex: 0 0 80%;
+        padding-left: 0.5em;
+        margin-left: 1em;
+    }
+    .editSetting{
+        flex: 0 0 10%;
+        margin-left: 2vmin;
+    }
+}
+
+#current-email{
+    input{
+        border: none;
+        outline: none;
+        background-color: $light-1;
+        color: $dark-2;
+    }
+}
+
+#email-error{
+    color: red;
+    font-size: 0.8em;
+    margin: 2.5em;
+    text-align: center;
+}
+
+#email-btn-group{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 10em;
+    align-self: center;
+    .grad-btn{
+        margin-bottom: 2em;
+    }
+}
+
+// .hide{
+//     // -webkit-transition: ease-out 0.5s;
+//     // transition: ease-out 0.5s;
+//     // height: 0em;
+//     // overflow: hidden;
+//     // opacity: 0;
+//     // padding: 0;
+//     // border: none;
+//     display: none;
+// }
+
 // #############################################################################
 // MEDIA QUERY
 // #############################################################################
