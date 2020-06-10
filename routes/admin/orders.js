@@ -15,6 +15,7 @@ MODELS
 =========================================================================================*/
 
 const Order = require("../../model/Order.js");
+const Customer = require("../../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -71,8 +72,13 @@ router.get("/admin/orders/fetch-orders", adminContent, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
+  // FETCH COMMENTS
+  let comments = [];
+  // TO DO .....
+  // FETCH COMMENTS
+  // TO DO .....
   // SUCCESS HANDLER
-  return res.send({ status: "success", content: orders });
+  return res.send({ status: "success", content: { orders, comments } });
 });
 
 // @route     POST /admin/orders/update-order-status
@@ -102,6 +108,43 @@ router.post("/admin/orders/update-order-status", adminContent, async (req, res) 
   }
   // SUCCESS HANDLER
   return res.send({ status: "success", content: savedOrder });
+});
+
+// @route     POST /admin/orders/post-comment
+// @desc      
+// @access    CONTENT - VERIFIED - ADMIN
+router.post("/admin/orders/post-comment", adminContent, async (req, res) => {
+  // DECLARE VARIABLES
+  const account = req.user;
+  const orderId = req.body.orderId;
+  const message = req.body.message;
+  // FETCH ORDER
+  let order;
+  try {
+    order = await Order.findOne({ _id: orderId });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // CREATE NEW COMMENT
+  let comment;
+  try {
+    comment = await Comment.create(account._id, message);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // UPDATE ORDER COMMENTS
+  order.comments.push(comment._id);
+  // SAVE ORDER UPDATE AND GET USER DETAILS
+  const promises = [Customer.findOne({ accountId: account._id }), order.save()];
+  try {
+    [customer] = await Promise.all(promises);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // ADD INFORMATION TO COMMENT OBJECT
+  comment.author = { name: customer.displayName, picture: customer.picture };
+  // SUCCESS HANDLER
+  return res.send({ status: "success", content: { comment } });
 });
 
 /* ----------------------------------------------------------------------------------------

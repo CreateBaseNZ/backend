@@ -112,7 +112,7 @@ router.post("/settings/change-password", verifiedAccess, async (req, res) => {
   // VALIDATE PASSWORD MATCH
   let message;
   try {
-    message = await account2.validatePassword(password);
+    message = await account.validatePassword(password);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
