@@ -20,9 +20,14 @@ let settings = {
   changeAddressValidate: undefined,
   // PASSWORD SECTION
   changePassword: undefined,
-  changePasswordValidate: undefined,
   changePasswordCollect: undefined,
-  changePasswordSubmit: undefined
+  changePasswordValidate: undefined,
+  changePasswordSubmit: undefined,
+  // SUBSCRIPTION SECTION
+  populateSubscription: undefined,
+  changeSubscription: undefined,
+  changeSubscriptionCollect: undefined,
+  changeSubscriptionValidate: undefined
 }
 
 /* ========================================================================================
@@ -250,9 +255,10 @@ settings.changeAddress = async () => {
     // TO DO .....
   };
   // SUBMIT REQUEST
+  const updates = { subscription: { mail: undefined }, address };
   let data;
   try {
-    data = await settings.updateSubmit({ address });
+    data = await settings.updateSubmit(updates);
   } catch (error) {
     // TO DO .....
     // Assign ID of the email loader element
@@ -460,6 +466,104 @@ settings.changePasswordSubmit = (newPassword, password) => {
     // RESOLVE PROMISE
     return resolve(data);
   })
+}
+
+/* ----------------------------------------------------------------------------------------
+SUBSCRIPTION
+---------------------------------------------------------------------------------------- */
+
+// @func  settings.populateSubscription
+// @desc  
+settings.populateSubscription = (subscription) => {
+  // TO DO .....
+  // Assign IDs of the address display elements
+  document.querySelector("#").checked = subscription;
+  // TO DO .....
+
+  // TO DO .....
+  // Assign ID of the address loader element
+  document.querySelector("#").classList.add("hide");
+  // TO DO .....
+  return;
+}
+
+// @func  settings.changeSubscription
+// @desc  
+settings.changeSubscription = () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+  // COLLECT INPUTS
+  const subscription = settings.changeSubscriptionCollect();
+  // VALIDATE INPUTS
+  if (!settings.changeSubscriptionValidate(subscription)) {
+    // TO DO .....
+    // Assign ID of the email loader element
+    return document.querySelector("#").classList.add("hide");
+    // TO DO .....
+  };
+  // SUBMIT REQUEST
+  const updates = { subscription: { mail: subscription }, address: undefined };
+  let data;
+  try {
+    data = await settings.updateSubmit(updates);
+  } catch (error) {
+    // TO DO .....
+    // Assign ID of the email loader element
+    document.querySelector("#").classList.add("hide");
+    // TO DO .....
+    return console.log(error);
+  }
+  // VALIDATE DATA
+  if (data.status === "failed") {
+    // TO DO .....
+    // Assign the email error ID
+    document.querySelector("#").innerHTML = data.content;
+    // TO DO .....
+    // TO DO .....
+    // Assign ID of the email loader element
+    return document.querySelector("#").classList.add("hide");
+    // TO DO .....
+  }
+  // TO DO .....
+  // SUCCESS HANDLER
+  // Add a notification
+  // TO DO .....
+  // TO DO .....
+  // Assign ID of the email loader element
+  return document.querySelector("#").classList.add("hide");
+  // TO DO .....
+}
+
+// @func  settings.changeSubscriptionCollect
+// @desc  
+settings.changeSubscriptionCollect = () => {
+  // TO DO .....
+  // Assign ID of the subscription display element
+  const subscription = document.querySelector("#").checked;
+  // TO DO .....
+
+  return subscription;
+}
+
+// @func  settings.changeSubscriptionValidate
+// @desc  
+settings.changeSubscriptionValidate = (subscription) => {
+  let valid = true;
+  let error = "";
+  // SUBSCRIPTION
+  if (subscription === undefined) {
+    valid = false;
+    error = "subscription required";
+  }
+  // SET ERROR
+  // TO DO .....
+  // Assign the subscription error ID
+  document.querySelector("#").innerHTML = error;
+  // TO DO .....
+  return valid;
 }
 
 /* ========================================================================================
