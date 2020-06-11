@@ -20,9 +20,20 @@ let settings = {
   changeAddressValidate: undefined,
   // PASSWORD SECTION
   changePassword: undefined,
-  changePasswordValidate: undefined,
   changePasswordCollect: undefined,
-  changePasswordSubmit: undefined
+  changePasswordValidate: undefined,
+  changePasswordSubmit: undefined,
+  // SUBSCRIPTION SECTION
+  populateSubscription: undefined,
+  changeSubscription: undefined,
+  changeSubscriptionCollect: undefined,
+  changeSubscriptionValidate: undefined,
+  // DELETE ACCOUNT SECTION
+  deleteAccountConfirmation: undefined,
+  deleteAccount: undefined,
+  deleteAccountCollect: undefined,
+  deleteAccountValidate: undefined,
+  deleteAccountSubmit: undefined
 }
 
 /* ========================================================================================
@@ -250,9 +261,10 @@ settings.changeAddress = async () => {
     // TO DO .....
   };
   // SUBMIT REQUEST
+  const updates = { subscription: { mail: undefined }, address };
   let data;
   try {
-    data = await settings.updateSubmit({ address });
+    data = await settings.updateSubmit(updates);
   } catch (error) {
     // TO DO .....
     // Assign ID of the email loader element
@@ -460,6 +472,208 @@ settings.changePasswordSubmit = (newPassword, password) => {
     // RESOLVE PROMISE
     return resolve(data);
   })
+}
+
+/* ----------------------------------------------------------------------------------------
+SUBSCRIPTION
+---------------------------------------------------------------------------------------- */
+
+// @func  settings.populateSubscription
+// @desc  
+settings.populateSubscription = (subscription) => {
+  // TO DO .....
+  // Assign IDs of the address display elements
+  document.querySelector("#").checked = subscription;
+  // TO DO .....
+
+  // TO DO .....
+  // Assign ID of the address loader element
+  document.querySelector("#").classList.add("hide");
+  // TO DO .....
+  return;
+}
+
+// @func  settings.changeSubscription
+// @desc  
+settings.changeSubscription = () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+  // COLLECT INPUTS
+  const subscription = settings.changeSubscriptionCollect();
+  // VALIDATE INPUTS
+  if (!settings.changeSubscriptionValidate(subscription)) {
+    // TO DO .....
+    // Assign ID of the email loader element
+    return document.querySelector("#").classList.add("hide");
+    // TO DO .....
+  };
+  // SUBMIT REQUEST
+  const updates = { subscription: { mail: subscription }, address: undefined };
+  let data;
+  try {
+    data = await settings.updateSubmit(updates);
+  } catch (error) {
+    // TO DO .....
+    // Assign ID of the email loader element
+    document.querySelector("#").classList.add("hide");
+    // TO DO .....
+    return console.log(error);
+  }
+  // VALIDATE DATA
+  if (data.status === "failed") {
+    // TO DO .....
+    // Assign the email error ID
+    document.querySelector("#").innerHTML = data.content;
+    // TO DO .....
+    // TO DO .....
+    // Assign ID of the email loader element
+    return document.querySelector("#").classList.add("hide");
+    // TO DO .....
+  }
+  // TO DO .....
+  // SUCCESS HANDLER
+  // Add a notification
+  // TO DO .....
+  // TO DO .....
+  // Assign ID of the email loader element
+  return document.querySelector("#").classList.add("hide");
+  // TO DO .....
+}
+
+// @func  settings.changeSubscriptionCollect
+// @desc  
+settings.changeSubscriptionCollect = () => {
+  // TO DO .....
+  // Assign ID of the subscription display element
+  const subscription = document.querySelector("#").checked;
+  // TO DO .....
+
+  return subscription;
+}
+
+// @func  settings.changeSubscriptionValidate
+// @desc  
+settings.changeSubscriptionValidate = (subscription) => {
+  let valid = true;
+  let error = "";
+  // SUBSCRIPTION
+  if (subscription === undefined) {
+    valid = false;
+    error = "subscription required";
+  }
+  // SET ERROR
+  // TO DO .....
+  // Assign the subscription error ID
+  document.querySelector("#").innerHTML = error;
+  // TO DO .....
+  return valid;
+}
+
+/* ----------------------------------------------------------------------------------------
+DELETE ACCOUNT
+---------------------------------------------------------------------------------------- */
+
+// @func  settings.deleteAccountConfirmation
+// @desc  
+settings.deleteAccountConfirmation = () => {
+  // TO DO .....
+  // Assign the ID of the confirmation element and
+  // the class to toggle
+  document.querySelector("#").classList.toggle("");
+  // TO DO .....
+  return;
+}
+
+// @func  settings.deleteAccount
+// @desc  
+settings.deleteAccount = async () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+  // COLLECT INPUTS
+  const password = deleteAccountCollect();
+  // VALIDATE INPUTS
+  if (!settings.deleteAccountValidate(password)) {
+    // TO DO .....
+    // Assign ID of the email loader element
+    return document.querySelector("#").classList.add("hide");
+    // TO DO .....
+  };
+  // SUBMIT REQUEST
+  let data;
+  try {
+    data = await settings.deleteAccountSubmit(password);
+  } catch (error) {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    return console.log(error);
+  }
+  // VALIDATE DATA
+  if (data.status === "failed") {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    return console.log(data.content);
+  }
+  // TO DO .....
+  // SUCCESS HANDLER
+  // Add a notification
+  // TO DO .....
+  // TO DO .....
+  // Assign ID of the email loader element
+  return document.querySelector("#").classList.add("hide");
+  // TO DO .....
+}
+
+// @func  settings.deleteAccountCollect
+// @desc  
+settings.deleteAccountCollect = () => {
+  // TO DO .....
+  // Assign the password password input ID
+  const password = document.querySelector("#").value;
+  // TO DO .....
+
+  return password;
+}
+
+// @func  settings.deleteAccountValidate
+// @desc  
+settings.deleteAccountValidate = (password) => {
+  let valid = true;
+  let error = "";
+  // PASSWORD
+  if (!password) {
+    valid = false;
+    error = "password required";
+  }
+  // SET ERROR
+  // TO DO .....
+  // Assign the email error ID
+  document.querySelector("#").innerHTML = error;
+  // TO DO .....
+  return valid;
+}
+
+// @func  settings.deleteAccountSubmit
+// @desc  
+settings.deleteAccountSubmit = (password) => {
+  return new Promise(async (resolve, reject) => {
+    // SEND REQUEST TO THE BACKEND
+    let data;
+    try {
+      data = (await axios.post("/settings/delete-account", { password }))["data"];
+    } catch (error) {
+      return reject(error);
+    }
+    // RESOLVE PROMISE
+    return resolve(data);
+  });
 }
 
 /* ========================================================================================
