@@ -15,10 +15,25 @@ h2{
     margin-bottom: 0.2em;
 }
 
+h3{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: $dark-1;
+    font-size: calc(7px + 1vmax);
+    margin-bottom: 0.2em;
+}
+
 .editSetting{
     color: $logo-2;
     cursor: pointer;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-self: center;
 }
+
+
 #settings-area{
     display: flex;
     flex-direction: column;
@@ -35,22 +50,32 @@ h2{
 
 #email-container, #address-container, #password-container, #subscription-container, #removeAccount-container{
     margin-bottom: 2em;
-}
-
-#email-container{
     max-width: 25em;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+// #email-container{
+//     max-width: 25em;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+// }
+
 input{
     padding: 0.5em;
     font-size: 1em;
 }
 
-input::placeholder{
-    color: $dark-2;
+input:placeholder{
+    color: $dark-1;
+}
+
+input:focus{
+    outline: none;
+    border: thin solid $logo-3;
+    border-radius: 2px;
 }
 
 #current-email, #newEmail-container, #emailPassword-container{
@@ -73,23 +98,14 @@ input::placeholder{
     }
 }
 
-#current-email{
-    input{
-        border: none;
-        outline: none;
-        background-color: $light-1;
-        color: $dark-2;
-    }
-}
-
-#email-error{
+.errorMessage{
     color: red;
     font-size: 0.8em;
     margin: 2.5em;
     text-align: center;
 }
 
-#email-btn-group{
+.email-btn-group{
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -98,18 +114,42 @@ input::placeholder{
     .grad-btn{
         margin-bottom: 2em;
     }
+    .divider{
+        border-bottom: thin solid $light-3;
+    }
 }
 
-#settings-edit-email {
-    width: 100%;
+#address-item-wrap{
+    margin-bottom: 1em;
+}
+
+#address-container{
+    h2{
+        margin-bottom: 1em;
+    }
+    input{
+        margin-bottom: 1em;
+    }
+    .address-item{
+        max-width: 20em;
+        // border:thin red solid;
+    }
+}
+
+.editTitle{
     display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-self: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    .editSetting{
+        flex: 0 0 10%;
+        margin-left: 2vmin;
+        margin-bottom: 1em;
+    }
 }
 
 .hide {
-   // -webkit-transition: ease-out 0.5s;
+    // -webkit-transition: ease-out 0.5s;
     // transition: ease-out 0.5s;
     height: 0em;
     overflow: hidden;
@@ -119,10 +159,36 @@ input::placeholder{
     display: none;
 }
 
+.current{
+    h2{
+        margin: 1em 0;
+    }
+    input{
+        border: none;
+        outline: none;
+        background-color: $light-1;
+        color: $dark-2;
+        margin-bottom: 0;
+    }
+}
+
 // #############################################################################
 // MEDIA QUERY
 // #############################################################################
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
+    h1{
+        font-size: 1.8em;
+    }
+    
+    h2{
+        font-size: 1.2em;
+    }
+    h3{
 
+        font-size: 0.8em;
+    }
+
+
+    
 }
