@@ -688,7 +688,7 @@ checkout.cart.discounts.load = async (discounts = []) => {
 // @TYPE
 // @DESC
 // @ARGU
-checkout.cart.discount.add = () => {
+checkout.cart.discount.add = async () => {
   // Fetch the discount code input
   const code = document.querySelector("#checkout-discount-input").value;
   // VALIDATION
