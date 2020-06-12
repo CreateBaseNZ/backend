@@ -12,7 +12,7 @@ h2{
     font-weight: 600;
     color: $dark-1;
     font-size: calc(10px + 1vmax);
-    margin-bottom: 0.2em;
+    margin-bottom: 1em;
 }
 
 h3{
@@ -20,19 +20,8 @@ h3{
     font-weight: 600;
     color: $dark-1;
     font-size: calc(7px + 1vmax);
-    margin-bottom: 0.2em;
+    margin-bottom: 1em;
 }
-
-.editSetting{
-    color: $logo-2;
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-self: center;
-}
-
 
 #settings-area{
     display: flex;
@@ -56,13 +45,6 @@ h3{
     justify-content: center;
 }
 
-// #email-container{
-//     max-width: 25em;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-// }
-
 input{
     padding: 0.5em;
     font-size: 1em;
@@ -78,6 +60,14 @@ input:focus{
     border-radius: 2px;
 }
 
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus{
+    background-color: $light-1 !important;
+}
+
 #current-email, #newEmail-container, #emailPassword-container{
     display: flex;
     flex-wrap: wrap;
@@ -89,7 +79,6 @@ input:focus{
     }
     input{
         flex: 0 0 80%;
-        padding-left: 0.5em;
         margin-left: 1em;
     }
     .editSetting{
@@ -98,14 +87,21 @@ input:focus{
     }
 }
 
+#email-container{
+    h2{
+        margin: 0.5em;
+    }
+}
+
 .errorMessage{
     color: red;
     font-size: 0.8em;
-    margin: 2.5em;
+    margin: 2em;
     text-align: center;
 }
 
 .email-btn-group{
+    margin-top: 1em;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -114,39 +110,94 @@ input:focus{
     .grad-btn{
         margin-bottom: 2em;
     }
-    .divider{
-        border-bottom: thin solid $light-3;
-    }
 }
 
-#address-item-wrap{
-    margin-bottom: 1em;
+.divider{
+    margin-top: 1em;
+    border-bottom: thin solid $light-2;
+    height: 0.3em;
 }
 
 #address-container{
     h2{
         margin-bottom: 1em;
     }
+}
+
+#address-item-wrap, #password-item-wrap{
+    margin-bottom: 1em;
+}
+
+
+.address-item, .password-item{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 30em;
+    // border:thin red solid;
     input{
+        flex: 0 0 80%;
         margin-bottom: 1em;
+        padding: 0.5em;
+        margin-left: 1em;
     }
-    .address-item{
-        max-width: 20em;
-        // border:thin red solid;
+    label{
+        flex: 1 0 100%;
+    }
+}
+
+.editSetting{
+    color: $logo-2;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    align-self: center;
+    justify-content: center;
+    button{
+        border: none;
+        color:$logo-3;
+        font-size: 1.5em;
+        cursor: pointer;
+        // margin-right: 1em;
+        color: #C7C2D5;
+        transition: all ease 0.2s;
+        background-color: transparent;
+        width: 1em;
+        &:hover{
+            color: $logo-1;
+        }
     }
 }
 
 .editTitle{
+    margin-bottom: 1em;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    align-content: center;
     .editSetting{
         flex: 0 0 10%;
         margin-left: 2vmin;
-        margin-bottom: 1em;
+        // margin-bottom: 1em;
+    }
+    label{
+        flex: 1 0 100%;
     }
 }
+
+#address-field-name{
+    margin-bottom: 0;
+}
+
+// #password-edit-btn{
+//     border: none;
+//     color:$logo-3;
+//     font-size: 1.5em;
+//     cursor: pointer;
+//     margin-right: 1em;
+//     color: #C7C2D5;
+// }
 
 .hide {
     // -webkit-transition: ease-out 0.5s;
@@ -161,7 +212,10 @@ input:focus{
 
 .current{
     h2{
-        margin: 1em 0;
+        margin: 0;
+    }
+    h3{
+        margin: 0;
     }
     input{
         border: none;
@@ -169,6 +223,8 @@ input:focus{
         background-color: $light-1;
         color: $dark-2;
         margin-bottom: 0;
+        padding-left: 0 0 0 0.5em;
+        margin-left: 1em;
     }
 }
 

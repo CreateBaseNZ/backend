@@ -102,7 +102,6 @@
     </div>
   </nav>
 
-
   <div id="mobile-notif-wrap">
   </div>
   <div id="notification-wrap">
@@ -390,13 +389,11 @@
       <div id="settings-content-wrap">
         <div id="email-container">
 
-          <label for="settingEmail">
-            <h2>Email</h2>
-          </label>
+          <h2>Email</h2>
           <div id="current-email" class="current">
             <input type="text" id="settingEmail" name="settingEmail" placeholder="[Example@gmail.com]"
               disabled="disabled">
-            <div id="settings-edit-email" class="editSetting" onclick="settings.editEmail();">Edit</div>
+            <div id="settings-edit-email" class="editSetting" onclick="settings.editEmail();"><button class="fas fa-pen-square" id="password-edit-btn"></button></div>
           </div>
           <div id="newEmail-container" class="hide">
             <label for="newEmail">
@@ -418,10 +415,9 @@
           <div class="email-btn-group hide" id="email-btn-group-email">
             <button id="submit" class="grad-btn" onclick="settings.changeEmail();">Save</button>
             <button id="cancel" class="cancel-btn" onclick="settings.editEmail();">Cancel</button>
-
-            <div class="divider"></div>
           </div>
 
+          <div class="divider"></div>
         </div>
 
         <div id="address-container">
@@ -433,7 +429,7 @@
                 <h3>Name/Company Name</h3>
               </label>
               <input type="text" id="addressName" name="addressName" placeholder="[Name/Company Name]" disabled>
-              <div id="settings-edit-address" class="editSetting" onclick="settings.editAddress();">Edit</div>
+              <div id="settings-edit-address" class="editSetting" onclick="settings.editAddress();"><button class="fas fa-pen-square" id="password-edit-btn"></button></div>
             </div>
 
             <div class="address-item current" id="address-field-unit">
@@ -487,20 +483,54 @@
             </div>
           </div>
 
-          <div id="address-error" class="errorMessage"></div>
+          <div id="address-error" class="errorMessage hide"></div>
 
           <div class="email-btn-group hide" id="settings-btn-group-address">
             <button id="submit" class="grad-btn" onclick="settings.changeAddress();">Save</button>
             <button id="cancel" class="cancel-btn" onclick="settings.editAddress();">Cancel</button>
           </div>
+
+          
+          <div class="divider"></div>
         </div>
-        <!--
-        <div id=" password-container">
-              <label for="">
-                <h2>Email</h2>
-              </label>
-              <input type="text" id="" name="" placeholder="[Email]">
+
+        <div id="password-container">
+          <div class="editTitle">
+            <h2>Change Password</h2>
+            <div id="settings-edit-address" class="editSetting"><button class="fas fa-pen-square" id="password-edit-btn"></button></div>
           </div>
+          
+              <div id="password-item-wrap">
+                <div class="password-item">
+                  <label for="oldPassword">
+                    <h3>Old Password</h3>
+                  </label>
+                  <input type="password" id="oldPassword" name="oldPassword" placeholder="[Old Password]">
+                </div>
+                <div class="password-item">
+                  <label for="newPassword">
+                    <h3>New Password</h3>
+                  </label>
+                  <input type="password" id="newPassword" name="newPassword" placeholder="[New Password]">
+                </div>
+                <div class="password-item">
+                  <label for="confirmNewPassword">
+                    <h3>Confirm new password</h3>
+                  </label>
+                  <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="[Confirm New Password]">
+                </div>
+              </div>
+
+              
+              <div id="password-error" class="errorMessage hide"></div>
+
+              <div class="email-btn-group" id="settings-btn-group-address">
+                <button id="submit" class="grad-btn" onclick="settings.changeAddress();">Save</button>
+                <button id="cancel" class="cancel-btn" onclick="settings.editAddress();">Cancel</button>
+              </div>
+
+              <div class="divider"></div>
+        </div>
           <!--
         <div id="subscription-container">
           <label for="">
