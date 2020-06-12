@@ -217,7 +217,7 @@ router.get("/settings/fetch-customer-details", verifiedAccess, async (req, res) 
 // @route     GET /settings/delete-account
 // @desc      
 // @access    
-router.get("/settings/delete-account", verifiedAccess, async (req, res) => {
+router.post("/settings/delete-account", verifiedAccess, async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const accountId = req.user._id;
   const password = req.body.password;
@@ -238,6 +238,11 @@ router.get("/settings/delete-account", verifiedAccess, async (req, res) => {
   }
   if (message === "incorrect password") return res.send({ status: "failed", content: message });
   // DELETE ACCOUNT
+  try {
+    await Account.deleteOne({ _id: accountId });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
   // RETURN SUCCESS
   return res.send({ status: "success", content: "account deleted" });
 })

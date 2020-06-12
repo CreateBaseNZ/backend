@@ -42,28 +42,24 @@ ROUTES
 // @route     Get /admin/file/upload
 // @desc
 // @access    Admin
-router.post(
-  "/admin/file/upload",
-  upload.single("file"),
-  adminAccess,
-  async (req, res) => {
-    // Declare Variable
-    const file = req.file;
-    // Add an Image Document
-    const image = new Image({
-      file: {
-        id: file._id,
-        name: file.filename,
-      },
-    });
-    try {
-      await image.save();
-    } catch (error) {
-      return res.send({ status: "failed", content: error });
-    }
-    // Send Successful Response
-    return res.send({ status: "succeeded", content: "file uploaded" });
+router.post("/admin/file/upload", upload.single("file"), adminAccess, async (req, res) => {
+  // Declare Variable
+  const file = req.file;
+  // Add an Image Document
+  const image = new Image({
+    file: {
+      id: file.id,
+      name: file.filename,
+    },
+  });
+  try {
+    await image.save();
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
   }
+  // Send Successful Response
+  return res.send({ status: "succeeded", content: "file uploaded" });
+}
 );
 
 /*=========================================================================================

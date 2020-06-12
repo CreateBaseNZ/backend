@@ -408,6 +408,11 @@ AccountSchema.statics.verify = function (email, code) {
   })
 }
 
+// @FUNC  delete
+// @TYPE  STATICS - PROMISE - ASYNC
+// @DESC  Verifies the account
+// @ARGU  
+
 /* ========================================================================================
 METHODS
 ======================================================================================== */
