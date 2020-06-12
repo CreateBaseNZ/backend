@@ -20,10 +20,12 @@ let settings = {
   changeAddressCollect: undefined,
   changeAddressValidate: undefined,
   // PASSWORD SECTION
+  editPassword: undefined,
   changePassword: undefined,
   changePasswordCollect: undefined,
   changePasswordValidate: undefined,
   changePasswordSubmit: undefined,
+  changePasswordClear: undefined,
   // SUBSCRIPTION SECTION
   populateSubscription: undefined,
   changeSubscription: undefined,
@@ -146,6 +148,7 @@ settings.changeEmail = async () => {
     // Assign ID of the email loader element
     // return document.querySelector("#").classList.add("hide");
     // TO DO .....
+    return;
   };
   // SUBMIT REQUEST
   let data;
@@ -162,7 +165,6 @@ settings.changeEmail = async () => {
   // VALIDATE DATA
   if (data.status === "failed") {
     document.querySelector("#email-error").innerHTML = data.content;
-    console.log(data.content);
     // TO DO .....
     // Assign ID of the email loader element
     // return document.querySelector("#").classList.add("hide");
@@ -228,6 +230,7 @@ ADDRESS
 // @desc  
 settings.editAddress = () => {
   document.querySelector("#settings-edit-address").classList.toggle("hide");
+  document.querySelector("#address-error").classList.toggle("hide");
   document.querySelector("#settings-btn-group-address").classList.toggle("hide");
   // CONTAINER
   document.querySelector("#address-field-name").classList.toggle("current");
@@ -273,8 +276,6 @@ settings.editAddress = () => {
 // @func  settings.populateAddress
 // @desc  
 settings.populateAddress = (address) => {
-  // TO DO .....
-  // Assign IDs of the address display elements
   document.querySelector("#addressName").value = address.recipient;
   document.querySelector("#addressUnit").value = address.unit;
   document.querySelector("#streetNum").value = address.street.number;
@@ -283,7 +284,6 @@ settings.populateAddress = (address) => {
   document.querySelector("#addressCity").value = address.city;
   document.querySelector("#postCode").value = address.postcode;
   document.querySelector("#addressCountry").value = address.country;
-  // TO DO .....
 
   // TO DO .....
   // Assign ID of the address loader element
@@ -308,6 +308,7 @@ settings.changeAddress = async () => {
     // Assign ID of the email loader element
     // return document.querySelector("#").classList.add("hide");
     // TO DO .....
+    return;
   };
   // SUBMIT REQUEST
   const updates = { subscription: { mail: undefined }, address };
@@ -323,14 +324,12 @@ settings.changeAddress = async () => {
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    // TO DO .....
-    // Assign the address error ID
     document.querySelector("#address-error").innerHTML = data.content;
-    // TO DO .....
     // TO DO .....
     // Assign ID of the address loader element
     // return document.querySelector("#").classList.add("hide");
     // TO DO .....
+    return;
   }
   // SUCCESS HANDLER
   // Add a notification
@@ -412,22 +411,33 @@ settings.changeAddressValidate = (address) => {
 PASSWORD
 ---------------------------------------------------------------------------------------- */
 
+// @func  settings.editPassword
+// @desc  
+settings.editPassword = () => {
+  document.querySelector("#settings-edit-password").classList.toggle("hide");
+  document.querySelector("#password-error").classList.toggle("hide");
+  document.querySelector("#settings-btn-group-password").classList.toggle("hide");
+  document.querySelector("#password-item-wrap").classList.toggle("hide");
+  return;
+}
+
 // @func  settings.changePassword
 // @desc  Initiate the Change Password
 settings.changePassword = async () => {
   // LOADER
   // TO DO .....
   // Assign ID of the address loader element
-  document.querySelector("#").classList.remove("hide");
+  // document.querySelector("#").classList.remove("hide");
   // TO DO .....
   // COLLECT INPUTS
-  const [newPassword, newPasswordConfirm, password] = changePasswordCollect();
+  const [newPassword, newPasswordConfirm, password] = settings.changePasswordCollect();
   // VALIDATE INPUTS
   if (!settings.changePasswordValidate(newPassword, newPasswordConfirm, password)) {
     // TO DO .....
     // Assign ID of the email loader element
-    return document.querySelector("#").classList.add("hide");
+    // return document.querySelector("#").classList.add("hide");
     // TO DO .....
+    return;
   };
   // SUBMIT REQUEST
   let data;
@@ -441,38 +451,34 @@ settings.changePassword = async () => {
   }
   // VALIDATE DATA
   if (data.status === "failed") {
+    document.querySelector("#password-error").innerHTML = data.content
     // TO DO .....
-    // ERROR HANDLER
+    // Assign ID of the address loader element
+    // return document.querySelector("#").classList.add("hide");
     // TO DO .....
-    return console.log(data.content);
+    return;
   }
-  // TO DO .....
   // SUCCESS HANDLER
   // Add a notification
+  notificationPopup("Password Updated");
+  // Toggle Edit Mode
+  settings.editPassword();
+  // Clear Input Fields
+  settings.changePasswordClear();
   // TO DO .....
   // TO DO .....
   // Assign ID of the email loader element
-  return document.querySelector("#").classList.add("hide");
+  // return document.querySelector("#").classList.add("hide");
   // TO DO .....
+  return;
 }
 
 // @func  settings.changePasswordCollect
 // @desc  
 settings.changePasswordCollect = () => {
-  // TO DO .....
-  // Assign the password new password input ID
-  const newPassword = document.querySelector("#").value;
-  // TO DO .....
-
-  // TO DO .....
-  // Assign the password new password confirm input ID
-  const newPasswordConfirm = document.querySelector("#").value;
-  // TO DO .....
-
-  // TO DO .....
-  // Assign the password password input ID
-  const password = document.querySelector("#").value;
-  // TO DO .....
+  const newPassword = document.querySelector("#newPassword").value;
+  const newPasswordConfirm = document.querySelector("#confirmNewPassword").value;
+  const password = document.querySelector("#oldPassword").value;
 
   return [newPassword, newPasswordConfirm, password];
 }
@@ -482,15 +488,15 @@ settings.changePasswordCollect = () => {
 settings.changePasswordValidate = (newPassword, newPasswordConfirm, password) => {
   let valid = true;
   let error = "";
-  // NEW PASSWORD
-  if (!newPassword) {
-    valid = false;
-    error = "new password required";
-  }
   // NEW PASSWORD CONFIRM
   if (!newPasswordConfirm) {
     valid = false;
     error = "confirm new password required";
+  }
+  // NEW PASSWORD
+  if (!newPassword) {
+    valid = false;
+    error = "new password required";
   }
   // PASSWORD MATCH
   if (newPassword !== newPasswordConfirm) {
@@ -503,10 +509,8 @@ settings.changePasswordValidate = (newPassword, newPasswordConfirm, password) =>
     error = "password required";
   }
   // SET ERROR
-  // TO DO .....
-  // Assign the email error ID
-  document.querySelector("#").innerHTML = error;
-  // TO DO .....
+  document.querySelector("#password-error").innerHTML = error;
+
   return valid;
 }
 
@@ -525,6 +529,16 @@ settings.changePasswordSubmit = (newPassword, password) => {
     return resolve(data);
   })
 }
+
+// @func  settings.changePasswordClear
+// @desc  
+settings.changePasswordClear = () => {
+  document.querySelector("#newPassword").value = "";
+  document.querySelector("#confirmNewPassword").value = "";
+  document.querySelector("#oldPassword").value = "";
+  return;
+}
+
 
 /* ----------------------------------------------------------------------------------------
 SUBSCRIPTION

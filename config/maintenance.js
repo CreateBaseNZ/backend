@@ -8,7 +8,6 @@ module.exports = async () => {
   REQUIRED MODULES
   =======================================================================================*/
 
-  const mongoose = require("mongoose");
   const moment = require("moment-timezone");
 
   /*=======================================================================================
@@ -287,8 +286,8 @@ module.exports = async () => {
   deleteDisownedMakes();
   deleteDisownedCustomerDetails();
   deleteUnusedFiles();
-  deleteDisownedProjects();
   deleteUnusedFileChunks();
+  deleteDisownedProjects();
 
   /*=======================================================================================
   SET PERIODIC FUNCTION CALLS
@@ -307,8 +306,8 @@ module.exports = async () => {
     deleteDisownedMakes();
     deleteDisownedCustomerDetails();
     deleteUnusedFiles();
-    deleteDisownedProjects();
     deleteUnusedFileChunks();
+    deleteDisownedProjects();
   }, period);
 }
 
