@@ -14,6 +14,7 @@ let settings = {
   changeEmailValidate: undefined,
   changeEmailSubmit: undefined,
   // ADDRESS SECTION
+  editAddress: undefined,
   populateAddress: undefined,
   changeAddress: undefined,
   changeAddressCollect: undefined,
@@ -64,7 +65,7 @@ settings.initialise = async () => {
   // Email
   settings.populateEmail(details.account.email);
   // Address
-  // settings.populateAddress(details.customer.address);
+  settings.populateAddress(details.customer.address);
 }
 
 // @func  settings.fetchCustomerDetails
@@ -110,7 +111,8 @@ settings.editEmail = () => {
   document.querySelector("#newEmail-container").classList.toggle("hide");
   document.querySelector("#emailPassword-container").classList.toggle("hide");
   document.querySelector("#email-error").classList.toggle("hide");
-  document.querySelector("#email-btn-group").classList.toggle("hide");
+  document.querySelector("#email-btn-group-email").classList.toggle("hide");
+  return;
 }
 
 // @func  settings.populateEmail
@@ -222,23 +224,70 @@ settings.changeEmailSubmit = (email, password) => {
 ADDRESS
 ---------------------------------------------------------------------------------------- */
 
+// @func  settings.editAddress
+// @desc  
+settings.editAddress = () => {
+  document.querySelector("#settings-edit-address").classList.toggle("hide");
+  document.querySelector("#settings-btn-group-address").classList.toggle("hide");
+  // CONTAINER
+  document.querySelector("#address-field-name").classList.toggle("current");
+  document.querySelector("#address-field-unit").classList.toggle("current");
+  document.querySelector("#address-field-street-number").classList.toggle("current");
+  document.querySelector("#address-field-street-name").classList.toggle("current");
+  document.querySelector("#address-field-suburb").classList.toggle("current");
+  document.querySelector("#address-field-city").classList.toggle("current");
+  document.querySelector("#address-field-postcode").classList.toggle("current");
+  document.querySelector("#address-field-country").classList.toggle("current");
+  // LABEL
+  document.querySelector("#address-label-name").classList.toggle("hide");
+  document.querySelector("#address-label-unit").classList.toggle("hide");
+  document.querySelector("#address-label-street-number").classList.toggle("hide");
+  document.querySelector("#address-label-street-name").classList.toggle("hide");
+  document.querySelector("#address-label-suburb").classList.toggle("hide");
+  document.querySelector("#address-label-city").classList.toggle("hide");
+  document.querySelector("#address-label-postcode").classList.toggle("hide");
+  document.querySelector("#address-label-country").classList.toggle("hide");
+  // INPUT
+  if (document.querySelector("#addressUnit").getAttribute("disabled") === "") {
+    document.querySelector("#addressName").removeAttribute("disabled");
+    document.querySelector("#addressUnit").removeAttribute("disabled");
+    document.querySelector("#streetNum").removeAttribute("disabled");
+    document.querySelector("#streetName").removeAttribute("disabled");
+    document.querySelector("#addressSuburb").removeAttribute("disabled");
+    document.querySelector("#addressCity").removeAttribute("disabled");
+    document.querySelector("#postCode").removeAttribute("disabled");
+    document.querySelector("#addressCountry").removeAttribute("disabled");
+  } else {
+    document.querySelector("#addressName").setAttribute("disabled", "");
+    document.querySelector("#addressUnit").setAttribute("disabled", "");
+    document.querySelector("#streetNum").setAttribute("disabled", "");
+    document.querySelector("#streetName").setAttribute("disabled", "");
+    document.querySelector("#addressSuburb").setAttribute("disabled", "");
+    document.querySelector("#addressCity").setAttribute("disabled", "");
+    document.querySelector("#postCode").setAttribute("disabled", "");
+    document.querySelector("#addressCountry").setAttribute("disabled", "");
+  }
+  return;
+}
+
 // @func  settings.populateAddress
 // @desc  
 settings.populateAddress = (address) => {
   // TO DO .....
   // Assign IDs of the address display elements
-  document.querySelector("#").value = address.unit;
-  document.querySelector("#").value = address.street.number;
-  document.querySelector("#").value = address.street.name;
-  document.querySelector("#").value = address.suburb;
-  document.querySelector("#").value = address.city;
-  document.querySelector("#").value = address.postcode;
-  document.querySelector("#").value = address.country;
+  document.querySelector("#addressName").value = address.recipient;
+  document.querySelector("#addressUnit").value = address.unit;
+  document.querySelector("#streetNum").value = address.street.number;
+  document.querySelector("#streetName").value = address.street.name;
+  document.querySelector("#addressSuburb").value = address.suburb;
+  document.querySelector("#addressCity").value = address.city;
+  document.querySelector("#postCode").value = address.postcode;
+  document.querySelector("#addressCountry").value = address.country;
   // TO DO .....
 
   // TO DO .....
   // Assign ID of the address loader element
-  document.querySelector("#").classList.add("hide");
+  // document.querySelector("#").classList.add("hide");
   // TO DO .....
   return;
 };
@@ -249,7 +298,7 @@ settings.changeAddress = async () => {
   // LOADER
   // TO DO .....
   // Assign ID of the address loader element
-  document.querySelector("#").classList.remove("hide");
+  // document.querySelector("#").classList.remove("hide");
   // TO DO .....
   // COLLECT INPUTS
   const address = settings.changeAddressCollect();
@@ -257,7 +306,7 @@ settings.changeAddress = async () => {
   if (!settings.changeAddressValidate(address)) {
     // TO DO .....
     // Assign ID of the email loader element
-    return document.querySelector("#").classList.add("hide");
+    // return document.querySelector("#").classList.add("hide");
     // TO DO .....
   };
   // SUBMIT REQUEST
@@ -267,30 +316,32 @@ settings.changeAddress = async () => {
     data = await settings.updateSubmit(updates);
   } catch (error) {
     // TO DO .....
-    // Assign ID of the email loader element
-    document.querySelector("#").classList.add("hide");
+    // Assign ID of the address loader element
+    // document.querySelector("#").classList.add("hide");
     // TO DO .....
     return console.log(error);
   }
   // VALIDATE DATA
   if (data.status === "failed") {
     // TO DO .....
-    // Assign the email error ID
-    document.querySelector("#").innerHTML = data.content;
+    // Assign the address error ID
+    document.querySelector("#address-error").innerHTML = data.content;
     // TO DO .....
     // TO DO .....
-    // Assign ID of the email loader element
-    return document.querySelector("#").classList.add("hide");
+    // Assign ID of the address loader element
+    // return document.querySelector("#").classList.add("hide");
     // TO DO .....
   }
-  // TO DO .....
   // SUCCESS HANDLER
   // Add a notification
+  notificationPopup("Address Updated");
+  // Toggle Edit Mode
+  settings.editAddress();
   // TO DO .....
+  // Assign ID of the address loader element
+  // return document.querySelector("#").classList.add("hide");
   // TO DO .....
-  // Assign ID of the email loader element
-  return document.querySelector("#").classList.add("hide");
-  // TO DO .....
+  return;
 }
 
 // @func  settings.changeAddressCollect
@@ -299,15 +350,16 @@ settings.changeAddressCollect = () => {
   // TO DO .....
   // Assign IDs of the address display elements
   const address = {
-    unit: document.querySelector("#").value,
+    recipient: document.querySelector("#addressName").value,
+    unit: document.querySelector("#addressUnit").value,
     street: {
-      number: document.querySelector("#").value,
-      name: document.querySelector("#").value
+      number: document.querySelector("#streetNum").value,
+      name: document.querySelector("#streetName").value
     },
-    suburb: document.querySelector("#").value,
-    city: document.querySelector("#").value,
-    postcode: document.querySelector("#").value,
-    country: document.querySelector("#").value
+    suburb: document.querySelector("#addressSuburb").value,
+    city: document.querySelector("#addressCity").value,
+    postcode: document.querySelector("#postCode").value,
+    country: document.querySelector("#addressCountry").value
   }
   // TO DO .....
   return address;
@@ -345,13 +397,13 @@ settings.changeAddressValidate = (address) => {
   }
   // COUNTRY
   if (!address.country) {
-    valid = false;
-    error = "country required";
+    valid = true;
+    error = "";
   }
   // SET ERROR
   // TO DO .....
   // Assign the email error ID
-  document.querySelector("#").innerHTML = error;
+  document.querySelector("#address-error").innerHTML = error;
   // TO DO .....
   return valid;
 }
@@ -495,7 +547,7 @@ settings.populateSubscription = (subscription) => {
 
 // @func  settings.changeSubscription
 // @desc  
-settings.changeSubscription = () => {
+settings.changeSubscription = async () => {
   // LOADER
   // TO DO .....
   // Assign ID of the address loader element

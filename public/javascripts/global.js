@@ -169,23 +169,52 @@ const unsubscribe = (input) => {
 Global notifs
 =========================================================================================*/
 
+const notificationPopup = (message) => {
+  // Create div to insert
+  let newDiv = document.createElement("div");
+  newDiv.classList.add("subbed-notif");
+  let messageWrap = document.createElement("div")
+  newDiv.appendChild(messageWrap).classList.add("msg-wrap");
+  messageWrap.appendChild(document.createElement('i')).className = 'fab fa-telegram-plane';
+  messageWrap.appendChild(document.createElement('p')).innerHTML = message;
+  // Find location to insert div
+  let notifDiv = document.getElementById('notification-wrap')
+  let mobileDiv = document.getElementById('mobile-notif-wrap')
+  // Add slide in animation
+  newDiv.classList.add("slide-in");
+  //Insert div
+  var mq = window.matchMedia("(min-width: 53em)");
+  if (mq.matches) {
+    notifDiv.appendChild(newDiv)
+  }
+  else {
+    mobileDiv.appendChild(newDiv)
+  }
+  // Fade out
+  setTimeout(() => {
+    newDiv.style.transition = 'all 2s'
+    newDiv.style.opacity = 0
+    // Hide
+    setTimeout(() => {
+      newDiv.style.display = 'none'
+    }, 1000)
+  }, 3000)
+}
+
 function subscribeNotif() {
-  //Create div to insert
+  // Create div to insert
   let newDiv = document.createElement('div')
   newDiv.className = 'subbed-notif'
   let messageWrap = document.createElement('div')
   newDiv.appendChild(messageWrap).className = 'msg-wrap'
   messageWrap.appendChild(document.createElement('i')).className = 'fab fa-telegram-plane'
   messageWrap.appendChild(document.createElement('p')).innerHTML = 'Thank you for subscribing to the newsletter!'
-
-  //Find location to insert div
-  let notifDiv = document.getElementById('notification-wrap')
-  let mobileDiv = document.getElementById('mobile-notif-wrap')
-
-  //Add slide in animation
+  // Find location to insert div
+  let notifDiv = document.getElementById('notification-wrap');
+  let mobileDiv = document.getElementById('mobile-notif-wrap');
+  // Add slide in animation
   newDiv.classList.add("slide-in");
-
-  //Insert div
+  // Insert div
   var mq = window.matchMedia("(min-width: 53em)");
   if (mq.matches) {
     notifDiv.appendChild(newDiv)

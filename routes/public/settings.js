@@ -214,6 +214,34 @@ router.get("/settings/fetch-customer-details", verifiedAccess, async (req, res) 
   return res.send({ status: "success", content: details });
 })
 
+// @route     GET /settings/delete-account
+// @desc      
+// @access    
+router.get("/settings/delete-account", verifiedAccess, async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const accountId = req.user._id;
+  const password = req.body.password;
+  // CHECK IF EMAIL IS TAKEN, GET THE USER'S ACCOUNT AND DETAILS
+  let account;
+  try {
+    account = await Account.findOne({ _id: accountId });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // VALIDATE
+  // Password Match
+  let message;
+  try {
+    message = await account.validatePassword(password);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  if (message === "incorrect password") return res.send({ status: "failed", content: message });
+  // DELETE ACCOUNT
+  // RETURN SUCCESS
+  return res.send({ status: "success", content: "account deleted" });
+})
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

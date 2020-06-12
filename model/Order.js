@@ -26,6 +26,10 @@ SUB MODELS
 =========================================================================================*/
 
 const AddressSchema = new Schema({
+  recipient: {
+    type: String,
+    default: ""
+  },
   unit: {
     type: String,
     default: ""

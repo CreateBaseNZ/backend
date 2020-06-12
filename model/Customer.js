@@ -14,7 +14,6 @@ const Schema = mongoose.Schema;
 EXTERNAL MODELS
 =========================================================================================*/
 
-const Account = require("./Account.js");
 const Mail = require("./Mail.js");
 
 /*=========================================================================================
@@ -22,36 +21,16 @@ SUB MODELS
 =========================================================================================*/
 
 const AddressSchema = new Schema({
-  unit: {
-    type: String,
-    default: ""
-  },
+  recipient: { type: String, default: "" },
+  unit: { type: String, default: "" },
   street: {
-    number: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
+    number: { type: String, default: "" },
+    name: { type: String, default: "" },
   },
-  suburb: {
-    type: String,
-    required: true
-  },
-  city: {
-    type: String,
-    required: true
-  },
-  postcode: {
-    type: String,
-    required: true
-  },
-  country: {
-    type: String,
-    required: true
-  },
+  suburb: { type: String, default: "" },
+  city: { type: String, default: "" },
+  postcode: { type: String, default: "" },
+  country: { type: String, default: "" }
 });
 
 /*=========================================================================================
@@ -75,7 +54,8 @@ const CustomerSchema = new Schema({
     default: ""
   },
   address: {
-    type: AddressSchema
+    type: AddressSchema,
+    default: AddressSchema
   },
   subscription: {
     mail: {

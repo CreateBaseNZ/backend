@@ -102,6 +102,9 @@
     </div>
   </nav>
 
+
+  <div id="mobile-notif-wrap">
+  </div>
   <div id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
@@ -412,91 +415,93 @@
 
           <div id="email-error" class="errorMessage hide"></div>
 
-          <div class="email-btn-group hide">
+          <div class="email-btn-group hide" id="email-btn-group-email">
             <button id="submit" class="grad-btn" onclick="settings.changeEmail();">Save</button>
             <button id="cancel" class="cancel-btn" onclick="settings.editEmail();">Cancel</button>
-            
-          <div class="divider"></div>
+
+            <div class="divider"></div>
           </div>
 
         </div>
-        
+
         <div id="address-container">
           <h2>Saved Address</h2>
           <div id="address-item-wrap">
-            <div class="address-item editTitle current">
-              <label for="addressName" class="hide">
+
+            <div class="address-item editTitle current" id="address-field-name">
+              <label for="addressName" class="hide" id="address-label-name">
                 <h3>Name/Company Name</h3>
               </label>
-              <input type="text" id="addressName" name="addressName" placeholder="[Name/Company Name]" disabled="disabled">
-              <div id="address-edit-email" class="editSetting">Edit</div>
+              <input type="text" id="addressName" name="addressName" placeholder="[Name/Company Name]" disabled>
+              <div id="settings-edit-address" class="editSetting" onclick="settings.editAddress();">Edit</div>
             </div>
-  
-            <div class="address-item current">
-              <label for="streetNum" class="hide">
-                <h3>Street Number</h3>
-              </label>
-              <input type="text" id="streetNum" name="streetNum" placeholder="[Street Number]" disabled="disabled">
-            </div>
-  
-            <div class="address-item current">
-              <label for="streetName" class="hide">
-                <h3>Street Name</h3>
-              </label>
-              <input type="text" id="streetName" name="streetName" placeholder="[Street Name]" disabled="disabled">
-            </div>
-  
-            <div class="address-item current">
-              <label for="addressUnit" class="hide">
+
+            <div class="address-item current" id="address-field-unit">
+              <label for="addressUnit" class="hide" id="address-label-unit">
                 <h3>Unit</h3>
               </label>
-              <input type="text" id="addressUnit" name="addressUnit" placeholder="[Unit]" disabled="disabled">
+              <input type="text" id="addressUnit" name="addressUnit" placeholder="[Unit]" disabled>
             </div>
-  
-            <div class="address-item current">
-              <label for="addressSuburb" class="hide">
-                <h3>Suburb</h3>
-              </label>
-              <input type="text" id="addressSuburb" name="addressSuburb" placeholder="[Suburb]" disabled="disabled">
-            </div>
-  
-            <div class="address-item current">
-              <label for="addressCity" class="hide">
-                <h3>City</h3>
-              </label>
-              <input type="text" id="addressCity" name="addressCity" placeholder="[City]" disabled="disabled">
-            </div>
-  
-            <div class="address-item current">
-              <label for="postCode" class="hide">
-                <h3>Postcode</h3>
-              </label>
-              <input type="number" id="postCode" name="postCode" placeholder="[postCode]" disabled="disabled">
-            </div>
-  
-            <div class="address-item current">
-              <label for="addressCountry" class="hide">
+
+            <div class="address-item current" id="address-field-street-number">
+              <label for="streetNum" class="hide" id="address-label-street-number">
                 <h3>Street Number</h3>
               </label>
-              <input type="text" id="addressCountry" name="addressCountry" placeholder="[Country]" disabled="disabled">
+              <input type="text" id="streetNum" name="streetNum" placeholder="[Street Number]" disabled>
+            </div>
+
+            <div class="address-item current" id="address-field-street-name">
+              <label for="streetName" class="hide" id="address-label-street-name">
+                <h3>Street Name</h3>
+              </label>
+              <input type="text" id="streetName" name="streetName" placeholder="[Street Name]" disabled>
+            </div>
+
+
+            <div class="address-item current" id="address-field-suburb">
+              <label for="addressSuburb" class="hide" id="address-label-suburb">
+                <h3>Suburb</h3>
+              </label>
+              <input type="text" id="addressSuburb" name="addressSuburb" placeholder="[Suburb]" disabled>
+            </div>
+
+            <div class="address-item current" id="address-field-city">
+              <label for="addressCity" class="hide" id="address-label-city">
+                <h3>City</h3>
+              </label>
+              <input type="text" id="addressCity" name="addressCity" placeholder="[City]" disabled>
+            </div>
+
+            <div class="address-item current" id="address-field-postcode">
+              <label for="postCode" class="hide" id="address-label-postcode">
+                <h3>Postcode</h3>
+              </label>
+              <input type="text" id="postCode" name="postCode" placeholder="[postCode]" disabled>
+            </div>
+
+            <div class="address-item current" id="address-field-country">
+              <label for="addressCountry" class="hide" id="address-label-country">
+                <h3>Street Number</h3>
+              </label>
+              <input type="text" id="addressCountry" name="addressCountry" placeholder="[Country]" disabled>
             </div>
           </div>
 
-          <div id="address-error" class="errorMessage">ERRROR</div>
+          <div id="address-error" class="errorMessage"></div>
 
-          <div class="email-btn-group">
-            <button id="submit" class="grad-btn" onclick="settings.changeEmail();">Save</button>
-            <button id="cancel" class="cancel-btn" onclick="settings.editEmail();">Cancel</button>
+          <div class="email-btn-group hide" id="settings-btn-group-address">
+            <button id="submit" class="grad-btn" onclick="settings.changeAddress();">Save</button>
+            <button id="cancel" class="cancel-btn" onclick="settings.editAddress();">Cancel</button>
           </div>
         </div>
-      <!--
-        <div id="password-container">
-          <label for="">
-            <h2>Email</h2>
-          </label>
-          <input type="text" id="" name="" placeholder="[Email]">
-        </div>
-      <!--
+        <!--
+        <div id=" password-container">
+              <label for="">
+                <h2>Email</h2>
+              </label>
+              <input type="text" id="" name="" placeholder="[Email]">
+          </div>
+          <!--
         <div id="subscription-container">
           <label for="">
             <h2>Email</h2>
