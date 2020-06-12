@@ -16,9 +16,11 @@ module.exports = async () => {
   =======================================================================================*/
 
   const Account = require("../model/Account.js");
+  const Chunk = require("../model/Chunk.js");
   const Comment = require("../model/Comment.js");
   const Customer = require("../model/Customer.js");
   const Discount = require("../model/Discount.js");
+  const File = require("../model/File.js");
   const Image = require("../model/Image.js");
   const Mail = require("../model/Mail.js");
   const Make = require("../model/Make.js");
@@ -26,26 +28,6 @@ module.exports = async () => {
   const Project = require("../model/Project.js");
   const Session = require("../model/Session.js");
   const Transaction = require("../model/Transaction.js");
-
-  /*=======================================================================================
-  GRIDFS
-  =======================================================================================*/
-
-  const gridFsStream = require("gridfs-stream");
-
-  let GridFS;
-  let client;
-  try {
-    client = await mongoose.createConnection(process.env.MONGODB_URL, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useUnifiedTopology: true,
-    });
-  } catch (error) {
-    return console.log(error);
-  }
-  GridFS = gridFsStream(client.db, mongoose.mongo);
-  GridFS.collection("fs");
 
   /*=======================================================================================
   FUNCTIONS
@@ -187,7 +169,7 @@ module.exports = async () => {
     let numberOfDeletedFiles = 0;
     // FETCH ALL COMMENTS, CUSTOMER DETAILS, IMAGES, MAKES, PROJECTS AND FILES
     let comments, customers, images, makes, projects, files;
-    const promises = [Comment.find(), Customer.find(), Image.find(), Make.find(), Project.find(), GridFS.files.find().toArray()];
+    const promises = [Comment.find(), Customer.find(), Image.find(), Make.find(), Project.find(), File.find()];
     try {
       [comments, customers, images, makes, projects, files] = await Promise.all(promises);
     } catch (error) {
@@ -223,7 +205,7 @@ module.exports = async () => {
       if (indexComment === -1 && indexCustomer === -1 && indexImage === -1
         && indexMake === -1 && indexProject === -1) {
         try {
-          await GridFS.files.deleteOne({ _id: file._id });
+          await File.deleteOne({ _id: file._id });
         } catch (error) {
           return console.log(error);
         }
@@ -231,6 +213,37 @@ module.exports = async () => {
       }
     }
     console.log(`Deleted ${numberOfDeletedFiles} Unused Files .....`);
+  }
+
+  // @func  deleteUnusedFileChunks
+  // @desc  
+  const deleteUnusedFileChunks = async () => {
+    console.log("Deleting Unused File Chunks .....");
+    let numberOfDeletedFileChunks = 0;
+    // FILES AND CHUNKS
+    let files, chunks;
+    const promises = [File.find(), Chunk.find()];
+    try {
+      [files, chunks] = await Promise.all(promises);
+    } catch (error) {
+      return console.log(error);
+    }
+    // ITERATE
+    for (let i = 0; i < chunks.length; i++) {
+      const chunk = chunks[i];
+      const index = files.findIndex((file) => {
+        return (String(file._id) === String(chunk.files_id));
+      });
+      if (index === -1) {
+        try {
+          await Chunk.deleteOne({ files_id: chunk.files_id })
+        } catch (error) {
+          return console.log(error);
+        }
+        numberOfDeletedFileChunks++;
+      }
+    }
+    console.log(`Deleted ${numberOfDeletedFileChunks} Unused File Chunks .....`);
   }
 
   // @func  deleteDisownedProjects
@@ -275,6 +288,7 @@ module.exports = async () => {
   deleteDisownedCustomerDetails();
   deleteUnusedFiles();
   deleteDisownedProjects();
+  deleteUnusedFileChunks();
 
   /*=======================================================================================
   SET PERIODIC FUNCTION CALLS
@@ -284,7 +298,7 @@ module.exports = async () => {
   const minutes = 0;
   const hours = 0;
   const days = 1;
-  const timer = (seconds * 1000) + (60 * minutes * 1000) + (60 * 60 * hours * 1000) + (24 * 60 * 60 * days * 1000);
+  const period = (seconds * 1000) + (60 * minutes * 1000) + (60 * 60 * hours * 1000) + (24 * 60 * 60 * days * 1000);
 
   setInterval(() => {
     console.log("Running Maintenance .....");
@@ -294,7 +308,8 @@ module.exports = async () => {
     deleteDisownedCustomerDetails();
     deleteUnusedFiles();
     deleteDisownedProjects();
-  }, timer);
+    deleteUnusedFileChunks();
+  }, period);
 }
 
 /*=========================================================================================
