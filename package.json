@@ -1,16 +1,18 @@
 {
-  "name": "server",
+  "name": "application",
   "version": "1.0.0",
-  "description": "CreateBase's Web Server",
+  "private": true,
+  "description": "CreateBase's Application",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
     "sass": "node-sass -w public/stylesheets/ -o public/stylesheets/ --recursive"
   },
-  "author": "Creaft",
+  "author": "CreateBase",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.696.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
