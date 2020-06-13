@@ -190,6 +190,33 @@ input:-webkit-autofill:focus{
     margin-bottom: 0;
 }
 
+#password-container{
+    h2{
+        margin: 0;
+    }
+}
+
+#c1{
+    margin-right: 0.5em;
+}
+
+#subscription-checkbox{
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    h3{
+        margin: 0;
+    }
+    label{
+        flex: 0 0 50%;
+        p{
+            color: $dark-2;
+            font-size: 0.8em;
+        }
+    }
+
+}
+
 // #password-edit-btn{
 //     border: none;
 //     color:$logo-3;

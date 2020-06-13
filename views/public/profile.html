@@ -388,7 +388,6 @@
 
       <div id="settings-content-wrap">
         <div id="email-container">
-
           <h2>Email</h2>
           <div id="current-email" class="current">
             <input type="text" id="settingEmail" name="settingEmail" placeholder="[Example@gmail.com]"
@@ -534,12 +533,22 @@
 
           <div class="divider"></div>
         </div>
-        <!--
+
         <div id="subscription-container">
-          <label for="">
-            <h2>Email</h2>
-          </label>
-          <input type="text" id="" name="" placeholder="[Email]">
+          <h2>Mailing list subscription</h2>
+
+          <div id="subscription-checkbox" class="editTitle">
+            <label for="c1" id="subscription-title">
+              <p>Subscribed</p>
+            </label>
+            <div id="settings-edit-sub" class="editSetting">
+              <input id="c1" type="checkbox">
+            </div>
+          </div>
+
+          <div id="subscription-error" class="errorMessage hide"></div>
+
+          <div class="divider"></div>
         </div>
       <!--
         <div id="removeAccount-container">
