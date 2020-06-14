@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification Email</title>
 </head>
 <style>
-    *{
+    * {
         margin: 0;
     }
-    #body{
+
+    #body {
         font-family: Arial, Helvetica, sans-serif;
         background-color: #F0F0F0;
         padding: 2em 0;
         width: 100%;
     }
-    #main{
+
+    #main {
         min-width: 300px;
         width: 40%;
         max-width: 800px;
         margin: auto;
         background-color: #FFFFFF;
     }
-    #content{
+
+    #content {
         padding: 2em;
         text-align: center;
     }
 
-    h1{        
+    h1 {
         font-size: calc(16px + 6 * ((100vw - 320px) / 680));
         padding-top: 1.5em;
         color: #322D41;
     }
-    h2{
+
+    h2 {
         font-size: calc(14px + 4 * ((100vw - 320px) / 680));
         padding-top: 1.2em;
         font-weight: 400;
         color: #322D41;
     }
-    h3{
+
+    h3 {
         font-size: calc(10px + 2 * ((100vw - 320px) / 680));
         padding-top: 1.5em;
         color: #322D41;
     }
-    #caption{
+
+    #caption {
         font-size: calc(10px + 2 * ((100vw - 320px) / 680));
         padding: 1.5em 0 3em;
-        color:#C7C2D5;
+        color: #C7C2D5;
     }
-    #verify-btn{
+
+    #verify-btn {
         text-decoration: none;
         padding: 1.5em 5em;
         letter-spacing: 0.1em;
@@ -57,22 +65,26 @@
         color: #FFFFFF;
         font-size: calc(10px + 1 * ((100vw - 320px) / 680));
     }
-    #divider{
+
+    #divider {
         font-size: calc(10px + 2 * ((100vw - 320px) / 680));
         padding: 3em 0 1em 0;
         color: #322D41;
     }
-    .horizontal-line{
+
+    .horizontal-line {
         display: inline-block;
         width: 1em;
         margin-bottom: 0.25em;
         border-bottom: thin solid #322D41;
     }
-    ul{
+
+    ul {
         padding: 2em;
 
     }
-    li{
+
+    li {
         font-size: calc(14px + 4 * ((100vw - 320px) / 680));
         color: #322D41;
         display: inline-block;
@@ -84,19 +96,22 @@
 
     /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
 
-    @media screen and (min-width: 1000px){
-        h1{        
-        padding-top: 1.5em;
+    @media screen and (min-width: 1000px) {
+        h1 {
+            padding-top: 1.5em;
         }
-        h2{
-        padding-top: 1em;
+
+        h2 {
+            padding-top: 1em;
         }
-        h3{
-        font-size: 0.875;
-        padding-top: 1.5em;
+
+        h3 {
+            font-size: 0.875;
+            padding-top: 1.5em;
         }
-        #caption{
-        padding: 1.5em 0 3em;
+
+        #caption {
+            padding: 1.5em 0 3em;
         }
     }
 </style>
@@ -109,20 +124,20 @@
                 <h1>Hi [name]</h1>
                 <h2>Verify your CreateBase account</h2>
                 <p id="caption">Click the button below to verify your account</p>
-    
-                <a href="http://localhost/account-verification/[email]/[code]]
-                "id="verify-btn"><span>VERIFY</span></a>
-    
+
+                <a href="https://www.createbase.co.nz/account-verification/[email]/[code]
+                " id="verify-btn"><span>VERIFY</span></a>
+
                 <div id="divider">
                     <div class="horizontal-line"></div>
                     <span>or</span>
                     <div class="horizontal-line"></div>
                 </div>
-    
-                <h3>Enter the verification code <a href="http://localhost/verification">here</a></h3>
-    
+
+                <h3>Enter the verification code <a href="https://www.createbase.co.nz/verification">here</a></h3>
+
                 <ul>
-                    <li>1</li> 
+                    <li>1</li>
                     <li>2</li>
                     <li>3</li>
                     <li>4</li>
