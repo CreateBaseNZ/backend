@@ -89,7 +89,7 @@ input:-webkit-autofill:focus{
 
 #email-container{
     h2{
-        margin: 0.5em;
+        margin: 0.5em 0;
     }
 }
 
@@ -100,7 +100,7 @@ input:-webkit-autofill:focus{
     text-align: center;
 }
 
-.email-btn-group{
+.settings-btn-group{
     margin-top: 1em;
     display: flex;
     flex-direction: column;
@@ -112,6 +112,34 @@ input:-webkit-autofill:focus{
     }
 }
 
+#settings-btn-group-account{
+    .remove-btn{
+        background-color: transparent;
+        border-radius: 1em;
+        border:thin solid red;
+        pointer-events: auto;
+        cursor: pointer;
+        color: red;
+        letter-spacing: 0.1em;
+        border-radius: 5px;
+        font-family: $poppins;
+        padding: 1em 2em;
+        margin-bottom: 1.5em;
+        transition: all ease 0.8s;
+        &:hover{
+            border:thin solid darken(red, 10%);
+            color: darken(red, 10%);
+    
+        }
+    }
+    .cancel-btn{
+        &::after {
+            border-bottom: none;
+          }
+    }
+}
+
+
 .divider{
     margin-top: 1em;
     border-bottom: thin solid $light-2;
@@ -122,10 +150,9 @@ input:-webkit-autofill:focus{
     h2{
         margin-bottom: 1em;
     }
-}
-
-#address-item-wrap, #password-item-wrap{
-    margin-bottom: 1em;
+    #address-item-wrap{
+        margin: 0;
+    }
 }
 
 
@@ -194,10 +221,13 @@ input:-webkit-autofill:focus{
     h2{
         margin: 0;
     }
+    #password-item-wrap{
+        margin: 2em 0 1em;
+    }
 }
 
 #c1{
-    margin-right: 0.5em;
+    margin-right: 0.3em;
 }
 
 #subscription-checkbox{
@@ -211,20 +241,45 @@ input:-webkit-autofill:focus{
         flex: 0 0 50%;
         p{
             color: $dark-2;
-            font-size: 0.8em;
+            font-size: 0.9em;
+            margin-left: 1em;
         }
     }
 
 }
 
-// #password-edit-btn{
-//     border: none;
-//     color:$logo-3;
-//     font-size: 1.5em;
-//     cursor: pointer;
-//     margin-right: 1em;
-//     color: #C7C2D5;
-// }
+#removeAccount-container{
+    #removeh2{
+        cursor: pointer;
+        transition: all ease 1s;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    #disclaimerP{
+        color: $light-3;
+        font-size: 0.8em;
+    }
+    #confirmP{
+        font-size: 0.8em;
+    }
+    #account-checkbox{
+        margin-top: 1.5em;
+        label{
+            flex: 0 0 80%;
+        }
+    }
+    #confirm-removal-password{
+        border:none;
+        background-image:none;
+        background-color:transparent;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        border-bottom: thin solid $light-3;
+        margin: 1em 0;
+    }
+}
 
 .hide {
     // -webkit-transition: ease-out 0.5s;
@@ -252,6 +307,7 @@ input:-webkit-autofill:focus{
         margin-bottom: 0;
         padding-left: 0 0 0 0.5em;
         margin-left: 1em;
+        width: 50%;
     }
 }
 

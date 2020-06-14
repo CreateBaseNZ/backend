@@ -412,7 +412,7 @@
 
           <div id="email-error" class="errorMessage hide"></div>
 
-          <div class="email-btn-group hide" id="email-btn-group-email">
+          <div class="settings-btn-group hide" id="email-btn-group-email">
             <button id="submit" class="grad-btn" onclick="settings.changeEmail();">Save</button>
             <button id="cancel" class="cancel-btn" onclick="settings.editEmail();">Cancel</button>
           </div>
@@ -486,7 +486,7 @@
 
           <div id="address-error" class="errorMessage hide"></div>
 
-          <div class="email-btn-group hide" id="settings-btn-group-address">
+          <div class="settings-btn-group hide" id="settings-btn-group-address">
             <button id="submit" class="grad-btn" onclick="settings.changeAddress();">Save</button>
             <button id="cancel" class="cancel-btn" onclick="settings.editAddress();">Cancel</button>
           </div>
@@ -526,7 +526,7 @@
 
           <div id="password-error" class="errorMessage hide"></div>
 
-          <div class="email-btn-group hide" id="settings-btn-group-password">
+          <div class="settings-btn-group hide" id="settings-btn-group-password">
             <button id="submit" class="grad-btn" onclick="settings.changePassword();">Save</button>
             <button id="cancel" class="cancel-btn" onclick="settings.editPassword();">Cancel</button>
           </div>
@@ -536,7 +536,6 @@
 
         <div id="subscription-container">
           <h2>Mailing list subscription</h2>
-
           <div id="subscription-checkbox" class="editTitle">
             <label for="c1" id="subscription-title">
               <p>Subscribed</p>
@@ -550,12 +549,29 @@
 
           <div class="divider"></div>
         </div>
-      <!--
+      
         <div id="removeAccount-container">
-          <h2>Email</h2>
-          <p>[Email]</p>
+          <h2 id="removeh2" onclick="">Remove account</h2>
+          <p id="disclaimerP">(All projects, makes and associated saved data will be permanently removed)</p>
+
+          <div id="account-checkbox" class="editTitle">
+            <label for="c1" id="subscription-title">
+              <p id="confirmP">Yes, I want to remove my account</p>
+            </label>
+            <div id="settings-edit-sub" class="editSetting">
+              <input id="c1" type="checkbox">
+            </div>
+          </div>
+
+          <div id="settings-edit-sub" class="editSetting">
+            <input id="confirm-removal-password" type="password" placeholder="Enter Password">
+          </div>
+
+          <div class="settings-btn-group" id="settings-btn-group-account">
+            <button id="submit" class="remove-btn" onclick="">Remove</button>
+            <button id="cancel" class="cancel-btn" onclick="">Cancel</button>
+          </div>
         </div>
-      -->
       </div>
     </div>
 
@@ -570,8 +586,6 @@
       <label for="settings-tab"><span>Settings</span><i class="fas fa-cog"></i></label>
     </div>
   </div>
-
-
 
 </body>
 
