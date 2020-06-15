@@ -85,6 +85,7 @@ login.collect = () => {
 // @func  login.submit
 // @desc  
 login.submit = async () => {
+  document.querySelector("#login-btn").setAttribute("disabled", "");
   // TO DO .....
   // LOADER
   // TO DO .....
@@ -92,7 +93,9 @@ login.submit = async () => {
   const [email, password] = login.collect();
   // VALIDATION
   // Client
-  if (!login.validate(email, password)) return;
+  if (!login.validate(email, password)) {
+    return document.querySelector("#login-btn").removeAttribute("disabled");
+  }
   // Server
   let data
   try {
@@ -101,12 +104,14 @@ login.submit = async () => {
     // TO DO .....
     // ERROR HANDLER
     // TO DO .....
-    return console.log(error)
+    document.querySelector("#login-btn").removeAttribute("disabled");
+    return console.log(error);
   }
   // ERROR HANDLER
   if (data.status === "failed") {
-    document.querySelector("#login-email-error").innerHTML = data.content.email
-    return document.querySelector("#login-password-error").innerHTML = data.content.password
+    document.querySelector("#login-email-error").innerHTML = data.content.email;
+    document.querySelector("#login-password-error").innerHTML = data.content.password;
+    return document.querySelector("#login-btn").removeAttribute("disabled");
   }
   // SUCCESS HANDLER
   document.querySelector("#login-email-error").innerHTML = ""

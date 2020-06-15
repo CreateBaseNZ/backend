@@ -8,7 +8,9 @@
   <link rel="icon" href="./../../public/images/logo-icon.png" />
   <title>Signup • CreateBase</title>
   <!--================ FONTS ================-->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
   <!--================ ICONS ================-->
   <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
   <!--================ DEFAULT JAVASCRIPTS ================-->
@@ -23,7 +25,7 @@
   <link rel="stylesheet" href="./../../public/stylesheets/signup.css" />
 </head>
 
-<body onload="navInit(); session.initialise(); signupInit(); ">
+<body onload="signup.initialise();">
 
   <nav>
     <div class="nav-darken-overlay"></div>
@@ -34,15 +36,15 @@
         </span>
       </button>
       <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
+        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png" />
       </a>
       <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture"/>
+        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png" />
+        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture" />
       </div>
       <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
+        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png" />
+        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png" />
       </div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
@@ -54,19 +56,21 @@
         <div class="nav-left-menu">
           <div class="nav-side-menu-links">
             <p class="nav-side-header">CREATEBASE</p>
-              <a class="nav-side-item" href="/3d-printing">MAKE</a>
-              <a class="nav-side-item" href="/products/engkits">KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">SHOP</a>
+            <a class="nav-side-item" href="/3d-printing">MAKE</a>
+            <a class="nav-side-item" href="/products/engkits">KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">SHOP</a>
             <p class="nav-side-header">INFO</p>
-              <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-              <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+            <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
             <p class="nav-side-header">ABOUT</p>
-              <a class="nav-side-item" href="/story">OUR STORY</a>
-              <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/story">OUR STORY</a>
+            <a class="nav-side-item" href="/team">OUR TEAM</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
             <a class="fab fa-twitter" href="https://twitter.com/" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
@@ -76,82 +80,83 @@
       <div class="nav-right-menu-out">
         <div class="nav-right-menu">
           <p class="nav-side-header">WELCOME BACK</p>
-            <a class="nav-side-item" href="/login">LOG IN</a>
+          <a class="nav-side-item" href="/login">LOG IN</a>
           <p class="nav-side-header">FIRST TIME?</p>
-            <a class="nav-side-item" href="/signup">SIGN UP</a>
+          <a class="nav-side-item" href="/signup">SIGN UP</a>
         </div>
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture"/>
+          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture" />
           <p class="nav-side-header">PROJECTS</p>
-            <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-            <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-            <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
+          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
+          <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
     </div>
   </nav>
-  
-	<div id="notification-wrap">
+
+  <div id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
-        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse our traffic.</p>
+        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
+          our traffic.</p>
       </div>
       <div class="btn-group">
-        <button id="cancel" onclick="session.cancel();" >DON'T ALLOW</button>
+        <button id="cancel" onclick="session.cancel();">DON'T ALLOW</button>
         <button id="submit" class="grad-btn" onclick="session.allow();">ALLOW ALL</button>
       </div>
     </div>
   </div>
-  
-	<div class="main-page">
+
+  <div class="main-page">
     <div class="signup-mobile-bg" alt="Theme">
 
-    <div class="logo-anim-container">
-      <div class="layer layer-1"></div>
-      <div class="layer layer-2"></div>
-      <div class="layer layer-3"></div>
-    </div>
+      <div class="logo-anim-container">
+        <div class="layer layer-1"></div>
+        <div class="layer layer-2"></div>
+        <div class="layer layer-3"></div>
+      </div>
 
-    <div class="signup-form-container">
-      <form class="sign-up-form" action="/signup/customer" method="post" novalidate="novalidate">
-        <p class="mini-caps-title" id="signup-title">CREATE <span>YOUR</span> BASE</p>
-        <div class="sign-up-fld input-decor" id="signup-display">
-          <input type="text" name="displayName" id="sign-up-dspl-name" required />
-          <label class="input-label" for="displayName">Display Name</label>
-          <label class="input-error" for="displayName">Name unavailable, please try again.</label>
-        </div>
-        <div class="sign-up-fld input-decor" id="signup-email">
-          <input type="text" name="email" id="sign-up-eml" required />
-          <label class="input-label" for="email">Email</label>
-          <label class="input-error" for="displayName">Invalid email, please try again.</label>
-        </div>
-        <div class="sign-up-fld input-decor" id="enter-pass">
-          <input type="password" name="password" id="sign-up-pwd" required />
-          <label class="input-label" for="password">Password</label>
-          <label class="input-error" for="displayName">Your password is too short, please try again.</label>
-        </div>
-        <div class="sign-up-fld input-decor" id="confirm-pass">
-          <input type="password" name="confirm" id="sign-up-cfrm-pwd" required />
-          <label class="input-label" for="confirm-password">Confirm Password</label>
-          <label class="input-error" for="displayName">Passwords do not match, please try again.</label>
-        </div>
+      <div class="signup-form-container">
+        <form id="sign-up-form" action="/signup/customer" method="post" novalidate="novalidate">
+          <p class="mini-caps-title" id="signup-title">CREATE <span>YOUR</span> BASE</p>
+          <div class="sign-up-fld input-decor" id="signup-display">
+            <input type="text" name="displayName" id="sign-up-dspl-name" required />
+            <label class="input-label" for="sign-up-dspl-name">Display Name</label>
+            <label class="input-error" for="sign-up-dspl-name" id="signup-error-display-name"></label>
+          </div>
+          <div class="sign-up-fld input-decor" id="signup-email">
+            <input type="text" name="email" id="sign-up-eml" required />
+            <label class="input-label" for="sign-up-eml">Email</label>
+            <label class="input-error" for="sign-up-eml" id="signup-error-email"></label>
+          </div>
+          <div class="sign-up-fld input-decor" id="enter-pass">
+            <input type="password" name="password" id="sign-up-pwd" required />
+            <label class="input-label" for="sign-up-pwd">Password</label>
+            <label class="input-error" for="sign-up-pwd" id="signup-error-password"></label>
+          </div>
+          <div class="sign-up-fld input-decor" id="confirm-pass">
+            <input type="password" name="confirm" id="sign-up-cfrm-pwd" required />
+            <label class="input-label" for="sign-up-cfrm-pwd">Confirm Password</label>
+            <label class="input-error" for="sign-up-cfrm-pwd" id="signup-error-confirm-password"></label>
+          </div>
 
-        <div class="sign-up-fld" id="signup-submit">
-          <button type="submit" href="/" class="reg-btn" id="signup-btn">CREATE ACCOUNT</button>
-        </div>
-        <div class="message" id="signup-message">
-          <p class="rmv-p-css">
-            Already a member?
-            <a class="rmv-link-css" href="/login">Log in</a>
-          </p>
-        </div>
-      </form>
-    </div>
+          <div class="sign-up-fld" id="signup-submit">
+            <button type="button" class="reg-btn" id="signup-btn" onclick="signup.submit();">CREATE ACCOUNT</button>
+          </div>
+          <div class="message" id="signup-message">
+            <p class="rmv-p-css">
+              Already a member?
+              <a class="rmv-link-css" href="/login">Log in</a>
+            </p>
+          </div>
+        </form>
+      </div>
 
     </div>
   </div>
