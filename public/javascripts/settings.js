@@ -33,6 +33,7 @@ let settings = {
   changeSubscriptionValidate: undefined,
   // DELETE ACCOUNT SECTION
   deleteAccountConfirmation: undefined,
+  deleteAccountCancel: undefined,
   deleteAccount: undefined,
   deleteAccountCollect: undefined,
   deleteAccountValidate: undefined,
@@ -64,10 +65,13 @@ settings.initialise = async () => {
   }
   const details = data.content;
   // POPULATE FIELDS
+  console.log(details); // TEMPORARY
   // Email
   settings.populateEmail(details.account.email);
   // Address
   settings.populateAddress(details.customer.address);
+  // Subscription
+  settings.populateSubscription(details.customer.subscription.mail);
 }
 
 // @func  settings.fetchCustomerDetails
@@ -547,14 +551,11 @@ SUBSCRIPTION
 // @func  settings.populateSubscription
 // @desc  
 settings.populateSubscription = (subscription) => {
-  // TO DO .....
-  // Assign IDs of the address display elements
-  document.querySelector("#").checked = subscription;
-  // TO DO .....
+  document.querySelector("#settings-subscription-input").checked = subscription;
 
   // TO DO .....
   // Assign ID of the address loader element
-  document.querySelector("#").classList.add("hide");
+  // document.querySelector("#").classList.add("hide");
   // TO DO .....
   return;
 }
@@ -565,7 +566,7 @@ settings.changeSubscription = async () => {
   // LOADER
   // TO DO .....
   // Assign ID of the address loader element
-  document.querySelector("#").classList.remove("hide");
+  // document.querySelector("#").classList.remove("hide");
   // TO DO .....
   // COLLECT INPUTS
   const subscription = settings.changeSubscriptionCollect();
@@ -573,8 +574,9 @@ settings.changeSubscription = async () => {
   if (!settings.changeSubscriptionValidate(subscription)) {
     // TO DO .....
     // Assign ID of the email loader element
-    return document.querySelector("#").classList.add("hide");
+    // document.querySelector("#").classList.add("hide");
     // TO DO .....
+    return;
   };
   // SUBMIT REQUEST
   const updates = { subscription: { mail: subscription }, address: undefined };
@@ -584,38 +586,40 @@ settings.changeSubscription = async () => {
   } catch (error) {
     // TO DO .....
     // Assign ID of the email loader element
-    document.querySelector("#").classList.add("hide");
+    // document.querySelector("#").classList.add("hide");
     // TO DO .....
     return console.log(error);
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    // TO DO .....
-    // Assign the email error ID
-    document.querySelector("#").innerHTML = data.content;
-    // TO DO .....
+    document.querySelector("#subscription-error").innerHTML = data.content;
+
     // TO DO .....
     // Assign ID of the email loader element
-    return document.querySelector("#").classList.add("hide");
+    // return document.querySelector("#").classList.add("hide");
     // TO DO .....
+    return;
   }
-  // TO DO .....
   // SUCCESS HANDLER
   // Add a notification
-  // TO DO .....
+  let message;
+  if (subscription) {
+    message = "subscribed successfully";
+  } else {
+    message = "unsubscribed successfully";
+  }
+  notificationPopup(message);
   // TO DO .....
   // Assign ID of the email loader element
-  return document.querySelector("#").classList.add("hide");
+  // return document.querySelector("#").classList.add("hide");
   // TO DO .....
+  return;
 }
 
 // @func  settings.changeSubscriptionCollect
 // @desc  
 settings.changeSubscriptionCollect = () => {
-  // TO DO .....
-  // Assign ID of the subscription display element
-  const subscription = document.querySelector("#").checked;
-  // TO DO .....
+  const subscription = document.querySelector("#settings-subscription-input").checked;
 
   return subscription;
 }
@@ -631,10 +635,8 @@ settings.changeSubscriptionValidate = (subscription) => {
     error = "subscription required";
   }
   // SET ERROR
-  // TO DO .....
-  // Assign the subscription error ID
-  document.querySelector("#").innerHTML = error;
-  // TO DO .....
+  document.querySelector("#subscription-error").innerHTML = error;
+
   return valid;
 }
 
@@ -645,11 +647,19 @@ DELETE ACCOUNT
 // @func  settings.deleteAccountConfirmation
 // @desc  
 settings.deleteAccountConfirmation = () => {
-  // TO DO .....
-  // Assign the ID of the confirmation element and
-  // the class to toggle
-  document.querySelector("#").classList.toggle("");
-  // TO DO .....
+  document.querySelector("#settings-delete-account-password-container").classList.toggle("hide");
+  document.querySelector("#delete-account-error").classList.toggle("hide");
+  document.querySelector("#settings-btn-group-account").classList.toggle("hide");
+  return;
+}
+
+// @func  settings.deleteAccountCancel
+// @desc  
+settings.deleteAccountCancel = () => {
+  document.querySelector("#settings-delete-account-password-container").classList.toggle("hide");
+  document.querySelector("#delete-account-error").classList.toggle("hide");
+  document.querySelector("#settings-btn-group-account").classList.toggle("hide");
+  document.querySelector("#settings-delete-account-input").checked = false;
   return;
 }
 
@@ -659,16 +669,17 @@ settings.deleteAccount = async () => {
   // LOADER
   // TO DO .....
   // Assign ID of the address loader element
-  document.querySelector("#").classList.remove("hide");
+  // document.querySelector("#").classList.remove("hide");
   // TO DO .....
   // COLLECT INPUTS
-  const password = deleteAccountCollect();
+  const password = settings.deleteAccountCollect();
   // VALIDATE INPUTS
   if (!settings.deleteAccountValidate(password)) {
     // TO DO .....
     // Assign ID of the email loader element
-    return document.querySelector("#").classList.add("hide");
+    // return document.querySelector("#").classList.add("hide");
     // TO DO .....
+    return;
   };
   // SUBMIT REQUEST
   let data;
@@ -682,9 +693,8 @@ settings.deleteAccount = async () => {
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    // TO DO .....
-    // ERROR HANDLER
-    // TO DO .....
+    document.querySelector("#delete-account-error").innerHTML = data.content;
+
     return console.log(data.content);
   }
   // SUCCESS HANDLER
@@ -694,10 +704,7 @@ settings.deleteAccount = async () => {
 // @func  settings.deleteAccountCollect
 // @desc  
 settings.deleteAccountCollect = () => {
-  // TO DO .....
-  // Assign the password password input ID
-  const password = document.querySelector("#").value;
-  // TO DO .....
+  const password = document.querySelector("#confirm-removal-password").value;
 
   return password;
 }
@@ -713,10 +720,8 @@ settings.deleteAccountValidate = (password) => {
     error = "password required";
   }
   // SET ERROR
-  // TO DO .....
-  // Assign the email error ID
-  document.querySelector("#").innerHTML = error;
-  // TO DO .....
+  document.querySelector("#delete-account-error").innerHTML = error;
+
   return valid;
 }
 

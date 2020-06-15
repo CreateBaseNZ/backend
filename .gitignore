@@ -6,4 +6,6 @@ dev/
 
 *.env
 
+*.gitignore
+
 /push-guide.txt
