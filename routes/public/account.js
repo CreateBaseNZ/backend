@@ -46,6 +46,28 @@ const restrictedAccess = (req, res, next) => {
 ROUTES
 =========================================================================================*/
 
+/* ----------------------------------------------------------------------------------------
+SIGNUP
+---------------------------------------------------------------------------------------- */
+
+// @route     POST /signup/validate
+// @desc      
+// @access    Public
+router.post("/signup/validate", async (req, res) => {
+  // DECLARE VARIABLES
+  const email = req.body.email;
+  // FETCH EMAIL
+  let account;
+  try {
+    account = await Account.findOne({ email });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  if (account) return res.send({ status: "failed", content: "email is taken" });
+  // SUCCESS HANDLER
+  return res.send({ status: "success", content: "" });
+});
+
 // @route     Get /signup/customer
 // @desc      Signup a New Customer Account
 // @access    Public
@@ -83,7 +105,7 @@ router.post("/login/validate", async (req, res) => {
   if (message === "incorrect password") return res.send({ status: "failed", content: { email: "", password: "incorrect password" } });
   // SUCCESS HANDLER
   return res.send({ status: "success", content: { email: "", password: "" } });
-})
+});
 
 // @route     Get /login/customer
 // @desc      Login Request
