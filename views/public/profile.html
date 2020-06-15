@@ -541,7 +541,8 @@
               <p>Subscribed</p>
             </label>
             <div id="settings-edit-sub" class="editSetting">
-              <input id="c1" type="checkbox">
+              <input id="settings-subscription-input" class="settings-checkbox" type="checkbox"
+                onchange="settings.changeSubscription('change');">
             </div>
           </div>
 
@@ -549,27 +550,30 @@
 
           <div class="divider"></div>
         </div>
-      
+
         <div id="removeAccount-container">
-          <h2 id="removeh2" onclick="">Remove account</h2>
+          <h2 id="removeh2" onclick="">Delete account</h2>
           <p id="disclaimerP">(All projects, makes and associated saved data will be permanently removed)</p>
 
           <div id="account-checkbox" class="editTitle">
             <label for="c1" id="subscription-title">
-              <p id="confirmP">Yes, I want to remove my account</p>
+              <p id="confirmP">Yes, I want to delete my account</p>
             </label>
             <div id="settings-edit-sub" class="editSetting">
-              <input id="c1" type="checkbox">
+              <input id="settings-delete-account-input" class="settings-checkbox" type="checkbox"
+                onchange="settings.deleteAccountConfirmation();">
             </div>
           </div>
 
-          <div id="settings-edit-sub" class="editSetting">
+          <div id="settings-delete-account-password-container" class="editSetting hide">
             <input id="confirm-removal-password" type="password" placeholder="Enter Password">
           </div>
 
-          <div class="settings-btn-group" id="settings-btn-group-account">
-            <button id="submit" class="remove-btn" onclick="">Remove</button>
-            <button id="cancel" class="cancel-btn" onclick="">Cancel</button>
+          <div id="delete-account-error" class="errorMessage hide"></div>
+
+          <div class="settings-btn-group hide" id="settings-btn-group-account">
+            <button id="submit" class="remove-btn" onclick="settings.deleteAccount();">Delete</button>
+            <button id="cancel" class="cancel-btn" onclick="settings.deleteAccountCancel();">Cancel</button>
           </div>
         </div>
       </div>
