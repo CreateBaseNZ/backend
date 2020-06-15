@@ -38,6 +38,7 @@ h3{
 }
 
 #email-container, #address-container, #password-container, #subscription-container, #removeAccount-container{
+    // border: thin black solid;
     margin-bottom: 2em;
     max-width: 25em;
     display: flex;
@@ -321,17 +322,95 @@ input:-webkit-autofill:focus{
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
     h1{
-        font-size: 1.8em;
+        font-size: 1.5em;
     }
     
     h2{
-        font-size: 1.2em;
+        font-size: 1em;
     }
     h3{
 
+        font-size: 0.7em;
+    }
+
+    input{
         font-size: 0.8em;
     }
 
-    
-    
+    p{
+        font-size: 0.9em;
+    }
+
+    #disclaimerP{
+        color: $light-3;
+        font-size: 0.8em;
+    }
+    #confirmP{
+        font-size: 0.8em;
+        color: $dark-2;
+    }
+
+    #settings-content-wrap{
+        display: grid;
+        grid-template-columns: 30% 30%;
+        column-gap: 1%;
+        grid-template-rows: auto auto auto;
+        height: 90%;
+        border: thin solid red;
+        align-items: start;
+    }
+    #email-container{
+        h2{
+            margin: 0;
+        }
+        grid-column: 1;
+        grid-row: 1;
+    }
+    #address-container{
+        grid-column: 1;
+        grid-row: 2;
+        margin: 0;
+    }
+    #password-container{
+        grid-column: 2;
+        grid-row: 1;
+    }
+    #subscription-container{
+        grid-column: 2;
+        grid-row: 2;
+    }
+    #removeAccount-container{
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    .settings-btn-group{
+        border: thin solid black;
+        display: flex;
+        flex-direction: row-reverse;
+        .remove-btn, .grad-btn, .cancel-btn{
+            font-size: 0.8em;
+            margin: 0;
+        }
+        .hide {
+            // -webkit-transition: ease-out 0.5s;
+            // transition: ease-out 0.5s;
+            height: 0em;
+            overflow: hidden;
+            opacity: 0;
+            padding: 0;
+            border: none;
+            display: none;
+        }
+    }
+
+    #subscription-title{
+        label{
+            p{
+            font-size: 0.8em;
+            }
+        }
+    }
+
+
 }
