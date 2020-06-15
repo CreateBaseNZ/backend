@@ -72,7 +72,7 @@ router.post("/login/validate", async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
-  if (!account) return res.send({ status: "failed", content: { email: "unregistered email", password: "" } });
+  if (!account) return res.send({ status: "failed", content: { email: "Sorry, the email you've entered doesn't belong to an account.", password: "" } });
   // MATCH PASSWORD
   let message;
   try {
@@ -80,7 +80,7 @@ router.post("/login/validate", async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
-  if (message === "incorrect password") return res.send({ status: "failed", content: { email: "", password: "incorrect password" } });
+  if (message === "incorrect password") return res.send({ status: "failed", content: { email: "", password: "Sorry, the password you've entered is incorrect." } });
   // SUCCESS HANDLER
   return res.send({ status: "success", content: { email: "", password: "" } });
 })
