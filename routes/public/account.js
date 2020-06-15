@@ -54,6 +54,37 @@ router.post("/signup/customer", passport.authenticate("local-customer-signup", {
   failureRedirect: "/signup",
 }));
 
+/* ----------------------------------------------------------------------------------------
+LOGIN
+---------------------------------------------------------------------------------------- */
+
+// @route     POST /login/validate
+// @desc      
+// @access    Public
+router.post("/login/validate", async (req, res) => {
+  // DECLARE VARIABLES
+  const email = req.body.email;
+  const password = req.body.password;
+  // FETCH EMAIL
+  let account;
+  try {
+    account = await Account.findOne({ email });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  if (!account) return res.send({ status: "failed", content: { email: "unregistered email", password: "" } });
+  // MATCH PASSWORD
+  let message;
+  try {
+    message = await account.validatePassword(password);
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  if (message === "incorrect password") return res.send({ status: "failed", content: { email: "", password: "incorrect password" } });
+  // SUCCESS HANDLER
+  return res.send({ status: "success", content: { email: "", password: "" } });
+})
+
 // @route     Get /login/customer
 // @desc      Login Request
 // @access    Public
@@ -177,7 +208,7 @@ router.post("/account/login/validate", async (req, res) => {
     }
     if (!account) {
       validation.email.valid = false;
-      validation.email.message = "unregistered email";
+      validation.email.message = "unregistered emailemail";
     } else {
       validation.email.valid = true;
       validation.email.message = "registered email";
@@ -226,7 +257,7 @@ router.post("/account/signup/validate", async (req, res) => {
     }
     if (!account) {
       validation.email.valid = true;
-      validation.email.message = "unregistered email";
+      validation.email.message = "unregistered emailemail";
     } else {
       validation.email.valid = false;
       validation.email.message = "registered email";

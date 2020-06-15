@@ -67,7 +67,7 @@ body {
         align-items: center;
         justify-items: center;
 
-        .log-in-form {
+        #log-in-form {
           display: grid;
           grid-template-rows: 41vh 10vh 10vh 19vh;
           align-items: center;
@@ -248,7 +248,7 @@ body {
           align-items: center;
           justify-items: center;
   
-          .log-in-form {
+          #log-in-form {
             display: grid;
             grid-template-rows: 41vh 10vh 10vh 14vh;
             align-items: center;

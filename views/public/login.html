@@ -8,7 +8,9 @@
   <link rel="icon" href="./../../public/images/logo-icon.png" />
   <title>Login • CreateBase</title>
   <!--============== FONTS ==============-->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
   <!-- ICONS -->
   <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
   <!--============== DEFAULT JAVASCRIPT ==============-->
@@ -21,7 +23,7 @@
   <link rel="stylesheet" href="./../../public/stylesheets/login.css" />
 </head>
 
-<body onload="loginInit(); navInit();">
+<body onload="login.initialise();">
 
   <nav>
     <div class="nav-darken-overlay"></div>
@@ -32,15 +34,15 @@
         </span>
       </button>
       <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
+        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png" />
       </a>
       <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture"/>
+        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png" />
+        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture" />
       </div>
       <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
+        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png" />
+        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png" />
       </div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
@@ -52,19 +54,21 @@
         <div class="nav-left-menu">
           <div class="nav-side-menu-links">
             <p class="nav-side-header">CREATEBASE</p>
-              <a class="nav-side-item" href="/3d-printing">MAKE</a>
-              <a class="nav-side-item" href="/products/engkits">KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">SHOP</a>
+            <a class="nav-side-item" href="/3d-printing">MAKE</a>
+            <a class="nav-side-item" href="/products/engkits">KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">SHOP</a>
             <p class="nav-side-header">INFO</p>
-              <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-              <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+            <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
             <p class="nav-side-header">ABOUT</p>
-              <a class="nav-side-item" href="/story">OUR STORY</a>
-              <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/story">OUR STORY</a>
+            <a class="nav-side-item" href="/team">OUR TEAM</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
             <a class="fab fa-twitter" href="https://twitter.com/" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
@@ -74,46 +78,46 @@
       <div class="nav-right-menu-out">
         <div class="nav-right-menu">
           <p class="nav-side-header">WELCOME BACK</p>
-            <a class="nav-side-item" href="/login">LOG IN</a>
+          <a class="nav-side-item" href="/login">LOG IN</a>
           <p class="nav-side-header">FIRST TIME?</p>
-            <a class="nav-side-item" href="/signup">SIGN UP</a>
+          <a class="nav-side-item" href="/signup">SIGN UP</a>
         </div>
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu">
-          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture"/>
+          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture" />
           <p class="nav-side-header">PROJECTS</p>
-            <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-            <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-            <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
+          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
+          <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
     </div>
   </nav>
-  
-	<div class="main-login">
+
+  <div class="main-login">
     <div class="login-main-container" id="container">
       <div class="login-form-container login-container">
-        <form class="log-in-form" action="/login/customer" method="post">
+        <form id="log-in-form" action="/login/customer" method="post">
           <p class="mini-caps-title" id="login-title">WELCOME BACK TO BASE</h2>
-            <div class="log-in-fld input-decor" id="login-email">
-              <input type="text" name="email" id="log-in-eml" required />
-              <label class="input-label" for="email">Email</label>
-              <label class="input-error" for="displayName">Invalid name, please try again.</label>
-            </div>
-            <div class="log-in-fld input-decor" id="login-password">
-              <input type="password" name="password" id="log-in-pwd" required />
-              <label class="input-label" for="password">Password</label>
-              <label class="input-error" for="displayName">Incorrect password, please try again.</label>
-            </div>
-            <div class="log-in-fld" id="login-login">
-              <button type="submit" class="reg-btn" id="login-btn">LOG IN</button>
-            </div>
+          <div class="log-in-fld input-decor" id="login-email">
+            <input type="text" name="email" id="log-in-eml" autocomplete="off" required />
+            <label class="input-label" for="email">Email</label>
+            <label class="input-error" for="log-in-eml" id="login-email-error"></label>
+          </div>
+          <div class="log-in-fld input-decor" id="login-password">
+            <input type="password" name="password" id="log-in-pwd" autocomplete="new-password" required />
+            <label class="input-label" for="password">Password</label>
+            <label class="input-error" for="log-in-pwd" id="login-password-error"></label>
+          </div>
+          <div class="log-in-fld" id="login-login">
+            <button type="button" class="reg-btn" id="login-btn" onclick="login.submit();">LOG IN</button>
+          </div>
         </form>
-        <button id="login-back" class="plain-btn" onclick="toggleContainer();">⇠</button>
+        <button id="login-back" class="plain-btn" onclick="login.toggleContainer();">⇠</button>
         <div id="login-signup">
           <p class="rmv-p-css">
             New to CreateBase?
@@ -127,7 +131,7 @@
           Hello, <span class="glitch" id="change-text" data-text="Creator">Creator</span>.
         </h1>
         <a href="/signup" class="reg-btn" id="hello-signup">SIGN UP</a>
-        <button class="plain-btn" id="hello-login" onclick="toggleContainer();">LOG IN</button>
+        <button class="plain-btn" id="hello-login" onclick="login.toggleContainer();">LOG IN</button>
         <div class="hello-login-line"></div>
       </div>
 
