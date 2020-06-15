@@ -126,22 +126,22 @@
         <form id="sign-up-form" action="/signup/customer" method="post" novalidate="novalidate">
           <p class="mini-caps-title" id="signup-title">CREATE <span>YOUR</span> BASE</p>
           <div class="sign-up-fld input-decor" id="signup-display">
-            <input type="text" name="displayName" id="sign-up-dspl-name" required />
+            <input type="text" name="displayName" id="sign-up-dspl-name" autocomplete="off" required />
             <label class="input-label" for="sign-up-dspl-name">Display Name</label>
             <label class="input-error" for="sign-up-dspl-name" id="signup-error-display-name"></label>
           </div>
           <div class="sign-up-fld input-decor" id="signup-email">
-            <input type="text" name="email" id="sign-up-eml" required />
+            <input type="text" name="email" id="sign-up-eml" autocomplete="off" required />
             <label class="input-label" for="sign-up-eml">Email</label>
             <label class="input-error" for="sign-up-eml" id="signup-error-email"></label>
           </div>
           <div class="sign-up-fld input-decor" id="enter-pass">
-            <input type="password" name="password" id="sign-up-pwd" required />
+            <input type="password" name="password" id="sign-up-pwd" autocomplete="new-password" required />
             <label class="input-label" for="sign-up-pwd">Password</label>
             <label class="input-error" for="sign-up-pwd" id="signup-error-password"></label>
           </div>
           <div class="sign-up-fld input-decor" id="confirm-pass">
-            <input type="password" name="confirm" id="sign-up-cfrm-pwd" required />
+            <input type="password" name="confirm" id="sign-up-cfrm-pwd" autocomplete="new-password" required />
             <label class="input-label" for="sign-up-cfrm-pwd">Confirm Password</label>
             <label class="input-error" for="sign-up-cfrm-pwd" id="signup-error-confirm-password"></label>
           </div>
