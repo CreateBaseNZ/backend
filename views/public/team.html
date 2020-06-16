@@ -27,7 +27,7 @@
 
 <body onload="team.initialise();">
 
-  <nav>
+  <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
     <div class="nav-top-bar">
       <button class="hamburger hamburger-spin" type="button" onclick="navigation.toggleLeftMenu();">
@@ -91,10 +91,10 @@
     </div>
   </nav>
 
-  <div id="mobile-notif-wrap">
+  <div class="hide" id="mobile-notif-wrap">
   </div>
 
-  <div id="notification-wrap">
+  <div class="hide" id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
         <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
@@ -115,121 +115,123 @@
     </div>
   </div>
 
-  <div class="landing-section">
-    <img class="team-photo" src="./../../public/images/team.jpg" alt="Team">
-    <p class="team-title"><span>By creators.</span><span>For creators.</span></p>
-    <div class="team-desc">
-      <p id="team-desc-top">Hey, nice to meet you. </p>
-      <p id="team-desc-mid">——</p>
-      <p id="team-desc-bot-1">We're CreateBase, a team of students accelerating towards a future where 3D printing is
-        accessible, affordable, and reliable for all. </p>
-      <p id="team-desc-bot-2">We believe everyone has the capacity to be creators. </p>
-    </div>
-  </div>
-
-  <div class="profile-section">
-    <div class="team-profile">
-      <div class="indiv-photo" id="indiv-photo-carl-default"></div>
-      <p class="indiv-name">Carl Velasco</p>
-      <p class="indiv-role">CEO</p>
-      <a href="https://www.linkedin.com/in/carl-velasco/" class="fab fa-linkedin-in" target="_blank"></a>
-    </div>
-    <div class="team-profile">
-      <div class="indiv-photo" id="indiv-photo-hyesu-default"></div>
-      <p class="indiv-name">Hyesu Yang</p>
-      <p class="indiv-role">KIT ENGINEER</p>
-      <a href="https://www.linkedin.com/in/hyesu-yang-b935a5150/" class="fab fa-linkedin-in" target="_blank"></a>
-    </div>
-    <div class="team-profile">
-      <div class="indiv-photo" id="indiv-photo-carlos-default"></div>
-      <p class="indiv-name">Carlos Aguilera</p>
-      <p class="indiv-role">KIT ENGINEER</p>
-      <a href="https://www.linkedin.com/in/carlos-aguilera-cortes-17204616b/" class="fab fa-linkedin-in"
-        target="_blank"></a>
-    </div>
-    <div class="team-profile">
-      <div class="indiv-photo" id="indiv-photo-brydon-default"></div>
-      <p class="indiv-name">Brydon Burnett</p>
-      <p class="indiv-role">KIT ENGINEER</p>
-      <a></a>
-    </div>
-    <div class="team-profile">
-      <div class="indiv-photo" id="indiv-photo-brad-default"></div>
-      <p class="indiv-name">Bradley Young</p>
-      <p class="indiv-role">WEB DEV</p>
-      <a href="https://www.linkedin.com/in/bradley-young-56bbb218a/" class="fab fa-linkedin-in" target="_blank"></a>
-    </div>
-    <div class="team-profile">
-      <div class="indiv-photo" id="indiv-photo-louis-default"></div>
-      <p class="indiv-name">Louis Lin</p>
-      <p class="indiv-role">WEB DEV</p>
-      <a href="https://www.linkedin.com/in/louiscflin/" class="fab fa-linkedin-in" target="_blank"></a>
-    </div>
-  </div>
-  <div class="end-section"></div>
-
-  <div class="footer-section">
-    <div class="footer-content">
-      <div class="footer-legal-section">
-        <h4>INFO</h4>
-        <div class="footer-legal-content">
-          <ul class="list-section-left">
-            <li><a href="#">Shipping Info</a></li>
-            <li><a href="#">Returns / Exchanges</a></li>
-          </ul>
-          <ul class="list-section-desktop">
-            <li><a href="/services/3d-printing">3D Printing</a></li>
-            <li><a href="/services/marketplace">Marketplace</a></li>
-            <li><a href="/products/engkits">Engineering Kits</a></li>
-          </ul>
-
-          <div class="list-section-divider"></div>
-
-          <ul class="list-section-right">
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
+  <div class="main-page hide">
+    <div class="landing-section">
+      <img class="team-photo" src="./../../public/images/team.jpg" alt="Team">
+      <p class="team-title"><span>By creators.</span><span>For creators.</span></p>
+      <div class="team-desc">
+        <p id="team-desc-top">Hey, nice to meet you. </p>
+        <p id="team-desc-mid">——</p>
+        <p id="team-desc-bot-1">We're CreateBase, a team of students accelerating towards a future where 3D printing is
+          accessible, affordable, and reliable for all. </p>
+        <p id="team-desc-bot-2">We believe everyone has the capacity to be creators. </p>
       </div>
+    </div>
 
-      <div class="footer-contact-section">
-        <h4>CONTACT</h4>
-        <div class="footer-contact-content">
-          <div class="contact-email"><a href="mailto:createbase@gmail.com">createbase@gmail.com</a></div>
+    <div class="profile-section">
+      <div class="team-profile">
+        <div class="indiv-photo" id="indiv-photo-carl-default"></div>
+        <p class="indiv-name">Carl Velasco</p>
+        <p class="indiv-role">CEO</p>
+        <a href="https://www.linkedin.com/in/carl-velasco/" class="fab fa-linkedin-in" target="_blank"></a>
+      </div>
+      <div class="team-profile">
+        <div class="indiv-photo" id="indiv-photo-hyesu-default"></div>
+        <p class="indiv-name">Hyesu Yang</p>
+        <p class="indiv-role">KIT ENGINEER</p>
+        <a href="https://www.linkedin.com/in/hyesu-yang-b935a5150/" class="fab fa-linkedin-in" target="_blank"></a>
+      </div>
+      <div class="team-profile">
+        <div class="indiv-photo" id="indiv-photo-carlos-default"></div>
+        <p class="indiv-name">Carlos Aguilera</p>
+        <p class="indiv-role">KIT ENGINEER</p>
+        <a href="https://www.linkedin.com/in/carlos-aguilera-cortes-17204616b/" class="fab fa-linkedin-in"
+          target="_blank"></a>
+      </div>
+      <div class="team-profile">
+        <div class="indiv-photo" id="indiv-photo-brydon-default"></div>
+        <p class="indiv-name">Brydon Burnett</p>
+        <p class="indiv-role">KIT ENGINEER</p>
+        <a></a>
+      </div>
+      <div class="team-profile">
+        <div class="indiv-photo" id="indiv-photo-brad-default"></div>
+        <p class="indiv-name">Bradley Young</p>
+        <p class="indiv-role">WEB DEV</p>
+        <a href="https://www.linkedin.com/in/bradley-young-56bbb218a/" class="fab fa-linkedin-in" target="_blank"></a>
+      </div>
+      <div class="team-profile">
+        <div class="indiv-photo" id="indiv-photo-louis-default"></div>
+        <p class="indiv-name">Louis Lin</p>
+        <p class="indiv-role">WEB DEV</p>
+        <a href="https://www.linkedin.com/in/louiscflin/" class="fab fa-linkedin-in" target="_blank"></a>
+      </div>
+    </div>
+    <div class="end-section"></div>
 
-          <div class="btn-subscribe">
-            <a href="/services/marketplace" class="reg-btn" id="subscribe-btn">SUBSCRIBE TO NEWSLETTER</a>
-          </div>
+    <div class="footer-section hide">
+      <div class="footer-content">
+        <div class="footer-legal-section">
+          <h4>INFO</h4>
+          <div class="footer-legal-content">
+            <ul class="list-section-left">
+              <li><a href="#">Shipping Info</a></li>
+              <li><a href="#">Returns / Exchanges</a></li>
+            </ul>
+            <ul class="list-section-desktop">
+              <li><a href="/services/3d-printing">3D Printing</a></li>
+              <li><a href="/services/marketplace">Marketplace</a></li>
+              <li><a href="/products/engkits">Engineering Kits</a></li>
+            </ul>
 
-          <div class="contact-socials">
-            <a href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
-              class="fab fa-facebook-square" target="_blank"></a>
-            <a href="https://www.instagram.com/createbasenz/" class="fab fa-instagram" target="_blank"></a>
-            <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
-            <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
-          </div>
-          <div class="contact-legal">
-            <a href="#" id="tac">Terms & Conditions</a>
-            <a href="#" id="privpol">Privacy Policy</a>
+            <div class="list-section-divider"></div>
+
+            <ul class="list-section-right">
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      <div class="footer-sitemap-section">
-        <h4>EXPLORE</h4>
-        <div class="footer-sitemap-content">
-          <ul>
-            <li><a href="/3d-printing">3D Printing</a></li>
-            <li><a href="/services/marketplace">Marketplace</a></li>
-            <li><a href="/services/engkits">Engineering Kits</a></li>
-            <li><a href="/story">Our Story</a></li>
-            <li><a href="/team">Our Team</a></li>
-          </ul>
+        <div class="footer-contact-section">
+          <h4>CONTACT</h4>
+          <div class="footer-contact-content">
+            <div class="contact-email"><a href="mailto:createbase@gmail.com">createbase@gmail.com</a></div>
+
+            <div class="btn-subscribe">
+              <a href="/services/marketplace" class="reg-btn" id="subscribe-btn">SUBSCRIBE TO NEWSLETTER</a>
+            </div>
+
+            <div class="contact-socials">
+              <a href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+                class="fab fa-facebook-square" target="_blank"></a>
+              <a href="https://www.instagram.com/createbasenz/" class="fab fa-instagram" target="_blank"></a>
+              <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
+              <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
+            </div>
+            <div class="contact-legal">
+              <a href="#" id="tac">Terms & Conditions</a>
+              <a href="#" id="privpol">Privacy Policy</a>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="footer-copyright-section">
-        <h3>&copy; 2020 CREATEBASE. ALL RIGHTS RESERVED</h3>
+        <div class="footer-sitemap-section">
+          <h4>EXPLORE</h4>
+          <div class="footer-sitemap-content">
+            <ul>
+              <li><a href="/3d-printing">3D Printing</a></li>
+              <li><a href="/services/marketplace">Marketplace</a></li>
+              <li><a href="/services/engkits">Engineering Kits</a></li>
+              <li><a href="/story">Our Story</a></li>
+              <li><a href="/team">Our Team</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-copyright-section">
+          <h3>&copy; 2020 CREATEBASE. ALL RIGHTS RESERVED</h3>
+        </div>
       </div>
     </div>
   </div>

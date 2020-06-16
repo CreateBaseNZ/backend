@@ -38,7 +38,7 @@ team.initialise = async () => {
     return console.log(error);
   }
   // REMOVE STARTUP LOADER
-  document.querySelector(".full-page-loading").classList.add("hide");
+  removeLoader();
   // LOAD SESSION
   session.initialise();
 }

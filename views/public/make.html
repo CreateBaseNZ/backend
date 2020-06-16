@@ -35,7 +35,7 @@
 
 <body onload="make.initialise();">
 
-  <nav>
+  <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
     <div class="nav-top-bar">
       <button class="hamburger hamburger-spin" type="button" onclick="navigation.toggleLeftMenu();">
@@ -99,10 +99,10 @@
     </div>
   </nav>
 
-  <div id="mobile-notif-wrap">
+  <div class="hide" id="mobile-notif-wrap">
   </div>
 
-  <div id="notification-wrap">
+  <div class="hide" id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
         <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
@@ -123,7 +123,7 @@
     </div>
   </div>
 
-  <div id="make">
+  <div class="main-page hide" id="make">
     <!--INPUTS-->
     <form id="make-inputs" class="hide-element">
       <input type="file" name="file" id="make-file" onchange="make.upload.change();" />

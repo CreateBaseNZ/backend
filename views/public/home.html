@@ -27,7 +27,7 @@
 
 <body onload="home.initialise();">
 
-  <nav>
+  <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
     <div class="nav-top-bar">
       <button class="hamburger hamburger-spin" type="button" onclick="navigation.toggleLeftMenu();">
@@ -91,10 +91,10 @@
     </div>
   </nav>
 
-  <div id="mobile-notif-wrap">
+  <div class="hide" id="mobile-notif-wrap">
   </div>
 
-  <div id="notification-wrap">
+  <div class="hide" id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
         <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
@@ -115,7 +115,7 @@
     </div>
   </div>
 
-  <div class="main-page">
+  <div class="main-page hide">
 
     <div class="landing-section">
       <div class="landing-carousel">
@@ -225,7 +225,7 @@
       </div>
     </div>
 
-    <div class="footer-section">
+    <div class="footer-section hide">
       <div class="footer-content">
         <div class="footer-legal-section">
           <h4>INFO</h4>

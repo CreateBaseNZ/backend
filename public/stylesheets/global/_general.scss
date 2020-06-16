@@ -14,6 +14,12 @@ input, input:before, input:after {
   user-select: initial;
 }
 
+nav,.mobile-notif-wrap,.notification-wrap,.main-page,.footer-section{
+  &.hide {
+    display: none;
+  }
+}
+
 $logo-1: rgb(130, 88, 220); //#8258dc
 $logo-2: rgb(104, 83, 217); //#6853d9
 $logo-3: rgb(78, 78, 214); //#4e4ed6

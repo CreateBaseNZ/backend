@@ -201,7 +201,7 @@ checkout.initialise = async () => {
     return console.log(error);
   }
   // REMOVE STARTUP LOADER
-  document.querySelector(".full-page-loading").classList.add("hide");
+  removeLoader();
   // Stripe
   checkout.payment.stripe.initialise();
   checkout.elements.assign();
