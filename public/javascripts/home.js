@@ -40,9 +40,9 @@ home.initialise = async () => {
   } catch (error) {
     return console.log(error);
   }
+  // ADD IMAGES
   // REMOVE STARTUP LOADER
   // document.querySelector("#home-loading-page").classList.add("hide");
-
   // LOAD SESSION
   try {
     await session.initialise();
@@ -149,6 +149,12 @@ home.slideThree = () => {
     home.landingBtn2.classList.remove('landing-slide-nav-btn-focus');
     home.landingBtn3.classList.add('landing-slide-nav-btn-focus');
   }
+}
+
+// @func  home.addImages
+// @desc  
+home.addImages = () => {
+
 }
 
 /* ========================================================================================
