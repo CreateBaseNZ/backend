@@ -26,11 +26,8 @@ signup.initialise = async () => {
   signup.confirmPassword();
   // REMOVE STARTUP LOADER
   document.querySelector(".full-page-loading").classList.add("hide");
-  try {
-    await session.initialise();
-  } catch (error) {
-    return console.log(error);
-  }
+  // LOAD SESSION
+  session.initialise();
 }
 
 // @func  signup.collect

@@ -49,11 +49,7 @@ home.initialise = async () => {
   // REMOVE STARTUP LOADER
   document.querySelector(".full-page-loading").classList.add("hide");
   // LOAD SESSION
-  try {
-    await session.initialise();
-  } catch (error) {
-    return console.log(error);
-  }
+  session.initialise();
   // PAGE CONFIGURATIONS
   textSequence(0, ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'], "change-text");
   home.addListener();
