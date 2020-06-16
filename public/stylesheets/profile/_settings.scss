@@ -323,7 +323,7 @@ input:-webkit-autofill:focus{
 @media only screen and (min-width: 850px) and (orientation: landscape) {
 
     #settings-area{
-        margin-top: 6em;
+        padding-top: 6em;
     }
 
     h1{
@@ -422,7 +422,6 @@ input:-webkit-autofill:focus{
         margin-top: 0.5em;
         display: flex;
         flex-direction: row-reverse;
-        align-self: flex-start;
         margin-left: 2em;
         .remove-btn, .grad-btn, .cancel-btn{
             font-size: 0.8em;
