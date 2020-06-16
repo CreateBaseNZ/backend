@@ -91,28 +91,30 @@ ROUTES
 // @route     Get /profile/customer/fetch/picture
 // @desc
 // @access    Private
-router.get("/profile/customer/fetch/picture", restrictedAccess, async (req, res) => {
+router.get("/profile/customer/fetch/picture", async (req, res) => {
   // Declare Variables
   const user = req.user;
   // Fetch Customer Details
-  let customer;
-  try {
-    customer = await Customer.findByAccountId(user._id);
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
-  // Check if Customer has Profile Picture
-  let file = undefined;
-  if (customer.picture) {
-    // If so, Send File to Front-End
+  if (user) {
+    let customer;
     try {
-      file = await GridFS.files.findOne({ _id: customer.picture });
+      customer = await Customer.findByAccountId(user._id);
     } catch (error) {
       return res.send({ status: "failed", content: error });
     }
-    if (file) {
-      let readstream = GridFS.createReadStream(file.filename);
-      return readstream.pipe(res);
+    // Check if Customer has Profile Picture
+    let file = undefined;
+    if (customer.picture) {
+      // If so, Send File to Front-End
+      try {
+        file = await GridFS.files.findOne({ _id: customer.picture });
+      } catch (error) {
+        return res.send({ status: "failed", content: error });
+      }
+      if (file) {
+        let readstream = GridFS.createReadStream(file.filename);
+        return readstream.pipe(res);
+      }
     }
   }
   // Else, Return Temporary Profile Picture

@@ -1,134 +1,265 @@
+/* ========================================================================================
+VARIABLES
+======================================================================================== */
+
 var mq = window.matchMedia("(min-width: 850px)");
 
+let navigation = {
+  // VARIABLES
+  mediaQuery: undefined,
+  loginStatus: undefined,
+  darken: undefined,
+  ham: undefined,
+  leftMenu: undefined,
+  userIn: undefined,
+  userDesktopOut: undefined,
+  userMobileOut: undefined,
+  rightMenuIn: undefined,
+  rightMenuOut: undefined,
+  // FUNCTIONS
+  initialise: undefined,
+  declareVariables: undefined,
+  toggleLeftMenu: undefined,
+  toggleRightMenu: undefined,
+  exitModal: undefined,
+  configuration: undefined,
+  menuContentDesktop: undefined,
+  menuContentMobile: undefined,
+  addImages: undefined
+}
+
+
+/* ========================================================================================
+FUNCTIONS
+======================================================================================== */
+
+// @func  navigation.initialise
+// @desc  
+navigation.initialise = (userMenu = true) => {
+  return new Promise(async (resolve, reject) => {
+    // DECLARE VARIABLES
+    navigation.declareVariables();
+    // GET LOGIN STATUS
+    let data;
+    try {
+      data = (await axios.get("/login-status"))["data"];
+    } catch (error) {
+      reject(error);
+    }
+    navigation.loginStatus = data.status;
+    // CONFIGURATION AND CONTENTS
+    navigation.configuration();
+    navigation.mediaQuery.addListener(navigation.configuration);
+    // ADD IMAGES
+    try {
+      await navigation.addImages(userMenu);
+    } catch (error) {
+      reject(error);
+    }
+    // SUCCESS RESOLVE
+    resolve();
+  });
+}
+
+// @func  navigation.declareVariables
+// @desc  
+navigation.declareVariables = () => {
+  navigation.mediaQuery = window.matchMedia("(min-width: 850px)");
+  navigation.darken = document.querySelector(".nav-darken-overlay");
+  navigation.ham = document.querySelector(".hamburger");
+  navigation.leftMenu = document.querySelector(".nav-left-menu-wrap");
+  navigation.userIn = document.querySelector(".nav-in");
+  navigation.userDesktopOut = document.querySelector(".nav-desktop-out");
+  navigation.userMobileOut = document.querySelector(".nav-mobile-out");
+  navigation.rightMenuIn = document.querySelector(".nav-right-menu-in");
+  navigation.rightMenuOut = document.querySelector(".nav-right-menu-out");
+  return;
+}
+
+// @func  navigation.toggleLeftMenu
+// @desc  
+navigation.toggleLeftMenu = () => {
+  // Toggle all on left
+  navigation.leftMenu.classList.toggle("nav-left-menu-active");
+  navigation.ham.classList.toggle("is-active");
+
+  // If right menu displayed, hide it
+  if (navigation.rightMenuIn.classList.contains("nav-right-menu-active")) {
+    navigation.rightMenuIn.classList.remove("nav-right-menu-active");
+    navigation.rightMenuOut.classList.remove("nav-right-menu-active");
+    navigation.userIn.classList.remove("nav-user-active");
+    navigation.userDesktopOut.classList.remove("nav-user-active");
+    navigation.userMobileOut.classList.remove("nav-user-active");
+    // If right menu not displayed, darken
+  } else {
+    navigation.darken.classList.toggle("nav-darken-overlay-active");
+  }
+}
+
+// @func  navigation.toggleRightMenu
+// @desc  
+navigation.toggleRightMenu = () => {
+  // Toggle all on right
+  navigation.rightMenuIn.classList.toggle("nav-right-menu-active");
+  navigation.rightMenuOut.classList.toggle("nav-right-menu-active");
+  navigation.userIn.classList.toggle("nav-user-active");
+  navigation.userMobileOut.classList.toggle("nav-user-active");
+  navigation.userDesktopOut.classList.toggle("nav-user-active");
+
+  if (navigation.leftMenu.classList.contains("nav-left-menu-active")) {
+    navigation.leftMenu.classList.remove("nav-left-menu-active");
+    navigation.ham.classList.remove("is-active");
+  } else {
+    navigation.darken.classList.toggle("nav-darken-overlay-active");
+  }
+}
+
+// @func  navigation.exitModal
+// @desc  
+navigation.exitModal = () => {
+  if (navigation.leftMenu.classList.contains("nav-left-menu-active")) {
+    navigation.leftMenu.classList.remove("nav-left-menu-active");
+    navigation.ham.classList.remove("is-active");
+  } else if (navigation.rightMenuIn.classList.contains("nav-right-menu-active")) {
+    navigation.rightMenuIn.classList.remove("nav-right-menu-active");
+    navigation.rightMenuOut.classList.remove("nav-right-menu-active");
+    navigation.userIn.classList.remove("nav-user-active");
+    navigation.userDesktopOut.classList.remove("nav-user-active");
+    navigation.userMobileOut.classList.remove("nav-user-active");
+  }
+  navigation.darken.classList.remove("nav-darken-overlay-active");
+}
+
+// @func  navigation.configuration
+// @desc  
+navigation.configuration = () => {
+  if (navigation.mediaQuery.matches) {
+    /* Desktop */
+    navigation.menuContentDesktop();
+  } else {
+    /* Mobile */
+    navigation.menuContentMobile();
+  }
+}
+
+// @func  navigation.menuContentDesktop
+// @desc  
+navigation.menuContentDesktop = () => {
+  if (navigation.loginStatus) {
+    /* Logged in on desktop */
+    navigation.userIn.style.display = "block";
+    navigation.userDesktopOut.style.display = "none";
+    navigation.userMobileOut.style.display = "none";
+    navigation.rightMenuIn.style.display = "block";
+    navigation.rightMenuOut.style.display = "none";
+  } else {
+    /* Logged out on desktop */
+    navigation.userDesktopOut.style.display = "block";
+    navigation.userMobileOut.style.display = "none";
+    navigation.userIn.style.display = "none";
+    navigation.rightMenuOut.style.display = "none";
+    navigation.rightMenuIn.style.display = "none";
+  }
+}
+
+// @func  navigation.menuContentMobile
+// @desc  
+navigation.menuContentMobile = () => {
+  if (navigation.loginStatus) {
+    /* Logged in on mobile */
+    navigation.userIn.style.display = "block";
+    navigation.userDesktopOut.style.display = "none";
+    navigation.userMobileOut.style.display = "none";
+    navigation.rightMenuOut.style.display = "none";
+    navigation.rightMenuIn.style.display = "block";
+  } else {
+    /* Logged out on mobile */
+    navigation.userMobileOut.style.display = "block";
+    navigation.userDesktopOut.style.display = "none";
+    navigation.userIn.style.display = "none";
+    navigation.rightMenuOut.style.display = "block";
+    navigation.rightMenuIn.style.display = "none";
+  }
+}
+
+// @func  navigation.addImages
+// @desc  
+navigation.addImages = (userMenu = true) => {
+  return new Promise(async (resolve, reject) => {
+    // IMAGES
+    const image1 = {
+      src: "./../../public/images/logo-icon.png", id: "",
+      alt: "CreateBase", classes: ["nav-logo"], parentId: "nav-home-btn"
+    };
+    const image2 = {
+      src: "/profile/customer/fetch/picture", id: "nav-dp",
+      alt: "customer profile image", classes: [], parentId: "nav-right-menu"
+    };
+    const image3 = {
+      src: "/profile/customer/fetch/picture", id: "nav-user-in",
+      alt: "User", classes: [], parentId: "nav-in"
+    };
+    const image4 = {
+      src: "./../../public/images/user-x.png", id: "",
+      alt: "User", classes: ["nav-user-x"], parentId: "nav-in"
+    };
+    const image5 = {
+      src: "./../../public/images/user-out.png", id: "nav-user-out",
+      alt: "User", classes: [], parentId: "nav-mobile-out"
+    };
+    const image6 = {
+      src: "./../../public/images/user-x.png", id: "",
+      alt: "User", classes: ["nav-user-x"], parentId: "nav-mobile-out"
+    };
+    // LOAD IMAGES
+    let objects;
+    if (userMenu) {
+      if (navigation.loginStatus) {
+        objects = [image1, image2, image3, image4, image5, image6];
+      } else {
+        objects = [image1, image4, image5, image6];
+      }
+    } else {
+      objects = [image1];
+    }
+
+    try {
+      await imageLoader(objects);
+    } catch (error) {
+      reject(error);
+    }
+    // SUCCESS RESPONSE
+    resolve();
+  });
+}
+
+/* ========================================================================================
+END
+======================================================================================== */
+
+
 const navInit = async () => {
-  let status;
   try {
-    status = (await axios.get("/login-status"))["data"]["status"];
+    navigation.loginStatus = (await axios.get("/login-status"))["data"]["status"];
   } catch (error) {
     console.log(error);
     return;
   }
 
-  const darken = document.querySelector(".nav-darken-overlay");
-  const ham = document.querySelector(".hamburger");
-  const leftMenu = document.querySelector(".nav-left-menu-wrap");
-  const userIn = document.querySelector(".nav-in");
-  const userDesktopOut = document.querySelector(".nav-desktop-out");
-  const userMobileOut = document.querySelector(".nav-mobile-out");
-  const rightMenuIn = document.querySelector(".nav-right-menu-in");
-  const rightMenuOut = document.querySelector(".nav-right-menu-out");
+  navigation.declareVariables();
 
   // Darken
-  darken.addEventListener("click", function () {
-    if (leftMenu.classList.contains("nav-left-menu-active")) {
-      leftMenu.classList.remove("nav-left-menu-active");
-      ham.classList.remove("is-active");
-    } else if (rightMenuIn.classList.contains("nav-right-menu-active")) {
-      rightMenuIn.classList.remove("nav-right-menu-active");
-      rightMenuOut.classList.remove("nav-right-menu-active");
-      userIn.classList.remove("nav-user-active");
-      userDesktopOut.classList.remove("nav-user-active");
-      userMobileOut.classList.remove("nav-user-active");
-    }
-    darken.classList.remove("nav-darken-overlay-active");
-  });
+  navigation.darken.addEventListener("click", navigation.exitModal);
 
   // Hamburger
-  ham.addEventListener("click", function () {
-    // Toggle all on left
-    leftMenu.classList.toggle("nav-left-menu-active");
-    ham.classList.toggle("is-active");
+  navigation.ham.addEventListener("click", navigation.toggleLeftMenu);
 
-    // If right menu displayed, hide it
-    if (rightMenuIn.classList.contains("nav-right-menu-active")) {
-      rightMenuIn.classList.remove("nav-right-menu-active");
-      rightMenuOut.classList.remove("nav-right-menu-active");
-      userIn.classList.remove("nav-user-active");
-      userDesktopOut.classList.remove("nav-user-active");
-      userMobileOut.classList.remove("nav-user-active");
-      // If right menu not displayed, darken
-    } else {
-      darken.classList.toggle("nav-darken-overlay-active");
-    }
-  });
+  navigation.userIn.addEventListener("click", navigation.toggleRightMenu);
 
-  userIn.addEventListener("click", function () {
-    // Toggle all on right
-    rightMenuIn.classList.toggle("nav-right-menu-active");
-    rightMenuOut.classList.toggle("nav-right-menu-active");
-    userIn.classList.toggle("nav-user-active");
-    userMobileOut.classList.toggle("nav-user-active");
-    userDesktopOut.classList.toggle("nav-user-active");
+  navigation.userMobileOut.addEventListener("click", navigation.toggleRightMenu);
 
-    if (leftMenu.classList.contains("nav-left-menu-active")) {
-      leftMenu.classList.remove("nav-left-menu-active");
-      ham.classList.remove("is-active");
-    } else {
-      darken.classList.toggle("nav-darken-overlay-active");
-    }
-  });
-
-  userMobileOut.addEventListener("click", function () {
-    // Toggle all on right
-    rightMenuIn.classList.toggle("nav-right-menu-active");
-    rightMenuOut.classList.toggle("nav-right-menu-active");
-    userIn.classList.toggle("nav-user-active");
-    userDesktopOut.classList.toggle("nav-user-active");
-    userMobileOut.classList.toggle("nav-user-active");
-
-    if (leftMenu.classList.contains("nav-left-menu-active")) {
-      leftMenu.classList.remove("nav-left-menu-active");
-      ham.classList.remove("is-active");
-    } else {
-      darken.classList.toggle("nav-darken-overlay-active");
-    }
-  });
-
-  function mainFunction(mq) {
-    if (mq.matches) {
-      /* Desktop */
-
-      if (status) {
-        /* Logged in on desktop */
-
-        userIn.style.display = "block";
-        userDesktopOut.style.display = "none";
-        userMobileOut.style.display = "none";
-        rightMenuIn.style.display = "block";
-        rightMenuOut.style.display = "none";
-      } else {
-        /* Logged out on desktop */
-
-        userDesktopOut.style.display = "block";
-        userMobileOut.style.display = "none";
-        userIn.style.display = "none";
-        rightMenuOut.style.display = "none";
-        rightMenuIn.style.display = "none";
-      }
-    } else {
-      /* Mobile */
-
-      if (status) {
-        /* Logged in on mobile */
-
-        userIn.style.display = "block";
-        userDesktopOut.style.display = "none";
-        userMobileOut.style.display = "none";
-        rightMenuOut.style.display = "none";
-        rightMenuIn.style.display = "block";
-      } else {
-        /* Logged out on mobile */
-
-        userMobileOut.style.display = "block";
-        userDesktopOut.style.display = "none";
-        userIn.style.display = "none";
-        rightMenuOut.style.display = "block";
-        rightMenuIn.style.display = "none";
-      }
-    }
-  }
-  mainFunction(mq);
-  mq.addListener(mainFunction);
+  navigation.configuration();
+  navigation.mediaQuery.addListener(navigation.configuration);
 };
 
 function passTab(el) {

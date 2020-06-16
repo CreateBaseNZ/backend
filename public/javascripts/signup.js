@@ -19,7 +19,7 @@ FUNCTIONS
 signup.initialise = async () => {
   // LOAD NAVIGATION
   try {
-    await navInit();
+    await navInit(false);
   } catch (error) {
     return console.log(error);
   }

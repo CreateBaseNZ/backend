@@ -2,7 +2,7 @@
 ASYNCHRONOUS IMAGE LOADER
 =========================================================================================*/
 
-const imageLoader = (objects, classes) => {
+const imageLoader = (objects) => {
   return new Promise(async (resolve, reject) => {
     // INITIALISE AND DECLARE VARIABLES
     let promises = [];
@@ -13,8 +13,8 @@ const imageLoader = (objects, classes) => {
       let image = new Image();
       image.decoding = "async";
       image.src = object.src;
-      if (classes) {
-        image.classList.add(...classes);
+      if (object.classes) {
+        image.classList.add(...object.classes);
       }
       promises.push(image.decode());
       images.push(image);
@@ -30,8 +30,9 @@ const imageLoader = (objects, classes) => {
     for (let i = 0; i < objects.length; i++) {
       const object = objects[i];
       const image = images[i];
-      document.querySelector(`#${object.id}`).innerHTML = "";
-      document.querySelector(`#${object.id}`).appendChild(image);
+      image.id = object.id;
+      image.alt = object.alt;
+      document.querySelector(`#${object.parentId}`).insertAdjacentElement("afterbegin", image);
     }
     resolve();
   })
@@ -338,6 +339,25 @@ subscribe.listener = async () => {
     subscribeNotif();
     return;
   }
+}
+
+const textSequence = (i, words, id) => {
+  // Cycle through words
+  document.getElementById(id).innerHTML = words[i]
+  document.getElementById(id).setAttribute('data-text', words[i])
+  setTimeout(function () {
+    document.getElementById(id).classList.remove("glitch")
+    setTimeout(function () {
+      document.getElementById(id).classList.add("glitch")
+      setTimeout(function () {
+        i += 1
+        if (i >= words.length) {
+          i = 0
+        }
+        textSequence(i, words, id);
+      }, (100 + Math.random() * 100))
+    }, (500 + Math.random() * 1500))
+  }, (50 + Math.random() * 50))
 }
 
 /*=========================================================================================

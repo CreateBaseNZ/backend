@@ -5,7 +5,6 @@ VARIABLES
 let login = {
   words: ['Creator', 'Maverick', 'Trailblazer', 'Innovator'],
   initialise: undefined,
-  textSequence: undefined,
   toggleContainer: undefined,
   collect: undefined,
   submit: undefined,
@@ -22,35 +21,18 @@ FUNCTIONS
 login.initialise = async () => {
   // LOAD NAVIGATION
   try {
-    await navInit()
+    await navInit(false);
   } catch (error) {
-    return console.log(error)
+    return console.log(error);
   }
   // TO DO .....
   // REMOVE STARTUP LOADER
   // TO DO .....
 
   // ADD THE DYNAMIC WORDS EFFECT
-  login.textSequence(0)
+  textSequence(0, login.words, "change-text");
 
   login.enter()
-}
-
-// @func  login.textSequence
-// @desc  
-login.textSequence = (i) => {
-  document.getElementById("change-text").innerHTML = login.words[i]
-  document.getElementById("change-text").setAttribute('data-text', login.words[i])
-  setTimeout(function () {
-    document.getElementById("change-text").classList.remove("glitch")
-    setTimeout(function () {
-      document.getElementById("change-text").classList.add("glitch")
-      setTimeout(function () {
-        i = (Math.floor(Math.random() * login.words.length))
-        login.textSequence(i)
-      }, (100 + Math.random() * 100))
-    }, (500 + Math.random() * 1500))
-  }, (50 + Math.random() * 50))
 }
 
 // Enter button to login

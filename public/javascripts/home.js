@@ -1,41 +1,31 @@
-function textSequence(i, words) {
-  // Cycle through words
-  document.getElementById("change-text").innerHTML = words[i]
-  document.getElementById("change-text").setAttribute('data-text', words[i])
-  setTimeout(function () {
-      document.getElementById("change-text").classList.remove("glitch")
-      setTimeout(function () {
-          document.getElementById("change-text").classList.add("glitch")
-          setTimeout(function () {
-              i += 1
-              if (i >= words.length) {
-                i = 0
-              }
-              textSequence(i, words)
-          }, (100 + Math.random() * 100))
-      }, (500 + Math.random() * 1500))
-  }, (50 + Math.random() * 50))
-
-}
-
-const homeInit = async() => {
+const homeInit = async () => {
   history.scrollRestoration = "manual"
   var mq = window.matchMedia("(min-width: 850px)")
 
   var landscape = window.innerWidth > window.innerHeight
 
-  let status;
+  // LOAD NAVIGATION
   try {
-    status = (await axios.get("/login-status"))["data"]["status"]
+    await navigation.initialise();
   } catch (error) {
-    console.log(error)
-    return
+    return console.log(error);
   }
 
-  textSequence(0, ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'])
+  // TO DO .....
+  // REMOVE STARTUP LOADER
+  // TO DO .....
 
-  if (mq.matches && landscape)  {
-    
+  // LOAD SESSION
+  try {
+    await session.initialise();
+  } catch (error) {
+    return console.log(error);
+  }
+
+  textSequence(0, ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'], "change-text");
+
+  if (mq.matches && landscape) {
+
     const landingCarousel = document.querySelector('.landing-carousel')
     const landing1 = document.querySelector('#landing-1')
     const landing2 = document.querySelector('#landing-2')
@@ -43,7 +33,7 @@ const homeInit = async() => {
     const landingBtn1 = document.querySelector('#landing-btn-1')
     const landingBtn2 = document.querySelector('#landing-btn-2')
     const landingBtn3 = document.querySelector('#landing-btn-3')
-  
+
     function slide1Click() {
       if (landingBtn2.classList.contains('landing-slide-nav-btn-focus')) {
         landing1.classList.remove('landing-slide-left')
@@ -105,24 +95,24 @@ const homeInit = async() => {
         landingBtn3.classList.add('landing-slide-nav-btn-focus')
       }
     }
-  
-    landingBtn1.addEventListener("click", function() {
+
+    landingBtn1.addEventListener("click", function () {
       slide1Click();
     });
-    landingBtn2.addEventListener("click", function() {
+    landingBtn2.addEventListener("click", function () {
       slide2Click();
     });
-    landingBtn3.addEventListener("click", function() {
+    landingBtn3.addEventListener("click", function () {
       slide3Click();
     });
-  
-    landing1.addEventListener("click", function() {
+
+    landing1.addEventListener("click", function () {
       slide1Click();
     });
-    landing2.addEventListener("click", function() {
+    landing2.addEventListener("click", function () {
       slide2Click();
     });
-    landing3.addEventListener("click", function() {
+    landing3.addEventListener("click", function () {
       slide3Click();
     });
 
