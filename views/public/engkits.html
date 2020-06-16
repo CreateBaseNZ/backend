@@ -8,7 +8,8 @@
   <link rel="icon" href="./../../public/images/logo-icon.png" />
   <title>Eng Kits • CreateBase</title>
   <!--============== FONTS ==============-->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800|Poppins:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800|Poppins:400,700&display=swap"
+    rel="stylesheet">
   <!--============== ICONS ==============-->
   <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
   <!--============== DEFAULT JAVASCRIPTS ==============-->
@@ -23,27 +24,19 @@
   <link rel="stylesheet" href="./../../public/stylesheets/products/engkits.css" />
 </head>
 
-<body onload="navInit(); session.initialise(); engKitsInit();">
+<body onload="engkits.initialise();">
 
   <nav>
-    <div class="nav-darken-overlay"></div>
+    <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
     <div class="nav-top-bar">
-      <button class="hamburger hamburger-spin" type="button">
+      <button class="hamburger hamburger-spin" type="button" onclick="navigation.toggleLeftMenu();">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
-      <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
-      </a>
-      <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture"/>
-      </div>
-      <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
-      </div>
+      <a class="nav-home-btn" id="nav-home-btn" href="/"></a>
+      <div class="nav-in" id="nav-in" onclick="navigation.toggleRightMenu();"></div>
+      <div class="nav-mobile-out" id="nav-mobile-out" onclick="navigation.toggleRightMenu();"></div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
         <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
@@ -54,19 +47,21 @@
         <div class="nav-left-menu">
           <div class="nav-side-menu-links">
             <p class="nav-side-header">CREATEBASE</p>
-              <a class="nav-side-item" href="/3d-printing">MAKE</a>
-              <a class="nav-side-item" href="/products/engkits">KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">SHOP</a>
+            <a class="nav-side-item" href="/3d-printing">MAKE</a>
+            <a class="nav-side-item" href="/products/engkits">KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">SHOP</a>
             <p class="nav-side-header">INFO</p>
-              <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-              <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+            <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
             <p class="nav-side-header">ABOUT</p>
-              <a class="nav-side-item" href="/story">OUR STORY</a>
-              <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/story">OUR STORY</a>
+            <a class="nav-side-item" href="/team">OUR TEAM</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
             <a class="fab fa-twitter" href="https://twitter.com/" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
@@ -76,42 +71,52 @@
       <div class="nav-right-menu-out">
         <div class="nav-right-menu">
           <p class="nav-side-header">WELCOME BACK</p>
-            <a class="nav-side-item" href="/login">LOG IN</a>
+          <a class="nav-side-item" href="/login">LOG IN</a>
           <p class="nav-side-header">FIRST TIME?</p>
-            <a class="nav-side-item" href="/signup">SIGN UP</a>
+          <a class="nav-side-item" href="/signup">SIGN UP</a>
         </div>
       </div>
       <div class="nav-right-menu-in">
-        <div class="nav-right-menu">
-          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture"/>
+        <div class="nav-right-menu" id="nav-right-menu">
           <p class="nav-side-header">PROJECTS</p>
-            <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-            <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-            <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
+          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
+          <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
     </div>
   </nav>
-  
-	<div id="notification-wrap">
+
+  <div id="mobile-notif-wrap"></div>
+
+  <div id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
-        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse our traffic.</p>
+        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
+          our traffic.</p>
       </div>
       <div class="btn-group">
-        <button id="cancel" onclick="session.cancel();" >DON'T ALLOW</button>
+        <button id="cancel" onclick="session.cancel();">DON'T ALLOW</button>
         <button id="submit" class="grad-btn" onclick="session.allow();">ALLOW ALL</button>
       </div>
+    </div>
+  </div>
+
+  <div class="full-page-loading">
+    <div class="loading-icon">
+      <div class="layer layer-1"></div>
+      <div class="layer layer-2"></div>
+      <div class="layer layer-3"></div>
     </div>
   </div>
 
   <div class="main-page">
     <div class="temp-wrap">
       <span class="glitch" id="change-text" data-text="ENG KITS">ENG KITS</span>
-  
+
       <div class="subscribe-container">
         <p class="subscribe-message">
           Get the latest updates on release:
@@ -121,11 +126,12 @@
           <label class="input-label" for="email">Email</label>
           <!-- <label class="input-error" for="displayName">Invalid email, please try again.</label> -->
         </div>
-        <button class="market-btn reg-btn subscribe-btn" id="subscribe-main" onclick="subscribe.listener();">SUBSCRIBE</button>
+        <button class="market-btn reg-btn subscribe-btn" id="subscribe-main"
+          onclick="subscribe.listener();">SUBSCRIBE</button>
       </div>
     </div>
   </div>
-  
+
   <div class="footer-section">
     <div class="footer-content">
       <div class="footer-legal-section">
@@ -160,7 +166,8 @@
           </div>
 
           <div class="contact-socials">
-            <a href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" class="fab fa-facebook-square" target="_blank"></a>
+            <a href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              class="fab fa-facebook-square" target="_blank"></a>
             <a href="https://www.instagram.com/createbasenz/" class="fab fa-instagram" target="_blank"></a>
             <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
             <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
