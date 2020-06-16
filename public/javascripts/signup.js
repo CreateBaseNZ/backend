@@ -19,15 +19,13 @@ FUNCTIONS
 signup.initialise = async () => {
   // LOAD NAVIGATION
   try {
-    await navInit(false);
+    await navigation.initialise(false);
   } catch (error) {
     return console.log(error);
   }
   signup.confirmPassword();
-  // TO DO .....
   // REMOVE STARTUP LOADER
-  // TO DO .....
-  // LOAD SESSION
+  document.querySelector(".full-page-loading").classList.add("hide");
   try {
     await session.initialise();
   } catch (error) {

@@ -194,6 +194,14 @@ FUNCTIONS
 // @DESC
 // @ARGU
 checkout.initialise = async () => {
+  // LOAD NAVIGATION
+  try {
+    await navigation.initialise();
+  } catch (error) {
+    return console.log(error);
+  }
+  // REMOVE STARTUP LOADER
+  document.querySelector(".full-page-loading").classList.add("hide");
   // Stripe
   checkout.payment.stripe.initialise();
   checkout.elements.assign();

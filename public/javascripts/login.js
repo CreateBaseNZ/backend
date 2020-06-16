@@ -21,14 +21,12 @@ FUNCTIONS
 login.initialise = async () => {
   // LOAD NAVIGATION
   try {
-    await navInit(false);
+    await navigation.initialise(false);
   } catch (error) {
     return console.log(error);
   }
-  // TO DO .....
   // REMOVE STARTUP LOADER
-  // TO DO .....
-
+  document.querySelector(".full-page-loading").classList.add("hide");
   // ADD THE DYNAMIC WORDS EFFECT
   textSequence(0, login.words, "change-text");
 

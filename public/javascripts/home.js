@@ -47,7 +47,7 @@ home.initialise = async () => {
     return console.log(error);
   }
   // REMOVE STARTUP LOADER
-  document.querySelector("#home-loading-page").classList.add("hide");
+  document.querySelector(".full-page-loading").classList.add("hide");
   // LOAD SESSION
   try {
     await session.initialise();
