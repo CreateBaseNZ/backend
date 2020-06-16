@@ -1,13 +1,5 @@
 $input-width: 60vmin;
 
-input, input:before, input:after {
-  -webkit-user-select: initial;
-  -khtml-user-select: initial;
-  -moz-user-select: initial;
-  -ms-user-select: initial;
-  user-select: initial;
-}
-
 .input-decor {
   position: relative;
   display: inline-block;
