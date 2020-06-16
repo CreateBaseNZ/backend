@@ -16,7 +16,7 @@ FUNCTIONS
 engkits.initialise = async () => {
   // LOAD NAVIGATION
   try {
-    await navigation.initialise(false);
+    await navigation.initialise();
   } catch (error) {
     return console.log(error);
   }
