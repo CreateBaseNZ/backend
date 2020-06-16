@@ -181,6 +181,10 @@ home.addImages = () => {
       reject(error)
     }
     // SUCCESS RESPONSE
+    // Add classes for animation
+    document.querySelector("#landing-1").classList.add("landing-1");
+    document.querySelector("#landing-2").classList.add("landing-2");
+    document.querySelector("#landing-3").classList.add("landing-3");
     resolve();
   });
 }

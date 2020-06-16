@@ -106,9 +106,9 @@ body {
     }
   }
 
-  #landing-1,
-  #landing-2,
-  #landing-3 {
+  .landing-1,
+  .landing-2,
+  .landing-3 {
     position: relative;
 
     &:before,
@@ -128,7 +128,7 @@ body {
     }
   }
 
-  #landing-1 {
+  .landing-1 {
     &:before,
     &:after {
       right: 0;
@@ -140,7 +140,7 @@ body {
     }
   }
 
-  #landing-2 {
+  .landing-2 {
     &:before,
     &:after {
       left: 0;
@@ -152,7 +152,7 @@ body {
     }
   }
 
-  #landing-3 {
+  .landing-3 {
     &:before,
     &:after {
       left: 0;
@@ -406,16 +406,16 @@ body {
       }
     }
   
-    #landing-1,
-    #landing-2,
-    #landing-3 {
+    .landing-1,
+    .landing-2,
+    .landing-3 {
       &:before,
       &:after {
         height: 35vmax;
       }
     }
   
-    #landing-1 {
+    .landing-1 {
       &:before {
         animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
       }
@@ -424,7 +424,7 @@ body {
       }
     }
   
-    #landing-2 {
+    .landing-2 {
       &:before {
         animation: landing-mid-before-anim 0.8s ease-out 0.5s forwards;
       }
@@ -434,7 +434,7 @@ body {
       }
     }
   
-    #landing-3 {
+    .landing-3 {
       &:before {
         animation: landing-side-before-anim 0.8s ease-out 1.3s forwards;
       }
