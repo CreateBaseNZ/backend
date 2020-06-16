@@ -501,7 +501,7 @@ const template = (account, customer) => {
                 <h2>Verify your CreateBase account</h2>
                 <p id="caption">Click the button below to verify your account</p>
     
-                <a href="http://localhost/account-verification/${account.email}/${account.verification.code}
+                <a href="${process.env.SITE_PREFIX}account-verification/${account.email}/${account.verification.code}
                 "id="verify-btn"><span>VERIFY</span></a>
     
                 <div id="divider">
@@ -510,7 +510,7 @@ const template = (account, customer) => {
                     <div class="horizontal-line"></div>
                 </div>
     
-                <h3>Enter the verification code <a href="http://localhost/verification">here</a></h3>
+                <h3>Enter the verification code <a href="${process.env.SITE_PREFIX}verification">here</a></h3>
     
                 <ul>
                     <li>${account.verification.code[0]}</li> 
