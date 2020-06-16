@@ -41,8 +41,13 @@ home.initialise = async () => {
     return console.log(error);
   }
   // ADD IMAGES
+  try {
+    await home.addImages();
+  } catch (error) {
+    return console.log(error);
+  }
   // REMOVE STARTUP LOADER
-  // document.querySelector("#home-loading-page").classList.add("hide");
+  document.querySelector("#home-loading-page").classList.add("hide");
   // LOAD SESSION
   try {
     await session.initialise();
@@ -154,7 +159,30 @@ home.slideThree = () => {
 // @func  home.addImages
 // @desc  
 home.addImages = () => {
-
+  return new Promise(async (resolve, reject) => {
+    // IMAGES
+    const image1 = {
+      src: "./../../public/images/landing-7.png", id: "",
+      alt: "Landing 1", classes: [], parentId: "landing-1"
+    }
+    const image2 = {
+      src: "./../../public/images/landing-5.png", id: "",
+      alt: "Landing 2", classes: [], parentId: "landing-2"
+    }
+    const image3 = {
+      src: "./../../public/images/landing-6.png", id: "",
+      alt: "Landing 3", classes: [], parentId: "landing-3"
+    }
+    // LOAD IMAGES
+    const objects = [image1, image2, image3];
+    try {
+      await imageLoader(objects);
+    } catch (error) {
+      reject(error)
+    }
+    // SUCCESS RESPONSE
+    resolve();
+  });
 }
 
 /* ========================================================================================
