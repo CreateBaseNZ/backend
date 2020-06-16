@@ -16,7 +16,7 @@ FUNCTIONS
 market.initialise = async () => {
   // LOAD NAVIGATION
   try {
-    await navigation.initialise();
+    await navigation.initialise(false);
   } catch (error) {
     return console.log(error);
   }
