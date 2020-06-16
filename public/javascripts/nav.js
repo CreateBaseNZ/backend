@@ -2,12 +2,11 @@
 VARIABLES
 ======================================================================================== */
 
-var mq = window.matchMedia("(min-width: 850px)");
-
 let navigation = {
   // VARIABLES
   mediaQuery: undefined,
   loginStatus: undefined,
+  // Elements
   darken: undefined,
   ham: undefined,
   leftMenu: undefined,
