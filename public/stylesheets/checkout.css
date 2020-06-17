@@ -7833,7 +7833,6 @@ SHIPPING
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 2vmax 0;
   overflow: hidden;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -7876,24 +7875,6 @@ SHIPPING
   font-size: 1.6vmax;
   letter-spacing: 0.2vmax;
   color: #c7c2d5;
-}
-
-.checkout-new-address {
-  height: 67.8vmax;
-}
-
-.checkout-new-address label {
-  height: 3vmax;
-  padding: 0 1vmax;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.4vmax;
-  color: #877da9;
 }
 
 .checkout-new-address .unit, .checkout-new-address .city {
@@ -8718,9 +8699,6 @@ DESKTOP CSS
   /* -------------------------------------------------------
   SHIPPING
   ------------------------------------------------------- */
-  .checkout-address {
-    padding: 1vmax 2vmax;
-  }
   .checkout-saved-address {
     height: 10vmax;
     padding: 1vmax 0;
@@ -8734,14 +8712,6 @@ DESKTOP CSS
     padding: 0 0 0 4.1vmax;
     font-size: 1vmax;
     letter-spacing: 0.1vmax;
-  }
-  .checkout-new-address {
-    height: 40.5vmax;
-  }
-  .checkout-new-address label {
-    height: 2vmax;
-    padding: 0 0.5vmax;
-    font-size: 0.8vmax;
   }
   #checkout-shipping-save-address {
     height: 2.5vmax;
