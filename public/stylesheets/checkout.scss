@@ -221,11 +221,13 @@ CART
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   flex-wrap: wrap;
   padding: 2vmax 0;
   div {
     width: 70%;
+  }
+  button {
+    margin-top: calc(5px + 0.5vmax);
   }
 }
 
@@ -471,84 +473,6 @@ COMPLETE
 }
 
 /* ---------------------------------------------------------
-NAVIGATION
---------------------------------------------------------- */
-
-.checkout-navigation-icon-container {
-  width: 6vmax;
-  height: 6vmax;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 3.5vmax;
-  border-style: solid;
-  border-width: 0.3vmax;
-  transition: all 0.5s ease;
-  .checkout-navigation-icon {
-    width: 60%;
-    height: 60%;
-    position: absolute;
-    opacity: 0;
-    transition: all 0.5s ease;
-  }
-}
-
-.checkout-navigation-icon-container-selected {
-  background-color: $dark-1;
-  border-color: $dark-1;
-  .checkout-navigation-icon-white {
-    opacity: 1;
-  }
-}
-
-.checkout-navigation-icon-container-deselected {
-  background-color: $light-1;
-  border-color: $dark-1;
-  .checkout-navigation-icon-black {
-    opacity: 1;
-  }
-}
-
-.checkout-navigation-icon-container-selected.valid {
-  background-color: #008000;
-  border-color: #008000;
-  .checkout-navigation-icon-white {
-    opacity: 1;
-  }
-}
-
-.checkout-navigation-icon-container-deselected.valid {
-  background-color: $light-1;
-  border-color: #008000;
-  .checkout-navigation-icon-green {
-    opacity: 1;
-  }
-}
-
-.checkout-navigation-icon-container-deselected.unavailable {
-  background-color: $light-1;
-  border-color: $light-3;
-  .checkout-navigation-icon-grey {
-    opacity: 1;
-  }
-}
-
-#checkout-navigation-container {
-  width: 14vmax;
-  height: calc(100% - 16vmax);
-  position: fixed;
-  top: 8vmax;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  padding: 26vh 0;
-}
-
-/* ---------------------------------------------------------
 GLOBAL
 --------------------------------------------------------- */
 
@@ -743,7 +667,7 @@ GLOBAL
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 0 14vmax 0 4vmax;
+  padding: 0 4vmax;
 }
 
 .checkout-sub-section {
@@ -1003,11 +927,12 @@ DESKTOP CSS
 
   .checkout-discount-input-container {
     height: 8vmax;
-    align-items: flex-end;
-    align-content: center;
     padding: 0vmax 10vmax;
     div {
       width: 15vmax;
+    }
+    button {
+      margin-top: calc(6px + 0.6vmax);
     }
   }
 
@@ -1149,24 +1074,6 @@ DESKTOP CSS
       font-size: 1vmax;
       letter-spacing: 0.1vmax;
     }
-  }
-  
-  /* -------------------------------------------------------
-  NAVIGATION
-  ------------------------------------------------------- */
-  
-  .checkout-navigation-icon-container {
-    height: 3vmax;
-    width: 3vmax;
-    border-width: 0.1vmax;
-  }
-
-  #checkout-navigation-container {
-    height: 30vh;
-    width: 3vmax;
-    top: 35vh;
-    right: 4.5vmax;
-    padding: 0;
   }
 
   /* -------------------------------------------------------
