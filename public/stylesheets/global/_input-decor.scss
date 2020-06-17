@@ -77,6 +77,89 @@ $input-width: 60vmin;
   }
 }
 
+/* ----------------------------------------------------------------------------------------
+INPUT ONE
+---------------------------------------------------------------------------------------- */
+
+.input-one {
+  position: relative;
+  display: inline-block;
+  border-bottom: thin solid $light-2;
+  height: calc(24px + 2.4vmax);
+
+  input {
+    border: none;
+    width: 100%;
+    font-family: $poppins;
+    font-size: calc(7.2px + 0.72vmax);
+    padding-left: calc(6px + 0.6vmax);
+    margin-top: calc(10.8px + 1.08vmax);
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  label {
+    position: absolute;
+    pointer-events: none;
+    top: calc(9px + 0.9vmax);
+    left: calc(3px + 0.3vmax);
+    color: $dark-1;
+    letter-spacing: calc(0.6px + 0.06vmax);
+    font-family: $poppins;
+    font-size: calc(7.2px + 0.72vmax);
+    font-weight: 100;
+    background: transparent;
+    transition: all 0.2s ease-out;
+  }
+
+  input:focus ~ label,
+  input:not(:focus):valid ~ label {
+    top: 0px;
+    font-size: calc(4.8px + 0.48vmax);
+    color: $highlight;
+  }
+
+  input:not(:focus):valid ~ label {
+    color: $dark-1;
+  }
+
+  input:hover ~ label {
+    color: $highlight;
+  }
+
+  p {
+    position: absolute;
+    bottom: calc(-9px + -0.9vmax);;
+    right: 0;
+    font-family: $poppins;
+    font-size: calc(4.8px + 0.48vmax);
+    color: red;
+  }
+
+  &::after,
+  &:focus-within::after {
+    content: "";
+    border-bottom: thin solid $highlight;
+    position: absolute;
+    width: 0%;
+    top: 100%;
+    left: 0%;
+    transition: all 0.5s ease-out;
+  }
+
+  &:focus-within::after {
+    width: 100%;
+  }
+
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 calc(18px + 1.8vmax) white inset;
+    box-shadow: 0 0 0 calc(18px + 1.8vmax) white inset;
+  }
+}
+
 @media only screen and (min-width: 850px) and (orientation: landscape) {
 
   $input-width: 27em;
@@ -104,6 +187,36 @@ $input-width: 60vmin;
     .input-error {
       bottom: -17px;
       font-size: 10px;
+    }
+  }
+
+  /* --------------------------------------------------------------------------------------
+  INPUT ONE
+  -------------------------------------------------------------------------------------- */
+
+  .input-one {
+    height: calc(20px + 2vmax);
+
+    input {
+    margin-top: calc(8.8px + 0.88vmax);
+    padding-left: calc(5.2px + 0.52vmax);
+    font-size: calc(6.4px + 0.64vmax);
+    }
+
+    label {
+      left: calc(4px + 0.4vmax);
+      top: calc(10px + 1vmax);
+      font-size: calc(6.4px + 0.64vmax);
+    }
+
+    input:focus ~ label,
+    input:not(:focus):valid ~ label {
+      font-size: calc(4px + 0.4vmax);
+    }
+
+    p {
+      bottom: calc(-6.8px + -0.68vmax);
+      font-size: calc(4px + 0.4vmax);
     }
   }
 }
