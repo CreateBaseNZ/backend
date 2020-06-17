@@ -47,7 +47,7 @@ home.initialise = async () => {
     return console.log(error);
   }
   // REMOVE STARTUP LOADER
-  removeLoader();
+  // removeLoader();
   // LOAD SESSION
   session.initialise();
   // PAGE CONFIGURATIONS
