@@ -38,7 +38,6 @@ h3{
 }
 
 #email-container, #address-container, #password-container, #subscription-container, #removeAccount-container{
-    // border: thin black solid;
     margin-bottom: 2em;
     max-width: 25em;
     display: flex;
@@ -47,8 +46,10 @@ h3{
 }
 
 input{
+    -webkit-appearance: none;
     padding: 0.5em;
     font-size: 1em;
+    border:thin solid $light-3;
 }
 
 input:placeholder{
@@ -61,12 +62,15 @@ input:focus{
     border-radius: 2px;
 }
 
-
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus{
     background-color: $light-1 !important;
+}
+
+.requiredField{
+    color: red;
 }
 
 #current-email, #newEmail-container, #emailPassword-container{
@@ -281,7 +285,7 @@ input:-webkit-autofill:focus{
         border-bottom: thin solid $light-3;
         margin: 1em 0;
         &::placeholder{
-            color: $dark-2;
+            color: $dark-1;
         }
     }
 }
@@ -340,6 +344,7 @@ input:-webkit-autofill:focus{
 
     input{
         font-size: 0.8em;
+
     }
 
     p{
@@ -365,7 +370,6 @@ input:-webkit-autofill:focus{
         padding: 0 1em;
         display: flex;
         flex-direction: row;
-        // height: 90%;
     }
     #email-container{
         h2{
@@ -382,6 +386,7 @@ input:-webkit-autofill:focus{
         margin: 0;
         #address-item-wrap{
             margin-left: 0.5em;
+
         }
     }
     #password-container{
@@ -394,9 +399,6 @@ input:-webkit-autofill:focus{
             font-size: 0.8em;
         }
     }
-    // #removeAccount-container{
-
-    // }
 
     #col1{
         display: flex;
@@ -412,9 +414,15 @@ input:-webkit-autofill:focus{
         width: 20em;
     }
 
-    #current-email, .address-item, .password-item{
+    #current-email{
         input{
             flex: 0 0 70%;
+        }
+    }
+
+    .address-item,.password-item{
+        input{
+            flex: 0 0 80%;
         }
     }
 
