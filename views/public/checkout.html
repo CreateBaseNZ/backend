@@ -192,10 +192,12 @@
         <div class="checkout-sub-section">
           <h3 class="checkout-sub-heading">Discount</h3>
           <div class="checkout-discount-input-container">
-            <input type="text" name="discount" class="checkout-input-text" id="checkout-discount-input"
-              placeholder="Discount Code..." />
+            <div class="input-one">
+              <input type="text" name="discount" id="checkout-discount-input" required>
+              <label for="checkout-discount-input">Discount Code</label>
+              <p id="checkout-discount-input-error"></p>
+            </div>
             <button class="checkout-button-small" onclick="checkout.cart.discount.add();">Add</button>
-            <div class="checkout-input-error" id="checkout-discount-input-error"></div>
           </div>
           <div id="checkout-discounts"></div>
         </div>

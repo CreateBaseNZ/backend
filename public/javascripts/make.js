@@ -170,7 +170,7 @@ make.initialise = async () => {
     return console.log(error);
   }
   // REMOVE STARTUP LOADER
-  removeLoader();
+  removeLoader(false);
   // Initial Event Listeners
   make.heading.upload.addEventListener("click", make.upload.show);
   make.validation.upload.addEventListener("click", make.upload.show);

@@ -26,7 +26,7 @@ login.initialise = async () => {
     return console.log(error);
   }
   // REMOVE STARTUP LOADER
-  removeLoader();
+  removeLoader(false);
   // ADD THE DYNAMIC WORDS EFFECT
   textSequence(0, login.words, "change-text");
 

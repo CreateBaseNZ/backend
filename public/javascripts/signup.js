@@ -25,7 +25,7 @@ signup.initialise = async () => {
   }
   signup.confirmPassword();
   // REMOVE STARTUP LOADER
-  removeLoader();
+  removeLoader(false);
   // LOAD SESSION
   session.initialise();
 }

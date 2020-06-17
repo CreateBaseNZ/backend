@@ -360,13 +360,14 @@ const textSequence = (i, words, id) => {
   }, (50 + Math.random() * 50))
 }
 
-const removeLoader = () => {
+const removeLoader = (footer = true) => {
   document.querySelector(".full-page-loading").classList.add("hide");
   document.querySelector("nav").classList.remove("hide");
   document.querySelector("#mobile-notif-wrap").classList.remove("hide");
   document.querySelector("#notification-wrap").classList.remove("hide");
   document.querySelector(".main-page").classList.remove("hide");
-  document.querySelector(".footer-section").classList.remove("hide");
+  if (footer) document.querySelector(".footer-section").classList.remove("hide");
+  return;
 }
 
 /*=========================================================================================

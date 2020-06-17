@@ -221,15 +221,12 @@ CART
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   flex-wrap: wrap;
   padding: 2vmax 0;
-  input {
+  div {
     width: 70%;
   }
-}
-
-#checkout-discount-input-error {
-  width: 70%;
 }
 
 /* ---------------------------------------------------------
@@ -1007,9 +1004,10 @@ DESKTOP CSS
 
   .checkout-discount-input-container {
     height: 8vmax;
+    align-items: flex-end;
     align-content: center;
     padding: 0vmax 10vmax;
-    input {
+    div {
       width: 15vmax;
     }
   }
