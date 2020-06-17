@@ -1293,6 +1293,7 @@ INPUT ONE
   margin-top: calc(10.8px + 1.08vmax);
   background: transparent;
   border-bottom: thin solid #f8f8f8;
+  border-radius: 0;
 }
 
 .input-one input:focus {
@@ -8750,4 +8751,3 @@ DESKTOP CSS
 /*=========================================================================================
 END
 =========================================================================================*/
-/*# sourceMappingURL=make.css.map */
