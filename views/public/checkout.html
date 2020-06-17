@@ -303,42 +303,55 @@
           </div>
 
           <div class="checkout-address checkout-new-address checkout-element-hide" id="checkout-new-address">
-            <label for="checkout-new-address-unit" class="unit">Unit (optional)</label>
-            <label for="checkout-new-address-street-number" class="street-number">Street No.</label>
-            <input type="text" name="unit" class="checkout-input-text unit" id="checkout-new-address-unit"
-              oninput="checkout.shipping.address.new.validate.all('unit');"
-              onchange="checkout.shipping.address.new.update('unit');" />
-            <input type="text" name="streetNumber" class="checkout-input-text street-number"
-              id="checkout-new-address-street-number"
-              oninput="checkout.shipping.address.new.validate.all('streetNumber');"
-              onchange="checkout.shipping.address.new.update('streetNumber');" />
-            <div class="checkout-input-error unit" id="checkout-shipping-unit-error"></div>
-            <div class="checkout-input-error street-number" id="checkout-shipping-street-number-error"></div>
-            <label for="checkout-new-address-street-name" class="street-name">Street Name</label>
-            <input type="text" name="streetName" class="checkout-input-text street-name"
-              id="checkout-new-address-street-name" oninput="checkout.shipping.address.new.validate.all('streetName');"
-              onchange="checkout.shipping.address.new.update('streetName');" />
-            <div class="checkout-input-error street-name" id="checkout-shipping-street-name-error"></div>
-            <label for="checkout-new-address-suburb" class="suburb">Suburb</label>
-            <input type="text" name="suburb" class="checkout-input-text suburb" id="checkout-new-address-suburb"
-              oninput="checkout.shipping.address.new.validate.all('suburb');"
-              onchange="checkout.shipping.address.new.update('suburb');" />
-            <div class="checkout-input-error suburb" id="checkout-shipping-suburb-error"></div>
-            <label for="checkout-new-address-city" class="city">City</label>
-            <input type="text" name="city" class="checkout-input-text city" id="checkout-new-address-city"
-              oninput="checkout.shipping.address.new.validate.all('city');"
-              onchange="checkout.shipping.address.new.update('city');" />
-            <div class="checkout-input-error city" id="checkout-shipping-city-error"></div>
-            <label for="checkout-new-address-postcode" class="postcode">Postcode</label>
-            <input type="text" name="zipCode" class="checkout-input-text postcode" id="checkout-new-address-postcode"
-              oninput="checkout.shipping.address.new.validate.all('postcode');"
-              onchange="checkout.shipping.address.new.update('postcode');" />
-            <div class="checkout-input-error postcode" id="checkout-shipping-postcode-error"></div>
-            <label for="checkout-new-address-country" class="country">Country</label>
-            <input type="text" name="country" class="checkout-input-text country" id="checkout-new-address-country"
-              oninput="checkout.shipping.address.new.validate.all('country');"
-              onchange="checkout.shipping.address.new.update('country');" />
-            <div class="checkout-input-error country" id="checkout-shipping-country-error"></div>
+            <div class="input-one unit">
+              <input type="text" name="unit" id="checkout-new-address-unit"
+                oninput="checkout.shipping.address.new.validate.all('unit');"
+                onchange="checkout.shipping.address.new.update('unit');" required>
+              <label for="checkout-new-address-unit">Unit</label>
+              <p id="checkout-shipping-unit-error"></p>
+            </div>
+            <div class="input-one street-number">
+              <input type="text" name="streetNumber" id="checkout-new-address-street-number"
+                oninput="checkout.shipping.address.new.validate.all('streetNumber');"
+                onchange="checkout.shipping.address.new.update('streetNumber');" required>
+              <label for="checkout-new-address-street-number">Street No.</label>
+              <p id="checkout-shipping-street-number-error"></p>
+            </div>
+            <div class="input-one street-name">
+              <input type="text" name="streetName" id="checkout-new-address-street-name"
+                oninput="checkout.shipping.address.new.validate.all('streetName');"
+                onchange="checkout.shipping.address.new.update('streetName');" required>
+              <label for="checkout-new-address-street-name">Street Name</label>
+              <p id="checkout-shipping-street-name-error"></p>
+            </div>
+            <div class="input-one suburb">
+              <input type="text" name="suburb" id="checkout-new-address-suburb"
+                oninput="checkout.shipping.address.new.validate.all('suburb');"
+                onchange="checkout.shipping.address.new.update('suburb');" required>
+              <label for="checkout-new-address-suburb">Suburb</label>
+              <p id="checkout-shipping-suburb-error"></p>
+            </div>
+            <div class="input-one city">
+              <input type="text" name="city" id="checkout-new-address-city"
+                oninput="checkout.shipping.address.new.validate.all('city');"
+                onchange="checkout.shipping.address.new.update('city');" required>
+              <label for="checkout-new-address-city">City</label>
+              <p id="checkout-shipping-city-error"></p>
+            </div>
+            <div class="input-one postcode">
+              <input type="text" name="zipCode" id="checkout-new-address-postcode"
+                oninput="checkout.shipping.address.new.validate.all('postcode');"
+                onchange="checkout.shipping.address.new.update('postcode');" required>
+              <label for="checkout-new-address-postcode">Postcode</label>
+              <p id="checkout-shipping-postcode-error"></p>
+            </div>
+            <div class="input-one country">
+              <input type="text" name="country" id="checkout-new-address-country"
+                oninput="checkout.shipping.address.new.validate.all('country');"
+                onchange="checkout.shipping.address.new.update('country');" required>
+              <label for="checkout-new-address-country">Country</label>
+              <p id="checkout-shipping-country-error"></p>
+            </div>
             <div id="checkout-shipping-save-address">
               <input type="checkbox" name="saveAddress" id="checkout-shipping-save-address-input"
                 onchange="checkout.shipping.address.new.toggleSave(this.checked);" />

@@ -84,10 +84,10 @@ INPUT ONE
 .input-one {
   position: relative;
   display: inline-block;
-  border-bottom: thin solid $light-2;
-  height: calc(24px + 2.4vmax);
+  height: calc(34px + 3.4vmax);
 
   input {
+    height: calc(13.2px + 1.32vmax);
     border: none;
     width: 100%;
     font-family: $poppins;
@@ -95,6 +95,7 @@ INPUT ONE
     padding-left: calc(6px + 0.6vmax);
     margin-top: calc(10.8px + 1.08vmax);
     background: transparent;
+    border-bottom: thin solid $light-2;
 
     &:focus {
       outline: none;
@@ -132,11 +133,14 @@ INPUT ONE
 
   p {
     position: absolute;
-    bottom: calc(-9px + -0.9vmax);;
+    bottom: 0;
     right: 0;
+    display: flex;
+    align-items: flex-end;
     font-family: $poppins;
     font-size: calc(4.8px + 0.48vmax);
     color: red;
+    height: calc(10px + 1vmax);
   }
 
   &::after,
@@ -145,8 +149,8 @@ INPUT ONE
     border-bottom: thin solid $highlight;
     position: absolute;
     width: 0%;
-    top: 100%;
     left: 0%;
+    bottom: calc(10px + 1vmax);
     transition: all 0.5s ease-out;
   }
 
@@ -195,13 +199,14 @@ INPUT ONE
   -------------------------------------------------------------------------------------- */
 
   .input-one {
-    height: calc(20px + 2vmax);
+    height: calc(28px + 2.8vmax);
 
     input {
     margin-top: calc(8.8px + 0.88vmax);
     padding-left: calc(5.2px + 0.52vmax);
     font-size: calc(6.4px + 0.64vmax);
-    }
+    height: calc(11.2px + 1.12vmax);
+  }
 
     label {
       left: calc(4px + 0.4vmax);
@@ -214,9 +219,14 @@ INPUT ONE
       font-size: calc(4px + 0.4vmax);
     }
 
+    &::after,
+    &:focus-within::after {
+      bottom: calc(8px + 0.8vmax);
+    }
+
     p {
-      bottom: calc(-6.8px + -0.68vmax);
       font-size: calc(4px + 0.4vmax);
+      height: calc(8px + 0.8vmax);
     }
   }
 }
