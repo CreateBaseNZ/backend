@@ -242,7 +242,6 @@ SHIPPING
   justify-content: space-between;
   align-content: flex-start;
   align-items: center;
-  padding: 2vmax 0;
   overflow: hidden;
   transition: all 0.5s ease;
 }
@@ -276,17 +275,6 @@ SHIPPING
 }
 
 .checkout-new-address {
-  height: 67.8vmax;
-  label {
-    height: 3vmax;
-    padding: 0 1vmax;
-    display: flex;
-    align-items: center;
-    // TEXT
-    font-family: $poppins;
-    font-size: 1.4vmax;
-    color: $dark-1;
-  }
   .unit,.city {
     width: 65%;
   }
@@ -944,10 +932,6 @@ DESKTOP CSS
   SHIPPING
   ------------------------------------------------------- */
 
-  .checkout-address {
-    padding: 1vmax 2vmax;
-  }
-
   .checkout-saved-address {
     height: 10vmax;
     padding: 1vmax 0;
@@ -961,15 +945,6 @@ DESKTOP CSS
       // TEXT
       font-size: 1vmax;
       letter-spacing: 0.1vmax;
-    }
-  }
-
-  .checkout-new-address {
-    height: 40.5vmax;
-    label {
-      height: 2vmax;
-      padding: 0 0.5vmax;
-      font-size: 0.8vmax;
     }
   }
 

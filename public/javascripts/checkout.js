@@ -1371,41 +1371,31 @@ checkout.shipping.show = () => { checkout.navigation.navigate(1); };
 
 checkout.shipping.resize = () => {
   // DESKTOP HEIGHT CALCULATION
-  const heading = 8;
-  const subHeading = 8 * 2;
-  let address;
+  // vmax
+  const heading = 6;
+  const subHeading = 6 * 2;
+  const radio = 3 * 5;
+  let address = { saved: 2, new: 0 };
   if (checkout.shipping.address.selected === "saved") {
-    address = {
-      saved: 10,
-      new: 3
-    };
+    address.saved = 9;
   } else if (checkout.shipping.address.selected === "new") {
-    address = {
-      saved: 3,
-      new: 40.5
-    };
-  } else {
-    address = {
-      saved: 3,
-      new: 3
-    };
-  }
-  const error = 2;
-  const padding = 2;
-  const method = 3 * 3;
+    address.new = 16.5;
+  };
+  const padding = (2 * 2) + 1;
   const buttons = 12;
-  const total = heading + subHeading + address.saved + address.new + error + padding + method + buttons;
-
+  const vmax = heading + subHeading + radio + address.saved + address.new + padding + buttons;
+  // px
+  let px = 0;
+  if (checkout.shipping.address.selected === "new") {
+    px = 28 * 5;
+  };
   // SET THE CART PAGE SIZE
+  let style = "height: 100%;";
   if (checkout.element.windowSize.matches) {
-    if (checkoutSelectedPage == 1) {
-      document.querySelector("#checkout-shipping").style = "height: " + total + "vmax;";
-    } else {
-      document.querySelector("#checkout-shipping").style = "height: 6vmax;";
-    }
-  } else {
-    document.querySelector("#checkout-shipping").style = "height: 100%;";
+    style = (checkoutSelectedPage == 1) ? `height: calc(${px}px + ${vmax}vmax);` : "height: 6vmax;";
   }
+  document.querySelector("#checkout-shipping").style = style;
+  return;
 };
 
 /*-----------------------------------------------------------------------------------------
