@@ -4,6 +4,7 @@ VARIABLES
 
 let home = {
   // VARIABLES
+  words: ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'],
   mediaQuery: undefined,
   landscape: undefined,
   // Elements
@@ -51,7 +52,7 @@ home.initialise = async () => {
   // LOAD SESSION
   session.initialise();
   // PAGE CONFIGURATIONS
-  textSequence(0, ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'], "change-text");
+  textSequence(0, home.words, "change-text");
   home.addListener();
 }
 
