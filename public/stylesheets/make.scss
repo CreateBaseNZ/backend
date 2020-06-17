@@ -774,7 +774,7 @@ DESKTOP CSS
   UNIVERSAL
   ---------------------------------------------------------------------------------------*/
 
-  #make {
+  .main-page {
     height: calc(100vh - 60px);
     width: 100%;
     position: fixed;
@@ -783,7 +783,7 @@ DESKTOP CSS
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    padding: 0 0 1vw 36vw;
+    padding: 0 8vw 1vw 36vw;
     background-color: $light-2;
     overflow-y: auto;
   }
