@@ -7,25 +7,28 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Test</title>
   <link rel="stylesheet" href="./test.css" />
+  <link rel="stylesheet" href="">
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-  <div class="test-container">
-    <div class="button-5">
-      <div class="button-5-back">
-        <div class="button-5-back-icon"></div>
-      </div>
-      <div class="button-5-next disable">
-        <div class="button-5-next-message">Continue</div>
-        <div class="button-5-next-icon">
-          <div class="right"></div>
-        </div>
-      </div>
-    </div>
+  <div id="test-input" class="input-one">
+    <input type="text" name="test" id="test" required>
+    <label for="test">Test</label>
+    <p for="test">test error</p>
   </div>
   <style>
+    #test-input {
+      width: calc(100px + 10vmax);
+    }
 
+    body {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </body>
 

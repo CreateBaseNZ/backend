@@ -1,154 +1,150 @@
-$height-mobile: 7vmax;
-$height-desktop: 3.5vmax;
-$clr: rgb(78, 78, 214);
-$clr-blk: #c7c2d5;
-$fnt: "Poppins", sans-serif;
-
-// Temporary
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  user-select: none;
 }
 
-body {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
+input, input:before, input:after {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
 }
 
-.test-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+nav,.mobile-notif-wrap,.notification-wrap,.main-page,.footer-section{
+  &.hide {
+    display: none;
+  }
 }
 
-.button-5 {
-  display: flex;
-}
+$logo-1: rgb(130, 88, 220); //#8258dc
+$logo-2: rgb(104, 83, 217); //#6853d9
+$logo-3: rgb(78, 78, 214); //#4e4ed6
 
-.button-5-back {
-  height: $height-mobile;
-  width: $height-mobile;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-style: solid;
-  border-color: $clr;
-  border-width: 0.2vmax;
-  border-radius: 1vmax;
-  margin-right: calc(#{$height-mobile} * 0.3);
-}
+$highlight: rgb(75, 240, 234); //#4bf0ea
 
-.button-5-back-icon {
-  border-style: solid;
-  border-color: $clr;
-  border-width: 0 calc(#{$height-mobile} * 0.04) calc(#{$height-mobile} * 0.04)
-    0;
+$dark-3: rgb(45, 40, 60); //#2d283c
+$dark-2: rgb(50, 45, 65); //#322d41
+$dark-1: rgb(135, 125, 169); //#877da9
+
+$light-1: rgb(255, 255, 255); //#ffffff
+$light-2: rgb(248, 248, 248); //#f8f8f8
+$light-3: rgb(199, 194, 213); //#c7c2d5
+
+$montserrat: "Montserrat", sans-serif;
+$poppins: "Poppins", sans-serif;
+$didact: "Didact Gothic", sans-serif;
+$quest: "Questrial", sans-serif;
+
+$diamond: 10vmax;
+
+$height-mobile: 7vmax;
+$height-desktop: 3.5vmax;
+
+.input-one {
+  position: relative;
   display: inline-block;
-  padding: calc(#{$height-mobile} * 0.08);
-  transform: rotate(135deg);
+  border-bottom: thin solid $light-2;
+  height: calc(28px + 2.8vmax);
+
+  input {
+    border: none;
+    width: 100%;
+    font-family: $poppins;
+    font-size: calc(8.4px + 0.84vmax);
+    margin-top: calc(12.6px + 1.26vmax);
+    background: transparent;
+
+    &:focus {
+      outline: none;
+      padding-left: calc(7px + 0.7vmax);
+    }
+  }
+
+  label {
+    position: absolute;
+    pointer-events: none;
+    top: calc(10.5px + 1.05vmax);
+    left: calc(3.5px + 0.35vmax);
+    color: $dark-1;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 100;
+    background: transparent;
+    transition: all 0.2s ease-out;
+  }
+
+  input:focus ~ label,
+  input:not(:focus):valid ~ label {
+    top: 0px;
+    font-size: 8px;
+    color: $highlight;
+  }
+
+  input:not(:focus):valid ~ label {
+    color: $dark-1;
+  }
+
+  input:hover ~ label {
+    color: $highlight;
+  }
+
+  p {
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    font-size: 8px;
+    color: red;
+  }
+
+  &::after,
+  &:focus-within::after {
+    content: "";
+    border-bottom: thin solid $highlight;
+    position: absolute;
+    width: 0%;
+    top: 100%;
+    left: 0%;
+    transition: all 0.5s ease-out;
+  }
+
+  &:focus-within::after {
+    width: 100%;
+  }
+
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    box-shadow: 0 0 0 30px white inset;
+  }
 }
 
-.button-5-next {
-  height: $height-mobile;
-  width: calc(4.5 * #{$height-mobile});
-  display: flex;
-  justify-content: space-between;
-  border-radius: 1vmax;
-  background-color: $clr;
-  overflow: hidden;
-  &.disable {
-    background-color: $clr-blk;
-  }
-}
+@media only screen and (min-width: 850px) and (orientation: landscape) {
 
-.button-5-next-message {
-  height: $height-mobile;
-  width: calc(3 * #{$height-mobile});
-  display: flex;
-  align-items: center;
-  padding-left: 3vmax;
-  font-family: $fnt;
-  font-size: calc(#{$height-mobile} * 0.28);
-  letter-spacing: calc(#{$height-mobile} * 0.03);
-  color: white;
-  transition: all 0.5s ease;
-  transform: translateX(0%);
-  opacity: 1;
-  &.idle {
-    opacity: 0;
-  }
-  &.hide {
-    transform: translateX(50%);
-    opacity: 0;
-  }
-}
+  .input-decor {
+    height: 50px;
 
-.button-5-next-icon {
-  height: $height-mobile;
-  width: $height-mobile;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s ease;
-  transform: translateX(0%);
-  opacity: 1;
-  &.idle {
-    opacity: 0;
-  }
-  &.hide {
-    transform: translateX(50%);
-    opacity: 0;
-  }
-  .right {
-    border-style: solid;
-    border-color: white;
-    border-width: 0 calc(#{$height-mobile} * 0.04)
-      calc(#{$height-mobile} * 0.04) 0;
-    display: inline-block;
-    padding: calc(#{$height-mobile} * 0.08);
-    transform: rotate(-45deg);
-  }
-}
+    input {
+      margin-top: 22px;
+      font-size: 16px;
+    }
 
-// Universal
+    label {
+      left: 10px;
+      top: 25px;
+      font-size: 16px;
+    }
 
-@media only screen and (min-width: 850px) {
-  .button-5-back {
-    height: $height-desktop;
-    width: $height-desktop;
-    border-width: 0.1vmax;
-    border-radius: 0.5vmax;
-    margin-right: calc(#{$height-mobile} * 0.15);
-  }
+    input:focus ~ label,
+    input:not(:focus):valid ~ label {
+      font-size: 10px;
+    }
 
-  .button-5-back-icon {
-    border-width: 0 calc(#{$height-desktop} * 0.04)
-      calc(#{$height-desktop} * 0.04) 0;
-    padding: calc(#{$height-desktop} * 0.08);
-  }
-
-  .button-5-next {
-    height: $height-desktop;
-    width: calc(4.5 * #{$height-desktop});
-    border-radius: 0.5vmax;
-  }
-
-  .button-5-next-message {
-    height: $height-desktop;
-    width: calc(3 * #{$height-desktop});
-    padding-left: 1.5vmax;
-    font-size: calc(#{$height-desktop} * 0.28);
-    letter-spacing: calc(#{$height-desktop} * 0.03);
-  }
-
-  .button-5-next-icon {
-    height: $height-desktop;
-    width: $height-desktop;
-    .right {
-      border-width: 0 calc(#{$height-desktop} * 0.04)
-        calc(#{$height-desktop} * 0.04) 0;
-      padding: calc(#{$height-desktop} * 0.08);
+    p {
+      bottom: -17px;
+      font-size: 10px;
     }
   }
 }

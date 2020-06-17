@@ -79,32 +79,31 @@ $input-width: 60vmin;
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
 
-$input-width: 27em;
+  $input-width: 27em;
 
-.input-decor {
-  height: 50px;
+  .input-decor {
+    height: 50px;
 
-  input {
-    width: $input-width;
-    margin-top: 22px;
-    font-size: 16px;
+    input {
+      width: $input-width;
+      margin-top: 22px;
+      font-size: 16px;
+    }
+
+    .input-label {
+      left: 10px;
+      top: 25px;
+      font-size: 16px;
+    }
+
+    input:focus ~ .input-label,
+    input:not(:focus):valid ~ .input-label {
+      font-size: 10px;
+    }
+
+    .input-error {
+      bottom: -17px;
+      font-size: 10px;
+    }
   }
-
-  .input-label {
-    left: 10px;
-    top: 25px;
-    font-size: 16px;
-  }
-
-  input:focus ~ .input-label,
-  input:not(:focus):valid ~ .input-label {
-    font-size: 10px;
-  }
-
-  .input-error {
-    bottom: -17px;
-    font-size: 10px;
-  }
-}
-
 }
