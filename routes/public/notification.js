@@ -225,7 +225,6 @@ router.post("/send-email", async (req, res) => {
   try {
     await transporter.sendMail(mail);
   } catch (error) {
-    console.log(error);
     return res.send({ status: "failed", content: error });
   }
   //

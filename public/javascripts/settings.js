@@ -326,7 +326,6 @@ settings.populateAddress = (address) => {
 // @func  settings.changeAddress
 // @desc  
 settings.changeAddress = async () => {
-  // LOADER
   settings.changeAddressDisable();
   // COLLECT INPUTS
   const address = settings.changeAddressCollect();
@@ -357,8 +356,6 @@ settings.changeAddress = async () => {
 // @func  settings.changeAddressCollect
 // @desc  
 settings.changeAddressCollect = () => {
-  // TO DO .....
-  // Assign IDs of the address display elements
   const address = {
     recipient: document.querySelector("#addressName").value,
     unit: document.querySelector("#addressUnit").value,
@@ -371,7 +368,6 @@ settings.changeAddressCollect = () => {
     postcode: document.querySelector("#postCode").value,
     country: document.querySelector("#addressCountry").value
   }
-  // TO DO .....
   return address;
 }
 
@@ -411,10 +407,7 @@ settings.changeAddressValidate = (address) => {
     error = "";
   }
   // SET ERROR
-  // TO DO .....
-  // Assign the email error ID
   document.querySelector("#address-error").innerHTML = error;
-  // TO DO .....
   return valid;
 }
 
@@ -479,53 +472,32 @@ settings.editPassword = () => {
 // @func  settings.changePassword
 // @desc  Initiate the Change Password
 settings.changePassword = async () => {
-  // LOADER
-  // TO DO .....
-  // Assign ID of the address loader element
-  // document.querySelector("#").classList.remove("hide");
-  // TO DO .....
+  settings.changePasswordDisable();
   // COLLECT INPUTS
   const [newPassword, newPasswordConfirm, password] = settings.changePasswordCollect();
   // VALIDATE INPUTS
-  if (!settings.changePasswordValidate(newPassword, newPasswordConfirm, password)) {
-    // TO DO .....
-    // Assign ID of the email loader element
-    // return document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
-  };
+  if (!settings.changePasswordValidate(newPassword, newPasswordConfirm, password)) return settings.changePasswordEnable();
   // SUBMIT REQUEST
   let data;
   try {
     data = await settings.changePasswordSubmit(newPassword, password);
   } catch (error) {
-    // TO DO .....
-    // ERROR HANDLER
-    // TO DO .....
-    return console.log(error);
+    console.log(error);
+    return settings.changePasswordEnable();
   }
   // VALIDATE DATA
   if (data.status === "failed") {
     document.querySelector("#password-error").innerHTML = data.content
-    // TO DO .....
-    // Assign ID of the address loader element
-    // return document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
+    return settings.changePasswordEnable();
   }
   // SUCCESS HANDLER
   // Add a notification
   notificationPopup("Password Updated");
-  // Toggle Edit Mode
-  settings.editPassword();
   // Clear Input Fields
   settings.changePasswordClear();
-  // TO DO .....
-  // TO DO .....
-  // Assign ID of the email loader element
-  // return document.querySelector("#").classList.add("hide");
-  // TO DO .....
-  return;
+  settings.changePasswordEnable();
+  // Toggle Edit Mode
+  return settings.editPassword();
 }
 
 // @func  settings.changePasswordCollect
@@ -602,6 +574,13 @@ settings.changePasswordEnable = () => {
   // Assign ID of the address loader element
   // document.querySelector("#").classList.add("hide");
   // TO DO .....
+  // BUTTONS
+  document.querySelector("#settings-password-submit").removeAttribute("disabled");
+  document.querySelector("#settings-password-cancel").removeAttribute("disabled");
+  // INPUTS
+  document.querySelector("#newPassword").removeAttribute("disabled");
+  document.querySelector("#confirmNewPassword").removeAttribute("disabled");
+  document.querySelector("#oldPassword").removeAttribute("disabled");
 }
 
 // @func  settings.changePasswordDisable
@@ -612,6 +591,13 @@ settings.changePasswordDisable = () => {
   // Assign ID of the address loader element
   // document.querySelector("#").classList.remove("hide");
   // TO DO .....
+  // BUTTONS
+  document.querySelector("#settings-password-submit").setAttribute("disabled", "");
+  document.querySelector("#settings-password-cancel").setAttribute("disabled", "");
+  // INPUTS
+  document.querySelector("#newPassword").setAttribute("disabled", "");
+  document.querySelector("#confirmNewPassword").setAttribute("disabled", "");
+  document.querySelector("#oldPassword").setAttribute("disabled", "");
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -633,42 +619,24 @@ settings.populateSubscription = (subscription) => {
 // @func  settings.changeSubscription
 // @desc  
 settings.changeSubscription = async () => {
-  // LOADER
-  // TO DO .....
-  // Assign ID of the address loader element
-  // document.querySelector("#").classList.remove("hide");
-  // TO DO .....
+  settings.changeSubscriptionDisable();
   // COLLECT INPUTS
   const subscription = settings.changeSubscriptionCollect();
   // VALIDATE INPUTS
-  if (!settings.changeSubscriptionValidate(subscription)) {
-    // TO DO .....
-    // Assign ID of the email loader element
-    // document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
-  };
+  if (!settings.changeSubscriptionValidate(subscription)) return settings.changeSubscriptionEnable();
   // SUBMIT REQUEST
   const updates = { subscription: { mail: subscription }, address: undefined };
   let data;
   try {
     data = await settings.updateSubmit(updates);
   } catch (error) {
-    // TO DO .....
-    // Assign ID of the email loader element
-    // document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return console.log(error);
+    console.log(error);
+    return settings.changeSubscriptionEnable();
   }
   // VALIDATE DATA
   if (data.status === "failed") {
     document.querySelector("#subscription-error").innerHTML = data.content;
-
-    // TO DO .....
-    // Assign ID of the email loader element
-    // return document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
+    return settings.changeSubscriptionEnable();
   }
   // SUCCESS HANDLER
   // Add a notification
@@ -679,11 +647,7 @@ settings.changeSubscription = async () => {
     message = "unsubscribed successfully";
   }
   notificationPopup(message);
-  // TO DO .....
-  // Assign ID of the email loader element
-  // return document.querySelector("#").classList.add("hide");
-  // TO DO .....
-  return;
+  return settings.changeSubscriptionEnable();
 }
 
 // @func  settings.changeSubscriptionCollect
@@ -713,13 +677,25 @@ settings.changeSubscriptionValidate = (subscription) => {
 // @func  settings.changeSubscriptionEnable
 // @desc  
 settings.changeSubscriptionEnable = () => {
-
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  // document.querySelector("#").classList.add("hide");
+  // TO DO .....
+  // INPUT
+  document.querySelector("#settings-subscription-input").removeAttribute("disabled");
 }
 
 // @func  settings.changeSubscriptionDisable
 // @desc  
 settings.changeSubscriptionDisable = () => {
-
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  // document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+  // INPUT
+  document.querySelector("#settings-subscription-input").setAttribute("disabled", "");
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -748,36 +724,23 @@ settings.deleteAccountCancel = () => {
 // @func  settings.deleteAccount
 // @desc  
 settings.deleteAccount = async () => {
-  // LOADER
-  // TO DO .....
-  // Assign ID of the address loader element
-  // document.querySelector("#").classList.remove("hide");
-  // TO DO .....
+  settings.deleteAccountDisable();
   // COLLECT INPUTS
   const password = settings.deleteAccountCollect();
   // VALIDATE INPUTS
-  if (!settings.deleteAccountValidate(password)) {
-    // TO DO .....
-    // Assign ID of the email loader element
-    // return document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
-  };
+  if (!settings.deleteAccountValidate(password)) return settings.deleteAccountEnable();
   // SUBMIT REQUEST
   let data;
   try {
     data = await settings.deleteAccountSubmit(password);
   } catch (error) {
-    // TO DO .....
-    // ERROR HANDLER
-    // TO DO .....
-    return console.log(error);
+    console.log(error);
+    return settings.deleteAccountEnable();
   }
   // VALIDATE DATA
   if (data.status === "failed") {
     document.querySelector("#delete-account-error").innerHTML = data.content;
-
-    return console.log(data.content);
+    return settings.deleteAccountEnable();
   }
   // SUCCESS HANDLER
   return window.location.href = "/logout";
@@ -826,13 +789,33 @@ settings.deleteAccountSubmit = (password) => {
 // @func  settings.deleteAccountEnable
 // @desc  
 settings.deleteAccountEnable = () => {
-
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  // document.querySelector("#").classList.add("hide");
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#settings-password-submit").removeAttribute("disabled");
+  document.querySelector("#settings-password-cancel").removeAttribute("disabled");
+  // INPUTS
+  document.querySelector("#settings-delete-account-input").removeAttribute("disabled");
+  document.querySelector("#confirm-removal-password").removeAttribute("disabled");
 }
 
 // @func  settings.deleteAccountDisable
 // @desc  
 settings.deleteAccountDisable = () => {
-
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  // document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#settings-password-submit").setAttribute("disabled", "");
+  document.querySelector("#settings-password-cancel").setAttribute("disabled", "");
+  // INPUTS
+  document.querySelector("#settings-delete-account-input").setAttribute("disabled", "");
+  document.querySelector("#confirm-removal-password").setAttribute("disabled", "");
 }
 
 /* ========================================================================================
