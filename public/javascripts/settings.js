@@ -75,7 +75,6 @@ settings.initialise = async () => {
   }
   const details = data.content;
   // POPULATE FIELDS
-  console.log(details); // TEMPORARY
   // Email
   settings.populateEmail(details.account.email);
   // Address
@@ -232,9 +231,6 @@ settings.changeEmailEnable = () => {
   // BUTTONS
   document.querySelector("#settings-email-submit").removeAttribute("disabled");
   document.querySelector("#settings-email-cancel").removeAttribute("disabled");
-  // INPUTS
-  document.querySelector("#newEmail").removeAttribute("disabled");
-  document.querySelector("#emailPassword").removeAttribute("disabled");
 }
 
 // @func  settings.changeEmailDisable
@@ -248,9 +244,6 @@ settings.changeEmailDisable = () => {
   // BUTTONS
   document.querySelector("#settings-email-submit").setAttribute("disabled", "");
   document.querySelector("#settings-email-cancel").setAttribute("disabled", "");
-  // INPUTS
-  document.querySelector("#newEmail").setAttribute("disabled", "");
-  document.querySelector("#emailPassword").setAttribute("disabled", "");
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -422,15 +415,6 @@ settings.changeAddressEnable = () => {
   // BUTTONS
   document.querySelector("#settings-address-submit").removeAttribute("disabled");
   document.querySelector("#settings-address-cancel").removeAttribute("disabled");
-  // INPUTS
-  document.querySelector("#addressName").removeAttribute("disabled");
-  document.querySelector("#addressUnit").removeAttribute("disabled");
-  document.querySelector("#streetNum").removeAttribute("disabled");
-  document.querySelector("#streetName").removeAttribute("disabled");
-  document.querySelector("#addressSuburb").removeAttribute("disabled");
-  document.querySelector("#addressCity").removeAttribute("disabled");
-  document.querySelector("#postCode").removeAttribute("disabled");
-  document.querySelector("#addressCountry").removeAttribute("disabled");
 }
 
 // @func  settings.changeAddressDisable
@@ -444,15 +428,6 @@ settings.changeAddressDisable = () => {
   // BUTTONS
   document.querySelector("#settings-address-submit").setAttribute("disabled", "");
   document.querySelector("#settings-address-cancel").setAttribute("disabled", "");
-  // INPUTS
-  document.querySelector("#addressName").setAttribute("disabled", "");
-  document.querySelector("#addressUnit").setAttribute("disabled", "");
-  document.querySelector("#streetNum").setAttribute("disabled", "");
-  document.querySelector("#streetName").setAttribute("disabled", "");
-  document.querySelector("#addressSuburb").setAttribute("disabled", "");
-  document.querySelector("#addressCity").setAttribute("disabled", "");
-  document.querySelector("#postCode").setAttribute("disabled", "");
-  document.querySelector("#addressCountry").setAttribute("disabled", "");
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -577,10 +552,6 @@ settings.changePasswordEnable = () => {
   // BUTTONS
   document.querySelector("#settings-password-submit").removeAttribute("disabled");
   document.querySelector("#settings-password-cancel").removeAttribute("disabled");
-  // INPUTS
-  document.querySelector("#newPassword").removeAttribute("disabled");
-  document.querySelector("#confirmNewPassword").removeAttribute("disabled");
-  document.querySelector("#oldPassword").removeAttribute("disabled");
 }
 
 // @func  settings.changePasswordDisable
@@ -594,10 +565,6 @@ settings.changePasswordDisable = () => {
   // BUTTONS
   document.querySelector("#settings-password-submit").setAttribute("disabled", "");
   document.querySelector("#settings-password-cancel").setAttribute("disabled", "");
-  // INPUTS
-  document.querySelector("#newPassword").setAttribute("disabled", "");
-  document.querySelector("#confirmNewPassword").setAttribute("disabled", "");
-  document.querySelector("#oldPassword").setAttribute("disabled", "");
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -797,9 +764,6 @@ settings.deleteAccountEnable = () => {
   // BUTTONS
   document.querySelector("#settings-password-submit").removeAttribute("disabled");
   document.querySelector("#settings-password-cancel").removeAttribute("disabled");
-  // INPUTS
-  document.querySelector("#settings-delete-account-input").removeAttribute("disabled");
-  document.querySelector("#confirm-removal-password").removeAttribute("disabled");
 }
 
 // @func  settings.deleteAccountDisable
@@ -813,9 +777,6 @@ settings.deleteAccountDisable = () => {
   // BUTTONS
   document.querySelector("#settings-password-submit").setAttribute("disabled", "");
   document.querySelector("#settings-password-cancel").setAttribute("disabled", "");
-  // INPUTS
-  document.querySelector("#settings-delete-account-input").setAttribute("disabled", "");
-  document.querySelector("#confirm-removal-password").setAttribute("disabled", "");
 }
 
 /* ========================================================================================
