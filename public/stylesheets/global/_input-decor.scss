@@ -95,11 +95,15 @@ INPUT ONE
     padding-left: calc(6px + 0.6vmax);
     margin-top: calc(10.8px + 1.08vmax);
     background: transparent;
-    border-bottom: thin solid $light-2;
+    border-bottom: thin solid $light-3;
     border-radius: 0;
 
     &:focus {
       outline: none;
+    }
+
+    &:disabled {
+      
     }
   }
 

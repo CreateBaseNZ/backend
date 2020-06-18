@@ -104,6 +104,7 @@
 
   <div id="mobile-notif-wrap">
   </div>
+
   <div id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
@@ -402,7 +403,7 @@
               </label>
               <input type="text" id="newEmail" name="newEmail" placeholder="[New Email]">
             </div>
-  
+
             <div id="emailPassword-container" class="hide">
               <label for="emailPassword">
                 <h3>Enter password <span class="requiredField">*</span></h3>
@@ -410,21 +411,21 @@
               <input type="password" id="emailPassword" name="emailPassword" placeholder="[Email Password]"
                 autocomplete="new-password">
             </div>
-  
+
             <div id="email-error" class="errorMessage hide"></div>
-  
+
             <div class="settings-btn-group hide" id="email-btn-group-email">
-              <button id="submit" class="grad-btn" onclick="settings.changeEmail();">Save</button>
-              <button id="cancel" class="cancel-btn" onclick="settings.editEmail();">Cancel</button>
+              <button id="settings-email-submit" class="grad-btn" onclick="settings.changeEmail();">Save</button>
+              <button id="settings-email-cancel" class="cancel-btn" onclick="settings.editEmail();">Cancel</button>
             </div>
-  
+
             <div class="divider"></div>
           </div>
-  
+
           <div id="address-container">
             <h2>Saved Address</h2>
             <div id="address-item-wrap">
-  
+
               <div class="address-item editTitle current" id="address-field-name">
                 <label for="addressName" class="hide" id="address-label-name">
                   <h3>Name/Company Name</h3>
@@ -433,50 +434,50 @@
                 <div id="settings-edit-address" class="editSetting" onclick="settings.editAddress();"><button
                     class="fas fa-pen-square" id="password-edit-btn"></button></div>
               </div>
-  
+
               <div class="address-item current" id="address-field-unit">
                 <label for="addressUnit" class="hide" id="address-label-unit">
                   <h3>Unit</h3>
                 </label>
                 <input type="text" id="addressUnit" name="addressUnit" placeholder="[Unit]" disabled>
               </div>
-  
+
               <div class="address-item current" id="address-field-street-number">
                 <label for="streetNum" class="hide" id="address-label-street-number">
                   <h3>Street Number <span class="requiredField">*</span></h3>
                 </label>
                 <input type="text" id="streetNum" name="streetNum" placeholder="[Street Number]" disabled>
               </div>
-  
+
               <div class="address-item current" id="address-field-street-name">
                 <label for="streetName" class="hide" id="address-label-street-name">
                   <h3>Street Name <span class="requiredField">*</span></h3>
                 </label>
                 <input type="text" id="streetName" name="streetName" placeholder="[Street Name]" disabled>
               </div>
-  
-  
+
+
               <div class="address-item current" id="address-field-suburb">
                 <label for="addressSuburb" class="hide" id="address-label-suburb">
                   <h3>Suburb <span class="requiredField">*</span></h3>
                 </label>
                 <input type="text" id="addressSuburb" name="addressSuburb" placeholder="[Suburb]" disabled>
               </div>
-  
+
               <div class="address-item current" id="address-field-city">
                 <label for="addressCity" class="hide" id="address-label-city">
                   <h3>City <span class="requiredField">*</span></h3>
                 </label>
                 <input type="text" id="addressCity" name="addressCity" placeholder="[City]" disabled>
               </div>
-  
+
               <div class="address-item current" id="address-field-postcode">
                 <label for="postCode" class="hide" id="address-label-postcode">
                   <h3>Postcode <span class="requiredField">*</span></h3>
                 </label>
                 <input type="text" id="postCode" name="postCode" placeholder="[postCode]" disabled>
               </div>
-  
+
               <div class="address-item current" id="address-field-country">
                 <label for="addressCountry" class="hide" id="address-label-country">
                   <h3>Country <span class="requiredField">*</span></h3>
@@ -484,15 +485,15 @@
                 <input type="text" id="addressCountry" name="addressCountry" placeholder="[Country]" disabled>
               </div>
             </div>
-  
+
             <div id="address-error" class="errorMessage hide"></div>
-  
+
             <div class="settings-btn-group hide" id="settings-btn-group-address">
-              <button id="submit" class="grad-btn" onclick="settings.changeAddress();">Save</button>
-              <button id="cancel" class="cancel-btn" onclick="settings.editAddress();">Cancel</button>
+              <button id="settings-address-submit" class="grad-btn" onclick="settings.changeAddress();">Save</button>
+              <button id="settings-address-cancel" class="cancel-btn" onclick="settings.editAddress();">Cancel</button>
             </div>
-  
-  
+
+
             <div class="divider"></div>
           </div>
         </div>
@@ -504,7 +505,7 @@
               <div id="settings-edit-password" class="editSetting" onclick="settings.editPassword();"><button
                   class="fas fa-pen-square" id="password-edit-btn"></button></div>
             </div>
-  
+
             <div id="password-item-wrap" class="hide">
               <div class="password-item">
                 <label for="oldPassword">
@@ -526,17 +527,18 @@
                   placeholder="[Confirm New Password]">
               </div>
             </div>
-  
+
             <div id="password-error" class="errorMessage hide"></div>
-  
+
             <div class="settings-btn-group hide" id="settings-btn-group-password">
-              <button id="submit" class="grad-btn" onclick="settings.changePassword();">Save</button>
-              <button id="cancel" class="cancel-btn" onclick="settings.editPassword();">Cancel</button>
+              <button id="settings-password-submit" class="grad-btn" onclick="settings.changePassword();">Save</button>
+              <button id="settings-password-cancel" class="cancel-btn"
+                onclick="settings.editPassword();">Cancel</button>
             </div>
-  
+
             <div class="divider"></div>
           </div>
-  
+
           <div id="subscription-container">
             <h2>Mailing list subscription</h2>
             <div id="subscription-checkbox" class="editTitle">
@@ -548,16 +550,16 @@
                   onchange="settings.changeSubscription('change');">
               </div>
             </div>
-  
+
             <div id="subscription-error" class="errorMessage hide"></div>
-  
+
             <div class="divider"></div>
           </div>
-  
+
           <div id="removeAccount-container">
             <h2 id="removeh2" onclick="">Delete account</h2>
             <p id="disclaimerP">(All projects, makes and associated saved data will be permanently removed)</p>
-  
+
             <div id="account-checkbox" class="editTitle">
               <label for="c1" id="subscription-title">
                 <p id="confirmP">Yes, I want to delete my account</p>
@@ -567,16 +569,17 @@
                   onchange="settings.deleteAccountConfirmation();">
               </div>
             </div>
-  
+
             <div id="settings-delete-account-password-container" class="editSetting hide">
               <input id="confirm-removal-password" type="password" placeholder="Enter Password">
             </div>
-  
+
             <div id="delete-account-error" class="errorMessage hide"></div>
-  
+
             <div class="settings-btn-group hide" id="settings-btn-group-account">
-              <button id="submit" class="remove-btn" onclick="settings.deleteAccount();">Delete</button>
-              <button id="cancel" class="cancel-btn" onclick="settings.deleteAccountCancel();">Cancel</button>
+              <button id="settings-delete-submit" class="remove-btn" onclick="settings.deleteAccount();">Delete</button>
+              <button id="settings-delete-cancel" class="cancel-btn"
+                onclick="settings.deleteAccountCancel();">Cancel</button>
             </div>
           </div>
         </div>

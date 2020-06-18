@@ -13,12 +13,16 @@ let settings = {
   changeEmailCollect: undefined,
   changeEmailValidate: undefined,
   changeEmailSubmit: undefined,
+  changeEmailEnable: undefined,
+  changeEmailDisable: undefined,
   // ADDRESS SECTION
   editAddress: undefined,
   populateAddress: undefined,
   changeAddress: undefined,
   changeAddressCollect: undefined,
   changeAddressValidate: undefined,
+  changeAddressEnable: undefined,
+  changeAddressDisable: undefined,
   // PASSWORD SECTION
   editPassword: undefined,
   changePassword: undefined,
@@ -26,18 +30,24 @@ let settings = {
   changePasswordValidate: undefined,
   changePasswordSubmit: undefined,
   changePasswordClear: undefined,
+  changePasswordEnable: undefined,
+  changePasswordDisable: undefined,
   // SUBSCRIPTION SECTION
   populateSubscription: undefined,
   changeSubscription: undefined,
   changeSubscriptionCollect: undefined,
   changeSubscriptionValidate: undefined,
+  changeSubscriptionEnable: undefined,
+  changeSubscriptionDisable: undefined,
   // DELETE ACCOUNT SECTION
   deleteAccountConfirmation: undefined,
   deleteAccountCancel: undefined,
   deleteAccount: undefined,
   deleteAccountCollect: undefined,
   deleteAccountValidate: undefined,
-  deleteAccountSubmit: undefined
+  deleteAccountSubmit: undefined,
+  deleteAccountEnable: undefined,
+  deleteAccountDisable: undefined
 }
 
 /* ========================================================================================
@@ -139,20 +149,12 @@ settings.populateEmail = (email) => {
 // @func  settings.changeEmail
 // @desc  Initiate the Change Email
 settings.changeEmail = async () => {
-  // LOADER
-  // TO DO .....
-  // Assign ID of the email loader element
-  // document.querySelector("#").classList.remove("hide");
-  // TO DO .....
+  settings.changeEmailDisable();
   // COLLECT INPUTS
   const [email, password] = settings.changeEmailCollect();
   // VALIDATE INPUTS
   if (!settings.changeEmailValidate(email, password)) {
-    // TO DO .....
-    // Assign ID of the email loader element
-    // return document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
+    return settings.changeEmailEnable();
   };
   // SUBMIT REQUEST
   let data;
@@ -160,20 +162,13 @@ settings.changeEmail = async () => {
     data = await settings.changeEmailSubmit(email, password);
   } catch (error) {
     document.querySelector("#email-error").innerHTML = "failed";
-    // TO DO .....
-    // Assign ID of the email loader element
-    // document.querySelector("#").classList.add("hide");
-    // TO DO .....
+    settings.changeEmailEnable();
     return console.log(error);
   }
   // VALIDATE DATA
   if (data.status === "failed") {
     document.querySelector("#email-error").innerHTML = data.content;
-    // TO DO .....
-    // Assign ID of the email loader element
-    // return document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
+    return settings.changeEmailEnable();
   }
   // SUCCESS HANDLER
   return window.location.href = "/verification";
@@ -224,6 +219,38 @@ settings.changeEmailSubmit = (email, password) => {
     // RESOLVE PROMISE
     return resolve(data);
   })
+}
+
+// @func  settings.changeEmailEnable
+// @desc  
+settings.changeEmailEnable = () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the email loader element
+  // document.querySelector("#").classList.add("hide");
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#settings-email-submit").removeAttribute("disabled");
+  document.querySelector("#settings-email-cancel").removeAttribute("disabled");
+  // INPUTS
+  document.querySelector("#newEmail").removeAttribute("disabled");
+  document.querySelector("#emailPassword").removeAttribute("disabled");
+}
+
+// @func  settings.changeEmailDisable
+// @desc  
+settings.changeEmailDisable = () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the email loader element
+  // document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#settings-email-submit").setAttribute("disabled", "");
+  document.querySelector("#settings-email-cancel").setAttribute("disabled", "");
+  // INPUTS
+  document.querySelector("#newEmail").setAttribute("disabled", "");
+  document.querySelector("#emailPassword").setAttribute("disabled", "");
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -300,51 +327,31 @@ settings.populateAddress = (address) => {
 // @desc  
 settings.changeAddress = async () => {
   // LOADER
-  // TO DO .....
-  // Assign ID of the address loader element
-  // document.querySelector("#").classList.remove("hide");
-  // TO DO .....
+  settings.changeAddressDisable();
   // COLLECT INPUTS
   const address = settings.changeAddressCollect();
   // VALIDATE INPUTS
-  if (!settings.changeAddressValidate(address)) {
-    // TO DO .....
-    // Assign ID of the email loader element
-    // return document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
-  };
+  if (!settings.changeAddressValidate(address)) return settings.changeAddressEnable();
   // SUBMIT REQUEST
   const updates = { subscription: { mail: undefined }, address };
   let data;
   try {
     data = await settings.updateSubmit(updates);
   } catch (error) {
-    // TO DO .....
-    // Assign ID of the address loader element
-    // document.querySelector("#").classList.add("hide");
-    // TO DO .....
+    settings.changeAddressEnable();
     return console.log(error);
   }
   // VALIDATE DATA
   if (data.status === "failed") {
     document.querySelector("#address-error").innerHTML = data.content;
-    // TO DO .....
-    // Assign ID of the address loader element
-    // return document.querySelector("#").classList.add("hide");
-    // TO DO .....
-    return;
+    return settings.changeAddressEnable();
   }
   // SUCCESS HANDLER
   // Add a notification
   notificationPopup("Address Updated");
   // Toggle Edit Mode
-  settings.editAddress();
-  // TO DO .....
-  // Assign ID of the address loader element
-  // return document.querySelector("#").classList.add("hide");
-  // TO DO .....
-  return;
+  settings.changeAddressEnable();
+  return settings.editAddress();
 }
 
 // @func  settings.changeAddressCollect
@@ -409,6 +416,50 @@ settings.changeAddressValidate = (address) => {
   document.querySelector("#address-error").innerHTML = error;
   // TO DO .....
   return valid;
+}
+
+// @func  settings.changeAddressEnable
+// @desc  
+settings.changeAddressEnable = () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the email loader element
+  // return document.querySelector("#").classList.add("hide");
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#settings-address-submit").removeAttribute("disabled");
+  document.querySelector("#settings-address-cancel").removeAttribute("disabled");
+  // INPUTS
+  document.querySelector("#addressName").removeAttribute("disabled");
+  document.querySelector("#addressUnit").removeAttribute("disabled");
+  document.querySelector("#streetNum").removeAttribute("disabled");
+  document.querySelector("#streetName").removeAttribute("disabled");
+  document.querySelector("#addressSuburb").removeAttribute("disabled");
+  document.querySelector("#addressCity").removeAttribute("disabled");
+  document.querySelector("#postCode").removeAttribute("disabled");
+  document.querySelector("#addressCountry").removeAttribute("disabled");
+}
+
+// @func  settings.changeAddressDisable
+// @desc  
+settings.changeAddressDisable = () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  // document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#settings-address-submit").setAttribute("disabled", "");
+  document.querySelector("#settings-address-cancel").setAttribute("disabled", "");
+  // INPUTS
+  document.querySelector("#addressName").setAttribute("disabled", "");
+  document.querySelector("#addressUnit").setAttribute("disabled", "");
+  document.querySelector("#streetNum").setAttribute("disabled", "");
+  document.querySelector("#streetName").setAttribute("disabled", "");
+  document.querySelector("#addressSuburb").setAttribute("disabled", "");
+  document.querySelector("#addressCity").setAttribute("disabled", "");
+  document.querySelector("#postCode").setAttribute("disabled", "");
+  document.querySelector("#addressCountry").setAttribute("disabled", "");
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -543,6 +594,25 @@ settings.changePasswordClear = () => {
   return;
 }
 
+// @func  settings.changePasswordEnable
+// @desc  
+settings.changePasswordEnable = () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  // document.querySelector("#").classList.add("hide");
+  // TO DO .....
+}
+
+// @func  settings.changePasswordDisable
+// @desc  
+settings.changePasswordDisable = () => {
+  // LOADER
+  // TO DO .....
+  // Assign ID of the address loader element
+  // document.querySelector("#").classList.remove("hide");
+  // TO DO .....
+}
 
 /* ----------------------------------------------------------------------------------------
 SUBSCRIPTION
@@ -638,6 +708,18 @@ settings.changeSubscriptionValidate = (subscription) => {
   document.querySelector("#subscription-error").innerHTML = error;
 
   return valid;
+}
+
+// @func  settings.changeSubscriptionEnable
+// @desc  
+settings.changeSubscriptionEnable = () => {
+
+}
+
+// @func  settings.changeSubscriptionDisable
+// @desc  
+settings.changeSubscriptionDisable = () => {
+
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -739,6 +821,18 @@ settings.deleteAccountSubmit = (password) => {
     // RESOLVE PROMISE
     return resolve(data);
   });
+}
+
+// @func  settings.deleteAccountEnable
+// @desc  
+settings.deleteAccountEnable = () => {
+
+}
+
+// @func  settings.deleteAccountDisable
+// @desc  
+settings.deleteAccountDisable = () => {
+
 }
 
 /* ========================================================================================
