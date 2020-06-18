@@ -35,6 +35,12 @@ home.initialise = async () => {
   history.scrollRestoration = "manual";
   // DECLARE VARIABLES
   home.declareVariables();
+  // LOAD GLOBAL
+  try {
+    await global.initialise();
+  } catch (error) {
+    return console.log(error);
+  }
   // LOAD NAVIGATION
   try {
     await navigation.initialise();

@@ -42,13 +42,6 @@ router.get("/admin/file", adminAccess, (req, res) => {
   res.sendFile("file.html", routeOptions);
 });
 
-// @route     Get /admin/test
-// @desc
-// @access    Admin
-router.get("/admin/test", adminAccess, (req, res) => {
-  res.sendFile("test.html", routeOptions);
-});
-
 // @route     Get /admin/make
 // @desc
 // @access    Admin

@@ -1,6 +1,53 @@
-/*=========================================================================================
+/* ========================================================================================
+VARIABLES
+======================================================================================== */
+
+let mail;
+let navigation;
+let session;
+let moment;
+
+let global = {
+  initialise: undefined
+}
+
+/* ========================================================================================
+ASYNCHRONOUS IMPORT
+======================================================================================== */
+
+global.initialise = () => {
+  return new Promise(async (resolve, reject) => {
+    // VARIABLES
+    let momentImport;
+    // IMPORTS
+    const imports = [
+      // Custom
+      import("/public/javascripts/global/mail.js"),
+      import("/public/javascripts/global/nav.js"),
+      import("/public/javascripts/global/session.js"),
+      // Sourced
+      import("/node_modules/moment/dist/moment.js")
+    ]
+    // PROCESS
+    try {
+      [{ mail }, { navigation }, { session }, momentImport] = await Promise.all(imports);
+    } catch (error) {
+      reject(error);
+    }
+    // ASSIGN
+    moment = momentImport.default;
+    // SUCCESS
+    resolve();
+  })
+}
+
+/* ========================================================================================
+FUNCTIONS
+======================================================================================== */
+
+/* ----------------------------------------------------------------------------------------
 ASYNCHRONOUS IMAGE LOADER
-=========================================================================================*/
+---------------------------------------------------------------------------------------- */
 
 const imageLoader = (objects) => {
   return new Promise(async (resolve, reject) => {
@@ -76,78 +123,6 @@ const sendEmail = async (email, subject, div, style) => {
 SUBSCRIBE/UNSUBSCRIBE FUNCTIONS
 =========================================================================================*/
 
-const subscribe = (input) => {
-  return new Promise(async (resolve, reject) => {
-    // Validate if user is online
-    let dataOne;
-    try {
-      dataOne = (await axios.get("/login-status"))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-    // Validate if email is provided
-    let email = "";
-    if (!dataOne.status) {
-      if (!input) {
-        return reject("no email provided");
-      } else {
-        email = input;
-      }
-    }
-    // Send the subscription request to backend
-    let dataTwo;
-    try {
-      dataTwo = (await axios.post("/subscribe/mailing-list", { email }))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-    // Validate Data
-    if (dataTwo.status === "failed") {
-      return reject(dataTwo.content);
-    }
-    // Return Success
-    return resolve(dataTwo.content);
-  })
-}
-
-const unsubscribe = (input) => {
-  return new Promise(async (resolve, reject) => {
-    //Validate user is logged in
-    let dataOne;
-    try {
-      dataOne = (await axios.get("/login-status"))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-
-    // Validate if email is provided
-    let email = "";
-    if (!dataOne.status) {
-      if (!input) {
-        return reject("no email provided");
-      } else {
-        email = input;
-      }
-    }
-
-    //Send unsubscribe request to backend
-    let dataTwo;
-    try {
-      dataTwo = (await axios.post("/unsubscribe/mailing-list", { email }))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-
-    //Validate Data
-    if (dataTwo.status === "failed") {
-      return reject(dataTwo.content);
-    }
-
-    //Return Success
-    return resolve(dataTwo.content)
-  })
-}
-
 // const footerSubscribe = async () => {
 //   // Fetch Email if user not login
 //   let email = "";
@@ -157,7 +132,7 @@ const unsubscribe = (input) => {
 //   // Subscribe User
 //   let data;
 //   try {
-//     data = await subscribe(email);
+//     data = await mail.subscribe(email);
 //   } catch (error) {
 //     // Failed animation
 //     return console.log(error);
@@ -314,31 +289,6 @@ function alreadysubscribedNotif() {
       newDiv.style.display = 'none';
     }, 1000);
   }, 3000);
-}
-
-subscribe.listener = async () => {
-  // Declare and initialise variables
-  let input = document.getElementById('sign-up-eml');
-  let subBtn = document.getElementById('subscribe-main');
-  // Subscribe user
-  let data;
-  try {
-    data = await subscribe(input.value);
-  } catch (error) {
-    return console.log(error);
-  }
-  if (data === "already subscribed") {
-    // Success Handler
-    subBtn.innerHTML = 'SUBSCRIBE NEW EMAIL';
-    alreadysubscribedNotif();
-    return;
-  } else if (data === "subscribed") {
-    input.value = ''; // Clear email input field
-    // Success Handler
-    subBtn.innerHTML = 'SUBSCRIBE NEW EMAIL';
-    subscribeNotif();
-    return;
-  }
 }
 
 const textSequence = (i, words, id) => {

@@ -5,23 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="icon" href="./../../public/images/logo-icon.png" />
+  <link rel="icon" href="/public/images/logo-icon.png" />
   <title>Login • CreateBase</title>
-  <!--============== FONTS ==============-->
+  <!-- =========================CSS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
     rel="stylesheet">
-  <!-- ICONS -->
-  <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
-  <!--============== DEFAULT JAVASCRIPT ==============-->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="./../../public/javascripts/moment.js"></script>
-  <script src="./../../public/javascripts/global.js"></script>
-  <script src="./../../public/javascripts/nav.js"></script>
-  <!--============== CUSTOM JAVASCRIPT ==============-->
-  <script src="./../../public/javascripts/login.js"></script>
-  <!--============== STYLESHEET ==============-->
-  <link rel="stylesheet" href="./../../public/stylesheets/login.css" />
+  <!-- ------------------------CUSTOM------------------------ -->
+  <link rel="stylesheet" href="/public/stylesheets/login.css" />
 </head>
 
 <body onload="login.initialise();">
@@ -164,6 +156,15 @@
       </div>
     </div>
   </div>
+
+  <!-- ==========================JS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <script async src="https://js.stripe.com/v3/"></script>
+  <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <!-- ------------------------CUSTOM------------------------ -->
+  <script async src="/public/javascripts/global.js"></script>
+  <script defer src="/public/javascripts/login.js"></script>
 </body>
 
 </html>
