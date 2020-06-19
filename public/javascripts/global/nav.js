@@ -187,7 +187,7 @@ navigation.addImages = (userMenu = true) => {
   return new Promise(async (resolve, reject) => {
     // IMAGES
     const image1 = {
-      src: "./../../public/images/logo-icon.png", id: "",
+      src: "/public/images/logo-icon.png", id: "",
       alt: "CreateBase", classes: ["nav-logo"], parentId: "nav-home-btn"
     };
     const image2 = {
@@ -199,15 +199,15 @@ navigation.addImages = (userMenu = true) => {
       alt: "User", classes: [], parentId: "nav-in"
     };
     const image4 = {
-      src: "./../../public/images/user-x.png", id: "",
+      src: "/public/images/user-x.png", id: "",
       alt: "User", classes: ["nav-user-x"], parentId: "nav-in"
     };
     const image5 = {
-      src: "./../../public/images/user-out.png", id: "nav-user-out",
+      src: "/public/images/user-out.png", id: "nav-user-out",
       alt: "User", classes: [], parentId: "nav-mobile-out"
     };
     const image6 = {
-      src: "./../../public/images/user-x.png", id: "",
+      src: "/public/images/user-x.png", id: "",
       alt: "User", classes: ["nav-user-x"], parentId: "nav-mobile-out"
     };
     // LOAD IMAGES

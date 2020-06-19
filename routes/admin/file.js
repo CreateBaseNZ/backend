@@ -12,7 +12,7 @@ VARIABLES
 
 const router = new express.Router();
 const routeOptions = {
-  root: path.join(__dirname, "./../../views/admin"),
+  root: path.join(__dirname, "/views/admin"),
 };
 
 /*=========================================================================================

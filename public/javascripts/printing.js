@@ -1,4 +1,19 @@
 const printingInit = async () => {
+  // LOAD GLOBAL
+  try {
+    await global.initialise();
+  } catch (error) {
+    return console.log(error);
+  }
+  // LOAD NAVIGATION
+  try {
+    await navigation.initialise(false);
+  } catch (error) {
+    return console.log(error);
+  }
+  // REMOVE STARTUP LOADER
+  removeLoader();
+  banner.add();
 
   history.scrollRestoration = "manual"
   var mq = window.matchMedia("(min-width: 60em)")

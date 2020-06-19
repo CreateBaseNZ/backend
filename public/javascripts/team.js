@@ -63,27 +63,27 @@ team.addImages = () => {
   return new Promise(async (resolve, reject) => {
     // IMAGES
     const image1 = {
-      src: "./../../public/images/team/carl.png", id: "",
+      src: "/public/images/team/carl.png", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-carl-default"
     };
     const image2 = {
-      src: "./../../public/images/team/carlos.png", id: "",
+      src: "/public/images/team/carlos.png", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-carlos-default"
     }
     const image3 = {
-      src: "./../../public/images/team/louis.png", id: "",
+      src: "/public/images/team/louis.png", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-louis-default"
     }
     const image4 = {
-      src: "./../../public/images/team/hyesu.png", id: "",
+      src: "/public/images/team/hyesu.png", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-hyesu-default"
     }
     const image5 = {
-      src: "./../../public/images/team/brad.jpg", id: "",
+      src: "/public/images/team/brad.jpg", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-brad-default"
     }
     const image6 = {
-      src: "./../../public/images/team/brydon.jpg", id: "",
+      src: "/public/images/team/brydon.jpg", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-brydon-default"
     }
     // LOAD IMAGES

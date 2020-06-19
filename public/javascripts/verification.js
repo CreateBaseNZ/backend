@@ -1,18 +1,24 @@
 const verificationInit = async () => {
-    let loginStatus
-
-    try{
-        loginStatus = await checkLoginStatus();
-    } catch (error){
-        return console.log(error);
-    }
-
-    inputListener()
+  // LOAD GLOBAL
+  try {
+    await global.initialise();
+  } catch (error) {
+    return console.log(error);
+  }
+  // LOAD NAVIGATION
+  try {
+    await navigation.initialise(false);
+  } catch (error) {
+    return console.log(error);
+  }
+  // REMOVE STARTUP LOADER
+  removeLoader();
+  inputListener();
 }
 
 const loginBtnHide = () => {
-    let loginBtn = document.querySelector('.loginLink')
-    loginBtn.classList.add('hide')
+  let loginBtn = document.querySelector('.loginLink')
+  loginBtn.classList.add('hide')
 }
 
 const emailVerification = async () => {
@@ -47,11 +53,11 @@ const verifyCode = async () => {
 
   //Regex - error handling of input
   let i;
-  if (completeCode == undefined  || completeCode.length < allElements.length){
+  if (completeCode == undefined || completeCode.length < allElements.length) {
     for (i = 0; i < allElements.length; i++) {
       let el = allElements[i];
       el.classList.add('inputError');
-      setTimeout(function(){
+      setTimeout(function () {
         el.classList.remove('inputError');
       }, 1000);
       document.querySelector('#instrucText').innerHTML = "Input complete code"
@@ -59,23 +65,23 @@ const verifyCode = async () => {
     }
     return;
   }
-  const query = {  code: completeCode };
+  const query = { code: completeCode };
   // Check Backend
   let data;
-  try{
+  try {
     data = (await axios.post("/account/verify", query))["data"];
-  } catch (error){
+  } catch (error) {
     return console.log(error);
   }
-  if (data.status === "failed"){
+  if (data.status === "failed") {
     //add error classes & animation
     for (i = 0; i < allElements.length; i++) {
       let el = allElements[i];
       el.classList.add('inputError');
-      setTimeout(function(){
+      setTimeout(function () {
         el.classList.remove('inputError');
       }, 1000);
-      if (data.content === "incorrect code"){
+      if (data.content === "incorrect code") {
         document.querySelector('#instrucText').innerHTML = "Incorrect code"
         document.querySelector('#instrucText').style.color = 'red'
       }
@@ -87,15 +93,15 @@ const verifyCode = async () => {
 }
 
 const concatInput = () => {
-    let code = ''
-    let form = document.querySelector('#codeForm')
+  let code = ''
+  let form = document.querySelector('#codeForm')
 
-    for (let i = 0; i < form.elements.length; i++) {
-      code += form.elements[i].value
-    }
+  for (let i = 0; i < form.elements.length; i++) {
+    code += form.elements[i].value
+  }
 
-    console.log(code)
-    return code
+  console.log(code)
+  return code
 }
 
 //Input listener
@@ -106,22 +112,22 @@ const checkRegex = (event) => {
 
   if (regex.test(keyValue)) { //input is valid
     return true
-  } else{
+  } else {
     return false
   }
 }
 
-const inputListener = () => {  
+const inputListener = () => {
   let allElements = document.querySelectorAll('.verifyClass');
   let i;
   for (i = 0; i < allElements.length; i++) {
     let el = allElements[i];
-    el.addEventListener("keypress", function(event) {
-      if (checkRegex(event)){
-        if (this.nextSibling.nextSibling != null){
+    el.addEventListener("keypress", function (event) {
+      if (checkRegex(event)) {
+        if (this.nextSibling.nextSibling != null) {
           this.nextSibling.nextSibling.focus();
         }
-      } 
+      }
       else {
         event.preventDefault();
         //Failed regex - replace input to avoid false inputs to server
