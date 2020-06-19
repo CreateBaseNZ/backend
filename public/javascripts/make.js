@@ -163,10 +163,9 @@ FUNCTIONS
 make.initialise = async () => {
   // DECLARE VARIABLES
   make.declareVariables();
-
-  // LOAD NAVIGATION
+  // LOAD SYSTEM
   try {
-    await navigation.initialise();
+    await global.initialise(true, false);
   } catch (error) {
     return console.log(error);
   }

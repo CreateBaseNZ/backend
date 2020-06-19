@@ -193,10 +193,9 @@ FUNCTIONS
 // @DESC
 // @ARGU
 checkout.initialise = async () => {
-
-  // LOAD NAVIGATION
+  // LOAD SYSTEMS
   try {
-    await navigation.initialise();
+    await global.initialise(true, false);
   } catch (error) {
     return console.log(error);
   }

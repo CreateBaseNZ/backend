@@ -14,10 +14,9 @@ FUNCTIONS
 ======================================================================================== */
 
 market.initialise = async () => {
-
-  // LOAD NAVIGATION
+  // LOAD SYSTEM
   try {
-    await navigation.initialise();
+    await global.initialise();
   } catch (error) {
     return console.log(error);
   }

@@ -241,16 +241,10 @@ function showProjPopup(status, project = undefined) {
   newEditProjScreenOverlay.style.display = 'block'
 }
 
-function passTab(el) {
-  var tab = el.getAttribute("data-tab");
-  localStorage.setItem("tab", tab);
-}
-
 const profileInit = async () => {
-
-  // LOAD NAVIGATION
+  // LOAD SYSTEM
   try {
-    await navigation.initialise(false);
+    await global.initialise(true, false);
   } catch (error) {
     return console.log(error);
   }

@@ -37,11 +37,18 @@ home.initialise = async () => {
   history.scrollRestoration = "manual";
   // DECLARE VARIABLES
   home.declareVariables();
-  // LOAD NAVIGATION, GET LOGIN STATUS AND ADD IMAGES
-  promises = [axios.get("/login-status"), navigation.initialise(), home.addImages()];
-  // ADD IMAGES
+  // GET LOGIN STATUS 
+  let data;
   try {
-    [response] = await Promise.all(promises);
+    data = (await axios.get("/login-status"))["data"];
+  } catch (error) {
+    return console.log(error);
+  }
+  const login = data.status;
+  // LOAD NAVIGATION AND ADD IMAGES
+  promises = [global.initialise(true, true, login), home.addImages()];
+  try {
+    await Promise.all(promises);
   } catch (error) {
     return console.log(error);
   }
@@ -52,7 +59,7 @@ home.initialise = async () => {
   // PAGE CONFIGURATIONS
   textSequence(0, home.words, "change-text");
   home.addListener();
-  home.subscriptionField(response.data.status);
+  home.subscriptionField(login);
 }
 
 // @func  home.declareVariables

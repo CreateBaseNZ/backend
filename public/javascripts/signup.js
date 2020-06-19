@@ -19,10 +19,9 @@ FUNCTIONS
 // @func  signup.initialise
 // @desc  
 signup.initialise = async () => {
-
-  // LOAD NAVIGATION
+  // LOAD SYSTEM
   try {
-    await navigation.initialise(false);
+    await global.initialise(false);
   } catch (error) {
     return console.log(error);
   }

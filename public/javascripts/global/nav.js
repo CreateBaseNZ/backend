@@ -34,24 +34,16 @@ FUNCTIONS
 
 // @func  navigation.initialise
 // @desc  
-navigation.initialise = (userMenu = true) => {
+navigation.initialise = (login = false, userMenu = true) => {
   return new Promise(async (resolve, reject) => {
     // DECLARE VARIABLES
     navigation.declareVariables();
-    // GET LOGIN STATUS
-    let data;
-    try {
-      data = (await axios.get("/login-status"))["data"];
-    } catch (error) {
-      reject(error);
-    }
-    navigation.loginStatus = data.status;
     // CONFIGURATION AND CONTENTS
-    navigation.configuration();
-    navigation.mediaQuery.addListener(navigation.configuration);
+    navigation.configuration(login);
+    navigation.mediaQuery.addListener(() => navigation.configuration(login));
     // ADD IMAGES
     try {
-      await navigation.addImages(userMenu);
+      await navigation.addImages(login, userMenu);
     } catch (error) {
       reject(error);
     }
@@ -131,20 +123,20 @@ navigation.exitModal = () => {
 
 // @func  navigation.configuration
 // @desc  
-navigation.configuration = () => {
+navigation.configuration = (login = false) => {
   if (navigation.mediaQuery.matches) {
     /* Desktop */
-    navigation.menuContentDesktop();
+    navigation.menuContentDesktop(login);
   } else {
     /* Mobile */
-    navigation.menuContentMobile();
+    navigation.menuContentMobile(login);
   }
 }
 
 // @func  navigation.menuContentDesktop
 // @desc  
-navigation.menuContentDesktop = () => {
-  if (navigation.loginStatus) {
+navigation.menuContentDesktop = (login = false) => {
+  if (login) {
     /* Logged in on desktop */
     navigation.userIn.style.display = "block";
     navigation.userDesktopOut.style.display = "none";
@@ -163,8 +155,8 @@ navigation.menuContentDesktop = () => {
 
 // @func  navigation.menuContentMobile
 // @desc  
-navigation.menuContentMobile = () => {
-  if (navigation.loginStatus) {
+navigation.menuContentMobile = (login = false) => {
+  if (login) {
     /* Logged in on mobile */
     navigation.userIn.style.display = "block";
     navigation.userDesktopOut.style.display = "none";
@@ -183,7 +175,7 @@ navigation.menuContentMobile = () => {
 
 // @func  navigation.addImages
 // @desc  
-navigation.addImages = (userMenu = true) => {
+navigation.addImages = (login = false, userMenu = true) => {
   return new Promise(async (resolve, reject) => {
     // IMAGES
     const image1 = {
@@ -213,7 +205,7 @@ navigation.addImages = (userMenu = true) => {
     // LOAD IMAGES
     let objects;
     if (userMenu) {
-      if (navigation.loginStatus) {
+      if (login) {
         objects = [image1, image2, image3, image4, image5, image6];
       } else {
         objects = [image1, image4, image5, image6];

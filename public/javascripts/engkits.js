@@ -14,10 +14,9 @@ FUNCTIONS
 ======================================================================================== */
 
 engkits.initialise = async () => {
-
-  // LOAD NAVIGATION
+  // LOAD SYSTEMS
   try {
-    await navigation.initialise();
+    await global.initialise();
   } catch (error) {
     return console.log(error);
   }

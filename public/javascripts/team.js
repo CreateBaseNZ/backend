@@ -25,10 +25,9 @@ team.initialise = async () => {
   window.onbeforeunload = () => window.scrollTo(0, 0);
   // DECLARE VARIABLES
   team.declareVariables();
-
-  // LOAD NAVIGATION
+  // LOAD SYSTEM
   try {
-    await navigation.initialise();
+    await global.initialise();
   } catch (error) {
     return console.log(error);
   }

@@ -3,12 +3,37 @@ VARIABLES
 ======================================================================================== */
 
 let global = {
-
+  initialise: undefined
 }
 
 /* ========================================================================================
 FUNCTIONS
 ======================================================================================== */
+
+global.initialise = (userMenu = true, footerPresent = true, login = undefined) => {
+  return new Promise(async (resolve, reject) => {
+    if (login === undefined) {
+      // FETCH LOGIN STATUS
+      let data;
+      try {
+        data = (await axios.get("/login-status"))["data"];
+      } catch (error) {
+        reject(error);
+      }
+      login = data.status;
+    }
+    // NAVIGATION
+    try {
+      await navigation.initialise(login, userMenu);
+    } catch (error) {
+      reject(error);
+    }
+    // FOOTER
+    if (footerPresent) footer.initialise(login);
+    // SUCCESS
+    resolve();
+  });
+}
 
 /* ----------------------------------------------------------------------------------------
 ASYNCHRONOUS IMAGE LOADER
@@ -229,6 +254,11 @@ const removeLoader = (footer = true) => {
   document.querySelector(".main-page").classList.remove("hide");
   if (footer) document.querySelector(".footer-section").classList.remove("hide");
   return;
+}
+
+function passTab(el) {
+  var tab = el.getAttribute("data-tab");
+  localStorage.setItem("tab", tab);
 }
 
 /*=========================================================================================

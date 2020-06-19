@@ -13,10 +13,9 @@ FUNCTIONS
 // @func  story.initialise
 // @desc  
 story.initialise = async () => {
-
-  // LOAD NAVIGATION
+  // LOAD SYSTEM
   try {
-    await navigation.initialise(false);
+    await global.initialise();
   } catch (error) {
     return console.log(error);
   }
