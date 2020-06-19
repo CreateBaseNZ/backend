@@ -5,47 +5,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="icon" href="./../../public/images/logo-icon.png" />
+  <link rel="icon" href="/public/images/logo-icon.png" />
   <title>Verification • CreateBase</title>
-  <!--==============FONTS ==============-->
+  <!-- =========================CSS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
     rel="stylesheet">
-  <!--============== ICONS ==============-->
-  <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
-  <!--============== DEFAULT JAVASCRIPTS ==============-->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="./../../public/javascripts/moment.js"></script>
-  <!--============== CUSTOM JAVASCRIPTS ==============-->
-  <script src="./../../public/javascripts/nav.js"></script>
-  <script src="./../../public/javascripts/session.js"></script>
-  <script src="./../../public/javascripts/global.js"></script>
-  <script src="./../../public/javascripts/verification.js"></script>
-  <!--============== STYLESHEET ==============-->
-  <link rel="stylesheet" href="./../../public/stylesheets/verification.css" />
+  <!-- ------------------------CUSTOM------------------------ -->
+  <link rel="stylesheet" href="/public/stylesheets/verification.css" />
 </head>
 
-<body onload="navInit(); verificationInit();">
+<body onload="verificationInit();">
 
-  <nav>
-    <div class="nav-darken-overlay"></div>
+  <nav class="hide">
+    <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
     <div class="nav-top-bar">
-      <button class="hamburger hamburger-spin" type="button">
+      <button class="hamburger hamburger-spin" type="button" onclick="navigation.toggleLeftMenu();">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
-      <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
-      </a>
-      <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture"/>
-      </div>
-      <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
-      </div>
+      <a class="nav-home-btn" id="nav-home-btn" href="/"></a>
+      <div class="nav-in" id="nav-in" onclick="navigation.toggleRightMenu();"></div>
+      <div class="nav-mobile-out" id="nav-mobile-out" onclick="navigation.toggleRightMenu();"></div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
         <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
@@ -56,19 +39,21 @@
         <div class="nav-left-menu">
           <div class="nav-side-menu-links">
             <p class="nav-side-header">CREATEBASE</p>
-              <a class="nav-side-item" href="/3d-printing">MAKE</a>
-              <a class="nav-side-item" href="/products/engkits">KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">SHOP</a>
+            <a class="nav-side-item" href="/3d-printing">MAKE</a>
+            <a class="nav-side-item" href="/products/engkits">KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">SHOP</a>
             <p class="nav-side-header">INFO</p>
-              <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-              <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+            <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
             <p class="nav-side-header">ABOUT</p>
-              <a class="nav-side-item" href="/story">OUR STORY</a>
-              <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/story">OUR STORY</a>
+            <a class="nav-side-item" href="/team">OUR TEAM</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
             <a class="fab fa-twitter" href="https://twitter.com/" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
@@ -78,27 +63,51 @@
       <div class="nav-right-menu-out">
         <div class="nav-right-menu">
           <p class="nav-side-header">WELCOME BACK</p>
-            <a class="nav-side-item" href="/login">LOG IN</a>
+          <a class="nav-side-item" href="/login">LOG IN</a>
           <p class="nav-side-header">FIRST TIME?</p>
-            <a class="nav-side-item" href="/signup">SIGN UP</a>
+          <a class="nav-side-item" href="/signup">SIGN UP</a>
         </div>
       </div>
       <div class="nav-right-menu-in">
-        <div class="nav-right-menu">
-          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture"/>
+        <div class="nav-right-menu" id="nav-right-menu">
           <p class="nav-side-header">PROJECTS</p>
-            <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-            <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-            <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
+          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
+          <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
     </div>
   </nav>
-  
-	<div class="main-page">
+
+  <div class="hide" id="mobile-notif-wrap">
+  </div>
+
+  <div class="hide" id="notification-wrap">
+    <div id="cookie-container" class="hide">
+      <div class="cookie-message-container">
+        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
+          our traffic.</p>
+      </div>
+      <div class="btn-group">
+        <button id="cancel" onclick="session.cancel();">DON'T ALLOW</button>
+        <button id="submit" class="grad-btn" onclick="session.allow();">ALLOW ALL</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-page-loading">
+    <div class="loading-icon">
+      <div class="layer layer-1"></div>
+      <div class="layer layer-2"></div>
+      <div class="layer layer-3"></div>
+    </div>
+    <p>Setting up Base</p>
+  </div>
+
+  <div class="main-page hide">
     <div class="verif-wrap">
       <div class="textGroup">
         <h1>Please verify your account</h1>
@@ -122,7 +131,7 @@
 
   </div>
 
-  <div class="footer-section">
+  <div class="footer-section hide">
     <div class="footer-content">
       <div class="footer-legal-section">
         <h4>INFO</h4>
@@ -152,8 +161,7 @@
           <div class="contact-email"><a href="mailto:createbase@gmail.com">createbase@gmail.com</a></div>
 
           <div class="btn-subscribe">
-            <a href="/services/marketplace" class="reg-btn subscribe-btn" id="subscribe-footer">SUBSCRIBE TO
-              NEWSLETTER</a>
+            <button class="reg-btn" id="footer-subscribe">SUBSCRIBE TO NEWSLETTER</button>
           </div>
 
           <div class="contact-socials">
@@ -188,6 +196,19 @@
       </div>
     </div>
   </div>
+
+  <!-- ==========================JS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <script async src="https://js.stripe.com/v3/"></script>
+  <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <!-- ------------------------CUSTOM------------------------ -->
+  <script async src="/public/javascripts/global/footer.js"></script>
+  <script async src="/public/javascripts/global/nav.js"></script>
+  <script async src="/public/javascripts/global/session.js"></script>
+  <script async src="/public/javascripts/global/notification.js"></script>
+  <script async src="/public/javascripts/global.js"></script>
+  <script defer src="/public/javascripts/verification.js"></script>
 
 </body>
 

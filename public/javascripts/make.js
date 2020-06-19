@@ -52,6 +52,7 @@ let make = {
   },
   // FUNCTIONS
   initialise: undefined,
+  declareVariables: undefined,
   collect: undefined,
   inspect: undefined,
   submit: undefined,
@@ -159,51 +160,44 @@ let make = {
 FUNCTIONS
 =========================================================================================*/
 
-make.initialise = () => {
-  // Buttons
-  make.button.upload.next = document.querySelector("#make-upload-next");
-  make.button.buildType.quick.prototype = document.querySelector(
-    "#make-prototype-build-input"
-  );
-  make.button.buildType.quick.mechanical = document.querySelector(
-    "#make-mechanical-build-input"
-  );
-  make.button.buildType.next = document.querySelector("#make-build-type-next");
-  make.button.buildOptions.next = document.querySelector(
-    "#make-build-options-next"
-  );
-  make.button.orderDetails.next = document.querySelector(
-    "#make-order-details-next"
-  );
-  make.button.complete.next = document.querySelector("#make-complete-next");
-  // Headings
-  make.heading.upload = document.querySelector("#make-upload-heading");
-  make.heading.buildType = document.querySelector("#make-build-type-heading");
-  make.heading.buildOptions = document.querySelector(
-    "#make-build-options-heading"
-  );
-  make.heading.orderDetails = document.querySelector(
-    "#make-order-details-heading"
-  );
-  make.heading.complete = document.querySelector("#make-complete-heading");
-  // Validation
-  make.validation.upload = document.querySelector("#make-upload-validation");
-  make.validation.buildType = document.querySelector(
-    "#make-build-type-validation"
-  );
-  make.validation.buildOptions = document.querySelector(
-    "#make-build-options-validation"
-  );
-  make.validation.orderDetails = document.querySelector(
-    "#make-order-details-validation"
-  );
-  make.validation.complete = document.querySelector(
-    "#make-complete-validation"
-  );
+make.initialise = async () => {
+  // DECLARE VARIABLES
+  make.declareVariables();
+  // LOAD SYSTEM
+  try {
+    await global.initialise(true, false);
+  } catch (error) {
+    return console.log(error);
+  }
+  // REMOVE STARTUP LOADER
+  removeLoader(false);
   // Initial Event Listeners
   make.heading.upload.addEventListener("click", make.upload.show);
   make.validation.upload.addEventListener("click", make.upload.show);
 };
+
+make.declareVariables = () => {
+  // Buttons
+  make.button.upload.next = document.querySelector("#make-upload-next");
+  make.button.buildType.quick.prototype = document.querySelector("#make-prototype-build-input");
+  make.button.buildType.quick.mechanical = document.querySelector("#make-mechanical-build-input");
+  make.button.buildType.next = document.querySelector("#make-build-type-next");
+  make.button.buildOptions.next = document.querySelector("#make-build-options-next");
+  make.button.orderDetails.next = document.querySelector("#make-order-details-next");
+  make.button.complete.next = document.querySelector("#make-complete-next");
+  // Headings
+  make.heading.upload = document.querySelector("#make-upload-heading");
+  make.heading.buildType = document.querySelector("#make-build-type-heading");
+  make.heading.buildOptions = document.querySelector("#make-build-options-heading");
+  make.heading.orderDetails = document.querySelector("#make-order-details-heading");
+  make.heading.complete = document.querySelector("#make-complete-heading");
+  // Validation
+  make.validation.upload = document.querySelector("#make-upload-validation");
+  make.validation.buildType = document.querySelector("#make-build-type-validation");
+  make.validation.buildOptions = document.querySelector("#make-build-options-validation");
+  make.validation.orderDetails = document.querySelector("#make-order-details-validation");
+  make.validation.complete = document.querySelector("#make-complete-validation");
+}
 
 make.collect = () => {
   let input = new FormData(document.querySelector("#make-inputs"));

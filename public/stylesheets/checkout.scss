@@ -4,7 +4,6 @@
 VARIABLES
 ========================================================= */
 
-$diamond: 5vw;
 
 /* =========================================================
 MOBILE CSS
@@ -224,13 +223,12 @@ CART
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 2vmax 0;
-  input {
+  div {
     width: 70%;
   }
-}
-
-#checkout-discount-input-error {
-  width: 70%;
+  button {
+    margin-top: calc(5px + 0.5vmax);
+  }
 }
 
 /* ---------------------------------------------------------
@@ -244,7 +242,6 @@ SHIPPING
   justify-content: space-between;
   align-content: flex-start;
   align-items: center;
-  padding: 2vmax 0;
   overflow: hidden;
   transition: all 0.5s ease;
 }
@@ -278,24 +275,13 @@ SHIPPING
 }
 
 .checkout-new-address {
-  height: 67.8vmax;
-  label {
-    height: 3vmax;
-    padding: 0 1vmax;
-    display: flex;
-    align-items: center;
-    // TEXT
-    font-family: $poppins;
-    font-size: 1.4vmax;
-    color: $dark-1;
+  .unit,.city {
+    width: 65%;
   }
-  .unit,.postcode {
-    width: 60%;
+  .street-number,.postcode {
+    width: 30%;
   }
-  .street-number {
-    width: 35%;
-  }
-  .street-name,.suburb,.city,.country {
+  .street-name,.suburb,.country {
     width: 100%;
   }
 }
@@ -304,15 +290,14 @@ SHIPPING
   height: 5vmax;
   width: 100%;
   display: flex;
+  align-content: flex-end;
   align-items: center;
   padding: 0 1vmax;
-  input {
-    height: 2vmax;
-    width: 2vmax;
-    margin: 0 0.5vmax;
-  }
   label {
-    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: calc(7.2px + 0.72vmax);
+    padding: 0 calc(10px + 1vmax);
   }
 }
 
@@ -473,84 +458,6 @@ COMPLETE
     letter-spacing: 0.2vmax;
     color: $light-3;
   }
-}
-
-/* ---------------------------------------------------------
-NAVIGATION
---------------------------------------------------------- */
-
-.checkout-navigation-icon-container {
-  width: 6vmax;
-  height: 6vmax;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 3.5vmax;
-  border-style: solid;
-  border-width: 0.3vmax;
-  transition: all 0.5s ease;
-  .checkout-navigation-icon {
-    width: 60%;
-    height: 60%;
-    position: absolute;
-    opacity: 0;
-    transition: all 0.5s ease;
-  }
-}
-
-.checkout-navigation-icon-container-selected {
-  background-color: $dark-1;
-  border-color: $dark-1;
-  .checkout-navigation-icon-white {
-    opacity: 1;
-  }
-}
-
-.checkout-navigation-icon-container-deselected {
-  background-color: $light-1;
-  border-color: $dark-1;
-  .checkout-navigation-icon-black {
-    opacity: 1;
-  }
-}
-
-.checkout-navigation-icon-container-selected.valid {
-  background-color: #008000;
-  border-color: #008000;
-  .checkout-navigation-icon-white {
-    opacity: 1;
-  }
-}
-
-.checkout-navigation-icon-container-deselected.valid {
-  background-color: $light-1;
-  border-color: #008000;
-  .checkout-navigation-icon-green {
-    opacity: 1;
-  }
-}
-
-.checkout-navigation-icon-container-deselected.unavailable {
-  background-color: $light-1;
-  border-color: $light-3;
-  .checkout-navigation-icon-grey {
-    opacity: 1;
-  }
-}
-
-#checkout-navigation-container {
-  width: 14vmax;
-  height: calc(100% - 16vmax);
-  position: fixed;
-  top: 8vmax;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  padding: 26vh 0;
 }
 
 /* ---------------------------------------------------------
@@ -748,7 +655,7 @@ GLOBAL
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 0 14vmax 0 4vmax;
+  padding: 0 7.5vmax;
 }
 
 .checkout-sub-section {
@@ -1008,10 +915,12 @@ DESKTOP CSS
 
   .checkout-discount-input-container {
     height: 8vmax;
-    align-content: center;
     padding: 0vmax 10vmax;
-    input {
+    div {
       width: 15vmax;
+    }
+    button {
+      margin-top: calc(6px + 0.6vmax);
     }
   }
 
@@ -1022,10 +931,6 @@ DESKTOP CSS
   /* -------------------------------------------------------
   SHIPPING
   ------------------------------------------------------- */
-
-  .checkout-address {
-    padding: 1vmax 2vmax;
-  }
 
   .checkout-saved-address {
     height: 10vmax;
@@ -1043,22 +948,12 @@ DESKTOP CSS
     }
   }
 
-  .checkout-new-address {
-    height: 40.5vmax;
-    label {
-      height: 2vmax;
-      padding: 0 0.5vmax;
-      font-size: 0.8vmax;
-    }
-  }
-
   #checkout-shipping-save-address {
     height: 2.5vmax;
     padding: 0 0.5vmax;
-    input {
-      height: 1vmax;
-      width: 1vmax;
-      margin: 0 0.25vmax;
+    label {
+      font-size: calc(6.4px + 0.64vmax);
+      padding: 0 calc(8px + 0.8vmax);
     }
   }
 
@@ -1154,24 +1049,6 @@ DESKTOP CSS
       font-size: 1vmax;
       letter-spacing: 0.1vmax;
     }
-  }
-  
-  /* -------------------------------------------------------
-  NAVIGATION
-  ------------------------------------------------------- */
-  
-  .checkout-navigation-icon-container {
-    height: 3vmax;
-    width: 3vmax;
-    border-width: 0.1vmax;
-  }
-
-  #checkout-navigation-container {
-    height: 30vh;
-    width: 3vmax;
-    top: 35vh;
-    right: 4.5vmax;
-    padding: 0;
   }
 
   /* -------------------------------------------------------

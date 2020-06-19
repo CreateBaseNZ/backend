@@ -5,12 +5,13 @@ VARIABLES
 let login = {
   words: ['Creator', 'Maverick', 'Trailblazer', 'Innovator'],
   initialise: undefined,
-  textSequence: undefined,
+  enter: undefined,
   toggleContainer: undefined,
   collect: undefined,
   submit: undefined,
   validate: undefined,
-  enter: undefined
+  enable: undefined,
+  disable: undefined
 }
 
 /* ========================================================================================
@@ -20,37 +21,18 @@ FUNCTIONS
 // @func  login.initialise
 // @desc  
 login.initialise = async () => {
-  // LOAD NAVIGATION
+  // LOAD SYSTEM
   try {
-    await navInit()
+    await global.initialise(false, false);
   } catch (error) {
-    return console.log(error)
+    return console.log(error);
   }
-  // TO DO .....
   // REMOVE STARTUP LOADER
-  // TO DO .....
-
+  removeLoader(false);
   // ADD THE DYNAMIC WORDS EFFECT
-  login.textSequence(0)
+  textSequence(0, login.words, "change-text");
 
   login.enter()
-}
-
-// @func  login.textSequence
-// @desc  
-login.textSequence = (i) => {
-  document.getElementById("change-text").innerHTML = login.words[i]
-  document.getElementById("change-text").setAttribute('data-text', login.words[i])
-  setTimeout(function () {
-    document.getElementById("change-text").classList.remove("glitch")
-    setTimeout(function () {
-      document.getElementById("change-text").classList.add("glitch")
-      setTimeout(function () {
-        i = (Math.floor(Math.random() * login.words.length))
-        login.textSequence(i)
-      }, (100 + Math.random() * 100))
-    }, (500 + Math.random() * 1500))
-  }, (50 + Math.random() * 50))
 }
 
 // Enter button to login
@@ -85,17 +67,12 @@ login.collect = () => {
 // @func  login.submit
 // @desc  
 login.submit = async () => {
-  document.querySelector("#login-btn").setAttribute("disabled", "");
-  // TO DO .....
-  // LOADER
-  // TO DO .....
+  login.disable();
   // COLLECT
   const [email, password] = login.collect();
   // VALIDATION
   // Client
-  if (!login.validate(email, password)) {
-    return document.querySelector("#login-btn").removeAttribute("disabled");
-  }
+  if (!login.validate(email, password)) return login.enable();
   // Server
   let data
   try {
@@ -104,19 +81,17 @@ login.submit = async () => {
     // TO DO .....
     // ERROR HANDLER
     // TO DO .....
-    document.querySelector("#login-btn").removeAttribute("disabled");
-    return console.log(error);
+    console.log(error);
+    return login.enable();
   }
   // ERROR HANDLER
   if (data.status === "failed") {
     document.querySelector("#login-email-error").innerHTML = data.content.email;
     document.querySelector("#login-password-error").innerHTML = data.content.password;
-    return document.querySelector("#login-btn").removeAttribute("disabled");
+    return login.enable();
   }
   // SUCCESS HANDLER
-  document.querySelector("#login-email-error").innerHTML = ""
-  document.querySelector("#login-password-error").innerHTML = ""
-  return document.querySelector("#log-in-form").submit()
+  return document.querySelector("#log-in-form").submit();
 }
 
 // @func  login.validate
@@ -148,6 +123,28 @@ login.validate = (email, password) => {
   document.querySelector("#login-email-error").innerHTML = errorEmail
   document.querySelector("#login-password-error").innerHTML = errorPassword
   return valid
+}
+
+// @func  login.enable
+// @desc  
+login.enable = () => {
+  // LOADER
+  // TO DO .....
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#login-btn").removeAttribute("disabled");
+  document.querySelector("#login-back").removeAttribute("disabled");
+}
+
+// @func  login.disable
+// @desc  
+login.disable = () => {
+  // LOADER
+  // TO DO .....
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#login-btn").setAttribute("disabled", "");
+  document.querySelector("#login-back").setAttribute("disabled", "");
 }
 
 /* ========================================================================================

@@ -5,53 +5,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="icon" href="./../../public/images/logo-icon.png" />
+  <link rel="icon" href="/public/images/logo-icon.png" />
   <title>Checkout • CreateBase</title>
-  <!--===================================================================================
-    CSS and JavaScript
-    ====================================================================================-->
-  <!-------------------------------------------------------------------------------------
-    Sourced CSS
-    -------------------------------------------------------------------------------------->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap" rel="stylesheet" />
-  <!-------------------------------------------------------------------------------------
-    Sourced JavaScript
-    -------------------------------------------------------------------------------------->
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="./../../public/javascripts/moment.js"></script>
-  <!-------------------------------------------------------------------------------------
-    Default JavaScript
-    -------------------------------------------------------------------------------------->
-  <script src="./../../public/javascripts/nav.js"></script>
-  <!-------------------------------------------------------------------------------------
-    Custom CSS and JavaScript
-    -------------------------------------------------------------------------------------->
-  <link rel="stylesheet" href="./../../public/stylesheets/checkout.css" />
-  <script src="./../../public/javascripts/checkout.js"></script>
+  <!-- =========================CSS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <!-- ------------------------CUSTOM------------------------ -->
+  <link rel="stylesheet" href="/public/stylesheets/checkout.css" />
 </head>
 
-<body onload="navInit(); checkout.initialise();">
+<body onload="checkout.initialise();">
 
-  <nav>
-    <div class="nav-darken-overlay"></div>
+  <nav class="hide">
+    <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
     <div class="nav-top-bar">
-      <button class="hamburger hamburger-spin" type="button">
+      <button class="hamburger hamburger-spin" type="button" onclick="navigation.toggleLeftMenu();">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
-      <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
-      </a>
-      <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture"/>
-      </div>
-      <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
-      </div>
+      <a class="nav-home-btn" id="nav-home-btn" href="/"></a>
+      <div class="nav-in" id="nav-in" onclick="navigation.toggleRightMenu();"></div>
+      <div class="nav-mobile-out" id="nav-mobile-out" onclick="navigation.toggleRightMenu();"></div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
         <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
@@ -62,19 +39,21 @@
         <div class="nav-left-menu">
           <div class="nav-side-menu-links">
             <p class="nav-side-header">CREATEBASE</p>
-              <a class="nav-side-item" href="/3d-printing">MAKE</a>
-              <a class="nav-side-item" href="/products/engkits">KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">SHOP</a>
+            <a class="nav-side-item" href="/3d-printing">MAKE</a>
+            <a class="nav-side-item" href="/products/engkits">KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">SHOP</a>
             <p class="nav-side-header">INFO</p>
-              <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-              <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+            <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
             <p class="nav-side-header">ABOUT</p>
-              <a class="nav-side-item" href="/story">OUR STORY</a>
-              <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/story">OUR STORY</a>
+            <a class="nav-side-item" href="/team">OUR TEAM</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
             <a class="fab fa-twitter" href="https://twitter.com/" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
@@ -84,27 +63,51 @@
       <div class="nav-right-menu-out">
         <div class="nav-right-menu">
           <p class="nav-side-header">WELCOME BACK</p>
-            <a class="nav-side-item" href="/login">LOG IN</a>
+          <a class="nav-side-item" href="/login">LOG IN</a>
           <p class="nav-side-header">FIRST TIME?</p>
-            <a class="nav-side-item" href="/signup">SIGN UP</a>
+          <a class="nav-side-item" href="/signup">SIGN UP</a>
         </div>
       </div>
       <div class="nav-right-menu-in">
-        <div class="nav-right-menu">
-          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture"/>
+        <div class="nav-right-menu" id="nav-right-menu">
           <p class="nav-side-header">PROJECTS</p>
-            <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-            <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-            <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
+          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
+          <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
     </div>
   </nav>
-  
-	<div id="checkout">
+
+  <div class="hide" id="mobile-notif-wrap">
+  </div>
+
+  <div class="hide" id="notification-wrap">
+    <div id="cookie-container" class="hide">
+      <div class="cookie-message-container">
+        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
+          our traffic.</p>
+      </div>
+      <div class="btn-group">
+        <button id="cancel" onclick="session.cancel();">DON'T ALLOW</button>
+        <button id="submit" class="grad-btn" onclick="session.allow();">ALLOW ALL</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-page-loading">
+    <div class="loading-icon">
+      <div class="layer layer-1"></div>
+      <div class="layer layer-2"></div>
+      <div class="layer layer-3"></div>
+    </div>
+    <p>Setting up Base</p>
+  </div>
+
+  <div class="main-page hide" id="checkout">
 
     <!---------------------------------------------------------------------------------
     SUMMARY
@@ -174,10 +177,12 @@
         <div class="checkout-sub-section">
           <h3 class="checkout-sub-heading">Discount</h3>
           <div class="checkout-discount-input-container">
-            <input type="text" name="discount" class="checkout-input-text" id="checkout-discount-input"
-              placeholder="Discount Code..." />
+            <div class="input-one">
+              <input type="text" name="discount" id="checkout-discount-input" required>
+              <label for="checkout-discount-input">Discount Code</label>
+              <p id="checkout-discount-input-error"></p>
+            </div>
             <button class="checkout-button-small" onclick="checkout.cart.discount.add();">Add</button>
-            <div class="checkout-input-error" id="checkout-discount-input-error"></div>
           </div>
           <div id="checkout-discounts"></div>
         </div>
@@ -283,42 +288,55 @@
           </div>
 
           <div class="checkout-address checkout-new-address checkout-element-hide" id="checkout-new-address">
-            <label for="checkout-new-address-unit" class="unit">Unit (optional)</label>
-            <label for="checkout-new-address-street-number" class="street-number">Street No.</label>
-            <input type="text" name="unit" class="checkout-input-text unit" id="checkout-new-address-unit"
-              oninput="checkout.shipping.address.new.validate.all('unit');"
-              onchange="checkout.shipping.address.new.update('unit');" />
-            <input type="text" name="streetNumber" class="checkout-input-text street-number"
-              id="checkout-new-address-street-number"
-              oninput="checkout.shipping.address.new.validate.all('streetNumber');"
-              onchange="checkout.shipping.address.new.update('streetNumber');" />
-            <div class="checkout-input-error unit" id="checkout-shipping-unit-error"></div>
-            <div class="checkout-input-error street-number" id="checkout-shipping-street-number-error"></div>
-            <label for="checkout-new-address-street-name" class="street-name">Street Name</label>
-            <input type="text" name="streetName" class="checkout-input-text street-name"
-              id="checkout-new-address-street-name" oninput="checkout.shipping.address.new.validate.all('streetName');"
-              onchange="checkout.shipping.address.new.update('streetName');" />
-            <div class="checkout-input-error street-name" id="checkout-shipping-street-name-error"></div>
-            <label for="checkout-new-address-suburb" class="suburb">Suburb</label>
-            <input type="text" name="suburb" class="checkout-input-text suburb" id="checkout-new-address-suburb"
-              oninput="checkout.shipping.address.new.validate.all('suburb');"
-              onchange="checkout.shipping.address.new.update('suburb');" />
-            <div class="checkout-input-error suburb" id="checkout-shipping-suburb-error"></div>
-            <label for="checkout-new-address-city" class="city">City</label>
-            <input type="text" name="city" class="checkout-input-text city" id="checkout-new-address-city"
-              oninput="checkout.shipping.address.new.validate.all('city');"
-              onchange="checkout.shipping.address.new.update('city');" />
-            <div class="checkout-input-error city" id="checkout-shipping-city-error"></div>
-            <label for="checkout-new-address-postcode" class="postcode">Postcode</label>
-            <input type="text" name="zipCode" class="checkout-input-text postcode" id="checkout-new-address-postcode"
-              oninput="checkout.shipping.address.new.validate.all('postcode');"
-              onchange="checkout.shipping.address.new.update('postcode');" />
-            <div class="checkout-input-error postcode" id="checkout-shipping-postcode-error"></div>
-            <label for="checkout-new-address-country" class="country">Country</label>
-            <input type="text" name="country" class="checkout-input-text country" id="checkout-new-address-country"
-              oninput="checkout.shipping.address.new.validate.all('country');"
-              onchange="checkout.shipping.address.new.update('country');" />
-            <div class="checkout-input-error country" id="checkout-shipping-country-error"></div>
+            <div class="input-one unit">
+              <input type="text" name="unit" id="checkout-new-address-unit"
+                oninput="checkout.shipping.address.new.validate.all('unit');"
+                onchange="checkout.shipping.address.new.update('unit');" required>
+              <label for="checkout-new-address-unit">Unit</label>
+              <p id="checkout-shipping-unit-error"></p>
+            </div>
+            <div class="input-one street-number">
+              <input type="text" name="streetNumber" id="checkout-new-address-street-number"
+                oninput="checkout.shipping.address.new.validate.all('streetNumber');"
+                onchange="checkout.shipping.address.new.update('streetNumber');" required>
+              <label for="checkout-new-address-street-number">Street No.</label>
+              <p id="checkout-shipping-street-number-error"></p>
+            </div>
+            <div class="input-one street-name">
+              <input type="text" name="streetName" id="checkout-new-address-street-name"
+                oninput="checkout.shipping.address.new.validate.all('streetName');"
+                onchange="checkout.shipping.address.new.update('streetName');" required>
+              <label for="checkout-new-address-street-name">Street Name</label>
+              <p id="checkout-shipping-street-name-error"></p>
+            </div>
+            <div class="input-one suburb">
+              <input type="text" name="suburb" id="checkout-new-address-suburb"
+                oninput="checkout.shipping.address.new.validate.all('suburb');"
+                onchange="checkout.shipping.address.new.update('suburb');" required>
+              <label for="checkout-new-address-suburb">Suburb</label>
+              <p id="checkout-shipping-suburb-error"></p>
+            </div>
+            <div class="input-one city">
+              <input type="text" name="city" id="checkout-new-address-city"
+                oninput="checkout.shipping.address.new.validate.all('city');"
+                onchange="checkout.shipping.address.new.update('city');" required>
+              <label for="checkout-new-address-city">City</label>
+              <p id="checkout-shipping-city-error"></p>
+            </div>
+            <div class="input-one postcode">
+              <input type="text" name="zipCode" id="checkout-new-address-postcode"
+                oninput="checkout.shipping.address.new.validate.all('postcode');"
+                onchange="checkout.shipping.address.new.update('postcode');" required>
+              <label for="checkout-new-address-postcode">Postcode</label>
+              <p id="checkout-shipping-postcode-error"></p>
+            </div>
+            <div class="input-one country">
+              <input type="text" name="country" id="checkout-new-address-country"
+                oninput="checkout.shipping.address.new.validate.all('country');"
+                onchange="checkout.shipping.address.new.update('country');" required>
+              <label for="checkout-new-address-country">Country</label>
+              <p id="checkout-shipping-country-error"></p>
+            </div>
             <div id="checkout-shipping-save-address">
               <input type="checkbox" name="saveAddress" id="checkout-shipping-save-address-input"
                 onchange="checkout.shipping.address.new.toggleSave(this.checked);" />
@@ -513,48 +531,9 @@
       </div>
       <p id="checkout-complete-text">Some Text Here ...</p>
     </div>
-
-    <!---------------------------------------------------------------------------------
-      NAVIGATION SYSTEM
-      ---------------------------------------------------------------------------------->
-
-    <nav id="checkout-navigation-container">
-      <div class="checkout-navigation-icon-container checkout-navigation-icon-container-selected"
-        id="checkout-navigation-cart">
-        <img class="checkout-navigation-icon checkout-navigation-icon-black"
-          src="./../../public/images/checkout/cart-black-2.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-white"
-          src="./../../public/images/checkout/cart-white-2.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-green"
-          src="./../../public/images/checkout/cart-green.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-grey"
-          src="./../../public/images/checkout/cart-white-3.png" alt="" />
-      </div>
-      <div class="checkout-navigation-icon-container checkout-navigation-icon-container-deselected unavailable"
-        id="checkout-navigation-shipping">
-        <img class="checkout-navigation-icon checkout-navigation-icon-black"
-          src="./../../public/images/checkout/shipping-black-2.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-white"
-          src="./../../public/images/checkout/shipping-white-2.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-green"
-          src="./../../public/images/checkout/shipping-green.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-grey"
-          src="./../../public/images/checkout/shipping-white-3.png" alt="" />
-      </div>
-      <div class="checkout-navigation-icon-container checkout-navigation-icon-container-deselected unavailable"
-        id="checkout-navigation-payment">
-        <img class="checkout-navigation-icon checkout-navigation-icon-black"
-          src="./../../public/images/checkout/payment-black-2.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-white"
-          src="./../../public/images/checkout/payment-white-2.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-green"
-          src="./../../public/images/checkout/payment-green.png" alt="" />
-        <img class="checkout-navigation-icon checkout-navigation-icon-grey"
-          src="./../../public/images/checkout/payment-white-3.png" alt="" />
-      </div>
-    </nav>
   </div>
-  <div id="checkout-loading-display">
+
+  <div id="checkout-loading-display" class="hide">
     <div id="checkout-loading-display-load">
       <div class="load-2">
         <div></div>
@@ -563,8 +542,20 @@
         <div></div>
       </div>
     </div>
-    <p id="checkout-loading-display-text">loading order details</p>
+    <p id="checkout-loading-display-text"></p>
   </div>
+
+  <!-- ==========================JS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <script async src="https://js.stripe.com/v3/"></script>
+  <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- ------------------------CUSTOM------------------------ -->
+  <script async src="/public/javascripts/global/footer.js"></script>
+  <script async src="/public/javascripts/global/nav.js"></script>
+  <script async src="/public/javascripts/global/session.js"></script>
+  <script async src="/public/javascripts/global/notification.js"></script>
+  <script async src="/public/javascripts/global.js"></script>
+  <script defer src="/public/javascripts/checkout.js"></script>
 </body>
 
 </html>

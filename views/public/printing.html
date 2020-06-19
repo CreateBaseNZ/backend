@@ -5,46 +5,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="icon" href="./../../public/images/logo-icon.png" />
+  <link rel="icon" href="/public/images/logo-icon.png" />
   <title>3D Printing • CreateBase</title>
-  <!--============== FONTS ==============-->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!--============== ICONS ==============-->
-  <script src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
-  <!--============== DEFAULT JAVASCRIPTS ==============-->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="./../../public/javascripts/moment.js"></script>
-  <!--============== CUSTOM JAVASCRIPTS ==============-->
-  <script src="./../../public/javascripts/nav.js"></script>
-  <script src="./../../public/javascripts/session.js"></script>
-  <script src="./../../public/javascripts/global.js"></script>
-  <script src="./../../public/javascripts/printing.js"></script>
-  <!--============== STYLESHEET ==============-->
-  <link rel="stylesheet" href="./../../public/stylesheets/services/printing.css" />
-  <link rel="stylesheet" href="./../../node_modules/swiper/css/swiper.min.css">
+  <!-- =========================CSS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/node_modules/swiper/css/swiper.min.css">
+  <!-- ------------------------CUSTOM------------------------ -->
+  <link rel="stylesheet" href="/public/stylesheets/services/printing.css" />
 </head>
 
-<body onload="navInit(); session.initialise(); printingInit();">
+<body onload="printingInit();">
 
-  <nav>
-    <div class="nav-darken-overlay"></div>
+  <nav class="hide">
+    <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
     <div class="nav-top-bar">
-      <button class="hamburger hamburger-spin" type="button">
+      <button class="hamburger hamburger-spin" type="button" onclick="navigation.toggleLeftMenu();">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
-      <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
-      </a>
-      <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture"/>
-      </div>
-      <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
-      </div>
+      <a class="nav-home-btn" id="nav-home-btn" href="/"></a>
+      <div class="nav-in" id="nav-in" onclick="navigation.toggleRightMenu();"></div>
+      <div class="nav-mobile-out" id="nav-mobile-out" onclick="navigation.toggleRightMenu();"></div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
         <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
@@ -55,19 +40,21 @@
         <div class="nav-left-menu">
           <div class="nav-side-menu-links">
             <p class="nav-side-header">CREATEBASE</p>
-              <a class="nav-side-item" href="/3d-printing">MAKE</a>
-              <a class="nav-side-item" href="/products/engkits">KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">SHOP</a>
+            <a class="nav-side-item" href="/3d-printing">MAKE</a>
+            <a class="nav-side-item" href="/products/engkits">KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">SHOP</a>
             <p class="nav-side-header">INFO</p>
-              <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-              <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
-              <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+            <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
             <p class="nav-side-header">ABOUT</p>
-              <a class="nav-side-item" href="/story">OUR STORY</a>
-              <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/story">OUR STORY</a>
+            <a class="nav-side-item" href="/team">OUR TEAM</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
             <a class="fab fa-twitter" href="https://twitter.com/" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
@@ -77,45 +64,56 @@
       <div class="nav-right-menu-out">
         <div class="nav-right-menu">
           <p class="nav-side-header">WELCOME BACK</p>
-            <a class="nav-side-item" href="/login">LOG IN</a>
+          <a class="nav-side-item" href="/login">LOG IN</a>
           <p class="nav-side-header">FIRST TIME?</p>
-            <a class="nav-side-item" href="/signup">SIGN UP</a>
+          <a class="nav-side-item" href="/signup">SIGN UP</a>
         </div>
       </div>
       <div class="nav-right-menu-in">
-        <div class="nav-right-menu">
-          <img alt="customer profile image" id="nav-dp" src="/profile/customer/fetch/picture"/>
+        <div class="nav-right-menu" id="nav-right-menu">
           <p class="nav-side-header">PROJECTS</p>
-            <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-            <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-            <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
+          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
+          <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
     </div>
   </nav>
-  
-	<div id="notification-wrap">
+
+  <div class="hide" id="mobile-notif-wrap">
+  </div>
+
+  <div class="hide" id="notification-wrap">
     <div id="cookie-container" class="hide">
       <div class="cookie-message-container">
-        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse our traffic.</p>
+        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
+          our traffic.</p>
       </div>
       <div class="btn-group">
-        <button id="cancel" onclick="session.cancel();" >DON'T ALLOW</button>
+        <button id="cancel" onclick="session.cancel();">DON'T ALLOW</button>
         <button id="submit" class="grad-btn" onclick="session.allow();">ALLOW ALL</button>
       </div>
     </div>
   </div>
 
-  <div class="main-page">
+  <div class="full-page-loading">
+    <div class="loading-icon">
+      <div class="layer layer-1"></div>
+      <div class="layer layer-2"></div>
+      <div class="layer layer-3"></div>
+    </div>
+    <p>Setting up Base</p>
+  </div>
+
+  <div class="main-page hide">
     <div class="banner-wrap">
       <div id="particles-js">
         <div class="banner-text">
           <h1>3D PRINTING</h1>
           <a href="/3d-printing" class="grad-btn" role="button" id="start-btn">START MAKING</a>
-          <!-- <button type="submit" class="reg-btn" id="make-btn">START MAKING</button> -->
         </div>
       </div>
     </div>
@@ -127,28 +125,36 @@
           <div class="step-content-container">
             <div class="step-circle-container">
               <div class="vertical-line"></div>
-              <div class="circle-step"><p>0 1</p></div>
-              <div class="circle-step"><p>0 2</p></div>
-              <div class="circle-step"><p>0 3</p></div>
-              <div class="circle-step"><p>0 4</p></div>
+              <div class="circle-step">
+                <p>0 1</p>
+              </div>
+              <div class="circle-step">
+                <p>0 2</p>
+              </div>
+              <div class="circle-step">
+                <p>0 3</p>
+              </div>
+              <div class="circle-step">
+                <p>0 4</p>
+              </div>
             </div>
-    
+
             <div class="icongif-container">
               <img src="/public/images/3dInfo/icon-upload.jpg" alt="icon-upload">
               <img src="/public/images/3dInfo/icon-print.jpg" alt="icon-print">
               <img src="/public/images/3dInfo/icon-custom.jpg" alt="icon-custom">
               <img src="/public/images/3dInfo/icon-delivery.jpg" alt="icon-delivery">
             </div>
-    
+
             <div class="step-diagram-text">
               <div class="diagram-description-item">
-                  <h4>UPLOAD</h4>
-                  <p class="diagram-description">Upload a 3D Model you have downloaded or have made yourself.</p>
+                <h4>UPLOAD</h4>
+                <p class="diagram-description">Upload a 3D Model you have downloaded or have made yourself.</p>
               </div>
               <div class="diagram-description-item">
-                  <h4>CUSTOMISE</h4>
-                  <p class="diagram-description">Choose your build type and set your build options.</p>
-                </div>
+                <h4>CUSTOMISE</h4>
+                <p class="diagram-description">Choose your build type and set your build options.</p>
+              </div>
               <div class="diagram-description-item">
                 <h4>PRINT</h4>
                 <p class="diagram-description">We'll 3D print and post process your product.</p>
@@ -161,24 +167,24 @@
             </div>
           </div>
         </div>
-  
+
         <div class="marketplace-example-section">
           <div class="marketplace-example-container">
-              <div class="image-title-text">
-                <h4>ENDLESS</h4>
-                <h3>Possibilties</h3>
-              </div>
+            <div class="image-title-text">
+              <h4>ENDLESS</h4>
+              <h3>Possibilties</h3>
+            </div>
 
-              <div class="image-caption-text">
-                <p>Create whatever your heart desires</p>
-              </div>
+            <div class="image-caption-text">
+              <p>Create whatever your heart desires</p>
+            </div>
 
 
-              <!-- Update link when page created -->
-              <div class="image-link-text">
-                <a href="/services/marketplace">MORE MARKETPLACE CREATIONS<span></span></a>
-              </div>
-              <img src="../../public/images/3dInfo/endless.jpg" alt="">
+            <!-- Update link when page created -->
+            <div class="image-link-text">
+              <a href="/services/marketplace">MORE MARKETPLACE CREATIONS<span></span></a>
+            </div>
+            <img src="../../public/images/3dInfo/endless.jpg" alt="">
           </div>
         </div>
       </div>
@@ -192,7 +198,9 @@
         <div class="ourtools-text-container">
           <h3>ABOUT</h3>
           <h2>Our Tools of Choice</h2>
-          <p>At CreateBase, we use Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dignissim lorem et purus imperdiet phar. Nulla lacinia sagittis orci id dignissim. Aliquam erat volutpat. Nam commodo accumsan venenatis.</p>
+          <p>At CreateBase, we use Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dignissim lorem et
+            purus imperdiet phar. Nulla lacinia sagittis orci id dignissim. Aliquam erat volutpat. Nam commodo accumsan
+            venenatis.</p>
         </div>
         <form>
           <div class="ourtools-btn-container">
@@ -200,13 +208,13 @@
               <input type="radio" id="option-one" name="selector">
               <!-- add when more machines in use -->
               <!-- <label for="option-one">TYPE 1</label> -->
-            </div> 
-            
+            </div>
+
             <div class="input-item">
               <input type="radio" id="option-two" name="selector" checked="checked">
               <label for="option-two">Prusa i3 MK3S</label>
             </div>
-            
+
             <div class="input-item">
               <input type="radio" id="option-three" name="selector">
               <!-- add when more machines in use -->
@@ -224,31 +232,34 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide ourservices">
               <div class="ourservices-image-container">
-                <img src="./../../public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
+                <img src="/public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
               </div>
               <div class="ourservices-text">
                 <h3>Scaled manufacturing for large & small businesses</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan
+                  pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
               </div>
             </div>
 
             <div class="swiper-slide ourservices">
               <div class="ourservices-image-container">
-                <img src="./../../public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
+                <img src="/public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
               </div>
               <div class="ourservices-text">
                 <h3>Lorem ipsum dolor sit amet consectetur adipisicing.</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan
+                  pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
               </div>
             </div>
 
             <div class="swiper-slide ourservices">
               <div class="ourservices-image-container">
-                <img src="./../../public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
+                <img src="/public/images/3dInfo/truck-icon.jpg" alt="service-icon" />
               </div>
               <div class="ourservices-text">
                 <h3>Lorem ipsum dolor sit, amet consectetur adipisicing.</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat dolor vitae lacus accumsan
+                  pharetra. Nulla aliquet sagittis congue. Phasellus.</p>
               </div>
             </div>
 
@@ -267,7 +278,9 @@
         <div class="materials-text-container">
           <h3>YOUR</h3>
           <h2>Choice of Materials</h2>
-          <p>At CreateBase, we use Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dignissim lorem et purus imperdiet phar. Nulla lacinia sagittis orci id dignissim. Aliquam erat volutpat. Nam commodo accumsan venenatis.</p>
+          <p>At CreateBase, we use Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dignissim lorem et
+            purus imperdiet phar. Nulla lacinia sagittis orci id dignissim. Aliquam erat volutpat. Nam commodo accumsan
+            venenatis.</p>
         </div>
         <div class="btn-tabledownload">
           <button type="submit" class="reg-btn" id="tabledownload-btn">DOWNLOAD COMPARISON INFO</button>
@@ -277,75 +290,90 @@
       </div>
 
     </div>
+  </div>
 
-    <div class="footer-section">
-      <div class="footer-content">
-        <div class="footer-legal-section">
-          <h4>INFO</h4>
-          <div class="footer-legal-content">
-            <ul class="list-section-left">
-              <li><a href="#">Shipping Info</a></li>
-              <li><a href="#">Returns / Exchanges</a></li>
-            </ul>
-            <ul class="list-section-desktop">
-              <li><a href="/services/3d-printing">3D Printing</a></li>
-              <li><a href="/services/marketplace">Marketplace</a></li>
-              <li><a href="/products/engkits">Engineering Kits</a></li>
-            </ul>
+  <div class="footer-section hide">
+    <div class="footer-content">
+      <div class="footer-legal-section">
+        <h4>INFO</h4>
+        <div class="footer-legal-content">
+          <ul class="list-section-left">
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns / Exchanges</a></li>
+          </ul>
+          <ul class="list-section-desktop">
+            <li><a href="/services/3d-printing">3D Printing</a></li>
+            <li><a href="/services/marketplace">Marketplace</a></li>
+            <li><a href="/products/engkits">Engineering Kits</a></li>
+          </ul>
 
-            <div class="list-section-divider"></div>
+          <div class="list-section-divider"></div>
 
-            <ul class="list-section-right">
-              <li><a href="#">Terms & Conditions</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
+          <ul class="list-section-right">
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-contact-section">
+        <h4>CONTACT</h4>
+        <div class="footer-contact-content">
+          <div class="contact-email"><a href="mailto:createbase@gmail.com">createbase@gmail.com</a></div>
+
+          <div class="btn-subscribe">
+            <button class="reg-btn" id="footer-subscribe">SUBSCRIBE TO NEWSLETTER</button>
+          </div>
+
+          <div class="contact-socials">
+            <a href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              class="fab fa-facebook-square" target="_blank"></a>
+            <a href="https://www.instagram.com/createbasenz/" class="fab fa-instagram" target="_blank"></a>
+            <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
+            <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
+          </div>
+          <div class="contact-legal">
+            <a href="#" id="tac">Terms & Conditions</a>
+            <a href="#" id="privpol">Privacy Policy</a>
           </div>
         </div>
+      </div>
 
-        <div class="footer-contact-section">
-          <h4>CONTACT</h4>
-          <div class="footer-contact-content">
-            <div class="contact-email"><a href="mailto:createbase@gmail.com">createbase@gmail.com</a></div>
-
-            <div class="btn-subscribe">
-              <a href="/services/marketplace" class="reg-btn" id="subscribe-btn">SUBSCRIBE TO NEWSLETTER</a>
-            </div>
-
-            <div class="contact-socials">
-              <a href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" class="fab fa-facebook-square" target="_blank"></a>
-              <a href="https://www.instagram.com/createbasenz/" class="fab fa-instagram" target="_blank"></a>
-              <a href="https://twitter.com/" class="fab fa-twitter" target="_blank"></a>
-              <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
-            </div>
-            <div class="contact-legal">
-              <a href="#" id="tac">Terms & Conditions</a>
-              <a href="#" id="privpol">Privacy Policy</a>
-            </div>
-          </div>
+      <div class="footer-sitemap-section">
+        <h4>EXPLORE</h4>
+        <div class="footer-sitemap-content">
+          <ul>
+            <li><a href="/3d-printing">3D Printing</a></li>
+            <li><a href="/services/marketplace">Marketplace</a></li>
+            <li><a href="/services/engkits">Engineering Kits</a></li>
+            <li><a href="/story">Our Story</a></li>
+            <li><a href="/team">Our Team</a></li>
+          </ul>
         </div>
+      </div>
 
-        <div class="footer-sitemap-section">
-          <h4>EXPLORE</h4>
-          <div class="footer-sitemap-content">
-            <ul>
-              <li><a href="/3d-printing">3D Printing</a></li>
-              <li><a href="/services/marketplace">Marketplace</a></li>
-              <li><a href="/services/engkits">Engineering Kits</a></li>
-              <li><a href="/story">Our Story</a></li>
-              <li><a href="/team">Our Team</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer-copyright-section">
-          <h3>&copy; 2020 CREATEBASE. ALL RIGHTS RESERVED</h3>
-        </div>
+      <div class="footer-copyright-section">
+        <h3>&copy; 2020 CREATEBASE. ALL RIGHTS RESERVED</h3>
       </div>
     </div>
   </div>
-  <script src="../../public/javascripts/particles.js"></script>
-  <script src="../../public/javascripts/banner.js"></script>
-  <script src="./../../node_modules/swiper/js/swiper.min.js"></script>
+
+  <!-- ==========================JS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <script async src="/node_modules/particles.js/particles.js"></script>
+  <script async src="/public/javascripts/banner.js"></script>
+  <script async src="https://js.stripe.com/v3/"></script>
+  <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <script async src="/node_modules/swiper/js/swiper.min.js"></script>
+  <!-- ------------------------CUSTOM------------------------ -->
+  <script async src="/public/javascripts/global/footer.js"></script>
+  <script async src="/public/javascripts/global/nav.js"></script>
+  <script async src="/public/javascripts/global/session.js"></script>
+  <script async src="/public/javascripts/global/notification.js"></script>
+  <script async src="/public/javascripts/global.js"></script>
+  <script defer src="/public/javascripts/printing.js"></script>
+
 
 </body>
 

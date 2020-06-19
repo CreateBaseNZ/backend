@@ -12,15 +12,15 @@ markdown = """
         </span>
       </button>
       <a class="nav-home-btn" href="/">
-        <img alt="CreateBase" class="nav-logo" src="./../../public/images/logo-icon.png"/>
+        <img alt="CreateBase" class="nav-logo" src="/public/images/logo-icon.png"/>
       </a>
       <div class="nav-in">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
+        <img alt="User" class="nav-user-x" src="/public/images/user-x.png"/>
         <img alt="User" id="nav-user-in" src="/profile/customer/fetch/picture"/>
       </div>
       <div class="nav-mobile-out">
-        <img alt="User" class="nav-user-x" src="./../../public/images/user-x.png"/>
-        <img alt="User" id="nav-user-out" src="./../../public/images/user-out.png"/>
+        <img alt="User" class="nav-user-x" src="/public/images/user-x.png"/>
+        <img alt="User" id="nav-user-out" src="/public/images/user-out.png"/>
       </div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>

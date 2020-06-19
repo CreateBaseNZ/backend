@@ -1,8 +1,40 @@
+/* ========================================================================================
+FULL PAGE LOADER
+======================================================================================== */
+
+.full-page-loading {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // position: relative;
+  &.hide {
+    display: none;
+  }
+  p {
+    display: inline-block;
+    font-family: $poppins;
+    font-weight: bold;
+    color: lighten($dark-3, 20%);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+ }
+}
+
+/* ========================================================================================
+ICON 1
+======================================================================================== */
+
 .loading-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 35%;
   width: 100%;
 
   .layer {

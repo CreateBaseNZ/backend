@@ -140,7 +140,7 @@ router.get("/logout", async (req, res) => {
 // @access    Public
 router.get("/login-status", (req, res) => {
   if (req.isAuthenticated()) return res.send({ status: true });
-  res.send({ status: false });
+  return res.send({ status: false });
 });
 
 // @route     Get /account-verification/:email/:code

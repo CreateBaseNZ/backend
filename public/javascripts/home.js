@@ -1,151 +1,250 @@
-function textSequence(i, words) {
-  // Cycle through words
-  document.getElementById("change-text").innerHTML = words[i]
-  document.getElementById("change-text").setAttribute('data-text', words[i])
-  setTimeout(function () {
-      document.getElementById("change-text").classList.remove("glitch")
-      setTimeout(function () {
-          document.getElementById("change-text").classList.add("glitch")
-          setTimeout(function () {
-              i += 1
-              if (i >= words.length) {
-                i = 0
-              }
-              textSequence(i, words)
-          }, (100 + Math.random() * 100))
-      }, (500 + Math.random() * 1500))
-  }, (50 + Math.random() * 50))
+/* ========================================================================================
+VARIABLES
+======================================================================================== */
 
+let home = {
+  // VARIABLES
+  words: ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'],
+  mediaQuery: undefined,
+  landscape: undefined,
+  // Elements
+  landingCarousel: undefined,
+  landing1: undefined,
+  landing2: undefined,
+  landing3: undefined,
+  landingBtn1: undefined,
+  landingBtn2: undefined,
+  landingBtn3: undefined,
+  // FUNCTIONS
+  initialise: undefined,
+  declareVariables: undefined,
+  addListener: undefined,
+  slideOne: undefined,
+  slideTwo: undefined,
+  slideThree: undefined,
+  addImages: undefined,
+  subscription: undefined,
+  subscribe: undefined
 }
 
-const homeInit = async() => {
-  history.scrollRestoration = "manual"
-  var mq = window.matchMedia("(min-width: 850px)")
+/* ========================================================================================
+FUNCTIONS
+======================================================================================== */
 
-  var landscape = window.innerWidth > window.innerHeight
-
-  let status;
+// @func  home.initialise
+// @desc  
+home.initialise = async () => {
+  history.scrollRestoration = "manual";
+  // DECLARE VARIABLES
+  home.declareVariables();
+  // GET LOGIN STATUS 
+  let data;
   try {
-    status = (await axios.get("/login-status"))["data"]["status"]
+    data = (await axios.get("/login-status"))["data"];
   } catch (error) {
-    console.log(error)
-    return
+    return console.log(error);
   }
+  const login = data.status;
+  // LOAD NAVIGATION AND ADD IMAGES
+  promises = [global.initialise(true, true, login), home.addImages()];
+  try {
+    await Promise.all(promises);
+  } catch (error) {
+    return console.log(error);
+  }
+  // REMOVE STARTUP LOADER
+  removeLoader();
+  // LOAD SESSION
+  session.initialise();
+  // PAGE CONFIGURATIONS
+  textSequence(0, home.words, "change-text");
+  home.addListener();
+  home.subscription(login);
+}
 
-  textSequence(0, ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'])
+// @func  home.declareVariables
+// @desc  
+home.declareVariables = () => {
+  home.mediaQuery = window.matchMedia("(min-width: 850px)");
+  home.landscape = window.innerWidth > window.innerHeight;
+  home.landingCarousel = document.querySelector('.landing-carousel');
+  home.landing1 = document.querySelector('#landing-1');
+  home.landing2 = document.querySelector('#landing-2');
+  home.landing3 = document.querySelector('#landing-3');
+  home.landingBtn1 = document.querySelector('#landing-btn-1');
+  home.landingBtn2 = document.querySelector('#landing-btn-2');
+  home.landingBtn3 = document.querySelector('#landing-btn-3');
+}
 
-  if (mq.matches && landscape)  {
-    
-    const landingCarousel = document.querySelector('.landing-carousel')
-    const landing1 = document.querySelector('#landing-1')
-    const landing2 = document.querySelector('#landing-2')
-    const landing3 = document.querySelector('#landing-3')
-    const landingBtn1 = document.querySelector('#landing-btn-1')
-    const landingBtn2 = document.querySelector('#landing-btn-2')
-    const landingBtn3 = document.querySelector('#landing-btn-3')
-  
-    function slide1Click() {
-      if (landingBtn2.classList.contains('landing-slide-nav-btn-focus')) {
-        landing1.classList.remove('landing-slide-left')
-        landing2.classList.remove('landing-slide-middle')
-        landing3.classList.remove('landing-slide-right')
-        landing1.classList.add('landing-slide-middle')
-        landing2.classList.add('landing-slide-right')
-        landingCarousel.style.marginLeft = "150vmax"
-        landingBtn2.classList.remove('landing-slide-nav-btn-focus')
-        landingBtn1.classList.add('landing-slide-nav-btn-focus')
-      } else if (landingBtn3.classList.contains('landing-slide-nav-btn-focus')) {
-        landing2.classList.remove('landing-slide-left')
-        landing3.classList.remove('landing-slide-middle')
-        landing1.classList.add('landing-slide-middle')
-        landing2.classList.add('landing-slide-right')
-        landingCarousel.style.marginLeft = "150vmax"
-        landingBtn3.classList.remove('landing-slide-nav-btn-focus')
-        landingBtn1.classList.add('landing-slide-nav-btn-focus')
-      }
-    }
-    function slide2Click() {
-      if (landingBtn1.classList.contains('landing-slide-nav-btn-focus')) {
-        landing1.classList.remove('landing-slide-middle')
-        landing2.classList.remove('landing-slide-right')
-        landing1.classList.add('landing-slide-left')
-        landing2.classList.add('landing-slide-middle')
-        landing3.classList.add('landing-slide-right')
-        landingCarousel.style.marginLeft = "0vmax"
-        landingBtn1.classList.remove('landing-slide-nav-btn-focus')
-        landingBtn2.classList.add('landing-slide-nav-btn-focus')
-      } else if (landingBtn3.classList.contains('landing-slide-nav-btn-focus')) {
-        landing3.classList.remove('landing-slide-middle')
-        landing2.classList.remove('landing-slide-left')
-        landing1.classList.add('landing-slide-left')
-        landing2.classList.add('landing-slide-middle')
-        landing3.classList.add('landing-slide-right')
-        landingCarousel.style.marginLeft = "0vmax"
-        landingBtn3.classList.remove('landing-slide-nav-btn-focus')
-        landingBtn2.classList.add('landing-slide-nav-btn-focus')
-      }
-    }
-    function slide3Click() {
-      if (landingBtn1.classList.contains('landing-slide-nav-btn-focus')) {
-        landing1.classList.remove('landing-slide-middle')
-        landing2.classList.remove('landing-slide-right')
-        landing2.classList.add('landing-slide-left')
-        landing3.classList.add('landing-slide-middle')
-        landingCarousel.style.marginLeft = "-150vmax"
-        landingBtn1.classList.remove('landing-slide-nav-btn-focus')
-        landingBtn3.classList.add('landing-slide-nav-btn-focus')
-      } else if (landingBtn2.classList.contains('landing-slide-nav-btn-focus')) {
-        landing1.classList.remove('landing-slide-left')
-        landing2.classList.remove('landing-slide-middle')
-        landing3.classList.remove('landing-slide-right')
-        landing2.classList.add('landing-slide-left')
-        landing3.classList.add('landing-slide-middle')
-        landingCarousel.style.marginLeft = "-150vmax"
-        landingBtn2.classList.remove('landing-slide-nav-btn-focus')
-        landingBtn3.classList.add('landing-slide-nav-btn-focus')
-      }
-    }
-  
-    landingBtn1.addEventListener("click", function() {
-      slide1Click();
-    });
-    landingBtn2.addEventListener("click", function() {
-      slide2Click();
-    });
-    landingBtn3.addEventListener("click", function() {
-      slide3Click();
-    });
-  
-    landing1.addEventListener("click", function() {
-      slide1Click();
-    });
-    landing2.addEventListener("click", function() {
-      slide2Click();
-    });
-    landing3.addEventListener("click", function() {
-      slide3Click();
-    });
-
+// @func  home.addListener
+// @desc  
+home.addListener = () => {
+  if (home.mediaQuery.matches && home.landscape) {
+    home.landingBtn1.addEventListener("click", home.slideOne);
+    home.landingBtn2.addEventListener("click", home.slideTwo);
+    home.landingBtn3.addEventListener("click", home.slideThree);
+    home.landing1.addEventListener("click", home.slideOne);
+    home.landing2.addEventListener("click", home.slideTwo);
+    home.landing3.addEventListener("click", home.slideThree);
   }
 }
 
-// const homeSubscribe = async () => {
-//   // Fetch Email if user not login
-//   let email = "";
+// @func  home.slideOne
+// @desc  
+home.slideOne = () => {
+  if (home.landingBtn2.classList.contains('landing-slide-nav-btn-focus')) {
+    home.landing1.classList.remove('landing-slide-left');
+    home.landing2.classList.remove('landing-slide-middle');
+    home.landing3.classList.remove('landing-slide-right');
+    home.landing1.classList.add('landing-slide-middle');
+    home.landing2.classList.add('landing-slide-right');
+    home.landingCarousel.style.marginLeft = "150vmax";
+    home.landingBtn2.classList.remove('landing-slide-nav-btn-focus');
+    home.landingBtn1.classList.add('landing-slide-nav-btn-focus');
+  } else if (home.landingBtn3.classList.contains('landing-slide-nav-btn-focus')) {
+    home.landing2.classList.remove('landing-slide-left');
+    home.landing3.classList.remove('landing-slide-middle');
+    home.landing1.classList.add('landing-slide-middle');
+    home.landing2.classList.add('landing-slide-right');
+    home.landingCarousel.style.marginLeft = "150vmax";
+    home.landingBtn3.classList.remove('landing-slide-nav-btn-focus');
+    home.landingBtn1.classList.add('landing-slide-nav-btn-focus');
+  }
+}
 
-//   // Loading animation
+// @func  home.slideTwo
+// @desc  
+home.slideTwo = () => {
+  if (home.landingBtn1.classList.contains('landing-slide-nav-btn-focus')) {
+    home.landing1.classList.remove('landing-slide-middle');
+    home.landing2.classList.remove('landing-slide-right');
+    home.landing1.classList.add('landing-slide-left');
+    home.landing2.classList.add('landing-slide-middle');
+    home.landing3.classList.add('landing-slide-right');
+    home.landingCarousel.style.marginLeft = "0vmax";
+    home.landingBtn1.classList.remove('landing-slide-nav-btn-focus');
+    home.landingBtn2.classList.add('landing-slide-nav-btn-focus');
+  } else if (home.landingBtn3.classList.contains('landing-slide-nav-btn-focus')) {
+    home.landing3.classList.remove('landing-slide-middle');
+    home.landing2.classList.remove('landing-slide-left');
+    home.landing1.classList.add('landing-slide-left');
+    home.landing2.classList.add('landing-slide-middle');
+    home.landing3.classList.add('landing-slide-right');
+    home.landingCarousel.style.marginLeft = "0vmax";
+    home.landingBtn3.classList.remove('landing-slide-nav-btn-focus');
+    home.landingBtn2.classList.add('landing-slide-nav-btn-focus');
+  }
+}
 
-//   // Subscribe User
-//   let data;
-//   try {
-//     data = await subscribe(email);
-//   } catch (error) {
-//     // Failed animation
-//     return console.log(error);
-//   }
-//   // Success animation
+// @func  home.slideThree
+// @desc  
+home.slideThree = () => {
+  if (home.landingBtn1.classList.contains('landing-slide-nav-btn-focus')) {
+    home.landing1.classList.remove('landing-slide-middle');
+    home.landing2.classList.remove('landing-slide-right');
+    home.landing2.classList.add('landing-slide-left');
+    home.landing3.classList.add('landing-slide-middle');
+    home.landingCarousel.style.marginLeft = "-150vmax";
+    home.landingBtn1.classList.remove('landing-slide-nav-btn-focus');
+    home.landingBtn3.classList.add('landing-slide-nav-btn-focus');
+  } else if (home.landingBtn2.classList.contains('landing-slide-nav-btn-focus')) {
+    home.landing1.classList.remove('landing-slide-left');
+    home.landing2.classList.remove('landing-slide-middle');
+    home.landing3.classList.remove('landing-slide-right');
+    home.landing2.classList.add('landing-slide-left');
+    home.landing3.classList.add('landing-slide-middle');
+    home.landingCarousel.style.marginLeft = "-150vmax";
+    home.landingBtn2.classList.remove('landing-slide-nav-btn-focus');
+    home.landingBtn3.classList.add('landing-slide-nav-btn-focus');
+  }
+}
 
-//   return;
-// }
+// @func  home.addImages
+// @desc  
+home.addImages = () => {
+  return new Promise(async (resolve, reject) => {
+    // IMAGES
+    const image1 = {
+      src: "/public/images/landing-7.png", id: "",
+      alt: "Landing 1", classes: [], parentId: "landing-1"
+    }
+    const image2 = {
+      src: "/public/images/landing-5.png", id: "",
+      alt: "Landing 2", classes: [], parentId: "landing-2"
+    }
+    const image3 = {
+      src: "/public/images/landing-6.png", id: "",
+      alt: "Landing 3", classes: [], parentId: "landing-3"
+    }
+    // LOAD IMAGES
+    const objects = [image1, image2, image3];
+    try {
+      await imageLoader(objects);
+    } catch (error) {
+      reject(error)
+    }
+    // SUCCESS RESPONSE
+    // Add classes for animation
+    document.querySelector("#landing-1").classList.add("landing-1");
+    document.querySelector("#landing-2").classList.add("landing-2");
+    document.querySelector("#landing-3").classList.add("landing-3");
+    resolve();
+  });
+}
 
+// @func  home.subscription
+// @desc  
+home.subscription = (login = false) => {
+  // INPUT FIELD DISPLAY
+  if (login) {
+    document.querySelector("#subscribe-field").classList.add("hide");
+  }
+  // BUTTON ATTRIBUTE
+  document.querySelector("#subscribe-main").setAttribute("onclick", `home.subscribe(${login});`);
+}
 
+// @func  home.subscribe
+// @desc  
+home.subscribe = async (login = false) => {
+  document.querySelector("#subscribe-email-error").innerHTML = "";
+  // DISABLE
+  document.querySelector("#subscribe-main").setAttribute("disabled", "");
+  // COLLECT
+  const email = (!login) ? document.querySelector("#subscribe-email-input").value : "";
+  // VALIDATE
+  if (!login) {
+    if (email === "") {
+      document.querySelector("#subscribe-email-error").innerHTML = "an email is required";
+      return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+    }
+    // TO DO .....
+    // REGEX VALIDATION
+    // TO DO .....
+  }
+  // SUBMIT
+  let data;
+  try {
+    data = (await axios.post("/subscribe/mailing-list", { email }))["data"];
+  } catch (error) {
+    console.log(error);
+    notification.popup("an error ocurred", "failed");
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  }
+  if (data.status === "failed") {
+    console.log(data.content);
+    notification.popup("an error ocurred", "failed");
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  }
+  // SUCCESS
+  let message;
+  if (data.content === "already subscribed") {
+    message = login ? "You are already subscribed" : "This email is already subscribed";
+    notification.popup(message, "sent");
+  }
+  if (data.content === "subscribed") notification.popup("Thank you for subscribing to the newsletter!", "succeeded");
+  return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+}
+
+/* ========================================================================================
+END
+======================================================================================== */

@@ -33,7 +33,6 @@ session.initialise = async () => {
     console.log(error);
     return;
   }
-  console.log(sessionStatus);
   if (sessionStatus !== "unset") {
     return;
   }
@@ -139,20 +138,18 @@ session.show = () => {
 
 session.allow = async () => {
   document.querySelector('#cookie-container').classList.add("hide");
-    // Update backend of Cookie Status
-    let data;
-    try {
-      data = await session.save();
-    } catch (error) {
-      console.log(error);
-      return;
-    }
-    console.log(data);
+  // Update backend of Cookie Status
+  let data;
+  try {
+    data = await session.save();
+  } catch (error) {
+    console.log(error);
     return;
+  }
+  console.log(data);
+  return;
 }
 
-
-
-/*=========================================================================================
+/* ========================================================================================
 END
-=========================================================================================*/
+======================================================================================== */

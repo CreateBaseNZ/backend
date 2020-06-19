@@ -1,8 +1,45 @@
-/*=========================================================================================
-ASYNCHRONOUS IMAGE LOADER
-=========================================================================================*/
+/* ========================================================================================
+VARIABLES
+======================================================================================== */
 
-const imageLoader = (objects, classes) => {
+let global = {
+  initialise: undefined
+}
+
+/* ========================================================================================
+FUNCTIONS
+======================================================================================== */
+
+global.initialise = (userMenu = true, footerPresent = true, login = undefined) => {
+  return new Promise(async (resolve, reject) => {
+    if (login === undefined) {
+      // FETCH LOGIN STATUS
+      let data;
+      try {
+        data = (await axios.get("/login-status"))["data"];
+      } catch (error) {
+        reject(error);
+      }
+      login = data.status;
+    }
+    // NAVIGATION
+    try {
+      await navigation.initialise(login, userMenu);
+    } catch (error) {
+      reject(error);
+    }
+    // FOOTER
+    if (footerPresent) footer.initialise(login);
+    // SUCCESS
+    resolve();
+  });
+}
+
+/* ----------------------------------------------------------------------------------------
+ASYNCHRONOUS IMAGE LOADER
+---------------------------------------------------------------------------------------- */
+
+const imageLoader = (objects) => {
   return new Promise(async (resolve, reject) => {
     // INITIALISE AND DECLARE VARIABLES
     let promises = [];
@@ -13,8 +50,8 @@ const imageLoader = (objects, classes) => {
       let image = new Image();
       image.decoding = "async";
       image.src = object.src;
-      if (classes) {
-        image.classList.add(...classes);
+      if (object.classes) {
+        image.classList.add(...object.classes);
       }
       promises.push(image.decode());
       images.push(image);
@@ -30,8 +67,9 @@ const imageLoader = (objects, classes) => {
     for (let i = 0; i < objects.length; i++) {
       const object = objects[i];
       const image = images[i];
-      document.querySelector(`#${object.id}`).innerHTML = "";
-      document.querySelector(`#${object.id}`).appendChild(image);
+      image.id = object.id;
+      image.alt = object.alt;
+      document.querySelector(`#${object.parentId}`).insertAdjacentElement("afterbegin", image);
     }
     resolve();
   })
@@ -72,134 +110,8 @@ const sendEmail = async (email, subject, div, style) => {
 };
 
 /*=========================================================================================
-SUBSCRIBE/UNSUBSCRIBE FUNCTIONS
-=========================================================================================*/
-
-const subscribe = (input) => {
-  return new Promise(async (resolve, reject) => {
-    // Validate if user is online
-    let dataOne;
-    try {
-      dataOne = (await axios.get("/login-status"))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-    // Validate if email is provided
-    let email = "";
-    if (!dataOne.status) {
-      if (!input) {
-        return reject("no email provided");
-      } else {
-        email = input;
-      }
-    }
-    // Send the subscription request to backend
-    let dataTwo;
-    try {
-      dataTwo = (await axios.post("/subscribe/mailing-list", { email }))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-    // Validate Data
-    if (dataTwo.status === "failed") {
-      return reject(dataTwo.content);
-    }
-    // Return Success
-    return resolve(dataTwo.content);
-  })
-}
-
-const unsubscribe = (input) => {
-  return new Promise(async (resolve, reject) => {
-    //Validate user is logged in
-    let dataOne;
-    try {
-      dataOne = (await axios.get("/login-status"))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-
-    // Validate if email is provided
-    let email = "";
-    if (!dataOne.status) {
-      if (!input) {
-        return reject("no email provided");
-      } else {
-        email = input;
-      }
-    }
-
-    //Send unsubscribe request to backend
-    let dataTwo;
-    try {
-      dataTwo = (await axios.post("/unsubscribe/mailing-list", { email }))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-
-    //Validate Data
-    if (dataTwo.status === "failed") {
-      return reject(dataTwo.content);
-    }
-
-    //Return Success
-    return resolve(dataTwo.content)
-  })
-}
-
-// const footerSubscribe = async () => {
-//   // Fetch Email if user not login
-//   let email = "";
-
-//   // Loading animation
-
-//   // Subscribe User
-//   let data;
-//   try {
-//     data = await subscribe(email);
-//   } catch (error) {
-//     // Failed animation
-//     return console.log(error);
-//   }
-//   // Success animation
-
-//   return;
-// }
-/*=========================================================================================
 Global notifs
 =========================================================================================*/
-
-const notificationPopup = (message) => {
-  // Create div to insert
-  let newDiv = document.createElement("div");
-  newDiv.classList.add("subbed-notif");
-  let messageWrap = document.createElement("div")
-  newDiv.appendChild(messageWrap).classList.add("msg-wrap");
-  messageWrap.appendChild(document.createElement('i')).className = 'fab fa-telegram-plane';
-  messageWrap.appendChild(document.createElement('p')).innerHTML = message;
-  // Find location to insert div
-  let notifDiv = document.getElementById('notification-wrap')
-  let mobileDiv = document.getElementById('mobile-notif-wrap')
-  // Add slide in animation
-  newDiv.classList.add("slide-in");
-  //Insert div
-  var mq = window.matchMedia("(min-width: 53em)");
-  if (mq.matches) {
-    notifDiv.appendChild(newDiv)
-  }
-  else {
-    mobileDiv.appendChild(newDiv)
-  }
-  // Fade out
-  setTimeout(() => {
-    newDiv.style.transition = 'all 2s'
-    newDiv.style.opacity = 0
-    // Hide
-    setTimeout(() => {
-      newDiv.style.display = 'none'
-    }, 1000)
-  }, 3000)
-}
 
 function subscribeNotif() {
   // Create div to insert
@@ -315,29 +227,38 @@ function alreadysubscribedNotif() {
   }, 3000);
 }
 
-subscribe.listener = async () => {
-  // Declare and initialise variables
-  let input = document.getElementById('sign-up-eml');
-  let subBtn = document.getElementById('subscribe-main');
-  // Subscribe user
-  let data;
-  try {
-    data = await subscribe(input.value);
-  } catch (error) {
-    return console.log(error);
-  }
-  if (data === "already subscribed") {
-    // Success Handler
-    subBtn.innerHTML = 'SUBSCRIBE NEW EMAIL';
-    alreadysubscribedNotif();
-    return;
-  } else if (data === "subscribed") {
-    input.value = ''; // Clear email input field
-    // Success Handler
-    subBtn.innerHTML = 'SUBSCRIBE NEW EMAIL';
-    subscribeNotif();
-    return;
-  }
+const textSequence = (i, words, id) => {
+  // Cycle through words
+  document.getElementById(id).innerHTML = words[i]
+  document.getElementById(id).setAttribute('data-text', words[i])
+  setTimeout(function () {
+    document.getElementById(id).classList.remove("glitch")
+    setTimeout(function () {
+      document.getElementById(id).classList.add("glitch")
+      setTimeout(function () {
+        i += 1
+        if (i >= words.length) {
+          i = 0
+        }
+        textSequence(i, words, id);
+      }, (100 + Math.random() * 100))
+    }, (500 + Math.random() * 1500))
+  }, (50 + Math.random() * 50))
+}
+
+const removeLoader = (footer = true) => {
+  document.querySelector(".full-page-loading").classList.add("hide");
+  document.querySelector("nav").classList.remove("hide");
+  document.querySelector("#mobile-notif-wrap").classList.remove("hide");
+  document.querySelector("#notification-wrap").classList.remove("hide");
+  document.querySelector(".main-page").classList.remove("hide");
+  if (footer) document.querySelector(".footer-section").classList.remove("hide");
+  return;
+}
+
+function passTab(el) {
+  var tab = el.getAttribute("data-tab");
+  localStorage.setItem("tab", tab);
 }
 
 /*=========================================================================================

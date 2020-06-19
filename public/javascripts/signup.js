@@ -7,7 +7,9 @@ let signup = {
   collect: undefined,
   submit: undefined,
   validate: undefined,
-  confirmPassword: undefined
+  confirmPassword: undefined,
+  enable: undefined,
+  disable: undefined
 }
 
 /* ========================================================================================
@@ -17,22 +19,17 @@ FUNCTIONS
 // @func  signup.initialise
 // @desc  
 signup.initialise = async () => {
-  // LOAD NAVIGATION
+  // LOAD SYSTEM
   try {
-    await navInit();
+    await global.initialise(false, false);
   } catch (error) {
     return console.log(error);
   }
   signup.confirmPassword();
-  // TO DO .....
   // REMOVE STARTUP LOADER
-  // TO DO .....
+  removeLoader(false);
   // LOAD SESSION
-  try {
-    await session.initialise();
-  } catch (error) {
-    return console.log(error);
-  }
+  session.initialise();
 }
 
 // @func  signup.collect
@@ -49,18 +46,12 @@ signup.collect = () => {
 // @func  signup.submit
 // @desc  
 signup.submit = async () => {
-  // DISABLE BUTTON
-  document.querySelector("#signup-btn").setAttribute("disabled", "");
-  // TO DO .....
-  // LOADER
-  // TO DO .....
+  signup.disable();
   // COLLECT
   const [displayName, email, password, confirmPassword] = signup.collect();
   // VALIDATION
   // Client
-  if (!signup.validate(displayName, email, password, confirmPassword)) {
-    return document.querySelector("#signup-btn").removeAttribute("disabled");
-  }
+  if (!signup.validate(displayName, email, password, confirmPassword)) return signup.enable();
   // Server
   let data;
   try {
@@ -69,16 +60,15 @@ signup.submit = async () => {
     // TO DO .....
     // ERROR HANDLER
     // TO DO .....
-    document.querySelector("#signup-btn").removeAttribute("disabled");
-    return console.log(error);
+    console.log(error);
+    return signup.enable();
   }
   // ERROR HANDLER
   if (data.status === "failed") {
     document.querySelector("#signup-error-email").innerHTML = data.content;
-    return document.querySelector("#signup-btn").removeAttribute("disabled");
+    return signup.enable();
   }
   // SUCCESS HANDLER
-  document.querySelector("#signup-error-email").innerHTML = "";
   return document.querySelector("#sign-up-form").submit();
 }
 
@@ -148,6 +138,26 @@ signup.confirmPassword = () => {
       confirmInput.value = "";
     }
   });
+}
+
+// @func  signup.enable
+// @desc  
+signup.enable = () => {
+  // LOADER
+  // TO DO .....
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#signup-btn").removeAttribute("disabled");
+}
+
+// @func  signup.disable
+// @desc  
+signup.disable = () => {
+  // LOADER
+  // TO DO .....
+  // TO DO .....
+  // BUTTONS
+  document.querySelector("#signup-btn").setAttribute("disabled", "");
 }
 
 /* ========================================================================================

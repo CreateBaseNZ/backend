@@ -170,8 +170,7 @@ let checkout = {
   navigation: {
     navigate: undefined, // checkout.navigation.navigate
     changeCSS: {
-      page: undefined, // checkout.navigation.changeCSS.page
-      navigation: undefined // checkout.navigation.changeCSS.navigation
+      page: undefined // checkout.navigation.changeCSS.page
     }
   },
   load: {
@@ -194,10 +193,19 @@ FUNCTIONS
 // @DESC
 // @ARGU
 checkout.initialise = async () => {
+  // LOAD SYSTEMS
+  try {
+    await global.initialise(true, false);
+  } catch (error) {
+    return console.log(error);
+  }
+  // REMOVE STARTUP LOADER
+  removeLoader(false);
   // Stripe
   checkout.payment.stripe.initialise();
   checkout.elements.assign();
   // LOAD ORDER DETAILS
+  checkout.load.load("loading order details");
   try {
     await checkout.load();
   } catch (error) {
@@ -323,7 +331,6 @@ checkout.load = async () => {
 // @ARGU
 checkout.listener = () => {
   checkout.element.heading.cart.addEventListener("click", checkout.cart.show);
-  checkout.element.navigation.cart.addEventListener("click", checkout.cart.show);
   checkout.element.button.shipping.back.addEventListener("click", checkout.cart.show);
   checkout.element.button.payment.bank.back.addEventListener("click", checkout.shipping.show);
   checkout.element.button.payment.card.back.addEventListener("click", checkout.shipping.show);
@@ -372,9 +379,6 @@ checkout.elements.assign = () => {
   checkout.element.heading.cart = document.querySelector("#checkout-cart-heading");
   checkout.element.heading.shipping = document.querySelector("#checkout-shipping-heading");
   checkout.element.heading.payment = document.querySelector("#checkout-payment-heading");
-  checkout.element.navigation.cart = document.querySelector("#checkout-navigation-cart");
-  checkout.element.navigation.shipping = document.querySelector("#checkout-navigation-shipping");
-  checkout.element.navigation.payment = document.querySelector("#checkout-navigation-payment");
   checkout.element.button.cart.next = document.querySelector("#checkout-cart-next");
   checkout.element.button.shipping.back = document.querySelector("#checkout-shipping-back");
   checkout.element.button.shipping.next = document.querySelector("#checkout-shipping-next");
@@ -816,13 +820,10 @@ checkout.cart.validation.validate = async validity => {
 checkout.cart.validation.valid = () => {
   // Add Event Listeners
   checkout.element.heading.shipping.addEventListener("click", checkout.shipping.show);
-  checkout.element.navigation.shipping.addEventListener("click", checkout.shipping.show);
   checkout.element.button.cart.next.addEventListener("click", checkout.shipping.show);
   // Update CSS
   checkout.element.heading.shipping.classList.add("valid");
   checkout.element.button.cart.next.classList.add("valid");
-  checkout.element.navigation.cart.classList.add("valid");
-  checkout.element.navigation.shipping.classList.remove("unavailable");
 };
 
 // @FUNC  checkout.cart.validation.invalid
@@ -831,13 +832,10 @@ checkout.cart.validation.valid = () => {
 // @ARGU
 checkout.cart.validation.invalid = () => {
   checkout.element.heading.shipping.removeEventListener("click", checkout.shipping.show);
-  checkout.element.navigation.shipping.removeEventListener("click", checkout.shipping.show);
   checkout.element.button.cart.next.removeEventListener("click", checkout.shipping.show);
   // Update CSS
   checkout.element.heading.shipping.classList.remove("valid");
   checkout.element.button.cart.next.classList.remove("valid");
-  checkout.element.navigation.cart.classList.remove("valid");
-  checkout.element.navigation.shipping.classList.add("unavailable");
   // Return to Cart Page
   checkout.cart.show();
 };
@@ -1348,13 +1346,10 @@ checkout.shipping.validation.validate = async validity => {
 // @ARGU
 checkout.shipping.validation.valid = () => {
   checkout.element.heading.payment.addEventListener("click", checkout.payment.show);
-  checkout.element.navigation.payment.addEventListener("click", checkout.payment.show);
   checkout.element.button.shipping.next.addEventListener("click", checkout.payment.show);
   // Update CSS
   checkout.element.button.shipping.next.classList.add("valid");
   checkout.element.heading.payment.classList.add("valid");
-  checkout.element.navigation.shipping.classList.add("valid");
-  checkout.element.navigation.payment.classList.remove("unavailable");
 };
 
 // @FUNC  checkout.shipping.validation.invalid
@@ -1363,12 +1358,9 @@ checkout.shipping.validation.valid = () => {
 // @ARGU
 checkout.shipping.validation.invalid = () => {
   checkout.element.heading.payment.removeEventListener("click", checkout.payment.show);
-  checkout.element.navigation.payment.removeEventListener("click", checkout.payment.show);
   checkout.element.button.shipping.next.removeEventListener("click", checkout.payment.show);
   // Update CSS
   checkout.element.button.shipping.next.classList.remove("valid");
-  checkout.element.navigation.shipping.classList.remove("valid");
-  checkout.element.navigation.payment.classList.add("unavailable");
 };
 
 // @FUNC  checkout.shipping.show
@@ -1379,41 +1371,31 @@ checkout.shipping.show = () => { checkout.navigation.navigate(1); };
 
 checkout.shipping.resize = () => {
   // DESKTOP HEIGHT CALCULATION
-  const heading = 8;
-  const subHeading = 8 * 2;
-  let address;
+  // vmax
+  const heading = 6;
+  const subHeading = 6 * 2;
+  const radio = 3 * 5;
+  let address = { saved: 2, new: 0 };
   if (checkout.shipping.address.selected === "saved") {
-    address = {
-      saved: 10,
-      new: 3
-    };
+    address.saved = 9;
   } else if (checkout.shipping.address.selected === "new") {
-    address = {
-      saved: 3,
-      new: 40.5
-    };
-  } else {
-    address = {
-      saved: 3,
-      new: 3
-    };
-  }
-  const error = 2;
-  const padding = 2;
-  const method = 3 * 3;
+    address.new = 16.5;
+  };
+  const padding = (2 * 2) + 1;
   const buttons = 12;
-  const total = heading + subHeading + address.saved + address.new + error + padding + method + buttons;
-
+  const vmax = heading + subHeading + radio + address.saved + address.new + padding + buttons;
+  // px
+  let px = 0;
+  if (checkout.shipping.address.selected === "new") {
+    px = 28 * 5;
+  };
   // SET THE CART PAGE SIZE
+  let style = "height: 100%;";
   if (checkout.element.windowSize.matches) {
-    if (checkoutSelectedPage == 1) {
-      document.querySelector("#checkout-shipping").style = "height: " + total + "vmax;";
-    } else {
-      document.querySelector("#checkout-shipping").style = "height: 6vmax;";
-    }
-  } else {
-    document.querySelector("#checkout-shipping").style = "height: 100%;";
+    style = (checkoutSelectedPage == 1) ? `height: calc(${px}px + ${vmax}vmax);` : "height: 6vmax;";
   }
+  document.querySelector("#checkout-shipping").style = style;
+  return;
 };
 
 /*-----------------------------------------------------------------------------------------
@@ -1741,7 +1723,6 @@ checkout.payment.validation.valid = () => {
   // CSS
   checkout.element.button.payment.bank.paid.classList.add("valid");
   checkout.element.button.payment.card.pay.classList.add("valid");
-  checkout.element.navigation.payment.classList.add("valid");
 };
 
 // @FUNC  checkout.payment.validation.invalid
@@ -1755,7 +1736,6 @@ checkout.payment.validation.invalid = () => {
   // CSS
   checkout.element.button.payment.bank.paid.classList.remove("valid");
   checkout.element.button.payment.card.pay.classList.remove("valid");
-  checkout.element.navigation.payment.classList.remove("valid");
 };
 
 // @FUNC  checkout.payment.show
@@ -1814,34 +1794,12 @@ checkout.navigation.navigate = nextPage => {
   // Check if we are currently on the same page
   if (nextPage == checkoutSelectedPage) return;
   // Update the navigation CSS
-  checkout.navigation.changeCSS.navigation(nextPage, "select");
   checkout.navigation.changeCSS.page(nextPage);
   // Update the current selected page
   checkoutSelectedPage = nextPage;
   checkout.cart.resize();
   checkout.shipping.resize();
   checkout.payment.resize();
-};
-
-// @FUNC  checkout.navigation.changeCSS.navigation
-// @TYPE
-// @DESC
-// @ARGU
-checkout.navigation.changeCSS.navigation = (nextPage, type) => {
-  const nextPageName = checkoutPages[nextPage];
-  const currentPageName = checkoutPages[checkoutSelectedPage];
-  document
-    .querySelector(`#checkout-navigation-${nextPageName}`)
-    .classList.add("checkout-navigation-icon-container-selected");
-  document
-    .querySelector(`#checkout-navigation-${nextPageName}`)
-    .classList.remove("checkout-navigation-icon-container-deselected");
-  document
-    .querySelector(`#checkout-navigation-${currentPageName}`)
-    .classList.remove("checkout-navigation-icon-container-selected");
-  document
-    .querySelector(`#checkout-navigation-${currentPageName}`)
-    .classList.add("checkout-navigation-icon-container-deselected");
 };
 
 // @FUNC  checkout.navigation.changeCSS.page

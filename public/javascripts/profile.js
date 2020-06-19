@@ -7,7 +7,7 @@ function capitaliseFirstLetter(string) {
 }
 
 // Previews uploaded profile picture
-var loadFile = function(event) {
+var loadFile = function (event) {
   document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
 }
 
@@ -41,12 +41,12 @@ function renderProjCard(newProj, project) {
   if (newProj) {
 
     let cardEl = document.createElement('div')
-    cardEl.id = 'proj-' + project.id 
+    cardEl.id = 'proj-' + project.id
 
     projScroll.appendChild(cardEl).className = 'proj-card'
 
     let bookmarkEl = document.createElement('i')
-    bookmarkEl.addEventListener('click', async(e) => {
+    bookmarkEl.addEventListener('click', async (e) => {
       e.stopPropagation()
 
       let proj = new Object()
@@ -54,10 +54,10 @@ function renderProjCard(newProj, project) {
 
       proj.id = project.id
       proj.updates.bookmark = !project.bookmark
-      
+
       bookmarkEl.classList.toggle('fas')
       bookmarkEl.classList.toggle('far')
-      
+
       try {
         proj = (await axios.post("/profile/customer/update/proj", proj))
       } catch (error) {
@@ -81,7 +81,7 @@ function renderProjCard(newProj, project) {
 
     dateCreation = new Date(project.date.creation)
     let dateEl = document.createElement('p')
-    dateEl.innerHTML =  dateCreation.toLocaleString('default', { month: 'short' }).toUpperCase() + ' ' + dateCreation.getDate() + ' ' + dateCreation.getFullYear()
+    dateEl.innerHTML = dateCreation.toLocaleString('default', { month: 'short' }).toUpperCase() + ' ' + dateCreation.getDate() + ' ' + dateCreation.getFullYear()
     cardEl.appendChild(dateEl).className = 'proj-date'
 
     let nameEl = document.createElement('p')
@@ -91,7 +91,7 @@ function renderProjCard(newProj, project) {
     // Add makes to project cards
     let makesEl = document.createElement('p')
     cardEl.appendChild(makesEl).className = 'proj-makes'
-    project.makes.forEach(function(make, j) {
+    project.makes.forEach(function (make, j) {
       if (makesEl.innerHTML !== '') {
         makesEl.innerHTML += ', '
         makesEl.id += ' ' + make
@@ -106,7 +106,7 @@ function renderProjCard(newProj, project) {
     let notesText = document.createElement('p')
     notesEl.appendChild(notesText).className = 'proj-notes-content'
     notesText.innerHTML = project.notes
-    
+
     cardEl.addEventListener('mouseover', () => {
       notesEl.style.height = notesEl.scrollHeight + 'px'
     })
@@ -130,7 +130,7 @@ function renderProjCard(newProj, project) {
       showProjPopup('edit', project.id)
 
       if (makesEl.id !== "") {
-        makesEl.id.split(' ').forEach(function(makeInProject, k) {
+        makesEl.id.split(' ').forEach(function (makeInProject, k) {
           // Add project blobs
           renderMakeBlobs(allMakes[makeKeys[makeInProject]])
           // Activate project labels
@@ -157,7 +157,7 @@ function renderProjCard(newProj, project) {
     let makesEl = cardEl.querySelector('.proj-makes')
     makesEl.innerHTML = ''
     makesEl.id = ''
-    project.makes.forEach(function(make, j) {
+    project.makes.forEach(function (make, j) {
       if (makesEl.innerHTML !== '') {
         makesEl.innerHTML += ', '
         makesEl.id += ' ' + make
@@ -241,8 +241,15 @@ function showProjPopup(status, project = undefined) {
   newEditProjScreenOverlay.style.display = 'block'
 }
 
-const profileInit = async() => {
-
+const profileInit = async () => {
+  // LOAD SYSTEM
+  try {
+    await global.initialise(true, false);
+  } catch (error) {
+    return console.log(error);
+  }
+  // REMOVE STARTUP LOADER
+  removeLoader(false);
   // Get elements
   const profileWrapper = document.querySelector('.profile-wrapper')
   const allDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-in'), document.getElementById('profile-backdrop')]
@@ -279,7 +286,7 @@ const profileInit = async() => {
   })
 
   //  -- If save --
-  document.getElementById('profile-save-btn').addEventListener('click', async() => {
+  document.getElementById('profile-save-btn').addEventListener('click', async () => {
     profileWrapper.classList.toggle('profile-wrapper-edit')
 
     // Save new variables
@@ -293,8 +300,8 @@ const profileInit = async() => {
     // Update profile pictures in nav bar
     for (var i = 0; i < allDP.length; i++) {
       allDP[i].src = dpTemp
-    }    
-    
+    }
+
     // Post to server
     try {
       let data = (await axios.post("/profile/customer/update", customerInfo))
@@ -312,6 +319,7 @@ const profileInit = async() => {
     profileWrapper.classList.toggle('profile-wrapper-edit')
     dpEl.src = dpTemp
   })
+
 
   // if (mq.matches) {
   //   // -- Horizontal scrolling --
@@ -492,7 +500,7 @@ const profileInit = async() => {
   //     } catch (error) {
   //       console.log(error)
   //     }
-      
+
   //     console.log(callback)
   //     // Render project card
   //     renderProjCard(true, callback["data"]["content"])
