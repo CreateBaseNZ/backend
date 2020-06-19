@@ -2,43 +2,8 @@
 VARIABLES
 ======================================================================================== */
 
-let mail;
-let navigation;
-let session;
-let moment;
-
 let global = {
-  initialise: undefined
-}
 
-/* ========================================================================================
-ASYNCHRONOUS IMPORT
-======================================================================================== */
-
-global.initialise = () => {
-  return new Promise(async (resolve, reject) => {
-    // VARIABLES
-    let momentImport;
-    // IMPORTS
-    const imports = [
-      // Custom
-      import("/public/javascripts/global/mail.js"),
-      import("/public/javascripts/global/nav.js"),
-      import("/public/javascripts/global/session.js"),
-      // Sourced
-      import("/node_modules/moment/dist/moment.js")
-    ]
-    // PROCESS
-    try {
-      [{ mail }, { navigation }, { session }, momentImport] = await Promise.all(imports);
-    } catch (error) {
-      reject(error);
-    }
-    // ASSIGN
-    moment = momentImport.default;
-    // SUCCESS
-    resolve();
-  })
 }
 
 /* ========================================================================================
