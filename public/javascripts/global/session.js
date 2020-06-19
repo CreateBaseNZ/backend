@@ -33,7 +33,6 @@ session.initialise = async () => {
     console.log(error);
     return;
   }
-  console.log(sessionStatus);
   if (sessionStatus !== "unset") {
     return;
   }

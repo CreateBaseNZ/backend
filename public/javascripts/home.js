@@ -23,7 +23,7 @@ let home = {
   slideTwo: undefined,
   slideThree: undefined,
   addImages: undefined,
-  subscriptionField: undefined,
+  subscription: undefined,
   subscribe: undefined
 }
 
@@ -59,7 +59,7 @@ home.initialise = async () => {
   // PAGE CONFIGURATIONS
   textSequence(0, home.words, "change-text");
   home.addListener();
-  home.subscriptionField(login);
+  home.subscription(login);
 }
 
 // @func  home.declareVariables
@@ -192,9 +192,9 @@ home.addImages = () => {
   });
 }
 
-// @func  home.subscriptionField
+// @func  home.subscription
 // @desc  
-home.subscriptionField = (login = false) => {
+home.subscription = (login = false) => {
   // INPUT FIELD DISPLAY
   if (login) {
     document.querySelector("#subscribe-field").classList.add("hide");

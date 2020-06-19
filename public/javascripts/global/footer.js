@@ -15,7 +15,6 @@ FUNCTIONS
 // @func  footer.initialise
 // @desc  
 footer.initialise = (login = false) => {
-  console.log(login);
   footer.subscription(login);
 }
 

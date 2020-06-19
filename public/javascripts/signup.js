@@ -21,7 +21,7 @@ FUNCTIONS
 signup.initialise = async () => {
   // LOAD SYSTEM
   try {
-    await global.initialise(false);
+    await global.initialise(false, false);
   } catch (error) {
     return console.log(error);
   }
