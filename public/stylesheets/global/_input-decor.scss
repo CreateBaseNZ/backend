@@ -75,6 +75,9 @@ $input-width: 60vmin;
     -webkit-box-shadow: 0 0 0 30px white inset;
     box-shadow: 0 0 0 30px white inset;
   }
+  &.hide {
+    display: none;
+  }
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -102,8 +105,12 @@ INPUT ONE
       outline: none;
     }
 
-    &:disabled {
+    &.disabled {
       
+    }
+
+    &.hide {
+      display: none;
     }
   }
 

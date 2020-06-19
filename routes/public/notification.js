@@ -56,7 +56,9 @@ ROUTES
 // @desc      Subscribing to mailing list
 // @access    Public
 router.post("/subscribe/mailing-list", async (req, res) => {
-  const email = req.body.email;
+  const email = (req.isAuthenticated()) ? req.user.email : req.body.email;
+  // VALIDATE
+  if (!email) return res.send({ status: "failed", content: "email required" });
   // Check if the email is already in the mailing list
   let mail;
   try {
@@ -107,9 +109,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
     return res.send({ status: "success", content: "subscribed" });
   }
   // If user is not registered and not subscribed
-  const newMail = new Mail({
-    email,
-  });
+  const newMail = new Mail({ email });
 
   try {
     await newMail.save();

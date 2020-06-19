@@ -22,7 +22,9 @@ let home = {
   slideOne: undefined,
   slideTwo: undefined,
   slideThree: undefined,
-  addImages: undefined
+  addImages: undefined,
+  subscriptionField: undefined,
+  subscribe: undefined
 }
 
 /* ========================================================================================
@@ -35,15 +37,11 @@ home.initialise = async () => {
   history.scrollRestoration = "manual";
   // DECLARE VARIABLES
   home.declareVariables();
-  // LOAD NAVIGATION
-  try {
-    await navigation.initialise();
-  } catch (error) {
-    return console.log(error);
-  }
+  // LOAD NAVIGATION, GET LOGIN STATUS AND ADD IMAGES
+  promises = [axios.get("/login-status"), navigation.initialise(), home.addImages()];
   // ADD IMAGES
   try {
-    await home.addImages();
+    [response] = await Promise.all(promises);
   } catch (error) {
     return console.log(error);
   }
@@ -54,6 +52,7 @@ home.initialise = async () => {
   // PAGE CONFIGURATIONS
   textSequence(0, home.words, "change-text");
   home.addListener();
+  home.subscriptionField(response.data.status);
 }
 
 // @func  home.declareVariables
@@ -184,6 +183,59 @@ home.addImages = () => {
     document.querySelector("#landing-3").classList.add("landing-3");
     resolve();
   });
+}
+
+// @func  home.subscriptionField
+// @desc  
+home.subscriptionField = (login = false) => {
+  // INPUT FIELD DISPLAY
+  if (login) {
+    document.querySelector("#subscribe-field").classList.add("hide");
+  }
+  // BUTTON ATTRIBUTE
+  document.querySelector("#subscribe-main").setAttribute("onclick", `home.subscribe(${login});`);
+}
+
+// @func  home.subscribe
+// @desc  
+home.subscribe = async (login = false) => {
+  document.querySelector("#subscribe-email-error").innerHTML = "";
+  // DISABLE
+  document.querySelector("#subscribe-main").setAttribute("disabled", "");
+  // COLLECT
+  const email = (!login) ? document.querySelector("#subscribe-email-input").value : "";
+  // VALIDATE
+  if (!login) {
+    if (email === "") {
+      document.querySelector("#subscribe-email-error").innerHTML = "an email is required";
+      return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+    }
+    // TO DO .....
+    // REGEX VALIDATION
+    // TO DO .....
+  }
+  // SUBMIT
+  let data;
+  try {
+    data = (await axios.post("/subscribe/mailing-list", { email }))["data"];
+  } catch (error) {
+    console.log(error);
+    notification.popup("an error ocurred", "failed");
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  }
+  if (data.status === "failed") {
+    console.log(data.content);
+    notification.popup("an error ocurred", "failed");
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  }
+  // SUCCESS
+  let message;
+  if (data.content === "already subscribed") {
+    message = login ? "You are already subscribed" : "This email is already subscribed";
+    notification.popup(message, "sent");
+  }
+  if (data.content === "subscribed") notification.popup("Thank you for subscribing to the newsletter!", "succeeded");
+  return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
 }
 
 /* ========================================================================================

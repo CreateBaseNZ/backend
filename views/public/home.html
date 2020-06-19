@@ -161,18 +161,14 @@
         <p class="subscribe-message">
           Get the latest updates on release:
         </p>
-        <div class="kit-fld input-decor" id="signup-email">
-          <input type="text" name="email" id="sign-up-eml" required />
-          <label class="input-label" for="email">Email</label>
-          <!-- <label class="input-error" for="displayName">Invalid email, please try again.</label> -->
+        <div class="kit-fld input-decor" id="subscribe-field">
+          <input type="text" name="email" id="subscribe-email-input" required />
+          <label class="input-label" for="subscribe-email-input">Email</label>
+          <label class="input-error" for="subscribe-email-input" id="subscribe-email-error"></label>
         </div>
-        <button class="market-btn reg-btn subscribe-btn" id="subscribe-main"
-          onclick="mail.subscribeSubmit();">SUBSCRIBE</button>
+        <button class="market-btn reg-btn subscribe-btn" id="subscribe-main">SUBSCRIBE</button>
       </div>
     </div>
-
-    <!-- <a href="/unsubscribe/mailing-list/kbradyoung@gmail">Unsubscribe</a>
-    <button onclick="mail.unmail.subscribe();"></button> -->
 
     <div class="test-section">
       <div class="divider"></div>
@@ -292,9 +288,9 @@
   <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
   <!-- ------------------------CUSTOM------------------------ -->
-  <script async src="/public/javascripts/global/mail.js"></script>
   <script async src="/public/javascripts/global/nav.js"></script>
   <script async src="/public/javascripts/global/session.js"></script>
+  <script async src="/public/javascripts/global/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
   <script defer src="/public/javascripts/home.js"></script>
 </body>

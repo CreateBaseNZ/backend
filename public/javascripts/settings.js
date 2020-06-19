@@ -340,7 +340,7 @@ settings.changeAddress = async () => {
   }
   // SUCCESS HANDLER
   // Add a notification
-  notificationPopup("Address Updated");
+  notification.popup("Address Updated");
   // Toggle Edit Mode
   settings.changeAddressEnable();
   return settings.editAddress();
@@ -467,7 +467,7 @@ settings.changePassword = async () => {
   }
   // SUCCESS HANDLER
   // Add a notification
-  notificationPopup("Password Updated");
+  notification.popup("Password Updated");
   // Clear Input Fields
   settings.changePasswordClear();
   settings.changePasswordEnable();
@@ -613,7 +613,7 @@ settings.changeSubscription = async () => {
   } else {
     message = "unsubscribed successfully";
   }
-  notificationPopup(message);
+  notification.popup(message);
   return settings.changeSubscriptionEnable();
 }
 

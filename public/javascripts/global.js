@@ -85,62 +85,8 @@ const sendEmail = async (email, subject, div, style) => {
 };
 
 /*=========================================================================================
-SUBSCRIBE/UNSUBSCRIBE FUNCTIONS
-=========================================================================================*/
-
-// const footerSubscribe = async () => {
-//   // Fetch Email if user not login
-//   let email = "";
-
-//   // Loading animation
-
-//   // Subscribe User
-//   let data;
-//   try {
-//     data = await mail.subscribe(email);
-//   } catch (error) {
-//     // Failed animation
-//     return console.log(error);
-//   }
-//   // Success animation
-
-//   return;
-// }
-/*=========================================================================================
 Global notifs
 =========================================================================================*/
-
-const notificationPopup = (message) => {
-  // Create div to insert
-  let newDiv = document.createElement("div");
-  newDiv.classList.add("subbed-notif");
-  let messageWrap = document.createElement("div")
-  newDiv.appendChild(messageWrap).classList.add("msg-wrap");
-  messageWrap.appendChild(document.createElement('i')).className = 'fab fa-telegram-plane';
-  messageWrap.appendChild(document.createElement('p')).innerHTML = message;
-  // Find location to insert div
-  let notifDiv = document.getElementById('notification-wrap')
-  let mobileDiv = document.getElementById('mobile-notif-wrap')
-  // Add slide in animation
-  newDiv.classList.add("slide-in");
-  //Insert div
-  var mq = window.matchMedia("(min-width: 53em)");
-  if (mq.matches) {
-    notifDiv.appendChild(newDiv)
-  }
-  else {
-    mobileDiv.appendChild(newDiv)
-  }
-  // Fade out
-  setTimeout(() => {
-    newDiv.style.transition = 'all 2s'
-    newDiv.style.opacity = 0
-    // Hide
-    setTimeout(() => {
-      newDiv.style.display = 'none'
-    }, 1000)
-  }, 3000)
-}
 
 function subscribeNotif() {
   // Create div to insert
