@@ -1,3 +1,36 @@
+/* ========================================================================================
+VARIABLES - PROJECTS
+======================================================================================== */
+
+let projects = {
+  // VARIABLES
+  // FUNCTIONS
+  initialise: undefined,
+  declareVariables: undefined
+}
+
+/* ========================================================================================
+FUNCTIONS - PROJECTS
+======================================================================================== */
+
+// @func  projects.initialise
+// @desc  
+projects.initialise = async () => {
+  // DECLARE VARIABLES
+  projects.declareVariables();
+}
+
+// @func  projects.declareVariables
+// @desc  
+projects.declareVariables = () => {
+  swiper = new Swiper('.swiper-container');
+}
+
+/* ========================================================================================
+END - PROJECTS
+======================================================================================== */
+
+let swiper;
 var mq = window.matchMedia("(min-width: 850px)")
 var activeProjID = undefined
 var tabs = ['profile', 'projects', 'billing', 'settings']
@@ -241,6 +274,17 @@ function showProjPopup(status, project = undefined) {
   newEditProjScreenOverlay.style.display = 'block'
 }
 
+const profileUploadPicture = async () => {
+  const file = new FormData(document.querySelector("#profile-pic"));
+  let data;
+  try {
+    data = (await axios.post("/profile/customer/update/picture", file))["data"];
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
 const profileInit = async () => {
   // LOAD SYSTEM
   try {
@@ -250,6 +294,9 @@ const profileInit = async () => {
   }
   // REMOVE STARTUP LOADER
   removeLoader(false);
+  // INITIALISATIONS
+  projects.initialise(); // Projects
+  settings.initialise(); // Settings
   // Get elements
   const profileWrapper = document.querySelector('.profile-wrapper')
   const allDP = [document.getElementById('nav-dp'), document.getElementById('nav-user-in'), document.getElementById('profile-backdrop')]

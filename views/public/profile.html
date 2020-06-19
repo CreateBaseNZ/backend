@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="/public/stylesheets/profile/projects.css" />
 </head>
 
-<body onload="profileInit(); settings.initialise();">
+<body onload="profileInit();">
 
   <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
@@ -182,10 +182,10 @@
         </div>
       </div>
       <div id="new-edit-proj-screen">
-        
+
       </div>
     </div>
-    
+
     <!-- <div class="main-area" id="projects-area">
       <div id="new-edit-proj-screen-overlay"></div>
       <div id="new-edit-proj-screen">
@@ -592,7 +592,9 @@
 
   <div id="proj-menu-overlay">
     <div id="proj-menu-container">
-      <div id="proj-menu-x"><div></div></div>
+      <div id="proj-menu-x">
+        <div></div>
+      </div>
       <img alt="Project Thumbnail" id="proj-menu-thumb">
       <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -616,6 +618,7 @@
   <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
   <script async src="/node_modules/particles.js/particles.js"></script>
+  <script async src="/node_modules/swiper/js/swiper.min.js"></script>
   <!-- ------------------------CUSTOM------------------------ -->
   <script async src="/public/javascripts/global/footer.js"></script>
   <script async src="/public/javascripts/global/nav.js"></script>
@@ -624,44 +627,6 @@
   <script async src="/public/javascripts/global.js"></script>
   <script defer src="/public/javascripts/settings.js"></script>
   <script defer src="/public/javascripts/profile.js"></script>
-
-  <script>
-    const profileUploadPicture = async () => {
-      const file = new FormData(document.querySelector("#profile-pic"));
-      let data;
-      try {
-        data = (await axios.post("/profile/customer/update/picture", file))["data"];
-      } catch (error) {
-        console.log(error);
-        return;
-      }
-    }
-  </script>
-  
-
-  
-  <script src="../package/js/swiper.min.js"></script>
-
-  <script>
-    var swiper = new Swiper('.swiper-container');
-  </script>
-
 </body>
-
-
-<script>
-  const profileUploadPicture = async () => {
-    const file = new FormData(document.querySelector("#profile-pic"));
-    let data;
-    try {
-      data = (await axios.post("/profile/customer/update/picture", file))["data"];
-    } catch (error) {
-      console.log(error);
-      return;
-    }
-  }
-</script>
-
-
 
 </html>
