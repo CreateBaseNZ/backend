@@ -1,9 +1,11 @@
 @import "../global/all";
 
 #projects-area {
+  position: relative;
   flex-direction: column;  
   background: $light-1;
   height: 100%;
+  width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   
@@ -169,6 +171,70 @@
             text-overflow: ellipsis;
             white-space: nowrap;
           }
+        }
+      }
+    }
+  }
+}
+
+#proj-menu-overlay {
+  display: block; /* TO CHANGE TO NONE */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1002;
+
+  #proj-menu-container {
+    position: absolute;
+    border-radius: 20px 20px 0 0;
+    bottom: 0;
+    height: 70%;
+    width: 100%;
+    background: $light-1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #proj-menu-x {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 15px;
+      z-index: 2;
+
+      div {
+        position: relative;
+        height: 1em;
+        width: 1em;
+        transform: rotate(45deg);
+
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          top: calc(50% - 1px);
+          left: 0;
+          height: 2px;
+          width: 1em;
+          background: $dark-1;
+          margin: auto;
+          transition: background-color 0.2s ease-out;
+        }
+        
+        &::after {
+          height: 1em;
+          width: 2px;
+          top: 0;
+          left: calc(50% - 1px);
+        }
+
+        &:hover:after,
+        &:hover:before {
+          background: red;
         }
       }
     }
