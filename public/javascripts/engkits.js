@@ -18,6 +18,7 @@ FUNCTIONS
 // @func  engkits.initialise
 // @desc  
 engkits.initialise = async () => {
+  updateSessionPage();
   // GET LOGIN STATUS 
   let data;
   try {

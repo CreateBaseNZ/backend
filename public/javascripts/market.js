@@ -18,6 +18,7 @@ FUNCTIONS
 // @func  market.initialise
 // @desc  
 market.initialise = async () => {
+  updateSessionPage();
   // GET LOGIN STATUS 
   let data;
   try {

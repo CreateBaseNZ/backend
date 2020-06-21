@@ -11,9 +11,7 @@ VARIABLES
 =========================================================================================*/
 
 const router = new express.Router();
-const customerRouteOptions = {
-  root: path.join(__dirname, "../views/public")
-};
+const customerRouteOptions = { root: path.join(__dirname, "../../views/public") };
 
 /*=========================================================================================
 MODELS
@@ -35,7 +33,7 @@ const verifiedAccess = (req, res, next) => {
       return res.redirect("/verification");
     }
   } else {
-    return res.redirect("/login");
+    return res.sendFile("login.html", customerRouteOptions);
   }
 };
 
@@ -55,7 +53,7 @@ const restrictedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    return res.redirect("/login");
+    return res.sendFile("login.html", customerRouteOptions);
   }
 };
 
@@ -87,6 +85,23 @@ mongoose.createConnection(
 /*=========================================================================================
 ROUTES
 =========================================================================================*/
+
+// @route     Get /profile
+// @desc
+// @access    Private
+router.get("/profile", verifiedAccess, (req, res) => res.sendFile("profile.html", customerRouteOptions));
+
+// @route     Get /profile/:page
+// @desc
+// @access    Private
+router.get("/profile/:page", verifiedAccess, (req, res) => {
+  // DECLARE VARIABLES
+  const pages = ["projects", "orders", "settings"];
+  const page = req.params.page;
+  // VALIDATE REQUEST
+  if (pages.indexOf(page) === -1) return res.sendFile("error404.html", customerRouteOptions);
+  return res.sendFile("profile.html", customerRouteOptions);
+});
 
 // @route     Get /profile/customer/fetch/picture
 // @desc

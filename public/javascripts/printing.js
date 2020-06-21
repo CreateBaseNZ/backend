@@ -1,4 +1,5 @@
 const printingInit = async () => {
+  updateSessionPage();
   // LOAD SYSTEM
   try {
     await global.initialise();

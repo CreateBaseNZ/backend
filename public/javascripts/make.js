@@ -161,6 +161,7 @@ FUNCTIONS
 =========================================================================================*/
 
 make.initialise = async () => {
+  updateSessionPage();
   // DECLARE VARIABLES
   make.declareVariables();
   // LOAD SYSTEM

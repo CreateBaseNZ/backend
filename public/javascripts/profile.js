@@ -1,4 +1,126 @@
 /* ========================================================================================
+VARIABLES - PROFILE
+======================================================================================== */
+
+let profile = {
+  // VARIABLES
+  pages: ["/profile", "/profile/projects", "/profile/orders", "/profile/settings"],
+  // FUNCTIONS
+  setPage: undefined,
+  setPageCollect: undefined,
+  setPageValidate: undefined,
+  setPageUpdate: undefined,
+  preSetTab: undefined
+}
+
+/* ========================================================================================
+FUNCTIONS - PROFILE
+======================================================================================== */
+
+// @func  profile.setPage
+// @desc  
+profile.setPage = (page = undefined, initialise = false) => {
+  // COLLECT NEW PAGE
+  const [newPage, baseURL] = profile.setPageCollect(page);
+  // VALIDATE NEW PAGE
+  const [valid, message] = profile.setPageValidate(newPage, initialise)
+  if (!valid) return console.log(message);
+  // UPDATE PROFILE PAGE
+  profile.setPageUpdate(newPage, baseURL);
+  if (initialise) profile.preSetTab();
+  return;
+}
+
+// @func  profile.setPageCollect
+// @desc  
+profile.setPageCollect = (page = undefined) => {
+  // DECLARE VARIABLES
+  const url = window.location.href.toString();
+  const urlArray = url.split("/"); // split url
+  const index = urlArray.indexOf("profile");
+  const baseURL = urlArray.slice(0, index).join("/");
+  let newPage;
+  if (page === undefined) { // UNDEFINED
+    const profilePage = urlArray[index + 1];
+    newPage = (profilePage === undefined) ? "/profile" : `/profile/${profilePage}`;
+  } else { // DEFINED
+    newPage = (page === "") ? "/profile" : `/profile/${page}`;
+  }
+  // RETURN
+  return [newPage, baseURL];
+}
+
+// @func  profile.setPageValidate
+// @desc  
+profile.setPageValidate = (newPage = undefined, initialise = false) => {
+  let valid = true;
+  let message = "";
+  if (!newPage) {
+    valid = false;
+    message = "New Page Required";
+  } else if (profile.pages.indexOf(newPage) === -1) {
+    valid = false;
+    message = "New Page Doesn't Exist";
+  } else if (newPage === window.sessionStorage.page && !initialise) {
+    valid = false;
+    message = "Page Didn't Change";
+  }
+  return [valid, message];
+}
+
+// @func  profile.setPageUpdate
+// @desc  
+profile.setPageUpdate = (newPage = undefined, baseURL = undefined) => {
+  const currentPage = window.sessionStorage.page;
+  // HIDE CURRENT PAGE
+  let currentPageId;
+  switch (currentPage) {
+    case "/profile/projects": currentPageId = "projects-area"; break;
+    case "/profile/orders": currentPageId = "billing-area"; break;
+    case "/profile/settings": currentPageId = "settings-area"; break;
+    default: currentPageId = "profile-area"; break;
+  }
+  document.querySelector(`#${currentPageId}`).style.display = 'none';
+  // SHOW NEW PAGE
+  let newPageId;
+  switch (newPage) {
+    case "/profile/projects": newPageId = "projects-area"; break;
+    case "/profile/orders": newPageId = "billing-area"; break;
+    case "/profile/settings": newPageId = "settings-area"; break;
+    default: newPageId = "profile-area"; break;
+  }
+  document.querySelector(`#${newPageId}`).style.display = 'flex';
+  // UPDATE CURRENT PAGE
+  window.sessionStorage.page = newPage;
+  let title;
+  switch (newPage) {
+    case "/profile/projects": title = "Projects • CreateBase"; break;
+    case "/profile/orders": title = "Orders • CreateBase"; break;
+    case "/profile/settings": title = "Settings • CreateBase"; break;
+    default: title = "Profile • CreateBase"; break;
+  }
+  document.querySelector("#profile-title").innerHTML = title; // Update Page Title
+  // ADD HISTORY
+  const state = { page: newPage };
+  const newURL = baseURL + newPage;
+  history.pushState(state, title, newURL);
+  return;
+}
+
+// @func  profile.preSetTab
+// @desc  
+profile.preSetTab = () => {
+  // DECLARE VARIABLES
+  const url = window.location.href.toString();
+  const urlArray = url.split("/"); // split url
+  const index = urlArray.indexOf("profile");
+  const baseURL = urlArray.slice(0, index).join("/");
+  const page = urlArray[index + 1];
+  const tabId = (page === undefined) ? "profile-tab" : `${page}-tab`;
+  document.querySelector(`#${tabId}`).checked = true;
+}
+
+/* ========================================================================================
 VARIABLES - PROJECTS
 ======================================================================================== */
 
@@ -44,6 +166,7 @@ var loadFile = function (event) {
   document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
 }
 
+/*
 function changeTabArea(el) {
   passTab(el)
 
@@ -55,7 +178,7 @@ function changeTabArea(el) {
     }
   }
 }
-
+*/
 let Project = class {
   constructor(bookmark, makes = [], name, notes, image) {
     this.bookmark = bookmark
@@ -292,6 +415,8 @@ const profileInit = async () => {
   } catch (error) {
     return console.log(error);
   }
+  // RENDER THE CORRECT PROFILE PAGE
+  profile.setPage(undefined, true);
   // REMOVE STARTUP LOADER
   removeLoader(false);
   // INITIALISATIONS
@@ -556,7 +681,7 @@ const profileInit = async () => {
   // })
 
   // -- Prerender selected tab -- 
-  document.getElementById(localStorage.getItem('tab') + '-tab').checked = true
-  document.getElementById(localStorage.getItem('tab') + '-area').style.display = "flex"
+  //document.getElementById(localStorage.getItem('tab') + '-tab').checked = true
+  //document.getElementById(localStorage.getItem('tab') + '-area').style.display = "flex"
 
 }

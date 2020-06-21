@@ -11,7 +11,8 @@ let login = {
   submit: undefined,
   validate: undefined,
   enable: undefined,
-  disable: undefined
+  disable: undefined,
+  redirect: undefined
 }
 
 /* ========================================================================================
@@ -21,6 +22,7 @@ FUNCTIONS
 // @func  login.initialise
 // @desc  
 login.initialise = async () => {
+  login.redirect(); // ADD SUCCESS LINK
   // LOAD SYSTEM
   try {
     await global.initialise(false, false);
@@ -31,7 +33,6 @@ login.initialise = async () => {
   removeLoader(false);
   // ADD THE DYNAMIC WORDS EFFECT
   textSequence(0, login.words, "change-text");
-
   login.enter()
 }
 
@@ -145,6 +146,29 @@ login.disable = () => {
   // BUTTONS
   document.querySelector("#login-btn").setAttribute("disabled", "");
   document.querySelector("#login-back").setAttribute("disabled", "");
+}
+
+// @func  login.redirect
+// @desc  
+login.redirect = () => {
+  // CHECK IF ACCESS ATTEMPT ON PRIVATE PAGES HAS BEEN MADE
+  const url = window.location.href.toString();
+  const urlArray = url.split("/"); // split url
+  if (urlArray[3] !== "login") {
+    // REDIRECT
+    const redirect = "/" + urlArray.slice(3).join("/");
+    window.sessionStorage.loginRedirect = redirect;
+    // UPDATE HISTORY, TITLE AND LINK
+    const loginURL = urlArray.slice(0, 3).join("/") + "/login";
+    const title = "Login • CreateBase";
+    document.querySelector("title").innerHTML = title;
+    history.pushState({ page: "/login" }, title, loginURL);
+  } else {
+    window.sessionStorage.loginRedirect = "/";
+  }
+  const link = window.sessionStorage.loginRedirect;
+  document.querySelector("#login-success-link").value = link;
+  return;
 }
 
 /* ========================================================================================

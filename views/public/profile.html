@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon" href="/public/images/logo-icon.png" />
-  <title>Profile • CreateBase</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+  <title id="profile-title">Profile • CreateBase</title>
   <!-- =========================CSS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <link
@@ -73,11 +74,11 @@
       <div class="nav-right-menu-in">
         <div class="nav-right-menu" id="nav-right-menu">
           <p class="nav-side-header">PROJECTS</p>
-          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <a class="nav-side-item" href="/profile/projects">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-          <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" href="/profile">MY PROFILE</a>
+          <a class="nav-side-item" href="/profile/orders">MY ORDERS</a>
+          <a class="nav-side-item" href="/profile/settings">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
@@ -579,17 +580,16 @@
     </div>
 
     <div id="tab-container">
-      <input type="radio" id="profile-tab" name="tab" data-tab="profile" onclick="changeTabArea(this);">
+      <input type="radio" id="profile-tab" name="tab" onclick="profile.setPage('');">
       <label for="profile-tab"><span>Profile</span><i class="fas fa-user"></i></label>
-      <input type="radio" id="projects-tab" name="tab" data-tab="projects" onclick="changeTabArea(this);">
+      <input type="radio" id="projects-tab" name="tab" onclick="profile.setPage('projects');">
       <label for="projects-tab"><span>Projects</span><i class="fas fa-folder"></i></label>
-      <input type="radio" id="billing-tab" name="tab" data-tab="billing" onclick="changeTabArea(this);">
-      <label for="billing-tab"><span>Billing</span><i class="fas fa-credit-card"></i></label>
-      <input type="radio" id="settings-tab" name="tab" data-tab="settings" onclick="changeTabArea(this);">
+      <input type="radio" id="orders-tab" name="tab" onclick="profile.setPage('orders');">
+      <label for="orders-tab"><span>Orders</span><i class="fas fa-credit-card"></i></label>
+      <input type="radio" id="settings-tab" name="tab" onclick="profile.setPage('settings');">
       <label for="settings-tab"><span>Settings</span><i class="fas fa-cog"></i></label>
     </div>
   </div>
-
   <div id="proj-menu-overlay">
     <div id="proj-menu-container">
       <div id="proj-menu-x">
@@ -611,7 +611,6 @@
       </div>
     </div>
   </div>
-
   <!-- ==========================JS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <script async src="https://js.stripe.com/v3/"></script>

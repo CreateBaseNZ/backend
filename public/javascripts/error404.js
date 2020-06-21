@@ -2,7 +2,10 @@
 VARIABLES
 ======================================================================================== */
 
-let story = {
+let error = {
+  // VARIABLES
+
+  // FUNCTIONS
   initialise: undefined
 }
 
@@ -10,11 +13,8 @@ let story = {
 FUNCTIONS
 ======================================================================================== */
 
-// @func  story.initialise
-// @desc  
-story.initialise = async () => {
-  updateSessionPage();
-  // LOAD SYSTEM
+error.initialise = async () => {
+  // LOAD NAVIGATION
   try {
     await global.initialise();
   } catch (error) {
@@ -23,7 +23,6 @@ story.initialise = async () => {
   // REMOVE STARTUP LOADER
   removeLoader();
 }
-
 
 /* ========================================================================================
 END

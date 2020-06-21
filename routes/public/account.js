@@ -72,7 +72,7 @@ router.post("/signup/validate", async (req, res) => {
 // @desc      Signup a New Customer Account
 // @access    Public
 router.post("/signup/customer", passport.authenticate("local-customer-signup", {
-  successRedirect: "/",
+  successRedirect: "/verification",
   failureRedirect: "/signup",
 }));
 
@@ -111,9 +111,10 @@ router.post("/login/validate", async (req, res) => {
 // @desc      Login Request
 // @access    Public
 router.post("/login/customer", passport.authenticate("local-customer-login", {
-  successRedirect: "/",
-  failureRedirect: "/login",
-}));
+  failureRedirect: "/login"
+}), (req, res) => {
+  return res.redirect(req.body.link);
+});
 
 // @route     Get /logout
 // @desc      Logout the user

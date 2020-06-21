@@ -19,15 +19,15 @@ ROUTES
 =========================================================================================*/
 
 router.get("/services/*", (req, res) => {
-  res.sendFile("error404-2.html", customerRouteOptions);
+  res.sendFile("error404.html", customerRouteOptions);
 });
 
 router.get("/company/*", (req, res) => {
-  res.sendFile("error404-2.html", customerRouteOptions);
+  res.sendFile("error404.html", customerRouteOptions);
 });
 
 router.get("*", (req, res) => {
-  res.sendFile("error404-1.html", customerRouteOptions);
+  res.sendFile("error404.html", customerRouteOptions);
 });
 
 /*=========================================================================================

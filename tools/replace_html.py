@@ -63,11 +63,11 @@ markdown = """
         <div class="nav-right-menu">
           <img id="nav-dp" src="/profile/customer/fetch/picture" alt="customer profile image"/>
           <p class="nav-side-header">PROJECTS</p>
-            <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+            <a class="nav-side-item" href="/profile/projects">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-            <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-            <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-            <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+            <a class="nav-side-item" href="/profile">MY PROFILE</a>
+            <a class="nav-side-item" href="/profile/orders">MY ORDERS</a>
+            <a class="nav-side-item" href="/profile/settings">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>

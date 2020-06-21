@@ -6,17 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon" href="/public/images/logo-icon.png" />
-  <title>Verified • CreateBase</title>
+  <title>Page Not Found | CreateBase</title>
   <!-- =========================CSS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
     rel="stylesheet">
   <!-- ------------------------CUSTOM------------------------ -->
-  <link rel="stylesheet" href="/public/stylesheets/verification.css" />
+  <link rel="stylesheet" href="/public/stylesheets/error404.css">
 </head>
 
-<body onload="verified.initialise();">
+<body onload="error.initialise();">
 
   <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
@@ -108,14 +108,11 @@
   </div>
 
   <div class="main-page hide">
-    <div class="verif-wrap">
-      <div class="textGroup">
-        <h1>Your account has been verified</h1>
-      </div>
+    <p>404: Page not found</p>
+    <div>
+      <p>Go back <a href="/">home</a></p>
 
-      <button class="codeSubmit-btn grad-btn" id="continue-button">Continue</button>
     </div>
-
   </div>
 
   <div class="footer-section hide">
@@ -195,7 +192,7 @@
   <script async src="/public/javascripts/global/session.js"></script>
   <script async src="/public/javascripts/global/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
-  <script defer src="/public/javascripts/verified.js"></script>
+  <script defer src="/public/javascripts/error404.js"></script>
 
 </body>
 

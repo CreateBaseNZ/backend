@@ -1,30 +1,50 @@
-const verifiedInit = async () => {
-    // GET LOGIN STATUS 
-    let data;
-    try {
-        data = (await axios.get("/login-status"))["data"];
-    } catch (error) {
-        return console.log(error);
-    }
-    const login = data.status;
-    // LOAD SYSTEM
-    try {
-        await global.initialise(true, true, login);
-    } catch (error) {
-        return console.log(error);
-    }
-    // REMOVE STARTUP LOADER
-    removeLoader();
-    if (!login) loginBtnHide();
+/* ========================================================================================
+VARIABLES
+======================================================================================== */
+
+let verified = {
+  initialise: undefined,
+  redirect: undefined
 }
 
-const loginBtnHide = () => {
-    let loginBtn = document.querySelector('.loginLink')
-    loginBtn.classList.remove('hide')
+/* ========================================================================================
+FUNCTIONS
+======================================================================================== */
+
+// @func  verified.initialise
+// @desc  
+verified.initialise = async () => {
+  // GET LOGIN STATUS
+  let data;
+  try {
+    data = (await axios.get("/login-status"))["data"];
+  } catch (error) {
+    return console.log(error);
+  }
+  const login = data.status;
+  // LOAD SYSTEM
+  try {
+    await global.initialise(true, true, login);
+  } catch (error) {
+    return console.log(error);
+  }
+  // SET REDIRECT
+  verified.redirect();
+  // REMOVE STARTUP LOADER
+  removeLoader();
 }
 
-const homeRedirect = () => {
-    this.onclick = function () {
-        location.href = "/";
-    };
+// @func  verified.redirect
+// @desc  
+verified.redirect = () => {
+  if (window.sessionStorage.loginRedirect === "/verification") {
+    window.sessionStorage.loginRedirect = "/";
+  }
+  const link = window.sessionStorage.loginRedirect ? window.sessionStorage.loginRedirect : "/";
+  document.querySelector("#continue-button").setAttribute("onclick", `window.location.assign("${link}")`);
+  return;
 }
+
+/* ========================================================================================
+END
+======================================================================================== */

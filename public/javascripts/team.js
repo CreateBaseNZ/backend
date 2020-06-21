@@ -22,6 +22,7 @@ FUNCTIONS
 // @func  team.initialise
 // @desc  
 team.initialise = async () => {
+  updateSessionPage();
   window.onbeforeunload = () => window.scrollTo(0, 0);
   // DECLARE VARIABLES
   team.declareVariables();

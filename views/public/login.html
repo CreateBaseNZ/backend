@@ -71,11 +71,11 @@
       <div class="nav-right-menu-in">
         <div class="nav-right-menu" id="nav-right-menu">
           <p class="nav-side-header">PROJECTS</p>
-          <a class="nav-side-item" data-tab="projects" href="/profile" onclick="passTab(this);">MY PROJECTS</a>
+          <a class="nav-side-item" href="/profile/projects">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-          <a class="nav-side-item" data-tab="profile" href="/profile" onclick="passTab(this);">MY PROFILE</a>
-          <a class="nav-side-item" data-tab="billing" href="/profile" onclick="passTab(this);">BILLING</a>
-          <a class="nav-side-item" data-tab="settings" href="/profile" onclick="passTab(this);">SETTINGS</a>
+          <a class="nav-side-item" href="/profile">MY PROFILE</a>
+          <a class="nav-side-item" href="/profile/orders">MY ORDERS</a>
+          <a class="nav-side-item" href="/profile/settings">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
@@ -122,6 +122,7 @@
             <label class="input-label" for="password">Password</label>
             <label class="input-error" for="log-in-pwd" id="login-password-error"></label>
           </div>
+          <input type="text" name="link" id="login-success-link" style="display: none;" />
           <div class="log-in-fld" id="login-login">
             <button type="button" class="reg-btn" id="login-btn" onclick="login.submit();">LOG IN</button>
           </div>

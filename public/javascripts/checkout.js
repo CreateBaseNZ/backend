@@ -193,6 +193,7 @@ FUNCTIONS
 // @DESC
 // @ARGU
 checkout.initialise = async () => {
+  updateSessionPage();
   // LOAD SYSTEMS
   try {
     await global.initialise(true, false);

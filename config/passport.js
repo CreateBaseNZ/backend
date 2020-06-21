@@ -50,14 +50,14 @@ const LocalCustomerSignup = new LocalStrategy(
       try {
         await Customer.validateDisplayName(displayName);
       } catch (error) {
-        return done(error, false);
+        return done(null, false);
       }
       // CREATE AN ACCOUNT INSTANCE
       let account;
       try {
         account = await Account.create("customer", email, password);
       } catch (error) {
-        return done(error, false);
+        return done(null, false);
       }
       // CREATE A CUSTOMER INSTANCE
       try {
@@ -66,7 +66,7 @@ const LocalCustomerSignup = new LocalStrategy(
         // TO DO.....
         // Delete the newly created account instance
         // TO DO.....
-        return done(error, false);
+        return done(null, false);
       }
       // ASSIGN MAKES ASSOCIATED WITH THE SESSION
       try {
@@ -75,7 +75,7 @@ const LocalCustomerSignup = new LocalStrategy(
         // TO DO.....
         // Delete the newly created account and customer instances
         // TO DO.....
-        return done(error, false);
+        return done(null, false);
       }
       try {
         await Order.merge(account._id, sessionId);
@@ -84,7 +84,7 @@ const LocalCustomerSignup = new LocalStrategy(
         // Delete the newly created account and customer instances
         // AND demerge makes
         // TO DO.....
-        return done(error, false);
+        return done(null, false);
       }
       // SEND ACCOUNT VERIFICATION
       try {
@@ -94,7 +94,7 @@ const LocalCustomerSignup = new LocalStrategy(
         // Delete the newly created account and customer instances
         // AND demerge makes
         // TO DO.....
-        return done(error, false);
+        return done(null, false);
       }
       // SUCCESS HANDLER
       return done(null, account);
@@ -119,14 +119,14 @@ const LocalCustomerLogin = new LocalStrategy(
     try {
       account = await Account.findOne({ email });
     } catch (error) {
-      return done(error, false);
+      return done(null, false);
     }
     // MATCH THE ENTERED PASSWORD WITH THE ACCOUNTS PASSWORD
     let match;
     try {
       match = await account.login(password);
     } catch (error) {
-      return done(error, false);
+      return done(null, false);
     }
     if (!match) return done(null, false);
     // UPDATE ACCOUNT LAST VISITED

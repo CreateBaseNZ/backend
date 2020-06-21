@@ -14,9 +14,7 @@ VARIABLES
 =========================================================================================*/
 
 const router = new express.Router();
-const customerRouteOptions = {
-  root: path.join(__dirname, "../../views/public"),
-};
+const customerRouteOptions = { root: path.join(__dirname, "../../views/public") };
 
 /*=========================================================================================
 MIDDLEWARE
@@ -30,6 +28,18 @@ const verifiedAccess = (req, res, next) => {
       return res.redirect("/verification");
     }
   } else {
+    return res.sendFile("login.html", customerRouteOptions);
+  }
+};
+
+const verifiedDataAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    if (req.user.verification.status) {
+      return next();
+    } else {
+      return res.send({ status: "failed", content: "need to verify" });
+    }
+  } else {
     return res.redirect("/login");
   }
 };
@@ -38,7 +48,18 @@ const restrictedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    return res.redirect("/login");
+    return res.sendFile("login.html", customerRouteOptions);
+  }
+};
+
+const unrestrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    // TO DO .....
+    // REDIRECT TO ALREADY LOGGED IN PAGE
+    // TO DO .....
+    return res.redirect("/"); // TEMPORARILY SEND THEM BACK HOME
+  } else {
+    return next();
   }
 };
 
@@ -56,14 +77,14 @@ router.get("/", (req, res) => {
 // @route     Get /login
 // @desc      Login Page
 // @access    Public
-router.get("/login", (req, res) => {
+router.get("/login", unrestrictedAccess, (req, res) => {
   res.sendFile("login.html", customerRouteOptions);
 });
 
 // @route     Get /signup
 // @desc      Signup Page
 // @access    Public
-router.get("/signup", (req, res) => {
+router.get("/signup", unrestrictedAccess, (req, res) => {
   res.sendFile("signup.html", customerRouteOptions);
 });
 
@@ -105,7 +126,7 @@ router.get("/services/marketplace", (req, res) => {
 // @route     Get /verfication
 // @desc      Verification of account page
 // @access    Public
-router.get("/verification", (req, res) => {
+router.get("/verification", restrictedAccess, (req, res) => {
   // VALIDATE USER VERIFICATION
   if (req.isAuthenticated()) {
     if (req.user.verification.status) {
@@ -134,13 +155,6 @@ router.get("/3d-printing", verifiedAccess, (req, res) => {
 // @access    Private
 router.get("/checkout", verifiedAccess, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
-});
-
-// @route     Get /profile
-// @desc
-// @access    Private
-router.get("/profile", verifiedAccess, (req, res) => {
-  res.sendFile("profile.html", customerRouteOptions);
 });
 
 /*=========================================================================================

@@ -1,4 +1,18 @@
-const verificationInit = async () => {
+/* ========================================================================================
+VARIABLES
+======================================================================================== */
+
+let verification = {
+  initialise: undefined
+}
+
+/* ========================================================================================
+FUNCTIONS
+======================================================================================== */
+
+// @func  verification.initialise
+// @desc  
+verification.initialise = async () => {
   // LOAD SYSTEM
   try {
     await global.initialise();
@@ -10,38 +24,13 @@ const verificationInit = async () => {
   inputListener();
 }
 
-const loginBtnHide = () => {
-  let loginBtn = document.querySelector('.loginLink')
-  loginBtn.classList.add('hide')
-}
-
-const emailVerification = async () => {
-  let data;
-  try {
-    data = (await axios.get("/account/email-verification"))["data"];
-  } catch (error) {
-    // TO DO.....
-    // Error handling
-    // TO DO.....
-    return console.log(error);
-  }
-  // ERROR HANDLER
-  if (data.status === "failed") {
-    // TO DO.....
-    // Error handling
-    // TO DO.....
-    return console.log(data.content);
-  }
-  // SUCCESS HANDLER
-  // TO DO.....
-  // Success notifcation
-  // TO DO.....
-  return console.log(data.content);
-}
+/* ========================================================================================
+END
+======================================================================================== */
 
 //Verfication submit with button
 const verifyCode = async () => {
-  let verifyBtn = document.querySelector('.verifyBtn')
+  let verifyBtn = document.querySelector('.verifyBtn');
   let allElements = document.querySelectorAll('.verifyClass');
   let completeCode = concatInput();
 
@@ -82,7 +71,6 @@ const verifyCode = async () => {
     }
     return
   }
-
   window.location.href = "/verified";
 }
 

@@ -34,6 +34,7 @@ FUNCTIONS
 // @func  home.initialise
 // @desc  
 home.initialise = async () => {
+  updateSessionPage();
   history.scrollRestoration = "manual";
   // DECLARE VARIABLES
   home.declareVariables();

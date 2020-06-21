@@ -261,6 +261,13 @@ function passTab(el) {
   localStorage.setItem("tab", tab);
 }
 
+const updateSessionPage = () => {
+  const url = window.location.href.toString();
+  const urlArray = url.split("/"); // split url
+  const page = "/" + urlArray.slice(3).join("/");
+  window.sessionStorage.page = page;
+}
+
 /*=========================================================================================
 END
 =========================================================================================*/
