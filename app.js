@@ -70,21 +70,17 @@ require("./config/passport.js");
 ROUTES
 =========================================================================================*/
 
-/*-----------------------------------------------------------------------------------------
-PUBLIC
------------------------------------------------------------------------------------------*/
-
-const generalRouter = require("./routes/public/general.js");
-const accountRouter = require("./routes/public/account.js");
-const fileRouter = require("./routes/public/file.js");
-const validationRouter = require("./routes/public/validation.js");
-const makeRouter = require("./routes/public/make.js");
-const notificationRouter = require("./routes/public/notification.js");
-const checkoutRouter = require("./routes/public/checkout.js");
-const profileRouter = require("./routes/public/profile.js");
-const projectRouter = require("./routes/public/project.js");
-const settingsRouter = require("./routes/public/settings.js");
-const sessionRouter = require("./routes/public/session.js");
+const generalRouter = require("./routes/general.js");
+const accountRouter = require("./routes/account.js");
+const fileRouter = require("./routes/file.js");
+const validationRouter = require("./routes/validation.js");
+const makeRouter = require("./routes/make.js");
+const notificationRouter = require("./routes/notification.js");
+const checkoutRouter = require("./routes/checkout.js");
+const profileRouter = require("./routes/profile.js");
+const projectRouter = require("./routes/project.js");
+const settingsRouter = require("./routes/settings.js");
+const sessionRouter = require("./routes/session.js");
 app.use(generalRouter);
 app.use(accountRouter);
 app.use(fileRouter);
@@ -98,33 +94,13 @@ app.use(settingsRouter);
 app.use(sessionRouter);
 
 /*-----------------------------------------------------------------------------------------
-ADMIN
------------------------------------------------------------------------------------------*/
-
-const adminGeneralRoute = require("./routes/admin/general.js");
-const adminFileRoute = require("./routes/admin/file.js");
-const adminMakeRoute = require("./routes/admin/make.js");
-const adminDiscountRoute = require("./routes/admin/discount.js");
-app.use(adminGeneralRoute);
-app.use(adminFileRoute);
-app.use(adminMakeRoute);
-app.use(adminDiscountRoute);
-
-/*-----------------------------------------------------------------------------------------
 ERROR PAGE
 -----------------------------------------------------------------------------------------*/
 
-const errorRouter = require("./routes/public/error.js");
+const errorRouter = require("./routes/error.js");
 app.use(errorRouter);
 
 /*=========================================================================================
 END
 =========================================================================================*/
 
-/*=========================================================================================
-TEMPORARY - START
-=========================================================================================*/
-
-/*=========================================================================================
-TEMPORARY - END
-=========================================================================================*/

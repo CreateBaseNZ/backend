@@ -14,7 +14,7 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Session = require("../../model/Session.js");
+const Session = require("../model/Session.js");
 
 /*=========================================================================================
 MIDDLEWARE

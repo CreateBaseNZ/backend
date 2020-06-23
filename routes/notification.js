@@ -20,9 +20,9 @@ if (process.env.NODE_ENV !== "production") {
 MODELS
 =========================================================================================*/
 
-const Mail = require("../../model/Mail.js");
-const Account = require("../../model/Account.js");
-const Customer = require("../../model/Customer.js");
+const Mail = require("../model/Mail.js");
+const Account = require("../model/Account.js");
+const Customer = require("../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE

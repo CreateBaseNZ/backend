@@ -3,64 +3,70 @@ REQUIRED MODULES
 =========================================================================================*/
 
 const express = require("express");
-const path = require("path");
-const passport = require("passport");
 
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
 const router = new express.Router();
-const routeOptions = {
-  root: path.join(__dirname, "/views/admin"),
-};
 
 /*=========================================================================================
 MODELS
 =========================================================================================*/
 
-const Image = require("../../model/Image.js");
+const Account = require("../model/Account.js");
 
 /*=========================================================================================
 MIDDLEWARE
 =========================================================================================*/
 
-const adminAccess = (req, res, next) => {
-  if (req.isAuthenticated() && req.user.type === "admin") {
-    return next();
+const verifiedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    if (req.user.verification.status) {
+      return next();
+    } else {
+      return res.redirect("/verification");
+    }
   } else {
-    res.redirect("/");
+    return res.redirect("/login");
   }
 };
 
-const upload = require("../../config/upload.js");
+const restrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    return res.redirect("/login");
+  }
+};
 
 /*=========================================================================================
 ROUTES
 =========================================================================================*/
 
-// @route     Get /admin/file/upload
-// @desc
-// @access    Admin
-router.post("/admin/file/upload", upload.single("file"), adminAccess, async (req, res) => {
-  // Declare Variable
-  const file = req.file;
-  // Add an Image Document
-  const image = new Image({
-    file: {
-      id: file.id,
-      name: file.filename,
-    },
-  });
-  try {
-    await image.save();
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
-  // Send Successful Response
-  return res.send({ status: "succeeded", content: "file uploaded" });
-}
-);
+/*-----------------------------------------------------------------------------------------
+GENERAL
+-----------------------------------------------------------------------------------------*/
+
+// @route     Get /login-status
+// @desc      Get the Login Status
+// @access    Public
+router.get("/login-status", (req, res) => {
+  if (req.isAuthenticated()) return res.send({ status: true });
+
+  res.send({ status: false });
+});
+
+/*-----------------------------------------------------------------------------------------
+SIGNUP
+-----------------------------------------------------------------------------------------*/
+
+// @route     Get /signup/check/email
+// @desc      Validate email
+// @access    Public
+router.get("/signup/check/email", (req, res) => {
+  Account.fineOne({ email: req.body }, (err, user) => { });
+});
 
 /*=========================================================================================
 EXPORT ROUTE

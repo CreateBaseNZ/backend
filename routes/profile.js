@@ -17,9 +17,9 @@ const customerRouteOptions = { root: path.join(__dirname, "../../views/public") 
 MODELS
 =========================================================================================*/
 
-const Mail = require("../../model/Mail.js");
-const Account = require("../../model/Account.js");
-const Customer = require("../../model/Customer.js");
+const Mail = require("../model/Mail.js");
+const Account = require("../model/Account.js");
+const Customer = require("../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -57,7 +57,7 @@ const restrictedAccess = (req, res, next) => {
   }
 };
 
-const upload = require("../../config/upload.js");
+const upload = require("../config/upload.js");
 
 /*=========================================================================================
 GRIDFS

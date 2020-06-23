@@ -19,11 +19,11 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Account = require("../../model/Account.js");
-const Customer = require("../../model/Customer.js");
-const Discount = require("../../model/Discount.js");
-const Order = require("../../model/Order.js");
-const Make = require("../../model/Make.js");
+const Account = require("../model/Account.js");
+const Customer = require("../model/Customer.js");
+const Discount = require("../model/Discount.js");
+const Order = require("../model/Order.js");
+const Make = require("../model/Make.js");
 
 /*=========================================================================================
 MIDDLEWARE

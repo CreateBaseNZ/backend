@@ -14,46 +14,44 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Order = require("../../model/Order.js");
-const Customer = require("../../model/Customer.js");
+const Order = require("../model/Order.js");
+const Comment = require("../model/Comment.js");
 
 /*=========================================================================================
 MIDDLEWARE
 =========================================================================================*/
 
-const adminAccess = (req, res, next) => {
-  const account = req.user;
-  // CHECK IF USER IS LOGGED IN
-  if (!req.isAuthenticated()) {
+const verifiedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    if (req.user.verification.status) {
+      return next();
+    } else {
+      return res.redirect("/verification");
+    }
+  } else {
     return res.redirect("/login");
   }
-  // CHECK IF USER IS NOT VERIFIED
-  if (!account.verification.status) {
-    return res.redirect("/verification");
-  }
-  // CHECK IF USER IS ADMIN
-  if (account.type !== "admin") {
-    return res.redirect("/");
-  }
-  // IF USER IS LOGGED IN, VERIFIED AND AN ADMIN
-  return next();
 };
 
-const adminContent = (req, res, next) => {
+const restrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    return res.redirect("/login");
+  }
+};
+
+const verifiedContent = (req, res, next) => {
   const account = req.user;
   // CHECK IF USER IS LOGGED IN
   if (!req.isAuthenticated()) {
-    return res.send({ status: "failed", content: "user is not logged in" });
+    return res.send({ status: "failed", content: "customer is not logged in" });
   }
   // CHECK IF USER IS NOT VERIFIED
   if (!account.verification.status) {
-    return res.send({ status: "failed", content: "user is not verified" });
+    return res.send({ status: "failed", content: "customer is not verified" });
   }
-  // CHECK IF USER IS ADMIN
-  if (account.type !== "admin") {
-    return res.send({ status: "failed", content: "user is not an admin" });
-  }
-  // IF USER IS LOGGED IN, VERIFIED AND AN ADMIN
+  // IF USER IS LOGGED IN AND VERIFIED
   return next();
 }
 
@@ -61,14 +59,16 @@ const adminContent = (req, res, next) => {
 ROUTES
 =========================================================================================*/
 
-// @route     GET /admin/orders/fetch-orders
+// @route     GET /orders/fetch-orders
 // @desc      
-// @access    CONTENT - VERIFIED - ADMIN
-router.get("/admin/orders/fetch-orders", adminContent, async (req, res) => {
-  // FETCH ORDERS
+// @access    CONTENT - VERIFIED
+router.get("/orders/fetch-orders", verifiedContent, async (req, res) => {
+  // DECLARE VARIABLES
+  const account = req.user;
+  // FETCH ORDER
   let orders = [];
   try {
-    orders = await Order.find();
+    orders = await Order.find({ accountId: account._id });
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
@@ -81,39 +81,10 @@ router.get("/admin/orders/fetch-orders", adminContent, async (req, res) => {
   return res.send({ status: "success", content: { orders, comments } });
 });
 
-// @route     POST /admin/orders/update-order-status
+// @route     POST /orders/post-comment
 // @desc      
-// @access    CONTENT - VERIFIED - ADMIN
-router.post("/admin/orders/update-order-status", adminContent, async (req, res) => {
-  // DECLARE VARIABLES
-  const orderId = req.body.orderId;
-  const status = req.body.status;
-  // FETCH ORDER
-  let order;
-  try {
-    order = await Order.findOne({ _id: orderId });
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
-  // VALIDATE ORDER
-  if (!order) return res.send({ status: "failed", content: "no order found" });
-  // UPDATE STATUS
-  order.updateStatus(status);
-  // SAVE UPDATE
-  let savedOrder;
-  try {
-    savedOrder = await order.save();
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
-  // SUCCESS HANDLER
-  return res.send({ status: "success", content: savedOrder });
-});
-
-// @route     POST /admin/orders/post-comment
-// @desc      
-// @access    CONTENT - VERIFIED - ADMIN
-router.post("/admin/orders/post-comment", adminContent, async (req, res) => {
+// @access    CONTENT - VERIFIED
+router.post("/orders/post-comment", verifiedContent, async (req, res) => {
   // DECLARE VARIABLES
   const account = req.user;
   const orderId = req.body.orderId;

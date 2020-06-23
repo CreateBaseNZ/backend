@@ -15,8 +15,8 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Session = require("../../model/Session.js");
-const Account = require("../../model/Account.js");
+const Session = require("../model/Session.js");
+const Account = require("../model/Account.js");
 
 /*=========================================================================================
 MIDDLEWARE
