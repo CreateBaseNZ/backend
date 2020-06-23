@@ -59,20 +59,8 @@ SETUP AUTHENTICATION (PASSPORT JS)
 
 app.use(expressSession({
   secret: process.env.COOKIES_SECRET_KEY, saveUninitialized: true,
-  resave: true, rolling: true, sameSite: "none", cookie: {
-    domain: process.env.DOMAIN
-  }
+  resave: true, rolling: true, sameSite: "none"
 }));
-
-if (process.env.NODE_ENV === "production") {
-  app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-    next();
-  });
-}
 
 app.use(passport.initialize());
 app.use(passport.session());
