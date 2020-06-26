@@ -74,11 +74,11 @@
       <div class="nav-right-menu-in">
         <div class="nav-right-menu" id="nav-right-menu">
           <p class="nav-side-header">PROJECTS</p>
-          <a class="nav-side-item" href="/profile/projects">MY PROJECTS</a>
+          <a class="nav-side-item" onclick="profile.setPage('projects');">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-          <a class="nav-side-item" href="/profile">MY PROFILE</a>
-          <a class="nav-side-item" href="/profile/orders">MY ORDERS</a>
-          <a class="nav-side-item" href="/profile/settings">SETTINGS</a>
+          <a class="nav-side-item" onclick="profile.setPage('');">MY PROFILE</a>
+          <a class="nav-side-item" onclick="profile.setPage('orders');">MY ORDERS</a>
+          <a class="nav-side-item" onclick="profile.setPage('settings');">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
@@ -578,7 +578,7 @@
         </div>
       </div>
     </div>
-
+    <!--
     <div id="tab-container">
       <input type="radio" id="profile-tab" name="tab" onclick="profile.setPage('');">
       <label for="profile-tab"><span>Profile</span><i class="fas fa-user"></i></label>
@@ -590,6 +590,9 @@
       <label for="settings-tab"><span>Settings</span><i class="fas fa-cog"></i></label>
     </div>
   </div>
+  -->
+
+    <!--
   <div id="proj-menu-overlay">
     <div id="proj-menu-container">
       <div id="proj-menu-x">
@@ -610,7 +613,9 @@
         </div>
       </div>
     </div>
+    -->
   </div>
+
   <!-- ==========================JS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <script async src="https://js.stripe.com/v3/"></script>

@@ -27,7 +27,7 @@ profile.setPage = (page = undefined, initialise = false) => {
   if (!valid) return console.log(message);
   // UPDATE PROFILE PAGE
   profile.setPageUpdate(newPage, baseURL);
-  if (initialise) profile.preSetTab();
+  // if (initialise) profile.preSetTab();
   return;
 }
 
