@@ -66,19 +66,14 @@ router.get("/orders/fetch-orders", verifiedContent, async (req, res) => {
   // DECLARE VARIABLES
   const account = req.user;
   // FETCH ORDER
-  let orders = [];
+  let orders;
   try {
-    orders = await Order.find({ accountId: account._id });
+    orders = await Order.fetch({ accountId: account._id }, true);
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    return res.send(error);
   }
-  // FETCH COMMENTS
-  let comments = [];
-  // TO DO .....
-  // FETCH COMMENTS
-  // TO DO .....
   // SUCCESS HANDLER
-  return res.send({ status: "success", content: { orders, comments } });
+  return res.send({ status: "success", content: orders });
 });
 
 // @route     POST /orders/post-comment

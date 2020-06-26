@@ -26,40 +26,16 @@ SUB MODELS
 =========================================================================================*/
 
 const AddressSchema = new Schema({
-  recipient: {
-    type: String,
-    default: ""
-  },
-  unit: {
-    type: String,
-    default: ""
-  },
+  recipient: { type: String, default: "" },
+  unit: { type: String, default: "" },
   street: {
-    number: {
-      type: String,
-      default: ""
-    },
-    name: {
-      type: String,
-      default: ""
-    },
+    number: { type: String, default: "" },
+    name: { type: String, default: "" },
   },
-  suburb: {
-    type: String,
-    default: ""
-  },
-  city: {
-    type: String,
-    default: ""
-  },
-  postcode: {
-    type: String,
-    default: ""
-  },
-  country: {
-    type: String,
-    default: ""
-  }
+  suburb: { type: String, default: "" },
+  city: { type: String, default: "" },
+  postcode: { type: String, default: "" },
+  country: { type: String, default: "" }
 });
 
 /*=========================================================================================
@@ -67,112 +43,58 @@ CREATE ORDER MODEL
 =========================================================================================*/
 
 const OrderSchema = new Schema({
-  accountId: {
-    type: Schema.Types.ObjectId,
-  },
-  sessionId: {
-    type: String,
-  },
-  status: {
-    type: String,
-    required: true
-  },
+  accountId: { type: Schema.Types.ObjectId },
+  sessionId: { type: String },
+  status: { type: String, required: true },
   makes: {
-    awaitingQuote: {
-      type: [Schema.Types.ObjectId],
-      default: []
-    },
-    checkout: {
-      type: [Schema.Types.ObjectId],
-      default: []
-    },
+    awaitingQuote: { type: [Schema.Types.ObjectId], default: [] },
+    checkout: { type: [Schema.Types.ObjectId], default: [] },
   },
-  discounts: {
-    type: [Schema.Types.ObjectId],
-    default: [],
-  },
-  manufacturingSpeed: {
-    type: String,
-    default: "",
-  },
+  discounts: { type: [Schema.Types.ObjectId], default: [] },
+  manufacturingSpeed: { type: String, default: "" },
   shipping: {
     address: {
-      option: {
-        type: String,
-        default: ""
-      },
-      saved: {
-        type: AddressSchema,
-        default: AddressSchema
-      },
-      new: {
-        type: AddressSchema,
-        default: AddressSchema
-      },
-      save: {
-        type: Boolean,
-        default: true
-      },
+      option: { type: String, default: "" },
+      saved: { type: AddressSchema, default: AddressSchema },
+      new: { type: AddressSchema, default: AddressSchema },
+      save: { type: Boolean, default: true },
     },
-    method: {
-      type: String,
-      default: "",
-    },
+    method: { type: String, default: "" },
   },
   payment: {
-    method: {
-      type: String,
-      default: "",
+    method: { type: String, default: "" },
+    amount: {
+      makes: { type: Schema.Types.Mixed, default: {} },
+      manufacturing: { type: Schema.Types.Mixed, default: {} },
+      discount: { type: Schema.Types.Mixed, default: {} },
+      gst: { type: Schema.Types.Mixed, default: {} },
+      shipping: { type: Schema.Types.Mixed, default: {} },
+      total: { type: Schema.Types.Mixed, default: {} }
     },
-    transaction: {
-      type: Schema.Types.ObjectId
-    }
+    transaction: { type: Schema.Types.ObjectId, default: undefined }
   },
-  comments: {
-    type: [Schema.Types.ObjectId],
-    default: [],
-  },
+  comments: { type: [Schema.Types.ObjectId], default: [] },
   date: {
-    created: {
-      type: String,
-      default: "",
-    },
-    checkedout: {
-      type: String,
-      default: "",
-    },
-    validated: {
-      type: String,
-      default: "",
-    },
-    built: {
-      type: String,
-      default: "",
-    },
-    shipped: {
-      type: String,
-      default: "",
-    },
-    arrived: {
-      type: String,
-      default: "",
-    },
-    reviewed: {
-      type: String,
-    },
-    completed: {
-      type: String,
-      default: "",
-    },
-    cancelled: {
-      type: String,
-      default: "",
-    },
-    modified: {
-      type: String,
-      default: "",
-    },
-  },
+    created: { type: String, default: "" },
+    checkedout: { type: String, default: "" },
+    validated: { type: String, default: "" },
+    built: { type: String, default: "" },
+    shipped: { type: String, default: "" },
+    arrived: { type: String, default: "" },
+    reviewed: { type: String, default: "" },
+    completed: { type: String, default: "" },
+    cancelled: { type: String, default: "" },
+    modified: { type: String, default: "" },
+  }
+});
+
+/*=========================================================================================
+MIDDLEWARE
+=========================================================================================*/
+
+OrderSchema.pre("save", async function (next) {
+  this.date.modified = moment().tz("Pacific/Auckland").format();
+  return next();
 });
 
 /*=========================================================================================
@@ -182,7 +104,6 @@ STATIC - MODEL
 // @FUNC  create
 // @TYPE  STATICS
 // @DESC
-// @ARGU
 OrderSchema.statics.create = function (access, id) {
   // VALIDATION
   // CREATE ORDER INSTANCE
@@ -202,7 +123,6 @@ OrderSchema.statics.create = function (access, id) {
 // @FUNC  merge
 // @TYPE  STATICS
 // @DESC
-// @ARGU
 OrderSchema.statics.merge = function (accountId, sessionId) {
   return new Promise(async (resolve, reject) => {
     // DECLARE AND INITIALISE VARIABLES
@@ -245,28 +165,66 @@ OrderSchema.statics.merge = function (accountId, sessionId) {
   })
 }
 
-// @FUNC  findByStatus
+// @FUNC  fetch
 // @TYPE  STATICS
 // @DESC
-// @ARGU
-OrderSchema.statics.findByStatus = function (status) {
+OrderSchema.statics.fetch = function (query = {}, withMakes = false, withComments = false,
+  withTransaction = false) {
   return new Promise(async (resolve, reject) => {
-    let order;
-
+    // FETCH ORDERS
+    let orders = [];
     try {
-      order = await this.find({ status });
+      orders = await this.find(query);
     } catch (error) {
-      reject(error);
+      return reject({ status: "error", content: error });
     }
+    // CHECK IF THERE ARE ORDERS FOUND
+    if (!orders.length) return resolve(orders);
+    // FETCH MAKES
+    if (withMakes) {
+      let promises = [];
+      for (let i = 0; i < orders.length; i++) promises.push(Make.fetch({ _id: orders[i].makes.checkout }));
+      // fetch comments of each order asynchronously
+      let makesArray;
+      try {
+        makesArray = await Promise.all(promises);
+      } catch (error) {
+        return reject(error);
+      }
+      for (let j = 0; j < makesArray.length; j++) {
+        const makes = makesArray[j];
+        orders[j].makes.checkout = makes;
+      }
+    }
+    // FETCH COMMENTS
+    if (withComments) {
+      // construct the promises for fetching comments of each order
+      let promises = [];
+      for (let i = 0; i < orders.length; i++) promises.push(Comment.fetch({ _id: orders[i].comments }));
+      // fetch comments of each order asynchronously
+      let commentsArray;
+      try {
+        commentsArray = await Promise.all(promises);
+      } catch (error) {
+        return reject(error);
+      }
+      for (let j = 0; j < commentsArray.length; j++) {
+        const comments = commentsArray[j];
+        orders[j].comments = comments;
+      }
+    }
+    // FETCH TRANSACTIONS
+    if (withTransaction) {
 
-    resolve(order);
+    }
+    // SUCCESS HANDLER
+    resolve(orders);
   });
-};
+}
 
 // @FUNC  transaction
 // @TYPE  STATICS
 // @DESC  
-// @ARGU  
 OrderSchema.statics.transaction = function (query) {
   return new Promise(async (resolve, reject) => {
     let order;
@@ -274,11 +232,13 @@ OrderSchema.statics.transaction = function (query) {
     try {
       order = await this.findOne(query);
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // VALIDATE THE ORDER
     const validity = order.validateAll();
-    if (!(validity.cart && validity.shipping && validity.payment)) return reject("order is not valid");
+    if (!(validity.cart && validity.shipping && validity.payment)) {
+      return reject({ status: "failed", content: "order is not valid" });
+    }
     // UPDATE CUSTOMER ADDRESS (if required)
     if (order.shipping.address.option === "new" && order.shipping.address.save) {
       try {
@@ -299,10 +259,10 @@ OrderSchema.statics.transaction = function (query) {
     try {
       await order.save();
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // SUCCESS RESPONSE
-    return resolve();
+    return resolve(order);
   })
 }
 
@@ -313,15 +273,14 @@ METHODS - DOCUMENT
 // @FUNC  saveAddress
 // @TYPE  METHODS
 // @DESC
-// @ARGU
 OrderSchema.methods.saveAddress = function () {
   return new Promise(async (resolve, reject) => {
     // FETCH THE ORDER OWNER'S DETAILS
     let customer;
     try {
-      customer = await Customer.find({ accountId: this.accountId });
+      customer = await Customer.findOne({ accountId: this.accountId });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // UPDATE ADDRESS
     customer.address = this.shipping.address.saved;
@@ -329,7 +288,7 @@ OrderSchema.methods.saveAddress = function () {
     try {
       await customer.save();
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // SUCCESS RESPONSE
     return resolve();
@@ -344,7 +303,6 @@ TRANSACT
 // @TYPE  METHODS
 // @DESC  Creates the transaction instance and update the order's transaction-related
 //        properties
-// @ARGU  
 OrderSchema.methods.transactMakes = function () {
   return new Promise(async (resolve, reject) => {
     // FETCH MAKES
@@ -352,7 +310,7 @@ OrderSchema.methods.transactMakes = function () {
     try {
       makes = await Make.find({ _id: this.makes.checkout });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // Update each make and prepare promises
     let promises = [];
@@ -365,7 +323,7 @@ OrderSchema.methods.transactMakes = function () {
     try {
       await Promise.all(promises);
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // SUCCESS RESPONSE
     return resolve();
@@ -376,24 +334,20 @@ OrderSchema.methods.transactMakes = function () {
 // @TYPE  METHODS
 // @DESC  Creates the transaction instance and update the order's transaction-related
 //        properties
-// @ARGU  
 OrderSchema.methods.transact = function () {
   return new Promise(async (resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    const type = this.payment.method;
-    const sender = this.accountId;
     // Amount details
-    let metadata;
+    let amount;
     try {
-      metadata = await this.amount();
+      amount = await this.amount();
     } catch (error) {
       return reject(error);
     }
-    const amount = metadata.total.total;
-    // CREATE THE TRANSACTION INSTANCE
+    this.payment.amount = amount;
+    // CREATE THE CHECKOUT TRANSACTION INSTANCE
     let transaction;
     try {
-      transaction = await Transaction.createCheckout(type, sender, amount, metadata);
+      transaction = await Transaction.checkout(this._id, this.accountId, amount.total.total);
     } catch (error) {
       return reject(error);
     }
@@ -410,6 +364,13 @@ OrderSchema.methods.transact = function () {
   })
 }
 
+// @FUNC  processTransactions
+// @TYPE  METHODS
+// @DESC  
+OrderSchema.methods.processTransactions = function () {
+
+}
+
 /* ----------------------------------------------------------------------------------------
 AMOUNT CALCULATION
 ---------------------------------------------------------------------------------------- */
@@ -417,7 +378,6 @@ AMOUNT CALCULATION
 // @FUNC  amountMakes
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.amountMakes = function () {
   return new Promise(async (resolve, reject) => {
     // FETCH THE ORDER'S MAKES
@@ -425,7 +385,7 @@ OrderSchema.methods.amountMakes = function () {
     try {
       makes = await Make.find({ _id: this.makes.checkout });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // CONSTRUCT THE AMOUNT OBJECT
     let amount = { status: "", total: 0 };
@@ -443,7 +403,6 @@ OrderSchema.methods.amountMakes = function () {
 // @FUNC  amountManufacturing
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.amountManufacturing = function () {
   // CREATE THE AMOUNT OBJECT
   let amount = { status: "", rate: 0, total: 0 };
@@ -465,7 +424,6 @@ OrderSchema.methods.amountManufacturing = function () {
 // @FUNC  amountDiscount
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.amountDiscount = function () {
   return new Promise(async (resolve, reject) => {
     // FETCH THE ORDER'S DISCOUNTS
@@ -473,7 +431,7 @@ OrderSchema.methods.amountDiscount = function () {
     try {
       discounts = await Discount.find({ _id: this.discounts });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // CONSTRUCT THE AMOUNT OBJECT
     let amount = { status: "valid", rate: 0, total: 0 };
@@ -490,7 +448,6 @@ OrderSchema.methods.amountDiscount = function () {
 // @FUNC  amountGST
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.amountGST = function () {
   // CONSTRUCT THE AMOUNT OBJECT
   const amount = { status: "valid", rate: 0.15, total: 0 };
@@ -501,7 +458,6 @@ OrderSchema.methods.amountGST = function () {
 // @FUNC  amountShipping
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.amountShipping = function () {
   // CREATE THE AMOUNT OBJECT
   let amount = { status: "", total: 0 };
@@ -527,7 +483,6 @@ OrderSchema.methods.amountShipping = function () {
 // @FUNC  amount
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.amount = function () {
   return new Promise(async (resolve, reject) => {
     // DECLARE AND INITIALISE VARIABLES
@@ -545,7 +500,7 @@ OrderSchema.methods.amount = function () {
     try {
       discount = await this.amountDiscount();
     } catch (error) {
-      reject(error);
+      return reject(error);
     }
     // GST
     let gst = this.amountGST();
@@ -576,7 +531,6 @@ UPDATE
 // @FUNC  updateStatus
 // @TYPE  METHODS
 // @DESC
-// @ARGU
 OrderSchema.methods.updateStatus = function (status) {
   // DECLARE AND INITIALISE VARIABLES
   const statuses = ["created", "checkedout", "validated", "built",
@@ -597,7 +551,6 @@ OrderSchema.methods.updateStatus = function (status) {
 // @FUNC  updateMakes
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.updateMakes = function () {
   return new Promise(async (resolve, reject) => {
     // CREATE THE ORDER FIND OBJECT
@@ -629,7 +582,6 @@ OrderSchema.methods.updateMakes = function () {
 // @FUNC  updateDiscounts
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.updateDiscounts = function () {
   return new Promise(async (resolve, reject) => {
     const today = moment().tz("Pacific/Auckland").format("YYYY-MM-DD");
@@ -696,7 +648,6 @@ OrderSchema.methods.updateDiscounts = function () {
 // @FUNC  updateSavedAddress
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.updateSavedAddress = function () {
   return new Promise(async (resolve, reject) => {
     // CHECK IF THE ORDER HAS AN OWNER
@@ -720,7 +671,6 @@ OrderSchema.methods.updateSavedAddress = function () {
 // @FUNC  update
 // @TYPE  METHODS
 // @DESC  
-// @ARGU  
 OrderSchema.methods.update = function (updates) {
   // UPDATE ORDER
   for (let i = 0; i < updates.length; i++) {
@@ -755,7 +705,6 @@ VALIDATION
 // @FUNC  validateCart
 // @TYPE  METHODS
 // @DESC
-// @ARGU
 OrderSchema.methods.validateCart = function () {
   // MAKES
   if (!(this.makes.checkout.length)) return false;
@@ -768,7 +717,6 @@ OrderSchema.methods.validateCart = function () {
 // @FUNC  validateShipping
 // @TYPE  METHODS
 // @DESC
-// @ARGU
 OrderSchema.methods.validateShipping = function () {
   // ADDRESS OPTION
   if (!this.shipping.address.option) return false;
@@ -789,7 +737,6 @@ OrderSchema.methods.validateShipping = function () {
 // @FUNC  validate
 // @TYPE  METHODS
 // @DESC
-// @ARGU
 OrderSchema.methods.validateAll = function () {
   const cart = this.validateCart();
   const shipping = this.validateShipping();

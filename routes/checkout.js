@@ -37,6 +37,18 @@ const verifiedAccess = (req, res, next) => {
       return res.redirect("/verification");
     }
   } else {
+    return res.sendFile("login.html", customerRouteOptions);
+  }
+};
+
+const verifiedDataAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    if (req.user.verification.status) {
+      return next();
+    } else {
+      return res.send({ status: "failed", content: "need to verify" });
+    }
+  } else {
     return res.redirect("/login");
   }
 };
@@ -45,7 +57,18 @@ const restrictedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    return res.redirect("/login");
+    return res.sendFile("login.html", customerRouteOptions);
+  }
+};
+
+const unrestrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    // TO DO .....
+    // REDIRECT TO ALREADY LOGGED IN PAGE
+    // TO DO .....
+    return res.redirect("/"); // TEMPORARILY SEND THEM BACK HOME
+  } else {
+    return next();
   }
 };
 
@@ -284,23 +307,17 @@ router.get("/checkout/order-amount", verifiedAccess, async (req, res) => {
 //            the customer's order.
 // @access    Private
 router.get("/checkout/bank-transfer", verifiedAccess, async (req, res) => {
+  console.log("Checkpoint 1: Route");
   // DECLARE VARIABLES
   const accountId = req.user._id;
-  const sessionId = req.sessionID;
   // BUILD THE ORDER
-  let order;
   // Create the find object
-  let query;
-  if (accountId) {
-    query = { accountId, status: "created" };
-  } else {
-    query = { sessionId, status: "created" };
-  }
+  const query = { accountId, status: "created" };
   // Fetch existing active order
   try {
-    order = await Order.transaction(query);
+    await Order.transaction(query);
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    return res.send(error);
   }
   // Return a success message
   return res.send({ status: "success", content: "bank transfer processed" });

@@ -12,37 +12,32 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
+EXTERNAL MODELS
+=========================================================================================*/
+
+const Customer = require("./Customer.js");
+
+/*=========================================================================================
 CREATE COMMENT MODEL
 =========================================================================================*/
 
 const CommentSchema = new Schema({
-  accountId: {
-    type: Schema.Types.ObjectId
-  },
-  message: {
-    type: String,
-    default: ""
-  },
+  accountId: { type: Schema.Types.ObjectId },
+  message: { type: String, default: "" },
   date: {
-    created: {
-      type: String,
-      default: ""
-    },
-    modified: {
-      type: String,
-      default: ""
-    }
+    created: { type: String, default: "" },
+    modified: { type: String, default: "" }
   },
-  attachments: {
-    type: [Schema.Types.ObjectId],
-    default: []
-  }
+  attachments: { type: [Schema.Types.ObjectId], default: [] }
 });
 
 /*=========================================================================================
 STATIC
 =========================================================================================*/
 
+// @FUNC  create
+// @TYPE  STATICS
+// @DESC
 CommentSchema.statics.create = function (accountId, message = "", attachments = []) {
   return new Promise(async (resolve, reject) => {
     // CREATE COMMENT
@@ -57,6 +52,49 @@ CommentSchema.statics.create = function (accountId, message = "", attachments = 
       return reject(error);
     }
     return resolve(comment);
+  });
+}
+
+// @FUNC  fetch
+// @TYPE  STATICS
+// @DESC
+CommentSchema.statics.fetch = function (query = {}) {
+  return new Promise(async (resolve, reject) => {
+    // GET COMMENTS
+    let comments;
+    try {
+      comments = await this.find(query);
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    // GET USERS
+    let customerIds = [];
+    for (let i = 0; i < comments.length; i++) {
+      const comment = comments[i];
+      const customerId = comment.accountId;
+      if (customerIds.indexOf(customerId) === -1) customerIds.push(customerId);
+    }
+    let customers;
+    try {
+      customers = await Customer.find({ accountId: customerIds });
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    // CONSTRUCT THE FORMATTED COMMENTS
+    let formattedComments = [];
+    for (let i = 0; i < comments.length; i++) {
+      const comment = comments[i];
+      const customer = customers.find(customer => (comment.accountId === customer.accountId));
+      let author = { name: "unknown", picture: "unknown" };
+      if (customer) author = { name: customer.displayName, picture: customer.picture };
+      const formattedComment = {
+        id: comment._id, author, message: comment.message,
+        date: comment.date, attachments: comment.attachments
+      }
+      formattedComments.push(formattedComment);
+    }
+    // SUCCESS HANDLER
+    return resolve(formattedComments);
   });
 }
 

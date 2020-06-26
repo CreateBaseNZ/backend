@@ -1265,9 +1265,9 @@ REDIRECT PAGE
 -----------------------------------------------------------------------------------------*/
 
 make.redirect = () => {
-  document.querySelector("#make").innerHTML = `<div id="make-redirect">
+  document.querySelector(".main-page").innerHTML = `<div id="make-redirect">
     <a class="rmv-link-css" href="/">Home</a>
-    <a class="rmv-link-css" href="/3d-printing">New Make</a>
+    <a class="rmv-link-css" href="/make">New Make</a>
     <a class="rmv-link-css" href="/checkout">Go to Cart</a>
   </div>`;
 };

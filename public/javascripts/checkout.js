@@ -1557,10 +1557,17 @@ checkout.payment.method.bank.paid = async () => {
   document.querySelector("#checkout-complete-container").classList.remove("checkout-element-hide");
   document.querySelector("#checkout-complete-text").textContent = "Processing Your Order...";
   // PROCESS THE ORDER
+  let data;
   try {
-    await axios.get("/checkout/bank-transfer");
+    data = (await axios.get("/checkout/bank-transfer"))["data"];
   } catch (error) {
-    console.log(error);
+    data = { status: "error", content: error };
+  }
+  // ERROR HANDLER
+  console.log(data);
+  if (data.status === "error") {
+    return;
+  } else if (data.status === "failed") {
     return;
   }
   // UPDATE DISPLAY TO SUCCESS CSS

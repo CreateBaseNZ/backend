@@ -45,72 +45,60 @@ CREATE MAKE MODEL
 =========================================================================================*/
 
 const MakeSchema = new Schema({
-  accountId: {
-    type: Schema.Types.ObjectId,
-  },
-  sessionId: {
-    type: String,
-  },
+  accountId: { type: Schema.Types.ObjectId },
+  sessionId: { type: String },
   file: {
-    id: {
-      type: Schema.Types.ObjectId,
-    },
-    name: {
-      type: String,
-    },
+    id: { type: Schema.Types.ObjectId },
+    name: { type: String },
   },
-  status: {
-    type: String,
-  },
-  build: {
-    type: String,
-  },
-  quick: {
-    type: String,
-  },
-  process: {
-    type: String,
-  },
-  material: {
-    type: String,
-  },
-  quality: {
-    type: String,
-  },
-  strength: {
-    type: String,
-  },
-  colour: {
-    type: String,
-  },
-  quantity: {
-    type: Number,
-  },
-  comment: {
-    type: Schema.Types.ObjectId,
-  },
+  status: { type: String },
+  build: { type: String },
+  quick: { type: String },
+  process: { type: String },
+  material: { type: String },
+  quality: { type: String },
+  strength: { type: String },
+  colour: { type: String },
+  quantity: { type: Number },
+  comment: { type: Schema.Types.ObjectId },
   date: {
-    awaitingQuote: {
-      type: String,
-    },
-    checkout: {
-      type: String,
-    },
-    purchased: {
-      type: String,
-    },
-    modified: {
-      type: String,
-    },
+    awaitingQuote: { type: String },
+    checkout: { type: String },
+    purchased: { type: String },
+    modified: { type: String },
   },
-  price: {
-    type: Number,
-  },
+  price: { type: Number },
 });
 
 /*=========================================================================================
 STATIC
 =========================================================================================*/
+
+// @FUNC  fetch
+// @TYPE  STATICS
+// @DESC  
+MakeSchema.statics.fetch = function (query = {}) {
+  return new Promise(async (resolve, reject) => {
+    // GET MAKES
+    let makes;
+    try {
+      makes = await this.find(query);
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    // CONSTRUCT THE FORMATTED MAKES
+    const formattedMakes = makes.map(make => {
+      let formattedMake = {
+        id: make._id, file: make.file, build: make.build, quick: make.quick,
+        process: make.process, material: make.material, quality: make.quality,
+        strength: make.strength, colour: make.colour, quantity: make.quantity,
+        comment: make.comment, date: make.date, price: make.price
+      }
+      return formattedMake;
+    });
+    return resolve(formattedMakes);
+  });
+}
 
 MakeSchema.statics.retrieve = function (accountId) {
   return new Promise(async (resolve, reject) => {
@@ -125,22 +113,13 @@ MakeSchema.statics.retrieve = function (accountId) {
     // RECREATE PROJECTS REMOVING SENSITIVE PROPERTIES
     const mappedMakes = makes.map((make) => {
       let mappedMake = {
-        id: make._id,
-        file: make.file,
-        build: make.build,
-        quick: make.quick,
-        process: make.process,
-        material: make.material,
-        quality: make.quality,
-        strength: make.strength,
-        colour: make.colour,
-        quantity: make.quantity,
-        comment: make.comment,
-        date: make.date,
-        price: make.price
+        id: make._id, file: make.file, build: make.build, quick: make.quick,
+        process: make.process, material: make.material, quality: make.quality,
+        strength: make.strength, colour: make.colour, quantity: make.quantity,
+        comment: make.comment, date: make.date, price: make.price
       }
       return mappedMake;
-    })
+    });
     // RESOLVE AND RETURN THE MAPPED MAKES
     resolve(mappedMakes);
     return;

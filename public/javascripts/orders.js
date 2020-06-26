@@ -17,7 +17,7 @@ orders.fetchOrders = () => {
   return new Promise(async (resolve, reject) => {
     let data;
     try {
-      data = (await axios.get("/order/fetch-orders"))["data"];
+      data = (await axios.get("/orders/fetch-orders"))["data"];
     } catch (error) {
       return reject(error);
     }

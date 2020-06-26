@@ -143,10 +143,10 @@ router.get("/verified", (req, res) => {
   res.sendFile("verified.html", customerRouteOptions);
 });
 
-// @route     Get /3d-printing
+// @route     Get /make
 // @desc      Get the Make Page
 // @access    Private
-router.get("/3d-printing", verifiedAccess, (req, res) => {
+router.get("/make", verifiedAccess, (req, res) => {
   res.sendFile("make.html", customerRouteOptions);
 });
 
