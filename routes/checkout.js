@@ -314,13 +314,26 @@ router.get("/checkout/bank-transfer", verifiedAccess, async (req, res) => {
   // Create the find object
   const query = { accountId, status: "created" };
   // Fetch existing active order
+  let order;
   try {
-    await Order.transaction(query);
+    order = await Order.transaction(query, false);
   } catch (error) {
     return res.send(error);
   }
+  // PROCESS ORDER
+  try {
+    await order.processCheckedout();
+  } catch (error) {
+    return res.send(error);
+  }
+  // SAVE ORDER
+  try {
+    await order.save();
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
   // Return a success message
-  return res.send({ status: "success", content: "bank transfer processed" });
+  return res.send({ status: "success", content: "checkout successful" });
 });
 
 // @route     POST /checkout/card-payment

@@ -18,7 +18,21 @@ MODELS
 const Account = require("./Account.js");
 
 /*=========================================================================================
-checkoutREATE TRANSACTION MODEL
+SUB MODELS MODEL
+=========================================================================================*/
+
+const TicketSchema = new Schema({
+  id: { type: Schema.Types.ObjectId, required: true },
+  amount: { type: Number, required: true }
+});
+
+const UsageSchema = new Schema({
+  id: { type: Schema.Types.ObjectId, required: true },
+  amount: { type: Number, required: true }
+});
+
+/*=========================================================================================
+TRANSACTION MODEL
 =========================================================================================*/
 
 const TransactionSchema = new Schema({
@@ -33,6 +47,8 @@ const TransactionSchema = new Schema({
     created: { type: String, required: true },
     modified: { type: String, required: true }
   },
+  tickets: { type: [TicketSchema], default: [] },
+  usages: { type: [UsageSchema], default: [] },
   amount: { type: Number, required: true },
   metadata: { type: Schema.Types.Mixed, default: {} }
 });
@@ -130,10 +146,10 @@ TransactionSchema.statics.bankTransfer = function (customerId, amountOne) {
     });
     // ADD METADATA
     // bank transfer
-    let metadataOne = { usages: [], bonus: bonus._id };
+    let metadataOne = { bonus: bonus._id };
     bankTransfer.metadata = metadataOne;
     // bonus
-    let metadataTwo = { usages: [], bankTransfer: bankTransfer._id };
+    let metadataTwo = { bankTransfer: bankTransfer._id };
     bonus.metadata = metadataTwo;
     // SAVE INSTANCES
     const promises = [bankTransfer.save(), bonus.save()];
@@ -170,7 +186,7 @@ TransactionSchema.statics.onlinePayment = function (sender, amount) {
     const currentDate = moment().tz("Pacific/Auckland").format();
     const date = { created: currentDate, modified: currentDate };
     // metadata
-    const metadata = { usages: [] };
+    const metadata = {};
     // create instance
     let onlinePayment = new this({ service, type, entity, date, amount, metadata });
     // save instance
@@ -211,7 +227,7 @@ TransactionSchema.statics.checkout = function (orderId, sender, amount) {
     const currentDate = moment().tz("Pacific/Auckland").format();
     const date = { created: currentDate, modified: currentDate };
     // metadata
-    const metadata = { type: "main", order: orderId, tickets: [] };
+    const metadata = { type: "main", order: orderId };
     // create instance
     let checkout = new this({ service, type, entity, date, amount, metadata });
     // save instance
@@ -303,7 +319,7 @@ TransactionSchema.statics.process = function (transactionId) {
     for (let i = 0; i < bankTransferDeposits.length; i++) {
       let bankTransferDeposit = bankTransferDeposits[i];
       let bankTransferBonus = bankTransferBonuses.find(bonus => {
-        return (bonus.metadata.bankTransfer === bankTransferDeposit._id);
+        return (String(bonus.metadata.bankTransfer) == String(bankTransferDeposit._id));
       });
       let [
         payed, updatedBankTransferDeposit, updatedBankTransferBonus
@@ -345,8 +361,8 @@ METHODS
 // @DESC  
 TransactionSchema.methods.remainingAmount = function () {
   let remainingAmount = this.amount;
-  for (let i = 0; i < this.metadata.tickets; i++) {
-    const ticket = this.metadata.tickets[i];
+  for (let i = 0; i < this.tickets.length; i++) {
+    const ticket = this.tickets[i];
     remainingAmount = remainingAmount - ticket.amount;
   }
   return remainingAmount;
@@ -357,8 +373,8 @@ TransactionSchema.methods.remainingAmount = function () {
 // @DESC  
 TransactionSchema.methods.remainingBalance = function () {
   let remainingBalance = this.amount;
-  for (let i = 0; i < this.metadata.usages; i++) {
-    const usage = this.metadata.usages[i];
+  for (let i = 0; i < this.usages.length; i++) {
+    const usage = this.usages[i];
     remainingBalance = remainingBalance - usage.amount;
   }
   return remainingBalance;
@@ -377,29 +393,29 @@ TransactionSchema.methods.creditPay = function (credit) {
   if (remainingAmount > remainingBalance) {
     // update credit
     usage = { id: this._id, amount: remainingBalance };
-    credit.metadata.usages.push(usage);
+    credit.usages.push(usage);
     credit.status = "consumed";
     // update payment
     ticket = { id: credit._id, amount: remainingBalance };
-    this.metadata.tickets.push(ticket);
+    this.tickets.push(ticket);
     payed = false;
   } else if (remainingAmount < remainingBalance) {
     // update credit
     usage = { id: this._id, amount: remainingAmount };
-    credit.metadata.usages.push(usage);
+    credit.usages.push(usage);
     // update payment
     ticket = { id: credit._id, amount: remainingAmount };
-    this.metadata.tickets.push(ticket);
+    this.tickets.push(ticket);
     this.status = "succeeded";
     payed = true;
   } else if (remainingAmount === remainingBalance) {
     // update credit
     usage = { id: this._id, amount: remainingBalance };
-    credit.metadata.usages.push(usage);
+    credit.usages.push(usage);
     credit.status = "consumed";
     // update payment
     ticket = { id: credit._id, amount: remainingAmount };
-    this.metadata.tickets.push(ticket);
+    this.tickets.push(ticket);
     this.status = "succeeded";
     payed = true;
   }
@@ -422,17 +438,17 @@ TransactionSchema.methods.bankTransferPay = function (deposit, bonus) {
   if (remainingAmount > remainingBalance) {
     // update bank transfer
     usageDeposit = { id: this._id, amount: depositRemainingBalance };
-    deposit.metadata.usages.push(usageDeposit);
+    deposit.usages.push(usageDeposit);
     deposit.status = "consumed";
     // update bonus
     usageBonus = { id: this._id, amount: bonusRemainingBalance };
-    bonus.metadata.usages.push(usageBonus);
+    bonus.usages.push(usageBonus);
     bonus.status = "consumed";
     // update payment
     ticketDeposit = { id: deposit._id, amount: depositRemainingBalance };
-    this.metadata.tickets.push(ticketDeposit);
+    this.tickets.push(ticketDeposit);
     ticketBonus = { id: bonus._id, amount: bonusRemainingBalance };
-    this.metadata.tickets.push(ticketBonus);
+    this.tickets.push(ticketBonus);
     payed = false;
   } else if (remainingAmount < remainingBalance) {
     let calculate = true;
@@ -440,7 +456,7 @@ TransactionSchema.methods.bankTransferPay = function (deposit, bonus) {
     let cumulativeBonusSpend = 0;
     let cumulativeAmountPay = 0;
     while (calculate) {
-      const [depositSpend, bonusSpend] = TransactionSchema.methods.bankTransferPartialPay(
+      const [depositSpend, bonusSpend] = this.bankTransferPartialPay(
         depositRemainingBalance - cumulativeDepositSpend,
         bonusRemainingBalance - cumulativeBonusSpend,
         remainingAmount - cumulativeAmountPay
@@ -454,31 +470,31 @@ TransactionSchema.methods.bankTransferPay = function (deposit, bonus) {
     }
     // update bank transfer
     usageDeposit = { id: this._id, amount: cumulativeDepositSpend };
-    deposit.metadata.usages.push(usageDeposit);
+    deposit.usages.push(usageDeposit);
     // update bonus
     usageBonus = { id: this._id, amount: cumulativeBonusSpend };
-    bonus.metadata.usages.push(usageBonus);
+    bonus.usages.push(usageBonus);
     // update payment
-    ticketDeposit = { id: deposit._id, amount: depositConsumedBalance };
-    this.metadata.tickets.push(ticketDeposit);
-    ticketBonus = { id: bonus._id, amount: bonusConsumedBalance };
-    this.metadata.tickets.push(ticketBonus);
+    ticketDeposit = { id: deposit._id, amount: cumulativeDepositSpend };
+    this.tickets.push(ticketDeposit);
+    ticketBonus = { id: bonus._id, amount: cumulativeBonusSpend };
+    this.tickets.push(ticketBonus);
     this.status = "succeeded";
     payed = true;
   } else if (remainingAmount === remainingBalance) {
     // update bank transfer
     usageDeposit = { id: this._id, amount: depositRemainingBalance };
-    deposit.metadata.usages.push(usageDeposit);
+    deposit.usages.push(usageDeposit);
     deposit.status = "consumed";
     // update bonus
     usageBonus = { id: this._id, amount: bonusRemainingBalance };
-    bonus.metadata.usages.push(usageBonus);
+    bonus.usages.push(usageBonus);
     bonus.status = "consumed";
     // update payment
     ticketDeposit = { id: deposit._id, amount: depositRemainingBalance };
-    this.metadata.tickets.push(ticketDeposit);
+    this.tickets.push(ticketDeposit);
     ticketBonus = { id: bonus._id, amount: bonusRemainingBalance };
-    this.metadata.tickets.push(ticketBonus);
+    this.tickets.push(ticketBonus);
     this.status = "succeeded";
     payed = true;
   }
@@ -515,6 +531,11 @@ TransactionSchema.methods.bankTransferPartialPay = function (deposit, bonus, amo
       spendType = "deposit";
     }
   }
+
+  if (amount <= spend) {
+    spend = amount;
+  };
+
   let bonusSpend = 0;
   let depositSpend = 0;
   if (spendType === "bonus") {

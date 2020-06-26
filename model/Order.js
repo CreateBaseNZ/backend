@@ -225,7 +225,7 @@ OrderSchema.statics.fetch = function (query = {}, withMakes = false, withComment
 // @FUNC  transaction
 // @TYPE  STATICS
 // @DESC  
-OrderSchema.statics.transaction = function (query) {
+OrderSchema.statics.transaction = function (query, save = true) {
   return new Promise(async (resolve, reject) => {
     let order;
     // Fetch existing active order
@@ -256,14 +256,53 @@ OrderSchema.statics.transaction = function (query) {
     // Update the order's status
     order.updateStatus("checkedout");
     // Save the updated order
-    try {
-      await order.save();
-    } catch (error) {
-      return reject({ status: "error", content: error });
+    if (save) {
+      try {
+        await order.save();
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
     }
     // SUCCESS RESPONSE
     return resolve(order);
   })
+}
+
+// @FUNC  process
+// @TYPE  STATICS
+// @DESC
+OrderSchema.statics.process = function (query = {}) {
+  return new Promise(async (resolve, reject) => {
+    // FETCH ORDERS FOR THE GIVEN QUERY
+    let orders;
+    try {
+      orders = await this.find(query);
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    // GROUP ORDERS BY STATUS AND PROCESS EACH GROUP
+    // checkedout
+    const checkedout = orders.filter(order => order.status === "checkedout");
+    if (checkedout.length) {
+      for (let i = 0; i < checkedout.length; i++) {
+        let order = checkedout[i];
+        let proceed;
+        try {
+          proceed = await order.processCheckedout();
+        } catch (error) {
+          return reject(error);
+        }
+        try {
+          await order.save();
+        } catch (error) {
+          return reject({ status: "error", content: error });
+        }
+        if (proceed === false) break;
+      }
+    }
+    // SUCCESS HANDLER
+    return resolve();
+  });
 }
 
 /*=========================================================================================
@@ -294,6 +333,30 @@ OrderSchema.methods.saveAddress = function () {
     return resolve();
   })
 };
+
+/* ----------------------------------------------------------------------------------------
+PROCESSING
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  processCheckedout
+// @TYPE  METHODS
+// @DESC  
+OrderSchema.methods.processCheckedout = function () {
+  return new Promise(async (resolve, reject) => {
+    const transactionId = this.payment.transaction;
+    try {
+      transaction = await Transaction.process(transactionId);
+    } catch (error) {
+      return reject(error);
+    }
+    let proceed = false;
+    if (transaction.status === "succeeded") {
+      this.updateStatus("validated");
+      proceed = true;
+    };
+    return resolve(proceed);
+  });
+}
 
 /* ----------------------------------------------------------------------------------------
 TRANSACT
@@ -362,13 +425,6 @@ OrderSchema.methods.transact = function () {
     // SUCCESS RESPONSE
     return resolve();
   })
-}
-
-// @FUNC  processTransactions
-// @TYPE  METHODS
-// @DESC  
-OrderSchema.methods.processTransactions = function () {
-
 }
 
 /* ----------------------------------------------------------------------------------------

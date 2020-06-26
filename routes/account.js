@@ -17,6 +17,7 @@ MODELS
 
 const Session = require("../model/Session.js");
 const Account = require("../model/Account.js");
+const Order = require("../model/Order.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -113,6 +114,13 @@ router.post("/login/validate", async (req, res) => {
 router.post("/login/customer", passport.authenticate("local-customer-login", {
   failureRedirect: "/login"
 }), (req, res) => {
+  const account = req.user;
+  // BEGIN PROCESSING ORDERS
+  const query = { accountId: account._id };
+  Order.process(query)
+    .then(() => console.log("Orders Processed"))
+    .catch((error) => console.log(error));
+  // SUCCESS HANDLER
   return res.redirect(req.body.link);
 });
 
