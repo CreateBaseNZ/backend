@@ -24,6 +24,7 @@ const Customer = require("../model/Customer.js");
 const Discount = require("../model/Discount.js");
 const Order = require("../model/Order.js");
 const Make = require("../model/Make.js");
+const Transaction = require("../model/Transaction.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -108,7 +109,7 @@ router.get("/checkout/order", verifiedAccess, async (req, res) => {
   const sessionId = req.sessionID;
   const wallet = req.user.wallet;
   // BUILD THE ORDER
-  let order;
+  let order, balance;
   let access;
   let id;
   // Create the find object
@@ -123,8 +124,9 @@ router.get("/checkout/order", verifiedAccess, async (req, res) => {
     id = sessionId;
   }
   // Fetch existing active order
+  let promisesOne = [Order.findOne(query), Transaction.fetchBalance(accountId)];
   try {
-    order = await Order.findOne(query);
+    [order, balance] = await Promise.all(promisesOne);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
@@ -147,7 +149,7 @@ router.get("/checkout/order", verifiedAccess, async (req, res) => {
   // VALIDATE THE ORDER'S SECTIONS
   const validity = order.validateAll();
   // RETURN SUCCESS RESPONSE TO THE CLIENT
-  return res.send({ status: "success", content: { order, makes, discounts, amount, validity, wallet } });
+  return res.send({ status: "success", content: { order, makes, discounts, amount, validity, wallet, balance } });
 });
 
 // @route     POST /checkout/update

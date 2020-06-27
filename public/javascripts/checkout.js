@@ -16,6 +16,7 @@ ELEMENTS
 
 let checkout = {
   // VARIABLES
+  balance: undefined,
   element: {
     heading: {
       cart: undefined, // checkout.element.heading.cart
@@ -23,28 +24,12 @@ let checkout = {
       payment: undefined // checkout.element.heading.payment
     },
     button: {
-      cart: {
-        next: undefined // checkout.element.button.cart.next
-      },
-      shipping: {
-        back: undefined, // checkout.element.button.shipping.back
-        next: undefined // checkout.element.button.shipping.next
-      },
+      cart: undefined, // checkout.element.button.cart
+      shipping: undefined, // checkout.element.button.shipping
       payment: {
-        bank: {
-          back: undefined, // checkout.element.button.payment.bank.back
-          paid: undefined // checkout.element.button.payment.bank.paid
-        },
-        card: {
-          back: undefined, // checkout.element.button.payment.card.back
-          pay: undefined // checkout.element.button.payment.card.pay
-        }
+        bank: undefined, // checkout.element.button.payment.bank
+        card: undefined // checkout.element.button.payment.card
       }
-    },
-    navigation: {
-      cart: undefined, // checkout.element.navigation.cart
-      shipping: undefined, // checkout.element.navigation.shipping
-      payment: undefined // checkout.element.navigation.payment
     },
     windowSize: undefined // checkout.element.windowSize
   },
@@ -318,6 +303,7 @@ checkout.load = async () => {
   // Update Order Amounts
   checkout.amount.load(content.amount);
   // Update Bank Transfer Details
+  checkout.balance = content.balance;
   checkout.payment.method.bank.detail(content.amount, content.wallet);
   // Update Discounts
   checkout.cart.discounts.load(content.discounts);
@@ -332,9 +318,6 @@ checkout.load = async () => {
 // @ARGU
 checkout.listener = () => {
   checkout.element.heading.cart.addEventListener("click", checkout.cart.show);
-  checkout.element.button.shipping.back.addEventListener("click", checkout.cart.show);
-  checkout.element.button.payment.bank.back.addEventListener("click", checkout.shipping.show);
-  checkout.element.button.payment.card.back.addEventListener("click", checkout.shipping.show);
   checkout.element.windowSize.addListener(checkout.cart.prints.resize);
   checkout.element.windowSize.addListener(checkout.cart.resize);
   checkout.element.windowSize.addListener(checkout.shipping.resize);
@@ -380,13 +363,10 @@ checkout.elements.assign = () => {
   checkout.element.heading.cart = document.querySelector("#checkout-cart-heading");
   checkout.element.heading.shipping = document.querySelector("#checkout-shipping-heading");
   checkout.element.heading.payment = document.querySelector("#checkout-payment-heading");
-  checkout.element.button.cart.next = document.querySelector("#checkout-cart-next");
-  checkout.element.button.shipping.back = document.querySelector("#checkout-shipping-back");
-  checkout.element.button.shipping.next = document.querySelector("#checkout-shipping-next");
-  checkout.element.button.payment.bank.back = document.querySelector("#checkout-payment-bank-back");
-  checkout.element.button.payment.bank.paid = document.querySelector("#checkout-payment-bank-paid");
-  checkout.element.button.payment.card.back = document.querySelector("#checkout-payment-card-back");
-  checkout.element.button.payment.card.pay = document.querySelector("#checkout-payment-card-pay");
+  checkout.element.button.cart = document.querySelector("#checkout-cart-next");
+  checkout.element.button.shipping = document.querySelector("#checkout-shipping-next");
+  checkout.element.button.payment.bank = document.querySelector("#checkout-payment-bank-paid");
+  checkout.element.button.payment.card = document.querySelector("#checkout-payment-card-pay");
   checkout.element.windowSize = window.matchMedia("(min-width: 850px)");
 };
 
@@ -821,10 +801,9 @@ checkout.cart.validation.validate = async validity => {
 checkout.cart.validation.valid = () => {
   // Add Event Listeners
   checkout.element.heading.shipping.addEventListener("click", checkout.shipping.show);
-  checkout.element.button.cart.next.addEventListener("click", checkout.shipping.show);
+  checkout.element.button.cart.removeAttribute("disabled");
   // Update CSS
   checkout.element.heading.shipping.classList.add("valid");
-  checkout.element.button.cart.next.classList.add("valid");
 };
 
 // @FUNC  checkout.cart.validation.invalid
@@ -833,10 +812,9 @@ checkout.cart.validation.valid = () => {
 // @ARGU
 checkout.cart.validation.invalid = () => {
   checkout.element.heading.shipping.removeEventListener("click", checkout.shipping.show);
-  checkout.element.button.cart.next.removeEventListener("click", checkout.shipping.show);
+  checkout.element.button.cart.setAttribute("disabled", "");
   // Update CSS
   checkout.element.heading.shipping.classList.remove("valid");
-  checkout.element.button.cart.next.classList.remove("valid");
   // Return to Cart Page
   checkout.cart.show();
 };
@@ -1347,9 +1325,8 @@ checkout.shipping.validation.validate = async validity => {
 // @ARGU
 checkout.shipping.validation.valid = () => {
   checkout.element.heading.payment.addEventListener("click", checkout.payment.show);
-  checkout.element.button.shipping.next.addEventListener("click", checkout.payment.show);
+  checkout.element.button.shipping.removeAttribute("disabled");
   // Update CSS
-  checkout.element.button.shipping.next.classList.add("valid");
   checkout.element.heading.payment.classList.add("valid");
 };
 
@@ -1359,9 +1336,9 @@ checkout.shipping.validation.valid = () => {
 // @ARGU
 checkout.shipping.validation.invalid = () => {
   checkout.element.heading.payment.removeEventListener("click", checkout.payment.show);
-  checkout.element.button.shipping.next.removeEventListener("click", checkout.payment.show);
+  checkout.element.button.shipping.setAttribute("disabled", "");
   // Update CSS
-  checkout.element.button.shipping.next.classList.remove("valid");
+  checkout.element.heading.payment.classList.remove("valid");
 };
 
 // @FUNC  checkout.shipping.show
@@ -1519,11 +1496,32 @@ checkout.payment.method.select = async (option, update) => {
 // @DESC
 // @ARGU
 checkout.payment.method.bank.detail = (amount, wallet) => {
+  let walletBalance = priceNormaliser(
+    (checkout.balance.bankTransfer + checkout.balance.bankTransferBonus) -
+    (checkout.balance.checkout)
+  );
+  let walletBalanceText = `$${walletBalance}`;
+  if (walletBalance < 0) walletBalanceText = `-$${Math.abs(walletBalance)}`
+  document.querySelector("#checkout-account-balance").innerHTML = walletBalanceText;
   if (amount) {
     // CALCULATE MINIMUM AMOUNT TO BANK TRANSFER
-    const bonusRate = 0.05;
-    const minimumAmount = checkout.priceFormatter(amount.total.total / (1 + bonusRate));
-    document.querySelector("#checkout-bank-transfer-amount").innerHTML = `$${minimumAmount}`;
+    const totalAmount = priceNormaliser(amount.total.total - walletBalance);
+    let bankTransferAmount = 0;
+    let bonusAmount = 0;
+    let calculate = true;
+    if (totalAmount <= 0) calculate = false;
+    while (calculate) {
+      const total = priceNormaliser(bankTransferAmount + bonusAmount);
+      const remainingAmount = priceNormaliser(totalAmount - total);
+      if (remainingAmount > 20) {
+        bankTransferAmount = priceNormaliser(bankTransferAmount + 20);
+        bonusAmount = priceNormaliser(bonusAmount + 1);
+      } else if (remainingAmount <= 20) {
+        bankTransferAmount = priceNormaliser(bankTransferAmount + remainingAmount);
+        calculate = false;
+      }
+    }
+    document.querySelector("#checkout-bank-transfer-amount").innerHTML = `$${bankTransferAmount}`;
   }
   if (wallet) {
     // SET THE BANK TRANSFER REFERENCE
@@ -1553,9 +1551,12 @@ checkout.payment.method.bank.show = show => {
 // @DESC  Processes the payment of the order via bank transfer
 // @ARGU
 checkout.payment.method.bank.paid = async () => {
-  // PREPARE PAGE USING LOADING ICON
-  document.querySelector("#checkout-complete-container").classList.remove("checkout-element-hide");
-  document.querySelector("#checkout-complete-text").textContent = "Processing Your Order...";
+  // INITIALISE PAYMENT
+  // disable payment button
+  checkout.element.button.payment.bank.setAttribute("disabled", "");
+  // full screen loader
+  showLoader(false);
+  document.querySelector(".full-page-loading-text").innerHTML = "Processing checkout...";
   // PROCESS THE ORDER
   let data;
   try {
@@ -1564,22 +1565,19 @@ checkout.payment.method.bank.paid = async () => {
     data = { status: "error", content: error };
   }
   // ERROR HANDLER
-  console.log(data);
   if (data.status === "error") {
+    document.querySelector(".full-page-loading-text").innerHTML = "An error has been encountered, refresh the page and try again";
     return;
   } else if (data.status === "failed") {
     return;
   }
-  // UPDATE DISPLAY TO SUCCESS CSS
-  document.querySelector("#checkout-complete-loading-icon").innerHTML = `
-    <svg class="checkmark-2" viewBox="0 0 52 52">
-      <circle class="checkmark__circle-2" cx="26" cy="26" r="25" fill="none"></circle>
-      <path class="checkmark__check-2" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
-    </svg>
-  `;
-  document.querySelector("#checkout-complete-text").textContent = "Successfully Processed Your Order!";
-  // REDIRECT TO HOME PAGE UPON COMPLETION
-  setTimeout(() => { window.location.href = "/"; }, 2000);
+  // SUCCESS HANDLER
+  document.querySelector(".full-page-loading-text").innerHTML = "Your checkout has been processed successfully!";
+  setTimeout(() => {
+    document.querySelector(".full-page-loading-text").innerHTML = "Redirecting to your orders page...";
+    // redirect to orders page
+    setTimeout(() => window.location.href = "/profile/orders", 1000);
+  }, 1000);
 };
 
 // @FUNC  checkout.payment.method.card.pay
@@ -1726,11 +1724,8 @@ checkout.payment.validation.validate = async validity => {
 // @ARGU
 checkout.payment.validation.valid = () => {
   // Event Listeners
-  checkout.element.button.payment.bank.paid.addEventListener("click", checkout.payment.method.bank.paid);
-  checkout.element.button.payment.card.pay.addEventListener("click", checkout.payment.method.card.pay);
-  // CSS
-  checkout.element.button.payment.bank.paid.classList.add("valid");
-  checkout.element.button.payment.card.pay.classList.add("valid");
+  checkout.element.button.payment.bank.removeAttribute("disabled");
+  checkout.element.button.payment.card.removeAttribute("disabled");
 };
 
 // @FUNC  checkout.payment.validation.invalid
@@ -1739,11 +1734,8 @@ checkout.payment.validation.valid = () => {
 // @ARGU
 checkout.payment.validation.invalid = () => {
   // Event Listeners
-  checkout.element.button.payment.bank.paid.removeEventListener("click", checkout.payment.method.bank.paid);
-  checkout.element.button.payment.card.pay.removeEventListener("click", checkout.payment.method.card.pay);
-  // CSS
-  checkout.element.button.payment.bank.paid.classList.remove("valid");
-  checkout.element.button.payment.card.pay.classList.remove("valid");
+  checkout.element.button.payment.bank.setAttribute("disabled", "");
+  checkout.element.button.payment.card.setAttribute("disabled", "");
 };
 
 // @FUNC  checkout.payment.show

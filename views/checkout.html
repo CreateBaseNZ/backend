@@ -104,7 +104,7 @@
       <div class="layer layer-2"></div>
       <div class="layer layer-3"></div>
     </div>
-    <p>Setting up Base</p>
+    <p class="full-page-loading-text">Setting up Base</p>
   </div>
 
   <div class="main-page hide" id="checkout">
@@ -242,8 +242,8 @@
       ------------------------------------------------------------------------------>
 
       <div class="checkout-buttons">
-        <a href="/" class="checkout-button valid">Exit</a>
-        <button class="checkout-button" id="checkout-cart-next">Next</button>
+        <button class="checkout-button" id="checkout-cart-next" onclick="checkout.shipping.show();"
+          disabled>Next</button>
       </div>
 
     </div>
@@ -399,8 +399,9 @@
       ------------------------------------------------------------------------------>
 
       <div class="checkout-buttons">
-        <button class="checkout-button valid" id="checkout-shipping-back">Back</button>
-        <button class="checkout-button" id="checkout-shipping-next">Next</button>
+        <button class="checkout-button valid" onclick="checkout.cart.show();">Back</button>
+        <button class="checkout-button" id="checkout-shipping-next" onclick="checkout.payment.show();"
+          disabled>Next</button>
       </div>
     </div>
 
@@ -424,7 +425,7 @@
               onchange="checkout.payment.method.select('bankTransfer',true);" />
             <label for="checkout-payment-method-bank">Bank Transfer</label>
           </div>
-          <div class="checkout-radio-valid">Receive 5% Credit</div>
+          <div class="checkout-radio-valid">Get $1 for every $20 Deposit</div>
 
           <div class="checkout-payment-bank-container checkout-element-hide checkout-element-hide"
             id="checkout-payment-bank-container">
@@ -442,17 +443,12 @@
                 <p id="checkout-bank-transfer-reference"></p>
               </div>
               <div class="checkout-payment-bank-instruction-line">
+                <h4>Wallet Balance:</h4>
+                <p id="checkout-account-balance"></p>
+              </div>
+              <div class="checkout-payment-bank-instruction-line">
                 <h4>Minimum Amount:</h4>
                 <p id="checkout-bank-transfer-amount"></p>
-              </div>
-              <div id="checkout-payment-bank-instruction-comment">
-                <div>
-                  <h3>You can transfer more than</h3>
-                  <h3>the minimum amount and will</h3>
-                  <h3>go to your account wallet.</h3>
-                  <h3>You can easily withdraw back</h3>
-                  <h3>funds from your wallet.</h3>
-                </div>
               </div>
             </div>
 
@@ -461,8 +457,9 @@
             ------------------------------------------------------------------------>
 
             <div class="checkout-buttons">
-              <button class="checkout-button valid" id="checkout-payment-bank-back">Back</button>
-              <button class="checkout-button" id="checkout-payment-bank-paid">Paid</button>
+              <button class="checkout-button valid" onclick="checkout.shipping.show();">Back</button>
+              <button class="checkout-button" id="checkout-payment-bank-paid"
+                onclick="checkout.payment.method.bank.paid();" disabled>Paid</button>
             </div>
 
           </div>
@@ -505,8 +502,9 @@
             ---------------------------------------------------------------------->
 
             <div class="checkout-buttons">
-              <button class="checkout-button valid" id="checkout-payment-card-back">Back</button>
-              <button class="checkout-button" id="checkout-payment-card-pay">Pay</button>
+              <button class="checkout-button valid" onclick="checkout.shipping.show();">Back</button>
+              <button class="checkout-button" id="checkout-payment-card-pay"
+                onclick="checkout.payment.method.card.pay();" disabled>Pay</button>
             </div>
 
           </div>
@@ -514,22 +512,6 @@
         </div>
 
       </div>
-    </div>
-
-    <!---------------------------------------------------------------------------------
-    COMPLETE PAGE
-    ---------------------------------------------------------------------------------->
-
-    <div id="checkout-complete-container" class="checkout-complete-container checkout-element-hide">
-      <div id="checkout-complete-loading-icon">
-        <div class="load-1">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-      <p id="checkout-complete-text">Some Text Here ...</p>
     </div>
   </div>
 

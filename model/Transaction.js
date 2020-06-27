@@ -120,7 +120,7 @@ TransactionSchema.statics.bankTransfer = function (customerId, amountOne) {
     const adminEmail = "carlvelasco96@gmail.com"; // TEMPORARY
     let admin;
     try {
-      admin = Account.findOne({ type: "admin", email: adminEmail });
+      admin = await Account.findOne({ type: "admin", email: adminEmail });
     } catch (error) {
       return reject({ status: "error", content: error });
     }
@@ -177,7 +177,7 @@ TransactionSchema.statics.onlinePayment = function (sender, amount) {
     const adminEmail = "carlvelasco96@gmail.com"; // TEMPORARY
     let admin;
     try {
-      admin = Account.findOne({ type: "admin", email: adminEmail });
+      admin = await Account.findOne({ type: "admin", email: adminEmail });
     } catch (error) {
       return reject({ status: "error", content: error });
     }
@@ -364,6 +364,7 @@ TransactionSchema.methods.remainingAmount = function () {
   for (let i = 0; i < this.tickets.length; i++) {
     const ticket = this.tickets[i];
     remainingAmount = remainingAmount - ticket.amount;
+    remainingAmount = Math.round(remainingAmount * 100) / 100;
   }
   return remainingAmount;
 }
@@ -376,6 +377,7 @@ TransactionSchema.methods.remainingBalance = function () {
   for (let i = 0; i < this.usages.length; i++) {
     const usage = this.usages[i];
     remainingBalance = remainingBalance - usage.amount;
+    remainingBalance = Math.round(remainingBalance * 100) / 100;
   }
   return remainingBalance;
 }
@@ -462,8 +464,11 @@ TransactionSchema.methods.bankTransferPay = function (deposit, bonus) {
         remainingAmount - cumulativeAmountPay
       );
       cumulativeDepositSpend = cumulativeDepositSpend + depositSpend;
+      cumulativeDepositSpend = Math.round(cumulativeDepositSpend * 100) / 100;
       cumulativeBonusSpend = cumulativeBonusSpend + bonusSpend;
+      cumulativeBonusSpend = Math.round(cumulativeBonusSpend * 100) / 100;
       cumulativeAmountPay = cumulativeAmountPay + (depositSpend + bonusSpend);
+      cumulativeAmountPay = Math.round(cumulativeAmountPay * 100) / 100;
       if (cumulativeAmountPay === remainingAmount) {
         calculate = false;
       }

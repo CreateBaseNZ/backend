@@ -256,6 +256,18 @@ const removeLoader = (footer = true) => {
   return;
 }
 
+const showLoader = (footer = true) => {
+  document.querySelector(".full-page-loading").classList.remove("hide");
+  document.querySelector("nav").classList.add("hide");
+  document.querySelector("#mobile-notif-wrap").classList.add("hide");
+  document.querySelector("#notification-wrap").classList.add("hide");
+  document.querySelector(".main-page").classList.add("hide");
+  if (footer) document.querySelector(".footer-section").classList.add("hide");
+  return;
+}
+
+const priceNormaliser = price => Math.round(price * 100) / 100;
+
 function passTab(el) {
   var tab = el.getAttribute("data-tab");
   localStorage.setItem("tab", tab);

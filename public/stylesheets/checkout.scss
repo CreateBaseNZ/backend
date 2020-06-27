@@ -600,16 +600,18 @@ GLOBAL
   align-items: center;
   justify-content: center;
   border-radius: 1vmax;
-  background-color: $light-3;
+  border-color: $logo-3;
+  background-color: $logo-3;
   font-family: $poppins;
   font-size: 2vmax;
   letter-spacing: 0.3vmax;
-  color: $dark-1;
-  &.valid {
-    border-color: $logo-3;
-    background-color: $logo-3;
-    color: $light-1;
-    cursor: pointer;
+  color: $light-1;
+  cursor: pointer;
+  &:disabled {
+    border-color: $light-3;
+    background-color: $light-3;
+    color: $dark-1;
+    cursor: default;
   }
 }
 
