@@ -74,16 +74,18 @@ TransactionSchema.statics.fetchBalance = function (accountId) {
     // DECLARE AND INITIALISE VARIABLE
     const query1 = { service: "deposit", type: "bankTransfer", "entity.sender": accountId };
     const query2 = { service: "bonus", type: "bankTransfer", "entity.receiver": accountId };
-    const query3 = { service: "payment", type: "checkout", "entity.sender": accountId };
-    let bankTransferDeposits, bankTransferBonuses, checkoutPayments;
-    const promises = [this.find(query1), this.find(query2), this.find(query3)];
+    const query3 = { service: "deposit", type: "onlinePayment", "entity.sender": accountId };
+    const query4 = { service: "payment", type: "checkout", "entity.sender": accountId };
+    let bankTransferDeposits, bankTransferBonuses, onlinePaymentDeposits, checkoutPayments;
+    const promises = [this.find(query1), this.find(query2), this.find(query3), this.find(query4)];
     try {
-      [bankTransferDeposits, bankTransferBonuses, checkoutPayments] = await Promise.all(promises);
+      [bankTransferDeposits, bankTransferBonuses, onlinePaymentDeposits,
+        checkoutPayments] = await Promise.all(promises);
     } catch (error) {
       return reject({ status: "error", content: error });
     }
     // CALCULATE BALANCE
-    let balance = { bankTransfer: 0, bankTransferBonus: 0, checkout: 0 };
+    let balance = { bankTransfer: 0, bankTransferBonus: 0, onlinePayment: 0, checkout: 0 };
     // bank transfer
     for (let i = 0; i < bankTransferDeposits.length; i++) {
       const bankTransferDeposit = bankTransferDeposits[i];
@@ -93,6 +95,11 @@ TransactionSchema.statics.fetchBalance = function (accountId) {
     for (let i = 0; i < bankTransferBonuses.length; i++) {
       const bankTransferBonus = bankTransferBonuses[i];
       balance.bankTransferBonus += bankTransferBonus.remainingBalance();
+    }
+    // online payment
+    for (let i = 0; i < onlinePaymentDeposits.length; i++) {
+      const onlinePaymentDeposit = onlinePaymentDeposits[i];
+      balance.onlinePayment += onlinePaymentDeposit.remainingBalance();
     }
     // checkout
     for (let i = 0; i < checkoutPayments.length; i++) {
@@ -168,6 +175,7 @@ TransactionSchema.statics.bankTransfer = function (customerId, amountOne) {
 // @DESC  
 TransactionSchema.statics.onlinePayment = function (sender, amount) {
   return new Promise(async (resolve, reject) => {
+    const adjustedAmount = amount / 100;
     // CREATE THE ONLINE PAYMENT TICKET
     // service
     const service = "deposit";
@@ -186,9 +194,10 @@ TransactionSchema.statics.onlinePayment = function (sender, amount) {
     const currentDate = moment().tz("Pacific/Auckland").format();
     const date = { created: currentDate, modified: currentDate };
     // metadata
-    const metadata = {};
+    const stripeFee = Math.round((amount * 0.029) + 30) / 100;
+    const metadata = { stripeFee };
     // create instance
-    let onlinePayment = new this({ service, type, entity, date, amount, metadata });
+    let onlinePayment = new this({ service, type, entity, date, amount: adjustedAmount, metadata });
     // save instance
     try {
       await onlinePayment.save();
@@ -339,7 +348,22 @@ TransactionSchema.statics.process = function (transactionId) {
       }
     }
     // online payment
-
+    for (let i = 0; i < onlinePaymentDeposits.length; i++) {
+      let onlinePaymentDeposit = onlinePaymentDeposits[i];
+      let [payed, updatedOnlinePaymentDeposit] = transaction.onlinePaymentPay(onlinePaymentDeposit);
+      // save credit changes
+      promises2.push(updatedOnlinePaymentDeposit.save());
+      if (payed) {
+        // save transaction
+        promises2.push(transaction.save());
+        try {
+          await Promise.all(promises2);
+        } catch (error) {
+          return reject({ status: "error", content: error });
+        }
+        return resolve(transaction);
+      }
+    }
     // COMPLETION HANDLER
     // save transaction
     promises2.push(transaction.save());
@@ -363,8 +387,7 @@ TransactionSchema.methods.remainingAmount = function () {
   let remainingAmount = this.amount;
   for (let i = 0; i < this.tickets.length; i++) {
     const ticket = this.tickets[i];
-    remainingAmount = remainingAmount - ticket.amount;
-    remainingAmount = Math.round(remainingAmount * 100) / 100;
+    remainingAmount = priceNormaliser(remainingAmount - ticket.amount);
   }
   return remainingAmount;
 }
@@ -376,8 +399,7 @@ TransactionSchema.methods.remainingBalance = function () {
   let remainingBalance = this.amount;
   for (let i = 0; i < this.usages.length; i++) {
     const usage = this.usages[i];
-    remainingBalance = remainingBalance - usage.amount;
-    remainingBalance = Math.round(remainingBalance * 100) / 100;
+    remainingBalance = priceNormaliser(remainingBalance - usage.amount);
   }
   return remainingBalance;
 }
@@ -463,12 +485,9 @@ TransactionSchema.methods.bankTransferPay = function (deposit, bonus) {
         bonusRemainingBalance - cumulativeBonusSpend,
         remainingAmount - cumulativeAmountPay
       );
-      cumulativeDepositSpend = cumulativeDepositSpend + depositSpend;
-      cumulativeDepositSpend = Math.round(cumulativeDepositSpend * 100) / 100;
-      cumulativeBonusSpend = cumulativeBonusSpend + bonusSpend;
-      cumulativeBonusSpend = Math.round(cumulativeBonusSpend * 100) / 100;
-      cumulativeAmountPay = cumulativeAmountPay + (depositSpend + bonusSpend);
-      cumulativeAmountPay = Math.round(cumulativeAmountPay * 100) / 100;
+      cumulativeDepositSpend = priceNormaliser(cumulativeDepositSpend + depositSpend);
+      cumulativeBonusSpend = priceNormaliser(cumulativeBonusSpend + bonusSpend);
+      cumulativeAmountPay = priceNormaliser(cumulativeAmountPay + (depositSpend + bonusSpend));
       if (cumulativeAmountPay === remainingAmount) {
         calculate = false;
       }
@@ -550,6 +569,54 @@ TransactionSchema.methods.bankTransferPartialPay = function (deposit, bonus, amo
   }
   return [depositSpend, bonusSpend];
 }
+
+// @FUNC  onlinePaymentPay
+// @TYPE  METHODS
+// @DESC  
+TransactionSchema.methods.onlinePaymentPay = function (deposit) {
+  // DECLARE AND INITIALISE VARIABLES
+  const remainingBalance = deposit.remainingBalance();
+  const remainingAmount = this.remainingAmount();
+  let payed;
+  let usage;
+  let ticket;
+  if (remainingAmount > remainingBalance) {
+    // update deposit
+    usage = { id: this._id, amount: remainingBalance };
+    deposit.usages.push(usage);
+    deposit.status = "consumed";
+    // update payment
+    ticket = { id: deposit._id, amount: remainingBalance };
+    this.tickets.push(ticket);
+    payed = false;
+  } else if (remainingAmount < remainingBalance) {
+    // update deposit
+    usage = { id: this._id, amount: remainingAmount };
+    deposit.usages.push(usage);
+    // update payment
+    ticket = { id: deposit._id, amount: remainingAmount };
+    this.tickets.push(ticket);
+    this.status = "succeeded";
+    payed = true;
+  } else if (remainingAmount === remainingBalance) {
+    // update deposit
+    usage = { id: this._id, amount: remainingBalance };
+    deposit.usages.push(usage);
+    deposit.status = "consumed";
+    // update payment
+    ticket = { id: deposit._id, amount: remainingAmount };
+    this.tickets.push(ticket);
+    this.status = "succeeded";
+    payed = true;
+  }
+  return [payed, deposit];
+}
+
+/* ========================================================================================
+FUNCTIONS
+======================================================================================== */
+
+const priceNormaliser = price => Math.round(price * 100) / 100;
 
 /*=========================================================================================
 EXPORT ITEM MODEL

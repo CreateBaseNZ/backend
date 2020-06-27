@@ -308,7 +308,7 @@ router.get("/checkout/order-amount", verifiedAccess, async (req, res) => {
 // @desc      This route processes the bank transfer payment for
 //            the customer's order.
 // @access    Private
-router.get("/checkout/bank-transfer", verifiedAccess, async (req, res) => {
+router.get("/checkout/bank-transfer", verifiedDataAccess, async (req, res) => {
   console.log("Checkpoint 1: Route");
   // DECLARE VARIABLES
   const accountId = req.user._id;
@@ -341,7 +341,8 @@ router.get("/checkout/bank-transfer", verifiedAccess, async (req, res) => {
 // @route     POST /checkout/card-payment
 // @desc      
 // @access    Private
-router.post("/checkout/card-payment", verifiedAccess, async (req, res) => {
+router.post("/checkout/card-payment", verifiedDataAccess, async (req, res) => {
+  const account = req.user;
   // VALIDATE THE PAYMENT INTENT
   // Declare Variables
   const paymentIntentId = req.body.paymentIntentId;
@@ -360,27 +361,44 @@ router.post("/checkout/card-payment", verifiedAccess, async (req, res) => {
   if (paymentIntent.status !== "succeeded") {
     return res.send({ status: "failed", content: "payment unsuccessful" });
   }
+  // CREATE TRANSACTION TICKET FOR THE ONLINE PAYMENT
+  let onlinePayment;
+  try {
+    onlinePayment = await Transaction.onlinePayment(account._id, paymentIntent.amount);
+  } catch (error) {
+    return res.send(error);
+  }
   // UPDATE ORDER DETAILS
   // Declare variables
-  const accountId = req.user._id;
   const sessionId = req.sessionID;
   // Build the order
   let order;
-  // Create the find object
-  let object;
-  if (accountId) {
-    object = { accountId, status: "created" };
+  // Create the query
+  let query;
+  if (account._id) {
+    query = { accountId: account._id, status: "created" };
   } else {
-    object = { sessionId, status: "created" };
+    query = { sessionId, status: "created" };
   }
-  // Fetch existing active order
   try {
-    order = await Order.transaction(object);
+    order = await Order.transaction(query, false);
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    return res.send(error);
+  }
+  // PROCESS ORDER
+  try {
+    await order.processCheckedout();
+  } catch (error) {
+    return res.send(error);
+  }
+  // SAVE ORDER
+  try {
+    await order.save();
+  } catch (error) {
+    return res.send({ status: "error", content: error });
   }
   // Return a success message
-  return res.send({ status: "success", content: "card payment processed" });
+  return res.send({ status: "success", content: "checkout successful" });
 })
 
 // @route     GET /orders/print/update

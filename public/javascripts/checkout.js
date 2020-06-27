@@ -142,7 +142,8 @@ let checkout = {
         paymentIntent: undefined, // checkout.payment.method.card.paymentIntent
         process: undefined, // checkout.payment.method.card.process
         show: undefined, // checkout.payment.method.card.show
-        pay: undefined // checkout.payment.method.card.pay
+        pay: undefined, // checkout.payment.method.card.pay
+        error: undefined // checkout.payment.method.card.error
       }
     },
     validation: {
@@ -1497,8 +1498,8 @@ checkout.payment.method.select = async (option, update) => {
 // @ARGU
 checkout.payment.method.bank.detail = (amount, wallet) => {
   let walletBalance = priceNormaliser(
-    (checkout.balance.bankTransfer + checkout.balance.bankTransferBonus) -
-    (checkout.balance.checkout)
+    (checkout.balance.bankTransfer + checkout.balance.bankTransferBonus +
+      checkout.balance.onlinePayment) - (checkout.balance.checkout)
   );
   let walletBalanceText = `$${walletBalance}`;
   if (walletBalance < 0) walletBalanceText = `-$${Math.abs(walletBalance)}`
@@ -1585,54 +1586,58 @@ checkout.payment.method.bank.paid = async () => {
 // @DESC
 // @ARGU
 checkout.payment.method.card.pay = async () => {
-  // PREPARE PAGE USING LOADING ICON
-  document.querySelector("#checkout-complete-container").classList.remove("checkout-element-hide");
-  document.querySelector("#checkout-complete-text").textContent = "Processing Your Order...";
+  // INITIALISE PAYMENT
+  // disable payment button
+  checkout.element.button.payment.card.setAttribute("disabled", "");
+  // full screen loader
+  showLoader(false);
+  document.querySelector(".full-page-loading-text").innerHTML = "Processing payment...";
   // FETCH A CLIENT SECRET
   let dataOne;
   try {
     dataOne = (await axios.get("/checkout/payment-intent"))["data"];
   } catch (error) {
-    console.log(error);
-    return;
+    dataOne = { status: "error", content: error };
   }
   // Validate the payment intent creation
-  if (dataOne.status === "failed") {
-    console.log(dataOne.content);
+  if (dataOne.status === "error") {
+    document.querySelector(".full-page-loading-text").innerHTML = "An error has been encountered, refresh the page and try again";
+    return;
+  } else if (dataOne.status === "failed") {
     return;
   }
   const clientSecret = dataOne.content;
   // PROCESS PAYMENT
+  document.querySelector(".full-page-loading-text").innerHTML = "Validating payment...";
   let paymentIntent;
   try {
     paymentIntent = await checkout.payment.method.card.process(clientSecret);
   } catch (error) {
-    console.log(error);
-    return;
+    // ERROR HANDLER
+    return checkout.payment.method.card.error();
   }
+  document.querySelector(".full-page-loading-text").innerHTML = "Your payment has been successful. Processing checkout...";
   // UPDATE ORDER
   const paymentIntentId = paymentIntent.id;
   let dataTwo;
   try {
     dataTwo = (await axios.post("/checkout/card-payment", { paymentIntentId }))["data"];
   } catch (error) {
-    console.log(error);
+    dataTwo = { status: "error", content: error };
+  }
+  if (dataTwo.status === "error") {
+    document.querySelector(".full-page-loading-text").innerHTML = "An error has been encountered, refresh the page and try again";
+    return;
+  } else if (dataTwo.status === "failed") {
     return;
   }
-  if (dataTwo.status === "failed") {
-    console.log(dataTwo.content);
-    return;
-  }
-  // COMPLETE PROCESSING
-  document.querySelector("#checkout-complete-loading-icon").innerHTML = `
-    <svg class="checkmark-2" viewBox="0 0 52 52">
-      <circle class="checkmark__circle-2" cx="26" cy="26" r="25" fill="none"></circle>
-      <path class="checkmark__check-2" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
-    </svg>
-  `;
-  document.querySelector("#checkout-complete-text").textContent = "Successfully Processed Your Order!";
-  // REDIRECT TO HOME PAGE UPON COMPLETION
-  setTimeout(() => { window.location.href = "/"; }, 2000);
+  // SUCCESS HANDLER
+  document.querySelector(".full-page-loading-text").innerHTML = "Your checkout has been processed successfully!";
+  setTimeout(() => {
+    document.querySelector(".full-page-loading-text").innerHTML = "Redirecting to your orders page...";
+    // redirect to orders page
+    setTimeout(() => window.location.href = "/profile/orders", 1000);
+  }, 1000);
 };
 
 // @FUNC  checkout.payment.method.card.process
@@ -1652,19 +1657,29 @@ checkout.payment.method.card.process = (clientSecret, options) => {
     try {
       result = await checkout.payment.stripe.element.stripe.confirmCardPayment(clientSecret, object);
     } catch (error) {
-      reject(error);
-      return;
+      return reject({ status: "error", content: error });
     }
     // VALIDATE RESULTS
     if (result.error) {
-      reject(result.error.message);
-      return;
+      return reject({ status: "failed", content: result.error.message });
     }
     // RETURN SUCCESSFUL RESULT
-    resolve(result.paymentIntent);
-    return;
+    return resolve(result.paymentIntent);
   });
 };
+
+// @FUNC  checkout.payment.method.card.error
+// @TYPE
+// @DESC
+// @ARGU
+checkout.payment.method.card.error = (error) => {
+  console.log(error);
+  // TO DO .....
+  // ERROR HANDLING
+  // TO DO .....
+  checkout.element.button.payment.card.removeAttribute("disabled");
+  return removeLoader(false);
+}
 
 // @FUNC  checkout.payment.method.card.show
 // @TYPE
