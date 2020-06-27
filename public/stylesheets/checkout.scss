@@ -550,6 +550,12 @@ GLOBAL
   }
 }
 
+#checkout-card-error {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .checkout-radio-error,
 .checkout-radio-valid {
   height: 3vmax;

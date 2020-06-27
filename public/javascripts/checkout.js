@@ -1612,9 +1612,9 @@ checkout.payment.method.card.pay = async () => {
   let paymentIntent;
   try {
     paymentIntent = await checkout.payment.method.card.process(clientSecret);
-  } catch (error) {
+  } catch (data) {
     // ERROR HANDLER
-    return checkout.payment.method.card.error();
+    return checkout.payment.method.card.error(data);
   }
   document.querySelector(".full-page-loading-text").innerHTML = "Your payment has been successful. Processing checkout...";
   // UPDATE ORDER
@@ -1672,13 +1672,16 @@ checkout.payment.method.card.process = (clientSecret, options) => {
 // @TYPE
 // @DESC
 // @ARGU
-checkout.payment.method.card.error = (error) => {
-  console.log(error);
-  // TO DO .....
+checkout.payment.method.card.error = (data) => {
   // ERROR HANDLING
-  // TO DO .....
-  checkout.element.button.payment.card.removeAttribute("disabled");
-  return removeLoader(false);
+  if (data.status === "error") {
+    document.querySelector(".full-page-loading-text").innerHTML = "Error! Please refresh the page and try again.";
+  } else if (data.status === "failed") {
+    document.querySelector("#checkout-card-error").innerHTML = data.content;
+    checkout.element.button.payment.card.removeAttribute("disabled");
+    removeLoader(false);
+  }
+  return;
 }
 
 // @FUNC  checkout.payment.method.card.show
