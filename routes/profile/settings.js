@@ -14,9 +14,9 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Account = require("../model/Account.js");
-const Customer = require("../model/Customer.js");
-const Transaction = require("../model/Transaction.js");
+const Account = require("../../model/Account.js");
+const Customer = require("../../model/Customer.js");
+const Transaction = require("../../model/Transaction.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -42,7 +42,7 @@ const restrictedAccess = (req, res, next) => {
   }
 };
 
-const upload = require("../config/upload.js");
+const upload = require("../../config/upload.js");
 
 /*=========================================================================================
 ROUTES

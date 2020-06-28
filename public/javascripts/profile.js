@@ -421,6 +421,7 @@ const profileInit = async () => {
   removeLoader(false);
   // INITIALISATIONS
   projects.initialise(); // Projects
+  orders.initialise(); // Settings
   settings.initialise(); // Settings
   // Get elements
   const profileWrapper = document.querySelector('.profile-wrapper')

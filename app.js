@@ -77,9 +77,6 @@ const validationRouter = require("./routes/validation.js");
 const makeRouter = require("./routes/make.js");
 const notificationRouter = require("./routes/notification.js");
 const checkoutRouter = require("./routes/checkout.js");
-const profileRouter = require("./routes/profile.js");
-const projectRouter = require("./routes/project.js");
-const settingsRouter = require("./routes/settings.js");
 const sessionRouter = require("./routes/session.js");
 app.use(generalRouter);
 app.use(accountRouter);
@@ -88,10 +85,20 @@ app.use(validationRouter);
 app.use(makeRouter);
 app.use(notificationRouter);
 app.use(checkoutRouter);
+app.use(sessionRouter);
+
+/* ----------------------------------------------------------------------------------------
+PROFILE
+---------------------------------------------------------------------------------------- */
+
+const profileRouter = require("./routes/profile.js");
+const projectRouter = require("./routes/profile/project.js");
+const ordersRouter = require("./routes/profile/orders.js");
+const settingsRouter = require("./routes/profile/settings.js");
 app.use(profileRouter);
 app.use(projectRouter);
+app.use(ordersRouter);
 app.use(settingsRouter);
-app.use(sessionRouter);
 
 /*-----------------------------------------------------------------------------------------
 ERROR PAGE

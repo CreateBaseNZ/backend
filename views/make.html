@@ -110,7 +110,7 @@
   <div class="main-page hide">
     <!--INPUTS-->
     <form id="make-inputs" class="hide-element">
-      <input type="file" name="file" id="make-file" onchange="make.upload.change();" />
+      <input type="file" name="file" id="make-file" accept=".stl, .obj, .3mf" onchange="make.upload.change();" />
       <input type="radio" name="build" id="make-quick-build" value="quick"
         onchange="make.buildType.change(this.value, this.checked); make.buildType.validation.validate();" />
       <input type="radio" name="build" id="make-custom-build" value="custom"
@@ -418,7 +418,6 @@
       </div>
     </div>
   </div>
-
   <!-- ==========================JS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <script async src="https://js.stripe.com/v3/"></script>

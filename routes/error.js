@@ -10,10 +10,7 @@ VARIABLES
 =========================================================================================*/
 
 const router = new express.Router();
-const customerRouteOptions = {
-  root: path.join(__dirname, "../../views/public")
-};
-
+const customerRouteOptions = { root: path.join(__dirname, "../views") };
 /*=========================================================================================
 ROUTES
 =========================================================================================*/

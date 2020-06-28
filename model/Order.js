@@ -18,6 +18,7 @@ MODELS
 const Account = require("./Account.js");
 const Transaction = require("./Transaction.js");
 const Customer = require("./Customer.js");
+const Comment = require("./Comment.js");
 const Make = require("./Make.js");
 const Discount = require("./Discount.js");
 
@@ -173,6 +174,7 @@ OrderSchema.statics.fetch = function (query = {}, withMakes = false, withComment
   return new Promise(async (resolve, reject) => {
     // FETCH ORDERS
     let orders = [];
+    let formattedOrders = [];
     try {
       orders = await this.find(query);
     } catch (error) {
@@ -180,10 +182,11 @@ OrderSchema.statics.fetch = function (query = {}, withMakes = false, withComment
     }
     // CHECK IF THERE ARE ORDERS FOUND
     if (!orders.length) return resolve(orders);
+    for (let i = 0; i < orders.length; i++) formattedOrders[i] = orders[i].toObject();
     // FETCH MAKES
     if (withMakes) {
       let promises = [];
-      for (let i = 0; i < orders.length; i++) promises.push(Make.fetch({ _id: orders[i].makes.checkout }));
+      for (let i = 0; i < formattedOrders.length; i++) promises.push(Make.fetch({ _id: formattedOrders[i].makes.checkout }));
       // fetch comments of each order asynchronously
       let makesArray;
       try {
@@ -193,14 +196,14 @@ OrderSchema.statics.fetch = function (query = {}, withMakes = false, withComment
       }
       for (let j = 0; j < makesArray.length; j++) {
         const makes = makesArray[j];
-        orders[j].makes.checkout = makes;
+        formattedOrders[j].makes.checkout = makes;
       }
     }
     // FETCH COMMENTS
     if (withComments) {
       // construct the promises for fetching comments of each order
       let promises = [];
-      for (let i = 0; i < orders.length; i++) promises.push(Comment.fetch({ _id: orders[i].comments }));
+      for (let i = 0; i < formattedOrders.length; i++) promises.push(Comment.fetch({ _id: formattedOrders[i].comments }));
       // fetch comments of each order asynchronously
       let commentsArray;
       try {
@@ -210,7 +213,7 @@ OrderSchema.statics.fetch = function (query = {}, withMakes = false, withComment
       }
       for (let j = 0; j < commentsArray.length; j++) {
         const comments = commentsArray[j];
-        orders[j].comments = comments;
+        formattedOrders[j].comments = comments;
       }
     }
     // FETCH TRANSACTIONS
@@ -218,7 +221,7 @@ OrderSchema.statics.fetch = function (query = {}, withMakes = false, withComment
 
     }
     // SUCCESS HANDLER
-    resolve(orders);
+    return resolve(formattedOrders);
   });
 }
 

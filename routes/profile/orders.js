@@ -14,46 +14,69 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Order = require("../model/Order.js");
-const Comment = require("../model/Comment.js");
+const Order = require("../../model/Order.js");
+const Comment = require("../../model/Comment.js");
 
 /*=========================================================================================
 MIDDLEWARE
 =========================================================================================*/
 
 const verifiedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.redirect("/verification");
-    }
-  } else {
-    return res.redirect("/login");
+  // IF USER IS NOT LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.sendFile("login.html", customerRouteOptions);
   }
-};
-
-const restrictedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    return res.redirect("/login");
+  // IF USER IS NOT VERIFIED
+  if (!req.user.verification.status) {
+    return res.redirect("/verification");
   }
+  // SUCCESS HANDLER
+  return next();
 };
 
 const verifiedContent = (req, res, next) => {
   const account = req.user;
   // CHECK IF USER IS LOGGED IN
   if (!req.isAuthenticated()) {
-    return res.send({ status: "failed", content: "customer is not logged in" });
+    return res.send({ status: "failed", content: "user is not logged in" });
   }
   // CHECK IF USER IS NOT VERIFIED
   if (!account.verification.status) {
-    return res.send({ status: "failed", content: "customer is not verified" });
+    return res.send({ status: "failed", content: "user is not verified" });
   }
-  // IF USER IS LOGGED IN AND VERIFIED
+  // SUCCESS HANDLER
   return next();
-}
+};
+
+const restrictedAccess = (req, res, next) => {
+  // IF USER IS NOT LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.sendFile("login.html", customerRouteOptions);
+  }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const restrictedContent = (req, res, next) => {
+  const account = req.user;
+  // CHECK IF USER IS LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.send({ status: "failed", content: "user is not logged in" });
+  }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const unrestrictedAccess = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    // TO DO .....
+    // REDIRECT TO ALREADY LOGGED IN PAGE
+    // TO DO .....
+    return res.redirect("/"); // TEMPORARILY SEND THEM BACK HOME
+  } else {
+    return next();
+  }
+};
 
 /*=========================================================================================
 ROUTES
@@ -68,7 +91,7 @@ router.get("/orders/fetch-orders", verifiedContent, async (req, res) => {
   // FETCH ORDER
   let orders;
   try {
-    orders = await Order.fetch({ accountId: account._id }, true);
+    orders = await Order.fetch({ accountId: account._id }, true, true);
   } catch (error) {
     return res.send(error);
   }

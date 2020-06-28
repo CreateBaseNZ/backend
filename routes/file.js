@@ -85,8 +85,26 @@ router.get("/files/download/:fileId", (req, res) => {
       "Content-disposition",
       "attachment; filename=" + file.filename
     );
-    res.setHeader("Content-type", "application/octet-stream");
+    res.setHeader("content-type", "application/octet-stream");
     readstream.pipe(res);
+  });
+});
+
+router.get("/files/retrieve/:fileId/:filename", (req, res) => {
+  const id = mongoose.Types.ObjectId(req.params.fileId);
+  const filename = req.params.filename;
+  GridFS.files.findOne({ _id: id, filename }, (err, file) => {
+    if (!file || file.length == 0) {
+      return res.status(404).json({ error: "No file exists" });
+    }
+    const readstream = GridFS.createReadStream(file.filename);
+    res.setHeader("content-type", "application/vnd.ms-pki.stl");
+    res.setHeader("content-length", file.length);
+    res.setHeader("accept-ranges", "bytes");
+    res.setHeader("cache-control", "public, max-age=0");
+    res.removeHeader("transfer-encoding");
+    res.removeHeader("connection");
+    return readstream.pipe(res);
   });
 });
 

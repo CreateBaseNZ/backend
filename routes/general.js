@@ -21,35 +21,49 @@ MIDDLEWARE
 =========================================================================================*/
 
 const verifiedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.redirect("/verification");
-    }
-  } else {
+  // IF USER IS NOT LOGGED IN
+  if (!req.isAuthenticated()) {
     return res.sendFile("login.html", customerRouteOptions);
   }
+  // IF USER IS NOT VERIFIED
+  if (!req.user.verification.status) {
+    return res.redirect("/verification");
+  }
+  // SUCCESS HANDLER
+  return next();
 };
 
-const verifiedDataAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.send({ status: "failed", content: "need to verify" });
-    }
-  } else {
-    return res.redirect("/login");
+const verifiedContent = (req, res, next) => {
+  const account = req.user;
+  // CHECK IF USER IS LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.send({ status: "failed", content: "user is not logged in" });
   }
+  // CHECK IF USER IS NOT VERIFIED
+  if (!account.verification.status) {
+    return res.send({ status: "failed", content: "user is not verified" });
+  }
+  // SUCCESS HANDLER
+  return next();
 };
 
 const restrictedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
+  // IF USER IS NOT LOGGED IN
+  if (!req.isAuthenticated()) {
     return res.sendFile("login.html", customerRouteOptions);
   }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const restrictedContent = (req, res, next) => {
+  const account = req.user;
+  // CHECK IF USER IS LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.send({ status: "failed", content: "user is not logged in" });
+  }
+  // SUCCESS HANDLER
+  return next();
 };
 
 const unrestrictedAccess = (req, res, next) => {
@@ -155,6 +169,13 @@ router.get("/make", verifiedAccess, (req, res) => {
 // @access    Private
 router.get("/checkout", verifiedAccess, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
+});
+
+// @route     Get /test
+// @desc      Homepage
+// @access    Public
+router.get("/test", (req, res) => {
+  res.sendFile("test.html", customerRouteOptions);
 });
 
 /*=========================================================================================
