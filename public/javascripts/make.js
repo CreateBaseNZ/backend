@@ -1330,6 +1330,7 @@ make.viewerUpload = (event) => {
     /* Next, we’ll configure the controls using OrbitControls. */
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
+    controls.enablePan = false;
     controls.rotateSpeed = 0.4;
     controls.dampingFactor = 0.1;
     controls.enableZoom = false;
