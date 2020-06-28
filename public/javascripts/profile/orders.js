@@ -4,15 +4,20 @@ VARIABLES
 
 let orders = {
   initialise: undefined,
+  errorHandler: undefined,
+  // ORDERS
   fetchOrders: undefined,
   populateOrders: undefined,
   insertOrder: undefined,
   insertMake: undefined,
+  // COMMENT
   insertComment: undefined,
   postComment: undefined,
   collectComment: undefined,
   submitComment: undefined,
-  errorHandler: undefined
+  // VIEWER
+  viewerFetch: undefined,
+  viewerProcess: undefined
 }
 
 /* ========================================================================================
@@ -41,6 +46,20 @@ orders.initialise = async () => {
   // SUCCESS HANDLER
   return;
 }
+
+// @func  orders.errorHandler
+// @desc  
+orders.errorHandler = (error) => {
+  // TO DO .....
+  // ERROR HANDLER
+  // TO DO .....
+  console.log(error); // TEMPORARY
+  return;
+}
+
+/* ----------------------------------------------------------------------------------------
+ORDERS
+---------------------------------------------------------------------------------------- */
 
 // @func  orders.fetchOrders
 // @desc  
@@ -104,6 +123,10 @@ orders.insertMake = (orderId, make) => {
   return;
 }
 
+/* ----------------------------------------------------------------------------------------
+COMMENT
+---------------------------------------------------------------------------------------- */
+
 // @func  orders.insertComment
 // @desc  
 orders.insertComment = (orderId, comment) => {
@@ -166,14 +189,62 @@ orders.submitComment = (form) => {
   });
 }
 
-// @func  orders.errorHandler
+/* ----------------------------------------------------------------------------------------
+VIEWER
+---------------------------------------------------------------------------------------- */
+
+// @func  orders.viewerFetch
 // @desc  
-orders.errorHandler = (error) => {
-  // TO DO .....
-  // ERROR HANDLER
-  // TO DO .....
-  console.log(error); // TEMPORARY
-  return;
+orders.viewerFetch = async (url, id) => {
+  var element = document.getElementById(id);
+
+  var camera = new THREE.PerspectiveCamera(70, element.clientWidth / element.clientHeight, 1, 1000);
+
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(element.clientWidth, element.clientHeight);
+  element.appendChild(renderer.domElement);
+
+  window.addEventListener('resize', function () {
+    renderer.setSize(element.clientWidth, element.clientHeight);
+    camera.aspect = element.clientWidth / element.clientHeight;
+    camera.updateProjectionMatrix();
+  }, false);
+
+  var scene = new THREE.Scene();
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x787878, 0.8));
+
+  const loader = new THREE.STLLoader();
+  loader.load(url, (geometry) => {
+    orders.viewerProcess(camera, renderer, scene, geometry);
+  });
+}
+
+// @func  orders.viewerProcess
+// @desc  
+orders.viewerProcess = (camera, renderer, scene, geometry) => {
+  var material = new THREE.MeshPhongMaterial({
+    color: 0xf0f0f0, specular: 0xf8f8f8, shininess: 0, reflectivity: 0
+  });
+
+  var mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  var middle = new THREE.Vector3();
+  geometry.computeBoundingBox();
+  geometry.boundingBox.getCenter(middle);
+  mesh.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(
+    -middle.x, -middle.y, -middle.z));
+  mesh.geometry.rotateY(-Math.PI / 5);
+
+  var largestDimension = Math.max(geometry.boundingBox.max.x,
+    geometry.boundingBox.max.y, geometry.boundingBox.max.z);
+  camera.position.z = largestDimension * 2.5;
+
+  var animate = function () {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  };
+  animate();
 }
 
 /* ========================================================================================
