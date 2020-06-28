@@ -110,7 +110,8 @@
   <div class="main-page hide">
     <!--INPUTS-->
     <form id="make-inputs" class="hide-element">
-      <input type="file" name="file" id="make-file" accept=".stl, .obj, .3mf" onchange="make.upload.change();" />
+      <input type="file" name="file" id="make-file" accept=".stl, .obj, .3mf"
+        onchange="make.upload.change(); make.viewerUpload(event);" />
       <input type="radio" name="build" id="make-quick-build" value="quick"
         onchange="make.buildType.change(this.value, this.checked); make.buildType.validation.validate();" />
       <input type="radio" name="build" id="make-custom-build" value="custom"
@@ -417,12 +418,19 @@
         <p id="make-summary-quantity" class="rmv-p-css">0</p>
       </div>
     </div>
+
+    <!-- VIEWER -->
+    <div id="make-viewer"></div>
+
   </div>
   <!-- ==========================JS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <script async src="https://js.stripe.com/v3/"></script>
   <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <script async src="/public/javascripts/viewer/STLLoader.js"></script>
+  <script async src="/public/javascripts/viewer/OrbitControls.js"></script>
+  <script defer src="/public/javascripts/viewer/three.min.js"></script>
   <!-- ------------------------CUSTOM------------------------ -->
   <script async src="/public/javascripts/global/footer.js"></script>
   <script async src="/public/javascripts/global/nav.js"></script>
