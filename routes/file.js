@@ -108,6 +108,32 @@ router.get("/files/retrieve/:fileId/:filename", (req, res) => {
   });
 });
 
+router.get("/files/stl/fetch/:fileId", async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const fileId = mongoose.Types.ObjectId(req.params.fileId);
+  // FETCH STL FILE
+  try {
+    file = await GridFS.files.findOne({ _id: fileId });
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
+  if (!file) {
+    // TO DO .....
+    // fetch a placeholder stl file
+    // TO DO .....
+  }
+  // SETUP THE RESPONSE HEADER
+  res.setHeader("content-type", "application/vnd.ms-pki.stl");
+  res.setHeader("content-length", file.length);
+  res.setHeader("accept-ranges", "bytes");
+  res.setHeader("cache-control", "public, max-age=0");
+  res.removeHeader("transfer-encoding");
+  res.removeHeader("connection");
+  // SUCCESS HANDLER
+  const readstream = GridFS.createReadStream(file.filename);
+  return readstream.pipe(res);
+});
+
 router.get("/files/delete/:fileId", (req, res) => {
   GridFS.remove({ _id: req.params.fileId, root: "fs" }, (err, gridStore) => {
     if (err) {

@@ -22,34 +22,48 @@ CREATE COMMENT MODEL
 =========================================================================================*/
 
 const CommentSchema = new Schema({
-  accountId: { type: Schema.Types.ObjectId },
-  message: { type: String, default: "" },
+  accountId: { type: Schema.Types.ObjectId, default: undefined },
+  sessionId: { type: Schema.Types.ObjectId, default: undefined },
+  message: { type: String, default: undefined },
   date: {
-    created: { type: String, default: "" },
-    modified: { type: String, default: "" }
+    created: { type: String, default: undefined },
+    modified: { type: String, default: undefined }
   },
   attachments: { type: [Schema.Types.ObjectId], default: [] }
+});
+
+/*=========================================================================================
+MIDDLEWARE
+=========================================================================================*/
+
+CommentSchema.pre("save", async function (next) {
+  const date = moment().tz("Pacific/Auckland").format();
+  // update the date modified property
+  if (this.isModified()) this.date.modified = date;
+  if (this.isNew) this.date.created = date;
+  next();
 });
 
 /*=========================================================================================
 STATIC
 =========================================================================================*/
 
-// @FUNC  create
+// @FUNC  build
 // @TYPE  STATICS
-// @DESC
-CommentSchema.statics.create = function (accountId, message = "", attachments = []) {
+// @DESC  
+CommentSchema.statics.build = function (object = {}, save = true) {
   return new Promise(async (resolve, reject) => {
-    // CREATE COMMENT
-    let comment = new this({ accountId, message, attachments });
-    // SET DATES
-    const date = moment().tz("Pacific/Auckland").format();
-    comment.date = { created: date, modified: date };
-    // SAVE COMMENT
-    try {
-      await comment.save();
-    } catch (error) {
-      return reject(error);
+    // TO DO .....
+    // VALIDATE EACH PROPERTY
+    // TO DO .....
+    // CREATE THE DOCUMENT
+    let comment = new this(object);
+    if (save) {
+      try {
+        comment = await comment.save();
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
     }
     return resolve(comment);
   });

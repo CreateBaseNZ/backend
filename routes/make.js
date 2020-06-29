@@ -26,22 +26,59 @@ MIDDLEWARE
 =========================================================================================*/
 
 const verifiedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.redirect("/verification");
-    }
-  } else {
-    return res.redirect("/login");
+  // IF USER IS NOT LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.sendFile("login.html", customerRouteOptions);
   }
+  // IF USER IS NOT VERIFIED
+  if (!req.user.verification.status) {
+    return res.redirect("/verification");
+  }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const verifiedContent = (req, res, next) => {
+  const account = req.user;
+  // CHECK IF USER IS LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.send({ status: "failed", content: "user is not logged in" });
+  }
+  // CHECK IF USER IS NOT VERIFIED
+  if (!account.verification.status) {
+    return res.send({ status: "failed", content: "user is not verified" });
+  }
+  // SUCCESS HANDLER
+  return next();
 };
 
 const restrictedAccess = (req, res, next) => {
+  // IF USER IS NOT LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.sendFile("login.html", customerRouteOptions);
+  }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const restrictedContent = (req, res, next) => {
+  const account = req.user;
+  // CHECK IF USER IS LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.send({ status: "failed", content: "user is not logged in" });
+  }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const unrestrictedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return next();
+    // TO DO .....
+    // REDIRECT TO ALREADY LOGGED IN PAGE
+    // TO DO .....
+    return res.redirect("/"); // TEMPORARILY SEND THEM BACK HOME
   } else {
-    return res.redirect("/login");
+    return next();
   }
 };
 
@@ -51,12 +88,20 @@ const upload = require("../config/upload.js");
 ROUTES
 =========================================================================================*/
 
-router.post("/make/submit", upload.single("file"), verifiedAccess, async (req, res) => {
-  const accountId = mongoose.Types.ObjectId(req.user._id);
-  const file = {
-    id: mongoose.Types.ObjectId(req.file.id),
-    name: req.file.filename,
-  };
+// @route   POST /make/build/new-model
+// @desc    
+// @access  PUBLIC
+router.post("/make/build/new-model", upload.single("file"), async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  let accountId = undefined;
+  let sessionId = req.sessionID;
+  if (req.isAuthenticated()) {
+    accountId = req.user._id;
+    sessionId = undefined;
+  }
+  const message = req.body.note;
+  const file = { id: req.file.id, name: req.file.filename };
+  const status = "awaitingQuote";
   const build = req.body.build;
   const quick = req.body.quick;
   const process = req.body.material.split("-")[0];
@@ -64,73 +109,48 @@ router.post("/make/submit", upload.single("file"), verifiedAccess, async (req, r
   const quality = req.body.quality;
   const strength = req.body.strength;
   const colour = req.body.colour;
-  const quantity = req.body.quantity;
-  const message = req.body.note;
-
-  // Create a make object
-  let make = new Make({
-    accountId,
-    file,
-    build,
-    quick,
-    process,
-    material,
-    quality,
-    strength,
-    colour,
-    quantity,
-  });
-
-  // Set status
-  make.updateStatus("awaitingQuote");
-  // Create a comment
+  const quantity = { ordered: req.body.quantity };
+  // CREATE THE COMMENT OBJECT
+  let promises = [];
+  let commentId = undefined;
   if (message) {
-    let comment = new Comment({
-      accountId,
-      message,
-    });
-
+    let comment = ({ accountId, sessionId, message });
     try {
-      await comment.setDate();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
+      comment = await Comment.build(comment, false);
+    } catch (data) {
+      return res.send(data);
     }
-
-    let savedComment;
-
-    try {
-      savedComment = await comment.save();
-    } catch (error) {
-      return res.send({ status: "failed", data: error });
-    }
-
-    make.comment = mongoose.Types.ObjectId(savedComment._id);
+    commentId = comment._id
+    promises.push(comment.save());
   }
-  // Save make
-  let savedMake;
-
+  // CREATE THE MAKE OBJECT
+  let make = ({
+    accountId, sessionId, file, status, build, quick, process,
+    material, quality, strength, colour, quantity, comment: commentId
+  });
   try {
-    savedMake = await make.save();
+    make = await Make.build(make, false);
+  } catch (data) {
+    return res.send(data);
+  }
+  promises.push(make.save());
+  // SAVE COMMENT AND MAKE
+  try {
+    await Promise.all(promises);
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "error", content: error });
   }
+  // SUCCESS HANDLER
+  return res.send({ status: "succeeded", content: "created a make successfully" });
+});
 
-  return res.send({ status: "success", data: savedMake });
-}
-);
-
-router.get("/profile/customer/fetch/makes", verifiedAccess, async (req, res) => {
+router.get("/profile/customer/fetch/makes", verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
-  const account = req.user._id;
-  // VALIDATE REQUIRED VARIABLES
-  if (!account) {
-    res.send({ status: "failed", content: "invalid user ID" });
-    return;
-  }
+  const account = req.user;
   // RETRIEVE ALL MAKES
   let makes;
   try {
-    makes = await Make.retrieve(account);
+    makes = await Make.fetch({ accountId: account._id });
   } catch (error) {
     res.send({ status: "failed", content: error });
     return;

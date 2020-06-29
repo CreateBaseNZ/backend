@@ -382,7 +382,7 @@ OrderSchema.methods.transactMakes = function () {
     let promises = [];
     for (let i = 0; i < makes.length; i++) {
       let make = makes[i];
-      make.updateStatus("purchased");
+      make.status = "purchased";
       promises.push(make.save());
     }
     // Save all makes

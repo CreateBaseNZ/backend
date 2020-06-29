@@ -18,12 +18,8 @@ const FileSchema = new Schema({
   _id: {
     type: Schema.Types.ObjectId
   },
-  length: {
-    type: Number
-  },
-  chunkSize: {
-    type: Number
-  },
+  length: { type: Number },
+  chunkSize: { type: Number },
   uploadDate: {
     type: Date
   },

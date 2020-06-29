@@ -18,10 +18,7 @@ SETUP UPLOAD
 
 const storage = new GridFsStorage({
   url: process.env.MONGODB_URL,
-  options: {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  },
+  options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     return {
       filename: file.originalname,

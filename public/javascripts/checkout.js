@@ -75,7 +75,9 @@ let checkout = {
       invalid: undefined // checkout.cart.validate.invalid
     },
     show: undefined, // checkout.cart.show
-    resize: undefined // checkout.cart.resize
+    resize: undefined, // checkout.cart.resize
+    viewerFetch: undefined,
+    viewerProcess: undefined
   },
   shipping: {
     address: {
@@ -167,7 +169,7 @@ let checkout = {
   amount: {
     fetch: undefined,
     load: undefined
-  }
+  },
 };
 
 /*=========================================================================================
@@ -541,7 +543,7 @@ checkout.cart.print.create = print => {
   // DECLARE VARIABLES
   const printId = String(print._id);
   // Container One
-  const icon = `<div class="image"></div>`;
+  const icon = `<div id="checkout-viewer-${printId}" class="image"></div>`;
   const containerOne = `<div class="checkout-print-container-1">${icon}</div>`;
 
   // Container Two
@@ -550,7 +552,7 @@ checkout.cart.print.create = print => {
   const colour = `<div class="colour">${print.colour}</div>`;
   const quantity = `<div class="checkout-print-quantity-container">
                       <label>Quantity:</label>
-                      <input type="number" name="quantity" id="checkout-print-quantity-${printId}" min="1" value="${print.quantity}"
+                      <input type="number" name="quantity" id="checkout-print-quantity-${printId}" min="1" value="${print.quantity.ordered}"
                         onchange="checkout.cart.print.update(this.value,'${print.quantity}','quantity','${printId}');"/>
                     </div>`;
   const containerTwo = `<div class="checkout-print-container-2">${fileName + buildType + colour + quantity}</div>`;
@@ -582,6 +584,11 @@ checkout.cart.print.insert = (print, element) => {
     const html = `<div class="print" id="checkout-print-${print._id}">${containers}</div>`;
     document.querySelector("#checkout-prints").insertAdjacentHTML("beforeend", html);
   }
+  // SETUP VIEWER
+  const url = `/files/stl/fetch/${print.file.id}`;
+  const id = `checkout-viewer-${print._id}`;
+  checkout.cart.viewerFetch(url, id);
+  return;
 };
 
 // @FUNC  checkout.cart.print.update
@@ -855,6 +862,62 @@ checkout.cart.resize = () => {
     document.querySelector("#checkout-cart").style = "height: 100%;";
   }
 };
+
+// @FUNC  checkout.cart.viewerFetch
+// @TYPE
+// @DESC  
+checkout.cart.viewerFetch = (url, id) => {
+  var element = document.getElementById(id);
+
+  var camera = new THREE.PerspectiveCamera(70, element.clientWidth / element.clientHeight, 1, 1000);
+
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(element.clientWidth, element.clientHeight);
+  element.appendChild(renderer.domElement);
+
+  window.addEventListener('resize', function () {
+    renderer.setSize(element.clientWidth, element.clientHeight);
+    camera.aspect = element.clientWidth / element.clientHeight;
+    camera.updateProjectionMatrix();
+  }, false);
+
+  var scene = new THREE.Scene();
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x787878, 0.8));
+
+  const loader = new THREE.STLLoader();
+  loader.load(url, (geometry) => {
+    checkout.cart.viewerProcess(camera, renderer, scene, geometry);
+  });
+}
+
+// @FUNC  checkout.cart.viewerProcess
+// @TYPE
+// @DESC  
+checkout.cart.viewerProcess = (camera, renderer, scene, geometry) => {
+  var material = new THREE.MeshPhongMaterial({
+    color: 0xf0f0f0, specular: 0xf8f8f8, shininess: 0, reflectivity: 0
+  });
+
+  var mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  var middle = new THREE.Vector3();
+  geometry.computeBoundingBox();
+  geometry.boundingBox.getCenter(middle);
+  mesh.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(
+    -middle.x, -middle.y, -middle.z));
+  mesh.geometry.rotateY(-Math.PI / 5);
+
+  var largestDimension = Math.max(geometry.boundingBox.max.x,
+    geometry.boundingBox.max.y, geometry.boundingBox.max.z);
+  camera.position.z = largestDimension * 2.5;
+
+  var animate = function () {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  };
+  animate();
+}
 
 /*-----------------------------------------------------------------------------------------
 SHIPPING

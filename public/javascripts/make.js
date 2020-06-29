@@ -55,7 +55,7 @@ let make = {
   declareVariables: undefined,
   collect: undefined,
   inspect: undefined,
-  submit: undefined,
+  submit: undefined, // make.submit
   redirect: undefined,
   upload: {
     change: undefined,
@@ -222,90 +222,50 @@ make.submit = async () => {
   make.complete.validation.invalid();
   // Validate Inputs
   const validation = make.complete.validation.validate();
-  if (!validation.valid) {
-    console.log(validation.message);
-    return;
-  }
+  if (!validation.valid) return console.log(validation.message);
   // Collect Inputs
   const input = make.collect();
   // Update Button Text
   document.querySelector("#make-complete-submit-message").classList.add("hide");
   document.querySelector("#make-complete-submit-icon").classList.add("hide");
-  document
-    .querySelector("#make-complete-processing-message")
-    .classList.remove("idle");
-  document
-    .querySelector("#make-complete-processing-icon")
-    .classList.remove("idle");
+  document.querySelector("#make-complete-processing-message").classList.remove("idle");
+  document.querySelector("#make-complete-processing-icon").classList.remove("idle");
   setTimeout(() => {
-    document
-      .querySelector("#make-complete-submit-message")
-      .classList.add("idle");
+    document.querySelector("#make-complete-submit-message").classList.add("idle");
     document.querySelector("#make-complete-submit-icon").classList.add("idle");
-    document
-      .querySelector("#make-complete-submit-message")
-      .classList.remove("hide");
-    document
-      .querySelector("#make-complete-submit-icon")
-      .classList.remove("hide");
+    document.querySelector("#make-complete-submit-message").classList.remove("hide");
+    document.querySelector("#make-complete-submit-icon").classList.remove("hide");
   }, 500);
   // Save Input
   let data;
   try {
-    data = (await axios.post("/make/submit", input))["data"];
+    data = (await axios.post("/make/build/new-model", input))["data"];
   } catch (error) {
-    console.log(error); // TEMPORARY (error handling placeholder)
-    make.complete.validation.valid();
-    return;
+    data = { status: "error", content: error };
   }
-  console.log(data);
+  if (data.status === "error") {
+    return console.log(data.content);
+  } else if (data.status === "failed") {
+    return console.log(data.content);
+  }
   // Update Button Text
-  document
-    .querySelector("#make-complete-processing-message")
-    .classList.add("hide");
-  document
-    .querySelector("#make-complete-processing-icon")
-    .classList.add("hide");
-  document.querySelector(
-    "#make-complete-success-icon"
-  ).innerHTML = `<svg class="checkmark" viewBox="0 0 52 52">
-      <circle
-        class="checkmark__circle"
-        cx="26"
-        cy="26"
-        r="25"
-        fill="none"
-      ></circle>
-      <path
-        class="checkmark__check"
-        fill="none"
-        d="M14.1 27.2l7.1 7.2 16.7-16.8"
-      ></path>
+  document.querySelector("#make-complete-processing-message").classList.add("hide");
+  document.querySelector("#make-complete-processing-icon").classList.add("hide");
+  document.querySelector("#make-complete-success-icon")
+    .innerHTML = `<svg class="checkmark" viewBox="0 0 52 52">
+      <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"></circle>
+      <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
     </svg>`;
-  document
-    .querySelector("#make-complete-success-message")
-    .classList.remove("idle");
-  document
-    .querySelector("#make-complete-success-icon")
-    .classList.remove("idle");
+  document.querySelector("#make-complete-success-message").classList.remove("idle");
+  document.querySelector("#make-complete-success-icon").classList.remove("idle");
   setTimeout(() => {
-    document
-      .querySelector("#make-complete-processing-message")
-      .classList.add("idle");
-    document
-      .querySelector("#make-complete-processing-icon")
-      .classList.add("idle");
-    document
-      .querySelector("#make-complete-processing-message")
-      .classList.remove("hide");
-    document
-      .querySelector("#make-complete-processing-icon")
-      .classList.remove("hide");
+    document.querySelector("#make-complete-processing-message").classList.add("idle");
+    document.querySelector("#make-complete-processing-icon").classList.add("idle");
+    document.querySelector("#make-complete-processing-message").classList.remove("hide");
+    document.querySelector("#make-complete-processing-icon").classList.remove("hide");
   }, 500);
   // Redirection Page
-  setTimeout(() => {
-    make.redirect();
-  }, 1500);
+  setTimeout(() => make.redirect(), 1500);
 };
 
 make.validation.select = page => {

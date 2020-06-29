@@ -115,21 +115,23 @@ router.post("/orders/post-comment", verifiedContent, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // CREATE NEW COMMENT
-  let comment;
+  let comment = { accountId: account._id, message };
   try {
-    comment = await Comment.create(account._id, message);
+    comment = await Comment.build(comment, false);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
   // UPDATE ORDER COMMENTS
   order.comments.push(comment._id);
   // SAVE ORDER UPDATE AND GET USER DETAILS
-  const promises = [Customer.findOne({ accountId: account._id }), order.save()];
+  const promises = [Customer.findOne({ accountId: account._id }), order.save(), comment.save()];
+  let customer;
   try {
     [customer] = await Promise.all(promises);
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
+  comment = comment.toObject();
   // ADD INFORMATION TO COMMENT OBJECT
   comment.author = { name: customer.displayName, picture: customer.picture };
   // SUCCESS HANDLER

@@ -5,9 +5,9 @@ REQUIRED MODULES
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
 
-/*=========================================================================================
+/* ========================================================================================
 GRIDFS
-=========================================================================================*/
+======================================================================================== */
 
 const gridFsStream = require("gridfs-stream");
 
@@ -45,34 +45,70 @@ CREATE MAKE MODEL
 =========================================================================================*/
 
 const MakeSchema = new Schema({
-  accountId: { type: Schema.Types.ObjectId },
-  sessionId: { type: String },
+  accountId: { type: Schema.Types.ObjectId, default: undefined },
+  sessionId: { type: String, default: undefined },
   file: {
-    id: { type: Schema.Types.ObjectId },
-    name: { type: String },
+    id: { type: Schema.Types.ObjectId, default: undefined },
+    name: { type: String, required: true },
   },
-  status: { type: String },
-  build: { type: String },
-  quick: { type: String },
-  process: { type: String },
-  material: { type: String },
-  quality: { type: String },
-  strength: { type: String },
-  colour: { type: String },
-  quantity: { type: Number },
-  comment: { type: Schema.Types.ObjectId },
+  status: { type: String, required: true },
+  build: { type: String, required: true },
+  quick: { type: String, required: true },
+  process: { type: String, required: true },
+  material: { type: String, required: true },
+  quality: { type: String, required: true },
+  strength: { type: String, required: true },
+  colour: { type: String, required: true },
+  quantity: {
+    ordered: { type: Number, required: true },
+    built: { type: Number, default: undefined }
+  },
+  comment: { type: Schema.Types.ObjectId, default: undefined },
   date: {
-    awaitingQuote: { type: String },
-    checkout: { type: String },
-    purchased: { type: String },
-    modified: { type: String },
+    awaitingQuote: { type: String, required: undefined },
+    checkout: { type: String, default: undefined },
+    purchased: { type: String, default: undefined },
+    modified: { type: String, required: undefined },
   },
-  price: { type: Number },
+  price: { type: Number, default: undefined }
+});
+
+/*=========================================================================================
+MIDDLEWARE
+=========================================================================================*/
+
+MakeSchema.pre("save", async function (next) {
+  const date = moment().tz("Pacific/Auckland").format();
+  // update the date modified property
+  if (this.isModified()) this.date.modified = date;
+  if (this.isModified("status")) this.date[this.status] = date;
+  next();
 });
 
 /*=========================================================================================
 STATIC
 =========================================================================================*/
+
+// @FUNC  build
+// @TYPE  STATICS
+// @DESC  
+MakeSchema.statics.build = function (object = {}, save = true) {
+  return new Promise(async (resolve, reject) => {
+    // TO DO .....
+    // VALIDATE EACH PROPERTY
+    // TO DO .....
+    // CREATE THE DOCUMENT
+    let make = new this(object);
+    if (save) {
+      try {
+        make = await make.save();
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
+    }
+    return resolve(make);
+  });
+}
 
 // @FUNC  fetch
 // @TYPE  STATICS
@@ -98,32 +134,6 @@ MakeSchema.statics.fetch = function (query = {}) {
     });
     return resolve(formattedMakes);
   });
-}
-
-MakeSchema.statics.retrieve = function (accountId) {
-  return new Promise(async (resolve, reject) => {
-    // INITIALISE RETRIEVED MAKE INSTANCE ARRAY
-    let makes;
-    try {
-      makes = await this.find({ accountId });
-    } catch (error) {
-      reject(error);
-      return;
-    }
-    // RECREATE PROJECTS REMOVING SENSITIVE PROPERTIES
-    const mappedMakes = makes.map((make) => {
-      let mappedMake = {
-        id: make._id, file: make.file, build: make.build, quick: make.quick,
-        process: make.process, material: make.material, quality: make.quality,
-        strength: make.strength, colour: make.colour, quantity: make.quantity,
-        comment: make.comment, date: make.date, price: make.price
-      }
-      return mappedMake;
-    });
-    // RESOLVE AND RETURN THE MAPPED MAKES
-    resolve(mappedMakes);
-    return;
-  })
 }
 
 // @FUNC  merge
@@ -156,24 +166,6 @@ MakeSchema.statics.merge = function (accountId, sessionId) {
     return resolve();
   })
 }
-
-// @FUNC  findByAccountIdAndStatus
-// @TYPE  STATICS
-// @DESC
-// @ARGU
-MakeSchema.statics.findByAccountIdAndStatus = function (accountId, status) {
-  return new Promise(async (resolve, reject) => {
-    let makes;
-
-    try {
-      makes = await this.find({ accountId, status });
-    } catch (error) {
-      reject(error);
-    }
-
-    resolve(makes);
-  });
-};
 
 // @FUNC  deleteByIdAndAccountId
 // @TYPE  STATICS
@@ -225,29 +217,6 @@ MakeSchema.statics.deleteByIdAndAccountId = function (_id, accountId) {
 /*=========================================================================================
 METHOD
 =========================================================================================*/
-
-// @FUNC  updateStatus
-// @TYPE  METHODS
-// @DESC
-// @ARGU
-MakeSchema.methods.updateStatus = function (status) {
-  const statuses = ["awaitingQuote", "checkout", "purchased"];
-
-  // VALIDATION START
-
-  if (statuses.indexOf(status) === -1) {
-    reject("invalid status");
-  }
-
-  // VALIDATION END
-
-  const date = moment().tz("Pacific/Auckland").format();
-
-  this.status = status;
-  this.date[status] = date;
-  this.date.modified = date;
-  return;
-};
 
 // @FUNC  update
 // @TYPE  METHODS
