@@ -16,55 +16,22 @@ CREATE DISCOUNT MODEL
 =========================================================================================*/
 
 const DiscountSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  code: {
-    type: String,
-    required: true
-  },
-  rate: {
-    type: Number,
-    required: true
-  },
+  name: { type: String, required: true },
+  code: { type: String, required: true },
+  rate: { type: Number, required: true },
   duration: {
-    type: {
-      type: String,
-      required: true
-    },
-    start: {
-      type: String,
-      default: ""
-    },
-    end: {
-      type: String,
-      default: ""
-    }
+    type: { type: String, required: true },
+    start: { type: String, default: "" },
+    end: { type: String, default: "" }
   },
   audience: {
-    type: {
-      type: String,
-      required: true
-    },
-    accounts: {
-      type: [String],
-      default: []
-    },
-    customers: {
-      type: [Schema.Types.ObjectId],
-      default: []
-    }
+    type: { type: String, required: true },
+    accounts: { type: [String], default: [] },
+    customers: { type: [Schema.Types.ObjectId], default: [] }
   },
   usage: {
-    type: {
-      type: String,
-      required: true
-    },
-    limit: {
-      type: Number,
-      default: 0
-    }
+    type: { type: String, required: true },
+    limit: { type: Number, default: 0 }
   }
 });
 

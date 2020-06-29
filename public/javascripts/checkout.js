@@ -543,7 +543,13 @@ checkout.cart.print.create = print => {
   // DECLARE VARIABLES
   const printId = String(print._id);
   // Container One
-  const icon = `<div id="checkout-viewer-${printId}" class="image"></div>`;
+  const icon = `<div id="checkout-viewer-${printId}" class="viewer">
+    <div class="small-loading-icon">
+      <div class="layer layer-1"></div>
+      <div class="layer layer-2"></div>
+      <div class="layer layer-3"></div>
+    </div>
+  </div>`;
   const containerOne = `<div class="checkout-print-container-1">${icon}</div>`;
 
   // Container Two
@@ -873,7 +879,6 @@ checkout.cart.viewerFetch = (url, id) => {
 
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(element.clientWidth, element.clientHeight);
-  element.appendChild(renderer.domElement);
 
   window.addEventListener('resize', function () {
     renderer.setSize(element.clientWidth, element.clientHeight);
@@ -886,6 +891,8 @@ checkout.cart.viewerFetch = (url, id) => {
 
   const loader = new THREE.STLLoader();
   loader.load(url, (geometry) => {
+    element.innerHTML = "";
+    element.appendChild(renderer.domElement);
     checkout.cart.viewerProcess(camera, renderer, scene, geometry);
   });
 }

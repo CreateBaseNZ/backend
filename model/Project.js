@@ -16,39 +16,16 @@ CREATE PROJECT MODEL
 =========================================================================================*/
 
 const ProjectSchema = new Schema({
-  account: {
-    type: Schema.Types.ObjectId,
-    required: true
-  },
-  name: {
-    type: String,
-    default: ""
-  },
-  thumbnail: {
-    type: Schema.Types.ObjectId
-  },
-  bookmark: {
-    type: Boolean,
-    default: false
-  },
-  makes: {
-    type: [Schema.Types.ObjectId],
-    default: []
-  },
+  account: { type: Schema.Types.ObjectId, required: true },
+  name: { type: String, default: "" },
+  thumbnail: { type: Schema.Types.ObjectId, undefined },
+  bookmark: { type: Boolean, default: false },
+  makes: { type: [Schema.Types.ObjectId], default: [] },
   date: {
-    creation: {
-      type: String,
-      required: true
-    },
-    modified: {
-      type: String,
-      required: true
-    }
+    creation: { type: String, required: true },
+    modified: { type: String, required: true }
   },
-  notes: {
-    type: String,
-    default: ""
-  }
+  notes: { type: String, default: "" }
 });
 
 /*=========================================================================================

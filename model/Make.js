@@ -45,10 +45,10 @@ CREATE MAKE MODEL
 =========================================================================================*/
 
 const MakeSchema = new Schema({
-  accountId: { type: Schema.Types.ObjectId, default: undefined },
-  sessionId: { type: String, default: undefined },
+  accountId: { type: Schema.Types.ObjectId },
+  sessionId: { type: String, default: "" },
   file: {
-    id: { type: Schema.Types.ObjectId, default: undefined },
+    id: { type: Schema.Types.ObjectId },
     name: { type: String, required: true },
   },
   status: { type: String, required: true },
@@ -61,16 +61,16 @@ const MakeSchema = new Schema({
   colour: { type: String, required: true },
   quantity: {
     ordered: { type: Number, required: true },
-    built: { type: Number, default: undefined }
+    built: { type: Number, default: 0 }
   },
-  comment: { type: Schema.Types.ObjectId, default: undefined },
+  comment: { type: Schema.Types.ObjectId },
   date: {
-    awaitingQuote: { type: String, required: undefined },
-    checkout: { type: String, default: undefined },
-    purchased: { type: String, default: undefined },
-    modified: { type: String, required: undefined },
+    awaitingQuote: { type: String, required: "" },
+    checkout: { type: String, default: "" },
+    purchased: { type: String, default: "" },
+    modified: { type: String, required: "" },
   },
-  price: { type: Number, default: undefined }
+  price: { type: Number, default: 0 }
 });
 
 /*=========================================================================================

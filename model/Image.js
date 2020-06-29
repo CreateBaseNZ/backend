@@ -16,12 +16,8 @@ CREATE IMAGES MODEL
 
 const ImageSchema = new Schema({
   file: {
-    id: {
-      type: Schema.Types.ObjectId
-    },
-    name: {
-      type: String
-    }
+    id: { type: Schema.Types.ObjectId },
+    name: { type: String, default: "" }
   }
 });
 

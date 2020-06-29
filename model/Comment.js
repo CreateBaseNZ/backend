@@ -22,12 +22,12 @@ CREATE COMMENT MODEL
 =========================================================================================*/
 
 const CommentSchema = new Schema({
-  accountId: { type: Schema.Types.ObjectId, default: undefined },
-  sessionId: { type: Schema.Types.ObjectId, default: undefined },
-  message: { type: String, default: undefined },
+  accountId: { type: Schema.Types.ObjectId },
+  sessionId: { type: Schema.Types.ObjectId },
+  message: { type: String, default: "" },
   date: {
-    created: { type: String, default: undefined },
-    modified: { type: String, default: undefined }
+    created: { type: String, default: "" },
+    modified: { type: String, default: "" }
   },
   attachments: { type: [Schema.Types.ObjectId], default: [] }
 });

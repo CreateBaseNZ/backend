@@ -145,3 +145,250 @@ ICON 1
     animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
   }
 }
+
+/* ========================================================================================
+LOADING TWO
+======================================================================================== */
+
+$mediumDiamondFixed: 40px;
+$mediumDiamondResponsive: 4vmax;
+
+.medium-loading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35%;
+  width: 100%;
+
+  .layer {
+    height: calc(#{$mediumDiamondFixed} + #{$mediumDiamondResponsive});
+    width: calc(#{$mediumDiamondFixed} + #{$mediumDiamondResponsive});
+    opacity: 0.3;
+    position: absolute;
+    border-radius: 1%;
+  }
+
+  .layer-1 {
+    animation: medium-loading-icon-1 5s forwards infinite;
+  }
+  .layer-2 {
+    margin-top: 0;
+    margin-left: 0;
+    animation: medium-loading-icon-2 5s forwards infinite;
+  }
+  .layer-3 {
+    animation: medium-loading-icon-3 5s forwards infinite;
+  }
+}
+
+@keyframes medium-loading-icon-1 {
+  0%,
+  100% {
+    background: $logo-3;
+    margin-top: calc(calc(#{$mediumDiamondFixed} * -1 / 4) + calc(#{$mediumDiamondResponsive} * -1 / 4));
+    margin-left: 0;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: calc(#{$mediumDiamondFixed} + #{$mediumDiamondResponsive});
+    transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-3;
+    margin-top: calc(calc(#{$mediumDiamondFixed} * 1 / 4) + calc(#{$mediumDiamondResponsive} * 1 / 4));
+    margin-left: 0;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: calc(-#{$mediumDiamondFixed} - #{$mediumDiamondResponsive});
+    transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes medium-loading-icon-2 {
+  0%,
+  100% {
+    background: $logo-2;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-2;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes medium-loading-icon-3 {
+  0%,
+  100% {
+    background: $logo-1;
+    margin-top: calc(calc(#{$mediumDiamondFixed} * 1 / 4) + calc(#{$mediumDiamondResponsive} * 1 / 4));
+    margin-left: 0;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: calc(-#{$mediumDiamondFixed} - #{$mediumDiamondResponsive});
+    transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-3;
+    margin-top: calc(calc(#{$mediumDiamondFixed} * -1 / 4) + calc(#{$mediumDiamondResponsive} * -1 / 4));
+    margin-left: 0;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: calc(#{$mediumDiamondFixed} + #{$mediumDiamondResponsive});
+    transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+
+/* ========================================================================================
+LOADING THREE
+======================================================================================== */
+
+$smallDiamondFixed: 20px;
+$smallDiamondResponsive: 2vmax;
+
+.small-loading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35%;
+  width: 100%;
+
+  .layer {
+    height: calc(#{$smallDiamondFixed} + #{$smallDiamondResponsive});
+    width: calc(#{$smallDiamondFixed} + #{$smallDiamondResponsive});
+    opacity: 0.3;
+    position: absolute;
+    border-radius: 1%;
+  }
+
+  .layer-1 {
+    animation: small-loading-icon-1 5s forwards infinite;
+  }
+  .layer-2 {
+    margin-top: 0;
+    margin-left: 0;
+    animation: small-loading-icon-2 5s forwards infinite;
+  }
+  .layer-3 {
+    animation: small-loading-icon-3 5s forwards infinite;
+  }
+}
+
+@keyframes small-loading-icon-1 {
+  0%,
+  100% {
+    background: $logo-3;
+    margin-top: calc(calc(#{$smallDiamondFixed} * -1 / 4) + calc(#{$smallDiamondResponsive} * -1 / 4));
+    margin-left: 0;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: calc(#{$smallDiamondFixed} + #{$smallDiamondResponsive});
+    transform: perspective(75vw) rotateX(0deg) rotateY(-75deg) rotateZ(0deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-3;
+    margin-top: calc(calc(#{$smallDiamondFixed} * 1 / 4) + calc(#{$smallDiamondResponsive} * 1 / 4));
+    margin-left: 0;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: calc(-#{$smallDiamondFixed} - #{$smallDiamondResponsive});
+    transform: perspective(75vw) rotateX(0deg) rotateY(75deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes small-loading-icon-2 {
+  0%,
+  100% {
+    background: $logo-2;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    transform: perspective(75vw) rotateZ(0deg) rotateX(0deg) rotateY(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-2;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    transform: perspective(75vw) rotateX(0deg) rotateY(90deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}
+
+@keyframes small-loading-icon-3 {
+  0%,
+  100% {
+    background: $logo-1;
+    margin-top: calc(calc(#{$smallDiamondFixed} * 1 / 4) + calc(#{$smallDiamondResponsive} * 1 / 4));
+    margin-left: 0;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  25% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: calc(-#{$smallDiamondFixed} - #{$smallDiamondResponsive});
+    transform: perspective(75vw) rotateX(0deg) rotateY(-105deg) rotateZ(0deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+  50% {
+    background: $logo-3;
+    margin-top: calc(calc(#{$smallDiamondFixed} * -1 / 4) + calc(#{$smallDiamondResponsive} * -1 / 4));
+    margin-left: 0;
+    transform: rotateX(55deg) rotateY(0deg) rotateZ(-45deg);
+    animation-timing-function: cubic-bezier(0.11, 0.01, 0.6, 0.99);
+  }
+  75% {
+    background: $logo-2;
+    margin-top: 0;
+    margin-left: calc(#{$smallDiamondFixed} + #{$smallDiamondResponsive});
+    transform: perspective(75vw) rotateX(0deg) rotateY(105deg) rotateZ(-90deg);
+    animation-timing-function: cubic-bezier(0.4, 0.01, 0.89, 0.99);
+  }
+}

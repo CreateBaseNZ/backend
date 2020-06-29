@@ -17,51 +17,17 @@ EXTERNAL MODELS
 const Mail = require("./Mail.js");
 
 /*=========================================================================================
-SUB MODELS
-=========================================================================================*/
-
-const AddressSchema = new Schema({
-  recipient: { type: String, default: "" },
-  unit: { type: String, default: "" },
-  street: {
-    number: { type: String, default: "" },
-    name: { type: String, default: "" },
-  },
-  suburb: { type: String, default: "" },
-  city: { type: String, default: "" },
-  postcode: { type: String, default: "" },
-  country: { type: String, default: "" }
-});
-
-/*=========================================================================================
 CREATE CUSTOMER MODEL
 =========================================================================================*/
 
 const CustomerSchema = new Schema({
-  accountId: {
-    type: Schema.Types.ObjectId,
-    required: true
-  },
-  displayName: {
-    type: String,
-    required: true
-  },
-  picture: {
-    type: Schema.Types.ObjectId
-  },
-  bio: {
-    type: String,
-    default: ""
-  },
-  address: {
-    type: AddressSchema,
-    default: AddressSchema
-  },
+  accountId: { type: Schema.Types.ObjectId, required: true },
+  displayName: { type: String, required: true },
+  picture: { type: Schema.Types.ObjectId },
+  bio: { type: String, default: "" },
+  address: { type: Schema.Types.Mixed, required: true },
   subscription: {
-    mail: {
-      type: Boolean,
-      default: false
-    }
+    mail: { type: Boolean, default: false }
   }
 });
 
@@ -114,8 +80,13 @@ CustomerSchema.statics.create = function (accountId, displayName) {
     if (!valid) {
       return reject(errors);
     }
+    // ADDRESS
+    const address = {
+      recipient: "", unit: "", street: { number: "", name: "" },
+      suburb: "", city: "", postcode: "", country: ""
+    }
     // CREATE OBJECT PROPERTIES
-    const object = { accountId, displayName };
+    const object = { accountId, displayName, address };
     // CREATE CUSTOMER INSTANCE
     const customer = new this(object);
     // SAVE CUSTOMER INSTANCE

@@ -23,23 +23,6 @@ const Make = require("./Make.js");
 const Discount = require("./Discount.js");
 
 /*=========================================================================================
-SUB MODELS
-=========================================================================================*/
-
-const AddressSchema = new Schema({
-  recipient: { type: String, default: "" },
-  unit: { type: String, default: "" },
-  street: {
-    number: { type: String, default: "" },
-    name: { type: String, default: "" },
-  },
-  suburb: { type: String, default: "" },
-  city: { type: String, default: "" },
-  postcode: { type: String, default: "" },
-  country: { type: String, default: "" }
-});
-
-/*=========================================================================================
 CREATE ORDER MODEL
 =========================================================================================*/
 
@@ -56,8 +39,8 @@ const OrderSchema = new Schema({
   shipping: {
     address: {
       option: { type: String, default: "" },
-      saved: { type: AddressSchema, default: AddressSchema },
-      new: { type: AddressSchema, default: AddressSchema },
+      saved: { type: Schema.Types.Mixed, required: true },
+      new: { type: Schema.Types.Mixed, required: true },
       save: { type: Boolean, default: true },
     },
     method: { type: String, default: "" },
@@ -72,7 +55,7 @@ const OrderSchema = new Schema({
       shipping: { type: Schema.Types.Mixed, default: {} },
       total: { type: Schema.Types.Mixed, default: {} }
     },
-    transaction: { type: Schema.Types.ObjectId, default: undefined }
+    transaction: { type: Schema.Types.ObjectId }
   },
   comments: { type: [Schema.Types.ObjectId], default: [] },
   date: {
@@ -107,15 +90,30 @@ STATIC - MODEL
 // @DESC
 OrderSchema.statics.create = function (access, id) {
   // VALIDATION
-  // CREATE ORDER INSTANCE
-  let order = new this();
+
   // CREATE OBJECT PROPERTIES
+  const address = {
+    recipient: "", unit: "", street: { number: "", name: "" },
+    suburb: "", city: "", postcode: "", country: ""
+  }
+  const shipping = {
+    address: {
+      new: address,
+      saved: address
+    }
+  }
+  // CREATE ORDER INSTANCE
+  let order = new this({ shipping });
   // Set Owner
   if (access === "public") {
     order.sessionId = id;
   } else {
     order.accountId = id;
   }
+  // Addresses
+
+  order.shipping.address.saved = address;
+  order.shipping.address.new = address;
   // Status
   order.updateStatus("created");
   return order;

@@ -23,21 +23,13 @@ CREATE SESSION MODEL
 =========================================================================================*/
 
 const SessionSchema = new Schema({
-  sessionId: {
-    type: String,
-  },
+  sessionId: { type: String },
   date: {
-    modified: {
-      type: String,
-    },
-    visited: {
-      type: String,
-    },
+    modified: { type: String },
+    visited: { type: String },
   },
   // Sets status selected by the user default value is "unset"
-  status: {
-    type: String,
-  },
+  status: { type: String }
 });
 
 /*=========================================================================================

@@ -24,13 +24,8 @@ CREATE MAILING MODEL
 =========================================================================================*/
 
 const MailSchema = new Schema({
-  accountId: {
-    type: Schema.Types.ObjectId
-  },
-  email: {
-    type: String,
-    required: true
-  },
+  accountId: { type: Schema.Types.ObjectId },
+  email: { type: String, required: true }
 });
 
 /*=========================================================================================

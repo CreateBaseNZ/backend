@@ -101,9 +101,12 @@ CART
   display: flex;
   align-items: center;
   justify-content: center;
-  .image {
+  .viewer {
     height: 8vmax;
     width: 8vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

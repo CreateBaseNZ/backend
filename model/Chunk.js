@@ -15,18 +15,10 @@ CREATE COMMENT MODEL
 =========================================================================================*/
 
 const ChunkSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId
-  },
-  files_id: {
-    type: Schema.Types.ObjectId
-  },
-  n: {
-    type: Number
-  },
-  data: {
-    type: Buffer
-  }
+  _id: { type: Schema.Types.ObjectId },
+  files_id: { type: Schema.Types.ObjectId },
+  n: { type: Number },
+  data: { type: Buffer }
 });
 
 /*=========================================================================================
