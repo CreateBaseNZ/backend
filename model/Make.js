@@ -5,29 +5,6 @@ REQUIRED MODULES
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
 
-/* ========================================================================================
-GRIDFS
-======================================================================================== */
-
-const gridFsStream = require("gridfs-stream");
-
-let GridFS;
-
-mongoose.createConnection(
-  process.env.MONGODB_URL,
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  },
-  (error, client) => {
-    if (error) throw error;
-
-    GridFS = gridFsStream(client.db, mongoose.mongo);
-    GridFS.collection("fs");
-  }
-);
-
 /*=========================================================================================
 VARIABLES
 =========================================================================================*/
@@ -65,10 +42,10 @@ const MakeSchema = new Schema({
   },
   comment: { type: Schema.Types.ObjectId },
   date: {
-    awaitingQuote: { type: String, required: "" },
+    awaitingQuote: { type: String, default: "" },
     checkout: { type: String, default: "" },
     purchased: { type: String, default: "" },
-    modified: { type: String, required: "" },
+    modified: { type: String, default: "" },
   },
   price: { type: Number, default: 0 }
 });
@@ -201,13 +178,6 @@ MakeSchema.statics.deleteByIdAndAccountId = function (_id, accountId) {
       } catch (error) {
         reject(error);
       }
-    }
-    // Delete file associated with the make
-    const fileId = mongoose.Types.ObjectId(deletedMake.file.id);
-    try {
-      await GridFS.remove({ _id: fileId, root: "fs" });
-    } catch (error) {
-      reject(error);
     }
     // Return the deleted make
     resolve(deletedMake);
