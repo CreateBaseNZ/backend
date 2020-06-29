@@ -15,7 +15,7 @@
     rel="stylesheet">
   <!-- ------------------------CUSTOM------------------------ -->
   <link rel="stylesheet" href="/public/stylesheets/profile/profile-all.css" />
-  <link rel="stylesheet" href="/public/stylesheets/profile/profile.css" />
+  <!-- <link rel="stylesheet" href="/public/stylesheets/profile/profile.css" /> -->
   <link rel="stylesheet" href="/public/stylesheets/profile/projects.css" />
 </head>
 
@@ -30,8 +30,7 @@
         </span>
       </button>
       <a class="nav-home-btn" id="nav-home-btn" href="/"></a>
-      <div class="nav-in" id="nav-in" onclick="navigation.toggleRightMenu();"></div>
-      <div class="nav-mobile-out" id="nav-mobile-out" onclick="navigation.toggleRightMenu();"></div>
+      <div class="nav-mobile-out" id="nav-mobile-out"></div>
       <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
         <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
@@ -76,7 +75,8 @@
           <p class="nav-side-header">PROJECTS</p>
           <a class="nav-side-item" onclick="profile.setPage('projects');">MY PROJECTS</a>
           <p class="nav-side-header">ACCOUNT</p>
-          <a class="nav-side-item" onclick="profile.setPage('');">MY PROFILE</a>
+          <a class="nav-side-item" onclick="profile.setPage('');">
+            <div class="nav-in" id="nav-in"></div>MY PROFILE</a>
           <a class="nav-side-item" onclick="profile.setPage('orders');">MY ORDERS</a>
           <a class="nav-side-item" onclick="profile.setPage('settings');">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
@@ -627,7 +627,7 @@
   <script defer src="/public/javascripts/viewer/STLLoader.js"></script>
   <!-- ------------------------CUSTOM------------------------ -->
   <script async src="/public/javascripts/global/footer.js"></script>
-  <script async src="/public/javascripts/global/nav.js"></script>
+  <script async src="/public/javascripts/global/nav-webapp.js"></script>
   <script async src="/public/javascripts/global/session.js"></script>
   <script async src="/public/javascripts/global/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
