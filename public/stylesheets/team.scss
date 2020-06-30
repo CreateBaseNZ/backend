@@ -126,7 +126,7 @@ body {
     .fab {
       position: absolute;
       top: 0;
-      right: 0;
+      right: calc(-23px - 0.4vmin);
       padding: 10px;
       font-size: calc(8px + 0.4vmin);
       color: $dark-2;

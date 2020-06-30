@@ -64,6 +64,7 @@ navigation.declareVariables = () => {
   navigation.userMobileOut = document.querySelector(".nav-mobile-out");
   navigation.rightMenuIn = document.querySelector(".nav-right-menu-in");
   navigation.rightMenuOut = document.querySelector(".nav-right-menu-out");
+  navigation.rightMenuGreeting = document.getElementById("nav-right-greeting")
   return;
 }
 
@@ -131,6 +132,7 @@ navigation.configuration = (login = false) => {
     /* Mobile */
     navigation.menuContentMobile(login);
   }
+  navigation.rightMenuGreeting.innerHTML = "HI " + userName;
 }
 
 // @func  navigation.menuContentDesktop
