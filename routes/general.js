@@ -17,6 +17,12 @@ const router = new express.Router();
 const customerRouteOptions = { root: path.join(__dirname, "../views") };
 
 /*=========================================================================================
+MODELS
+=========================================================================================*/
+
+const Customer = require("../model/Customer.js");
+
+/*=========================================================================================
 MIDDLEWARE
 =========================================================================================*/
 
@@ -176,6 +182,25 @@ router.get("/checkout", verifiedAccess, (req, res) => {
 // @access    Public
 router.get("/test", (req, res) => {
   res.sendFile("test.html", customerRouteOptions);
+});
+
+/* ----------------------------------------------------------------------------------------
+NAVIGATION
+---------------------------------------------------------------------------------------- */
+
+router.get("/navigation/fetch-user", restrictedContent, async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const account = req.user;
+  // FETCH DETAILS
+  let customer;
+  try {
+    customer = await Customer.findOne({ accountId: account._id });
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
+  if (!customer) return res.send({ status: "failed", content: "no user details found" });
+  // SUCCESS HANDLER
+  return res.send({ status: "succeeded", content: customer });
 });
 
 /*=========================================================================================

@@ -197,12 +197,15 @@ router.post("/send-email", async (req, res) => {
   const style = req.body.style;
   // Configure Transport Options
   const transportOptions = {
-    service: "Gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
-      type: "login",
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
+      type: "OAuth2",
+      user: process.env.EMAIL_ADDRESS,
+      serviceClient: process.env.EMAIL_CLIENT_ID,
+      privateKey: process.env.EMAIL_PRIVATE_KEY
+    }
   };
   // Create Transporter
   const transporter = nodemailer.createTransport(transportOptions);
@@ -215,7 +218,7 @@ router.post("/send-email", async (req, res) => {
   }
   // Construct mail
   const mail = {
-    from: `"CreateBase" <${process.env.EMAIL_USER}>`,
+    from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
     to: `${email}`,
     subject: message.subject,
     text: message.text,

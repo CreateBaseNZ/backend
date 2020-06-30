@@ -559,7 +559,7 @@ checkout.cart.print.create = print => {
   const quantity = `<div class="checkout-print-quantity-container">
                       <label>Quantity:</label>
                       <input type="number" name="quantity" id="checkout-print-quantity-${printId}" min="1" value="${print.quantity.ordered}"
-                        onchange="checkout.cart.print.update(this.value,'${print.quantity}','quantity','${printId}');"/>
+                        onchange="checkout.cart.print.update(this.value,'${print.quantity.ordered}','quantity','${printId}');"/>
                     </div>`;
   const containerTwo = `<div class="checkout-print-container-2">${fileName + buildType + colour + quantity}</div>`;
 
@@ -569,7 +569,7 @@ checkout.cart.print.create = print => {
   if (print.status === "awaitingQuote") {
     price = `<div class="price">awaiting quote</div>`;
   } else {
-    const totalPrice = checkout.priceFormatter(print.price * print.quantity);
+    const totalPrice = checkout.priceFormatter(print.price * print.quantity.ordered);
     price = `<div class="price">$ ${totalPrice}</div>`;
   }
   const containerThree = `<div class="checkout-print-container-3">${cancel + price}</div>`;

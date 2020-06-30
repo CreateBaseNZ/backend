@@ -24,7 +24,8 @@ let navigation = {
   configuration: undefined,
   menuContentDesktop: undefined,
   menuContentMobile: undefined,
-  addImages: undefined
+  addImages: undefined,
+  fetchUser: undefined
 }
 
 
@@ -39,14 +40,16 @@ navigation.initialise = (login = false, userMenu = true) => {
     // DECLARE VARIABLES
     navigation.declareVariables();
     // CONFIGURATION AND CONTENTS
-    navigation.configuration(login);
-    navigation.mediaQuery.addListener(() => navigation.configuration(login));
     // ADD IMAGES
+    const promises = [navigation.fetchUser(login), navigation.addImages(login, userMenu)];
     try {
-      await navigation.addImages(login, userMenu);
+      [user] = await Promise.all(promises);
     } catch (error) {
       reject(error);
     }
+    console.log(user);
+    navigation.configuration(login, user);
+    navigation.mediaQuery.addListener(() => navigation.configuration(login, user));
     // SUCCESS RESOLVE
     resolve();
   });
@@ -124,7 +127,7 @@ navigation.exitModal = () => {
 
 // @func  navigation.configuration
 // @desc  
-navigation.configuration = (login = false) => {
+navigation.configuration = (login = false, user = {}) => {
   if (navigation.mediaQuery.matches) {
     /* Desktop */
     navigation.menuContentDesktop(login);
@@ -132,7 +135,7 @@ navigation.configuration = (login = false) => {
     /* Mobile */
     navigation.menuContentMobile(login);
   }
-  navigation.rightMenuGreeting.innerHTML = "HI " + userName;
+  if (!user) navigation.rightMenuGreeting.innerHTML = "HI " + userName;
 }
 
 // @func  navigation.menuContentDesktop
@@ -223,6 +226,34 @@ navigation.addImages = (login = false, userMenu = true) => {
     }
     // SUCCESS RESPONSE
     resolve();
+  });
+}
+
+// @func  navigation.fetchUser
+// @desc  
+navigation.fetchUser = (login = false) => {
+  return new Promise(async (resolve, reject) => {
+    if (!login) return resolve({});
+    let data;
+    try {
+      data = (await axios.get("/navigation/fetch-user"))["data"];
+    } catch (error) {
+      data = { status: "error", content: error };
+    }
+    if (data.status === "error") {
+      // TO DO .....
+      // Error Handler
+      // TO DO .....
+      console.log(data.content); // TEMPORARY
+      return reject("error");
+    } else if (data.status === "failed") {
+      // TO DO .....
+      // Failed Handler
+      // TO DO .....
+      console.log(data.content); // TEMPORARY
+      return reject("failed");
+    }
+    return resolve(data.content);
   });
 }
 

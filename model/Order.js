@@ -359,6 +359,34 @@ OrderSchema.methods.processCheckedout = function () {
   });
 }
 
+// @FUNC  processValidated
+// @TYPE  METHODS
+// @DESC  
+OrderSchema.methods.processValidated = function () {
+  return new Promise(async (resolve, reject) => {
+    // FETCH MAKES
+    let makes;
+    try {
+      makes = await Make.fetch({ _id: this.makes.checkout });
+    } catch (data) {
+      return reject(data);
+    }
+    // VALIDATE MAKES
+    for (let i = 0; i < makes.length; i++) {
+      const make = makes[i];
+      const orderedQuantity = make.quantity.ordered;
+      const builtQuantity = make.quantity.built;
+      if (orderedQuantity > builtQuantity) {
+        return reject({ status: "failed", content: "not finish building" });
+      }
+    }
+    // UPDATE ORDER
+    this.updateStatus("built");
+    // SUCCESS HANDLER
+    return resolve();
+  });
+}
+
 /* ----------------------------------------------------------------------------------------
 TRANSACT
 ---------------------------------------------------------------------------------------- */
@@ -450,7 +478,7 @@ OrderSchema.methods.amountMakes = function () {
     // Calculate total amount
     for (let i = 0; i < makes.length; i++) {
       const make = makes[i];
-      amount.total += (make.quantity * make.price);
+      amount.total += (make.quantity.ordered * make.price);
     }
     // RETURN SUCCESS RESPONSE
     return resolve(amount);
