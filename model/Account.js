@@ -283,14 +283,14 @@ AccountSchema.statics.verification = function (email) {
     try {
       account = await this.findOne({ email });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
-    if (!account) return reject("no account found");
+    if (!account) return reject({ status: "failed", content: "no account found" });
     let customer;
     try {
       customer = await Customer.findOne({ accountId: account._id });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // Configure Transport Options
     const transportOptions = {
@@ -310,8 +310,8 @@ AccountSchema.statics.verification = function (email) {
     let message;
     try {
       message = await template(account, customer);
-    } catch (error) {
-      return reject(error);
+    } catch (data) {
+      return reject(data);
     }
     // Construct mail
     const mail = {
@@ -325,7 +325,7 @@ AccountSchema.statics.verification = function (email) {
     try {
       await transporter.sendMail(mail);
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     return resolve();
   })
@@ -601,7 +601,7 @@ const template = (account, customer) => {
     try {
       inline = await inlineCSS(combined, inlineCSSOptions);
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // Return the email object
     return resolve({ subject, text, html: inline });
