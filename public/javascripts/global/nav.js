@@ -135,7 +135,9 @@ navigation.configuration = (login = false, user = {}) => {
     /* Mobile */
     navigation.menuContentMobile(login);
   }
-  if (!user) navigation.rightMenuGreeting.innerHTML = "HI " + userName;
+  console.log(user)
+  // DELETE FIRST IF STATEMENT AFTER FULL IMPLEMENTATION
+  if (navigation.rightMenuGreeting) if (user) navigation.rightMenuGreeting.innerHTML = ("hi " + user.displayName).toUpperCase()
 }
 
 // @func  navigation.menuContentDesktop
