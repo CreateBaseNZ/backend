@@ -3,7 +3,8 @@ VARIABLES
 ======================================================================================== */
 
 let verification = {
-  initialise: undefined
+  initialise: undefined,
+  sendVerification: undefined
 }
 
 /* ========================================================================================
@@ -24,33 +25,42 @@ verification.initialise = async () => {
   inputListener();
 }
 
+// @func  verification.submit
+// @desc  
+verification.sendVerification = async () => {
+  // DISABLE BUTTON
+  document.querySelector("#codeSubmitBtn").setAttribute("disabled", "");
+  // SUBMIT REQUEST
+  let data;
+  try {
+    data = (await axios.get("/account/send-verification"))["data"];
+  } catch (error) {
+    data = { status: "error", content: error };
+  }
+  if (data.status === "error") {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    console.log(data.content);
+    return;
+  } else if (data.status === "failed") {
+    // TO DO .....
+    // FAILED HANDLER
+    // TO DO .....
+    console.log(data.content);
+    return;
+  }
+  // SUCCESS HANDLER
+  // enable button
+  document.querySelector("#codeSubmitBtn").removeAttribute("disabled");
+  // notification popup
+  notification.popup("Email Verification Sent");
+  return;
+}
+
 /* ========================================================================================
 END
 ======================================================================================== */
-
-const emailVerification = async () => {
-  let data;
-  try {
-    data = (await axios.get("/account/email-verification"))["data"];
-  } catch (error) {
-    // TO DO.....
-    // Error handling
-    // TO DO.....
-    return console.log(error);
-  }
-  // ERROR HANDLER
-  if (data.status === "failed") {
-    // TO DO.....
-    // Error handling
-    // TO DO.....
-    return console.log(data.content);
-  }
-  // SUCCESS HANDLER
-  // TO DO.....
-  // Success notifcation
-  // TO DO.....
-  return console.log(data.content);
-}
 
 //Verfication submit with button
 const verifyCode = async () => {

@@ -171,10 +171,10 @@ router.get("/account-verification/:email/:code", async (req, res) => {
   return res.redirect("/verified");
 });
 
-// @route     Get /account/email-verification
+// @route     Get /account/send-verification
 // @desc      Send the verification email
 // @access    Public
-router.get("/account/email-verification", async (req, res) => {
+router.get("/account/send-verification", async (req, res) => {
   // DECLARE AND INITIALISE VARIABLES
   const email = req.user.email;
   // VALIDATE USER VERIFICATION
@@ -183,11 +183,11 @@ router.get("/account/email-verification", async (req, res) => {
   // SEND VEIFICATION
   try {
     await Account.verification(email);
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
+  } catch (data) {
+    return res.send(data);
   }
   // SUCCESS RESPONSE
-  return res.send({ status: "success", content: "success" });
+  return res.send({ status: "succeeded", content: "verification email sent successfully" });
 });
 
 // @route     Get /account/verify
