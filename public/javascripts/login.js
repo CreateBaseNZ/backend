@@ -102,9 +102,7 @@ login.validate = (email, password) => {
   let valid = true
   let errorEmail = ""
   let errorPassword = ""
-  // TO DO .....
-  // REGEX VARIABLES
-  // TO DO .....
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   // VALIDATION
   // Password
@@ -116,10 +114,11 @@ login.validate = (email, password) => {
   if (!email) {
     valid = false;
     errorEmail = "Please enter an email."
+  } else if (!emailRE.test(String(email).toLowerCase())) {
+    valid = false;
+    errorEmail = "Please enter a valid email";
   }
-  // TO DO .....
-  // REGEX VALIDATION
-  // TO DO .....
+
   // SUCCESS HANDLER
   document.querySelector("#login-email-error").innerHTML = errorEmail
   document.querySelector("#login-password-error").innerHTML = errorPassword

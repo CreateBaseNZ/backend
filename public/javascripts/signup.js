@@ -146,7 +146,7 @@ signup.scorePassword = (pass) => {
 
   // Award every unique letter until 5 repetitions
   var letters = new Object();
-  for (var i=0; i<pass.length; i++) {
+  for (var i = 0; i < pass.length; i++) {
     letters[pass[i]] = (letters[pass[i]] || 0) + 1;
     score += 5.0 / letters[pass[i]];
   }
