@@ -44,6 +44,7 @@ const OrderSchema = new Schema({
       save: { type: Boolean, default: true },
     },
     method: { type: String, default: "" },
+    tracking: { type: String, default: "" }
   },
   payment: {
     method: { type: String, default: "" },

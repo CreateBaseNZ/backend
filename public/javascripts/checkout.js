@@ -559,7 +559,7 @@ checkout.cart.print.create = print => {
   const quantity = `<div class="checkout-print-quantity-container">
                       <label>Quantity:</label>
                       <input type="number" name="quantity" id="checkout-print-quantity-${printId}" min="1" value="${print.quantity.ordered}"
-                        onchange="checkout.cart.print.update(this.value,'${print.quantity.ordered}','quantity','${printId}');"/>
+                        onchange="checkout.cart.print.update(this.value,'${print.quantity.ordered}', ['quantity', 'ordered'],'${printId}');"/>
                     </div>`;
   const containerTwo = `<div class="checkout-print-container-2">${fileName + buildType + colour + quantity}</div>`;
 
@@ -603,11 +603,11 @@ checkout.cart.print.insert = (print, element) => {
 // @ARGU
 checkout.cart.print.update = async (newValue, oldValue, property, makeId) => {
   // VALIDATE REQUEST
-  if (!checkout.cart.print.validate[property](newValue, oldValue, makeId)) {
+  if (!checkout.cart.print.validate.quantity(newValue, oldValue, makeId)) {
     return;
   }
   // CREATE UPDATES OBJECT 
-  const update = { property: [property], value: newValue }
+  const update = { property: property, value: newValue }
   // LOADER
   checkout.load.load("updating quantity");
   // SEND UPDATE REQUEST
