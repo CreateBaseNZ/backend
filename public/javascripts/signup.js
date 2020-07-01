@@ -7,6 +7,7 @@ let signup = {
   collect: undefined,
   submit: undefined,
   validate: undefined,
+  scorePassword: undefined,
   confirmPassword: undefined,
   enable: undefined,
   disable: undefined
@@ -25,6 +26,7 @@ signup.initialise = async () => {
   } catch (error) {
     return console.log(error);
   }
+  signup.scorePassword();
   signup.confirmPassword();
   // REMOVE STARTUP LOADER
   removeLoader(false);
@@ -81,39 +83,45 @@ signup.validate = (displayName, email, password, confirmPassword) => {
   let errorEmail = "";
   let errorPassword = "";
   let errorConfirmPassword = "";
-  // TO DO .....
-  // REGEX VARIABLES
-  // TO DO .....
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let nameRE = /^[A-Za-z0-9_-\s]+$/;
 
   // VALIDATION
   // Display Name
   if (!displayName) {
     valid = false;
-    errorDisplayName = "display name required";
+    errorDisplayName = "Display name required";
+  } else if (!nameRE.test(String(displayName).toLowerCase())) {
+    valid = false;
+    errorDisplayName = "Only letters, numbers, spaces, dashes, and underscores allowed";
   }
+
   // Email
   if (!email) {
     valid = false;
-    errorEmail = "email required";
+    errorEmail = "Email required";
+  } else if (!emailRE.test(String(email).toLowerCase())) {
+    valid = false;
+    errorEmail = "Invalid email";
   }
   // Password
   if (!password) {
     valid = false;
-    errorPassword = "password required";
-  }
-  // Confirm Password
-  if (confirmPassword !== password) {
+    errorPassword = "Password required";
+  } else if (!signup.scorePassword(password)) {
     valid = false;
-    errorConfirmPassword = "password does not match";
+    errorPassword = "Password too weak";
   }
 
+  // Confirm Password
   if (!confirmPassword) {
     valid = false;
-    errorConfirmPassword = "confirm password required";
+    errorConfirmPassword = "Please confirm your password";
+  } else if (confirmPassword !== password) {
+    valid = false;
+    errorConfirmPassword = "Passwords do not match";
   }
-  // TO DO .....
-  // REGEX VALIDATION
-  // TO DO .....
+
   // SUCCESS HANDLER
   document.querySelector("#signup-error-display-name").innerHTML = errorDisplayName;
   document.querySelector("#signup-error-email").innerHTML = errorEmail;
@@ -124,19 +132,76 @@ signup.validate = (displayName, email, password, confirmPassword) => {
 
 // @func  signup.confirmPassword
 // @desc  
+signup.scorePassword = (pass) => {
+
+  el = document.getElementById("pwd-strength");
+
+  if (!pass) {
+    el.innerHTML = "";
+    el.style.color = "red";
+    return false
+  }
+
+  var score = 0;
+
+  // Award every unique letter until 5 repetitions
+  var letters = new Object();
+  for (var i=0; i<pass.length; i++) {
+    letters[pass[i]] = (letters[pass[i]] || 0) + 1;
+    score += 5.0 / letters[pass[i]];
+  }
+
+  // Bonus points for mixing it up
+  var variations = {
+    digits: /\d/.test(pass),
+    lower: /[a-z]/.test(pass),
+    upper: /[A-Z]/.test(pass),
+    nonWords: /\W/.test(pass),
+  }
+
+  variationCount = 0;
+  for (var check in variations) {
+    variationCount += (variations[check] == true) ? 1 : 0;
+  }
+  score += (variationCount - 1) * 10;
+
+  if (score > 80) {
+    el.innerHTML = "Strong";
+    el.style.color = "LimeGreen";
+    return true
+  } else if (score > 60) {
+    el.innerHTML = "Moderate";
+    el.style.color = "Gold";
+    return true
+  } else if (score > 40) {
+    el.innerHTML = "Weak";
+    el.style.color = "orange";
+    return true
+  } else {
+    el.innerHTML = "Very weak";
+    el.style.color = "red";
+    return false
+  }
+
+}
+
+// @func  signup.confirmPassword
+// @desc  
 signup.confirmPassword = () => {
   // DECLARE ELEMENTS
   const inputPass = document.querySelector('#sign-up-pwd');
   const confirm = document.getElementById('confirm-pass');
   const confirmInput = document.getElementById('sign-up-cfrm-pwd');
+
   // ADD LISTENER
-  inputPass.addEventListener("input", () => {
+  inputPass.addEventListener("input", (message) => {
     if (inputPass.value.length) {
       confirm.classList.add("dip-down");
     } else {
       confirm.classList.remove("dip-down");
       confirmInput.value = "";
     }
+    signup.scorePassword(inputPass.value);
   });
 }
 
