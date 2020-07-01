@@ -74,6 +74,15 @@ nav {
         }
       }
 
+      #enter-pass {
+        #pwd-strength {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          font-size: calc(7px + 0.1vw);
+        }
+      }
+
       #confirm-pass {
         top: -3vh;
         visibility: none;
