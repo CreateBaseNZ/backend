@@ -27,7 +27,6 @@ let navigation = {
     addImages: undefined
   }
   
-  
   /* ========================================================================================
   FUNCTIONS
   ======================================================================================== */
@@ -74,7 +73,7 @@ let navigation = {
     navigation.leftMenu.classList.toggle("nav-left-menu-active");
     navigation.ham.classList.toggle("is-active");
   
-    // // If right menu displayed, hide it
+    // If right menu displayed, hide it
     // if (navigation.rightMenuIn.classList.contains("nav-right-menu-active")) {
     //   navigation.rightMenuIn.classList.remove("nav-right-menu-active");
     //   navigation.rightMenuOut.classList.remove("nav-right-menu-active");
@@ -83,7 +82,7 @@ let navigation = {
     //   navigation.userMobileOut.classList.remove("nav-user-active");
     //   // If right menu not displayed, darken
     // } else {
-    //   navigation.darken.classList.toggle("nav-darken-overlay-active");
+      navigation.darken.classList.toggle("nav-darken-overlay-active");
     // }
   }
   
@@ -183,10 +182,10 @@ let navigation = {
         src: "/public/images/logo-icon.png", id: "",
         alt: "CreateBase", classes: ["nav-logo"], parentId: "nav-home-btn"
       };
-      // const image2 = {
-      //   src: "/profile/customer/fetch/picture", id: "nav-dp",
-      //   alt: "customer profile image", classes: [], parentId: "nav-right-menu"
-      // };
+      const image2 = {
+        src: "/profile/customer/fetch/picture", id: "nav-dp",
+        alt: "customer profile image", classes: [], parentId: "nav-right-menu"
+      };
       const image3 = {
         src: "/profile/customer/fetch/picture", id: "nav-user-in",
         alt: "User", classes: [], parentId: "nav-in"
@@ -208,10 +207,10 @@ let navigation = {
       if (userMenu) {
         if (login) {
           // objects = [image1, image2, image3, image4, image5, image6];
-          objects = [image1, image3, image5];
+          objects = [image1, image2, image3, image5];
         } else {
           // objects = [image1, image4, image5, image6];
-          objects = [image1, image5];
+          objects = [image1, image2, image5];
         }
       } else {
         objects = [image1];

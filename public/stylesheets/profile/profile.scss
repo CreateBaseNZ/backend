@@ -246,5 +246,20 @@
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
 
+  #profile-page{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .main-area{
+    flex: 0 0 80%;
+    // border: thin solid black;
+    // margin: 0;
+  }
+
+  #mod-nav-container{
+    flex: 0 0 20%;
+    // border: thin solid red;
+  }
 
 }

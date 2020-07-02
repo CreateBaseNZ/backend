@@ -11,11 +11,11 @@
   <!-- =========================CSS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap"
     rel="stylesheet">
   <!-- ------------------------CUSTOM------------------------ -->
   <link rel="stylesheet" href="/public/stylesheets/profile/profile-all.css" />
-  <!-- <link rel="stylesheet" href="/public/stylesheets/profile/profile.css" /> -->
+  <link rel="stylesheet" href="/public/stylesheets/profile/profile.css" />
   <link rel="stylesheet" href="/public/stylesheets/profile/projects.css" />
 </head>
 
@@ -72,9 +72,8 @@
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu" id="nav-right-menu">
-          <p class="nav-side-header">PROJECTS</p>
+          <p class="nav-side-header">My Base</p>
           <a class="nav-side-item" onclick="profile.setPage('projects');">MY PROJECTS</a>
-          <p class="nav-side-header">ACCOUNT</p>
           <a class="nav-side-item" onclick="profile.setPage('');">
             <div class="nav-in" id="nav-in"></div>MY PROFILE</a>
           <a class="nav-side-item" onclick="profile.setPage('orders');">MY ORDERS</a>
@@ -111,6 +110,64 @@
   </div>
 
   <div class="main-page hide" id="profile-page">
+
+    <div class="modular-nav-container" id="mod-nav-container">
+      <div class="modular-nav" id="modular-nav">
+        <p class="modular-nav-header">My Base</p>
+        <a class="modular-nav-item-container" onclick="profile.setPage('');">
+          <div class="modular-nav-item">
+            <div class="nav-in icon-wrap" id="nav-in">
+            </div>
+            <div class="modular-nav-title">
+              PROFILE
+            </div>
+            <div class="modular-nav-notif-wrap">
+            </div>
+          </div>
+        </a>
+        <a class="modular-nav-item-container" onclick="profile.setPage('projects');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap">
+              <i class="fas fa-folder"></i>
+            </div>
+            <div class="modular-nav-title">
+              PROJECTS
+            </div>
+            <div class="modular-nav-notif-wrap">
+
+            </div>
+          </div>
+        </a>  
+        <a class="modular-nav-item-container active-menu-item" onclick="profile.setPage('orders');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap">
+              <i class="fas fa-credit-card">
+              </i>
+            </div>
+            <div class="modular-nav-title">
+              ORDERS
+            </div>
+            <div class="modular-nav-notif-wrap">
+              <div class="mod-nav-notif">10</div>
+            </div>
+          </div>
+        </a>
+        <a class="modular-nav-item-container" onclick="profile.setPage('settings');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap">
+              <i class="fas fa-cog"></i>
+            </div>
+            <div class="modular-nav-title">
+              SETTINGS
+            </div>
+            <div class="modular-nav-notif-wrap">
+
+            </div>
+          </div>
+        </a>
+        <a class="modular-nav-signout" href="/logout">SIGN OUT</a>
+      </div>
+    </div>
 
     <div class="main-area" id="profile-area">
       <div id="backdrop">
@@ -578,6 +635,7 @@
         </div>
       </div>
     </div>
+
     <!--
     <div id="tab-container">
       <input type="radio" id="profile-tab" name="tab" onclick="profile.setPage('');">
