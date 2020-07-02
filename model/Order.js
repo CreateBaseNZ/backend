@@ -29,6 +29,7 @@ CREATE ORDER MODEL
 const OrderSchema = new Schema({
   accountId: { type: Schema.Types.ObjectId },
   sessionId: { type: String },
+  number: { type: Number, default: 0 },
   status: { type: String, required: true },
   makes: {
     awaitingQuote: { type: [Schema.Types.ObjectId], default: [] },
@@ -39,8 +40,30 @@ const OrderSchema = new Schema({
   shipping: {
     address: {
       option: { type: String, default: "" },
-      saved: { type: Schema.Types.Mixed, required: true },
-      new: { type: Schema.Types.Mixed, required: true },
+      saved: {
+        recipient: { type: String, default: "" },
+        unit: { type: String, default: "" },
+        street: {
+          number: { type: String, default: "" },
+          name: { type: String, default: "" }
+        },
+        suburb: { type: String, default: "" },
+        city: { type: String, default: "" },
+        postcode: { type: String, default: "" },
+        country: { type: String, default: "" }
+      },
+      new: {
+        recipient: { type: String, default: "" },
+        unit: { type: String, default: "" },
+        street: {
+          number: { type: String, default: "" },
+          name: { type: String, default: "" }
+        },
+        suburb: { type: String, default: "" },
+        city: { type: String, default: "" },
+        postcode: { type: String, default: "" },
+        country: { type: String, default: "" }
+      },
       save: { type: Boolean, default: true },
     },
     method: { type: String, default: "" },
@@ -78,7 +101,10 @@ MIDDLEWARE
 =========================================================================================*/
 
 OrderSchema.pre("save", async function (next) {
-  this.date.modified = moment().tz("Pacific/Auckland").format();
+  const date = moment().tz("Pacific/Auckland").format();
+  // update the date modified property
+  if (this.isModified()) this.date.modified = date;
+  if (this.isModified("status")) this.date[this.status] = date;
   return next();
 });
 
@@ -86,38 +112,25 @@ OrderSchema.pre("save", async function (next) {
 STATIC - MODEL
 =========================================================================================*/
 
-// @FUNC  create
+// @FUNC  build
 // @TYPE  STATICS
 // @DESC
-OrderSchema.statics.create = function (access, id) {
-  // VALIDATION
-
-  // CREATE OBJECT PROPERTIES
-  const address = {
-    recipient: "", unit: "", street: { number: "", name: "" },
-    suburb: "", city: "", postcode: "", country: ""
-  }
-  const shipping = {
-    address: {
-      new: address,
-      saved: address
+OrderSchema.statics.build = function (object = {}, save = true) {
+  return new Promise(async (resolve, reject) => {
+    // TO DO .....
+    // VALIDATE EACH PROPERTY
+    // TO DO .....
+    // CREATE THE DOCUMENT
+    let order = new this(object);
+    if (save) {
+      try {
+        order = await order.save();
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
     }
-  }
-  // CREATE ORDER INSTANCE
-  let order = new this({ shipping });
-  // Set Owner
-  if (access === "public") {
-    order.sessionId = id;
-  } else {
-    order.accountId = id;
-  }
-  // Addresses
-
-  order.shipping.address.saved = address;
-  order.shipping.address.new = address;
-  // Status
-  order.updateStatus("created");
-  return order;
+    return resolve(order);
+  });
 }
 
 // @FUNC  merge
@@ -255,6 +268,17 @@ OrderSchema.statics.transaction = function (query, save = true) {
     } catch (error) {
       return reject(error);
     }
+    // FETCH ORDERS THAT HAS BEEN CHECKEDOUT
+    let orders;
+    try {
+      orders = await this.find({
+        status: ["checkedout", "validated", "built", "shipped",
+          "arrived", "reviewed", "completed", "cancelled"]
+      });
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    order.number = orders.length + 1;
     // Update the order's status
     order.updateStatus("checkedout");
     // Save the updated order
@@ -348,8 +372,8 @@ OrderSchema.methods.processCheckedout = function () {
     const transactionId = this.payment.transaction;
     try {
       transaction = await Transaction.process(transactionId);
-    } catch (error) {
-      return reject(error);
+    } catch (data) {
+      return reject(data);
     }
     let proceed = false;
     if (transaction.status === "succeeded") {
@@ -383,6 +407,22 @@ OrderSchema.methods.processValidated = function () {
     }
     // UPDATE ORDER
     this.updateStatus("built");
+    // SUCCESS HANDLER
+    return resolve();
+  });
+}
+
+// @FUNC  processBuilt
+// @TYPE  METHODS
+// @DESC  
+OrderSchema.methods.processBuilt = function () {
+  return new Promise(async (resolve, reject) => {
+    // CHECK IF ORDER HAS TRACKING IF IT'S NOT PICKUP
+    if (this.shipping.method !== "pickup" && !this.shipped.tracking) {
+      return reject({ status: "failed", content: "tracking number required" });
+    }
+    // UPDATE ORDER
+    this.updateStatus("shipped");
     // SUCCESS HANDLER
     return resolve();
   });
@@ -640,18 +680,18 @@ OrderSchema.methods.updateStatus = function (status) {
 OrderSchema.methods.updateMakes = function () {
   return new Promise(async (resolve, reject) => {
     // CREATE THE ORDER FIND OBJECT
-    let object;
+    let query;
     if (this.accountId) {
-      object = { accountId: this.accountId };
+      query = { accountId: this.accountId };
     } else {
-      object = { sessionId: this.sessionId };
+      query = { sessionId: this.sessionId };
     }
     // FETCH THE MAKES OF THE OWNER OF THE ORDER
     let makes;
     try {
-      makes = await Make.find(object);
+      makes = await Make.find(query);
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // UPDATE ORDER'S MAKES
     const filteredMakes = {
@@ -713,11 +753,23 @@ OrderSchema.methods.updateDiscounts = function () {
       return false
     });
     // Usage
-    discounts = discounts.filter(discount => {
+    discounts = discounts.filter(async (discount) => {
       switch (discount.usage.type) {
         case "unlimited":
           return true;
         case "limited":
+          // COUNT NUMBER OF USES
+          let uses;
+          try {
+            uses = await mongoose.model("orders", OrderSchema).find({
+              accountId: account._id, status: ["checkedout", "validated", "built",
+                "shipped", "arrived", "reviewed", "completed"]
+            });
+          } catch (error) {
+            console.log("Failed to Filter Discount with Limited Usage")
+            return false;
+          }
+          if (uses.length < discount.usage.limit) return true;
           break;
         default:
           break;

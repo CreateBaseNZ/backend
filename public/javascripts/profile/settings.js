@@ -188,15 +188,22 @@ settings.changeEmailCollect = () => {
 settings.changeEmailValidate = (email, password) => {
   let valid = true;
   let error = "";
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   // PASSWORD
   if (!password) {
     valid = false;
     error = "password required";
+  } else if (!global.passwordValidity(password)) {
+    valid = false;
+    error = "invalid password";
   }
   // EMAIL
   if (!email) {
     valid = false;
     error = "email required";
+  } else if (!emailRE.test(String(email).toLowerCase())) {
+    valid = false;
+    errorEmail = "invalid email";
   }
   // SET ERROR
   document.querySelector("#email-error").innerHTML = error;
@@ -499,6 +506,9 @@ settings.changePasswordValidate = (newPassword, newPasswordConfirm, password) =>
   if (!newPassword) {
     valid = false;
     error = "new password required";
+  } else if (!global.passwordValidity(newPassword)) {
+    valid = false;
+    error = "password is too weak";
   }
   // PASSWORD MATCH
   if (newPassword !== newPasswordConfirm) {
@@ -509,7 +519,10 @@ settings.changePasswordValidate = (newPassword, newPasswordConfirm, password) =>
   if (!password) {
     valid = false;
     error = "password required";
-  }
+  } /*else if (!global.passwordValidity(password)) {
+    valid = false;
+    error = "invalid password";
+  }*/
   // SET ERROR
   document.querySelector("#password-error").innerHTML = error;
 
@@ -730,6 +743,9 @@ settings.deleteAccountValidate = (password) => {
   if (!password) {
     valid = false;
     error = "password required";
+  } else if (!global.passwordValidity(password)) {
+    valid = false;
+    error = "invalid password";
   }
   // SET ERROR
   document.querySelector("#delete-account-error").innerHTML = error;

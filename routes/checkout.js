@@ -100,56 +100,63 @@ mongoose.createConnection(
 ROUTES
 =========================================================================================*/
 
-// @route     GET /checkout/order
+// @route     GET /checkout/fetch-order
 // @desc
-// @access    Private
-router.get("/checkout/order", verifiedAccess, async (req, res) => {
-  // DECLARE VARIABLES
-  const accountId = req.user._id;
-  const sessionId = req.sessionID;
+// @access    PUBLIC
+router.get("/checkout/fetch-order", async (req, res) => {
+  // DECLARE AND INITIALISE VARIABLES
+  const status = "created";
   const wallet = req.user.wallet;
-  // BUILD THE ORDER
-  let order, balance;
-  let access;
-  let id;
-  // Create the find object
-  let query;
-  if (accountId) {
-    query = { accountId, status: "created" };
-    access = "private";
-    id = accountId;
-  } else {
-    query = { sessionId, status: "created" };
-    access = "public";
-    id = sessionId;
+  let accountId = undefined;
+  let sessionId = req.sessionID;
+  let promisesOne = [Order.findOne({ sessionId, status })];
+  if (req.isAuthenticated()) {
+    accountId = req.user._id;
+    sessionId = undefined;
+    promisesOne = [Order.findOne({ accountId, status }), Transaction.fetchBalance(accountId)];
   }
-  // Fetch existing active order
-  let promisesOne = [Order.findOne(query), Transaction.fetchBalance(accountId)];
+  // FETCH EXISTING CREATED ORDER
+  let order;
   try {
     [order, balance] = await Promise.all(promisesOne);
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
+  } catch (data) {
+    if (!data.status) {
+      return res.send({ status: "error", content: data });
+    }
+    return res.send(data);
   }
-  // Create a new order if there is no order found
-  if (!order) order = Order.create(access, id);
+  if (!order) {
+    // CREATE A NEW ORDER
+    const object = { accountId, sessionId, status };
+    try {
+      order = await Order.build(object, false);
+    } catch (data) {
+      return res.send(data);
+    }
+  }
   // UPDATE MAKES, DISCOUNTS AND SAVED ADDRESS
+  const promisesTwo = [order.updateMakes(), order.updateDiscounts(), order.updateSavedAddress()];
   let makes, discounts;
   try {
-    [makes, discounts] = await Promise.all([order.updateMakes(), order.updateDiscounts(), order.updateSavedAddress()]);
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
+    [makes, discounts] = await Promise.all(promisesTwo);
+  } catch (data) {
+    return res.send(data);
   }
-  // SAVE THE ORDER UPDATES AND CALCULATE ORDER'S AMOUNT 
+  // GET ORDER'S AMOUNT OBJECT AND SAVE THE NEW/UPDATED ORDER
+  const promiseThree = [order.amount(), order.save()];
   let amount;
   try {
-    [amount] = await Promise.all([order.amount(), order.save()]);
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
+    [amount] = await Promise.all(promiseThree);
+  } catch (data) {
+    if (!data.status) {
+      return res.send({ status: "error", content: data });
+    }
+    return res.send(data);
   }
-  // VALIDATE THE ORDER'S SECTIONS
+  // Validate Order
   const validity = order.validateAll();
-  // RETURN SUCCESS RESPONSE TO THE CLIENT
-  return res.send({ status: "success", content: { order, makes, discounts, amount, validity, wallet, balance } });
+  // SUCCESS HANDLER
+  return res.send({ status: "succeeded", content: { order, makes, discounts, amount, validity, wallet, balance } });
 });
 
 // @route     POST /checkout/update
@@ -309,7 +316,6 @@ router.get("/checkout/order-amount", verifiedAccess, async (req, res) => {
 //            the customer's order.
 // @access    Private
 router.get("/checkout/bank-transfer", verifiedDataAccess, async (req, res) => {
-  console.log("Checkpoint 1: Route");
   // DECLARE VARIABLES
   const accountId = req.user._id;
   // BUILD THE ORDER
@@ -382,14 +388,14 @@ router.post("/checkout/card-payment", verifiedDataAccess, async (req, res) => {
   }
   try {
     order = await Order.transaction(query, false);
-  } catch (error) {
-    return res.send(error);
+  } catch (data) {
+    return res.send(data);
   }
   // PROCESS ORDER
   try {
     await order.processCheckedout();
-  } catch (error) {
-    return res.send(error);
+  } catch (data) {
+    return res.send(data);
   }
   // SAVE ORDER
   try {

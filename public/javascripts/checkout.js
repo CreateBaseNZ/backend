@@ -217,13 +217,22 @@ checkout.fetch = () => {
   return new Promise(async (resolve, reject) => {
     let data;
     try {
-      data = (await axios.get("/checkout/order"))["data"];
+      data = (await axios.get("/checkout/fetch-order"))["data"];
     } catch (error) {
-      return reject(error);
+      data = { status: "error", content: error };
     }
-    console.log(data);
-    if (data.status === "failed") {
-      return reject(data.content);
+    if (data.status === "error") {
+      // TO DO .....
+      // ERROR HANDLER
+      // TO DO .....
+      console.log(data.content);
+      return reject();
+    } else if (data.status === "failed") {
+      // TO DO .....
+      // FAILED HANDLER
+      // TO DO .....
+      console.log(data.content);
+      return reject();
     }
     return resolve(data.content);
   });
@@ -300,7 +309,8 @@ checkout.load = async () => {
   try {
     content = await checkout.fetch();
   } catch (error) {
-    return console.log(error);
+    console.log("failed to fetch the order");
+    return;
   }
   checkout.insert(content);
   // Update Order Amounts

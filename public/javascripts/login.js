@@ -109,7 +109,10 @@ login.validate = (email, password) => {
   if (!password) {
     valid = false;
     errorPassword = "Please enter a password."
-  }
+  } /*else if (!global.passwordValidity(password)) {
+    valid = false;
+    errorPassword = "invalid password";
+  }*/
   // Email
   if (!email) {
     valid = false;
