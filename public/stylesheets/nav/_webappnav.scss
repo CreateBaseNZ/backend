@@ -226,17 +226,17 @@ nav {
     .nav-side-header {
       font-family: $poppins;
       font-weight: 600;
-      font-size: 2vw;
+      font-size: 5vw;
       letter-spacing: 0.5vw;
-      color: $light-3;
+      color: $dark-2;
 
       &:not(:first-child) {
-        margin-top: 7vh;
+        margin-top: 2vh;
       }
     }
   
     .nav-side-item {
-      margin-top: 1.5vh;
+      margin-top: 4vh;
       color: $dark-3;
       font-family: $poppins;
       font-size: 2.2vmax;
@@ -341,6 +341,7 @@ nav {
 
         #nav-user-in,
         #nav-user-out {
+          display: none;
           bottom: -3.25px;
           left: 0;
           height: 30px;
@@ -415,15 +416,15 @@ nav {
       }
     
       .nav-side-header {
-        font-size: calc(8px + 0.1vw);
+        font-size: calc(20px + 0.1vw);
         letter-spacing: 0.1vw;
-        margin: 8vh 0 0.5vh 0;
+        margin: 10vh 0 0.5vh 0;
       }
     
       .nav-side-item {
         margin-top: 0.5vh;
         padding: 0.75vh;
-        font-size: calc(10px + 0.2vw);
+        font-size: calc(15px + 0.2vw);
         letter-spacing: 0.1vw;
       }
 
@@ -505,13 +506,9 @@ nav {
         padding:0 0 1em 5vw;
       }
       .modular-nav-item-container{
-        font-family: $poppins;
-        font-weight: 600;
-        font-size: 0.9em;
-        color: $dark-2;
         width: 17vw;
         min-width: 20em;
-        padding-left:4vw;
+        padding-left:3.5vw;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -544,6 +541,12 @@ nav {
     &:hover{
       color: #6F54D7;
     }
+    .modular-nav-title{
+      font-family: $poppins;
+      font-weight: 600;
+      font-size: 0.9em;
+      color: $light-3;
+    }
   }
 
   .modular-nav-notif-wrap{
@@ -556,7 +559,7 @@ nav {
       font-family: $poppins;
       width: 1.5rem;
       height: 1.5rem;
-      line-height: 225%;
+      line-height: 190%;
       text-align: center;
       font-size: 0.8em;
     }
@@ -573,6 +576,9 @@ nav {
         color: #6F54D7;
         border-radius: 0.5em;
       }
+    }
+    .modular-nav-title{
+      color: $dark-2;
     }
   }
 
