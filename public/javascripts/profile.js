@@ -10,7 +10,8 @@ let profile = {
   setPageCollect: undefined,
   setPageValidate: undefined,
   setPageUpdate: undefined,
-  preSetTab: undefined
+  preSetTab: undefined,
+  addImages: undefined
 }
 
 /* ========================================================================================
@@ -75,21 +76,47 @@ profile.setPageUpdate = (newPage = undefined, baseURL = undefined) => {
   // HIDE CURRENT PAGE
   let currentPageId;
   switch (currentPage) {
-    case "/profile/projects": currentPageId = "projects-area"; break;
-    case "/profile/orders": currentPageId = "billing-area"; break;
-    case "/profile/settings": currentPageId = "settings-area"; break;
-    default: currentPageId = "profile-area"; break;
+    case "/profile/projects":
+      currentPageId = "projects-area";
+      currentNavigationId = "nav-item-projects";
+      break;
+    case "/profile/orders":
+      currentPageId = "billing-area";
+      currentNavigationId = "nav-item-orders";
+      break;
+    case "/profile/settings":
+      currentPageId = "settings-area";
+      currentNavigationId = "nav-item-settings";
+      break;
+    default:
+      currentPageId = "profile-area";
+      currentNavigationId = "nav-item-profile";
+      break;
   }
-  document.querySelector(`#${currentPageId}`).style.display = 'none';
+  document.querySelector(`#${currentPageId}`).style.display = "none";
+  document.querySelector(`#${currentNavigationId}`).classList.remove("active-menu-item");
   // SHOW NEW PAGE
   let newPageId;
   switch (newPage) {
-    case "/profile/projects": newPageId = "projects-area"; break;
-    case "/profile/orders": newPageId = "billing-area"; break;
-    case "/profile/settings": newPageId = "settings-area"; break;
-    default: newPageId = "profile-area"; break;
+    case "/profile/projects":
+      newPageId = "projects-area";
+      newNavigationId = "nav-item-projects";
+      break;
+    case "/profile/orders":
+      newPageId = "billing-area";
+      newNavigationId = "nav-item-orders";
+      break;
+    case "/profile/settings":
+      newPageId = "settings-area";
+      newNavigationId = "nav-item-settings";
+      break;
+    default:
+      newPageId = "profile-area";
+      newNavigationId = "nav-item-profile";
+      break;
   }
   document.querySelector(`#${newPageId}`).style.display = 'flex';
+  document.querySelector(`#${newNavigationId}`).classList.add("active-menu-item");
   // UPDATE CURRENT PAGE
   window.sessionStorage.page = newPage;
   let title;
@@ -118,6 +145,27 @@ profile.preSetTab = () => {
   const page = urlArray[index + 1];
   const tabId = (page === undefined) ? "profile-tab" : `${page}-tab`;
   document.querySelector(`#${tabId}`).checked = true;
+}
+
+// @func  profile.addImages
+// @desc  
+profile.addImages = () => {
+  return new Promise(async (resolve, reject) => {
+    // IMAGES
+    const image1 = {
+      src: "/profile/customer/fetch/picture", id: "nav-profile-img",
+      alt: "User", classes: [], parentId: "profile-nav-in"
+    };
+    // LOAD IMAGES
+    const objects = [image1];
+    try {
+      await imageLoader(objects);
+    } catch (error) {
+      reject(error);
+    }
+    // SUCCESS RESPONSE
+    resolve();
+  });
 }
 
 /* ========================================================================================
@@ -417,6 +465,12 @@ const profileInit = async () => {
   }
   // RENDER THE CORRECT PROFILE PAGE
   profile.setPage(undefined, true);
+  try {
+    await profile.addImages();
+  } catch (error) {
+    console.log(error);
+    return;
+  }
   // REMOVE STARTUP LOADER
   removeLoader(false);
   // INITIALISATIONS

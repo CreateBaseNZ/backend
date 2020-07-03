@@ -114,58 +114,38 @@
     <div class="modular-nav-container" id="mod-nav-container">
       <div class="modular-nav" id="modular-nav">
         <p class="modular-nav-header">My Base</p>
-        <a class="modular-nav-item-container" onclick="profile.setPage('');">
+        <a id="nav-item-profile" class="modular-nav-item-container" onclick="profile.setPage('');">
           <div class="modular-nav-item">
-            <div class="nav-in icon-wrap" id="nav-in">
-            </div>
-            <div class="modular-nav-title">
-              PROFILE
-            </div>
-            <div class="modular-nav-notif-wrap">
+            <div class="nav-in icon-wrap" id="profile-nav-in"></div>
+            <div class="modular-nav-title">PROFILE</div>
+            <div id="notif-profile" class="modular-nav-notif-wrap"></div>
+          </div>
+        </a>
+        <a id="nav-item-projects" class="modular-nav-item-container" onclick="profile.setPage('projects');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap"><i class="fas fa-folder"></i></div>
+            <div class="modular-nav-title">PROJECTS</div>
+            <div id="notif-projects" class="modular-nav-notif-wrap"></div>
+          </div>
+        </a>
+        <a id="nav-item-orders" class="modular-nav-item-container active-menu-item"
+          onclick="profile.setPage('orders');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap"><i class="fas fa-credit-card"></i></div>
+            <div class="modular-nav-title">ORDERS</div>
+            <div id="notif-orders" class="modular-nav-notif-wrap">
+              <!--<div class="mod-nav-notif">10</div>-->
             </div>
           </div>
         </a>
-        <a class="modular-nav-item-container" onclick="profile.setPage('projects');">
+        <a id="nav-item-settings" class="modular-nav-item-container" onclick="profile.setPage('settings');">
           <div class="modular-nav-item">
-            <div class="icon-wrap">
-              <i class="fas fa-folder"></i>
-            </div>
-            <div class="modular-nav-title">
-              PROJECTS
-            </div>
-            <div class="modular-nav-notif-wrap">
-
-            </div>
-          </div>
-        </a>  
-        <a class="modular-nav-item-container active-menu-item" onclick="profile.setPage('orders');">
-          <div class="modular-nav-item">
-            <div class="icon-wrap">
-              <i class="fas fa-credit-card">
-              </i>
-            </div>
-            <div class="modular-nav-title">
-              ORDERS
-            </div>
-            <div class="modular-nav-notif-wrap">
-              <div class="mod-nav-notif">10</div>
-            </div>
+            <div class="icon-wrap"><i class="fas fa-cog"></i></div>
+            <div class="modular-nav-title">SETTINGS</div>
+            <div id="notif-settings" class="modular-nav-notif-wrap"></div>
           </div>
         </a>
-        <a class="modular-nav-item-container" onclick="profile.setPage('settings');">
-          <div class="modular-nav-item">
-            <div class="icon-wrap">
-              <i class="fas fa-cog"></i>
-            </div>
-            <div class="modular-nav-title">
-              SETTINGS
-            </div>
-            <div class="modular-nav-notif-wrap">
-
-            </div>
-          </div>
-        </a>
-        <a class="modular-nav-signout" href="/logout">SIGN OUT</a>
+        <a id="nav-item-signout" class="modular-nav-signout" href="/logout">SIGN OUT</a>
       </div>
     </div>
 

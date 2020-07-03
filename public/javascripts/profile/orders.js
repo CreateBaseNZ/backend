@@ -8,10 +8,12 @@ let orders = {
   // ORDERS
   fetchOrders: undefined,
   populateOrders: undefined,
-  insertOrder: undefined,
-  insertMake: undefined,
+  addOrder: undefined,
+  addSummary: undefined,
+  addDetailed: undefined,
+  addMake: undefined,
   // COMMENT
-  insertComment: undefined,
+  addComment: undefined,
   postComment: undefined,
   collectComment: undefined,
   submitComment: undefined,
@@ -28,21 +30,14 @@ FUNCTIONS
 // @desc  
 orders.initialise = async () => {
   // FETCH ORDERS
-  let data;
+  let fetchedOrders;
   try {
-    data = await orders.fetchOrders();
+    fetchedOrders = await orders.fetchOrders();
   } catch (error) {
-    return orders.errorHandler(error);
-  }
-  if (data.status === "failed") {
-    // TO DO .....
-    // FAILED HANDLER
-    // TO DO .....
-    console.log(data.content); // TEMPORARY
     return;
   }
   // POPULATE ORDERS
-  orders.populateOrders(data.content);
+  orders.populateOrders(fetchedOrders);
   // SUCCESS HANDLER
   return;
 }
@@ -69,16 +64,25 @@ orders.fetchOrders = () => {
     try {
       data = (await axios.get("/orders/fetch-orders"))["data"];
     } catch (error) {
-      return reject(error);
+      data = { status: "error", content: error };
     }
-    if (data.status === "error") return reject(data.content);
-    return resolve(data);
+    if (data.status === "error") {
+      orders.errorHandler(data.content);
+      return reject();
+    } else if (data.status === "failed") {
+      // TO DO .....
+      // FAILED HANDLER
+      // TO DO .....
+      console.log(data.content);
+      return reject();
+    }
+    return resolve(data.content);
   });
 }
 
 // @func  orders.populateOrders
 // @desc  
-orders.populateOrders = (fetchedOrders) => {
+orders.populateOrders = (fetchedOrders = []) => {
   if (!fetchedOrders.length) {
     // TO DO .....
     // EMPTY ORDERS HANDLER
@@ -87,14 +91,14 @@ orders.populateOrders = (fetchedOrders) => {
   }
   for (let i = 0; i < fetchedOrders.length; i++) {
     const order = fetchedOrders[i];
-    orders.insertOrder(order);
+    orders.addOrder(order);
   }
   return;
 }
 
-// @func  orders.insertOrder
+// @func  orders.addOrder
 // @desc  
-orders.insertOrder = (order) => {
+orders.addOrder = (order) => {
   console.log(order); // TEMPORARY
   // TO DO .....
   // CREATE SUMMARY
@@ -103,19 +107,19 @@ orders.insertOrder = (order) => {
   // POPULATE MAKES
   for (let i = 0; i < order.makes.checkout.length; i++) {
     const make = order.makes.checkout[i];
-    orders.insertMake(order._id, make);
+    orders.addMake(order._id, make);
   }
   // POPULATE COMMENTS
   for (let i = 0; i < order.comments.length; i++) {
     const comment = order.comments[i];
-    orders.insertComment(order._id, comment);
+    orders.addComment(order._id, comment);
   }
   return;
 }
 
-// @func  orders.insertMake
+// @func  orders.addMake
 // @desc  
-orders.insertMake = (orderId, make) => {
+orders.addMake = (orderId, make) => {
   console.log(make); // TEMPORARY
   // TO DO .....
   // CREATE MAKE
@@ -127,9 +131,9 @@ orders.insertMake = (orderId, make) => {
 COMMENT
 ---------------------------------------------------------------------------------------- */
 
-// @func  orders.insertComment
+// @func  orders.addComment
 // @desc  
-orders.insertComment = (orderId, comment) => {
+orders.addComment = (orderId, comment) => {
   console.log(comment); // TEMPORARY
   // TO DO .....
   // CREATE COMMENT
@@ -161,7 +165,7 @@ orders.postComment = async (orderId) => {
     return;
   }
   // INSERT
-  orders.insertComment(orderId, data.content);
+  orders.addComment(orderId, data.content);
   // SUCCESS HANDLER
   // remove loader
 
