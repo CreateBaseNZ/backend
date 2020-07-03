@@ -249,16 +249,19 @@
   #profile-page{
     display: flex;
     flex-direction: row;
+    overflow-x: hidden;
   }
 
   .main-area{
-    flex: 0 0 80%;
-    // border: thin solid black;
+    // flex: 0 0 auto;
+    height: 100%;
+    flex: 1 0 90%;
+    border: thin solid black;
     // margin: 0;
   }
 
   #mod-nav-container{
-    flex: 0 0 20%;
+    flex: 0 0 auto;
     // border: thin solid red;
   }
 
