@@ -81,7 +81,7 @@ profile.setPageUpdate = (newPage = undefined, baseURL = undefined) => {
       currentNavigationId = "nav-item-projects";
       break;
     case "/profile/orders":
-      currentPageId = "billing-area";
+      currentPageId = "orders-area";
       currentNavigationId = "nav-item-orders";
       break;
     case "/profile/settings":
@@ -103,7 +103,7 @@ profile.setPageUpdate = (newPage = undefined, baseURL = undefined) => {
       newNavigationId = "nav-item-projects";
       break;
     case "/profile/orders":
-      newPageId = "billing-area";
+      newPageId = "orders-area";
       newNavigationId = "nav-item-orders";
       break;
     case "/profile/settings":
@@ -485,7 +485,7 @@ const profileInit = async () => {
   const locationEl = document.getElementById('profile-location')
   const bioEl = document.getElementById('profile-bio')
   projScroll = document.getElementById('proj-scroll-container')
-  const billingCards = document.getElementsByClassName('billing-card')
+  // const billingCards = document.getElementsByClassName('billing-card')
 
   // -- Get customer info --
   let customerInfo
