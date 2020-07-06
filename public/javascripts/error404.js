@@ -6,7 +6,8 @@ let error = {
   // VARIABLES
 
   // FUNCTIONS
-  initialise: undefined
+  initialise: undefined,
+  fullHeight: undefined
 }
 
 /* ========================================================================================
@@ -22,6 +23,11 @@ error.initialise = async () => {
   }
   // REMOVE STARTUP LOADER
   removeLoader();
+  error.fullHeight();
+}
+
+error.fullHeight = () => {
+  document.querySelector('.main-page').style.height = document.querySelector('.main-page').offsetHeight - document.querySelector('.footer-section').offsetHeight + 'px'
 }
 
 /* ========================================================================================

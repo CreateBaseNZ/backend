@@ -9,8 +9,8 @@ markdown = """
         <h4>INFO</h4>
         <div class="footer-legal-content">
           <ul class="list-section-left">
-            <li><a href="#">Shipping Info</a></li>
-            <li><a href="#">Returns / Exchanges</a></li>
+            <li><a href="/faq">Shipping Info</a></li>
+            <li><a href="/faq">Returns / Exchanges</a></li>
           </ul>
           <ul class="list-section-desktop">
             <li><a href="/services/3d-printing">3D Printing</a></li>
@@ -21,8 +21,8 @@ markdown = """
           <div class="list-section-divider"></div>
 
           <ul class="list-section-right">
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="/tac">Terms & Conditions</a></li>
+            <li><a href="/privpol">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
@@ -44,8 +44,8 @@ markdown = """
             <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
           </div>
           <div class="contact-legal">
-            <a href="#" id="tac">Terms & Conditions</a>
-            <a href="#" id="privpol">Privacy Policy</a>
+            <a href="/tac" id="tac">Terms & Conditions</a>
+            <a href="/privpol" id="privpol">Privacy Policy</a>
           </div>
         </div>
       </div>

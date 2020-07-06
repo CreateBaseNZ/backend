@@ -23,10 +23,10 @@
             color:$light-1;
             font-family: $poppins;
             font-size: 0.8em;
-            transition: all ease 0.2s;
-          }
-          a:hover {
-            color:$highlight;
+            transition: color ease 0.2s;
+            &:hover {
+              color:$highlight;
+            }
           }
         }
 
@@ -132,9 +132,9 @@
               a {
                 font-size: 1.3vh;
                 color: $light-2;
-                transition: all ease 0.2s;
+                transition: color ease 0.2s;
                 &:hover {
-                  color:$highlight;
+                  color: $highlight;
                 }
               }
             }
@@ -175,9 +175,9 @@
               color:$light-3;
               font-family: $poppins;
               font-size: 1.4vh;
-              transition: all ease 0.2s;
+              transition: color ease 0.2s;
               &:hover {
-                color:$highlight;
+                color: $highlight;
               }
             }
           }
@@ -190,7 +190,7 @@
               color:$light-2;
               font-size: 2vh;
               margin:1vw;
-              transition: all ease 0.2s;
+              transition: color ease 0.2s;
               &:hover {
                 color: $highlight;
               }
@@ -201,9 +201,9 @@
             padding-bottom: 2vh;
             #subscribe-btn {
               display: inline-block;
-              color:$light-2;
+              color: $light-2;
               &:hover {
-                color:$highlight;
+                color: $highlight;
               }
             }
           }
@@ -244,9 +244,9 @@
               font-family: $poppins;
               color:$light-2;
               font-size: 1.3vh;
-              transition: all ease 0.2s;
+              transition: color ease 0.2s;
               &:hover {
-                color:$highlight;
+                color: $highlight;
               }
             }
           }

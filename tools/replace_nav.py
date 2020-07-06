@@ -31,9 +31,11 @@ markdown = """
             <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
             <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
             <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/faq">FAQ</a>
             <p class="nav-side-header">ABOUT</p>
             <a class="nav-side-item" href="/story">OUR STORY</a>
             <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/contact">CONTACT US</a>
           </div>
           <div class="nav-side-socials">
             <a class="fab fa-facebook-square"
