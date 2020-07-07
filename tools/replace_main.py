@@ -3,7 +3,7 @@
 import replace_nav
 import replace_footer
 
-nav_omit = []
+nav_omit = ["profile.html"]
 footer_omit = ["test.html"]
 
 replace_nav.execute(nav_omit)
