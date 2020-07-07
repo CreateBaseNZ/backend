@@ -177,6 +177,13 @@ router.get("/checkout", verifiedAccess, (req, res) => {
   res.sendFile("checkout.html", customerRouteOptions);
 });
 
+// @route     Get /change-password
+// @desc      Homepage
+// @access    Public
+router.get("/change-password", (req, res) => {
+  res.sendFile("change-password.html", customerRouteOptions);
+});
+
 // @route     Get /test
 // @desc      Homepage
 // @access    Public

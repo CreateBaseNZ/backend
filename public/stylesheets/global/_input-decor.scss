@@ -115,9 +115,12 @@ INPUT ONE
   }
 
   label {
+    height: calc(13.2px + 1.32vmax);
+    display: flex;
+    align-items: center;
     position: absolute;
     pointer-events: none;
-    top: calc(9px + 0.9vmax);
+    top: calc(10px + 1vmax);
     left: calc(3px + 0.3vmax);
     color: $dark-1;
     letter-spacing: calc(0.6px + 0.06vmax);
@@ -174,6 +177,16 @@ INPUT ONE
     -webkit-box-shadow: 0 0 0 calc(18px + 1.8vmax) white inset;
     box-shadow: 0 0 0 calc(18px + 1.8vmax) white inset;
   }
+
+  .feedback {
+    top: calc(10px + 1vmax);
+    position: absolute;
+    height: calc(13.2px + 1.32vmax);
+    display: flex;
+    align-items: center;
+    right: 0;
+    font-size: calc(4.8px + 0.48vmax);
+  }
 }
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
@@ -214,15 +227,16 @@ INPUT ONE
     height: calc(28px + 2.8vmax);
 
     input {
-    margin-top: calc(8.8px + 0.88vmax);
-    padding-left: calc(5.2px + 0.52vmax);
-    font-size: calc(6.4px + 0.64vmax);
-    height: calc(11.2px + 1.12vmax);
-  }
+      margin-top: calc(8.8px + 0.88vmax);
+      padding-left: calc(5.2px + 0.52vmax);
+      font-size: calc(6.4px + 0.64vmax);
+      height: calc(11.2px + 1.12vmax);
+    }
 
     label {
       left: calc(4px + 0.4vmax);
-      top: calc(10px + 1vmax);
+      top: calc(8px + 0.8vmax);
+      height: calc(11.2px + 1.12vmax);
       font-size: calc(6.4px + 0.64vmax);
     }
 
@@ -239,6 +253,12 @@ INPUT ONE
     p {
       font-size: calc(4px + 0.4vmax);
       height: calc(8px + 0.8vmax);
+    }
+
+    .feedback {
+      top: calc(8px + 0.8vmax);
+      height: calc(11.2px + 1.12vmax);
+      font-size: calc(4px + 0.4vmax);
     }
   }
 }
