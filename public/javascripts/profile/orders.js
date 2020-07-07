@@ -222,11 +222,13 @@ orders.addSummary = (order) => {
   </div>
   `;
   // SUMMARY
-  const summary = `<div id="order-summary-${order._id}" class="order-item"
+  const summary = `
+  <div id="order-summary-${order._id}" class="order-item"
     onclick="orders.selectOrder('${order._id}')">
       ${containerOne + containerTwo}
       <div class="active-div"></div>
-    </div>`;
+  </div>
+  `;
   // INSERT
   document.querySelector("#order-container").insertAdjacentHTML("beforeend", summary);
 }
