@@ -220,23 +220,32 @@ nav {
   
       .nav-right-menu {
         margin-right: 0vw;
+        .nav-side-header {
+          margin: 1vh 0 0.5vh 0;
+        }
+        .nav-side-item {
+          margin-top: 3vh;
+          padding: 0.75vh;
+          font-size: calc(17px + 0.2vw);
+          letter-spacing: 0.1vw;
+        }
       }
     }
   
     .nav-side-header {
       font-family: $poppins;
       font-weight: 600;
-      font-size: 5vw;
+      font-size: 2vw;
       letter-spacing: 0.5vw;
-      color: $dark-2;
+      color: $light-3;
 
       &:not(:first-child) {
-        margin-top: 2vh;
+        margin-top: 7vh;
       }
     }
   
     .nav-side-item {
-      margin-top: 4vh;
+      margin-top: 1.5vh;
       color: $dark-3;
       font-family: $poppins;
       font-size: 2.2vmax;
@@ -314,8 +323,9 @@ nav {
 
 #profile-nav-in{
   img{
-    border-radius: 50%;
+    border-radius: 0.5em;
     width: 2em;
+    padding: 0;
   }
 }
 
@@ -419,19 +429,30 @@ nav {
     
         .nav-right-menu {
           margin-right: 0vw;
+          .nav-side-header {
+            font-size: calc(20px + 0.1vw);
+            letter-spacing: 0.1vw;
+            margin: 10vh 0 0.5vh 0;
+          }
+          .nav-side-item {
+            margin-top: 1.5vh;
+            padding: 0.75vh;
+            font-size: calc(15px + 0.2vw);
+            letter-spacing: 0.1vw;
+          }
         }
       }
-    
+
       .nav-side-header {
-        font-size: calc(20px + 0.1vw);
+        font-size: calc(8px + 0.1vw);
         letter-spacing: 0.1vw;
-        margin: 10vh 0 0.5vh 0;
+        margin: 8vh 0 0.5vh 0;
       }
-    
+
       .nav-side-item {
         margin-top: 0.5vh;
         padding: 0.75vh;
-        font-size: calc(15px + 0.2vw);
+        font-size: calc(10px + 0.2vw);
         letter-spacing: 0.1vw;
       }
 
@@ -510,10 +531,10 @@ nav {
         font-weight: 600;
         font-size: 1.8em;
         color: $dark-2;
-        padding:0 0 1em 5vw;
+        padding:0 0 1em 3vw;
       }
       .modular-nav-item-container{
-        width: 17vw;
+        width: 14vw;
         min-width: 20em;
         padding-left:3.5vw;
         display: flex;
