@@ -124,7 +124,7 @@ TransactionSchema.statics.bankTransfer = function (customerId, amountOne) {
     const currentDate = moment().tz("Pacific/Auckland").format();
     const date = { created: currentDate, modified: currentDate };
     // get admin account
-    const adminEmail = "carlvelasco96@gmail.com"; // TEMPORARY
+    const adminEmail = "admin@createbase.co.nz";
     let admin;
     try {
       admin = await Account.findOne({ type: "admin", email: adminEmail });
@@ -182,7 +182,7 @@ TransactionSchema.statics.onlinePayment = function (sender, amount) {
     // type
     const type = "onlinePayment";
     // entity
-    const adminEmail = "carlvelasco96@gmail.com"; // TEMPORARY
+    const adminEmail = "admin@createbase.co.nz";
     let admin;
     try {
       admin = await Account.findOne({ type: "admin", email: adminEmail });
@@ -224,7 +224,7 @@ TransactionSchema.statics.checkout = function (orderId, sender, amount) {
     // type
     const type = "checkout";
     // entity
-    const adminEmail = "carlvelasco96@gmail.com"; // TEMPORARY
+    const adminEmail = "admin@createbase.co.nz";
     let admin;
     try {
       admin = await Account.findOne({ type: "admin", email: adminEmail });
@@ -257,7 +257,7 @@ PROCESS
 // @FUNC  process
 // @TYPE  STATIC - PROMISE - ASYNC
 // @DESC  
-TransactionSchema.statics.process = function (transactionId) {
+TransactionSchema.statics.process = function (transactionId, customerId) {
   return new Promise(async (resolve, reject) => {
     // FETCH TRANSACTION
     let transaction;
@@ -287,8 +287,8 @@ TransactionSchema.statics.process = function (transactionId) {
     let bonusTransactions;
     let depositTransactions;
     const promises1 = [
-      this.find({ service: "bonus", status: "active" }),
-      this.find({ service: "deposit", status: "active" })
+      this.find({ service: "bonus", status: "active", "entity.receiver": customerId }),
+      this.find({ service: "deposit", status: "active", "entity.sender": customerId })
     ];
     try {
       [bonusTransactions, depositTransactions] = await Promise.all(promises1);

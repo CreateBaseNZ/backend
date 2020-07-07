@@ -371,7 +371,7 @@ OrderSchema.methods.processCheckedout = function () {
   return new Promise(async (resolve, reject) => {
     const transactionId = this.payment.transaction;
     try {
-      transaction = await Transaction.process(transactionId);
+      transaction = await Transaction.process(transactionId, this.accountId);
     } catch (data) {
       return reject(data);
     }

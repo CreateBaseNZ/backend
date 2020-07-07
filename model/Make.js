@@ -30,7 +30,7 @@ const MakeSchema = new Schema({
   },
   status: { type: String, required: true },
   build: { type: String, required: true },
-  quick: { type: String, required: true },
+  quick: { type: String, default: "" },
   process: { type: String, required: true },
   material: { type: String, required: true },
   quality: { type: String, required: true },
