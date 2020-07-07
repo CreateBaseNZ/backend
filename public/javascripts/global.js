@@ -4,7 +4,8 @@ VARIABLES
 
 let global = {
   initialise: undefined,
-  passwordValidity: undefined
+  passwordValidity: undefined,
+  priceFormatter: undefined
 }
 
 /* ========================================================================================
@@ -66,6 +67,25 @@ global.passwordValidity = (password) => {
     return false
   }
 }
+
+// @func  global.priceFormatter
+// @desc  
+global.priceFormatter = value => {
+  const roundedValue = (Math.round(Number(value) * 100)) / 100;
+  const stringValue = String(roundedValue);
+  // Evaluate the number of decimal places
+  const pointIndex = stringValue.indexOf(".");
+  const stringLength = stringValue.length;
+  let formattedValue;
+  if (pointIndex === -1) {
+    formattedValue = stringValue + ".00";
+  } else if ((stringLength - pointIndex) === 2) {
+    formattedValue = stringValue + "0";
+  } else if ((stringLength - pointIndex) === 3) {
+    formattedValue = stringValue;
+  }
+  return formattedValue;
+};
 
 /* ----------------------------------------------------------------------------------------
 ASYNCHRONOUS IMAGE LOADER

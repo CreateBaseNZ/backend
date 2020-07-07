@@ -89,9 +89,13 @@ router.get("/orders/fetch-orders", verifiedContent, async (req, res) => {
   // DECLARE VARIABLES
   const account = req.user;
   // FETCH ORDER
+  const query = {
+    accountId: account._id, status: ["checkedout", "validated", "built",
+      "shipped", "arrived", "reviewed", "completed", "cancelled"]
+  };
   let orders;
   try {
-    orders = await Order.fetch({ accountId: account._id }, true, true);
+    orders = await Order.fetch(query, true, true);
   } catch (error) {
     return res.send(error);
   }

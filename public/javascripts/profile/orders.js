@@ -3,9 +3,14 @@ VARIABLES
 ======================================================================================== */
 
 let orders = {
+  // VARIABLES
+  selectedOrder: undefined,
+  // FUNCTIONS
   initialise: undefined,
   errorHandler: undefined,
+  formatDate: undefined,
   // ORDERS
+  selectOrder: undefined,
   fetchOrders: undefined,
   populateOrders: undefined,
   addOrder: undefined,
@@ -52,9 +57,30 @@ orders.errorHandler = (error) => {
   return;
 }
 
+// @func  orders.formatDate
+// @desc  
+orders.formatDate = (date) => {
+  const day = moment(date).format("DD")
+  const month = moment(date).format("MMM");
+  const year = moment(date).format("YYYY");
+  return (`${day} ${month} ${year}`);
+}
+
 /* ----------------------------------------------------------------------------------------
 ORDERS
 ---------------------------------------------------------------------------------------- */
+
+// @func  orders.selectOrder
+// @desc  
+orders.selectOrder = (orderId) => {
+  if (orders.selectedOrder === orderId) return;
+  // UPDATE CSS
+  if (orders.selectedOrder) {
+    document.querySelector(`#order-summary-${orders.selectedOrder}`).classList.remove("active-item");
+  }
+  document.querySelector(`#order-summary-${orderId}`).classList.add("active-item");
+  orders.selectedOrder = orderId; // UPDATE SELECTED ORDER
+}
 
 // @func  orders.fetchOrders
 // @desc  
@@ -99,9 +125,9 @@ orders.populateOrders = (fetchedOrders = []) => {
 // @func  orders.addOrder
 // @desc  
 orders.addOrder = (order) => {
-  console.log(order); // TEMPORARY
-  // TO DO .....
   // CREATE SUMMARY
+  orders.addSummary(order);
+  // TO DO .....
   // CREATE EXPANDED
   // TO DO .....
   // POPULATE MAKES
@@ -115,6 +141,94 @@ orders.addOrder = (order) => {
     orders.addComment(order._id, comment);
   }
   return;
+}
+
+// @func  orders.addSummary
+// @desc  
+orders.addSummary = (order) => {
+  // CONTAINER ONE
+  const orderNumber = `<p class="order-name">Order #${order.number}</p>`;
+  let notification = `<div id="order-summary-notification-${order._id}"></div>`; // TEMPORARY NO NOTIFICATION
+  const logo = `
+  <div class="expand-logo">
+    <?xml version="1.0" encoding="utf-8"?>
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
+      <rect x="145.9" y="-29.7" transform="matrix(-5.439820e-011 -1 1 -5.439820e-011 120.3603 196.6731)" width="25.3" height="135.8" />
+      <rect x="201.1" y="42.9" width="25.3" height="135.8" />
+      <rect x="133.2" y="190.3" transform="matrix(1.442240e-010 1 -1 1.442240e-010 404.0674 112.3467)" width="25.3" height="135.8" />
+      <rect x="78" y="122.4" transform="matrix(-1 1.891366e-010 -1.891366e-010 -1 181.2541 380.6348)" width="25.3" height="135.8" />
+    </svg>
+  </div>
+  `;
+  const containerOne = `<div class="order-title-container">${orderNumber + notification + logo}</div>`;
+  // CONTAINER TWO
+  let status;
+  switch (order.status) {
+    case "checkedout": status = "Validating your Payment"; break;
+    case "validated": status = "Building your Order"; break;
+    case "built": status = "Packaging your Order"; break;
+    case "reviewed": status = "You have Reviewed This Order"; break;
+    case "completed": status = "Your Order is now Complete"; break;
+    case "cancelled": status = "Your Order has been Cancelled"; break;
+    default: break;
+  }
+  if (order.shipping.method === "pickup") {
+    switch (order.status) {
+      case "shipped": status = "Your Order is Ready for Pickup"; break;
+      case "arrived": status = "Your Order has been Picked Up"; break;
+      default: break;
+    }
+  } else {
+    switch (order.status) {
+      case "shipped": status = "Shipping your Order"; break;
+      case "arrived": status = "Your Order has Arrived"; break;
+      default: break;
+    }
+  }
+  const tracking = `
+  <div class="transit-container order-info">
+    <i class="fas fa-truck"></i>
+    <p class="order-info-text">${status}</p>
+  </div>
+  `;
+  const date = `
+  <div class="payment-container order-info">
+    <i class="fa fa-calendar-o"></i>
+    <p class="order-info-text">${orders.formatDate(order.date[order.status])}</p>
+  </div>
+  `;
+  let address;
+  switch (order.shipping.address.option) {
+    case "new":
+      address = `${order.shipping.address.new.city}, ${order.shipping.address.new.country}`;
+      break;
+    case "saved":
+      address = `${order.shipping.address.saved.city}, ${order.shipping.address.saved.country}`;
+      break;
+    default: break;
+  }
+  const location = `
+  <div class="location-container order-info">
+    <i class="fas fa-map-marker-alt"></i>
+    <p class="order-info-text">${address}</p>
+  </div>
+  `;
+  const amount = `<p class="order-total">$${global.priceFormatter(order.payment.amount.total.total)}</p>`;
+  const containerTwo = `
+  <div id="order-content-container">
+    <div class="order-info-wrap">${tracking + date + location}</div>
+    <div class="order-total"><p class="total-title">Total</p>${amount}</div>
+  </div>
+  `;
+  // SUMMARY
+  const summary = `<div id="order-summary-${order._id}" class="order-item"
+    onclick="orders.selectOrder('${order._id}')">
+      ${containerOne + containerTwo}
+      <div class="active-div"></div>
+    </div>`;
+  // INSERT
+  document.querySelector("#order-container").insertAdjacentHTML("beforeend", summary);
 }
 
 // @func  orders.addMake
