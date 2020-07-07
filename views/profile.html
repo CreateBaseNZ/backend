@@ -24,12 +24,12 @@
   <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
     <div class="nav-top-bar">
-      <button class="hamburger hamburger-spin" type="button" onclick="navigation.toggleLeftMenu();">
+      <button class="hamburger hamburger-spin" onclick="navigation.toggleLeftMenu();" type="button">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
-      <a class="nav-home-btn" id="nav-home-btn" href="/"></a>
+      <a class="nav-home-btn" href="/" id="nav-home-btn"></a>
       <div class="nav-in" id="nav-in" onclick="navigation.toggleRightMenu();"></div>
       <div class="nav-mobile-out" id="nav-mobile-out" onclick="navigation.toggleRightMenu();"></div>
       <div class="nav-desktop-out">
@@ -49,16 +49,16 @@
             <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
             <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
             <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/faq">FAQ</a>
             <p class="nav-side-header">ABOUT</p>
             <a class="nav-side-item" href="/story">OUR STORY</a>
             <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/contact">CONTACT US</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square"
-              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
-              target="_blank"></a>
-            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
-            <a class="fab fa-twitter" href="https://twitter.com/" target="_blank"></a>
+            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/createbase_nz/" target="_blank"></a>
+            <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
           </div>
         </div>
@@ -73,11 +73,11 @@
       </div>
       <div class="nav-right-menu-in">
         <div class="nav-right-menu" id="nav-right-menu">
-          <p class="nav-side-header">My Base</p>
-          <a class="nav-side-item" href="/profile">PROFILE</a>
-          <a class="nav-side-item" href="/profile/projects">PROJECTS</a>
-          <a class="nav-side-item" href="/profile/orders">ORDERS</a>
-          <a class="nav-side-item" href="/profile/settings">SETTINGS</a>
+          <p class="nav-side-header" id="nav-right-greeting"></p>
+          <a class="nav-side-item" onclick="profile.setPage(''); navigation.toggleRightMenu();">DASHBOARD</a>
+          <a class="nav-side-item" onclick="profile.setPage('projects'); navigation.toggleRightMenu();">MY PROJECTS</a>
+          <a class="nav-side-item" onclick="profile.setPage('orders'); navigation.toggleRightMenu();">MY ORDERS</a>
+          <a class="nav-side-item" onclick="profile.setPage('settings'); navigation.toggleRightMenu();">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
@@ -617,20 +617,6 @@
         </div>
       </div>
     </div>
-
-    <!--
-    <div id="tab-container">
-      <input type="radio" id="profile-tab" name="tab" onclick="profile.setPage('');">
-      <label for="profile-tab"><span>Profile</span><i class="fas fa-user"></i></label>
-      <input type="radio" id="projects-tab" name="tab" onclick="profile.setPage('projects');">
-      <label for="projects-tab"><span>Projects</span><i class="fas fa-folder"></i></label>
-      <input type="radio" id="orders-tab" name="tab" onclick="profile.setPage('orders');">
-      <label for="orders-tab"><span>Orders</span><i class="fas fa-credit-card"></i></label>
-      <input type="radio" id="settings-tab" name="tab" onclick="profile.setPage('settings');">
-      <label for="settings-tab"><span>Settings</span><i class="fas fa-cog"></i></label>
-    </div>
-  </div>
-  -->
 
     <!--
   <div id="proj-menu-overlay">

@@ -58,11 +58,10 @@ markdown = """
       <div class="nav-right-menu-in">
         <div class="nav-right-menu" id="nav-right-menu">
           <p class="nav-side-header" id="nav-right-greeting"></p>
-          <a class="nav-side-item" href="/profile">DASHBOARD</a>
-          <p class="nav-side-header">ACCOUNT</p>
-          <a class="nav-side-item" href="/profile/projects">MY PROJECTS</a>
-          <a class="nav-side-item" href="/profile/orders">MY ORDERS</a>
-          <a class="nav-side-item" href="/profile/settings">SETTINGS</a>
+          <a class="nav-side-item" onclick="profile.setPage(''); navigation.toggleRightMenu();">DASHBOARD</a>
+          <a class="nav-side-item" onclick="profile.setPage('projects'); navigation.toggleRightMenu();">MY PROJECTS</a>
+          <a class="nav-side-item" onclick="profile.setPage('orders'); navigation.toggleRightMenu();">MY ORDERS</a>
+          <a class="nav-side-item" onclick="profile.setPage('settings'); navigation.toggleRightMenu();">SETTINGS</a>
           <a class="nav-side-signout" href="/logout">SIGN OUT</a>
         </div>
       </div>
@@ -76,6 +75,7 @@ def execute(exclude):
   # Turns markdown into string with formatting
   soup = BeautifulSoup(markdown, "html.parser")
   newHTML = str(soup.encode('ascii').decode())
+  print(newHTML)
 
   # Set the directory (relative to cwd) here
   directory = "../views/"
@@ -83,7 +83,7 @@ def execute(exclude):
   # Iterate through every html file
   for path, dirs, files in os.walk(os.path.join(os.path.dirname( __file__ ), directory)):
     for filename in fnmatch.filter(files, "*.html"):
-      if filename == "profile.html":
+      if filename in exclude:
         print(filename + ' was omitted from replacing nav')
         continue
       filepath = os.path.join(path, filename)

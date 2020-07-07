@@ -143,8 +143,6 @@ profile.preSetTab = () => {
   const index = urlArray.indexOf("profile");
   const baseURL = urlArray.slice(0, index).join("/");
   const page = urlArray[index + 1];
-  const tabId = (page === undefined) ? "profile-tab" : `${page}-tab`;
-  document.querySelector(`#${tabId}`).checked = true;
 }
 
 // @func  profile.addImages

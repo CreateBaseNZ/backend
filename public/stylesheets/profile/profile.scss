@@ -16,54 +16,6 @@ body {
   font-family: $poppins;
 }
 
-#tab-container {
-  z-index: 10;
-  position: fixed;
-  bottom: 0;
-  height: $top-bar-height;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-  box-shadow: 0 -5px 20px -20px $dark-1;
-
-  input {
-    display: none;
-
-    &:checked + label {
-      color: $logo-2;
-      border-bottom: 2px solid $logo-2;
-    }
-  }
-
-  label {
-    position: relative;
-    flex: 1;
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $light-3;
-    background: $light-1;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    font-size: calc(16px + 0.2vw);
-    transition: color 0.2s ease-out, border-color 0.2s ease-out;
-
-    span {
-      display: none;
-    }
-
-    &:hover {
-      color: $dark-1;
-    }
-  }
-}
-
 .main-area {
   display: none;
   max-height: 100%;
