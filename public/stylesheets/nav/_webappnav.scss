@@ -213,6 +213,19 @@ nav {
         transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
       }  
     }
+
+    .nav-right-menu-in,
+    .nav-right-menu-out {
+      .nav-side-header {
+        margin: 1vh 0 0.5vh 0;
+      }
+      .nav-side-item {
+        margin-top: 3vh;
+        padding: 0.75vh;
+        font-size: calc(17px + 0.2vw);
+        letter-spacing: 0.1vw;
+      }
+    }
   
     .nav-right-menu-active {
       visibility: visible;
@@ -220,15 +233,6 @@ nav {
   
       .nav-right-menu {
         margin-right: 0vw;
-        .nav-side-header {
-          margin: 1vh 0 0.5vh 0;
-        }
-        .nav-side-item {
-          margin-top: 3vh;
-          padding: 0.75vh;
-          font-size: calc(17px + 0.2vw);
-          letter-spacing: 0.1vw;
-        }
       }
     }
   
