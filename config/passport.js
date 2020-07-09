@@ -53,10 +53,12 @@ const LocalCustomerSignup = new LocalStrategy(
         return done(null, false);
       }
       // CREATE AN ACCOUNT INSTANCE
+      const accountObject = { type: "customer", email, password };
       let account;
       try {
-        account = await Account.create("customer", email, password);
+        account = await Account.build(accountObject);
       } catch (error) {
+        console.log(error);
         return done(null, false);
       }
       // CREATE A CUSTOMER INSTANCE

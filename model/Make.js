@@ -90,26 +90,41 @@ MakeSchema.statics.build = function (object = {}, save = true) {
 // @FUNC  fetch
 // @TYPE  STATICS
 // @DESC  
-MakeSchema.statics.fetch = function (query = {}) {
+MakeSchema.statics.fetch = function (query = {}, withComment = false) {
   return new Promise(async (resolve, reject) => {
-    // GET MAKES
-    let makes;
+    // FETCH MAKES
+    let makes = [];
     try {
       makes = await this.find(query);
     } catch (error) {
       return reject({ status: "error", content: error });
     }
+    let formattedMakes = [];
+    if (!makes.length) return resolve(makes);
+    for (let i = 0; i < makes.length; i++) formattedMakes[i] = makes[i].toObject();
+    // GET COMMENT
+    if (withComment) {
+      let promises = [];
+      for (let i = 0; i < makes.length; i++) promises.push(Comment.fetch({ _id: formattedMakes[i].comment }));
+      let commentsArray;
+      try {
+        commentsArray = await Promise.all(promises);
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
+      for (let i = 0; i < commentsArray.length; i++) formattedMakes[i].comment = commentsArray[i][0];
+    }
     // CONSTRUCT THE FORMATTED MAKES
-    const formattedMakes = makes.map(make => {
-      let formattedMake = {
+    const filteredMakes = formattedMakes.map(make => {
+      let filteredMake = {
         id: make._id, file: make.file, build: make.build, quick: make.quick,
         process: make.process, material: make.material, quality: make.quality,
         strength: make.strength, colour: make.colour, quantity: make.quantity,
         comment: make.comment, date: make.date, price: make.price
       }
-      return formattedMake;
+      return filteredMake;
     });
-    return resolve(formattedMakes);
+    return resolve(filteredMakes);
   });
 }
 

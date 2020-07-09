@@ -20,7 +20,9 @@ const customerRouteOptions = { root: path.join(__dirname, "../views") };
 MODELS
 =========================================================================================*/
 
+const Account = require("../model/Account.js");
 const Customer = require("../model/Customer.js");
+const Make = require("../model/Make.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -180,15 +182,30 @@ router.get("/checkout", verifiedAccess, (req, res) => {
 // @route     Get /change-password
 // @desc      Homepage
 // @access    Public
-router.get("/change-password", (req, res) => {
-  res.sendFile("change-password.html", customerRouteOptions);
-});
+router.get("/change-password", unrestrictedAccess, (req, res) => res.sendFile("change-password.html", customerRouteOptions));
+router.get("/change-password/*", unrestrictedAccess, (req, res) => res.sendFile("change-password.html", customerRouteOptions));
+router.get("/change-password/*/*", unrestrictedAccess, (req, res) => res.sendFile("change-password.html", customerRouteOptions));
 
 // @route     Get /test
 // @desc      Homepage
 // @access    Public
 router.get("/test", (req, res) => {
   res.sendFile("test.html", customerRouteOptions);
+});
+
+// @route     Get /test
+// @desc      Homepage
+// @access    Public
+router.post("/test", async (req, res) => {
+  const account = req.user;
+  const query = { accountId: account._id };
+  let makes;
+  try {
+    makes = await Make.fetch(query, true);
+  } catch (data) {
+    return res.send(data);
+  }
+  return res.send({ status: "succeeded", content: makes });
 });
 
 /* ----------------------------------------------------------------------------------------

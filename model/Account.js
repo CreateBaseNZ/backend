@@ -32,6 +32,9 @@ const AccountSchema = new Schema({
   type: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
+  changePassword: {
+    code: { type: String, default: "" }
+  },
   verification: {
     status: { type: Boolean, default: false },
     code: { type: String, required: true }
@@ -67,209 +70,57 @@ AccountSchema.pre("save", async function (next) {
 STATICS
 =========================================================================================*/
 
-// @FUNC  findByEmail
-// @TYPE  STATICS
-// @DESC
-// @ARGU
-AccountSchema.statics.findByEmail = function (email) {
-  return new Promise(async (resolve, reject) => {
-    let account;
-
-    try {
-      account = await this.findOne({ email });
-    } catch (error) {
-      reject(error);
-    }
-
-    resolve(account);
-  });
-};
-
-// @FUNC  create
+// @FUNC  build
 // @TYPE  STATICS - PROMISE - ASYNC
-// @DESC  Creates the account object required for registering an account
-// @ARGU  
-AccountSchema.statics.create = function (type, email, password) {
+// @DESC  
+AccountSchema.statics.build = function (object = {}, save = true) {
   return new Promise(async (resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    let valid = true;
-    let errors = [];
     // VALIDATION
-    // Type
     try {
-      await this.validateType(type);
-    } catch (error) {
-      valid = false;
-      errors.push(error);
+      await this.validateType(object.type);
+    } catch (data) {
+      return reject(data);
     }
-    // Email
     try {
-      await this.validateEmail(email);
-    } catch (error) {
-      valid = false;
-      errors.push(error);
+      await this.validateEmail(object.email, false);
+    } catch (data) {
+      return reject(data);
     }
-    // Password
     try {
-      await this.validatePassword(password);
-    } catch (error) {
-      valid = false;
-      errors.push(error);
+      await this.validatePassword(object.password);
+    } catch (data) {
+      return reject(data);
     }
-    // Evaluate validation outcome
-    if (!valid) {
-      return reject(errors);
+    // GENERATE CODES
+    // verification
+    const verificationCode = this.generateCode();
+    object.verification = { code: verificationCode };
+    // wallet
+    let walletCode;
+    try {
+      walletCode = await this.generateWalletCode();
+    } catch (data) {
+      return reject(data);
     }
-    // CREATE OBJECT PROPERTIES
-    // Verification
-    const verification = {
-      code: Math.floor(100000 + Math.random() * 900000)
-    };
-    // Date
-    const now = moment().tz("Pacific/Auckland").format();
-    const date = {
-      created: now,
-      lastVisited: now
-    };
-    // Wallet
-    let code;
-    let validCode = false;
-    while (!validCode) {
-      code = Math.floor(100000 + Math.random() * 900000);
-      try {
-        validCode = await this.validateWalletCode(code);
-      } catch (error) {
-        return reject(error);
-      }
+    object.wallet = { code: walletCode };
+    // SET DATES
+    const date = moment().tz("Pacific/Auckland").format();
+    object.date = {
+      created: date,
+      lastVisited: date
     }
-    const wallet = { code };
-    const object = { type, email, password, verification, date, wallet };
-    // CREATE ACCOUNT INSTANCE
+    // CREATE THE ACCOUNT
     const account = new this(object);
-    // SAVE ACCOUNT INSTANCE
-    let savedAccount;
-    try {
-      savedAccount = await account.save();
-    } catch (error) {
-      return reject(error);
-    }
-    // RETURN PROMISE RESPONSE
-    return resolve(savedAccount);
-  })
-}
-
-// @FUNC  validateType
-// @TYPE  STATICS
-// @DESC  Validates an type input
-// @ARGU  
-AccountSchema.statics.validateType = function (type) {
-  return new Promise((resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    const types = ["admin", "customer", "partner"];
-    let valid = true;
-    let error = "";
-    // VALIDATIONS
-    if (!type) {
-      valid = false;
-      error = "no account type provided";
-    } else if ((types.indexOf(type)) == -1) {
-      valid = false;
-      error = "invalid account type";
-    }
-    // RETURN PROMISE RESPONSE
-    if (!valid) {
-      return reject(error);
-    }
-    return resolve();
-  })
-}
-
-// @FUNC  validateEmail
-// @TYPE  STATICS - PROMISE - ASYNC
-// @DESC  Validates an email input
-// @ARGU  
-AccountSchema.statics.validateEmail = function (email) {
-  return new Promise(async (resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    let valid = true;
-    let error = "";
-    // Email REGEX
-
-    // VALIDATIONS
-    if (!email) {
-      valid = false;
-      error = "no email provided";
-    } else if (!(true)) {
-      valid = false;
-      error = "invalid email";
-    } else {
-      let account;
+    if (save) {
       try {
-        account = await this.findOne({ email });
+        await account.save();
       } catch (error) {
-        valid = false;
-        error = error;
-      }
-      if (account) {
-        valid = false;
-        error = "email is already taken";
+        return reject({ status: "error", content: error });
       }
     }
-    // RETURN PROMISE RESPONSE
-    if (!valid) {
-      return reject(error);
-    }
-    return resolve();
-  })
-}
-
-// @FUNC  validatePassword
-// @TYPE  STATICS - PROMISE - ASYNC
-// @DESC  Validates an password input
-// @ARGU  
-AccountSchema.statics.validatePassword = function (password) {
-  return new Promise(async (resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    let valid = true;
-    let error = "";
-    // Password REGEX
-
-    // VALIDATIONS
-    if (!password) {
-      valid = false;
-      error = "no password provided";
-    } else if (!(true)) {
-      valid = false;
-      error = "invalid password";
-    }
-    // RETURN PROMISE RESPONSE
-    if (!valid) {
-      return reject(error);
-    }
-    return resolve();
-  })
-}
-
-// @FUNC  validateWalletCode
-// @TYPE  STATICS - PROMISE - ASYNC
-// @DESC  Validates a code
-// @ARGU  
-AccountSchema.statics.validateWalletCode = function (code) {
-  return new Promise(async (resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    let account;
-    // SEARCH FOR AN ACCOUNT WITH AN IDENTICAL CODE
-    try {
-      account = await this.findOne({ "wallet.code": code });
-    } catch (error) {
-      return reject(error);
-    }
-    // RETURN PROMISE RESPONSE
-    if (account) {
-      return resolve(false);
-    }
-    return resolve(true);
-  })
+    // SUCCESS HANDLER
+    return resolve(account);
+  });
 }
 
 // @FUNC  verification
@@ -381,10 +232,122 @@ AccountSchema.statics.verify = function (email, code) {
   })
 }
 
-// @FUNC  delete
+/* ----------------------------------------------------------------------------------------
+CODE GENERATION
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  generateCode
+// @TYPE  STATICS
+// @DESC  
+AccountSchema.statics.generateCode = function () {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+// @FUNC  generateWalletCode
+// @TYPE  STATICS
+// @DESC  
+AccountSchema.statics.generateWalletCode = function () {
+  return new Promise(async (resolve, reject) => {
+    let code;
+    let generate = true;
+    while (generate) {
+      code = String(Math.floor(100000 + Math.random() * 900000));
+      let account;
+      try {
+        account = await this.findOne({ "wallet.code": code });
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
+      if (!account) generate = false;
+    }
+    // SUCCESS HANDLER
+    return resolve(code);
+  });
+}
+
+/* ----------------------------------------------------------------------------------------
+VALIDATION
+---------------------------------------------------------------------------------------- */
+
+// @FUNC  validateType
+// @TYPE  STATICS
+// @DESC  Validates an type input
+AccountSchema.statics.validateType = function (type = "") {
+  return new Promise((resolve, reject) => {
+    // DECLARE AND INITIALISE VARIABLES
+    const types = ["admin", "customer", "partner"];
+    // CHECK FOR TYPE INPUT
+    if (!type) return reject({ status: "failed", content: "type is required" });
+    // VALIDATIONS
+    if ((types.indexOf(type)) == -1) return reject({ status: "failed", content: "invalid type" });
+    // SUCCESS HANDLER
+    return resolve();
+  });
+}
+
+// @FUNC  validateEmail
 // @TYPE  STATICS - PROMISE - ASYNC
-// @DESC  Verifies the account
-// @ARGU  
+// @DESC  Validates an email input
+AccountSchema.statics.validateEmail = function (email = "", exist = true) {
+  return new Promise(async (resolve, reject) => {
+    // DECLARE AND INITIALISE VARIABLES
+    let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // CHECK FOR EMAIL INPUT
+    if (!email) return reject({ status: "failed", content: "email is required" });
+    // CHECK FOR VALID EMAIL
+    if (!emailRE.test(String(email).toLowerCase())) return reject({ status: "failed", content: "invalid email" });
+    // CHECK IF EMAIL EXIST
+    let account;
+    try {
+      account = await this.findOne({ email });
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    if (exist) {
+      // CHECK IF EMAIL DOES NOT EXIST
+      if (!account) return reject({ status: "failed", content: "email is not registered" });
+    } else {
+      // CHECK IF EMAIL ALREADY EXIST
+      if (account) return reject({ status: "failed", content: "email is registered" });
+    }
+    // SUCCESS HANDLER
+    return resolve(account);
+  });
+}
+
+// @FUNC  validatePassword
+// @TYPE  STATICS - PROMISE - ASYNC
+// @DESC  Validates an password input
+AccountSchema.statics.validatePassword = function (password = "") {
+  return new Promise(async (resolve, reject) => {
+    // CHECK FOR PASSWORD INPUT
+    if (!password) return reject({ status: "failed", content: "password is required" });
+    // CHECK IF PASSWORD HAS VALID STRENGTH
+    // calculate score
+    let score = 0;
+    // Award every unique letter until 5 repetitions
+    let letters = new Object();
+    for (let i = 0; i < password.length; i++) {
+      letters[password[i]] = (letters[password[i]] || 0) + 1;
+      score += 5.0 / letters[password[i]];
+    }
+    // Bonus points for mixing it up
+    let variations = {
+      digits: /\d/.test(password),
+      lower: /[a-z]/.test(password),
+      upper: /[A-Z]/.test(password),
+      nonWords: /\W/.test(password)
+    }
+    variationCount = 0;
+    for (let check in variations) {
+      variationCount += (variations[check] == true) ? 1 : 0;
+    }
+    score += (variationCount - 1) * 10;
+    if (score <= 40) return reject({ status: "failed", content: "password is too weak" });
+    // SUCCESS HANDLER
+    return resolve();
+  });
+}
 
 /* ========================================================================================
 METHODS

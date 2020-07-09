@@ -114,9 +114,13 @@ router.post("/make/build/new-model", upload.single("file"), async (req, res) => 
   let promises = [];
   let commentId = undefined;
   if (message) {
-    let comment = ({ accountId, sessionId, message });
+    const commentObject = {
+      accountId, sessionId,
+      message: `For ${req.file.filename}: ${message}`
+    };
+    let comment;
     try {
-      comment = await Comment.build(comment, false);
+      comment = await Comment.build(commentObject, false);
     } catch (data) {
       return res.send(data);
     }
