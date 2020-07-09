@@ -540,7 +540,7 @@ nav {
       .modular-nav-item-container{
         width: 14vw;
         min-width: 20em;
-        padding-left:3.5vw;
+        padding: 0 calc(1vw + 20px);
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -557,7 +557,7 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 14em;
+    width: 100%;
     border-radius: 0.5em;
     padding: 0.5em;
     transition: all ease 0.2s;
