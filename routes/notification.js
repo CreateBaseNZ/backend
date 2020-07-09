@@ -72,7 +72,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
   // Check if the user is registered
   let account;
   try {
-    account = await Account.findByEmail(email);
+    account = await Account.fineOne({ email });
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }

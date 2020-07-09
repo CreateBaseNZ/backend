@@ -211,53 +211,6 @@ router.get("/navigation/fetch-user", restrictedContent, async (req, res) => {
   return res.send({ status: "succeeded", content: customer });
 });
 
-/* ----------------------------------------------------------------------------------------
-CHANGE PASSWORD
----------------------------------------------------------------------------------------- */
-
-router.post("/change-password/validate-email", async (req, res) => {
-  // DECLARE AND INITIALISE VARIABLES
-  const email = req.body.email;
-  // FETCH ACCOUNT
-  let account;
-  try {
-    account = await Account.findOne({ email });
-  } catch (error) {
-    return res.send({ status: "error", content: error });
-  }
-  if (!account) return res.send({ status: "failed", content: "email is not registered" });
-  // SUCCESS HANDLER
-  return res.send({ status: "succeeded", content: "valid email" });
-});
-
-router.post("/change-password/send-code", async (req, res) => {
-  // DECLARE AND INITIALISE VARIABLES
-  const email = req.body.email;
-  // PROCESS SEND CODE
-  try {
-    await Account.processChangePasswordCode({ email });
-  } catch (data) {
-    return res.send(data);
-  }
-  // SUCCESS HANDLER
-  return res.send({ status: "succeeded", content: "code sent" });
-});
-
-router.post("/change-password/process", async (req, res) => {
-  // DECLARE AND INITIALISE VARIABLES
-  const email = req.body.email;
-  const code = req.body.code;
-  const password = req.body.password;
-  // PROCESS SEND CODE
-  try {
-    await Account.processChangePassword({ email }, code, password);
-  } catch (data) {
-    return res.send(data);
-  }
-  // SUCCESS HANDLER
-  return res.send({ status: "succeeded", content: "password changed" });
-});
-
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/
