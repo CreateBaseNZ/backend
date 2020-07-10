@@ -4,7 +4,6 @@
 VARIABLES
 ========================================================= */
 
-
 /* =========================================================
 MOBILE CSS
 ========================================================= */
@@ -307,6 +306,76 @@ SHIPPING
 /* ---------------------------------------------------------
 PAYMENT
 --------------------------------------------------------- */
+
+.checkout-modal {
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  .backdrop {
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    background-color: $dark-3;
+    opacity: 0.3;
+  }
+  &.hide {
+    display: none;
+  }
+}
+
+.checkout-modal-content {
+  height: calc(140px + 14vmax);
+  width: calc(200px + 20vmax);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: calc(3px + 0.3vmax);
+  background-color: $light-1;
+  z-index: 1;
+  h2 {
+    height: calc(30px + 3vmax);
+    width: inherit;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: calc(3px + 0.3vmax);
+    border-top-right-radius: calc(3px + 0.3vmax);
+    padding-left: calc(10px + 1vmax);
+    background-color: $logo-3;
+    font-family: $poppins;
+    font-size: calc(9px + 0.9vmax);
+    font-weight: 400;
+    letter-spacing: calc(1px + 0.1vmax);
+    color: $light-1;
+  }
+}
+
+.checkout-modal-buttons {
+  height: calc(80px + 8vmax);
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  button {
+    height: calc(30px + 3vmax);
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: calc(8px + 0.8vmax);
+    font-weight: 400;
+    letter-spacing: calc(1px + 0.1vmax);
+  }
+}
 
 .checkout-payment-bank-container,
 .checkout-payment-card-container {
@@ -973,8 +1042,24 @@ DESKTOP CSS
   }
 
   /* -------------------------------------------------------
-  PRICING
+  PAYMENT
   ------------------------------------------------------- */
+
+  .checkout-modal-content {
+    h2 {
+      height: calc(25px + 2.5vmax);
+      font-size: calc(7px + 0.7vmax);
+    }
+  }
+
+  .checkout-modal-buttons {
+    height: calc(70px + 7vmax);
+    button {
+      height: calc(25px + 2.5vmax);
+      width: 60%;
+      font-size: calc(6px + 0.6vmax);
+    }
+  }
 
   .checkout-payment-bank-container {
     height: 38.5vmax;

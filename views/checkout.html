@@ -53,7 +53,9 @@
             <a class="nav-side-item" href="/contact">CONTACT US</a>
           </div>
           <div class="nav-side-socials">
-            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbase_nz/" target="_blank"></a>
             <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
             <a class="fab fa-youtube" href="https://www.youtube.com/user/LouiiL" target="_blank"></a>
@@ -457,7 +459,7 @@
             <div class="checkout-buttons">
               <button class="checkout-button valid" onclick="checkout.shipping.show();">Back</button>
               <button class="checkout-button" id="checkout-payment-bank-paid"
-                onclick="checkout.payment.method.bank.paid();" disabled>Paid</button>
+                onclick="checkout.paymentConfirmation('bank');" disabled>Paid</button>
             </div>
 
           </div>
@@ -502,13 +504,36 @@
             <div class="checkout-buttons">
               <button class="checkout-button valid" onclick="checkout.shipping.show();">Back</button>
               <button class="checkout-button" id="checkout-payment-card-pay"
-                onclick="checkout.payment.method.card.pay();" disabled>Pay</button>
+                onclick="checkout.paymentConfirmation('card');" disabled>Pay</button>
             </div>
-
           </div>
 
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <div id="checkout-confirm-bank-payment" class="checkout-modal hide">
+    <div class="backdrop" onclick="checkout.cancelConfirmation('bank');"></div>
+    <div class="checkout-modal-content">
+      <h2>Bank Transfer Confirmation</h2>
+      <div class="checkout-modal-buttons">
+        <button class="grad-btn"
+          onclick="checkout.payment.method.bank.paid(); checkout.cancelConfirmation('bank');">Confirm</button>
+        <button class="reg-btn" onclick="checkout.cancelConfirmation('bank');">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="checkout-confirm-card-payment" class="checkout-modal hide">
+    <div class="backdrop" onclick="checkout.cancelConfirmation('card');"></div>
+    <div class="checkout-modal-content">
+      <h2>Online Payment Confirmation</h2>
+      <div class="checkout-modal-buttons">
+        <button class="grad-btn"
+          onclick="checkout.payment.method.card.pay(); checkout.cancelConfirmation('card');">Confirm</button>
+        <button class="reg-btn" onclick="checkout.cancelConfirmation('card');">Cancel</button>
       </div>
     </div>
   </div>

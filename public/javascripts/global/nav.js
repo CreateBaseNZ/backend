@@ -47,7 +47,6 @@ navigation.initialise = (login = false, userMenu = true) => {
     } catch (error) {
       reject(error);
     }
-    console.log(user);
     navigation.configuration(login, user);
     navigation.mediaQuery.addListener(() => navigation.configuration(login, user));
     // SUCCESS RESOLVE
@@ -135,7 +134,6 @@ navigation.configuration = (login = false, user = {}) => {
     /* Mobile */
     navigation.menuContentMobile(login);
   }
-  console.log(user)
   // DELETE FIRST IF STATEMENT AFTER FULL IMPLEMENTATION
   if (navigation.rightMenuGreeting) if (user) navigation.rightMenuGreeting.innerHTML = ("hi " + user.displayName).toUpperCase()
 }

@@ -41,6 +41,8 @@ let checkout = {
   listener: undefined, // checkout.listener
   validate: undefined, // checkout.validate
   priceFormatter: undefined,
+  paymentConfirmation: undefined,
+  cancelConfirmation: undefined,
   elements: {
     assign: undefined // checkout.elements.assign
   },
@@ -371,7 +373,6 @@ checkout.priceFormatter = value => {
 // @FUNC  checkout.elements.assign
 // @TYPE
 // @DESC
-// @ARGU
 checkout.elements.assign = () => {
   checkout.element.heading.cart = document.querySelector("#checkout-cart-heading");
   checkout.element.heading.shipping = document.querySelector("#checkout-shipping-heading");
@@ -382,6 +383,22 @@ checkout.elements.assign = () => {
   checkout.element.button.payment.card = document.querySelector("#checkout-payment-card-pay");
   checkout.element.windowSize = window.matchMedia("(min-width: 850px)");
 };
+
+// @FUNC  checkout.paymentConfirmation
+// @TYPE
+// @DESC
+checkout.paymentConfirmation = (method = "") => {
+  document.querySelector(`#checkout-confirm-${method}-payment`).classList.remove("hide");
+  return;
+}
+
+// @FUNC  checkout.cancelConfirmation
+// @TYPE
+// @DESC
+checkout.cancelConfirmation = (method = "") => {
+  document.querySelector(`#checkout-confirm-${method}-payment`).classList.add("hide");
+  return;
+}
 
 /*-----------------------------------------------------------------------------------------
 AMOUNT
