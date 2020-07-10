@@ -91,9 +91,9 @@ router.post("/subscribe/mailing-list", async (req, res) => {
     // Update user subscription mailing status
     let customer;
     try {
-      customer = await Customer.findByAccountId(account._id);
+      customer = await Customer.findOne({ accountId: account._id });
     } catch (error) {
-      return res.send({ status: "failed", content: error });
+      return res.send({ status: "error", content: error });
     }
 
     customer.subscription = {

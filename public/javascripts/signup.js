@@ -26,7 +26,6 @@ signup.initialise = async () => {
   } catch (error) {
     return console.log(error);
   }
-  signup.scorePassword();
   signup.confirmPassword();
   // REMOVE STARTUP LOADER
   removeLoader(false);
@@ -59,14 +58,15 @@ signup.submit = async () => {
   try {
     data = (await axios.post("/signup/validate", { email }))["data"];
   } catch (error) {
+    data = { status: "error", content: error };
+  }
+  if (data.status === "error") {
     // TO DO .....
     // ERROR HANDLER
     // TO DO .....
-    console.log(error);
+    console.log(data.content); // TEMPORARY
     return signup.enable();
-  }
-  // ERROR HANDLER
-  if (data.status === "failed") {
+  } else if (data.status === "failed") {
     document.querySelector("#signup-error-email").innerHTML = data.content;
     return signup.enable();
   }
@@ -130,7 +130,7 @@ signup.validate = (displayName, email, password, confirmPassword) => {
   return valid;
 }
 
-// @func  signup.confirmPassword
+// @func  signup.scorePassword
 // @desc  
 signup.scorePassword = (pass) => {
 

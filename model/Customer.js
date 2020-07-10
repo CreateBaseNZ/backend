@@ -25,7 +25,18 @@ const CustomerSchema = new Schema({
   displayName: { type: String, required: true },
   picture: { type: Schema.Types.ObjectId },
   bio: { type: String, default: "" },
-  address: { type: Schema.Types.Mixed, required: true },
+  address: {
+    recipient: { type: String, default: "" },
+    unit: { type: String, default: "" },
+    street: {
+      number: { type: String, default: "" },
+      name: { type: String, default: "" }
+    },
+    suburb: { type: String, default: "" },
+    city: { type: String, default: "" },
+    postcode: { type: String, default: "" },
+    country: { type: String, default: "" }
+  },
   subscription: {
     mail: { type: Boolean, default: false }
   }
@@ -35,28 +46,34 @@ const CustomerSchema = new Schema({
 STATUS
 =========================================================================================*/
 
-// @FUNC  findByAccountId
-// @TYPE  STATICS
+// @FUNC  build
+// @TYPE  STATICS PROMISE ASYNC
 // @DESC
-// @ARGU
-CustomerSchema.statics.findByAccountId = function (accountId) {
+CustomerSchema.statics.build = function (object = {}, save = true) {
   return new Promise(async (resolve, reject) => {
-    let customer;
-
+    // VALIDATION
     try {
-      customer = await this.findOne({ accountId });
-    } catch (error) {
-      reject(error);
+      await this.validateDisplayName(object.displayName);
+    } catch (data) {
+      return reject(data);
     }
-
-    resolve(customer);
+    // CREATE CUSTOMER
+    const customer = new this(object);
+    if (save) {
+      try {
+        await customer.save();
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
+    }
+    // SUCCESS HANDLER
+    return resolve(customer);
   });
-};
+}
 
 // @FUNC  create
 // @TYPE  STATICS PROMISE ASYNC
 // @DESC
-// @ARGU
 CustomerSchema.statics.create = function (accountId, displayName) {
   return new Promise(async (resolve, reject) => {
     // DECLARE AND INITIALISE VARIABLES
@@ -103,26 +120,15 @@ CustomerSchema.statics.create = function (accountId, displayName) {
 // @FUNC  validateDisplayName
 // @TYPE  STATICS - PROMISE - ASYNC
 // @DESC  Validates a display name input
-// @ARGU  
 CustomerSchema.statics.validateDisplayName = function (displayName) {
   return new Promise(async (resolve, reject) => {
     // DECLARE AND INITIALISE VARIABLES
-    let valid = true;
-    let error = "";
-    // Display Name REGEX
-
-    // VALIDATIONS
-    if (!displayName) {
-      valid = false;
-      error = "no display name provided";
-    } else if (!(true)) {
-      valid = false;
-      error = "invalid display name";
-    }
-    // RETURN PROMISE RESPONSE
-    if (!valid) {
-      return reject(error);
-    }
+    let regex = /^[A-Za-z0-9_-\s]+$/;
+    // CHECK FOR NAME INPUT
+    if (!displayName) return reject({ status: "failed", content: "name is required" });
+    // CHECK FOR VALID NAME
+    if (!regex.test(String(displayName).toLowerCase())) return reject({ status: "failed", content: "invalid name" });
+    // SUCCESS HANDLER
     return resolve();
   })
 }
