@@ -43,13 +43,9 @@ const LocalCustomerSignup = new LocalStrategy(
       // DECLARE AND INITIALISE VARIABLES
       const sessionId = req.sessionID;
       const displayName = req.body.displayName;
-      // VALIDATION
+      // PRE-VALIDATION
       if (!sessionId) {
-        return done("no session id provided");
-      }
-      try {
-        await Customer.validateDisplayName(displayName);
-      } catch (error) {
+        console.log("session ID is required");
         return done(null, false);
       }
       // CREATE AN ACCOUNT INSTANCE
@@ -57,33 +53,61 @@ const LocalCustomerSignup = new LocalStrategy(
       let account;
       try {
         account = await Account.build(accountObject);
-      } catch (error) {
-        console.log(error);
+      } catch (data) {
+        console.log(data); // TEMPORARY: FOR DEBUGGING
         return done(null, false);
       }
       // CREATE A CUSTOMER INSTANCE
+      const customerObject = { accountId: account._id, displayName };
+      let customer;
       try {
-        await Customer.create(account._id, displayName);
-      } catch (error) {
-        // TO DO.....
-        // Delete the newly created account instance
-        // TO DO.....
+        customer = await Customer.build(customerObject);
+      } catch (data) {
+        console.log(data); // TEMPORARY: FOR DEBUGGING
+        try {
+          await Account.deleteOne(account);
+        } catch (error) {
+          console.log({ status: "error", content: error }); // TEMPORARY: FOR DEBUGGING
+          return done(null, false);
+        }
         return done(null, false);
       }
       // ASSIGN MAKES ASSOCIATED WITH THE SESSION
       try {
         await Make.merge(account._id, sessionId);
-      } catch (error) {
-        // TO DO.....
-        // Delete the newly created account and customer instances
-        // TO DO.....
+      } catch (data) {
+        console.log(data); // TEMPORARY: FOR DEBUGGING
+        try {
+          await Account.deleteOne(account);
+        } catch (error) {
+          console.log({ status: "error", content: error }); // TEMPORARY: FOR DEBUGGING
+          return done(null, false);
+        }
+        try {
+          await Customer.deleteOne(customer);
+        } catch (error) {
+          console.log({ status: "error", content: error }); // TEMPORARY: FOR DEBUGGING
+          return done(null, false);
+        }
         return done(null, false);
       }
       try {
         await Order.merge(account._id, sessionId);
-      } catch (error) {
+      } catch (data) {
+        console.log(data); // TEMPORARY: FOR DEBUGGING
+        try {
+          await Account.deleteOne(account);
+        } catch (error) {
+          console.log({ status: "error", content: error }); // TEMPORARY: FOR DEBUGGING
+          return done(null, false);
+        }
+        try {
+          await Customer.deleteOne(customer);
+        } catch (error) {
+          console.log({ status: "error", content: error }); // TEMPORARY: FOR DEBUGGING
+          return done(null, false);
+        }
         // TO DO.....
-        // Delete the newly created account and customer instances
         // AND demerge makes
         // TO DO.....
         return done(null, false);
@@ -91,10 +115,22 @@ const LocalCustomerSignup = new LocalStrategy(
       // SEND ACCOUNT VERIFICATION
       try {
         await Account.verification(email);
-      } catch (error) {
+      } catch (data) {
+        console.log(data); // TEMPORARY: FOR DEBUGGING
+        try {
+          await Account.deleteOne(account);
+        } catch (error) {
+          console.log({ status: "error", content: error }); // TEMPORARY: FOR DEBUGGING
+          return done(null, false);
+        }
+        try {
+          await Customer.deleteOne(customer);
+        } catch (error) {
+          console.log({ status: "error", content: error }); // TEMPORARY: FOR DEBUGGING
+          return done(null, false);
+        }
         // TO DO.....
-        // Delete the newly created account and customer instances
-        // AND demerge makes
+        // AND demerge makes and orders
         // TO DO.....
         return done(null, false);
       }

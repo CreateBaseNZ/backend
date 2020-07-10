@@ -113,7 +113,7 @@ router.get("/profile/customer/fetch/picture", async (req, res) => {
   if (user) {
     let customer;
     try {
-      customer = await Customer.findByAccountId(user._id);
+      customer = await Customer.findOne({ accountId: user._id });
     } catch (error) {
       return res.send({ status: "failed", content: error });
     }
@@ -153,7 +153,7 @@ router.post("/profile/customer/update/picture", upload.single("picture"), restri
   // Fetch Customer Details
   let customer;
   try {
-    customer = await Customer.findByAccountId(user._id);
+    customer = await Customer.findOne({ accountId: user._id });
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
@@ -186,7 +186,7 @@ router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
   // Fetch Customer
   let customer;
   try {
-    customer = await Customer.findByAccountId(accountId);
+    customer = await Customer.findOne({ accountId });
   } catch (error) {
     res.send({ status: "failed", data: error });
     return;
@@ -218,9 +218,9 @@ router.post("/profile/customer/update", verifiedAccess, async (req, res) => {
   // Fetch Customer
   let customer;
   try {
-    customer = await Customer.findByAccountId(accountId);
+    customer = await Customer.findOne({ accountId });
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "error", data: error });
   }
   // Update Customer Details
   let updatedCustomer;

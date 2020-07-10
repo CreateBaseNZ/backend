@@ -145,32 +145,23 @@ OrderSchema.statics.merge = function (accountId, sessionId) {
     try {
       sessionOrder = await this.findOne({ sessionId, status });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // FETCH THE ORDER WITH THE CORRESPONDING ACCOUNT ID
     let accountOrder;
     try {
       accountOrder = await this.findOne({ accountId, status });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // MERGE ORDER PROCESS
-    // TO DO.....
-    // Merge properties of each order more intelligently
-    // TO DO.....
-    let order;
-    if (accountOrder) {
-      order = accountOrder;
-    } else if (sessionOrder) {
-      order = sessionOrder;
-      order.accountId = accountId;
-    }
-    // SAVE ORDER
-    if (order) {
+    if (sessionOrder && !accountOrder) {
+      sessionOrder.accountId = accountId;
+      // SAVE ORDER
       try {
-        await order.save();
+        await sessionOrder.save();
       } catch (error) {
-        return reject(error);
+        return reject({ status: "error", content: error });
       }
     }
     // RETURN PROMISE RESOLVE

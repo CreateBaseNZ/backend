@@ -58,15 +58,13 @@ router.post("/signup/validate", async (req, res) => {
   // DECLARE VARIABLES
   const email = req.body.email;
   // FETCH EMAIL
-  let account;
   try {
-    account = await Account.findOne({ email });
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
+    await Account.validateEmail(email, false);
+  } catch (data) {
+    return res.send(data);
   }
-  if (account) return res.send({ status: "failed", content: "email is taken" });
   // SUCCESS HANDLER
-  return res.send({ status: "success", content: "" });
+  return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     Get /signup/customer
@@ -162,11 +160,11 @@ router.get("/account-verification/:email/:code", async (req, res) => {
   // VERIFY ACCOUNT
   try {
     await Account.verify(email, code);
-  } catch (error) {
+  } catch (data) {
     // TO DO.....
     // REDIRECT TO A FAILED PAGE
     // TO DO.....
-    return res.redirect("/login");
+    return res.redirect("/verification");
   }
   return res.redirect("/verified");
 });
@@ -209,11 +207,11 @@ router.post("/account/verify", async (req, res) => {
   // VERIFY ACCOUNT
   try {
     await Account.verify(email, code);
-  } catch (error) {
+  } catch (data) {
     // TO DO.....
     // REDIRECT TO A FAILED PAGE
     // TO DO.....
-    return res.send({ status: "failed", content: error });
+    return res.send(data);
   }
   return res.redirect("/verified");
 });

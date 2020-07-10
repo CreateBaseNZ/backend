@@ -135,7 +135,7 @@ MakeSchema.statics.fetch = function (query = {}, withComment = false) {
 MakeSchema.statics.merge = function (accountId, sessionId) {
   return new Promise(async (resolve, reject) => {
     // FETCH THE MAKES WITH THE CORRESPONDING SESSION ID
-    let makes = [];
+    let makes;
     try {
       makes = await this.find({ sessionId });
     } catch (error) {
@@ -152,7 +152,7 @@ MakeSchema.statics.merge = function (accountId, sessionId) {
     try {
       await Promise.all(promises);
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // RETURN PROMISE RESOLVE
     return resolve();

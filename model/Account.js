@@ -193,7 +193,7 @@ AccountSchema.statics.verify = function (email, code) {
     try {
       account = await this.findOne({ email });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // COMPARE CODE
     if (account.verification.code !== code) return reject("incorrect code");
@@ -205,7 +205,7 @@ AccountSchema.statics.verify = function (email, code) {
     try {
       await account.save();
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // UPDATE CUSTOMER'S MAIL SUBSCRIPTION
     // Fetch Customer
@@ -213,19 +213,19 @@ AccountSchema.statics.verify = function (email, code) {
     try {
       customer = await Customer.findOne({ accountId: account._id });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // Subscribe Customer
     try {
       await customer.subscribeMail(account.email);
-    } catch (error) {
-      return reject(error);
+    } catch (data) {
+      return reject(data);
     }
     // Save Customer Updates
     try {
       await customer.save();
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
     // RETURN RESOLVE
     return resolve();
