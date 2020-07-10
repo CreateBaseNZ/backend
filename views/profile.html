@@ -179,7 +179,7 @@
         <i class="fas fa-search"></i>
         <i class="fas fa-plus"></i>
       </div>
-      <div id="proj-fav-wrapper">
+      <div id="proj-card-wrapper">
         <h2>Favourites (?)</h2>
         <div id="proj-fav-container">
           <div class="proj-fav">
@@ -233,8 +233,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div id="proj-all-wrapper">
         <h2>All (?)</h2>
         <div id="proj-all-container">
           <div class="proj-small">
@@ -255,50 +253,67 @@
           </div>
         </div>
       </div>
-      <div id="new-edit-proj-screen">
-
+      <div id="proj-pop-wrapper">
+        <div id="proj-pop-back"><p>Cancel</p></div>
+        <div id="proj-pop-container">
+          <div id="proj-pop-left">
+            <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" id="proj-pop-img">
+            <div id="proj-pop-img-overlay"></div>
+            <div id="proj-pop-img-edit">Click to edit</div>
+          </div>
+          <div id="proj-pop-mid">
+            <i class="far fa-bookmark"></i>
+            <h3>Name</h3>
+            <input type="text" id="proj-pop-name" placeholder="Give your project a name">
+            <h3>Makes</h3>
+            <div id="proj-pop-blob-container">
+              <div class="proj-pop-blob">
+                <p>Make A</p>
+                <div class="proj-pop-blob-x"></div>
+              </div>
+              <div class="proj-pop-blob">
+                <p>Make B</p>
+                <div class="proj-pop-blob-x"></div>
+              </div>
+              <div class="proj-pop-blob">
+                <p>Make B</p>
+                <div class="proj-pop-blob-x"></div>
+              </div>
+              <div class="proj-pop-blob">
+                <p>Make B</p>
+                <div class="proj-pop-blob-x"></div>
+              </div>
+              <div class="proj-pop-blob">
+                <p>Make B</p>
+                <div class="proj-pop-blob-x"></div>
+              </div>
+              <div class="proj-pop-blob">
+                <p>Make B</p>
+                <div class="proj-pop-blob-x"></div>
+              </div>
+              <div class="proj-pop-blob">
+                <p>Make B</p>
+                <div class="proj-pop-blob-x"></div>
+              </div>
+            </div>
+            <h3>Notes</h3>
+            <textarea id="proj-pop-notes" placeholder="Add notes to your project" style="resize: none;"></textarea>
+            <div class="proj-pop-btn-container">
+              <i class="far fa-trash-alt" id="proj-pop-delete"></i>
+              <button class="grad-btn" id="proj-pop-save">Save</button>
+            </div>
+          </div>
+          <div id="proj-pop-right">
+            <h3>Add to your project</h3>
+            <div id="proj-pop-bar-wrapper">
+              <div id="proj-pop-bar-container">
+              </div>
+            </div>
+            <p>You can add Makes to this project later.</p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- <div class="main-area" id="projects-area">
-      <div id="new-edit-proj-screen-overlay"></div>
-      <div id="new-edit-proj-screen">
-        <div id="new-edit-proj-x">
-          <div></div>
-        </div>
-        <div id="new-edit-proj">
-          <h3 id="new-edit-proj-header"></h3>
-          <h4>Name</h4>
-          <div id="new-edit-proj-name-wrapper">
-            <input type="text" id="new-edit-proj-name" placeholder="Give your project a name">
-            <i id="new-edit-proj-bookmark" class="fa-bookmark"></i>
-          </div>
-          <h4>Makes</h4>
-          <div id="make-blobs-container"></div>
-          <h4>Notes</h4>
-          <textarea id="new-edit-proj-notes" placeholder="Add notes to your project" style="resize: none;"></textarea>
-          <div class="save-proj-container">
-            <i class="far fa-trash-alt" id="delete-proj"></i>
-            <button class="grad-btn" id="save-proj">Save</button>
-          </div>
-        </div>
-        <div class="add-make">
-          <h4>Add to your project</h4>
-          <div id="make-labels-wrapper">
-            <div id="make-labels-container"></div>
-          </div>
-          <h5>You can add Makes to this project later.</h5>
-        </div>
-      </div>
-      <div id="proj-wrap">
-        <div id="proj-scroll-container">
-          <div class="end-spacer"></div>
-        </div>
-      </div>
-      <div class="new-proj-container">
-        <button class="grad-btn" id="new-edit-proj-btn">+ Start New Project</button>
-      </div>
-    </div> -->
 
     <div class="main-area" id="orders-area">
       <div class="my-orders-container" id="my-orders-container">
