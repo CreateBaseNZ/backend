@@ -113,42 +113,7 @@
 
   <div class="main-page hide" id="profile-page">
 
-    <div class="modular-nav-container" id="mod-nav-container">
-      <div class="modular-nav" id="modular-nav">
-        <p class="modular-nav-header">My Base</p>
-        <a id="nav-item-profile" class="modular-nav-item-container" onclick="profile.setPage('');">
-          <div class="modular-nav-item">
-            <div class="nav-in icon-wrap" id="profile-nav-in"></div>
-            <div class="modular-nav-title">DASHBOARD</div>
-            <div id="notif-profile" class="modular-nav-notif-wrap"></div>
-          </div>
-        </a>
-        <a id="nav-item-projects" class="modular-nav-item-container" onclick="profile.setPage('projects');">
-          <div class="modular-nav-item">
-            <div class="icon-wrap"><i class="fas fa-folder"></i></div>
-            <div class="modular-nav-title">MY PROJECTS</div>
-            <div id="notif-projects" class="modular-nav-notif-wrap"></div>
-          </div>
-        </a>
-        <a id="nav-item-orders" class="modular-nav-item-container" onclick="profile.setPage('orders');">
-          <div class="modular-nav-item">
-            <div class="icon-wrap"><i class="fas fa-credit-card"></i></div>
-            <div class="modular-nav-title">MY ORDERS</div>
-            <div id="notif-orders" class="modular-nav-notif-wrap">
-              <!--<div class="mod-nav-notif">10</div>-->
-            </div>
-          </div>
-        </a>
-        <a id="nav-item-settings" class="modular-nav-item-container" onclick="profile.setPage('settings');">
-          <div class="modular-nav-item">
-            <div class="icon-wrap"><i class="fas fa-cog"></i></div>
-            <div class="modular-nav-title">SETTINGS</div>
-            <div id="notif-settings" class="modular-nav-notif-wrap"></div>
-          </div>
-        </a>
-        <a id="nav-item-signout" class="modular-nav-signout" href="/logout">SIGN OUT</a>
-      </div>
-    </div>
+
 
     <div class="main-area" id="profile-area">
       <div id="backdrop">
@@ -316,62 +281,180 @@
     </div>
 
     <div class="main-area" id="orders-area">
-      <div class="my-orders-container" id="my-orders-container">
+      <div class="my-orders-wrap">
         <p class="my-orders-title">My Orders</p>
-        <div id="order-container">
-          <!-- TEST ORDER
-          <div class="order-item active-item">
-            <div class="order-title-container">
-              <p class="order-name">
-                Order #<span id="order-num">8014</span>
-              </p>
-              <div class="order-item-notif">10</div>
-              <div class="expand-logo">
-                <?xml version="1.0" encoding="utf-8"?>
-                Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300"
-                  style="enable-background:new 0 0 300 300;" xml:space="preserve">
-                  <rect x="145.9" y="-29.7" transform="matrix(-5.439820e-011 -1 1 -5.439820e-011 120.3603 196.6731)"
-                    width="25.3" height="135.8" />
-                  <rect x="201.1" y="42.9" width="25.3" height="135.8" />
-                  <rect x="133.2" y="190.3" transform="matrix(1.442240e-010 1 -1 1.442240e-010 404.0674 112.3467)"
-                    width="25.3" height="135.8" />
-                  <rect x="78" y="122.4" transform="matrix(-1 1.891366e-010 -1.891366e-010 -1 181.2541 380.6348)"
-                    width="25.3" height="135.8" />
-                </svg>
+        <div class="my-orders-container" id="my-orders-container">
+          <div id="order-container">
+            <!-- TEST ORDER
+            <div class="order-item active-item">
+              <div class="order-title-container">
+                <p class="order-name">
+                  Order #<span id="order-num">8014</span>
+                </p>
+                <div class="order-item-notif">10</div>
+                <div class="expand-logo">
+                  <?xml version="1.0" encoding="utf-8"?>
+                  Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)
+                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300"
+                    style="enable-background:new 0 0 300 300;" xml:space="preserve">
+                    <rect x="145.9" y="-29.7" transform="matrix(-5.439820e-011 -1 1 -5.439820e-011 120.3603 196.6731)"
+                      width="25.3" height="135.8" />
+                    <rect x="201.1" y="42.9" width="25.3" height="135.8" />
+                    <rect x="133.2" y="190.3" transform="matrix(1.442240e-010 1 -1 1.442240e-010 404.0674 112.3467)"
+                      width="25.3" height="135.8" />
+                    <rect x="78" y="122.4" transform="matrix(-1 1.891366e-010 -1.891366e-010 -1 181.2541 380.6348)"
+                      width="25.3" height="135.8" />
+                  </svg>
+                </div>
+              </div>
+              <div id="order-content-container">
+                <div class="order-info-wrap">
+                  <div class="transit-container order-info">
+                    <i class="fas fa-truck"></i>
+                    <p class="order-info-text">
+                      In transit, <span id="delivery-method">DHL</span>
+                    </p>
+                  </div>
+                  <div class="payment-container order-info">
+                    <i class="fas fa-credit-card"></i>
+                    <p class="order-info-text">
+                      April 20, 2020
+                    </p>
+                  </div>
+                  <div class="location-container order-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p class="order-info-text">
+                      Auckland, New Zealand
+                    </p>
+                  </div>
+                </div>
+                <div class="order-total">
+                  <p class="total-title">Total</p>
+                  <p class="order-total">$53.80</p>
+                </div>
+              </div>
+              <div class="active-div">
               </div>
             </div>
-            <div id="order-content-container">
-              <div class="order-info-wrap">
-                <div class="transit-container order-info">
-                  <i class="fas fa-truck"></i>
-                  <p class="order-info-text">
-                    In transit, <span id="delivery-method">DHL</span>
-                  </p>
-                </div>
-                <div class="payment-container order-info">
-                  <i class="fas fa-credit-card"></i>
-                  <p class="order-info-text">
-                    April 20, 2020
-                  </p>
-                </div>
-                <div class="location-container order-info">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <p class="order-info-text">
-                    Auckland, New Zealand
-                  </p>
-                </div>
+            -->
+          </div>
+        </div>
+      </div>
+
+      <div class="order-detail-wrap">
+        <p class="orderdetails" id="order-details-title">Order Details</p>
+        <div class="order-detail-container">
+          <div class="exit-icon">
+            <img src="/public/images/user-x.png" alt="X">
+          </div>
+          <div class="order-tracking-container">
+            <!-- TEST ORDER -->
+            <p id="order-details-name">
+              Order #<span id="order-details-num">8014</span>
+            </p>
+            <div class="progress-bar-container">
+              <div class="progress-container full-tracking">
+                <div class="status-circle"></div>
+                <div class="status-line"></div>
               </div>
-              <div class="order-total">
-                <p class="total-title">Total</p>
-                <p class="order-total">$53.80</p>
+              <div class="progress-bar full-tracking"></div>
+              <div class="progress-container">
+                <div class="status-circle"></div>
+                <div class="status-line"></div>
+              </div>
+              <div class="progress-bar"></div>
+              <div class="progress-container middle-container">
+                <div class="status-circle status-circle-current">
+                  <div class="status-circle-current-inner"></div>
+                </div>
+                <div class="status-line"></div>
+              </div>
+              <div class="progress-bar next-progress"></div>
+              <div class="progress-container">
+                <div class="status-circle next-circle"></div>
+                <div class="status-line"></div>
+              </div>
+              <div class="progress-bar next-progress full-tracking"></div>
+              <div class="progress-container full-tracking">
+                <div class="status-circle next-circle"></div>
+                <div class="status-line"></div>
               </div>
             </div>
-            <div class="active-div">
+            <div class="progress-caption-container">
+              <div class="status-label-container full-tracking">
+                <p class="status-label">
+                  Order Created
+                </p>
+              </div>
+              <div class="status-label-container">
+                <p class="status-label">
+                  Order Created
+                </p>
+              </div>
+              <div class="status-label-container">
+                <p class="status-label">
+                  Waiting for confirmation
+                </p>
+              </div>
+              <div class="status-label-container">
+                <p class="status-label">
+                  Order Confirmed
+                </p>
+              </div>
+              <div class="status-label-container full-tracking">
+                <p class="status-label">
+                  Order Confirmed
+                </p>
+              </div>
+            </div>
+
+            <div class="status-detail-container">
+              <p class="status-detail-title">Tracking Details</p>
+              <div class="status-container">
+                <p class="status-text">Package shipped</p>
+              </div>
+              <div class="status-description-container">
+                <p class="status-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo hendrerit leo vitae vestibulum. </p>
+              </div>
             </div>
           </div>
-          -->
+
+          <div class="divider"></div>
+
+          <div class="order-summary">
+            <p class="order-summary-title">Order Summary</p>
+              <div id="order-detail-content-container">
+                <div class="order-info-wrap">
+                  <div class="transit-container order-info">
+                    <i class="fas fa-truck"></i>
+                    <p class="order-info-text">
+                      In transit, <span id="delivery-method">DHL</span>
+                    </p>
+                  </div>
+                  <div class="payment-container order-info">
+                    <i class="fas fa-credit-card"></i>
+                    <p class="order-info-text">
+                      April 20, 2020
+                    </p>
+                  </div>
+                  <div class="location-container order-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p class="order-info-text">
+                      Auckland, New Zealand
+                    </p>
+                  </div>
+                  <div class="change-location">
+                    Change location
+                  </div>
+                </div>
+                <div class="order-total">
+                  <p class="total-title">Total</p>
+                  <p class="order-total">$53.80</p>
+                </div>
+              </div>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -578,6 +661,43 @@
       </div>
     </div>
 
+    <div class="modular-nav-container" id="mod-nav-container">
+      <div class="modular-nav" id="modular-nav">
+        <p class="modular-nav-header">My Base</p>
+        <a id="nav-item-profile" class="modular-nav-item-container" onclick="profile.setPage('');">
+          <div class="modular-nav-item">
+            <div class="nav-in icon-wrap" id="profile-nav-in"></div>
+            <div class="modular-nav-title">DASHBOARD</div>
+            <div id="notif-profile" class="modular-nav-notif-wrap"></div>
+          </div>
+        </a>
+        <a id="nav-item-projects" class="modular-nav-item-container" onclick="profile.setPage('projects');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap"><i class="fas fa-folder"></i></div>
+            <div class="modular-nav-title">MY PROJECTS</div>
+            <div id="notif-projects" class="modular-nav-notif-wrap"></div>
+          </div>
+        </a>
+        <a id="nav-item-orders" class="modular-nav-item-container" onclick="profile.setPage('orders');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap"><i class="fas fa-credit-card"></i></div>
+            <div class="modular-nav-title">MY ORDERS</div>
+            <div id="notif-orders" class="modular-nav-notif-wrap">
+              <!--<div class="mod-nav-notif">10</div>-->
+            </div>
+          </div>
+        </a>
+        <a id="nav-item-settings" class="modular-nav-item-container" onclick="profile.setPage('settings');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap"><i class="fas fa-cog"></i></div>
+            <div class="modular-nav-title">SETTINGS</div>
+            <div id="notif-settings" class="modular-nav-notif-wrap"></div>
+          </div>
+        </a>
+        <a id="nav-item-signout" class="modular-nav-signout" href="/logout">SIGN OUT</a>
+      </div>
+    </div>
+
     <!--
   <div id="proj-menu-overlay">
     <div id="proj-menu-container">
@@ -600,6 +720,7 @@
       </div>
     </div>
     -->
+
   </div>
 
   <!-- ==========================JS========================== -->
