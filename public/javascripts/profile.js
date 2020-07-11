@@ -1,11 +1,14 @@
 /* ========================================================================================
-VARIABLES - PROFILE
+VARIABLES
 ======================================================================================== */
 
 let profile = {
   // VARIABLES
   pages: ["/profile", "/profile/projects", "/profile/orders", "/profile/settings"],
+  allDP: undefined,
   // FUNCTIONS
+  initialise: undefined,
+  declareVariables: undefined,
   setPage: undefined,
   setPageCollect: undefined,
   setPageValidate: undefined,
@@ -15,8 +18,49 @@ let profile = {
 }
 
 /* ========================================================================================
-FUNCTIONS - PROFILE
+FUNCTIONS
 ======================================================================================== */
+
+// @func  profile.initialise
+// @desc  
+profile.initialise = async () => {
+  // DECLARE VARIABLES
+  profile.declareVariables();
+  // LOAD SYSTEM
+  try {
+    await global.initialise(true, false);
+  } catch (error) {
+    return console.log(error);
+  }
+  // RENDER THE CORRECT PROFILE PAGE
+  profile.setPage(undefined, true);
+  try {
+    await profile.addImages();
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+  // REMOVE STARTUP LOADER
+  removeLoader(false);
+  // INITIALISATIONS
+  dashboard.initialise(); // Dashboard
+  projects.initialise(); // Projects
+  orders.initialise(); // Settings
+  settings.initialise(); // Settings
+  // TO BE CLASSIFIED
+  // Get elements
+  projScroll = document.getElementById('proj-scroll-container');
+}
+
+// @func  profile.declareVariables
+// @desc  
+profile.declareVariables = () => {
+  profile.allDP = [
+    document.getElementById('nav-dp'),
+    document.getElementById('nav-user-in'),
+    document.getElementById('profile-backdrop')
+  ];
+}
 
 // @func  profile.setPage
 // @desc  
@@ -167,38 +211,13 @@ profile.addImages = () => {
 }
 
 /* ========================================================================================
-VARIABLES - PROJECTS
+END
 ======================================================================================== */
-
-let projects = {
-  // VARIABLES
-  // FUNCTIONS
-  initialise: undefined,
-  declareVariables: undefined
-}
 
 /* ========================================================================================
-FUNCTIONS - PROJECTS
+TO BE CLASSIFIED
 ======================================================================================== */
 
-// @func  projects.initialise
-// @desc  
-projects.initialise = async () => {
-  // DECLARE VARIABLES
-  projects.declareVariables();
-}
-
-// @func  projects.declareVariables
-// @desc  
-projects.declareVariables = () => {
-  swiper = new Swiper('.swiper-container');
-}
-
-/* ========================================================================================
-END - PROJECTS
-======================================================================================== */
-
-let swiper;
 var mq = window.matchMedia("(min-width: 850px)")
 var activeProjID = undefined
 var tabs = ['profile', 'projects', 'billing', 'settings']
@@ -441,17 +460,6 @@ function showProjPopup(status, project = undefined) {
 
   newEditProjScreen.style.display = 'flex'
   newEditProjScreenOverlay.style.display = 'block'
-}
-
-const profileUploadPicture = async () => {
-  const file = new FormData(document.querySelector("#profile-pic"));
-  let data;
-  try {
-    data = (await axios.post("/profile/customer/update/picture", file))["data"];
-  } catch (error) {
-    console.log(error);
-    return;
-  }
 }
 
 const profileInit = async () => {

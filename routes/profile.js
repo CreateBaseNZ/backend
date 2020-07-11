@@ -178,7 +178,7 @@ router.post("/profile/customer/update/picture", upload.single("picture"), restri
 );
 
 // @route     Get /profile/customer/fetch
-// @desc
+// @desc      TEMPORARY
 // @access    Private
 router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
   // Declare Variables
@@ -206,6 +206,37 @@ router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
   };
   // Send Success Request
   res.send({ status: "success", data: filteredCustomer });
+});
+
+// @route     Get /profile/dashboard/fetch-details
+// @desc
+// @access    Private
+router.get("/profile/dashboard/fetch-details", verifiedDataAccess, async (req, res) => {
+  // Declare Variables
+  const accountId = req.user._id;
+  // Fetch Customer
+  let customer;
+  try {
+    customer = await Customer.findOne({ accountId });
+  } catch (error) {
+    res.send({ status: "error", content: error });
+    return;
+  }
+  // Check if Bio is Empty (TEMPORARY)
+  let bio;
+  if (customer.bio) {
+    bio = customer.bio;
+  } else {
+    bio = "";
+  }
+  // Filter Customer Details
+  const filteredCustomer = {
+    displayName: customer.displayName,
+    bio,
+    address: customer.address
+  };
+  // Send Success Request
+  res.send({ status: "succeeded", content: filteredCustomer });
 });
 
 // @route     Get /profile/customer/update

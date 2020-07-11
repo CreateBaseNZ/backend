@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/public/stylesheets/profile/projects.css" />
 </head>
 
-<body onload="profileInit();">
+<body onload="profile.initialise();">
 
   <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
@@ -130,7 +130,7 @@
         <p id="profile-bio" data-placeholder="Tell us a bit about yourself."></p>
         <div id="profile-edit">
           <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
-          <div class="grad-btn" id="profile-save-btn" onclick="profileUploadPicture();">Save</div>
+          <div class="grad-btn" id="profile-save-btn" onclick="dashboard.uploadPicture();">Save</div>
         </div>
         <div id="profile-since"></div>
       </div>
@@ -151,8 +151,18 @@
             </div>
             <div class="proj-fav-content">
               <div class="proj-fav-name">My First Project My First Project</div>
-              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make, Part C, Test Part, Another Part</div>
-              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make,
+                Part C, Test Part, Another Part</div>
+              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</div>
             </div>
           </div>
           <div class="proj-fav">
@@ -161,8 +171,18 @@
             </div>
             <div class="proj-fav-content">
               <div class="proj-fav-name">My First Project My First Project</div>
-              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make, Part C, Test Part, Another Part</div>
-              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make,
+                Part C, Test Part, Another Part</div>
+              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</div>
             </div>
           </div>
           <div class="proj-fav">
@@ -171,8 +191,18 @@
             </div>
             <div class="proj-fav-content">
               <div class="proj-fav-name">My First Project My First Project</div>
-              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make, Part C, Test Part, Another Part</div>
-              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make,
+                Part C, Test Part, Another Part</div>
+              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</div>
             </div>
           </div>
           <div class="proj-fav">
@@ -181,8 +211,18 @@
             </div>
             <div class="proj-fav-content">
               <div class="proj-fav-name">My First Project My First Project</div>
-              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make, Part C, Test Part, Another Part</div>
-              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make,
+                Part C, Test Part, Another Part</div>
+              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</div>
             </div>
           </div>
           <div class="proj-fav">
@@ -191,8 +231,18 @@
             </div>
             <div class="proj-fav-content">
               <div class="proj-fav-name">My First Project My First Project</div>
-              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make, Part C, Test Part, Another Part</div>
-              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled Make,
+                Part C, Test Part, Another Part</div>
+              <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</div>
             </div>
           </div>
         </div>
@@ -200,24 +250,33 @@
         <div id="proj-all-container">
           <div class="proj-small">
             <i class="far fa-bookmark"></i>
-            <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" class="proj-small-thumbnail">
-            <div class="proj-small-name"><p>My First Project</p></div>
+            <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail"
+              class="proj-small-thumbnail">
+            <div class="proj-small-name">
+              <p>My First Project</p>
+            </div>
           </div>
           <div class="proj-small">
             <i class="far fa-bookmark"></i>
             <img src="/public/images/profile/trunk.png" alt="Project Thumbnail" class="proj-small-thumbnail">
-            <div class="proj-small-name"><p>Second Project with a Really Long Name</p></div>
+            <div class="proj-small-name">
+              <p>Second Project with a Really Long Name</p>
+            </div>
           </div>
           <div class="proj-small">
             <i class="far fa-bookmark"></i>
             <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail"
               class="proj-small-thumbnail">
-            <div class="proj-small-name"><p>Water Flask</p></div>
+            <div class="proj-small-name">
+              <p>Water Flask</p>
+            </div>
           </div>
         </div>
       </div>
       <div id="proj-pop-wrapper">
-        <div id="proj-pop-back"><p>Cancel</p></div>
+        <div id="proj-pop-back">
+          <p>Cancel</p>
+        </div>
         <div id="proj-pop-container">
           <div id="proj-pop-left">
             <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" id="proj-pop-img">
@@ -397,7 +456,7 @@
               </div>
               <div class="status-label-container">
                 <p class="status-label">
-                  Order Confirmed 
+                  Order Confirmed
                 </p>
               </div>
               <div class="status-label-container full-tracking">
@@ -413,7 +472,8 @@
                 <p class="status-text">Package shipped</p>
               </div>
               <div class="status-description-container">
-                <p class="status-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo hendrerit leo vitae vestibulum. </p>
+                <p class="status-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo
+                  hendrerit leo vitae vestibulum. </p>
               </div>
             </div>
           </div>
@@ -422,37 +482,37 @@
 
           <div class="order-summary">
             <p class="order-summary-title">Order Summary</p>
-              <div id="order-detail-content-container">
-                <div class="order-info-wrap">
-                  <div class="transit-container order-info">
-                    <i class="fas fa-truck"></i>
-                    <p class="order-info-text">
-                      In transit, <span id="delivery-method">DHL</span>
-                    </p>
-                  </div>
-                  <div class="payment-container order-info">
-                    <i class="fas fa-credit-card"></i>
-                    <p class="order-info-text">
-                      April 20, 2020
-                    </p>
-                  </div>
-                  <div class="location-container order-info">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p class="order-info-text">
-                      Auckland, New Zealand
-                    </p>
-                  </div>
-                  <div class="change-location">
-                    Change location
-                  </div>
+            <div id="order-detail-content-container">
+              <div class="order-info-wrap">
+                <div class="transit-container order-info">
+                  <i class="fas fa-truck"></i>
+                  <p class="order-info-text">
+                    In transit, <span id="delivery-method">DHL</span>
+                  </p>
                 </div>
-                <div class="order-total">
-                  <p class="total-title">Total</p>
-                  <p class="order-total">$53.80</p>
+                <div class="payment-container order-info">
+                  <i class="fas fa-credit-card"></i>
+                  <p class="order-info-text">
+                    April 20, 2020
+                  </p>
+                </div>
+                <div class="location-container order-info">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <p class="order-info-text">
+                    Auckland, New Zealand
+                  </p>
+                </div>
+                <div class="change-location">
+                  Change location
                 </div>
               </div>
+              <div class="order-total">
+                <p class="total-title">Total</p>
+                <p class="order-total">$53.80</p>
+              </div>
+            </div>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -737,8 +797,10 @@
   <script async src="/public/javascripts/global/session.js"></script>
   <script async src="/public/javascripts/global/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
-  <script defer src="/public/javascripts/profile/settings.js"></script>
+  <script defer src="/public/javascripts/profile/dashboard.js"></script>
+  <script defer src="/public/javascripts/profile/projects.js"></script>
   <script defer src="/public/javascripts/profile/orders.js"></script>
+  <script defer src="/public/javascripts/profile/settings.js"></script>
   <script defer src="/public/javascripts/profile.js"></script>
 </body>
 
