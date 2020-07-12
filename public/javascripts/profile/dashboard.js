@@ -62,6 +62,7 @@ dashboard.addListener = () => {
     // Update profile pictures in nav bar
     dpTemp = dashboard.dpEl.src;
     for (var i = 0; i < profile.allDP.length; i++) {
+      console.log(profile.allDP[i])
       profile.allDP[i].src = dpTemp;
     }
     // Save new variables

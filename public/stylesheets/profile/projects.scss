@@ -294,7 +294,6 @@
   align-items: flex-start;
   width: 100%;
   padding: 0 6vw 0 8vw;
-  max-height: 0;
   overflow: hidden;
   
   h2 {
@@ -343,7 +342,7 @@
       box-shadow: 0 5px 10px -8px $dark-3;
       transition: box-shadow 0.2s ease-out;
 
-      .proj-fav-thumbnail {
+      .proj-fav-img {
         height: 100%;
         width: 100%;
         object-fit: cover;
@@ -385,8 +384,7 @@
           font-family: $poppins;
           font-weight: 400;
           color: $light-1;
-          font-size: 0.6em;
-          letter-spacing: 1px;
+          font-size: 0.7em;
           line-height: 1.5em;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -407,8 +405,8 @@
           -webkit-line-clamp: 16;
           -webkit-box-orient: vertical;
           padding-top: 1em;
-          max-height: 0;
-          transition: max-height 0.4s ease-out;
+          height: 0;
+          transition: height 0.4s ease-out;
         }
       }
       
@@ -418,7 +416,7 @@
           top: -100%;
         }
         .proj-fav-notes {
-          max-height: 20em;
+          height: 20em;
         }
       }
 
@@ -471,6 +469,7 @@
       .fa-bookmark {
         position: absolute;
         top: calc(50% + 4px);
+        padding-bottom: 0;
         right: 8px;
         background: $light-1;
         color: $light-3;
@@ -479,11 +478,26 @@
 
         &:hover {
           top: calc(50% + 3px);
+          padding-bottom: 1px;
           color: $highlight;
+        }
+
+        &.fas {
+          color: $highlight;
+          &:hover {
+            color: rgb(74, 226, 221);
+          }
+        }
+
+        &.far {
+          color: $dark-1;
+          &:hover {
+            color: $highlight;
+          }
         }
       }
 
-      .proj-small-thumbnail {
+      .proj-small-img {
         height: 55%;
         width: 100%;
         object-fit: cover;
@@ -527,7 +541,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  max-height: 0;
   flex-grow: 1;
+  overflow: hidden;
 
   #proj-pop-back {
     height: 5vh;
@@ -907,7 +923,7 @@
             background: $light-3;
           }
 
-          .proj-pop-label {
+          .proj-pop-bar {
             cursor: pointer;
             width: 100%;
             display: flex;
@@ -934,14 +950,14 @@
               font-size: calc(16px + 0.1vw);
             }
 
-            .proj-pop-label-tooltip-wrapper {
+            .proj-pop-bar-tooltip-wrapper {
               position: absolute;
               pointer-events: none;
               display: none;
               left: calc(15vw - 30px);
               z-index: 2;
 
-              .proj-pop-label-tooltip {
+              .proj-pop-bar-tooltip {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
@@ -965,13 +981,13 @@
               color: #b0a9c4;
               transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out;
 
-              .proj-pop-label-tooltip-wrapper {
+              .proj-pop-bar-tooltip-wrapper {
                 display: block;
               }
             }
           }
 
-          .proj-pop-label-active {
+          .proj-pop-bar-active {
             border: thin solid $dark-1;
             background: $dark-1;
             color: $light-1;
