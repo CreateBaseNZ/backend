@@ -11,7 +11,6 @@ let orders = {
   formatDate: undefined,
   // ORDERS
   selectOrder: undefined,
-  deselectOrder: undefined,
   fetchOrders: undefined,
   populateOrders: undefined,
   addOrder: undefined,
@@ -76,18 +75,11 @@ ORDERS
 orders.selectOrder = (orderId) => {
   if (orders.selectedOrder === orderId) return;
   // UPDATE CSS
-  if (orders.selectedOrder) orders.deselectOrder(orders.selectedOrder);
+  if (orders.selectedOrder) {
+    document.querySelector(`#order-summary-${orders.selectedOrder}`).classList.remove("active-item");
+  }
   document.querySelector(`#order-summary-${orderId}`).classList.add("active-item");
-  document.querySelector(`#order-detail-${orderId}`).classList.remove("hide");
   orders.selectedOrder = orderId; // UPDATE SELECTED ORDER
-}
-
-// @func  orders.deselectOrder
-// @desc  
-orders.deselectOrder = (orderId) => {
-  document.querySelector(`#order-summary-${orderId}`).classList.remove("active-item");
-  document.querySelector(`#order-detail-${orderId}`).classList.add("hide");
-  orders.selectedOrder = undefined; // UPDATE SELECTED ORDER
 }
 
 // @func  orders.fetchOrders
@@ -135,8 +127,9 @@ orders.populateOrders = (fetchedOrders = []) => {
 orders.addOrder = (order) => {
   // CREATE SUMMARY
   orders.addSummary(order);
+  // TO DO .....
   // CREATE EXPANDED
-  orders.addDetailed(order);
+  // TO DO .....
   // POPULATE MAKES
   for (let i = 0; i < order.makes.checkout.length; i++) {
     const make = order.makes.checkout[i];
@@ -238,40 +231,6 @@ orders.addSummary = (order) => {
   `;
   // INSERT
   document.querySelector("#order-container").insertAdjacentHTML("beforeend", summary);
-}
-
-// @func  orders.addDetailed
-// @desc  
-orders.addDetailed = (order) => {
-  // TRACKING CONTAINER
-  const heading = `<p id="order-details-name">Order #${order.number}</p>`;
-  let trackingInfoHeading = "";
-  let trackingInfoDetail = "";
-  const trackingInfo = `
-  <div class="status-detail-container">
-    <p class="status-detail-title">Tracking Details</p>
-    <div class="status-container">
-      <p class="status-text">${trackingInfoHeading}</p>
-    </div>
-    <div class="status-description-container">
-      <p class="status-description">${trackingInfoDetail}</p>
-    </div>
-  </div>
-  `;
-  const containerOne = `
-  <div class="order-tracking-container">${heading + trackingInfo}</div>
-  `;
-  // DETAILED
-  const detailed = `
-  <div id="order-detail-${order._id}" class="order-detail-container hide">
-    <div class="exit-icon" onclick="orders.deselectOrder('${order._id}');">
-      <img src="/public/images/user-x.png" alt="X">
-    </div>
-    ${containerOne}
-  </div>
-  `;
-  // INSERT
-  document.querySelector("#order-detail-containers").insertAdjacentHTML("beforeend", detailed);
 }
 
 // @func  orders.addMake
