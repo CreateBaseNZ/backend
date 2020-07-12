@@ -186,6 +186,9 @@
         justify-content: flex-end;
         margin-bottom: 0.5em;
       }
+      &.hide {
+        display: none;
+      }
     }
   }
 

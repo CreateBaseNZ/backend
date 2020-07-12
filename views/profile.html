@@ -401,119 +401,122 @@
 
       <div class="order-detail-wrap">
         <p class="orderdetails" id="order-details-title">Order Details</p>
-        <div class="order-detail-container">
-          <div class="exit-icon">
-            <img src="/public/images/user-x.png" alt="X">
-          </div>
-          <div class="order-tracking-container">
-            <!-- TEST ORDER -->
-            <p id="order-details-name">
-              Order #<span id="order-details-num">8014</span>
-            </p>
-            <div class="progress-bar-container">
-              <div class="progress-container full-tracking">
-                <div class="status-circle"></div>
-                <div class="status-line"></div>
-              </div>
-              <div class="progress-bar full-tracking"></div>
-              <div class="progress-container">
-                <div class="status-circle"></div>
-                <div class="status-line"></div>
-              </div>
-              <div class="progress-bar"></div>
-              <div class="progress-container middle-container">
-                <div class="status-circle status-circle-current">
-                  <div class="status-circle-current-inner"></div>
+        <div id="order-detail-containers">
+          <!-- TEST ORDER 
+          <div class="order-detail-container">
+            <div class="exit-icon">
+              <img src="/public/images/user-x.png" alt="X">
+            </div>
+            <div class="order-tracking-container">
+              <p id="order-details-name">
+                Order #<span id="order-details-num">8014</span>
+              </p>
+              <div class="progress-bar-container">
+                <div class="progress-container full-tracking">
+                  <div class="status-circle"></div>
+                  <div class="status-line"></div>
                 </div>
-                <div class="status-line"></div>
+                <div class="progress-bar full-tracking"></div>
+                <div class="progress-container">
+                  <div class="status-circle"></div>
+                  <div class="status-line"></div>
+                </div>
+                <div class="progress-bar"></div>
+                <div class="progress-container middle-container">
+                  <div class="status-circle status-circle-current">
+                    <div class="status-circle-current-inner"></div>
+                  </div>
+                  <div class="status-line"></div>
+                </div>
+                <div class="progress-bar next-progress"></div>
+                <div class="progress-container">
+                  <div class="status-circle next-circle"></div>
+                  <div class="status-line"></div>
+                </div>
+                <div class="progress-bar next-progress full-tracking"></div>
+                <div class="progress-container full-tracking">
+                  <div class="status-circle next-circle"></div>
+                  <div class="status-line"></div>
+                </div>
               </div>
-              <div class="progress-bar next-progress"></div>
-              <div class="progress-container">
-                <div class="status-circle next-circle"></div>
-                <div class="status-line"></div>
-              </div>
-              <div class="progress-bar next-progress full-tracking"></div>
-              <div class="progress-container full-tracking">
-                <div class="status-circle next-circle"></div>
-                <div class="status-line"></div>
-              </div>
-            </div>
-            <div class="progress-caption-container">
-              <div class="status-label-container full-tracking">
-                <p class="status-label">
-                  Order Created 2
-                </p>
-              </div>
-              <div class="status-label-container">
-                <p class="status-label">
-                  Order Created
-                </p>
-              </div>
-              <div class="status-label-container">
-                <p class="status-label">
-                  Waiting for confirmation
-                </p>
-              </div>
-              <div class="status-label-container">
-                <p class="status-label">
-                  Order Confirmed
-                </p>
-              </div>
-              <div class="status-label-container full-tracking">
-                <p class="status-label">
-                  Order Confirmed 2
-                </p>
-              </div>
-            </div>
-
-            <div class="status-detail-container">
-              <p class="status-detail-title">Tracking Details</p>
-              <div class="status-container">
-                <p class="status-text">Package shipped</p>
-              </div>
-              <div class="status-description-container">
-                <p class="status-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo
-                  hendrerit leo vitae vestibulum. </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="order-summary">
-            <p class="order-summary-title">Order Summary</p>
-            <div id="order-detail-content-container">
-              <div class="order-info-wrap">
-                <div class="transit-container order-info">
-                  <i class="fas fa-truck"></i>
-                  <p class="order-info-text">
-                    In transit, <span id="delivery-method">DHL</span>
+              <div class="progress-caption-container">
+                <div class="status-label-container full-tracking">
+                  <p class="status-label">
+                    Order Created 2
                   </p>
                 </div>
-                <div class="payment-container order-info">
-                  <i class="fas fa-credit-card"></i>
-                  <p class="order-info-text">
-                    April 20, 2020
+                <div class="status-label-container">
+                  <p class="status-label">
+                    Order Created
                   </p>
                 </div>
-                <div class="location-container order-info">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <p class="order-info-text">
-                    Auckland, New Zealand
+                <div class="status-label-container">
+                  <p class="status-label">
+                    Waiting for confirmation
                   </p>
                 </div>
-                <div class="change-location">
-                  Change location
+                <div class="status-label-container">
+                  <p class="status-label">
+                    Order Confirmed
+                  </p>
+                </div>
+                <div class="status-label-container full-tracking">
+                  <p class="status-label">
+                    Order Confirmed 2
+                  </p>
                 </div>
               </div>
-              <div class="order-total">
-                <p class="total-title">Total</p>
-                <p class="order-total">$53.80</p>
+
+              <div class="status-detail-container">
+                <p class="status-detail-title">Tracking Details</p>
+                <div class="status-container">
+                  <p class="status-text">Package shipped</p>
+                </div>
+                <div class="status-description-container">
+                  <p class="status-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo
+                    hendrerit leo vitae vestibulum. </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="order-summary">
+              <p class="order-summary-title">Order Summary</p>
+              <div id="order-detail-content-container">
+                <div class="order-info-wrap">
+                  <div class="transit-container order-info">
+                    <i class="fas fa-truck"></i>
+                    <p class="order-info-text">
+                      In transit, <span id="delivery-method">DHL</span>
+                    </p>
+                  </div>
+                  <div class="payment-container order-info">
+                    <i class="fas fa-credit-card"></i>
+                    <p class="order-info-text">
+                      April 20, 2020
+                    </p>
+                  </div>
+                  <div class="location-container order-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p class="order-info-text">
+                      Auckland, New Zealand
+                    </p>
+                  </div>
+                  <div class="change-location">
+                    Change location
+                  </div>
+                </div>
+                <div class="order-total">
+                  <p class="total-title">Total</p>
+                  <p class="order-total">$53.80</p>
+                </div>
               </div>
             </div>
           </div>
-
+          -->
         </div>
+
       </div>
     </div>
 
