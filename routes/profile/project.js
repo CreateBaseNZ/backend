@@ -25,32 +25,87 @@ MIDDLEWARE
 =========================================================================================*/
 
 const verifiedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.redirect("/verification");
-    }
-  } else {
-    return res.redirect("/login");
+  // IF USER IS NOT LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.sendFile("login.html", customerRouteOptions);
   }
+  // IF USER IS NOT VERIFIED
+  if (!req.user.verification.status) {
+    return res.redirect("/verification");
+  }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const verifiedContent = (req, res, next) => {
+  const account = req.user;
+  // CHECK IF USER IS LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.send({ status: "failed", content: "user is not logged in" });
+  }
+  // CHECK IF USER IS NOT VERIFIED
+  if (!account.verification.status) {
+    return res.send({ status: "failed", content: "user is not verified" });
+  }
+  // SUCCESS HANDLER
+  return next();
 };
 
 const restrictedAccess = (req, res, next) => {
+  // IF USER IS NOT LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.sendFile("login.html", customerRouteOptions);
+  }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const restrictedContent = (req, res, next) => {
+  const account = req.user;
+  // CHECK IF USER IS LOGGED IN
+  if (!req.isAuthenticated()) {
+    return res.send({ status: "failed", content: "user is not logged in" });
+  }
+  // SUCCESS HANDLER
+  return next();
+};
+
+const unrestrictedAccess = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return next();
+    // TO DO .....
+    // REDIRECT TO ALREADY LOGGED IN PAGE
+    // TO DO .....
+    return res.redirect("/"); // TEMPORARILY SEND THEM BACK HOME
   } else {
-    return res.redirect("/login");
+    return next();
   }
 };
 
 const upload = require("../../config/upload.js");
 
 /*=========================================================================================
+GRIDFS
+=========================================================================================*/
+
+const gridFsStream = require("gridfs-stream");
+
+let GridFS;
+
+mongoose.createConnection(
+  process.env.MONGODB_URL,
+  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+  (error, client) => {
+    if (error) throw error;
+
+    GridFS = gridFsStream(client.db, mongoose.mongo);
+    GridFS.collection("fs");
+  });
+
+/*=========================================================================================
 ROUTES
 =========================================================================================*/
 
-router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedAccess, async (req, res) => {
+router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const name = req.body.name;
@@ -78,7 +133,7 @@ router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedAc
   return;
 })
 
-router.get("/profile/customer/fetch/all_proj", verifiedAccess, async (req, res) => {
+router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   // VALIDATE REQUIRED VARIABLES
@@ -99,7 +154,7 @@ router.get("/profile/customer/fetch/all_proj", verifiedAccess, async (req, res) 
   return;
 })
 
-router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifiedAccess, async (req, res) => {
+router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const projectId = mongoose.Types.ObjectId(req.body.id);
@@ -152,7 +207,7 @@ router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifie
   return res.send({ status: "succeeded", content: mappedProject });
 })
 
-router.post("/profile/customer/delete/proj", verifiedAccess, async (req, res) => {
+router.post("/profile/customer/delete/proj", verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const project = mongoose.Types.ObjectId(req.body.id);
@@ -175,7 +230,24 @@ router.post("/profile/customer/delete/proj", verifiedAccess, async (req, res) =>
   // SEND SUCCESS MESSAGE TO CLIENT
   res.send({ status: "succeeded", content: "project deleted" });
   return;
-})
+});
+
+// @route     GET /profile/projects/retrieve-thumbnail/:id
+// @desc
+// @access    VERIFIED - CONTENT
+router.get("/profile/projects/retrieve-thumbnail/:id", verifiedContent, async (req, res) => {
+  // DECLARE VARIABLES
+  const fileId = mongoose.Types.ObjectId(req.params.id);
+  // FETCH THE THUMBNAIL
+  try {
+    file = await GridFS.files.findOne({ _id: fileId });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  // SUCCESS HANDLER
+  let readstream = GridFS.createReadStream(file.filename);
+  return readstream.pipe(res);
+});
 
 /*=========================================================================================
 EXPORT ROUTE
