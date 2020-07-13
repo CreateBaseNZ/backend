@@ -2,8 +2,6 @@
 VARIABLES - PROJECTS
 ======================================================================================== */
 
-console.log('projects here')
-
 let projects = {
   // VARIABLES
   // FUNCTIONS
@@ -18,10 +16,16 @@ let projects = {
   renderMakeBars: undefined,
   toggleMakeBars: undefined,
   renderMakeBlobs: undefined,
-  toggleMakeBlobs: undefined,
-  hideProjPop: undefined,
+  removeMakeBlobs: undefined,
+  renderProjPop: undefined,
   showProjPop: undefined,
-  updateBookmark: undefined
+  hideProjPop: undefined,
+  cancel: undefined,
+  saveNew: undefined,
+  saveExisting: undefined,
+  trash: undefined,
+  updateBookmark: undefined,
+  previewImage: undefined
 }
 
 /* ========================================================================================
@@ -32,21 +36,22 @@ FUNCTIONS - PROJECTS
 // @desc  
 projects.initialise = async () => {
   // DECLARE VARIABLES
-  projects.declareVariables();
-  // allProjects, allMakes, makeKeys = projects.loadUserData();
-  // // render all project cards
-  // allProjects.forEach(function(project, i) {
-  //   renderFavProj(true, project)
-  // })
-  let testProj = {
-    id: 123456789,
-    name: 'Test Project',
-    image: '/public/images/profile/project-thumbnail.jpeg',
-    makes: ['Test Make A', 'Test Make B'],
-    notes: 'Lorem ipsum'
+  projects.declareVariables()
+  const [allProjects, allMakes] = (await projects.loadUserData())
+  // render all project cards
+  if (allProjects) {
+    allProjects.forEach(function(project, i) {
+      if (project.bookmark) {
+        projects.renderFavCard(project)
+      }
+      projects.renderSmallCard(project)
+      projects.renderProjPop(project)
+    })
   }
-  projects.renderFavCard(testProj)
-  projects.renderSmallCard(testProj)
+  document.getElementById('proj-add').addEventListener('click', () => {
+    projects.showProjPop()
+  })
+  projects.renderProjPop(null)
 }
 
 // @func  projects.declareVariables
@@ -55,29 +60,21 @@ projects.declareVariables = () => {
   swiper = new Swiper('.swiper-container');
 }
 
-// TEMPORARILY COMMENTED
-// projects.loadUserData = () => {
-//   try {
-//     allMakes = (await axios.get("/profile/customer/fetch/makes"))["data"]["content"]
-//   } catch (error) {
-//     console.log(error)
-//     return
-//   }
-
-//   try {
-//     allProjects = (await axios.get("/profile/customer/fetch/all_proj"))["data"]["content"]
-//   } catch (error) {
-//     console.log(error)
-//     return
-//   }
-
-//   makeKeys = new Object()
-//   allMakes.forEach(function(make, i) {
-//     makeKeys[make.id] = i
-//   })
-
-//   return allProjects, allMakes, makeKeys
-// }
+projects.loadUserData = async () => {
+  // fetch makes
+  try {
+    allMakes = (await axios.get("/profile/customer/fetch/makes"))["data"]["content"]
+  } catch (error) {
+    console.log(error)
+  }
+  // fetch projects
+  try {
+    allProjects = (await axios.get("/profile/customer/fetch/all_proj"))["data"]["content"]
+  } catch (error) {
+    console.log(error)
+  }
+  return [allProjects, allMakes]
+}
 
 projects.capFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -86,12 +83,15 @@ projects.capFirstLetter = (string) => {
 projects.renderFavCard = (proj) => {
   // main card
   let cardEl = document.createElement('div')
-  cardEl.id = 'proj-fav-' + proj.id
-  cardEl.setAttribute('onclick', "projects.showProjPop(false," + proj.id + ");")
+  cardEl.id = proj.id + '-proj-fav'
+  cardEl.addEventListener('click', () => {
+    projects.showProjPop(proj.id)
+  })
   // thumbnail
   let imgEl = document.createElement('img')
   cardEl.appendChild(imgEl).className = 'proj-fav-img'
-  imgEl.src = proj.image
+  // TO DO: project thumbnail
+  imgEl.src = '/profile/projects/retrieve-thumbnail/:' + proj.id
   // overlay
   let overlayEl = document.createElement('div')
   cardEl.appendChild(overlayEl).className = 'proj-fav-overlay'
@@ -117,24 +117,6 @@ projects.renderFavCard = (proj) => {
   notesEl.innerHTML = proj.notes
   // render
   document.getElementById('proj-fav-container').appendChild(cardEl).className = 'proj-fav'
-
-  // TO DO: on click, edit project
-  // cardEl.addEventListener('click', () => {
-
-  //   // Show new/edit project screen
-  //   showProjPop('edit', project.id)
-
-  //   if (makesEl.id !== "") {
-  //     makesEl.id.split(' ').forEach(function (makeInProject, k) {
-  //       // Add project blobs
-  //       renderMakeBlobs(allMakes[makeKeys[makeInProject]])
-  //       // Activate project labels
-  //       document.getElementById('make-label-' + makeInProject).classList.toggle('make-label-active')
-  //       document.getElementById('make-label-' + makeInProject).childNodes[1].className = 'fas fa-check-circle'
-  //     })
-  //   }
-
-  // })
 }
 
 projects.updateFavCard = (proj) => {
@@ -143,8 +125,8 @@ projects.updateFavCard = (proj) => {
   // name
   cardEl.querySelector('.proj-fav-name').innerHTML = proj.name
 
-  // TO DO
-  cardEl.querySelector('.proj-fav-img').src = proj.image
+  // TO DO: thumbnail
+  cardEl.querySelector('.proj-fav-img').src = '/profile/projects/retrieve-thumbnail/:' + proj.id
 
   // makes
   let makesEl = cardEl.querySelector('.proj-fav-makes')
@@ -162,7 +144,10 @@ projects.updateFavCard = (proj) => {
 projects.renderSmallCard = (proj) => {
   // main card
   let cardEl = document.createElement('div')
-  cardEl.id = 'proj-small-' + proj.id
+  cardEl.id = proj.id + '-proj-small'
+  cardEl.addEventListener('click', () => {
+    projects.showProjPop(proj.id)
+  })
   // bookmark
   let bookmarkEl = document.createElement('i')
   if (proj.bookmark) {
@@ -176,7 +161,8 @@ projects.renderSmallCard = (proj) => {
   // thumbnail
   let imgEl = document.createElement('img')
   cardEl.appendChild(imgEl).className = 'proj-small-img'
-  imgEl.src = proj.image
+  // TO DO: thumbnail
+  imgEl.src = '/profile/projects/retrieve-thumbnail/:' + proj.id
   // name
   let nameEl = document.createElement('div')
   cardEl.appendChild(nameEl).className = 'proj-small-name'
@@ -185,9 +171,6 @@ projects.renderSmallCard = (proj) => {
   nameEl.appendChild(pEl)
   // render
   document.getElementById('proj-all-container').appendChild(cardEl).className = 'proj-small'
-
-  // TO DO: on click, edit project
-
 }
 
 projects.updateSmallCard = (proj) => {
@@ -204,10 +187,10 @@ projects.updateSmallCard = (proj) => {
   cardEl.querySelector('.proj-small-name').innerHTML = proj.name
 
   // TO DO
-  cardEl.querySelector('.proj-small-img').src = proj.image
+  cardEl.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/:' + proj.id
 }
 
-projects.renderMakeBars = (allMakes) => {
+projects.renderMakeBars = (allMakes, projID) => {
   container = document.getElementById('proj-pop-bar-container')
 
   // Render all make labels
@@ -216,7 +199,7 @@ projects.renderMakeBars = (allMakes) => {
     // main bar
     let el = document.createElement('div')
     el.className = 'proj-pop-bar'
-    el.id = 'proj-pop-bar-' + make.id
+    el.id = projID + make.id + '-proj-pop-bar'
     // name
     el.appendChild(document.createElement('p')).innerHTML = make.file.name
     // tick
@@ -251,85 +234,317 @@ projects.renderMakeBars = (allMakes) => {
 }
 
 // 
-projects.toggleMakeBars = (el, make) => {
+projects.toggleMakeBars = (bar, blob) => {
+  // toggle blob
   if (el.classList.contains('proj-pop-bar-active')) {
-    document.getElementById('proj-pop-blob-' + make.id).remove()
+    projects.removeMakeBlobs(blobs)
   } else {
-    renderMakeBlobs(make)
+    renderMakeBlobs(blob)
   }
-  el.childNodes[1].classList.toggle('fas')
-  el.childNodes[1].classList.toggle('far')
-  el.classList.toggle('proj-pop-bar-active')
+  // toggle bar
+  bar.childNodes[1].classList.toggle('fas')
+  bar.childNodes[1].classList.toggle('far')
+  bar.classList.toggle('proj-pop-bar-active')
 }
 
-projects.renderMakeBlobs = (make, container) => {
+projects.renderMakeBlobs = (make, projID) => {
   let el = document.createElement('div')
   el.className = 'proj-pop-blob'
-  el.id = 'proj-pop-blob-' + make.id
+  el.id = projID + make.id + '-proj-pop-blob'
   el.appendChild(document.createElement('p')).innerHTML = make.file.name
   el.appendChild(document.createElement('div')).className = 'proj-pop-blob-x'
 
+  el.addEventListener('click', () => {
+    projects.removeMakeBlobs(el)
+    projects.toggleMakeBars(document.getElementById(projID + make.id + '-proj-pop-bar'))
+  })
 
-  // el.addEventListener('click', () => {
-  //   projects.toggleMakeBlobs(el, make.id)
-  // })
-  // verify this works
-  el.setAttribute('onclick', "projects.toggleMakeBlobs(this," + make.id + ");")
   // render
-  container.appendChild(el)
+  document.getElementById(projID + '-proj-pop-wrapper').querySelector('.proj-pop-bar-container').appendChild(el)
 }
 
-projects.toggleMakeBlobs = (el, id) => {
-  // let label = document.getElementById('make-label-' + id)
-  // label.classList.toggle('make-label-active')
-  // label.childNodes[1].classList.toggle('fas')
-  // label.childNodes[1].classList.toggle('far')
-  // el.remove()
+projects.removeMakeBlobs = (blob) => {
+  blob.remove()
 }
 
-projects.hideProjPop = (callback, status) => {
+projects.renderProjPop = (proj) => {
+  // main wrapper
+  let wrapper = document.createElement('div')
+  wrapper.className = 'proj-pop-wrapper'
+  wrapper.id = 'new-proj-pop-wrapper'
+  document.getElementById('proj-area-wrapper').appendChild(wrapper)
+  // back button
+  let back = document.createElement('div')
+  back.className = 'proj-pop-back'
+  back.addEventListener('click', () => {
+    projects.cancel(back)
+  })
+  wrapper.appendChild(back)
+  let temp = document.createElement('p')
+  temp.innerHTML = 'Cancel'
+  back.appendChild(temp)
+  // pop-up screen
+  let container = document.createElement('div')
+  container.className = 'proj-pop-container'
+  wrapper.appendChild(container)
+  // left container
+  let left = document.createElement('div')
+  left.className = 'proj-pop-left'
+  container.appendChild(left)
+  let label = document.createElement('label')
+  label.htmlFor = 'new-proj-pop-img-input'
+  left.appendChild(label)
+  let input = document.createElement('input')
+  input.type = 'file'
+  input.name = 'picture'
+  input.id = 'new-proj-pop-img-input'
+  input.setAttribute('onchange', 'projects.previewImage(this, event);')
+  left.appendChild(input)
+  // image
+  let image = document.createElement('img')
+  image.className = 'proj-pop-img'
+  // TO DO: no image
+  // image.src = '/profile/projects/retrieve-thumbnail/:' + proj.id
+  image.alt = 'Project Thumbnail'
+  left.appendChild(image)
+  let imgOverlay = document.createElement('div')
+  imgOverlay.className = 'proj-pop-img-overlay'
+  left.appendChild(imgOverlay)
+  let edit = document.createElement('div')
+  edit.className = 'proj-pop-img-edit'
+  edit.innerHTML = 'Click anywhere to edit'
+  left.appendChild(edit)
+  // mid container
+  let mid = document.createElement('div')
+  mid.className = 'proj-pop-mid'
+  container.appendChild(mid)
+  // bookmark
+  let bookmark = document.createElement('i')
+  bookmark.className = 'far fa-bookmark proj-pop-bookmark'
+  bookmark.addEventListener('click', () => {
+    bookmark.classList.toggle('fas')
+    bookmark.classList.toggle('far')
+  })
+  mid.appendChild(bookmark)
+  // name
+  let name = document.createElement('h3')
+  name.innerHTML = 'Name'
+  mid.appendChild(name)
+  let nameInput = document.createElement('input')
+  nameInput.type = 'text'
+  nameInput.className = 'proj-pop-name'
+  nameInput.placeholder = 'Give your project a name'
+  mid.appendChild(nameInput)
+  let makes = document.createElement('h3')
+  makes.innerHTML = 'Makes'
+  mid.appendChild(makes)
+  let makesContainer = document.createElement('div')
+  makesContainer.className = 'proj-pop-blob-container'
+  mid.appendChild(makesContainer)
+  let notes = document.createElement('h3')
+  notes.innerHTML = 'Notes'
+  mid.appendChild(notes)
+  let notesInput = document.createElement('textarea')
+  notesInput.className = 'proj-pop-notes'
+  notesInput.placeholder = 'Add notes to your project'
+  notesInput.style.resize = 'none'
+  mid.appendChild(notesInput)
+  // buttons
+  let btnContainer = document.createElement('div')
+  btnContainer.className = 'proj-pop-btn-container'
+  mid.appendChild(btnContainer)
+  let del = document.createElement('i')
+  del.className = 'far fa-trash-alt proj-pop-delete'
+  del.addEventListener('click', () => {
+    projects.trash(proj.id)
+  })
+  btnContainer.appendChild(del)
+  let save = document.createElement('button')
+  save.className = 'grad-btn proj-pop-save'
+  save.innerHTML = 'Save'
+  save.addEventListener('click', (e) => {
+    console.log(e.target.parentElement.parentElement.parentElement.parentElement.id)
+    if (e.target.parentElement.parentElement.parentElement.parentElement.id === 'new-proj-pop-wrapper') {
+      projects.saveNew()
+    } else {
+      projects.saveExisting(proj.id)
+    }
+  })
+  btnContainer.appendChild(save)
+  // right container
+  let right = document.createElement('div')
+  right.className = 'proj-pop-right'
+  container.appendChild(right)
+  let addMakes = document.createElement('h3')
+  addMakes.innerHTML = 'Add to your project'
+  right.appendChild(addMakes)
+  let barWrapper = document.createElement('div')
+  barWrapper.className = 'proj-pop-bar-wrapper'
+  right.appendChild(barWrapper)
+  let barContainer = document.createElement('div')
+  barContainer.className = 'proj-pop-bar-container'
+  barWrapper.appendChild(barContainer)
+  let temp2 = document.createElement('p')
+  temp2.innerHTML = 'You can add Makes to this project later'
+  right.appendChild(temp2)
+
+  if (proj) {
+    wrapper.id = proj.id + '-proj-pop-wrapper'
+    label.htmlFor = proj.id + '-proj-pop-img-input'
+    input.id = proj.id + '-proj-pop-img-input'
+    image.src = '/profile/projects/retrieve-thumbnail/:' + proj.id
+    if (proj.bookmark) {
+      bookmark.className = 'fas fa-bookmark proj-pop-bookmark'
+    }
+    nameInput.value = proj.name
+    // render all makeblobs
+    // TO DO
+    notesInput.value = proj.notes
+  }
+}
+
+projects.hideProjPop = (status, condition, projID) => {
+  console.log(projID)
   // transition screens
-  document.getElementById('proj-card-wrapper').style.maxHeight = 'none'
-  document.getElementById('proj-pop-wrapper').style.maxHeight = '0'
+  document.getElementById('proj-card-wrapper').style.top = '0'
+  // not deleting
+  if (projID) {
+    document.getElementById(projID + '-proj-pop-wrapper').style.top = '100%'
+  }
   // notification
-  if (callback) {
-    projectNotif(callback, status)
-  }
-
-  // reset blobs
-  makeBlobContainer.innerHTML = ''
-  // reset bars
-  let children = document.getElementById('proj-pop-bar-container').children
-  for (var i = 0; i < children.length; i++) {
-    children[i].className = 'proj-pop-bar'
-    children[i].childNodes[1].className = 'far fa-check-circle'
+  if (status) {
+    projectNotif(status, condition)
   }
 }
 
-projects.showProjPop = (status, project = undefined) => {
-
-  console.log(status, project)
-  if (status === 'new') {
-    // create new project
-    document.getElementById('proj-pop-name').value = ''
-    document.getElementById('proj-pop-notes').value = ''
-    document.getElementById('proj-pop-bookmark').className = 'far fa-bookmark'
-    document.getElementById('proj-pop-delete').style.visibility = 'hidden'
-    // activeProjID = undefined
-  } else {
-    // edit existing project
-    document.getElementById('proj-pop-name').value = document.getElementById('proj-' + project).querySelector('.proj-name').innerHTML
-    document.getElementById('new-edit-proj-notes').value = document.getElementById('proj-' + project).querySelector('.proj-notes-content').innerHTML
-    document.getElementById('new-edit-proj-bookmark').className = document.getElementById('proj-' + project).querySelector('.fa-bookmark').className
-    document.getElementById('delete-proj').style.visibility = 'visible'
-    activeProjID = project
-  }
+projects.showProjPop = (projID) => {
   // transition screens
-  document.getElementById('proj-card-wrapper').style.maxHeight = '0'
-  document.getElementById('proj-pop-wrapper').style.maxHeight = 'none'
+  document.getElementById('proj-card-wrapper').style.top = '-100%'
+  if (projID) {
+    document.getElementById(projID + '-proj-pop-wrapper').style.top = '0'
+  } else {
+    document.getElementById('new-proj-pop-wrapper').style.top = '0'
+  }
 }
 
-projects.updateBookmark = (e, proj, bookmarkEl) => {
+projects.cancel = (el) => {
+  // transition screens
+  document.getElementById('proj-card-wrapper').style.top = '0'
+  el.parentElement.style.top = '100%'
+}
+
+projects.saveNew = async () => {
+  let wrapper = document.getElementById('new-proj-pop-wrapper')
+  let proj = new Object()
+  // TO DO: get thumbnail
+  proj.image = wrapper.querySelector('.proj-pop-img').src
+  proj.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas')
+  proj.makes = []
+  let children = wrapper.querySelector('.proj-pop-blob-container').children
+  for (var i = 0; i < children.length; i++) {
+    proj.updates.makes[i] = children[i].id.split('-')[1]
+    console.log(children[i].id.split('-')[1])
+  }
+  proj.name = wrapper.querySelector('.proj-pop-name').value
+  proj.notes = wrapper.querySelector('.proj-pop-notes').value
+
+  let callback
+  try {
+    callback = (await axios.post("/profile/customer/new/proj", proj))
+  } catch (error) {
+    console.log(error)
+  }
+
+  // update popup
+  wrapper.id = callback["data"]["content"]["id"] + '-proj-pop-wrapper'
+  // render project cards
+  if (callback["data"]["content"]["bookmark"]) {
+    projects.renderFavCard(callback["data"]["content"])
+  }
+  projects.renderSmallCard(callback["data"]["content"])
+  // transition screens
+  projects.hideProjPop(callback["data"]["status"], 'new', callback["data"]["content"]["id"])
+}
+
+projects.saveExisting = async (projID) => {
+  let wrapper = document.getElementById(projID + '-proj-pop-wrapper')
+  let proj = new Object()
+  proj.updates = new Object()
+
+  // post changes
+  proj.id = projID
+  // TO DO: post thumbnail
+  proj.updates.image = wrapper.querySelector('.proj-pop-img').src
+  proj.updates.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas')
+  proj.updates.makes = []
+  let children = wrapper.querySelector('.proj-pop-blob-container').children
+  for (var i = 0; i < children.length; i++) {
+    proj.updates.makes[i] = children[i].id.split('-')[1]
+    console.log(children[i].id.split('-')[1])
+  }
+  proj.updates.name = wrapper.querySelector('.proj-pop-name').value
+  proj.updates.notes = wrapper.querySelector('.proj-pop-notes').value
+  let callback
+  try {
+    callback = (await axios.post("/profile/customer/update/proj", proj))
+  } catch (error) {
+    console.log(error)
+  }
+
+  // update fav card
+  favCard = document.getElementById(projID + '-proj-fav')
+  console.log(favCard)
+  if (callback["data"]["content"]["bookmark"]) { // bookmarked
+    if (favCard) { // fav card already exists, modify
+      // TO DO: update thumbnail
+      favCard.querySelector('.proj-fav-img').src = callback["data"]["content"]["image"]
+      favCard.querySelector('.proj-fav-name').innerHTML = callback["data"]["content"]["name"]
+      let makesEl = favCard.querySelector('.proj-fav-makes')
+      makesEl.innerHTML = ''
+      callback["data"]["content"]["makes"].forEach(function (make, j) {
+        if (makesEl.innerHTML !== '') {
+          makesEl.innerHTML += ', '
+        }
+        makesEl.innerHTML += make
+      })
+      favCard.querySelector('.proj-fav-notes').innerHTML = callback["data"]["content"]["notes"]
+    } else { // fav card does not exist, create new
+      console.log(callback["data"])
+      projects.renderFavCard(callback["data"]["content"])
+    }
+  } else { // not bookmarked
+    if (favCard) { // fav card exists, delete
+      favCard.remove()
+    }
+  }
+
+  // update small card
+  smallCard = document.getElementById(projID + '-proj-small')
+  // TO DO: update thumbnail
+  smallCard.querySelector('.proj-small-img').src = callback["data"]["content"]["image"]
+  if (callback["data"]["content"]["bookmark"]) {
+    smallCard.querySelector('.fa-bookmark').className = 'fas fa-bookmark'
+  } else {
+    smallCard.querySelector('.fa-bookmark').className = 'far fa-bookmark'
+  }
+  smallCard.querySelector('.proj-small-name').children[0].innerHTML = callback["data"]["content"]["name"]
+
+  projects.hideProjPop(callback["data"]["status"], 'edit', projID)
+}
+
+projects.trash = async (projID) => {
+  let callback
+  try {
+    callback = (await axios.post("/profile/customer/delete/proj", {id: projID}))
+  } catch (error) {
+    return console.log(error)
+  }
+  console.log(callback)
+  document.getElementById(projID + '-proj-pop-wrapper').remove()
+  projects.hideProjPop(callback["data"]["status"], 'delete', null)
+}
+
+projects.updateBookmark = async (e, proj, bookmarkEl) => {
   e.stopPropagation()
   let modifiedProj = new Object()
   modifiedProj.updates = new Object()
@@ -337,14 +552,23 @@ projects.updateBookmark = (e, proj, bookmarkEl) => {
   modifiedProj.updates.bookmark = !proj.bookmark
   bookmarkEl.classList.toggle('fas')
   bookmarkEl.classList.toggle('far')
-  async function update() { // prevents unhandled promise rejection
-    try {
-      await axios.post("/profile/customer/update/proj", modifiedProj)
-    } catch (error) {
-      console.log(error)
-    }
+  document.getElementById(proj.id + '-proj-pop-wrapper').querySelector('.proj-pop-bookmark').classList.toggle('fas')
+  document.getElementById(proj.id + '-proj-pop-wrapper').querySelector('.proj-pop-bookmark').classList.toggle('far')
+  try {
+    await axios.post("/profile/customer/update/proj", modifiedProj)
+  } catch (error) {
+    console.log(error)
   }
-  console.log('hi')
+  if (bookmarkEl.classList.contains('fas')) {
+    projects.renderFavCard(proj)
+  } else {
+    document.getElementById(proj.id + '-proj-fav').remove()
+  }
+}
+
+projects.previewImage = (el, event) => {
+  console.log(el.parentElement)
+  el.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
 }
 
 /* ========================================================================================
@@ -353,20 +577,6 @@ END - PROJECTS
 
 var mq = window.matchMedia("(min-width: 850px)")
 var activeProjID = undefined
-
-let Project = class {
-  constructor(bookmark, makes = [], name, notes, image) {
-    this.bookmark = bookmark
-    if (makes.constructor === Array) {
-      this.makes = makes
-    } else {
-      this.makes = [makes]
-    }
-    this.name = name
-    this.notes = notes
-    this.image = image
-  }
-}
 
   // if (mq.matches) {
   //   // -- Horizontal scrolling --
@@ -404,83 +614,4 @@ let Project = class {
 
   // document.getElementById('new-edit-proj-btn').addEventListener('click', () => {
   //   showProjPop('new')
-  // })
-
-  // document.getElementById('delete-proj').addEventListener('click', async() => {
-  //   let callback
-  //   try {
-  //     callback = (await axios.post("/profile/customer/delete/proj", {id: activeProjID}))
-  //   } catch (error) {
-  //     return console.log(error)
-  //   }
-
-  //   document.getElementById('proj-' + activeProjID).remove()
-  //   hideProjPop(callback["data"]["status"], 'delete')
-  // })
-
-  // document.getElementById('save-proj').addEventListener('click', async() => {
-
-  //   if (activeProjID) {
-  //     let proj = new Object()
-  //     proj.updates = new Object()
-
-  //     // Update existing project
-  //     proj.id = activeProjID
-
-  //     proj.updates.bookmark = document.getElementById('new-edit-proj-bookmark').classList.contains('fas')
-
-  //     proj.updates.makes = []
-  //     let children = makeBlobContainer.children
-  //     for (var i = 0; i < children.length; i++) {
-  //       proj.updates.makes[i] = children[i].id.split('-')[2]
-  //     }
-
-  //     proj.updates.name = document.getElementById('new-edit-proj-name').value
-  //     proj.updates.notes = document.getElementById('new-edit-proj-notes').value
-
-  //     // TO DO: future
-  //     proj.updates.image = undefined
-
-  //     let callback
-  //     try {
-  //       callback = (await axios.post("/profile/customer/update/proj", proj))
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-
-  //     console.log(callback)
-
-  //     // Re-render project card
-  //     renderProjCard(false, proj.updates)
-  //     hideProjPop(callback["data"]["status"], 'edit')
-
-  //   } else {
-  //     // New project
-  //     let proj = new Project()
-
-  //     proj.bookmark = document.getElementById('new-edit-proj-bookmark').classList.contains('fas')
-
-  //     let children = makeBlobContainer.children
-  //     for (var i = 0; i < children.length; i++) {
-  //       proj.makes[i] = children[i].id.split('-')[2]
-  //     }
-
-  //     proj.name = document.getElementById('new-edit-proj-name').value
-  //     proj.notes = document.getElementById('new-edit-proj-notes').value
-
-  //     // TO DO: future
-  //     proj.image = undefined
-
-  //     let callback
-  //     try {
-  //       callback = (await axios.post("/profile/customer/new/proj", proj))
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-
-  //     console.log(callback)
-  //     // Render project card
-  //     renderProjCard(true, callback["data"]["content"])
-  //     hideProjPop(callback["data"]["status"], 'new')
-  //   }
   // })

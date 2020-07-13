@@ -58,9 +58,9 @@ profile.declareVariables = () => {
   profile.allDP = [
     document.getElementById('nav-dp'),
     document.getElementById('nav-user-in'),
-    document.getElementById('profile-backdrop')
+    document.getElementById('profile-backdrop'),
+    document.getElementById('nav-profile-img')
   ];
-  console.log(profile.allDP)
 }
 
 // @func  profile.setPage

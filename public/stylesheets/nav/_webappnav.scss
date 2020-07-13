@@ -565,19 +565,35 @@ nav {
       padding: 0.5em 1em;
       margin-right: 1em;
       width: 4em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.4em;
       i{
         font-size: 1.5em;
-        color:#C7C2D5;
+        color: #c7c2d5;
+        transition: color 0.2s ease-out;
       }
     }
-    &:hover{
-      color: #6F54D7;
+    &:hover {
+      i,
+      .modular-nav-title {
+        color: #6F54D7;
+      }
+      #nav-profile-img {
+        opacity: 1;
+      }
     }
     .modular-nav-title{
       font-family: $poppins;
       font-weight: 600;
       font-size: 0.9em;
       color: $light-3;
+      transition: color 0.2s ease-out;
+    }
+    #nav-profile-img {
+      opacity: 0.7;
+      transition: opacity 0.2s ease-out;
     }
   }
 
@@ -611,6 +627,9 @@ nav {
     }
     .modular-nav-title{
       color: $dark-2;
+    }
+    #nav-profile-img {
+      opacity: 1;
     }
   }
 

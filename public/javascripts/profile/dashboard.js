@@ -121,8 +121,6 @@ dashboard.populateDetails = (customerInfo) => {
   dashboard.nameEl.innerHTML = nameTemp
   dashboard.locationEl.innerHTML = location
   dashboard.bioEl.innerHTML = bioTemp
-
-
 }
 
 // @func  dashboard.saveDetails

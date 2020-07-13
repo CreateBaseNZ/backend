@@ -204,13 +204,13 @@ function projectNotif(callback, status) {
   newDiv.className = 'project-notif'
   let messageWrap = document.createElement('div')
   newDiv.appendChild(messageWrap).className = 'msg-wrap'
-  if (callback === 'success') {
+  if (callback === 'succeeded') {
     if (status === 'new') {
       messageWrap.appendChild(document.createElement('i')).className = 'far fa-check-circle'
-      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your new project has been saved.'
+      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your new project has been added.'
     } else if (status === 'edit') {
       messageWrap.appendChild(document.createElement('i')).className = 'far fa-edit'
-      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your newest edits have been saved.'
+      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your changes have been saved.'
     } else {
       messageWrap.appendChild(document.createElement('i')).className = 'far fa-trash-alt'
       messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your project has been deleted.'
