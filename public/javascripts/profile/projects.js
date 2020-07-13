@@ -81,6 +81,7 @@ projects.capFirstLetter = (string) => {
 }
 
 projects.renderFavCard = (proj) => {
+  console.log(proj)
   // main card
   let cardEl = document.createElement('div')
   cardEl.id = proj.id + '-proj-fav'
@@ -491,13 +492,14 @@ projects.saveExisting = async (projID) => {
     console.log(error)
   }
 
+  console.log(callback)
+
   // update fav card
   favCard = document.getElementById(projID + '-proj-fav')
-  console.log(favCard)
   if (callback["data"]["content"]["bookmark"]) { // bookmarked
     if (favCard) { // fav card already exists, modify
       // TO DO: update thumbnail
-      favCard.querySelector('.proj-fav-img').src = callback["data"]["content"]["image"]
+      favCard.querySelector('.proj-fav-img').src = wrapper.querySelector('.proj-pop-img').src
       favCard.querySelector('.proj-fav-name').innerHTML = callback["data"]["content"]["name"]
       let makesEl = favCard.querySelector('.proj-fav-makes')
       makesEl.innerHTML = ''
@@ -521,7 +523,7 @@ projects.saveExisting = async (projID) => {
   // update small card
   smallCard = document.getElementById(projID + '-proj-small')
   // TO DO: update thumbnail
-  smallCard.querySelector('.proj-small-img').src = callback["data"]["content"]["image"]
+  smallCard.querySelector('.proj-small-img').src = wrapper.querySelector('.proj-pop-img').src
   if (callback["data"]["content"]["bookmark"]) {
     smallCard.querySelector('.fa-bookmark').className = 'fas fa-bookmark'
   } else {
@@ -541,6 +543,10 @@ projects.trash = async (projID) => {
   }
   console.log(callback)
   document.getElementById(projID + '-proj-pop-wrapper').remove()
+  document.getElementById(projID + '-proj-small').remove()
+  if (document.getElementById(projID + '-proj-fav')) {
+    document.getElementById(projID + '-proj-fav').remove()
+  }
   projects.hideProjPop(callback["data"]["status"], 'delete', null)
 }
 

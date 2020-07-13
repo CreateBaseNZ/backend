@@ -258,7 +258,7 @@
 }
 
 #proj-header {
-  margin-top: 2.5em;
+  margin-top: 2em;
   margin-left: 8vw;
   padding: 0 1em;
   
@@ -274,7 +274,7 @@
       content: '';
       position: absolute;
       margin-top: 1em;
-      width: 6em;
+      width: 4.5em;
       border-bottom: 0.1em solid $dark-2;
       bottom: 0;
     }
@@ -312,7 +312,7 @@
     color: $light-3;
     font-family: $montserrat;
     font-weight: 600;
-    margin-top: 2.5em;
+    margin-top: 2em;
     margin-left: 0.5em;
     margin-bottom: 0;
   }
@@ -325,6 +325,7 @@
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
+    height: 25em;
 
     &::-webkit-scrollbar {
       height: 5px;
@@ -445,6 +446,7 @@
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
+    height: 15em;
 
     &::-webkit-scrollbar {
       height: 5px;
