@@ -11,11 +11,15 @@ let orders = {
   formatDate: undefined,
   // ORDERS
   selectOrder: undefined,
+  deselectOrder: undefined,
   fetchOrders: undefined,
   populateOrders: undefined,
   addOrder: undefined,
   addSummary: undefined,
   addDetailed: undefined,
+  createTracking: undefined,
+  createSummary: undefined,
+  createComments: undefined,
   addMake: undefined,
   // COMMENT
   addComment: undefined,
@@ -75,11 +79,16 @@ ORDERS
 orders.selectOrder = (orderId) => {
   if (orders.selectedOrder === orderId) return;
   // UPDATE CSS
-  if (orders.selectedOrder) {
-    document.querySelector(`#order-summary-${orders.selectedOrder}`).classList.remove("active-item");
-  }
+  if (orders.selectedOrder) orders.deselectOrder(orders.selectedOrder);
   document.querySelector(`#order-summary-${orderId}`).classList.add("active-item");
   orders.selectedOrder = orderId; // UPDATE SELECTED ORDER
+}
+
+// @func  orders.deselectOrder
+// @desc  
+orders.deselectOrder = (orderId) => {
+  document.querySelector(`#order-summary-${orderId}`).classList.remove("active-item");
+  orders.selectedOrder = undefined; // UPDATE SELECTED ORDER
 }
 
 // @func  orders.fetchOrders
@@ -127,9 +136,8 @@ orders.populateOrders = (fetchedOrders = []) => {
 orders.addOrder = (order) => {
   // CREATE SUMMARY
   orders.addSummary(order);
-  // TO DO .....
   // CREATE EXPANDED
-  // TO DO .....
+  orders.addDetailed(order);
   // POPULATE MAKES
   for (let i = 0; i < order.makes.checkout.length; i++) {
     const make = order.makes.checkout[i];
@@ -231,6 +239,128 @@ orders.addSummary = (order) => {
   `;
   // INSERT
   document.querySelector("#order-container").insertAdjacentHTML("beforeend", summary);
+}
+
+// @func  orders.addDetailed
+// @desc  
+orders.addDetailed = (order) => {
+  // DIVIDER
+  const divider = `<div class="divider-container"><div class="divider"></div></div>`;
+  // TRACKING CONTAINER
+  const containerOne = orders.createTracking(order);
+  // DETAILED
+  const detailed = `
+  <div id="order-detail-${order._id}" class="order-detail-wrap">
+    <p class="orderdetails" id="order-details-title">Order Details</p>
+    <div class="order-detail-container">
+      <div class="exit-icon"><img src="/public/images/user-x.png" alt="X"></div>
+      ${containerOne + divider}
+    </div>
+  </div>
+  `;
+  // INSERT
+
+}
+
+// @func  orders.createTracking
+// @desc  
+orders.createTracking = (order) => {
+  // ORDER HEADING
+  const heading = `<p id="order-details-name">Order #${order.number}</p>`;
+  // TRACKING DETAILS
+  let statusTitle = `Package shipped`; // TEMPORARY
+  let statusDetail = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo
+  hendrerit leo vitae vestibulum.`; // TEMPORARY
+  const statusContainer = `
+  <div class="status-detail-container">
+    <p class="status-detail-title">Tracking Details</p>
+    <div class="status-container"><p class="status-text">${statusTitle}</p></div>
+    <div class="status-description-container"><p class="status-description">${statusDetail}</p></div>
+  </div>
+  `;
+  // TRACKING CONTAINER
+  const container = `
+  <div class="order-tracking-container">${heading + statusContainer}</div>
+  `;
+  return container;
+}
+
+// @func  orders.createSummary
+// @desc  
+orders.createSummary = (order) => {
+  // INFO
+  let status;
+  switch (order.status) {
+    case "checkedout": status = "Validating your Payment"; break;
+    case "validated": status = "Building your Order"; break;
+    case "built": status = "Packaging your Order"; break;
+    case "reviewed": status = "You have Reviewed This Order"; break;
+    case "completed": status = "Your Order is now Complete"; break;
+    case "cancelled": status = "Your Order has been Cancelled"; break;
+    default: break;
+  }
+  if (order.shipping.method === "pickup") {
+    switch (order.status) {
+      case "shipped": status = "Your Order is Ready for Pickup"; break;
+      case "arrived": status = "Your Order has been Picked Up"; break;
+      default: break;
+    }
+  } else {
+    switch (order.status) {
+      case "shipped": status = "Shipping your Order"; break;
+      case "arrived": status = "Your Order has Arrived"; break;
+      default: break;
+    }
+  }
+  let address;
+  switch (order.shipping.address.option) {
+    case "new":
+      address = `${order.shipping.address.new.city}, ${order.shipping.address.new.country}`;
+      break;
+    case "saved":
+      address = `${order.shipping.address.saved.city}, ${order.shipping.address.saved.country}`;
+      break;
+    default: break;
+  }
+  const info = `
+  <div class="order-info-wrap">
+    <div class="transit-container order-info">
+      <i class="fas fa-truck"></i>
+      <p class="order-info-text">${status}</p>
+    </div>
+    <div class="payment-container order-info">
+      <i class="fa fa-calendar-o"></i>
+      <p class="order-info-text">${orders.formatDate(order.date[order.status])}</p>
+    </div>
+    <div class="location-container order-info">
+      <i class="fas fa-map-marker-alt"></i>
+      <p class="order-info-text">${address}</p>
+    </div>
+    <div class="change-location">Change location</div>
+  </div>
+  `;
+  // MAKE CONTAINERS
+  const makes = `
+  <div id="order-makes-${order._id}" class="order-item-list-container"></div>
+  `;
+  // PRICE CONTAINER
+  const price = `
+  <div class="price-breakdown-container">
+    <div class="divider-container">
+      <div class="divider-subtotal"></div>
+    </div>
+  </div>
+  `;
+  // SUMMARY CONTAINER
+  const container = `
+  <div class="order-summary">
+    <p class="order-summary-title">Order Summary</p>
+    <div id="order-detail-content-container">
+      ${info + makes}
+    </div>
+  </div>
+  `;
+  return container;
 }
 
 // @func  orders.addMake

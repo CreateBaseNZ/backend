@@ -111,34 +111,35 @@ router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifie
   // FETCH THE PROJECT TO BE UPDATED
   let project;
   try {
-    project = await this.findOne({ _id: projectId, account });
+    project = await Project.findOne({ _id: projectId, account });
   } catch (error) {
-    return reject(error);
+    return res.send(error);
   }
   // VALIDATE THE PROJECT
-  if (!project) return reject("no project found");
+  if (!project) return res.send({ status: "failed", content: "no project found" });
   // UPDATE THE PROJECT
   try {
     await project.update(updates);
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    return res.send(error);
   }
   // Update the Thumbnail (if provided)
   if (req.file) {
     try {
       await project.updateThumbnail(req.file.id);
     } catch (error) {
-      return res.send({ status: "failed", content: error });
+      return res.send(error);
     }
   }
   // SAVE UPDATES
+  let savedProject;
   try {
-    await project.save();
+    savedProject = await project.save();
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    return res.send({ status: "error", content: error });
   }
   // SEND SUCCESS MESSAGE TO CLIENT
-  return res.send({ status: "success", content: message });
+  return res.send({ status: "succeeded", content: savedProject });
 })
 
 router.post("/profile/customer/delete/proj", verifiedAccess, async (req, res) => {
