@@ -188,7 +188,7 @@ router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
   try {
     customer = await Customer.findOne({ accountId });
   } catch (error) {
-    res.send({ status: "failed", data: error });
+    res.send({ status: "failed", content: error });
     return;
   }
   // Check if Bio is Empty (TEMPORARY)
@@ -205,7 +205,7 @@ router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
     address: customer.address
   };
   // Send Success Request
-  res.send({ status: "succeeded", data: filteredCustomer });
+  res.send({ status: "succeeded", content: filteredCustomer });
 });
 
 // @route     Get /profile/dashboard/fetch-details
@@ -251,16 +251,16 @@ router.post("/profile/customer/update", verifiedAccess, async (req, res) => {
   try {
     customer = await Customer.findOne({ accountId });
   } catch (error) {
-    return res.send({ status: "error", data: error });
+    return res.send({ status: "error", content: error });
   }
   // Update Customer Details
   let updatedCustomer;
   try {
     updatedCustomer = await customer.update(details);
   } catch (error) {
-    return res.send({ status: "failed", data: error });
+    return res.send({ status: "failed", content: error });
   }
-  return res.send({ status: "succeeded", data: "customer details updated" });
+  return res.send({ status: "succeeded", content: "customer details updated" });
 });
 
 /*=========================================================================================
