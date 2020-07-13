@@ -902,7 +902,7 @@ const checkAddressValidity = (address) => {
     return { status: "failed", content: "no country" };
   }
   // SUCCESS RESPONSE
-  return { status: "success", content: "valid address" };
+  return { status: "succeeded", content: "valid address" };
 };
 
 const price = value => (Math.round(Number(value) * 100)) / 100;

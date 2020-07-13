@@ -97,7 +97,7 @@ router.post("/settings/change-email", verifiedAccess, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // RETURN SUCCESS
-  return res.send({ status: "success", content: "email changed" });
+  return res.send({ status: "succeeded", content: "email changed" });
 });
 
 // @route     POST /settings/change-password
@@ -132,7 +132,7 @@ router.post("/settings/change-password", verifiedAccess, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // RETURN SUCCESS
-  return res.send({ status: "success", content: "password changed" });
+  return res.send({ status: "succeeded", content: "password changed" });
 });
 
 // @route     POST /settings/update
@@ -179,7 +179,7 @@ router.post("/settings/update", verifiedAccess, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // RETURN SUCCESS
-  return res.send({ status: "success", content: "update successful" });
+  return res.send({ status: "succeeded", content: "update successful" });
 });
 
 // @route     GET /settings/fetch-customer-details
@@ -211,7 +211,7 @@ router.get("/settings/fetch-customer-details", verifiedAccess, async (req, res) 
   }
   details.balance = balance;
   // RETURN SUCCESS
-  return res.send({ status: "success", content: details });
+  return res.send({ status: "succeeded", content: details });
 })
 
 // @route     GET /settings/delete-account
@@ -244,7 +244,7 @@ router.post("/settings/delete-account", verifiedAccess, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // RETURN SUCCESS
-  return res.send({ status: "success", content: "account deleted" });
+  return res.send({ status: "succeeded", content: "account deleted" });
 })
 
 /*=========================================================================================

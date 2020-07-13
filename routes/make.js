@@ -160,7 +160,7 @@ router.get("/profile/customer/fetch/makes", verifiedContent, async (req, res) =>
     return;
   }
   // RETURN ALL MAKES TO CLIENT
-  res.send({ status: "success", content: makes });
+  res.send({ status: "succeeded", content: makes });
   return;
 })
 

@@ -100,7 +100,7 @@ router.get("/orders/fetch-orders", verifiedContent, async (req, res) => {
     return res.send(error);
   }
   // SUCCESS HANDLER
-  return res.send({ status: "success", content: orders });
+  return res.send({ status: "succeeded", content: orders });
 });
 
 // @route     POST /orders/post-comment
@@ -139,7 +139,7 @@ router.post("/orders/post-comment", verifiedContent, async (req, res) => {
   // ADD INFORMATION TO COMMENT OBJECT
   comment.author = { name: customer.displayName, picture: customer.picture };
   // SUCCESS HANDLER
-  return res.send({ status: "success", content: { comment } });
+  return res.send({ status: "succeeded", content: { comment } });
 });
 
 /* ----------------------------------------------------------------------------------------

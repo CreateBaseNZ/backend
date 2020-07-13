@@ -199,7 +199,7 @@ router.post("/checkout/update", verifiedAccess, async (req, res) => {
   }
   // VALIDATION
   const validity = order.validateAll();
-  return res.send({ status: "success", content: { order, amount, validity } });
+  return res.send({ status: "succeeded", content: { order, amount, validity } });
 });
 
 // @route GET /checkout/validate
@@ -226,7 +226,7 @@ router.get("/checkout/validate", verifiedAccess, async (req, res) => {
   }
   // VALIDATION
   const validity = order.validateAll();
-  return res.send({ status: "success", content: validity });
+  return res.send({ status: "succeeded", content: validity });
 });
 
 // @route     POST /checkout/order/delete/print
@@ -275,7 +275,7 @@ router.post("/checkout/order/delete/print", verifiedAccess, async (req, res) => 
   // Validate the checkout
   const validity = order.validateAll();
   // Send back a success status
-  return res.send({ status: "success", content: validity });
+  return res.send({ status: "succeeded", content: validity });
 });
 
 // @route     GET /checkout/order-amount
@@ -308,7 +308,7 @@ router.get("/checkout/order-amount", verifiedAccess, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // Send the amount object to the client
-  return res.send({ status: "success", content: amount });
+  return res.send({ status: "succeeded", content: amount });
 })
 
 // @route     GET /checkout/bank-transfer
@@ -341,7 +341,7 @@ router.get("/checkout/bank-transfer", verifiedDataAccess, async (req, res) => {
     return res.send({ status: "error", content: error });
   }
   // Return a success message
-  return res.send({ status: "success", content: "checkout successful" });
+  return res.send({ status: "succeeded", content: "checkout successful" });
 });
 
 // @route     POST /checkout/card-payment
@@ -404,7 +404,7 @@ router.post("/checkout/card-payment", verifiedDataAccess, async (req, res) => {
     return res.send({ status: "error", content: error });
   }
   // Return a success message
-  return res.send({ status: "success", content: "checkout successful" });
+  return res.send({ status: "succeeded", content: "checkout successful" });
 })
 
 // @route     GET /orders/print/update
@@ -454,7 +454,7 @@ router.post("/checkout/make/update", verifiedAccess, async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // RETURN SUCCESS
-  return res.send({ status: "success", content: amount });
+  return res.send({ status: "succeeded", content: amount });
 });
 
 // @route     POST /checkout/discount/add
@@ -562,7 +562,7 @@ router.get("/checkout/payment-intent", async (req, res) => {
   }
   // RETURN THE CLIENT SECRET TO THE FRONT END
   const clientSecret = paymentIntent["client_secret"];
-  return res.send({ status: "success", content: clientSecret });
+  return res.send({ status: "succeeded", content: clientSecret });
 });
 
 /*=========================================================================================

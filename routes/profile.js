@@ -173,7 +173,7 @@ router.post("/profile/customer/update/picture", upload.single("picture"), restri
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
-  return res.send({ status: "success", content: "profile picture updated" });
+  return res.send({ status: "succeeded", content: "profile picture updated" });
 }
 );
 
@@ -205,7 +205,7 @@ router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
     address: customer.address
   };
   // Send Success Request
-  res.send({ status: "success", data: filteredCustomer });
+  res.send({ status: "succeeded", data: filteredCustomer });
 });
 
 // @route     Get /profile/dashboard/fetch-details
@@ -260,7 +260,7 @@ router.post("/profile/customer/update", verifiedAccess, async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", data: error });
   }
-  return res.send({ status: "success", data: "customer details updated" });
+  return res.send({ status: "succeeded", data: "customer details updated" });
 });
 
 /*=========================================================================================

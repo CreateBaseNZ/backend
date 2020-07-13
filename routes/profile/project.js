@@ -74,7 +74,7 @@ router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedAc
     return;
   }
   // RETURN SUCCESS MESSAGE TO CLIENT
-  res.send({ status: "success", content: message });
+  res.send({ status: "succeeded", content: message });
   return;
 })
 
@@ -95,7 +95,7 @@ router.get("/profile/customer/fetch/all_proj", verifiedAccess, async (req, res) 
     return;
   }
   // RETURN ALL PROJECTS TO CLIENT
-  res.send({ status: "success", content: projects });
+  res.send({ status: "succeeded", content: projects });
   return;
 })
 
@@ -163,7 +163,7 @@ router.post("/profile/customer/delete/proj", verifiedAccess, async (req, res) =>
     return;
   }
   // SEND SUCCESS MESSAGE TO CLIENT
-  res.send({ status: "success", content: "project deleted" });
+  res.send({ status: "succeeded", content: "project deleted" });
   return;
 })
 

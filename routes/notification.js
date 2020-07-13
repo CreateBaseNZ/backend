@@ -67,7 +67,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   if (mail) {
-    return res.send({ status: "success", content: "already subscribed" });
+    return res.send({ status: "succeeded", content: "already subscribed" });
   }
   // Check if the user is registered
   let account;
@@ -106,7 +106,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
       return res.send({ status: "failed", content: error });
     }
 
-    return res.send({ status: "success", content: "subscribed" });
+    return res.send({ status: "succeeded", content: "subscribed" });
   }
   // If user is not registered and not subscribed
   const newMail = new Mail({ email });
@@ -117,7 +117,7 @@ router.post("/subscribe/mailing-list", async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
 
-  return res.send({ status: "success", content: "subscribed" });
+  return res.send({ status: "succeeded", content: "subscribed" });
 });
 
 // @route     POST /unsubscribe/mailing-list
@@ -150,7 +150,7 @@ router.get("/unsubscribe/mailing-list/:email", async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // Send Success Status
-  // res.send({ status: "success", content: "unsubscribed successfully" });
+  // res.send({ status: "succeeded", content: "unsubscribed successfully" });
   res.redirect("/login");
 });
 
@@ -184,7 +184,7 @@ router.post("/unsubscribe/mailing-list", async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   // Send Success Status
-  res.send({ status: "success", content: "unsubscribed successfully" });
+  res.send({ status: "succeeded", content: "unsubscribed successfully" });
 });
 
 // @route     POST /send-email
@@ -231,7 +231,7 @@ router.post("/send-email", async (req, res) => {
     return res.send({ status: "failed", content: error });
   }
   //
-  return res.send({ status: "success", content: "Email sent successfully" });
+  return res.send({ status: "succeeded", content: "Email sent successfully" });
 })
 
 

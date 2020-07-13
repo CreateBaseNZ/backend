@@ -103,7 +103,7 @@ router.post("/login/validate", async (req, res) => {
   }
   if (message === "incorrect password") return res.send({ status: "failed", content: { email: "", password: "Sorry, the password you've entered is incorrect." } });
   // SUCCESS HANDLER
-  return res.send({ status: "success", content: { email: "", password: "" } });
+  return res.send({ status: "succeeded", content: { email: "", password: "" } });
 });
 
 // @route     Get /login/customer
@@ -264,7 +264,7 @@ router.post("/account/login/validate", async (req, res) => {
     }
   }
   // Return Validation Outcome to Client
-  return res.send({ status: "success", content: validation });
+  return res.send({ status: "succeeded", content: validation });
 });
 
 // @route     POST /account/signup/validate
@@ -293,7 +293,7 @@ router.post("/account/signup/validate", async (req, res) => {
     }
   }
   // RETURN SUCCESS
-  return res.send({ status: "success", content: validation });
+  return res.send({ status: "succeeded", content: validation });
 });
 
 /*=========================================================================================

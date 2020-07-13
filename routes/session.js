@@ -30,7 +30,7 @@ ROUTES
 router.get("/session/create", async (req, res) => {
   // Check if the user is logged in
   if (req.isAuthenticated()) {
-    return res.send({ status: "success", content: "a user is logged in" });
+    return res.send({ status: "succeeded", content: "a user is logged in" });
   }
   // Retrieve Session ID
   const sessionId = req.sessionID;
@@ -43,7 +43,7 @@ router.get("/session/create", async (req, res) => {
     return;
   }
   // Send Success Message to the Client
-  res.send({ status: "success", content });
+  res.send({ status: "succeeded", content });
   return;
 });
 
@@ -53,7 +53,7 @@ router.get("/session/create", async (req, res) => {
 router.get("/session/save", async (req, res) => {
   // Check if the user is logged in
   if (req.isAuthenticated()) {
-    return res.send({ status: "success", content: "a user is logged in" });
+    return res.send({ status: "succeeded", content: "a user is logged in" });
   }
   // Retrieve Session ID
   const sessionId = req.sessionID;
@@ -76,7 +76,7 @@ router.get("/session/save", async (req, res) => {
   // Set the Cookie Expiry Date
   req.session.cookie.expires = new Date(Date.now() + 1000 * 60 * 60 * 365);
   // Send Success Message to the Client
-  res.send({ status: "success", content: "session saved" });
+  res.send({ status: "succeeded", content: "session saved" });
   return;
 });
 
@@ -86,7 +86,7 @@ router.get("/session/save", async (req, res) => {
 router.get("/session/unsave", async (req, res) => {
   // Check if the user is logged in
   if (req.isAuthenticated()) {
-    return res.send({ status: "success", content: "a user is logged in" });
+    return res.send({ status: "succeeded", content: "a user is logged in" });
   }
   // Retrieve Session ID
   const sessionId = req.sessionID;
@@ -109,7 +109,7 @@ router.get("/session/unsave", async (req, res) => {
   // Set the Cookie Expiry Date
   req.session.cookie.expires = false;
   // Send Success Message to the Client
-  res.send({ status: "success", content: "session unsaved" });
+  res.send({ status: "succeeded", content: "session unsaved" });
   return;
 });
 
@@ -119,7 +119,7 @@ router.get("/session/unsave", async (req, res) => {
 router.get("/session/status", async (req, res) => {
   // Check if the user is logged in
   if (req.isAuthenticated()) {
-    return res.send({ status: "success", content: "a user is logged in" });
+    return res.send({ status: "succeeded", content: "a user is logged in" });
   }
   // Retrieve Session ID
   const sessionId = req.sessionID;
@@ -137,7 +137,7 @@ router.get("/session/status", async (req, res) => {
     req.session.cookie.expires = new Date(Date.now() + 1000 * 60 * 60 * 365);
   }
   // Send Success Message to the Client
-  res.send({ status: "success", content: session.status });
+  res.send({ status: "succeeded", content: session.status });
   return;
 });
 
