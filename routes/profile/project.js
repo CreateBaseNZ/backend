@@ -138,8 +138,18 @@ router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifie
   } catch (error) {
     return res.send({ status: "error", content: error });
   }
+  // FORMAT
+  const mappedProject = {
+    id: savedProject._id,
+    name: savedProject.name,
+    thumbnail: savedProject.thumbnail,
+    bookmark: savedProject.bookmark,
+    date: savedProject.date,
+    notes: savedProject.notes,
+    makes: savedProject.makes
+  };
   // SEND SUCCESS MESSAGE TO CLIENT
-  return res.send({ status: "succeeded", content: savedProject });
+  return res.send({ status: "succeeded", content: mappedProject });
 })
 
 router.post("/profile/customer/delete/proj", verifiedAccess, async (req, res) => {
