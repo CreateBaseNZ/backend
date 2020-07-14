@@ -7,6 +7,7 @@ let projects = {
   // FUNCTIONS
   initialise: undefined,
   declareVariables: undefined,
+  eventListeners: undefined,
   loadUserData: undefined,
   capFirstLetter: undefined,
   renderFavCard: undefined,
@@ -51,9 +52,7 @@ projects.initialise = async () => {
       projects.renderProjPop(project)
     })
   }
-  document.getElementById('proj-add').addEventListener('click', () => {
-    projects.showProjPop()
-  })
+  projects.eventListeners()
   projects.renderProjPop(null)
 }
 
@@ -61,6 +60,34 @@ projects.initialise = async () => {
 // @desc  
 projects.declareVariables = () => {
   swiper = new Swiper('.swiper-container');
+}
+
+projects.eventListeners = () => {
+  const mq = window.matchMedia("(min-width: 850px)")
+  if (mq.matches) {
+    let fav = document.getElementById('proj-fav-container')
+    fav.addEventListener('wheel', function(e) {
+      if (e.deltaY > 0) {
+        fav.scrollLeft += 100
+      } else {
+        fav.scrollLeft -= 100
+      }
+      e.preventDefault()
+    })
+    let all = document.getElementById('proj-all-container')
+    all.addEventListener('wheel', function(e) {
+      if (e.deltaY > 0) {
+        all.scrollLeft += 100
+      } else {
+        all.scrollLeft -= 100
+      }
+      e.preventDefault()
+    })
+  }
+
+  document.getElementById('proj-add').addEventListener('click', () => {
+    projects.showProjPop()
+  })
 }
 
 projects.loadUserData = async () => {
@@ -301,12 +328,15 @@ projects.renderProjPop = (proj) => {
   let label = document.createElement('label')
   label.htmlFor = 'new-proj-pop-img-input'
   left.appendChild(label)
+  let form = document.createElement('form')
+  form.id = 'proj-img-form'
+  left.appendChild(left)
   let input = document.createElement('input')
   input.type = 'file'
   input.name = 'picture'
   input.id = 'new-proj-pop-img-input'
   input.setAttribute('onchange', 'projects.previewImage(this, event);')
-  left.appendChild(input)
+  form.appendChild(input)
   // image
   let image = document.createElement('img')
   image.className = 'proj-pop-img'
@@ -617,20 +647,7 @@ projects.collectExistingProject = () => { }
 END - PROJECTS
 ======================================================================================== */
 
-var mq = window.matchMedia("(min-width: 850px)")
-var activeProjID = undefined
 
-  // if (mq.matches) {
-  //   // -- Horizontal scrolling --
-  //   projScroll.addEventListener('wheel', function(e) {
-  //     if (e.deltaY > 0) {
-  //       projScroll.scrollLeft += 100
-  //     } else {
-  //       projScroll.scrollLeft -= 100
-  //     }
-  //     e.preventDefault()
-  //   })
-  // }
 
 
 

@@ -174,9 +174,10 @@
           <div class="proj-pop-container">
             <div class="proj-pop-left">
               <label for="profile-upload">Click to edit</label>
-              <input type="file" name="picture" id="proj-upload" onchange="loadFile(event)"></input>
+              <form id="proj-img-form">
+                <input type="file" name="picture" onchange="loadFile(event)"></input>
+              </form>
               <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" class="proj-small-img"></img>
-
               <div class="proj-pop-img-overlay"></div>
               <div class="proj-pop-img-edit">Click to edit</div>
             </div>
