@@ -429,7 +429,7 @@ projects.renderProjPop = (proj) => {
     form.id = proj.id + '-proj-img-form'
     label.htmlFor = proj.id + '-proj-pop-img-input'
     input.id = proj.id + '-proj-pop-img-input'
-    image.src = '/profile/projects/retrieve-thumbnail:' + proj.id
+    image.src = '/profile/projects/retrieve-thumbnail/' + proj.id
     if (proj.bookmark) {
       bookmark.className = 'fas fa-bookmark proj-pop-bookmark'
     }
@@ -498,11 +498,16 @@ projects.saveNew = async () => {
   console.log(callback);
   // update popup
   wrapper.id = callback["data"]["content"]["id"] + '-proj-pop-wrapper'
+  wrapper.querySelector('#new-proj-img-form').id = callback["data"]["content"]["id"] + '-proj-img-form'
+  wrapper.querySelector('label').htmlFor = callback["data"]["content"]["id"] + '-proj-pop-img-input'
+  wrapper.querySelector('#new-proj-pop-img-input').id = callback["data"]["content"]["id"] + '-proj-pop-img-input'
+  wrapper.querySelector('.proj-pop-img').src = '/profile/projects/retrieve-thumbnail/' + callback["data"]["content"]["id"]
   // render project cards
   if (callback["data"]["content"]["bookmark"]) {
     projects.renderFavCard(callback["data"]["content"])
   }
   projects.renderSmallCard(callback["data"]["content"])
+  projects.renderProjPop(null)
   // transition screens
   projects.hideProjPop(callback["data"]["status"], 'new', callback["data"]["content"]["id"])
 }
@@ -569,7 +574,8 @@ projects.saveExisting = async (projID) => {
     smallCard.querySelector('.fa-bookmark').className = 'far fa-bookmark'
   }
   smallCard.querySelector('.proj-small-name').children[0].innerHTML = callback["data"]["content"]["name"]
-
+  
+  projects.renderProjPop(null)
   projects.hideProjPop(callback["data"]["status"], 'edit', projID)
 }
 
