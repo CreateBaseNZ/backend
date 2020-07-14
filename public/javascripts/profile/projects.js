@@ -35,6 +35,7 @@ FUNCTIONS - PROJECTS
 // @func  projects.initialise
 // @desc  
 projects.initialise = async () => {
+  console.log('initialise')
   // DECLARE VARIABLES
   projects.declareVariables()
   const [allProjects, allMakes] = (await projects.loadUserData())
@@ -73,6 +74,8 @@ projects.loadUserData = async () => {
   } catch (error) {
     console.log(error)
   }
+  console.log(allProjects)
+  console.log(allMakes)
   return [allProjects, allMakes]
 }
 
@@ -92,7 +95,7 @@ projects.renderFavCard = (proj) => {
   let imgEl = document.createElement('img')
   cardEl.appendChild(imgEl).className = 'proj-fav-img'
   // TO DO: project thumbnail
-  imgEl.src = '/profile/projects/retrieve-thumbnail/:' + proj.id
+  imgEl.src = '/profile/projects/retrieve-thumbnail/' + proj.id
   // overlay
   let overlayEl = document.createElement('div')
   cardEl.appendChild(overlayEl).className = 'proj-fav-overlay'
@@ -127,7 +130,7 @@ projects.updateFavCard = (proj) => {
   cardEl.querySelector('.proj-fav-name').innerHTML = proj.name
 
   // TO DO: thumbnail
-  cardEl.querySelector('.proj-fav-img').src = '/profile/projects/retrieve-thumbnail/:' + proj.id
+  cardEl.querySelector('.proj-fav-img').src = '/profile/projects/retrieve-thumbnail/' + proj.thumbnail
 
   // makes
   let makesEl = cardEl.querySelector('.proj-fav-makes')
@@ -143,6 +146,7 @@ projects.updateFavCard = (proj) => {
 }
 
 projects.renderSmallCard = (proj) => {
+  console.log(proj)
   // main card
   let cardEl = document.createElement('div')
   cardEl.id = proj.id + '-proj-small'
@@ -163,7 +167,7 @@ projects.renderSmallCard = (proj) => {
   let imgEl = document.createElement('img')
   cardEl.appendChild(imgEl).className = 'proj-small-img'
   // TO DO: thumbnail
-  imgEl.src = '/profile/projects/retrieve-thumbnail/:' + proj.id
+  imgEl.src = '/profile/projects/retrieve-thumbnail/' + proj.id
   // name
   let nameEl = document.createElement('div')
   cardEl.appendChild(nameEl).className = 'proj-small-name'
@@ -188,7 +192,7 @@ projects.updateSmallCard = (proj) => {
   cardEl.querySelector('.proj-small-name').innerHTML = proj.name
 
   // TO DO
-  cardEl.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/:' + proj.id
+  cardEl.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/' + proj.id
 }
 
 projects.renderMakeBars = (allMakes, projID) => {
@@ -304,8 +308,7 @@ projects.renderProjPop = (proj) => {
   // image
   let image = document.createElement('img')
   image.className = 'proj-pop-img'
-  // TO DO: no image
-  // image.src = '/profile/projects/retrieve-thumbnail/:' + proj.id
+  image.src = '/public/images/profile/project-thumbnail.jpeg'
   image.alt = 'Project Thumbnail'
   left.appendChild(image)
   let imgOverlay = document.createElement('div')
@@ -393,7 +396,7 @@ projects.renderProjPop = (proj) => {
     wrapper.id = proj.id + '-proj-pop-wrapper'
     label.htmlFor = proj.id + '-proj-pop-img-input'
     input.id = proj.id + '-proj-pop-img-input'
-    image.src = '/profile/projects/retrieve-thumbnail/:' + proj.id
+    image.src = '/profile/projects/retrieve-thumbnail:' + proj.id
     if (proj.bookmark) {
       bookmark.className = 'fas fa-bookmark proj-pop-bookmark'
     }
@@ -498,7 +501,7 @@ projects.saveExisting = async (projID) => {
   if (callback["data"]["content"]["bookmark"]) { // bookmarked
     if (favCard) { // fav card already exists, modify
       // TO DO: update thumbnail
-      favCard.querySelector('.proj-fav-img').src = wrapper.querySelector('.proj-pop-img').src
+      // favCard.querySelector('.proj-fav-img').src = wrapper.querySelector('.proj-pop-img').src
       favCard.querySelector('.proj-fav-name').innerHTML = callback["data"]["content"]["name"]
       let makesEl = favCard.querySelector('.proj-fav-makes')
       makesEl.innerHTML = ''
@@ -522,7 +525,7 @@ projects.saveExisting = async (projID) => {
   // update small card
   smallCard = document.getElementById(projID + '-proj-small')
   // TO DO: update thumbnail
-  smallCard.querySelector('.proj-small-img').src = wrapper.querySelector('.proj-pop-img').src
+  // smallCard.querySelector('.proj-small-img').src = wrapper.querySelector('.proj-pop-img').src
   if (callback["data"]["content"]["bookmark"]) {
     smallCard.querySelector('.fa-bookmark').className = 'fas fa-bookmark'
   } else {
