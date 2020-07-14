@@ -545,6 +545,7 @@ projects.saveExisting = async (projID) => {
         makesEl.innerHTML += make
       })
       favCard.querySelector('.proj-fav-notes').innerHTML = callback["data"]["content"]["notes"]
+      favCard.querySelector('.proj-fav-img').src = '/profile/projects/retrieve-thumbnail/' + projID + '?' + new Date().getTime()
     } else { // fav card does not exist, create new
       projects.renderFavCard(callback["data"]["content"])
     }
@@ -562,6 +563,9 @@ projects.saveExisting = async (projID) => {
     smallCard.querySelector('.fa-bookmark').className = 'far fa-bookmark'
   }
   smallCard.querySelector('.proj-small-name').children[0].innerHTML = callback["data"]["content"]["name"]
+  console.log(smallCard.querySelector('.proj-small-img').src)
+  smallCard.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/' + projID + '?' + new Date().getTime()
+  console.log(smallCard.querySelector('.proj-small-img').src)
 
   projects.renderProjPop(null)
   projects.hideProjPop(callback["data"]["status"], 'edit', projID)
