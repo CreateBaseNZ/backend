@@ -40,7 +40,7 @@ projects.initialise = async () => {
   const [allProjects, allMakes] = (await projects.loadUserData())
   // render all project cards
   if (allProjects) {
-    allProjects.forEach(function(project, i) {
+    allProjects.forEach(function (project, i) {
       if (project.bookmark) {
         projects.renderFavCard(project)
       }
@@ -135,7 +135,7 @@ projects.updateFavCard = (proj) => {
   proj.makes.forEach(function (make, j) {
     if (makesEl.innerHTML !== '') {
       makesEl.innerHTML += ', '
-    } 
+    }
     makesEl.innerHTML += make
   })
   // notes
@@ -195,7 +195,7 @@ projects.renderMakeBars = (allMakes, projID) => {
   container = document.getElementById('proj-pop-bar-container')
 
   // Render all make labels
-  allMakes.forEach(function(make, i) {
+  allMakes.forEach(function (make, i) {
     // container
     // main bar
     let el = document.createElement('div')
@@ -212,23 +212,23 @@ projects.renderMakeBars = (allMakes, projID) => {
     tooltipEl.className = 'proj-pop-bar-tooltip'
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'M: ' + make.material.toUpperCase()
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'Q: ' + capitaliseFirstLetter(make.quality)
-    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'S: ' + 
-    capitaliseFirstLetter(make.strength)
-    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'C: ' + 
-    capitaliseFirstLetter(make.colour)
+    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'S: ' +
+      capitaliseFirstLetter(make.strength)
+    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'C: ' +
+      capitaliseFirstLetter(make.colour)
     tooltipWrapper.appendChild(tooltipEl)
     el.appendChild(tooltipWrapper)
-    
+
     // Event listener for toggling label
     el.addEventListener('click', () => {
       projects.toggleMakeBars(el, make)
     })
 
-    
+
     el.addEventListener('mouseover', () => {
-      tooltipWrapper.style.top = el.offsetTop - container.scrollTop - tooltipWrapper.offsetHeight/2 + el.offsetHeight/2 + 'px'
+      tooltipWrapper.style.top = el.offsetTop - container.scrollTop - tooltipWrapper.offsetHeight / 2 + el.offsetHeight / 2 + 'px'
     })
-  
+
     // render
     container.appendChild(el)
   })
@@ -471,7 +471,6 @@ projects.saveExisting = async (projID) => {
   let wrapper = document.getElementById(projID + '-proj-pop-wrapper')
   let proj = new Object()
   proj.updates = new Object()
-
   // post changes
   proj.id = projID
   // TO DO: post thumbnail
@@ -537,7 +536,7 @@ projects.saveExisting = async (projID) => {
 projects.trash = async (projID) => {
   let callback
   try {
-    callback = (await axios.post("/profile/customer/delete/proj", {id: projID}))
+    callback = (await axios.post("/profile/customer/delete/proj", { id: projID }))
   } catch (error) {
     return console.log(error)
   }

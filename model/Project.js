@@ -18,7 +18,7 @@ CREATE PROJECT MODEL
 const ProjectSchema = new Schema({
   account: { type: Schema.Types.ObjectId, required: true },
   name: { type: String, default: "" },
-  thumbnail: { type: Schema.Types.ObjectId, undefined },
+  thumbnail: { type: Schema.Types.ObjectId, default: undefined },
   bookmark: { type: Boolean, default: false },
   makes: { type: [Schema.Types.ObjectId], default: [] },
   date: {

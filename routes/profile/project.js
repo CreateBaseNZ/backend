@@ -106,6 +106,7 @@ ROUTES
 =========================================================================================*/
 
 router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedContent, async (req, res) => {
+  console.log("new-project");
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const name = req.body.name;
@@ -134,6 +135,7 @@ router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedCo
 })
 
 router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res) => {
+  console.log("fetch-projects");
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   // VALIDATE REQUIRED VARIABLES
@@ -155,6 +157,7 @@ router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res)
 })
 
 router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifiedContent, async (req, res) => {
+  console.log("update-project");
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const projectId = mongoose.Types.ObjectId(req.body.id);
@@ -208,6 +211,7 @@ router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifie
 })
 
 router.post("/profile/customer/delete/proj", verifiedContent, async (req, res) => {
+  console.log("delete-project");
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const project = mongoose.Types.ObjectId(req.body.id);
@@ -236,13 +240,25 @@ router.post("/profile/customer/delete/proj", verifiedContent, async (req, res) =
 // @desc
 // @access    VERIFIED - CONTENT
 router.get("/profile/projects/retrieve-thumbnail/:id", verifiedContent, async (req, res) => {
+  console.log("retrieve-thumbnail");
   // DECLARE VARIABLES
-  const fileId = mongoose.Types.ObjectId(req.params.id);
+  const projectId = mongoose.Types.ObjectId(req.params.id);
+  // FETCH PROJECT
+  let project;
+  try {
+    project = await Project.findOne({ _id: projectId });
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
+  if (!project) return res.send({ status: "failed", content: "no project found" });
+  // SET QUERY
+  let query = { filename: "project-thumbnail.jpeg" };
+  if (project.thumbnail) query = { _id: project.thumbnail };
   // FETCH THE THUMBNAIL
   try {
-    file = await GridFS.files.findOne({ _id: fileId });
+    file = await GridFS.files.findOne(query);
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    return res.send({ status: "error", content: error });
   }
   // SUCCESS HANDLER
   let readstream = GridFS.createReadStream(file.filename);
