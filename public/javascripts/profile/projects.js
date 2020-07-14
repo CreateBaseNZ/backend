@@ -38,7 +38,6 @@ FUNCTIONS - PROJECTS
 // @func  projects.initialise
 // @desc  
 projects.initialise = async () => {
-  console.log('initialise')
   // DECLARE VARIABLES
   projects.declareVariables()
   const [allProjects, allMakes] = (await projects.loadUserData())
@@ -103,8 +102,6 @@ projects.loadUserData = async () => {
   } catch (error) {
     console.log(error)
   }
-  console.log(allProjects)
-  console.log(allMakes)
   return [allProjects, allMakes]
 }
 
@@ -113,7 +110,6 @@ projects.capFirstLetter = (string) => {
 }
 
 projects.renderFavCard = (proj) => {
-  console.log(proj)
   // main card
   let cardEl = document.createElement('div')
   cardEl.id = proj.id + '-proj-fav'
@@ -175,7 +171,6 @@ projects.updateFavCard = (proj) => {
 }
 
 projects.renderSmallCard = (proj) => {
-  console.log(proj)
   // main card
   let cardEl = document.createElement('div')
   cardEl.id = proj.id + '-proj-small'
@@ -399,7 +394,6 @@ projects.renderProjPop = (proj) => {
   save.className = 'grad-btn proj-pop-save'
   save.innerHTML = 'Save'
   save.addEventListener('click', (e) => {
-    console.log(e.target.parentElement.parentElement.parentElement.parentElement.id)
     if (e.target.parentElement.parentElement.parentElement.parentElement.id === 'new-proj-pop-wrapper') {
       projects.saveNew()
     } else {
@@ -441,7 +435,6 @@ projects.renderProjPop = (proj) => {
 }
 
 projects.hideProjPop = (status, condition, projID) => {
-  console.log(projID)
   // transition screens
   document.getElementById('proj-card-wrapper').style.top = '0'
   // not deleting
@@ -495,7 +488,6 @@ projects.saveNew = async () => {
   } catch (error) {
     console.log(error)
   }
-  console.log(callback);
   // update popup
   wrapper.id = callback["data"]["content"]["id"] + '-proj-pop-wrapper'
   wrapper.querySelector('#new-proj-img-form').id = callback["data"]["content"]["id"] + '-proj-img-form'
@@ -536,8 +528,6 @@ projects.saveExisting = async (projID) => {
     console.log(error)
   }
 
-  console.log(callback)
-
   // update fav card
   favCard = document.getElementById(projID + '-proj-fav')
   if (callback["data"]["content"]["bookmark"]) { // bookmarked
@@ -555,7 +545,6 @@ projects.saveExisting = async (projID) => {
       })
       favCard.querySelector('.proj-fav-notes').innerHTML = callback["data"]["content"]["notes"]
     } else { // fav card does not exist, create new
-      console.log(callback["data"])
       projects.renderFavCard(callback["data"]["content"])
     }
   } else { // not bookmarked
@@ -586,7 +575,6 @@ projects.trash = async (projID) => {
   } catch (error) {
     return console.log(error)
   }
-  console.log(callback)
   document.getElementById(projID + '-proj-pop-wrapper').remove()
   document.getElementById(projID + '-proj-small').remove()
   if (document.getElementById(projID + '-proj-fav')) {
@@ -618,7 +606,6 @@ projects.updateBookmark = async (e, proj, bookmarkEl) => {
 }
 
 projects.previewImage = (el, event) => {
-  console.log(el.parentElement)
   el.parentElement.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
 }
 
@@ -642,7 +629,6 @@ projects.collectNewProject = () => {
     input.append("makes", proj.makes);
     input.append("name", proj.name);
     input.append("notes", proj.notes);
-    console.log(input.get("makes"));
   } else {
     input = proj;
   }
