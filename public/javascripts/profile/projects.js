@@ -495,7 +495,7 @@ projects.saveNew = async () => {
   } catch (error) {
     console.log(error)
   }
-
+  console.log(callback);
   // update popup
   wrapper.id = callback["data"]["content"]["id"] + '-proj-pop-wrapper'
   // render project cards
@@ -628,7 +628,6 @@ projects.collectNewProject = () => {
   }
   proj.name = wrapper.querySelector('.proj-pop-name').value;
   proj.notes = wrapper.querySelector('.proj-pop-notes').value;
-  console.log(proj);
   let input;
   const file = document.querySelector("#new-proj-pop-img-input");
   if (file.files.length !== 0) {
@@ -637,7 +636,7 @@ projects.collectNewProject = () => {
     input.append("makes", proj.makes);
     input.append("name", proj.name);
     input.append("notes", proj.notes);
-    console.log(input.get("picture"));
+    console.log(input.get("makes"));
   } else {
     input = proj;
   }

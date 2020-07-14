@@ -113,7 +113,8 @@ router.post("/profile/customer/new/proj", upload.single("picture"), verifiedCont
   let thumbnail;
   if (req.file) thumbnail = req.file.id;
   const bookmark = req.body.bookmark;
-  const makes = req.body.makes;
+  let makes = [];
+  if (req.body.makes) makes = req.body.makes;
   const notes = req.body.notes;
   const options = { name, bookmark, makes, thumbnail, notes };
   // VALIDATE REQUIRED VARIABLES
