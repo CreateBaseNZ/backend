@@ -12,6 +12,13 @@ VARIABLES
 const Schema = mongoose.Schema;
 
 /*=========================================================================================
+EXTERNAL MODELS
+=========================================================================================*/
+
+const File = require("./File.js");
+const Chunk = require("./Chunk.js");
+
+/*=========================================================================================
 CREATE PROJECT MODEL
 =========================================================================================*/
 
@@ -111,10 +118,12 @@ UPDATE
 ProjectSchema.methods.updateThumbnail = function (thumbnail) {
   return new Promise(async (resolve, reject) => {
     // Delete Current Thumbnail
-    try {
-      await this.deleteThumbnail();
-    } catch (error) {
-      return reject(error);
+    if (this.thumbnail) {
+      try {
+        await this.deleteThumbnail();
+      } catch (error) {
+        return reject(error);
+      }
     }
     // Update Thumbnail
     this.thumbnail = thumbnail;
@@ -126,17 +135,14 @@ ProjectSchema.methods.update = function (updates) {
   return new Promise(async (resolve, reject) => {
     // UPDATE THE PROJECT
     for (const property in updates) {
-      if (property === "thumbnail") {
-        if (updates[property] === undefined) {
-          try {
-            await this.deleteThumbnail();
-          } catch (error) {
-            return reject(error);
-          }
+      if (property === "thumbnail" && this[property] !== undefined) {
+        try {
+          await this.deleteThumbnail();
+        } catch (error) {
+          return reject(error);
         }
-      } else {
-        this[property] = updates[property];
       }
+      this[property] = updates[property];
     }
     // Update Modified Date
     const date = moment().tz("Pacific/Auckland").format();
@@ -154,9 +160,14 @@ ProjectSchema.methods.deleteThumbnail = function () {
   return new Promise(async (resolve, reject) => {
     if (this.thumbnail) {
       try {
-        await GridFS.remove({ _id: this.thumbnail, root: "fs" });
+        await File.deleteOne({ _id: this.thumbnail });
       } catch (error) {
-        return reject(error);
+        return reject({ status: "error", content: error });
+      }
+      try {
+        await Chunk.deleteMany({ files_id: this.thumbnail });
+      } catch (error) {
+        return reject({ status: "error", content: error });
       }
     }
     this.thumbnail = undefined;

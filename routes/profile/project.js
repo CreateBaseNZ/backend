@@ -158,24 +158,23 @@ router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res)
 })
 
 router.post("/profile/customer/update/proj", upload.single("picture"), verifiedContent, async (req, res) => {
-  console.log("update-project");
   // INITIALISE AND DECLARE VARIABLES
-  const account = req.user._id;
+  const account = req.user;
   const projectId = mongoose.Types.ObjectId(req.body.id);
   const updates = JSON.parse(req.body.updates);
+  const file = req.file;
   // VALIDATE REQUIRED VARIABLES
-  if (!account) return res.send({ status: "failed", content: "invalid user ID" });
-  if (!projectId) return res.send({ status: "failed", content: "invalid project ID" });
+  if (!projectId) return res.send({ status: "failed", content: "Project ID is required" });
   // UPDATE THE PROJECT
   // FETCH THE PROJECT TO BE UPDATED
   let project;
   try {
-    project = await Project.findOne({ _id: projectId, account });
+    project = await Project.findOne({ _id: projectId, account: account._id });
   } catch (error) {
-    return res.send(error);
+    return res.send({ status: "error", content: error });
   }
   // VALIDATE THE PROJECT
-  if (!project) return res.send({ status: "failed", content: "no project found" });
+  if (!project) return res.send({ status: "failed", content: "No project found" });
   // UPDATE THE PROJECT
   try {
     await project.update(updates);
@@ -183,9 +182,9 @@ router.post("/profile/customer/update/proj", upload.single("picture"), verifiedC
     return res.send(error);
   }
   // Update the Thumbnail (if provided)
-  if (req.file) {
+  if (file) {
     try {
-      await project.updateThumbnail(req.file.id);
+      await project.updateThumbnail(file.id);
     } catch (error) {
       return res.send(error);
     }
@@ -212,36 +211,25 @@ router.post("/profile/customer/update/proj", upload.single("picture"), verifiedC
 })
 
 router.post("/profile/customer/delete/proj", verifiedContent, async (req, res) => {
-  console.log("delete-project");
   // INITIALISE AND DECLARE VARIABLES
-  const account = req.user._id;
-  const project = mongoose.Types.ObjectId(req.body.id);
+  const projectId = mongoose.Types.ObjectId(req.body.id);
+  const account = req.user;
   // VALIDATE REQUIRED VARIABLES
-  if (!account) {
-    res.send({ status: "failed", content: "invalid user ID" });
-    return;
-  }
-  if (!project) {
-    res.send({ status: "failed", content: "invalid project ID" });
-    return;
-  }
+  if (!projectId) return res.send({ status: "failed", content: "invalid project ID" });
   // DELETE THE PROJECT
   try {
-    await Project.deleteOne({ _id: project });
+    await Project.deleteOne({ _id: projectId, account: account._id });
   } catch (error) {
-    res.send({ status: "failed", content: "invalid project ID" });
-    return;
+    return res.send({ status: "error", content: error });
   }
   // SEND SUCCESS MESSAGE TO CLIENT
-  res.send({ status: "succeeded", content: "project deleted" });
-  return;
+  return res.send({ status: "succeeded", content: "project deleted" });
 });
 
 // @route     GET /profile/projects/retrieve-thumbnail/:id
 // @desc
 // @access    VERIFIED - CONTENT
 router.get("/profile/projects/retrieve-thumbnail/:id", verifiedContent, async (req, res) => {
-  console.log("retrieve-thumbnail");
   // DECLARE VARIABLES
   const projectId = mongoose.Types.ObjectId(req.params.id);
   // FETCH PROJECT
