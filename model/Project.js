@@ -35,6 +35,7 @@ STATIC
 ProjectSchema.statics.create = function (account, options) {
   return new Promise(async (resolve, reject) => {
     // INITIALISE NEW PROJECT INSTANCE
+    console.log(options)
     let project = new this();
     // SET PROPERTY VALUES
     // Account
@@ -48,6 +49,7 @@ ProjectSchema.statics.create = function (account, options) {
     project.date.creation = date;
     project.date.modified = date;
     // SAVE THE NEW PROJECT INSTANCE
+    console.log(project);
     let savedProject;
     try {
       savedProject = await project.save();

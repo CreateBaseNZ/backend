@@ -105,8 +105,8 @@ mongoose.createConnection(
 ROUTES
 =========================================================================================*/
 
-router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedContent, async (req, res) => {
-  console.log("new-project");
+router.post("/profile/customer/new/proj", upload.single("picture"), verifiedContent, async (req, res) => {
+  console.log(req.file);
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const name = req.body.name;
@@ -115,7 +115,7 @@ router.post("/profile/customer/new/proj", upload.single("thumbnail"), verifiedCo
   const bookmark = req.body.bookmark;
   const makes = req.body.makes;
   const notes = req.body.notes;
-  const options = { name, bookmark, makes, notes };
+  const options = { name, bookmark, makes, thumbnail, notes };
   // VALIDATE REQUIRED VARIABLES
   if (!account) {
     res.send({ status: "failed", content: "invalid user ID" });

@@ -66,7 +66,7 @@ projects.eventListeners = () => {
   const mq = window.matchMedia("(min-width: 850px)")
   if (mq.matches) {
     let fav = document.getElementById('proj-fav-container')
-    fav.addEventListener('wheel', function(e) {
+    fav.addEventListener('wheel', function (e) {
       if (e.deltaY > 0) {
         fav.scrollLeft += 100
       } else {
@@ -75,7 +75,7 @@ projects.eventListeners = () => {
       e.preventDefault()
     })
     let all = document.getElementById('proj-all-container')
-    all.addEventListener('wheel', function(e) {
+    all.addEventListener('wheel', function (e) {
       if (e.deltaY > 0) {
         all.scrollLeft += 100
       } else {
@@ -330,7 +330,7 @@ projects.renderProjPop = (proj) => {
   left.appendChild(label)
   let form = document.createElement('form')
   form.id = 'proj-img-form'
-  left.appendChild(left)
+  left.appendChild(form);
   let input = document.createElement('input')
   input.type = 'file'
   input.name = 'picture'
@@ -470,8 +470,9 @@ projects.cancel = (el) => {
 }
 
 projects.saveNew = async () => {
-  /*
+
   let wrapper = document.getElementById('new-proj-pop-wrapper')
+  /*
   let proj = new Object()
   // TO DO: get thumbnail
   // proj.image = wrapper.querySelector('.proj-pop-img').src
@@ -611,7 +612,7 @@ projects.updateBookmark = async (e, proj, bookmarkEl) => {
 
 projects.previewImage = (el, event) => {
   console.log(el.parentElement)
-  el.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
+  el.parentElement.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
 }
 
 projects.collectNewProject = () => {
@@ -621,23 +622,25 @@ projects.collectNewProject = () => {
   proj.makes = [];
   let children = wrapper.querySelector('.proj-pop-blob-container').children;
   for (var i = 0; i < children.length; i++) {
-    proj.updates.makes[i] = children[i].id.split('-')[1];
+    proj.makes[i] = children[i].id.split('-')[1];
     console.log(children[i].id.split('-')[1]);
   }
   proj.name = wrapper.querySelector('.proj-pop-name').value;
   proj.notes = wrapper.querySelector('.proj-pop-notes').value;
-
+  console.log(proj);
   let input;
   const file = document.querySelector("#new-proj-pop-img-input");
   if (file.files.length !== 0) {
-    input = new FormData(document.querySelector("#proj-img-form"));
+    input = new FormData(document.querySelector("#new-proj-img-form"));
     input.append("bookmark", proj.bookmark);
-    input.append("makes", proj.updates.makes);
+    input.append("makes", proj.makes);
     input.append("name", proj.name);
     input.append("notes", proj.notes);
+    console.log(input.get("picture"));
   } else {
     input = proj;
   }
+
   return input;
 }
 
