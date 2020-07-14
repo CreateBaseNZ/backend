@@ -25,7 +25,9 @@ let projects = {
   saveExisting: undefined,
   trash: undefined,
   updateBookmark: undefined,
-  previewImage: undefined
+  previewImage: undefined,
+  collectNewProject: undefined,
+  collectExistingProject: undefined
 }
 
 /* ========================================================================================
@@ -438,10 +440,11 @@ projects.cancel = (el) => {
 }
 
 projects.saveNew = async () => {
+  /*
   let wrapper = document.getElementById('new-proj-pop-wrapper')
   let proj = new Object()
   // TO DO: get thumbnail
-  proj.image = wrapper.querySelector('.proj-pop-img').src
+  // proj.image = wrapper.querySelector('.proj-pop-img').src
   proj.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas')
   proj.makes = []
   let children = wrapper.querySelector('.proj-pop-blob-container').children
@@ -451,8 +454,10 @@ projects.saveNew = async () => {
   }
   proj.name = wrapper.querySelector('.proj-pop-name').value
   proj.notes = wrapper.querySelector('.proj-pop-notes').value
+  */
+  const proj = projects.collectNewProject();
 
-  let callback
+  let callback;
   try {
     callback = (await axios.post("/profile/customer/new/proj", proj))
   } catch (error) {
@@ -578,6 +583,35 @@ projects.previewImage = (el, event) => {
   console.log(el.parentElement)
   el.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
 }
+
+projects.collectNewProject = () => {
+  let wrapper = document.getElementById('new-proj-pop-wrapper');
+  let proj = new Object();
+  proj.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas');
+  proj.makes = [];
+  let children = wrapper.querySelector('.proj-pop-blob-container').children;
+  for (var i = 0; i < children.length; i++) {
+    proj.updates.makes[i] = children[i].id.split('-')[1];
+    console.log(children[i].id.split('-')[1]);
+  }
+  proj.name = wrapper.querySelector('.proj-pop-name').value;
+  proj.notes = wrapper.querySelector('.proj-pop-notes').value;
+
+  let input;
+  const file = document.querySelector("#new-proj-pop-img-input");
+  if (file.files.length !== 0) {
+    input = new FormData(document.querySelector("#proj-img-form"));
+    input.append("bookmark", proj.bookmark);
+    input.append("makes", proj.updates.makes);
+    input.append("name", proj.name);
+    input.append("notes", proj.notes);
+  } else {
+    input = proj;
+  }
+  return input;
+}
+
+projects.collectExistingProject = () => { }
 
 /* ========================================================================================
 END - PROJECTS
