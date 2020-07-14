@@ -29,15 +29,55 @@ const ProjectSchema = new Schema({
   bookmark: { type: Boolean, default: false },
   makes: { type: [Schema.Types.ObjectId], default: [] },
   date: {
-    creation: { type: String, required: true },
-    modified: { type: String, required: true }
+    creation: { type: String, default: "" },
+    modified: { type: String, default: "" }
   },
   notes: { type: String, default: "" }
 });
 
 /*=========================================================================================
+MIDDLEWARE
+=========================================================================================*/
+
+ProjectSchema.pre("save", async function (next) {
+  const date = moment().tz("Pacific/Auckland").format();
+  // update the date modified property
+  if (this.isModified()) this.date.modified = date;
+  return next();
+});
+
+/*=========================================================================================
 STATIC
 =========================================================================================*/
+
+// @FUNC  build
+// @TYPE  STATICS
+// @DESC
+ProjectSchema.statics.build = function (object = {}, save = true) {
+  return new Promise(async (resolve, reject) => {
+    // CREATE THE PROJECT INSTANCE
+    let project = new this(object);
+    // SET PROPERTIES
+    const date = moment().tz("Pacific/Auckland").format();
+    project.date.creation = date;
+    // SAVE PROJECT
+    if (save) {
+      try {
+        project = await project.save();
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
+    }
+    // FILTER PROJECT
+    let filteredProject = {
+      id: project._id, name: project.name, thumbnail: project.thumbnail,
+      bookmark: project.bookmark, date: project.date, makes: project.makes,
+      notes: project.notes
+    };
+    // SUCCESS HANDLER
+    return resolve(filteredProject);
+  });
+}
 
 ProjectSchema.statics.create = function (account, options) {
   return new Promise(async (resolve, reject) => {

@@ -106,44 +106,30 @@ ROUTES
 =========================================================================================*/
 
 router.post("/profile/customer/new/proj", upload.single("picture"), verifiedContent, async (req, res) => {
-  console.log(req.file);
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
-  const name = req.body.name;
+  const project = JSON.parse(req.body.project);
+  const name = project.name;
   let thumbnail;
   if (req.file) thumbnail = req.file.id;
-  const bookmark = req.body.bookmark;
-  let makes = [];
-  if (req.body.makes) makes = req.body.makes;
-  const notes = req.body.notes;
-  const options = { name, bookmark, makes, thumbnail, notes };
-  // VALIDATE REQUIRED VARIABLES
-  if (!account) {
-    res.send({ status: "failed", content: "invalid user ID" });
-    return;
-  }
+  const bookmark = project.bookmark;
+  const makes = project.makes;
+  const notes = project.notes;
+  const newProject = { account, name, thumbnail, bookmark, makes, notes };
   // CREATE THE PROJECT
-  let message;
+  let savedProject;
   try {
-    message = await Project.create(account, options);
+    savedProject = await Project.build(newProject);
   } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
+    return res.send(error);
   }
   // RETURN SUCCESS MESSAGE TO CLIENT
-  res.send({ status: "succeeded", content: message });
-  return;
+  return res.send({ status: "succeeded", content: savedProject });
 })
 
 router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res) => {
-  console.log("fetch-projects");
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
-  // VALIDATE REQUIRED VARIABLES
-  if (!account) {
-    res.send({ status: "failed", content: "invalid user ID" });
-    return;
-  }
   // RETRIEVE ALL PROJECTS
   let projects;
   try {

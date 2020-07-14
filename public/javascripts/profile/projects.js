@@ -608,7 +608,7 @@ projects.previewImage = (el, event) => {
   el.parentElement.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
 }
 
-projects.collectNewProject = () => {
+/*projects.collectNewProject = () => {
   let wrapper = document.getElementById('new-proj-pop-wrapper');
   let proj = new Object();
   proj.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas');
@@ -633,31 +633,58 @@ projects.collectNewProject = () => {
   }
 
   return input;
+}*/
+
+projects.collectNewProject = () => {
+  const wrapper = document.getElementById('new-proj-pop-wrapper');
+  // CONSTRUCT INPUT OBJECT
+  let project = new Object();
+  project.name = wrapper.querySelector('.proj-pop-name').value;
+  project.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas');
+  project.notes = wrapper.querySelector('.proj-pop-notes').value;
+  // Property: Makes
+  project.makes = [];
+  let children = wrapper.querySelector('.proj-pop-blob-container').children;
+  for (var i = 0; i < children.length; i++) project.makes[i] = children[i].id.split('-')[1];
+  // input object
+  let input;
+  const file = document.querySelector("#new-proj-pop-img-input");
+  if (file.files.length !== 0) {
+    input = new FormData(document.querySelector("#new-proj-img-form"));
+  } else {
+    input = new FormData();
+  }
+  input.append("project", JSON.stringify(project));
+  // SUCCESS HANDLER
+  return input;
 }
 
 projects.collectExistingProject = (projID) => {
-  let wrapper = document.getElementById(projID + '-proj-pop-wrapper');
-  let proj = new Object();
-  proj.updates = new Object();
-  // post changes
-  proj.id = projID;
-  proj.updates.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas');
-  proj.updates.makes = [];
+  let wrapper = document.getElementById(projID + "-proj-pop-wrapper");
+  // CONSTRUCT OBJECT
+  let project = new Object();
+  project.updates = new Object();
+  // Project ID for identifier
+  project.id = projID;
+  // Project Updates
+  project.updates.name = wrapper.querySelector('.proj-pop-name').value;
+  project.updates.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas');
+  project.updates.notes = wrapper.querySelector('.proj-pop-notes').value;
+  // Property: Makes
+  project.updates.makes = [];
   let children = wrapper.querySelector('.proj-pop-blob-container').children;
-  for (var i = 0; i < children.length; i++) {
-    proj.updates.makes[i] = children[i].id.split('-')[1];
-    console.log(children[i].id.split('-')[1]);
-  }
-  proj.updates.name = wrapper.querySelector('.proj-pop-name').value;
-  proj.updates.notes = wrapper.querySelector('.proj-pop-notes').value;
+  for (var i = 0; i < children.length; i++) project.updates.makes[i] = children[i].id.split('-')[1];
+  // input object
+  let input;
   const file = document.getElementById(projID + "-proj-pop-img-input");
   if (file.files.length !== 0) {
     input = new FormData(document.getElementById(projID + "-proj-img-form"));
-    input.append("updates", JSON.stringify(proj.updates));
-    input.append("id", proj.id);
   } else {
-    input = proj;
+    input = new FormData();
   }
+  input.append("updates", JSON.stringify(project.updates));
+  input.append("id", project.id);
+  // SUCCESS HANDLER
   return input;
 }
 
