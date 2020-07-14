@@ -157,12 +157,12 @@ router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res)
   return;
 })
 
-router.post("/profile/customer/update/proj", upload.single("thumbnail"), verifiedContent, async (req, res) => {
+router.post("/profile/customer/update/proj", upload.single("picture"), verifiedContent, async (req, res) => {
   console.log("update-project");
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
   const projectId = mongoose.Types.ObjectId(req.body.id);
-  const updates = req.body.updates;
+  const updates = JSON.parse(req.body.updates);
   // VALIDATE REQUIRED VARIABLES
   if (!account) return res.send({ status: "failed", content: "invalid user ID" });
   if (!projectId) return res.send({ status: "failed", content: "invalid project ID" });

@@ -154,7 +154,7 @@ ProjectSchema.methods.deleteThumbnail = function () {
   return new Promise(async (resolve, reject) => {
     if (this.thumbnail) {
       try {
-        await GridFS.remove({ _id: customer.picture, root: "fs" });
+        await GridFS.remove({ _id: this.thumbnail, root: "fs" });
       } catch (error) {
         return reject(error);
       }

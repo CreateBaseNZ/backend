@@ -513,6 +513,7 @@ projects.saveNew = async () => {
 }
 
 projects.saveExisting = async (projID) => {
+  /*
   let wrapper = document.getElementById(projID + '-proj-pop-wrapper')
   let proj = new Object()
   proj.updates = new Object()
@@ -529,7 +530,9 @@ projects.saveExisting = async (projID) => {
   }
   proj.updates.name = wrapper.querySelector('.proj-pop-name').value
   proj.updates.notes = wrapper.querySelector('.proj-pop-notes').value
-  let callback
+  */
+  const proj = projects.collectExistingProject(projID);
+  let callback;
   try {
     callback = (await axios.post("/profile/customer/update/proj", proj))
   } catch (error) {
@@ -542,8 +545,6 @@ projects.saveExisting = async (projID) => {
   favCard = document.getElementById(projID + '-proj-fav')
   if (callback["data"]["content"]["bookmark"]) { // bookmarked
     if (favCard) { // fav card already exists, modify
-      // TO DO: update thumbnail
-      // favCard.querySelector('.proj-fav-img').src = wrapper.querySelector('.proj-pop-img').src
       favCard.querySelector('.proj-fav-name').innerHTML = callback["data"]["content"]["name"]
       let makesEl = favCard.querySelector('.proj-fav-makes')
       makesEl.innerHTML = ''
@@ -566,15 +567,13 @@ projects.saveExisting = async (projID) => {
 
   // update small card
   smallCard = document.getElementById(projID + '-proj-small')
-  // TO DO: update thumbnail
-  // smallCard.querySelector('.proj-small-img').src = wrapper.querySelector('.proj-pop-img').src
   if (callback["data"]["content"]["bookmark"]) {
     smallCard.querySelector('.fa-bookmark').className = 'fas fa-bookmark'
   } else {
     smallCard.querySelector('.fa-bookmark').className = 'far fa-bookmark'
   }
   smallCard.querySelector('.proj-small-name').children[0].innerHTML = callback["data"]["content"]["name"]
-  
+
   projects.renderProjPop(null)
   projects.hideProjPop(callback["data"]["status"], 'edit', projID)
 }
@@ -650,7 +649,31 @@ projects.collectNewProject = () => {
   return input;
 }
 
-projects.collectExistingProject = () => { }
+projects.collectExistingProject = (projID) => {
+  let wrapper = document.getElementById(projID + '-proj-pop-wrapper');
+  let proj = new Object();
+  proj.updates = new Object();
+  // post changes
+  proj.id = projID;
+  proj.updates.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas');
+  proj.updates.makes = [];
+  let children = wrapper.querySelector('.proj-pop-blob-container').children;
+  for (var i = 0; i < children.length; i++) {
+    proj.updates.makes[i] = children[i].id.split('-')[1];
+    console.log(children[i].id.split('-')[1]);
+  }
+  proj.updates.name = wrapper.querySelector('.proj-pop-name').value;
+  proj.updates.notes = wrapper.querySelector('.proj-pop-notes').value;
+  const file = document.getElementById(projID + "-proj-pop-img-input");
+  if (file.files.length !== 0) {
+    input = new FormData(document.getElementById(projID + "-proj-img-form"));
+    input.append("updates", JSON.stringify(proj.updates));
+    input.append("id", proj.id);
+  } else {
+    input = proj;
+  }
+  return input;
+}
 
 /* ========================================================================================
 END - PROJECTS
