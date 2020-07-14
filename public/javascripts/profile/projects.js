@@ -507,6 +507,7 @@ projects.saveNew = async () => {
     projects.renderFavCard(callback["data"]["content"])
   }
   projects.renderSmallCard(callback["data"]["content"])
+  projects.renderProjPop(null)
   // transition screens
   projects.hideProjPop(callback["data"]["status"], 'new', callback["data"]["content"]["id"])
 }
@@ -573,7 +574,8 @@ projects.saveExisting = async (projID) => {
     smallCard.querySelector('.fa-bookmark').className = 'far fa-bookmark'
   }
   smallCard.querySelector('.proj-small-name').children[0].innerHTML = callback["data"]["content"]["name"]
-
+  
+  projects.renderProjPop(null)
   projects.hideProjPop(callback["data"]["status"], 'edit', projID)
 }
 
