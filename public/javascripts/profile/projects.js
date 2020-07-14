@@ -329,8 +329,8 @@ projects.renderProjPop = (proj) => {
   label.htmlFor = 'new-proj-pop-img-input'
   left.appendChild(label)
   let form = document.createElement('form')
-  form.id = 'proj-img-form'
-  left.appendChild(form);
+  form.id = 'new-proj-img-form'
+  left.appendChild(form)
   let input = document.createElement('input')
   input.type = 'file'
   input.name = 'picture'
@@ -426,6 +426,7 @@ projects.renderProjPop = (proj) => {
 
   if (proj) {
     wrapper.id = proj.id + '-proj-pop-wrapper'
+    form.id = proj.id + '-proj-img-form'
     label.htmlFor = proj.id + '-proj-pop-img-input'
     input.id = proj.id + '-proj-pop-img-input'
     image.src = '/profile/projects/retrieve-thumbnail:' + proj.id
