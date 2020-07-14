@@ -588,19 +588,28 @@ projects.trash = async (projID) => {
 
 projects.updateBookmark = async (e, proj, bookmarkEl) => {
   e.stopPropagation()
+  // COLLECT INPUT
   let modifiedProj = new Object()
   modifiedProj.updates = new Object()
   modifiedProj.id = proj.id
   modifiedProj.updates.bookmark = !proj.bookmark
-  bookmarkEl.classList.toggle('fas')
-  bookmarkEl.classList.toggle('far')
-  document.getElementById(proj.id + '-proj-pop-wrapper').querySelector('.proj-pop-bookmark').classList.toggle('fas')
-  document.getElementById(proj.id + '-proj-pop-wrapper').querySelector('.proj-pop-bookmark').classList.toggle('far')
+  // CREATE INPUT OBJECT
+  let input = new FormData();
+  input.append("updates", JSON.stringify(modifiedProj.updates));
+  input.append("id", modifiedProj.id);
+  // UPDATE CSS
+  bookmarkEl.classList.toggle('fas');
+  bookmarkEl.classList.toggle('far');
+  document.getElementById(proj.id + '-proj-pop-wrapper').querySelector('.proj-pop-bookmark').classList.toggle('fas');
+  document.getElementById(proj.id + '-proj-pop-wrapper').querySelector('.proj-pop-bookmark').classList.toggle('far');
+  // SEND REQUEST
+  let data;
   try {
-    await axios.post("/profile/customer/update/proj", modifiedProj)
+    data = (await axios.post("/profile/customer/update/proj", input))["data"];
   } catch (error) {
-    console.log(error)
+    data = { status: "error", content: error };
   }
+  // UPDATE CSS
   if (bookmarkEl.classList.contains('fas')) {
     projects.renderFavCard(proj)
   } else {
