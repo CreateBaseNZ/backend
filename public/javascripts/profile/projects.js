@@ -48,11 +48,11 @@ projects.initialise = async () => {
         projects.renderFavCard(project)
       }
       projects.renderSmallCard(project)
-      projects.renderProjPop(project)
+      projects.renderProjPop(project, allMakes)
     })
   }
   projects.eventListeners()
-  projects.renderProjPop(null)
+  projects.renderProjPop(null, allMakes)
 }
 
 // @func  projects.declareVariables
@@ -250,12 +250,16 @@ projects.updateSmallCard = (proj) => {
   cardEl.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/' + proj.id
 }
 
-projects.renderMakeBars = (allMakes, projID) => {
-  container = document.getElementById('proj-pop-bar-container')
+projects.renderMakeBars = (allMakes, projID, container) => {
+
+  if (!projID) {
+    projID = 'new'
+  }
+  
+  console.log(allMakes)
 
   // Render all make labels
   allMakes.forEach(function (make, i) {
-    // container
     // main bar
     let el = document.createElement('div')
     el.className = 'proj-pop-bar'
@@ -270,11 +274,11 @@ projects.renderMakeBars = (allMakes, projID) => {
     let tooltipEl = document.createElement('div')
     tooltipEl.className = 'proj-pop-bar-tooltip'
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'M: ' + make.material.toUpperCase()
-    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'Q: ' + capitaliseFirstLetter(make.quality)
+    tooltipEl.appendChild(document.createElement('p')).innerHTML = 'Q: ' + projects.capFirstLetter(make.quality)
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'S: ' +
-      capitaliseFirstLetter(make.strength)
+    projects.capFirstLetter(make.strength)
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'C: ' +
-      capitaliseFirstLetter(make.colour)
+    projects.capFirstLetter(make.colour)
     tooltipWrapper.appendChild(tooltipEl)
     el.appendChild(tooltipWrapper)
 
@@ -327,11 +331,11 @@ projects.removeMakeBlobs = (blob) => {
   blob.remove()
 }
 
-projects.renderProjPop = (proj) => {
+projects.renderProjPop = (proj, allMakes) => {
+
   // main wrapper
   let wrapper = document.createElement('div')
   wrapper.className = 'proj-pop-wrapper'
-  wrapper.id = 'new-proj-pop-wrapper'
   document.getElementById('proj-area-wrapper').appendChild(wrapper)
   // back button
   let back = document.createElement('div')
@@ -352,21 +356,17 @@ projects.renderProjPop = (proj) => {
   left.className = 'proj-pop-left'
   container.appendChild(left)
   let label = document.createElement('label')
-  label.htmlFor = 'new-proj-pop-img-input'
   left.appendChild(label)
   let form = document.createElement('form')
-  form.id = 'new-proj-img-form'
   left.appendChild(form)
   let input = document.createElement('input')
   input.type = 'file'
   input.name = 'picture'
-  input.id = 'new-proj-pop-img-input'
   input.setAttribute('onchange', 'projects.previewImage(this, event);')
   form.appendChild(input)
   // image
   let image = document.createElement('img')
   image.className = 'proj-pop-img'
-  image.src = '/public/images/profile/project-thumbnail.jpeg'
   image.alt = 'Project Thumbnail'
   left.appendChild(image)
   let imgOverlay = document.createElement('div')
@@ -459,9 +459,15 @@ projects.renderProjPop = (proj) => {
       bookmark.className = 'fas fa-bookmark proj-pop-bookmark'
     }
     nameInput.value = proj.name
-    // render all makeblobs
-    // TO DO
     notesInput.value = proj.notes
+    projects.renderMakeBars(allMakes, proj.id, barContainer)
+  } else {
+    wrapper.id = 'new-proj-pop-wrapper'
+    form.id = 'new-proj-img-form'
+    label.htmlFor = 'new-proj-pop-img-input'
+    input.id = 'new-proj-pop-img-input'
+    image.src = '/public/images/profile/project-thumbnail.jpeg'
+    projects.renderMakeBars(allMakes, null, barContainer)
   }
 }
 

@@ -721,6 +721,7 @@
         letter-spacing: 1px;
         transform: rotate(-90deg);
         transition: right 0.2s ease-out;
+        white-space: nowrap;
       }
 
       &:hover {
@@ -788,11 +789,12 @@
         padding: 0.5em;
         border-radius: 0.2em;
         border: solid thin $light-2;
+        color: $dark-2;
         
         &:focus {
-          color: $logo-2;
+          color: $dark-3;
           background: transparent;
-          border: solid thin $logo-2;
+          border: solid thin $highlight;
         }
         
         &::placeholder {
@@ -811,7 +813,7 @@
           width: 5px;
         }
         &::-webkit-scrollbar-track {
-          background: transparent;
+          background: rgba(0,0,0,0);
           width: 5px;
         }
         &::-webkit-scrollbar-thumb {
@@ -964,7 +966,6 @@
       height: 100%;
       flex: 1 1 0;
       order: 1;
-      position: relative;
       background: $light-2;
       box-shadow: inset 10px 0 15px -25px black;
       display: flex;
@@ -982,7 +983,6 @@
       }
 
       .proj-pop-bar-wrapper {
-        position: relative;
         max-height: 60%;
 
         .proj-pop-bar-container {
@@ -994,19 +994,19 @@
           max-height: 100%;
 
           &::-webkit-scrollbar {
-            width: 10px;
+            width: 5px;
           }
           &::-webkit-scrollbar-track {
-            background: $light-2;
+            width: 5px;
+            background: rgba(0,0,0,0);
           }
           &::-webkit-scrollbar-thumb {
-            background: linear-gradient(to right, $light-2 0%, $light-2 39%, $light-3 40%, $light-3 60%, $light-2 61%, $light-2 100%);
-            border-radius: 10px;
-            width: 10px;
+            width: 5px;
+            background: $light-3;
           }
           &::-webkit-scrollbar-thumb:hover,
           &::-webkit-scrollbar-thumb:active {
-            background: $light-3;
+            background: $dark-1;
           }
 
           .proj-pop-bar {
@@ -1017,13 +1017,14 @@
             align-items: center;
             justify-content: space-between;
             border-radius: 5px;
-            font-size: calc(12px + 0.1vw);
-            margin: 0.5em 0;
+            margin: 0.2em 0;
             border: thin solid $light-3;
             background: transparent;
             color: $light-3;
-
+            position: static;
+            
             p {
+              font-size: 0.8em;
               padding-left: 1.2em;
               font-weight: 300;
               text-overflow: ellipsis;
@@ -1033,14 +1034,15 @@
 
             i {
               padding: 0.8em;
-              font-size: calc(16px + 0.1vw);
+              font-size: 1em;
             }
 
             .proj-pop-bar-tooltip-wrapper {
               position: absolute;
               pointer-events: none;
               display: none;
-              left: calc(15vw - 30px);
+              width: 6em;
+              right: calc(6vw - 3.5em);
               z-index: 2;
 
               .proj-pop-bar-tooltip {
@@ -1049,15 +1051,15 @@
                 align-items: flex-start;
                 justify-content: flex-start;
                 background: rgba(55, 45, 85, 0.5);
-                font-size: calc(10px + 0.1vw);
-                padding: 1em 1.5em;
+                padding: 0.6em 1em;
                 border-radius: 5px;
-
+                
                 p {
                   color: $light-1;
                   padding: 0;
                   letter-spacing: 0.1em;
                   margin-top: 0.5em;
+                  font-size: 0.6em;
                 }
               }
             }
@@ -1066,6 +1068,10 @@
               border: thin solid #b0a9c4;
               color: #b0a9c4;
               transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out;
+              
+              p {
+                color: $dark-2;
+              }
 
               .proj-pop-bar-tooltip-wrapper {
                 display: block;
