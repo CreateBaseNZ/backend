@@ -117,12 +117,8 @@ ProjectSchema.statics.fetch = function (query = {}, withMakes = false) {
     // FILTER PROJECTS
     const filteredProjects = formattedProjects.map((project) => {
       let filteredProject = {
-        id: project._id,
-        name: project.name,
-        thumbnail: project.thumbnail,
-        bookmark: project.bookmark,
-        date: project.date,
-        notes: project.notes,
+        id: project._id, name: project.name, thumbnail: project.thumbnail,
+        bookmark: project.bookmark, date: project.date, notes: project.notes,
         makes: project.makes
       };
       return filteredProject;
