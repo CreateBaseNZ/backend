@@ -15,6 +15,7 @@ const Schema = mongoose.Schema;
 EXTERNAL MODELS
 =========================================================================================*/
 
+const Make = require("./Make.js");
 const File = require("./File.js");
 const Chunk = require("./Chunk.js");
 
@@ -52,7 +53,7 @@ STATIC
 
 // @FUNC  build
 // @TYPE  STATICS
-// @DESC
+// @DESC  
 ProjectSchema.statics.build = function (object = {}, save = true) {
   return new Promise(async (resolve, reject) => {
     // CREATE THE PROJECT INSTANCE
@@ -79,58 +80,43 @@ ProjectSchema.statics.build = function (object = {}, save = true) {
   });
 }
 
-ProjectSchema.statics.create = function (account, options) {
+// @FUNC  fetch
+// @TYPE  STATICS
+// @DESC  
+ProjectSchema.statics.fetch = function (query = {}, withMakes = false) {
   return new Promise(async (resolve, reject) => {
-    // INITIALISE NEW PROJECT INSTANCE
-    console.log(options)
-    let project = new this();
-    // SET PROPERTY VALUES
-    // Account
-    project.account = account;
-    // Options
-    for (const property in options) {
-      project[property] = options[property];
-    }
-    // Dates
-    const date = moment().tz("Pacific/Auckland").format();
-    project.date.creation = date;
-    project.date.modified = date;
-    // SAVE THE NEW PROJECT INSTANCE
-    console.log(project);
-    let savedProject;
-    try {
-      savedProject = await project.save();
-    } catch (error) {
-      reject(error);
-      return;
-    }
-    let mappedProject = {
-      id: savedProject._id,
-      name: savedProject.name,
-      thumbnail: savedProject.thumbnail,
-      bookmark: savedProject.bookmark,
-      date: savedProject.date,
-      notes: savedProject.notes,
-      makes: savedProject.makes
-    };
-    resolve(mappedProject);
-    return;
-  })
-}
-
-ProjectSchema.statics.retrieve = function (account) {
-  return new Promise(async (resolve, reject) => {
-    // INITIALISE RETRIEVED PROJECT INSTANCE ARRAY
+    // FETCH PROJECTS
     let projects;
     try {
-      projects = await this.find({ account });
+      projects = await this.find(query);
     } catch (error) {
-      reject(error);
-      return;
+      return reject({ status: "error", content: error });
     }
-    // RECREATE PROJECTS REMOVING SENSITIVE PROPERTIES
-    const mappedProjects = projects.map((project) => {
-      let mappedProject = {
+    if (!projects.length) return resolve(projects);
+    // CONVERT PROJECTS TO AN OBJECT
+    let formattedProjects = [];
+    for (let i = 0; i < projects.length; i++) formattedProjects[i] = projects[i].toObject();
+    // FETCH MAKES
+    if (withMakes) {
+      let promises = [];
+      for (let i = 0; i < formattedProjects.length; i++) {
+        const project = formattedProjects[i];
+        promises.push(Make.fetch({ _id: project.makes }));
+      }
+      let makesArray = [];
+      try {
+        makesArray = await Promise.all(promises);
+      } catch (error) {
+        return reject(error);
+      }
+      for (let j = 0; j < makesArray.length; j++) {
+        const makes = makesArray[j];
+        formattedProjects[j].makes = makes;
+      }
+    }
+    // FILTER PROJECTS
+    const filteredProjects = formattedProjects.map((project) => {
+      let filteredProject = {
         id: project._id,
         name: project.name,
         thumbnail: project.thumbnail,
@@ -139,12 +125,11 @@ ProjectSchema.statics.retrieve = function (account) {
         notes: project.notes,
         makes: project.makes
       };
-      return mappedProject;
-    })
-    // RESOLVE AND RETURN THE MAPPED PROJECTS
-    resolve(mappedProjects);
-    return;
-  })
+      return filteredProject;
+    });
+    // SUCCESS HANDLER
+    return resolve(filteredProjects);
+  });
 }
 
 /* ========================================================================================

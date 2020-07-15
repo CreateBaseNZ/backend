@@ -40,9 +40,9 @@ FUNCTIONS - PROJECTS
 projects.initialise = async () => {
   // DECLARE VARIABLES
   projects.declareVariables()
-  const [allProjects, allMakes] = (await projects.loadUserData())
+  const [allProjects, allMakes] = (await projects.loadUserData());
   // render all project cards
-  if (allProjects) {
+  if (allProjects.length) {
     allProjects.forEach(function (project, i) {
       if (project.bookmark) {
         projects.renderFavCard(project)
@@ -90,19 +90,50 @@ projects.eventListeners = () => {
 }
 
 projects.loadUserData = async () => {
-  // fetch makes
+  // FETCH MAKES
+  let dataOne;
   try {
-    allMakes = (await axios.get("/profile/customer/fetch/makes"))["data"]["content"]
+    dataOne = (await axios.get("/profile/customer/fetch/makes"))["data"];
   } catch (error) {
-    console.log(error)
+    dataOne = { status: "error", content: error };
   }
-  // fetch projects
+  if (dataOne.status === "error") {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    console.log(dataOne.content); // TEMPORARY
+    return;
+  } else if (dataOne.status === "failed") {
+    // TO DO .....
+    // FAILED HANDLER
+    // TO DO .....
+    console.log(dataOne.content); // TEMPORARY
+    return;
+  }
+  const allMakes = dataOne.content;
+  // FETCH PROJECTS
+  let dataTwo;
   try {
-    allProjects = (await axios.get("/profile/customer/fetch/all_proj"))["data"]["content"]
+    dataTwo = (await axios.get("/profile/customer/fetch/all_proj"))["data"];
   } catch (error) {
-    console.log(error)
+    dataTwo = { status: "error", content: error };
   }
-  return [allProjects, allMakes]
+  if (dataTwo.status === "error") {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    console.log(dataTwo.content); // TEMPORARY
+    return;
+  } else if (dataTwo.status === "failed") {
+    // TO DO .....
+    // FAILED HANDLER
+    // TO DO .....
+    console.log(dataTwo.content); // TEMPORARY
+    return;
+  }
+  const allProjects = dataTwo.content;
+  // SUCCESS HANDLER
+  return [allProjects, allMakes];
 }
 
 projects.capFirstLetter = (string) => {
@@ -464,126 +495,124 @@ projects.cancel = (el) => {
 }
 
 projects.saveNew = async () => {
-
-  let wrapper = document.getElementById('new-proj-pop-wrapper')
-  /*
-  let proj = new Object()
-  // TO DO: get thumbnail
-  // proj.image = wrapper.querySelector('.proj-pop-img').src
-  proj.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas')
-  proj.makes = []
-  let children = wrapper.querySelector('.proj-pop-blob-container').children
-  for (var i = 0; i < children.length; i++) {
-    proj.updates.makes[i] = children[i].id.split('-')[1]
-    console.log(children[i].id.split('-')[1])
-  }
-  proj.name = wrapper.querySelector('.proj-pop-name').value
-  proj.notes = wrapper.querySelector('.proj-pop-notes').value
-  */
+  let wrapper = document.getElementById('new-proj-pop-wrapper');
+  // COLLECT INPUT
   const proj = projects.collectNewProject();
-
-  let callback;
+  // SEND REQUEST
+  let data;
   try {
-    callback = (await axios.post("/profile/customer/new/proj", proj))
+    data = (await axios.post("/profile/customer/new/proj", proj))["data"];
   } catch (error) {
-    console.log(error)
+    data = { status: "error", content: error };
   }
-  // update popup
-  wrapper.id = callback["data"]["content"]["id"] + '-proj-pop-wrapper'
-  wrapper.querySelector('#new-proj-img-form').id = callback["data"]["content"]["id"] + '-proj-img-form'
-  wrapper.querySelector('label').htmlFor = callback["data"]["content"]["id"] + '-proj-pop-img-input'
-  wrapper.querySelector('#new-proj-pop-img-input').id = callback["data"]["content"]["id"] + '-proj-pop-img-input'
-  wrapper.querySelector('.proj-pop-img').src = '/profile/projects/retrieve-thumbnail/' + callback["data"]["content"]["id"]
+  if (data.status === "error") {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    console.log(data.content); // TEMPORARY
+    return;
+  } else if (data.status === "failed") {
+    return projects.hideProjPop(data["status"], 'new', data["content"]["id"]);
+  }
+  // UPDATE POPUP
+  wrapper.id = data["content"]["id"] + '-proj-pop-wrapper'
+  wrapper.querySelector('#new-proj-img-form').id = data["content"]["id"] + '-proj-img-form'
+  wrapper.querySelector('label').htmlFor = data["content"]["id"] + '-proj-pop-img-input'
+  wrapper.querySelector('#new-proj-pop-img-input').id = data["content"]["id"] + '-proj-pop-img-input'
+  wrapper.querySelector('.proj-pop-img').src = '/profile/projects/retrieve-thumbnail/' + data["content"]["id"]
   // render project cards
-  if (callback["data"]["content"]["bookmark"]) {
-    projects.renderFavCard(callback["data"]["content"])
+  if (data["content"]["bookmark"]) {
+    projects.renderFavCard(data["content"])
   }
-  projects.renderSmallCard(callback["data"]["content"])
+  projects.renderSmallCard(data["content"])
   projects.renderProjPop(null)
-  // transition screens
-  projects.hideProjPop(callback["data"]["status"], 'new', callback["data"]["content"]["id"])
+  // SUCCESS HANDLER
+  return projects.hideProjPop(data["status"], 'new', data["content"]["id"]);
 }
 
 projects.saveExisting = async (projID) => {
-  /*
-  let wrapper = document.getElementById(projID + '-proj-pop-wrapper')
-  let proj = new Object()
-  proj.updates = new Object()
-  // post changes
-  proj.id = projID
-  // TO DO: post thumbnail
-  proj.updates.image = wrapper.querySelector('.proj-pop-img').src
-  proj.updates.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas')
-  proj.updates.makes = []
-  let children = wrapper.querySelector('.proj-pop-blob-container').children
-  for (var i = 0; i < children.length; i++) {
-    proj.updates.makes[i] = children[i].id.split('-')[1]
-    console.log(children[i].id.split('-')[1])
-  }
-  proj.updates.name = wrapper.querySelector('.proj-pop-name').value
-  proj.updates.notes = wrapper.querySelector('.proj-pop-notes').value
-  */
+  // COLLECT INPUT
   const proj = projects.collectExistingProject(projID);
-  let callback;
+  // SEND REQUEST
+  let data;
   try {
-    callback = (await axios.post("/profile/customer/update/proj", proj))
+    data = (await axios.post("/profile/customer/update/proj", proj))["data"];
   } catch (error) {
-    console.log(error)
+    data = { status: "error", content: error };
   }
-
-  // update fav card
+  if (data.status === "error") {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    console.log(data.content); // TEMPORARY
+    return;
+  } else if (data.status === "failed") {
+    return projects.hideProjPop(data["status"], 'edit', projID);
+  }
+  // UPDATE FAV CARD
   favCard = document.getElementById(projID + '-proj-fav')
-  if (callback["data"]["content"]["bookmark"]) { // bookmarked
+  if (data["content"]["bookmark"]) { // bookmarked
     if (favCard) { // fav card already exists, modify
-      favCard.querySelector('.proj-fav-name').innerHTML = callback["data"]["content"]["name"]
+      favCard.querySelector('.proj-fav-name').innerHTML = data["content"]["name"]
       let makesEl = favCard.querySelector('.proj-fav-makes')
       makesEl.innerHTML = ''
-      callback["data"]["content"]["makes"].forEach(function (make, j) {
+      data["content"]["makes"].forEach(function (make, j) {
         if (makesEl.innerHTML !== '') {
           makesEl.innerHTML += ', '
         }
         makesEl.innerHTML += make
       })
-      favCard.querySelector('.proj-fav-notes').innerHTML = callback["data"]["content"]["notes"]
+      favCard.querySelector('.proj-fav-notes').innerHTML = data["content"]["notes"]
       favCard.querySelector('.proj-fav-img').src = '/profile/projects/retrieve-thumbnail/' + projID + '?' + new Date().getTime()
     } else { // fav card does not exist, create new
-      projects.renderFavCard(callback["data"]["content"])
+      projects.renderFavCard(data["content"])
     }
   } else { // not bookmarked
     if (favCard) { // fav card exists, delete
       favCard.remove()
     }
   }
-
-  // update small card
+  // UPDATE SMALL CARD
   smallCard = document.getElementById(projID + '-proj-small')
-  if (callback["data"]["content"]["bookmark"]) {
+  if (data["content"]["bookmark"]) {
     smallCard.querySelector('.fa-bookmark').className = 'fas fa-bookmark'
   } else {
     smallCard.querySelector('.fa-bookmark').className = 'far fa-bookmark'
   }
-  smallCard.querySelector('.proj-small-name').children[0].innerHTML = callback["data"]["content"]["name"]
+  smallCard.querySelector('.proj-small-name').children[0].innerHTML = data["content"]["name"]
   console.log(smallCard.querySelector('.proj-small-img').src)
   smallCard.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/' + projID + '?' + new Date().getTime()
   console.log(smallCard.querySelector('.proj-small-img').src)
-
-  projects.renderProjPop(null)
-  projects.hideProjPop(callback["data"]["status"], 'edit', projID)
+  // SUCCESS HANDLER
+  projects.renderProjPop(null);
+  return projects.hideProjPop(data["status"], 'edit', projID);
 }
 
 projects.trash = async (projID) => {
-  let callback
+  // SEND REQUEST
+  let data;
   try {
-    callback = (await axios.post("/profile/customer/delete/proj", { id: projID }))
+    data = (await axios.post("/profile/customer/delete/proj", { id: projID }))["data"];
   } catch (error) {
-    return console.log(error)
+    data = { status: "error", content: error };
   }
+  if (data.status === "error") {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    console.log(data.content); // TEMPORARY
+    return;
+  } else if (data.status === "failed") {
+    return projects.hideProjPop(data["status"], 'delete', null);
+  }
+  // UPDATE RENDER
   document.getElementById(projID + '-proj-pop-wrapper').remove()
   document.getElementById(projID + '-proj-small').remove()
   if (document.getElementById(projID + '-proj-fav')) {
     document.getElementById(projID + '-proj-fav').remove()
   }
-  projects.hideProjPop(callback["data"]["status"], 'delete', null)
+  // SUCCESS HANDLER
+  return projects.hideProjPop(data["status"], 'delete', null);
 }
 
 projects.updateBookmark = async (e, proj, bookmarkEl) => {
@@ -609,12 +638,27 @@ projects.updateBookmark = async (e, proj, bookmarkEl) => {
   } catch (error) {
     data = { status: "error", content: error };
   }
+  if (data.status === "error") {
+    // TO DO .....
+    // ERROR HANDLER
+    // TO DO .....
+    console.log(data.content); // TEMPORARY
+    return;
+  } else if (data.status === "failed") {
+    // TO DO .....
+    // FAILED HANDLER
+    // TO DO .....
+    console.log(data.content); // TEMPORARY
+    return;
+  }
   // UPDATE CSS
   if (bookmarkEl.classList.contains('fas')) {
     projects.renderFavCard(proj)
   } else {
     document.getElementById(proj.id + '-proj-fav').remove()
   }
+  // SUCCESS HANDLER
+  return;
 }
 
 projects.previewImage = (el, event) => {

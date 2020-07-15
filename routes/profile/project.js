@@ -105,6 +105,9 @@ mongoose.createConnection(
 ROUTES
 =========================================================================================*/
 
+// @route   POST /profile/customer/new/proj
+// @desc    
+// @access  VERIFIED - CONTENT
 router.post("/profile/customer/new/proj", upload.single("picture"), verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user._id;
@@ -125,15 +128,18 @@ router.post("/profile/customer/new/proj", upload.single("picture"), verifiedCont
   }
   // RETURN SUCCESS MESSAGE TO CLIENT
   return res.send({ status: "succeeded", content: savedProject });
-})
+});
 
+// @route   GET /profile/customer/fetch/all_proj
+// @desc    
+// @access  VERIFIED - CONTENT
 router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
-  const account = req.user._id;
+  const account = req.user;
   // RETRIEVE ALL PROJECTS
   let projects;
   try {
-    projects = await Project.retrieve(account);
+    projects = await Project.fetch({ account: account._id });
   } catch (error) {
     res.send({ status: "failed", content: error });
     return;
@@ -141,7 +147,24 @@ router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res)
   // RETURN ALL PROJECTS TO CLIENT
   res.send({ status: "succeeded", content: projects });
   return;
-})
+});
+
+// @route   GET /profile/customer/fetch/makes
+// @desc    
+// @access  VERIFIED - CONTENT
+router.get("/profile/customer/fetch/makes", verifiedContent, async (req, res) => {
+  // INITIALISE AND DECLARE VARIABLES
+  const account = req.user;
+  // RETRIEVE ALL MAKES
+  let makes;
+  try {
+    makes = await Make.fetch({ accountId: account._id });
+  } catch (error) {
+    return res.send(error);
+  }
+  // RETURN ALL MAKES TO CLIENT
+  return res.send({ status: "succeeded", content: makes });
+});
 
 router.post("/profile/customer/update/proj", upload.single("picture"), verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES

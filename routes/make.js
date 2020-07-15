@@ -148,22 +148,6 @@ router.post("/make/build/new-model", upload.single("file"), async (req, res) => 
   return res.send({ status: "succeeded", content: "created a make successfully" });
 });
 
-router.get("/profile/customer/fetch/makes", verifiedContent, async (req, res) => {
-  // INITIALISE AND DECLARE VARIABLES
-  const account = req.user;
-  // RETRIEVE ALL MAKES
-  let makes;
-  try {
-    makes = await Make.fetch({ accountId: account._id });
-  } catch (error) {
-    res.send({ status: "failed", content: error });
-    return;
-  }
-  // RETURN ALL MAKES TO CLIENT
-  res.send({ status: "succeeded", content: makes });
-  return;
-})
-
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/
