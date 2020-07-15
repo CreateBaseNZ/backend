@@ -85,7 +85,7 @@ global.priceFormatter = value => {
     formattedValue = stringValue;
   }
   return formattedValue;
-};
+}
 
 /* ----------------------------------------------------------------------------------------
 ASYNCHRONOUS IMAGE LOADER

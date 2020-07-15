@@ -179,6 +179,7 @@ orders.addSummary = (order) => {
     case "reviewed": status = "You have Reviewed This Order"; break;
     case "completed": status = "Your Order is now Complete"; break;
     case "cancelled": status = "Your Order has been Cancelled"; break;
+    case "refunded": status = "Your Order has been Refunded"; break;
     default: break;
   }
   if (order.shipping.method === "pickup") {
@@ -248,13 +249,15 @@ orders.addDetailed = (order) => {
   const divider = `<div class="divider-container"><div class="divider"></div></div>`;
   // TRACKING CONTAINER
   const containerOne = orders.createTracking(order);
+  const containerTwo = orders.createSummary(order);
+  const containerThree = orders.createComments(order);
   // DETAILED
   const detailed = `
   <div id="order-detail-${order._id}" class="order-detail-wrap">
     <p class="orderdetails" id="order-details-title">Order Details</p>
     <div class="order-detail-container">
       <div class="exit-icon"><img src="/public/images/user-x.png" alt="X"></div>
-      ${containerOne + divider}
+      ${containerOne + divider + containerTwo + containerThree}
     </div>
   </div>
   `;
@@ -267,10 +270,67 @@ orders.addDetailed = (order) => {
 orders.createTracking = (order) => {
   // ORDER HEADING
   const heading = `<p id="order-details-name">Order #${order.number}</p>`;
-  // TRACKING DETAILS
-  let statusTitle = `Package shipped`; // TEMPORARY
-  let statusDetail = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo
-  hendrerit leo vitae vestibulum.`; // TEMPORARY
+  // TRACKING
+  let statusTitle;
+  let statusDetail;
+  switch (order.status) {
+    case "checkedout":
+      statusTitle = "Validating payment";
+      statusDetail = "We are currently validating your payment. Thank you for your patience.";
+      break;
+    case "validated":
+      statusTitle = "Building order";
+      statusDetail = "We are currently building your order. Thank you for your patience.";
+      break;
+    case "built":
+      statusTitle = "Packaging order";
+      statusDetail = "We are currently packaging your order. Thank you for your patience.";
+      break;
+    case "reviewed":
+      statusTitle = "Order reviewed";
+      statusDetail = "Thank you for leaving us a review.";
+      break;
+    case "completed":
+      statusTitle = "Order completed";
+      statusDetail = "Your order has been completed. Thank you for using CreateBase.";
+      break;
+    case "cancelled":
+      statusTitle = "Refunding order";
+      statusDetail = "We are not processing your refund.";
+      break;
+    case "refunded":
+      statusTitle = "Order refunded";
+      statusDetail = "Refunds have been processed. Your order is no longer active.";
+      break;
+    default: break;
+  }
+  if (order.shipping.method === "pickup") {
+    switch (order.status) {
+      case "shipped":
+        statusTitle = "Ready for pickup";
+        statusDetail = "You can now pickup your package. Pick your package at 16 Dapple Place, Flat Bush, Auckland, 2019, New Zealand";
+        break;
+      case "arrived":
+        statusTitle = "Package picked up";
+        statusDetail = "You have now picked up your package. Thank you for using CreateBase. Please leave us a review.";
+        break;
+      default: break;
+    }
+  } else {
+    switch (order.status) {
+      case "shipped":
+        statusTitle = "Package shipped";
+        statusDetail = "Your package is now on its way to your doorstep.";
+        break;
+      case "arrived":
+        statusTitle = "Packaged arrived";
+        statusDetail = "Your package has arrived to your doorstep. Thank you for using CreateBase. Please leave us a review.";
+        break;
+      default: break;
+    }
+  }
+  // progress
+  // details
   const statusContainer = `
   <div class="status-detail-container">
     <p class="status-detail-title">Tracking Details</p>
@@ -297,6 +357,7 @@ orders.createSummary = (order) => {
     case "reviewed": status = "You have Reviewed This Order"; break;
     case "completed": status = "Your Order is now Complete"; break;
     case "cancelled": status = "Your Order has been Cancelled"; break;
+    case "refunded": status = "Your Order has been Refunded"; break;
     default: break;
   }
   if (order.shipping.method === "pickup") {
@@ -344,10 +405,41 @@ orders.createSummary = (order) => {
   <div id="order-makes-${order._id}" class="order-item-list-container"></div>
   `;
   // PRICE CONTAINER
+  const subtotal = order.payment.amount.makes.total + order.payment.amount.manufacturing.total;
+  const discount = order.payment.amount.discount.total;
+  const rate = order.payment.amount.discount.rate;
+  const gst = order.payment.amount.gst.total;
+  const shipping = order.payment.amount.shipping.total;
+  const total = order.payment.amount.total.total;
   const price = `
   <div class="price-breakdown-container">
     <div class="divider-container">
       <div class="divider-subtotal"></div>
+    </div>
+    <div class="price-breakdown">
+      <div class="subtotal-container">
+        <div class="subtotal-title">Sub-total</div>
+        <div class="subtotal-price">$${global.priceFormatter(subtotal)}</div>
+      </div>
+      <div class="subtotal-container">
+        <div class="subtotal-title">Discount</div>
+        <div class="subtotal-price"><span>(${rate * 100}%)</span> -$${global.priceFormatter(discount)}</div>
+      </div>
+      <div class="subtotal-container">
+        <div class="subtotal-title">GST</div>
+        <div class="subtotal-price">$${global.priceFormatter(gst)}</div>
+      </div>
+      <div class="subtotal-container">
+        <div class="subtotal-title">Shipping</div>
+        <div class="subtotal-price">$${global.priceFormatter(shipping)}</div>
+      </div>
+      <div class="divider-container2">
+        <div class="divider-subtotal totalprice"></div>
+      </div>
+      <div class="order-detail-total">
+        <p class="subtotal-title">Total</p>
+        <p class="detail-order-total">$${global.priceFormatter(total)}</p>
+      </div>
     </div>
   </div>
   `;
@@ -356,8 +448,29 @@ orders.createSummary = (order) => {
   <div class="order-summary">
     <p class="order-summary-title">Order Summary</p>
     <div id="order-detail-content-container">
-      ${info + makes}
+      ${info + makes + price}
     </div>
+    <div class="divider"></div>
+  </div>
+  `;
+  return container;
+}
+
+// @func  orders.createComments
+// @desc  
+orders.createComments = (order) => {
+  const form = `
+  <div class="comment-form-container">
+    <input type="text" id="comment-input-${order._id}" placeholder="Post a comment...">
+    <div id="order-post-comment-${order._id}" class="submit-comment-container" onclick="orders.postComment('${order._id}');">+</div>
+  </div>
+  `;
+  // COMMENTS CONTAINER
+  const container = `
+  <div class="comment-wrap">
+    <p class="comment-title">Comments</p>
+    <div id="order-comments-${order._id}" class="comment-container"></div>
+    ${form}
   </div>
   `;
   return container;
@@ -366,10 +479,26 @@ orders.createSummary = (order) => {
 // @func  orders.addMake
 // @desc  
 orders.addMake = (orderId, make) => {
-  console.log(make); // TEMPORARY
-  // TO DO .....
   // CREATE MAKE
-  // TO DO .....
+  const make = `
+  <div class="order-item-detailed">
+    <div id="order-make-viewer-${make.id}" class="item-img-container"></div>
+    <div class="item-name-container">${make.file.name}</div>
+    <div class="item-type-list-container">
+      ${make.material}, ${make.quality}, ${make.strength}, ${make.colour}
+    </div>
+    <div class="item-quantity-container">
+      <p class="qty-title">Qty</p>
+      <div class="order-item-quantity">${make.quantity.built}/${make.quantity.ordered}</div>
+    </div>
+    <div class="order-item-price">$${global.priceFormatter(make.quantity.ordered * make.price)}</div>
+  </div>
+  `;
+  // INSERT
+  //document.querySelector(`#`).insertAdjacentHTML("beforeend", make);
+  // VIEWER
+  //orders.viewerFetch(`/files/stl/fetch/${make.file.id}`, `order-make-viewer-${make.id}`);
+  // SUCCESS HANDLER
   return;
 }
 

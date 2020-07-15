@@ -166,6 +166,9 @@ router.get("/profile/customer/fetch/makes", verifiedContent, async (req, res) =>
   return res.send({ status: "succeeded", content: makes });
 });
 
+// @route   POST /profile/customer/update/proj
+// @desc    
+// @access  VERIFIED - CONTENT
 router.post("/profile/customer/update/proj", upload.single("picture"), verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const account = req.user;
@@ -217,8 +220,11 @@ router.post("/profile/customer/update/proj", upload.single("picture"), verifiedC
   };
   // SEND SUCCESS MESSAGE TO CLIENT
   return res.send({ status: "succeeded", content: mappedProject });
-})
+});
 
+// @route   POST /profile/customer/delete/proj
+// @desc    
+// @access  VERIFIED - CONTENT
 router.post("/profile/customer/delete/proj", verifiedContent, async (req, res) => {
   // INITIALISE AND DECLARE VARIABLES
   const projectId = mongoose.Types.ObjectId(req.body.id);
