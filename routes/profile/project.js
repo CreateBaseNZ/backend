@@ -215,7 +215,7 @@ router.post("/profile/customer/update/proj", upload.single("picture"), verifiedC
   try {
     makes = await Make.fetch({ _id: formattedProject.makes });
   } catch (error) {
-    return reject(error);
+    return res.send(error);
   }
   formattedProject.makes = makes;
   // FILTER
