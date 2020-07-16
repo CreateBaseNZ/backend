@@ -41,6 +41,7 @@ projects.initialise = async () => {
   // DECLARE VARIABLES
   projects.declareVariables()
   const [allProjects, allMakes] = (await projects.loadUserData());
+  console.log(allProjects)
   // render all project cards
   if (allProjects.length) {
     allProjects.forEach(function (project, i) {
@@ -250,20 +251,19 @@ projects.updateSmallCard = (proj) => {
   cardEl.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/' + proj.id
 }
 
-projects.renderMakeBars = (allMakes, projID, container) => {
+projects.renderMakeBars = (allMakes, proj, container) => {
 
-  if (!projID) {
-    projID = 'new'
+  if (!proj) {
+    proj = new Object()
+    proj.id = 'new'
   }
   
-  console.log(allMakes)
-
-  // Render all make labels
-  allMakes.forEach(function (make, i) {
+  // Render all make bars
+  allMakes.forEach(function (make) {
     // main bar
     let el = document.createElement('div')
     el.className = 'proj-pop-bar'
-    el.id = projID + make.id + '-proj-pop-bar'
+    el.id = proj.id + '-' + make.id + '-proj-pop-bar'
     // name
     el.appendChild(document.createElement('p')).innerHTML = make.file.name
     // tick
@@ -284,9 +284,8 @@ projects.renderMakeBars = (allMakes, projID, container) => {
 
     // Event listener for toggling label
     el.addEventListener('click', () => {
-      projects.toggleMakeBars(el, make)
+      projects.toggleMakeBars(el, make, proj.id)
     })
-
 
     el.addEventListener('mouseover', () => {
       tooltipWrapper.style.top = el.offsetTop - container.scrollTop - tooltipWrapper.offsetHeight / 2 + el.offsetHeight / 2 + 'px'
@@ -295,36 +294,44 @@ projects.renderMakeBars = (allMakes, projID, container) => {
     // render
     container.appendChild(el)
   })
+
+  if (proj) {
+    proj.makes.forEach(function (make) {
+      container.querySelector('.' + proj.id + '-' + makes.id + '-proj-pop-bar').classList.toggle('proj-pop-bar-active')
+    })
+  }
+
+  console.log(proj)
 }
 
 // 
-projects.toggleMakeBars = (bar, blob) => {
+projects.toggleMakeBars = (bar, make, projID) => {
   // toggle blob
-  if (el.classList.contains('proj-pop-bar-active')) {
-    projects.removeMakeBlobs(blobs)
+  if (bar.classList.contains('proj-pop-bar-active')) {
+    projects.removeMakeBlobs(document.getElementById(projID + '-' + make.id + '-proj-pop-blob'))
   } else {
-    renderMakeBlobs(blob)
+    projects.renderMakeBlobs(make, projID)
   }
   // toggle bar
-  bar.childNodes[1].classList.toggle('fas')
-  bar.childNodes[1].classList.toggle('far')
+  bar.querySelector('i').classList.toggle('fas')
+  bar.querySelector('i').classList.toggle('far')
   bar.classList.toggle('proj-pop-bar-active')
 }
 
 projects.renderMakeBlobs = (make, projID) => {
+
   let el = document.createElement('div')
   el.className = 'proj-pop-blob'
-  el.id = projID + make.id + '-proj-pop-blob'
+  el.id = projID + '-' + make.id + '-proj-pop-blob'
   el.appendChild(document.createElement('p')).innerHTML = make.file.name
   el.appendChild(document.createElement('div')).className = 'proj-pop-blob-x'
 
   el.addEventListener('click', () => {
-    projects.removeMakeBlobs(el)
-    projects.toggleMakeBars(document.getElementById(projID + make.id + '-proj-pop-bar'))
+    projects.toggleMakeBars(document.getElementById(projID + '-' + make.id + '-proj-pop-bar'), make, projID)
   })
 
   // render
-  document.getElementById(projID + '-proj-pop-wrapper').querySelector('.proj-pop-bar-container').appendChild(el)
+  document.getElementById(projID + '-proj-pop-wrapper').querySelector('.proj-pop-blob-container').appendChild(el)
 }
 
 projects.removeMakeBlobs = (blob) => {
@@ -426,9 +433,9 @@ projects.renderProjPop = (proj, allMakes) => {
   save.innerHTML = 'Save'
   save.addEventListener('click', (e) => {
     if (e.target.parentElement.parentElement.parentElement.parentElement.id === 'new-proj-pop-wrapper') {
-      projects.saveNew()
+      projects.saveNew(allMakes)
     } else {
-      projects.saveExisting(proj.id)
+      projects.saveExisting(proj.id, allMakes)
     }
   })
   btnContainer.appendChild(save)
@@ -460,7 +467,7 @@ projects.renderProjPop = (proj, allMakes) => {
     }
     nameInput.value = proj.name
     notesInput.value = proj.notes
-    projects.renderMakeBars(allMakes, proj.id, barContainer)
+    projects.renderMakeBars(allMakes, proj, barContainer)
   } else {
     wrapper.id = 'new-proj-pop-wrapper'
     form.id = 'new-proj-img-form'
@@ -500,7 +507,7 @@ projects.cancel = (el) => {
   el.parentElement.style.top = '100%'
 }
 
-projects.saveNew = async () => {
+projects.saveNew = async (allMakes) => {
   let wrapper = document.getElementById('new-proj-pop-wrapper');
   // COLLECT INPUT
   const proj = projects.collectNewProject();
@@ -526,17 +533,29 @@ projects.saveNew = async () => {
   wrapper.querySelector('label').htmlFor = data["content"]["id"] + '-proj-pop-img-input'
   wrapper.querySelector('#new-proj-pop-img-input').id = data["content"]["id"] + '-proj-pop-img-input'
   wrapper.querySelector('.proj-pop-img').src = '/profile/projects/retrieve-thumbnail/' + data["content"]["id"]
+  let blobs = wrapper.querySelector('.proj-pop-blob-container').children
+  for (var i = 0; i < blobs.length; i++) {
+    var newBlobId = blobs[i].id.split('-')
+    newBlobId.splice(0, 1, data["content"]["id"])
+    blobs[i].id = newBlobId.join('-')
+  }
+  let bars = wrapper.querySelector('.proj-pop-blob-container').children
+  for (var i = 0; i < bars.length; i++) {
+    var newBlobId = bars[i].id.split('-')
+    newBlobId.splice(0, 1, data["content"]["id"])
+    bars[i].id = newBlobId.join('-')
+  }
   // render project cards
   if (data["content"]["bookmark"]) {
     projects.renderFavCard(data["content"])
   }
   projects.renderSmallCard(data["content"])
-  projects.renderProjPop(null)
+  projects.renderProjPop(null, allMakes)
   // SUCCESS HANDLER
   return projects.hideProjPop(data["status"], 'new', data["content"]["id"]);
 }
 
-projects.saveExisting = async (projID) => {
+projects.saveExisting = async (projID, allMakes) => {
   // COLLECT INPUT
   const proj = projects.collectExistingProject(projID);
   // SEND REQUEST
@@ -590,7 +609,7 @@ projects.saveExisting = async (projID) => {
   smallCard.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/' + projID + '?' + new Date().getTime()
   console.log(smallCard.querySelector('.proj-small-img').src)
   // SUCCESS HANDLER
-  projects.renderProjPop(null);
+  projects.renderProjPop(null, allMakes);
   return projects.hideProjPop(data["status"], 'edit', projID);
 }
 
@@ -754,31 +773,3 @@ projects.collectExistingProject = (projID) => {
 /* ========================================================================================
 END - PROJECTS
 ======================================================================================== */
-
-
-
-
-
-  // newEditProjScreen = document.getElementById('new-edit-proj-screen')
-  // newEditProjScreenOverlay = document.getElementById('new-edit-proj-screen-overlay')
-
-  // makeLabelContainer = document.getElementById('make-labels-container')
-  // makeBlobContainer = document.getElementById('make-blobs-container')
-
-
-
-  // newEditProjScreenOverlay.addEventListener('click', () => {
-  //   hideProjPop()
-  // })
-  // document.getElementById('new-edit-proj-x').addEventListener('click', () => {
-  //   hideProjPop()
-  // })
-  // document.getElementById('new-edit-proj-bookmark').addEventListener('click', (e) => {
-  //   e.stopPropagation()
-  //   e.target.classList.toggle('fas')
-  //   e.target.classList.toggle('far')
-  // })
-
-  // document.getElementById('new-edit-proj-btn').addEventListener('click', () => {
-  //   showProjPop('new')
-  // })

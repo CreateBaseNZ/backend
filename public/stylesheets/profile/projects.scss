@@ -1041,7 +1041,7 @@
               position: absolute;
               pointer-events: none;
               display: none;
-              width: 6em;
+              width: 5.5em;
               right: calc(6vw - 3.5em);
               z-index: 2;
 
@@ -1051,14 +1051,14 @@
                 align-items: flex-start;
                 justify-content: flex-start;
                 background: rgba(55, 45, 85, 0.5);
-                padding: 0.6em 1em;
+                padding: 0.4em 0.6em;
                 border-radius: 5px;
                 
                 p {
                   color: $light-1;
                   padding: 0;
                   letter-spacing: 0.1em;
-                  margin-top: 0.5em;
+                  margin: 0.2em;
                   font-size: 0.6em;
                 }
               }
@@ -1083,11 +1083,19 @@
             border: thin solid $dark-1;
             background: $dark-1;
             color: $light-1;
+            p {
+              color: $light-1;
+            }
 
             &:hover {
               border: thin solid #766b9d;
               background: #766b9d;
-              color: $light-1;
+              p {
+                color: $light-2;
+              }
+              i {
+                color: $light-2;
+              }
             }
           }
         }
