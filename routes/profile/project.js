@@ -19,6 +19,7 @@ MODELS
 =========================================================================================*/
 
 const Project = require("../../model/Project.js");
+const Make = require("../../model/Make.js");
 
 /*=========================================================================================
 MIDDLEWARE
@@ -122,7 +123,7 @@ router.post("/profile/customer/new/proj", upload.single("picture"), verifiedCont
   // CREATE THE PROJECT
   let savedProject;
   try {
-    savedProject = await Project.build(newProject);
+    savedProject = await Project.build(newProject, true);
   } catch (error) {
     return res.send(error);
   }
@@ -209,17 +210,22 @@ router.post("/profile/customer/update/proj", upload.single("picture"), verifiedC
     return res.send({ status: "error", content: error });
   }
   // FORMAT
-  const mappedProject = {
-    id: savedProject._id,
-    name: savedProject.name,
-    thumbnail: savedProject.thumbnail,
-    bookmark: savedProject.bookmark,
-    date: savedProject.date,
-    notes: savedProject.notes,
-    makes: savedProject.makes
+  let formattedProject = savedProject.toObject();
+  let makes = [];
+  try {
+    makes = await Make.fetch({ _id: formattedProject.makes });
+  } catch (error) {
+    return reject(error);
+  }
+  formattedProject.makes = makes;
+  // FILTER
+  const filteredProject = {
+    id: formattedProject._id, name: formattedProject.name, thumbnail: formattedProject.thumbnail,
+    bookmark: formattedProject.bookmark, date: formattedProject.date, notes: formattedProject.notes,
+    makes: formattedProject.makes
   };
   // SEND SUCCESS MESSAGE TO CLIENT
-  return res.send({ status: "succeeded", content: mappedProject });
+  return res.send({ status: "succeeded", content: filteredProject });
 });
 
 // @route   POST /profile/customer/delete/proj

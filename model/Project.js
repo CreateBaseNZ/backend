@@ -54,7 +54,7 @@ STATIC
 // @FUNC  build
 // @TYPE  STATICS
 // @DESC  
-ProjectSchema.statics.build = function (object = {}, save = true) {
+ProjectSchema.statics.build = function (object = {}, withMakes = false, save = true) {
   return new Promise(async (resolve, reject) => {
     // CREATE THE PROJECT INSTANCE
     let project = new this(object);
@@ -69,11 +69,22 @@ ProjectSchema.statics.build = function (object = {}, save = true) {
         return reject({ status: "error", content: error });
       }
     }
+    let formattedProject = project.toObject();
+    // FETCH MAKES
+    if (withMakes) {
+      let makes = [];
+      try {
+        makes = await Make.fetch({ _id: formattedProject.makes });
+      } catch (error) {
+        return reject(error);
+      }
+      formattedProject.makes = makes;
+    }
     // FILTER PROJECT
     let filteredProject = {
-      id: project._id, name: project.name, thumbnail: project.thumbnail,
-      bookmark: project.bookmark, date: project.date, makes: project.makes,
-      notes: project.notes
+      id: formattedProject._id, name: formattedProject.name, thumbnail: formattedProject.thumbnail,
+      bookmark: formattedProject.bookmark, date: formattedProject.date, makes: formattedProject.makes,
+      notes: formattedProject.notes
     };
     // SUCCESS HANDLER
     return resolve(filteredProject);

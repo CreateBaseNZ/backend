@@ -6,23 +6,21 @@
 // #############################################################################
 
 #orders-area{
-  width: 100%;
-  // border: thin solid black;
-  // flex-wrap: wrap;
-  justify-content: space-between;
   height: 100%;
-
-  .my-orders-wrap{
-    // border: thin solid red;
-    width: 95%;
-    padding-left:8vw;
-    .my-orders-title{
-      margin: 1em 0 1em 1rem;
+  width: 100%;
+  justify-content: space-between;
+  .my-orders-wrap {
+    height: 100%;
+    width: 100%;
+    .my-orders-title {
+      height: calc(30px + 3vmax);
+      width: 100%;
+      margin: calc(20px + 2vmax) 0;
+      padding: 0 calc(30px + 3vmax);
       color: $dark-2;
       font-size: 2em;
       font-weight: 600;
       font-family: $montserrat;
-      padding-bottom: 0.5em;
       position: relative;
       display: flex;
       &::after {
@@ -43,14 +41,10 @@
   }
 
   .my-orders-container{
-    // margin-top: 1em;
-    // margin-left: 12vw;
-    // border: thin solid cyan;
+    height: calc(100% - (70px + 7vmax));
     width: 100%;
-    // max-width: 25em;
     overflow-y: auto;
-    max-height: 70vh;
-    padding: 0.5em 1em 0 1em;
+    padding: 0 calc(30px + 3vmax);
   }
 
   .order-item{
@@ -317,7 +311,7 @@
 
   /* width */
   ::-webkit-scrollbar {
-    height: 90%;
+    height: 100%;
     width: 5px;
   }
 
@@ -337,7 +331,7 @@
   }
 
   ::-webkit-scrollbar-track-piece {
-    margin: 10px 0; 
+    // padding: calc(5px + 0.5vmax) 0;
   }
 
   .divider-container{
@@ -674,8 +668,8 @@
       // margin-top: 2.5em;
       // margin-left: 8vw;
       // width: 25vw;
-      max-width: 38em;
-      max-height: 79vh;
+      width: 38em;
+      height: 79vh;
       
       .order-item{
         position: relative;
@@ -802,33 +796,29 @@
     width: calc(100vw - 20em);
     flex-wrap: wrap;
     max-width: 125em;
-    // border: thin solid cyan;
-    .my-orders-wrap{
-      // border: thin solid red;
-      flex: 0 0 50%;
+    .my-orders-wrap {
+      flex: 0 0 40%;
+      height: 100%;
+      .my-orders-title {
+        height: calc(20px + 2vmax);
+        margin: calc(15px + 1.5vmax) 0;
+        padding: 0 calc(30px + 3vmax);
+      }
+      .my-orders-container {
+        height: calc(100% - (50px + 5vmax));
+        width: 100%;
+        padding: 0 calc(20px + 2vmax) 0 calc(30px + 3vmax);
+      }
     }
 
     .order-detail-wrap{
-      margin: 4em 2vw 0 0;
-      padding:0.5em;
-      // border: thin solid red;
-      flex: 0 0 34vw;
-      max-width: 40em;
+      flex: 0 0 60%;
+      height: 100%;
+      width: 100%;
       display: flex;
-      position: static;
       flex-direction: column;
-      height: 80vh;
-      // padding:2em 12vw 2em 12vw;
+      margin: 0;
+      padding: calc(2px + 2vmax) calc(40px + 4vmax);
     }
   }
-
-}
-
-@media only screen and (min-width: 1350px){
-  #orders-area{
-    .order-detail-wrap{
-      margin: 4em 3vw 0 0;
-    }
-  }
-
 }
