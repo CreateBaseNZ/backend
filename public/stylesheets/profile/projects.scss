@@ -1020,7 +1020,6 @@
             margin: 0.2em 0;
             border: thin solid $light-3;
             background: transparent;
-            color: $light-3;
             position: static;
             
             p {
@@ -1030,11 +1029,13 @@
               text-overflow: ellipsis;
               white-space: nowrap;
               overflow: hidden;
+              color: $light-3;
             }
-
+            
             i {
               padding: 0.8em;
               font-size: 1em;
+              color: $light-3;
             }
 
             .proj-pop-bar-tooltip-wrapper {
@@ -1082,8 +1083,10 @@
           .proj-pop-bar-active {
             border: thin solid $dark-1;
             background: $dark-1;
-            color: $light-1;
             p {
+              color: $light-1;
+            }
+            i {
               color: $light-1;
             }
 

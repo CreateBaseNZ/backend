@@ -170,7 +170,7 @@ projects.renderFavCard = (proj) => {
     if (makesEl.innerHTML !== '') {
       makesEl.innerHTML += ', '
     }
-    makesEl.innerHTML += make
+    makesEl.innerHTML += make.file.name
   })
   // notes
   let notesEl = document.createElement('div')
@@ -193,10 +193,11 @@ projects.updateFavCard = (proj) => {
   let makesEl = cardEl.querySelector('.proj-fav-makes')
   makesEl.innerHTML = ''
   proj.makes.forEach(function (make, j) {
+    console.log(make)
     if (makesEl.innerHTML !== '') {
       makesEl.innerHTML += ', '
     }
-    makesEl.innerHTML += make
+    makesEl.innerHTML += make.file.name
   })
   // notes
   cardEl.querySelector('.proj-fav-notes').innerHTML = proj.notes
@@ -256,6 +257,7 @@ projects.renderMakeBars = (allMakes, proj, container) => {
   if (!proj) {
     proj = new Object()
     proj.id = 'new'
+    proj.makes = []
   }
   
   // Render all make bars
@@ -295,9 +297,13 @@ projects.renderMakeBars = (allMakes, proj, container) => {
     container.appendChild(el)
   })
 
-  if (proj) {
+
+  if (proj.makes.length) {
     proj.makes.forEach(function (make) {
-      container.querySelector('.' + proj.id + '-' + makes.id + '-proj-pop-bar').classList.toggle('proj-pop-bar-active')
+      let bar = document.getElementById(proj.id + '-' + make.id + '-proj-pop-bar')
+      bar.classList.toggle('proj-pop-bar-active')
+      bar.querySelector('i').className = 'fa-check-circle fas'
+      projects.renderMakeBlobs(make, proj.id)
     })
   }
 
@@ -313,6 +319,7 @@ projects.toggleMakeBars = (bar, make, projID) => {
     projects.renderMakeBlobs(make, projID)
   }
   // toggle bar
+  console.log('toggling bar icon')
   bar.querySelector('i').classList.toggle('fas')
   bar.querySelector('i').classList.toggle('far')
   bar.classList.toggle('proj-pop-bar-active')
@@ -585,7 +592,7 @@ projects.saveExisting = async (projID, allMakes) => {
         if (makesEl.innerHTML !== '') {
           makesEl.innerHTML += ', '
         }
-        makesEl.innerHTML += make
+        makesEl.innerHTML += make.file.name
       })
       favCard.querySelector('.proj-fav-notes').innerHTML = data["content"]["notes"]
       favCard.querySelector('.proj-fav-img').src = '/profile/projects/retrieve-thumbnail/' + projID + '?' + new Date().getTime()
@@ -678,7 +685,7 @@ projects.updateBookmark = async (e, proj, bookmarkEl) => {
   }
   // UPDATE CSS
   if (bookmarkEl.classList.contains('fas')) {
-    projects.renderFavCard(proj)
+    projects.renderFavCard(data.content)
   } else {
     document.getElementById(proj.id + '-proj-fav').remove()
   }
