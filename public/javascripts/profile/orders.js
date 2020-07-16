@@ -580,10 +580,11 @@ orders.createPreview = (order) => {
 // @func  orders.createComments
 // @desc  
 orders.createComments = (order) => {
+  const orderObject = JSON.stringify(order);
   const form = `
   <div class="comment-form-container">
     <input type="text" class="messageSubmit" id="order-comment-${order._id}" placeholder="Post a comment...">
-    <div class="submit-comment-container">
+    <button id="post-comment-${order._id}" class="submit-comment-container rmv-btn-css" onclick='orders.postComment(${orderObject});'>
       <?xml version="1.0" encoding="iso-8859-1"?>
       <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.641 471.641"
@@ -599,7 +600,7 @@ orders.createComments = (order) => {
           l216.747-216.747C485.073,184.954,484.156,100.769,431.666,49.412z" />
         </g>
       </svg>
-    </div>
+    </button>
   </div>
   `;
   // COMMENTS CONTAINER
@@ -688,11 +689,11 @@ orders.addComment = (order, comment) => {
 
 // @func  orders.postComment
 // @desc  
-orders.postComment = async (orderId) => {
+orders.postComment = async (order) => {
   // LOADER
-
+  document.querySelector(`#post-comment-${order._id}`).setAttribute("disabled", "");
   // COLLECT
-  const form = orders.collectComment(orderId);
+  const form = orders.collectComment(order._id);
   // VALIDATE
 
   // SUBMIT
@@ -710,16 +711,20 @@ orders.postComment = async (orderId) => {
     return;
   }
   // INSERT
-  orders.addComment(orderId, data.content);
+  orders.addComment(order, data.content);
   // SUCCESS HANDLER
-  // remove loader
-
+  document.querySelector(`#post-comment-${order._id}`).removeAttribute("disabled");
+  document.querySelector(`#order-comment-${order._id}`).value = "";
+  return;
 }
 
 // @func  orders.collectComment
 // @desc  
 orders.collectComment = (orderId) => {
-  let comment;
+  let comment = {
+    orderId,
+    message: document.querySelector(`#order-comment-${orderId}`).value
+  }
   return comment;
 }
 

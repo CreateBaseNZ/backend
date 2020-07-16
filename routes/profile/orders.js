@@ -116,14 +116,14 @@ router.post("/orders/post-comment", verifiedContent, async (req, res) => {
   try {
     order = await Order.findOne({ _id: orderId });
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    return res.send({ status: "error", content: error });
   }
   // CREATE NEW COMMENT
   let comment = { accountId: account._id, message };
   try {
     comment = await Comment.build(comment, false);
   } catch (error) {
-    return res.send({ status: "failed", content: error });
+    return res.send(error);
   }
   // UPDATE ORDER COMMENTS
   order.comments.push(comment._id);
@@ -137,9 +137,9 @@ router.post("/orders/post-comment", verifiedContent, async (req, res) => {
   }
   comment = comment.toObject();
   // ADD INFORMATION TO COMMENT OBJECT
-  comment.author = { name: customer.displayName, picture: customer.picture };
+  comment.author = { id: account._id, name: customer.displayName, picture: customer.picture };
   // SUCCESS HANDLER
-  return res.send({ status: "succeeded", content: { comment } });
+  return res.send({ status: "succeeded", content: comment });
 });
 
 /* ----------------------------------------------------------------------------------------
