@@ -178,7 +178,7 @@ orders.addSummary = (order) => {
     </svg>
   </div>
   `;
-  const containerOne = `<div class="order-title-container">${orderNumber + notification + logo}</div>`;
+  const containerOne = `<div class="order-title-container">${orderNumber + notification}</div>`;
   // CONTAINER TWO
   let status;
   switch (order.status) {

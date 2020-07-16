@@ -40,20 +40,20 @@
     color:#524C66;
   }
 
-  .my-orders-container{
+  .my-orders-container {
     height: calc(100% - (70px + 7vmax));
     width: 100%;
     overflow-y: auto;
-    padding: 0 calc(30px + 3vmax);
+    padding: 0 calc(20px + 2vmax);
   }
 
   .order-item{
     // border: thin solid blue;
-    margin-bottom: 1.5em;
+    margin-bottom: calc(15px + 1.5vmax);
     background-color: $light-1;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.11);
-    border-radius: 0.8em;
-    padding: 1.2em 1em;
+    border-radius: calc(8px + 0.8vmax);
+    padding: calc(12px + 1.2vmax);
     transition: all ease 0.2s;
     &:hover{
       cursor: pointer;
@@ -157,12 +157,12 @@
   }
 
   .order-detail-wrap {
+    height: calc(100% - 60px);
     width: 100vw;
-    height: 100vh;
     position: fixed;
     // border: thin solid cyan;
     background-color: $light-1;
-    padding:1em 0 4em;
+    padding: calc(10px + 1vmax) 0;
     overflow-y: auto;
     overflow-x: hidden;
     .orderdetails {
@@ -177,11 +177,11 @@
       border-radius: 0.8em;
       overflow-y: auto;
       overflow-x: hidden;
-      .exit-icon{
+      .exit-icon {
         display: flex;
         justify-content: flex-end;
         margin-bottom: 0.5em;
-        margin-right: 12vw;
+        margin-right: calc(20px + 2vmax);
       }
     }
     &.hide {
@@ -331,7 +331,7 @@
   }
 
   ::-webkit-scrollbar-track-piece {
-    // padding: calc(5px + 0.5vmax) 0;
+    margin: calc(10px + 1vmax) 0;
   }
 
   .divider-container{
@@ -658,23 +658,13 @@
     width: calc(100vw - 20em);
     flex-wrap: wrap;
     max-width: 125em;
-    // border: thin solid cyan;
-    .my-orders-wrap{
-      // border: thin solid red;
-      flex: 0 0 90%;
-    }
-    .my-orders-container{
-      // border:thin solid red;
-      // margin-top: 2.5em;
-      // margin-left: 8vw;
-      // width: 25vw;
-      width: 38em;
-      height: 79vh;
-      
-      .order-item{
+    .my-orders-container {
+      width: 90%;
+      padding: 0 calc(30px + 3vmax);
+      .order-item {
         position: relative;
         padding: 1.2em 1.2em;
-        .active-div{
+        .active-div {
           display: block;
           position: absolute;
           right: 0;
@@ -693,41 +683,18 @@
       }
     }
 
-    #order-details-title{
-      display: block;
+    .order-tracking-container, .order-preview, .order-summary {
+      padding: calc(10px + 1vmax) calc(40px + 4vmax);
     }
 
-    .order-tracking-container, .order-preview, .order-summary{
-      padding: 1em 3vw 0;
-    }
-
-    .divider-container{
+    .divider-container {
       padding: 0 3em;
     }
 
-    .order-detail-wrap{
-      margin: 4em 0 0 7vw;
-      padding:0.5em;
-      // border: thin solid red;
-      flex: 0 0 55vw;
-      display: flex;
-      position: static;
-      flex-direction: column;
-      height: 80vh;
-      // padding:2em 12vw 2em 12vw;
-      .order-detail-container{
-        background-color: $light-1;
-        // border: thin solid blue;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.11);
-        padding: 2em 0;
-        .full-tracking{
-          display: flex;
-        }
-        .exit-icon{
-          display: none;
-        }
-      }
+    .order-detail-wrap {
+      width: calc(90vw - 18em);
     }
+
 
     .full-tracking{
       display: flex;
@@ -738,7 +705,8 @@
     }
 
     .order-summary{
-      .order-detail-content-container{
+      .order-detail-content-container {
+        width: 100%;
         .order-info-wrap{
           font-size: calc(0.6em + 0.3vmax);
         }
@@ -775,13 +743,13 @@
     }
 
     .comment-wrap{
-      .comment-title{
-        padding: 1em 3vw;
+      .comment-title {
+        padding: calc(10px + 1vmax) calc(40px + 4vmax);
       }
-      .comment-form-container{
-        padding: 1.2em 0 0;
+      .comment-form-container {
+        padding: calc(10px + 1vmax) calc(40px + 4vmax);
       }
-      .messageSubmit{
+      .messageSubmit {
         margin: 0 2em;
         width: 60%;
         border-radius: 0.4em;
@@ -795,7 +763,6 @@
   #orders-area{
     width: calc(100vw - 20em);
     flex-wrap: wrap;
-    max-width: 125em;
     .my-orders-wrap {
       flex: 0 0 40%;
       height: 100%;
@@ -809,16 +776,31 @@
         width: 100%;
         padding: 0 calc(20px + 2vmax) 0 calc(30px + 3vmax);
       }
+      #order-details-title {
+        display: block;
+      }
     }
 
-    .order-detail-wrap{
+    .order-detail-wrap {
       flex: 0 0 60%;
+      position: static;
       height: 100%;
       width: 100%;
       display: flex;
       flex-direction: column;
       margin: 0;
-      padding: calc(2px + 2vmax) calc(40px + 4vmax);
+      padding: calc(20px + 2vmax) calc(40px + 4vmax);
+      .order-detail-container {
+        background-color: $light-1;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.11);
+        padding: calc(20px + 2vmax) 0;
+        .full-tracking {
+          display: flex;
+        }
+        .exit-icon {
+          display: none;
+        }
+      }
     }
   }
 }
