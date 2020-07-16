@@ -140,7 +140,7 @@ router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res)
   // RETRIEVE ALL PROJECTS
   let projects;
   try {
-    projects = await Project.fetch({ account: account._id });
+    projects = await Project.fetch({ account: account._id }, true);
   } catch (error) {
     res.send({ status: "failed", content: error });
     return;
