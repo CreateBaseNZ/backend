@@ -257,7 +257,7 @@ projects.renderMakeBars = (allMakes, proj, container) => {
     proj = new Object()
     proj.id = 'new'
   }
-  
+
   // Render all make bars
   allMakes.forEach(function (make) {
     // main bar
@@ -276,9 +276,9 @@ projects.renderMakeBars = (allMakes, proj, container) => {
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'M: ' + make.material.toUpperCase()
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'Q: ' + projects.capFirstLetter(make.quality)
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'S: ' +
-    projects.capFirstLetter(make.strength)
+      projects.capFirstLetter(make.strength)
     tooltipEl.appendChild(document.createElement('p')).innerHTML = 'C: ' +
-    projects.capFirstLetter(make.colour)
+      projects.capFirstLetter(make.colour)
     tooltipWrapper.appendChild(tooltipEl)
     el.appendChild(tooltipWrapper)
 
@@ -296,8 +296,9 @@ projects.renderMakeBars = (allMakes, proj, container) => {
   })
 
   if (proj) {
+    console.log(proj.makes);
     proj.makes.forEach(function (make) {
-      container.querySelector('.' + proj.id + '-' + makes.id + '-proj-pop-bar').classList.toggle('proj-pop-bar-active')
+      container.querySelector('#' + proj.id + '-' + make.id + '-proj-pop-bar').classList.toggle('proj-pop-bar-active')
     })
   }
 

@@ -10,6 +10,7 @@ body {
   max-width: 100%;
   overflow-x: hidden; 
   overflow-y: auto;
+  max-height: 100vh;
 }
 
 #profile-page {
@@ -30,13 +31,12 @@ body {
 // #############################################################################
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
-
   #profile-page {
     margin-top: $top-bar-height;
-    max-height: 100%;
+    max-height: calc(100vh - #{$top-bar-height});
+    height: calc(100vh - #{$top-bar-height});
     width: 100%;
     font-family: $poppins;
     flex-direction: row-reverse;
   }
-
 }
