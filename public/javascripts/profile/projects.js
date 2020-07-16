@@ -297,20 +297,12 @@ projects.renderMakeBars = (allMakes, proj, container) => {
     container.appendChild(el)
   })
 
-<<<<<<< HEAD
-  if (proj) {
-    console.log(proj.makes);
-    proj.makes.forEach(function (make) {
-      container.querySelector('#' + proj.id + '-' + make.id + '-proj-pop-bar').classList.toggle('proj-pop-bar-active')
-=======
-
   if (proj.makes.length) {
     proj.makes.forEach(function (make) {
       let bar = document.getElementById(proj.id + '-' + make.id + '-proj-pop-bar')
       bar.classList.toggle('proj-pop-bar-active')
       bar.querySelector('i').className = 'fa-check-circle fas'
       projects.renderMakeBlobs(make, proj.id)
->>>>>>> d7410b910168162be072d90789b85d3061e6e43f
     })
   }
 
