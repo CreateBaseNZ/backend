@@ -162,8 +162,7 @@
     color: $dark-2;
   }
 
-  .order-detail-wrap{
-    // display: none;
+  .order-detail-wrap {
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -172,14 +171,13 @@
     padding:1em 0 4em;
     overflow-y: auto;
     overflow-x: hidden;
-    .orderdetails{
+    .orderdetails {
       color: $dark-1;
       font-size: 0.8em;
       // font-weight: 600;
       font-family: $montserrat;
     }
-    .order-detail-container{
-      // border: thin solid blue;
+    .order-detail-container {
       background-color: $light-1;
       padding: 1em 0;
       border-radius: 0.8em;
@@ -191,6 +189,9 @@
         margin-bottom: 0.5em;
         margin-right: 12vw;
       }
+    }
+    &.hide {
+      display: none;
     }
   }
 
@@ -226,7 +227,7 @@
           position: absolute;
           top:50%;
           left: 50%;
-          width: 0.85em;
+          width: 0.8em;
           height: 0.8em;
           border-radius: 50%;
           background: $logo-2;
@@ -368,7 +369,7 @@
       flex: 0 0 100%;
       margin-bottom: 1em;
     }
-    #order-detail-content-container{
+    .order-detail-content-container{
       // display: flex;
       // width: 100%;
       .order-info-wrap{
@@ -391,35 +392,28 @@
     //Order item list
     .order-item-list-container{
       flex: 0 0 100%;
-      // border: thin solid blue;
       .order-item-detailed{
-        // border: thin solid black;
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin: 1em 0;
       }
-      .item-img-container{
-        padding-right: 4vw;
-        flex: 0 0 3em;
-        // border: thin solid red;
+      .item-img-container {
+        height: calc(20px + 2vmax);
+        width: calc(20px + 2vmax);
         display: flex;
         align-items: center;
-        img{
-          width: 100%;
-        }
+        justify-content: center;
       }
       .item-name-container{
         padding-right: 2vw;
         flex: 0 0 27%;
-        // border: thin solid red;
         color: $dark-2;
         font-size: calc(0.5em + 0.2vmax);
       }
       .item-type-list-container{
         padding-right: 2vw;
         flex: 0 0 27%;
-        // border: thin solid red;
         color: $dark-1;
         font-size: calc(0.5em + 0.2vmax);
         text-align: center;
@@ -641,7 +635,7 @@
         }
       }
     }
-    #messageSubmit{
+    .messageSubmit{
       margin: 0 1em;
       width: 60%;
       border-radius: 0.4em;
@@ -750,7 +744,7 @@
     }
 
     .order-summary{
-      #order-detail-content-container{
+      .order-detail-content-container{
         .order-info-wrap{
           font-size: calc(0.6em + 0.3vmax);
         }
@@ -771,11 +765,6 @@
         font-size: calc(0.5em + 0.2vmax);
       }
       .order-item-list-container{
-        // .order-item-detailed{
-        // }
-        .item-img-container{
-          padding-right: 0;
-        }
         .item-name-container{
           padding-right: 0;
         }
@@ -798,7 +787,7 @@
       .comment-form-container{
         padding: 1.2em 0 0;
       }
-      #messageSubmit{
+      .messageSubmit{
         margin: 0 2em;
         width: 60%;
         border-radius: 0.4em;

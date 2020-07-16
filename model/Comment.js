@@ -99,8 +99,8 @@ CommentSchema.statics.fetch = function (query = {}) {
     for (let i = 0; i < comments.length; i++) {
       const comment = comments[i];
       const customer = customers.find(customer => (String(comment.accountId) == String(customer.accountId)));
-      let author = { name: "unknown", picture: "unknown" };
-      if (customer) author = { name: customer.displayName, picture: customer.picture };
+      let author = { id: "unknown", name: "unknown", picture: "unknown" };
+      if (customer) author = { id: customer.accountId, name: customer.displayName, picture: customer.picture };
       const formattedComment = {
         id: comment._id, author, message: comment.message,
         date: comment.date, attachments: comment.attachments

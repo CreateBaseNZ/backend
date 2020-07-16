@@ -18,14 +18,19 @@ let orders = {
   addSummary: undefined,
   addDetailed: undefined,
   createTracking: undefined,
+  createStatusProgress: undefined,
+  createStatusLabel: undefined,
   createSummary: undefined,
+  createPreview: undefined,
   createComments: undefined,
+  formatMakeName: undefined,
   addMake: undefined,
   // COMMENT
   addComment: undefined,
   postComment: undefined,
   collectComment: undefined,
   submitComment: undefined,
+  formatDateComment: undefined,
   // VIEWER
   viewerFetch: undefined,
   viewerProcess: undefined
@@ -77,17 +82,21 @@ ORDERS
 // @func  orders.selectOrder
 // @desc  
 orders.selectOrder = (orderId) => {
-  if (orders.selectedOrder === orderId) return;
+  if (orders.selectedOrder === orderId) {
+    return orders.deselectOrder(orders.selectedOrder);
+  }
   // UPDATE CSS
   if (orders.selectedOrder) orders.deselectOrder(orders.selectedOrder);
   document.querySelector(`#order-summary-${orderId}`).classList.add("active-item");
-  orders.selectedOrder = orderId; // UPDATE SELECTED ORDER
+  document.querySelector(`#order-detail-${orderId}`).classList.remove("hide");
+  return orders.selectedOrder = orderId; // UPDATE SELECTED ORDER
 }
 
 // @func  orders.deselectOrder
 // @desc  
 orders.deselectOrder = (orderId) => {
   document.querySelector(`#order-summary-${orderId}`).classList.remove("active-item");
+  document.querySelector(`#order-detail-${orderId}`).classList.add("hide");
   orders.selectedOrder = undefined; // UPDATE SELECTED ORDER
 }
 
@@ -141,12 +150,12 @@ orders.addOrder = (order) => {
   // POPULATE MAKES
   for (let i = 0; i < order.makes.checkout.length; i++) {
     const make = order.makes.checkout[i];
-    orders.addMake(order._id, make);
+    orders.addMake(order, make);
   }
   // POPULATE COMMENTS
   for (let i = 0; i < order.comments.length; i++) {
     const comment = order.comments[i];
-    orders.addComment(order._id, comment);
+    orders.addComment(order, comment);
   }
   return;
 }
@@ -250,19 +259,22 @@ orders.addDetailed = (order) => {
   // TRACKING CONTAINER
   const containerOne = orders.createTracking(order);
   const containerTwo = orders.createSummary(order);
-  const containerThree = orders.createComments(order);
+  const containerThree = orders.createPreview(order);
+  const containerFour = orders.createComments(order);
   // DETAILED
   const detailed = `
-  <div id="order-detail-${order._id}" class="order-detail-wrap">
+  <div id="order-detail-${order._id}" class="order-detail-wrap hide">
     <p class="orderdetails" id="order-details-title">Order Details</p>
     <div class="order-detail-container">
-      <div class="exit-icon"><img src="/public/images/user-x.png" alt="X"></div>
-      ${containerOne + divider + containerTwo + containerThree}
+      <div class="exit-icon" onclick="orders.deselectOrder('${order._id}');">
+        <img src="/public/images/user-x.png" alt="X">
+      </div>
+      ${containerOne + divider + containerTwo + divider + containerThree + divider + containerFour}
     </div>
   </div>
   `;
   // INSERT
-
+  document.querySelector("#orders-area").insertAdjacentHTML("beforeend", detailed);
 }
 
 // @func  orders.createTracking
@@ -273,26 +285,47 @@ orders.createTracking = (order) => {
   // TRACKING
   let statusTitle;
   let statusDetail;
+  let statusProgress;
+  let statusLabel;
+  let shippedProgress;
+  let arrivedProgress;
+  if (order.shipping.method === "pickup") {
+    shippedProgress = "Ready for Pickup";
+    arrivedProgress = "Package Picked up";
+  } else {
+    shippedProgress = "Package Shipped";
+    arrivedProgress = "Packaged Arrived";
+  }
   switch (order.status) {
     case "checkedout":
       statusTitle = "Validating payment";
       statusDetail = "We are currently validating your payment. Thank you for your patience.";
+      statusProgress = orders.createStatusProgress(["on-progress", "incomplete", "incomplete", "incomplete", "incomplete"], ["", "", "", "full-tracking", "full-tracking"], ["", "", "full-tracking", "full-tracking", ""]);
+      statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["", "", "", "full-tracking", "full-tracking"]);
       break;
     case "validated":
       statusTitle = "Building order";
       statusDetail = "We are currently building your order. Thank you for your patience.";
+      statusProgress = orders.createStatusProgress(["completed", "on-progress", "incomplete", "incomplete", "incomplete"], ["", "", "", "full-tracking", "full-tracking"], ["", "", "full-tracking", "full-tracking", ""]);
+      statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["", "", "", "full-tracking", "full-tracking"]);
       break;
     case "built":
       statusTitle = "Packaging order";
       statusDetail = "We are currently packaging your order. Thank you for your patience.";
+      statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
+      statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["full-tracking", "", "", "", "full-tracking"]);
       break;
     case "reviewed":
       statusTitle = "Order reviewed";
       statusDetail = "Thank you for leaving us a review.";
+      statusProgress = orders.createStatusProgress(["completed", "completed", "completed", "on-progress", "incomplete"], ["full-tracking", "full-tracking", "", "", ""], ["full-tracking", "full-tracking", "", "", ""]);
+      statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "full-tracking", "", "", ""]);
       break;
     case "completed":
       statusTitle = "Order completed";
       statusDetail = "Your order has been completed. Thank you for using CreateBase.";
+      statusProgress = orders.createStatusProgress(["completed", "completed", "completed", "completed", "on-progress"], ["full-tracking", "full-tracking", "", "", ""], ["full-tracking", "full-tracking", "", "", ""]);
+      statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "full-tracking", "", "", ""]);
       break;
     case "cancelled":
       statusTitle = "Refunding order";
@@ -309,10 +342,14 @@ orders.createTracking = (order) => {
       case "shipped":
         statusTitle = "Ready for pickup";
         statusDetail = "You can now pickup your package. Pick your package at 16 Dapple Place, Flat Bush, Auckland, 2019, New Zealand";
+        statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
+        statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", shippedProgress, arrivedProgress, "Order Reviewed"], ["full-tracking", "", "", "", "full-tracking"]);
         break;
       case "arrived":
         statusTitle = "Package picked up";
         statusDetail = "You have now picked up your package. Thank you for using CreateBase. Please leave us a review.";
+        statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
+        statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "", "", "", "full-tracking"]);
         break;
       default: break;
     }
@@ -321,10 +358,14 @@ orders.createTracking = (order) => {
       case "shipped":
         statusTitle = "Package shipped";
         statusDetail = "Your package is now on its way to your doorstep.";
+        statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
+        statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", shippedProgress, arrivedProgress, "Order Reviewed"], ["full-tracking", "", "", "", "full-tracking"]);
         break;
       case "arrived":
         statusTitle = "Packaged arrived";
         statusDetail = "Your package has arrived to your doorstep. Thank you for using CreateBase. Please leave us a review.";
+        statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
+        statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "", "", "", "full-tracking"]);
         break;
       default: break;
     }
@@ -340,9 +381,78 @@ orders.createTracking = (order) => {
   `;
   // TRACKING CONTAINER
   const container = `
-  <div class="order-tracking-container">${heading + statusContainer}</div>
+  <div class="order-tracking-container">${heading + statusProgress + statusLabel + statusContainer}</div>
   `;
   return container;
+}
+
+// @func  orders.createStatusProgress
+// @desc  
+orders.createStatusProgress = (progresses = [], classesOne = [], classesTwo = []) => {
+  let html = `<div class="progress-bar-container">`;
+  for (let i = 0; i < progresses.length; i++) {
+    const progress = progresses[i];
+    const otherClassOne = classesOne[i];
+    const otherClassTwo = classesTwo[i];
+    if (progress === "completed") {
+      html += `
+      <div class="progress-container ${otherClassOne}">
+        <div class="status-circle"></div>
+        <div class="status-line"></div>
+      </div>
+      `;
+      if (i !== progresses.length - 1) {
+        html += `
+        <div class="progress-bar ${otherClassTwo}"></div>
+        `;
+      }
+    } else if (progress === "on-progress") {
+      html += `
+      <div class="progress-container ${otherClassOne}">
+        <div class="status-circle status-circle-current">
+          <div class="status-circle-current-inner"></div>
+        </div>
+        <div class="status-line ${otherClassTwo}"></div>
+      </div>
+      `;
+      if (i !== progresses.length - 1) {
+        html += `
+        <div class="progress-bar next-progress"></div>
+        `;
+      }
+    } else if (progress === "incomplete") {
+      html += `
+      <div class="progress-container ${otherClassOne}">
+        <div class="status-circle next-circle"></div>
+        <div class="status-line"></div>
+      </div>
+      `;
+      if (i !== progresses.length - 1) {
+        html += `
+        <div class="progress-bar next-progress ${otherClassTwo}"></div>
+        `;
+      }
+    }
+  }
+  html += `</div>`;
+  return html;
+}
+
+// @func  orders.createStatusLabel
+// @desc  
+orders.createStatusLabel = (labels = [], classes = []) => {
+  let html = `<div class="progress-caption-container">`;
+  for (let i = 0; i < labels.length; i++) {
+    const label = labels[i];
+    let otherClass = classes[i];
+    html += `
+    <div class="status-label-container ${otherClass}">
+      <p class="status-label">${label}</p>
+    </div>
+    `;
+  }
+  html += `</div>`;
+  return html;
 }
 
 // @func  orders.createSummary
@@ -447,10 +557,21 @@ orders.createSummary = (order) => {
   const container = `
   <div class="order-summary">
     <p class="order-summary-title">Order Summary</p>
-    <div id="order-detail-content-container">
+    <div class="order-detail-content-container">
       ${info + makes + price}
     </div>
-    <div class="divider"></div>
+  </div>
+  `;
+  return container;
+}
+
+// @func  orders.createPreview
+// @desc  
+orders.createPreview = (order) => {
+  const container = `
+  <div class="order-preview">
+    <p class="preview-title">Preview</p>
+    <div id="order-preview-${order._id}" class="preview-photo-container"></div>
   </div>
   `;
   return container;
@@ -461,8 +582,24 @@ orders.createSummary = (order) => {
 orders.createComments = (order) => {
   const form = `
   <div class="comment-form-container">
-    <input type="text" id="comment-input-${order._id}" placeholder="Post a comment...">
-    <div id="order-post-comment-${order._id}" class="submit-comment-container" onclick="orders.postComment('${order._id}');">+</div>
+    <input type="text" class="messageSubmit" id="order-comment-${order._id}" placeholder="Post a comment...">
+    <div class="submit-comment-container">
+      <?xml version="1.0" encoding="iso-8859-1"?>
+      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.641 471.641"
+        style="enable-background:new 0 0 471.641 471.641;" xml:space="preserve">
+        <g>
+          <path d="M431.666,49.412c-51.692-50.578-134.33-50.567-186.009,0.025L28.911,266.184c-39.192,40.116-38.443,104.407,1.673,143.599
+          c39.456,38.548,102.47,38.548,141.926,0l196.267-196.267c25.515-25.515,25.515-66.884,0-92.399
+          c-25.515-25.515-66.884-25.515-92.399,0L88.644,308.85c-6.548,6.78-6.36,17.584,0.42,24.132c6.614,6.388,17.099,6.388,23.713,0
+          L300.51,145.249c12.449-11.926,32.209-11.501,44.134,0.948c11.565,12.073,11.565,31.114,0,43.187L148.378,385.65
+          c-26.514,26.137-69.197,25.831-95.334-0.683c-25.873-26.246-25.873-68.405,0-94.651L269.79,73.569
+          c38.608-38.622,101.214-38.633,139.836-0.026c38.622,38.607,38.633,101.214,0.026,139.836L192.905,430.126
+          c-7.159,6.131-7.993,16.905-1.862,24.064c6.131,7.159,16.905,7.993,24.064,1.862c0.668-0.572,1.29-1.194,1.862-1.862
+          l216.747-216.747C485.073,184.954,484.156,100.769,431.666,49.412z" />
+        </g>
+      </svg>
+    </div>
   </div>
   `;
   // COMMENTS CONTAINER
@@ -476,14 +613,29 @@ orders.createComments = (order) => {
   return container;
 }
 
+// @func  orders.formatMakeName
+// @desc  
+orders.formatMakeName = (filename = "") => {
+  const filenameArray = filename.split(".");
+  const name = filenameArray.slice(0, filenameArray.length - 1).join();
+  const length = name.length;
+  let displayName = { first: undefined, middle: undefined, last: undefined };
+  if (length > 12) {
+    displayName = { first: name.slice(0, 4), middle: " ... ", last: name.slice(length - 4) };
+  } else {
+    displayName = { first: name, middle: "", last: "" };
+  }
+  return displayName.first + displayName.middle + displayName.last;
+}
+
 // @func  orders.addMake
 // @desc  
-orders.addMake = (orderId, make) => {
+orders.addMake = (order, make) => {
   // CREATE MAKE
-  const make = `
+  const html = `
   <div class="order-item-detailed">
     <div id="order-make-viewer-${make.id}" class="item-img-container"></div>
-    <div class="item-name-container">${make.file.name}</div>
+    <div class="item-name-container">${orders.formatMakeName(make.file.name)}</div>
     <div class="item-type-list-container">
       ${make.material}, ${make.quality}, ${make.strength}, ${make.colour}
     </div>
@@ -495,9 +647,11 @@ orders.addMake = (orderId, make) => {
   </div>
   `;
   // INSERT
-  //document.querySelector(`#`).insertAdjacentHTML("beforeend", make);
+  document.querySelector(`#order-makes-${order._id}`).insertAdjacentHTML("beforeend", html);
   // VIEWER
-  //orders.viewerFetch(`/files/stl/fetch/${make.file.id}`, `order-make-viewer-${make.id}`);
+  orders.viewerFetch(`/files/stl/fetch/${make.file.id}`, `order-make-viewer-${make.id}`);
+  // ADD COMMENT
+  if (make.comment) orders.addComment(order, make.comment);
   // SUCCESS HANDLER
   return;
 }
@@ -508,11 +662,27 @@ COMMENT
 
 // @func  orders.addComment
 // @desc  
-orders.addComment = (orderId, comment) => {
-  console.log(comment); // TEMPORARY
-  // TO DO .....
-  // CREATE COMMENT
-  // TO DO .....
+orders.addComment = (order, comment) => {
+  // CREATE HTML
+  let commentClass;
+  if ((order.accountId + "") === (comment.author.id + "")) {
+    commentClass = "admin-comment";
+  } else {
+    commentClass = "customer-comment";
+  }
+  const html = `
+  <div class="${commentClass}">
+    <div class="profile-pic-container">
+      <img decoding="async" src="/file/display-picture/${comment.author.picture}">
+    </div>
+    <div class="message">
+      <div class="msg-date-container">${orders.formatDateComment(comment.date.modified)}</div>
+      <div class="msg-container">${comment.message}</div>
+    </div>
+  </div>
+  `;
+  // INSERT
+  document.querySelector(`#order-comments-${order._id}`).insertAdjacentHTML("beforeend", html);
   return;
 }
 
@@ -568,6 +738,18 @@ orders.submitComment = (form) => {
   });
 }
 
+// @func  orders.formatDateComment
+// @desc  
+orders.formatDateComment = (date) => {
+  const hour = moment(date).format("hh");
+  const minute = moment(date).format("mm");
+  const post = moment(date).format("a");
+  const day = moment(date).format("DD");
+  const month = moment(date).format("MMM");
+  const year = moment(date).format("YYYY");
+  return (`${hour}:${minute}${post} ${day} ${month} ${year}`);
+}
+
 /* ----------------------------------------------------------------------------------------
 VIEWER
 ---------------------------------------------------------------------------------------- */
@@ -576,16 +758,21 @@ VIEWER
 // @desc  
 orders.viewerFetch = async (url, id) => {
   var element = document.getElementById(id);
-
-  var camera = new THREE.PerspectiveCamera(70, element.clientWidth / element.clientHeight, 1, 1000);
+  let length = document.documentElement.clientHeight > document.documentElement.clientWidth ?
+    document.documentElement.clientHeight : document.documentElement.clientWidth;
+  let dimension = length * 0.02 + 20;
+  var camera = new THREE.PerspectiveCamera(70, dimension / dimension, 1, 1000);
 
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(element.clientWidth, element.clientHeight);
+  renderer.setSize(dimension, dimension);
   element.appendChild(renderer.domElement);
 
-  window.addEventListener('resize', function () {
-    renderer.setSize(element.clientWidth, element.clientHeight);
-    camera.aspect = element.clientWidth / element.clientHeight;
+  element.addEventListener('resize', function () {
+    let length = document.documentElement.clientHeight > document.documentElement.clientWidth ?
+      document.documentElement.clientHeight : document.documentElement.clientWidth;
+    let dimension = length * 0.02 + 20;
+    renderer.setSize(dimension, dimension);
+    camera.aspect = dimension / dimension;
     camera.updateProjectionMatrix();
   }, false);
 

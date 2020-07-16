@@ -189,7 +189,7 @@ OrderSchema.statics.fetch = function (query = {}, withMakes = false, withComment
     // FETCH MAKES
     if (withMakes) {
       let promises = [];
-      for (let i = 0; i < formattedOrders.length; i++) promises.push(Make.fetch({ _id: formattedOrders[i].makes.checkout }));
+      for (let i = 0; i < formattedOrders.length; i++) promises.push(Make.fetch({ _id: formattedOrders[i].makes.checkout }, withComments));
       // fetch comments of each order asynchronously
       let makesArray;
       try {
