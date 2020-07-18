@@ -40,18 +40,21 @@ FUNCTIONS - PROJECTS
 projects.initialise = async () => {
   // DECLARE VARIABLES
   projects.declareVariables()
+  var favs = 0
   const [allProjects, allMakes] = (await projects.loadUserData());
-  console.log(allProjects)
   // render all project cards
   if (allProjects.length) {
     allProjects.forEach(function (project, i) {
       if (project.bookmark) {
         projects.renderFavCard(project)
+        favs += 1
       }
       projects.renderSmallCard(project)
       projects.renderProjPop(project, allMakes)
     })
   }
+  document.getElementById('proj-fav-header').innerHTML = 'Favourites (' + favs + ')'
+  document.getElementById('proj-new-header').innerHTML = 'All (' + allProjects.length + ')'
   projects.eventListeners()
   projects.renderProjPop(null, allMakes)
 }
@@ -193,7 +196,6 @@ projects.updateFavCard = (proj) => {
   let makesEl = cardEl.querySelector('.proj-fav-makes')
   makesEl.innerHTML = ''
   proj.makes.forEach(function (make, j) {
-    console.log(make)
     if (makesEl.innerHTML !== '') {
       makesEl.innerHTML += ', '
     }
@@ -305,8 +307,6 @@ projects.renderMakeBars = (allMakes, proj, container) => {
       projects.renderMakeBlobs(make, proj.id)
     })
   }
-
-  console.log(proj)
 }
 
 // 
@@ -318,7 +318,6 @@ projects.toggleMakeBars = (bar, make, projID) => {
     projects.renderMakeBlobs(make, projID)
   }
   // toggle bar
-  console.log('toggling bar icon')
   bar.querySelector('i').classList.toggle('fas')
   bar.querySelector('i').classList.toggle('far')
   bar.classList.toggle('proj-pop-bar-active')
@@ -695,33 +694,6 @@ projects.updateBookmark = async (e, proj, bookmarkEl) => {
 projects.previewImage = (el, event) => {
   el.parentElement.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
 }
-
-/*projects.collectNewProject = () => {
-  let wrapper = document.getElementById('new-proj-pop-wrapper');
-  let proj = new Object();
-  proj.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas');
-  proj.makes = [];
-  let children = wrapper.querySelector('.proj-pop-blob-container').children;
-  for (var i = 0; i < children.length; i++) {
-    proj.makes[i] = children[i].id.split('-')[1];
-    console.log(children[i].id.split('-')[1]);
-  }
-  proj.name = wrapper.querySelector('.proj-pop-name').value;
-  proj.notes = wrapper.querySelector('.proj-pop-notes').value;
-  let input;
-  const file = document.querySelector("#new-proj-pop-img-input");
-  if (file.files.length !== 0) {
-    input = new FormData(document.querySelector("#new-proj-img-form"));
-    input.append("bookmark", proj.bookmark);
-    input.append("makes", proj.makes);
-    input.append("name", proj.name);
-    input.append("notes", proj.notes);
-  } else {
-    input = proj;
-  }
-
-  return input;
-}*/
 
 projects.collectNewProject = () => {
   const wrapper = document.getElementById('new-proj-pop-wrapper');

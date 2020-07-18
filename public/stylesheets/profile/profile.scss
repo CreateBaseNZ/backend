@@ -15,8 +15,8 @@ body {
 
 #profile-page {
   margin-top: $top-bar-height;
-  height: calc(100% - #{$top-bar-height});
-  max-height: calc(100% - #{$top-bar-height});
+  height: calc(100vh - #{$top-bar-height});
+  max-height: calc(100vh - #{$top-bar-height});
   font-family: $poppins;
 }
 
