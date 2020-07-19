@@ -39,7 +39,7 @@ markdown = """
           <div class="contact-socials">
             <a href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
               class="fab fa-facebook-square" target="_blank"></a>
-            <a href="https://www.instagram.com/createbase_nz/" class="fab fa-instagram" target="_blank"></a>
+            <a href="https://www.instagram.com/createbasenz/" class="fab fa-instagram" target="_blank"></a>
             <a href="https://twitter.com/CreateBaseNZ" class="fab fa-twitter" target="_blank"></a>
             <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
           </div>
