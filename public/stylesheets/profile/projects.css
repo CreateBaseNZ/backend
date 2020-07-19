@@ -3554,6 +3554,7 @@ END
 
 @-webkit-keyframes noise-anim {
   0% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(22% 0 24% 0);
             clip-path: inset(22% 0 24% 0);
     padding: 6 px-8px;
@@ -3652,10 +3653,111 @@ END
   6.66667% {
     -webkit-clip-path: inset(37% 0 63% 0);
             clip-path: inset(37% 0 63% 0);
+=======
+    -webkit-clip-path: inset(48% 0 12% 0);
+            clip-path: inset(48% 0 12% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  0.41667% {
+    -webkit-clip-path: inset(95% 0 5% 0);
+            clip-path: inset(95% 0 5% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  0.83333% {
+    -webkit-clip-path: inset(16% 0 32% 0);
+            clip-path: inset(16% 0 32% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  1.25% {
+    -webkit-clip-path: inset(29% 0 60% 0);
+            clip-path: inset(29% 0 60% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  1.66667% {
+    -webkit-clip-path: inset(47% 0 12% 0);
+            clip-path: inset(47% 0 12% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  2.08333% {
+    -webkit-clip-path: inset(49% 0 48% 0);
+            clip-path: inset(49% 0 48% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  2.5% {
+    -webkit-clip-path: inset(64% 0 18% 0);
+            clip-path: inset(64% 0 18% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  2.91667% {
+    -webkit-clip-path: inset(10% 0 33% 0);
+            clip-path: inset(10% 0 33% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  3.33333% {
+    -webkit-clip-path: inset(60% 0 37% 0);
+            clip-path: inset(60% 0 37% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  3.75% {
+    -webkit-clip-path: inset(96% 0 1% 0);
+            clip-path: inset(96% 0 1% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  4.16667% {
+    -webkit-clip-path: inset(54% 0 40% 0);
+            clip-path: inset(54% 0 40% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  4.58333% {
+    -webkit-clip-path: inset(79% 0 21% 0);
+            clip-path: inset(79% 0 21% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  5% {
+    -webkit-clip-path: inset(97% 0 3% 0);
+            clip-path: inset(97% 0 3% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  5.41667% {
+    -webkit-clip-path: inset(23% 0 70% 0);
+            clip-path: inset(23% 0 70% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  5.83333% {
+    -webkit-clip-path: inset(72% 0 27% 0);
+            clip-path: inset(72% 0 27% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  6.25% {
+    -webkit-clip-path: inset(18% 0 29% 0);
+            clip-path: inset(18% 0 29% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  6.66667% {
+    -webkit-clip-path: inset(38% 0 10% 0);
+            clip-path: inset(38% 0 10% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   7.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(94% 0 7% 0);
             clip-path: inset(94% 0 7% 0);
     padding: 4 px-8px;
@@ -3676,10 +3778,33 @@ END
   8.33333% {
     -webkit-clip-path: inset(99% 0 1% 0);
             clip-path: inset(99% 0 1% 0);
+=======
+    -webkit-clip-path: inset(6% 0 47% 0);
+            clip-path: inset(6% 0 47% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  7.5% {
+    -webkit-clip-path: inset(7% 0 89% 0);
+            clip-path: inset(7% 0 89% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  7.91667% {
+    -webkit-clip-path: inset(15% 0 22% 0);
+            clip-path: inset(15% 0 22% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  8.33333% {
+    -webkit-clip-path: inset(76% 0 20% 0);
+            clip-path: inset(76% 0 20% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   8.75% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(55% 0 39% 0);
             clip-path: inset(55% 0 39% 0);
     padding: 3 px-8px;
@@ -3700,10 +3825,33 @@ END
   10% {
     -webkit-clip-path: inset(77% 0 15% 0);
             clip-path: inset(77% 0 15% 0);
+=======
+    -webkit-clip-path: inset(81% 0 9% 0);
+            clip-path: inset(81% 0 9% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  9.16667% {
+    -webkit-clip-path: inset(18% 0 58% 0);
+            clip-path: inset(18% 0 58% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  9.58333% {
+    -webkit-clip-path: inset(57% 0 19% 0);
+            clip-path: inset(57% 0 19% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  10% {
+    -webkit-clip-path: inset(48% 0 22% 0);
+            clip-path: inset(48% 0 22% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   10.41667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(57% 0 34% 0);
             clip-path: inset(57% 0 34% 0);
     padding: 1 px-8px;
@@ -3742,10 +3890,51 @@ END
   12.91667% {
     -webkit-clip-path: inset(37% 0 50% 0);
             clip-path: inset(37% 0 50% 0);
+=======
+    -webkit-clip-path: inset(52% 0 46% 0);
+            clip-path: inset(52% 0 46% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  10.83333% {
+    -webkit-clip-path: inset(68% 0 31% 0);
+            clip-path: inset(68% 0 31% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  11.25% {
+    -webkit-clip-path: inset(61% 0 16% 0);
+            clip-path: inset(61% 0 16% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  11.66667% {
+    -webkit-clip-path: inset(57% 0 38% 0);
+            clip-path: inset(57% 0 38% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  12.08333% {
+    -webkit-clip-path: inset(14% 0 66% 0);
+            clip-path: inset(14% 0 66% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  12.5% {
+    -webkit-clip-path: inset(10% 0 56% 0);
+            clip-path: inset(10% 0 56% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  12.91667% {
+    -webkit-clip-path: inset(84% 0 1% 0);
+            clip-path: inset(84% 0 1% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   13.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(17% 0 34% 0);
             clip-path: inset(17% 0 34% 0);
     padding: 3 px-8px;
@@ -3826,10 +4015,93 @@ END
   18.75% {
     -webkit-clip-path: inset(4% 0 24% 0);
             clip-path: inset(4% 0 24% 0);
+=======
+    -webkit-clip-path: inset(23% 0 3% 0);
+            clip-path: inset(23% 0 3% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  13.75% {
+    -webkit-clip-path: inset(45% 0 49% 0);
+            clip-path: inset(45% 0 49% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  14.16667% {
+    -webkit-clip-path: inset(48% 0 12% 0);
+            clip-path: inset(48% 0 12% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  14.58333% {
+    -webkit-clip-path: inset(8% 0 32% 0);
+            clip-path: inset(8% 0 32% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  15% {
+    -webkit-clip-path: inset(25% 0 36% 0);
+            clip-path: inset(25% 0 36% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  15.41667% {
+    -webkit-clip-path: inset(64% 0 25% 0);
+            clip-path: inset(64% 0 25% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  15.83333% {
+    -webkit-clip-path: inset(57% 0 39% 0);
+            clip-path: inset(57% 0 39% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  16.25% {
+    -webkit-clip-path: inset(92% 0 1% 0);
+            clip-path: inset(92% 0 1% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  16.66667% {
+    -webkit-clip-path: inset(64% 0 18% 0);
+            clip-path: inset(64% 0 18% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  17.08333% {
+    -webkit-clip-path: inset(92% 0 2% 0);
+            clip-path: inset(92% 0 2% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  17.5% {
+    -webkit-clip-path: inset(36% 0 8% 0);
+            clip-path: inset(36% 0 8% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  17.91667% {
+    -webkit-clip-path: inset(12% 0 40% 0);
+            clip-path: inset(12% 0 40% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  18.33333% {
+    -webkit-clip-path: inset(55% 0 21% 0);
+            clip-path: inset(55% 0 21% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  18.75% {
+    -webkit-clip-path: inset(27% 0 28% 0);
+            clip-path: inset(27% 0 28% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   19.16667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(45% 0 31% 0);
             clip-path: inset(45% 0 31% 0);
     padding: 3 px-8px;
@@ -3904,16 +4176,98 @@ END
   24.16667% {
     -webkit-clip-path: inset(56% 0 27% 0);
             clip-path: inset(56% 0 27% 0);
+=======
+    -webkit-clip-path: inset(91% 0 8% 0);
+            clip-path: inset(91% 0 8% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  19.58333% {
+    -webkit-clip-path: inset(71% 0 27% 0);
+            clip-path: inset(71% 0 27% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  20% {
+    -webkit-clip-path: inset(15% 0 7% 0);
+            clip-path: inset(15% 0 7% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  20.41667% {
+    -webkit-clip-path: inset(24% 0 33% 0);
+            clip-path: inset(24% 0 33% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  20.83333% {
+    -webkit-clip-path: inset(85% 0 14% 0);
+            clip-path: inset(85% 0 14% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  21.25% {
+    -webkit-clip-path: inset(6% 0 5% 0);
+            clip-path: inset(6% 0 5% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  21.66667% {
+    -webkit-clip-path: inset(88% 0 13% 0);
+            clip-path: inset(88% 0 13% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  22.08333% {
+    -webkit-clip-path: inset(93% 0 3% 0);
+            clip-path: inset(93% 0 3% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  22.5% {
+    -webkit-clip-path: inset(80% 0 11% 0);
+            clip-path: inset(80% 0 11% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  22.91667% {
+    -webkit-clip-path: inset(19% 0 50% 0);
+            clip-path: inset(19% 0 50% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  23.33333% {
+    -webkit-clip-path: inset(39% 0 28% 0);
+            clip-path: inset(39% 0 28% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  23.75% {
+    -webkit-clip-path: inset(51% 0 22% 0);
+            clip-path: inset(51% 0 22% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  24.16667% {
+    -webkit-clip-path: inset(36% 0 35% 0);
+            clip-path: inset(36% 0 35% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   24.58333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(26% 0 54% 0);
             clip-path: inset(26% 0 54% 0);
+=======
+    -webkit-clip-path: inset(66% 0 26% 0);
+            clip-path: inset(66% 0 26% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   25% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(11% 0 87% 0);
             clip-path: inset(11% 0 87% 0);
     padding: 3 px-8px;
@@ -3934,10 +4288,33 @@ END
   26.25% {
     -webkit-clip-path: inset(89% 0 3% 0);
             clip-path: inset(89% 0 3% 0);
+=======
+    -webkit-clip-path: inset(72% 0 27% 0);
+            clip-path: inset(72% 0 27% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  25.41667% {
+    -webkit-clip-path: inset(69% 0 10% 0);
+            clip-path: inset(69% 0 10% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  25.83333% {
+    -webkit-clip-path: inset(13% 0 40% 0);
+            clip-path: inset(13% 0 40% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  26.25% {
+    -webkit-clip-path: inset(73% 0 28% 0);
+            clip-path: inset(73% 0 28% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   26.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(78% 0 3% 0);
             clip-path: inset(78% 0 3% 0);
     padding: 7 px-8px;
@@ -3946,10 +4323,21 @@ END
   27.08333% {
     -webkit-clip-path: inset(20% 0 35% 0);
             clip-path: inset(20% 0 35% 0);
+=======
+    -webkit-clip-path: inset(85% 0 14% 0);
+            clip-path: inset(85% 0 14% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  27.08333% {
+    -webkit-clip-path: inset(96% 0 1% 0);
+            clip-path: inset(96% 0 1% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   27.5% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(18% 0 42% 0);
             clip-path: inset(18% 0 42% 0);
     padding: 8 px-8px;
@@ -3958,10 +4346,21 @@ END
   27.91667% {
     -webkit-clip-path: inset(38% 0 22% 0);
             clip-path: inset(38% 0 22% 0);
+=======
+    -webkit-clip-path: inset(33% 0 66% 0);
+            clip-path: inset(33% 0 66% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  27.91667% {
+    -webkit-clip-path: inset(73% 0 26% 0);
+            clip-path: inset(73% 0 26% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   28.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(23% 0 74% 0);
             clip-path: inset(23% 0 74% 0);
     padding: 3 px-8px;
@@ -4054,10 +4453,105 @@ END
   34.58333% {
     -webkit-clip-path: inset(47% 0 20% 0);
             clip-path: inset(47% 0 20% 0);
+=======
+    -webkit-clip-path: inset(31% 0 66% 0);
+            clip-path: inset(31% 0 66% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  28.75% {
+    -webkit-clip-path: inset(2% 0 3% 0);
+            clip-path: inset(2% 0 3% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  29.16667% {
+    -webkit-clip-path: inset(10% 0 86% 0);
+            clip-path: inset(10% 0 86% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  29.58333% {
+    -webkit-clip-path: inset(25% 0 57% 0);
+            clip-path: inset(25% 0 57% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  30% {
+    -webkit-clip-path: inset(31% 0 26% 0);
+            clip-path: inset(31% 0 26% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  30.41667% {
+    -webkit-clip-path: inset(31% 0 35% 0);
+            clip-path: inset(31% 0 35% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  30.83333% {
+    -webkit-clip-path: inset(38% 0 56% 0);
+            clip-path: inset(38% 0 56% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  31.25% {
+    -webkit-clip-path: inset(8% 0 36% 0);
+            clip-path: inset(8% 0 36% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  31.66667% {
+    -webkit-clip-path: inset(95% 0 3% 0);
+            clip-path: inset(95% 0 3% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  32.08333% {
+    -webkit-clip-path: inset(13% 0 81% 0);
+            clip-path: inset(13% 0 81% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  32.5% {
+    -webkit-clip-path: inset(55% 0 11% 0);
+            clip-path: inset(55% 0 11% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  32.91667% {
+    -webkit-clip-path: inset(49% 0 33% 0);
+            clip-path: inset(49% 0 33% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  33.33333% {
+    -webkit-clip-path: inset(42% 0 2% 0);
+            clip-path: inset(42% 0 2% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  33.75% {
+    -webkit-clip-path: inset(39% 0 48% 0);
+            clip-path: inset(39% 0 48% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  34.16667% {
+    -webkit-clip-path: inset(3% 0 25% 0);
+            clip-path: inset(3% 0 25% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  34.58333% {
+    -webkit-clip-path: inset(53% 0 39% 0);
+            clip-path: inset(53% 0 39% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   35% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(6% 0 40% 0);
             clip-path: inset(6% 0 40% 0);
     padding: 5 px-8px;
@@ -4072,16 +4566,38 @@ END
   35.83333% {
     -webkit-clip-path: inset(16% 0 57% 0);
             clip-path: inset(16% 0 57% 0);
+=======
+    -webkit-clip-path: inset(6% 0 34% 0);
+            clip-path: inset(6% 0 34% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  35.41667% {
+    -webkit-clip-path: inset(12% 0 83% 0);
+            clip-path: inset(12% 0 83% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  35.83333% {
+    -webkit-clip-path: inset(34% 0 29% 0);
+            clip-path: inset(34% 0 29% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 4 px-8px;
     visibility: visible;
   }
   36.25% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(68% 0 4% 0);
             clip-path: inset(68% 0 4% 0);
+=======
+    -webkit-clip-path: inset(97% 0 3% 0);
+            clip-path: inset(97% 0 3% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   36.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(16% 0 29% 0);
             clip-path: inset(16% 0 29% 0);
     padding: 1 px-8px;
@@ -4096,28 +4612,60 @@ END
   37.5% {
     -webkit-clip-path: inset(42% 0 50% 0);
             clip-path: inset(42% 0 50% 0);
+=======
+    -webkit-clip-path: inset(88% 0 4% 0);
+            clip-path: inset(88% 0 4% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  37.08333% {
+    -webkit-clip-path: inset(88% 0 12% 0);
+            clip-path: inset(88% 0 12% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  37.5% {
+    -webkit-clip-path: inset(27% 0 25% 0);
+            clip-path: inset(27% 0 25% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   37.91667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(75% 0 1% 0);
             clip-path: inset(75% 0 1% 0);
+=======
+    -webkit-clip-path: inset(11% 0 41% 0);
+            clip-path: inset(11% 0 41% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   38.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(21% 0 75% 0);
             clip-path: inset(21% 0 75% 0);
+=======
+    -webkit-clip-path: inset(29% 0 10% 0);
+            clip-path: inset(29% 0 10% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   38.75% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(40% 0 30% 0);
             clip-path: inset(40% 0 30% 0);
+=======
+    -webkit-clip-path: inset(38% 0 22% 0);
+            clip-path: inset(38% 0 22% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   39.16667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(34% 0 29% 0);
             clip-path: inset(34% 0 29% 0);
     padding: 4 px-8px;
@@ -4156,16 +4704,62 @@ END
   41.66667% {
     -webkit-clip-path: inset(85% 0 4% 0);
             clip-path: inset(85% 0 4% 0);
+=======
+    -webkit-clip-path: inset(86% 0 14% 0);
+            clip-path: inset(86% 0 14% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  39.58333% {
+    -webkit-clip-path: inset(14% 0 4% 0);
+            clip-path: inset(14% 0 4% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  40% {
+    -webkit-clip-path: inset(76% 0 6% 0);
+            clip-path: inset(76% 0 6% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  40.41667% {
+    -webkit-clip-path: inset(82% 0 1% 0);
+            clip-path: inset(82% 0 1% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  40.83333% {
+    -webkit-clip-path: inset(38% 0 56% 0);
+            clip-path: inset(38% 0 56% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  41.25% {
+    -webkit-clip-path: inset(19% 0 28% 0);
+            clip-path: inset(19% 0 28% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  41.66667% {
+    -webkit-clip-path: inset(29% 0 15% 0);
+            clip-path: inset(29% 0 15% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   42.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(78% 0 8% 0);
             clip-path: inset(78% 0 8% 0);
+=======
+    -webkit-clip-path: inset(39% 0 50% 0);
+            clip-path: inset(39% 0 50% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   42.5% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(8% 0 60% 0);
             clip-path: inset(8% 0 60% 0);
     padding: 3 px-8px;
@@ -4192,10 +4786,39 @@ END
   44.16667% {
     -webkit-clip-path: inset(76% 0 11% 0);
             clip-path: inset(76% 0 11% 0);
+=======
+    -webkit-clip-path: inset(52% 0 16% 0);
+            clip-path: inset(52% 0 16% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  42.91667% {
+    -webkit-clip-path: inset(79% 0 15% 0);
+            clip-path: inset(79% 0 15% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  43.33333% {
+    -webkit-clip-path: inset(79% 0 17% 0);
+            clip-path: inset(79% 0 17% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  43.75% {
+    -webkit-clip-path: inset(28% 0 22% 0);
+            clip-path: inset(28% 0 22% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  44.16667% {
+    -webkit-clip-path: inset(38% 0 17% 0);
+            clip-path: inset(38% 0 17% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   44.58333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(48% 0 24% 0);
             clip-path: inset(48% 0 24% 0);
     padding: 3 px-8px;
@@ -4318,10 +4941,135 @@ END
   52.91667% {
     -webkit-clip-path: inset(87% 0 9% 0);
             clip-path: inset(87% 0 9% 0);
+=======
+    -webkit-clip-path: inset(93% 0 8% 0);
+            clip-path: inset(93% 0 8% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  45% {
+    -webkit-clip-path: inset(89% 0 1% 0);
+            clip-path: inset(89% 0 1% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  45.41667% {
+    -webkit-clip-path: inset(26% 0 61% 0);
+            clip-path: inset(26% 0 61% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  45.83333% {
+    -webkit-clip-path: inset(38% 0 60% 0);
+            clip-path: inset(38% 0 60% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  46.25% {
+    -webkit-clip-path: inset(10% 0 76% 0);
+            clip-path: inset(10% 0 76% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  46.66667% {
+    -webkit-clip-path: inset(9% 0 89% 0);
+            clip-path: inset(9% 0 89% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  47.08333% {
+    -webkit-clip-path: inset(5% 0 1% 0);
+            clip-path: inset(5% 0 1% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  47.5% {
+    -webkit-clip-path: inset(40% 0 3% 0);
+            clip-path: inset(40% 0 3% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  47.91667% {
+    -webkit-clip-path: inset(80% 0 19% 0);
+            clip-path: inset(80% 0 19% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  48.33333% {
+    -webkit-clip-path: inset(14% 0 18% 0);
+            clip-path: inset(14% 0 18% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  48.75% {
+    -webkit-clip-path: inset(55% 0 36% 0);
+            clip-path: inset(55% 0 36% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  49.16667% {
+    -webkit-clip-path: inset(31% 0 22% 0);
+            clip-path: inset(31% 0 22% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  49.58333% {
+    -webkit-clip-path: inset(21% 0 46% 0);
+            clip-path: inset(21% 0 46% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  50% {
+    -webkit-clip-path: inset(39% 0 36% 0);
+            clip-path: inset(39% 0 36% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  50.41667% {
+    -webkit-clip-path: inset(53% 0 40% 0);
+            clip-path: inset(53% 0 40% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  50.83333% {
+    -webkit-clip-path: inset(56% 0 24% 0);
+            clip-path: inset(56% 0 24% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  51.25% {
+    -webkit-clip-path: inset(65% 0 27% 0);
+            clip-path: inset(65% 0 27% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  51.66667% {
+    -webkit-clip-path: inset(83% 0 16% 0);
+            clip-path: inset(83% 0 16% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  52.08333% {
+    -webkit-clip-path: inset(75% 0 12% 0);
+            clip-path: inset(75% 0 12% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  52.5% {
+    -webkit-clip-path: inset(78% 0 18% 0);
+            clip-path: inset(78% 0 18% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  52.91667% {
+    -webkit-clip-path: inset(34% 0 25% 0);
+            clip-path: inset(34% 0 25% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   53.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(35% 0 47% 0);
             clip-path: inset(35% 0 47% 0);
     padding: 2 px-8px;
@@ -4330,10 +5078,21 @@ END
   53.75% {
     -webkit-clip-path: inset(74% 0 2% 0);
             clip-path: inset(74% 0 2% 0);
+=======
+    -webkit-clip-path: inset(3% 0 68% 0);
+            clip-path: inset(3% 0 68% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  53.75% {
+    -webkit-clip-path: inset(4% 0 32% 0);
+            clip-path: inset(4% 0 32% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   54.16667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(69% 0 28% 0);
             clip-path: inset(69% 0 28% 0);
     padding: 7 px-8px;
@@ -4378,10 +5137,57 @@ END
   57.08333% {
     -webkit-clip-path: inset(4% 0 55% 0);
             clip-path: inset(4% 0 55% 0);
+=======
+    -webkit-clip-path: inset(17% 0 58% 0);
+            clip-path: inset(17% 0 58% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  54.58333% {
+    -webkit-clip-path: inset(42% 0 11% 0);
+            clip-path: inset(42% 0 11% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  55% {
+    -webkit-clip-path: inset(91% 0 8% 0);
+            clip-path: inset(91% 0 8% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  55.41667% {
+    -webkit-clip-path: inset(24% 0 55% 0);
+            clip-path: inset(24% 0 55% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  55.83333% {
+    -webkit-clip-path: inset(72% 0 29% 0);
+            clip-path: inset(72% 0 29% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  56.25% {
+    -webkit-clip-path: inset(47% 0 12% 0);
+            clip-path: inset(47% 0 12% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  56.66667% {
+    -webkit-clip-path: inset(28% 0 33% 0);
+            clip-path: inset(28% 0 33% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  57.08333% {
+    -webkit-clip-path: inset(2% 0 80% 0);
+            clip-path: inset(2% 0 80% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   57.5% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(36% 0 16% 0);
             clip-path: inset(36% 0 16% 0);
     padding: 1 px-8px;
@@ -4480,16 +5286,122 @@ END
   64.16667% {
     -webkit-clip-path: inset(32% 0 53% 0);
             clip-path: inset(32% 0 53% 0);
+=======
+    -webkit-clip-path: inset(86% 0 8% 0);
+            clip-path: inset(86% 0 8% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  57.91667% {
+    -webkit-clip-path: inset(88% 0 2% 0);
+            clip-path: inset(88% 0 2% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  58.33333% {
+    -webkit-clip-path: inset(41% 0 26% 0);
+            clip-path: inset(41% 0 26% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  58.75% {
+    -webkit-clip-path: inset(67% 0 1% 0);
+            clip-path: inset(67% 0 1% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  59.16667% {
+    -webkit-clip-path: inset(88% 0 5% 0);
+            clip-path: inset(88% 0 5% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  59.58333% {
+    -webkit-clip-path: inset(38% 0 63% 0);
+            clip-path: inset(38% 0 63% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  60% {
+    -webkit-clip-path: inset(28% 0 33% 0);
+            clip-path: inset(28% 0 33% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  60.41667% {
+    -webkit-clip-path: inset(6% 0 68% 0);
+            clip-path: inset(6% 0 68% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  60.83333% {
+    -webkit-clip-path: inset(2% 0 64% 0);
+            clip-path: inset(2% 0 64% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  61.25% {
+    -webkit-clip-path: inset(36% 0 30% 0);
+            clip-path: inset(36% 0 30% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  61.66667% {
+    -webkit-clip-path: inset(28% 0 14% 0);
+            clip-path: inset(28% 0 14% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  62.08333% {
+    -webkit-clip-path: inset(61% 0 19% 0);
+            clip-path: inset(61% 0 19% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  62.5% {
+    -webkit-clip-path: inset(49% 0 41% 0);
+            clip-path: inset(49% 0 41% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  62.91667% {
+    -webkit-clip-path: inset(67% 0 7% 0);
+            clip-path: inset(67% 0 7% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  63.33333% {
+    -webkit-clip-path: inset(8% 0 71% 0);
+            clip-path: inset(8% 0 71% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  63.75% {
+    -webkit-clip-path: inset(91% 0 8% 0);
+            clip-path: inset(91% 0 8% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  64.16667% {
+    -webkit-clip-path: inset(59% 0 38% 0);
+            clip-path: inset(59% 0 38% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   64.58333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(60% 0 18% 0);
             clip-path: inset(60% 0 18% 0);
+=======
+    -webkit-clip-path: inset(94% 0 3% 0);
+            clip-path: inset(94% 0 3% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   65% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(65% 0 25% 0);
             clip-path: inset(65% 0 25% 0);
     padding: 1 px-8px;
@@ -4528,22 +5440,73 @@ END
   67.5% {
     -webkit-clip-path: inset(64% 0 26% 0);
             clip-path: inset(64% 0 26% 0);
+=======
+    -webkit-clip-path: inset(21% 0 57% 0);
+            clip-path: inset(21% 0 57% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  65.41667% {
+    -webkit-clip-path: inset(75% 0 22% 0);
+            clip-path: inset(75% 0 22% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  65.83333% {
+    -webkit-clip-path: inset(93% 0 2% 0);
+            clip-path: inset(93% 0 2% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  66.25% {
+    -webkit-clip-path: inset(14% 0 79% 0);
+            clip-path: inset(14% 0 79% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  66.66667% {
+    -webkit-clip-path: inset(48% 0 45% 0);
+            clip-path: inset(48% 0 45% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  67.08333% {
+    -webkit-clip-path: inset(10% 0 89% 0);
+            clip-path: inset(10% 0 89% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  67.5% {
+    -webkit-clip-path: inset(13% 0 39% 0);
+            clip-path: inset(13% 0 39% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   67.91667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(67% 0 6% 0);
             clip-path: inset(67% 0 6% 0);
+=======
+    -webkit-clip-path: inset(52% 0 39% 0);
+            clip-path: inset(52% 0 39% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   68.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(60% 0 41% 0);
             clip-path: inset(60% 0 41% 0);
+=======
+    -webkit-clip-path: inset(78% 0 8% 0);
+            clip-path: inset(78% 0 8% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   68.75% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(57% 0 25% 0);
             clip-path: inset(57% 0 25% 0);
     padding: 7 px-8px;
@@ -4684,10 +5647,153 @@ END
   78.33333% {
     -webkit-clip-path: inset(20% 0 23% 0);
             clip-path: inset(20% 0 23% 0);
+=======
+    -webkit-clip-path: inset(17% 0 1% 0);
+            clip-path: inset(17% 0 1% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  69.16667% {
+    -webkit-clip-path: inset(39% 0 45% 0);
+            clip-path: inset(39% 0 45% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  69.58333% {
+    -webkit-clip-path: inset(35% 0 20% 0);
+            clip-path: inset(35% 0 20% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  70% {
+    -webkit-clip-path: inset(56% 0 41% 0);
+            clip-path: inset(56% 0 41% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  70.41667% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  70.83333% {
+    -webkit-clip-path: inset(51% 0 35% 0);
+            clip-path: inset(51% 0 35% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  71.25% {
+    -webkit-clip-path: inset(84% 0 8% 0);
+            clip-path: inset(84% 0 8% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  71.66667% {
+    -webkit-clip-path: inset(2% 0 33% 0);
+            clip-path: inset(2% 0 33% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  72.08333% {
+    -webkit-clip-path: inset(1% 0 89% 0);
+            clip-path: inset(1% 0 89% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  72.5% {
+    -webkit-clip-path: inset(37% 0 20% 0);
+            clip-path: inset(37% 0 20% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  72.91667% {
+    -webkit-clip-path: inset(57% 0 10% 0);
+            clip-path: inset(57% 0 10% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  73.33333% {
+    -webkit-clip-path: inset(57% 0 32% 0);
+            clip-path: inset(57% 0 32% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  73.75% {
+    -webkit-clip-path: inset(45% 0 54% 0);
+            clip-path: inset(45% 0 54% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  74.16667% {
+    -webkit-clip-path: inset(56% 0 22% 0);
+            clip-path: inset(56% 0 22% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  74.58333% {
+    -webkit-clip-path: inset(1% 0 50% 0);
+            clip-path: inset(1% 0 50% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  75% {
+    -webkit-clip-path: inset(45% 0 33% 0);
+            clip-path: inset(45% 0 33% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  75.41667% {
+    -webkit-clip-path: inset(40% 0 2% 0);
+            clip-path: inset(40% 0 2% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  75.83333% {
+    -webkit-clip-path: inset(95% 0 5% 0);
+            clip-path: inset(95% 0 5% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  76.25% {
+    -webkit-clip-path: inset(38% 0 50% 0);
+            clip-path: inset(38% 0 50% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  76.66667% {
+    -webkit-clip-path: inset(26% 0 68% 0);
+            clip-path: inset(26% 0 68% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  77.08333% {
+    -webkit-clip-path: inset(37% 0 40% 0);
+            clip-path: inset(37% 0 40% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  77.5% {
+    -webkit-clip-path: inset(35% 0 32% 0);
+            clip-path: inset(35% 0 32% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  77.91667% {
+    -webkit-clip-path: inset(15% 0 71% 0);
+            clip-path: inset(15% 0 71% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  78.33333% {
+    -webkit-clip-path: inset(24% 0 74% 0);
+            clip-path: inset(24% 0 74% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   78.75% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(91% 0 1% 0);
             clip-path: inset(91% 0 1% 0);
     padding: 7 px-8px;
@@ -4732,10 +5838,57 @@ END
   81.66667% {
     -webkit-clip-path: inset(8% 0 92% 0);
             clip-path: inset(8% 0 92% 0);
+=======
+    -webkit-clip-path: inset(61% 0 39% 0);
+            clip-path: inset(61% 0 39% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  79.16667% {
+    -webkit-clip-path: inset(97% 0 4% 0);
+            clip-path: inset(97% 0 4% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  79.58333% {
+    -webkit-clip-path: inset(78% 0 15% 0);
+            clip-path: inset(78% 0 15% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  80% {
+    -webkit-clip-path: inset(91% 0 4% 0);
+            clip-path: inset(91% 0 4% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  80.41667% {
+    -webkit-clip-path: inset(58% 0 29% 0);
+            clip-path: inset(58% 0 29% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  80.83333% {
+    -webkit-clip-path: inset(49% 0 20% 0);
+            clip-path: inset(49% 0 20% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  81.25% {
+    -webkit-clip-path: inset(29% 0 2% 0);
+            clip-path: inset(29% 0 2% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  81.66667% {
+    -webkit-clip-path: inset(21% 0 39% 0);
+            clip-path: inset(21% 0 39% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   82.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(73% 0 3% 0);
             clip-path: inset(73% 0 3% 0);
     padding: 5 px-8px;
@@ -4744,10 +5897,21 @@ END
   82.5% {
     -webkit-clip-path: inset(72% 0 7% 0);
             clip-path: inset(72% 0 7% 0);
+=======
+    -webkit-clip-path: inset(23% 0 33% 0);
+            clip-path: inset(23% 0 33% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  82.5% {
+    -webkit-clip-path: inset(13% 0 32% 0);
+            clip-path: inset(13% 0 32% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   82.91667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(67% 0 14% 0);
             clip-path: inset(67% 0 14% 0);
     padding: 1 px-8px;
@@ -4768,10 +5932,33 @@ END
   84.16667% {
     -webkit-clip-path: inset(45% 0 14% 0);
             clip-path: inset(45% 0 14% 0);
+=======
+    -webkit-clip-path: inset(46% 0 2% 0);
+            clip-path: inset(46% 0 2% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  83.33333% {
+    -webkit-clip-path: inset(21% 0 78% 0);
+            clip-path: inset(21% 0 78% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  83.75% {
+    -webkit-clip-path: inset(71% 0 24% 0);
+            clip-path: inset(71% 0 24% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  84.16667% {
+    -webkit-clip-path: inset(79% 0 12% 0);
+            clip-path: inset(79% 0 12% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   84.58333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(38% 0 26% 0);
             clip-path: inset(38% 0 26% 0);
     padding: 1 px-8px;
@@ -4792,10 +5979,33 @@ END
   85.83333% {
     -webkit-clip-path: inset(36% 0 35% 0);
             clip-path: inset(36% 0 35% 0);
+=======
+    -webkit-clip-path: inset(92% 0 2% 0);
+            clip-path: inset(92% 0 2% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  85% {
+    -webkit-clip-path: inset(6% 0 24% 0);
+            clip-path: inset(6% 0 24% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  85.41667% {
+    -webkit-clip-path: inset(25% 0 71% 0);
+            clip-path: inset(25% 0 71% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  85.83333% {
+    -webkit-clip-path: inset(1% 0 29% 0);
+            clip-path: inset(1% 0 29% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   86.25% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(80% 0 21% 0);
             clip-path: inset(80% 0 21% 0);
     padding: 3 px-8px;
@@ -4804,10 +6014,21 @@ END
   86.66667% {
     -webkit-clip-path: inset(39% 0 49% 0);
             clip-path: inset(39% 0 49% 0);
+=======
+    -webkit-clip-path: inset(66% 0 9% 0);
+            clip-path: inset(66% 0 9% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  86.66667% {
+    -webkit-clip-path: inset(63% 0 16% 0);
+            clip-path: inset(63% 0 16% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 4 px-8px;
     visibility: visible;
   }
   87.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(28% 0 65% 0);
             clip-path: inset(28% 0 65% 0);
     padding: 5 px-8px;
@@ -4858,10 +6079,63 @@ END
   90.41667% {
     -webkit-clip-path: inset(94% 0 2% 0);
             clip-path: inset(94% 0 2% 0);
+=======
+    -webkit-clip-path: inset(68% 0 8% 0);
+            clip-path: inset(68% 0 8% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  87.5% {
+    -webkit-clip-path: inset(5% 0 79% 0);
+            clip-path: inset(5% 0 79% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  87.91667% {
+    -webkit-clip-path: inset(86% 0 11% 0);
+            clip-path: inset(86% 0 11% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  88.33333% {
+    -webkit-clip-path: inset(53% 0 42% 0);
+            clip-path: inset(53% 0 42% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  88.75% {
+    -webkit-clip-path: inset(69% 0 19% 0);
+            clip-path: inset(69% 0 19% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  89.16667% {
+    -webkit-clip-path: inset(38% 0 31% 0);
+            clip-path: inset(38% 0 31% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  89.58333% {
+    -webkit-clip-path: inset(88% 0 13% 0);
+            clip-path: inset(88% 0 13% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  90% {
+    -webkit-clip-path: inset(5% 0 1% 0);
+            clip-path: inset(5% 0 1% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  90.41667% {
+    -webkit-clip-path: inset(12% 0 33% 0);
+            clip-path: inset(12% 0 33% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   90.83333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(75% 0 9% 0);
             clip-path: inset(75% 0 9% 0);
     padding: 8 px-8px;
@@ -4918,10 +6192,69 @@ END
   94.58333% {
     -webkit-clip-path: inset(27% 0 18% 0);
             clip-path: inset(27% 0 18% 0);
+=======
+    -webkit-clip-path: inset(91% 0 8% 0);
+            clip-path: inset(91% 0 8% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  91.25% {
+    -webkit-clip-path: inset(46% 0 2% 0);
+            clip-path: inset(46% 0 2% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  91.66667% {
+    -webkit-clip-path: inset(64% 0 4% 0);
+            clip-path: inset(64% 0 4% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  92.08333% {
+    -webkit-clip-path: inset(80% 0 2% 0);
+            clip-path: inset(80% 0 2% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  92.5% {
+    -webkit-clip-path: inset(61% 0 2% 0);
+            clip-path: inset(61% 0 2% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  92.91667% {
+    -webkit-clip-path: inset(6% 0 78% 0);
+            clip-path: inset(6% 0 78% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  93.33333% {
+    -webkit-clip-path: inset(51% 0 7% 0);
+            clip-path: inset(51% 0 7% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  93.75% {
+    -webkit-clip-path: inset(89% 0 5% 0);
+            clip-path: inset(89% 0 5% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  94.16667% {
+    -webkit-clip-path: inset(79% 0 14% 0);
+            clip-path: inset(79% 0 14% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  94.58333% {
+    -webkit-clip-path: inset(71% 0 30% 0);
+            clip-path: inset(71% 0 30% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   95% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(64% 0 6% 0);
             clip-path: inset(64% 0 6% 0);
     padding: 8 px-8px;
@@ -4948,10 +6281,39 @@ END
   96.66667% {
     -webkit-clip-path: inset(4% 0 9% 0);
             clip-path: inset(4% 0 9% 0);
+=======
+    -webkit-clip-path: inset(85% 0 11% 0);
+            clip-path: inset(85% 0 11% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  95.41667% {
+    -webkit-clip-path: inset(9% 0 60% 0);
+            clip-path: inset(9% 0 60% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  95.83333% {
+    -webkit-clip-path: inset(99% 0 1% 0);
+            clip-path: inset(99% 0 1% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  96.25% {
+    -webkit-clip-path: inset(15% 0 9% 0);
+            clip-path: inset(15% 0 9% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  96.66667% {
+    -webkit-clip-path: inset(34% 0 43% 0);
+            clip-path: inset(34% 0 43% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   97.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(23% 0 10% 0);
             clip-path: inset(23% 0 10% 0);
     padding: 4 px-8px;
@@ -4996,6 +6358,52 @@ END
   100% {
     -webkit-clip-path: inset(99% 0 1% 0);
             clip-path: inset(99% 0 1% 0);
+=======
+    -webkit-clip-path: inset(56% 0 20% 0);
+            clip-path: inset(56% 0 20% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  97.5% {
+    -webkit-clip-path: inset(66% 0 23% 0);
+            clip-path: inset(66% 0 23% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  97.91667% {
+    -webkit-clip-path: inset(70% 0 18% 0);
+            clip-path: inset(70% 0 18% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  98.33333% {
+    -webkit-clip-path: inset(63% 0 20% 0);
+            clip-path: inset(63% 0 20% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  98.75% {
+    -webkit-clip-path: inset(45% 0 18% 0);
+            clip-path: inset(45% 0 18% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  99.16667% {
+    -webkit-clip-path: inset(55% 0 37% 0);
+            clip-path: inset(55% 0 37% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  99.58333% {
+    -webkit-clip-path: inset(71% 0 26% 0);
+            clip-path: inset(71% 0 26% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  100% {
+    -webkit-clip-path: inset(41% 0 33% 0);
+            clip-path: inset(41% 0 33% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
@@ -5003,6 +6411,7 @@ END
 
 @keyframes noise-anim {
   0% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(22% 0 24% 0);
             clip-path: inset(22% 0 24% 0);
     padding: 6 px-8px;
@@ -5101,10 +6510,111 @@ END
   6.66667% {
     -webkit-clip-path: inset(37% 0 63% 0);
             clip-path: inset(37% 0 63% 0);
+=======
+    -webkit-clip-path: inset(48% 0 12% 0);
+            clip-path: inset(48% 0 12% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  0.41667% {
+    -webkit-clip-path: inset(95% 0 5% 0);
+            clip-path: inset(95% 0 5% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  0.83333% {
+    -webkit-clip-path: inset(16% 0 32% 0);
+            clip-path: inset(16% 0 32% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  1.25% {
+    -webkit-clip-path: inset(29% 0 60% 0);
+            clip-path: inset(29% 0 60% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  1.66667% {
+    -webkit-clip-path: inset(47% 0 12% 0);
+            clip-path: inset(47% 0 12% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  2.08333% {
+    -webkit-clip-path: inset(49% 0 48% 0);
+            clip-path: inset(49% 0 48% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  2.5% {
+    -webkit-clip-path: inset(64% 0 18% 0);
+            clip-path: inset(64% 0 18% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  2.91667% {
+    -webkit-clip-path: inset(10% 0 33% 0);
+            clip-path: inset(10% 0 33% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  3.33333% {
+    -webkit-clip-path: inset(60% 0 37% 0);
+            clip-path: inset(60% 0 37% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  3.75% {
+    -webkit-clip-path: inset(96% 0 1% 0);
+            clip-path: inset(96% 0 1% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  4.16667% {
+    -webkit-clip-path: inset(54% 0 40% 0);
+            clip-path: inset(54% 0 40% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  4.58333% {
+    -webkit-clip-path: inset(79% 0 21% 0);
+            clip-path: inset(79% 0 21% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  5% {
+    -webkit-clip-path: inset(97% 0 3% 0);
+            clip-path: inset(97% 0 3% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  5.41667% {
+    -webkit-clip-path: inset(23% 0 70% 0);
+            clip-path: inset(23% 0 70% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  5.83333% {
+    -webkit-clip-path: inset(72% 0 27% 0);
+            clip-path: inset(72% 0 27% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  6.25% {
+    -webkit-clip-path: inset(18% 0 29% 0);
+            clip-path: inset(18% 0 29% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  6.66667% {
+    -webkit-clip-path: inset(38% 0 10% 0);
+            clip-path: inset(38% 0 10% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   7.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(94% 0 7% 0);
             clip-path: inset(94% 0 7% 0);
     padding: 4 px-8px;
@@ -5125,10 +6635,33 @@ END
   8.33333% {
     -webkit-clip-path: inset(99% 0 1% 0);
             clip-path: inset(99% 0 1% 0);
+=======
+    -webkit-clip-path: inset(6% 0 47% 0);
+            clip-path: inset(6% 0 47% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  7.5% {
+    -webkit-clip-path: inset(7% 0 89% 0);
+            clip-path: inset(7% 0 89% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  7.91667% {
+    -webkit-clip-path: inset(15% 0 22% 0);
+            clip-path: inset(15% 0 22% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  8.33333% {
+    -webkit-clip-path: inset(76% 0 20% 0);
+            clip-path: inset(76% 0 20% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   8.75% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(55% 0 39% 0);
             clip-path: inset(55% 0 39% 0);
     padding: 3 px-8px;
@@ -5149,10 +6682,33 @@ END
   10% {
     -webkit-clip-path: inset(77% 0 15% 0);
             clip-path: inset(77% 0 15% 0);
+=======
+    -webkit-clip-path: inset(81% 0 9% 0);
+            clip-path: inset(81% 0 9% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  9.16667% {
+    -webkit-clip-path: inset(18% 0 58% 0);
+            clip-path: inset(18% 0 58% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  9.58333% {
+    -webkit-clip-path: inset(57% 0 19% 0);
+            clip-path: inset(57% 0 19% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  10% {
+    -webkit-clip-path: inset(48% 0 22% 0);
+            clip-path: inset(48% 0 22% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   10.41667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(57% 0 34% 0);
             clip-path: inset(57% 0 34% 0);
     padding: 1 px-8px;
@@ -5191,10 +6747,51 @@ END
   12.91667% {
     -webkit-clip-path: inset(37% 0 50% 0);
             clip-path: inset(37% 0 50% 0);
+=======
+    -webkit-clip-path: inset(52% 0 46% 0);
+            clip-path: inset(52% 0 46% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  10.83333% {
+    -webkit-clip-path: inset(68% 0 31% 0);
+            clip-path: inset(68% 0 31% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  11.25% {
+    -webkit-clip-path: inset(61% 0 16% 0);
+            clip-path: inset(61% 0 16% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  11.66667% {
+    -webkit-clip-path: inset(57% 0 38% 0);
+            clip-path: inset(57% 0 38% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  12.08333% {
+    -webkit-clip-path: inset(14% 0 66% 0);
+            clip-path: inset(14% 0 66% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  12.5% {
+    -webkit-clip-path: inset(10% 0 56% 0);
+            clip-path: inset(10% 0 56% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  12.91667% {
+    -webkit-clip-path: inset(84% 0 1% 0);
+            clip-path: inset(84% 0 1% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   13.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(17% 0 34% 0);
             clip-path: inset(17% 0 34% 0);
     padding: 3 px-8px;
@@ -5275,10 +6872,93 @@ END
   18.75% {
     -webkit-clip-path: inset(4% 0 24% 0);
             clip-path: inset(4% 0 24% 0);
+=======
+    -webkit-clip-path: inset(23% 0 3% 0);
+            clip-path: inset(23% 0 3% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  13.75% {
+    -webkit-clip-path: inset(45% 0 49% 0);
+            clip-path: inset(45% 0 49% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  14.16667% {
+    -webkit-clip-path: inset(48% 0 12% 0);
+            clip-path: inset(48% 0 12% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  14.58333% {
+    -webkit-clip-path: inset(8% 0 32% 0);
+            clip-path: inset(8% 0 32% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  15% {
+    -webkit-clip-path: inset(25% 0 36% 0);
+            clip-path: inset(25% 0 36% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  15.41667% {
+    -webkit-clip-path: inset(64% 0 25% 0);
+            clip-path: inset(64% 0 25% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  15.83333% {
+    -webkit-clip-path: inset(57% 0 39% 0);
+            clip-path: inset(57% 0 39% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  16.25% {
+    -webkit-clip-path: inset(92% 0 1% 0);
+            clip-path: inset(92% 0 1% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  16.66667% {
+    -webkit-clip-path: inset(64% 0 18% 0);
+            clip-path: inset(64% 0 18% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  17.08333% {
+    -webkit-clip-path: inset(92% 0 2% 0);
+            clip-path: inset(92% 0 2% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  17.5% {
+    -webkit-clip-path: inset(36% 0 8% 0);
+            clip-path: inset(36% 0 8% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  17.91667% {
+    -webkit-clip-path: inset(12% 0 40% 0);
+            clip-path: inset(12% 0 40% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  18.33333% {
+    -webkit-clip-path: inset(55% 0 21% 0);
+            clip-path: inset(55% 0 21% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  18.75% {
+    -webkit-clip-path: inset(27% 0 28% 0);
+            clip-path: inset(27% 0 28% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   19.16667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(45% 0 31% 0);
             clip-path: inset(45% 0 31% 0);
     padding: 3 px-8px;
@@ -5353,16 +7033,98 @@ END
   24.16667% {
     -webkit-clip-path: inset(56% 0 27% 0);
             clip-path: inset(56% 0 27% 0);
+=======
+    -webkit-clip-path: inset(91% 0 8% 0);
+            clip-path: inset(91% 0 8% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  19.58333% {
+    -webkit-clip-path: inset(71% 0 27% 0);
+            clip-path: inset(71% 0 27% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  20% {
+    -webkit-clip-path: inset(15% 0 7% 0);
+            clip-path: inset(15% 0 7% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  20.41667% {
+    -webkit-clip-path: inset(24% 0 33% 0);
+            clip-path: inset(24% 0 33% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  20.83333% {
+    -webkit-clip-path: inset(85% 0 14% 0);
+            clip-path: inset(85% 0 14% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  21.25% {
+    -webkit-clip-path: inset(6% 0 5% 0);
+            clip-path: inset(6% 0 5% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  21.66667% {
+    -webkit-clip-path: inset(88% 0 13% 0);
+            clip-path: inset(88% 0 13% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  22.08333% {
+    -webkit-clip-path: inset(93% 0 3% 0);
+            clip-path: inset(93% 0 3% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  22.5% {
+    -webkit-clip-path: inset(80% 0 11% 0);
+            clip-path: inset(80% 0 11% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  22.91667% {
+    -webkit-clip-path: inset(19% 0 50% 0);
+            clip-path: inset(19% 0 50% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  23.33333% {
+    -webkit-clip-path: inset(39% 0 28% 0);
+            clip-path: inset(39% 0 28% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  23.75% {
+    -webkit-clip-path: inset(51% 0 22% 0);
+            clip-path: inset(51% 0 22% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  24.16667% {
+    -webkit-clip-path: inset(36% 0 35% 0);
+            clip-path: inset(36% 0 35% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   24.58333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(26% 0 54% 0);
             clip-path: inset(26% 0 54% 0);
+=======
+    -webkit-clip-path: inset(66% 0 26% 0);
+            clip-path: inset(66% 0 26% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   25% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(11% 0 87% 0);
             clip-path: inset(11% 0 87% 0);
     padding: 3 px-8px;
@@ -5383,10 +7145,33 @@ END
   26.25% {
     -webkit-clip-path: inset(89% 0 3% 0);
             clip-path: inset(89% 0 3% 0);
+=======
+    -webkit-clip-path: inset(72% 0 27% 0);
+            clip-path: inset(72% 0 27% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  25.41667% {
+    -webkit-clip-path: inset(69% 0 10% 0);
+            clip-path: inset(69% 0 10% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  25.83333% {
+    -webkit-clip-path: inset(13% 0 40% 0);
+            clip-path: inset(13% 0 40% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  26.25% {
+    -webkit-clip-path: inset(73% 0 28% 0);
+            clip-path: inset(73% 0 28% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   26.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(78% 0 3% 0);
             clip-path: inset(78% 0 3% 0);
     padding: 7 px-8px;
@@ -5395,10 +7180,21 @@ END
   27.08333% {
     -webkit-clip-path: inset(20% 0 35% 0);
             clip-path: inset(20% 0 35% 0);
+=======
+    -webkit-clip-path: inset(85% 0 14% 0);
+            clip-path: inset(85% 0 14% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  27.08333% {
+    -webkit-clip-path: inset(96% 0 1% 0);
+            clip-path: inset(96% 0 1% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   27.5% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(18% 0 42% 0);
             clip-path: inset(18% 0 42% 0);
     padding: 8 px-8px;
@@ -5407,10 +7203,21 @@ END
   27.91667% {
     -webkit-clip-path: inset(38% 0 22% 0);
             clip-path: inset(38% 0 22% 0);
+=======
+    -webkit-clip-path: inset(33% 0 66% 0);
+            clip-path: inset(33% 0 66% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  27.91667% {
+    -webkit-clip-path: inset(73% 0 26% 0);
+            clip-path: inset(73% 0 26% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   28.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(23% 0 74% 0);
             clip-path: inset(23% 0 74% 0);
     padding: 3 px-8px;
@@ -5503,10 +7310,105 @@ END
   34.58333% {
     -webkit-clip-path: inset(47% 0 20% 0);
             clip-path: inset(47% 0 20% 0);
+=======
+    -webkit-clip-path: inset(31% 0 66% 0);
+            clip-path: inset(31% 0 66% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  28.75% {
+    -webkit-clip-path: inset(2% 0 3% 0);
+            clip-path: inset(2% 0 3% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  29.16667% {
+    -webkit-clip-path: inset(10% 0 86% 0);
+            clip-path: inset(10% 0 86% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  29.58333% {
+    -webkit-clip-path: inset(25% 0 57% 0);
+            clip-path: inset(25% 0 57% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  30% {
+    -webkit-clip-path: inset(31% 0 26% 0);
+            clip-path: inset(31% 0 26% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  30.41667% {
+    -webkit-clip-path: inset(31% 0 35% 0);
+            clip-path: inset(31% 0 35% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  30.83333% {
+    -webkit-clip-path: inset(38% 0 56% 0);
+            clip-path: inset(38% 0 56% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  31.25% {
+    -webkit-clip-path: inset(8% 0 36% 0);
+            clip-path: inset(8% 0 36% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  31.66667% {
+    -webkit-clip-path: inset(95% 0 3% 0);
+            clip-path: inset(95% 0 3% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  32.08333% {
+    -webkit-clip-path: inset(13% 0 81% 0);
+            clip-path: inset(13% 0 81% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  32.5% {
+    -webkit-clip-path: inset(55% 0 11% 0);
+            clip-path: inset(55% 0 11% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  32.91667% {
+    -webkit-clip-path: inset(49% 0 33% 0);
+            clip-path: inset(49% 0 33% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  33.33333% {
+    -webkit-clip-path: inset(42% 0 2% 0);
+            clip-path: inset(42% 0 2% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  33.75% {
+    -webkit-clip-path: inset(39% 0 48% 0);
+            clip-path: inset(39% 0 48% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  34.16667% {
+    -webkit-clip-path: inset(3% 0 25% 0);
+            clip-path: inset(3% 0 25% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  34.58333% {
+    -webkit-clip-path: inset(53% 0 39% 0);
+            clip-path: inset(53% 0 39% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   35% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(6% 0 40% 0);
             clip-path: inset(6% 0 40% 0);
     padding: 5 px-8px;
@@ -5521,16 +7423,38 @@ END
   35.83333% {
     -webkit-clip-path: inset(16% 0 57% 0);
             clip-path: inset(16% 0 57% 0);
+=======
+    -webkit-clip-path: inset(6% 0 34% 0);
+            clip-path: inset(6% 0 34% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  35.41667% {
+    -webkit-clip-path: inset(12% 0 83% 0);
+            clip-path: inset(12% 0 83% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  35.83333% {
+    -webkit-clip-path: inset(34% 0 29% 0);
+            clip-path: inset(34% 0 29% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 4 px-8px;
     visibility: visible;
   }
   36.25% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(68% 0 4% 0);
             clip-path: inset(68% 0 4% 0);
+=======
+    -webkit-clip-path: inset(97% 0 3% 0);
+            clip-path: inset(97% 0 3% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   36.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(16% 0 29% 0);
             clip-path: inset(16% 0 29% 0);
     padding: 1 px-8px;
@@ -5545,28 +7469,60 @@ END
   37.5% {
     -webkit-clip-path: inset(42% 0 50% 0);
             clip-path: inset(42% 0 50% 0);
+=======
+    -webkit-clip-path: inset(88% 0 4% 0);
+            clip-path: inset(88% 0 4% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  37.08333% {
+    -webkit-clip-path: inset(88% 0 12% 0);
+            clip-path: inset(88% 0 12% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  37.5% {
+    -webkit-clip-path: inset(27% 0 25% 0);
+            clip-path: inset(27% 0 25% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   37.91667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(75% 0 1% 0);
             clip-path: inset(75% 0 1% 0);
+=======
+    -webkit-clip-path: inset(11% 0 41% 0);
+            clip-path: inset(11% 0 41% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   38.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(21% 0 75% 0);
             clip-path: inset(21% 0 75% 0);
+=======
+    -webkit-clip-path: inset(29% 0 10% 0);
+            clip-path: inset(29% 0 10% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   38.75% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(40% 0 30% 0);
             clip-path: inset(40% 0 30% 0);
+=======
+    -webkit-clip-path: inset(38% 0 22% 0);
+            clip-path: inset(38% 0 22% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   39.16667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(34% 0 29% 0);
             clip-path: inset(34% 0 29% 0);
     padding: 4 px-8px;
@@ -5605,16 +7561,62 @@ END
   41.66667% {
     -webkit-clip-path: inset(85% 0 4% 0);
             clip-path: inset(85% 0 4% 0);
+=======
+    -webkit-clip-path: inset(86% 0 14% 0);
+            clip-path: inset(86% 0 14% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  39.58333% {
+    -webkit-clip-path: inset(14% 0 4% 0);
+            clip-path: inset(14% 0 4% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  40% {
+    -webkit-clip-path: inset(76% 0 6% 0);
+            clip-path: inset(76% 0 6% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  40.41667% {
+    -webkit-clip-path: inset(82% 0 1% 0);
+            clip-path: inset(82% 0 1% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  40.83333% {
+    -webkit-clip-path: inset(38% 0 56% 0);
+            clip-path: inset(38% 0 56% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  41.25% {
+    -webkit-clip-path: inset(19% 0 28% 0);
+            clip-path: inset(19% 0 28% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  41.66667% {
+    -webkit-clip-path: inset(29% 0 15% 0);
+            clip-path: inset(29% 0 15% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   42.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(78% 0 8% 0);
             clip-path: inset(78% 0 8% 0);
+=======
+    -webkit-clip-path: inset(39% 0 50% 0);
+            clip-path: inset(39% 0 50% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   42.5% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(8% 0 60% 0);
             clip-path: inset(8% 0 60% 0);
     padding: 3 px-8px;
@@ -5641,10 +7643,39 @@ END
   44.16667% {
     -webkit-clip-path: inset(76% 0 11% 0);
             clip-path: inset(76% 0 11% 0);
+=======
+    -webkit-clip-path: inset(52% 0 16% 0);
+            clip-path: inset(52% 0 16% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  42.91667% {
+    -webkit-clip-path: inset(79% 0 15% 0);
+            clip-path: inset(79% 0 15% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  43.33333% {
+    -webkit-clip-path: inset(79% 0 17% 0);
+            clip-path: inset(79% 0 17% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  43.75% {
+    -webkit-clip-path: inset(28% 0 22% 0);
+            clip-path: inset(28% 0 22% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  44.16667% {
+    -webkit-clip-path: inset(38% 0 17% 0);
+            clip-path: inset(38% 0 17% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   44.58333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(48% 0 24% 0);
             clip-path: inset(48% 0 24% 0);
     padding: 3 px-8px;
@@ -5767,10 +7798,135 @@ END
   52.91667% {
     -webkit-clip-path: inset(87% 0 9% 0);
             clip-path: inset(87% 0 9% 0);
+=======
+    -webkit-clip-path: inset(93% 0 8% 0);
+            clip-path: inset(93% 0 8% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  45% {
+    -webkit-clip-path: inset(89% 0 1% 0);
+            clip-path: inset(89% 0 1% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  45.41667% {
+    -webkit-clip-path: inset(26% 0 61% 0);
+            clip-path: inset(26% 0 61% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  45.83333% {
+    -webkit-clip-path: inset(38% 0 60% 0);
+            clip-path: inset(38% 0 60% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  46.25% {
+    -webkit-clip-path: inset(10% 0 76% 0);
+            clip-path: inset(10% 0 76% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  46.66667% {
+    -webkit-clip-path: inset(9% 0 89% 0);
+            clip-path: inset(9% 0 89% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  47.08333% {
+    -webkit-clip-path: inset(5% 0 1% 0);
+            clip-path: inset(5% 0 1% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  47.5% {
+    -webkit-clip-path: inset(40% 0 3% 0);
+            clip-path: inset(40% 0 3% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  47.91667% {
+    -webkit-clip-path: inset(80% 0 19% 0);
+            clip-path: inset(80% 0 19% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  48.33333% {
+    -webkit-clip-path: inset(14% 0 18% 0);
+            clip-path: inset(14% 0 18% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  48.75% {
+    -webkit-clip-path: inset(55% 0 36% 0);
+            clip-path: inset(55% 0 36% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  49.16667% {
+    -webkit-clip-path: inset(31% 0 22% 0);
+            clip-path: inset(31% 0 22% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  49.58333% {
+    -webkit-clip-path: inset(21% 0 46% 0);
+            clip-path: inset(21% 0 46% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  50% {
+    -webkit-clip-path: inset(39% 0 36% 0);
+            clip-path: inset(39% 0 36% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  50.41667% {
+    -webkit-clip-path: inset(53% 0 40% 0);
+            clip-path: inset(53% 0 40% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  50.83333% {
+    -webkit-clip-path: inset(56% 0 24% 0);
+            clip-path: inset(56% 0 24% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  51.25% {
+    -webkit-clip-path: inset(65% 0 27% 0);
+            clip-path: inset(65% 0 27% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  51.66667% {
+    -webkit-clip-path: inset(83% 0 16% 0);
+            clip-path: inset(83% 0 16% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  52.08333% {
+    -webkit-clip-path: inset(75% 0 12% 0);
+            clip-path: inset(75% 0 12% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  52.5% {
+    -webkit-clip-path: inset(78% 0 18% 0);
+            clip-path: inset(78% 0 18% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  52.91667% {
+    -webkit-clip-path: inset(34% 0 25% 0);
+            clip-path: inset(34% 0 25% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   53.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(35% 0 47% 0);
             clip-path: inset(35% 0 47% 0);
     padding: 2 px-8px;
@@ -5779,10 +7935,21 @@ END
   53.75% {
     -webkit-clip-path: inset(74% 0 2% 0);
             clip-path: inset(74% 0 2% 0);
+=======
+    -webkit-clip-path: inset(3% 0 68% 0);
+            clip-path: inset(3% 0 68% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  53.75% {
+    -webkit-clip-path: inset(4% 0 32% 0);
+            clip-path: inset(4% 0 32% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   54.16667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(69% 0 28% 0);
             clip-path: inset(69% 0 28% 0);
     padding: 7 px-8px;
@@ -5827,10 +7994,57 @@ END
   57.08333% {
     -webkit-clip-path: inset(4% 0 55% 0);
             clip-path: inset(4% 0 55% 0);
+=======
+    -webkit-clip-path: inset(17% 0 58% 0);
+            clip-path: inset(17% 0 58% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  54.58333% {
+    -webkit-clip-path: inset(42% 0 11% 0);
+            clip-path: inset(42% 0 11% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  55% {
+    -webkit-clip-path: inset(91% 0 8% 0);
+            clip-path: inset(91% 0 8% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  55.41667% {
+    -webkit-clip-path: inset(24% 0 55% 0);
+            clip-path: inset(24% 0 55% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  55.83333% {
+    -webkit-clip-path: inset(72% 0 29% 0);
+            clip-path: inset(72% 0 29% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  56.25% {
+    -webkit-clip-path: inset(47% 0 12% 0);
+            clip-path: inset(47% 0 12% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  56.66667% {
+    -webkit-clip-path: inset(28% 0 33% 0);
+            clip-path: inset(28% 0 33% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  57.08333% {
+    -webkit-clip-path: inset(2% 0 80% 0);
+            clip-path: inset(2% 0 80% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   57.5% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(36% 0 16% 0);
             clip-path: inset(36% 0 16% 0);
     padding: 1 px-8px;
@@ -5929,16 +8143,122 @@ END
   64.16667% {
     -webkit-clip-path: inset(32% 0 53% 0);
             clip-path: inset(32% 0 53% 0);
+=======
+    -webkit-clip-path: inset(86% 0 8% 0);
+            clip-path: inset(86% 0 8% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  57.91667% {
+    -webkit-clip-path: inset(88% 0 2% 0);
+            clip-path: inset(88% 0 2% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  58.33333% {
+    -webkit-clip-path: inset(41% 0 26% 0);
+            clip-path: inset(41% 0 26% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  58.75% {
+    -webkit-clip-path: inset(67% 0 1% 0);
+            clip-path: inset(67% 0 1% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  59.16667% {
+    -webkit-clip-path: inset(88% 0 5% 0);
+            clip-path: inset(88% 0 5% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  59.58333% {
+    -webkit-clip-path: inset(38% 0 63% 0);
+            clip-path: inset(38% 0 63% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  60% {
+    -webkit-clip-path: inset(28% 0 33% 0);
+            clip-path: inset(28% 0 33% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  60.41667% {
+    -webkit-clip-path: inset(6% 0 68% 0);
+            clip-path: inset(6% 0 68% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  60.83333% {
+    -webkit-clip-path: inset(2% 0 64% 0);
+            clip-path: inset(2% 0 64% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  61.25% {
+    -webkit-clip-path: inset(36% 0 30% 0);
+            clip-path: inset(36% 0 30% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  61.66667% {
+    -webkit-clip-path: inset(28% 0 14% 0);
+            clip-path: inset(28% 0 14% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  62.08333% {
+    -webkit-clip-path: inset(61% 0 19% 0);
+            clip-path: inset(61% 0 19% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  62.5% {
+    -webkit-clip-path: inset(49% 0 41% 0);
+            clip-path: inset(49% 0 41% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  62.91667% {
+    -webkit-clip-path: inset(67% 0 7% 0);
+            clip-path: inset(67% 0 7% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  63.33333% {
+    -webkit-clip-path: inset(8% 0 71% 0);
+            clip-path: inset(8% 0 71% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  63.75% {
+    -webkit-clip-path: inset(91% 0 8% 0);
+            clip-path: inset(91% 0 8% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  64.16667% {
+    -webkit-clip-path: inset(59% 0 38% 0);
+            clip-path: inset(59% 0 38% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   64.58333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(60% 0 18% 0);
             clip-path: inset(60% 0 18% 0);
+=======
+    -webkit-clip-path: inset(94% 0 3% 0);
+            clip-path: inset(94% 0 3% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   65% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(65% 0 25% 0);
             clip-path: inset(65% 0 25% 0);
     padding: 1 px-8px;
@@ -5977,22 +8297,73 @@ END
   67.5% {
     -webkit-clip-path: inset(64% 0 26% 0);
             clip-path: inset(64% 0 26% 0);
+=======
+    -webkit-clip-path: inset(21% 0 57% 0);
+            clip-path: inset(21% 0 57% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  65.41667% {
+    -webkit-clip-path: inset(75% 0 22% 0);
+            clip-path: inset(75% 0 22% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  65.83333% {
+    -webkit-clip-path: inset(93% 0 2% 0);
+            clip-path: inset(93% 0 2% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  66.25% {
+    -webkit-clip-path: inset(14% 0 79% 0);
+            clip-path: inset(14% 0 79% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  66.66667% {
+    -webkit-clip-path: inset(48% 0 45% 0);
+            clip-path: inset(48% 0 45% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  67.08333% {
+    -webkit-clip-path: inset(10% 0 89% 0);
+            clip-path: inset(10% 0 89% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  67.5% {
+    -webkit-clip-path: inset(13% 0 39% 0);
+            clip-path: inset(13% 0 39% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-8px;
     visibility: visible;
   }
   67.91667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(67% 0 6% 0);
             clip-path: inset(67% 0 6% 0);
+=======
+    -webkit-clip-path: inset(52% 0 39% 0);
+            clip-path: inset(52% 0 39% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-8px;
     visibility: visible;
   }
   68.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(60% 0 41% 0);
             clip-path: inset(60% 0 41% 0);
+=======
+    -webkit-clip-path: inset(78% 0 8% 0);
+            clip-path: inset(78% 0 8% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   68.75% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(57% 0 25% 0);
             clip-path: inset(57% 0 25% 0);
     padding: 7 px-8px;
@@ -6133,10 +8504,153 @@ END
   78.33333% {
     -webkit-clip-path: inset(20% 0 23% 0);
             clip-path: inset(20% 0 23% 0);
+=======
+    -webkit-clip-path: inset(17% 0 1% 0);
+            clip-path: inset(17% 0 1% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  69.16667% {
+    -webkit-clip-path: inset(39% 0 45% 0);
+            clip-path: inset(39% 0 45% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  69.58333% {
+    -webkit-clip-path: inset(35% 0 20% 0);
+            clip-path: inset(35% 0 20% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  70% {
+    -webkit-clip-path: inset(56% 0 41% 0);
+            clip-path: inset(56% 0 41% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  70.41667% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  70.83333% {
+    -webkit-clip-path: inset(51% 0 35% 0);
+            clip-path: inset(51% 0 35% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  71.25% {
+    -webkit-clip-path: inset(84% 0 8% 0);
+            clip-path: inset(84% 0 8% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  71.66667% {
+    -webkit-clip-path: inset(2% 0 33% 0);
+            clip-path: inset(2% 0 33% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  72.08333% {
+    -webkit-clip-path: inset(1% 0 89% 0);
+            clip-path: inset(1% 0 89% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  72.5% {
+    -webkit-clip-path: inset(37% 0 20% 0);
+            clip-path: inset(37% 0 20% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  72.91667% {
+    -webkit-clip-path: inset(57% 0 10% 0);
+            clip-path: inset(57% 0 10% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  73.33333% {
+    -webkit-clip-path: inset(57% 0 32% 0);
+            clip-path: inset(57% 0 32% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  73.75% {
+    -webkit-clip-path: inset(45% 0 54% 0);
+            clip-path: inset(45% 0 54% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  74.16667% {
+    -webkit-clip-path: inset(56% 0 22% 0);
+            clip-path: inset(56% 0 22% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  74.58333% {
+    -webkit-clip-path: inset(1% 0 50% 0);
+            clip-path: inset(1% 0 50% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  75% {
+    -webkit-clip-path: inset(45% 0 33% 0);
+            clip-path: inset(45% 0 33% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  75.41667% {
+    -webkit-clip-path: inset(40% 0 2% 0);
+            clip-path: inset(40% 0 2% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  75.83333% {
+    -webkit-clip-path: inset(95% 0 5% 0);
+            clip-path: inset(95% 0 5% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  76.25% {
+    -webkit-clip-path: inset(38% 0 50% 0);
+            clip-path: inset(38% 0 50% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  76.66667% {
+    -webkit-clip-path: inset(26% 0 68% 0);
+            clip-path: inset(26% 0 68% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  77.08333% {
+    -webkit-clip-path: inset(37% 0 40% 0);
+            clip-path: inset(37% 0 40% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  77.5% {
+    -webkit-clip-path: inset(35% 0 32% 0);
+            clip-path: inset(35% 0 32% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  77.91667% {
+    -webkit-clip-path: inset(15% 0 71% 0);
+            clip-path: inset(15% 0 71% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  78.33333% {
+    -webkit-clip-path: inset(24% 0 74% 0);
+            clip-path: inset(24% 0 74% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-8px;
     visibility: visible;
   }
   78.75% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(91% 0 1% 0);
             clip-path: inset(91% 0 1% 0);
     padding: 7 px-8px;
@@ -6181,10 +8695,57 @@ END
   81.66667% {
     -webkit-clip-path: inset(8% 0 92% 0);
             clip-path: inset(8% 0 92% 0);
+=======
+    -webkit-clip-path: inset(61% 0 39% 0);
+            clip-path: inset(61% 0 39% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  79.16667% {
+    -webkit-clip-path: inset(97% 0 4% 0);
+            clip-path: inset(97% 0 4% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  79.58333% {
+    -webkit-clip-path: inset(78% 0 15% 0);
+            clip-path: inset(78% 0 15% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  80% {
+    -webkit-clip-path: inset(91% 0 4% 0);
+            clip-path: inset(91% 0 4% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  80.41667% {
+    -webkit-clip-path: inset(58% 0 29% 0);
+            clip-path: inset(58% 0 29% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  80.83333% {
+    -webkit-clip-path: inset(49% 0 20% 0);
+            clip-path: inset(49% 0 20% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  81.25% {
+    -webkit-clip-path: inset(29% 0 2% 0);
+            clip-path: inset(29% 0 2% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  81.66667% {
+    -webkit-clip-path: inset(21% 0 39% 0);
+            clip-path: inset(21% 0 39% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   82.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(73% 0 3% 0);
             clip-path: inset(73% 0 3% 0);
     padding: 5 px-8px;
@@ -6193,10 +8754,21 @@ END
   82.5% {
     -webkit-clip-path: inset(72% 0 7% 0);
             clip-path: inset(72% 0 7% 0);
+=======
+    -webkit-clip-path: inset(23% 0 33% 0);
+            clip-path: inset(23% 0 33% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  82.5% {
+    -webkit-clip-path: inset(13% 0 32% 0);
+            clip-path: inset(13% 0 32% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   82.91667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(67% 0 14% 0);
             clip-path: inset(67% 0 14% 0);
     padding: 1 px-8px;
@@ -6217,10 +8789,33 @@ END
   84.16667% {
     -webkit-clip-path: inset(45% 0 14% 0);
             clip-path: inset(45% 0 14% 0);
+=======
+    -webkit-clip-path: inset(46% 0 2% 0);
+            clip-path: inset(46% 0 2% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  83.33333% {
+    -webkit-clip-path: inset(21% 0 78% 0);
+            clip-path: inset(21% 0 78% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  83.75% {
+    -webkit-clip-path: inset(71% 0 24% 0);
+            clip-path: inset(71% 0 24% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  84.16667% {
+    -webkit-clip-path: inset(79% 0 12% 0);
+            clip-path: inset(79% 0 12% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   84.58333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(38% 0 26% 0);
             clip-path: inset(38% 0 26% 0);
     padding: 1 px-8px;
@@ -6241,10 +8836,33 @@ END
   85.83333% {
     -webkit-clip-path: inset(36% 0 35% 0);
             clip-path: inset(36% 0 35% 0);
+=======
+    -webkit-clip-path: inset(92% 0 2% 0);
+            clip-path: inset(92% 0 2% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  85% {
+    -webkit-clip-path: inset(6% 0 24% 0);
+            clip-path: inset(6% 0 24% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  85.41667% {
+    -webkit-clip-path: inset(25% 0 71% 0);
+            clip-path: inset(25% 0 71% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  85.83333% {
+    -webkit-clip-path: inset(1% 0 29% 0);
+            clip-path: inset(1% 0 29% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-8px;
     visibility: visible;
   }
   86.25% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(80% 0 21% 0);
             clip-path: inset(80% 0 21% 0);
     padding: 3 px-8px;
@@ -6253,10 +8871,21 @@ END
   86.66667% {
     -webkit-clip-path: inset(39% 0 49% 0);
             clip-path: inset(39% 0 49% 0);
+=======
+    -webkit-clip-path: inset(66% 0 9% 0);
+            clip-path: inset(66% 0 9% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  86.66667% {
+    -webkit-clip-path: inset(63% 0 16% 0);
+            clip-path: inset(63% 0 16% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 4 px-8px;
     visibility: visible;
   }
   87.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(28% 0 65% 0);
             clip-path: inset(28% 0 65% 0);
     padding: 5 px-8px;
@@ -6307,10 +8936,63 @@ END
   90.41667% {
     -webkit-clip-path: inset(94% 0 2% 0);
             clip-path: inset(94% 0 2% 0);
+=======
+    -webkit-clip-path: inset(68% 0 8% 0);
+            clip-path: inset(68% 0 8% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  87.5% {
+    -webkit-clip-path: inset(5% 0 79% 0);
+            clip-path: inset(5% 0 79% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  87.91667% {
+    -webkit-clip-path: inset(86% 0 11% 0);
+            clip-path: inset(86% 0 11% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  88.33333% {
+    -webkit-clip-path: inset(53% 0 42% 0);
+            clip-path: inset(53% 0 42% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  88.75% {
+    -webkit-clip-path: inset(69% 0 19% 0);
+            clip-path: inset(69% 0 19% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  89.16667% {
+    -webkit-clip-path: inset(38% 0 31% 0);
+            clip-path: inset(38% 0 31% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  89.58333% {
+    -webkit-clip-path: inset(88% 0 13% 0);
+            clip-path: inset(88% 0 13% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  90% {
+    -webkit-clip-path: inset(5% 0 1% 0);
+            clip-path: inset(5% 0 1% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  90.41667% {
+    -webkit-clip-path: inset(12% 0 33% 0);
+            clip-path: inset(12% 0 33% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   90.83333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(75% 0 9% 0);
             clip-path: inset(75% 0 9% 0);
     padding: 8 px-8px;
@@ -6367,10 +9049,69 @@ END
   94.58333% {
     -webkit-clip-path: inset(27% 0 18% 0);
             clip-path: inset(27% 0 18% 0);
+=======
+    -webkit-clip-path: inset(91% 0 8% 0);
+            clip-path: inset(91% 0 8% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  91.25% {
+    -webkit-clip-path: inset(46% 0 2% 0);
+            clip-path: inset(46% 0 2% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  91.66667% {
+    -webkit-clip-path: inset(64% 0 4% 0);
+            clip-path: inset(64% 0 4% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  92.08333% {
+    -webkit-clip-path: inset(80% 0 2% 0);
+            clip-path: inset(80% 0 2% 0);
+    padding: 8 px-8px;
+    visibility: visible;
+  }
+  92.5% {
+    -webkit-clip-path: inset(61% 0 2% 0);
+            clip-path: inset(61% 0 2% 0);
+    padding: 3 px-8px;
+    visibility: visible;
+  }
+  92.91667% {
+    -webkit-clip-path: inset(6% 0 78% 0);
+            clip-path: inset(6% 0 78% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  93.33333% {
+    -webkit-clip-path: inset(51% 0 7% 0);
+            clip-path: inset(51% 0 7% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  93.75% {
+    -webkit-clip-path: inset(89% 0 5% 0);
+            clip-path: inset(89% 0 5% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  94.16667% {
+    -webkit-clip-path: inset(79% 0 14% 0);
+            clip-path: inset(79% 0 14% 0);
+    padding: 2 px-8px;
+    visibility: visible;
+  }
+  94.58333% {
+    -webkit-clip-path: inset(71% 0 30% 0);
+            clip-path: inset(71% 0 30% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-8px;
     visibility: visible;
   }
   95% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(64% 0 6% 0);
             clip-path: inset(64% 0 6% 0);
     padding: 8 px-8px;
@@ -6397,10 +9138,39 @@ END
   96.66667% {
     -webkit-clip-path: inset(4% 0 9% 0);
             clip-path: inset(4% 0 9% 0);
+=======
+    -webkit-clip-path: inset(85% 0 11% 0);
+            clip-path: inset(85% 0 11% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  95.41667% {
+    -webkit-clip-path: inset(9% 0 60% 0);
+            clip-path: inset(9% 0 60% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  95.83333% {
+    -webkit-clip-path: inset(99% 0 1% 0);
+            clip-path: inset(99% 0 1% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  96.25% {
+    -webkit-clip-path: inset(15% 0 9% 0);
+            clip-path: inset(15% 0 9% 0);
+    padding: 7 px-8px;
+    visibility: visible;
+  }
+  96.66667% {
+    -webkit-clip-path: inset(34% 0 43% 0);
+            clip-path: inset(34% 0 43% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
   97.08333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(23% 0 10% 0);
             clip-path: inset(23% 0 10% 0);
     padding: 4 px-8px;
@@ -6445,6 +9215,52 @@ END
   100% {
     -webkit-clip-path: inset(99% 0 1% 0);
             clip-path: inset(99% 0 1% 0);
+=======
+    -webkit-clip-path: inset(56% 0 20% 0);
+            clip-path: inset(56% 0 20% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  97.5% {
+    -webkit-clip-path: inset(66% 0 23% 0);
+            clip-path: inset(66% 0 23% 0);
+    padding: 4 px-8px;
+    visibility: visible;
+  }
+  97.91667% {
+    -webkit-clip-path: inset(70% 0 18% 0);
+            clip-path: inset(70% 0 18% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  98.33333% {
+    -webkit-clip-path: inset(63% 0 20% 0);
+            clip-path: inset(63% 0 20% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  98.75% {
+    -webkit-clip-path: inset(45% 0 18% 0);
+            clip-path: inset(45% 0 18% 0);
+    padding: 1 px-8px;
+    visibility: visible;
+  }
+  99.16667% {
+    -webkit-clip-path: inset(55% 0 37% 0);
+            clip-path: inset(55% 0 37% 0);
+    padding: 5 px-8px;
+    visibility: visible;
+  }
+  99.58333% {
+    -webkit-clip-path: inset(71% 0 26% 0);
+            clip-path: inset(71% 0 26% 0);
+    padding: 6 px-8px;
+    visibility: visible;
+  }
+  100% {
+    -webkit-clip-path: inset(41% 0 33% 0);
+            clip-path: inset(41% 0 33% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 2 px-8px;
     visibility: visible;
   }
@@ -6452,6 +9268,7 @@ END
 
 @-webkit-keyframes noise-anim-2 {
   0% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(74% 0 8% 0);
             clip-path: inset(74% 0 8% 0);
     padding: 6 px-10px;
@@ -6466,10 +9283,27 @@ END
   1.33333% {
     -webkit-clip-path: inset(66% 0 16% 0);
             clip-path: inset(66% 0 16% 0);
+=======
+    -webkit-clip-path: inset(98% 0 1% 0);
+            clip-path: inset(98% 0 1% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  0.66667% {
+    -webkit-clip-path: inset(80% 0 5% 0);
+            clip-path: inset(80% 0 5% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  1.33333% {
+    -webkit-clip-path: inset(22% 0 49% 0);
+            clip-path: inset(22% 0 49% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 8 px-10px;
     visibility: visible;
   }
   2% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(78% 0 6% 0);
             clip-path: inset(78% 0 6% 0);
     padding: 6 px-10px;
@@ -6496,10 +9330,39 @@ END
   4.66667% {
     -webkit-clip-path: inset(47% 0 19% 0);
             clip-path: inset(47% 0 19% 0);
+=======
+    -webkit-clip-path: inset(68% 0 7% 0);
+            clip-path: inset(68% 0 7% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  2.66667% {
+    -webkit-clip-path: inset(12% 0 56% 0);
+            clip-path: inset(12% 0 56% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  3.33333% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  4% {
+    -webkit-clip-path: inset(25% 0 35% 0);
+            clip-path: inset(25% 0 35% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  4.66667% {
+    -webkit-clip-path: inset(37% 0 62% 0);
+            clip-path: inset(37% 0 62% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-10px;
     visibility: visible;
   }
   5.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(100% 0 1% 0);
             clip-path: inset(100% 0 1% 0);
     padding: 8 px-10px;
@@ -6556,10 +9419,69 @@ END
   11.33333% {
     -webkit-clip-path: inset(42% 0 17% 0);
             clip-path: inset(42% 0 17% 0);
+=======
+    -webkit-clip-path: inset(27% 0 71% 0);
+            clip-path: inset(27% 0 71% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  6% {
+    -webkit-clip-path: inset(25% 0 52% 0);
+            clip-path: inset(25% 0 52% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  6.66667% {
+    -webkit-clip-path: inset(89% 0 8% 0);
+            clip-path: inset(89% 0 8% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  7.33333% {
+    -webkit-clip-path: inset(58% 0 25% 0);
+            clip-path: inset(58% 0 25% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  8% {
+    -webkit-clip-path: inset(4% 0 42% 0);
+            clip-path: inset(4% 0 42% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  8.66667% {
+    -webkit-clip-path: inset(82% 0 5% 0);
+            clip-path: inset(82% 0 5% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  9.33333% {
+    -webkit-clip-path: inset(87% 0 14% 0);
+            clip-path: inset(87% 0 14% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  10% {
+    -webkit-clip-path: inset(72% 0 2% 0);
+            clip-path: inset(72% 0 2% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  10.66667% {
+    -webkit-clip-path: inset(36% 0 28% 0);
+            clip-path: inset(36% 0 28% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  11.33333% {
+    -webkit-clip-path: inset(32% 0 23% 0);
+            clip-path: inset(32% 0 23% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-10px;
     visibility: visible;
   }
   12% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(30% 0 60% 0);
             clip-path: inset(30% 0 60% 0);
     padding: 1 px-10px;
@@ -6604,10 +9526,57 @@ END
   16.66667% {
     -webkit-clip-path: inset(100% 0 1% 0);
             clip-path: inset(100% 0 1% 0);
+=======
+    -webkit-clip-path: inset(24% 0 47% 0);
+            clip-path: inset(24% 0 47% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  12.66667% {
+    -webkit-clip-path: inset(58% 0 22% 0);
+            clip-path: inset(58% 0 22% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  13.33333% {
+    -webkit-clip-path: inset(4% 0 33% 0);
+            clip-path: inset(4% 0 33% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  14% {
+    -webkit-clip-path: inset(82% 0 14% 0);
+            clip-path: inset(82% 0 14% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  14.66667% {
+    -webkit-clip-path: inset(35% 0 11% 0);
+            clip-path: inset(35% 0 11% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  15.33333% {
+    -webkit-clip-path: inset(8% 0 41% 0);
+            clip-path: inset(8% 0 41% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  16% {
+    -webkit-clip-path: inset(7% 0 37% 0);
+            clip-path: inset(7% 0 37% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  16.66667% {
+    -webkit-clip-path: inset(28% 0 44% 0);
+            clip-path: inset(28% 0 44% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 10 px-10px;
     visibility: visible;
   }
   17.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(22% 0 69% 0);
             clip-path: inset(22% 0 69% 0);
     padding: 7 px-10px;
@@ -6635,6 +9604,35 @@ END
     -webkit-clip-path: inset(79% 0 3% 0);
             clip-path: inset(79% 0 3% 0);
     padding: 8 px-10px;
+=======
+    -webkit-clip-path: inset(18% 0 5% 0);
+            clip-path: inset(18% 0 5% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  18% {
+    -webkit-clip-path: inset(40% 0 25% 0);
+            clip-path: inset(40% 0 25% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  18.66667% {
+    -webkit-clip-path: inset(93% 0 8% 0);
+            clip-path: inset(93% 0 8% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  19.33333% {
+    -webkit-clip-path: inset(57% 0 8% 0);
+            clip-path: inset(57% 0 8% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  20% {
+    -webkit-clip-path: inset(16% 0 9% 0);
+            clip-path: inset(16% 0 9% 0);
+    padding: 10 px-10px;
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     visibility: visible;
   }
   20.66667% {
@@ -6644,6 +9642,7 @@ END
     visibility: visible;
   }
   21.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(66% 0 26% 0);
             clip-path: inset(66% 0 26% 0);
     padding: 10 px-10px;
@@ -6688,10 +9687,57 @@ END
   26% {
     -webkit-clip-path: inset(34% 0 66% 0);
             clip-path: inset(34% 0 66% 0);
+=======
+    -webkit-clip-path: inset(48% 0 25% 0);
+            clip-path: inset(48% 0 25% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  22% {
+    -webkit-clip-path: inset(57% 0 33% 0);
+            clip-path: inset(57% 0 33% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  22.66667% {
+    -webkit-clip-path: inset(74% 0 22% 0);
+            clip-path: inset(74% 0 22% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  23.33333% {
+    -webkit-clip-path: inset(10% 0 79% 0);
+            clip-path: inset(10% 0 79% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  24% {
+    -webkit-clip-path: inset(59% 0 29% 0);
+            clip-path: inset(59% 0 29% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  24.66667% {
+    -webkit-clip-path: inset(43% 0 47% 0);
+            clip-path: inset(43% 0 47% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  25.33333% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  26% {
+    -webkit-clip-path: inset(87% 0 1% 0);
+            clip-path: inset(87% 0 1% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 4 px-10px;
     visibility: visible;
   }
   26.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(41% 0 14% 0);
             clip-path: inset(41% 0 14% 0);
     padding: 10 px-10px;
@@ -6700,10 +9746,21 @@ END
   27.33333% {
     -webkit-clip-path: inset(27% 0 50% 0);
             clip-path: inset(27% 0 50% 0);
+=======
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  27.33333% {
+    -webkit-clip-path: inset(45% 0 36% 0);
+            clip-path: inset(45% 0 36% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-10px;
     visibility: visible;
   }
   28% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(18% 0 28% 0);
             clip-path: inset(18% 0 28% 0);
     padding: 9 px-10px;
@@ -6748,10 +9805,57 @@ END
   32.66667% {
     -webkit-clip-path: inset(89% 0 10% 0);
             clip-path: inset(89% 0 10% 0);
+=======
+    -webkit-clip-path: inset(18% 0 71% 0);
+            clip-path: inset(18% 0 71% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  28.66667% {
+    -webkit-clip-path: inset(14% 0 61% 0);
+            clip-path: inset(14% 0 61% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  29.33333% {
+    -webkit-clip-path: inset(4% 0 26% 0);
+            clip-path: inset(4% 0 26% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  30% {
+    -webkit-clip-path: inset(31% 0 1% 0);
+            clip-path: inset(31% 0 1% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  30.66667% {
+    -webkit-clip-path: inset(85% 0 15% 0);
+            clip-path: inset(85% 0 15% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  31.33333% {
+    -webkit-clip-path: inset(51% 0 34% 0);
+            clip-path: inset(51% 0 34% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  32% {
+    -webkit-clip-path: inset(87% 0 2% 0);
+            clip-path: inset(87% 0 2% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  32.66667% {
+    -webkit-clip-path: inset(69% 0 16% 0);
+            clip-path: inset(69% 0 16% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-10px;
     visibility: visible;
   }
   33.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(14% 0 43% 0);
             clip-path: inset(14% 0 43% 0);
     padding: 1 px-10px;
@@ -6766,10 +9870,27 @@ END
   34.66667% {
     -webkit-clip-path: inset(25% 0 38% 0);
             clip-path: inset(25% 0 38% 0);
+=======
+    -webkit-clip-path: inset(5% 0 4% 0);
+            clip-path: inset(5% 0 4% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  34% {
+    -webkit-clip-path: inset(32% 0 9% 0);
+            clip-path: inset(32% 0 9% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  34.66667% {
+    -webkit-clip-path: inset(47% 0 44% 0);
+            clip-path: inset(47% 0 44% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-10px;
     visibility: visible;
   }
   35.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(64% 0 3% 0);
             clip-path: inset(64% 0 3% 0);
     padding: 5 px-10px;
@@ -6826,10 +9947,69 @@ END
   41.33333% {
     -webkit-clip-path: inset(83% 0 17% 0);
             clip-path: inset(83% 0 17% 0);
+=======
+    -webkit-clip-path: inset(53% 0 20% 0);
+            clip-path: inset(53% 0 20% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  36% {
+    -webkit-clip-path: inset(40% 0 40% 0);
+            clip-path: inset(40% 0 40% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  36.66667% {
+    -webkit-clip-path: inset(16% 0 25% 0);
+            clip-path: inset(16% 0 25% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  37.33333% {
+    -webkit-clip-path: inset(65% 0 19% 0);
+            clip-path: inset(65% 0 19% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  38% {
+    -webkit-clip-path: inset(93% 0 8% 0);
+            clip-path: inset(93% 0 8% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  38.66667% {
+    -webkit-clip-path: inset(50% 0 43% 0);
+            clip-path: inset(50% 0 43% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  39.33333% {
+    -webkit-clip-path: inset(94% 0 4% 0);
+            clip-path: inset(94% 0 4% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  40% {
+    -webkit-clip-path: inset(32% 0 14% 0);
+            clip-path: inset(32% 0 14% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  40.66667% {
+    -webkit-clip-path: inset(30% 0 45% 0);
+            clip-path: inset(30% 0 45% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  41.33333% {
+    -webkit-clip-path: inset(80% 0 6% 0);
+            clip-path: inset(80% 0 6% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-10px;
     visibility: visible;
   }
   42% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(61% 0 32% 0);
             clip-path: inset(61% 0 32% 0);
     padding: 10 px-10px;
@@ -6940,10 +10120,123 @@ END
   54% {
     -webkit-clip-path: inset(96% 0 3% 0);
             clip-path: inset(96% 0 3% 0);
+=======
+    -webkit-clip-path: inset(40% 0 34% 0);
+            clip-path: inset(40% 0 34% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  42.66667% {
+    -webkit-clip-path: inset(75% 0 10% 0);
+            clip-path: inset(75% 0 10% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  43.33333% {
+    -webkit-clip-path: inset(10% 0 1% 0);
+            clip-path: inset(10% 0 1% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  44% {
+    -webkit-clip-path: inset(84% 0 11% 0);
+            clip-path: inset(84% 0 11% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  44.66667% {
+    -webkit-clip-path: inset(24% 0 10% 0);
+            clip-path: inset(24% 0 10% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  45.33333% {
+    -webkit-clip-path: inset(62% 0 10% 0);
+            clip-path: inset(62% 0 10% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  46% {
+    -webkit-clip-path: inset(78% 0 10% 0);
+            clip-path: inset(78% 0 10% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  46.66667% {
+    -webkit-clip-path: inset(30% 0 1% 0);
+            clip-path: inset(30% 0 1% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  47.33333% {
+    -webkit-clip-path: inset(59% 0 30% 0);
+            clip-path: inset(59% 0 30% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  48% {
+    -webkit-clip-path: inset(81% 0 20% 0);
+            clip-path: inset(81% 0 20% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  48.66667% {
+    -webkit-clip-path: inset(81% 0 17% 0);
+            clip-path: inset(81% 0 17% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  49.33333% {
+    -webkit-clip-path: inset(44% 0 20% 0);
+            clip-path: inset(44% 0 20% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  50% {
+    -webkit-clip-path: inset(38% 0 42% 0);
+            clip-path: inset(38% 0 42% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  50.66667% {
+    -webkit-clip-path: inset(84% 0 3% 0);
+            clip-path: inset(84% 0 3% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  51.33333% {
+    -webkit-clip-path: inset(24% 0 20% 0);
+            clip-path: inset(24% 0 20% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  52% {
+    -webkit-clip-path: inset(77% 0 21% 0);
+            clip-path: inset(77% 0 21% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  52.66667% {
+    -webkit-clip-path: inset(9% 0 5% 0);
+            clip-path: inset(9% 0 5% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  53.33333% {
+    -webkit-clip-path: inset(69% 0 32% 0);
+            clip-path: inset(69% 0 32% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  54% {
+    -webkit-clip-path: inset(94% 0 7% 0);
+            clip-path: inset(94% 0 7% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-10px;
     visibility: visible;
   }
   54.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(65% 0 33% 0);
             clip-path: inset(65% 0 33% 0);
     padding: 8 px-10px;
@@ -7024,10 +10317,93 @@ END
   63.33333% {
     -webkit-clip-path: inset(5% 0 1% 0);
             clip-path: inset(5% 0 1% 0);
+=======
+    -webkit-clip-path: inset(13% 0 69% 0);
+            clip-path: inset(13% 0 69% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  55.33333% {
+    -webkit-clip-path: inset(73% 0 23% 0);
+            clip-path: inset(73% 0 23% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  56% {
+    -webkit-clip-path: inset(14% 0 21% 0);
+            clip-path: inset(14% 0 21% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  56.66667% {
+    -webkit-clip-path: inset(86% 0 5% 0);
+            clip-path: inset(86% 0 5% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  57.33333% {
+    -webkit-clip-path: inset(72% 0 28% 0);
+            clip-path: inset(72% 0 28% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  58% {
+    -webkit-clip-path: inset(26% 0 36% 0);
+            clip-path: inset(26% 0 36% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  58.66667% {
+    -webkit-clip-path: inset(72% 0 7% 0);
+            clip-path: inset(72% 0 7% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  59.33333% {
+    -webkit-clip-path: inset(14% 0 12% 0);
+            clip-path: inset(14% 0 12% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  60% {
+    -webkit-clip-path: inset(76% 0 4% 0);
+            clip-path: inset(76% 0 4% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  60.66667% {
+    -webkit-clip-path: inset(20% 0 73% 0);
+            clip-path: inset(20% 0 73% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  61.33333% {
+    -webkit-clip-path: inset(88% 0 11% 0);
+            clip-path: inset(88% 0 11% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  62% {
+    -webkit-clip-path: inset(88% 0 5% 0);
+            clip-path: inset(88% 0 5% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  62.66667% {
+    -webkit-clip-path: inset(70% 0 14% 0);
+            clip-path: inset(70% 0 14% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  63.33333% {
+    -webkit-clip-path: inset(88% 0 9% 0);
+            clip-path: inset(88% 0 9% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 8 px-10px;
     visibility: visible;
   }
   64% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(42% 0 16% 0);
             clip-path: inset(42% 0 16% 0);
     padding: 1 px-10px;
@@ -7078,10 +10454,63 @@ END
   69.33333% {
     -webkit-clip-path: inset(29% 0 66% 0);
             clip-path: inset(29% 0 66% 0);
+=======
+    -webkit-clip-path: inset(30% 0 40% 0);
+            clip-path: inset(30% 0 40% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  64.66667% {
+    -webkit-clip-path: inset(31% 0 28% 0);
+            clip-path: inset(31% 0 28% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  65.33333% {
+    -webkit-clip-path: inset(5% 0 91% 0);
+            clip-path: inset(5% 0 91% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  66% {
+    -webkit-clip-path: inset(13% 0 47% 0);
+            clip-path: inset(13% 0 47% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  66.66667% {
+    -webkit-clip-path: inset(70% 0 24% 0);
+            clip-path: inset(70% 0 24% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  67.33333% {
+    -webkit-clip-path: inset(28% 0 15% 0);
+            clip-path: inset(28% 0 15% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  68% {
+    -webkit-clip-path: inset(66% 0 1% 0);
+            clip-path: inset(66% 0 1% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  68.66667% {
+    -webkit-clip-path: inset(62% 0 13% 0);
+            clip-path: inset(62% 0 13% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  69.33333% {
+    -webkit-clip-path: inset(48% 0 33% 0);
+            clip-path: inset(48% 0 33% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 9 px-10px;
     visibility: visible;
   }
   70% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(40% 0 17% 0);
             clip-path: inset(40% 0 17% 0);
     padding: 7 px-10px;
@@ -7102,16 +10531,44 @@ END
   72% {
     -webkit-clip-path: inset(63% 0 34% 0);
             clip-path: inset(63% 0 34% 0);
+=======
+    -webkit-clip-path: inset(97% 0 4% 0);
+            clip-path: inset(97% 0 4% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  70.66667% {
+    -webkit-clip-path: inset(33% 0 26% 0);
+            clip-path: inset(33% 0 26% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  71.33333% {
+    -webkit-clip-path: inset(49% 0 41% 0);
+            clip-path: inset(49% 0 41% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  72% {
+    -webkit-clip-path: inset(79% 0 19% 0);
+            clip-path: inset(79% 0 19% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-10px;
     visibility: visible;
   }
   72.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(62% 0 39% 0);
             clip-path: inset(62% 0 39% 0);
+=======
+    -webkit-clip-path: inset(3% 0 91% 0);
+            clip-path: inset(3% 0 91% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-10px;
     visibility: visible;
   }
   73.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(80% 0 10% 0);
             clip-path: inset(80% 0 10% 0);
     padding: 5 px-10px;
@@ -7126,16 +10583,38 @@ END
   74.66667% {
     -webkit-clip-path: inset(31% 0 29% 0);
             clip-path: inset(31% 0 29% 0);
+=======
+    -webkit-clip-path: inset(31% 0 65% 0);
+            clip-path: inset(31% 0 65% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  74% {
+    -webkit-clip-path: inset(19% 0 16% 0);
+            clip-path: inset(19% 0 16% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  74.66667% {
+    -webkit-clip-path: inset(80% 0 21% 0);
+            clip-path: inset(80% 0 21% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 4 px-10px;
     visibility: visible;
   }
   75.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(15% 0 6% 0);
             clip-path: inset(15% 0 6% 0);
+=======
+    -webkit-clip-path: inset(45% 0 21% 0);
+            clip-path: inset(45% 0 21% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-10px;
     visibility: visible;
   }
   76% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(39% 0 18% 0);
             clip-path: inset(39% 0 18% 0);
     padding: 8 px-10px;
@@ -7216,10 +10695,93 @@ END
   84.66667% {
     -webkit-clip-path: inset(34% 0 31% 0);
             clip-path: inset(34% 0 31% 0);
+=======
+    -webkit-clip-path: inset(25% 0 55% 0);
+            clip-path: inset(25% 0 55% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  76.66667% {
+    -webkit-clip-path: inset(99% 0 1% 0);
+            clip-path: inset(99% 0 1% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  77.33333% {
+    -webkit-clip-path: inset(20% 0 38% 0);
+            clip-path: inset(20% 0 38% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  78% {
+    -webkit-clip-path: inset(14% 0 34% 0);
+            clip-path: inset(14% 0 34% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  78.66667% {
+    -webkit-clip-path: inset(13% 0 48% 0);
+            clip-path: inset(13% 0 48% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  79.33333% {
+    -webkit-clip-path: inset(67% 0 33% 0);
+            clip-path: inset(67% 0 33% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  80% {
+    -webkit-clip-path: inset(62% 0 18% 0);
+            clip-path: inset(62% 0 18% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  80.66667% {
+    -webkit-clip-path: inset(62% 0 33% 0);
+            clip-path: inset(62% 0 33% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  81.33333% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  82% {
+    -webkit-clip-path: inset(58% 0 26% 0);
+            clip-path: inset(58% 0 26% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  82.66667% {
+    -webkit-clip-path: inset(51% 0 36% 0);
+            clip-path: inset(51% 0 36% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  83.33333% {
+    -webkit-clip-path: inset(37% 0 26% 0);
+            clip-path: inset(37% 0 26% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  84% {
+    -webkit-clip-path: inset(73% 0 27% 0);
+            clip-path: inset(73% 0 27% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  84.66667% {
+    -webkit-clip-path: inset(55% 0 7% 0);
+            clip-path: inset(55% 0 7% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-10px;
     visibility: visible;
   }
   85.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(72% 0 6% 0);
             clip-path: inset(72% 0 6% 0);
     padding: 6 px-10px;
@@ -7258,10 +10820,51 @@ END
   89.33333% {
     -webkit-clip-path: inset(47% 0 52% 0);
             clip-path: inset(47% 0 52% 0);
+=======
+    -webkit-clip-path: inset(56% 0 16% 0);
+            clip-path: inset(56% 0 16% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  86% {
+    -webkit-clip-path: inset(92% 0 8% 0);
+            clip-path: inset(92% 0 8% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  86.66667% {
+    -webkit-clip-path: inset(90% 0 11% 0);
+            clip-path: inset(90% 0 11% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  87.33333% {
+    -webkit-clip-path: inset(21% 0 47% 0);
+            clip-path: inset(21% 0 47% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  88% {
+    -webkit-clip-path: inset(65% 0 12% 0);
+            clip-path: inset(65% 0 12% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  88.66667% {
+    -webkit-clip-path: inset(70% 0 13% 0);
+            clip-path: inset(70% 0 13% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  89.33333% {
+    -webkit-clip-path: inset(51% 0 31% 0);
+            clip-path: inset(51% 0 31% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 10 px-10px;
     visibility: visible;
   }
   90% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(11% 0 26% 0);
             clip-path: inset(11% 0 26% 0);
     padding: 1 px-10px;
@@ -7330,10 +10933,81 @@ END
   97.33333% {
     -webkit-clip-path: inset(22% 0 23% 0);
             clip-path: inset(22% 0 23% 0);
+=======
+    -webkit-clip-path: inset(51% 0 25% 0);
+            clip-path: inset(51% 0 25% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  90.66667% {
+    -webkit-clip-path: inset(33% 0 21% 0);
+            clip-path: inset(33% 0 21% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  91.33333% {
+    -webkit-clip-path: inset(27% 0 19% 0);
+            clip-path: inset(27% 0 19% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  92% {
+    -webkit-clip-path: inset(75% 0 1% 0);
+            clip-path: inset(75% 0 1% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  92.66667% {
+    -webkit-clip-path: inset(7% 0 50% 0);
+            clip-path: inset(7% 0 50% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  93.33333% {
+    -webkit-clip-path: inset(55% 0 3% 0);
+            clip-path: inset(55% 0 3% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  94% {
+    -webkit-clip-path: inset(84% 0 12% 0);
+            clip-path: inset(84% 0 12% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  94.66667% {
+    -webkit-clip-path: inset(29% 0 33% 0);
+            clip-path: inset(29% 0 33% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  95.33333% {
+    -webkit-clip-path: inset(59% 0 35% 0);
+            clip-path: inset(59% 0 35% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  96% {
+    -webkit-clip-path: inset(76% 0 13% 0);
+            clip-path: inset(76% 0 13% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  96.66667% {
+    -webkit-clip-path: inset(15% 0 58% 0);
+            clip-path: inset(15% 0 58% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  97.33333% {
+    -webkit-clip-path: inset(26% 0 3% 0);
+            clip-path: inset(26% 0 3% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-10px;
     visibility: visible;
   }
   98% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(36% 0 36% 0);
             clip-path: inset(36% 0 36% 0);
     padding: 5 px-10px;
@@ -7355,12 +11029,36 @@ END
     -webkit-clip-path: inset(64% 0 29% 0);
             clip-path: inset(64% 0 29% 0);
     padding: 8 px-10px;
+=======
+    -webkit-clip-path: inset(6% 0 82% 0);
+            clip-path: inset(6% 0 82% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  98.66667% {
+    -webkit-clip-path: inset(75% 0 9% 0);
+            clip-path: inset(75% 0 9% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  99.33333% {
+    -webkit-clip-path: inset(32% 0 18% 0);
+            clip-path: inset(32% 0 18% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  100% {
+    -webkit-clip-path: inset(96% 0 1% 0);
+            clip-path: inset(96% 0 1% 0);
+    padding: 3 px-10px;
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     visibility: visible;
   }
 }
 
 @keyframes noise-anim-2 {
   0% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(74% 0 8% 0);
             clip-path: inset(74% 0 8% 0);
     padding: 6 px-10px;
@@ -7375,10 +11073,27 @@ END
   1.33333% {
     -webkit-clip-path: inset(66% 0 16% 0);
             clip-path: inset(66% 0 16% 0);
+=======
+    -webkit-clip-path: inset(98% 0 1% 0);
+            clip-path: inset(98% 0 1% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  0.66667% {
+    -webkit-clip-path: inset(80% 0 5% 0);
+            clip-path: inset(80% 0 5% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  1.33333% {
+    -webkit-clip-path: inset(22% 0 49% 0);
+            clip-path: inset(22% 0 49% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 8 px-10px;
     visibility: visible;
   }
   2% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(78% 0 6% 0);
             clip-path: inset(78% 0 6% 0);
     padding: 6 px-10px;
@@ -7405,10 +11120,39 @@ END
   4.66667% {
     -webkit-clip-path: inset(47% 0 19% 0);
             clip-path: inset(47% 0 19% 0);
+=======
+    -webkit-clip-path: inset(68% 0 7% 0);
+            clip-path: inset(68% 0 7% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  2.66667% {
+    -webkit-clip-path: inset(12% 0 56% 0);
+            clip-path: inset(12% 0 56% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  3.33333% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  4% {
+    -webkit-clip-path: inset(25% 0 35% 0);
+            clip-path: inset(25% 0 35% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  4.66667% {
+    -webkit-clip-path: inset(37% 0 62% 0);
+            clip-path: inset(37% 0 62% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-10px;
     visibility: visible;
   }
   5.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(100% 0 1% 0);
             clip-path: inset(100% 0 1% 0);
     padding: 8 px-10px;
@@ -7465,10 +11209,69 @@ END
   11.33333% {
     -webkit-clip-path: inset(42% 0 17% 0);
             clip-path: inset(42% 0 17% 0);
+=======
+    -webkit-clip-path: inset(27% 0 71% 0);
+            clip-path: inset(27% 0 71% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  6% {
+    -webkit-clip-path: inset(25% 0 52% 0);
+            clip-path: inset(25% 0 52% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  6.66667% {
+    -webkit-clip-path: inset(89% 0 8% 0);
+            clip-path: inset(89% 0 8% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  7.33333% {
+    -webkit-clip-path: inset(58% 0 25% 0);
+            clip-path: inset(58% 0 25% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  8% {
+    -webkit-clip-path: inset(4% 0 42% 0);
+            clip-path: inset(4% 0 42% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  8.66667% {
+    -webkit-clip-path: inset(82% 0 5% 0);
+            clip-path: inset(82% 0 5% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  9.33333% {
+    -webkit-clip-path: inset(87% 0 14% 0);
+            clip-path: inset(87% 0 14% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  10% {
+    -webkit-clip-path: inset(72% 0 2% 0);
+            clip-path: inset(72% 0 2% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  10.66667% {
+    -webkit-clip-path: inset(36% 0 28% 0);
+            clip-path: inset(36% 0 28% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  11.33333% {
+    -webkit-clip-path: inset(32% 0 23% 0);
+            clip-path: inset(32% 0 23% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-10px;
     visibility: visible;
   }
   12% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(30% 0 60% 0);
             clip-path: inset(30% 0 60% 0);
     padding: 1 px-10px;
@@ -7513,10 +11316,57 @@ END
   16.66667% {
     -webkit-clip-path: inset(100% 0 1% 0);
             clip-path: inset(100% 0 1% 0);
+=======
+    -webkit-clip-path: inset(24% 0 47% 0);
+            clip-path: inset(24% 0 47% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  12.66667% {
+    -webkit-clip-path: inset(58% 0 22% 0);
+            clip-path: inset(58% 0 22% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  13.33333% {
+    -webkit-clip-path: inset(4% 0 33% 0);
+            clip-path: inset(4% 0 33% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  14% {
+    -webkit-clip-path: inset(82% 0 14% 0);
+            clip-path: inset(82% 0 14% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  14.66667% {
+    -webkit-clip-path: inset(35% 0 11% 0);
+            clip-path: inset(35% 0 11% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  15.33333% {
+    -webkit-clip-path: inset(8% 0 41% 0);
+            clip-path: inset(8% 0 41% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  16% {
+    -webkit-clip-path: inset(7% 0 37% 0);
+            clip-path: inset(7% 0 37% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  16.66667% {
+    -webkit-clip-path: inset(28% 0 44% 0);
+            clip-path: inset(28% 0 44% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 10 px-10px;
     visibility: visible;
   }
   17.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(22% 0 69% 0);
             clip-path: inset(22% 0 69% 0);
     padding: 7 px-10px;
@@ -7544,6 +11394,35 @@ END
     -webkit-clip-path: inset(79% 0 3% 0);
             clip-path: inset(79% 0 3% 0);
     padding: 8 px-10px;
+=======
+    -webkit-clip-path: inset(18% 0 5% 0);
+            clip-path: inset(18% 0 5% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  18% {
+    -webkit-clip-path: inset(40% 0 25% 0);
+            clip-path: inset(40% 0 25% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  18.66667% {
+    -webkit-clip-path: inset(93% 0 8% 0);
+            clip-path: inset(93% 0 8% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  19.33333% {
+    -webkit-clip-path: inset(57% 0 8% 0);
+            clip-path: inset(57% 0 8% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  20% {
+    -webkit-clip-path: inset(16% 0 9% 0);
+            clip-path: inset(16% 0 9% 0);
+    padding: 10 px-10px;
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     visibility: visible;
   }
   20.66667% {
@@ -7553,6 +11432,7 @@ END
     visibility: visible;
   }
   21.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(66% 0 26% 0);
             clip-path: inset(66% 0 26% 0);
     padding: 10 px-10px;
@@ -7597,10 +11477,57 @@ END
   26% {
     -webkit-clip-path: inset(34% 0 66% 0);
             clip-path: inset(34% 0 66% 0);
+=======
+    -webkit-clip-path: inset(48% 0 25% 0);
+            clip-path: inset(48% 0 25% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  22% {
+    -webkit-clip-path: inset(57% 0 33% 0);
+            clip-path: inset(57% 0 33% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  22.66667% {
+    -webkit-clip-path: inset(74% 0 22% 0);
+            clip-path: inset(74% 0 22% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  23.33333% {
+    -webkit-clip-path: inset(10% 0 79% 0);
+            clip-path: inset(10% 0 79% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  24% {
+    -webkit-clip-path: inset(59% 0 29% 0);
+            clip-path: inset(59% 0 29% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  24.66667% {
+    -webkit-clip-path: inset(43% 0 47% 0);
+            clip-path: inset(43% 0 47% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  25.33333% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  26% {
+    -webkit-clip-path: inset(87% 0 1% 0);
+            clip-path: inset(87% 0 1% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 4 px-10px;
     visibility: visible;
   }
   26.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(41% 0 14% 0);
             clip-path: inset(41% 0 14% 0);
     padding: 10 px-10px;
@@ -7609,10 +11536,21 @@ END
   27.33333% {
     -webkit-clip-path: inset(27% 0 50% 0);
             clip-path: inset(27% 0 50% 0);
+=======
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  27.33333% {
+    -webkit-clip-path: inset(45% 0 36% 0);
+            clip-path: inset(45% 0 36% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-10px;
     visibility: visible;
   }
   28% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(18% 0 28% 0);
             clip-path: inset(18% 0 28% 0);
     padding: 9 px-10px;
@@ -7657,10 +11595,57 @@ END
   32.66667% {
     -webkit-clip-path: inset(89% 0 10% 0);
             clip-path: inset(89% 0 10% 0);
+=======
+    -webkit-clip-path: inset(18% 0 71% 0);
+            clip-path: inset(18% 0 71% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  28.66667% {
+    -webkit-clip-path: inset(14% 0 61% 0);
+            clip-path: inset(14% 0 61% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  29.33333% {
+    -webkit-clip-path: inset(4% 0 26% 0);
+            clip-path: inset(4% 0 26% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  30% {
+    -webkit-clip-path: inset(31% 0 1% 0);
+            clip-path: inset(31% 0 1% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  30.66667% {
+    -webkit-clip-path: inset(85% 0 15% 0);
+            clip-path: inset(85% 0 15% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  31.33333% {
+    -webkit-clip-path: inset(51% 0 34% 0);
+            clip-path: inset(51% 0 34% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  32% {
+    -webkit-clip-path: inset(87% 0 2% 0);
+            clip-path: inset(87% 0 2% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  32.66667% {
+    -webkit-clip-path: inset(69% 0 16% 0);
+            clip-path: inset(69% 0 16% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 5 px-10px;
     visibility: visible;
   }
   33.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(14% 0 43% 0);
             clip-path: inset(14% 0 43% 0);
     padding: 1 px-10px;
@@ -7675,10 +11660,27 @@ END
   34.66667% {
     -webkit-clip-path: inset(25% 0 38% 0);
             clip-path: inset(25% 0 38% 0);
+=======
+    -webkit-clip-path: inset(5% 0 4% 0);
+            clip-path: inset(5% 0 4% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  34% {
+    -webkit-clip-path: inset(32% 0 9% 0);
+            clip-path: inset(32% 0 9% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  34.66667% {
+    -webkit-clip-path: inset(47% 0 44% 0);
+            clip-path: inset(47% 0 44% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-10px;
     visibility: visible;
   }
   35.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(64% 0 3% 0);
             clip-path: inset(64% 0 3% 0);
     padding: 5 px-10px;
@@ -7735,10 +11737,69 @@ END
   41.33333% {
     -webkit-clip-path: inset(83% 0 17% 0);
             clip-path: inset(83% 0 17% 0);
+=======
+    -webkit-clip-path: inset(53% 0 20% 0);
+            clip-path: inset(53% 0 20% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  36% {
+    -webkit-clip-path: inset(40% 0 40% 0);
+            clip-path: inset(40% 0 40% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  36.66667% {
+    -webkit-clip-path: inset(16% 0 25% 0);
+            clip-path: inset(16% 0 25% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  37.33333% {
+    -webkit-clip-path: inset(65% 0 19% 0);
+            clip-path: inset(65% 0 19% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  38% {
+    -webkit-clip-path: inset(93% 0 8% 0);
+            clip-path: inset(93% 0 8% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  38.66667% {
+    -webkit-clip-path: inset(50% 0 43% 0);
+            clip-path: inset(50% 0 43% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  39.33333% {
+    -webkit-clip-path: inset(94% 0 4% 0);
+            clip-path: inset(94% 0 4% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  40% {
+    -webkit-clip-path: inset(32% 0 14% 0);
+            clip-path: inset(32% 0 14% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  40.66667% {
+    -webkit-clip-path: inset(30% 0 45% 0);
+            clip-path: inset(30% 0 45% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  41.33333% {
+    -webkit-clip-path: inset(80% 0 6% 0);
+            clip-path: inset(80% 0 6% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-10px;
     visibility: visible;
   }
   42% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(61% 0 32% 0);
             clip-path: inset(61% 0 32% 0);
     padding: 10 px-10px;
@@ -7849,10 +11910,123 @@ END
   54% {
     -webkit-clip-path: inset(96% 0 3% 0);
             clip-path: inset(96% 0 3% 0);
+=======
+    -webkit-clip-path: inset(40% 0 34% 0);
+            clip-path: inset(40% 0 34% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  42.66667% {
+    -webkit-clip-path: inset(75% 0 10% 0);
+            clip-path: inset(75% 0 10% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  43.33333% {
+    -webkit-clip-path: inset(10% 0 1% 0);
+            clip-path: inset(10% 0 1% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  44% {
+    -webkit-clip-path: inset(84% 0 11% 0);
+            clip-path: inset(84% 0 11% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  44.66667% {
+    -webkit-clip-path: inset(24% 0 10% 0);
+            clip-path: inset(24% 0 10% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  45.33333% {
+    -webkit-clip-path: inset(62% 0 10% 0);
+            clip-path: inset(62% 0 10% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  46% {
+    -webkit-clip-path: inset(78% 0 10% 0);
+            clip-path: inset(78% 0 10% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  46.66667% {
+    -webkit-clip-path: inset(30% 0 1% 0);
+            clip-path: inset(30% 0 1% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  47.33333% {
+    -webkit-clip-path: inset(59% 0 30% 0);
+            clip-path: inset(59% 0 30% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  48% {
+    -webkit-clip-path: inset(81% 0 20% 0);
+            clip-path: inset(81% 0 20% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  48.66667% {
+    -webkit-clip-path: inset(81% 0 17% 0);
+            clip-path: inset(81% 0 17% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  49.33333% {
+    -webkit-clip-path: inset(44% 0 20% 0);
+            clip-path: inset(44% 0 20% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  50% {
+    -webkit-clip-path: inset(38% 0 42% 0);
+            clip-path: inset(38% 0 42% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  50.66667% {
+    -webkit-clip-path: inset(84% 0 3% 0);
+            clip-path: inset(84% 0 3% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  51.33333% {
+    -webkit-clip-path: inset(24% 0 20% 0);
+            clip-path: inset(24% 0 20% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  52% {
+    -webkit-clip-path: inset(77% 0 21% 0);
+            clip-path: inset(77% 0 21% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  52.66667% {
+    -webkit-clip-path: inset(9% 0 5% 0);
+            clip-path: inset(9% 0 5% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  53.33333% {
+    -webkit-clip-path: inset(69% 0 32% 0);
+            clip-path: inset(69% 0 32% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  54% {
+    -webkit-clip-path: inset(94% 0 7% 0);
+            clip-path: inset(94% 0 7% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-10px;
     visibility: visible;
   }
   54.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(65% 0 33% 0);
             clip-path: inset(65% 0 33% 0);
     padding: 8 px-10px;
@@ -7933,10 +12107,93 @@ END
   63.33333% {
     -webkit-clip-path: inset(5% 0 1% 0);
             clip-path: inset(5% 0 1% 0);
+=======
+    -webkit-clip-path: inset(13% 0 69% 0);
+            clip-path: inset(13% 0 69% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  55.33333% {
+    -webkit-clip-path: inset(73% 0 23% 0);
+            clip-path: inset(73% 0 23% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  56% {
+    -webkit-clip-path: inset(14% 0 21% 0);
+            clip-path: inset(14% 0 21% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  56.66667% {
+    -webkit-clip-path: inset(86% 0 5% 0);
+            clip-path: inset(86% 0 5% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  57.33333% {
+    -webkit-clip-path: inset(72% 0 28% 0);
+            clip-path: inset(72% 0 28% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  58% {
+    -webkit-clip-path: inset(26% 0 36% 0);
+            clip-path: inset(26% 0 36% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  58.66667% {
+    -webkit-clip-path: inset(72% 0 7% 0);
+            clip-path: inset(72% 0 7% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  59.33333% {
+    -webkit-clip-path: inset(14% 0 12% 0);
+            clip-path: inset(14% 0 12% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  60% {
+    -webkit-clip-path: inset(76% 0 4% 0);
+            clip-path: inset(76% 0 4% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  60.66667% {
+    -webkit-clip-path: inset(20% 0 73% 0);
+            clip-path: inset(20% 0 73% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  61.33333% {
+    -webkit-clip-path: inset(88% 0 11% 0);
+            clip-path: inset(88% 0 11% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  62% {
+    -webkit-clip-path: inset(88% 0 5% 0);
+            clip-path: inset(88% 0 5% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  62.66667% {
+    -webkit-clip-path: inset(70% 0 14% 0);
+            clip-path: inset(70% 0 14% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  63.33333% {
+    -webkit-clip-path: inset(88% 0 9% 0);
+            clip-path: inset(88% 0 9% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 8 px-10px;
     visibility: visible;
   }
   64% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(42% 0 16% 0);
             clip-path: inset(42% 0 16% 0);
     padding: 1 px-10px;
@@ -7987,10 +12244,63 @@ END
   69.33333% {
     -webkit-clip-path: inset(29% 0 66% 0);
             clip-path: inset(29% 0 66% 0);
+=======
+    -webkit-clip-path: inset(30% 0 40% 0);
+            clip-path: inset(30% 0 40% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  64.66667% {
+    -webkit-clip-path: inset(31% 0 28% 0);
+            clip-path: inset(31% 0 28% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  65.33333% {
+    -webkit-clip-path: inset(5% 0 91% 0);
+            clip-path: inset(5% 0 91% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  66% {
+    -webkit-clip-path: inset(13% 0 47% 0);
+            clip-path: inset(13% 0 47% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  66.66667% {
+    -webkit-clip-path: inset(70% 0 24% 0);
+            clip-path: inset(70% 0 24% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  67.33333% {
+    -webkit-clip-path: inset(28% 0 15% 0);
+            clip-path: inset(28% 0 15% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  68% {
+    -webkit-clip-path: inset(66% 0 1% 0);
+            clip-path: inset(66% 0 1% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  68.66667% {
+    -webkit-clip-path: inset(62% 0 13% 0);
+            clip-path: inset(62% 0 13% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  69.33333% {
+    -webkit-clip-path: inset(48% 0 33% 0);
+            clip-path: inset(48% 0 33% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 9 px-10px;
     visibility: visible;
   }
   70% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(40% 0 17% 0);
             clip-path: inset(40% 0 17% 0);
     padding: 7 px-10px;
@@ -8011,16 +12321,44 @@ END
   72% {
     -webkit-clip-path: inset(63% 0 34% 0);
             clip-path: inset(63% 0 34% 0);
+=======
+    -webkit-clip-path: inset(97% 0 4% 0);
+            clip-path: inset(97% 0 4% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  70.66667% {
+    -webkit-clip-path: inset(33% 0 26% 0);
+            clip-path: inset(33% 0 26% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  71.33333% {
+    -webkit-clip-path: inset(49% 0 41% 0);
+            clip-path: inset(49% 0 41% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  72% {
+    -webkit-clip-path: inset(79% 0 19% 0);
+            clip-path: inset(79% 0 19% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 3 px-10px;
     visibility: visible;
   }
   72.66667% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(62% 0 39% 0);
             clip-path: inset(62% 0 39% 0);
+=======
+    -webkit-clip-path: inset(3% 0 91% 0);
+            clip-path: inset(3% 0 91% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-10px;
     visibility: visible;
   }
   73.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(80% 0 10% 0);
             clip-path: inset(80% 0 10% 0);
     padding: 5 px-10px;
@@ -8035,16 +12373,38 @@ END
   74.66667% {
     -webkit-clip-path: inset(31% 0 29% 0);
             clip-path: inset(31% 0 29% 0);
+=======
+    -webkit-clip-path: inset(31% 0 65% 0);
+            clip-path: inset(31% 0 65% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  74% {
+    -webkit-clip-path: inset(19% 0 16% 0);
+            clip-path: inset(19% 0 16% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  74.66667% {
+    -webkit-clip-path: inset(80% 0 21% 0);
+            clip-path: inset(80% 0 21% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 4 px-10px;
     visibility: visible;
   }
   75.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(15% 0 6% 0);
             clip-path: inset(15% 0 6% 0);
+=======
+    -webkit-clip-path: inset(45% 0 21% 0);
+            clip-path: inset(45% 0 21% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 6 px-10px;
     visibility: visible;
   }
   76% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(39% 0 18% 0);
             clip-path: inset(39% 0 18% 0);
     padding: 8 px-10px;
@@ -8125,10 +12485,93 @@ END
   84.66667% {
     -webkit-clip-path: inset(34% 0 31% 0);
             clip-path: inset(34% 0 31% 0);
+=======
+    -webkit-clip-path: inset(25% 0 55% 0);
+            clip-path: inset(25% 0 55% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  76.66667% {
+    -webkit-clip-path: inset(99% 0 1% 0);
+            clip-path: inset(99% 0 1% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  77.33333% {
+    -webkit-clip-path: inset(20% 0 38% 0);
+            clip-path: inset(20% 0 38% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  78% {
+    -webkit-clip-path: inset(14% 0 34% 0);
+            clip-path: inset(14% 0 34% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  78.66667% {
+    -webkit-clip-path: inset(13% 0 48% 0);
+            clip-path: inset(13% 0 48% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  79.33333% {
+    -webkit-clip-path: inset(67% 0 33% 0);
+            clip-path: inset(67% 0 33% 0);
+    padding: 10 px-10px;
+    visibility: visible;
+  }
+  80% {
+    -webkit-clip-path: inset(62% 0 18% 0);
+            clip-path: inset(62% 0 18% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  80.66667% {
+    -webkit-clip-path: inset(62% 0 33% 0);
+            clip-path: inset(62% 0 33% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  81.33333% {
+    -webkit-clip-path: inset(100% 0 1% 0);
+            clip-path: inset(100% 0 1% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  82% {
+    -webkit-clip-path: inset(58% 0 26% 0);
+            clip-path: inset(58% 0 26% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  82.66667% {
+    -webkit-clip-path: inset(51% 0 36% 0);
+            clip-path: inset(51% 0 36% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  83.33333% {
+    -webkit-clip-path: inset(37% 0 26% 0);
+            clip-path: inset(37% 0 26% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  84% {
+    -webkit-clip-path: inset(73% 0 27% 0);
+            clip-path: inset(73% 0 27% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  84.66667% {
+    -webkit-clip-path: inset(55% 0 7% 0);
+            clip-path: inset(55% 0 7% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 7 px-10px;
     visibility: visible;
   }
   85.33333% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(72% 0 6% 0);
             clip-path: inset(72% 0 6% 0);
     padding: 6 px-10px;
@@ -8167,10 +12610,51 @@ END
   89.33333% {
     -webkit-clip-path: inset(47% 0 52% 0);
             clip-path: inset(47% 0 52% 0);
+=======
+    -webkit-clip-path: inset(56% 0 16% 0);
+            clip-path: inset(56% 0 16% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  86% {
+    -webkit-clip-path: inset(92% 0 8% 0);
+            clip-path: inset(92% 0 8% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  86.66667% {
+    -webkit-clip-path: inset(90% 0 11% 0);
+            clip-path: inset(90% 0 11% 0);
+    padding: 4 px-10px;
+    visibility: visible;
+  }
+  87.33333% {
+    -webkit-clip-path: inset(21% 0 47% 0);
+            clip-path: inset(21% 0 47% 0);
+    padding: 9 px-10px;
+    visibility: visible;
+  }
+  88% {
+    -webkit-clip-path: inset(65% 0 12% 0);
+            clip-path: inset(65% 0 12% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  88.66667% {
+    -webkit-clip-path: inset(70% 0 13% 0);
+            clip-path: inset(70% 0 13% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  89.33333% {
+    -webkit-clip-path: inset(51% 0 31% 0);
+            clip-path: inset(51% 0 31% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 10 px-10px;
     visibility: visible;
   }
   90% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(11% 0 26% 0);
             clip-path: inset(11% 0 26% 0);
     padding: 1 px-10px;
@@ -8239,10 +12723,81 @@ END
   97.33333% {
     -webkit-clip-path: inset(22% 0 23% 0);
             clip-path: inset(22% 0 23% 0);
+=======
+    -webkit-clip-path: inset(51% 0 25% 0);
+            clip-path: inset(51% 0 25% 0);
+    padding: 7 px-10px;
+    visibility: visible;
+  }
+  90.66667% {
+    -webkit-clip-path: inset(33% 0 21% 0);
+            clip-path: inset(33% 0 21% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  91.33333% {
+    -webkit-clip-path: inset(27% 0 19% 0);
+            clip-path: inset(27% 0 19% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  92% {
+    -webkit-clip-path: inset(75% 0 1% 0);
+            clip-path: inset(75% 0 1% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  92.66667% {
+    -webkit-clip-path: inset(7% 0 50% 0);
+            clip-path: inset(7% 0 50% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  93.33333% {
+    -webkit-clip-path: inset(55% 0 3% 0);
+            clip-path: inset(55% 0 3% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  94% {
+    -webkit-clip-path: inset(84% 0 12% 0);
+            clip-path: inset(84% 0 12% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  94.66667% {
+    -webkit-clip-path: inset(29% 0 33% 0);
+            clip-path: inset(29% 0 33% 0);
+    padding: 3 px-10px;
+    visibility: visible;
+  }
+  95.33333% {
+    -webkit-clip-path: inset(59% 0 35% 0);
+            clip-path: inset(59% 0 35% 0);
+    padding: 1 px-10px;
+    visibility: visible;
+  }
+  96% {
+    -webkit-clip-path: inset(76% 0 13% 0);
+            clip-path: inset(76% 0 13% 0);
+    padding: 5 px-10px;
+    visibility: visible;
+  }
+  96.66667% {
+    -webkit-clip-path: inset(15% 0 58% 0);
+            clip-path: inset(15% 0 58% 0);
+    padding: 6 px-10px;
+    visibility: visible;
+  }
+  97.33333% {
+    -webkit-clip-path: inset(26% 0 3% 0);
+            clip-path: inset(26% 0 3% 0);
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     padding: 1 px-10px;
     visibility: visible;
   }
   98% {
+<<<<<<< HEAD
     -webkit-clip-path: inset(36% 0 36% 0);
             clip-path: inset(36% 0 36% 0);
     padding: 5 px-10px;
@@ -8264,6 +12819,29 @@ END
     -webkit-clip-path: inset(64% 0 29% 0);
             clip-path: inset(64% 0 29% 0);
     padding: 8 px-10px;
+=======
+    -webkit-clip-path: inset(6% 0 82% 0);
+            clip-path: inset(6% 0 82% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  98.66667% {
+    -webkit-clip-path: inset(75% 0 9% 0);
+            clip-path: inset(75% 0 9% 0);
+    padding: 8 px-10px;
+    visibility: visible;
+  }
+  99.33333% {
+    -webkit-clip-path: inset(32% 0 18% 0);
+            clip-path: inset(32% 0 18% 0);
+    padding: 2 px-10px;
+    visibility: visible;
+  }
+  100% {
+    -webkit-clip-path: inset(96% 0 1% 0);
+            clip-path: inset(96% 0 1% 0);
+    padding: 3 px-10px;
+>>>>>>> f763e2aec1751617b6edf840e14d0b3b8c6f9279
     visibility: visible;
   }
 }
@@ -8272,6 +12850,934 @@ END
   .comingSoon-container {
     margin-bottom: 1em;
   }
+}
+
+#projects-area {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  background: white;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#proj-header {
+  margin: calc(20px + 2vmax) 0;
+  padding: 0 calc(30px + 3vmax);
+  width: 100%;
+}
+
+#proj-header h1 {
+  height: calc(30px + 3vmax);
+  font-family: "Montserrat", sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  color: #2d283c;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#proj-header h1::after {
+  content: '';
+  position: absolute;
+  margin-top: 1em;
+  width: 4.5em;
+  border-bottom: 0.1em solid #322d41;
+  bottom: 0;
+}
+
+#proj-area-wrapper {
+  overflow: hidden;
+  height: calc(100% - 40px - 4vmax - 30px - 3vmax);
+  width: 100%;
+  position: relative;
+}
+
+#proj-card-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  -webkit-transition: top 0.2s ease-out;
+  transition: top 0.2s ease-out;
+}
+
+#proj-card-wrapper h2 {
+  font-size: 1.2em;
+  color: #c7c2d5;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  margin-top: 0.5em;
+  margin-left: 3em;
+  margin-bottom: 0.5em;
+}
+
+#proj-card-wrapper #proj-fav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow: auto;
+  width: 100%;
+  height: 17em;
+  min-height: 17em;
+}
+
+#proj-card-wrapper #proj-fav-container::-webkit-scrollbar {
+  height: 0;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav {
+  height: 17em;
+  width: 12em;
+  margin: 0 1em;
+  overflow: visible;
+  position: relative;
+  cursor: pointer;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  -webkit-transition: -webkit-box-shadow 0.2s ease-out;
+  transition: -webkit-box-shadow 0.2s ease-out;
+  transition: box-shadow 0.2s ease-out;
+  transition: box-shadow 0.2s ease-out, -webkit-box-shadow 0.2s ease-out;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav .proj-fav-img {
+  height: 12em;
+  width: 12em;
+  border-radius: 0.5em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0 5px 20px -10px #877da9;
+          box-shadow: 0 5px 20px -10px #877da9;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav .proj-fav-overlay {
+  display: none;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav .proj-fav-content {
+  position: absolute;
+  top: 12em;
+  left: 0;
+  width: 100%;
+  padding-top: 0.5em;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav .proj-fav-content .proj-fav-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: #6853d9;
+  font-size: 1em;
+  margin-bottom: 0.2em;
+  letter-spacing: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav .proj-fav-content .proj-fav-makes {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: #877da9;
+  font-size: 0.7em;
+  line-height: 1.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav .proj-fav-content .proj-fav-notes {
+  display: none;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav:first-of-type {
+  margin-left: 3em;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav:last-of-type {
+  width: 14em;
+}
+
+#proj-card-wrapper #proj-fav-container .proj-fav:last-of-type .proj-fav-content {
+  padding-right: 2em;
+}
+
+#proj-card-wrapper #proj-all-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  padding: 0 3em 2em 3em;
+}
+
+#proj-card-wrapper #proj-all-container::-webkit-scrollbar {
+  height: 0;
+}
+
+#proj-card-wrapper #proj-all-container #proj-add {
+  background: linear-gradient(135deg, rgba(104, 83, 217, 0.5), white);
+}
+
+#proj-card-wrapper #proj-all-container #proj-add #proj-add-text {
+  height: 3em;
+  width: 3em;
+  overflow: hidden;
+  position: relative;
+}
+
+#proj-card-wrapper #proj-all-container #proj-add #proj-add-text p {
+  line-height: 3em;
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+  margin-top: 3em;
+  -webkit-transition: margin-top 0.2s ease-out;
+  transition: margin-top 0.2s ease-out;
+  text-align: center;
+  height: 3em;
+  letter-spacing: 1px;
+}
+
+#proj-card-wrapper #proj-all-container #proj-add #proj-add-text::before {
+  content: '';
+  position: absolute;
+  height: 3em;
+  width: 0.6em;
+  top: 0;
+  left: calc(1.5em - 0.3em);
+  background: white;
+  -webkit-transition: top 0.2s ease-out;
+  transition: top 0.2s ease-out;
+}
+
+#proj-card-wrapper #proj-all-container #proj-add #proj-add-text::after {
+  content: '';
+  position: absolute;
+  height: 0.6em;
+  width: 3em;
+  top: calc(1.5em - 0.3em);
+  left: 0;
+  background: white;
+  -webkit-transition: top 0.2s ease-out;
+  transition: top 0.2s ease-out;
+}
+
+#proj-card-wrapper #proj-all-container #proj-add:hover {
+  -webkit-box-shadow: 0 0 16px -6px #6853d9;
+          box-shadow: 0 0 16px -6px #6853d9;
+}
+
+#proj-card-wrapper #proj-all-container #proj-add:hover #proj-add-text p {
+  margin-top: 0;
+}
+
+#proj-card-wrapper #proj-all-container #proj-add:hover #proj-add-text::before {
+  top: -3em;
+}
+
+#proj-card-wrapper #proj-all-container #proj-add:hover #proj-add-text::after {
+  top: calc(1.5em - 0.3em - 3em);
+}
+
+#proj-card-wrapper #proj-all-container .proj-small {
+  height: 30vw;
+  width: 47%;
+  margin: 0.5em 0;
+  position: relative;
+  border-radius: 0.8em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  -webkit-box-shadow: 0 5px 12px -8px #c7c2d5;
+          box-shadow: 0 5px 12px -8px #c7c2d5;
+  -webkit-transition: -webkit-box-shadow 0.2s ease-out;
+  transition: -webkit-box-shadow 0.2s ease-out;
+  transition: box-shadow 0.2s ease-out;
+  transition: box-shadow 0.2s ease-out, -webkit-box-shadow 0.2s ease-out;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small .fa-bookmark {
+  position: absolute;
+  top: calc(50% + 4px);
+  right: 8px;
+  background: white;
+  color: #c7c2d5;
+  font-size: 1.2em;
+  -webkit-transition: top 0.1s ease-out, color 0.1s ease-out;
+  transition: top 0.1s ease-out, color 0.1s ease-out;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small .fa-bookmark.fas {
+  color: #4bf0ea;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small .fa-bookmark.fas:hover {
+  color: #4ae2dd;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small .fa-bookmark.far {
+  color: #877da9;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small .fa-bookmark.far:hover {
+  color: #4bf0ea;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small .proj-small-img {
+  height: 55%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small .proj-small-name {
+  height: 45%;
+  width: 100%;
+  background: white;
+  padding: 2em 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small .proj-small-name p {
+  color: #877da9;
+  font-size: 0.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#proj-card-wrapper #proj-all-container .proj-small:hover {
+  -webkit-box-shadow: 0 0 16px -6px #4bf0ea;
+          box-shadow: 0 0 16px -6px #4bf0ea;
+}
+
+.proj-pop-wrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: top 0.2s ease-out;
+  transition: top 0.2s ease-out;
+  background: white;
+}
+
+.proj-pop-wrapper .proj-pop-back {
+  height: 5em;
+  width: 5em;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  cursor: pointer;
+}
+
+.proj-pop-wrapper .proj-pop-back P {
+  font-size: 1em;
+  color: #c7c2d5;
+  -webkit-transition: color 0.1s ease-out;
+  transition: color 0.1s ease-out;
+  letter-spacing: 1px;
+}
+
+.proj-pop-wrapper .proj-pop-back::before, .proj-pop-wrapper .proj-pop-back::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  background: #c7c2d5;
+  height: 2px;
+  width: 45%;
+  -webkit-transition: background-color 0.1s ease-out;
+  transition: background-color 0.1s ease-out;
+}
+
+.proj-pop-wrapper .proj-pop-back::before {
+  -webkit-transform: rotate(15deg);
+          transform: rotate(15deg);
+  right: 6.5%;
+}
+
+.proj-pop-wrapper .proj-pop-back::after {
+  -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+  left: 6.5%;
+}
+
+.proj-pop-wrapper .proj-pop-back:hover p {
+  color: #4bf0ea;
+}
+
+.proj-pop-wrapper .proj-pop-back:hover::before, .proj-pop-wrapper .proj-pop-back:hover::after {
+  background: #4bf0ea;
+}
+
+.proj-pop-wrapper .proj-pop-container {
+  margin: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  border-radius: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: white;
+  overflow-y: scroll;
+  position: relative;
+  -webkit-box-shadow: 0 3px 25px -12px #877da9;
+          box-shadow: 0 3px 25px -12px #877da9;
+  width: 100%;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-left {
+  position: relative;
+  min-height: 20vmax;
+  min-width: 20vmax;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-left form {
+  display: none;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-left label {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-left .proj-pop-img {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-left .proj-pop-img-overlay {
+  display: block;
+  pointer-events: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(80%, rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-left .proj-pop-img-edit {
+  display: block;
+  pointer-events: none;
+  position: absolute;
+  color: white;
+  font-size: 0.6em;
+  font-weight: 400;
+  width: 100%;
+  right: 0;
+  bottom: 0.5em;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid {
+  padding: 2vh 8vw 0 8vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .fa-bookmark {
+  cursor: pointer;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  padding: 2px;
+  font-size: 1.5em;
+  -webkit-transition: color 0.1s ease-out, padding 0.1s ease-out;
+  transition: color 0.1s ease-out, padding 0.1s ease-out;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .fa-bookmark:hover {
+  padding-top: 0px;
+  padding-bottom: 4px;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .fa-bookmark.fas {
+  color: #4bf0ea;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .fa-bookmark.fas:hover {
+  color: #4ae2dd;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .fa-bookmark.far {
+  color: #877da9;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .fa-bookmark.far:hover {
+  color: #4bf0ea;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: #2d283c;
+  margin: 1.6em 0 0.8em 0;
+  letter-spacing: 0.5px;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-name,
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes {
+  display: block;
+  width: 100%;
+  background: #f8f8f8;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border: solid thin #f8f8f8;
+  color: #322d41;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-name:focus,
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes:focus {
+  color: #2d283c;
+  background: transparent;
+  border: solid thin #4bf0ea;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-name::-webkit-input-placeholder,
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes::-webkit-input-placeholder {
+  color: #c7c2d5;
+  font-weight: 300;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-name:-ms-input-placeholder,
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes:-ms-input-placeholder {
+  color: #c7c2d5;
+  font-weight: 300;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-name::-ms-input-placeholder,
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes::-ms-input-placeholder {
+  color: #c7c2d5;
+  font-weight: 300;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-name::placeholder,
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes::placeholder {
+  color: #c7c2d5;
+  font-weight: 300;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes {
+  font-size: 0.8em;
+  display: block;
+  resize: none;
+  height: 12vh;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes::-webkit-scrollbar {
+  width: 5px;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+  width: 5px;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes::-webkit-scrollbar-thumb {
+  background: #c7c2d5;
+  width: 5px;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes::-webkit-scrollbar-thumb:hover, .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes::-webkit-scrollbar-thumb:active {
+  background: #877da9;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes:focus::-webkit-scrollbar-thumb {
+  background: #4bf0ea;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container,
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-makes-header,
+.proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-btn-container {
+  display: none;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  background: white;
+  -webkit-box-shadow: inset 10px 0 15px -25px black;
+          box-shadow: inset 10px 0 15px -25px black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 8vw;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  color: #2d283c;
+  margin: 1.6em 0 0.8em 0;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper {
+  max-height: 40vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  background: #f8f8f8;
+  padding: 1em;
+  border-radius: 0.5em;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 0;
+  max-height: 100%;
+  width: 80%;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container::-webkit-scrollbar-track {
+  width: 5px;
+  background: rgba(0, 0, 0, 0);
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container::-webkit-scrollbar-thumb {
+  width: 5px;
+  background: #c7c2d5;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container::-webkit-scrollbar-thumb:hover, .proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container::-webkit-scrollbar-thumb:active {
+  background: #877da9;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar {
+  cursor: pointer;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 5px;
+  margin: 0.2em 0;
+  border: thin solid #c7c2d5;
+  background: transparent;
+  position: static;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar p {
+  font-size: 0.8em;
+  padding-left: 1.2em;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #c7c2d5;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar i {
+  padding: 0.8em;
+  font-size: 1em;
+  color: #c7c2d5;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar .proj-pop-bar-tooltip-wrapper {
+  position: absolute;
+  pointer-events: none;
+  display: none;
+  width: 5.5em;
+  right: 1vw;
+  z-index: 2;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar .proj-pop-bar-tooltip-wrapper .proj-pop-bar-tooltip {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  background: rgba(55, 45, 85, 0.5);
+  padding: 0.4em 0.6em;
+  border-radius: 5px;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar .proj-pop-bar-tooltip-wrapper .proj-pop-bar-tooltip p {
+  color: white;
+  padding: 0;
+  letter-spacing: 0.1em;
+  margin: 0.2em;
+  font-size: 0.6em;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar:hover {
+  border: thin solid #b0a9c4;
+  color: #b0a9c4;
+  -webkit-transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out;
+  transition: border-color 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar:hover p {
+  color: #322d41;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar:hover .proj-pop-bar-tooltip-wrapper {
+  display: block;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar-active {
+  border: thin solid #877da9;
+  background: #877da9;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar-active p {
+  color: white;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar-active i {
+  color: white;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar-active:hover {
+  border: thin solid #766b9d;
+  background: #766b9d;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar-active:hover p {
+  color: #f8f8f8;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar-active:hover i {
+  color: #f8f8f8;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-right p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin: 1em 0;
+  font-size: calc(8px + 0.1vw);
+  color: #c7c2d5;
+  text-align: center;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-btn-container {
+  display: block;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  width: 100%;
+  margin: 4vh 0;
+  padding: 0 8vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr auto 1fr;
+      grid-template-columns: 1fr auto 1fr;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-btn-container .proj-pop-delete {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: #c7c2d5;
+  border-bottom: thin solid #c7c2d5;
+  margin-right: auto;
+  padding: 0.5em 0.8em;
+  -webkit-transition: color 0.2s ease-out, border-color 0.2s ease-out, padding 0.2s ease-out;
+  transition: color 0.2s ease-out, border-color 0.2s ease-out, padding 0.2s ease-out;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-btn-container .proj-pop-delete:hover {
+  color: red;
+  border-bottom: thin solid red;
+  padding: 0.2em 0.8em 0.8em 0.8em;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-btn-container .proj-pop-save {
+  -webkit-box-shadow: 0 5px 20px -16px black;
+          box-shadow: 0 5px 20px -16px black;
+  padding: 0.8em 2.5em;
+}
+
+.proj-pop-wrapper .proj-pop-container .proj-pop-btn-container .proj-pop-save:hover {
+  -webkit-box-shadow: 0 5px 20px -14px black;
+          box-shadow: 0 5px 20px -14px black;
 }
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
@@ -8293,6 +13799,7 @@ END
   #proj-header {
     margin-top: 2em;
     margin-left: 8vw;
+    margin-bottom: 0;
     padding: 0 1em;
   }
   #proj-header h1 {
@@ -8305,6 +13812,7 @@ END
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    height: auto;
   }
   #proj-header h1::after {
     content: '';
@@ -8314,15 +13822,9 @@ END
     border-bottom: 0.1em solid #322d41;
     bottom: 0;
   }
-  #proj-header i {
-    display: none;
-    font-size: calc(14px + 1vmax);
-    color: #6853d9;
-    margin-left: 5vw;
-  }
   #proj-area-wrapper {
     overflow: hidden;
-    height: calc(100% - 10em);
+    height: calc(100% - 7em);
     width: 100%;
     position: relative;
   }
@@ -8341,7 +13843,8 @@ END
         -ms-flex-align: start;
             align-items: flex-start;
     width: 100%;
-    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
     padding: 0 6vw 0 8vw;
     -webkit-transition: top 0.2s ease-out;
     transition: top 0.2s ease-out;
@@ -8363,16 +13866,17 @@ END
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
-    height: 25em;
+    height: 40vh;
+    min-height: 40vh;
   }
   #proj-card-wrapper #proj-fav-container::-webkit-scrollbar {
     height: 5px;
@@ -8388,9 +13892,9 @@ END
     background: #877da9;
   }
   #proj-card-wrapper #proj-fav-container .proj-fav {
-    height: 20em;
-    width: 14em;
-    margin: 1em 1.4em;
+    height: 90%;
+    width: 24vh;
+    margin: 0 2vh;
     border-radius: 0.5em;
     overflow: hidden;
     position: relative;
@@ -8413,8 +13917,11 @@ END
     position: absolute;
     top: 0;
     left: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
   #proj-card-wrapper #proj-fav-container .proj-fav .proj-fav-overlay {
+    display: block;
     height: 200%;
     width: 100%;
     position: absolute;
@@ -8427,6 +13934,7 @@ END
   }
   #proj-card-wrapper #proj-fav-container .proj-fav .proj-fav-content {
     position: absolute;
+    top: auto;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -8484,24 +13992,31 @@ END
   #proj-card-wrapper #proj-fav-container .proj-fav:first-of-type {
     margin-left: 0.5em;
   }
+  #proj-card-wrapper #proj-fav-container .proj-fav:last-of-type .proj-fav-overlay {
+    padding-right: 0;
+  }
   #proj-card-wrapper #proj-all-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
-    height: 15em;
+    padding: 0;
+    height: 20vh;
+    min-height: 20vh;
   }
   #proj-card-wrapper #proj-all-container::-webkit-scrollbar {
     height: 5px;
@@ -8573,9 +14088,9 @@ END
     top: calc(1.5em - 0.3em - 3em);
   }
   #proj-card-wrapper #proj-all-container .proj-small {
-    height: 11em;
-    width: 9em;
-    margin: 1em 0.8em;
+    height: 85%;
+    width: 15vh;
+    margin: 0 1vh;
     position: relative;
     border-radius: 0.8em;
     display: -webkit-box;
@@ -8690,6 +14205,7 @@ END
     height: 100%;
     -webkit-transition: top 0.2s ease-out;
     transition: top 0.2s ease-out;
+    background: none;
   }
   .proj-pop-wrapper .proj-pop-back {
     height: 5vh;
@@ -8761,14 +14277,13 @@ END
     overflow: hidden;
     -webkit-box-shadow: 0 3px 25px -12px #877da9;
             box-shadow: 0 3px 25px -12px #877da9;
+    width: auto;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-left {
     position: relative;
     height: 100%;
     width: 100%;
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 0px;
-            flex: 1 1 0;
+    min-width: 20%;
     cursor: pointer;
     overflow: hidden;
   }
@@ -8791,6 +14306,7 @@ END
        object-fit: cover;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-left .proj-pop-img-overlay {
+    display: block;
     pointer-events: none;
     position: absolute;
     height: 100%;
@@ -8803,13 +14319,16 @@ END
     transition: left 0.2s ease-out;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-left .proj-pop-img-edit {
+    display: block;
     pointer-events: none;
     position: absolute;
     color: white;
     font-size: 0.6em;
     font-weight: 400;
-    right: -5em;
+    width: auto;
+    right: -10em;
     top: calc(50% + 0.5em);
+    bottom: auto;
     letter-spacing: 1px;
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg);
@@ -8821,13 +14340,11 @@ END
     left: -100%;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-left:hover .proj-pop-img-edit {
-    right: -4.6em;
+    right: -9.5em;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-mid {
     height: 100%;
-    -webkit-box-flex: 2;
-        -ms-flex: 2 1 0px;
-            flex: 2 1 0;
+    min-width: 50%;
     padding: 2vh 5vw 0 5vw;
     position: relative;
     display: -webkit-box;
@@ -8931,7 +14448,10 @@ END
     background: #877da9;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-notes:focus::-webkit-scrollbar-thumb {
-    background: #6853d9;
+    background: #4bf0ea;
+  }
+  .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-makes-header {
+    display: block;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container {
     display: -webkit-box;
@@ -8957,19 +14477,21 @@ END
     overflow-x: hidden;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container::-webkit-scrollbar-track {
-    background: white;
+    background: rgba(0, 0, 0, 0);
+    width: 5px;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container::-webkit-scrollbar-thumb {
-    background: -webkit-gradient(linear, left top, right top, from(white), color-stop(39%, white), color-stop(40%, #c7c2d5), color-stop(60%, #c7c2d5), color-stop(61%, white), to(white));
-    background: linear-gradient(to right, white 0%, white 39%, #c7c2d5 40%, #c7c2d5 60%, white 61%, white 100%);
-    border-radius: 10px;
-    width: 10px;
+    background: #c7c2d5;
+    width: 5px;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container::-webkit-scrollbar-thumb:hover, .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container::-webkit-scrollbar-thumb:active {
-    background: #c7c2d5;
+    background: #877da9;
+  }
+  .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container:focus::-webkit-scrollbar-thumb {
+    background: #6853d9;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-mid .proj-pop-blob-container .proj-pop-blob {
     cursor: pointer;
@@ -8989,7 +14511,7 @@ END
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin: 0.1em 1em 0.1em 0;
+    margin: 0.1em 0.5em 0.1em 0;
     -webkit-transition: background-color 0.1s ease-out;
     transition: background-color 0.1s ease-out;
     -ms-flex-negative: 0;
@@ -9077,9 +14599,7 @@ END
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-right {
     height: 100%;
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 0px;
-            flex: 1 1 0;
+    min-width: 30%;
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
@@ -9108,6 +14628,11 @@ END
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper {
     max-height: 60%;
+    display: block;
+    width: 100%;
+    background: none;
+    padding: 0;
+    border-radius: 0;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container {
     display: -webkit-box;
@@ -9121,6 +14646,7 @@ END
     overflow-y: auto;
     padding-right: 1em;
     max-height: 100%;
+    width: 100%;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container::-webkit-scrollbar {
     width: 5px;
@@ -9177,7 +14703,7 @@ END
     pointer-events: none;
     display: none;
     width: 5.5em;
-    right: calc(6vw - 3.5em);
+    right: 0.5em;
     z-index: 2;
   }
   .proj-pop-wrapper .proj-pop-container .proj-pop-right .proj-pop-bar-wrapper .proj-pop-bar-container .proj-pop-bar .proj-pop-bar-tooltip-wrapper .proj-pop-bar-tooltip {
@@ -9245,5 +14771,8 @@ END
     font-size: calc(8px + 0.1vw);
     color: #c7c2d5;
     text-align: center;
+  }
+  .proj-pop-wrapper .proj-pop-container .proj-pop-btn-container {
+    display: none;
   }
 }

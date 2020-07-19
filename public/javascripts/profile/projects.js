@@ -40,18 +40,21 @@ FUNCTIONS - PROJECTS
 projects.initialise = async () => {
   // DECLARE VARIABLES
   projects.declareVariables()
+  var favs = 0
   const [allProjects, allMakes] = (await projects.loadUserData());
-  console.log(allProjects)
   // render all project cards
   if (allProjects.length) {
     allProjects.forEach(function (project, i) {
       if (project.bookmark) {
         projects.renderFavCard(project)
+        favs += 1
       }
       projects.renderSmallCard(project)
       projects.renderProjPop(project, allMakes)
     })
   }
+  document.getElementById('proj-fav-header').innerHTML = 'Favourites (' + favs + ')'
+  document.getElementById('proj-new-header').innerHTML = 'All (' + allProjects.length + ')'
   projects.eventListeners()
   projects.renderProjPop(null, allMakes)
 }
@@ -64,26 +67,27 @@ projects.declareVariables = () => {
 
 projects.eventListeners = () => {
   const mq = window.matchMedia("(min-width: 850px)")
-  if (mq.matches) {
-    let fav = document.getElementById('proj-fav-container')
-    fav.addEventListener('wheel', function (e) {
-      if (e.deltaY > 0) {
-        fav.scrollLeft += 100
-      } else {
-        fav.scrollLeft -= 100
-      }
-      e.preventDefault()
-    })
-    let all = document.getElementById('proj-all-container')
-    all.addEventListener('wheel', function (e) {
+  
+  let fav = document.getElementById('proj-fav-container')
+  fav.addEventListener('wheel', function (e) {
+    if (e.deltaY > 0) {
+      fav.scrollLeft += 100
+    } else {
+      fav.scrollLeft -= 100
+    }
+    e.preventDefault()
+  })
+  let all = document.getElementById('proj-all-container')
+  all.addEventListener('wheel', function (e) {
+    if (mq.matches) {
       if (e.deltaY > 0) {
         all.scrollLeft += 100
       } else {
         all.scrollLeft -= 100
       }
       e.preventDefault()
-    })
-  }
+    }
+  })
 
   document.getElementById('proj-add').addEventListener('click', () => {
     projects.showProjPop()
@@ -193,7 +197,6 @@ projects.updateFavCard = (proj) => {
   let makesEl = cardEl.querySelector('.proj-fav-makes')
   makesEl.innerHTML = ''
   proj.makes.forEach(function (make, j) {
-    console.log(make)
     if (makesEl.innerHTML !== '') {
       makesEl.innerHTML += ', '
     }
@@ -305,8 +308,6 @@ projects.renderMakeBars = (allMakes, proj, container) => {
       projects.renderMakeBlobs(make, proj.id)
     })
   }
-
-  console.log(proj)
 }
 
 // 
@@ -318,7 +319,6 @@ projects.toggleMakeBars = (bar, make, projID) => {
     projects.renderMakeBlobs(make, projID)
   }
   // toggle bar
-  console.log('toggling bar icon')
   bar.querySelector('i').classList.toggle('fas')
   bar.querySelector('i').classList.toggle('far')
   bar.classList.toggle('proj-pop-bar-active')
@@ -387,7 +387,7 @@ projects.renderProjPop = (proj, allMakes) => {
   left.appendChild(imgOverlay)
   let edit = document.createElement('div')
   edit.className = 'proj-pop-img-edit'
-  edit.innerHTML = 'Click anywhere to edit'
+  edit.innerHTML = 'Click anywhere on the image to edit'
   left.appendChild(edit)
   // mid container
   let mid = document.createElement('div')
@@ -411,6 +411,7 @@ projects.renderProjPop = (proj, allMakes) => {
   nameInput.placeholder = 'Give your project a name'
   mid.appendChild(nameInput)
   let makes = document.createElement('h3')
+  makes.className = 'proj-pop-makes-header'
   makes.innerHTML = 'Makes'
   mid.appendChild(makes)
   let makesContainer = document.createElement('div')
@@ -434,17 +435,17 @@ projects.renderProjPop = (proj, allMakes) => {
     projects.trash(proj.id)
   })
   btnContainer.appendChild(del)
-  let save = document.createElement('button')
-  save.className = 'grad-btn proj-pop-save'
-  save.innerHTML = 'Save'
-  save.addEventListener('click', (e) => {
+  let saveWeb = document.createElement('button')
+  saveWeb.className = 'grad-btn proj-pop-save'
+  saveWeb.innerHTML = 'Save'
+  saveWeb.addEventListener('click', (e) => {
     if (e.target.parentElement.parentElement.parentElement.parentElement.id === 'new-proj-pop-wrapper') {
       projects.saveNew(allMakes)
     } else {
       projects.saveExisting(proj.id, allMakes)
     }
   })
-  btnContainer.appendChild(save)
+  btnContainer.appendChild(saveWeb)
   // right container
   let right = document.createElement('div')
   right.className = 'proj-pop-right'
@@ -461,6 +462,27 @@ projects.renderProjPop = (proj, allMakes) => {
   let temp2 = document.createElement('p')
   temp2.innerHTML = 'You can add Makes to this project later'
   right.appendChild(temp2)
+  // mobile save and delete buttons
+  let btnContainerMob = document.createElement('div')
+  btnContainerMob.className = 'proj-pop-btn-container'
+  container.appendChild(btnContainerMob)
+  let delMob = document.createElement('i')
+  delMob.className = 'far fa-trash-alt proj-pop-delete'
+  delMob.addEventListener('click', () => {
+    projects.trash(proj.id)
+  })
+  btnContainerMob.appendChild(delMob)
+  let saveMob = document.createElement('button')
+  saveMob.className = 'grad-btn proj-pop-save'
+  saveMob.innerHTML = 'Save'
+  saveMob.addEventListener('click', (e) => {
+    if (e.target.parentElement.parentElement.parentElement.id === 'new-proj-pop-wrapper') {
+      projects.saveNew(allMakes)
+    } else {
+      projects.saveExisting(proj.id, allMakes)
+    }
+  })
+  btnContainerMob.appendChild(saveMob)
 
   if (proj) {
     wrapper.id = proj.id + '-proj-pop-wrapper'
@@ -486,7 +508,9 @@ projects.renderProjPop = (proj, allMakes) => {
 
 projects.hideProjPop = (status, condition, projID) => {
   // transition screens
-  document.getElementById('proj-card-wrapper').style.top = '0'
+  if (window.matchMedia("(min-width: 850px)").matches) {
+    document.getElementById('proj-card-wrapper').style.top = '0'
+  }
   // not deleting
   if (projID) {
     document.getElementById(projID + '-proj-pop-wrapper').style.top = '100%'
@@ -499,7 +523,9 @@ projects.hideProjPop = (status, condition, projID) => {
 
 projects.showProjPop = (projID) => {
   // transition screens
-  document.getElementById('proj-card-wrapper').style.top = '-100%'
+  if (window.matchMedia("(min-width: 850px)").matches) {
+    document.getElementById('proj-card-wrapper').style.top = '-100%'
+  }
   if (projID) {
     document.getElementById(projID + '-proj-pop-wrapper').style.top = '0'
   } else {
@@ -695,33 +721,6 @@ projects.updateBookmark = async (e, proj, bookmarkEl) => {
 projects.previewImage = (el, event) => {
   el.parentElement.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
 }
-
-/*projects.collectNewProject = () => {
-  let wrapper = document.getElementById('new-proj-pop-wrapper');
-  let proj = new Object();
-  proj.bookmark = wrapper.querySelector('.proj-pop-bookmark').classList.contains('fas');
-  proj.makes = [];
-  let children = wrapper.querySelector('.proj-pop-blob-container').children;
-  for (var i = 0; i < children.length; i++) {
-    proj.makes[i] = children[i].id.split('-')[1];
-    console.log(children[i].id.split('-')[1]);
-  }
-  proj.name = wrapper.querySelector('.proj-pop-name').value;
-  proj.notes = wrapper.querySelector('.proj-pop-notes').value;
-  let input;
-  const file = document.querySelector("#new-proj-pop-img-input");
-  if (file.files.length !== 0) {
-    input = new FormData(document.querySelector("#new-proj-img-form"));
-    input.append("bookmark", proj.bookmark);
-    input.append("makes", proj.makes);
-    input.append("name", proj.name);
-    input.append("notes", proj.notes);
-  } else {
-    input = proj;
-  }
-
-  return input;
-}*/
 
 projects.collectNewProject = () => {
   const wrapper = document.getElementById('new-proj-pop-wrapper');
