@@ -186,6 +186,34 @@ router.get("/change-password", unrestrictedAccess, (req, res) => res.sendFile("c
 router.get("/change-password/*", unrestrictedAccess, (req, res) => res.sendFile("change-password.html", customerRouteOptions));
 router.get("/change-password/*/*", unrestrictedAccess, (req, res) => res.sendFile("change-password.html", customerRouteOptions));
 
+// @route     GET /terms-and-conditions
+// @desc      The Website's Terms and Conditions
+// @access    PUBLIC
+router.get("/terms-and-conditions", (req, res) => {
+  res.sendFile("terms-and-conditions.html", customerRouteOptions);
+});
+
+// @route     GET /contact-us
+// @desc      The Company's Contact Details
+// @access    PUBLIC
+router.get("/contact-us", (req, res) => {
+  res.sendFile("contact-us.html", customerRouteOptions);
+});
+
+// @route     GET /faq
+// @desc
+// @access    PUBLIC
+router.get("/faq", (req, res) => {
+  res.sendFile("faq.html", customerRouteOptions);
+});
+
+// @route     GET /privacy-policy
+// @desc
+// @access    PUBLIC
+router.get("/privacy-policy", (req, res) => {
+  res.sendFile("privacy-policy.html", customerRouteOptions);
+});
+
 // @route     Get /test
 // @desc      Homepage
 // @access    Public
