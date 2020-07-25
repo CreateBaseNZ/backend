@@ -111,6 +111,9 @@ signup.validate = (displayName, email, password, confirmPassword) => {
   } else if (!signup.scorePassword(password)) {
     valid = false;
     errorPassword = "Password too weak";
+  } else if (password.includes(' ') || password.includes('\'') || password.includes('\"')) {
+    valid = false;
+    errorPassword = "Password cannot contain quotation marks or spaces"
   }
 
   // Confirm Password
@@ -189,7 +192,7 @@ signup.scorePassword = (pass) => {
 // @desc  
 signup.confirmPassword = () => {
   // DECLARE ELEMENTS
-  const inputPass = document.querySelector('#sign-up-pwd');
+  const inputPass = document.getElementById('sign-up-pwd');
   const confirm = document.getElementById('confirm-pass');
   const confirmInput = document.getElementById('sign-up-cfrm-pwd');
 

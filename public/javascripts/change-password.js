@@ -149,31 +149,35 @@ changePassword.process = async () => {
   // email
   if (!email) {
     valid = false;
-    errorEmail = "email required";
+    errorEmail = "Email required";
   } else if (!emailRE.test(String(email).toLowerCase())) {
     valid = false;
-    errorEmail = "invalid email";
+    errorEmail = "Invalid email";
   }
   // code
   if (!code) {
     valid = false;
-    errorCode = "code required";
+    errorCode = "Code required";
   }
   // password
   if (!password) {
     valid = false;
-    errorPassword = "new password required";
+    errorPassword = "New password required";
   } else if (!changePassword.scorePassword(password)) {
     valid = false;
-    errorPassword = "invalid password";
+    errorPassword = "Invalid password";
+  } else if (changePassword.includes(' ') || changePassword.includes('\'') || changePassword.includes('\"')) {
+    valid = false;
+    errorPassword = "Password cannot contain quotation marks or spaces"
   }
+
   // confirm password
   if (!confirmPassword) {
     valid = false;
-    errorConfirmPassword = "new password needs to be confirmed";
+    errorConfirmPassword = "Confirm new password";
   } else if (password !== confirmPassword) {
     valid = false;
-    errorConfirmPassword = "passwords do not match";
+    errorConfirmPassword = "Passwords do not match";
   }
   if (!valid) {
     document.querySelector("#change-password-email-error").innerHTML = errorEmail;
