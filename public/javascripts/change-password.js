@@ -7,6 +7,7 @@ let changePassword = {
 
   // FUNCTIONS
   initialise: undefined,
+  initEventListeners: undefined,
   collectURLInputs: undefined,
   processURLInputs: undefined,
   sendCode: undefined,
@@ -27,11 +28,21 @@ changePassword.initialise = async () => {
   } catch (error) {
     return console.log(error);
   }
+  changePassword.initEventListeners();
   // REMOVE STARTUP LOADER
   removeLoader();
   // COLLECT URL INPUT
   const [email, code] = changePassword.collectURLInputs();
   changePassword.processURLInputs(email, code);
+}
+
+changePassword.initEventListeners = () => {
+  // Send code on Enter 
+  document.getElementById('change-password-email').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      changePassword.sendCode()
+    }
+  })
 }
 
 // @func  changePassword.collectURLInputs
@@ -101,7 +112,7 @@ changePassword.sendCode = async () => {
   }
   // SEND REQUEST
   // loader
-  document.querySelector(".full-page-message").innerHTML = "Emailing your Code";
+  document.querySelector(".full-page-message").innerHTML = "Emailing your code";
   showLoader();
   let data;
   try {
@@ -188,7 +199,7 @@ changePassword.process = async () => {
   }
   // SEND REQUEST
   // loader
-  document.querySelector(".full-page-message").innerHTML = "Changing your Password";
+  document.querySelector(".full-page-message").innerHTML = "Changing your password";
   showLoader();
   let data;
   try {
@@ -213,8 +224,8 @@ changePassword.process = async () => {
     return removeLoader();
   }
   // SUCCESS HANDLER
-  document.querySelector(".full-page-message").innerHTML = "Successfully Changed your Password";
-  setTimeout(() => document.querySelector(".full-page-message").innerHTML = "Redirecting to Login Page", 1000);
+  document.querySelector(".full-page-message").innerHTML = "Password changed successfully";
+  setTimeout(() => document.querySelector(".full-page-message").innerHTML = "Redirecting to login page", 1000);
   setTimeout(() => window.location.assign('/login'), 2000);
 }
 
