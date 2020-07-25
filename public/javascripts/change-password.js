@@ -184,7 +184,7 @@ changePassword.process = async () => {
   } else if (!changePassword.scorePassword(password)) {
     valid = false;
     errorPassword = "Invalid password";
-  } else if (changePassword.includes(' ') || changePassword.includes('\'') || changePassword.includes('\"')) {
+  } else if (password.includes(' ') || password.includes('\'') || password.includes('\"')) {
     valid = false;
     errorPassword = "Password cannot contain quotation marks or spaces"
   }
