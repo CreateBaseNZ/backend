@@ -43,6 +43,13 @@ changePassword.initEventListeners = () => {
       changePassword.sendCode()
     }
   })
+  // Save password on Enter
+  document.getElementById('change-password-confirm-new-password').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      changePassword.process()
+    }
+  })
+
 }
 
 // @func  changePassword.collectURLInputs
