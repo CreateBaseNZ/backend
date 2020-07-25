@@ -25,6 +25,8 @@ let orders = {
   createComments: undefined,
   formatMakeName: undefined,
   addMake: undefined,
+  // TRACKING SECTION
+  generateValidated: undefined,
   // COMMENT
   addComment: undefined,
   postComment: undefined,
@@ -304,10 +306,7 @@ orders.createTracking = (order) => {
       statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["", "", "", "full-tracking", "full-tracking"]);
       break;
     case "validated":
-      statusTitle = "Building order";
-      statusDetail = "We are currently building your order. Thank you for your patience.";
-      statusProgress = orders.createStatusProgress(["completed", "on-progress", "incomplete", "incomplete", "incomplete"], ["", "", "", "full-tracking", "full-tracking"], ["", "", "full-tracking", "full-tracking", ""]);
-      statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["", "", "", "full-tracking", "full-tracking"]);
+      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateValidated(order);
       break;
     case "built":
       statusTitle = "Packaging order";
@@ -655,6 +654,79 @@ orders.addMake = (order, make) => {
   if (make.comment) orders.addComment(order, make.comment);
   // SUCCESS HANDLER
   return;
+}
+
+/* ----------------------------------------------------------------------------------------
+TRACKING DETAILS
+---------------------------------------------------------------------------------------- */
+
+// @func  orders.generateValidated
+// @desc  
+orders.generateValidated = (order = {}) => {
+  // DECLARE VARIABLES
+  let shippedProgress;
+  let arrivedProgress;
+  if (order.shipping.method === "pickup") {
+    shippedProgress = "Ready for Pickup";
+    arrivedProgress = "Package Picked up";
+  } else {
+    shippedProgress = "Package Shipped";
+    arrivedProgress = "Packaged Arrived";
+  }
+  // CREATE TRACKING DETAILS
+  const statusTitle = "Building order";
+  const statusProgress = orders.createStatusProgress(["completed", "on-progress", "incomplete", "incomplete", "incomplete"], ["", "", "", "full-tracking", "full-tracking"], ["", "", "full-tracking", "full-tracking", ""]);
+  const statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["", "", "", "full-tracking", "full-tracking"]);
+  // build the message
+  let message;
+  let duration;
+  if (order.manufacturingSpeed === "normal") {
+    duration = 3;
+  } else if (order.manufacturingSpeed === "urgent") {
+    duration = 1;
+  } else {
+    // ERROR HANDLER
+    const error = "Invalid manufacturing option";
+    console.log(error); // TEMPORARY
+  }
+  const date = moment(order.date.validated).add(duration, "days");
+  const now = moment();
+  const difference = {
+    days: date.diff(now, "days", true), hours: date.diff(now, "hours", true),
+    minutes: date.diff(now, "minutes", true)
+  }
+  // check if overdue
+  if (difference.minutes < 0) {
+    message = "We are prioritising the completion of your order";
+  } else {
+    if (Math.floor(difference.days) > 0) {
+      const estimate = Math.round(difference.days);
+      if (estimate > 1) {
+        message = `The estimated time to completion is ${estimate} days`;
+      } else {
+        message = `The estimated time to completion is ${estimate} day`;
+      }
+    } else if (Math.floor(difference.hours) > 0) {
+      const estimate = Math.round(difference.hours);
+      if (estimate > 1) {
+        message = `The estimated time to completion is ${estimate} hours`;
+      } else {
+        message = `The estimated time to completion is ${estimate} hour`;
+      }
+    } else {
+      const estimate = Math.round(difference.minutes);
+      if (estimate > 1) {
+        message = `The estimated time to completion is ${estimate} minutes`;
+      } else if (estimate == 1) {
+        message = `The estimated time to completion is 1 minute`;
+      } else {
+        message = `The estimated time to completion is less than a minute`;
+      }
+    }
+  }
+  const statusDetail = `We are currently building your order. ${message}. Thank you for your patience.`;
+  // SUCCESS HANDLER
+  return [statusTitle, statusDetail, statusProgress, statusLabel];
 }
 
 /* ----------------------------------------------------------------------------------------
