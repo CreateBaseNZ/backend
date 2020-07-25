@@ -112,12 +112,12 @@
         <form id="log-in-form" action="/login/customer" method="post">
           <p class="mini-caps-title" id="login-title">WELCOME BACK TO BASE</h2>
           <div class="log-in-fld input-decor" id="login-email">
-            <input type="text" name="email" id="log-in-eml" autocomplete="off" required />
+            <input type="email" name="email" id="log-in-eml" autocomplete="off" maxlength="100" placeholder=" " required />
             <label class="input-label" for="email">Email</label>
             <label class="input-error" for="log-in-eml" id="login-email-error"></label>
           </div>
           <div class="log-in-fld input-decor" id="login-password">
-            <input type="password" name="password" id="log-in-pwd" autocomplete="new-password" required />
+            <input type="password" name="password" id="log-in-pwd" autocomplete="new-password" maxlength="100" placeholder=" " required />
             <label class="input-label" for="password">Password</label>
             <label class="input-error" for="log-in-pwd" id="login-password-error"></label>
           </div>

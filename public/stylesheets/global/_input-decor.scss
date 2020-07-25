@@ -34,13 +34,13 @@ $input-width: 60vmin;
   }
 
   input:focus ~ .input-label,
-  input:not(:focus):valid ~ .input-label {
+  input:not(:focus):not(:placeholder-shown) ~ .input-label {
     top: 0px;
     font-size: 8px;
     color: $highlight;
   }
 
-  input:not(:focus):valid ~ .input-label {
+  input:not(:focus):not(:placeholder-shown) ~ .input-label {
     color: $dark-1;
   }
 
