@@ -69,12 +69,12 @@ home.declareVariables = () => {
   home.mediaQuery = window.matchMedia("(min-width: 850px)");
   home.landscape = window.innerWidth > window.innerHeight;
   home.landingCarousel = document.querySelector('.landing-carousel');
-  home.landing1 = document.querySelector('#landing-1');
-  home.landing2 = document.querySelector('#landing-2');
-  home.landing3 = document.querySelector('#landing-3');
-  home.landingBtn1 = document.querySelector('#landing-btn-1');
-  home.landingBtn2 = document.querySelector('#landing-btn-2');
-  home.landingBtn3 = document.querySelector('#landing-btn-3');
+  home.landing1 = document.getElementById('landing-1');
+  home.landing2 = document.getElementById('landing-2');
+  home.landing3 = document.getElementById('landing-3');
+  home.landingBtn1 = document.getElementById('landing-btn-1');
+  home.landingBtn2 = document.getElementById('landing-btn-2');
+  home.landingBtn3 = document.getElementById('landing-btn-3');
 }
 
 // @func  home.addListener

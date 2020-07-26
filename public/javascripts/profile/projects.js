@@ -375,6 +375,7 @@ projects.renderProjPop = (proj, allMakes) => {
   let input = document.createElement('input')
   input.type = 'file'
   input.name = 'picture'
+  input.accept = 'image/*'
   input.setAttribute('onchange', 'projects.previewImage(this, event);')
   form.appendChild(input)
   // image
