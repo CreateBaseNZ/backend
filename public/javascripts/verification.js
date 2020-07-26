@@ -126,6 +126,7 @@ const checkRegex = (event) => {
   let regex = RegExp(/[\d]+/)
   let keyValue = event.key
 
+
   if (regex.test(keyValue)) { //input is valid
     return true
   } else {
@@ -138,16 +139,46 @@ const inputListener = () => {
   let i;
   for (i = 0; i < allElements.length; i++) {
     let el = allElements[i];
-    el.addEventListener("keypress", function (event) {
+    el.addEventListener("keydown", function (event) {
+      // console.log(event.keyCode)
+      // if (event.keyCode == 8) {
+      //   if (this.previousSibling.previousSibling != null) {
+      //     this.previousSibling.previousSibling.focus();
+      //   }
+      // } else {
+      //   if (checkRegex(event)) {
+      //     if (this.nextSibling.nextSibling != null) {
+      //       this.nextSibling.nextSibling.focus();
+      //     }
+      //   }
+      //   else {
+      //     event.preventDefault();
+      //     //Failed regex - replace input to avoid false inputs to server
+      //     el.value = "";
+      //   }
+      // }
+
       if (checkRegex(event)) {
         if (this.nextSibling.nextSibling != null) {
+          this.value = event.key
+          // console.log(event.key)
+          // console.log(this.nextSibling.value)
           this.nextSibling.nextSibling.focus();
+          this.nextSibling.nextSibling.value = ''
         }
       }
       else {
-        event.preventDefault();
-        //Failed regex - replace input to avoid false inputs to server
-        el.value = "";
+        if (event.keyCode == 8) {
+          if (this.previousSibling.previousSibling != null) {
+            this.value = ''
+            console.log(this.previousSibling.previousSibling)
+            this.previousSibling.previousSibling.focus();
+          }
+        } else {
+          event.preventDefault();
+          //Failed regex - replace input to avoid false inputs to server
+          el.value = "";
+        }
       }
     });
   }
