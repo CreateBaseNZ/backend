@@ -145,7 +145,7 @@ router.get("/services/marketplace", (req, res) => {
   res.sendFile("market.html", customerRouteOptions);
 });
 
-// @route     Get /verfication
+// @route     Get /verification
 // @desc      Verification of account page
 // @access    Public
 router.get("/verification", restrictedAccess, (req, res) => {
@@ -156,6 +156,19 @@ router.get("/verification", restrictedAccess, (req, res) => {
     }
   }
   res.sendFile("verification.html", customerRouteOptions);
+});
+
+// @route     Get /verification-failed
+// @desc      Verification of account page
+// @access    Public
+router.get("/verification-failed", restrictedAccess, (req, res) => {
+  // VALIDATE USER VERIFICATION
+  if (req.isAuthenticated()) {
+    if (req.user.verification.status) {
+      return res.redirect("/verified");
+    }
+  }
+  res.sendFile("verification-failed.html", customerRouteOptions);
 });
 
 // @route     Get /verified
