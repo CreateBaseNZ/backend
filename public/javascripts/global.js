@@ -95,6 +95,13 @@ global.compressImage = async (formId = "", name = "", compressSize = 300) => {
   // COLLECT IMAGES
   const formElement = document.getElementById(`${formId}`);
   let input = new FormData(formElement);
+  // TEMPORARY TEST START
+  for (let key of input.keys()) {
+    const value = input.getAll(key);
+    console.log(key);
+    console.log(value);
+  }
+  // TEMPORARY TEST END
   const files = input.getAll(name);
   // COMPRESS IMAGES
   let newFiles = [];
@@ -110,6 +117,13 @@ global.compressImage = async (formId = "", name = "", compressSize = 300) => {
     newFiles.push(newFile);
   }
   input.set(name, newFiles[0]);
+  // TEMPORARY TEST START
+  for (let key of input.keys()) {
+    const value = input.getAll(key);
+    console.log(key);
+    console.log(value);
+  }
+  // TEMPORARY TEST END
   return input;
 }
 
