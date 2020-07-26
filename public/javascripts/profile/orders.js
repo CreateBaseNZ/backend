@@ -26,7 +26,13 @@ let orders = {
   formatMakeName: undefined,
   addMake: undefined,
   // TRACKING SECTION
+  generateCheckedout: undefined,
   generateValidated: undefined,
+  generateBuilt: undefined,
+  generateShipped: undefined,
+  generateArrived: undefined,
+  generateReviewed: undefined,
+  generateCompleted: undefined,
   // COMMENT
   addComment: undefined,
   postComment: undefined,
@@ -300,31 +306,25 @@ orders.createTracking = (order) => {
   }
   switch (order.status) {
     case "checkedout":
-      statusTitle = "Validating payment";
-      statusDetail = "We are currently validating your payment. Thank you for your patience.";
-      statusProgress = orders.createStatusProgress(["on-progress", "incomplete", "incomplete", "incomplete", "incomplete"], ["", "", "", "full-tracking", "full-tracking"], ["", "", "full-tracking", "full-tracking", ""]);
-      statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["", "", "", "full-tracking", "full-tracking"]);
+      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateCheckedout(order, shippedProgress, arrivedProgress);
       break;
     case "validated":
-      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateValidated(order);
+      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateValidated(order, shippedProgress, arrivedProgress);
       break;
     case "built":
-      statusTitle = "Packaging order";
-      statusDetail = "We are currently packaging your order. Thank you for your patience.";
-      statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
-      statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["full-tracking", "", "", "", "full-tracking"]);
+      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateBuilt(order, shippedProgress, arrivedProgress);
+      break;
+    case "shipped":
+      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateShipped(order, shippedProgress, arrivedProgress);
+      break;
+    case "arrived":
+      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateArrived(order, shippedProgress, arrivedProgress);
       break;
     case "reviewed":
-      statusTitle = "Order reviewed";
-      statusDetail = "Thank you for leaving us a review.";
-      statusProgress = orders.createStatusProgress(["completed", "completed", "completed", "on-progress", "incomplete"], ["full-tracking", "full-tracking", "", "", ""], ["full-tracking", "full-tracking", "", "", ""]);
-      statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "full-tracking", "", "", ""]);
+      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateReviewed(order, shippedProgress, arrivedProgress);
       break;
     case "completed":
-      statusTitle = "Order completed";
-      statusDetail = "Your order has been completed. Thank you for using CreateBase.";
-      statusProgress = orders.createStatusProgress(["completed", "completed", "completed", "completed", "on-progress"], ["full-tracking", "full-tracking", "", "", ""], ["full-tracking", "full-tracking", "", "", ""]);
-      statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "full-tracking", "", "", ""]);
+      [statusTitle, statusDetail, statusProgress, statusLabel] = orders.generateCompleted(order, shippedProgress, arrivedProgress);
       break;
     case "cancelled":
       statusTitle = "Refunding order";
@@ -336,39 +336,7 @@ orders.createTracking = (order) => {
       break;
     default: break;
   }
-  if (order.shipping.method === "pickup") {
-    switch (order.status) {
-      case "shipped":
-        statusTitle = "Ready for pickup";
-        statusDetail = "You can now pickup your package. Pick your package at 16 Dapple Place, Flat Bush, Auckland, 2019, New Zealand";
-        statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
-        statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", shippedProgress, arrivedProgress, "Order Reviewed"], ["full-tracking", "", "", "", "full-tracking"]);
-        break;
-      case "arrived":
-        statusTitle = "Package picked up";
-        statusDetail = "You have now picked up your package. Thank you for using CreateBase. Please leave us a review.";
-        statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
-        statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "", "", "", "full-tracking"]);
-        break;
-      default: break;
-    }
-  } else {
-    switch (order.status) {
-      case "shipped":
-        statusTitle = "Package shipped";
-        statusDetail = "Your package is now on its way to your doorstep.";
-        statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
-        statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", shippedProgress, arrivedProgress, "Order Reviewed"], ["full-tracking", "", "", "", "full-tracking"]);
-        break;
-      case "arrived":
-        statusTitle = "Packaged arrived";
-        statusDetail = "Your package has arrived to your doorstep. Thank you for using CreateBase. Please leave us a review.";
-        statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
-        statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "", "", "", "full-tracking"]);
-        break;
-      default: break;
-    }
-  }
+
   // progress
   // details
   const statusContainer = `
@@ -460,25 +428,25 @@ orders.createSummary = (order) => {
   // INFO
   let status;
   switch (order.status) {
-    case "checkedout": status = "Validating your Payment"; break;
-    case "validated": status = "Building your Order"; break;
-    case "built": status = "Packaging your Order"; break;
-    case "reviewed": status = "You have Reviewed This Order"; break;
-    case "completed": status = "Your Order is now Complete"; break;
-    case "cancelled": status = "Your Order has been Cancelled"; break;
-    case "refunded": status = "Your Order has been Refunded"; break;
+    case "checkedout": status = "Validating Payment"; break;
+    case "validated": status = "Building Order"; break;
+    case "built": status = "Packaging Order"; break;
+    case "reviewed": status = "Order Reviewed"; break;
+    case "completed": status = "Order Completed"; break;
+    case "cancelled": status = "Refunding Order"; break;
+    case "refunded": status = "Order Refunded"; break;
     default: break;
   }
   if (order.shipping.method === "pickup") {
     switch (order.status) {
-      case "shipped": status = "Your Order is Ready for Pickup"; break;
-      case "arrived": status = "Your Order has been Picked Up"; break;
+      case "shipped": status = "Ready for Pickup"; break;
+      case "arrived": status = "Package Picked Up"; break;
       default: break;
     }
   } else {
     switch (order.status) {
-      case "shipped": status = "Shipping your Order"; break;
-      case "arrived": status = "Your Order has Arrived"; break;
+      case "shipped": status = "Package Shipped"; break;
+      case "arrived": status = "Package Arrived"; break;
       default: break;
     }
   }
@@ -660,19 +628,21 @@ orders.addMake = (order, make) => {
 TRACKING DETAILS
 ---------------------------------------------------------------------------------------- */
 
+// @func  orders.generateCheckedout
+// @desc  
+orders.generateCheckedout = (order = {}, shippedProgress, arrivedProgress) => {
+  // CREATE TRACKING DETAILS
+  const statusTitle = "Validating payment";
+  const statusDetail = "We are currently validating your payment. Thank you for your patience.";
+  const statusProgress = orders.createStatusProgress(["on-progress", "incomplete", "incomplete", "incomplete", "incomplete"], ["", "", "", "full-tracking", "full-tracking"], ["", "", "full-tracking", "full-tracking", ""]);
+  const statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["", "", "", "full-tracking", "full-tracking"]);
+  // SUCCESS HANDLER
+  return [statusTitle, statusDetail, statusProgress, statusLabel];
+}
+
 // @func  orders.generateValidated
 // @desc  
-orders.generateValidated = (order = {}) => {
-  // DECLARE VARIABLES
-  let shippedProgress;
-  let arrivedProgress;
-  if (order.shipping.method === "pickup") {
-    shippedProgress = "Ready for Pickup";
-    arrivedProgress = "Package Picked up";
-  } else {
-    shippedProgress = "Package Shipped";
-    arrivedProgress = "Packaged Arrived";
-  }
+orders.generateValidated = (order = {}, shippedProgress, arrivedProgress) => {
   // CREATE TRACKING DETAILS
   const statusTitle = "Building order";
   const statusProgress = orders.createStatusProgress(["completed", "on-progress", "incomplete", "incomplete", "incomplete"], ["", "", "", "full-tracking", "full-tracking"], ["", "", "full-tracking", "full-tracking", ""]);
@@ -725,6 +695,80 @@ orders.generateValidated = (order = {}) => {
     }
   }
   const statusDetail = `We are currently building your order. ${message}. Thank you for your patience.`;
+  // SUCCESS HANDLER
+  return [statusTitle, statusDetail, statusProgress, statusLabel];
+}
+
+// @func  orders.generateBuilt
+// @desc  
+orders.generateBuilt = (order = {}, shippedProgress, arrivedProgress) => {
+  // CREATE TRACKING DETAILS
+  const statusTitle = "Packaging order";
+  const statusDetail = "We are currently packaging your order. Your order should be sent for shipping on the next working day. Thank you for your patience.";
+  const statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
+  const statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["full-tracking", "", "", "", "full-tracking"]);
+  // SUCCESS HANDLER
+  return [statusTitle, statusDetail, statusProgress, statusLabel];
+}
+
+// @func  orders.generateShipped
+// @desc  
+orders.generateShipped = (order = {}, shippedProgress, arrivedProgress) => {
+  // CREATE TRACKING DETAILS
+  let statusTitle;
+  let statusDetail;
+  if (order.shipping.method === "pickup") {
+    statusTitle = "Ready for pickup";
+    statusDetail = "You can now pickup your package. Pick your package at 16 Dapple Place, Flat Bush, Auckland, 2019, New Zealand";
+  } else {
+    statusTitle = "Package shipped";
+    statusDetail = "Your package is now on its way to your doorstep.";
+  }
+  const statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
+  const statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", shippedProgress, arrivedProgress, "Order Reviewed"], ["full-tracking", "", "", "", "full-tracking"]);
+  // SUCCESS HANDLER
+  return [statusTitle, statusDetail, statusProgress, statusLabel];
+}
+
+// @func  orders.generateArrived
+// @desc  
+orders.generateArrived = (order = {}, shippedProgress, arrivedProgress) => {
+  // CREATE TRACKING DETAILS
+  let statusTitle;
+  let statusDetail;
+  if (order.shipping.method === "pickup") {
+    statusTitle = "Package picked up";
+    statusDetail = "You have now picked up your package. Thank you for using CreateBase. Please leave us a review.";
+  } else {
+    statusTitle = "Packaged arrived";
+    statusDetail = "Your package has arrived to your doorstep. Thank you for using CreateBase. Please leave us a review.";
+  }
+  const statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
+  const statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "", "", "", "full-tracking"]);
+  // SUCCESS HANDLER
+  return [statusTitle, statusDetail, statusProgress, statusLabel];
+}
+
+// @func  orders.generateReviewed
+// @desc  
+orders.generateReviewed = (order = {}, shippedProgress, arrivedProgress) => {
+  // CREATE TRACKING DETAILS
+  const statusTitle = "Order reviewed";
+  const statusDetail = "Thank you for leaving us a review.";
+  const statusProgress = orders.createStatusProgress(["completed", "completed", "completed", "on-progress", "incomplete"], ["full-tracking", "full-tracking", "", "", ""], ["full-tracking", "full-tracking", "", "", ""]);
+  const statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "full-tracking", "", "", ""]);
+  // SUCCESS HANDLER
+  return [statusTitle, statusDetail, statusProgress, statusLabel];
+}
+
+// @func  orders.generateCompleted
+// @desc  
+orders.generateCompleted = (order = {}, shippedProgress, arrivedProgress) => {
+  // CREATE TRACKING DETAILS
+  const statusTitle = "Order completed";
+  const statusDetail = "Your order has been completed. Thank you for using CreateBase.";
+  const statusProgress = orders.createStatusProgress(["completed", "completed", "completed", "completed", "on-progress"], ["full-tracking", "full-tracking", "", "", ""], ["full-tracking", "full-tracking", "", "", ""]);
+  const statusLabel = orders.createStatusLabel(["Validating Payment", shippedProgress, arrivedProgress, "Order Reviewed", "Order Completed"], ["full-tracking", "full-tracking", "", "", ""]);
   // SUCCESS HANDLER
   return [statusTitle, statusDetail, statusProgress, statusLabel];
 }
