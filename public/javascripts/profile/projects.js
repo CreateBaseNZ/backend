@@ -67,7 +67,7 @@ projects.declareVariables = () => {
 
 projects.eventListeners = () => {
   const mq = window.matchMedia("(min-width: 850px)")
-  
+
   let fav = document.getElementById('proj-fav-container')
   fav.addEventListener('wheel', function (e) {
     if (e.deltaY > 0) {
@@ -542,7 +542,7 @@ projects.cancel = (el) => {
 projects.saveNew = async (allMakes) => {
   let wrapper = document.getElementById('new-proj-pop-wrapper');
   // COLLECT INPUT
-  const proj = projects.collectNewProject();
+  const proj = await projects.collectNewProject();
   // SEND REQUEST
   let data;
   try {
@@ -589,7 +589,7 @@ projects.saveNew = async (allMakes) => {
 
 projects.saveExisting = async (projID, allMakes) => {
   // COLLECT INPUT
-  const proj = projects.collectExistingProject(projID);
+  const proj = await projects.collectExistingProject(projID);
   // SEND REQUEST
   let data;
   try {
@@ -722,7 +722,7 @@ projects.previewImage = (el, event) => {
   el.parentElement.parentElement.querySelector('.proj-pop-img').src = URL.createObjectURL(event.target.files[0])
 }
 
-projects.collectNewProject = () => {
+projects.collectNewProject = async () => {
   const wrapper = document.getElementById('new-proj-pop-wrapper');
   // CONSTRUCT INPUT OBJECT
   let project = new Object();
@@ -737,7 +737,8 @@ projects.collectNewProject = () => {
   let input;
   const file = document.querySelector("#new-proj-pop-img-input");
   if (file.files.length !== 0) {
-    input = new FormData(document.querySelector("#new-proj-img-form"));
+    // input = new FormData(document.querySelector("#new-proj-img-form"));
+    input = await global.compressImage("new-proj-img-form", "picture", 400);
   } else {
     input = new FormData();
   }
@@ -746,7 +747,7 @@ projects.collectNewProject = () => {
   return input;
 }
 
-projects.collectExistingProject = (projID) => {
+projects.collectExistingProject = async (projID) => {
   let wrapper = document.getElementById(projID + "-proj-pop-wrapper");
   // CONSTRUCT OBJECT
   let project = new Object();
@@ -765,7 +766,8 @@ projects.collectExistingProject = (projID) => {
   let input;
   const file = document.getElementById(projID + "-proj-pop-img-input");
   if (file.files.length !== 0) {
-    input = new FormData(document.getElementById(projID + "-proj-img-form"));
+    // input = new FormData(document.getElementById(projID + "-proj-img-form"));
+    input = await global.compressImage(projID + "-proj-img-form", "picture", 400);
   } else {
     input = new FormData();
   }

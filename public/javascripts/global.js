@@ -5,7 +5,9 @@ VARIABLES
 let global = {
   initialise: undefined,
   passwordValidity: undefined,
-  priceFormatter: undefined
+  priceFormatter: undefined,
+  compressImage: undefined,
+  readImage: undefined
 }
 
 /* ========================================================================================
@@ -85,6 +87,72 @@ global.priceFormatter = value => {
     formattedValue = stringValue;
   }
   return formattedValue;
+}
+
+// @func  global.compressImage
+// @desc  
+global.compressImage = async (formId = "", name = "", compressSize = 300) => {
+  // COLLECT IMAGES
+  const formElement = document.getElementById(`${formId}`);
+  let input = new FormData(formElement);
+  const files = input.getAll(name);
+  // COMPRESS IMAGES
+  let newFiles = [];
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    let canvas = await global.readImage(file, compressSize);
+    let blob = await new Promise((resolve) => {
+      canvas.toBlob(resolve, "image/jpeg", 0.92);
+    });
+    let newFile = new File([blob], file.name, {
+      type: "image/jpeg", lastModified: Date.now()
+    });
+    newFiles.push(newFile);
+  }
+  input.set(name, newFiles[0]);
+  return input;
+}
+
+// @func  global.readImage
+// @desc  
+global.readImage = async (file, compressSize) => {
+  let canvas = document.createElement("canvas");
+  let img = document.createElement("img");
+
+  // create img element from File object
+  img.src = await new Promise((resolve) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => resolve(event.target.result);
+  });
+
+  await new Promise((resolve) => {
+    img.onload = resolve;
+  });
+
+  // set height and width
+  let height;
+  let width;
+  let scaleFactor;
+  if (img.height >= img.width && img.height > compressSize) {
+    scaleFactor = compressSize / img.height;
+    height = compressSize;
+    width = img.width * scaleFactor;
+  } else if (img.height < img.width && img.width > compressSize) {
+    scaleFactor = compressSize / img.width;
+    width = compressSize;
+    height = img.height * scaleFactor;
+  } else {
+    width = img.width;
+    height = img.height;
+  }
+
+  // draw image in canvas
+  canvas.width = width;
+  canvas.height = height;
+  canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+
+  return canvas;
 }
 
 /* ----------------------------------------------------------------------------------------
