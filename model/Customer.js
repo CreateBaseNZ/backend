@@ -179,24 +179,26 @@ CustomerSchema.methods.unsubscribeMail = function (email) {
 // @TYPE  METHODS
 // @DESC
 // @ARGU  customer - object -
-CustomerSchema.methods.update = function (customer) {
+CustomerSchema.methods.update = function (customer, save = false) {
   return new Promise(async (resolve, reject) => {
-    console.log(customer);
-    // Update Details
+    // UPDATE
     for (const property in customer) {
       // Validate Detail
       // TEMPORARY - NEED VALIDATION FUNCTION
       // Update Detail
       this[property] = customer[property];
     }
-    // Save Update
+    // SAVE
     let savedCustomer;
-    try {
-      savedCustomer = await this.save();
-    } catch (error) {
-      reject(error);
+    if (save) {
+      try {
+        savedCustomer = await this.save();
+      } catch (error) {
+        return reject({ status: "error", content: error });
+      }
     }
-    resolve(savedCustomer);
+    // SUCCESS HANDLER
+    return resolve(savedCustomer);
   });
 };
 

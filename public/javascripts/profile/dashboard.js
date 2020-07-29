@@ -20,7 +20,8 @@ let dashboard = {
   fetchDetails: undefined,
   populateDetails: undefined,
   saveDetails: undefined,
-  uploadPicture: undefined
+  uploadPicture: undefined,
+  save: undefined
 }
 
 /* ========================================================================================
@@ -70,7 +71,7 @@ dashboard.addListener = () => {
       profile.allDP[i].src = dpTemp;
     }
     // Save new variables
-    dashboard.saveDetails();
+    // dashboard.saveDetails();
   });
 
   // -- If cancel --
@@ -169,6 +170,40 @@ dashboard.uploadPicture = async () => {
     console.log(error);
     return;
   }
+}
+
+// @func  dashboard.save
+// @desc  
+dashboard.save = async () => {
+  // UPLOADED IMAGE
+  let input;
+  const file = document.getElementById("profile-upload");
+  if (file.files.length !== 0) {
+    input = await global.compressImage("profile-pic", "picture", 400);
+  } else {
+    input = new FormData();
+  }
+  // OTHER INPUTS
+  input.append("displayName", dashboard.nameEl.innerHTML);
+  input.append("bio", dashboard.bioEl.innerHTML);
+  // SUBMIT REQUEST
+  let data;
+  try {
+    data = (await axios.post("/profile/dashboard/save", input))["data"];
+  } catch (error) {
+    data = { status: "error", content: error };
+  }
+  // FAILED AND ERROR HANDLER
+  if (data.status === "failed") {
+    console.log(data.content);
+    return;
+  } else if (data.status === "error") {
+    console.log(data.content);
+    return;
+  }
+  // SUCCESS HANDLER
+  console.log(data.content);
+  return;
 }
 
 /* ========================================================================================

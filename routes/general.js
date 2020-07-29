@@ -264,6 +264,8 @@ router.get("/navigation/fetch-user", restrictedContent, async (req, res) => {
     return res.send({ status: "error", content: error });
   }
   if (!customer) return res.send({ status: "failed", content: "no user details found" });
+  customer = customer.toObject();
+  customer.date = account.date;
   // SUCCESS HANDLER
   return res.send({ status: "succeeded", content: customer });
 });

@@ -94,11 +94,13 @@ PROFILE
 ---------------------------------------------------------------------------------------- */
 
 const profileRouter = require("./routes/profile.js");
-const projectRouter = require("./routes/profile/project.js");
+const dashboardRouter = require("./routes/profile/dashboard.js");
+const projectsRouter = require("./routes/profile/projects.js");
 const ordersRouter = require("./routes/profile/orders.js");
 const settingsRouter = require("./routes/profile/settings.js");
 app.use(profileRouter);
-app.use(projectRouter);
+app.use(dashboardRouter);
+app.use(projectsRouter);
 app.use(ordersRouter);
 app.use(settingsRouter);
 

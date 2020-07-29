@@ -202,7 +202,8 @@ router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
   const filteredCustomer = {
     displayName: customer.displayName,
     bio,
-    address: customer.address
+    address: customer.address,
+    date: req.user.date
   };
   // Send Success Request
   res.send({ status: "succeeded", content: filteredCustomer });
