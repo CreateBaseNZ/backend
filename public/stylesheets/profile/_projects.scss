@@ -285,11 +285,15 @@
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
+          transition: color 0.2s ease-out;
         }
       }
 
       &:hover {
-        box-shadow: 0 0 16px -6px $highlight;
+        box-shadow: 0 10px 12px -8px $light-3;
+        .proj-small-name p {
+          color: $logo-2;
+        }
       }
     }
   }
@@ -908,7 +912,7 @@
       }
       
       &:hover {
-        box-shadow: none;
+        box-shadow: 0 10px 10px -6px $dark-3;
         .proj-fav-overlay {
           top: -100%;
         }
@@ -1086,10 +1090,6 @@
           -webkit-box-orient: vertical;
           text-align: center;
         }
-      }
-
-      &:hover {
-        box-shadow: 0 0 16px -6px $highlight;
       }
 
       &:first-of-type {

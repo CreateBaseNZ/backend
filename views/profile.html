@@ -15,7 +15,6 @@
   <!-- ------------------------CUSTOM------------------------ -->
   <link rel="stylesheet" href="/public/stylesheets/profile/profile.css" />
   <link rel="stylesheet" href="/public/stylesheets/profile/dashboard.css" />
-  <link rel="stylesheet" href="/public/stylesheets/profile/projects.css" />
 </head>
 
 <body onload="profile.initialise();">
@@ -112,24 +111,27 @@
 
   <div class="main-page hide" id="profile-page">
 
-    <div class="main-area" id="profile-area">
-      <div id="backdrop">
-        <img alt="User" src="/profile/customer/fetch/picture" id="profile-backdrop" decoding="async"></img>
+    <div class="main-area" id="db-area">
+      <div id="db-header">
+        <h1>Dashboard</h1>
       </div>
-      <div class="profile-wrapper">
-        <button class="fas fa-pen-square" id="profile-edit-btn"></button>
-        <form id="profile-pic">
-          <label for="profile-upload"><i class="far fa-edit"></i></label>
-          <input type="file" name="picture" id="profile-upload" onchange="loadFile(event)"></input>
-          <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
-        </form>
-        <p id="profile-name" data-placeholder="Display Name"></p>
-        <p id="profile-location" data-info="Your location can be modified in the Settings tab."></p>
-        <div class="sep"></div>
-        <p id="profile-bio" data-placeholder="Tell us a bit about yourself."></p>
-        <div id="profile-edit">
-          <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
-          <div class="grad-btn" id="profile-save-btn" onclick="dashboard.uploadPicture();">Save</div>
+      <div class="db-profile-wrapper">
+        <div class="db-profile-container">
+          <button class="fas fa-pen-square" id="profile-edit-btn-dsktp"></button>
+          <form id="profile-pic">
+            <label for="profile-upload"><i class="far fa-edit"></i></label>
+            <input type="file" name="picture" id="profile-upload" onchange="loadFile(event)"></input>
+            <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
+          </form>
+          <p id="profile-name" data-placeholder="Display Name"></p>
+          <p id="profile-location" data-info="Your location can be modified in the Settings tab."></p>
+          <div class="sep"></div>
+          <p id="profile-bio" data-placeholder="Tell us a bit about yourself."></p>
+          <div id="profile-edit">
+            <button class="grad-btn" id="profile-edit-btn-mobile">Edit</button>
+            <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
+            <div class="grad-btn" id="profile-save-btn" onclick="dashboard.uploadPicture();">Save</div>
+          </div>
         </div>
         <div id="profile-since"></div>
       </div>

@@ -58,7 +58,6 @@ profile.declareVariables = () => {
   profile.allDP = [
     document.getElementById('nav-dp'),
     document.getElementById('nav-user-in'),
-    document.getElementById('profile-backdrop'),
     document.getElementById('nav-profile-img')
   ];
 }
@@ -134,7 +133,7 @@ profile.setPageUpdate = (newPage = undefined, baseURL = undefined) => {
       currentNavigationId = "nav-item-settings";
       break;
     default:
-      currentPageId = "profile-area";
+      currentPageId = "db-area";
       currentNavigationId = "nav-item-profile";
       break;
   }
@@ -156,7 +155,7 @@ profile.setPageUpdate = (newPage = undefined, baseURL = undefined) => {
       newNavigationId = "nav-item-settings";
       break;
     default:
-      newPageId = "profile-area";
+      newPageId = "db-area";
       newNavigationId = "nav-item-profile";
       break;
   }

@@ -9,6 +9,10 @@ let dashboard = {
   nameEl: undefined,
   locationEl: undefined,
   bioEl: undefined,
+  nameTemp: undefined,
+  bioTemp: undefined,
+  dpTemp: undefined,
+  locationTemp: undefined,
   // FUNCTIONS
   initialise: undefined,
   declareVariables: undefined,
@@ -40,7 +44,7 @@ dashboard.initialise = async () => {
 // @func  dashboard.declareVariables
 // @desc  
 dashboard.declareVariables = () => {
-  dashboard.wrapper = document.querySelector('.profile-wrapper');
+  dashboard.wrapper = document.querySelector('.db-profile-wrapper');
   dashboard.dpEl = document.getElementById('profile-preview');
   dashboard.nameEl = document.getElementById('profile-name');
   dashboard.locationEl = document.getElementById('profile-location');
@@ -51,13 +55,13 @@ dashboard.declareVariables = () => {
 // @desc  
 dashboard.addListener = () => {
   // -- If edit --
-  document.getElementById('profile-edit-btn').addEventListener('click', () => {
-    dashboard.wrapper.classList.toggle('profile-wrapper-edit');
+  document.getElementById('profile-edit-btn-mobile').addEventListener('click', () => {
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
   });
 
   //  -- If save --
   document.getElementById('profile-save-btn').addEventListener('click', async () => {
-    dashboard.wrapper.classList.toggle('profile-wrapper-edit');
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
 
     // Update profile pictures in nav bar
     dpTemp = dashboard.dpEl.src;
@@ -72,11 +76,10 @@ dashboard.addListener = () => {
   // -- If cancel --
   document.getElementById('profile-cancel-btn').addEventListener('click', () => {
     // Revert all changes back to variables
-    dashboard.nameEl.innerHTML = nameTemp;
-    dashboard.locationEl.innerHTML = location;
-    dashboard.bioEl.innerHTML = bioTemp;
-    dashboard.wrapper.classList.toggle('profile-wrapper-edit');
-    dashboard.dpEl.src = dpTemp;
+    dashboard.nameEl.innerHTML = dashboard.nameTemp;
+    dashboard.bioEl.innerHTML = dashboard.bioTemp;
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
+    dashboard.dpEl.src = dashboard.dpTemp;
   });
 }
 
@@ -112,15 +115,16 @@ dashboard.fetchDetails = () => {
 // @func  dashboard.populateDetails
 // @desc  
 dashboard.populateDetails = (customerInfo) => {
-  var nameTemp = customerInfo["displayName"];
-  var bioTemp = customerInfo["bio"];
-  var dpTemp = dashboard.dpEl.src;
-  let location = 'auckland, new zealand';
+  console.log(customerInfo)
+  dashboard.nameTemp = customerInfo["displayName"];
+  dashboard.bioTemp = customerInfo["bio"];
+  dashboard.dpTemp = dashboard.dpEl.src;
+  dashboard.locationTemp = customerInfo["address"]["city"] + ', ' + customerInfo["address"]["country"];
 
   // -- Update all markup (display + edit) --
-  dashboard.nameEl.innerHTML = nameTemp
-  dashboard.locationEl.innerHTML = location
-  dashboard.bioEl.innerHTML = bioTemp
+  dashboard.nameEl.innerHTML = dashboard.nameTemp
+  dashboard.locationEl.innerHTML = dashboard.locationTemp
+  dashboard.bioEl.innerHTML = dashboard.bioTemp
 }
 
 // @func  dashboard.saveDetails
