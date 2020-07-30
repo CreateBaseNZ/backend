@@ -55,11 +55,7 @@ profile.initialise = async () => {
 // @func  profile.declareVariables
 // @desc  
 profile.declareVariables = () => {
-  profile.allDP = [
-    document.getElementById('nav-dp'),
-    document.getElementById('nav-user-in'),
-    document.getElementById('nav-profile-img')
-  ];
+
 }
 
 // @func  profile.setPage

@@ -13,6 +13,7 @@ let dashboard = {
   bioTemp: undefined,
   dpTemp: undefined,
   locationTemp: undefined,
+  allDP: undefined,
   // FUNCTIONS
   initialise: undefined,
   declareVariables: undefined,
@@ -51,6 +52,11 @@ dashboard.declareVariables = () => {
   dashboard.nameEl = document.getElementById('profile-name');
   dashboard.locationEl = document.getElementById('profile-location');
   dashboard.bioEl = document.getElementById('profile-bio');
+  dashboard.allDP = [
+    document.getElementById('nav-dp'),
+    document.getElementById('nav-user-in'),
+    document.getElementById('nav-profile-img')
+  ];
 }
 
 // @func  dashboard.addListener
@@ -68,9 +74,9 @@ dashboard.addListener = () => {
 
     // Update profile pictures in nav bar
     dpTemp = dashboard.dpEl.src;
-    for (var i = 0; i < profile.allDP.length; i++) {
-      console.log(profile.allDP[i])
-      profile.allDP[i].src = dpTemp;
+    for (var i = 0; i < dashboard.allDP.length; i++) {
+      console.log(dashboard.allDP[i])
+      dashboard.allDP[i].src = dpTemp;
     }
     // Save new variables
     // dashboard.saveDetails();
