@@ -19,6 +19,7 @@ let dashboard = {
   addListener: undefined,
   fetchDetails: undefined,
   populateDetails: undefined,
+  previewImage: undefined,
   saveDetails: undefined,
   uploadPicture: undefined,
   save: undefined
@@ -62,6 +63,7 @@ dashboard.addListener = () => {
 
   //  -- If save --
   document.getElementById('profile-save-btn').addEventListener('click', async () => {
+    // Toggle off edit mode
     dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
 
     // Update profile pictures in nav bar
@@ -79,8 +81,8 @@ dashboard.addListener = () => {
     // Revert all changes back to variables
     dashboard.nameEl.innerHTML = dashboard.nameTemp;
     dashboard.bioEl.innerHTML = dashboard.bioTemp;
-    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
     dashboard.dpEl.src = dashboard.dpTemp;
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
   });
 }
 
@@ -117,15 +119,20 @@ dashboard.fetchDetails = () => {
 // @desc  
 dashboard.populateDetails = (customerInfo) => {
   console.log(customerInfo)
-  dashboard.nameTemp = customerInfo["displayName"];
-  dashboard.bioTemp = customerInfo["bio"];
+  dashboard.nameEl.innerHTML = customerInfo["displayName"];
+  dashboard.locationEl.innerHTML  = customerInfo["address"]["city"] + ', ' + customerInfo["address"]["country"];
+  dashboard.bioEl.innerHTML = customerInfo["bio"];
+  
+  // -- Update temp variables --
+  dashboard.nameTemp = dashboard.nameEl.innerHTML
+  dashboard.bioTemp = dashboard.bioEl.innerHTML
   dashboard.dpTemp = dashboard.dpEl.src;
-  dashboard.locationTemp = customerInfo["address"]["city"] + ', ' + customerInfo["address"]["country"];
+}
 
-  // -- Update all markup (display + edit) --
-  dashboard.nameEl.innerHTML = dashboard.nameTemp
-  dashboard.locationEl.innerHTML = dashboard.locationTemp
-  dashboard.bioEl.innerHTML = dashboard.bioTemp
+// @func  dashboard.previewImage
+dashboard.previewImage = (event) => {
+  console.log(event.target.files[0])
+  document.getElementById('profile-preview').src = URL.createObjectURL(event.target.files[0])
 }
 
 // @func  dashboard.saveDetails
@@ -157,6 +164,11 @@ dashboard.saveDetails = async () => {
     console.log(data.content); // TEMPORARY
     return;
   }
+
+  // -- Update temp variables --
+  dashboard.nameTemp = dashboard.nameEl.innerHTML
+  dashboard.bioTemp = dashboard.bioEl.innerHTML
+  dashboard.dpTemp = dashboard.dpEl.src;
 }
 
 // @func  dashboard.uploadPicture
@@ -204,6 +216,11 @@ dashboard.save = async () => {
   // SUCCESS HANDLER
   console.log(data.content);
   return;
+
+  // -- Update temp variables --
+  dashboard.nameTemp = dashboard.nameEl.innerHTML
+  dashboard.bioTemp = dashboard.bioEl.innerHTML
+  dashboard.dpTemp = dashboard.dpEl.src;
 }
 
 /* ========================================================================================
