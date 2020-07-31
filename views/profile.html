@@ -120,7 +120,8 @@
           <button class="fas fa-pen-square" id="profile-edit-btn-dsktp"></button>
           <form id="profile-pic">
             <label for="profile-upload"><i class="far fa-edit"></i></label>
-            <input type="file" name="picture" id="profile-upload" onchange="dashboard.previewImage(event);" onclick="this.value=null;" accept="image/*"></input>
+            <input type="file" name="picture" id="profile-upload" onchange="dashboard.previewImage(event);"
+              onclick="this.value=null;" accept="image/*"></input>
             <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
           </form>
           <p id="profile-name" data-placeholder="Display Name"></p>
@@ -133,7 +134,7 @@
             <div class="grad-btn" id="profile-save-btn" onclick="dashboard.save();">Save</div>
           </div>
         </div>
-        <div id="profile-since">Creator since July 2020</div>
+        <div id="profile-since">Creator since <span id="profile-account-creation-date">--- ----</span></div>
       </div>
     </div>
 

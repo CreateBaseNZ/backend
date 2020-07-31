@@ -214,11 +214,11 @@ router.get("/profile/customer/fetch", verifiedAccess, async (req, res) => {
 // @access    Private
 router.get("/profile/dashboard/fetch-details", verifiedDataAccess, async (req, res) => {
   // Declare Variables
-  const accountId = req.user._id;
+  const account = req.user;
   // Fetch Customer
   let customer;
   try {
-    customer = await Customer.findOne({ accountId });
+    customer = await Customer.findOne({ accountId: account._id });
   } catch (error) {
     res.send({ status: "error", content: error });
     return;
@@ -234,7 +234,8 @@ router.get("/profile/dashboard/fetch-details", verifiedDataAccess, async (req, r
   const filteredCustomer = {
     displayName: customer.displayName,
     bio,
-    address: customer.address
+    address: customer.address,
+    date: account.date
   };
   // Send Success Request
   res.send({ status: "succeeded", content: filteredCustomer });

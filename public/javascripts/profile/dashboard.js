@@ -126,13 +126,16 @@ dashboard.fetchDetails = () => {
 dashboard.populateDetails = (customerInfo) => {
   console.log(customerInfo)
   dashboard.nameEl.innerHTML = customerInfo["displayName"];
-  dashboard.locationEl.innerHTML  = customerInfo["address"]["city"] + ', ' + customerInfo["address"]["country"];
+  dashboard.locationEl.innerHTML = customerInfo["address"]["city"] + ', ' + customerInfo["address"]["country"];
   dashboard.bioEl.innerHTML = customerInfo["bio"];
-  
+
   // -- Update temp variables --
   dashboard.nameTemp = dashboard.nameEl.innerHTML
   dashboard.bioTemp = dashboard.bioEl.innerHTML
   dashboard.dpTemp = dashboard.dpEl.src;
+  // creation date
+  const date = moment(customerInfo.date.created).format("MMM YYYY");
+  document.querySelector("#profile-account-creation-date").innerHTML = date;
 }
 
 // @func  dashboard.previewImage
