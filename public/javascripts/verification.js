@@ -140,46 +140,42 @@ const inputListener = () => {
   for (i = 0; i < allElements.length; i++) {
     let el = allElements[i];
     el.addEventListener("keydown", function (event) {
-      // console.log(event.keyCode)
-      // if (event.keyCode == 8) {
-      //   if (this.previousSibling.previousSibling != null) {
-      //     this.previousSibling.previousSibling.focus();
+
+      // if (checkRegex(event)){
+      //   this.value = event.key
+      //   if (this.nextSibling.nextSibling != null){
+      //     this.nextSibling.nextSibling.focus();
       //   }
-      // } else {
-      //   if (checkRegex(event)) {
-      //     if (this.nextSibling.nextSibling != null) {
-      //       this.nextSibling.nextSibling.focus();
-      //     }
-      //   }
-      //   else {
-      //     event.preventDefault();
-      //     //Failed regex - replace input to avoid false inputs to server
-      //     el.value = "";
-      //   }
+      // } 
+      // else {
+      //   event.preventDefault();
+      //   //Failed regex - replace input to avoid false inputs to server
+      //   el.value = "";
       // }
 
       if (checkRegex(event)) {
         if (this.nextSibling.nextSibling != null) {
           this.value = event.key
-          // console.log(event.key)
-          // console.log(this.nextSibling.value)
-          this.nextSibling.nextSibling.focus();
           this.nextSibling.nextSibling.value = ''
+          this.nextSibling.nextSibling.focus();
+        } else {
+          this.value = event.key
         }
       }
       else {
         if (event.keyCode == 8) {
           if (this.previousSibling.previousSibling != null) {
             this.value = ''
-            console.log(this.previousSibling.previousSibling)
+            console.log(this.previousSibling.previousSibling.value)
             this.previousSibling.previousSibling.focus();
-          }
+          } 
         } else {
           event.preventDefault();
           //Failed regex - replace input to avoid false inputs to server
           el.value = "";
         }
       }
+      
     });
   }
 }

@@ -209,7 +209,7 @@ router.get("/terms-and-conditions", (req, res) => {
 // @route     GET /contact-us
 // @desc      The Company's Contact Details
 // @access    PUBLIC
-router.get("/contact-us", (req, res) => {
+router.get("/contact", (req, res) => {
   res.sendFile("contact-us.html", customerRouteOptions);
 });
 
