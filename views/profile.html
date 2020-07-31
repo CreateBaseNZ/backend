@@ -112,29 +112,73 @@
   <div class="main-page hide" id="profile-page">
 
     <div class="main-area" id="db-area">
-      <div id="db-header">
-        <h1>Dashboard</h1>
-      </div>
-      <div class="db-profile-wrapper">
-        <div class="db-profile-container">
-          <button class="fas fa-pen-square" id="profile-edit-btn-dsktp"></button>
-          <form id="profile-pic">
-            <label for="profile-upload"><i class="far fa-edit"></i></label>
-            <input type="file" name="picture" id="profile-upload" onchange="dashboard.previewImage(event);"
-              onclick="this.value=null;" accept="image/*"></input>
-            <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
-          </form>
-          <p id="profile-name" data-placeholder="Display Name"></p>
-          <p id="profile-location" data-info="Your location can be modified in the Settings tab."></p>
-          <div class="sep"></div>
-          <p id="profile-bio" data-placeholder="Tell us a bit about yourself."></p>
-          <div id="profile-edit">
-            <button class="grad-btn" id="profile-edit-btn-mobile">Edit</button>
-            <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
-            <div class="grad-btn" id="profile-save-btn" onclick="dashboard.save();">Save</div>
+      <div id="db-grid-area">
+
+        <div id="db-header">
+          <h1>Dashboard</h1>
+        </div>
+  
+        <div id="db-settings-wrapper">
+          <div id="db-settings-container">
+            <div class="db-settings-item">
+              <i class="fas fa-envelope" id="db-email"></i>
+              <p>Email</p>
+            </div>
+            <div class="db-settings-item">
+              <i class="fas fa-key" id="db-password"></i>
+              <p>Password</p>
+            </div>
+            <div class="db-settings-item">
+              <i class="fas fa-paper-plane" id="db-subscription"></i>
+              <p>Mailing</p>
+            </div>
+            <div class="db-settings-item">
+              <i class="fas fa-map-marker-alt" id="db-address"></i>
+              <p>Settings</p>
+            </div>
+            <div class="db-settings-item">
+              <i class="fas fa-user-slash" id="db-delete"></i>
+              <p>Delete acc</p>
+            </div>
           </div>
         </div>
-        <div id="profile-since">Creator since <span id="profile-account-creation-date">--- ----</span></div>
+  
+        <div class="db-profile-wrapper">
+          <div id="profile-today">Today is 31 Jul 2020</div>
+          <div class="db-profile-container">
+            <button class="fas fa-pen-square" id="profile-edit-btn-dsktp"></button>
+            <form id="profile-pic">
+              <label for="profile-upload"><i class="far fa-edit"></i></label>
+              <input type="file" name="picture" id="profile-upload" onchange="dashboard.previewImage(event);"
+                onclick="this.value=null;" accept="image/*"></input>
+              <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
+            </form>
+            <p id="profile-name" data-placeholder="Display Name"></p>
+            <p id="profile-location" data-info="Your location can be modified in the Settings tab."></p>
+            <div class="sep"></div>
+            <div id="profile-bio" data-placeholder="Tell us a bit about yourself."></div>
+            <div id="profile-edit">
+              <button class="grad-btn" id="profile-edit-btn-mobile">Edit</button>
+              <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
+              <div class="grad-btn" id="profile-save-btn" onclick="dashboard.save();">Save</div>
+            </div>
+          </div>
+          <div id="profile-since">Creator since <span id="profile-account-creation-date">--- ----</span></div>
+        </div>
+        
+        <div id="db-orders-wrapper">
+          <div id="db-order-container">
+            <div id="db-order-header">Recent orders</div>
+            <div id="db-order-view">View all</div>
+            <div class="db-order-item">
+              Yes
+            </div>
+          </div>
+        </div>
+  
+        <div id="db-proj-wrapper">
+          PROJECTS
+        </div>
       </div>
     </div>
 

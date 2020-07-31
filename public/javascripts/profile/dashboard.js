@@ -66,6 +66,9 @@ dashboard.addListener = () => {
   document.getElementById('profile-edit-btn-mobile').addEventListener('click', () => {
     dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
   });
+  document.getElementById('profile-edit-btn-dsktp').addEventListener('click', () => {
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
+  });
 
   //  -- If save --
   document.getElementById('profile-save-btn').addEventListener('click', async () => {
@@ -132,7 +135,7 @@ dashboard.populateDetails = (customerInfo) => {
   // -- Update temp variables --
   dashboard.nameTemp = dashboard.nameEl.innerHTML
   dashboard.bioTemp = dashboard.bioEl.innerHTML
-  dashboard.dpTemp = dashboard.dpEl.src;
+  dashboard.dpTemp = dashboard.dpEl.src
   // creation date
   const date = moment(customerInfo.date.created).format("MMM YYYY");
   document.querySelector("#profile-account-creation-date").innerHTML = date;
@@ -224,12 +227,11 @@ dashboard.save = async () => {
   }
   // SUCCESS HANDLER
   console.log(data.content);
-  return;
-
   // -- Update temp variables --
   dashboard.nameTemp = dashboard.nameEl.innerHTML
   dashboard.bioTemp = dashboard.bioEl.innerHTML
-  dashboard.dpTemp = dashboard.dpEl.src;
+  dashboard.dpTemp = dashboard.dpEl.src
+  return;
 }
 
 /* ========================================================================================
