@@ -29,6 +29,9 @@ const MessageSchema = new Schema({
   email: { type: String, default: "" },
   subject: { type: String, default: "" },
   message: { type: String, default: "" },
+  number: {
+    inquiry: { type: Number, default: 0 }
+  },
   date: {
     created: { type: String, default: "" },
     modified: { type: String, default: "" }
