@@ -425,7 +425,7 @@ FUNCTIONS
 const template = (account, customer) => {
   return new Promise(async (resolve, reject) => {
     // Create the Subject
-    const subject = `Account Verification`;
+    const subject = `Account Verification (Code: ${account.verification.code})`;
     // Create the Text
     const text = ``;
     // Create the HTML

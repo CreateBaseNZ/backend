@@ -79,6 +79,7 @@ const notificationRouter = require("./routes/notification.js");
 const checkoutRouter = require("./routes/checkout.js");
 const sessionRouter = require("./routes/session.js");
 const changePasswordRouter = require("./routes/change-password.js");
+const contactUsRouter = require("./routes/contact-us.js");
 app.use(generalRouter);
 app.use(accountRouter);
 app.use(fileRouter);
@@ -88,6 +89,7 @@ app.use(notificationRouter);
 app.use(checkoutRouter);
 app.use(sessionRouter);
 app.use(changePasswordRouter);
+app.use(contactUsRouter);
 
 /* ----------------------------------------------------------------------------------------
 PROFILE

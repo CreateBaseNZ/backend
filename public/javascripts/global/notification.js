@@ -16,6 +16,7 @@ notification.popup = (message = "", type = "succeeded") => {
   switch (type) {
     case "succeeded": icon = "far fa-check-circle"; break;
     case "failed": icon = "far fa-times-circle"; break;
+    case "error": icon = "fas fa-exclamation"; break;
     case "sent": icon = "fab fa-telegram-plane"; break;
     default: icon = ""; break;
   }

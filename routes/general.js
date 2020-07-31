@@ -227,6 +227,26 @@ router.get("/privacy-policy", (req, res) => {
   res.sendFile("privacy-policy.html", customerRouteOptions);
 });
 
+// @route     GET /fetch-account
+// @desc
+// @access    PUBLIC
+router.get("/fetch-account", async (req, res) => {
+  let user = {};
+  let authenticated = false;
+  if (req.isAuthenticated()) {
+    authenticated = true;
+    user.email = req.user.email;
+    let customer;
+    try {
+      customer = await Customer.findOne({ accountId: req.user._id });
+    } catch (error) {
+      return res.send({ status: "error", content: error });
+    }
+    user.name = customer.displayName;
+  }
+  return res.send({ status: "succeeded", content: { authenticated, user } });
+});
+
 // @route     Get /test
 // @desc      Homepage
 // @access    Public
