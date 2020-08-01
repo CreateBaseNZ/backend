@@ -7,13 +7,17 @@ let global = {
   passwordValidity: undefined,
   priceFormatter: undefined,
   compressImage: undefined,
-  readImage: undefined
+  readImage: undefined,
+  nextWorkingDay: undefined,
+  calculateWorkingDay: undefined
 }
 
 /* ========================================================================================
 FUNCTIONS
 ======================================================================================== */
 
+// @func  global.initialise
+// @desc  
 global.initialise = (userMenu = true, footerPresent = true, login = undefined) => {
   return new Promise(async (resolve, reject) => {
     if (login === undefined) {
@@ -167,6 +171,30 @@ global.readImage = async (file, compressSize) => {
   canvas.getContext("2d").drawImage(img, 0, 0, width, height);
 
   return canvas;
+}
+
+// @func  global.nextWorkingDay
+// @desc  
+global.nextWorkingDay = (startDateString = "") => {
+  const startDay = Number(moment(startDateString).format("E"));
+  let nextWorkingDay;
+  if (startDay > 4) {
+    nextWorkingDay = 8;
+  } else {
+    nextWorkingDay = startDay + 1;
+  }
+  const nextWorkingDateString = moment().weekday(nextWorkingDay);
+  return nextWorkingDateString;
+}
+
+// @func  global.calculateWorkingDay
+// @desc  
+global.calculateWorkingDay = (startDateString = "", additionalWorkingDay = 0) => {
+  const startDay = Number(moment(startDateString).format("E"));
+  let nextWorkingDay = startDay + additionalWorkingDay;
+  if (startDay > 5) nextWorkingDay += 2;
+  const nextWorkingDateString = moment().weekday(nextWorkingDay);
+  return nextWorkingDateString;
 }
 
 /* ----------------------------------------------------------------------------------------

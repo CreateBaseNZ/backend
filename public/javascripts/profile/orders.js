@@ -190,25 +190,25 @@ orders.addSummary = (order) => {
   // CONTAINER TWO
   let status;
   switch (order.status) {
-    case "checkedout": status = "Validating your Payment"; break;
-    case "validated": status = "Building your Order"; break;
-    case "built": status = "Packaging your Order"; break;
-    case "reviewed": status = "You have Reviewed This Order"; break;
-    case "completed": status = "Your Order is now Complete"; break;
-    case "cancelled": status = "Your Order has been Cancelled"; break;
-    case "refunded": status = "Your Order has been Refunded"; break;
+    case "checkedout": status = "Validating Payment"; break;
+    case "validated": status = "Building Order"; break;
+    case "built": status = "Packaging Order"; break;
+    case "reviewed": status = "Order Reviewed"; break;
+    case "completed": status = "Order Completed"; break;
+    case "cancelled": status = "Refunding Order"; break;
+    case "refunded": status = "Order Refunded"; break;
     default: break;
   }
   if (order.shipping.method === "pickup") {
     switch (order.status) {
-      case "shipped": status = "Your Order is Ready for Pickup"; break;
-      case "arrived": status = "Your Order has been Picked Up"; break;
+      case "shipped": status = "Ready for Pickup"; break;
+      case "arrived": status = "Package Picked Up"; break;
       default: break;
     }
   } else {
     switch (order.status) {
-      case "shipped": status = "Shipping your Order"; break;
-      case "arrived": status = "Your Order has Arrived"; break;
+      case "shipped": status = "Package Shipped"; break;
+      case "arrived": status = "Package Arrived"; break;
       default: break;
     }
   }
@@ -703,8 +703,19 @@ orders.generateValidated = (order = {}, shippedProgress, arrivedProgress) => {
 // @desc  
 orders.generateBuilt = (order = {}, shippedProgress, arrivedProgress) => {
   // CREATE TRACKING DETAILS
-  const statusTitle = "Packaging order";
-  const statusDetail = "We are currently packaging your order. Your order should be sent for shipping on the next working day. Thank you for your patience.";
+  let statusTitle;
+  let statusDetail = "We are currently packaging your order. ";
+  // next workday
+  const nextWorkingDate = global.nextWorkingDay(order.date.built);
+  const nextWorkingDateFormatted = moment(nextWorkingDate).format("ddd, DD MMM YYYY");
+  if (order.shipping.method === "pickup") {
+    statusTitle = "Packaging order";
+    statusDetail += `It will be ready for pickup next working day (${nextWorkingDateFormatted}). `;
+  } else {
+    statusTitle = "Packaging order";
+    statusDetail += `It will be sent for shipping next working day (${nextWorkingDateFormatted}). `;
+  }
+  statusDetail += "Thank you for your patience.";
   const statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
   const statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", "Packaging Order", shippedProgress, arrivedProgress], ["full-tracking", "", "", "", "full-tracking"]);
   // SUCCESS HANDLER
@@ -719,10 +730,18 @@ orders.generateShipped = (order = {}, shippedProgress, arrivedProgress) => {
   let statusDetail;
   if (order.shipping.method === "pickup") {
     statusTitle = "Ready for pickup";
-    statusDetail = "You can now pickup your package. Pick your package at 16 Dapple Place, Flat Bush, Auckland, 2019, New Zealand";
+    statusDetail = "You can now pickup your package. Pick it up at 16 Dapple Place, Flat Bush, Auckland, 2019, New Zealand";
   } else {
+    let numberOfWorkingDays;
+    if (order.shipping.method === "tracked") {
+      numberOfWorkingDays = 3;
+    } else if (order.shipping.method === "courier") {
+      numberOfWorkingDays = 1;
+    }
+    const deliveryDate = global.calculateWorkingDay(order.date.shipped);
+    const deliveryDateFormatted = moment(deliveryDate).format("ddd, DD MMM YYYY");
     statusTitle = "Package shipped";
-    statusDetail = "Your package is now on its way to your doorstep.";
+    statusDetail = `Your package is now on its way to your doorstep. Its estimated arrival date is ${deliveryDateFormatted}. Track your order <a href="https://www.nzpost.co.nz/tools/tracking/item/${order.shipping.tracking}">here</a>.`;
   }
   const statusProgress = orders.createStatusProgress(["completed", "completed", "on-progress", "incomplete", "incomplete"], ["full-tracking", "", "", "", "full-tracking"], ["full-tracking", "", "", "full-tracking", ""]);
   const statusLabel = orders.createStatusLabel(["Validating Payment", "Building Order", shippedProgress, arrivedProgress, "Order Reviewed"], ["full-tracking", "", "", "", "full-tracking"]);
