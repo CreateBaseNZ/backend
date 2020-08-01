@@ -329,11 +329,11 @@
   'header header orders'
   'settings prof orders'
   'proj proj proj';
-  grid-template-rows: auto minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-rows: auto minmax(0, 3.4fr) minmax(0, 2fr);
   grid-template-columns: 15% 45% 40%;
 
   & > * {
-    border: thin solid red ;
+    // border: thin solid red ;
   }
 }
 
@@ -364,7 +364,7 @@
 
 #db-settings-wrapper {
   grid-area: settings;
-  padding-bottom: 5vh;
+  padding-bottom: 4vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -398,7 +398,7 @@
         width: 0;
         text-transform: uppercase;
         font-weight: 600;
-        font-size: calc(6px + 0.5vmax);
+        font-size: calc(8px + 0.3vmax);
         padding-left: 0px;
         white-space: nowrap;
         transition: width 0.2s ease-out, padding 0.2s ease-out;
@@ -505,22 +505,117 @@
   grid-area: orders;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: flex-end;
+  padding-top: calc(15px + 1.5vmax);
   padding-left: 1vw;
+  padding-right: 4vw;
   padding-bottom: 2vh;
 
   #db-order-container {
-    height: 90%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
     border-radius: 15px;
     background: rgba(199, 194, 213, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 2vmax;
+
+    & > * {
+      width: 100%;
+    }
+
+    #db-order-header {
+      font-size: calc(8px + 0.3vmax);
+      color: $dark-3;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.75vmax;
+      font-weight: 600;
+      #db-order-view {
+        color: $logo-2;
+        cursor: pointer;
+        i { 
+          width: 20px;
+          padding-left: 5px; 
+          transition: padding 0.2s ease-out;
+        }
+        &:hover {
+          i {
+            padding-left: 7px;
+          }
+        }
+      }
+    }
+
+    .db-order-item {
+      background: $light-1;
+      border-radius: 20px;
+      height: 25%;
+    }
   }
 }
 
 #db-proj-wrapper {
   grid-area: proj;
-  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 2vh;
+  padding-left: calc(30px + 3vmax);
+  padding-right: 4vw;
+  padding-bottom: calc(15px + 1.5vmax);
+
+  #db-proj-container {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    background: rgba(199, 194, 213, 0.1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1vmax 2vmax;
+
+    #db-proj-header {
+      font-size: calc(8px + 0.3vmax);
+      color: $dark-3;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.75vmax;
+      font-weight: 600;
+      width: 100%;
+      #db-proj-view {
+        color: $logo-2;
+        cursor: pointer;
+        i { 
+          width: 20px;
+          padding-left: 5px; 
+          transition: padding 0.2s ease-out;
+        }
+        &:hover {
+          i {
+            padding-left: 7px;
+          }
+        }
+      }
+    }
+
+    .db-proj-item {
+      background: $light-1;
+      border-radius: 20px;
+      width: 31%;
+      height: 70%;
+    }
+  }
 }
 
 }
