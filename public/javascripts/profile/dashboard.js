@@ -23,7 +23,8 @@ let dashboard = {
   previewImage: undefined,
   saveDetails: undefined,
   uploadPicture: undefined,
-  save: undefined
+  save: undefined,
+  renderProjects: undefined
 }
 
 /* ========================================================================================
@@ -42,6 +43,7 @@ dashboard.initialise = async () => {
   }
   dashboard.populateDetails(customerInfo);
   dashboard.addListener();
+  dashboard.renderProjects();
 }
 
 // @func  dashboard.declareVariables
@@ -64,35 +66,43 @@ dashboard.declareVariables = () => {
 dashboard.addListener = () => {
   // -- If edit --
   document.getElementById('profile-edit-btn-mobile').addEventListener('click', () => {
-    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
-  });
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit')
+  })
   document.getElementById('profile-edit-btn-dsktp').addEventListener('click', () => {
-    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
-  });
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit')
+  })
 
   //  -- If save --
   document.getElementById('profile-save-btn').addEventListener('click', async () => {
     // Toggle off edit mode
-    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit')
 
     // Update profile pictures in nav bar
     dpTemp = dashboard.dpEl.src;
     for (var i = 0; i < dashboard.allDP.length; i++) {
       console.log(dashboard.allDP[i])
-      dashboard.allDP[i].src = dpTemp;
+      dashboard.allDP[i].src = dpTemp
     }
     // Save new variables
     // dashboard.saveDetails();
-  });
+  })
 
   // -- If cancel --
   document.getElementById('profile-cancel-btn').addEventListener('click', () => {
     // Revert all changes back to variables
-    dashboard.nameEl.innerHTML = dashboard.nameTemp;
-    dashboard.bioEl.innerHTML = dashboard.bioTemp;
-    dashboard.dpEl.src = dashboard.dpTemp;
-    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit');
-  });
+    dashboard.nameEl.innerHTML = dashboard.nameTemp
+    dashboard.bioEl.innerHTML = dashboard.bioTemp
+    dashboard.dpEl.src = dashboard.dpTemp
+    dashboard.wrapper.classList.toggle('db-profile-wrapper-edit')
+  })
+
+  document.getElementById('db-order-view').addEventListener('click', () => {
+    profile.setPage('orders')
+  })
+
+  document.getElementById('db-proj-view').addEventListener('click', () => {
+    profile.setPage('projects')
+  })
 }
 
 // @func  dashboard.fetchDetails
@@ -232,6 +242,11 @@ dashboard.save = async () => {
   dashboard.bioTemp = dashboard.bioEl.innerHTML
   dashboard.dpTemp = dashboard.dpEl.src
   return;
+}
+
+dashboard.renderProjects = () => {
+  console.log(projects.allProjects)
+  const items = document.getElementsByClassName('db-proj-item')
 }
 
 /* ========================================================================================

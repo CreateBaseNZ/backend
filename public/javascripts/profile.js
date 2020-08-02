@@ -5,10 +5,10 @@ VARIABLES
 let profile = {
   // VARIABLES
   pages: ["/profile", "/profile/projects", "/profile/orders", "/profile/settings"],
-  allDP: undefined,
   // FUNCTIONS
   initialise: undefined,
   declareVariables: undefined,
+  loadUserData: undefined,
   setPage: undefined,
   setPageCollect: undefined,
   setPageValidate: undefined,
@@ -40,6 +40,9 @@ profile.initialise = async () => {
   }
   // DECLARE VARIABLES
   profile.declareVariables();
+  const [allProjects, allMakes] = (await projects.loadUserData());
+  projects.allProjects = allProjects
+  projects.allMakes = allMakes
   // REMOVE STARTUP LOADER
   removeLoader(false);
   // INITIALISATIONS
