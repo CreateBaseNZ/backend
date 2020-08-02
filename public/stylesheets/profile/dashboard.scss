@@ -189,9 +189,7 @@
 }
 
 .db-profile-wrapper-edit {
-
   .db-profile-container {
-
     #profile-pic {
       label {
         cursor: pointer;
@@ -223,11 +221,9 @@
           box-shadow: 0 0 10px -2px $highlight;
         }
         
-        &:hover {
-          i {
-            color: $dark-3;
-            background: $light-2;
-          }
+        &:hover > i {
+          color: $dark-3;
+          background: $light-2;
         }
       }
     }
@@ -420,7 +416,6 @@
   padding: 0 3vw;
   grid-area: prof;
   justify-content: flex-end;
-
   #profile-today {
     display: block;
     margin-right: 1vw;
@@ -428,14 +423,12 @@
     font-size: calc(8px + 0.1vmax);
     color: $light-3;
   }
-
   .db-profile-container {
     border-radius: 15px;
     padding: 0 15%;
     box-shadow: 0 3px 15px -8px $dark-1;
     max-height: 75%;
     margin-top: 0.5vh;
-
     #profile-edit-btn-dsktp {
       display: block;
       position: absolute;
@@ -447,57 +440,94 @@
       font-size: calc(10px + 1vmax);
       color: $light-3;
       transition: color 0.2s ease-out;
-  
       &:hover {
         color: $logo-3;
       }
     }
-
     #profile-pic {
       margin-top: -5vmax;
       width: 10vmax;
       height: 10vmax;
       box-shadow: 0 3px 10px -5px $dark-1;
     }
-
     #profile-name {
       margin-top: 3vh;
       font-size: calc(14px + 1vmax);
     }
-  
     #profile-location {
       margin-top: 0.5vh;
     }
-  
     .sep {
       width: 60%;
       margin: 2vh 0;
     }
-  
     #profile-bio {
       font-size: calc(8px + 0.2vmax);
       line-height: 165%;
       letter-spacing: 1px;
     }
-  
     #profile-edit {
       height: 0;
       margin: 2.5vh 0;
-
       #profile-edit-btn-mobile {
         display: none;
       }
-
       #profile-save-btn {
         padding: 1em 2.5em;
         box-shadow: 0 5px 10px -8px $dark-3;
       }
     }
   }
-
   #profile-since {
     margin-right: 1vw;
     margin-bottom: 2vh;
+  }
+}
+
+.db-profile-wrapper-edit {
+  #profile-today,
+  #profile-since {
+    display: none;
+  }
+  .db-profile-container {
+    margin-top: 0;
+    max-height: none;
+    height: calc(100% - 5vmax);
+    #profile-edit-btn-dsktp {
+      display: none;
+    }
+    #profile-pic {
+      label {
+        height: 10vmax;
+        width: 10vmax;
+        i {
+          width: 2vmax;
+          height: 2vmax;
+        }
+        &:hover > i {
+          color: $logo-2;
+        }
+      }
+    }
+    #profile-location {
+      margin: 2vh 0;
+    }
+    #profile-bio {
+      line-height: 120%;
+      margin-left: 0;
+      width: 100%;
+    }
+    #profile-edit {
+      justify-content: flex-end;
+      height: auto;
+      font-size: calc(6px + 0.4vmax);
+      #profile-save-btn {
+        padding: 0.8em 2em;
+        box-shadow: 0 5px 10px -8px $dark-3;
+        margin-left: 2vmax;
+        letter-spacing: 1px;
+      }
+    }
   }
 }
 
@@ -556,6 +586,109 @@
       background: $light-1;
       border-radius: 20px;
       height: 25%;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: $dark-3;
+      padding: calc(6px + 0.8vmax) 1.5vmax;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease-out;
+      position: relative;
+      .db-order-go {
+        font-size: calc(4px + 0.4vmax);
+        color: $light-2;
+        position: absolute;
+        top: calc(6px + 0.8vmax);
+        right: 1.5vmax;
+        transition: color 0.2s ease-out, right 0.2s ease-out;
+      }
+      .db-order-id {
+        font-size: calc(8px + 0.4vmax);
+        font-weight: 600;
+        font-family: $montserrat;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        height: 25%;
+        transition: color 0.2s ease-out;
+        .db-order-notif-circle {
+          margin-left: 10px;
+          height: 1.6em;
+          width: 1.6em;
+          border-radius: 0.8em;
+          background: $logo-2;
+          color: $light-1;
+          font-family: $poppins;
+          font-size: calc(4px + 0.4vmax);
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .db-order-notif {
+            line-height: 1.6em;
+          }
+        }
+      }
+      .db-order-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        font-size: calc(4px + 0.4vmax);
+        height: 75%;
+        transition: color 0.2s ease-out;
+        i {
+          width: 25px;
+          color: $light-3;
+          transition: color 0.2s ease-out;
+        }
+      }
+      .db-order-total {
+        height: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        p {
+          font-size: calc(4px + 0.4vmax);
+          color: $light-3;
+          transition: color 0.2s ease-out;
+        }
+        .db-order-amount {
+          font-weight: 600;
+          font-size: calc(10px + 0.4vmax);
+          transition: color 0.2s ease-out;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 4px 15px -12px $dark-2;
+        .db-order-go {
+          color: $logo-2;
+          right: calc(1.5vmax - 2px);
+        }
+        .db-order-id {
+          color: $logo-2;
+        }
+        .db-order-details {
+          color: $logo-2;
+          i {
+            color: $dark-1;
+          }
+        }
+        .db-order-total {
+          p {
+            color: $dark-1;
+          }
+          .db-order-amount {
+            color: $logo-2;
+          }
+        }
+      }
     }
   }
 }
@@ -620,7 +753,6 @@
       justify-content: space-between;
       padding: 0 1vh 0 2vh;
       cursor: pointer;
-      // box-shadow: 0 2px 10px -8px $dark-1;
       transition: box-shadow 0.2s ease-out;
 
       .db-proj-img {
@@ -646,7 +778,8 @@
         .db-proj-name {
           width: 100%;
           font-weight: 600;
-          font-size: calc(8px + 0.4vmax);
+          font-size: calc(6px + 0.4vmax);
+          font-family: $montserrat;
           line-height: 2.5em;
           white-space: nowrap;
           overflow: hidden;
@@ -669,6 +802,7 @@
         margin-bottom: 2vh;
         color: $light-2;
         flex-shrink: 0;
+        font-size: calc(4px + 0.4vmax);
         transition: padding-left 0.2s ease-out, color 0.2s ease-out;
       }
 
