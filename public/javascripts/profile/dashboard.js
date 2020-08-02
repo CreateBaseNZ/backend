@@ -43,7 +43,11 @@ dashboard.initialise = async () => {
   }
   dashboard.populateDetails(customerInfo);
   dashboard.addListener();
-  dashboard.renderProjects();
+  let threeProjects = profile.allProjects.filter(item => item.bookmark).reverse().slice(0, 3)
+  const projItems = document.getElementsByClassName('db-proj-item')
+  for (var i = 0; i < 3; i++) {
+    dashboard.renderProjects(threeProjects[i], projItems[i])
+  }
 }
 
 // @func  dashboard.declareVariables
@@ -244,9 +248,23 @@ dashboard.save = async () => {
   return;
 }
 
-dashboard.renderProjects = () => {
-  console.log(projects.allProjects)
-  const items = document.getElementsByClassName('db-proj-item')
+dashboard.renderProjects = (project, el) => {
+  if (project) {
+    el.style.opacity = 'flex'
+    el.id = project.id + '-db-proj'
+    el.querySelector('.db-proj-img').src = '/profile/projects/retrieve-thumbnail/' + project.id
+    el.querySelector('.db-proj-name').innerHTML = project.name
+    let makesEl = el.querySelector('.db-proj-makes')
+    makesEl.innerHTML = ''
+    project.makes.forEach(function (make, j) {
+      if (makesEl.innerHTML !== '') {
+        makesEl.innerHTML += ', '
+      }
+      makesEl.innerHTML += make.file.name
+    })
+  } else {
+    el.style.visibility = 'hidden'
+  }
 }
 
 /* ========================================================================================

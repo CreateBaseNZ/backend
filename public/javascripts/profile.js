@@ -5,6 +5,8 @@ VARIABLES
 let profile = {
   // VARIABLES
   pages: ["/profile", "/profile/projects", "/profile/orders", "/profile/settings"],
+  allProjects: undefined,
+  allMakes: undefined,
   // FUNCTIONS
   initialise: undefined,
   declareVariables: undefined,
@@ -41,8 +43,8 @@ profile.initialise = async () => {
   // DECLARE VARIABLES
   profile.declareVariables();
   const [allProjects, allMakes] = (await projects.loadUserData());
-  projects.allProjects = allProjects
-  projects.allMakes = allMakes
+  profile.allProjects = allProjects
+  profile.allMakes = allMakes
   // REMOVE STARTUP LOADER
   removeLoader(false);
   // INITIALISATIONS

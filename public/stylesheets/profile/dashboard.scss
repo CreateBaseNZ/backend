@@ -11,6 +11,13 @@
   overflow-x: hidden;
 }
 
+#db-grid-area {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 #db-header {
   margin: calc(20px + 2vmax) 0;
   padding: 0 calc(30px + 3vmax);
@@ -190,6 +197,7 @@
 
 .db-profile-wrapper-edit {
   .db-profile-container {
+    height: calc(100%);
     #profile-pic {
       label {
         cursor: pointer;
@@ -298,9 +306,17 @@
       }
     }
   }
+
+  #profile-since {
+    display: none;
+  }
 }
 
-
+#db-settings-wrapper,
+#db-orders-wrapper,
+#db-proj-wrapper {
+  display: none;
+}
 
 // #############################################################################
 // MEDIA QUERY
@@ -318,8 +334,6 @@
 }
 
 #db-grid-area {
-  height: 100%;
-  width: 100%;
   display: grid;
   grid-template-areas: 
   'header header orders'
@@ -427,7 +441,7 @@
     border-radius: 15px;
     padding: 0 15%;
     box-shadow: 0 3px 15px -8px $dark-1;
-    max-height: 75%;
+    max-height: 90%;
     margin-top: 0.5vh;
     #profile-edit-btn-dsktp {
       display: block;
@@ -449,13 +463,17 @@
       width: 10vmax;
       height: 10vmax;
       box-shadow: 0 3px 10px -5px $dark-1;
+      flex-shrink: 0;
     }
     #profile-name {
       margin-top: 3vh;
-      font-size: calc(14px + 1vmax);
+      font-size: calc(16px + 0.5vmax);
     }
     #profile-location {
       margin-top: 0.5vh;
+      &::after {
+        font-size: calc(6px + 0.2vmax);
+      }
     }
     .sep {
       width: 60%;
@@ -493,6 +511,7 @@
     margin-top: 0;
     max-height: none;
     height: calc(100% - 5vmax);
+    padding: 0 5%;
     #profile-edit-btn-dsktp {
       display: none;
     }
@@ -524,7 +543,7 @@
       #profile-save-btn {
         padding: 0.8em 2em;
         box-shadow: 0 5px 10px -8px $dark-3;
-        margin-left: 2vmax;
+        margin-left: 10%;
         letter-spacing: 1px;
       }
     }

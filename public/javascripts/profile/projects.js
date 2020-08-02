@@ -4,8 +4,6 @@ VARIABLES - PROJECTS
 
 let projects = {
   // VARIABLES
-  allProjects: undefined,
-  allMakes: undefined,
   // FUNCTIONS
   initialise: undefined,
   declareVariables: undefined,
@@ -44,20 +42,20 @@ projects.initialise = async () => {
   projects.declareVariables()
   var favs = 0
   // render all project cards
-  if (projects.allProjects.length) {
-    projects.allProjects.forEach(function (project, i) {
+  if (profile.allProjects.length) {
+    profile.allProjects.forEach(function (project, i) {
       if (project.bookmark) {
         projects.renderFavCard(project)
         favs += 1
       }
       projects.renderSmallCard(project)
-      projects.renderProjPop(project, projects.allMakes)
+      projects.renderProjPop(project, profile.allMakes)
     })
   }
   document.getElementById('proj-fav-header').innerHTML = 'Favourites (' + favs + ')'
-  document.getElementById('proj-new-header').innerHTML = 'All (' + projects.allProjects.length + ')'
+  document.getElementById('proj-new-header').innerHTML = 'All (' + profile.allProjects.length + ')'
   projects.eventListeners()
-  projects.renderProjPop(null, projects.allMakes)
+  projects.renderProjPop(null, profile.allMakes)
 }
 
 // @func  projects.declareVariables
