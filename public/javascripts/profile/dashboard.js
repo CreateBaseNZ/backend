@@ -24,7 +24,8 @@ let dashboard = {
   saveDetails: undefined,
   uploadPicture: undefined,
   save: undefined,
-  renderProjects: undefined
+  renderProjects: undefined,
+  goToProject: undefined
 }
 
 /* ========================================================================================
@@ -46,8 +47,10 @@ dashboard.initialise = async () => {
   let threeProjects = profile.allProjects.filter(item => item.bookmark).reverse().slice(0, 3)
   const projItems = document.getElementsByClassName('db-proj-item')
   for (var i = 0; i < 3; i++) {
-    dashboard.renderProjects(threeProjects[i], projItems[i])
+    dashboard.renderProjects(threeProjects[i], projItems[i], true)
   }
+  let tod = new Date()
+  document.getElementById('profile-today').innerHTML = 'Today is ' + tod.toLocaleString('default', { month: 'short' }) + ' ' + tod.getDate() + ' ' + tod.getFullYear()
 }
 
 // @func  dashboard.declareVariables
@@ -106,6 +109,29 @@ dashboard.addListener = () => {
 
   document.getElementById('db-proj-view').addEventListener('click', () => {
     profile.setPage('projects')
+  })
+
+  document.getElementById('db-email').addEventListener('click', () => {
+    settings.editEmail()
+    profile.setPage('settings')
+  })
+
+  document.getElementById('db-password').addEventListener('click', () => {
+    settings.editPassword()
+    profile.setPage('settings')
+  })
+
+  document.getElementById('db-subscription').addEventListener('click', () => {
+    profile.setPage('settings')
+  })
+
+  document.getElementById('db-address').addEventListener('click', () => {
+    settings.editAddress()
+    profile.setPage('settings')
+  })
+
+  document.getElementById('db-delete').addEventListener('click', () => {
+    profile.setPage('settings')
   })
 }
 
@@ -248,23 +274,32 @@ dashboard.save = async () => {
   return;
 }
 
-dashboard.renderProjects = (project, el) => {
+dashboard.renderProjects = (project, el, initialise) => {
   if (project) {
+    el.setAttribute('onclick', 'dashboard.goToProject(\'' + project.id + '\');')
     el.style.opacity = 'flex'
     el.id = project.id + '-db-proj'
     el.querySelector('.db-proj-img').src = '/profile/projects/retrieve-thumbnail/' + project.id
     el.querySelector('.db-proj-name').innerHTML = project.name
     let makesEl = el.querySelector('.db-proj-makes')
-    makesEl.innerHTML = ''
-    project.makes.forEach(function (make, j) {
-      if (makesEl.innerHTML !== '') {
-        makesEl.innerHTML += ', '
-      }
-      makesEl.innerHTML += make.file.name
-    })
+    if (initialise) {
+      project.makes.forEach(function (make, j) {
+        if (makesEl.innerHTML !== '') {
+          makesEl.innerHTML += ', '
+        }
+        makesEl.innerHTML += make.file.name
+      })
+    } else {
+      makesEl.innerHTML = project.allMakesString
+    }
   } else {
     el.style.visibility = 'hidden'
   }
+}
+
+dashboard.goToProject = (id) => {
+  projects.showProjPop(id)
+  profile.setPage('projects')
 }
 
 /* ========================================================================================

@@ -73,7 +73,18 @@ profile.setPage = (page = undefined, initialise = false) => {
   if (!valid) return console.log(message);
   // UPDATE PROFILE PAGE
   profile.setPageUpdate(newPage, baseURL);
-  // if (initialise) profile.preSetTab();
+  if (page === '') {
+    let projects = Array.from(document.getElementById('proj-fav-container').children).reverse().slice(0, 3)
+    console.log(projects)
+    const projItems = document.getElementsByClassName('db-proj-item')
+    for (var i = 0; i < 3; i++) {
+      let proj = new Object()
+      proj.id = projects[i].id.split('-')[0]
+      proj.name = projects[i].querySelector('.proj-fav-name').innerHTML
+      proj.allMakesString = projects[i].querySelector('.proj-fav-makes').innerHTML
+      dashboard.renderProjects(proj, projItems[i], false)
+    }
+  }
   return;
 }
 
