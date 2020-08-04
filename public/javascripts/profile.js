@@ -74,15 +74,22 @@ profile.setPage = (page = undefined, initialise = false) => {
   // UPDATE PROFILE PAGE
   profile.setPageUpdate(newPage, baseURL);
   if (page === '') {
-    let projects = Array.from(document.getElementById('proj-fav-container').children).reverse().slice(0, 3)
-    console.log(projects)
     const projItems = document.getElementsByClassName('db-proj-item')
+    let threeRecentProjects = Array.from(document.getElementById('proj-fav-container').children).reverse().slice(0, 3)
     for (var i = 0; i < 3; i++) {
-      let proj = new Object()
-      proj.id = projects[i].id.split('-')[0]
-      proj.name = projects[i].querySelector('.proj-fav-name').innerHTML
-      proj.allMakesString = projects[i].querySelector('.proj-fav-makes').innerHTML
+      let proj
+      if (threeRecentProjects[i]) {
+        proj = new Object()
+        proj.id = threeRecentProjects[i].id.split('-')[0]
+        proj.name = threeRecentProjects[i].querySelector('.proj-fav-name').innerHTML
+        proj.allMakesString = threeRecentProjects[i].querySelector('.proj-fav-makes').innerHTML
+      }
       dashboard.renderProjects(proj, projItems[i], false)
+    }
+    if (threeRecentProjects.length) {
+      document.getElementById('db-proj-none').style.display = 'none'
+    } else {
+      document.getElementById('db-proj-none').style.display = 'block'
     }
   }
   return;

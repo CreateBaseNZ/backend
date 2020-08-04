@@ -25,7 +25,10 @@ let dashboard = {
   uploadPicture: undefined,
   save: undefined,
   renderProjects: undefined,
-  goToProject: undefined
+  goToProject: undefined,
+  processOrders: undefined,
+  renderOrders: undefined,
+  goToOrder: undefined
 }
 
 /* ========================================================================================
@@ -44,10 +47,15 @@ dashboard.initialise = async () => {
   }
   dashboard.populateDetails(customerInfo);
   dashboard.addListener();
-  let threeProjects = profile.allProjects.filter(item => item.bookmark).reverse().slice(0, 3)
-  const projItems = document.getElementsByClassName('db-proj-item')
+  let threeRecentProjects = profile.allProjects.filter(item => item.bookmark).reverse().slice(0, 3)
+  const projElements = document.getElementsByClassName('db-proj-item')
   for (var i = 0; i < 3; i++) {
-    dashboard.renderProjects(threeProjects[i], projItems[i], true)
+    dashboard.renderProjects(threeRecentProjects[i], projElements[i], true)
+  }
+  if (threeRecentProjects.length) {
+    document.getElementById('db-proj-none').style.display = 'none'
+  } else {
+    document.getElementById('db-proj-none').style.display = 'block'
   }
   let tod = new Date()
   document.getElementById('profile-today').innerHTML = 'Today is ' + tod.toLocaleString('default', { month: 'short' }) + ' ' + tod.getDate() + ' ' + tod.getFullYear()
@@ -276,8 +284,8 @@ dashboard.save = async () => {
 
 dashboard.renderProjects = (project, el, initialise) => {
   if (project) {
-    el.setAttribute('onclick', 'dashboard.goToProject(\'' + project.id + '\');')
-    el.style.opacity = 'flex'
+    el.style.visibility = 'visible'
+    el.setAttribute('onclick', `dashboard.goToProject('${project.id}');`)
     el.id = project.id + '-db-proj'
     el.querySelector('.db-proj-img').src = '/profile/projects/retrieve-thumbnail/' + project.id
     el.querySelector('.db-proj-name').innerHTML = project.name
@@ -300,6 +308,74 @@ dashboard.renderProjects = (project, el, initialise) => {
 dashboard.goToProject = (id) => {
   projects.showProjPop(id)
   profile.setPage('projects')
+}
+
+dashboard.processOrders = (fetchedOrders) => {
+  let threeRecentOrders = fetchedOrders.slice(0, 3)
+  let orderElements = document.getElementsByClassName('db-order-item')
+  for (var i = 0; i < 3; i++) {
+    dashboard.renderOrders(threeRecentOrders[i], orderElements[i])
+  }
+  if (threeRecentOrders.length) {
+    document.getElementById('db-order-none').style.display = 'none'
+  } else {
+    document.getElementById('db-order-none').style.display = 'block'
+  }
+}
+
+dashboard.renderOrders = (order, el) => {
+  if (order) {
+    el.style.visibility = 'visible'
+    el.setAttribute('onclick', `dashboard.goToOrder('${order._id}');`)
+    el.id = order._id + '-db-order'
+    el.querySelector('.db-order-number').innerHTML = `Order #${order.number}`
+
+    let status
+    switch (order.status) {
+      case "checkedout": status = "Validating Payment"; break;
+      case "validated": status = "Building Order"; break;
+      case "built": status = "Packaging Order"; break;
+      case "reviewed": status = "Order Reviewed"; break;
+      case "completed": status = "Order Completed"; break;
+      case "cancelled": status = "Refunding Order"; break;
+      case "refunded": status = "Order Refunded"; break;
+      default: break;
+    }
+    if (order.shipping.method === "pickup") {
+      switch (order.status) {
+        case "shipped": status = "Ready for Pickup"; break;
+        case "arrived": status = "Package Picked Up"; break;
+        default: break;
+      }
+    } else {
+      switch (order.status) {
+        case "shipped": status = "Package Shipped"; break;
+        case "arrived": status = "Package Arrived"; break;
+        default: break;
+      }
+    }
+
+    el.querySelector('.db-order-delivery').querySelector('span').innerHTML = status
+    
+    el.querySelector('.db-order-date').querySelector('span').innerHTML = orders.formatDate(order.date[order.status])
+    if (order.shipping.address.option === 'new') {
+      el.querySelector('.db-order-address').querySelector('span').innerHTML = `${order.shipping.address.new.city}, ${order.shipping.address.new.country}`
+    } else {
+      el.querySelector('.db-order-address').querySelector('span').innerHTML = `${order.shipping.address.saved.city}, ${order.shipping.address.saved.country}`
+    }
+    el.querySelector('.db-order-amount').innerHTML = `$${global.priceFormatter(order.payment.amount.total.total)}`
+
+    if (order.status === 'completed' || order.status === 'refunded') {
+      el.classList.add('db-order-past')
+    }
+  } else {
+    el.style.visibility = 'hidden'
+  }
+}
+
+dashboard.goToOrder = (id) => {
+  orders.selectOrder(id)
+  profile.setPage('orders')
 }
 
 /* ========================================================================================

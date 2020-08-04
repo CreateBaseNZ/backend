@@ -570,6 +570,7 @@
     align-items: center;
     justify-content: space-evenly;
     padding: 0 2vmax;
+    position: relative;
 
     & > * {
       width: 100%;
@@ -622,7 +623,7 @@
         right: 1.5vmax;
         transition: color 0.2s ease-out, right 0.2s ease-out;
       }
-      .db-order-id {
+      .db-order-number {
         font-size: calc(8px + 0.4vmax);
         font-weight: 600;
         font-family: $montserrat;
@@ -691,7 +692,7 @@
           color: $logo-2;
           right: calc(1.5vmax - 2px);
         }
-        .db-order-id {
+        .db-order-number {
           color: $logo-2;
           .db-order-notif-circle {
             background: $logo-2;
@@ -713,11 +714,11 @@
         }
       }
     }
-    .db-past-order {
+    .db-order-past {
       & > * {
         color: $light-3;
       }
-      .db-order-id > .db-order-notif-circle {
+      .db-order-number > .db-order-notif-circle {
         background: $light-3;
       }
     }
@@ -746,6 +747,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 1vmax 2vmax;
+    position: relative;
 
     #db-proj-header {
       font-size: calc(8px + 0.3vmax);
@@ -784,6 +786,7 @@
       justify-content: space-between;
       padding: 0 1vh 0 2vh;
       cursor: pointer;
+      visibility: hidden;
       transition: box-shadow 0.2s ease-out;
 
       .db-proj-img {
@@ -850,6 +853,19 @@
       }
     }
   }
+}
+
+.db-none {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  font-style: italic;
+  font-size: calc(8px + 0.4vmax);
+  color: $light-3;
+  width: 100%;
+  text-align: center;
 }
 
 }

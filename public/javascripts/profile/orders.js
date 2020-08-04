@@ -52,14 +52,15 @@ FUNCTIONS
 // @desc  
 orders.initialise = async () => {
   // FETCH ORDERS
-  let fetchedOrders;
+  let fetchedOrders
   try {
-    fetchedOrders = await orders.fetchOrders();
+    fetchedOrders = await orders.fetchOrders()
   } catch (error) {
-    return;
+    return
   }
   // POPULATE ORDERS
-  orders.populateOrders(fetchedOrders);
+  orders.populateOrders(fetchedOrders)
+  dashboard.processOrders(fetchedOrders)
   // SUCCESS HANDLER
   return;
 }
@@ -70,17 +71,17 @@ orders.errorHandler = (error) => {
   // TO DO .....
   // ERROR HANDLER
   // TO DO .....
-  console.log(error); // TEMPORARY
-  return;
+  console.log(error) // TEMPORARY
+  return
 }
 
 // @func  orders.formatDate
 // @desc  
 orders.formatDate = (date) => {
   const day = moment(date).format("DD")
-  const month = moment(date).format("MMM");
-  const year = moment(date).format("YYYY");
-  return (`${day} ${month} ${year}`);
+  const month = moment(date).format("MMM")
+  const year = moment(date).format("YYYY")
+  return (`${day} ${month} ${year}`)
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -91,45 +92,45 @@ ORDERS
 // @desc  
 orders.selectOrder = (orderId) => {
   if (orders.selectedOrder === orderId) {
-    return orders.deselectOrder(orders.selectedOrder);
+    return orders.deselectOrder(orders.selectedOrder)
   }
   // UPDATE CSS
-  if (orders.selectedOrder) orders.deselectOrder(orders.selectedOrder);
-  document.querySelector(`#order-summary-${orderId}`).classList.add("active-item");
-  document.querySelector(`#order-detail-${orderId}`).classList.remove("hide");
-  return orders.selectedOrder = orderId; // UPDATE SELECTED ORDER
+  if (orders.selectedOrder) orders.deselectOrder(orders.selectedOrder)
+  document.querySelector(`#order-summary-${orderId}`).classList.add("active-item")
+  document.querySelector(`#order-detail-${orderId}`).classList.remove("hide")
+  return orders.selectedOrder = orderId // UPDATE SELECTED ORDER
 }
 
 // @func  orders.deselectOrder
 // @desc  
 orders.deselectOrder = (orderId) => {
-  document.querySelector(`#order-summary-${orderId}`).classList.remove("active-item");
-  document.querySelector(`#order-detail-${orderId}`).classList.add("hide");
-  orders.selectedOrder = undefined; // UPDATE SELECTED ORDER
+  document.querySelector(`#order-summary-${orderId}`).classList.remove("active-item")
+  document.querySelector(`#order-detail-${orderId}`).classList.add("hide")
+  orders.selectedOrder = undefined // UPDATE SELECTED ORDER
 }
 
 // @func  orders.fetchOrders
 // @desc  
 orders.fetchOrders = () => {
   return new Promise(async (resolve, reject) => {
-    let data;
+    let data
     try {
-      data = (await axios.get("/orders/fetch-orders"))["data"];
+      data = (await axios.get("/orders/fetch-orders"))["data"]
     } catch (error) {
-      data = { status: "error", content: error };
+      data = { status: "error", content: error }
     }
     if (data.status === "error") {
-      orders.errorHandler(data.content);
-      return reject();
+      orders.errorHandler(data.content)
+      return reject()
     } else if (data.status === "failed") {
       // TO DO .....
       // FAILED HANDLER
       // TO DO .....
-      console.log(data.content);
-      return reject();
+      console.log(data.content)
+      return reject()
     }
-    return resolve(data.content);
-  });
+    return resolve(data.content)
+  })
 }
 
 // @func  orders.populateOrders
@@ -139,41 +140,41 @@ orders.populateOrders = (fetchedOrders = []) => {
     // TO DO .....
     // EMPTY ORDERS HANDLER
     // TO DO .....
-    return;
+    return
   }
   for (let i = 0; i < fetchedOrders.length; i++) {
-    const order = fetchedOrders[i];
-    orders.addOrder(order);
+    const order = fetchedOrders[i]
+    orders.addOrder(order)
   }
-  return;
+  return
 }
 
 // @func  orders.addOrder
 // @desc  
 orders.addOrder = (order) => {
   // CREATE SUMMARY
-  orders.addSummary(order);
+  orders.addSummary(order)
   // CREATE EXPANDED
-  orders.addDetailed(order);
+  orders.addDetailed(order)
   // POPULATE MAKES
   for (let i = 0; i < order.makes.checkout.length; i++) {
-    const make = order.makes.checkout[i];
-    orders.addMake(order, make);
+    const make = order.makes.checkout[i]
+    orders.addMake(order, make)
   }
   // POPULATE COMMENTS
   for (let i = 0; i < order.comments.length; i++) {
-    const comment = order.comments[i];
-    orders.addComment(order, comment);
+    const comment = order.comments[i]
+    orders.addComment(order, comment)
   }
-  return;
+  return
 }
 
 // @func  orders.addSummary
 // @desc  
 orders.addSummary = (order) => {
   // CONTAINER ONE
-  const orderNumber = `<p class="order-name">Order #${order.number}</p>`;
-  let notification = `<div id="order-summary-notification-${order._id}"></div>`; // TEMPORARY NO NOTIFICATION
+  const orderNumber = `<p class="order-name">Order #${order.number}</p>`
+  let notification = `<div id="order-summary-notification-${order._id}"></div>` // TEMPORARY NO NOTIFICATION
   const logo = `
   <div class="expand-logo">
     <?xml version="1.0" encoding="utf-8"?>
@@ -185,10 +186,10 @@ orders.addSummary = (order) => {
       <rect x="78" y="122.4" transform="matrix(-1 1.891366e-010 -1.891366e-010 -1 181.2541 380.6348)" width="25.3" height="135.8" />
     </svg>
   </div>
-  `;
-  const containerOne = `<div class="order-title-container">${orderNumber + notification}</div>`;
+  `
+  const containerOne = `<div class="order-title-container">${orderNumber + notification}</div>`
   // CONTAINER TWO
-  let status;
+  let status
   switch (order.status) {
     case "checkedout": status = "Validating Payment"; break;
     case "validated": status = "Building Order"; break;
