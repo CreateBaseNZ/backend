@@ -523,7 +523,7 @@ nav {
     display: block;
     position: absolute;
     right: 0;
-    height: calc(100% - #{$top-bar-height});
+    height: 100%;
     box-shadow: -10px -3px 20px -20px $dark-1;
     .modular-nav{
       padding: 5em 0;
@@ -538,8 +538,9 @@ nav {
         padding:0 0 1em 3vw;
       }
       .modular-nav-item-container{
-        width: 14vw;
-        min-width: 20em;
+        width: 18vw;
+        max-width: 15rem;
+        min-width: 13.5rem;
         padding: 0 calc(1vw + 20px);
         display: flex;
         flex-direction: row;
@@ -559,18 +560,17 @@ nav {
     align-items: center;
     width: 100%;
     border-radius: 0.5em;
-    padding: 0.5em;
+    padding: 0.4em 0.7em;
     transition: all ease 0.2s;
     .icon-wrap{
-      padding: 0.5em 1em;
-      margin-right: 1em;
-      width: 4em;
+      margin-right: 0.5em;
+      width: 2em;
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 0.4em;
       i{
-        font-size: 1.5em;
+        font-size: 1.25em;
         color: #c7c2d5;
         transition: color 0.2s ease-out;
       }
@@ -587,7 +587,7 @@ nav {
     .modular-nav-title{
       font-family: $poppins;
       font-weight: 600;
-      font-size: 0.9em;
+      font-size: 0.65em;
       color: $light-3;
       transition: color 0.2s ease-out;
     }
@@ -633,4 +633,47 @@ nav {
     }
   }
 
+}
+
+@media only screen and (min-width: 1250px) {
+  .modular-nav-container{
+    display: block;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    .modular-nav{
+      padding: 5em 0;
+      height: 100%;
+      .modular-nav-header{
+        font-size: 1.8em;
+        padding:0 0 1em 3vw;
+      }
+      .modular-nav-item-container{
+        width: 14vw;
+        min-width: 20em;
+        padding: 0 calc(1vw + 20px);
+        margin: 1em 0;
+      }
+      .modular-nav-signout{
+        margin: auto auto 0 auto;
+      }
+    }
+  }
+  .modular-nav-item{
+    width: 100%;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    .icon-wrap{
+      padding: 0.5em 1em;
+      margin-right: 1em;
+      width: 4em;
+      border-radius: 0.4em;
+      i{
+        font-size: 1.5em;
+      }
+    }
+    .modular-nav-title{
+      font-size: 0.9em;
+    }
+  }
 }
