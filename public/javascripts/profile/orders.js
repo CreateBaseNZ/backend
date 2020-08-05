@@ -551,8 +551,7 @@ orders.createComments = (order) => {
   const orderObject = JSON.stringify(order);
   const form = `
   <div class="comment-form-container">
-    <input type="text" class="messageSubmit" id="order-comment-${order._id}" placeholder="Post a comment...">
-    <button id="post-comment-${order._id}" class="submit-comment-container rmv-btn-css" onclick='orders.postComment(${orderObject});'>
+      <button id="attach-comment" class="submit-comment-container rmv-btn-css" onclick=''>
       <?xml version="1.0" encoding="iso-8859-1"?>
       <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 471.641 471.641"
@@ -567,6 +566,21 @@ orders.createComments = (order) => {
           c-7.159,6.131-7.993,16.905-1.862,24.064c6.131,7.159,16.905,7.993,24.064,1.862c0.668-0.572,1.29-1.194,1.862-1.862
           l216.747-216.747C485.073,184.954,484.156,100.769,431.666,49.412z" />
         </g>
+      </svg>
+    </button>
+    <input type="text" class="messageSubmit" id="order-comment-${order._id}" placeholder="Post a comment...">
+    <button id="post-comment-${order._id}" class="submit-comment-container rmv-btn-css" onclick='orders.postComment(${orderObject});'>
+      <?xml version="1.0" encoding="iso-8859-1"?>
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+      <style type="text/css">
+        .st0{fill:#FFFFFF;}
+      </style>
+      <g id="Layer_1">
+      </g>
+      <g id="Layer_2">
+        <polygon class="st0" points="6.6,34.2 497.3,247.8 7,459.7 7,296 360.1,246.9 7.4,200.3 	"/>
+      </g>
       </svg>
     </button>
   </div>

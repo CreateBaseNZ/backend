@@ -523,7 +523,7 @@ nav {
     display: block;
     position: absolute;
     right: 0;
-    height: 100%;
+    height: calc(100% - 60px);
     box-shadow: -10px -3px 20px -20px $dark-1;
     .modular-nav{
       padding: 5em 0;
@@ -636,11 +636,13 @@ nav {
 }
 
 @media only screen and (min-width: 1250px) {
+  $top-bar-height: 60px;
+
   .modular-nav-container{
     display: block;
     position: absolute;
     right: 0;
-    height: 100%;
+    height: calc(100% - $top-bar-height);
     .modular-nav{
       padding: 5em 0;
       height: 100%;
@@ -676,4 +678,10 @@ nav {
       font-size: 0.9em;
     }
   }
+  .order-detail-container{
+    max-width: 42em;
+    align-self: center;
+  }
+
+  // calc(20px + 2vmax) calc(30px + 3vmax)
 }
