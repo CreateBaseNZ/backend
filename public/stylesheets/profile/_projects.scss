@@ -1169,7 +1169,6 @@
     .proj-pop-left {
       position: relative;
       height: 100%;
-      width: 100%;
       min-width: 20%;
       cursor: pointer;
       overflow: hidden;
@@ -1635,6 +1634,12 @@
     .proj-pop-btn-container {
       display: none;
     }
+  }
+}
+
+#new-proj-pop-wrapper {
+  .proj-pop-delete {
+    visibility: hidden;
   }
 }
 
