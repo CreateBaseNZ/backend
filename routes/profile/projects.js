@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 const express = require("express");
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
 
 /*=========================================================================================
 VARIABLES
@@ -145,6 +146,8 @@ router.get("/profile/customer/fetch/all_proj", verifiedContent, async (req, res)
     res.send({ status: "failed", content: error });
     return;
   }
+  // SORT PROJECTS
+  projects.sort(compareModifiedDate);
   // RETURN ALL PROJECTS TO CLIENT
   res.send({ status: "succeeded", content: projects });
   return;
@@ -274,6 +277,17 @@ router.get("/profile/projects/retrieve-thumbnail/:id", verifiedContent, async (r
   let readstream = GridFS.createReadStream(file.filename);
   return readstream.pipe(res);
 });
+
+/*=========================================================================================
+FUNCTIONS
+=========================================================================================*/
+
+const compareModifiedDate = (projectA, projectB) => {
+  const dateA = moment(projectA.date.modified).tz("Pacific/Auckland");
+  const dateB = moment(projectB.date.modified).tz("Pacific/Auckland");
+  const difference = Number(dateA.diff(dateB));
+  return (difference * -1);
+}
 
 /*=========================================================================================
 EXPORT ROUTE

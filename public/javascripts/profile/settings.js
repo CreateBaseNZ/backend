@@ -346,6 +346,8 @@ settings.changeAddress = async () => {
     return settings.changeAddressEnable();
   }
   // SUCCESS HANDLER
+  // Update the address on the dashboard
+  document.querySelector("#profile-location").innerHTML = `${address.city}, ${address.country}`;
   // Add a notification
   notification.popup("Address Updated");
   // Toggle Edit Mode

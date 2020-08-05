@@ -174,12 +174,12 @@ router.post("/settings/update", verifiedAccess, async (req, res) => {
   }
   // SAVE
   try {
-    await customer.save();
+    customer = await customer.save();
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
   // RETURN SUCCESS
-  return res.send({ status: "succeeded", content: "update successful" });
+  return res.send({ status: "succeeded", content: customer });
 });
 
 // @route     GET /settings/fetch-customer-details
