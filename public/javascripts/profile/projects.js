@@ -44,12 +44,18 @@ projects.initialise = async () => {
   // render all project cards
   if (profile.allProjects.length) {
     profile.allProjects.forEach(function (project, i) {
+      projects.renderSmallCard(project)
+      projects.renderProjPop(project, profile.allMakes)
+    })
+    console.log(profile.allProjects)
+    profile.allProjects.sort(function(a, b) {
+      return new Date(a.date.modified) - new Date(b.date.modified)
+    })
+    profile.allProjects.forEach(function (project, i) {
       if (project.bookmark) {
         projects.renderFavCard(project)
         favs += 1
       }
-      projects.renderSmallCard(project)
-      projects.renderProjPop(project, profile.allMakes)
     })
   }
   document.getElementById('proj-fav-header').innerHTML = 'Favourites (' + favs + ')'
@@ -148,6 +154,7 @@ projects.renderFavCard = (proj) => {
   // main card
   let cardEl = document.createElement('div')
   cardEl.id = proj.id + '-proj-fav'
+  cardEl.className = 'proj-fav'
   cardEl.addEventListener('click', () => {
     projects.showProjPop(proj.id)
   })
@@ -155,7 +162,7 @@ projects.renderFavCard = (proj) => {
   let imgEl = document.createElement('img')
   cardEl.appendChild(imgEl).className = 'proj-fav-img'
   // TO DO: project thumbnail
-  imgEl.src = '/profile/projects/retrieve-thumbnail/' + proj.id
+  imgEl.src = '/profile/projects/retrieve-thumbnail/' + proj.id + '?' + new Date().getTime() 
   // overlay
   let overlayEl = document.createElement('div')
   cardEl.appendChild(overlayEl).className = 'proj-fav-overlay'
@@ -180,7 +187,7 @@ projects.renderFavCard = (proj) => {
   contentEl.appendChild(notesEl).className = 'proj-fav-notes'
   notesEl.innerHTML = proj.notes
   // render
-  document.getElementById('proj-fav-container').appendChild(cardEl).className = 'proj-fav'
+  document.getElementById('proj-fav-container').prepend(cardEl)
 }
 
 projects.updateFavCard = (proj) => {
@@ -439,7 +446,7 @@ projects.renderProjPop = (proj, allMakes) => {
   saveWeb.className = 'grad-btn proj-pop-save'
   saveWeb.innerHTML = 'Save'
   saveWeb.addEventListener('click', (e) => {
-    if (e.target.parentElement.parentElement.parentElement.parentElement.id === 'new-proj-pop-wrapper') {
+    if (e.target.classList.contains('new-proj-save-btn')) {
       projects.saveNew(allMakes)
     } else {
       projects.saveExisting(proj.id, allMakes)
@@ -476,7 +483,7 @@ projects.renderProjPop = (proj, allMakes) => {
   saveMob.className = 'grad-btn proj-pop-save'
   saveMob.innerHTML = 'Save'
   saveMob.addEventListener('click', (e) => {
-    if (e.target.parentElement.parentElement.parentElement.id === 'new-proj-pop-wrapper') {
+    if (e.target.classList.contains('new-proj-pop-wrapper')) {
       projects.saveNew(allMakes)
     } else {
       projects.saveExisting(proj.id, allMakes)
@@ -502,6 +509,8 @@ projects.renderProjPop = (proj, allMakes) => {
     label.htmlFor = 'new-proj-pop-img-input'
     input.id = 'new-proj-pop-img-input'
     image.src = '/public/images/profile/project-thumbnail.jpeg'
+    saveMob.classList.add('new-proj-save-btn')
+    saveWeb.classList.add('new-proj-save-btn')
     projects.renderMakeBars(allMakes, null, barContainer)
   }
 }
@@ -577,12 +586,17 @@ projects.saveNew = async (allMakes) => {
     newBlobId.splice(0, 1, data["content"]["id"])
     bars[i].id = newBlobId.join('-')
   }
+  wrapper.querySelectorAll('.new-proj-save-btn').forEach(function (btn, i) {
+    btn.classList.remove('new-proj-save-btn')
+  })
   // render project cards
   if (data["content"]["bookmark"]) {
     projects.renderFavCard(data["content"])
+    document.getElementById('proj-fav-header').innerHTML = `Favourites (${document.getElementById('proj-fav-container').children.length})`
   }
   projects.renderSmallCard(data["content"])
   projects.renderProjPop(null, allMakes)
+  document.getElementById('proj-new-header').innerHTML = `All (${document.getElementById('proj-all-container').children.length - 1})`
   // SUCCESS HANDLER
   return projects.hideProjPop(data["status"], 'new', data["content"]["id"]);
 }
@@ -629,6 +643,7 @@ projects.saveExisting = async (projID, allMakes) => {
       favCard.remove()
     }
   }
+  document.getElementById('proj-fav-header').innerHTML = `Favourites (${document.getElementById('proj-fav-container').children.length})`
   // UPDATE SMALL CARD
   smallCard = document.getElementById(projID + '-proj-small')
   if (data["content"]["bookmark"]) {
@@ -638,7 +653,7 @@ projects.saveExisting = async (projID, allMakes) => {
   }
   smallCard.querySelector('.proj-small-name').children[0].innerHTML = data["content"]["name"]
   console.log(smallCard.querySelector('.proj-small-img').src)
-  smallCard.querySelector('.proj-small-img').src = '/profile/projects/retrieve-thumbnail/' + projID + '?' + new Date().getTime()
+  smallCard.querySelector('.proj-small-img').src = document.getElementById(projID + '-proj-pop-wrapper').querySelector('.proj-pop-img').src
   console.log(smallCard.querySelector('.proj-small-img').src)
   // SUCCESS HANDLER
   projects.renderProjPop(null, allMakes);
@@ -667,7 +682,9 @@ projects.trash = async (projID) => {
   document.getElementById(projID + '-proj-small').remove()
   if (document.getElementById(projID + '-proj-fav')) {
     document.getElementById(projID + '-proj-fav').remove()
+    document.getElementById('proj-fav-header').innerHTML = `Favourites (${document.getElementById('proj-fav-container').children.length})`
   }
+  document.getElementById('proj-new-header').innerHTML = `All (${document.getElementById('proj-all-container').children.length - 1})`
   // SUCCESS HANDLER
   return projects.hideProjPop(data["status"], 'delete', null);
 }
@@ -714,6 +731,7 @@ projects.updateBookmark = async (e, proj, bookmarkEl) => {
   } else {
     document.getElementById(proj.id + '-proj-fav').remove()
   }
+  document.getElementById('proj-fav-header').innerHTML = `Favourites (${document.getElementById('proj-fav-container').children.length})`
   // SUCCESS HANDLER
   return;
 }

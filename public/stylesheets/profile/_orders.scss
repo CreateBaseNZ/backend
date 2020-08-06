@@ -47,7 +47,6 @@
   }
 
   .order-item{
-    // border: thin solid blue;
     margin-bottom: calc(15px + 1.5vmax);
     background-color: $light-1;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.11);
@@ -86,7 +85,6 @@
         font-size: 0.8em;
       }
       .expand-logo{
-        // border: thin solid red;
         flex: 1 0 auto;
         display: flex;
         justify-content: flex-end;
@@ -103,7 +101,6 @@
     }
     #order-content-container{
       margin-top: 1em;
-      // border: thin black solid;
       display: flex;
       justify-content: space-between;
     }
@@ -112,7 +109,6 @@
   .order-info-wrap{
     flex: 0 0 65%;
     .order-info{
-      // border: thin solid cyan;
       display: flex;
       align-items: center;
       color: $dark-1;
@@ -124,7 +120,6 @@
     }
   }
   .order-total{
-    // border:thin solid orange;
     flex: 0 0 20%;
     display: flex;
     flex-direction: column;
@@ -159,7 +154,6 @@
     height: calc(100% - 60px);
     width: 100vw;
     position: fixed;
-    // border: thin solid cyan;
     background-color: $light-1;
     padding: calc(10px + 1vmax) 0;
     overflow-y: auto;
@@ -194,12 +188,10 @@
 
   .progress-bar-container{
     margin: 1em 1em 0 1em;
-    // border: thin solid red;
     display: flex;
     align-items: center;
     .progress-container{
       flex: 0 0 auto;
-      // border: thin solid black;
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -262,7 +254,6 @@
   }
   .status-label-container{
     width: 4em;
-    // border: thin solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -366,7 +357,6 @@
       // display: flex;
       // width: 100%;
       .order-info-wrap{
-        // border: thin solid red;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -413,7 +403,6 @@
       }
       .item-quantity-container{
         flex: 0 0 10%;
-        // border: thin solid red;
         color: $dark-2;
         font-size: calc(0.5em + 0.2vmax);
         display: flex;
@@ -425,26 +414,22 @@
       }
       .order-item-price{
         flex: 0 0 10%;
-        // border: thin solid red;
         color: $dark-2;
         font-size: calc(0.6em + 0.2vmax);
       }
     }
     .price-breakdown-container{
       flex: 0 0 100%;
-      // border: thin solid red;
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
       .divider-container{
         flex: 0 0 100%;
         padding: 0;
-        // border: thin solid blue;
         display: flex;
         justify-content: flex-end;
       }
       .divider-container2{
-        // border: thin solid blue;
         display: flex;
         justify-content: flex-end;
       }
@@ -460,7 +445,6 @@
     .price-breakdown{
       display: flex;
       flex-direction: column;
-      // border: thin red solid;
       width: 80%;
       .subtotal-container{
         display: flex;
@@ -473,13 +457,10 @@
         color: $dark-1;
         font-size:calc(0.6em + 0.2vmax);
         padding-right: 2em;
-        // border: thin solid black;
         min-width: 8em;
       }
       .subtotal-price{
         text-align: end;
-        // min-width: 8vw;
-        // border: thin solid red;
         color: $dark-1;
         font-weight: 600;
         font-size:calc(0.7em + 0.2vmax);
@@ -489,7 +470,6 @@
         }
       }
       .order-detail-total{
-        // border:thin solid orange;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -498,7 +478,6 @@
           font-family: $poppins;
           font-size: calc(0.6em + 0.2vmax);
           color: $dark-1;
-          // border: thin solid black;
         }
         .subtotal-title{
           font-size: calc(0.6em + 0.2vmax);
@@ -563,7 +542,6 @@
       display: flex;
       align-items: center;
       width:100%;
-      // border: thin solid black;
       margin-bottom: 1em;
       .message{
         padding: 0 1em;
@@ -587,9 +565,7 @@
       }
     }
     .profile-pic-container{
-      // border: thin solid black;
       border-radius: 50%;
-      // background-color: grey;
       display: flex;
       flex-direction: column;
       img{
@@ -613,7 +589,6 @@
 
     .comment-form-container{
       background-color: $light-1;
-      // border: thin solid cyan;
       padding: 1.2em 8vw;
       display: flex;
       align-items: center;
@@ -654,7 +629,7 @@
 }
 @media only screen and (min-width: 850px){
   #orders-area{
-    width: calc(100vw - 20em);
+    width: calc(100vw - 12em);
     flex-wrap: wrap;
     max-width: 125em;
     .my-orders-container {
@@ -683,7 +658,7 @@
     }
 
     .order-tracking-container, .order-preview, .order-summary {
-      padding: calc(10px + 1vmax) calc(20px + 2vmax);
+      padding: calc(10px + 1vmax) calc(20px + 2vmax) calc(10px + 1vmax) calc(40px + 3vmax);
     }
 
     .divider-container {
@@ -691,7 +666,7 @@
     }
 
     .order-detail-wrap {
-      width: calc(90vw - 18em);
+      width: calc(77vw);
     }
 
 
@@ -719,7 +694,6 @@
         }
       }
       .price-breakdown{
-        // border: thin red solid;
         width: 50%;
       }
       .change-location{
@@ -788,11 +762,11 @@
       display: flex;
       flex-direction: column;
       margin: 0;
-      padding: calc(20px + 2vmax) calc(40px + 4vmax);
+      padding: calc(20px + 2vmax) calc(30px + 2vmax);
       .order-detail-container {
         background-color: $light-1;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.11);
-        padding: calc(20px + 2vmax) 0;
+        padding: calc(20px + 2vmax) 0 calc(10px + 1vmax) 0;
         .full-tracking {
           display: flex;
         }

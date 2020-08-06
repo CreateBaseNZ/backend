@@ -93,10 +93,9 @@ dashboard.addListener = () => {
     dashboard.wrapper.classList.toggle('db-profile-wrapper-edit')
 
     // Update profile pictures in nav bar
-    dpTemp = dashboard.dpEl.src;
     for (var i = 0; i < dashboard.allDP.length; i++) {
       console.log(dashboard.allDP[i])
-      dashboard.allDP[i].src = dpTemp
+      dashboard.allDP[i].src = dashboard.dpEl.src
     }
     // Save new variables
     // dashboard.saveDetails();
@@ -287,10 +286,10 @@ dashboard.renderProjects = (project, el, initialise) => {
     el.style.visibility = 'visible'
     el.setAttribute('onclick', `dashboard.goToProject('${project.id}');`)
     el.id = project.id + '-db-proj'
-    el.querySelector('.db-proj-img').src = '/profile/projects/retrieve-thumbnail/' + project.id
     el.querySelector('.db-proj-name').innerHTML = project.name
     let makesEl = el.querySelector('.db-proj-makes')
     if (initialise) {
+      el.querySelector('.db-proj-img').src = '/profile/projects/retrieve-thumbnail/' + project.id + '?' + new Date().getTime()
       project.makes.forEach(function (make, j) {
         if (makesEl.innerHTML !== '') {
           makesEl.innerHTML += ', '
@@ -298,6 +297,7 @@ dashboard.renderProjects = (project, el, initialise) => {
         makesEl.innerHTML += make.file.name
       })
     } else {
+      el.querySelector('.db-proj-img').src = document.getElementById(project.id + '-proj-pop-wrapper').querySelector('.proj-pop-img').src
       makesEl.innerHTML = project.allMakesString
     }
   } else {
