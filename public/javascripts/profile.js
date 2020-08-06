@@ -1,4 +1,4 @@
-  /* ========================================================================================
+/* ========================================================================================
 VARIABLES
 ======================================================================================== */
 
@@ -45,13 +45,13 @@ profile.initialise = async () => {
   const [allProjects, allMakes] = (await projects.loadUserData());
   profile.allProjects = allProjects
   profile.allMakes = allMakes
+  // INITIALISATIONS
+  await dashboard.initialise(); // Dashboard
+  await projects.initialise(); // Projects
+  await orders.initialise(); // Settings
+  await settings.initialise(); // Settings
   // REMOVE STARTUP LOADER
   removeLoader(false);
-  // INITIALISATIONS
-  dashboard.initialise(); // Dashboard
-  projects.initialise(); // Projects
-  orders.initialise(); // Settings
-  settings.initialise(); // Settings
   // TO BE CLASSIFIED
   // Get elements
   projScroll = document.getElementById('proj-scroll-container');
