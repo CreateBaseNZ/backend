@@ -47,7 +47,7 @@ dashboard.initialise = async () => {
   }
   dashboard.populateDetails(customerInfo);
   dashboard.addListener();
-  let threeRecentProjects = profile.allProjects.filter(item => item.bookmark).reverse().slice(0, 3)
+  let threeRecentProjects = profile.allProjects.filter(item => item.bookmark).slice(0, 3)
   const projElements = document.getElementsByClassName('db-proj-item')
   for (var i = 0; i < 3; i++) {
     dashboard.renderProjects(threeRecentProjects[i], projElements[i], true)
