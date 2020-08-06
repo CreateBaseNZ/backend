@@ -75,7 +75,7 @@ profile.setPage = (page = undefined, initialise = false) => {
   profile.setPageUpdate(newPage, baseURL);
   if (page === '') {
     const projItems = document.getElementsByClassName('db-proj-item')
-    let threeRecentProjects = Array.from(document.getElementById('proj-fav-container').children).reverse().slice(0, 3)
+    let threeRecentProjects = Array.from(document.getElementById('proj-fav-container').children).slice(0, 3)
     for (var i = 0; i < 3; i++) {
       let proj
       if (threeRecentProjects[i]) {
