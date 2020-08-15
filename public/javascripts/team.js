@@ -49,7 +49,7 @@ team.initialise = async () => {
 team.declareVariables = () => {
   team.mediaQuery = window.matchMedia("(min-width: 850px)");
   team.landscape = window.innerWidth > window.innerHeight;
-  team.numberOfMembers = 6;
+  team.numberOfMembers = 7;
 }
 
 // @func  team.addImages
@@ -70,8 +70,8 @@ team.addImages = () => {
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-louis-default"
     }
     const image4 = {
-      src: "/public/images/team/hyesu.png", id: "",
-      alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-hyesu-default"
+      src: "/public/images/team/craig.jpg", id: "",
+      alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-craig-default"
     }
     const image5 = {
       src: "/public/images/team/brad.jpg", id: "",
@@ -81,8 +81,12 @@ team.addImages = () => {
       src: "/public/images/team/brydon.jpg", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-brydon-default"
     }
+    const image7 = {
+      src: "/public/images/team/todd.png", id: "",
+      alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-todd-default"
+    }
     // LOAD IMAGES
-    const objects = [image1, image2, image3, image4, image5, image6];
+    const objects = [image1, image2, image3, image4, image5, image6, image7];
     try {
       await imageLoader(objects);
     } catch (error) {
