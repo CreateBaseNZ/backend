@@ -720,9 +720,9 @@ form{
         grid-column: 4;
         grid-row: 2/4;
         height:20em;
-        background-image: url(/public/images/3dInfo/table.jpg);
+        background-image: url('../../images/3dInfo/comp-table.png');
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         background-position: center;
     }
 }
