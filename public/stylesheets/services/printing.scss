@@ -716,14 +716,79 @@ form{
     }
 
     .materials-image{
-        display: block;
         grid-column: 4;
         grid-row: 2/4;
         height:20em;
-        background-image: url('../../images/3dInfo/comp-table.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
+        display: grid;
+        grid-template-rows: 0.75fr 2fr 2fr 2fr;
+        grid-template-columns: 5.5fr 4fr 7fr;
+        border: thin solid $dark-1;
+
+        // background-image: url('../../images/3dInfo/high-qual.png');
+        // background-repeat: no-repeat;
+        // background-size: contain;
+        // background-position: center;
+        .materials-head {
+            background: $dark-1;
+            color: $light-1;
+            padding: 0.5em 1vw;
+            font-weight: 600;
+        }
+        .materials-name {
+            padding: 1em 1vw;
+            justify-self: flex-start;
+            align-self: center;
+            font-size: calc(6px + 0.5vmax);
+        }
+        .materials-details {
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 0.5em 1vw;
+            height: 100%;
+            .materials-details-item {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                font-size: calc(5px + 0.4vmax);
+                justify-content: space-between;
+                p { text-transform: uppercase; }
+                i {
+                    font-size: calc(5px + 0.4vmax);
+                    margin-left: calc(1px + 0.1vmax);
+                }
+                .fas { color: $logo-2; }
+                .far { color: $light-2; }
+            }
+        }
+        .materials-use {
+            align-self: center;
+            font-size: calc(5px + 0.4vmax);
+            padding: 1em 1vw;
+            span { font-weight: 600; }
+        }
+        .data-row {
+            grid-column: 1 / 4;
+            z-index: 0;
+        }
+        .data-cell {
+            z-index: 1;
+        }
+        .data-cell:hover ~ .data-row {
+            background-color: rgb(252, 252, 252);
+        }
+        .data-cell:hover ~ .data-row + .data-cell ~ .data-row{
+            background-color: transparent;
+        }
+        .row-1{ grid-row: 2;}
+        .row-2{ grid-row: 3;}
+        .row-3{ grid-row: 4;}
+
+        .col-1{ grid-column: 1;}
+        .col-2{ grid-column: 2;}
+        .col-3{ grid-column: 3;}
     }
 }
 
