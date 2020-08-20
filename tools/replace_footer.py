@@ -41,7 +41,7 @@ markdown = """
               class="fab fa-facebook-square" target="_blank"></a>
             <a href="https://www.instagram.com/createbasenz/" class="fab fa-instagram" target="_blank"></a>
             <a href="https://twitter.com/CreateBaseNZ" class="fab fa-twitter" target="_blank"></a>
-            <a href="https://www.youtube.com/user/LouiiL" class="fab fa-youtube" target="_blank"></a>
+            <a href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" class="fab fa-youtube" target="_blank"></a>
           </div>
           <div class="contact-legal">
             <a href="/tac" id="tac">Terms & Conditions</a>
