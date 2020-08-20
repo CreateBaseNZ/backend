@@ -627,7 +627,12 @@
   }
   
 }
-@media only screen and (min-width: 850px){
+
+// #############################################################################
+// MEDIA QUERY
+// #############################################################################
+
+@media only screen and (min-width: 850px) {
   #orders-area{
     width: calc(100vw - 12em);
     flex-wrap: wrap;
@@ -732,7 +737,11 @@
   }
 }
 
-@media only screen and (min-width: 1250px){
+// #############################################################################
+// MEDIA QUERY
+// #############################################################################
+
+@media only screen and (min-width: 1250px) {
   #orders-area{
     width: calc(100vw - 20em);
     flex-wrap: wrap;

@@ -729,11 +729,13 @@
   }
 }
 
+
+
 // #############################################################################
 // MEDIA QUERY
 // #############################################################################
 
-@media only screen and (min-width: 850px) and (orientation: landscape) {
+@media only screen and (min-width: 850px) {
 
 #projects-area {
   flex-direction: column;
@@ -1645,7 +1647,7 @@
 
 }
 
-@media only screen and (min-width: 1250px) and (orientation: landscape) {
+@media only screen and (min-width: 1250px) {
 
   #projects-area {
     width: calc(100vw - 20em);
