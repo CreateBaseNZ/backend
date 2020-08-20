@@ -101,7 +101,7 @@ router.post("/login/validate", async (req, res) => {
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
-  if (message === "incorrect password") return res.send({ status: "failed", content: { email: "", password: "Sorry, the password you've entered is incorrect." } });
+  if (message === "Incorrect password") return res.send({ status: "failed", content: { email: "", password: "Sorry, the password you've entered is incorrect." } });
   // SUCCESS HANDLER
   return res.send({ status: "succeeded", content: { email: "", password: "" } });
 });
@@ -256,7 +256,7 @@ router.post("/account/login/validate", async (req, res) => {
         return res.send({ status: "failed", content: error });
       }
       validation.password.message = message;
-      if (message === "incorrect password") {
+      if (message === "Incorrect password") {
         validation.password.valid = false;
       } else if (message === "password match") {
         validation.password.valid = true;

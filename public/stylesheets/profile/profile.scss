@@ -1,9 +1,9 @@
 @import "../global/all_webapp";
 // @import "../global/all";
-// @import "dashboard";
+@import "dashboard";
 @import "projects";
 @import "orders";
-@import "settings";
+// @import "settings";
 
 body {
   background: $light-1;
@@ -25,6 +25,18 @@ body {
   display: none;
   max-height: 100%;
   // width: 100%;
+}
+
+.hide {
+  // -webkit-transition: ease-out 0.5s;
+  // transition: ease-out 0.5s;
+  height: 0em;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  display: none;
 }
 
 // #############################################################################

@@ -77,10 +77,27 @@ settings.initialise = async () => {
   // POPULATE FIELDS
   // Email
   settings.populateEmail(details.account.email);
+  document.getElementById('emailPassword').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      settings.changeEmail()
+    }
+  })
   // Address
   settings.populateAddress(details.customer.address);
+  // Password
+  document.getElementById('confirmNewPassword').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      settings.changePassword()
+    }
+  })
   // Subscription
   settings.populateSubscription(details.customer.subscription.mail);
+  // Delete
+  document.getElementById('confirm-removal-password').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      settings.deleteAccount()
+    }
+  })
 }
 
 // @func  settings.fetchCustomerDetails
@@ -122,11 +139,9 @@ EMAIL
 // @func  settings.editEmail
 // @desc  
 settings.editEmail = () => {
-  document.querySelector("#settings-edit-email").classList.toggle("hide");
-  document.querySelector("#newEmail-container").classList.toggle("hide");
-  document.querySelector("#emailPassword-container").classList.toggle("hide");
-  document.querySelector("#email-error").classList.toggle("hide");
-  document.querySelector("#email-btn-group-email").classList.toggle("hide");
+  console.log('being used')
+  document.getElementById('settings-email-container').classList.toggle('settings-active')
+  document.getElementById('settings-email-error').innerHTML = ''
   return;
 }
 
@@ -160,13 +175,14 @@ settings.changeEmail = async () => {
   try {
     data = await settings.changeEmailSubmit(email, password);
   } catch (error) {
-    document.querySelector("#email-error").innerHTML = "failed";
+    document.getElementById("settings-email-error").innerHTML = "Failed";
     settings.changeEmailEnable();
     return console.log(error);
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    document.querySelector("#email-error").innerHTML = data.content;
+    console.log(data)
+    document.getElementById("settings-email-error").innerHTML = data.content;
     return settings.changeEmailEnable();
   }
   // SUCCESS HANDLER
@@ -192,21 +208,21 @@ settings.changeEmailValidate = (email, password) => {
   // PASSWORD
   if (!password) {
     valid = false;
-    error = "password required";
+    error = "Password required";
   } else if (!global.passwordValidity(password)) {
     valid = false;
-    error = "invalid password";
+    error = "Invalid password";
   }
   // EMAIL
   if (!email) {
     valid = false;
-    error = "email required";
+    error = "Email required";
   } else if (!emailRE.test(String(email).toLowerCase())) {
     valid = false;
-    errorEmail = "invalid email";
+    errorEmail = "Invalid email";
   }
   // SET ERROR
-  document.querySelector("#email-error").innerHTML = error;
+  document.getElementById("settings-email-error").innerHTML = error;
   // SUCCESS HANDLER
   return valid;
 }
@@ -260,28 +276,9 @@ ADDRESS
 // @func  settings.editAddress
 // @desc  
 settings.editAddress = () => {
-  document.querySelector("#settings-edit-address").classList.toggle("hide");
-  document.querySelector("#address-error").classList.toggle("hide");
-  document.querySelector("#settings-btn-group-address").classList.toggle("hide");
-  // CONTAINER
-  document.querySelector("#address-field-name").classList.toggle("current");
-  document.querySelector("#address-field-unit").classList.toggle("current");
-  document.querySelector("#address-field-street-number").classList.toggle("current");
-  document.querySelector("#address-field-street-name").classList.toggle("current");
-  document.querySelector("#address-field-suburb").classList.toggle("current");
-  document.querySelector("#address-field-city").classList.toggle("current");
-  document.querySelector("#address-field-postcode").classList.toggle("current");
-  document.querySelector("#address-field-country").classList.toggle("current");
-  // LABEL
-  document.querySelector("#address-label-name").classList.toggle("hide");
-  document.querySelector("#address-label-unit").classList.toggle("hide");
-  document.querySelector("#address-label-street-number").classList.toggle("hide");
-  document.querySelector("#address-label-street-name").classList.toggle("hide");
-  document.querySelector("#address-label-suburb").classList.toggle("hide");
-  document.querySelector("#address-label-city").classList.toggle("hide");
-  document.querySelector("#address-label-postcode").classList.toggle("hide");
-  document.querySelector("#address-label-country").classList.toggle("hide");
-  // INPUT
+  document.getElementById('settings-address-container').classList.toggle('settings-active')
+  document.getElementById('settings-email-error').innerHTML = ''
+
   if (document.querySelector("#addressUnit").getAttribute("disabled") === "") {
     document.querySelector("#addressName").removeAttribute("disabled");
     document.querySelector("#addressUnit").removeAttribute("disabled");
@@ -342,14 +339,14 @@ settings.changeAddress = async () => {
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    document.querySelector("#address-error").innerHTML = data.content;
+    document.getElementById("settings-address-error").innerHTML = data.content;
     return settings.changeAddressEnable();
   }
   // SUCCESS HANDLER
   // Update the address on the dashboard
   document.querySelector("#profile-location").innerHTML = `${address.city}, ${address.country}`;
   // Add a notification
-  notification.popup("Address Updated");
+  notification.popup("Address updated");
   // Toggle Edit Mode
   settings.changeAddressEnable();
   return settings.editAddress();
@@ -409,7 +406,7 @@ settings.changeAddressValidate = (address) => {
     error = "";
   }
   // SET ERROR
-  document.querySelector("#address-error").innerHTML = error;
+  document.getElementById("settings-address-error").innerHTML = error;
   return valid;
 }
 
@@ -446,10 +443,7 @@ PASSWORD
 // @func  settings.editPassword
 // @desc  
 settings.editPassword = () => {
-  document.querySelector("#settings-edit-password").classList.toggle("hide");
-  document.querySelector("#password-error").classList.toggle("hide");
-  document.querySelector("#settings-btn-group-password").classList.toggle("hide");
-  document.querySelector("#password-item-wrap").classList.toggle("hide");
+  document.getElementById('settings-pass-container').classList.toggle('settings-active')
   return;
 }
 
@@ -471,12 +465,12 @@ settings.changePassword = async () => {
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    document.querySelector("#password-error").innerHTML = data.content
+    document.getElementById("settings-pass-error").innerHTML = data.content
     return settings.changePasswordEnable();
   }
   // SUCCESS HANDLER
   // Add a notification
-  notification.popup("Password Updated");
+  notification.popup("Password updated");
   // Clear Input Fields
   settings.changePasswordClear();
   settings.changePasswordEnable();
@@ -502,31 +496,31 @@ settings.changePasswordValidate = (newPassword, newPasswordConfirm, password) =>
   // NEW PASSWORD CONFIRM
   if (!newPasswordConfirm) {
     valid = false;
-    error = "confirm new password required";
+    error = "Confirm new password required";
   }
   // NEW PASSWORD
   if (!newPassword) {
     valid = false;
-    error = "new password required";
+    error = "New password required";
   } else if (!global.passwordValidity(newPassword)) {
     valid = false;
-    error = "password is too weak";
+    error = "Password is too weak";
   }
   // PASSWORD MATCH
   if (newPassword !== newPasswordConfirm) {
     valid = false;
-    error = "new password does not match";
+    error = "New password does not match";
   }
   // PASSWORD
   if (!password) {
     valid = false;
-    error = "password required";
+    error = "Password required";
   } /*else if (!global.passwordValidity(password)) {
     valid = false;
     error = "invalid password";
   }*/
   // SET ERROR
-  document.querySelector("#password-error").innerHTML = error;
+  document.getElementById("settings-pass-error").innerHTML = error;
 
   return valid;
 }
@@ -590,7 +584,13 @@ SUBSCRIPTION
 // @desc  
 settings.populateSubscription = (subscription) => {
   document.querySelector("#settings-subscription-input").checked = subscription;
-
+  if (subscription) {
+    document.getElementById('settings-sub-status').innerHTML = 'Subscribed'
+    document.getElementById('settings-sub-status').classList.add('settings-subbed')
+  } else {
+    document.getElementById('settings-sub-status').innerHTML = 'Subscribe'
+    document.getElementById('settings-sub-status').classList.add('settings-not-subbed')
+  }
   // TO DO .....
   // Assign ID of the address loader element
   // document.querySelector("#").classList.add("hide");
@@ -617,16 +617,22 @@ settings.changeSubscription = async () => {
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    document.querySelector("#subscription-error").innerHTML = data.content;
+    document.getElementById("settings-sub-error").innerHTML = data.content;
     return settings.changeSubscriptionEnable();
   }
   // SUCCESS HANDLER
   // Add a notification
   let message;
   if (subscription) {
-    message = "subscribed successfully";
+    message = "Subscribed successfully";
+    document.getElementById('settings-sub-status').innerHTML = 'Subscribed'
+    document.getElementById('settings-sub-status').classList.toggle('settings-subbed')
+    document.getElementById('settings-sub-status').classList.toggle('settings-not-subbed')
   } else {
-    message = "unsubscribed successfully";
+    message = "Unsubscribed successfully";
+    document.getElementById('settings-sub-status').innerHTML = 'Subscribe'
+    document.getElementById('settings-sub-status').classList.toggle('settings-subbed')
+    document.getElementById('settings-sub-status').classList.toggle('settings-not-subbed')
   }
   notification.popup(message);
   return settings.changeSubscriptionEnable();
@@ -648,10 +654,10 @@ settings.changeSubscriptionValidate = (subscription) => {
   // SUBSCRIPTION
   if (subscription === undefined) {
     valid = false;
-    error = "subscription required";
+    error = "Subscription required";
   }
   // SET ERROR
-  document.querySelector("#subscription-error").innerHTML = error;
+  document.getElementById("settings-sub-error").innerHTML = error;
 
   return valid;
 }
@@ -687,19 +693,16 @@ DELETE ACCOUNT
 // @func  settings.deleteAccountConfirmation
 // @desc  
 settings.deleteAccountConfirmation = () => {
-  document.querySelector("#settings-delete-account-password-container").classList.toggle("hide");
-  document.querySelector("#delete-account-error").classList.toggle("hide");
-  document.querySelector("#settings-btn-group-account").classList.toggle("hide");
+  document.getElementById('settings-delete-container').classList.toggle('settings-active')
+  document.getElementById('settings-delete-error').innerHTML = ''
   return;
 }
 
 // @func  settings.deleteAccountCancel
 // @desc  
 settings.deleteAccountCancel = () => {
-  document.querySelector("#settings-delete-account-password-container").classList.toggle("hide");
-  document.querySelector("#delete-account-error").classList.toggle("hide");
-  document.querySelector("#settings-btn-group-account").classList.toggle("hide");
-  document.querySelector("#settings-delete-account-input").checked = false;
+  document.getElementById('settings-delete-container').classList.toggle('settings-active')
+  document.getElementById('settings-delete-error').innerHTML = ''
   return;
 }
 
@@ -721,7 +724,7 @@ settings.deleteAccount = async () => {
   }
   // VALIDATE DATA
   if (data.status === "failed") {
-    document.querySelector("#delete-account-error").innerHTML = data.content;
+    document.getElementById("settings-delete-error").innerHTML = data.content;
     return settings.deleteAccountEnable();
   }
   // SUCCESS HANDLER
@@ -744,13 +747,13 @@ settings.deleteAccountValidate = (password) => {
   // PASSWORD
   if (!password) {
     valid = false;
-    error = "password required";
+    error = "Password required";
   } else if (!global.passwordValidity(password)) {
     valid = false;
-    error = "invalid password";
+    error = "Invalid password";
   }
   // SET ERROR
-  document.querySelector("#delete-account-error").innerHTML = error;
+  document.getElementById("settings-delete-error").innerHTML = error;
 
   return valid;
 }
@@ -780,8 +783,8 @@ settings.deleteAccountEnable = () => {
   // document.querySelector("#").classList.add("hide");
   // TO DO .....
   // BUTTONS
-  document.querySelector("#settings-password-submit").removeAttribute("disabled");
-  document.querySelector("#settings-password-cancel").removeAttribute("disabled");
+  document.getElementById("settings-password-submit").removeAttribute("disabled");
+  document.getElementById("settings-password-cancel").removeAttribute("disabled");
 }
 
 // @func  settings.deleteAccountDisable
@@ -793,8 +796,8 @@ settings.deleteAccountDisable = () => {
   // document.querySelector("#").classList.remove("hide");
   // TO DO .....
   // BUTTONS
-  document.querySelector("#settings-password-submit").setAttribute("disabled", "");
-  document.querySelector("#settings-password-cancel").setAttribute("disabled", "");
+  document.getElementById("settings-password-submit").setAttribute("disabled", "");
+  document.getElementById("settings-password-cancel").setAttribute("disabled", "");
 }
 
 /* ========================================================================================
