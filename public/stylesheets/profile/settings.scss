@@ -512,9 +512,6 @@ input {
             width: 100%;
         }
     }
-    #settings-address-container > .divider {
-        // display: none;
-    }
 
     #settings-address-container.settings-active {
         #settings-address-item-wrap {
@@ -523,7 +520,7 @@ input {
                 flex-direction: row;
                 align-items: center;
                 label {
-                    flex: 0 0 7em;
+                    flex: 0 0 8em;
                 }
                 input {
                     flex: 1 1 0;
@@ -532,9 +529,6 @@ input {
             }
             #address-field-street-number {
                 width: calc(100% - 10vw);
-                input {
-                    flex: 1 1 0;
-                }
             }
             #address-field-unit {
                 width: 10vw;
@@ -548,7 +542,7 @@ input {
     #settings-delete-btn-group {
         .remove-btn {
             padding: 0.8em 2.2em;
-            // margin-bottom: 0;
+            margin-bottom: 0;
             margin-left: 5vw;
         }
         .cancel-btn {
