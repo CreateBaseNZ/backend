@@ -409,15 +409,15 @@ input {
     
     h2 {
         font-size: 1.2em;
-        margin-bottom: 0.5em;
+        margin-bottom: 1em;
     }
 
     h3 {
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
 
     input {
-        font-size: 0.9em;
+        font-size: 1em;
     }
 
     #settings-content-wrap {
@@ -428,6 +428,23 @@ input {
         justify-content: space-between;
         align-items: flex-start;
         padding-top: 5vh;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            height: 100%;
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: none;
+        }
+        &::-webkit-scrollbar-thumb {
+        background: #E2E2F5;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+        background: #E2E2F5;
+        }
+        &::-webkit-scrollbar-track-piece {
+        margin: calc(10px + 1vmax) 0;
+        }
     }
 
     #settings-col-1 {
@@ -444,7 +461,7 @@ input {
 
     .settings-section-container {
         max-width: none;
-        margin-bottom: 1em;
+        margin-bottom: 1.5em;
     }
 
     .settings-item-wrap {
@@ -496,7 +513,7 @@ input {
         }
     }
     #settings-address-container > .divider {
-        display: none;
+        // display: none;
     }
 
     #settings-address-container.settings-active {
@@ -531,7 +548,7 @@ input {
     #settings-delete-btn-group {
         .remove-btn {
             padding: 0.8em 2.2em;
-            margin-bottom: 0;
+            // margin-bottom: 0;
             margin-left: 5vw;
         }
         .cancel-btn {
