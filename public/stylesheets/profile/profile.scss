@@ -9,7 +9,7 @@ body {
   background: $light-1;
   max-width: 100%;
   overflow-x: hidden; 
-  overflow-y: auto;
+  overflow-y: hidden;
   height: 100%;
   max-height: 100%;
 }
@@ -19,12 +19,12 @@ body {
   height: calc(100vh - #{$top-bar-height});
   max-height: calc(100vh - #{$top-bar-height});
   font-family: $poppins;
+  position: relative;
 }
 
 .main-area {
   display: none;
   max-height: 100%;
-  // width: 100%;
 }
 
 .hide {
@@ -43,7 +43,7 @@ body {
 // MEDIA QUERY
 // #############################################################################
 
-@media only screen and (min-width: 850px) and (orientation: landscape) {
+@media only screen and (min-width: 850px) {
   
 #profile-page {
   margin-top: $top-bar-height;
@@ -54,6 +54,7 @@ body {
   display: flex;
   flex-direction: row;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 }

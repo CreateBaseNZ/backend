@@ -504,7 +504,7 @@ nav {
       display: block;
       visibility: hidden;
       position: absolute;
-      top: 0;
+      top: $top-bar-height;
       left: 0;
       height: 100vh;
       width: 100vw;
@@ -521,9 +521,7 @@ nav {
   .modular-nav-container{
     background-color: $light-1;
     display: block;
-    position: absolute;
-    right: 0;
-    height: calc(100% - 60px);
+    height: 100%;
     box-shadow: -10px -3px 20px -20px $dark-1;
     .modular-nav{
       padding: 5em 0;
@@ -541,7 +539,7 @@ nav {
         width: 18vw;
         max-width: 15rem;
         min-width: 13.5rem;
-        padding: 0 calc(1vw + 20px);
+        padding: 0 calc(0.8vw + 14px);
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -551,6 +549,24 @@ nav {
       .modular-nav-signout{
         color: red;
         margin: auto auto 0 auto;
+        letter-spacing: 0.1vw;
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+          bottom: 0;
+          height: 1px;
+          width: 0;
+          background: red;
+          transition: width 0.2s ease-out;
+        }
+        &:hover:after {
+          width: 100%;
+        }
       }
     }
   }
@@ -640,9 +656,6 @@ nav {
 
   .modular-nav-container{
     display: block;
-    position: absolute;
-    right: 0;
-    height: calc(100% - $top-bar-height);
     .modular-nav{
       padding: 5em 0;
       height: 100%;
@@ -683,5 +696,4 @@ nav {
     align-self: center;
   }
 
-  // calc(20px + 2vmax) calc(30px + 3vmax)
 }
