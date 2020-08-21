@@ -223,7 +223,6 @@ input {
 }
 
 // ----------------- Address section -----------------
-
 #address-field-name {
     position: relative;
     #settings-edit-address {
@@ -307,11 +306,15 @@ input {
         font-size: 0.8em;
         color: $dark-3; 
     }
+    #settings-delete-message.active {
+        color: red;
+    }
 }
 
 #settings-delete-item-wrap {
     display: none;
     #settings-delete-password-container {
+        cursor: inherit;
         input {
             margin-left: 0;
             width: 100%;
@@ -335,7 +338,6 @@ input {
         }
     }
 }
-
 
 #settings-delete-btn-group {
     .remove-btn {
@@ -377,12 +379,10 @@ input {
 // MEDIA QUERY
 // #############################################################################
 
-@media only screen and (min-width: 850px) and (orientation: landscape) {
+@media only screen and (min-width: 850px) {
 
-    #settings-area{
-        width: calc(100vw - 12em);
+    #settings-area {
     }
-
 
     #settings-header {
         margin: calc(15px + 1.5vmax) 0 0 0;
@@ -407,137 +407,143 @@ input {
         }
     }
     
-    h2{
-        font-size: 1em;
-    }
-    h3{
-
-        font-size: 0.7em;
+    h2 {
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
     }
 
-    input{
+    h3 {
         font-size: 0.8em;
-
     }
 
-    p{
+    input {
         font-size: 0.9em;
     }
 
-    #settings-delete-disclaimer{
-        color: $light-3;
-        font-size: 0.8em;
+    #settings-content-wrap {
+        flex: 1 1 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-top: 5vh;
     }
-    #confirmP{
-        font-size: 0.8em;
-        color: $dark-2;
+
+    #settings-col-1 {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #settings-col-2 {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .settings-section-container {
+        max-width: none;
+        margin-bottom: 1em;
+    }
+
+    .settings-item-wrap {
+        margin: 0;
+    }
+
+    .settings-email-item,
+    .settings-address-item, 
+    .settings-pass-item {
+        max-width: none;
     }
 
     .settings-error-message {
-        height: 1em;
-        margin: 0 0 1em 0;
+        font-size: 0.6em;
+        margin-right: 1rem;
+        text-align: right;
     }
 
-    #settings-content-wrap{
-        margin-top: 2em;
-        padding: 0 1em;
-        display: flex;
-        flex-direction: row;
-    }
-    #email-container{
-        h2{
-            margin: 0 0 1em 0;
-        }
-        #emailPassword-container{
-            margin-bottom: 1em;
-        }
-        label{
-            margin: 1em 0 0 0;
-        }
-    }
-    #address-container{
-        margin: 0;
-        #address-item-wrap{
-            margin-left: 0.5em;
-        }
-    }
-    #password-container{
-        #password-item-wrap{
-            margin: 0.5em 0 0 1em;
-        }
-    }
-    #subscription-container{
-        #sub-status-p{
-            font-size: 0.8em;
-        }
-    }
-
-    #col1{
-        display: flex;
-        flex-direction: column;
-        width: 20em;
-        margin-right: 3vw;
-    }
-
-    #col2{
-        padding-top: 2em;
-        display: flex;
-        flex-direction: column;
-        width: 20em;
-    }
-
-    #settings-current-email {
-        input{
-            flex: 0 0 70%;
-        }
-    }
-
-    .address-item,.password-item{
-        input{
-            flex: 0 0 80%;
-        }
-    }
-
-    .settings-btn-group{
-        margin-top: 0.5em;
-        display: flex;
+    .settings-btn-group {
+        margin-right: 1em;
+        width: auto;
+        align-self: flex-end;
         flex-direction: row-reverse;
-        margin-left: 2em;
-        .remove-btn, .grad-btn, .cancel-btn{
-            font-size: 0.8em;
-            margin: 0;
+        align-content: center;
+        .grad-btn { 
+            margin-left: 5vw; 
+            margin-bottom: 0;
+            padding: 0.8em 2.2em;
         }
-        .grad-btn{
+    }
+
+    // ---------------- EMAIL SECTION ----------------
+    #settings-current-email {
+        margin: 0 0 0.5em 0;
+        input {
+            flex: 0 0 80%;
             margin-left: 1em;
-            padding: 1em 2.5em;
-        }
-        #submit{
-            margin: 0 0 0 1em;
         }
     }
 
-    #subscription-title{
-        label{
-            p{
-            font-size: 0.8em;
+    // ---------------- ADDRESS SECTION ----------------
+
+    #settings-address-item-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .settings-address-item {
+            width: 100%;
+        }
+    }
+    #settings-address-container > .divider {
+        display: none;
+    }
+
+    #settings-address-container.settings-active {
+        #settings-address-item-wrap {
+            .settings-address-item {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                label {
+                    flex: 0 0 7em;
+                }
+                input {
+                    flex: 1 1 0;
+                    margin-left: 0.5em;
+                }
             }
+            #address-field-street-number {
+                width: calc(100% - 10vw);
+                input {
+                    flex: 1 1 0;
+                }
+            }
+            #address-field-unit {
+                width: 10vw;
+                label {
+                    flex: 0 0 2em;
+                }
+            }
+        } 
+    }
+
+    #settings-delete-btn-group {
+        .remove-btn {
+            padding: 0.8em 2.2em;
+            margin-bottom: 0;
+            margin-left: 5vw;
         }
-    }
-
-    #settings-delete-account-password-container{
-        cursor: default;
-    }
-
-    .current{
-        input{
-            margin-left: 0;
+        .cancel-btn {
+            &::after {
+                border-bottom: none;
+            }
         }
     }
 
 }
 
-@media only screen and (min-width: 1250px){
+@media only screen and (min-width: 1250px) {
     #settings-area{
-        width: calc(100vw - 20em);
     }
 }

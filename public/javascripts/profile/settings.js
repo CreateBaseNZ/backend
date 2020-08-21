@@ -694,6 +694,7 @@ DELETE ACCOUNT
 // @desc  
 settings.deleteAccountConfirmation = () => {
   document.getElementById('settings-delete-container').classList.toggle('settings-active')
+  document.getElementById('settings-delete-message').classList.toggle('active')
   document.getElementById('settings-delete-error').innerHTML = ''
   return;
 }

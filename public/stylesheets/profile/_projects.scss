@@ -743,7 +743,6 @@
   height: 100%;
   width: calc(100vw - 12em);
   max-width: 86vw;
-  flex: 0 0 auto;
 }
 
 #proj-header {
@@ -1650,6 +1649,6 @@
 @media only screen and (min-width: 1250px) {
 
   #projects-area {
-    width: calc(100vw - 20em);
+
   }
 }

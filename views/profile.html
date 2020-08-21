@@ -364,7 +364,7 @@
       </div>
 
       <div id="settings-content-wrap">
-        <div id="col1">
+        <div id="settings-col-1">
 
           <div id="settings-email-container" class="settings-section-container">
 
@@ -408,10 +408,16 @@
             <div id="settings-address-item-wrap" class="settings-item-wrap">
               <div class="settings-address-item settings-editable" id="address-field-name">
                 <label for="addressName" id="address-label-name">
-                  <h3>Name/Company Name</h3>
+                  <h3>Name/Company</h3>
                 </label>
                 <input type="text" id="addressName" name="addressName" placeholder="Name/Company Name" disabled>
                 <div id="settings-edit-address" class="settings-edit-pen" onclick="settings.editAddress();"><button class="fas fa-pen-square"></button></div>
+              </div>
+              <div class="settings-address-item settings-editable" id="address-field-street-number">
+                <label for="streetNum" id="address-label-street-number">
+                  <h3>Street Num<span class="required-field">*</span></h3>
+                </label>
+                <input type="text" id="streetNum" name="streetNum" placeholder="Street Number" disabled>
               </div>
               <div class="settings-address-item settings-editable" id="address-field-unit">
                 <label for="addressUnit" id="address-label-unit">
@@ -419,39 +425,33 @@
                 </label>
                 <input type="text" id="addressUnit" name="addressUnit" placeholder="Unit" disabled>
               </div>
-              <div class="settings-address-item settings-editable" id="address-field-street-number">
-                <label for="streetNum" id="address-label-street-number">
-                  <h3>Street Number <span class="required-field">*</span></h3>
-                </label>
-                <input type="text" id="streetNum" name="streetNum" placeholder="Street Number" disabled>
-              </div>
               <div class="settings-address-item settings-editable" id="address-field-street-name">
                 <label for="streetName" id="address-label-street-name">
-                  <h3>Street Name <span class="required-field">*</span></h3>
+                  <h3>Street Name<span class="required-field">*</span></h3>
                 </label>
                 <input type="text" id="streetName" name="streetName" placeholder="Street Name" disabled>
               </div>
               <div class="settings-address-item settings-editable" id="address-field-suburb">
                 <label for="addressSuburb" id="address-label-suburb">
-                  <h3>Suburb <span class="required-field">*</span></h3>
+                  <h3>Suburb<span class="required-field">*</span></h3>
                 </label>
                 <input type="text" id="addressSuburb" name="addressSuburb" placeholder="Suburb" disabled>
               </div>
               <div class="settings-address-item settings-editable" id="address-field-city">
                 <label for="addressCity" id="address-label-city">
-                  <h3>City <span class="required-field">*</span></h3>
+                  <h3>City<span class="required-field">*</span></h3>
                 </label>
                 <input type="text" id="addressCity" name="addressCity" placeholder="City" disabled>
               </div>
               <div class="settings-address-item settings-editable" id="address-field-postcode">
                 <label for="postCode" id="address-label-postcode">
-                  <h3>Postcode <span class="required-field">*</span></h3>
+                  <h3>Postcode<span class="required-field">*</span></h3>
                 </label>
                 <input type="text" id="postCode" name="postCode" placeholder="Post code" disabled>
               </div>
               <div class="settings-address-item settings-editable" id="address-field-country">
                 <label for="addressCountry" id="address-label-country">
-                  <h3>Country <span class="required-field">*</span></h3>
+                  <h3>Country<span class="required-field">*</span></h3>
                 </label>
                 <input type="text" id="addressCountry" name="addressCountry" placeholder="Country" disabled>
               </div>
@@ -468,7 +468,7 @@
           </div>
         </div>
 
-        <div id="col2">
+        <div id="settings-col-2">
 
           <div id="settings-pass-container" class="settings-section-container">
 
@@ -531,11 +531,11 @@
 
           <div id="settings-delete-container" class="settings-section-container">
 
-            <h2>Delete account</h2>
+            <h2>Delete Account</h2>
             
             <p id="settings-delete-disclaimer">All projects, makes and associated saved data will be permanently removed</p>
             <div id="settings-delete-checkbox-wrap">
-              <label for="c1">Yes, I want to delete my account</label>
+              <label id="settings-delete-message" for="c1">Yes, I want to delete my account</label>
               <div class="settings-edit-pen">
                 <input id="settings-delete-checkbox" class="settings-checkbox" type="checkbox"
                   onchange="settings.deleteAccountConfirmation();">
