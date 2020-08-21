@@ -378,27 +378,27 @@ settings.changeAddressValidate = (address) => {
   // STREET NUMBER
   if (!address.street.number) {
     valid = false;
-    error = "street number required";
+    error = "Street number required";
   }
   // STREET NAME
   if (!address.street.name) {
     valid = false;
-    error = "street name required";
+    error = "Street name required";
   }
   // SUBURB
   if (!address.suburb) {
     valid = false;
-    error = "suburb required";
+    error = "Suburb required";
   }
   // CITY
   if (!address.city) {
     valid = false;
-    error = "city required";
+    error = "City required";
   }
   // POSTCODE
   if (!address.postcode) {
     valid = false;
-    error = "postcode required";
+    error = "Postcode required";
   }
   // COUNTRY
   if (!address.country) {
