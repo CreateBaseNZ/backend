@@ -50,6 +50,7 @@ profile.initialise = async () => {
   await projects.initialise(); // Projects
   await orders.initialise(); // Settings
   await settings.initialise(); // Settings
+
   // REMOVE STARTUP LOADER
   removeLoader(false);
   // TO BE CLASSIFIED
@@ -60,6 +61,21 @@ profile.initialise = async () => {
 // @func  profile.declareVariables
 // @desc  
 profile.declareVariables = () => {
+  window.addEventListener('resize', () => {
+    if (window.matchMedia("(min-width: 1250px)").matches) {
+      document.querySelector('.nav-in').style.display = 'none'
+      document.querySelector('.nav-right-menu-in').style.display = 'none'
+      if (document.querySelector('.nav-right-menu-in').classList.contains('nav-right-menu-active')) {
+        navigation.toggleRightMenu()
+      }
+    } else {
+      document.querySelector('.nav-in').style.display = 'block'
+      document.querySelector('.nav-right-menu-in').style.display = 'flex'
+      if (document.querySelector('.nav-right-menu-in').classList.contains('nav-right-menu-active')) {
+        document.querySelector('.nav-darken-overlay').classList.add('nav-darken-overlay-active')
+      }
+    }
+  })
 
 }
 
