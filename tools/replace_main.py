@@ -8,5 +8,5 @@ footer_omit = ["checkout.html", "login.html", "make.html", "profile.html", "sign
 
 print('Replacing header:')
 replace_nav.execute(nav_omit)
-print('Replacing footer:')
+print('\nReplacing footer:')
 replace_footer.execute(footer_omit)

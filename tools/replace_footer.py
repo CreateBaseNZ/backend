@@ -44,8 +44,8 @@ markdown = """
             <a href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" class="fab fa-youtube" target="_blank"></a>
           </div>
           <div class="contact-legal">
-            <a href="/tac" id="tac">Terms & Conditions</a>
-            <a href="/privpol" id="privpol">Privacy Policy</a>
+            <a href="/terms-and-conditions" id="tac">Terms & Conditions</a>
+            <a href="/privacy-policy" id="privpol">Privacy Policy</a>
           </div>
         </div>
       </div>
