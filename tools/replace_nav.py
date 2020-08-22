@@ -75,7 +75,6 @@ def execute(exclude):
   # Turns markdown into string with formatting
   soup = BeautifulSoup(markdown, "html.parser")
   newHTML = str(soup.encode('ascii').decode())
-  print(newHTML)
 
   # Set the directory (relative to cwd) here
   directory = "../views/"

@@ -108,7 +108,7 @@ login.validate = (email, password) => {
   // Password
   if (!password) {
     valid = false;
-    errorPassword = "Please enter a password."
+    errorPassword = "Please enter a password"
   } /*else if (!global.passwordValidity(password)) {
     valid = false;
     errorPassword = "invalid password";
@@ -116,7 +116,7 @@ login.validate = (email, password) => {
   // Email
   if (!email) {
     valid = false;
-    errorEmail = "Please enter an email."
+    errorEmail = "Please enter an email"
   } else if (!emailRE.test(String(email).toLowerCase())) {
     valid = false;
     errorEmail = "Please enter a valid email";
