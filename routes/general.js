@@ -220,6 +220,13 @@ router.get("/faq", (req, res) => {
   res.sendFile("faq.html", customerRouteOptions);
 });
 
+// @route     GET /shipping-info
+// @desc
+// @access    PUBLIC
+router.get("/shipping-info", (req, res) => {
+  res.sendFile("shipping-info.html", customerRouteOptions);
+});
+
 // @route     GET /privacy-policy
 // @desc
 // @access    PUBLIC

@@ -1,0 +1,100 @@
+@import "global/all";
+
+body {
+    background: $light-1;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: $poppins;
+}
+
+.main-page {
+  width: inherit;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-page-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 80em;
+    margin: 3em auto;
+    width: 75vw;
+    padding: 2vw;
+}
+
+.title-wrap{
+    width: 100%;
+}
+
+.title-container{
+    h1{
+        color: $dark-2;
+        font-size: 2em;
+        text-transform: uppercase;
+    }
+    .sub-title-container{
+        display: flex;
+        align-items: center;
+        .sub-title-line{
+            width: 5vw;
+            max-width: 3em;
+            height: 0.2em;
+            background-color: $logo-2;
+            margin-right: 1vw;
+        }
+        h4{
+            color: $logo-2;
+        }
+    }
+}
+
+.content-container{
+    padding:2em 0 0 0;
+}    
+
+h2{
+    font-size: 1.2em;
+    color: $dark-1;
+    font-weight: 600;
+}
+
+.content-paragraph{
+    margin: 2vh 0;
+    p{
+        font-size: 0.9em;
+        line-height: 180%;
+        padding: 0.5em 0;
+    }
+}
+
+@media only screen and (min-width: 850px){
+    .content-wrap{
+        padding: 2vh;
+    }
+    .content-container{
+        padding: 2vh 2vw;
+    }
+
+    .title-container{
+        h1{
+            color: $dark-2;
+            font-size: 2.5em;
+            text-transform: uppercase;
+        }
+    }
+
+    .content-paragraph{
+        p{
+            padding: 0;
+        }
+    }
+
+    h2{
+        font-size: 1.2em;
+    }
+}
+
+// @media only screen and (min-width: 1000px){
+// }

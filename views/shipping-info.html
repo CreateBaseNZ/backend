@@ -6,17 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon" href="/public/images/logo-icon.png" />
-  <title>Eng Kits • CreateBase</title>
+  <title>Shipping Info • CreateBase</title>
   <!-- =========================CSS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap"
     rel="stylesheet">
   <!-- ------------------------CUSTOM------------------------ -->
-  <link rel="stylesheet" href="/public/stylesheets/products/engkits.css" />
+  <link rel="stylesheet" href="/public/stylesheets/privacy-policy.css" />
 </head>
 
-<body onload="engkits.initialise();">
+<body onload="basePageInit();">
 
   <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
@@ -107,20 +107,62 @@
   </div>
 
   <div class="main-page hide">
-    <div class="temp-wrap">
-      <span class="glitch" id="change-text" data-text="ENG KITS">ENG KITS</span>
-
-      <div class="subscribe-container">
-        <p class="subscribe-message">
-          Get the latest updates on release:
-        </p>
-        <div class="kit-fld input-decor" id="subscribe-field">
-          <input type="email" name="email" id="subscribe-email-input" maxlength="100" placeholder=" " required />
-          <label class="input-label" for="subscribe-email-input">Email</label>
-          <label class="input-error" for="subscribe-email-input" id="subscribe-email-error"></label>
+    <div class="main-page-wrap">
+        <div class="title-wrap">
+            <div class="title-container">
+            <div class="sub-title-container">
+                <div class="sub-title-line"></div>
+                <h4>Info</h4>
+            </div>
+            <h1>Shipping & Returns</h1>
+            </div>
         </div>
-        <button class="market-btn reg-btn subscribe-btn" id="subscribe-main">SUBSCRIBE</button>
-      </div>
+        <div class="content-wrap">
+            <div class="content-container">
+                <div class="content-title">
+                    <h2>Lorem title</h2>
+                </div>
+                <div class="content-paragraph">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, sapien et posuere hendrerit, massa augue tristique sapien, id consectetur metus magna vitae felis. Praesent at ullamcorper ligula. Cras ut diam arcu. Pellentesque efficitur enim eget nunc eleifend commodo. Nulla semper porta massa sed dignissim. Pellentesque tincidunt purus placerat, eleifend mi in, venenatis erat. Duis in ullamcorper odio, et tristique elit. Proin vel enim vestibulum, interdum elit a, laoreet arcu. Nulla eleifend fringilla ante. Fusce varius sem et sapien blandit tempus. Donec facilisis maximus velit.</p>
+                </div>
+            </div>
+            <div class="content-container">
+                <div class="content-title">
+                    <h2>Lorem title</h2>
+                </div>
+                <div class="content-paragraph">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, sapien et posuere hendrerit, massa augue tristique sapien, id consectetur metus magna vitae felis. Praesent at ullamcorper ligula. Cras ut diam arcu. Pellentesque efficitur enim eget nunc eleifend commodo. Nulla semper porta massa sed dignissim. Pellentesque tincidunt purus placerat, eleifend mi in, venenatis erat. Duis in ullamcorper odio, et tristique elit. Proin vel enim vestibulum, interdum elit a, laoreet arcu. Nulla eleifend fringilla ante. Fusce varius sem et sapien blandit tempus. Donec facilisis maximus velit.</p>
+                </div>
+            </div>
+            <div class="content-container">
+                <div class="content-title">
+                    <h2>Lorem title</h2>
+                </div>
+                <div class="content-paragraph">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, sapien et posuere hendrerit, massa augue tristique sapien, id consectetur metus magna vitae felis. Praesent at ullamcorper ligula. Cras ut diam arcu. Pellentesque efficitur enim eget nunc eleifend commodo. Nulla semper porta massa sed dignissim. Pellentesque tincidunt purus placerat, eleifend mi in, venenatis erat. Duis in ullamcorper odio, et tristique elit. Proin vel enim vestibulum, interdum elit a, laoreet arcu. Nulla eleifend fringilla ante. Fusce varius sem et sapien blandit tempus. Donec facilisis maximus velit.</p>
+                </div>
+            </div>
+        </div>
+        <div class="title-wrap">
+            <div class="title-container">
+            <div class="sub-title-container">
+                <div class="sub-title-line"></div>
+                <h4>Info</h4>
+            </div>
+            <h1>Returns</h1>
+            </div>
+        </div>
+        <div class="content-wrap">
+            <div class="content-container">
+                <div class="content-title">
+                    <h2>Lorem title</h2>
+                </div>
+                <div class="content-paragraph">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, sapien et posuere hendrerit, massa augue tristique sapien, id consectetur metus magna vitae felis. Praesent at ullamcorper ligula. Cras ut diam arcu. Pellentesque efficitur enim eget nunc eleifend commodo. Nulla semper porta massa sed dignissim. Pellentesque tincidunt purus placerat, eleifend mi in, venenatis erat. Duis in ullamcorper odio, et tristique elit. Proin vel enim vestibulum, interdum elit a, laoreet arcu. Nulla eleifend fringilla ante. Fusce varius sem et sapien blandit tempus. Donec facilisis maximus velit.</p>
+                </div>
+            </div>
+        </div>
+
     </div>
   </div>
 
@@ -200,7 +242,7 @@
   <script async src="/public/javascripts/global/session.js"></script>
   <script async src="/public/javascripts/global/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
-  <script defer src="/public/javascripts/engkits.js"></script>
+  <script defer src="/public/javascripts/basepage.js"></script>
 </body>
 
 </html>

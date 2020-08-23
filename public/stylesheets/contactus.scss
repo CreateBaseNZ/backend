@@ -19,9 +19,9 @@ body {
     margin: 0 auto;
 }
 
-// .input-decor {
-//     border-bottom: thin solid $light-3;
-// }
+.input-decor {
+    border-bottom: thin solid $light-3;
+}
 
 
 .contact-wrap{
@@ -50,12 +50,14 @@ body {
     h1{
         color: $dark-2;
         font-size: 2.5em;
+        text-transform: uppercase;
     }
     .sub-title-container{
         display: flex;
         align-items: center;
         .sub-title-line{
             width: 5vw;
+            max-width: 3em;
             height: 0.2em;
             background-color: $logo-2;
             margin-right: 1vw;
@@ -74,7 +76,7 @@ textarea{
     padding: 1em;
     font-family: $poppins;
     border-radius: 0.2em;
-    border-color: $light-2;
+    border-color: $light-3;
     width: 100%;
     margin-top: 1em;
     font-size: 0.75em;
@@ -139,7 +141,7 @@ textarea{
     .contact-wrap, .info-wrap{
         width: 25vw;
         min-width: 22em;
-        margin: 10vh 2vh 5vh;
+        margin: 5vh 2vh 5vh;
     }
 
     .info-wrap{
@@ -163,7 +165,6 @@ textarea{
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        height: 100%;
     }
 
     .icon-wrap{
@@ -203,7 +204,7 @@ textarea{
     .contact-wrap, .info-wrap{
         width: 25vw;
         min-width: 22em;
-        margin: 10vh 6vh 5vh;
+        margin: 5vh 6vh 5vh;
     }
 
     .info-container{
@@ -222,6 +223,23 @@ textarea{
         svg{
             max-width: 23em;
             height: 23em;
+        }
+    }
+
+    .title-container{
+        h1{
+            color: $dark-2;
+            font-size: 2.5em;
+        }
+        .sub-title-container{
+            display: flex;
+            align-items: center;
+            .sub-title-line{
+                margin-right: 1em;
+            }
+            h4{
+                color: $logo-2;
+            }
         }
     }
 }
