@@ -70,7 +70,7 @@ team.addImages = () => {
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-louis-default"
     }
     const image4 = {
-      src: "/public/images/team/craig.jpg", id: "",
+      src: "/public/images/team/craig.png", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-craig-default"
     }
     const image5 = {
@@ -78,7 +78,7 @@ team.addImages = () => {
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-brad-default"
     }
     const image6 = {
-      src: "/public/images/team/brydon.jpg", id: "",
+      src: "/public/images/team/brydon.png", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-brydon-default"
     }
     const image7 = {
