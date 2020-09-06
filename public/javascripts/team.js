@@ -74,7 +74,7 @@ team.addImages = () => {
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-craig-default"
     }
     const image5 = {
-      src: "/public/images/team/brad.jpg", id: "",
+      src: "/public/images/team/brad.png", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-brad-default"
     }
     const image6 = {
