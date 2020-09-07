@@ -21,7 +21,7 @@ body {
     margin-top: 6vh;
     align-self: flex-start;
     justify-self: center;
-    font-family: $montserrat;
+    font-family: $poppins;
     font-size: calc(10px + 0.2vmax);
     color: $dark-3;
     text-align: center;
@@ -44,18 +44,20 @@ body {
       width: 75vw;
       animation: desc-mob 0.4s cubic-bezier(.28,.6,.3,.98) 1.2s forwards;
       opacity: 0;
+      line-height: 150%;
     }
     #team-desc-bot-2 {
       width: 75vw;
       animation: desc-mob 0.4s cubic-bezier(.28,.6,.3,.98) 1.4s forwards;
       opacity: 0;
+      line-height: 150%
     }
   }
 
   .team-photo {
     grid-area: photo;
     height: 30vh;
-    width: 85vw;
+    width: 82%;
     align-self: flex-end;
     justify-self: center;
     object-fit: cover;
@@ -79,64 +81,78 @@ body {
 
 .profile-section {
   position: relative;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 35vw 35vw;
-  justify-content: space-evenly;
+  width: 100%;
+  padding: 5% 9%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 
   .team-profile {
+    margin-bottom: 7%;
+    flex: 0 0 46%;
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 45vh;
-
+    justify-content: flex-end;
+    align-items: center;
+    height: 57vw;
+    border-radius: 5px;
+    overflow: hidden;
+    
     .indiv-photo {
-      height: 35vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
       width: 100%;
       object-fit: cover;
       transition: 0.3s ease-out;
-      z-index: 100;
+    }
+
+    .indiv-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 45%;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0,0,0, 0.6) 0%, rgba(0,0,0, 0) 100%);
     }
 
     .indiv-name {
-      align-self: center;
-      margin-top: 10px;
       font-family: $montserrat;
-      font-size: calc(12px + 1.8vmin);
-      font-weight: 100;
-      color: $dark-1;
+      font-size: calc(12px + 2vmin);
+      font-weight: 600;
+      color: $light-1;
+      letter-spacing: 1px;
+      margin-bottom: 0.1rem;
       animation: name-anim-mob 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
-      white-space: nowrap;
-      display: none;
     }
 
-    .indiv-role {
-      align-self: center;
-      font-family: $poppins;
+    .indiv-title {
+      margin-bottom: 0.8rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       font-size: calc(8px + 0.4vmin);
-      font-weight: 800;
-      letter-spacing: 4px;
-      color: $dark-2;
-      white-space: nowrap;
-      animation: role-anim-mob 0.3s cubic-bezier(.28,.6,.3,.98) 0.4s forwards;
-      display: none;
-      opacity: 0;
-    }
+      color: $light-1;
 
-    .fab {
-      position: absolute;
-      top: 0;
-      right: calc(-23px - 0.4vmin);
-      padding: 10px;
-      font-size: calc(8px + 0.4vmin);
-      color: $dark-2;
-      z-index: 101;
-      animation: fab-anim-mob 0.4s cubic-bezier(.28,.6,.3,.98) 0.6s forwards;
-      display: none;
-      opacity: 0;
+      .indiv-role {
+        font-family: $poppins;
+        font-weight: 300;
+        letter-spacing: 1px;
+        margin-right: 0.2rem;
+        animation: role-anim-mob 0.3s cubic-bezier(.28,.6,.3,.98) 0.4s forwards;
+      }
 
-      &:hover {
-        color: $highlight;
+      .fab {
+        padding: 2px;
+        color: $light-1;
+        &:hover {
+          color: $highlight;
+        }
       }
     }
   }

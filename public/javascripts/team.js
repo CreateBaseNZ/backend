@@ -33,11 +33,11 @@ team.initialise = async () => {
     return console.log(error);
   }
   // ADD IMAGES
-  try {
-    await team.addImages();
-  } catch (error) {
-    return console.log(error);
-  }
+  // try {
+  //   await team.addImages();
+  // } catch (error) {
+  //   return console.log(error);
+  // }
   // REMOVE STARTUP LOADER
   removeLoader();
   // LOAD SESSION
@@ -98,8 +98,8 @@ team.addImages = () => {
     for (var i = 0; i < team.numberOfMembers; i++) {
       team.members[i] = document.querySelector('.profile-section').children[i].children
     }
-    team.animateProfiles();
-    team.mediaQuery.addListener(team.animateProfiles);
+    // team.animateProfiles();
+    // team.mediaQuery.addListener(team.animateProfiles);
     resolve();
   });
 }
