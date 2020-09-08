@@ -1,4 +1,4 @@
-@import "global/all";  
+@import "global/all_webapp";  
 
 body {
   max-width: 100%;
@@ -88,78 +88,100 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+}
 
-  .team-profile {
-    margin-bottom: 7%;
-    flex: 0 0 46%;
-    position: relative;
+.team-profile {
+  margin-bottom: 7%;
+  flex: 0 0 46%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 57vw;
+  border-radius: calc(5px + 0.3vw);
+  overflow: hidden;
+  
+  .indiv-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 101%;
+    width: 101%;
+    object-fit: cover;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000;
+    -webkit-perspective: 1000;
+
+    transition: transform 0.2s ease-out;
+  }
+
+  .indiv-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 45%;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    transition: opacity 0.2s ease-out;
+  }
+  
+  .indiv-overlay-2 {
+    opacity: 0;
+  }
+
+  .indiv-name {
+    z-index: 100;
+    font-family: $montserrat;
+    font-size: calc(14px + 1.2vmin);
+    font-weight: 600;
+    color: $light-1;
+    letter-spacing: 1px;
+    margin-bottom: 0.1rem;
+  }
+
+  .indiv-title {
+    z-index: 100;
+    margin-bottom: 0.8rem;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: row;
     align-items: center;
-    height: 57vw;
-    border-radius: 5px;
-    overflow: hidden;
-    
-    .indiv-photo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      transition: 0.3s ease-out;
-    }
+    justify-content: center;
+    font-size: calc(8px + 0.4vmin);
+    color: $light-1;
 
-    .indiv-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 45%;
-      width: 100%;
-      background: linear-gradient(to top, rgba(0,0,0, 0.6) 0%, rgba(0,0,0, 0) 100%);
-    }
-
-    .indiv-name {
-      font-family: $montserrat;
-      font-size: calc(12px + 2vmin);
-      font-weight: 600;
-      color: $light-1;
+    .indiv-role {
+      font-family: $poppins;
+      font-weight: 300;
       letter-spacing: 1px;
-      margin-bottom: 0.1rem;
-      animation: name-anim-mob 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+      margin-right: 0.8rem;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
-    .indiv-title {
-      margin-bottom: 0.8rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      font-size: calc(8px + 0.4vmin);
+    .fab {
+      padding: 2px;
       color: $light-1;
+      transition: color 0.1s ease-out;
+    }
+  }
 
-      .indiv-role {
-        font-family: $poppins;
-        font-weight: 300;
-        letter-spacing: 1px;
-        margin-right: 0.2rem;
-        animation: role-anim-mob 0.3s cubic-bezier(.28,.6,.3,.98) 0.4s forwards;
-      }
-
-      .fab {
-        padding: 2px;
-        color: $light-1;
-        &:hover {
-          color: $highlight;
-        }
-      }
+  &:hover {
+    .fab {
+      color: $highlight;
     }
   }
 }
 
-.end-section {
-  height: 5vh;
+.line-break {
+  display: none;
+}
+
+#brydon .indiv-role {
+  font-size: calc(6px + 0.3vmin);
 }
 
 @keyframes desc-mob {
@@ -264,107 +286,102 @@ body {
 }
 
 .profile-section {
-  grid-template-columns: 20vw 20vw 20vw;
+  padding: 0;
+  margin-bottom: 10vh;
+  justify-content: center;
+  align-content: flex-start;
+}
 
-  .team-profile {
-    height: 55vh;
+.team-profile {
+  flex: 0 0 17vw;
+  height: 17vw;
+  width: 17vw;
+  margin: 1vw;
 
-    .indiv-photo {
-      height: 45vh;
+  .indiv-overlay-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+    color: $light-1;
+    font-family: $poppins;
+    font-size: calc(8px + 0.2vw);
+    letter-spacing: 1px;
+    font-weight: 300;
+    transition: opacity 0.2s ease-out;
+
+    .indiv-nickname {
+      margin-top: -1rem;
+      margin-bottom: 1rem;
+      span {
+        font-style: italic;
+        font-weight: 700;
+        margin-right: 0.1rem;
+      }
     }
 
-    .indiv-name {
-      align-self: flex-start;
-      animation: name-anim-desktop 0.5s cubic-bezier(.28,.6,.3,.98) forwards;
+    .indiv-desc {
+      text-align: center;
     }
+  }
 
+  .indiv-name {
+    align-self: flex-start;
+    margin-left: 2rem;
+    transition: opacity 0.2s ease-out;
+  }
+  
+  .indiv-title {
+    align-self: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 2.5rem;
     .indiv-role {
-      animation: role-anim-desktop 0.3s cubic-bezier(.28,.6,.3,.98) 0.3s forwards;
-
-      position: absolute;
-      left: 0;
-      bottom: 10vh;
-      transform: rotate(-90deg);
-      transform-origin: bottom left;
-    }
-
-    .fab {
-      right: auto;
-      animation: fab-anim-desktop 0.3s cubic-bezier(.28,.6,.3,.98) 0.6s forwards;
-
-      left: -23px;
+      max-width: 65%;
+      min-width: 0;
+      transition: opacity 0.2s ease-out, min-width 0.2s ease-out, max-width 0.2s ease-out;
     }
   }
-}
 
-.end-section {
-  height: 5vh;
-}
-
-@keyframes desc-top-desktop {
-  0% {
-    opacity: 0;
-    margin-bottom: -10px;
-  }
-  100% {
-    opacity: 1;
-    margin-bottom: 0vw;
-  }
-}
-
-@keyframes desc-mid-desktop {
-  0% {
-    opacity: 0;
-    margin-left: 0px;
-  }
-  100% {
-    opacity: 1;
-    margin-left: 10px;
-  }
-}
-
-@keyframes desc-bot-desktop {
-  0% {
-    opacity: 0;
-    margin-left: -10px;
-  }
-  100% {
-    opacity: 1;
-    margin-left: 0px;
+  &:hover {
+    .indiv-photo {
+      transform: scale(1.01);
+      filter: blur(2px);
+      -webkit-filter: blur(1px);
+    }
+    .indiv-overlay {
+      opacity: 0;
+    }
+    .indiv-overlay-2 {
+      opacity: 1;
+    }
+    .indiv-name {
+      opacity: 0;
+    }
+    .indiv-title {
+      .indiv-role {
+        opacity: 0;
+        min-width: calc(50% - 3.3rem - 6px - 0.2vmin);
+        max-width: calc(50% - 3.3rem - 6px - 0.2vmin);
+      }
+    }
   }
 }
 
-@keyframes name-anim-desktop {
-  0% { 
-    margin-left: 0px;
-    opacity: 0;
-  }
-  100% { 
-    margin-left: 0.5vw; 
-    opacity: 1;
-  }
+.line-break {
+  display: block;
+  width: 100%;
 }
 
-@keyframes role-anim-desktop {
-  0% { 
-    margin-left: 20px;
-    opacity: 0;
-  }
-  100% { 
-    margin-left: 0px; 
-    opacity: 1;
-  }
-}
-
-@keyframes fab-anim-desktop {
-  0% { 
-    top: -10px;
-    opacity: 0;
-  }
-  100% { 
-    top: 0px;
-    opacity: 1;
-  }
+#brydon .indiv-role {
+  font-size: inherit;
 }
 
 }

@@ -1,4 +1,4 @@
-@import "global/all";
+@import "global/all_webapp";
 
 body {
     background: $light-1;
@@ -8,10 +8,10 @@ body {
 }
 
 .main-page {
-  width: inherit;
-  padding-top: 60px;
-  display: flex;
-  flex-direction: column;
+    width: inherit;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-page-wrap{

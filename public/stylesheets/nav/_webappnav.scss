@@ -43,6 +43,10 @@ nav {
   
     .nav-in,
     .nav-mobile-out {
+      // V1
+      visibility: hidden;
+      pointer-events: none;
+
       display: none;
       cursor: pointer;
       position: relative;
@@ -151,6 +155,11 @@ nav {
           justify-content: center;
           align-items: center;
           margin-top: $top-bar-height;
+
+          // V1
+          *:nth-child(-n+4) {
+            display: none;
+          }
         }
       }  
     }
@@ -213,19 +222,6 @@ nav {
         transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
       }  
     }
-
-    // .nav-right-menu-in,
-    // .nav-right-menu-out {
-    //   .nav-side-header {
-    //     margin: 1vh 0 0.5vh 0;
-    //   }
-    //   .nav-side-item {
-    //     margin-top: 3vh;
-    //     padding: 0.75vh;
-    //     font-size: calc(17px + 0.2vw);
-    //     letter-spacing: 0.1vw;
-    //   }
-    // }
   
     .nav-right-menu-active {
       visibility: visible;
@@ -289,11 +285,11 @@ nav {
     .nav-side-socials {
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
+      padding: 20%;
   
       .fab {
-        margin: 0 5vw;
         transition: color 0.1s ease-out;
         color: $dark-2;
 
@@ -376,6 +372,10 @@ nav {
       }
 
       .nav-desktop-out {
+        // V1
+        visibility: hidden;
+        pointer-events: none;
+
         justify-self: flex-end;
         margin-right: calc(75px + 1vw);
         display: none;

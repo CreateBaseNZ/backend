@@ -142,6 +142,10 @@
           
           .list-section-desktop {
             display: block;
+            // V1
+            li:nth-child(n+2) {
+              display: none;
+            }
           }
 
           .list-section-divider,
@@ -236,6 +240,10 @@
           min-height: 10vw;
           ul {
             margin: 0;
+            // V1
+            li:first-child {
+              display: none;
+            }
           }
           li {
             list-style-type: none;

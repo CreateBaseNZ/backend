@@ -12,6 +12,7 @@ let team = {
   initialise: undefined,
   declareVariables: undefined,
   addImages: undefined,
+  linkedIn: undefined,
   animateProfiles: undefined
 }
 
@@ -50,6 +51,11 @@ team.declareVariables = () => {
   team.mediaQuery = window.matchMedia("(min-width: 850px)");
   team.landscape = window.innerWidth > window.innerHeight;
   team.numberOfMembers = 7;
+  team.members = {};
+  for (var i = 0; i < team.numberOfMembers; i++) {
+    let profile = document.querySelector('.profile-section').children[i]
+    team.members[i] = profile.children
+  }
 }
 
 // @func  team.addImages
@@ -94,71 +100,76 @@ team.addImages = () => {
     }
     // SUCCESS RESPONSE
     // Animate Profile
-    team.members = {};
-    for (var i = 0; i < team.numberOfMembers; i++) {
-      team.members[i] = document.querySelector('.profile-section').children[i].children
-    }
+
     // team.animateProfiles();
     // team.mediaQuery.addListener(team.animateProfiles);
     resolve();
   });
 }
 
+team.linkedIn = (e) => {
+  // console.log(e.clientWidth)
+  // console.log(e.querySelector('.fab').clientWidth)
+  // console.log(e.querySelector('.fab').offsetLeft)
+  console.log(e.querySelector('.indiv-role').style.marginRight)
+  e.querySelector('.fab').style.marginLeft = (e.querySelector('.fab').clientWidth/2 - e.querySelector('.fab').offsetLeft) + "px"
+}
+
 // @func  team.animateProfiles
 // @desc  
-team.animateProfiles = () => {
-  if (team.mediaQuery.matches && team.landscape) {
+// team.animateProfiles = () => {
+//   if (team.mediaQuery.matches && team.landscape) {
 
-    // On desktop, 3 profiles per row
-    var row = 3
-    // Each position is in increments of 0.55
-    var inc = 0.55
+//     // On desktop, 3 profiles per row
+//     var row = 3
+//     // Each position is in increments of 0.55
+//     var inc = 0.55
 
-    window.addEventListener("scroll", function () {
-      var pos = this.scrollY / document.documentElement.clientHeight
-      if (pos == 0) {
-        for (var i = 0; i < team.numberOfMembers; i++) {
-          for (var j = 1; j <= 3; j++) {
-            team.members[i][j].style.display = 'none'
-          }
-        }
-      } else if (pos > inc) {
-        var ind = (Math.floor((pos / inc)) - 1) * row
-        for (var i = ind; i < Math.min(ind + row, team.numberOfMembers); i++) {
-          for (var j = 1; j <= 3; j++) {
-            team.members[i][j].style.display = 'block'
-          }
-        }
-      }
-    });
+//     window.addEventListener("scroll", function () {
+//       var pos = this.scrollY / document.documentElement.clientHeight
+//       if (pos == 0) {
+//         for (var i = 0; i < team.numberOfMembers; i++) {
+//           for (var j = 1; j <= 3; j++) {
+//             team.members[i][j].style.display = 'none'
+//           }
+//         }
+//       } else if (pos > inc) {
+//         var ind = (Math.floor((pos / inc)) - 1) * row
+//         for (var i = ind; i < Math.min(ind + row, team.numberOfMembers); i++) {
+//           for (var j = 1; j <= 3; j++) {
+//             team.members[i][j].style.display = 'block'
+//           }
+//         }
+//       }
+//     });
 
-    // -- Mobile --
-  } else {
+//     // -- Mobile --
+//   } else {
 
-    // On mobile, 2 profiles per row
-    var row = 2
-    // Each position is in increments of 0.45
-    var inc = 0.45
+//     // On mobile, 2 profiles per row
+//     var row = 2
+//     // Each position is in increments of 0.45
+//     var inc = 0.45
 
-    window.addEventListener("scroll", function () {
-      var pos = this.scrollY / document.documentElement.clientHeight
-      if (pos == 0) {
-        for (var i = 0; i < team.numberOfMembers; i++) {
-          for (var j = 1; j <= 3; j++) {
-            team.members[i][j].style.display = 'none'
-          }
-        }
-      } else if (pos > inc) {
-        var ind = (Math.floor((pos / inc)) - 1) * row
-        for (var i = ind; i < Math.min(ind + row, team.numberOfMembers); i++) {
-          for (var j = 1; j <= 3; j++) {
-            team.members[i][j].style.display = 'block'
-          }
-        }
-      }
-    });
-  }
-}
+//     window.addEventListener("scroll", function () {
+//       var pos = this.scrollY / document.documentElement.clientHeight
+//       if (pos == 0) {
+//         for (var i = 0; i < team.numberOfMembers; i++) {
+//           for (var j = 1; j <= 3; j++) {
+//             team.members[i][j].style.display = 'none'
+//           }
+//         }
+//       } else if (pos > inc) {
+//         var ind = (Math.floor((pos / inc)) - 1) * row
+//         for (var i = ind; i < Math.min(ind + row, team.numberOfMembers); i++) {
+//           for (var j = 1; j <= 3; j++) {
+//             team.members[i][j].style.display = 'block'
+//           }
+//         }
+//       }
+//     });
+//   }
+// }
 
 /* ========================================================================================
 END

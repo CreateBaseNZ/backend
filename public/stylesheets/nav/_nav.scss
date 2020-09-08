@@ -43,6 +43,10 @@ nav {
   
     .nav-in,
     .nav-mobile-out {
+      // V1
+      visibility: hidden;
+      pointer-events: none;
+
       display: none;
       cursor: pointer;
       position: relative;
@@ -351,6 +355,10 @@ nav {
     }
 
     .nav-desktop-out {
+      // V1
+      visibility: hidden;
+      pointer-events: none;
+
       justify-self: flex-end;
       margin-right: calc(75px + 1vw);
       display: none;
