@@ -261,6 +261,8 @@ body {
     }
   
     #team-desc-mid {
+      width: 1vw;
+      border-bottom: thin solid $light-3;
       animation: desc-mid-desktop 0.4s cubic-bezier(.28,.6,.3,.98) 1.8s forwards;
     }
     
@@ -382,6 +384,37 @@ body {
 
 #brydon .indiv-role {
   font-size: inherit;
+}
+
+@keyframes desc-top-desktop {
+  0% {
+    opacity: 0;
+    margin-bottom: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-bottom: 0vw;
+  }
+}
+@keyframes desc-mid-desktop {
+  0% {
+    opacity: 0;
+    margin-left: 0px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 10px;
+  }
+}
+@keyframes desc-bot-desktop {
+  0% {
+    opacity: 0;
+    margin-left: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0px;
+  }
 }
 
 }
