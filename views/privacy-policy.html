@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="/public/stylesheets/privacy-policy.css" />
 </head>
 
-<body onload="basePageInit();">
+<body onload="priv.initialise();">
 
   <nav class="hide">
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
@@ -107,43 +107,98 @@
   </div>
 
   <div class="main-page hide">
+    <img id="priv-img" src="/public/images/tac.jpg" alt="Privacy Policy">
     <div class="main-page-wrap">
-        <div class="title-wrap">
+      <div class="priv-menu-wrap">
+        <div class="priv-menu-container">
+          <ol>
+            <li class="priv-selected priv-menu-item" data="priv-1">What we collect</li>
+            <li class="priv-menu-item" data="priv-2">What it's used for</li>
+            <li class="priv-menu-item" data="priv-3">Who we share with</li>
+            <li class="priv-menu-item" data="priv-4">Opting out</li>
+            <li class="priv-menu-item" data="priv-5">Additional info</li>
+          </ol>
+        </div>
+      </div>
+      <div class="priv-body-wrap">
+        <div class="priv-body-container">
+          <div id="priv-1" class="title-wrap">
             <div class="title-container">
-            <div class="sub-title-container">
+              <div class="sub-title-container">
                 <div class="sub-title-line"></div>
                 <h4>Info</h4>
+              </div>
+              <h1>Privacy Policy</h1>
             </div>
-            <h1>Privacy Policy</h1>
+          </div>
+          <div class="content-wrap">
+            <div class="content-container">
+              <div class="content-title">
+                <h2>What we collect</h2>
+              </div>
+              <div class="content-paragraph">
+                <p>We collect personal information from you, including information about your:</p>
+                <ul>
+                  <li>Name</li>
+                  <li>Contact information</li>
+                  <li>Interactions with us</li>
+                  <li>Billing or purchasing information</li>
+                </ul>
+              </div>
             </div>
+            <div id="priv-2" class="content-container">
+              <div class="content-title">
+                <h2>What it's used for</h2>
+              </div>
+              <div class="content-paragraph">
+                <p>We collect your personal information in order to:</p>
+                <ul>
+                  <li>Create and process orders</li>
+                  <li>Send orders for shipping</li>
+                  <li>Process transactions</li>
+                  <li>Personalise the user experience</li>
+                  <li>Personalise product recommendation</li>
+                  <li>Evaluate business performance</li>
+                  <li>Understand our customer segments</li>
+                </ul>
+              </div>
+            </div>
+            <div id="priv-3" class="content-container">
+              <div class="content-title">
+                <h2>Who we share with</h2>
+              </div>
+              <div class="content-paragraph">
+                <p>Besides our staff, we share this information with:</p>
+                <ul>
+                  <li>Shippers in order to send orders for shipping</li>
+                </ul>
+              </div>
+            </div>
+            <div id="priv-4" class="content-container">
+              <div class="content-title">
+                <h2>Opting out</h2>
+              </div>
+              <div class="content-paragraph">
+                <p>Providing some information is optional</p>
+                <ul>
+                  <li>If you choose not to enter a shipping address, we'll be unable to send orders for shipping</li>
+                  <li>If you choose not to enter billing information we'll be unable to process orders and transactions</li>
+                  <li>If you choose not to enter email address we'll be unable to create an account for users, and allow them to use our services</li>
+                  <li>If you choose not to enter email address we'll be unable to send customers email notifications, and newsletters</li>
+                </ul>
+              </div>
+            </div>
+            <div id="priv-5" class="content-container">
+              <div class="content-title">
+                <h2>Additional info</h2>
+              </div>
+              <div class="content-paragraph">
+                <p>We keep your information safe by having security protocols for creating, reading, updating and deleting data and only allowing staff to access the data .You have the right to ask for a copy of any personal information we hold about you, and to ask for it to be corrected if you think it is wrong. If you’d like to ask for a copy of your information, or to have it corrected, please contact us at admin@createbase.co.nz, or +64 211 543 805, or 16 Dapple Place, Flat Bush, Auckland, 2019, New Zealand.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="content-wrap">
-            <div class="content-container">
-                <div class="content-title">
-                    <h2>Lorem title</h2>
-                </div>
-                <div class="content-paragraph">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, sapien et posuere hendrerit, massa augue tristique sapien, id consectetur metus magna vitae felis. Praesent at ullamcorper ligula. Cras ut diam arcu. Pellentesque efficitur enim eget nunc eleifend commodo. Nulla semper porta massa sed dignissim. Pellentesque tincidunt purus placerat, eleifend mi in, venenatis erat. Duis in ullamcorper odio, et tristique elit. Proin vel enim vestibulum, interdum elit a, laoreet arcu. Nulla eleifend fringilla ante. Fusce varius sem et sapien blandit tempus. Donec facilisis maximus velit.</p>
-                </div>
-            </div>
-            <div class="content-container">
-                <div class="content-title">
-                    <h2>Lorem title</h2>
-                </div>
-                <div class="content-paragraph">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, sapien et posuere hendrerit, massa augue tristique sapien, id consectetur metus magna vitae felis. Praesent at ullamcorper ligula. Cras ut diam arcu. Pellentesque efficitur enim eget nunc eleifend commodo. Nulla semper porta massa sed dignissim. Pellentesque tincidunt purus placerat, eleifend mi in, venenatis erat. Duis in ullamcorper odio, et tristique elit. Proin vel enim vestibulum, interdum elit a, laoreet arcu. Nulla eleifend fringilla ante. Fusce varius sem et sapien blandit tempus. Donec facilisis maximus velit.</p>
-                </div>
-            </div>
-            <div class="content-container">
-                <div class="content-title">
-                    <h2>Lorem title</h2>
-                </div>
-                <div class="content-paragraph">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, sapien et posuere hendrerit, massa augue tristique sapien, id consectetur metus magna vitae felis. Praesent at ullamcorper ligula. Cras ut diam arcu. Pellentesque efficitur enim eget nunc eleifend commodo. Nulla semper porta massa sed dignissim. Pellentesque tincidunt purus placerat, eleifend mi in, venenatis erat. Duis in ullamcorper odio, et tristique elit. Proin vel enim vestibulum, interdum elit a, laoreet arcu. Nulla eleifend fringilla ante. Fusce varius sem et sapien blandit tempus. Donec facilisis maximus velit.</p>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
   </div>
 
@@ -224,6 +279,7 @@
   <script async src="/public/javascripts/global/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
   <script defer src="/public/javascripts/basepage.js"></script>
+  <script defer src="/public/javascripts/privacy-policy.js"></script>
 </body>
 
 </html>

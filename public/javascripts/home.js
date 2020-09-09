@@ -166,7 +166,7 @@ home.addImages = () => {
   return new Promise(async (resolve, reject) => {
     // IMAGES
     const image1 = {
-      src: "/public/images/landing-1.jpg", id: "",
+      src: "/public/images/home/landing-1.jpg", id: "",
       alt: "Landing 1", classes: [], parentId: "landing-1"
     }
     const image2 = {
@@ -174,7 +174,7 @@ home.addImages = () => {
       alt: "Landing 2", classes: [], parentId: "landing-2"
     }
     const image3 = {
-      src: "/public/images/landing-6.png", id: "",
+      src: "/public/images/home/landing-3.png", id: "",
       alt: "Landing 3", classes: [], parentId: "landing-3"
     }
     // LOAD IMAGES
