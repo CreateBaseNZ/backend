@@ -415,6 +415,10 @@ const removeLoader = (footer = true) => {
   document.querySelector("#notification-wrap").classList.remove("hide");
   document.querySelector(".main-page").classList.remove("hide");
   if (footer) document.querySelector(".footer-section").classList.remove("hide");
+  setTimeout(function() {   
+    document.querySelector(".nav-home-btn").querySelector(".nav-logo").style.marginBottom = "0px"
+    console.log('hello')
+  }, 200);
   return;
 }
 

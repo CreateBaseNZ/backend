@@ -36,19 +36,28 @@
           text-align: right;
         }
 
+        // V1
+        .list-section-left {
+          display: none;
+        }
+
         .list-section-desktop {
           display: none;
         }
 
         .list-section-divider {
+          // V1
+          display: none;
           width:1px;
           border-left: thin solid $light-1;
           height:4.5em;
         }
 
         .list-section-right {
-          padding-left:4vw;
-          text-align: left;
+          // V1
+          // padding-left:4vw;
+          // text-align: left;
+          text-align: center;
         }
       }
     }
@@ -142,10 +151,6 @@
           
           .list-section-desktop {
             display: block;
-            // V1
-            li:nth-child(n+2) {
-              display: none;
-            }
           }
 
           .list-section-divider,
@@ -241,7 +246,7 @@
           ul {
             margin: 0;
             // V1
-            li:first-child {
+            li:nth-child(-n+3) {
               display: none;
             }
           }

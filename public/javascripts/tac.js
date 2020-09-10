@@ -27,10 +27,10 @@ tac.initialise = async () => {
   } catch (error) {
     return console.log(error);
   }
-  tac.eventListeners()
   // REMOVE STARTUP LOADER
   removeLoader();
   // inputListener();
+  tac.eventListeners()
 }
 
 tac.eventListeners = () => {
@@ -53,14 +53,12 @@ tac.eventListeners = () => {
 
   let ary2 = Array.prototype.slice.call(document.querySelectorAll(".content-container"));
   
-  setTimeout(function() {   
-    var body = document.querySelector('.tac-body-container').getBoundingClientRect().top
-    var viewHeight = document.querySelector('.tac-body-container').clientHeight / 3
-    ary2.forEach(function(el, i) {
-      tac.subPos.push(el.getBoundingClientRect().top - body - viewHeight)
-    })
-    tac.subPos[0] = 0
-  }, 1);
+  var body = document.querySelector('.tac-body-container').getBoundingClientRect().top
+  var viewHeight = document.querySelector('.tac-body-container').clientHeight / 3
+  ary2.forEach(function(el, i) {
+    tac.subPos.push(el.getBoundingClientRect().top - body - viewHeight)
+  })
+  tac.subPos[0] = 0
 
   document.querySelector('.tac-body-container').addEventListener('scroll', tac.detectPos)
 }

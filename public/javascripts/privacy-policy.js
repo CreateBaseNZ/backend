@@ -27,9 +27,9 @@ priv.initialise = async () => {
   } catch (error) {
     return console.log(error);
   }
-  priv.eventListeners()
   // REMOVE STARTUP LOADER
   removeLoader();
+  priv.eventListeners()
   // inputListener();
 }
 
@@ -53,14 +53,12 @@ priv.eventListeners = () => {
 
   let ary2 = Array.prototype.slice.call(document.querySelectorAll(".content-container"));
   
-  setTimeout(function() {   
-    var body = document.querySelector('.priv-body-container').getBoundingClientRect().top
-    var viewHeight = document.querySelector('.priv-body-container').clientHeight / 3
-    ary2.forEach(function(el, i) {
-      priv.subPos.push(el.getBoundingClientRect().top - body - viewHeight)
-    })
-    priv.subPos[0] = 0
-  }, 1);
+  var body = document.querySelector('.priv-body-container').getBoundingClientRect().top
+  var viewHeight = document.querySelector('.priv-body-container').clientHeight / 3
+  ary2.forEach(function(el, i) {
+    priv.subPos.push(el.getBoundingClientRect().top - body - viewHeight)
+  })
+  priv.subPos[0] = 0
 
   document.querySelector('.priv-body-container').addEventListener('scroll', priv.detectPos)
 }
