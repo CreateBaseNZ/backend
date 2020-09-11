@@ -15,13 +15,23 @@ FUNCTIONS
 // @func  footer.initialise
 // @desc  
 footer.initialise = (login = false) => {
-  footer.subscription(login);
+  // V1
+  // footer.subscription(login);
+  document.getElementById('footer-subscribe').addEventListener("click", () => {
+    document.getElementById('footer-subscribe').classList.toggle('hide')
+    document.getElementById('footer-subscribe-field').classList.toggle('hide')
+  })
+  document.getElementById('footer-subscribe-email-input').addEventListener('keypress', (e) => {
+    if (e.which === 13) {
+      footer.subscribe(false)
+    }
+  })
 }
 
 // @func  footer.subscription
 // @desc  
 footer.subscription = (login = false) => {
-  const clickEvent = (login) ? `footer.subscribe(${login});` : "window.location.assign('/services/marketplace');";
+  const clickEvent = (!login) ? `footer.subscribe(${login});` : "window.location.assign('/services/marketplace');";
   return document.querySelector("#footer-subscribe").setAttribute("onclick", clickEvent);
 }
 
@@ -31,8 +41,8 @@ footer.subscribe = async (login = false) => {
   // DISABLE
   document.querySelector("#footer-subscribe").setAttribute("disabled", "");
   // VALIDATE
-  if (!login) {
-    notification.popup("an error ocurred", "failed");
+  if (login) {
+    notification.popup("An error ocurred", "failed");
     return document.querySelector("#footer-subscribe").removeAttribute("disabled"); // ENABLE
   }
   // SUBMIT
@@ -41,12 +51,12 @@ footer.subscribe = async (login = false) => {
     data = (await axios.post("/subscribe/mailing-list", { email: "" }))["data"];
   } catch (error) {
     console.log(error);
-    notification.popup("an error ocurred", "failed");
+    notification.popup("An error ocurred", "failed");
     return document.querySelector("#footer-subscribe").removeAttribute("disabled"); // ENABLE
   }
   if (data.status === "failed") {
     console.log(data.content);
-    notification.popup("an error ocurred", "failed");
+    notification.popup("Email required", "failed");
     return document.querySelector("#footer-subscribe").removeAttribute("disabled"); // ENABLE
   }
   // SUCCESS

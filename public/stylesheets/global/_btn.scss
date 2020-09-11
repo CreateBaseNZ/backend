@@ -11,10 +11,10 @@ button {
   border: thin solid rgba(255, 255, 255, 0);
   background: transparent;
 
-  font-size: 10px;
+  font-size: 1em;
   font-weight: 600;
   letter-spacing: 1px;
-  padding: 15px 40px;
+  padding: 1em 2.5em;
   transition: color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
 
   &:before,

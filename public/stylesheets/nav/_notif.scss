@@ -133,6 +133,14 @@
     }
 }
 
+.fas.fa-exclamation,
+.fas.fa-exclamation ~ p {
+    color: orange !important;
+}
+.far.fa-times-circle,
+.far.fa-times-circle ~ p {
+    color: red !important;
+}
 
 //Tablet & larger styling
 @media only screen and (min-width: 53em){

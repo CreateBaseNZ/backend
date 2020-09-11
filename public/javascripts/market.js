@@ -66,10 +66,10 @@ market.subscribe = async (login = false) => {
     let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (email === "") {
-      document.querySelector("#subscribe-email-error").innerHTML = "an email is required";
+      document.querySelector("#subscribe-email-error").innerHTML = "An email is required";
       return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
     } else if (!emailRE.test(String(email).toLowerCase())) {
-      document.querySelector("#subscribe-email-error").innerHTML = "invalid email";
+      document.querySelector("#subscribe-email-error").innerHTML = "Invalid email";
       return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
     }
   }

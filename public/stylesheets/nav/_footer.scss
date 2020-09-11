@@ -207,12 +207,30 @@
           }
           .btn-subscribe {
             margin: auto;
-            padding-bottom: 2vh;
-            #subscribe-btn {
-              display: inline-block;
-              color: $light-2;
-              &:hover {
-                color: $highlight;
+            margin-bottom: 2vh;
+            height: 50px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            #footer-subscribe-field {
+              flex-grow: 1;
+              width: 0;
+              max-width: 80%;
+              #footer-subscribe-email-input {
+                color: $light-1;
+                transition: 0.1s ease-out 0s;
+                &:focus ~ .fas {
+                  color: $highlight;
+                  transition: 0.1s ease-out 0.4s;
+                }
+              }
+              .fas {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                color: $light-1;
+                transform: rotate(90deg);
+                transform-origin: center 25%;
               }
             }
           }

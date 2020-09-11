@@ -5,14 +5,15 @@ $input-width: 60vmin;
   display: inline-block;
   border-bottom: thin solid $light-2;
   height: 40px;
+  font-family: $poppins;
 
   input {
     border: none;
     width: $input-width;
-    font-family: $poppins;
     font-size: 12px;
     margin-top: 18px;
     background: transparent;
+    font-family: inherit;
 
     &:focus {
       outline: none;

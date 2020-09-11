@@ -217,10 +217,10 @@ home.subscribe = async (login = false) => {
     let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (email === "") {
-      document.querySelector("#subscribe-email-error").innerHTML = "an email is required";
+      document.querySelector("#subscribe-email-error").innerHTML = "An email is required";
       return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
     } else if (!emailRE.test(String(email).toLowerCase())) {
-      document.querySelector("#subscribe-email-error").innerHTML = "invalid email";
+      document.querySelector("#subscribe-email-error").innerHTML = "Invalid email";
       return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
     }
   }
@@ -230,12 +230,12 @@ home.subscribe = async (login = false) => {
     data = (await axios.post("/subscribe/mailing-list", { email }))["data"];
   } catch (error) {
     console.log(error);
-    notification.popup("an error ocurred", "failed");
+    notification.popup("An error ocurred", "failed");
     return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
   }
   if (data.status === "failed") {
     console.log(data.content);
-    notification.popup("an error ocurred", "failed");
+    notification.popup("An error ocurred", "failed");
     return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
   }
   // SUCCESS
