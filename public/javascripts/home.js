@@ -174,7 +174,7 @@ home.addImages = () => {
       alt: "Landing 2", classes: [], parentId: "landing-2"
     }
     const image3 = {
-      src: "/public/images/home/landing-3.png", id: "",
+      src: "/public/images/home/landing-3.jpg", id: "",
       alt: "Landing 3", classes: [], parentId: "landing-3"
     }
     // LOAD IMAGES
