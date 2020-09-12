@@ -10,21 +10,22 @@ VARIABLES
 =========================================================================================*/
 
 const router = new express.Router();
-const customerRouteOptions = { root: path.join(__dirname, "../views") };
+const viewsOption = { root: path.join(__dirname, "../views") };
+
 /*=========================================================================================
 ROUTES
 =========================================================================================*/
 
 router.get("/services/*", (req, res) => {
-  res.sendFile("error404.html", customerRouteOptions);
+  res.sendFile("error404.html", viewsOption);
 });
 
-router.get("/company/*", (req, res) => {
-  res.sendFile("error404.html", customerRouteOptions);
+router.get("/products/*", (req, res) => {
+  res.sendFile("error404.html", viewsOption);
 });
 
 router.get("*", (req, res) => {
-  res.sendFile("error404.html", customerRouteOptions);
+  res.sendFile("error404.html", viewsOption);
 });
 
 /*=========================================================================================

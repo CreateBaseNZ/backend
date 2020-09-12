@@ -13,7 +13,7 @@ VARIABLES
 =========================================================================================*/
 
 const router = new express.Router();
-const customerRouteOptions = { root: path.join(__dirname, "../views") };
+const viewsOption = { root: path.join(__dirname, "../views") };
 
 /*=========================================================================================
 MODELS
@@ -31,63 +31,63 @@ ROUTES
 // @desc      Homepage
 // @access    Public
 router.get("/", (req, res) => {
-  res.sendFile("home.html", customerRouteOptions);
+  res.sendFile("home.html", viewsOption);
 });
 
 // @route     Get /story
 // @desc      Our story Page
 // @access    Public
 router.get("/story", (req, res) => {
-  res.sendFile("story.html", customerRouteOptions);
+  res.sendFile("story.html", viewsOption);
 });
 
 // @route     Get /team
 // @desc      Our team Page
 // @access    Public
 router.get("/team", (req, res) => {
-  res.sendFile("team.html", customerRouteOptions);
+  res.sendFile("team.html", viewsOption);
 });
 
 // @route     Get /products/engkits
 // @desc      Engineering Kits Info Page
 // @access    Public
 router.get("/products/engkits", (req, res) => {
-  res.sendFile("engkits.html", customerRouteOptions);
+  res.sendFile("engkits.html", viewsOption);
 });
 
 // @route     Get /services/3d-printing
 // @desc      3D Printing Info Page
 // @access    Public
 router.get("/services/3d-printing", (req, res) => {
-  res.sendFile("printing.html", customerRouteOptions);
+  res.sendFile("printing.html", viewsOption);
 });
 
 // @route     Get /services/marketplace
 // @desc      Marketplace Info Page
 // @access    Public
 router.get("/services/marketplace", (req, res) => {
-  res.sendFile("market.html", customerRouteOptions);
+  res.sendFile("market.html", viewsOption);
 });
 
 // @route     GET /terms-and-conditions
 // @desc      The Website's Terms and Conditions
 // @access    PUBLIC
 router.get("/terms-and-conditions", (req, res) => {
-  res.sendFile("terms-and-conditions.html", customerRouteOptions);
+  res.sendFile("terms-and-conditions.html", viewsOption);
 });
 
 // @route     GET /contact-us
 // @desc      The Company's Contact Details
 // @access    PUBLIC
 router.get("/contact", (req, res) => {
-  res.sendFile("contact-us.html", customerRouteOptions);
+  res.sendFile("contact-us.html", viewsOption);
 });
 
 // @route     GET /privacy-policy
 // @desc
 // @access    PUBLIC
 router.get("/privacy-policy", (req, res) => {
-  res.sendFile("privacy-policy.html", customerRouteOptions);
+  res.sendFile("privacy-policy.html", viewsOption);
 });
 
 /*=========================================================================================

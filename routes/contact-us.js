@@ -28,9 +28,6 @@ ROUTES
 // @desc    
 // @access  PUBLIC
 router.post("/contact-us/submit-inquiry", async (req, res) => {
-  // DECLARE AND INITIALISE VARIABLES
-  const accountId = req.isAuthenticated() ? req.user._id : undefined;
-  const sessionId = req.sessionID;
   // CREATE THE INQUIRY
   // inquiry number
   let inquiries;
@@ -41,7 +38,7 @@ router.post("/contact-us/submit-inquiry", async (req, res) => {
   }
   const number = { inquiry: (inquiries.length + 1) };
   const inquiry = {
-    accountId, sessionId, type: "inquiry", name: req.body.name, email: req.body.email,
+    type: "inquiry", name: req.body.name, email: req.body.email,
     subject: req.body.subject, message: req.body.message, number
   };
   // CREATE THE MESSAGE

@@ -24,7 +24,6 @@ CREATE MAILING MODEL
 =========================================================================================*/
 
 const MailSchema = new Schema({
-  accountId: { type: Schema.Types.ObjectId },
   email: { type: String, required: true }
 });
 
@@ -32,38 +31,39 @@ const MailSchema = new Schema({
 STATIC
 =========================================================================================*/
 
-// @FUNC  create
+// @FUNC  build
 // @TYPE  STATICS
 // @DESC
 // @ARGU
-MailSchema.statics.create = function (email, accountId) {
+MailSchema.statics.build = function (object = {}, save = true) {
   return new Promise(async (resolve, reject) => {
     // EMAIL VALIDATION
     try {
-      await this.validateEmail(email);
-    } catch (error) {
-      return reject(error);
+      await this.validateEmail(object.email);
+    } catch (data) {
+      return reject(data);
     }
     // SUBSCRIPTION
     let mail;
     try {
-      mail = await this.findOne({ email });
+      mail = await this.findOne({ email: object.email });
     } catch (error) {
-      return reject(error);
+      return reject({ status: "error", content: error });
     }
+    // CHECK IF EMAIL IS ALREADY SUBSCRIBED
+    if (mail) return reject({ status: "failed", content: "You are already subscribed" });
     // SETUP OR CREATE MAIL INSTANCE
-    if (!mail) {
-      mail = new this({ email });
-    }
-    mail.accountId = accountId;
+    mail = new this(object);
     // SAVE MAIL INSTANCE
-    try {
-      await mail.save();
-    } catch (error) {
-      return reject(error);
+    if (save) {
+      try {
+        await mail.save();
+      } catch (error) {
+        return reject(error);
+      }
     }
     // RETURN PROMISE RESPONSE
-    return resolve();
+    return resolve(mail);
   })
 }
 
@@ -73,44 +73,17 @@ MailSchema.statics.create = function (email, accountId) {
 // @ARGU  
 MailSchema.statics.validateEmail = function (email) {
   return new Promise(async (resolve, reject) => {
-    // DECLARE AND INITIALISE VARIABLES
-    let valid = true;
-    let error = "";
     // Email REGEX
-
+    let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // VALIDATIONS
     if (!email) {
-      valid = false;
-      error = "no email provided";
-    } else if (!(true)) {
-      valid = false;
-      error = "invalid email";
-    }
-    // RETURN PROMISE RESPONSE
-    if (!valid) {
-      return reject(error);
+      return reject({ status: "failed", content: "Email is required" });
+    } else if (!emailRE.test(String(email).toLowerCase())) {
+      return reject({ status: "failed", content: "Invalid email" });
     }
     return resolve();
-  })
-}
-
-// @FUNC  findByEmail
-// @TYPE  STATICS
-// @DESC
-// @ARGU
-MailSchema.statics.findByEmail = function (email) {
-  return new Promise(async (resolve, reject) => {
-    let mail;
-
-    try {
-      mail = await this.findOne({ email });
-    } catch (error) {
-      reject(error);
-    }
-
-    resolve(mail);
   });
-};
+}
 
 // @FUNC  delete
 // @TYPE  STATICS

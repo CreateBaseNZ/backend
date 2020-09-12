@@ -34,68 +34,16 @@ ROUTES
 // @desc      Subscribing to mailing list
 // @access    Public
 router.post("/subscribe/mailing-list", async (req, res) => {
-  const email = (req.isAuthenticated()) ? req.user.email : req.body.email;
-  // VALIDATE
-  if (!email) return res.send({ status: "failed", content: "email required" });
+  const object = { email: req.body.email }
   // Check if the email is already in the mailing list
   let mail;
   try {
-    mail = await Mail.findByEmail(email);
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
+    mail = await Mail.build(object);
+  } catch (data) {
+    return res.send(data);
   }
-  if (mail) {
-    return res.send({ status: "succeeded", content: "already subscribed" });
-  }
-  // Check if the user is registered
-  let account;
-  try {
-    account = await Account.fineOne({ email });
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
-  if (account) {
-    const newMail = new Mail({
-      accountId: account._id,
-      email,
-    });
-
-    try {
-      await newMail.save();
-    } catch (error) {
-      return res.send({ status: "failed", content: error });
-    }
-
-    // Update user subscription mailing status
-    let customer;
-    try {
-      customer = await Customer.findOne({ accountId: account._id });
-    } catch (error) {
-      return res.send({ status: "error", content: error });
-    }
-
-    customer.subscription = {
-      mail: true,
-    };
-
-    try {
-      await customer.save();
-    } catch (error) {
-      return res.send({ status: "failed", content: error });
-    }
-
-    return res.send({ status: "succeeded", content: "subscribed" });
-  }
-  // If user is not registered and not subscribed
-  const newMail = new Mail({ email });
-
-  try {
-    await newMail.save();
-  } catch (error) {
-    return res.send({ status: "failed", content: error });
-  }
-
-  return res.send({ status: "succeeded", content: "subscribed" });
+  // SUCCESS HANDLER
+  return res.send({ status: "succeeded", content: "Thank you for subscribing!" });
 });
 
 // @route     POST /unsubscribe/mailing-list

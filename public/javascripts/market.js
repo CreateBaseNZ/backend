@@ -57,45 +57,28 @@ market.subscription = (login = false) => {
 
 // @func  market.subscribe
 // @desc  
-market.subscribe = async (login = false) => {
+market.subscribe = async () => {
   document.querySelector("#subscribe-email-error").innerHTML = "";
   // DISABLE
   document.querySelector("#subscribe-main").setAttribute("disabled", "");
   // COLLECT
   const email = (!login) ? document.querySelector("#subscribe-email-input").value : "";
   // VALIDATE
-  if (!login) {
-    let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if (email === "") {
-      document.querySelector("#subscribe-email-error").innerHTML = "An email is required";
-      return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
-    } else if (!emailRE.test(String(email).toLowerCase())) {
-      document.querySelector("#subscribe-email-error").innerHTML = "Invalid email";
-      return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
-    }
+  if (email === "") {
+    document.querySelector("#subscribe-email-error").innerHTML = "An email is required";
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  } else if (!emailRE.test(String(email).toLowerCase())) {
+    document.querySelector("#subscribe-email-error").innerHTML = "Invalid email";
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
   }
   // SUBMIT
-  let data;
   try {
-    data = (await axios.post("/subscribe/mailing-list", { email }))["data"];
+    await global.subscribeToMailingList(email);
   } catch (error) {
-    console.log(error);
-    notification.popup("an error ocurred", "failed");
     return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
   }
-  if (data.status === "failed") {
-    console.log(data.content);
-    notification.popup("an error ocurred", "failed");
-    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
-  }
-  // SUCCESS
-  let message;
-  if (data.content === "already subscribed") {
-    message = login ? "You are already subscribed" : "This email is already subscribed";
-    notification.popup(message, "sent");
-  }
-  if (data.content === "subscribed") notification.popup("Thank you for subscribing to the newsletter!", "succeeded");
   return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
 }
 

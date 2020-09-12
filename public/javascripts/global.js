@@ -9,7 +9,8 @@ let global = {
   compressImage: undefined,
   readImage: undefined,
   nextWorkingDay: undefined,
-  calculateWorkingDay: undefined
+  calculateWorkingDay: undefined,
+  subscribeToMailingList: undefined
 }
 
 /* ========================================================================================
@@ -198,6 +199,30 @@ global.calculateWorkingDay = (startDateString = "", additionalWorkingDay = 0) =>
   if (startDay > 5) nextWorkingDay += 2;
   const nextWorkingDateString = moment().weekday(nextWorkingDay);
   return nextWorkingDateString;
+}
+
+// @func  global.subscribeToMailingList
+// @desc  
+global.subscribeToMailingList = (email) => {
+  return new Promise(async (resolve, reject) => {
+    // SUBMIT
+    let data;
+    try {
+      data = (await axios.post("/subscribe/mailing-list", { email }))["data"];
+    } catch (error) {
+      data = { status: "error", content: error };
+    }
+    if (data.status === "error") {
+      notification.popup("An error ocurred", "error");
+      return reject();
+    } else if (data.status === "failed") {
+      notification.popup(data.content, "failed");
+      return reject();
+    } else if (data.status === "succeeded") {
+      notification.popup(data.content, "succeeded");
+      return resolve();
+    }
+  });
 }
 
 /* ----------------------------------------------------------------------------------------
