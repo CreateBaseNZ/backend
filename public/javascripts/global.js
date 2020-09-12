@@ -18,9 +18,10 @@ FUNCTIONS
 
 // @func  global.initialise
 // @desc  
-global.initialise = (userMenu = true, footerPresent = true, login = undefined) => {
+//global.initialise = (userMenu = true, footerPresent = true, login = undefined) => {
+global.initialise = (footerPresent = true) => {
   return new Promise(async (resolve, reject) => {
-    if (login === undefined) {
+    /*if (login === undefined) {
       // FETCH LOGIN STATUS
       let data;
       try {
@@ -29,15 +30,17 @@ global.initialise = (userMenu = true, footerPresent = true, login = undefined) =
         reject(error);
       }
       login = data.status;
-    }
+    }*/
     // NAVIGATION
     try {
-      await navigation.initialise(login, userMenu);
+      //await navigation.initialise(login, userMenu);
+      await navigation.initialise();
     } catch (error) {
       reject(error);
     }
     // FOOTER
-    if (footerPresent) footer.initialise(login);
+    //if (footerPresent) footer.initialise(login);
+    if (footerPresent) footer.initialise();
     // SUCCESS
     resolve();
   });
@@ -415,7 +418,7 @@ const removeLoader = (footer = true) => {
   document.querySelector("#notification-wrap").classList.remove("hide");
   document.querySelector(".main-page").classList.remove("hide");
   if (footer) document.querySelector(".footer-section").classList.remove("hide");
-  setTimeout(function() {   
+  setTimeout(function () {
     document.querySelector(".nav-home-btn").querySelector(".nav-logo").style.marginBottom = "0px"
     console.log('hello')
   }, 200);

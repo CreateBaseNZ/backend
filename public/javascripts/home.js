@@ -34,20 +34,21 @@ FUNCTIONS
 // @func  home.initialise
 // @desc  
 home.initialise = async () => {
-  updateSessionPage();
+  //updateSessionPage();
   history.scrollRestoration = "manual";
   // DECLARE VARIABLES
   home.declareVariables();
-  // GET LOGIN STATUS 
+  /*// GET LOGIN STATUS 
   let data;
   try {
     data = (await axios.get("/login-status"))["data"];
   } catch (error) {
     return console.log(error);
   }
-  const login = data.status;
+  const login = data.status;*/
   // LOAD NAVIGATION AND ADD IMAGES
-  promises = [global.initialise(true, true, login), home.addImages()];
+  //promises = [global.initialise(true, true, login), home.addImages()];
+  promises = [global.initialise(), home.addImages()];
   try {
     await Promise.all(promises);
   } catch (error) {
@@ -56,11 +57,12 @@ home.initialise = async () => {
   // REMOVE STARTUP LOADER
   removeLoader();
   // LOAD SESSION
-  session.initialise();
+  //session.initialise();
   // PAGE CONFIGURATIONS
   textSequence(0, home.words, "change-text");
   home.addListener();
-  home.subscription(login);
+  //home.subscription(login);
+  home.subscription();
 }
 
 // @func  home.declareVariables

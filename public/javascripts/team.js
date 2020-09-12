@@ -23,7 +23,7 @@ FUNCTIONS
 // @func  team.initialise
 // @desc  
 team.initialise = async () => {
-  updateSessionPage();
+  //updateSessionPage();
   window.onbeforeunload = () => window.scrollTo(0, 0);
   // DECLARE VARIABLES
   team.declareVariables();
@@ -42,7 +42,7 @@ team.initialise = async () => {
   // REMOVE STARTUP LOADER
   removeLoader();
   // LOAD SESSION
-  session.initialise();
+  //session.initialise();
 }
 
 // @func  team.declareVariables
@@ -112,7 +112,7 @@ team.linkedIn = (e) => {
   // console.log(e.querySelector('.fab').clientWidth)
   // console.log(e.querySelector('.fab').offsetLeft)
   console.log(e.querySelector('.indiv-role').style.marginRight)
-  e.querySelector('.fab').style.marginLeft = (e.querySelector('.fab').clientWidth/2 - e.querySelector('.fab').offsetLeft) + "px"
+  e.querySelector('.fab').style.marginLeft = (e.querySelector('.fab').clientWidth / 2 - e.querySelector('.fab').offsetLeft) + "px"
 }
 
 // @func  team.animateProfiles

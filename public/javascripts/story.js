@@ -13,7 +13,7 @@ FUNCTIONS
 // @func  story.initialise
 // @desc  
 story.initialise = async () => {
-  updateSessionPage();
+  //updateSessionPage();
   // LOAD SYSTEM
   try {
     await global.initialise();

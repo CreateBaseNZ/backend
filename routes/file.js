@@ -18,32 +18,9 @@ const router = new express.Router();
 MODELS
 =========================================================================================*/
 
-const Make = require("../model/Make.js");
-const Comment = require("../model/Comment.js");
-
 /*=========================================================================================
 MIDDLEWARE
 =========================================================================================*/
-
-const verifiedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.redirect("/verification");
-    }
-  } else {
-    return res.redirect("/login");
-  }
-};
-
-const restrictedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    return res.redirect("/login");
-  }
-};
 
 const upload = require("../config/upload.js");
 

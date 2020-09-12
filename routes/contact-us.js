@@ -20,49 +20,6 @@ const Message = require("../model/Message.js");
 MIDDLEWARE
 =========================================================================================*/
 
-const verifiedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.redirect("/verification");
-    }
-  } else {
-    return res.sendFile("login.html", customerRouteOptions);
-  }
-};
-
-const verifiedDataAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.send({ status: "failed", content: "Account needs to be verified" });
-    }
-  } else {
-    return res.redirect("/login");
-  }
-};
-
-const restrictedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    return res.sendFile("login.html", customerRouteOptions);
-  }
-};
-
-const unrestrictedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    // TO DO .....
-    // REDIRECT TO "ALREADY LOGGED IN" PAGE
-    // TO DO .....
-    return res.redirect("/"); // TEMPORARILY SEND THEM BACK HOME
-  } else {
-    return next();
-  }
-};
-
 /*=========================================================================================
 ROUTES
 =========================================================================================*/

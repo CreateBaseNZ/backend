@@ -26,7 +26,7 @@ FUNCTIONS
 // @func  contactUs.initialise
 // @desc  
 contactUs.initialise = async () => {
-  // FETCH USER
+  /*// FETCH USER
   let data;
   try {
     data = (await axios.get("/fetch-account"))["data"];
@@ -34,17 +34,18 @@ contactUs.initialise = async () => {
     data = { status: "error", content: error };
   }
   // ERROR HANDLER
-  if (data.status === "error") return contactUs.errorHandler(data.content);
+  if (data.status === "error") return contactUs.errorHandler(data.content);*/
   // LOAD SYSTEM
   try {
-    await global.initialise(true, true, data.content.authenticated);
+    //await global.initialise(true, true, data.content.authenticated);
+    await global.initialise();
   } catch (error) {
     return console.log(error);
   }
   // DECLARE VARIABLES
   contactUs.declareVariables();
   // POPULATE IF AUTHENTICATED
-  if (data.content.authenticated) contactUs.populate(data.content.user);
+  //if (data.content.authenticated) contactUs.populate(data.content.user);
   // REMOVE STARTUP LOADER
   removeLoader();
 }

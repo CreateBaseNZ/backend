@@ -21,32 +21,10 @@ MODELS
 =========================================================================================*/
 
 const Mail = require("../model/Mail.js");
-const Account = require("../model/Account.js");
-const Customer = require("../model/Customer.js");
 
 /*=========================================================================================
 MIDDLEWARE
 =========================================================================================*/
-
-const verifiedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    if (req.user.verification.status) {
-      return next();
-    } else {
-      return res.redirect("/verification");
-    }
-  } else {
-    return res.redirect("/login");
-  }
-};
-
-const restrictedAccess = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    return res.redirect("/login");
-  }
-};
 
 /*=========================================================================================
 ROUTES

@@ -18,7 +18,7 @@ FUNCTIONS
 // @func  engkits.initialise
 // @desc  
 engkits.initialise = async () => {
-  updateSessionPage();
+  /*updateSessionPage();
   // GET LOGIN STATUS 
   let data;
   try {
@@ -26,20 +26,22 @@ engkits.initialise = async () => {
   } catch (error) {
     return console.log(error);
   }
-  const login = data.status;
+  const login = data.status;*/
   // LOAD SYSTEMS
   try {
-    await global.initialise(true, true, login);
+    //await global.initialise(true, true, login);
+    await global.initialise();
   } catch (error) {
     return console.log(error);
   }
   // REMOVE STARTUP LOADER
   removeLoader();
   // LOAD SESSION
-  session.initialise();
+  //session.initialise();
   // ADD THE DYNAMIC WORDS EFFECT
   textSequence(0, engkits.words, "change-text");
-  engkits.subscription(login);
+  //engkits.subscription(login);
+  engkits.subscription();
 }
 
 // @func  engkits.subscription

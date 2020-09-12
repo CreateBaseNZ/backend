@@ -35,7 +35,7 @@ error.fullHeight = () => {
 error.glitch = () => {
   let el = document.getElementById("error-header")
   let i = Math.round(Math.random())
-  let words = ['Oops','4oh4']
+  let words = ['Oops', '4oh4']
   el.innerHTML = words[i]
   el.setAttribute('data-text', words[i])
   setTimeout(function () {

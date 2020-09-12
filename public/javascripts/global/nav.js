@@ -35,20 +35,24 @@ FUNCTIONS
 
 // @func  navigation.initialise
 // @desc  
-navigation.initialise = (login = false, userMenu = true) => {
+//navigation.initialise = (login = false, userMenu = true) => {
+navigation.initialise = () => {
   return new Promise(async (resolve, reject) => {
     // DECLARE VARIABLES
     navigation.declareVariables();
     // CONFIGURATION AND CONTENTS
     // ADD IMAGES
-    const promises = [navigation.fetchUser(login), navigation.addImages(login, userMenu)];
+    //const promises = [navigation.fetchUser(login), navigation.addImages(login, userMenu)];
     try {
-      [user] = await Promise.all(promises);
+      //[user] = await Promise.all(promises);
+      await navigation.addImages();
     } catch (error) {
       reject(error);
     }
-    navigation.configuration(login, user);
-    navigation.mediaQuery.addListener(() => navigation.configuration(login, user));
+    //navigation.configuration(login, user);
+    //navigation.mediaQuery.addListener(() => navigation.configuration(login, user));
+    navigation.configuration();
+    navigation.mediaQuery.addListener(() => navigation.configuration());
     // SUCCESS RESOLVE
     resolve();
   });
@@ -126,16 +130,19 @@ navigation.exitModal = () => {
 
 // @func  navigation.configuration
 // @desc  
-navigation.configuration = (login = false, user = {}) => {
+//navigation.configuration = (login = false, user = {}) => {
+navigation.configuration = () => {
   if (navigation.mediaQuery.matches) {
     /* Desktop */
-    navigation.menuContentDesktop(login);
+    //navigation.menuContentDesktop(login);
+    navigation.menuContentDesktop();
   } else {
     /* Mobile */
-    navigation.menuContentMobile(login);
+    //navigation.menuContentMobile(login);
+    navigation.menuContentMobile();
   }
   // DELETE FIRST IF STATEMENT AFTER FULL IMPLEMENTATION
-  if (navigation.rightMenuGreeting) if (user) navigation.rightMenuGreeting.innerHTML = ("hi " + user.displayName).toUpperCase()
+  //if (navigation.rightMenuGreeting) if (user) navigation.rightMenuGreeting.innerHTML = ("hi " + user.displayName).toUpperCase()
 }
 
 // @func  navigation.menuContentDesktop
@@ -180,14 +187,15 @@ navigation.menuContentMobile = (login = false) => {
 
 // @func  navigation.addImages
 // @desc  
-navigation.addImages = (login = false, userMenu = true) => {
+//navigation.addImages = (login = false, userMenu = true) => {
+navigation.addImages = () => {
   return new Promise(async (resolve, reject) => {
     // IMAGES
     const image1 = {
       src: "/public/images/logo-icon.png", id: "",
       alt: "CreateBase", classes: ["nav-logo"], parentId: "nav-home-btn"
     };
-    const image2 = {
+    /*const image2 = {
       src: "/profile/customer/fetch/picture", id: "nav-dp",
       alt: "customer profile image", classes: [], parentId: "nav-right-menu"
     };
@@ -206,9 +214,9 @@ navigation.addImages = (login = false, userMenu = true) => {
     const image6 = {
       src: "/public/images/user-x.png", id: "",
       alt: "User", classes: ["nav-user-x"], parentId: "nav-mobile-out"
-    };
+    };*/
     // LOAD IMAGES
-    let objects;
+    /*let objects;
     if (userMenu) {
       if (login) {
         objects = [image1, image2, image3, image4, image5, image6];
@@ -216,8 +224,10 @@ navigation.addImages = (login = false, userMenu = true) => {
         objects = [image1, image4, image5, image6];
       }
     } else {
-      objects = [image1];
-    }
+    objects = [image1];
+    }*/
+
+    const objects = [image1];
 
     try {
       await imageLoader(objects);
@@ -229,8 +239,8 @@ navigation.addImages = (login = false, userMenu = true) => {
   });
 }
 
-// @func  navigation.fetchUser
-// @desc  
+/*// @func  navigation.fetchUser
+// @desc
 navigation.fetchUser = (login = false) => {
   return new Promise(async (resolve, reject) => {
     if (!login) return resolve({});
@@ -255,7 +265,7 @@ navigation.fetchUser = (login = false) => {
     }
     return resolve(data.content);
   });
-}
+}*/
 
 /* ========================================================================================
 END
