@@ -34,6 +34,7 @@ FUNCTIONS
 // @func  home.initialise
 // @desc  
 home.initialise = async () => {
+  console.log("THIS IS A TEST TO SEE IF THE PIPELINE BETWEEN GITHUB AND AWS IS ESTABLISHED");
   //updateSessionPage();
   history.scrollRestoration = "manual";
   // DECLARE VARIABLES
