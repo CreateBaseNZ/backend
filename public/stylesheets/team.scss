@@ -148,7 +148,7 @@ body {
     margin-bottom: 0.8rem;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     font-size: calc(8px + 0.4vmin);
     color: $light-1;
@@ -180,8 +180,9 @@ body {
   display: none;
 }
 
-#brydon .indiv-role {
+.team-small-text .indiv-role {
   font-size: calc(6px + 0.3vmin);
+  margin-right: 0.6em;
 }
 
 @keyframes desc-mob {
@@ -299,6 +300,8 @@ body {
   height: 17vw;
   width: 17vw;
   margin: 1vw;
+  min-width: 250px;
+  min-height: 250px;
 
   .indiv-overlay-2 {
     position: absolute;
@@ -336,7 +339,7 @@ body {
 
   .indiv-name {
     align-self: flex-start;
-    margin-left: 2rem;
+    margin-left: 2vw;
     transition: opacity 0.2s ease-out;
   }
   
@@ -344,7 +347,7 @@ body {
     align-self: flex-start;
     justify-content: flex-start;
     width: 100%;
-    margin-left: 2.5rem;
+    margin-left: 3vw;
     .indiv-role {
       max-width: 65%;
       min-width: 0;
@@ -382,8 +385,9 @@ body {
   width: 100%;
 }
 
-#brydon .indiv-role {
+.team-small-text .indiv-role {
   font-size: inherit;
+  margin-right: 0.8em;
 }
 
 @keyframes desc-top-desktop {
