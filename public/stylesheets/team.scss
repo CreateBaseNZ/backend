@@ -130,7 +130,7 @@ body {
   }
   
   .indiv-overlay-2 {
-    opacity: 0;
+    display: none;
   }
 
   .indiv-name {
@@ -304,6 +304,8 @@ body {
   min-height: 250px;
 
   .indiv-overlay-2 {
+    display: block;
+    opacity: 0;
     position: absolute;
     top: 0;
     left: 0;
