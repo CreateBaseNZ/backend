@@ -1,6 +1,5 @@
 @import "global/all";
 
-//mobile & default styling
 
 $x-margin: calc(100vw/6 - 20px);
 
@@ -10,6 +9,8 @@ body {
   overflow-x: hidden;
   font-family: $poppins;
 }
+
+@media only screen and (max-width: 849px) {
 
 .main-page {
   margin-top: $top-bar-height;
@@ -24,6 +25,8 @@ body {
   margin: 2vh 0;
   overflow: hidden;
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 
   img {
@@ -114,7 +117,7 @@ p {
     text-align: center;
   }
   #story-collab {
-    height: 25vh;
+    max-height: 40vw;
   }
   .story-text {
     width: 100%;
@@ -135,7 +138,7 @@ p {
   flex-wrap: wrap;
   margin-top: 0;
   #story-team {
-    height: 30vh;
+    max-height: 40vw;
     width: 100%;
     img {
       object-position: center 30%;
@@ -143,7 +146,6 @@ p {
   }
   #story-carl {
     width: 40vw;
-    height: 27vh;
   }
   .story-text {
     width: calc(100% - 40vw);
@@ -182,40 +184,54 @@ p {
 
 #story-section-5 {
   #story-web-team {
+    max-height: 35vw;
+    width: 100%;
     margin: 0;
-    height: 20vh;
+    img {
+      object-position: center 47%;
+    }
   }
 }
 
 #story-section-6 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  display: grid;
+  grid-template-areas: 
+  'h2 h2'
+  'a img'
+  'b b'
+  'link link';
+  grid-template-columns: 60% 40%;
   overflow: hidden;
   h2 {
+    grid-area: h2;
     padding: 0 $x-margin;
     text-align: center;
   }
   #strategy-a {
+    grid-area: a;
     margin-top: 2vh;
     margin-bottom: 2vh;
     padding: 0 $x-margin;
-    width: calc(100% - 40vw);
+    width: 100%;
     h3 {
       overflow: visible;
       white-space: nowrap;
     }
   }
   #story-brydon {
-    position: absolute;
-    width: 40vw;
-    top: 8vh;
-    right: 0;
-    height: 28vh;
+    grid-area: img;
+    width: 100%;
+    height: 30vh;
+    justify-self: flex-end;
+    align-self: center;
   }
   #strategy-b {
+    grid-area: b;
     width: 100%;
     padding: 0 $x-margin;
+  }
+  .story-go-link {
+    grid-area: link;
   }
 }
 
@@ -234,7 +250,7 @@ p {
   #story-kit-team {
     align-self: flex-end;
     width: calc(100% - #{$x-margin} - 4vh);
-    height: 25vh;
+    max-height: 30vh;
   }
   #story-velocity {
     width: 100%;
@@ -261,7 +277,7 @@ p {
   }
   #story-laptop {
     width: calc(100% - #{$x-margin} - 4vh);
-    height: 25vh;
+    max-height: 30vh;
   }
   #story-robotic-arm {
     width: 100%;
@@ -462,7 +478,10 @@ p {
   margin-left: 0;
   margin-right: 0;
 }
+}
 
-@media only screen and (min-width: 850px) and (orientation: landscape) {
-  
+@media only screen and (min-width: 850px) {
+  body {
+    background: black;
+  }
 }

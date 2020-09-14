@@ -69,9 +69,11 @@ story.declare = () => {
 }
 
 story.initWindow = () => {
-  setTimeout(() => {
-    story.recursive(window.innerHeight - 60, 0)
-  }, 100)
+  if (!window.matchMedia("(min-width: 850px)").matches) {
+    setTimeout(() => {
+      story.recursive(window.innerHeight - 60, 0)
+    }, 100)
+  }
 }
 
 story.recursive = (max) => {
@@ -85,15 +87,16 @@ story.recursive = (max) => {
 }
 
 story.scrollListener = () => {
-  window.addEventListener('scroll', () => {
-    var currentPos = (document.documentElement.scrollTop || window.pageYOffset) + window.innerHeight - 40
-    console.log(currentPos)
-    if (currentPos > story.positions[0]) {
-      story.elements[0].classList.toggle('shown')
-      story.elements.shift()
-      story.positions.shift()
-    }
-  })
+  if (!window.matchMedia("(min-width: 850px)").matches) {
+    window.addEventListener('scroll', () => {
+      var currentPos = (document.documentElement.scrollTop || window.pageYOffset) + window.innerHeight - 40
+      if (currentPos > story.positions[0]) {
+        story.elements[0].classList.toggle('shown')
+        story.elements.shift()
+        story.positions.shift()
+      }
+    })
+  }
 }
 
 /* ========================================================================================

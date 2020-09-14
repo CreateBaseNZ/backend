@@ -150,7 +150,7 @@ nav {
         width: $menu-width;
         background: $light-1;
         display: grid;
-        grid-template-rows: 75vh 25vh;
+        grid-template-rows: 80vh 20vh;
         margin-left: -5vw;
         transition: all 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
   
@@ -246,12 +246,13 @@ nav {
       color: $light-3;
 
       &:not(:first-child) {
-        margin-top: 7vh;
+        margin-top: 8vh;
+        margin-bottom: 1em;
       }
     }
   
     .nav-side-item {
-      margin-top: 1em;
+      margin: 1em 0;
       color: $dark-3;
       font-family: $poppins;
       font-size: 2.2vmax;
@@ -294,7 +295,8 @@ nav {
       flex-direction: row;
       justify-content: space-evenly;
       align-items: center;
-      padding: 20%;
+      padding: 0 15%;
+      font-size: 1.5rem;
   
       .fab {
         transition: color 0.1s ease-out;
