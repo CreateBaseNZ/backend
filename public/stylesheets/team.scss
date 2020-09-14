@@ -102,10 +102,6 @@ body {
   border-radius: calc(5px + 0.3vw);
   -webkit-border-radius: calc(5px + 0.3vw); 
   -moz-border-radius: calc(5px + 0.3vw); 
-  border-top-left-radius: calc(5px + 0.3vw);
-  border-top-right-radius: calc(5px + 0.3vw);
-  border-bottom-left-radius: calc(5px + 0.3vw);
-  border-bottom-right-radius: calc(5px + 0.3vw);
   overflow: hidden;
   
   .indiv-photo {
@@ -115,12 +111,12 @@ body {
     height: 101%;
     width: 101%;
     object-fit: cover;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    perspective: 1000;
-    -webkit-perspective: 1000;
+    // transform: translateZ(0);
+    // -webkit-transform: translateZ(0);
+    // backface-visibility: hidden;
+    // -webkit-backface-visibility: hidden;
+    // perspective: 1000;
+    // -webkit-perspective: 1000;
 
     transition: transform 0.2s ease-out;
   }
