@@ -102,6 +102,10 @@ body {
   border-radius: calc(5px + 0.3vw);
   -webkit-border-radius: calc(5px + 0.3vw); 
   -moz-border-radius: calc(5px + 0.3vw); 
+  border-top-left-radius: calc(5px + 0.3vw);
+  border-top-right-radius: calc(5px + 0.3vw);
+  border-bottom-left-radius: calc(5px + 0.3vw);
+  border-bottom-right-radius: calc(5px + 0.3vw);
   overflow: hidden;
   
   .indiv-photo {
