@@ -41,18 +41,18 @@ story.declare = () => {
     document.getElementById('story-section-2').querySelector('h2'),
     document.getElementById('story-team'),
     document.getElementById('story-carl'),
-    document.getElementById('story-section-3').querySelector('.story-text'),
-    document.getElementById('story-section-3').querySelector('.story-go-link'),
+    document.getElementById('story-section-2').querySelector('.story-text'),
+    document.getElementById('story-section-2').querySelector('.story-go-link'),
     document.getElementById('our-vision'),
     document.getElementById('story-carlos-craig'),
     document.getElementById('story-whiteboard'),
     document.getElementById('our-mission'),
     document.getElementById('story-web-team'),
-    document.getElementById('story-section-6').querySelector('h2'),
+    document.getElementById('story-section-5').querySelector('h2'),
     document.getElementById('strategy-a'),
     document.getElementById('story-brydon'),
     document.getElementById('strategy-b'),
-    document.getElementById('story-section-6').querySelector('.story-go-link'),
+    document.getElementById('story-section-5').querySelector('.story-go-link'),
     document.getElementById('story-section-7').querySelector('h2'),
     document.getElementById('story-kit-team'),
     document.getElementById('story-velocity'),
@@ -87,7 +87,7 @@ story.recursive = (max) => {
 }
 
 story.scrollListener = () => {
-  if (!window.matchMedia("(min-width: 850px)").matches) {
+  // if (!window.matchMedia("(min-width: 850px)").matches) {
     window.addEventListener('scroll', () => {
       var currentPos = (document.documentElement.scrollTop || window.pageYOffset) + window.innerHeight - 40
       if (currentPos > story.positions[0]) {
@@ -96,7 +96,7 @@ story.scrollListener = () => {
         story.positions.shift()
       }
     })
-  }
+  // }
 }
 
 /* ========================================================================================
