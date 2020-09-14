@@ -74,7 +74,6 @@ story.initWindow = () => {
   }, 100)
 }
 
-
 story.recursive = (max) => {
   if (story.elements[0].getBoundingClientRect().top < max) {
     story.elements[0].classList.toggle('shown')
@@ -87,10 +86,9 @@ story.recursive = (max) => {
 
 story.scrollListener = () => {
   window.addEventListener('scroll', () => {
-    var currentPos = document.documentElement.scrollTop + window.innerHeight - 40
+    var currentPos = (document.documentElement.scrollTop || window.pageYOffset) + window.innerHeight - 40
+    console.log(currentPos)
     if (currentPos > story.positions[0]) {
-      console.log(story.elements[0])
-      console.log(story.positions[0])
       story.elements[0].classList.toggle('shown')
       story.elements.shift()
       story.positions.shift()
