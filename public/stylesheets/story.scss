@@ -16,12 +16,20 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.img-container {
+  width: 100%;
+  height: 100%;
+  margin: 2vh 0;
+  overflow: hidden;
+  display: flex;
+  position: relative;
 
   img {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    margin: 2vh 0;
   }
 }
 
@@ -37,7 +45,7 @@ h3 {
   font-weight: 600;
   line-height: 175%;
   color: $dark-3;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 h4 {
@@ -52,10 +60,11 @@ h5 {
   font-weight: 400;
   line-height: 150%;
   color: $dark-3;
+  margin-bottom: 0.5em;
 }
 
 p {
-  font-size: calc(11px + 0.4vw);
+  font-size: calc(10px + 0.4vw);
   color: $dark-3;
   line-height: 175%;
 }
@@ -67,9 +76,26 @@ p {
   font-size: calc(11px + 0.5vw);
   letter-spacing: 0.1rem;
   color: $logo-2;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem $x-margin 0.5rem 0;
+  margin-left: auto;
+  margin-right: 2vw;
+  opacity: 0;
+  transition: margin-right 0.4s ease-out 0.5s, opacity 0.2s ease-out 0.5s;
   .fas {
-    margin-left: 0.5rem;
+    margin-left: 0;
+    margin-right: 0.5rem;
+    opacity: 0;
+    transition: margin 0.2s ease-out 0.7s, opacity 0.2s ease-out 0.7s;
+  }
+  &.shown {
+    margin-right: 0;
+    opacity: 1;
+    .fas {
+      opacity: 1;
+      margin-left: 0.5rem;
+      margin-right: 0;
+    }
   }
 }
 
@@ -79,43 +105,362 @@ p {
 }
 
 #story-section-1 {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 0 $x-margin;
   margin-top: 6vh;
   h2 {
     text-align: center;
   }
+  #story-collab {
+    height: 25vh;
+  }
+  .story-text {
+    width: 100%;
+  }
 }
 
 #story-section-2 {
   padding: 0 $x-margin;
+  display: flex;
+  flex-direction: column;
   h2 {
     text-align: center;
   }
 }
 
 #story-section-3 {
-  margin-top: 0;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 0;
   #story-team {
     height: 30vh;
     width: 100%;
+    img {
+      object-position: center 30%;
+    }
   }
   #story-carl {
     width: 40vw;
-    margin-right: 4vh;
+    height: 27vh;
   }
   .story-text {
-    flex: 1 0 0;
+    width: calc(100% - 40vw);
     margin-top: 2vh;
+    padding-left: 4vh;
     padding-right: $x-margin;
   }
   .story-go-link {
-    width: 100%;
+    justify-self: flex-end;
     text-align: right;
-    padding-right: $x-margin;
   }
+}
+
+#story-section-4 {
+  padding: 0 $x-margin;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  #our-vision {
+    width: 100%;
+    padding-right: 6vh;
+  }
+  #our-mission {
+    width: 100%;
+    padding-left: 6vh;
+  }
+  #story-carlos-craig {
+    width: 60%;
+    margin-bottom: -4vh;
+  }
+  #story-whiteboard {
+    width: 60%;
+    align-self: flex-end;
+  }
+}
+
+#story-section-5 {
+  #story-web-team {
+    margin: 0;
+    height: 20vh;
+  }
+}
+
+#story-section-6 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  h2 {
+    padding: 0 $x-margin;
+    text-align: center;
+  }
+  #strategy-a {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 0 $x-margin;
+    width: calc(100% - 40vw);
+    h3 {
+      overflow: visible;
+      white-space: nowrap;
+    }
+  }
+  #story-brydon {
+    position: absolute;
+    width: 40vw;
+    top: 8vh;
+    right: 0;
+    height: 28vh;
+  }
+  #strategy-b {
+    width: 100%;
+    padding: 0 $x-margin;
+  }
+}
+
+#story-section-7 {
+  h2 {
+    padding: 0 $x-margin;
+    text-align: center;
+  }
+}
+
+#story-section-8 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  overflow: hidden;
+  #story-kit-team {
+    align-self: flex-end;
+    width: calc(100% - #{$x-margin} - 4vh);
+    height: 25vh;
+  }
+  #story-velocity {
+    width: 100%;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding-left: $x-margin;
+    padding-right: calc(#{$x-margin} + 6vh);
+    position: relative;
+    overflow: visible;
+    #story-velocity-logo {
+      position: absolute;
+      right: -2vh;
+      top: 2vh;
+      width: 65%;
+      object-fit: contain;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease-out 0.6s, right 0.6s ease-out 0.4s;
+    }
+    &.shown > #story-velocity-logo {
+      opacity: 0.1;
+      right: 0;
+    }
+  }
+  #story-laptop {
+    width: calc(100% - #{$x-margin} - 4vh);
+    height: 25vh;
+  }
+  #story-robotic-arm {
+    width: 100%;
+    margin-top: 2vh;
+    padding-left: calc(#{$x-margin} + 6vh);
+    padding-right: $x-margin;
+    position: relative;
+    overflow: visible;
+  }
+}
+
+#story-section-9 {
+  padding: 0 $x-margin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  #story-social-container {
+    width: 100%;
+    padding: 0 8vh;
+    margin-bottom: 6vh;
+    display: flex;
+    justify-content: space-around;
+    & > * {
+      opacity: 0;
+      margin-top: 2vh;
+      margin-bottom: -2vh;
+      color: $logo-2;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      transition: opacity 0.4s ease-out, margin 0.4s ease-out;
+    }
+  }
+  #story-social-container.shown {
+    & > * {
+      opacity: 1;
+      margin: 0;
+    }
+    *:nth-child(1) {
+      transition-delay: 0.2s;
+    }
+    *:nth-child(2) {
+      transition-delay: 0.4s;
+    }
+    *:nth-child(3) {
+      transition-delay: 0.6s;
+    }
+    *:nth-child(4) {
+      transition-delay: 0.8s;
+    }
+  }
+}
+
+.img-from-top {
+  opacity: 0;
+  margin-top: -2vh;
+  margin-bottom: 6vh;
+  transition: margin 0.4s ease-out 0.4s, opacity 0.2s ease-out 0.4s;
+  &::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: $light-2;
+    transition: height 0.4s ease-out 0.7s;
+  }
+  &::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 110%;
+    left: 0;
+    background: rgb(196, 191, 227);
+    box-shadow: 0 0 10px 5px rgb(196, 191, 227);
+    transition: bottom 0.4s ease-out 0.6s, height 0.6s 0.8s, box-shadow 0.8s ease-out 0.8s;
+  }
+}
+
+.img-from-top.shown {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  opacity: 1;
+  &::before {
+    height: 0;
+  }
+  &::after {
+    bottom: 0;
+    height: 0;
+    box-shadow: 0 -5px 2px 2px rgba(196, 191, 227, 0);
+  }
+}
+
+.img-from-left {
+  opacity: 0;
+  margin-left: -50%;
+  margin-right: 50%;
+  transition: margin 0.4s ease-out 0.4s, opacity 0.2s ease-out 0.4s;
+  &::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: $light-2;
+    transition: width 0.4s ease-out 0.7s;
+  }
+  &::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 110%;
+    background: rgb(196, 191, 227);
+    box-shadow: 0 0 10px 5px rgb(196, 191, 227);
+    transition: right 0.4s ease-out 0.6s, width 0.6s 0.8s, box-shadow 0.8s ease-out 0.8s;
+  }
+}
+
+.img-from-left.shown {
+  margin-left: 0;
+  margin-right: 0;
+  opacity: 1;
+  &::before {
+    width: 0;
+  }
+  &::after {
+    right: 0;
+    width: 0;
+    box-shadow: -5px 0 2px 2px rgba(196, 191, 227, 0);
+  }
+}
+
+.img-from-right {
+  opacity: 0;
+  margin-right: -50%;
+  transition: margin-right 0.4s ease-out 0.4s, opacity 0.2s ease-out 0.4s;
+  &::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: $light-2;
+    transition: width 0.4s ease-out 0.7s;
+  }
+  &::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 110%;
+    background: rgb(196, 191, 227);
+    box-shadow: 0 0 10px 5px rgb(196, 191, 227);
+    transition: left 0.4s ease-out 0.6s, width 0.6s 0.8s, box-shadow 0.8s ease-out 0.8s;
+  }
+}
+
+.img-from-right.shown {
+  margin-right: 0;
+  opacity: 1;
+  &::before {
+    width: 0;
+  }
+  &::after {
+    left: 0;
+    width: 0;
+    box-shadow: 5px 0 2px 2px rgba(196, 191, 227, 0);
+  }
+}
+
+.text-from-top {
+  opacity: 0;
+  margin-top: -2vh;
+  margin-bottom: 2vh;
+  transition: opacity 0.4s ease-out 0.4s, margin 0.6s ease-out 0.4s;
+}
+
+.text-from-top.shown {
+  opacity: 1;
+  margin: 0;
+}
+
+.text-from-left {
+  opacity: 0;
+  margin-left: -2vh;
+  margin-right: 2vh;
+  transition: opacity 0.4s ease-out 0.4s, margin 0.6s ease-out 0.4s;
+}
+
+.text-from-left.shown {
+  opacity: 1;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 @media only screen and (min-width: 850px) and (orientation: landscape) {
