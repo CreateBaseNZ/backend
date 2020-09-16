@@ -7,20 +7,24 @@ let story = {
   declare: undefined,
   initWindow: undefined,
   recursive: undefined,
+  initNav: undefined,
+  navFunction: undefined,
+  toggleShown: undefined,
   scrollListener: undefined,
-  scrollTo: undefined,
-  easeInOutQuad: undefined,
-  detectPos: undefined,
+  fullPage: undefined,
 
   elements: [],
   elementPositions: [],
   sections: [],
-  sectionPositions: [],
   navBars: [],
-  funString: undefined,
-  clientMid: undefined,
-  currentSection: {},
-  isScrolling: undefined
+  oldScroll: window.scrollY,
+  isScrolling: false,
+  timeOut: undefined,
+
+  idlePeriod: 100,
+  animationDuration: 500,
+  lastAnimation: 0,
+  currIndex: 0
 }
 
 /* ========================================================================================
@@ -41,24 +45,14 @@ story.initialise = async () => {
   removeLoader()
   story.declare()
   story.initWindow()
+  story.initNav()
   story.scrollListener()
 }
 
 story.declare = () => {
   story.sections = Array.prototype.slice.call(document.querySelectorAll(".story-section"))
-  story.sections.forEach(function(element, i) {
-    let top = element.getBoundingClientRect().top
-    let bot = element.getBoundingClientRect().bottom
-    let temp = {
-      index: i,
-      el: element,
-      top: top,
-      bot: bot,
-      mid: top + (bot - top)/2
-    }
-    story.sectionPositions.push(temp)
-  })
-  console.log(story.sectionPositions)
+
+  story.navBars = Array.prototype.slice.call(document.querySelectorAll(".story-bar-container"))
 
   story.elements = [
     document.getElementById('story-section-1').querySelector('h2'),
@@ -88,20 +82,15 @@ story.declare = () => {
     document.getElementById('story-section-6').querySelector('h2'),
     document.getElementById('story-social-container')
   ]
+
   story.elements.forEach(function(el, i) {
     story.elementPositions.push(el.getBoundingClientRect().top)
   })
-
-  story.funString = "story.scrollTo(this);"
-  story.clientMid = (document.documentElement.clientHeight) / 2 + 30
-
-  story.currentSection = story.sectionPositions[0]
-  console.log(story.currentSection)
 }
 
 story.initWindow = () => {
   if (window.matchMedia("(min-width: 850px)").matches) {
-
+    story.toggleShown(0, 'shown');
   } else {
     setTimeout(() => {
       story.recursive(window.innerHeight - 60, 0)
@@ -119,17 +108,84 @@ story.recursive = (max) => {
   return
 }
 
+story.initNav = () => {
+  story.navBars.forEach((el, i) => {
+    el.addEventListener('click', () => {
+      story.navFunction(i, el)
+    })
+  })
+}
+
+story.navFunction = (i) => {
+  if (i === story.currIndex) {
+    return
+  }
+  story.toggleShown(story.currIndex, 'hide');
+  story.currIndex = i
+
+  story.toggleShown(story.currIndex, 'shown')
+  console.log(story.sections[story.currIndex])
+  // clearTimeout(story.timeOut)
+  // story.isScrolling = true
+  // story.timeOut = setTimeout(() => {
+  //   story.isScrolling = false
+  // }, story.animationDuration)
+  // story.sections[story.currIndex].scrollIntoView({behavior: "smooth"})
+
+  window.scrollTo({top: story.sections[story.currIndex].getBoundingClientRect().top - 60 + window.pageYOffset, behavior: "smooth"})
+}
+
+story.toggleShown = (index, state) => {
+  if (state === 'shown') {
+    story.sections[index].classList.add('shown')
+  } else {
+    story.sections[index].classList.remove('shown')
+  } 
+}
+
 story.scrollListener = () => {
   if (window.matchMedia("(min-width: 850px)").matches) {
-    // window.addEventListener('scroll', () => {
-    //   var currentPos = (document.documentElement.scrollTop || window.pageYOffset) + window.innerHeight - 40
-    //   if (currentPos > story.sectionPositions[0].top) {
-    //     story.sections[0].classList.toggle('shown')
-    //     story.sections.shift()
-    //     story.sectionPositions.shift()
+    // window.addEventListener('scroll', (e) => {
+    //   var timeNow = new Date().getTime()
+    //   // Cancel scroll if currently animating or within quiet period
+    //   if ((story.isScrolling) || (timeNow - story.lastAnimation < story.idlePeriod + story.animationDuration)) {
+    //     e.preventDefault()
+    //     console.log('should not be scrolling')
+    //     story.oldScroll = window.scrollY
+    //     return
     //   }
-    // })
-    window.addEventListener('scroll', story.detectPos)
+    //   if (story.oldScroll < window.scrollY) {
+    //     story.navFunction(story.currIndex + 1)
+    //   } else {
+    //     story.navFunction(story.currIndex - 1)
+    //   }
+    //   story.oldScroll = window.scrollY
+    //   story.lastAnimation = timeNow
+    // }, false) 
+
+
+    document.addEventListener('wheel', event => {
+      var delta = event.wheelDelta;
+      var timeNow = new Date().getTime();
+      // Cancel scroll if currently animating or within quiet period
+      if(timeNow - story.lastAnimation < story.idlePeriod + story.animationDuration) {
+        event.preventDefault();
+        return;
+      }
+      
+      if (delta < 0) {
+        var event = new Event('click');
+        story.navBars[story.currIndex + 1].dispatchEvent(event);
+        // story.navFunction(story.currIndex + 1)
+      } else {
+        var event = new Event('click');
+        story.navBars[story.currIndex - 1].dispatchEvent(event);
+        // story.navFunction(story.currIndex - 1)
+      }
+      
+      story.lastAnimation = timeNow;
+    }) 
+    // window.addEventListener('scroll', story.fullPage, false)
   } else {
     window.addEventListener('scroll', () => {
       var currentPos = (document.documentElement.scrollTop || window.pageYOffset) + window.innerHeight - 40
@@ -142,97 +198,37 @@ story.scrollListener = () => {
   }
 }
 
-story.scrollTo = (el) => {
-  console.log(el)
-
-  // TO DO
-  // document.querySelector('.tac-body-container').removeEventListener('scroll', story.detectPos)
-  el.removeAttribute("onclick")
+story.fullPage = (e) => {
+  window.removeEventListener('scroll', story.fullPage) 
   
-  document.querySelector('.story-selected').classList.toggle('story-selected')
-  el.classList.toggle('story-selected')
-  let target = el.getAttribute("data")
-  let targetElement = document.getElementById(target);
-  let duration = 600
-  var start = document.documentElement.scrollTop,
-  change = targetElement.offsetTop - 60 - start,
-  currentTime = 0,
-  increment = 20
-  
-  setTimeout(function() {   
-    // document.querySelector('.tac-body-container').addEventListener('scroll', tac.detectPos)
-    el.setAttribute("onclick", story.funString)
-  }, 610);
+  // var timeNow = new Date().getTime()
+  // // Cancel scroll if currently animating or within quiet period
+  // if (timeNow - story.lastAnimation < story.idlePeriod + story.animationDuration) {
+  //   e.preventDefault()
+  //   story.oldScroll = window.scrollY
+  //   return
+  // }
 
-  var animateScroll = function() {        
-    currentTime += increment
-    var val = story.easeInOutQuad(currentTime, start, change, duration)
-    document.documentElement.scrollTop = val
-    if(currentTime < duration) {
-      setTimeout(animateScroll, increment)
-    }
+  console.log(story.oldScroll)
+  console.log(window.scrollY)
+  if (story.oldScroll < window.scrollY) {
+    // console.log(story.currIndex)
+    story.navFunction(story.currIndex + 1)
+    // console.log(story.currIndex)
+  } else {
+    // console.log(story.currIndex)
+    story.navFunction(story.currIndex - 1)
+    // console.log(story.currIndex)
   }
-  animateScroll()
+  story.oldScroll = window.scrollY
+  story.lastAnimation = timeNow
+
+  setTimeout(() => {
+    window.addEventListener('scroll', story.fullPage, false) 
+  }, 1000)
 }
 
-story.easeInOutQuad = (t, b, c, d) => {
-  t /= d/2
-  if (t < 1) return c/2*t*t + b
-  t--
-  return -c/2 * (t*(t-2) - 1) + b
-};
 
-story.detectPos = () => {
-  // console.log(currentMid)
-  
-  window.clearTimeout( story.isScrolling );
-  // Set a timeout to run after scrolling ends
-  story.isScrolling = setTimeout(function() {
-    var currentMid = document.documentElement.scrollTop + story.clientMid
-    console.log(currentMid)
-    console.log(story.currentSection.mid)
-    if (currentMid < story.currentSection.mid) {
-      if (!story.sections[story.currentSection.index - 1].classList.contains('shown')) {
-        try {
-          story.sections[story.currentSection.index - 1].classList.toggle('shown')
-          console.log('showing next')
-          console.log(story.sections[story.currentSection.index - 1])
-        } catch {}
-      } else if (currentMid < story.sectionPositions[story.currentSection.index - 1].bot) {
-        try {
-          story.currentSection = story.sectionPositions[story.currentSection.index - 1]
-          story.sectionPositions[story.currentSection.index + 2].el.classList.toggle('shown')
-          console.log('switched to')
-          console.log(story.currentSection)
-        } catch {}
-      }
-    } else {
-      if (!story.sections[story.currentSection.index + 1].classList.contains('shown')) {
-        try {
-          story.sections[story.currentSection.index + 1].classList.toggle('shown')
-          console.log('showing next')
-          console.log(story.sections[story.currentSection.index + 1])
-        } catch {}
-      } else if (currentMid > story.sectionPositions[story.currentSection.index + 1].top) {
-        try {
-          story.currentSection = story.sectionPositions[story.currentSection.index + 1]
-          story.sectionPositions[story.currentSection.index - 2].el.classList.toggle('shown')
-          console.log('switched to')
-          console.log(story.currentSection)
-        } catch {}
-      }
-    }
-    if (currentMid == story.currentSection.mid) {
-      console.log('equal')
-      try {
-        story.sections[story.currentSection.index - 1].classList.remove('shown')
-      } catch {}
-      try {
-        story.sections[story.currentSection.index + 1].classList.remove('shown')
-      } catch {}
-    }
-  }, 66);
-}
 
 /* ========================================================================================
 END
