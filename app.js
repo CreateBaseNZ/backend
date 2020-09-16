@@ -2,9 +2,6 @@
 REQUIRED MODULES
 =========================================================================================*/
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -13,6 +10,7 @@ const bodyParser = require("body-parser");
 VARIABLES
 =========================================================================================*/
 
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const app = express();
 
 /*=========================================================================================
@@ -29,9 +27,7 @@ mongoose.connect(process.env.MONGODB_URL, {
 SETUP SERVER
 =========================================================================================*/
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running at port ${process.env.PORT}`);
-});
+app.listen(process.env.PORT, () => console.log(`Server is running at port ${process.env.PORT}`));
 
 /*=========================================================================================
 GENERAL MIDDLEWARE
