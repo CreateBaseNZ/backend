@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup, Tag
 
 markdown = """
 <pre>
-  <footer class="footer-section hide">
+<footer class="footer-section hide">
     <div class="footer-content">
       <div class="footer-legal-section">
         <h4>INFO</h4>
@@ -21,7 +21,7 @@ markdown = """
           <div class="list-section-divider"></div>
 
           <ul class="list-section-right">
-            <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+            <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
             <li><a href="/privacy-policy">Privacy Policy</a></li>
           </ul>
         </div>
@@ -34,17 +34,27 @@ markdown = """
 
           <div class="btn-subscribe">
             <button class="reg-btn" id="footer-subscribe">SUBSCRIBE TO NEWSLETTER</button>
+            <div class="kit-fld input-decor hide" id="footer-subscribe-field">
+              <input type="text" name="email" id="footer-subscribe-email-input" maxlength="100" placeholder=" "
+                required />
+              <label class="input-label" for="footer-subscribe-email-input">Email</label>
+              <label class="input-error" for="footer-subscribe-email-input" id="footer-subscribe-email-error"></label>
+              <i class="fas fa-level-down-alt"></i>
+            </div>
           </div>
 
           <div class="contact-socials">
-            <a href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
-              class="fab fa-facebook-square" target="_blank"></a>
-            <a href="https://www.instagram.com/createbasenz/" class="fab fa-instagram" target="_blank"></a>
-            <a href="https://twitter.com/CreateBaseNZ" class="fab fa-twitter" target="_blank"></a>
-            <a href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" class="fab fa-youtube" target="_blank"></a>
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+            <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+            <a class="fab fa-youtube"
+              href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber"
+              target="_blank"></a>
           </div>
           <div class="contact-legal">
-            <a href="/terms-and-conditions" id="tac">Terms & Conditions</a>
+            <a href="/terms-and-conditions" id="tac">Terms &amp; Conditions</a>
             <a href="/privacy-policy" id="privpol">Privacy Policy</a>
           </div>
         </div>
@@ -58,13 +68,13 @@ markdown = """
             <li><a href="/services/marketplace">Marketplace</a></li>
             <li><a href="/products/engkits">Engineering Kits</a></li>
             <li><a href="/story">Our Story</a></li>
-            <li><a href="/team">Our Team</a></li>
+            <li><a href="/team">The Team</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-copyright-section">
-        <h3>&copy; 2020 CREATEBASE. ALL RIGHTS RESERVED</h3>
+        <h3>&#169; 2020 CREATEBASE. ALL RIGHTS RESERVED</h3>
       </div>
     </div>
   </footer>
