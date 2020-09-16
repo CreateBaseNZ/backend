@@ -9,7 +9,7 @@ body {
 
 .main-page {
     width: inherit;
-    padding-top: 60px;
+    padding-top: $top-bar-height;
     display: flex;
     flex-direction: column;
 }

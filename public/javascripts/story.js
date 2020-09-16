@@ -108,7 +108,7 @@ story.initWindow = () => {
     story.toggleActive(0, 'active');
   } else {
     setTimeout(() => {
-      story.recursive(window.innerHeight - 60, 0)
+      story.recursive(window.innerHeight - global.topBarHeight, 0)
     }, 100)
   }
 }
@@ -142,7 +142,7 @@ story.navFunction = (i) => {
   // story.sections[story.currIndex].section.scrollIntoView({behavior: "smooth"})
 
   console.log(story.sections[story.currIndex].section.getBoundingClientRect().top)
-  window.scrollTo({top: story.sections[story.currIndex].top - story.offset - 60 + window.pageYOffset, behavior: "smooth"})
+  window.scrollTo({top: story.sections[story.currIndex].top - story.offset - global.topBarHeight + window.pageYOffset, behavior: "smooth"})
 }
 
 story.toggleActive = (index, state) => {
