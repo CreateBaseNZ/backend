@@ -15,9 +15,9 @@ nav {
     justify-items: center;
     height: #{$top-bar-height};
     width: 100vw;
-    background: $light-1;
+    // background: $light-1;
     z-index: 1001;
-    box-shadow: 0 5px 20px -20px $dark-1;
+    // box-shadow: 0 5px 20px -20px $dark-1;
   
     .hamburger {
       cursor: pointer;
@@ -163,6 +163,7 @@ nav {
 
           // V1
           *:nth-child(-n+4),
+          *:nth-child(8),
           *:nth-child(9) {
             display: none;
           }
