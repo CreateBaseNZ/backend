@@ -449,6 +449,7 @@ form{
         justify-content: center;
         padding: 1em 1em 1em 1em;
         background-color: $light-1;
+        margin-bottom: 2em;
         h3{
             font-size: 1em;
             font-weight: 700;
@@ -772,6 +773,7 @@ form{
             display: flex;
             flex-wrap: wrap;
             padding: 1em 2em;
+            margin-bottom: 0em;
             h3{
                 padding-top: 3em;
                 line-height: 200%;
