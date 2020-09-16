@@ -1,4 +1,4 @@
-@import "global/all_webapp";
+@import "global/all";
 
 html {
     scroll-behavior: smooth;
@@ -13,7 +13,7 @@ body {
 
 .main-page {
     width: inherit;
-    padding-top: 60px;
+    padding-top: $top-bar-height;
     display: flex;
     flex-direction: column;
 }

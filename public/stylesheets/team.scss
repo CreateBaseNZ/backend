@@ -1,4 +1,4 @@
-@import "global/all_webapp";  
+@import "global/all";  
 
 body {
   max-width: 100%;
@@ -100,6 +100,8 @@ body {
   align-items: center;
   height: 57vw;
   border-radius: calc(5px + 0.3vw);
+  -webkit-border-radius: calc(5px + 0.3vw); 
+  -moz-border-radius: calc(5px + 0.3vw); 
   overflow: hidden;
   
   .indiv-photo {
@@ -109,13 +111,6 @@ body {
     height: 101%;
     width: 101%;
     object-fit: cover;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    perspective: 1000;
-    -webkit-perspective: 1000;
-
     transition: transform 0.2s ease-out;
   }
 
@@ -130,7 +125,7 @@ body {
   }
   
   .indiv-overlay-2 {
-    opacity: 0;
+    display: none;
   }
 
   .indiv-name {
@@ -304,6 +299,8 @@ body {
   min-height: 250px;
 
   .indiv-overlay-2 {
+    display: block;
+    opacity: 0;
     position: absolute;
     top: 0;
     left: 0;

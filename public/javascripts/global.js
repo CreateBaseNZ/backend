@@ -10,7 +10,8 @@ let global = {
   readImage: undefined,
   nextWorkingDay: undefined,
   calculateWorkingDay: undefined,
-  subscribeToMailingList: undefined
+  subscribeToMailingList: undefined,
+  topBarHeight: 80
 }
 
 /* ========================================================================================
@@ -422,8 +423,7 @@ const removeLoader = (footer = true) => {
   document.querySelector(".main-page").classList.remove("hide");
   if (footer) document.querySelector(".footer-section").classList.remove("hide");
   setTimeout(function () {
-    document.querySelector(".nav-home-btn").querySelector(".nav-logo").style.marginBottom = "0px"
-    console.log('hello')
+    document.querySelector(".nav-home-btn").querySelector(".nav-logo").style.marginTop = "0px"
   }, 200);
   return;
 }
