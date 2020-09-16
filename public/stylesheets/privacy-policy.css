@@ -2168,6 +2168,7 @@ nav {
   top: 0;
   height: 0px;
   z-index: 1000;
+  width: 100%;
 }
 
 nav .nav-top-bar {
@@ -2181,7 +2182,7 @@ nav .nav-top-bar {
           align-items: flex-end;
   justify-items: center;
   height: 80px;
-  width: 100vw;
+  width: 100%;
   background: white;
   z-index: 1001;
 }
@@ -2199,21 +2200,20 @@ nav .nav-top-bar .hamburger:hover .hamburger-inner::after {
 
 nav .nav-top-bar .nav-home-btn {
   height: 100%;
-  margin-bottom: 10px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 nav .nav-top-bar .nav-home-btn .nav-logo {
-  height: 30px;
-  margin-bottom: 80px;
-  -webkit-transition: margin-bottom 0.5s cubic-bezier(0.36, 1.08, 0.84, 0.98);
-  transition: margin-bottom 0.5s cubic-bezier(0.36, 1.08, 0.84, 0.98);
+  height: 35px;
+  margin-top: calc(-35px - 80px);
+  -webkit-transition: margin-top 0.5s cubic-bezier(0.36, 1.08, 0.84, 0.98);
+  transition: margin-top 0.5s cubic-bezier(0.36, 1.08, 0.84, 0.98);
 }
 
 nav .nav-top-bar .nav-in,
@@ -2599,7 +2599,6 @@ nav .nav-darken-overlay {
   }
   nav .nav-top-bar .nav-home-btn {
     margin: 0 35.5vw;
-    margin-bottom: 10px;
   }
   nav .nav-top-bar .nav-in {
     justify-self: flex-end;

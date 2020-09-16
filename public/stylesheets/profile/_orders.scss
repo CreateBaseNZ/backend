@@ -151,7 +151,7 @@
   }
 
   .order-detail-wrap {
-    height: calc(100% - 60px);
+    height: calc(100% - #{$top-bar-height});
     width: 100vw;
     position: fixed;
     background-color: $light-1;
