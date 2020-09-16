@@ -10,7 +10,8 @@ let global = {
   readImage: undefined,
   nextWorkingDay: undefined,
   calculateWorkingDay: undefined,
-  subscribeToMailingList: undefined
+  subscribeToMailingList: undefined,
+  topBarHeight: 80
 }
 
 /* ========================================================================================

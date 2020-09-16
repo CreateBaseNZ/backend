@@ -9,7 +9,7 @@ let story = {
   recursive: undefined,
   initNav: undefined,
   navFunction: undefined,
-  toggleShown: undefined,
+  toggleActive: undefined,
   scrollListener: undefined,
   fullPage: undefined,
 
@@ -17,13 +17,7 @@ let story = {
   elementPositions: [],
   sections: [],
   navBars: [],
-  oldScroll: window.scrollY,
-  isScrolling: false,
-  timeOut: undefined,
-
-  idlePeriod: 100,
-  animationDuration: 500,
-  lastAnimation: 0,
+  offset: 200,
   currIndex: 0
 }
 
@@ -50,7 +44,17 @@ story.initialise = async () => {
 }
 
 story.declare = () => {
-  story.sections = Array.prototype.slice.call(document.querySelectorAll(".story-section"))
+  let temp = Array.prototype.slice.call(document.querySelectorAll(".story-section"))
+
+  temp.forEach(function(section, i) {
+    let sect = {
+      section: section,
+      top: section.getBoundingClientRect().top + story.offset,
+      bot: section.getBoundingClientRect().bottom - story.offset
+    }
+    story.sections.push(sect)
+  })
+  console.log(story.sections)
 
   story.navBars = Array.prototype.slice.call(document.querySelectorAll(".story-bar-container"))
 
@@ -89,18 +93,29 @@ story.declare = () => {
 }
 
 story.initWindow = () => {
+  
   if (window.matchMedia("(min-width: 850px)").matches) {
-    story.toggleShown(0, 'shown');
+    new fullpage('#fullpage', {
+      //options here
+      licenseKey: '1A848552-FFD34058-A6D0F08A-F33DC2F0',
+      autoScrolling: true,
+      scrollHorizontally: false,
+      navigation: true,
+      navigationPosition: 'right',
+      navigationTooltips: ['Problem', 'Team', 'Purpose', 'Strats', 'Next', 'Connect']
+    });
+    // fullpage_api.setAllowScrolling(false);
+    story.toggleActive(0, 'active');
   } else {
     setTimeout(() => {
-      story.recursive(window.innerHeight - 60, 0)
+      story.recursive(window.innerHeight - global.topBarHeight, 0)
     }, 100)
   }
 }
 
 story.recursive = (max) => {
   if (story.elements[0].getBoundingClientRect().top < max) {
-    story.elements[0].classList.toggle('shown')
+    story.elements[0].classList.toggle('active')
     story.elements.shift()
     story.elementPositions.shift()
     story.recursive(max)
@@ -120,112 +135,37 @@ story.navFunction = (i) => {
   if (i === story.currIndex) {
     return
   }
-  story.toggleShown(story.currIndex, 'hide');
+  story.toggleActive(story.currIndex, 'hide');
   story.currIndex = i
+  story.toggleActive(story.currIndex, 'active')
 
-  story.toggleShown(story.currIndex, 'shown')
-  console.log(story.sections[story.currIndex])
-  // clearTimeout(story.timeOut)
-  // story.isScrolling = true
-  // story.timeOut = setTimeout(() => {
-  //   story.isScrolling = false
-  // }, story.animationDuration)
-  // story.sections[story.currIndex].scrollIntoView({behavior: "smooth"})
+  // story.sections[story.currIndex].section.scrollIntoView({behavior: "smooth"})
 
-  window.scrollTo({top: story.sections[story.currIndex].getBoundingClientRect().top - 60 + window.pageYOffset, behavior: "smooth"})
+  console.log(story.sections[story.currIndex].section.getBoundingClientRect().top)
+  window.scrollTo({top: story.sections[story.currIndex].top - story.offset - global.topBarHeight + window.pageYOffset, behavior: "smooth"})
 }
 
-story.toggleShown = (index, state) => {
-  if (state === 'shown') {
-    story.sections[index].classList.add('shown')
+story.toggleActive = (index, state) => {
+  if (state === 'active') {
+    story.sections[index].section.classList.add('active')
   } else {
-    story.sections[index].classList.remove('shown')
+    story.sections[index].section.classList.remove('active')
   } 
 }
 
 story.scrollListener = () => {
   if (window.matchMedia("(min-width: 850px)").matches) {
-    // window.addEventListener('scroll', (e) => {
-    //   var timeNow = new Date().getTime()
-    //   // Cancel scroll if currently animating or within quiet period
-    //   if ((story.isScrolling) || (timeNow - story.lastAnimation < story.idlePeriod + story.animationDuration)) {
-    //     e.preventDefault()
-    //     console.log('should not be scrolling')
-    //     story.oldScroll = window.scrollY
-    //     return
-    //   }
-    //   if (story.oldScroll < window.scrollY) {
-    //     story.navFunction(story.currIndex + 1)
-    //   } else {
-    //     story.navFunction(story.currIndex - 1)
-    //   }
-    //   story.oldScroll = window.scrollY
-    //   story.lastAnimation = timeNow
-    // }, false) 
 
-
-    document.addEventListener('wheel', event => {
-      var delta = event.wheelDelta;
-      var timeNow = new Date().getTime();
-      // Cancel scroll if currently animating or within quiet period
-      if(timeNow - story.lastAnimation < story.idlePeriod + story.animationDuration) {
-        event.preventDefault();
-        return;
-      }
-      
-      if (delta < 0) {
-        var event = new Event('click');
-        story.navBars[story.currIndex + 1].dispatchEvent(event);
-        // story.navFunction(story.currIndex + 1)
-      } else {
-        var event = new Event('click');
-        story.navBars[story.currIndex - 1].dispatchEvent(event);
-        // story.navFunction(story.currIndex - 1)
-      }
-      
-      story.lastAnimation = timeNow;
-    }) 
-    // window.addEventListener('scroll', story.fullPage, false)
   } else {
     window.addEventListener('scroll', () => {
       var currentPos = (document.documentElement.scrollTop || window.pageYOffset) + window.innerHeight - 40
       if (currentPos > story.elementPositions[0]) {
-        story.elements[0].classList.toggle('shown')
+        story.elements[0].classList.toggle('active')
         story.elements.shift()
         story.elementPositions.shift()
       }
     })
   }
-}
-
-story.fullPage = (e) => {
-  window.removeEventListener('scroll', story.fullPage) 
-  
-  // var timeNow = new Date().getTime()
-  // // Cancel scroll if currently animating or within quiet period
-  // if (timeNow - story.lastAnimation < story.idlePeriod + story.animationDuration) {
-  //   e.preventDefault()
-  //   story.oldScroll = window.scrollY
-  //   return
-  // }
-
-  console.log(story.oldScroll)
-  console.log(window.scrollY)
-  if (story.oldScroll < window.scrollY) {
-    // console.log(story.currIndex)
-    story.navFunction(story.currIndex + 1)
-    // console.log(story.currIndex)
-  } else {
-    // console.log(story.currIndex)
-    story.navFunction(story.currIndex - 1)
-    // console.log(story.currIndex)
-  }
-  story.oldScroll = window.scrollY
-  story.lastAnimation = timeNow
-
-  setTimeout(() => {
-    window.addEventListener('scroll', story.fullPage, false) 
-  }, 1000)
 }
 
 

@@ -1,4 +1,4 @@
-$top-bar-height: 60px;
+$top-bar-height: 80px;
 $menu-width: 100vw;
 
 nav {
@@ -17,7 +17,6 @@ nav {
     width: 100vw;
     background: $light-1;
     z-index: 1001;
-    box-shadow: 0 5px 20px -20px $dark-1;
   
     .hamburger {
       cursor: pointer;
@@ -41,7 +40,7 @@ nav {
   
       .nav-logo {
         height: 30px;
-        margin-bottom: 60px;
+        margin-bottom: $top-bar-height;
         transition: margin-bottom 0.5s cubic-bezier(.36,1.08,.84,.98);
       }
     }
@@ -163,6 +162,7 @@ nav {
 
           // V1
           *:nth-child(-n+4),
+          *:nth-child(8),
           *:nth-child(9) {
             display: none;
           }
@@ -518,7 +518,7 @@ nav {
 }
 
 @media only screen and (min-width: 1250px) {
-  $top-bar-height: 60px;
+  $top-bar-height: 80px;
 
   .modular-nav-container{
     background-color: $light-1;

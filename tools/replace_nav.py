@@ -34,7 +34,7 @@ markdown = """
             <a class="nav-side-item" href="/faq">FAQ</a>
             <p class="nav-side-header">ABOUT</p>
             <a class="nav-side-item" href="/story">OUR STORY</a>
-            <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/team">THE TEAM</a>
             <a class="nav-side-item" href="/contact">CONTACT US</a>
           </div>
           <div class="nav-side-socials">

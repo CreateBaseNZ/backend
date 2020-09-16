@@ -151,6 +151,10 @@
           
           .list-section-desktop {
             display: block;
+            // V1
+            li:nth-child(2) {
+              display: none;
+            }
           }
 
           .list-section-divider,

@@ -433,10 +433,10 @@ UNIVERSAL
 -----------------------------------------------------------------------------------------*/
 
 .make-page {
-  height: calc(100vh - 60px);
+  height: calc(100vh - #{$top-bar-height});
   width: 100vw;
   position: fixed;
-  top: 60px;
+  top: $top-bar-height;
   left: 0;
   display: flex;
   flex-wrap: wrap;
@@ -486,10 +486,10 @@ UNIVERSAL
 }
 
 #make-redirect {
-  height: calc(100% - 60px);
+  height: calc(100% - #{$top-bar-height});
   width: 100%;
   position: fixed;
-  top: 60px;
+  top: $top-bar-height;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -784,10 +784,10 @@ DESKTOP CSS
   ---------------------------------------------------------------------------------------*/
 
   .main-page {
-    height: calc(100vh - 60px);
+    height: calc(100vh - #{$top-bar-height});
     width: 100%;
     position: fixed;
-    top: 60px;
+    top: $top-bar-height;
     left: 0;
     display: flex;
     flex-wrap: wrap;
