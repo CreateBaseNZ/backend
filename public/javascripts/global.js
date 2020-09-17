@@ -421,10 +421,6 @@ const removeLoader = (footer = true) => {
   document.querySelector("#mobile-notif-wrap").classList.remove("hide");
   document.querySelector("#notification-wrap").classList.remove("hide");
   document.querySelector(".main-page").classList.remove("hide");
-  if (footer) document.querySelector(".footer-section").classList.remove("hide");
-  setTimeout(function () {
-    document.querySelector(".nav-home-btn").querySelector(".nav-logo").style.marginTop = "0px"
-  }, 200);
   return;
 }
 
