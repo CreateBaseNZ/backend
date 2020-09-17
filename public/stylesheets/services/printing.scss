@@ -10,17 +10,23 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     font-family: $poppins;
-}
+    pointer-events: none;
+  }
 
-.main-page {
+  nav,
+  footer {
+    pointer-events: auto;
+  }
+  
+  .main-page {
     margin-top: $top-bar-height;
-}
-
-h4{
+  }
+  
+  h4{
     font-family: $poppins;
-}
-
-.banner-wrap{
+  }
+  
+  .banner-wrap{
     display: flex;
     flex-direction: column;
 }
@@ -33,6 +39,7 @@ h4{
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
+    display: block;
     .banner-text{
         width:70%;
         position: absolute;
@@ -61,7 +68,8 @@ h4{
 }
 
 #particles-js canvas {
-    display:block;
+    pointer-events: auto;
+    display: block;
     background: $light-1;
     position: fixed;
     z-index: -1;
@@ -208,7 +216,7 @@ h4{
 
 
 .ourtools-section{
-    width:100%;
+    width: 100%;
     flex: 0 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -340,7 +348,7 @@ h4{
     }
 }
 
-form{
+form {
     .ourtools-btn-container{
         padding:2em 0;
         display: flex;

@@ -354,6 +354,9 @@ nav {
         margin-bottom: 0;
         padding: $menu-icon-padding;
         margin-left: calc(50px + 1vw);
+        // V1 (and maybe onwards)
+        visibility: hidden;
+        pointer-events: none;
       }
     
       .nav-home-btn {  
