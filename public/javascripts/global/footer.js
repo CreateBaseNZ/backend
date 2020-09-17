@@ -48,7 +48,7 @@ footer.subscribe = async (login = false) => {
   // SUBMIT
   let data;
   try {
-    data = (await axios.post("/subscribe/mailing-list", { email: "" }))["data"];
+    data = (await axios.post("/notification/subscribe-email", { email: "" }))["data"];
   } catch (error) {
     console.log(error);
     notification.popup("An error ocurred", "failed");

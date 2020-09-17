@@ -209,7 +209,7 @@ global.subscribeToMailingList = (email) => {
     // SUBMIT
     let data;
     try {
-      data = (await axios.post("/subscribe/mailing-list", { email }))["data"];
+      data = (await axios.post("/notification/subscribe-email", { email }))["data"];
     } catch (error) {
       data = { status: "error", content: error };
     }
@@ -277,28 +277,6 @@ const checkLoginStatus = () => {
     return resolve(data.status);
   })
 }
-
-/*=========================================================================================
-SEND EMAIL
-=========================================================================================*/
-
-const sendEmail = async (email, subject, div, style) => {
-  // LOADER
-  console.log(`Sending an email to: ${email}`);
-  // SEND EMAIL REQUEST
-  let data;
-  try {
-    data = (await axios.post("/send-email", { email, subject, div, style }))["data"];
-  } catch (error) {
-    return console.log(error);
-  }
-  // ERROR HANDLER
-  if (data.status === "failed") {
-    return console.log(data.content);
-  }
-  // SUCCESS HANDLER
-  return console.log("Email sent successfully");
-};
 
 /*=========================================================================================
 Global notifs

@@ -2,9 +2,7 @@
 REQUIRED MODULES
 =========================================================================================*/
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const express = require("express");
 const path = require("path");
 
@@ -16,79 +14,53 @@ const router = new express.Router();
 const viewsOption = { root: path.join(__dirname, "../views") };
 
 /*=========================================================================================
-MODELS
-=========================================================================================*/
-
-/*=========================================================================================
-MIDDLEWARE
-=========================================================================================*/
-
-/*=========================================================================================
 ROUTES
 =========================================================================================*/
 
 // @route     Get /
-// @desc      Homepage
+// @desc      
 // @access    Public
-router.get("/", (req, res) => {
-  res.sendFile("home.html", viewsOption);
-});
+router.get("/", (req, res) => res.sendFile("home.html", viewsOption));
 
 // @route     Get /story
-// @desc      Our story Page
+// @desc      
 // @access    Public
-router.get("/story", (req, res) => {
-  res.sendFile("story.html", viewsOption);
-});
+router.get("/story", (req, res) => res.sendFile("story.html", viewsOption));
 
 // @route     Get /team
-// @desc      Our team Page
+// @desc      
 // @access    Public
-router.get("/team", (req, res) => {
-  res.sendFile("team.html", viewsOption);
-});
+router.get("/team", (req, res) => res.sendFile("team.html", viewsOption));
 
 // @route     Get /products/engkits
-// @desc      Engineering Kits Info Page
+// @desc      
 // @access    Public
-router.get("/products/engkits", (req, res) => {
-  res.sendFile("engkits.html", viewsOption);
-});
+router.get("/products/engkits", (req, res) => res.sendFile("engkits.html", viewsOption));
 
 // @route     Get /services/3d-printing
-// @desc      3D Printing Info Page
+// @desc      
 // @access    Public
-router.get("/services/3d-printing", (req, res) => {
-  res.sendFile("printing.html", viewsOption);
-});
+router.get("/services/3d-printing", (req, res) => res.sendFile("printing.html", viewsOption));
 
 // @route     Get /services/marketplace
-// @desc      Marketplace Info Page
+// @desc      
 // @access    Public
-router.get("/services/marketplace", (req, res) => {
-  res.sendFile("market.html", viewsOption);
-});
+router.get("/services/marketplace", (req, res) => res.sendFile("market.html", viewsOption));
 
 // @route     GET /terms-and-conditions
-// @desc      The Website's Terms and Conditions
+// @desc
 // @access    PUBLIC
-router.get("/terms-and-conditions", (req, res) => {
-  res.sendFile("terms-and-conditions.html", viewsOption);
-});
+router.get("/terms-and-conditions", (req, res) => res.sendFile("terms-and-conditions.html", viewsOption));
 
 // @route     GET /contact-us
-// @desc      The Company's Contact Details
+// @desc      
 // @access    PUBLIC
-router.get("/contact", (req, res) => {
-  res.sendFile("contact-us.html", viewsOption);
-});
+router.get("/contact", (req, res) => res.sendFile("contact-us.html", viewsOption));
 
 // @route     GET /privacy-policy
 // @desc
 // @access    PUBLIC
-router.get("/privacy-policy", (req, res) => {
-  res.sendFile("privacy-policy.html", viewsOption);
-});
+router.get("/privacy-policy", (req, res) => res.sendFile("privacy-policy.html", viewsOption));
 
 /*=========================================================================================
 EXPORT ROUTE

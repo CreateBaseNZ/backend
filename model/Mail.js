@@ -6,18 +6,10 @@ const mongoose = require("mongoose");
 const moment = require("moment-timezone");
 
 /*=========================================================================================
-GRIDFS
-=========================================================================================*/
-
-/*=========================================================================================
 VARIABLES
 =========================================================================================*/
 
 const Schema = mongoose.Schema;
-
-/*=========================================================================================
-MODELS
-=========================================================================================*/
 
 /*=========================================================================================
 CREATE MAILING MODEL
@@ -34,7 +26,6 @@ STATIC
 // @FUNC  build
 // @TYPE  STATICS
 // @DESC
-// @ARGU
 MailSchema.statics.build = function (object = {}, save = true) {
   return new Promise(async (resolve, reject) => {
     // EMAIL VALIDATION
@@ -46,12 +37,12 @@ MailSchema.statics.build = function (object = {}, save = true) {
     // SUBSCRIPTION
     let mail;
     try {
-      mail = await this.findOne({ email: object.email });
+      mail = await this.findOne(object);
     } catch (error) {
       return reject({ status: "error", content: error });
     }
     // CHECK IF EMAIL IS ALREADY SUBSCRIBED
-    if (mail) return reject({ status: "failed", content: "You are already subscribed" });
+    if (mail) return reject({ status: "succeeded", content: "You are already subscribed" });
     // SETUP OR CREATE MAIL INSTANCE
     mail = new this(object);
     // SAVE MAIL INSTANCE
@@ -67,10 +58,40 @@ MailSchema.statics.build = function (object = {}, save = true) {
   })
 }
 
+// @FUNC  demolish
+// @TYPE  STATICS
+// @DESC
+MailSchema.statics.demolish = function (object) {
+  return new Promise(async (resolve, reject) => {
+    // EMAIL VALIDATION
+    try {
+      await this.validateEmail(object.email);
+    } catch (data) {
+      return reject(data);
+    }
+    // FETCH THE MAIL
+    let mail;
+    try {
+      mail = await this.findOne(object);
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    // VALIDATE IF THE MAIL EXIST
+    if (!mail) return reject({ status: "succeeded", content: "You are already unsubscribed" });
+    // DEMOLISH MAIL
+    try {
+      await mail.deleteOne();
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    // SUCCESS HANDLER
+    return resolve();
+  });
+}
+
 // @FUNC  validateEmail
 // @TYPE  STATICS - PROMISE - ASYNC
 // @DESC  Validates an email input
-// @ARGU  
 MailSchema.statics.validateEmail = function (email) {
   return new Promise(async (resolve, reject) => {
     // Email REGEX
@@ -84,25 +105,6 @@ MailSchema.statics.validateEmail = function (email) {
     return resolve();
   });
 }
-
-// @FUNC  delete
-// @TYPE  STATICS
-// @DESC
-// @ARGU
-MailSchema.statics.delete = function (email) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      await this.deleteOne({ email });
-    } catch (error) {
-      reject(error);
-    }
-    resolve("success");
-  });
-};
-
-/*=========================================================================================
-METHOD
-=========================================================================================*/
 
 /*=========================================================================================
 EXPORT MAIL MODEL
