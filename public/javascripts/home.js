@@ -173,7 +173,7 @@ home.addImages = () => {
       alt: "Landing 1", classes: [], parentId: "landing-1"
     }
     const image2 = {
-      src: "/public/images/prusa.jpg", id: "",
+      src: "/public/images/home/landing-2.jpg", id: "",
       alt: "Landing 2", classes: [], parentId: "landing-2"
     }
     const image3 = {

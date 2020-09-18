@@ -219,7 +219,7 @@
             #footer-subscribe-field {
               flex-grow: 1;
               width: 0;
-              max-width: 80%;
+              max-width: 65%;
               #footer-subscribe-email-input {
                 color: $light-1;
                 transition: 0.1s ease-out 0s;
@@ -235,6 +235,7 @@
                 color: $light-1;
                 transform: rotate(90deg);
                 transform-origin: center 25%;
+                cursor: pointer;
               }
             }
           }

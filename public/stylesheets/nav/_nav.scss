@@ -197,7 +197,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  a {
+  .nav-top-item {
     font-family: $poppins;
     font-size: calc(5px + 0.4vw);
     text-transform: uppercase;
@@ -208,6 +208,9 @@ nav {
     padding: 5px;
     transition: color 0.1s ease-out;
     &:hover {
+      color: $highlight;
+    }
+    &.active {
       color: $highlight;
     }
   }
@@ -222,11 +225,12 @@ nav {
       height: 100%;
       left: 0;
       top: 0;
-      border-bottom: 2px solid $logo-2;
-      transition: width 0.4s ease-out;
+      border-bottom: 2px solid $light-1;
+      transition: width 0.5s ease-out, border-color 0.1s ease-out 0.4s;
     }
     &:hover::after {
       width: 100%;
+      border-bottom: 2px solid $logo-2;
       transition: width 0.2s ease-out;
     }
   }

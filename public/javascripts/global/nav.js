@@ -106,6 +106,14 @@ navigation.toggleRightMenu = () => {
 // @desc  
 //navigation.configuration = (login = false, user = {}) => {
 navigation.configuration = () => {
+  const page = window.location.pathname.split("/").pop();
+  const items = document.querySelectorAll('.nav-top-item')
+  for (const el of items) {
+    if ('nav-top-' + page === el.id) {
+      el.classList.add('active')
+      break
+    }
+  }
   // DELETE FIRST IF STATEMENT AFTER FULL IMPLEMENTATION
   //if (user) navigation.rightMenuGreeting.innerHTML = ("hi " + user.displayName).toUpperCase()
 }

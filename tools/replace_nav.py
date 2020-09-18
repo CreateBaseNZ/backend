@@ -22,12 +22,12 @@ markdown = """
         </span>
       </button>
       <div class="nav-top-desktop">
-        <a href="/story">Our story</a>
-        <a href="/team">The team</a>
-        <a href="/services/3d-printing">3D printing</a>
-        <a href="/products/kits">Steam kits</a>
-        <a href="/contact">Contact us</a>
-        <a id="nav-top-subscribe" href="/products/kits">Stay updated</a>
+        <a id="nav-top-story" class="nav-top-item" href="/story">Our story</a>
+        <a id="nav-top-team" class="nav-top-item" href="/team">The team</a>
+        <a id="nav-top-3d-printing" class="nav-top-item" href="/services/3d-printing">3D printing</a>
+        <a id="nav-top-kits" class="nav-top-item" href="/products/kits">Steam kits</a>
+        <a id="nav-top-contact" class="nav-top-item" href="/contact">Contact us</a>
+        <a id="nav-top-subscribe" class="nav-top-item" href="/products/kits">Touch base</a>
       </div>
     </div>
     <div class="nav-side-menu-wrapper">
@@ -58,7 +58,7 @@ markdown = """
           <a class="nav-side-item" href="/story">OUR STORY</a>
           <a class="nav-side-item" href="/team">THE TEAM</a>
           <a class="nav-side-item" href="/contact">CONTACT US</a>
-          <a class="nav-side-item" href="/products/kits">STAY UPDATED</a>
+          <a class="nav-side-item" href="/products/kits">TOUCH BASE</a>
           <div class="nav-socials">
             <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
