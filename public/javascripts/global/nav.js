@@ -22,13 +22,14 @@ let navigation = {
   toggleRightMenu: undefined,
   exitModal: undefined,
   configuration: undefined,
-  menuContentDesktop: undefined,
-  menuContentMobile: undefined,
   addImages: undefined,
   fetchUser: undefined
 }
 
 navigation.exitModal = () => {
+  
+}
+navigation.addImages = () => {
   
 }
 
@@ -41,30 +42,26 @@ FUNCTIONS
 // @func  navigation.initialise
 // @desc  
 navigation.initialise = (login = false, userMenu = true) => {
-  navigation.declareVariables();
-// navigation.initialise = () => {
-//   return new Promise(async (resolve, reject) => {
-//     // DECLARE VARIABLES
-//     // CONFIGURATION AND CONTENTS
-//     // ADD IMAGES
-//     //const promises = [navigation.fetchUser(login), navigation.addImages(login, userMenu)];
-//     try {
-//       //[user] = await Promise.all(promises);
-//       await navigation.addImages();
-//     } catch (error) {
-//       reject(error);
-//     }
-//     //navigation.configuration(login, user);
-//     //navigation.mediaQuery.addListener(() => navigation.configuration(login, user));
-//     navigation.configuration();
-//     navigation.mediaQuery.addListener(() => navigation.configuration());
-//     if (footer) document.querySelector(".footer-section").classList.remove("hide");
-//     setTimeout(function () {
-//       document.querySelector(".nav-home-btn").querySelector(".nav-logo").style.marginTop = "0px"
-//     }, 200);
-//     // SUCCESS RESOLVE
-//     resolve();
-//   });
+
+  return new Promise(async (resolve, reject) => {
+    // DECLARE VARIABLES
+    navigation.declareVariables();
+    // CONFIGURATION AND CONTENTS
+    // ADD IMAGES
+    // const promises = [navigation.fetchUser(login), navigation.addImages(login, userMenu)];
+    try {
+      //[user] = await Promise.all(promises);
+      await navigation.addImages();
+    } catch (error) {
+      reject(error);
+    }
+    // navigation.configuration(login, user);
+    //navigation.mediaQuery.addListener(() => navigation.configuration(login, user));
+    navigation.configuration();
+    // SUCCESS RESOLVE
+    resolve();
+  });
+
 }
 
 // @func  navigation.declareVariables
@@ -105,62 +102,13 @@ navigation.toggleRightMenu = () => {
 //   navigation.darken.classList.remove("nav-darken-overlay-active");
 // }
 
-// // @func  navigation.configuration
-// // @desc  
-// //navigation.configuration = (login = false, user = {}) => {
-// navigation.configuration = () => {
-//   if (navigation.mediaQuery.matches) {
-//     /* Desktop */
-//     //navigation.menuContentDesktop(login);
-//     navigation.menuContentDesktop();
-//   } else {
-//     /* Mobile */
-//     //navigation.menuContentMobile(login);
-//     navigation.menuContentMobile();
-//   }
-//   // DELETE FIRST IF STATEMENT AFTER FULL IMPLEMENTATION
-//   //if (navigation.rightMenuGreeting) if (user) navigation.rightMenuGreeting.innerHTML = ("hi " + user.displayName).toUpperCase()
-// }
-
-// // @func  navigation.menuContentDesktop
-// // @desc  
-// navigation.menuContentDesktop = (login = false) => {
-//   if (login) {
-//     /* Logged in on desktop */
-//     navigation.userIn.style.display = "block";
-//     navigation.userDesktopOut.style.display = "none";
-//     navigation.userMobileOut.style.display = "none";
-//     navigation.leftMenuIn.style.display = "block";
-//     navigation.leftMenuOut.style.display = "none";
-//   } else {
-//     /* Logged out on desktop */
-//     navigation.userDesktopOut.style.display = "block";
-//     navigation.userMobileOut.style.display = "none";
-//     navigation.userIn.style.display = "none";
-//     navigation.leftMenuOut.style.display = "none";
-//     navigation.leftMenuIn.style.display = "none";
-//   }
-// }
-
-// // @func  navigation.menuContentMobile
-// // @desc  
-// navigation.menuContentMobile = (login = false) => {
-//   if (login) {
-//     /* Logged in on mobile */
-//     navigation.userIn.style.display = "block";
-//     navigation.userDesktopOut.style.display = "none";
-//     navigation.userMobileOut.style.display = "none";
-//     navigation.leftMenuOut.style.display = "none";
-//     navigation.leftMenuIn.style.display = "block";
-//   } else {
-//     /* Logged out on mobile */
-//     navigation.userMobileOut.style.display = "block";
-//     navigation.userDesktopOut.style.display = "none";
-//     navigation.userIn.style.display = "none";
-//     navigation.leftMenuOut.style.display = "block";
-//     navigation.leftMenuIn.style.display = "none";
-//   }
-// }
+// @func  navigation.configuration
+// @desc  
+//navigation.configuration = (login = false, user = {}) => {
+navigation.configuration = () => {
+  // DELETE FIRST IF STATEMENT AFTER FULL IMPLEMENTATION
+  //if (user) navigation.rightMenuGreeting.innerHTML = ("hi " + user.displayName).toUpperCase()
+}
 
 // // @func  navigation.addImages
 // // @desc  
