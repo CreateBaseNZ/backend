@@ -92,7 +92,6 @@ story.declare = () => {
 }
 
 story.initWindow = () => {
-  
   if (window.matchMedia("(min-width: 850px)").matches) {
     new fullpage('#fullpage', {
       //options here
@@ -105,11 +104,18 @@ story.initWindow = () => {
     });
     // fullpage_api.setAllowScrolling(false);
     story.toggleActive(0, 'active');
+    story.size = true
   } else {
     setTimeout(() => {
       story.recursive(window.innerHeight - global.topBarHeight, 0)
     }, 100)
+    story.size = false
   }
+  window.addEventListener('resize', () => {
+    if (window.matchMedia("(min-width: 850px)").matches !== story.size) {
+      location.reload()
+    }
+  })
 }
 
 story.recursive = (max) => {
@@ -150,9 +156,7 @@ story.toggleActive = (index, state) => {
 }
 
 story.scrollListener = () => {
-  if (window.matchMedia("(min-width: 850px)").matches) {
-
-  } else {
+  if (!window.matchMedia("(min-width: 850px)").matches) {
     window.addEventListener('scroll', () => {
       var currentPos = (document.documentElement.scrollTop || window.pageYOffset) + window.innerHeight - 40
       if (currentPos > story.elementPositions[0]) {

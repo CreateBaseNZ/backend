@@ -124,7 +124,7 @@ h3 {
 @media only screen and (min-width: 850px){
 
 .main-page-wrap {
-    padding: 8vh calc(70px + 1vw);
+    padding: 5vh calc(70px + 1vw);
     width: 100%;
     justify-content: space-between;
 }
@@ -148,15 +148,16 @@ h3 {
         .tac-selected {
             color: $logo-2;
             font-weight: 600;
+            pointer-events: none;
         }
     }
 }
 
 #tac-img {
-    width: 100%;
-    height: 25vh;
+    height: 10vh;
     object-fit: contain;
-    margin-bottom: 5vh;
+    margin-bottom: 2vh;
+    align-self: flex-start;
 }
 
 .tac-body-wrap {
