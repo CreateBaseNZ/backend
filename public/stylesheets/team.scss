@@ -69,9 +69,10 @@ body {
     align-self: flex-end;
     margin-left: 7vw;
     margin-bottom: 4vh;
-    font-family: $montserrat;
+    font-family: $poppins;
     font-size: calc(18px + 4vmax);
     color: $dark-2;
+    font-weight: 400;
     span {
       display: inline-block;
       margin-right: 3vmax;
