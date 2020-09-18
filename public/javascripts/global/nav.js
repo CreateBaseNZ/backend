@@ -73,8 +73,7 @@ navigation.declareVariables = () => {
   navigation.mediaQuery = window.matchMedia("(min-width: 850px)")
   navigation.darken = document.querySelector('.nav-darken-overlay')
   navigation.ham = document.querySelector('.hamburger')
-  navigation.rightMenu = document.querySelector('.nav-right-menu-wrapper')
-  navigation.leftMenu = document.querySelector('.nav-left-menu-wrapper')
+  navigation.rightMenu = document.querySelector('.nav-side-menu-wrapper')
   // navigation.userIn = document.querySelector(".nav-in")
   // navigation.userDesktopOut = document.querySelector(".nav-desktop-out")
   // navigation.userMobileOut = document.querySelector(".nav-mobile-out")
@@ -87,34 +86,7 @@ navigation.toggleRightMenu = () => {
   // Toggle all on left
   navigation.rightMenu.classList.toggle('active');
   navigation.ham.classList.toggle('is-active');
-
-  if (navigation.rightMenu.classList.contains('active')) {
-    // If right menu displayed, hide it
-    navigation.leftMenu.classList.remove('active');
-    // navigation.userIn.classList.remove("nav-user-active");
-    // navigation.userDesktopOut.classList.remove("nav-user-active");
-    // navigation.userMobileOut.classList.remove("nav-user-active");
-  } else {
-    // If right menu not displayed, darken
-    navigation.darken.classList.toggle('active');
-  }
-}
-
-// @func  navigation.toggleLeftMenu
-// @desc  
-navigation.toggleLeftMenu = () => {
-  // Toggle all on right
-  navigation.leftMenu.classList.toggle('active');
-  // navigation.userIn.classList.toggle("nav-user-active");
-  // navigation.userMobileOut.classList.toggle("nav-user-active");
-  // navigation.userDesktopOut.classList.toggle("nav-user-active");
-
-  if (navigation.rightMenu.classList.contains('active')) {
-    navigation.rightMenu.classList.remove('active');
-    navigation.ham.classList.remove('is-active');
-  } else {
-    navigation.darken.classList.toggle('active');
-  }
+  navigation.darken.classList.toggle('active');
 }
 
 // // @func  navigation.exitModal

@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="/node_modules/swiper/css/swiper.min.css">
   <!-- ------------------------CUSTOM------------------------ -->
   <link rel="stylesheet" href="/public/stylesheets/home.css">
-  <link rel="stylesheet" href="/public/stylesheets/nav/nav.css">
 </head>
 
 <body onload="home.initialise();">
@@ -25,59 +24,62 @@
     <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
 
     <div class="nav-top-bar">
-      <div class="nav-top-left">
-        <div class="nav-in" onclick="navigation.toggleLeftMenu();"></div>
-        <div class="nav-mobile-out" onclick="navigation.toggleLeftMenu();"></div>
-      </div>
       <!-- <div class="nav-desktop-out">
         <a href="/login" id="nav-user-login">LOG IN</a>
         <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
       </div> -->
       <a class="nav-home-btn" href="/">
-        <img class="nav-logo" src="/public/images/logo-icon.png" alt="CreateBase">
+        <img alt="CreateBase" class="nav-logo mobile" src="/public/images/logo-icon.png"/>
+        <img alt="CreateBase" class="nav-logo desktop" src="/public/images/logo-dark.png"/>
       </a>
       <button class="hamburger hamburger-spin" onclick="navigation.toggleRightMenu();" type="button">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
-    </div>
-
-    <div class="nav-left-menu-wrapper nav-side-menu-wrapper">
-      <div class="nav-left-menu-container nav-side-menu-container in">
-        <p class="nav-side-header logged-out">WELCOME BACK</p>
-        <a class="nav-side-item logged-out" href="/login">LOG IN</a>
-        <p class="nav-side-header logged-out">FIRST TIME?</p>
-        <a class="nav-side-item logged-out" href="/signup">SIGN UP</a>
-        <p class="nav-side-header logged-in">Hello, Louis</p>
-        <a class="nav-side-item logged-in" href="/profile">DASHBOARD</a>
-        <a class="nav-side-item logged-in" href="/profile/projects">MY PROJECTS</a>
-        <a class="nav-side-item logged-in" href="/profile/orders">MY ORDERS</a>
-        <a class="nav-side-item logged-in" href="/profile/settings">SETTINGS</a>
-        <a id="nav-signout" class="nav-side-item logged-in" href="/logout">SIGN OUT</a>
+      <div class="nav-top-desktop">
+        <a href="/story">Our story</a>
+        <a href="/team">The team</a>
+        <a href="/services/3d-printing">3D printing</a>
+        <a href="/products/engkits">Steam kits</a>
+        <a href="/contact">Contact us</a>
+        <a href="/#landing-btn-1" id="nav-top-subscribe">Stay updated</a>
       </div>
     </div>
-
-    <div class="nav-right-menu-wrapper nav-side-menu-wrapper">
-      <div class="nav-right-menu-container nav-side-menu-container">
-        <!-- <p class="nav-side-header">CREATEBASE</p>
-        <a class="nav-side-item" href="/make">MAKE</a>
-        <a class="nav-side-item" href="/products/engkits">KITS</a>
-        <a class="nav-side-item" href="/services/marketplace">SHOP</a> -->
-        <p class="nav-side-header">INFO</p>
-        <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-        <a class="nav-side-item" href="/products/engkits">ENGINEERING KITS</a>
-        <!-- <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a> -->
-        <!-- <a class="nav-side-item" href="/faq">FAQ</a> -->
-        <p class="nav-side-header">ABOUT</p>
-        <a class="nav-side-item" href="/story">OUR STORY</a>
-        <a class="nav-side-item" href="/team">THE TEAM</a>
-        <a class="nav-side-item" href="/contact">CONTACT US</a>
-        <div class="nav-socials">
-          <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
-          <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
-          <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
-          <a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+    <div class="nav-side-menu-wrapper">
+      <div class="nav-side-menu-container">
+        <div class="nav-side-menu-half left">
+          <p class="nav-side-header logged-out">WELCOME BACK</p>
+          <a class="nav-side-item logged-out" href="/login">LOG IN</a>
+          <p class="nav-side-header logged-out">FIRST TIME?</p>
+          <a class="nav-side-item logged-out" href="/signup">SIGN UP</a>
+          <p class="nav-side-header logged-in">Hello, Louis</p>
+          <a class="nav-side-item logged-in" href="/profile">DASHBOARD</a>
+          <a class="nav-side-item logged-in" href="/profile/projects">MY PROJECTS</a>
+          <a class="nav-side-item logged-in" href="/profile/orders">MY ORDERS</a>
+          <a class="nav-side-item logged-in" href="/profile/settings">SETTINGS</a>
+          <a class="nav-side-item logged-in" href="/logout" id="nav-signout">SIGN OUT</a>
+        </div>
+        <div class="nav-side-menu-half right">
+          <!-- <p class="nav-side-header">CREATEBASE</p>
+          <a class="nav-side-item" href="/make">MAKE</a>
+          <a class="nav-side-item" href="/products/engkits">KITS</a>
+          <a class="nav-side-item" href="/services/marketplace">SHOP</a> -->
+          <p class="nav-side-header">INFO</p>
+          <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+          <a class="nav-side-item" href="/products/engkits">ENG KITS</a>
+          <!-- <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a> -->
+          <!-- <a class="nav-side-item" href="/faq">FAQ</a> -->
+          <p class="nav-side-header">ABOUT</p>
+          <a class="nav-side-item" href="/story">OUR STORY</a>
+          <a class="nav-side-item" href="/team">THE TEAM</a>
+          <a class="nav-side-item" href="/contact">CONTACT US</a>
+          <div class="nav-socials">
+            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+            <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+            <a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+          </div>
         </div>
       </div>
     </div>

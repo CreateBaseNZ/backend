@@ -5,6 +5,10 @@
   --swiper-theme-color: #{$light-3};
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: $light-1;
   max-width: 100%;
