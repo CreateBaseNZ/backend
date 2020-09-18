@@ -17,15 +17,14 @@ body{
 }
 
 iframe {
-  margin-top: -$top-bar-height;
   width: 60%;
   border: none;
   padding-bottom: 5vh;
 }
 
 .temp-wrap {
-  padding: 10vh 0 20vh 0;
   position: relative;
+  min-height: 75vh;
   &::after {
     content: '';
     position: absolute;
