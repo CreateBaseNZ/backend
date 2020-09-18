@@ -58,7 +58,7 @@ story.declare = () => {
   story.navBars = Array.prototype.slice.call(document.querySelectorAll(".story-bar-container"))
 
   story.elements = [
-    document.getElementById('story-section-1').querySelector('h2'),
+    document.getElementById('story-section-1').querySelector('h1'),
     document.getElementById('story-collab'),
     document.getElementById('story-section-1').querySelector('.story-text'),
     document.getElementById('story-section-2').querySelector('h2'),

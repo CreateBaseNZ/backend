@@ -214,7 +214,7 @@ nav {
       color: $highlight;
     }
   }
-  #nav-top-subscribe {
+  #nav-top-touch-base {
     color: $logo-2;
     position: relative;
     &::after {
@@ -228,7 +228,8 @@ nav {
       border-bottom: 2px solid $light-1;
       transition: width 0.5s ease-out, border-color 0.1s ease-out 0.4s;
     }
-    &:hover::after {
+    &:hover::after,
+    &.active::after {
       width: 100%;
       border-bottom: 2px solid $logo-2;
       transition: width 0.2s ease-out;

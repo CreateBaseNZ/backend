@@ -10,7 +10,29 @@ body{
 .main-page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: $top-bar-height;
+}
+
+iframe {
+  margin-top: -$top-bar-height;
+  width: 60%;
+  border: none;
+  padding-bottom: 5vh;
+}
+
+.temp-wrap {
+  padding: 10vh 0 20vh 0;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20vw;
+    width: 60vw;
+    height: 1px;
+    background: $light-2;
+  }
 }

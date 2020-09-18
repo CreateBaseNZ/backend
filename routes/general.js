@@ -62,6 +62,11 @@ router.get("/contact", (req, res) => res.sendFile("contact-us.html", viewsOption
 // @access    PUBLIC
 router.get("/privacy-policy", (req, res) => res.sendFile("privacy-policy.html", viewsOption));
 
+// @route     GET /touch-base
+// @desc
+// @access    PUBLIC
+router.get("/touch-base", (req, res) => res.sendFile("touch-base.html", viewsOption));
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/

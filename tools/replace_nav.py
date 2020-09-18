@@ -27,7 +27,7 @@ markdown = """
         <a id="nav-top-3d-printing" class="nav-top-item" href="/services/3d-printing">3D printing</a>
         <a id="nav-top-kits" class="nav-top-item" href="/products/kits">Steam kits</a>
         <a id="nav-top-contact" class="nav-top-item" href="/contact">Contact us</a>
-        <a id="nav-top-subscribe" class="nav-top-item" href="/products/kits">Touch base</a>
+        <a id="nav-top-touch-base" class="nav-top-item" href="/touch-base">Touch base</a>
       </div>
     </div>
     <div class="nav-side-menu-wrapper">
@@ -58,7 +58,7 @@ markdown = """
           <a class="nav-side-item" href="/story">OUR STORY</a>
           <a class="nav-side-item" href="/team">THE TEAM</a>
           <a class="nav-side-item" href="/contact">CONTACT US</a>
-          <a class="nav-side-item" href="/products/kits">TOUCH BASE</a>
+          <a class="nav-side-item" href="/touch-base">TOUCH BASE</a>
           <div class="nav-socials">
             <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
