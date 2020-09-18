@@ -25,9 +25,9 @@ markdown = """
         <a href="/story">Our story</a>
         <a href="/team">The team</a>
         <a href="/services/3d-printing">3D printing</a>
-        <a href="/products/engkits">Steam kits</a>
+        <a href="/products/kits">Steam kits</a>
         <a href="/contact">Contact us</a>
-        <a id="nav-top-subscribe" href="/#landing-btn-1">Stay updated</a>
+        <a id="nav-top-subscribe" href="/products/kits">Stay updated</a>
       </div>
     </div>
     <div class="nav-side-menu-wrapper">
@@ -47,17 +47,18 @@ markdown = """
         <div class="nav-side-menu-half right">
           <!-- <p class="nav-side-header">CREATEBASE</p>
           <a class="nav-side-item" href="/make">MAKE</a>
-          <a class="nav-side-item" href="/products/engkits">KITS</a>
+          <a class="nav-side-item" href="/products/kits">KITS</a>
           <a class="nav-side-item" href="/services/marketplace">SHOP</a> -->
           <p class="nav-side-header">INFO</p>
           <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
-          <a class="nav-side-item" href="/products/engkits">ENG KITS</a>
+          <a class="nav-side-item" href="/products/kits">STEAM KITS</a>
           <!-- <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a> -->
           <!-- <a class="nav-side-item" href="/faq">FAQ</a> -->
           <p class="nav-side-header">ABOUT</p>
           <a class="nav-side-item" href="/story">OUR STORY</a>
           <a class="nav-side-item" href="/team">THE TEAM</a>
           <a class="nav-side-item" href="/contact">CONTACT US</a>
+          <a class="nav-side-item" href="/products/kits">STAY UPDATED</a>
           <div class="nav-socials">
             <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
             <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>

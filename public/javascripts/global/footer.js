@@ -15,7 +15,6 @@ FUNCTIONS
 // @func  footer.initialise
 // @desc  
 footer.initialise = (login = false) => {
-  if (footer) document.querySelector(".footer-section").classList.remove("hide");
   // V1
   // footer.subscription(login);
   document.getElementById('footer-subscribe').addEventListener("click", () => {

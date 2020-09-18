@@ -32,10 +32,10 @@ router.get("/story", (req, res) => res.sendFile("story.html", viewsOption));
 // @access    Public
 router.get("/team", (req, res) => res.sendFile("team.html", viewsOption));
 
-// @route     Get /products/engkits
+// @route     Get /products/kits
 // @desc      
 // @access    Public
-router.get("/products/engkits", (req, res) => res.sendFile("engkits.html", viewsOption));
+router.get("/products/kits", (req, res) => res.sendFile("kits.html", viewsOption));
 
 // @route     Get /services/3d-printing
 // @desc      

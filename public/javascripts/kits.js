@@ -2,7 +2,7 @@
 VARIABLES
 ======================================================================================== */
 
-let engkits = {
+let kits = {
   // VARIABLES
   words: ["COMING SOON", "ENGINEERING KITS"],
   // FUNCTIONS
@@ -15,9 +15,9 @@ let engkits = {
 FUNCTIONS
 ======================================================================================== */
 
-// @func  engkits.initialise
+// @func  kits.initialise
 // @desc  
-engkits.initialise = async () => {
+kits.initialise = async () => {
   /*updateSessionPage();
   // GET LOGIN STATUS 
   let data;
@@ -39,25 +39,25 @@ engkits.initialise = async () => {
   // LOAD SESSION
   //session.initialise();
   // ADD THE DYNAMIC WORDS EFFECT
-  textSequence(0, engkits.words, "change-text");
-  //engkits.subscription(login);
-  engkits.subscription();
+  textSequence(0, kits.words, "change-text");
+  //kits.subscription(login);
+  kits.subscription();
 }
 
-// @func  engkits.subscription
+// @func  kits.subscription
 // @desc  
-engkits.subscription = (login = false) => {
+kits.subscription = (login = false) => {
   // INPUT FIELD DISPLAY
   if (login) {
     document.querySelector("#subscribe-field").classList.add("hide");
   }
   // BUTTON ATTRIBUTE
-  document.querySelector("#subscribe-main").setAttribute("onclick", `engkits.subscribe(${login});`);
+  document.querySelector("#subscribe-main").setAttribute("onclick", `kits.subscribe(${login});`);
 }
 
-// @func  engkits.subscribe
+// @func  kits.subscribe
 // @desc  
-engkits.subscribe = async () => {
+kits.subscribe = async () => {
   document.querySelector("#subscribe-email-error").innerHTML = "";
   // DISABLE
   document.querySelector("#subscribe-main").setAttribute("disabled", "");

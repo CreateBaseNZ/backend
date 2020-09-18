@@ -54,7 +54,6 @@ story.declare = () => {
     }
     story.sections.push(sect)
   })
-  console.log(story.sections)
 
   story.navBars = Array.prototype.slice.call(document.querySelectorAll(".story-bar-container"))
 
@@ -139,9 +138,6 @@ story.navFunction = (i) => {
   story.currIndex = i
   story.toggleActive(story.currIndex, 'active')
 
-  // story.sections[story.currIndex].section.scrollIntoView({behavior: "smooth"})
-
-  console.log(story.sections[story.currIndex].section.getBoundingClientRect().top)
   window.scrollTo({top: story.sections[story.currIndex].top - story.offset - global.topBarHeight + window.pageYOffset, behavior: "smooth"})
 }
 

@@ -15,7 +15,7 @@ markdown = """
           <ul class="list-section-desktop">
             <li><a href="/services/3d-printing">3D Printing</a></li>
             <li><a href="/services/marketplace">Marketplace</a></li>
-            <li><a href="/products/engkits">Engineering Kits</a></li>
+            <li><a href="/products/kits">STEAM Kits</a></li>
           </ul>
 
           <div class="list-section-divider"></div>
@@ -66,7 +66,7 @@ markdown = """
           <ul>
             <li><a href="/make">3D Printing</a></li>
             <li><a href="/services/marketplace">Marketplace</a></li>
-            <li><a href="/products/engkits">Engineering Kits</a></li>
+            <li><a href="/products/kits">STEAM Kits</a></li>
             <li><a href="/story">Our Story</a></li>
             <li><a href="/team">The Team</a></li>
           </ul>
