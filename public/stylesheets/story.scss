@@ -122,7 +122,7 @@ p {
   width: 100%;
   padding: 0 $x-margin;
   margin-top: 6vh;
-  h1 {
+  h2 {
     text-align: center;
   }
   #story-collab {
@@ -136,7 +136,7 @@ p {
 #story-section-2 {
   display: flex;
   flex-wrap: wrap;
-  h2 {
+  h1 {
     text-align: center;
     width: 100%;
     padding: 0 $x-margin;
@@ -558,14 +558,14 @@ h1, h2 {
 #story-section-1 {
   display: grid;
   grid-template-areas: 
-  'h1 h1'
+  'h2 h2'
   'img text';
   grid-template-columns: 60% 40%;
   margin: 0;
   height: 100vh;
   padding: calc(5vh + #{$top-bar-height}) 0 5vh 0;
-  h1 {
-    grid-area: h1;
+  h2 {
+    grid-area: h2;
     width: 45%;
     padding-left: $left-margin;
     text-align: left;
@@ -588,15 +588,15 @@ h1, h2 {
 #story-section-2 {
   display: grid;
   grid-template-areas: 
-  'h2 team'
+  'h1 team'
   'carl team'
   'carl text'
   'link link';
   grid-template-columns: 40% 60%;
   height: 100vh;
   padding: calc(5vh + #{$top-bar-height}) 0 5vh $left-margin;
-  h2 {
-    grid-area: h2;
+  h1 {
+    grid-area: h1;
     margin-top: 5vh;
     padding-left: 0;
     padding-right: 15vw;

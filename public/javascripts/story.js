@@ -58,10 +58,10 @@ story.declare = () => {
   story.navBars = Array.prototype.slice.call(document.querySelectorAll(".story-bar-container"))
 
   story.elements = [
-    document.getElementById('story-section-1').querySelector('h1'),
+    document.getElementById('story-section-1').querySelector('h2'),
     document.getElementById('story-collab'),
     document.getElementById('story-section-1').querySelector('.story-text'),
-    document.getElementById('story-section-2').querySelector('h2'),
+    document.getElementById('story-section-2').querySelector('h1'),
     document.getElementById('story-team'),
     document.getElementById('story-carl'),
     document.getElementById('story-section-2').querySelector('.story-text'),
@@ -101,10 +101,9 @@ story.initWindow = () => {
       navigation: true,
       navigationPosition: 'right',
       navigationTooltips: ['Problem', 'Team', 'Purpose', 'Strats', 'Next', 'Connect']
-    });
-    // fullpage_api.setAllowScrolling(false);
-    story.toggleActive(0, 'active');
+    })
     story.size = true
+    // fullpage_api.setAllowScrolling(false);
   } else {
     setTimeout(() => {
       story.recursive(window.innerHeight - global.topBarHeight, 0)
