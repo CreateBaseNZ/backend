@@ -4,8 +4,9 @@ VARIABLES
 
 let footer = {
   initialise: undefined,
-  subscription: undefined,
-  subscribe: undefined
+  addListener: undefined,
+  subscribeClick: undefined,
+  subscribeSubmit: undefined
 }
 
 /* ========================================================================================
@@ -14,13 +15,11 @@ FUNCTIONS
 
 // @func  footer.initialise
 // @desc  
-footer.initialise = (login = false) => {
-  // V1
-  // footer.subscription(login);
-  document.getElementById('footer-subscribe').addEventListener("click", () => {
-    document.getElementById('footer-subscribe').classList.toggle('hide')
-    document.getElementById('footer-subscribe-field').classList.toggle('hide')
-  })
+//footer.initialise = (login = false) => {
+// V1
+// footer.subscription(login);
+footer.initialise = () => {
+  footer.addListener();
   document.getElementById('footer-subscribe-email-input').addEventListener('keypress', (e) => {
     if (e.which === 13) {
       footer.subscribe(false)
@@ -28,45 +27,55 @@ footer.initialise = (login = false) => {
   })
 }
 
-// @func  footer.subscription
+// @func  footer.addListener
 // @desc  
-footer.subscription = (login = false) => {
-  const clickEvent = (!login) ? `footer.subscribe(${login});` : "window.location.assign('/services/marketplace');";
-  return document.querySelector("#footer-subscribe").setAttribute("onclick", clickEvent);
+footer.addListener = () => {
+  document.querySelector("#footer-subscribe").addEventListener("click", () => footer.subscribeClick());
 }
 
-// @func  footer.subscribe
-// @desc
-footer.subscribe = async (login = false) => {
+// @func  footer.subscribeClick
+// @desc  
+footer.subscribeClick = () => {
+  document.getElementById('footer-subscribe').classList.toggle('hide');
+  document.getElementById('footer-subscribe-field').classList.toggle('hide');
+}
+
+// @func  footer.subscribeSubmit
+// @desc  
+footer.subscribeSubmit = async () => {
   // DISABLE
-  document.querySelector("#footer-subscribe").setAttribute("disabled", "");
+  document.querySelector("#footer-subscribe-submit").setAttribute("onclick", "");
+  document.querySelector("#footer-subscribe-email-input").setAttribute("disabled", "");
+  // COLLECT
+  const email = document.querySelector("#footer-subscribe-email-input").value;
   // VALIDATE
-  if (login) {
-    notification.popup("An error ocurred", "failed");
-    return document.querySelector("#footer-subscribe").removeAttribute("disabled"); // ENABLE
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if (email === "") {
+    notification.popup("Email is required", "failed");
+    document.querySelector("#footer-subscribe-submit").setAttribute("onclick", "footer.subscribeSubmit();");
+    document.querySelector("#footer-subscribe-email-input").removeAttribute("disabled");
+    return;
+  } else if (!emailRE.test(String(email).toLowerCase())) {
+    notification.popup("Invalid email", "failed");
+    document.querySelector("#footer-subscribe-submit").setAttribute("onclick", "footer.subscribeSubmit();");
+    document.querySelector("#footer-subscribe-email-input").removeAttribute("disabled");
+    return;
   }
   // SUBMIT
-  let data;
   try {
-    data = (await axios.post("/notification/subscribe-email", { email: "" }))["data"];
+    await global.subscribeToMailingList(email);
   } catch (error) {
-    console.log(error);
-    notification.popup("An error ocurred", "failed");
-    return document.querySelector("#footer-subscribe").removeAttribute("disabled"); // ENABLE
+    document.querySelector("#footer-subscribe-submit").setAttribute("onclick", "footer.subscribeSubmit();");
+    document.querySelector("#footer-subscribe-email-input").removeAttribute("disabled");
+    return;
   }
-  if (data.status === "failed") {
-    console.log(data.content);
-    notification.popup("Email required", "failed");
-    return document.querySelector("#footer-subscribe").removeAttribute("disabled"); // ENABLE
-  }
-  // SUCCESS
-  let message;
-  if (data.content === "already subscribed") {
-    message = login ? "You are already subscribed" : "This email is already subscribed";
-    notification.popup(message, "sent");
-  }
-  if (data.content === "subscribed") notification.popup("Thank you for subscribing to the newsletter!", "succeeded");
-  return document.querySelector("#footer-subscribe").removeAttribute("disabled"); // ENABLE
+  // SUCCESS HANDLER
+  document.querySelector("#footer-subscribe-submit").setAttribute("onclick", "footer.subscribeSubmit();");
+  document.querySelector("#footer-subscribe-email-input").removeAttribute("disabled");
+  document.querySelector("#footer-subscribe-email-input").value = "";
+  footer.subscribeClick();
+  return;
 }
 
 /* ========================================================================================
