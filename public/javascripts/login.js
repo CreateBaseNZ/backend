@@ -38,8 +38,8 @@ login.initialise = async () => {
 
 // Enter button to login
 login.enter = () => {
-  const checkEnter = (e) => {
-    if (e.which === 13) {
+  const checkEnter = ({key}) => {
+    if (key === "Enter") {
       login.submit()
     }
   }

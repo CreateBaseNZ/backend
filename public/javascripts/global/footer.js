@@ -21,8 +21,8 @@ footer.initialise = (login = false) => {
     document.getElementById('footer-subscribe').classList.toggle('hide')
     document.getElementById('footer-subscribe-field').classList.toggle('hide')
   })
-  document.getElementById('footer-subscribe-email-input').addEventListener('keypress', (e) => {
-    if (e.which === 13) {
+  document.getElementById('footer-subscribe-email-input').addEventListener('keypress', ({key}) => {
+    if (key === 'Enter') {
       footer.subscribe(false)
     }
   })

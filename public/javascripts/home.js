@@ -90,6 +90,11 @@ home.addListener = () => {
     home.landing1.addEventListener("click", home.slideOne);
     home.landing2.addEventListener("click", home.slideTwo);
     home.landing3.addEventListener("click", home.slideThree);
+    document.getElementById('subscribe-email-input').addEventListener('keypress', ({key}) => {
+      if (key === "Enter") {
+        home.subscribe(false)
+      }
+    })
   }
 }
 
@@ -209,7 +214,7 @@ home.subscription = (login = false) => {
 
 // @func  home.subscribe
 // @desc  
-home.subscribe = async () => {
+home.subscribe = async (login) => {
   document.querySelector("#subscribe-email-error").innerHTML = "";
   // DISABLE
   document.querySelector("#subscribe-main").setAttribute("disabled", "");
