@@ -90,9 +90,9 @@ home.addListener = () => {
     home.landing1.addEventListener("click", home.slideOne);
     home.landing2.addEventListener("click", home.slideTwo);
     home.landing3.addEventListener("click", home.slideThree);
-    document.getElementById('subscribe-email-input').addEventListener('keypress', ({key}) => {
+    document.getElementById('subscribe-email-input').addEventListener('keypress', ({ key }) => {
       if (key === "Enter") {
-        home.subscribe(false)
+        global.temporarySubscribeToMailingList(false)
       }
     })
   }
@@ -209,34 +209,7 @@ home.subscription = (login = false) => {
     document.querySelector("#subscribe-field").classList.add("hide");
   }
   // BUTTON ATTRIBUTE
-  document.querySelector("#subscribe-main").setAttribute("onclick", `home.subscribe(${login});`);
-}
-
-// @func  home.subscribe
-// @desc  
-home.subscribe = async (login) => {
-  document.querySelector("#subscribe-email-error").innerHTML = "";
-  // DISABLE
-  document.querySelector("#subscribe-main").setAttribute("disabled", "");
-  // COLLECT
-  const email = (!login) ? document.querySelector("#subscribe-email-input").value : "";
-  // VALIDATE
-  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  if (email === "") {
-    document.querySelector("#subscribe-email-error").innerHTML = "An email is required";
-    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
-  } else if (!emailRE.test(String(email).toLowerCase())) {
-    document.querySelector("#subscribe-email-error").innerHTML = "Invalid email";
-    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
-  }
-  // SUBMIT
-  try {
-    await global.subscribeToMailingList(email);
-  } catch (error) {
-    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
-  }
-  return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  document.querySelector("#subscribe-main").setAttribute("onclick", `global.temporarySubscribeToMailingList();`);
 }
 
 /* ========================================================================================

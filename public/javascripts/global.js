@@ -11,6 +11,7 @@ let global = {
   nextWorkingDay: undefined,
   calculateWorkingDay: undefined,
   subscribeToMailingList: undefined,
+  temporarySubscribeToMailingList: undefined,
   topBarHeight: 80
 }
 
@@ -224,6 +225,33 @@ global.subscribeToMailingList = (email) => {
       return resolve();
     }
   });
+}
+
+// @func  global.temporarySubscribeToMailingList
+// @desc  
+global.temporarySubscribeToMailingList = async () => {
+  document.querySelector("#subscribe-email-error").innerHTML = "";
+  // DISABLE
+  document.querySelector("#subscribe-main").setAttribute("disabled", "");
+  // COLLECT
+  const email = document.querySelector("#subscribe-email-input").value;
+  // VALIDATE
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if (email === "") {
+    document.querySelector("#subscribe-email-error").innerHTML = "An email is required";
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  } else if (!emailRE.test(String(email).toLowerCase())) {
+    document.querySelector("#subscribe-email-error").innerHTML = "Invalid email";
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  }
+  // SUBMIT
+  try {
+    await global.subscribeToMailingList(email);
+  } catch (error) {
+    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  }
+  return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
 }
 
 /* ----------------------------------------------------------------------------------------
