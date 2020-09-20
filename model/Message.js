@@ -10,10 +10,7 @@ VARIABLES
 =========================================================================================*/
 
 const Schema = mongoose.Schema;
-
-/*=========================================================================================
-MODELS
-=========================================================================================*/
+const email = require("../config/email.js");
 
 /*=========================================================================================
 CREATE MODEL
@@ -117,8 +114,35 @@ MessageSchema.statics.validateInquiry = function (object = {}) {
 }
 
 /*=========================================================================================
-METHOD
+METHODS
 =========================================================================================*/
+
+// @FUNC  sendInquiryEmailNotification
+// @TYPE  STATICS - PROMISE - ASYNC
+// @DESC
+MessageSchema.methods.sendInquiryEmailNotification = function () {
+  return new Promise(async (resolve, reject) => {
+    const subject = `Thank you for your inquiry (#${this.number.inquiry}).`;
+    const texts = [`Hi ${this.name},`,
+      "We have received your inquiry. Expect a reply within 1-2 working days."];
+    const object = { email: this.email, subject, texts };
+    // BUILD EMAIL
+    let emailObject;
+    try {
+      emailObject = await email.build(object, "one");
+    } catch (data) {
+      return reject(data);
+    }
+    // SEND EMAIL
+    try {
+      await email.send(emailObject);
+    } catch (data) {
+      return reject(data);
+    }
+    // SUCCESS HANDLER
+    return resolve();
+  });
+}
 
 /*=========================================================================================
 EXPORT MAKE MODEL

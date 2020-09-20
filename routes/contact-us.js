@@ -17,10 +17,6 @@ MODELS
 const Message = require("../model/Message.js");
 
 /*=========================================================================================
-MIDDLEWARE
-=========================================================================================*/
-
-/*=========================================================================================
 ROUTES
 =========================================================================================*/
 
@@ -46,6 +42,12 @@ router.post("/contact-us/submit-inquiry", async (req, res) => {
   try {
     message = await Message.build(inquiry);
   } catch (data) {
+    return res.send(data);
+  }
+  // SEND NOTIFICATION
+  try {
+    await message.sendInquiryEmailNotification();
+  } catch (error) {
     return res.send(data);
   }
   // SUCCESS HANDLER

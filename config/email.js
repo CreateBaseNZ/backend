@@ -85,7 +85,11 @@ email.templateOne = (object) => {
     // SET THE EMAIL SUBJECT
     const subject = object.subject;
     // BUILD THE EMAIL BODY
-    const text = "";
+    let text = "";
+    for (let i = 0; i < object.texts.length; i++) {
+      text = text + object.texts[i] + " ";
+      if (i === (object.texts.length - 1)) text = text + "Kind Regards, CreateBase Team";
+    }
     const div = "";
     // SET THE CSS STYLING
     const css = "";
