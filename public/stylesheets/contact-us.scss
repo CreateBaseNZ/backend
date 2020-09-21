@@ -8,7 +8,7 @@ body {
 }
 
 .main-page {
-    padding-top: $top-bar-height;
+    margin-top: $top-bar-height;
 }
 
 .nav-top-desktop {
@@ -31,7 +31,7 @@ body {
 
 
 .contact-wrap{
-    margin: 10vh 0 5vh;
+    margin: 5vh 0 5vh;
     width: 75vw;
     padding: 2vw;
 }
@@ -39,6 +39,7 @@ body {
 .form-container{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .form-container{
@@ -174,10 +175,20 @@ textarea{
 }
 
 @media only screen and (min-width: 850px){
+    .main-page {
+      height: calc(100vh - #{$top-bar-height});
+    }
+    .content-wrap {
+      height: 100%;
+    }
     .contact-wrap, .info-wrap{
         width: 25vw;
         min-width: 22em;
         margin: 5vh 2vh 5vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .info-wrap{
@@ -224,10 +235,10 @@ textarea{
 
     .background-texture{
         display: block;
-        margin-left: 3vw;
-        margin-top: 30%;
-        // top: 30%;
-        // transform: translateY(-30%);
+        overflow: visible;
+        position: absolute;
+        top: 0;
+        transform: translateY(-80%);
         svg{
             max-width: 20em;
             fill: $logo-1;
