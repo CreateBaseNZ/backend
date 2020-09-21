@@ -114,6 +114,13 @@ navigation.configuration = () => {
       break
     }
   }
+  document.addEventListener('scroll', () => {
+    if (window.scrollY === 0) {
+      document.querySelector('.nav-top-bar').id = ''
+    } else {
+      document.querySelector('.nav-top-bar').id = 'nav-top-min'
+    }
+  })
   // DELETE FIRST IF STATEMENT AFTER FULL IMPLEMENTATION
   //if (user) navigation.rightMenuGreeting.innerHTML = ("hi " + user.displayName).toUpperCase()
 }

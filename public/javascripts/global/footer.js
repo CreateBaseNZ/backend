@@ -22,8 +22,11 @@ footer.initialise = () => {
   footer.addListener();
   document.getElementById('footer-subscribe-email-input').addEventListener('keypress', ({key}) => {
     if (key === 'Enter') {
-      footer.subscribe(false)
+      footer.subscribeSubmit()
     }
+  })
+  document.getElementById('footer-subscribe-submit').addEventListener('click', () => {
+    footer.subscribeSubmit()
   })
 }
 

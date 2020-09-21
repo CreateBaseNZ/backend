@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup, Tag
 
 markdown = """
 <pre>
-<footer class="footer-section hide">
+  <footer class="footer-section hide">
     <div class="footer-content">
       <div class="footer-legal-section">
         <h4>INFO</h4>
@@ -35,11 +35,11 @@ markdown = """
           <div class="btn-subscribe">
             <button class="reg-btn" id="footer-subscribe">SUBSCRIBE TO NEWSLETTER</button>
             <div class="kit-fld input-decor hide" id="footer-subscribe-field">
-              <input type="text" name="email" id="footer-subscribe-email-input" maxlength="100" placeholder=" "
-                required />
+              <input id="footer-subscribe-email-input" maxlength="100" name="email" placeholder=" " required=""
+                type="text" />
               <label class="input-label" for="footer-subscribe-email-input">Email</label>
               <label class="input-error" for="footer-subscribe-email-input" id="footer-subscribe-email-error"></label>
-              <i class="fas fa-level-down-alt"></i>
+              <i class="fas fa-level-down-alt" id="footer-subscribe-submit"></i>
             </div>
           </div>
 
