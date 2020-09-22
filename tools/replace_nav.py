@@ -14,7 +14,7 @@ markdown = """
       </div> -->
       <a class="nav-home-btn" href="/">
         <img class="nav-logo mobile" src="/public/images/logo-icon.png" alt="CreateBase">
-        <img class="nav-logo desktop" src="/public/images/logo-dark.png" alt="CreateBase">
+        <img class="nav-logo desktop" src="/public/images/logo-dark.svg" alt="CreateBase">
       </a>
       <button class="hamburger hamburger-spin" onclick="navigation.toggleRightMenu();" type="button">
         <span class="hamburger-box">
