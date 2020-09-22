@@ -20,6 +20,7 @@
     flex-direction: column;
     justify-items: center;
     align-items: center;
+    position: relative;
     
     .subscribe-message {
       font-size: 0.8em;
@@ -35,9 +36,22 @@
     .reg-btn{
       margin-top: 3.5em;
     }
+
+    #subscribe-again,
+    #subscribe-confirm {
+      display: none;
+    }
   }
 }
-
+.subscribe-container.completed {
+  & > * {
+    display: none;
+  }
+  #subscribe-again,
+  #subscribe-confirm {
+    display: block;
+  }
+}
 
 // -----------------------------------
 // Glitch animation

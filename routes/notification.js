@@ -35,7 +35,7 @@ router.post("/notification/subscribe-email", async (req, res) => {
     return res.send(data);
   }
   // SEND SUCCESS
-  return res.send({ status: "succeeded", content: "Thank you for subscribing!" });
+  return res.send({ status: "succeeded", content: "Subscription successful!" });
 });
 
 // @route     POST /notification/unsubscribe-email

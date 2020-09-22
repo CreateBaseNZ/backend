@@ -230,28 +230,34 @@ global.subscribeToMailingList = (email) => {
 // @func  global.temporarySubscribeToMailingList
 // @desc  
 global.temporarySubscribeToMailingList = async () => {
-  document.querySelector("#subscribe-email-error").innerHTML = "";
+  document.getElementById("subscribe-email-error").innerHTML = "";
   // DISABLE
-  document.querySelector("#subscribe-main").setAttribute("disabled", "");
+  document.getElementById("subscribe-main").setAttribute("disabled", "");
   // COLLECT
-  const email = document.querySelector("#subscribe-email-input").value;
+  const email = document.getElementById("subscribe-email-input").value;
   // VALIDATE
   let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (email === "") {
-    document.querySelector("#subscribe-email-error").innerHTML = "An email is required";
-    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+    document.getElementById("subscribe-email-error").innerHTML = "An email is required";
+    return document.getElementById("subscribe-main").removeAttribute("disabled"); // ENABLE
   } else if (!emailRE.test(String(email).toLowerCase())) {
-    document.querySelector("#subscribe-email-error").innerHTML = "Invalid email";
-    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+    document.getElementById("subscribe-email-error").innerHTML = "Invalid email";
+    return document.getElementById("subscribe-main").removeAttribute("disabled"); // ENABLE
   }
   // SUBMIT
   try {
     await global.subscribeToMailingList(email);
   } catch (error) {
-    return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+    return document.getElementById("subscribe-main").removeAttribute("disabled"); // ENABLE
   }
-  return document.querySelector("#subscribe-main").removeAttribute("disabled"); // ENABLE
+  document.querySelector('.subscribe-container').classList.add('completed')
+  document.getElementById('subscribe-email-input').value = ''
+  return document.getElementById("subscribe-main").removeAttribute("disabled"); // ENABLE
+}
+
+global.subscribeAgain = () => {
+  document.querySelector('.subscribe-container').classList.remove('completed')
 }
 
 /* ----------------------------------------------------------------------------------------
@@ -317,7 +323,7 @@ function subscribeNotif() {
   let messageWrap = document.createElement('div')
   newDiv.appendChild(messageWrap).className = 'msg-wrap'
   messageWrap.appendChild(document.createElement('i')).className = 'fab fa-telegram-plane'
-  messageWrap.appendChild(document.createElement('p')).innerHTML = 'Thank you for subscribing to the newsletter!'
+  messageWrap.appendChild(document.createElement('p')).innerHTML = 'Success!'
   // Find location to insert div
   let notifDiv = document.getElementById('notification-wrap');
   let mobileDiv = document.getElementById('mobile-notif-wrap');

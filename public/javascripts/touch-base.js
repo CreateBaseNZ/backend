@@ -53,6 +53,11 @@ touchBase.subscription = (login = false) => {
   }
   // BUTTON ATTRIBUTE
   document.querySelector("#subscribe-main").setAttribute("onclick", `global.temporarySubscribeToMailingList();`);
+  document.getElementById('subscribe-email-input').addEventListener('keypress', ({key}) => {
+    if (key === 'Enter') {
+      global.temporarySubscribeToMailingList()
+    }
+  })
 }
 
 /* ========================================================================================
