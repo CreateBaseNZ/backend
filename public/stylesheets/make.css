@@ -2212,7 +2212,7 @@ nav {
       -ms-flex-pack: center;
           justify-content: center;
   overflow: visible;
-  height: 25px;
+  height: 40px;
 }
 
 .nav-top-bar .nav-home-btn .nav-logo {
@@ -9187,3 +9187,4 @@ DESKTOP CSS
 /*=========================================================================================
 END
 =========================================================================================*/
+/*# sourceMappingURL=make.css.map */
