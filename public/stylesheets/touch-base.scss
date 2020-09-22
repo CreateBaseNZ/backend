@@ -16,10 +16,73 @@ body{
   padding-top: $top-bar-height;
 }
 
+h1 {
+  font-size: calc(20px + 1.5vw);
+  color: $dark-3;
+}
+
+h2 {
+  font-weight: 600;
+  color: $logo-2;
+  font-size: calc(10px + 0.6vw);
+}
+
+h3 {
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: calc(10px + 0.6vw);
+  margin-bottom: 2em;
+  color: $dark-3;
+}
+
+.survey-section {
+  height: calc(100vh - #{$top-bar-height});
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20vw;
+  .survey-title {
+    margin-top: 4vh;
+  }
+  .survey-options {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto 0;
+    padding-bottom: 20vh;
+    button {
+      margin: 0 4vw;
+      font-size: 1.2em;
+      padding: 0.6em 1.8em;
+    }
+    &.hide {
+      padding: 0;
+    }
+  }
+}
+
 iframe {
-  width: 60%;
+  width: 100%;
+  flex: 1 1 0;
   border: none;
-  padding: 5vh 0;
+  margin: 4vh 0 6vh 0;
+
+  &::-webkit-scrollbar-track {
+    background: $light-2;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $logo-2;
+  }
+  &::-webkit-scrollbar {
+    height: 100%;
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    filter: $logo-2;
+  }
 }
 
 .temp-wrap {

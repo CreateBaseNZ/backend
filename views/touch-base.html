@@ -108,10 +108,24 @@
   <div class="full-page-loading"></div>
 
   <div class="main-page hide">
-    <iframe src="https://auckland.au1.qualtrics.com/jfe/form/SV_00Y2mAdqaqdY4vP" height="800px" width="600px"></iframe>
+
+    <div class="survey-section">
+      <div class="survey-title">
+        <h2>Help shape the future of education</h2>
+        <h1>Take Our Survey</h1>
+      </div>
+      <div class="survey-options">
+        <h3>Are you a parent or student?</h3>
+        <button id="parent-btn" class="grad-btn">Parent</button>
+        <button id="student-btn" class="grad-btn">Student</button>
+        <button id="both-btn" class="grad-btn">Both</button>
+      </div>
+      <iframe id="parent-survey" class="hide" src="https://auckland.au1.qualtrics.com/jfe/form/SV_00Y2mAdqaqdY4vP"></iframe>
+      <iframe id="student-survey" class="hide" src="https://auckland.au1.qualtrics.com/jfe/form/SV_dbPrw2z2bPLyYfz"></iframe>
+    </div>
+
     <div class="temp-wrap">
       <span class="glitch" id="change-text" data-text="ENG KITS">ENG KITS</span>
-
       <div class="subscribe-container">
         <p class="subscribe-message">
           Get the latest updates on release:

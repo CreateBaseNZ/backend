@@ -8,6 +8,7 @@ let touchBase = {
   // FUNCTIONS
   initialise: undefined,
   subscription: undefined,
+  survey: undefined,
   subscribe: undefined
 }
 
@@ -41,7 +42,23 @@ touchBase.initialise = async () => {
   // ADD THE DYNAMIC WORDS EFFECT
   textSequence(0, touchBase.words, "change-text");
   //touchBase.subscription(login);
+  touchBase.survey();
   touchBase.subscription();
+}
+
+touchBase.survey = () => {
+  document.getElementById('parent-btn').addEventListener('click', () => {
+    document.querySelector('.survey-options').classList.add('hide')
+    document.getElementById('parent-survey').classList.remove('hide')
+  })
+  document.getElementById('student-btn').addEventListener('click', () => {
+    document.querySelector('.survey-options').classList.add('hide')
+    document.getElementById('student-survey').classList.remove('hide')
+  })
+  document.getElementById('both-btn').addEventListener('click', () => {
+    document.querySelector('.survey-options').classList.add('hide')
+    document.getElementById('parent-survey').classList.remove('hide')
+  })
 }
 
 // @func  touchBase.subscription
