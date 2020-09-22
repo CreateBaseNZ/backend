@@ -17,14 +17,14 @@ body{
 }
 
 h1 {
-  font-size: calc(20px + 1.5vw);
+  font-size: calc(24px + 1.4vmax);
   color: $dark-3;
 }
 
 h2 {
   font-weight: 600;
   color: $logo-2;
-  font-size: calc(10px + 0.6vw);
+  font-size: calc(10px + 0.4vmax);
 }
 
 h3 {
@@ -41,22 +41,29 @@ h3 {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 20vw;
   .survey-title {
+    margin-left: 10vw;
     margin-top: 4vh;
   }
   .survey-options {
     width: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
     margin: auto 0;
-    padding-bottom: 20vh;
-    button {
-      margin: 0 4vw;
-      font-size: 1.2em;
-      padding: 0.6em 1.8em;
+    padding-bottom: 6vh;
+    .survey-item {
+      img {
+        display: none;
+      }
+      button {
+        margin: 2vh 0;
+        font-size: 1em;
+        padding: 0.8em 1.8em;
+        width: 40vw;
+      }
     }
     &.hide {
       padding: 0;
@@ -97,4 +104,40 @@ iframe {
     height: 1px;
     background: $light-2;
   }
+}
+
+@media only screen and (min-width: 850px) and (orientation: landscape) {
+
+.survey-section {
+  padding: 0 20vw;
+  .survey-title {
+    margin-left: 0;
+  }
+  .survey-options {
+    flex-direction: row;
+    padding-bottom: 5vh;
+    .survey-item {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 2vw;
+      img {
+        display: block;
+        height: 25%;
+        width: 100%;
+        object-fit: contain;
+        margin-bottom: 2vh;
+      }
+      button {
+        margin: 0;
+        font-size: 1.2em;
+        width: auto;
+        padding: 0.6em 1.8em;
+      }
+    }
+  }
+}
+
 }
