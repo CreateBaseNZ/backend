@@ -173,24 +173,24 @@ body {
 }
 
 .divider{
-  border-bottom: thin solid $light-2;
-  width: 100%;
-  margin-bottom: 3em;
+  height: 1px;
+  width: 80%;
+  background: $light-2;
 }
 
 .test-section {
   position: relative;
   background: $light-1;
-  height: 25vmax;
+  height: 20vh;
+  margin: 10vh 0 5vh 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   .test-header {
     width: 100%;
+    margin-bottom: 2vh;
     p {
-      padding-top: 2em;
-      padding-bottom: 1em;
       text-align: center;
       font-weight: 700;
       font-family: $poppins;
@@ -540,6 +540,10 @@ body {
         opacity: 1;
       }
     }
+  }
+
+  .test-section {
+    height: 25vh;
   }
 
   @keyframes landing-slide-title-anim {
