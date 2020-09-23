@@ -72,13 +72,18 @@ h3 {
   }
 }
 
-iframe {
-  width: 100%;
-  flex: 1 1 0;
-  border: none;
-  margin: 4vh 0 0 0;
+.iframe-container {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
+  flex: 1 1 0;
+  margin: 4vh 0 0 0;
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
+  border: none;
 
   &::-webkit-scrollbar-track {
     background: $light-2;
