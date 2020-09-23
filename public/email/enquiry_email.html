@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Email</title>
+</head>
+<style>
+    * {
+        margin: 0;
+    }
+
+    #body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #F0F0F0;
+        padding: 2em 0;
+        width: 100%;
+    }
+
+    #main {
+        min-width: 300px;
+        width: 40%;
+        max-width: 800px;
+        margin: auto;
+        background-color: #FFFFFF;
+    }
+
+    #content {
+        padding: 2em;
+        text-align: center;
+    }
+
+    #content>img{
+        widows: 40%;
+    }
+
+    h1 {
+        font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+        padding-top: 1.5em;
+        color: #322D41;
+    }
+
+    h2 {
+        font-size: calc(14px + 4 * ((100vw - 320px) / 680));
+        padding-top: 1.2em;
+        font-weight: 400;
+        color: #322D41;
+    }
+
+    h3 {
+        font-size: calc(10px + 2 * ((100vw - 320px) / 680));
+        padding-top: 1.5em;
+        color: #322D41;
+    }
+
+
+    #divider {
+        font-size: calc(10px + 2 * ((100vw - 320px) / 680));
+        padding: 3em 0 1em 0;
+        color: #322D41;
+    }
+
+    .horizontal-line {
+        display: inline-block;
+        width: 1em;
+        margin-bottom: 0.25em;
+        border-bottom: thin solid #322D41;
+    }
+
+    /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+
+    @media screen and (min-width: 1000px) {
+        h1 {
+            padding-top: 1.5em;
+        }
+
+        h2 {
+            padding-top: 1em;
+        }
+
+        h3 {
+            font-size: 0.875;
+            padding-top: 1.5em;
+        }
+
+        #caption {
+            padding: 1.5em 0 3em;
+        }
+    }
+</style>
+
+<body>
+    <div id="body">
+        <div id="main">
+            <div id="content">
+                <img src="/public/images/logo-dark.svg" alt="CreateBase">
+                <h1>Hi [name]</h1>
+                <h3>We've received your message and will get back to you as soon as possible!</h3>
+                
+                
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
