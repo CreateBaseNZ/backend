@@ -85,20 +85,7 @@ iframe {
   height: 99%;
   width: 100%;
   border: none;
-
-  &::-webkit-scrollbar-track {
-    background: $light-2;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $logo-2;
-  }
-  &::-webkit-scrollbar {
-    height: 100%;
-    width: 5px;
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    filter: $logo-2;
-  }
+  overflow: visible;
 }
 
 .temp-wrap {
