@@ -78,10 +78,11 @@ h3 {
   width: 100%;
   flex: 1 1 0;
   margin: 4vh 0 0 0;
+  padding: 0 10vw;
 }
 
 iframe {
-  height: 100%;
+  height: 99%;
   width: 100%;
   border: none;
 
@@ -150,6 +151,10 @@ iframe {
       }
     }
   }
+}
+
+.iframe-container {
+  padding: 0;
 }
 
 .attribution {
