@@ -76,7 +76,9 @@ iframe {
   width: 100%;
   flex: 1 1 0;
   border: none;
-  margin: 4vh 0 6vh 0;
+  margin: 4vh 0 0 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar-track {
     background: $light-2;
