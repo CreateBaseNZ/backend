@@ -119,7 +119,7 @@ iframe {
   display: none;
 }
 
-@media only screen and (min-width: 850px) and (orientation: landscape) {
+@media only screen and (min-width: 850px) {
 
 .survey-section {
   padding: 0 20vw;
@@ -155,6 +155,10 @@ iframe {
 
 .iframe-container {
   padding: 0;
+}
+
+iframe {
+  height: 90%;
 }
 
 .attribution {
