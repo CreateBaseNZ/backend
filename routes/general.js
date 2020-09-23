@@ -42,11 +42,6 @@ router.get("/products/kits", (req, res) => res.sendFile("kits.html", viewsOption
 // @access    Public
 router.get("/services/3d-printing", (req, res) => res.sendFile("printing.html", viewsOption));
 
-// @route     Get /services/marketplace
-// @desc      
-// @access    Public
-router.get("/services/marketplace", (req, res) => res.sendFile("market.html", viewsOption));
-
 // @route     GET /terms-and-conditions
 // @desc
 // @access    PUBLIC
