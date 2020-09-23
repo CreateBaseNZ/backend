@@ -4,4 +4,5 @@
     "cSpell.words": [
         "normaliser"
     ],
+    "MinifyAll.disableHtml": true,
 }
