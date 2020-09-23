@@ -14,7 +14,7 @@ FUNCTIONS
 ======================================================================================== */
 
 // @func  footer.initialise
-// @desc  
+// @desc
 //footer.initialise = (login = false) => {
 // V1
 // footer.subscription(login);
