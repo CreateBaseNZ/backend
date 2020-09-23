@@ -73,7 +73,7 @@ h3 {
 }
 
 .iframe-container {
-  overflow-y: auto;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   width: 80%;
   margin: 4vh auto 0 auto;
