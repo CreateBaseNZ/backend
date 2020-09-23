@@ -58,6 +58,24 @@ body {
 
 }
 
+.attribution {
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 0.6rem;
+  color: $light-3; 
+  font-weight: 300;
+  a {
+      font-weight: inherit;
+      color: inherit;
+      transition: color 0.1s ease-out;
+      &:hover {
+      color: $highlight;
+      }
+  }
+}
+
 @media only screen and (min-width: 850px){
 
   .main-page {

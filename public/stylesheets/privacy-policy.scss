@@ -126,6 +126,10 @@ h3 {
     font-weight: 600;
 }
 
+.attribution {
+    display: none;
+}
+
 @media only screen and (min-width: 850px){
 
 #priv-img {
@@ -233,6 +237,26 @@ h2 {
     letter-spacing: 1px;
     margin-bottom: 1.5vh;
     line-height: 120%;
+}
+
+.attribution {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    font-size: 0.8rem;
+    color: $light-3; 
+    transform: rotate(-90deg);
+    transform-origin: 0% 0%;
+    font-weight: 300;
+    a {
+        font-weight: inherit;
+        color: inherit;
+        transition: color 0.1s ease-out;
+        &:hover {
+        color: $highlight;
+        }
+    }
 }
 
 }
