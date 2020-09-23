@@ -73,18 +73,18 @@ h3 {
 }
 
 .iframe-container {
-  overflow: auto;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  width: 100%;
+  width: 80%;
   flex: 1 1 0;
-  margin: 4vh 0 0 0;
-  padding: 0 10vw;
+  margin: 4vh auto 0 auto;
 }
 
 iframe {
-  height: 99%;
+  height: 100%;
   width: 100%;
   border: none;
+  display: block;
   overflow: visible;
 }
 
@@ -142,6 +142,7 @@ iframe {
 
 .iframe-container {
   padding: 0;
+  width: 100%;
 }
 
 iframe {
