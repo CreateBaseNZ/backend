@@ -11,22 +11,22 @@ body {
     overflow-x: hidden;
     font-family: $poppins;
     pointer-events: none;
-  }
+}
 
-  nav,
-  footer {
+nav,
+footer {
     pointer-events: auto;
-  }
-  
-  .main-page {
+}
+
+.main-page {
     margin-top: $top-bar-height;
-  }
-  
-  h4{
+}
+
+h4{
     font-family: $poppins;
-  }
-  
-  .banner-wrap{
+}
+
+.banner-wrap{
     display: flex;
     flex-direction: column;
 }
@@ -293,6 +293,7 @@ body {
         align-self: center;
         font-size: calc(7px + 0.5vmax);
         height: 100%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -343,8 +344,15 @@ body {
         justify-content: flex-start;
         span { font-weight: 600; }
     }
-    .materials-abs {
-        background: rgb(250,250,250);
+    .materials-name.materials-abs,
+    .materials-details.materials-abs,
+    .materials-use.materials-abs {
+        background: rgba(250,250,250, 0.9);
+    }
+    .materials-name,
+    .materials-details,
+    .materials-use {
+        background: rgba(250,250,250,0.5);
     }
 }
 
