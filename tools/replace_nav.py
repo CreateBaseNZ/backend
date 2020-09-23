@@ -13,7 +13,7 @@ markdown = """
         <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
       </div> -->
       <a class="nav-home-btn" href="/">
-        <img class="nav-logo mobile" src="/public/images/logo-icon.png" alt="CreateBase">
+        <img class="nav-logo mobile" src="/public/images/logo-icon-large.svg" alt="CreateBase">
         <img class="nav-logo desktop" src="/public/images/logo-dark.svg" alt="CreateBase">
       </a>
       <button class="hamburger hamburger-spin" onclick="navigation.toggleRightMenu();" type="button">
