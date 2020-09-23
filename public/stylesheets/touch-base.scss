@@ -72,23 +72,19 @@ h3 {
   }
 }
 
-// .iframe-container {
-//   overflow-y: auto;
-//   -webkit-overflow-scrolling: touch;
-//   width: 80%;
-//   flex: 1 1 0;
-//   margin: 4vh auto 0 auto;
-// }
+.iframe-container {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 80%;
+  margin: 4vh auto 0 auto;
+}
 
 iframe {
-  margin: 4vh auto 0 auto;
   height: 60vh;
-  width: 80%;
+  width: 100%;
   border: none;
   display: block;
   overflow: visible;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .temp-wrap {
@@ -146,8 +142,13 @@ iframe {
 
 iframe {
   flex: 1 1 0;
+  margin: 4vh auto 6vh auto;
   width: 100%;
-  margin-bottom: 6vh;
+  border: none;
+  display: block;
+  overflow: visible;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .attribution {

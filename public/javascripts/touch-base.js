@@ -49,15 +49,27 @@ touchBase.initialise = async () => {
 touchBase.survey = () => {
   document.getElementById('parent-btn').addEventListener('click', () => {
     document.querySelector('.survey-options').classList.add('hide')
-    document.getElementById('parent-survey').classList.remove('hide')
+    if (window.matchMedia("(min-width: 850px)").matches) {
+      document.getElementById('parent-desktop').classList.remove('hide')
+    } else {
+      document.getElementById('parent-mobile').classList.remove('hide')
+    }
   })
   document.getElementById('student-btn').addEventListener('click', () => {
     document.querySelector('.survey-options').classList.add('hide')
-    document.getElementById('student-survey').classList.remove('hide')
+    if (window.matchMedia("(min-width: 850px)").matches) {
+      document.getElementById('student-desktop').classList.remove('hide')
+    } else {
+      document.getElementById('student-mobile').classList.remove('hide')
+    }
   })
   document.getElementById('both-btn').addEventListener('click', () => {
     document.querySelector('.survey-options').classList.add('hide')
-    document.getElementById('parent-survey').classList.remove('hide')
+    if (window.matchMedia("(min-width: 850px)").matches) {
+      document.getElementById('parent-desktop').classList.remove('hide')
+    } else {
+      document.getElementById('parent-mobile').classList.remove('hide')
+    }
   })
 }
 
