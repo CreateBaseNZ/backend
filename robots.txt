@@ -1,0 +1,7 @@
+# Group 1
+User-agent: *
+Disallow: /tools/
+Disallow: /dev/
+Disallow: /routes/
+Disallow: /model/
+Disallow: /config/
