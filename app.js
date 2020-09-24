@@ -5,6 +5,7 @@ REQUIRED MODULES
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const helmet = require("helmet");
 
 /*=========================================================================================
 VARIABLES
@@ -39,6 +40,8 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
 // Parse application/json
 app.use(bodyParser.json());
+// Security
+app.use(helmet());
 
 /*=========================================================================================
 ROUTES
