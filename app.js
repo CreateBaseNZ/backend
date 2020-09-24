@@ -48,6 +48,7 @@ app.use((req, res, next) => {
   res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.removeHeader("X-Powered-By");
+  res.removeHeader("server");
   next();
 });
 
