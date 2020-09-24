@@ -42,6 +42,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Security
 app.use(helmet({ contentSecurityPolicy: false }));
+app.disable('x-powered-by');
 // X-XSS Header
 app.use((req, res, next) => {
   res.setHeader("X-XSS-Protection", "1; mode=block");
