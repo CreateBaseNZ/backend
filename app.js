@@ -41,7 +41,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Parse application/json
 app.use(bodyParser.json());
 // Security
-app.use(helmet({ hsts: { preload: true }, contentSecurityPolicy: false, xssFilter: false }));
+app.use(helmet({ hsts: { preload: true }, contentSecurityPolicy: false }));
+// X-XSS Header
+app.use((req, res, next) => {
+  res.setHeader("X-XSS-Protection", "1; mode=block");
+  next();
+});
 
 /*=========================================================================================
 ROUTES
