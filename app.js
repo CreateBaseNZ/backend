@@ -42,12 +42,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Security
 app.use(helmet({ contentSecurityPolicy: false }));
-app.disable('x-powered-by');
 // X-XSS Header
 app.use((req, res, next) => {
   res.setHeader("X-XSS-Protection", "1; mode=block");
   res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
   res.setHeader("X-Content-Type-Options", "nosniff");
+  res.removeHeader("X-Powered-By");
   next();
 });
 
