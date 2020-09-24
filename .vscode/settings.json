@@ -3,5 +3,28 @@
     "editor.hover.enabled": false,
     "cSpell.words": [
         "normaliser"
-    ]
+    ],
+
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": null
+        }
+    ],
+
+    "MinifyAll.minifyOnSaveToNewFile": true,
+    "MinifyAll.openMinifiedDocument": false,
+    "MinifyAll.PrefixOfNewMinifiedFiles": ".min",
+    "MinifyAll.disableHtml": true,
+    "MinifyAll.disableSass": true,
+    "MinifyAll.disableScss": true,
+    "MinifyAll.disableLess": true,
+    "MinifyAll.disableMessages": true,
+    "files.exclude": {
+        "**/**.css": true,
+        "**/**.min.**": true
+    },
+    "liveSassCompile.settings.autoprefix": [],
+    "liveSassCompile.settings.generateMap": false,
 }
