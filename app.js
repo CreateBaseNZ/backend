@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Parse application/json
 app.use(bodyParser.json());
 // Security
-app.use(helmet());
+app.use(helmet({ xssFilter: false, hsts: { preload: true } }));
 
 /*=========================================================================================
 ROUTES
