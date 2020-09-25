@@ -122,14 +122,12 @@ METHODS
 // @DESC
 MessageSchema.methods.sendInquiryEmailNotification = function () {
   return new Promise(async (resolve, reject) => {
-    const subject = `Thank you for your inquiry (#${this.number.inquiry}).`;
-    const texts = [`Hi ${this.name},`,
-      "We have received your inquiry. Expect a reply within 1-2 working days."];
-    const object = { email: this.email, subject, texts };
+    const subject = `Thank you for your inquiry (#${this.number.inquiry}).`
+    const object = { email: this.email, name: this.name, subject };
     // BUILD EMAIL
     let emailObject;
     try {
-      emailObject = await email.build(object, "one");
+      emailObject = await email.build(object, "inquiry");
     } catch (data) {
       return reject(data);
     }
