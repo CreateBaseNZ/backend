@@ -106,7 +106,7 @@ email.templateInquiry = (object) => {
                       <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
                         <tr>
                           <td align="center" valign="top">
-                            <img src="https://createbase.co.nz/public/images/logo-dark.svg" alt="CreateBase" id="logo">
+                            <img src="https://createbase.co.nz/public/images/logo-dark.png" alt="CreateBase" id="logo">
                           </td>
                         </tr>
                       </table>
@@ -184,7 +184,7 @@ email.templateInquiry = (object) => {
             </tr>
             <tr>
               <td align="center" valign="top" style="padding: 0 0 1em 0;">
-                <a href="" class="unsub">Unsubscribe from emails</a>
+                <a href="https://createbase.co.nz/unsubscribe/${object.email}" class="unsub">Unsubscribe from emails</a>
               </td>
             </tr>
           </table>

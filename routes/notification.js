@@ -26,7 +26,7 @@ ROUTES
 // @desc      
 // @access    Public
 router.post("/notification/subscribe-email", async (req, res) => {
-  const object = { email: req.body.email }
+  const object = { email: req.body.email };
   // CREATE MAIL
   let mail;
   try {

@@ -77,7 +77,7 @@ MailSchema.statics.demolish = function (object) {
       return reject({ status: "error", content: error });
     }
     // VALIDATE IF THE MAIL EXIST
-    if (!mail) return reject({ status: "succeeded", content: "You are already unsubscribed" });
+    if (!mail) return resolve({ status: "succeeded", content: "You are already unsubscribed" });
     // DEMOLISH MAIL
     try {
       await mail.deleteOne();
