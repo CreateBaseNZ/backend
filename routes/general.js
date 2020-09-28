@@ -14,6 +14,12 @@ const router = new express.Router();
 const viewsOption = { root: path.join(__dirname, "../views") };
 
 /*=========================================================================================
+MODELS
+=========================================================================================*/
+
+const Mail = require("../model/Mail.js");
+
+/*=========================================================================================
 ROUTES
 =========================================================================================*/
 
@@ -62,10 +68,31 @@ router.get("/privacy-policy", (req, res) => res.sendFile("privacy-policy.html", 
 // @access    PUBLIC
 router.get("/touch-base", (req, res) => res.sendFile("touch-base.html", viewsOption));
 
-// @route     GET /unsubscribe
+// @route     GET /unsubscribe/:email
 // @desc
 // @access    PUBLIC
-router.get("/unsubscribe", (req, res) => res.sendFile("unsubscribe.html", viewsOption));
+router.get("/unsubscribe/:email", async (req, res) => {
+  const email = req.params.email;
+  // VALIDATE EMAIL
+  let valid = true;
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (email === "") {
+    valid = false;
+  } else if (!emailRE.test(String(email).toLowerCase())) {
+    valid = false;
+  }
+  // VALIDATE EMAIL
+  if (valid) {
+    try {
+      await Mail.demolish({ email });
+    } catch (data) {
+      return res.status(404).sendFile("error404.html", viewsOption);
+    }
+    return res.sendFile("unsubscribe.html", viewsOption);
+  } else {
+    return res.status(404).sendFile("error404.html", viewsOption);
+  }
+});
 
 // @route     GET /robots.txt
 // @desc
