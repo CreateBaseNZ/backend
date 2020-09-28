@@ -152,6 +152,7 @@ contactUs.submit = async () => {
   }
   // ERROR AND FAILED HANDLER
   if (data.status === "error") {
+    console.log(data);
     contactUs.submitButton.removeAttribute("disabled");
     return contactUs.errorHandler(data.content);
   } else if (data.status === "failed") {
