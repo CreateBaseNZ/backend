@@ -184,7 +184,7 @@ email.templateInquiry = (object) => {
             </tr>
             <tr>
               <td align="center" valign="top" style="padding: 0 0 1em 0;">
-                <a href="https://createbase.co.nz/unsubscribe/${object.email}" class="unsub">Unsubscribe from emails</a>
+                <a href="" class="unsub">Unsubscribe from emails</a>
               </td>
             </tr>
           </table>
