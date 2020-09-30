@@ -2,7 +2,7 @@
 VARIABLES
 ======================================================================================== */
 
-let touchBase = {
+let survey = {
   // VARIABLES
   words: ["COMING SOON", "ENGINEERING KITS"],
   // FUNCTIONS
@@ -16,9 +16,9 @@ let touchBase = {
 FUNCTIONS
 ======================================================================================== */
 
-// @func  touchBase.initialise
+// @func  survey.initialise
 // @desc  
-touchBase.initialise = async () => {
+survey.initialise = async () => {
   /*updateSessionPage();
   // GET LOGIN STATUS 
   let data;
@@ -40,13 +40,13 @@ touchBase.initialise = async () => {
   // LOAD SESSION
   //session.initialise();
   // ADD THE DYNAMIC WORDS EFFECT
-  textSequence(0, touchBase.words, "change-text");
-  //touchBase.subscription(login);
-  touchBase.survey();
-  touchBase.subscription();
+  textSequence(0, survey.words, "change-text");
+  //survey.subscription(login);
+  survey.survey();
+  survey.subscription();
 }
 
-touchBase.survey = () => {
+survey.survey = () => {
   document.getElementById('parent-btn').addEventListener('click', () => {
     document.querySelector('.survey-options').classList.add('hide')
     if (window.matchMedia("(min-width: 850px)").matches) {
@@ -73,9 +73,9 @@ touchBase.survey = () => {
   })
 }
 
-// @func  touchBase.subscription
+// @func  survey.subscription
 // @desc  
-touchBase.subscription = (login = false) => {
+survey.subscription = (login = false) => {
   // INPUT FIELD DISPLAY
   if (login) {
     document.querySelector("#subscribe-field").classList.add("hide");
