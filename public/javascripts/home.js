@@ -174,15 +174,15 @@ home.addImages = () => {
   return new Promise(async (resolve, reject) => {
     // IMAGES
     const image1 = {
-      src: "/public/images/home/landing-1-1.jpg", id: "",
+      src: "/public/images/home/landing-3-1.jpg", id: "",
       alt: "Landing 1", classes: [], parentId: "landing-1"
     }
     const image2 = {
-      src: "/public/images/home/landing-2-1.jpg", id: "",
+      src: "/public/images/home/landing-1-1.jpg", id: "",
       alt: "Landing 2", classes: [], parentId: "landing-2"
     }
     const image3 = {
-      src: "/public/images/home/landing-3-1.jpg", id: "",
+      src: "/public/images/home/landing-2-1.jpg", id: "",
       alt: "Landing 3", classes: [], parentId: "landing-3"
     }
     // LOAD IMAGES

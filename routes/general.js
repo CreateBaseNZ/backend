@@ -63,10 +63,10 @@ router.get("/contact", (req, res) => res.sendFile("contact-us.html", viewsOption
 // @access    PUBLIC
 router.get("/privacy-policy", (req, res) => res.sendFile("privacy-policy.html", viewsOption));
 
-// @route     GET /touch-base
+// @route     GET /survey
 // @desc
 // @access    PUBLIC
-router.get("/touch-base", (req, res) => res.sendFile("touch-base.html", viewsOption));
+router.get("/survey", (req, res) => res.sendFile("survey.html", viewsOption));
 
 // @route     GET /unsubscribe/:email
 // @desc
