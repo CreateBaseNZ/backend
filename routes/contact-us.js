@@ -45,13 +45,11 @@ router.post("/contact-us/submit-inquiry", async (req, res) => {
     return res.send(data);
   }
   // SEND NOTIFICATION
-  /*
   try {
     await message.sendInquiryEmailNotification();
   } catch (error) {
     return res.send(data);
   }
-  */
   // SUCCESS HANDLER
   return res.send({ status: "succeeded", content: "Inquiry has been sent" });
 });
