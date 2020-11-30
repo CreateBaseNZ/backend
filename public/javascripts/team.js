@@ -91,8 +91,12 @@ team.addImages = () => {
       src: "/public/images/team/todd.jpg", id: "",
       alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-todd-default"
     }
+    const image8 = {
+      src: "/public/images/team/salim.jpg", id: "",
+      alt: "", classes: ["indiv-photo"], parentId: "indiv-photo-salim-default"
+    }
     // LOAD IMAGES
-    const objects = [image1, image2, image3, image4, image5, image6, image7];
+    const objects = [image1, image2, image3, image4, image5, image6, image7, image8];
     try {
       await imageLoader(objects);
     } catch (error) {
