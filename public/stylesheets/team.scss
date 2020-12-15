@@ -100,9 +100,9 @@ body {
   justify-content: flex-end;
   align-items: center;
   height: 57vw;
-  border-radius: calc(5px + 0.3vw);
-  -webkit-border-radius: calc(5px + 0.3vw); 
-  -moz-border-radius: calc(5px + 0.3vw); 
+  border-radius: 2px;
+  -webkit-border-radius: 2px; 
+  -moz-border-radius: 2px; 
   overflow: hidden;
   
   .indiv-photo {

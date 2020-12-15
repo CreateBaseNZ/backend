@@ -21,10 +21,10 @@
     "MinifyAll.disableScss": true,
     "MinifyAll.disableLess": true,
     "MinifyAll.disableMessages": true,
+    "liveSassCompile.settings.autoprefix": [],
+    "liveSassCompile.settings.generateMap": false,
     "files.exclude": {
         "**/**.css": true,
         "**/**.min.**": true
     },
-    "liveSassCompile.settings.autoprefix": [],
-    "liveSassCompile.settings.generateMap": false,
 }
