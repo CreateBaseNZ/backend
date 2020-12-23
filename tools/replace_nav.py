@@ -13,8 +13,8 @@ markdown = """
         <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
       </div> -->
       <a class="nav-home-btn" href="/">
-        <img class="nav-logo mobile" src="/public/images/logo-icon-large.svg" alt="CreateBase">
-        <img class="nav-logo desktop" src="/public/images/logo-dark.svg" alt="CreateBase">
+        <img alt="CreateBase" class="nav-logo mobile" src="/public/images/logo-icon-large.svg"/>
+        <img alt="CreateBase" class="nav-logo desktop" src="/public/images/logo-dark.svg"/>
       </a>
       <button class="hamburger hamburger-spin" onclick="navigation.toggleRightMenu();" type="button">
         <span class="hamburger-box">
@@ -22,12 +22,12 @@ markdown = """
         </span>
       </button>
       <div class="nav-top-desktop">
-        <a id="nav-top-story" class="nav-top-item" href="/story">Our story</a>
-        <a id="nav-top-team" class="nav-top-item" href="/team">The team</a>
-        <a id="nav-top-3d-printing" class="nav-top-item" href="/services/3d-printing">3D printing</a>
-        <a id="nav-top-kits" class="nav-top-item" href="/products/kits">Steam kits</a>
-        <a id="nav-top-contact" class="nav-top-item" href="/contact">Contact us</a>
-        <a id="nav-top-survey" class="nav-top-item" href="/survey">Touch Base</a>
+        <a class="nav-top-item" href="/story" id="nav-top-story">Our story</a>
+        <a class="nav-top-item" href="/team" id="nav-top-team">The team</a>
+        <!-- <a class="nav-top-item" href="/services/3d-printing" id="nav-top-3d-printing">3D printing</a> -->
+        <a class="nav-top-item" href="/products/kits" id="nav-top-kits">Steam kits</a>
+        <a class="nav-top-item" href="/contact" id="nav-top-contact">Contact us</a>
+        <a class="nav-top-item" href="/survey" id="nav-top-survey">Touch Base</a>
       </div>
     </div>
     <div class="nav-side-menu-wrapper">
@@ -42,7 +42,7 @@ markdown = """
           <a class="nav-side-item logged-in" href="/profile/projects">MY PROJECTS</a>
           <a class="nav-side-item logged-in" href="/profile/orders">MY ORDERS</a>
           <a class="nav-side-item logged-in" href="/profile/settings">SETTINGS</a>
-          <a id="nav-signout" class="nav-side-item logged-in" href="/logout">SIGN OUT</a>
+          <a class="nav-side-item logged-in" href="/logout" id="nav-signout">SIGN OUT</a>
         </div>
         <div class="nav-side-menu-half right">
           <!-- <p class="nav-side-header">CREATEBASE</p>
@@ -50,7 +50,7 @@ markdown = """
           <a class="nav-side-item" href="/products/kits">KITS</a>
           <a class="nav-side-item" href="/services/marketplace">SHOP</a> -->
           <p class="nav-side-header">INFO</p>
-          <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+          <!-- <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a> -->
           <a class="nav-side-item" href="/products/kits">STEAM KITS</a>
           <!-- <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a> -->
           <!-- <a class="nav-side-item" href="/faq">FAQ</a> -->
