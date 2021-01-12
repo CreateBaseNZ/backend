@@ -56,14 +56,15 @@ email.send = (object = {}) => {
 
     // CONFIGURE TRANSPORT OPTIONS
     const transportOptions = {
-      host: "smtp.gmail.com", port: 465, secure: true,
+      host: process.env.AWS_SMTP_HOST,
+      port: process.env.AWS_SMTP_PORT,
+      secure: true,
       auth: {
-        type: "OAuth2", user: process.env.EMAIL_ADDRESS,
-        serviceClient: process.env.EMAIL_CLIENT_ID,
-        privateKey: process.env.EMAIL_PRIVATE_KEY
+        user: process.env.AWS_SMTP_USERNAME,
+        pass: process.env.AWS_SMTP_PASSWORD
       }
     };
-    // CREATE TRANSPOORT
+    // CREATE TRANSPORT
     const transporter = nodemailer.createTransport(transportOptions);
     // SEND THE MAIL
     try {
