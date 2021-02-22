@@ -1,0 +1,44 @@
+$poppins: "Poppins", sans-serif;
+
+$darkest: #050505;
+$darker: #1A1039;
+$dark: #786D97;
+
+$light: #ABABAB;
+$lighter: #F4F4F4;
+$lightest: #FFFFFF;
+
+$purple-logo: #6854d9;
+$bg-grey: #FDFDFD;
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  user-select: none;
+  background: transparent;
+  font-family: $poppins;
+  color: $darker;
+  font-size: 1rem;
+}
+
+.hide {
+  height: 0em;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  display: none;
+}
+
+body {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10vw;
+}
+

@@ -1,0 +1,278 @@
+@import "global";
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.nav-logo {
+  height: 2rem;
+  animation: nav-logo 0.3s ease-out 0.1s forwards;
+  img {
+    height: 100%;
+  }
+}
+
+.nav-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  opacity: 0;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  transition: opacity 0.2s ease-out;
+  a {
+    margin: 0.75rem -0.5rem 0.75rem 0.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: $darker;
+    font-size: 0.75rem;
+    opacity: 0;
+  }
+  .kickstarter {
+    padding: 1rem 1.75rem;
+    border-radius: 999px;
+    color: $lightest;
+    background: $purple-logo;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin: 1.5rem -0.5rem 0 0.5rem;
+    box-shadow: 0 0.5rem 1rem -0.25rem rgba(104, 83, 217, 0.5);
+  }
+}
+.nav-menu.active {
+  opacity: 1;
+  a {
+    opacity: 1;
+    margin-left: 0;
+    margin-right: 0;
+    transition: margin 0.2s ease-out, opacity 0.2s ease-out;
+  }
+  .kickstarter {
+    margin: 1.5rem 0 0 0;
+  }
+  a:nth-child(1) { transition-delay: 0.2s; }
+  a:nth-child(2) { transition-delay: 0.3s; }
+  a:nth-child(3) { transition-delay: 0.4s; }
+  a:nth-child(4) { transition-delay: 0.5s; }
+  a:nth-child(5) { transition-delay: 0.6s; }
+}
+
+
+$hamburger-layer-width: 1.5rem;
+$hamburger-layer-height: 0.25rem;
+$hamburger-layer-spacing: 0.25rem;
+$hamburger-active-layer-color: $darker;
+$hamburger-layer-color: $darker;
+
+.hamburger {
+  display: inline-block;
+  height: 1.25rem;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+
+  background-color: transparent;
+  overflow: visible;
+
+  &.is-active {
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: $hamburger-active-layer-color;
+    }
+  }
+}
+
+.hamburger-box {
+  width: $hamburger-layer-width;
+  height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: $hamburger-layer-height / -2;
+  &,
+  &::before,
+  &::after {
+    width: $hamburger-layer-width;
+    height: $hamburger-layer-height;
+    background-color: $hamburger-layer-color;
+    position: absolute;
+    border-radius: 99px;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+  }
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+  }
+  &::before {
+    top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+  }
+  &::after {
+    bottom: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+  }
+}
+
+// Arrow Effect
+// ==================================================
+.hamburger-arrow {
+  .hamburger-inner {
+    &::before {
+      transition: top 0.1s 0.1s ease,
+      transform 0.1s cubic-bezier(.21,.65,.44,.99);
+    }
+    &::after {
+      transition: bottom 0.1s 0.1s ease, transform 0.1s cubic-bezier(.21,.65,.44,.99);
+    }
+  }
+
+  &.is-active {
+    .hamburger-inner {
+      &::before {
+        top: 0;
+        transform: translate3d($hamburger-layer-width * -0.25, $hamburger-layer-width * -0.25, 0) rotate(-45deg) scale(0.7, 1);
+        transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(.21,.65,.44,.99);
+      }
+
+      &::after {
+        bottom: 0;
+        transform: translate3d($hamburger-layer-width * -0.25, $hamburger-layer-width * 0.25, 0) rotate(45deg) scale(0.7, 1);
+        transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(.21,.65,.44,.99);
+      }
+    }
+  }
+}
+
+// Spin X Effect
+// ==================================================
+.hamburger-spin {
+  .hamburger-inner {
+    transition-duration: 0.22s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+    &::before {
+      transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+    }
+
+    &::after {
+      transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+  }
+
+  &.is-active {
+    .hamburger-inner {
+      transform: rotate(225deg);
+      transition-delay: 0.12s;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+      &::before {
+        top: 0;
+        opacity: 0;
+        transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+      }
+
+      &::after {
+        bottom: 0;
+        transform: rotate(-90deg);
+        transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+    }
+  }
+}
+
+@keyframes nav-logo {
+  from {
+    margin: -0.5rem 0 0.5rem 0;
+    opacity: 0;
+  }
+  to {
+    margin: 0;
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 768px) and (orientation: landscape) {
+
+nav {
+  padding: 3rem 0;
+}
+
+.hamburger {
+  display: none;
+}
+
+.nav-menu {
+  position: static;
+  bottom: auto;
+  right: auto;
+  transform: none;
+  flex-direction: row;
+  align-items: center;
+  opacity: 1;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  a {
+    opacity: 0;
+    margin: -0.5em 1vw 0.5em 1vw;
+    padding: 0.5em;
+    text-align: center;
+    transition: none;
+    animation: slide-down 0.2s ease-out forwards;
+  }
+  a:nth-child(1) { animation-delay: 0.3s; }
+  a:nth-child(2) { animation-delay: 0.4s; }
+  a:nth-child(3) { animation-delay: 0.5s; }
+  a:nth-child(4) { animation-delay: 0.6s; }
+  a:nth-child(5) { animation-delay: 1s; }
+  .kickstarter {
+    margin: -0.5em 0 0.5em 4vw;
+    transition: none;
+    animation: kickstarter 0.6s ease-out forwards;
+  }
+}
+
+@keyframes slide-down {
+  from { 
+    margin: -0.5em 1vw 0.5em 1vw;
+    opacity: 0;
+  }
+  to {
+    margin: 0 1vw;
+    opacity: 1;
+  }
+}
+
+@keyframes kickstarter {
+  0% {
+    margin: -0.5em 0 0.5em 4vw;
+    opacity: 0;
+  }
+  66% {
+    margin: 0 0 0 4vw;
+  }
+  100% {
+    margin: 0 0 0 4vw;
+    opacity: 1;
+  }
+}
+
+}
