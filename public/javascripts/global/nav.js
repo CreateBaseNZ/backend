@@ -28,6 +28,7 @@ nav.init = () => {
 
 nav.init.attachListeners = () => {
   nav.elem.ham.addEventListener('click', nav.event.toggleNavMenu)
+  window.addEventListener('scroll', nav.event.navTop)
 }
 
 nav.event.toggleNavMenu = () => {
@@ -36,6 +37,10 @@ nav.event.toggleNavMenu = () => {
   nav.elem.ham.classList.toggle('is-active');
 }
 
-nav.loadAnimation = () => {
-
+nav.event.navTop = function() {
+  if (this.scrollY > 150) {
+    nav.elem.nav.classList.add('shrink')
+  } else {
+    nav.elem.nav.classList.remove('shrink')
+  }
 }
