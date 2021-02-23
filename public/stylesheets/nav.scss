@@ -1,28 +1,53 @@
 @import "global";
 
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 1.5rem 0;
-  position: relative;
+  padding: 1.5rem 10vw;
+  transition: background-color 0.2s ease-out;
+}
+nav.shrink {
+  padding: 1.5rem 10vw;
+  background: $lightest;
 }
 
 .nav-logo {
-  opacity: 0;
+  margin: 1.5rem 0;
   height: 2rem;
-  animation: nav-logo 0.3s ease-out 0.1s forwards;
+  overflow: hidden;
+  transition: margin 0.2s ease-out;
   img {
+    opacity: 0;
     height: 100%;
+    animation: nav-logo 0.4s ease-out 0.1s forwards;
+  }
+  &.shrink {
+    margin: 0;
+  }
+}
+
+@keyframes nav-logo {
+  0% {
+    opacity: 0;
+    margin-top: -0.5rem;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0;
   }
 }
 
 .nav-menu {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  transform: translateY(100%);
+  position: fixed;
+  top: 128px;
+  right: 10vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -30,12 +55,14 @@ nav {
   padding: 2rem;
   border-radius: 1.5rem;
   opacity: 0;
+  visibility: hidden;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-  transition: opacity 0.2s ease-out;
+  background: $lightest;
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out 0.2s;
   a {
     margin: 0.75rem 0.5rem 0.75rem -0.5rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     color: $darker;
     font-size: 0.75rem;
     opacity: 0;
@@ -80,6 +107,8 @@ nav {
 }
 .nav-menu.active {
   opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease-out;
   a {
     opacity: 1;
     margin-left: 0;
@@ -92,15 +121,146 @@ nav {
   .nav-item:nth-child(4) { transition-delay: 0.5s; }
   .kickstarter {
     margin: 1.5rem 0 0 0;
+    transition-delay: 0.6s;
   }
 }
 
+footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 10vw;
+  flex: 0 0 auto;
+  background: $lighter;
+
+  margin-top: 100vh;
+}
+
+.footer-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 0.75rem;
+  color: $darker;
+  margin: 1rem 0;
+  & > * {
+    color: inherit;
+    font-size: inherit;
+  }
+  h5 {
+    font-weight: 600;
+    color: $blue-dark;
+    margin-bottom: 0.5rem;
+  }
+  a {
+    font-weight: 500;
+    margin: 0.25rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: color 0.1s ease-out;
+    i {
+      font-size: 1rem;
+      margin-right: 1rem;
+      transition: color 0.1s ease-out;
+    }
+    &:hover,
+    &:hover > i {
+      color: $purple-logo;
+    }
+  }
+}
+
+.value-prop {
+  font-weight: 600;
+}
+
+.brand-prop {
+  font-weight: 700;
+  color: $purple-logo;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 0.75rem;
+}
+
+.footer-subscribe {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  #footer-input {
+    font-size: inherit;
+    font-weight: 600;
+    line-height: 1.25rem;
+    color: $darkest;
+    padding: 0.75rem 1.25rem;
+    border-radius: 1rem;
+    border: 2px solid $darker;
+    flex: 1 1 0;
+    transition: border 0.2s ease-out;
+    &::placeholder {
+      opacity: 50%;
+      font-weight: 400;
+      transition: opacity 0.1s ease-out;
+    }
+    &:hover {
+      &::placeholder {
+        opacity: 100%;
+      }
+    }
+    &:focus {
+      border-color: $purple-logo;
+    }
+  }
+  .footer-btn {
+    font-size: 1.25rem;
+    background: $light;
+    color: $lightest;
+    border-radius: 1rem;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+    line-height: 3rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    pointer-events: none;
+    transition: background-color 0.2s ease-out;
+    &.active {
+      pointer-events: auto;
+      background: $purple-logo;
+    }
+  }
+}
+
+.footer-container.quick-links,
+.footer-container.policies {
+  width: 50%;
+}
+
+.footer-socials {
+  align-self: center;  
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  a {
+    padding: 0.2em;
+    margin: 0 0.5rem;
+    font-weight: 600;
+  }
+}
+
+.copyright {
+  margin-top: 1rem;
+  font-size: 0.5rem;
+}
 
 $hamburger-layer-width: 1.5rem;
 $hamburger-layer-height: 0.25rem;
 $hamburger-layer-spacing: 0.25rem;
-$hamburger-active-layer-color: $darker;
-$hamburger-layer-color: $darker;
 
 .hamburger {
   display: inline-block;
@@ -111,12 +271,11 @@ $hamburger-layer-color: $darker;
   cursor: pointer;
   background-color: transparent;
   overflow: visible;
-
   &.is-active {
     .hamburger-inner,
     .hamburger-inner::before,
     .hamburger-inner::after {
-      background-color: $hamburger-active-layer-color;
+      background-color: $darker;
     }
   }
 }
@@ -137,7 +296,7 @@ $hamburger-layer-color: $darker;
   &::after {
     width: $hamburger-layer-width;
     height: $hamburger-layer-height;
-    background-color: $hamburger-layer-color;
+    background-color: $darker;
     position: absolute;
     border-radius: 99px;
     transition-property: transform;
@@ -157,38 +316,6 @@ $hamburger-layer-color: $darker;
   }
 }
 
-// Arrow Effect
-// ==================================================
-.hamburger-arrow {
-  .hamburger-inner {
-    &::before {
-      transition: top 0.1s 0.1s ease,
-      transform 0.1s cubic-bezier(.21,.65,.44,.99);
-    }
-    &::after {
-      transition: bottom 0.1s 0.1s ease, transform 0.1s cubic-bezier(.21,.65,.44,.99);
-    }
-  }
-
-  &.is-active {
-    .hamburger-inner {
-      &::before {
-        top: 0;
-        transform: translate3d($hamburger-layer-width * -0.25, $hamburger-layer-width * -0.25, 0) rotate(-45deg) scale(0.7, 1);
-        transition: top 0.1s ease, transform 0.1s 0.1s cubic-bezier(.21,.65,.44,.99);
-      }
-
-      &::after {
-        bottom: 0;
-        transform: translate3d($hamburger-layer-width * -0.25, $hamburger-layer-width * 0.25, 0) rotate(45deg) scale(0.7, 1);
-        transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(.21,.65,.44,.99);
-      }
-    }
-  }
-}
-
-// Spin X Effect
-// ==================================================
 .hamburger-spin {
   .hamburger-inner {
     transition-duration: 0.22s;
@@ -224,27 +351,9 @@ $hamburger-layer-color: $darker;
   }
 }
 
-@keyframes nav-logo {
-  from {
-    margin: -0.5rem 0 0.5rem 0;
-    opacity: 0;
-  }
-  to {
-    margin: 0;
-    opacity: 1;
-  }
-}
+
 
 @media only screen and (min-width: 768px) and (orientation: landscape) {
-
-nav {
-  padding: 3rem 0;
-  transition: background-color 0.2s ease-out, padding 0.2s ease-out;
-}
-nav.shrink {
-  padding: 1.5rem 0;
-  background: $lightest;
-}
 
 .hamburger {
   display: none;
@@ -252,9 +361,8 @@ nav.shrink {
 
 .nav-menu {
   position: static;
-  bottom: auto;
+  top: auto;
   right: auto;
-  transform: none;
   flex-direction: row;
   align-items: center;
   opacity: 1;
@@ -262,6 +370,8 @@ nav.shrink {
   border-radius: 0;
   box-shadow: none;
   margin-left: 4vw;
+  visibility: visible;
+  background: transparent;
   a {
     margin: -0.5em 1vw 0.5em 1vw;
     padding: 0.5em;
@@ -301,6 +411,73 @@ nav.shrink {
     margin: 0 0 0 4vw;
     opacity: 1;
   }
+}
+
+footer {
+  padding: 2rem 10vw 1rem 10vw;
+}
+
+.footer-container.prop,
+.footer-container.subscribe {
+  width: 50%;
+  margin-bottom: 3rem;
+}
+
+.footer-container.prop {
+  padding-right: 8rem;
+}
+
+.footer-container.quick-links,
+.footer-container.policies {
+  width: 25%;
+}
+
+.footer-container.contact {
+  width: 50%;
+}
+
+.footer-socials {
+  align-self: flex-start;
+  a {
+    padding: 0;
+    margin: 0 2rem 0 0;
+  }
+}
+
+}
+
+@media only screen and (min-width: 1200px) and (orientation: landscape) {
+
+footer {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 15vw 15vw 15vw;
+}
+
+.footer-container.prop {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.footer-container.subscribe {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  padding-right: 8rem;
+  width: 100%;
+}
+
+.footer-container.quick-links,
+.footer-container.policies,
+.footer-container.contact {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  width: 100%;
+}
+
+.footer-socials {
+  margin-top: 2rem;
 }
 
 }

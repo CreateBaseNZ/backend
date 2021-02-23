@@ -13,16 +13,15 @@
   <link rel="canonical" href="https://createbase.co.nz">
   <!-- =========================CSS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/node_modules/swiper/css/swiper.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   <!-- ------------------------CUSTOM------------------------ -->
   <link rel="stylesheet" href="/public/stylesheets/home.min.css">
   <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
 </head>
 
-<body onload="nav.init()">
+<body onload="nav.init.init()">
 
   <nav>
     <a href="/" class="nav-logo">
@@ -42,10 +41,50 @@
     </div>
   </nav>
 
+  <footer>
+    <div class="footer-container prop">
+      <div class="value-prop">Gain the skills, tools, and confidence to unleash your innder creator.</div>
+      <div class="brand-prop">Create your awesome.</div>
+    </div>
+    <div class="footer-container subscribe">
+      <h5>Be the first to know</h5>
+      <div class="footer-subscribe">
+        <input id="footer-input" type="text" placeholder="Email" maxlength="100">
+        <i class="footer-btn material-icons-round">send</i>
+      </div>
+    </div>
+    <div class="footer-container quick-links">
+      <h5>Quick Links</h5>
+      <a href="/kits">Kits</a>
+      <a href="/story">Our Story</a>
+      <a href="/team">The Team</a>
+    </div>
+    <div class="footer-container policies">
+      <h5>Policies</h5>
+      <a href="/terms-and-conditions">Terms</a>
+      <a href="/privacy-policy">Privacy</a>
+    </div>
+    <div class="footer-container contact">
+      <h5>We'd love to hear from you</h5>
+      <a href="tel:+64-211-543-805" target="_blank"><i class="material-icons-outlined">call</i>+64 211 543 805</a>
+      <a href="mailto:admin@createbase.co.nz" target="_blank"><i class="material-icons-outlined">email</i>admin@createbase.co.nz</a>
+      <a href="https://goo.gl/maps/d4GkA1aeSiZWztcVA" target="_blank"><i class="material-icons-outlined">map</i>14 York Street, AKL, NZ</a>
+      <div class="footer-socials">
+        <a href="/https://www.facebook.com/CreateBaseNZ" class="fab fa-facebook-square" target="_blank"></a>
+        <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+        <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+        <a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+      </div>
+    </div>
+    <div class="copyright">
+      &#169; 2020 CreateBase. All rights reserved.
+    </div>
+  </footer>
+
   <!-- ==========================JS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
-  <script async src="/node_modules/swiper/js/swiper.min.js"></script>
   <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
   <!-- ------------------------CUSTOM------------------------ -->
   <script async src="/public/javascripts/global/nav.js"></script>
 </body>

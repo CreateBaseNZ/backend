@@ -13,7 +13,7 @@ $bg-grey: #FDFDFD;
 
 $blue-light: #36C4E8;
 $blue-mid: #209ce2;
-$blue-dark: #0A37DC;
+$blue-dark: #0A73DC;
 
 * {
   margin: 0;
@@ -41,8 +41,9 @@ $blue-dark: #0A37DC;
 
 body {
   width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  padding: 0 10vw;
 }
 
