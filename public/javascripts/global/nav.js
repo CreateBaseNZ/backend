@@ -10,7 +10,8 @@ let nav = {
   },
 
   event: {
-    footerInput: undefined,
+    subscribeInput: undefined,
+    subscribeEnter: undefined,
     navTop: undefined,
     toggleNavMenu: undefined,
   },
@@ -20,7 +21,12 @@ let nav = {
     nav: document.querySelector('nav'),
     navLogo: document.querySelector('.nav-logo'),
     navMenu: document.querySelector('.nav-menu'),
-  }
+    subscribeBtn: document.querySelector('.footer-btn'),
+    subscribeInput: document.querySelector('#footer-input'),
+    subscribeError: document.querySelector('.footer-error')
+  },
+
+  subscribeSubmit: undefined
 }
 
 /* =============================================================
@@ -35,19 +41,27 @@ nav.init.init = () => {
 nav.init.attachListeners = () => {
   nav.elem.ham.addEventListener('click', nav.event.toggleNavMenu)
   window.addEventListener('scroll', nav.event.navTop)
-  document.querySelector('#footer-input').addEventListener('input', nav.event.footerInput)
+  nav.elem.subscribeInput.addEventListener('input', nav.event.subscribeInput)
+  nav.elem.subscribeInput.addEventListener('keypress', nav.event.subscribeEnter)
+  nav.elem.subscribeBtn.addEventListener('click', nav.subscribeSubmit)
 }
 
-nav.event.footerInput = function() {
+nav.event.subscribeInput = function() {
   if (this.value) {
-    document.querySelector('.footer-btn').classList.add('active')
+    nav.elem.subscribeBtn.classList.add('active')
   } else {
-    document.querySelector('.footer-btn').classList.remove('active')
+    nav.elem.subscribeBtn.classList.remove('active')
+  }
+}
+
+nav.event.subscribeEnter = (e) => {
+  nav.elem.subscribeError.innerHTML = ''
+  if (e.key === 'Enter') {
+    nav.subscribeSubmit()
   }
 }
 
 nav.event.toggleNavMenu = () => {
-  // Toggle all on left
   nav.elem.navMenu.classList.toggle('active');
   nav.elem.ham.classList.toggle('is-active');
 }
@@ -58,4 +72,42 @@ nav.event.navTop = function() {
   } else {
     nav.elem.navLogo.classList.remove('shrink')
   }
+}
+
+nav.subscribeSubmit = async () => {
+  // Disable
+  nav.elem.subscribeBtn.classList.remove('active')
+  nav.elem.subscribeInput.style.animationName = ''
+  void nav.elem.subscribeInput.offsetWidth
+  // COLLECT
+  const email = nav.elem.subscribeInput.value
+  // VALIDATE
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if (email === "") {
+    // notification.popup("Email is required", "failed");
+    nav.elem.subscribeError.innerHTML = "An email is required"
+    nav.elem.subscribeInput.style.animationName = 'shake'
+    return
+  } else if (!emailRE.test(String(email).toLowerCase())) {
+    // notification.popup("Invalid email", "failed");
+    nav.elem.subscribeError.innerHTML = "Please enter a valid email"
+    nav.elem.subscribeBtn.classList.add('active')
+    nav.elem.subscribeInput.style.animationName = 'shake'
+    return
+  }
+  // SUBMIT
+  try {
+    await global.subscribeToMailingList(email);
+  } catch (error) {
+    // TODO: Error message
+
+    nav.elem.subscribeBtn.classList.add('active')
+    return
+  }
+  // SUCCESS HANDLER
+  nav.elem.subscribeInput.value = "";
+  nav.elem.subscribeError.innerHTML = ""
+  
+  return;
 }

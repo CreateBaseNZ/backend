@@ -202,6 +202,11 @@ footer {
     border: 2px solid $darker;
     flex: 1 1 0;
     transition: border 0.2s ease-out;
+
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
     &::placeholder {
       opacity: 50%;
       font-weight: 400;
@@ -233,6 +238,17 @@ footer {
       pointer-events: auto;
       background: $purple-logo;
     }
+  }
+}
+.footer-error {
+  margin-top: 0.25rem;
+  margin-left: 0.5rem;
+  font-weight: 600;
+  font-size: 0.625rem;
+  color: $red;
+  &::after {
+    content: '.';
+    visibility: hidden;
   }
 }
 
@@ -351,7 +367,30 @@ $hamburger-layer-spacing: 0.25rem;
   }
 }
 
+.shake {
+  -webkit-animation-name: shake;
+  animation-name: shake;
+}
 
+@keyframes shake {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    border-color: $purple-logo;
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-6px, 0, 0);
+    transform: translate3d(-6px, 0, 0);
+    border-color: $red;
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(6px, 0, 0);
+    transform: translate3d(6px, 0, 0);
+    border-color: $red;
+  }
+}
 
 @media only screen and (min-width: 768px) and (orientation: landscape) {
 
