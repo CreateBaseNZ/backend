@@ -31,7 +31,7 @@ nav.init.attachListeners = () => {
   window.addEventListener('scroll', nav.event.navTop)
 }
 
-nav.event.toggleNavMenu = () => {
+nav.event.toggleNavMenu = (e) => {
   nav.elem.navMenu.classList.toggle('active');
   nav.elem.ham.classList.toggle('is-active');
 }

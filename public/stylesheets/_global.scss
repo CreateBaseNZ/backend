@@ -16,6 +16,8 @@ $blue-mid: #209ce2;
 $blue-dark: #0A73DC;
 
 $red: #FA6F6F;
+$orange: #FFB649;
+$green: #18DBAC;
 
 * {
   margin: 0;
@@ -47,5 +49,8 @@ body {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 100vh;
 }
 
