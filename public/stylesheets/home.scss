@@ -1,2 +1,128 @@
 @import "global";
 
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: $darker;
+  line-height: 1.5em;
+}
+
+.swiper-container {
+  height: calc(100vh - #{$nav-height});
+  width: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0 10vw;
+  overflow: hidden;
+  .slide-caption {
+    font-size: 0.875rem;
+    color: $darker;
+    line-height: 1.75em;
+    margin: 1rem 0;
+    span {
+      font-size: inherit;
+      font-weight: 600;
+    }
+  }
+  .slide-btn {
+    font-size: 0.875rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    color: $lightest;
+    font-weight: 500;
+  }
+}
+
+.slide-1 {
+  .slide-caption {
+    width: 90%;
+    span {
+      color: $blue-mid;
+    }
+  }
+  img {
+    position: absolute;
+    bottom: 0;
+    left: 5vw;
+    height: 60vh;
+    object-fit: cover;
+  }
+  .arm {
+    transform: translate(1.25rem, -0.75rem);
+  }
+  .wires {
+    transform: translate(0.75rem, -1.25rem);
+  }
+  .arduino {
+    transform: translate(-0.75rem, -0.5rem);
+  }
+  .motor {
+    transform: translate(-0.5rem, -0.5rem);
+  }
+  &.active {
+    .wires {
+      transform: translate(0, 0);
+      transition: transform 1.2s ease-out;
+    }
+    .arm {
+      transform: translate(0, 0);
+      transition: transform 1.4s ease-out;
+    }
+    .arduino {
+      transform: translate(0, 0);
+      transition: transform 1.8s ease-out;
+    }
+    .motor {
+      transform: translate(0, 0);
+      transition: transform 1.6s ease-out;
+    }
+  }
+}
+
+.slide-2 {
+  align-items: flex-end;
+  h2 {
+    text-align: right;
+    width: 90%;
+  }
+  .slide-caption {
+    text-align: right;
+    width: 85%;
+    span {
+      color: #05CE78;
+    }
+  }
+  .slide-btn {
+    background: #05CE78;
+  }
+  img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 50vh;
+    object-fit: cover;
+  }
+  .cb {
+    transform: translate(-50%, 2rem);
+    transition: transform 0.2s ease-out;
+  }
+  .ks {
+    transform: translate(-50%, 1rem);
+    transition: transform 0.2s ease-out;
+  }
+  &.active {
+    .cb {
+      transform: translate(-50%, 0);
+      transition: transform 1.8s ease-out;
+    }
+    .ks {
+      transform: translate(-50%, 0);
+      transition: transform 1.4s ease-out;
+    }
+  }
+}

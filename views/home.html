@@ -16,12 +16,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <!-- ------------------------CUSTOM------------------------ -->
   <link rel="stylesheet" href="/public/stylesheets/home.min.css">
   <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
 </head>
 
-<body onload="global.init.init()">
+<body onload="global.init.init(); home.init.init();">
 
   <nav>
     <a href="/" class="nav-logo">
@@ -37,9 +38,34 @@
       <a href="/story" class="nav-item">Our Story</a>
       <a href="/team" class="nav-item">The Team</a>
       <a href="/contact" class="nav-item">Contact Us</a>
-      <a href="/" class="kickstarter">Kickstarter</a>
+      <a href="/" class="special-btn">Learn More</a>
     </div>
   </nav>
+
+  <div class="page">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide slide-1">
+          <h2>Unleash your inner creator</h2>
+          <div class="slide-caption">Learn the creation process from the initial idea to final outcome with engaging <span>Projects</span>, practical <span>Kit Sets</span> and cutting-edge <span>Simulations</span></div>
+          <img src="/public/images/home/slide-1-bg.svg" class="bg" alt="Robotic Arm">
+          <img src="/public/images/home/slide-1-arm.svg" class="arm" alt="Robotic Arm">
+          <img src="/public/images/home/slide-1-motor.svg" class="motor" alt="Robotic Arm">
+          <img src="/public/images/home/slide-1-arduino.svg" class="arduino" alt="Robotic Arm">
+          <img src="/public/images/home/slide-1-wires.svg" class="wires" alt="Robotic Arm">
+
+        </div>
+        <div class="swiper-slide slide-2">
+          <h2>Kickstarter coming soon!</h2>
+          <div class="slide-caption">Be the first to hear about our <span>Kickstarter launch</span> and snag exclusive early-bird deals</div>
+          <div class="slide-btn">Learn More</div>
+          <img src="/public/images/home/slide-2-cb.svg" class="cb" alt="CreateBase">
+          <img src="/public/images/home/slide-2-ks.svg" class="ks" alt="Kickstarter">
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-container prop">
@@ -88,11 +114,13 @@
   <!-- -----------------------SOURCED------------------------ -->
   <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <script async src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <!-- ------------------------CUSTOM------------------------ -->
   <script async src="/public/javascripts/nav.js"></script>
   <script async src="/public/javascripts/footer.js"></script>
   <script async src="/public/javascripts/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
+  <script async src="/public/javascripts/home.js"></script>
 </body>
 
 </html>

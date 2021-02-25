@@ -30,13 +30,17 @@ global.subscribe = (email) => {
       data = { status: "error", content: error };
     }
     if (data.status === "error") {
-      notification.popup("An error ocurred", "error");
+      notification.generate('subscribe', 'error')
       return reject();
     } else if (data.status === "failed") {
-      notification.popup(data.content, "failed");
+      notification.generate('subscribe', 'error')
       return reject();
     } else if (data.status === "succeeded") {
-      notification.popup(data.content, "succeeded");
+      if (data.content === "already") {
+        notification.generate('subscribe', 'already')
+      } else {
+        notification.generate('subscribe', 'success')
+      }
       return resolve();
     }
   });

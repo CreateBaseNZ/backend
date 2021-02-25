@@ -33,6 +33,7 @@ footer.init.attachListeners = () => {
 }
 
 footer.event.subscribeInput = function() {
+  footer.elem.subscribeError.innerHTML = ''
   if (this.value) {
     footer.elem.subscribeBtn.classList.add('active')
   } else {
@@ -41,7 +42,6 @@ footer.event.subscribeInput = function() {
 }
 
 footer.event.subscribeEnter = (e) => {
-  footer.elem.subscribeError.innerHTML = ''
   if (e.key === 'Enter') {
     footer.subscribeSubmit()
   }
@@ -75,11 +75,10 @@ footer.subscribeSubmit = async () => {
     // TODO: Error message
     footer.elem.subscribeError.innerHTML = "An error occurred, please try again"
     footer.elem.subscribeBtn.classList.add('active')
+    notification.generate('subscribe', 'error')
     return
   }
   // SUCCESS HANDLER
-  footer.elem.subscribeInput.value = "";
+  footer.elem.subscribeInput.value = ""
   footer.elem.subscribeError.innerHTML = ""
-  
-  return;
 }

@@ -19,6 +19,8 @@ $red: #FA6F6F;
 $orange: #FFB649;
 $green: #18DBAC;
 
+$nav-height: 8rem;
+
 * {
   margin: 0;
   padding: 0;
@@ -54,3 +56,7 @@ body {
   min-height: 100vh;
 }
 
+.page {
+  margin-top: $nav-height;
+  width: 100%;
+}

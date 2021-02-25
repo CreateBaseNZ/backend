@@ -12,10 +12,13 @@ nav {
   width: 100%;
   padding: 1.5rem 10vw;
   transition: background-color 0.2s ease-out;
+  z-index: 20;
 }
 nav.shrink {
-  padding: 1.5rem 10vw;
   background: $lightest;
+  .nav-logo {
+    margin: 0;
+  }
 }
 
 .nav-logo {
@@ -27,9 +30,6 @@ nav.shrink {
     opacity: 0;
     height: 100%;
     animation: nav-logo 0.4s ease-out 0.1s forwards;
-  }
-  &.shrink {
-    margin: 0;
   }
 }
 
@@ -89,7 +89,7 @@ nav.shrink {
       transition: width 0.4s ease-out, height 0.1s linear 0.4s;
     }
   }
-  .kickstarter {
+  .special-btn {
     padding: 1rem 1.75rem;
     border-radius: 999px;
     color: $lightest;
@@ -119,7 +119,7 @@ nav.shrink {
   .nav-item:nth-child(2) { transition-delay: 0.3s; }
   .nav-item:nth-child(3) { transition-delay: 0.4s; }
   .nav-item:nth-child(4) { transition-delay: 0.5s; }
-  .kickstarter {
+  .special-btn {
     margin: 1.5rem 0 0 0;
     transition-delay: 0.6s;
   }
@@ -414,7 +414,7 @@ $hamburger-layer-spacing: 0.25rem;
   position: relative;
   margin-top: 0.5rem;
   box-shadow: 0 0.25rem 1rem -0.25rem rgba(0,0,0,0.25);
-  animation: notif 3s ease-out forwards;
+  animation: notif 6s ease-out forwards;
   .notif-title {
     font-size: 0.75rem;
     font-weight: 600;
@@ -444,9 +444,11 @@ $hamburger-layer-spacing: 0.25rem;
     top: 0.5rem;
     right: 0.5rem;
     padding: 0.25rem;
-    transition: opacity 0.1s ease-out;
+    border-radius: 50%;
+    transition: opacity 0.1s ease-out, background-color 0.1s ease-out;
     &:hover {
       opacity: 1;
+      background: rgba(0,0,0,0.05);
     }
   }
   &.remove-now {
@@ -460,17 +462,17 @@ $hamburger-layer-spacing: 0.25rem;
 @keyframes notif {
   0% {
     opacity: 0;
-    transform: translateX(20%);
+    transform: translateX(10%);
   }
-  5% {
+  3% {
     opacity: 0;
-    transform: translateX(20%);
+    transform: translateX(10%);
   }
-  15% {
+  7% {
     opacity: 1;
     transform: translateX(0);
   }
-  65% {
+  75% {
     opacity: 1;
   }
   100% {
@@ -507,9 +509,9 @@ $hamburger-layer-spacing: 0.25rem;
   .nav-item:nth-child(2) { animation-delay: 0.4s; }
   .nav-item:nth-child(3) { animation-delay: 0.5s; }
   .nav-item:nth-child(4) { animation-delay: 0.6s; }
-  .kickstarter {
+  .special-btn {
     margin: -0.5em 0 0.5em 4vw;
-    animation: kickstarter 0.6s ease-out 1s forwards;
+    animation: special-btn 0.6s ease-out 1s forwards;
   }
 }
 
@@ -524,7 +526,7 @@ $hamburger-layer-spacing: 0.25rem;
   }
 }
 
-@keyframes kickstarter {
+@keyframes special-btn {
   0% {
     margin: -0.5em 0 0.5em 4vw;
     opacity: 0;
@@ -596,7 +598,7 @@ footer {
   }
   i.cancel {
     font-size: 1.25rem;
-    top: calc(50% + 1rem);
+    top: calc(50% + 0.75rem);
     right: 0.75rem;
     transform: translateY(-100%);
   }
