@@ -11,7 +11,7 @@ nav {
   align-items: center;
   width: 100%;
   padding: 1.5rem 10vw;
-  transition: background-color 0.2s ease-out;
+  transition: background-color 1s ease-out;
   z-index: 20;
 }
 nav.shrink {
@@ -235,10 +235,13 @@ footer {
     margin-left: 1rem;
     cursor: pointer;
     pointer-events: none;
-    transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out, padding-left 0.2s ease-out;
     &.active {
       pointer-events: auto;
       background: $purple-logo;
+      &:hover {
+        padding-left: 0.5em;
+      }
     }
   }
 }
@@ -618,7 +621,7 @@ footer {
 
 }
 
-@media only screen and (min-width: 1200px) and (orientation: landscape) {
+@media only screen and (min-width: 1200px) {
 
 .nav-logo {
   .long {

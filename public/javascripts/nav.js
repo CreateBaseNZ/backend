@@ -37,7 +37,7 @@ nav.event.toggleNavMenu = (e) => {
 }
 
 nav.event.navTop = function() {
-  if (this.scrollY > 0) {
+  if (this.scrollY > 40) {
     nav.elem.nav.classList.add('shrink')
   } else {
     nav.elem.nav.classList.remove('shrink')

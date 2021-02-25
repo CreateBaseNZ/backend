@@ -40,9 +40,10 @@ h2 {
     border-radius: 0.75rem;
     color: $lightest;
     font-weight: 500;
-    transition: filter 0.1s ease-out;
+    transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
     &:hover {
-      filter: brightness(0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 0.75rem 1rem -0.25rem rgba(0,0,0,0.25);
     }
   }
 }
@@ -214,6 +215,7 @@ h2 {
     width: 60%;
     left: auto;
     right: 0;
+    object-fit: contain;
   }
 }
 
@@ -235,6 +237,58 @@ h2 {
   }
   .slide-btn {
     margin-top: 2rem;
+  }
+}
+
+}
+
+@media only screen and (min-width: 1200px) {
+
+  h2 {
+    font-size: 3rem;
+  }
+
+.swiper-slide {
+  height: 80vh;
+  .slide-caption {
+    font-size: 1.25rem;
+  }
+  .slide-btn {
+    font-size: 1.25rem;
+    padding: 1.25rem 3rem;
+  }
+}
+
+.slide-1 {
+  h2 {
+    margin-left: 2vw;
+    margin-top: auto;
+    width: 50%;
+  }
+  .slide-caption {
+    padding-bottom: 10vh;
+    margin-left: 2vw;
+    margin-bottom: auto;
+  }
+  .slide-img {
+    min-height: 0;
+    height: 100%;
+    width: 45%;
+    left: 55%;
+    right: auto;
+    object-fit: cover;
+  }
+}
+
+.slide-2 {
+  h2 {
+    margin-top: 8vh;
+  }
+  .slide-caption {
+    width: 40%;
+  }
+  .slide-img {
+    left: 30%;
   }
 }
 
