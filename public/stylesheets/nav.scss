@@ -31,6 +31,9 @@ nav.shrink {
     height: 100%;
     animation: nav-logo 0.4s ease-out 0.1s forwards;
   }
+  .small {
+    display: none;
+  }
 }
 
 @keyframes nav-logo {
@@ -480,7 +483,16 @@ $hamburger-layer-spacing: 0.25rem;
   }
 }
 
-@media only screen and (min-width: 768px) and (orientation: landscape) {
+@media only screen and (min-width: 768px) {
+
+.nav-logo {
+  .long {
+    display: none;
+  }
+  .small {
+    display: block;
+  }
+}
 
 .hamburger {
   display: none;
@@ -607,6 +619,15 @@ footer {
 }
 
 @media only screen and (min-width: 1200px) and (orientation: landscape) {
+
+.nav-logo {
+  .long {
+    display: block;
+  }
+  .small {
+    display: none;
+  }
+}
 
 footer {
   display: grid;

@@ -50,7 +50,6 @@ home.init.swiper = () => {
 
 home.event.onSwipe = () => {
   home.slides[home.swiper.realIndex].classList.add('active')
-  console.log(home.slides[home.swiper.realIndex])
 }
 
 home.event.afterSwipe = () => {

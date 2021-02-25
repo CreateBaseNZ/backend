@@ -8,7 +8,6 @@ h2 {
 }
 
 .swiper-container {
-  height: calc(100vh - #{$nav-height});
   width: 100%;
 }
 
@@ -17,7 +16,10 @@ h2 {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0 10vw;
+  padding: calc(#{$nav-height} - 60px + 6vh) 10vw 0 10vw;
+  height: 100vh;
+  min-height: 650px;
+  max-height: 800px;
   overflow: hidden;
   .slide-caption {
     font-size: 0.875rem;
@@ -29,12 +31,19 @@ h2 {
       font-weight: 600;
     }
   }
+  img {
+    z-index: -1;
+  }
   .slide-btn {
     font-size: 0.875rem;
     padding: 1rem 1.5rem;
     border-radius: 0.75rem;
     color: $lightest;
     font-weight: 500;
+    transition: filter 0.1s ease-out;
+    &:hover {
+      filter: brightness(0.9);
+    }
   }
 }
 
@@ -45,12 +54,22 @@ h2 {
       color: $blue-mid;
     }
   }
-  img {
+  .line {
     position: absolute;
-    bottom: 0;
+    top: -1rem;
+    left: -2rem;
+    height: 60%;
+    animation: slide-lines 22s linear infinite;
+  }
+  .slide-img {
+    position: absolute;
+    bottom: 1vh;
     left: 5vw;
-    height: 60vh;
+    min-height: 60vh;
+    min-width: 95vw;
     object-fit: cover;
+    object-position: left bottom;
+    transition: transform 0.2s ease-out;
   }
   .arm {
     transform: translate(1.25rem, -0.75rem);
@@ -100,11 +119,26 @@ h2 {
   .slide-btn {
     background: #05CE78;
   }
-  img {
+  .line-1 {
+    position: absolute;
+    height: 90%;
+    top: 30%;
+    left: -2rem;
+    animation: slide-lines 22s linear 2s infinite;
+  }
+  .line-2 {
+    position: absolute;
+    height: 90%;
+    top: 0;
+    right: -1rem;
+    animation: slide-lines 24s linear infinite;
+  }
+  .slide-img {
     position: absolute;
     bottom: 0;
     left: 50%;
-    height: 50vh;
+    min-height: 50vh;
+    min-width: 105vw;
     object-fit: cover;
   }
   .cb {
@@ -125,4 +159,83 @@ h2 {
       transition: transform 1.4s ease-out;
     }
   }
+}
+
+@keyframes slide-lines {
+  0% {
+    transform: translate(0, 0) rotate(0);
+  }
+  11% {
+    transform: translate(0.5rem, -0.4rem) rotate(2deg);
+  }
+  31% {
+    transform: translate(1.3rem, 0.6rem) rotate(4deg);
+  }
+  57% {
+    transform: translate(0.6rem, 1.1rem) rotate(1deg);
+    
+  }
+  72% {
+    transform: translate(0.2rem, 1.6rem) rotate(-2deg);
+    
+  }
+  85% {
+    transform: translate(-0.6rem, 0.9rem) rotate(-3deg);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+.swiper-slide {
+  padding-top: $nav-height;
+  height: auto;
+  max-height: none;
+  min-height: 600px;
+  .slide-btn {
+    padding: 1rem 2rem;
+  }
+}
+
+.slide-1 {
+  h2 {
+    margin-top: 2rem;
+  }
+  .slide-caption {
+    width: 35%;
+  }
+  .line {
+    top: -2rem;
+    left: -4rem;
+    height: 80%;
+  }
+  .slide-img {
+    min-height: 0;
+    min-width: 0;
+    width: 60%;
+    left: auto;
+    right: 0;
+  }
+}
+
+.slide-2 {
+  h2 {
+    margin-top: 2.5rem;
+  }
+  .slide-caption {
+    width: 45%;
+  }
+  .slide-img {
+    left: 35%;
+    min-height: 0;
+    height: calc(100% - 2rem);
+    min-width: 0;
+    max-width: 50%;
+    object-fit: contain;
+    object-position: 50% 100%;
+  }
+  .slide-btn {
+    margin-top: 2rem;
+  }
+}
+
 }

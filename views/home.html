@@ -18,15 +18,16 @@
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <!-- ------------------------CUSTOM------------------------ -->
-  <link rel="stylesheet" href="/public/stylesheets/home.min.css">
   <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
+  <link rel="stylesheet" href="/public/stylesheets/home.min.css">
 </head>
 
 <body onload="global.init.init(); home.init.init();">
 
   <nav>
     <a href="/" class="nav-logo">
-      <img src="/public/images/logo_full_svg.svg" alt="CreateBase">
+      <img src="/public/images/logo_full_svg.svg" class="long" alt="CreateBase">
+      <img src="/public/images/icon-logo.png" class="small" alt="CreateBase">
     </a>
     <div class="hamburger hamburger-spin" type="button">
       <span class="hamburger-box">
@@ -48,19 +49,21 @@
         <div class="swiper-slide slide-1">
           <h2>Unleash your inner creator</h2>
           <div class="slide-caption">Learn the creation process from the initial idea to final outcome with engaging <span>Projects</span>, practical <span>Kit Sets</span> and cutting-edge <span>Simulations</span></div>
-          <img src="/public/images/home/slide-1-bg.svg" class="bg" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-arm.svg" class="arm" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-motor.svg" class="motor" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-arduino.svg" class="arduino" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-wires.svg" class="wires" alt="Robotic Arm">
-
+          <img src="/public/images/home/slide-1-shape.svg" class="line" alt="">
+          <img src="/public/images/home/slide-1-bg.svg" class="slide-img bg" alt="Robotic Arm">
+          <img src="/public/images/home/slide-1-arm.svg" class="slide-img arm" alt="Robotic Arm">
+          <img src="/public/images/home/slide-1-motor.svg" class="slide-img motor" alt="Robotic Arm">
+          <img src="/public/images/home/slide-1-arduino.svg" class="slide-img arduino" alt="Robotic Arm">
+          <img src="/public/images/home/slide-1-wires.svg" class="slide-img wires" alt="Robotic Arm">
         </div>
         <div class="swiper-slide slide-2">
           <h2>Kickstarter coming soon!</h2>
           <div class="slide-caption">Be the first to hear about our <span>Kickstarter launch</span> and snag exclusive early-bird deals</div>
-          <div class="slide-btn">Learn More</div>
-          <img src="/public/images/home/slide-2-cb.svg" class="cb" alt="CreateBase">
-          <img src="/public/images/home/slide-2-ks.svg" class="ks" alt="Kickstarter">
+          <a href="/" class="slide-btn">Learn More</a>
+          <img src="/public/images/home/slide-2-shape-1.svg" class="line-1" alt="">
+          <img src="/public/images/home/slide-2-shape-2.svg" class="line-2" alt="">
+          <img src="/public/images/home/slide-2-cb.svg" class="slide-img cb" alt="CreateBase">
+          <img src="/public/images/home/slide-2-ks.svg" class="slide-img ks" alt="Kickstarter">
         </div>
       </div>
       <div class="swiper-pagination"></div>
