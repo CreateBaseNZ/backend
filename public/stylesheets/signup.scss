@@ -1,0 +1,438 @@
+@import "global/all";
+
+nav {
+  .nav-top-bar {
+    background: transparent;
+
+    .nav-in,
+    .nav-mobile-out,
+    .nav-desktop-out {
+      display: none !important;
+    }
+  }
+}
+
+.main-page {
+  height: 100vh;
+  width: 100vw;
+  font-family: $poppins;
+  .signup-mobile-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    overflow: hidden;
+    background-position: 80%;
+    background-image: url(./public/images/signup-desktop2.jpg);
+  }
+
+  // Logo animation
+  .logo-anim-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    
+    .layer {
+      position: absolute;
+      height: $diamond;
+      width: $diamond;
+      background: $light-3;
+      opacity: 0.3;
+      top: 50%;
+    }
+
+    .layer-1 {
+      animation: logo-anim-1 3s forwards;
+    }
+    .layer-2 {
+      animation: logo-anim-2 3s forwards;
+    }
+    .layer-3 {
+      animation: logo-anim-3 3s forwards;
+    }
+  }
+
+  // Main form
+  .signup-form-container {
+    width: 100vw;
+    height: calc(100vh - #{$top-bar-height});
+    animation: appear 3s forwards;
+
+    #sign-up-form {
+      display: grid;
+      grid-template-rows: 30vh 10vh 10vh 10vh 10vh 20vh 10vh;
+      justify-items: center;
+      align-items: flex-end;
+
+      #signup-title {
+        margin-top: $top-bar-height;
+        align-self: center;
+        span {
+          color: $highlight;
+        }
+      }
+
+      #enter-pass {
+        #pwd-strength {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          font-size: calc(7px + 0.1vw);
+        }
+      }
+
+      #confirm-pass {
+        top: -3vh;
+        visibility: none;
+        opacity: 0;
+        z-index: -1;
+        transition: all 0.3s ease-out;
+      }
+
+      #enter-pass:focus-within + #confirm-pass {
+        top: 0;
+        visibility: visible;
+        opacity: 1;
+        z-index: 2;
+      }
+
+      .dip-down {
+        top: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 2 !important;
+      }
+
+      #signup-submit {
+        margin-bottom: 5vh;
+      }
+
+      #signup-message {
+        a {
+          color: $highlight;
+        }
+        font-size: 10px;
+        align-self: flex-end;
+        margin-bottom: 3vh;
+        color: $dark-3;
+      }
+    }
+  }
+}
+
+@keyframes appear {
+  0%,
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes logo-anim-1 {
+  0%,
+  10% {
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    top: calc(50vh - #{$diamond}/2);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  40% {
+    height: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    opacity: 0.3;
+    background: $logo-3;
+    top: calc(50vh - #{$diamond}/2 - #{$diamond}/4);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  65% {
+    height: 1px;
+    width: $diamond;
+    border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    background: $logo-3;
+    top: calc(40vh - 1px);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  90% {
+    height: 1px;
+    width: $input-width;
+    border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    background: $light-2;
+    top: calc(40vh - 1px);
+    left: calc(50vw - #{$input-width}/2);
+  }
+  100% {
+    height: 1px;
+    width: $input-width;
+    border-radius: 0;
+    opacity: 0;
+    background: $light-2;
+    top: calc(40vh - 1px);
+    left: calc(50vw - #{$input-width}/2);
+  }
+}
+
+@keyframes logo-anim-2 {
+  0%,
+  10% {
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    top: calc(50vh - #{$diamond}/2);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  40% {
+    height: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    opacity: 0.3;
+    background: $logo-2;
+    top: calc(50vh - #{$diamond}/2);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  65% {
+    height: 1px;
+    width: $diamond;
+    border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    background: $logo-2;
+    top: calc(50vh - 1px);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  90% {
+    height: 1px;
+    width: $input-width;
+    border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    background: $light-2;
+    top: calc(50vh - 1px);
+    left: calc(50vw - #{$input-width}/2);
+  }
+  100% {
+    height: 1px;
+    width: $input-width;
+    border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 0;
+    background: $light-2;
+    top: calc(50vh - 1px);
+    left: calc(50vw - #{$input-width}/2);
+  }
+}
+
+@keyframes logo-anim-3 {
+  0%,
+  10% {
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    top: calc(50vh - #{$diamond}/2);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  40% {
+    height: $diamond;
+    border-radius: $diamond * 0.05;
+    transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+    opacity: 0.3;
+    background: $logo-1;
+    top: calc(50vh - #{$diamond}/2 + #{$diamond}/4);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  65% {
+    height: 1px;
+    width: $diamond;
+    border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    background: $logo-1;
+    top: calc(60vh - 1px);
+    left: calc(50vw - #{$diamond}/2);
+  }
+  90% {
+    height: 1px;
+    width: $input-width;
+    border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    background: $light-2;
+    top: calc(60vh - 1px);
+    left: calc(50vw - #{$input-width}/2);
+  }
+  100% {
+    height: 1px;
+    width: $input-width;
+    border-radius: 0;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 0;
+    background: $light-2;
+    top: calc(60vh - 1px);
+    left: calc(50vw - #{$input-width}/2);
+  }
+}
+
+@media only screen and (min-width: 850px) and (orientation: landscape) {
+
+  $input-width: 20vw;
+
+  .main-page {
+  
+    // Main form
+    .signup-form-container {
+      
+      #sign-up-form {
+        #signup-message {
+          font-size: calc(8px + 0.2vmax);
+        }
+      }
+    }
+  }
+
+  @keyframes logo-anim-1 {
+    0%,
+    10% {
+      transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+      top: calc(50vh - #{$diamond}/2);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    40% {
+      height: $diamond;
+      border-radius: $diamond * 0.05;
+      transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+      opacity: 0.3;
+      background: $logo-3;
+      top: calc(50vh - #{$diamond}/2 - #{$diamond}/4);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    65% {
+      height: 1px;
+      width: $diamond;
+      border-radius: 0;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 1;
+      background: $logo-3;
+      top: calc(40vh - 1px);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    90% {
+      height: 1px;
+      width: $input-width;
+      border-radius: 0;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 1;
+      background: $light-2;
+      top: calc(40vh - 1px);
+      left: calc(50vw - #{$input-width}/2);
+    }
+    100% {
+      height: 1px;
+      width: $input-width;
+      border-radius: 0;
+      opacity: 0;
+      background: $light-2;
+      top: calc(40vh - 1px);
+      left: calc(50vw - #{$input-width}/2);
+    }
+  }
+  
+  @keyframes logo-anim-2 {
+    0%,
+    10% {
+      transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+      top: calc(50vh - #{$diamond}/2);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    40% {
+      height: $diamond;
+      border-radius: $diamond * 0.05;
+      transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+      opacity: 0.3;
+      background: $logo-2;
+      top: calc(50vh - #{$diamond}/2);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    65% {
+      height: 1px;
+      width: $diamond;
+      border-radius: 0;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 1;
+      background: $logo-2;
+      top: calc(50vh - 1px);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    90% {
+      height: 1px;
+      width: $input-width;
+      border-radius: 0;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 1;
+      background: $light-2;
+      top: calc(50vh - 1px);
+      left: calc(50vw - #{$input-width}/2);
+    }
+    100% {
+      height: 1px;
+      width: $input-width;
+      border-radius: 0;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 0;
+      background: $light-2;
+      top: calc(50vh - 1px);
+      left: calc(50vw - #{$input-width}/2);
+    }
+  }
+  
+  @keyframes logo-anim-3 {
+    0%,
+    10% {
+      transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+      top: calc(50vh - #{$diamond}/2);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    40% {
+      height: $diamond;
+      border-radius: $diamond * 0.05;
+      transform: rotateX(-55deg) rotateY(0deg) rotateZ(45deg);
+      opacity: 0.3;
+      background: $logo-1;
+      top: calc(50vh - #{$diamond}/2 + #{$diamond}/4);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    65% {
+      height: 1px;
+      width: $diamond;
+      border-radius: 0;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 1;
+      background: $logo-1;
+      top: calc(60vh - 1px);
+      left: calc(50vw - #{$diamond}/2);
+    }
+    90% {
+      height: 1px;
+      width: $input-width;
+      border-radius: 0;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 1;
+      background: $light-2;
+      top: calc(60vh - 1px);
+      left: calc(50vw - #{$input-width}/2);
+    }
+    100% {
+      height: 1px;
+      width: $input-width;
+      border-radius: 0;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 0;
+      background: $light-2;
+      top: calc(60vh - 1px);
+      left: calc(50vw - #{$input-width}/2);
+    }
+  }
+}

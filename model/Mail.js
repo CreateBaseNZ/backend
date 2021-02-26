@@ -42,7 +42,7 @@ MailSchema.statics.build = function (object = {}, save = true) {
       return reject({ status: "error", content: error });
     }
     // CHECK IF EMAIL IS ALREADY SUBSCRIBED
-    if (mail) return reject({ status: "succeeded", content: "already" });
+    if (mail) return reject({ status: "succeeded", content: "You are already subscribed" });
     // SETUP OR CREATE MAIL INSTANCE
     mail = new this(object);
     // SAVE MAIL INSTANCE

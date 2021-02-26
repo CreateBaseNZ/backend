@@ -1,17 +1,9 @@
-$poppins: "Poppins", sans-serif;
-$montserrat: "Montserrat", sans-serif;
-
-
 * {
   margin: 0;
   padding: 0;
-  border: none;
-  outline: none;
   box-sizing: border-box;
   text-decoration: none;
   user-select: none;
-  background: transparent;
-  font-family: $poppins;
 }
 
 input, input:before, input:after {
@@ -29,6 +21,8 @@ nav,.mobile-notif-wrap,.notification-wrap,.main-page,.footer-section{
 }
 
 .hide {
+  // -webkit-transition: ease-out 0.5s;
+  // transition: ease-out 0.5s;
   height: 0em;
   overflow: hidden;
   opacity: 0;
@@ -38,9 +32,9 @@ nav,.mobile-notif-wrap,.notification-wrap,.main-page,.footer-section{
   display: none;
 }
 
-$logo-1: #8258DC;
-$logo-2: #6853D9;
-$logo-3: #4E4ED6;
+$logo-1: rgb(130, 88, 220); //#8258dc
+$logo-2: rgb(104, 83, 217); //#6853d9
+$logo-3: rgb(78, 78, 214); //#4e4ed6
 
 $highlight: rgb(75, 240, 234); //#4bf0ea
 
@@ -52,24 +46,15 @@ $light-1: rgb(255, 255, 255); //#ffffff
 $light-2: rgb(248, 248, 248); //#f8f8f8
 $light-3: rgb(199, 194, 213); //#c7c2d5
 
+$montserrat: "Montserrat", sans-serif;
+$poppins: "Poppins", sans-serif;
+$didact: "Didact Gothic", sans-serif;
+$quest: "Questrial", sans-serif;
+
+$diamond: 10vmax;
+
 $height-mobile: 7vmax;
 $height-desktop: 3.5vmax;
 
-$menu-width: 100vw;
-
 $top-bar-height: 80px;
-
-
-
-
-$darkest: #050505;
-$darker: #1A1039;
-$dark: #786D97;
-
-$light: #ABABAB;
-$lighter: #F4F4F4;
-$lightest: #FFFFFF;
-
-$purple-logo: #6854d9;
-$bg-grey: #FDFDFD;
-
+$menu-width: 100vw;
