@@ -1,12 +1,21 @@
 let home = {
   init: {
+    attachListeners: undefined,
     init: undefined,
     swiper: undefined,
   },
 
+  elem: {
+    subscribeBtn: document.querySelector('.home-subscribe-btn'),
+    subscribeError: document.querySelector('.home-subscribe-error'),
+    subscribeInput: document.querySelector('#home-subscribe'),
+  },
+
   event: {
-    onSwipe: undefined,
     afterSwipe: undefined,
+    onSwipe: undefined,
+    subscribeEnter: undefined,
+    subscribeInput: undefined,
   },
 
   swiper: undefined,
@@ -22,6 +31,7 @@ let home = {
 home.init.init = () => {
 
   home.init.swiper()
+  home.init.attachListeners()
 
   // promises = [global.initialise(), home.addImages()];
   // try {
@@ -32,6 +42,12 @@ home.init.init = () => {
 
   // PAGE CONFIGURATIONS
   // textSequence(0, home.words, "change-text");
+}
+
+home.init.attachListeners = () => {
+  home.elem.subscribeBtn.addEventListener('click', home.subscrubeSubmit)
+  home.elem.subscribeInput.addEventListener('input', home.event.subscribeInput)
+  home.elem.subscribeInput.addEventListener('keypress', home.event.subscribeEnter)
 }
 
 home.init.swiper = () => {
@@ -45,15 +61,65 @@ home.init.swiper = () => {
       slideChangeTransitionEnd: home.event.afterSwipe,
     },
   });
-  home.slides[0].classList.add('active')
+  setTimeout(() => {
+    home.slides[0].classList.add('active')
+  }, 500)
+}
+
+home.event.afterSwipe = () => {
+  home.slides[home.swiper.previousIndex].classList.remove('active')
 }
 
 home.event.onSwipe = () => {
   home.slides[home.swiper.realIndex].classList.add('active')
 }
 
-home.event.afterSwipe = () => {
-  home.slides[home.swiper.previousIndex].classList.remove('active')
+home.event.subscribeEnter = (e) => {
+  if (e.key === 'Enter') {
+    home.subscribeSubmit()
+  }
+}
+
+home.event.subscribeInput = function() {
+  home.elem.subscribeError.innerHTML = ''
+  if (this.value) {
+    home.elem.subscribeBtn.classList.add('active')
+  } else {
+    home.elem.subscribeBtn.classList.remove('active')
+  }
+}
+
+home.subscribeSubmit = async () => {
+  // Disable
+  home.elem.subscribeBtn.classList.remove('active')
+  home.elem.subscribeInput.style.animationName = ''
+  void home.elem.subscribeInput.offsetWidth
+
+  // VALIDATE
+  const result = global.validateEmail(home.elem.subscribeInput.value)
+  if (result === 'empty') {
+    home.elem.subscribeError.innerHTML = "An email is required"
+    home.elem.subscribeInput.style.animationName = 'shake'
+    return
+  } else if (result === 'invalid') {
+    home.elem.subscribeError.innerHTML = "Please enter a valid email"
+    home.elem.subscribeBtn.classList.add('active')
+    home.elem.subscribeInput.style.animationName = 'shake'
+    return
+  }
+
+  // SUBMIT
+  try {
+    await global.subscribe(home.elem.subscribeInput.value);
+  } catch (error) {
+    home.elem.subscribeError.innerHTML = "An error occurred, please try again"
+    home.elem.subscribeBtn.classList.add('active')
+    notification.generate('subscribe', 'error')
+    return
+  }
+  // SUCCESS HANDLER
+  home.elem.subscribeInput.value = ""
+  home.elem.subscribeError.innerHTML = ""
 }
 
 // home.addImages = () => {

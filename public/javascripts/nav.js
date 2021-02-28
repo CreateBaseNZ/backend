@@ -6,9 +6,10 @@ let nav = {
   },
 
   event: {
-    navTop: undefined,
     toggleNavMenu: undefined,
   },
+
+  checkTop: undefined,
 
   elem: {
     ham: document.querySelector('.hamburger'),
@@ -24,11 +25,12 @@ let nav = {
 
 nav.init.init = () => {
   nav.init.attachListeners()
+  nav.checkTop()
 }
 
 nav.init.attachListeners = () => {
   nav.elem.ham.addEventListener('click', nav.event.toggleNavMenu)
-  window.addEventListener('scroll', nav.event.navTop)
+  window.addEventListener('scroll', nav.checkTop)
 }
 
 nav.event.toggleNavMenu = (e) => {
@@ -36,8 +38,8 @@ nav.event.toggleNavMenu = (e) => {
   nav.elem.ham.classList.toggle('is-active');
 }
 
-nav.event.navTop = function() {
-  if (this.scrollY > 40) {
+nav.checkTop = function() {
+  if (window.scrollY > 40) {
     nav.elem.nav.classList.add('shrink')
   } else {
     nav.elem.nav.classList.remove('shrink')
