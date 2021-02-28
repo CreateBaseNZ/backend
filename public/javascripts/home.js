@@ -9,6 +9,7 @@ let home = {
     subscribeBtn: document.querySelector('.home-subscribe-btn'),
     subscribeError: document.querySelector('.home-subscribe-error'),
     subscribeInput: document.querySelector('#home-subscribe'),
+    subscribeInputContainer: document.querySelector('.input-subsection').querySelector('.input-container'),
   },
 
   event: {
@@ -92,19 +93,19 @@ home.event.subscribeInput = function() {
 home.subscribeSubmit = async () => {
   // Disable
   home.elem.subscribeBtn.classList.remove('active')
-  home.elem.subscribeInput.style.animationName = ''
-  void home.elem.subscribeInput.offsetWidth
+  home.elem.subscribeInputContainer.style.animationName = ''
+  void home.elem.subscribeInputContainer.offsetWidth
 
   // VALIDATE
   const result = global.validateEmail(home.elem.subscribeInput.value)
   if (result === 'empty') {
     home.elem.subscribeError.innerHTML = "An email is required"
-    home.elem.subscribeInput.style.animationName = 'shake'
+    home.elem.subscribeInputContainer.style.animationName = 'home-shake'
     return
   } else if (result === 'invalid') {
     home.elem.subscribeError.innerHTML = "Please enter a valid email"
     home.elem.subscribeBtn.classList.add('active')
-    home.elem.subscribeInput.style.animationName = 'shake'
+    home.elem.subscribeInputContainer.style.animationName = 'home-shake'
     return
   }
 

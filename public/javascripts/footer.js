@@ -58,13 +58,13 @@ footer.subscribeSubmit = async () => {
   if (result === 'empty') {
     // notification.popup("Email is required", "failed");
     footer.elem.subscribeError.innerHTML = "An email is required"
-    footer.elem.subscribeInput.style.animationName = 'shake'
+    footer.elem.subscribeInput.style.animationName = 'footer-shake'
     return
   } else if (result === 'invalid') {
     // notification.popup("Invalid email", "failed");
     footer.elem.subscribeError.innerHTML = "Please enter a valid email"
     footer.elem.subscribeBtn.classList.add('active')
-    footer.elem.subscribeInput.style.animationName = 'shake'
+    footer.elem.subscribeInput.style.animationName = 'footer-shake'
     return
   }
 
