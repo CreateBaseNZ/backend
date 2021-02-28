@@ -127,7 +127,7 @@ MessageSchema.methods.sendInquiryEmailNotification = function () {
     // BUILD EMAIL
     let emailObject;
     try {
-      emailObject = await email.build(object, "inquiry");
+      emailObject = await email.create(object, "inquiry");
     } catch (data) {
       return reject(data);
     }
