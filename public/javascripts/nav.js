@@ -39,10 +39,10 @@ nav.event.toggleNavMenu = (e) => {
 }
 
 nav.checkTop = function() {
-  if (window.scrollY > 40) {
-    nav.elem.nav.classList.add('shrink')
+  if (window.pageYOffset >= 24) {
+    nav.elem.nav.classList.add('sticky')
   } else {
-    nav.elem.nav.classList.remove('shrink')
+    nav.elem.nav.classList.remove('sticky')
   }
 }
 
