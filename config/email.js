@@ -12,6 +12,7 @@ VARIABLES
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 let email = {
   build: undefined,
+  create: undefined,
   send: undefined,
   // TEMPLATES
   templateOne: undefined
@@ -21,7 +22,26 @@ let email = {
 FUNCTIONS
 =========================================================================================*/
 
-email.build = (object = {}, template = "") => {
+/**
+ * This function builds the email object
+ * @param {Object} object
+ */
+email.build = (object = {}) => {
+  // VALIDATE OBJECT
+
+  // CONSTRUCT EMAIL
+  const mail = {
+    from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
+    to: `${object.email}`,
+    subject: object.subject,
+    text: object.text,
+    html: object.html
+  };
+  // SUCCESS HANDLER
+  return mail;
+}
+
+email.create = (object = {}, template = "") => {
   return new Promise(async (resolve, reject) => {
     // VALIDATE OBJECT
 
