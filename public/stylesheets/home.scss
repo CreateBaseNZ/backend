@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: calc(#{$nav-height} - 60px + 6vh) 10vw 0 10vw;
+  padding: calc(#{$nav-height} - 40px + 6vh) 10vw 0 10vw;
   height: 100vh;
   min-height: 650px;
   max-height: 800px;
@@ -360,19 +360,25 @@
       font-size: 0.75rem;
       color: $lightest;
       border-radius: 0 0 0 0.5rem;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
       height: 100%;
+      letter-spacing: 0.05em;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       opacity: 0;
-      pointer-events: none;
       transform: translateX(50%);
-      transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+      transition: transform 0.2s ease-out, opacity 0.2s ease-out, border-radius 0.2s ease-out, padding 0.2s ease-out;
       &::after {
         content: 'Subscribe';
       }
+      &:hover {
+        border-radius: 0.5rem 0 0 0.5rem;
+        padding: 0 1.75rem;
+      }
       &.active {
+        cursor: pointer;
         pointer-events: auto;
         opacity: 1;
         transform: translateX(0);
@@ -600,6 +606,11 @@
     }
     .home-subscribe-btn {
       font-size: 1rem;
+      padding: 0 2rem;
+      &:hover {
+        border-radius: 0.75rem 0 0 0.75rem;
+        padding: 0 2.25rem;
+      }
     }
   }
   .home-subscribe-error {
@@ -634,7 +645,8 @@
 @media only screen and (min-width: 1200px) {
 
 .swiper-slide {
-  height: 80vh;
+  height: 90vh;
+  min-height: 800px;
   .slide-caption {
     font-size: 1.25rem;
   }

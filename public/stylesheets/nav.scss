@@ -1,5 +1,9 @@
 @import "global";
 
+.footer-container.quick-links {
+  display: none;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -47,7 +51,7 @@ nav.sticky {
 
 .nav-menu {
   position: fixed;
-  top: 128px;
+  top: $nav-height;
   right: 10vw;
   display: flex;
   flex-direction: column;

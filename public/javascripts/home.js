@@ -46,7 +46,7 @@ home.init.init = () => {
 }
 
 home.init.attachListeners = () => {
-  home.elem.subscribeBtn.addEventListener('click', home.subscrubeSubmit)
+  home.elem.subscribeBtn.addEventListener('click', home.subscribeSubmit)
   home.elem.subscribeInput.addEventListener('input', home.event.subscribeInput)
   home.elem.subscribeInput.addEventListener('keypress', home.event.subscribeEnter)
 }
