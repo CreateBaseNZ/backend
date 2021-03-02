@@ -10,7 +10,7 @@ VARIABLES
 =========================================================================================*/
 
 const Schema = mongoose.Schema;
-const email = require("../config/email.js");
+const email = require("../configs/email.js");
 
 /*=========================================================================================
 CREATE MODEL
