@@ -10,7 +10,8 @@ VARIABLES
 =========================================================================================*/
 
 const Schema = mongoose.Schema;
-const email = require("../config/email.js");
+const email = require("../configs/email.js");
+const Account = require("./Account.js");
 
 /*=========================================================================================
 CREATE MAILING MODEL
@@ -61,33 +62,34 @@ MailSchema.statics.build = function (object = {}, save = true) {
   })
 }
 
-// @FUNC  demolish
-// @TYPE  STATICS
-// @DESC
-MailSchema.statics.demolish = function (object) {
+/**
+ * Deletes the email from the mailing list
+ * @param {Object} object 
+ */
+MailSchema.statics.demolish = function (object = {}) {
   return new Promise(async (resolve, reject) => {
-    // EMAIL VALIDATION
+    // Validate email
     try {
       await this.validateEmail(object.email);
     } catch (data) {
       return reject(data);
     }
-    // FETCH THE MAIL
+    // Fetch Mail
     let mail;
     try {
       mail = await this.findOne(object);
     } catch (error) {
       return reject({ status: "error", content: error });
     }
-    // VALIDATE IF THE MAIL EXIST
-    if (!mail) return resolve({ status: "succeeded", content: "You are already unsubscribed" });
-    // DEMOLISH MAIL
+    // Validate if Mail exist
+    if (!mail) return resolve({ status: "succeeded", content: "You have already unsubscribed" });
+    // Delete Mail
     try {
       await mail.deleteOne();
     } catch (error) {
       return reject({ status: "error", content: error });
     }
-    // SUCCESS HANDLER
+    // Resolve the Promise
     return resolve();
   });
 }
@@ -147,9 +149,9 @@ MailSchema.statics.validateEmail = function (email) {
     let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // VALIDATIONS
     if (!email) {
-      return reject({ status: "failed", content: "Email is required" });
+      return reject({ status: "failed", content: "Please enter your email address" });
     } else if (!emailRE.test(String(email).toLowerCase())) {
-      return reject({ status: "failed", content: "Invalid email" });
+      return reject({ status: "failed", content: "Please enter your email address in format: yourname@example.com" });
     }
     return resolve();
   });

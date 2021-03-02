@@ -10,7 +10,7 @@ VARIABLES
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
-const email = require("../config/email.js");
+const email = require("../configs/email.js");
 
 /*=========================================================================================
 MODELS

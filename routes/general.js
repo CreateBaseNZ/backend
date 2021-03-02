@@ -71,27 +71,14 @@ router.get("/survey", (req, res) => res.sendFile("survey.html", viewsOption));
 // @route     GET /unsubscribe/:email
 // @desc
 // @access    PUBLIC
-router.get("/unsubscribe/:email", async (req, res) => {
+router.get("/mailing-list/unsubscribe/:email", async (req, res) => {
   const email = req.params.email;
-  // VALIDATE EMAIL
-  let valid = true;
-  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (email === "") {
-    valid = false;
-  } else if (!emailRE.test(String(email).toLowerCase())) {
-    valid = false;
-  }
-  // VALIDATE EMAIL
-  if (valid) {
-    try {
-      await Mail.demolish({ email });
-    } catch (data) {
-      return res.status(404).sendFile("error404.html", viewsOption);
-    }
-    return res.sendFile("unsubscribe.html", viewsOption);
-  } else {
+  try {
+    await Mail.demolish({ email });
+  } catch (data) {
     return res.status(404).sendFile("error404.html", viewsOption);
   }
+  return res.sendFile("unsubscribe.html", viewsOption);
 });
 
 // @route     GET /robots.txt
