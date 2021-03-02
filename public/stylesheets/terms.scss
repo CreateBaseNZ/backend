@@ -1,4 +1,3 @@
-// @import "global/all";
 @import "global";
 
 html {
@@ -13,11 +12,11 @@ html {
   padding: 0 10vw;
 }
 
-.priv-menu-list {
+.terms-menu-list {
   display: none;
 }
 
-.priv-body-wrap {
+.terms-body-wrap {
   width: 100%;
 }
 
@@ -61,12 +60,20 @@ html {
     font-weight: 600;
     line-height: 1.5em;
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  h3 {
+    font-size: 0.825rem;
+    font-weight: 600;
+    line-height: 1.5em;
+    margin-bottom: 0.25rem;
   }
   p {
     font-size: inherit;
     line-height: 1.5em;
+    margin-bottom: 0.5rem;
   }
-  ul {
+  ul, ol {
     margin: 0.5rem 0 0 2rem;
     font-size: inherit;
     li {
@@ -75,8 +82,12 @@ html {
       line-height: 1.5em;
     }
   }
+  a {
+    font-size: inherit;
+    color: $purple-logo;
+    font-weight: 500;
+  }
 }
-
 
 @media only screen and (min-width: 768px) {
 
@@ -99,12 +110,16 @@ html {
   h2 {
     font-size: 1.125rem;
   }
+  h3 {
+    font-size: 0.875rem;
+  }
   p {
     line-height: 1.75em;
   }
-  ul {
+  ul, ol {
     li {
       line-height: 1.75em;
+      margin: 0.25em 0;
     }
   }
 }
@@ -117,30 +132,39 @@ html {
   position: relative;
 }
 
-.priv-menu-list {
+.terms-menu-list {
   position: fixed;
   top: calc(#{$nav-height} + 5vh);
   left: 10vw;
+  width: 15vw;
   display: flex;
   flex-direction: column;
+  transition: bottom 0.4s ease-out;
   li {
+    padding: 0.25em 0;
     cursor: pointer;
     color: $light;
     padding-left: 0.5em;
-    font-size: 1rem;
-    line-height: 2.25em;
-    transition: color 0.1s ease-out, font-weight 0.1s ease-out;
+    font-size: 0.75rem;
+    transition: color 0.1s ease-out, font-weight 0.1s ease-out, letter-spacing 0.1s ease-out;
+    letter-spacing: 0.02em;
     &:hover {
       color: $purple-logo;
     }
   }
-  .priv-selected {
+  .terms-selected {
+    letter-spacing: 0;
     color: $purple-logo;
     font-weight: 600;
   }
 }
+.terms-menu-list.sticky {
+  position: absolute;
+  top: auto;
+  bottom: 5vh;
+}
 
-.priv-body-wrap {
+.terms-body-wrap {
   width: 55vw;
   flex: 0 0 55vw;
 }
@@ -149,6 +173,7 @@ html {
   margin-bottom: 40vh;
 }
 
+.title-container,
 .content-section {
   &::before {
     content: '';
@@ -158,6 +183,9 @@ html {
     height: $nav-height;
     margin-top: -$nav-height;
   }
+}
+
+.content-section {
   h2 {
     letter-spacing: 0.01em;
   }

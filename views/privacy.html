@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   <!-- ------------------------CUSTOM------------------------ -->
   <link rel="stylesheet" href="/public/stylesheets/nav.min.css" />
-  <link rel="stylesheet" href="/public/stylesheets/privacy-policy.min.css" />
+  <link rel="stylesheet" href="/public/stylesheets/privacy.min.css" />
 </head>
 
 <body onload="global.init.init(); priv.init.init();">
@@ -50,12 +50,12 @@
       <li onclick='window.location.href="#priv-5"'>Additional info</li>
     </ol>
     <div class="priv-body-wrap">
-      <div class="title-container">
+      <div id="priv-1" class="title-container">
         <h4></h4>
         <h1>Privacy Policy</h1>
       </div>
       <div class="content-wrap">
-        <div id="priv-1" class="content-section">
+        <div class="content-section">
           <h2>What we collect</h2>
           <p>We collect personal information from you, including information about your:</p>
           <ul>
@@ -124,8 +124,8 @@
     </div>
     <div class="footer-container policies">
       <h5>Policies</h5>
-      <a href="/terms-and-conditions">Terms</a>
-      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
     </div>
     <div class="footer-container contact">
       <h5>We'd love to hear from you</h5>
@@ -155,7 +155,7 @@
   <script async src="/public/javascripts/footer.js"></script>
   <script async src="/public/javascripts/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
-  <script async src="/public/javascripts/privacy-policy.js"></script>
+  <script async src="/public/javascripts/privacy.js"></script>
 </body>
 
 </html>

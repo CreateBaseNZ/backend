@@ -21,8 +21,8 @@ markdown = """
           <div class="list-section-divider"></div>
 
           <ul class="list-section-right">
-            <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
-            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
@@ -54,8 +54,8 @@ markdown = """
               target="_blank"></a>
           </div>
           <div class="contact-legal">
-            <a href="/terms-and-conditions" id="tac">Terms &amp; Conditions</a>
-            <a href="/privacy-policy" id="privpol">Privacy Policy</a>
+            <a href="/terms" id="tac">Terms &amp; Conditions</a>
+            <a href="/privacy" id="privpol">Privacy Policy</a>
           </div>
         </div>
       </div>

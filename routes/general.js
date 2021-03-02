@@ -48,20 +48,20 @@ router.get("/products/kits", (req, res) => res.sendFile("kits.html", viewsOption
 // @access    Public
 router.get("/services/3d-printing", (req, res) => res.sendFile("printing.html", viewsOption));
 
-// @route     GET /terms-and-conditions
+// @route     GET /terms
 // @desc
 // @access    PUBLIC
-router.get("/terms-and-conditions", (req, res) => res.sendFile("terms-and-conditions.html", viewsOption));
+router.get("/terms", (req, res) => res.sendFile("terms.html", viewsOption));
 
 // @route     GET /contact-us
 // @desc      
 // @access    PUBLIC
 router.get("/contact", (req, res) => res.sendFile("contact-us.html", viewsOption));
 
-// @route     GET /privacy-policy
+// @route     GET /privacy
 // @desc
 // @access    PUBLIC
-router.get("/privacy-policy", (req, res) => res.sendFile("privacy-policy.html", viewsOption));
+router.get("/privacy", (req, res) => res.sendFile("privacy.html", viewsOption));
 
 // @route     GET /survey
 // @desc
