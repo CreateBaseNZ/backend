@@ -404,7 +404,7 @@ $hamburger-layer-spacing: 0.25rem;
   border-radius: 1.5rem;
   background: $lightest;
   opacity: 0;
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
@@ -529,6 +529,26 @@ $hamburger-layer-spacing: 0.25rem;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes popup-shake {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    color: $darker;
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-6px, 0, 0);
+    transform: translate3d(-6px, 0, 0);
+    color: $red;
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(6px, 0, 0);
+    transform: translate3d(6px, 0, 0);
+    color: $red;
   }
 }
 

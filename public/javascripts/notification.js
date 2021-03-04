@@ -1,3 +1,5 @@
+// const { text } = require("body-parser")
+
 let notification = {
   generate: undefined,
 
@@ -12,12 +14,7 @@ let notification = {
 
 let popup = {
   close: undefined,
-  elem: {
-    subscribeBtn: document.querySelector('.popup-subscribe-btn'),
-    subscribeError: document.querySelector('.popup-subscribe-error'),
-    subscribeInput: document.querySelector('#popup-subscribe'),
-    subscribeInputContainer: document.querySelector('.popup-subscribe-container'),
-  },
+  generate: undefined,
   init: undefined,
   subscribeEnter: undefined,
   subscribeInput: undefined,
@@ -76,7 +73,14 @@ notification.event.close = function() {
 // ==================================================================
 
 popup.init = () => {
-  document.querySelector('.popup').style.display = 'flex'
+  popup.generate()
+  popup.elem = {
+    subscribeBtn: document.querySelector('.popup-subscribe-btn'),
+    subscribeError: document.querySelector('.popup-subscribe-error'),
+    subscribeInput: document.querySelector('#popup-subscribe'),
+    subscribeInputContainer: document.querySelector('.popup-subscribe-container'),
+  },
+  // document.querySelector('.popup').style.display = 'flex'
   sessionStorage.setItem('popup', true)
   popup.elem.subscribeBtn.addEventListener('click', popup.subscribeSubmit)
   popup.elem.subscribeInput.addEventListener('input', popup.subscribeInput)
@@ -86,6 +90,36 @@ popup.init = () => {
 
 popup.close = () => {
   document.querySelector('.popup').style.display = 'none'
+}
+
+popup.generate = () => {
+  var el = document.createElement('div')
+  el.className = 'popup'
+  img = document.createElement('img')
+  img.src = '/public/images/popup.png'
+  el.appendChild(img)
+  content = document.createElement('div')
+  el.appendChild(content).className = 'popup-content'
+  p = document.createElement('p')
+  p.innerHTML = 'Sign up to be the first to receive exclusive discounts, rewards, and updates!'
+  content.appendChild(p)
+  inputContainer = document.createElement('div')
+  content.appendChild(inputContainer).className = 'popup-subscribe-container'
+  input = document.createElement('input')
+  input.type = 'email'
+  input.name = 'email'
+  input.id = 'popup-subscribe'
+  input.maxLength = '100'
+  input.placeholder = 'Enter your email address'
+  inputContainer.appendChild(input)
+  btn = document.createElement('div')
+  inputContainer.appendChild(btn).className = 'popup-subscribe-btn'
+  error = document.createElement('div')
+  content.appendChild(error).className = 'popup-subscribe-error'
+  i = document.createElement('i')
+  i.innerHTML = 'close'
+  el.appendChild(i).className = 'material-icons-round popup-close'
+  document.body.insertBefore(el, notification.elem.wrapper)
 }
 
 popup.subscribeEnter = (e) => {
@@ -113,12 +147,12 @@ popup.subscribeSubmit = async () => {
   const result = global.validateEmail(popup.elem.subscribeInput.value)
   if (result === 'empty') {
     popup.elem.subscribeError.innerHTML = "An email is required"
-    popup.elem.subscribeInputContainer.style.animationName = 'footer-shake'
+    popup.elem.subscribeInputContainer.style.animationName = 'popup-shake'
     return
   } else if (result === 'invalid') {
     popup.elem.subscribeError.innerHTML = "Please enter a valid email"
     popup.elem.subscribeBtn.classList.add('active')
-    popup.elem.subscribeInputContainer.style.animationName = 'footer-shake'
+    popup.elem.subscribeInputContainer.style.animationName = 'popup-shake'
     return
   }
 
