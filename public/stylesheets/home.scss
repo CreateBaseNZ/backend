@@ -2,6 +2,7 @@
 
 .swiper-container {
   width: 100%;
+  background: $lightest;
 }
 
 .swiper-slide {
@@ -293,6 +294,11 @@
   }
 }
 
+.side-img-left,
+.side-img-right {
+  display: none;
+}
+
 .subscribe-section {
   padding: 2.5rem 12vw;
   display: flex;
@@ -319,7 +325,7 @@
     text-align: center;
     margin-top: 0.75rem;
   }
-  .input-container {
+  .home-subscribe-container {
     width: 100%;
     position: relative;
     border-radius: 0.5rem;
@@ -356,7 +362,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      background: $purple-logo;
+      background: $logo-light;
       font-size: 0.75rem;
       color: $lightest;
       border-radius: 0 0 0 0.5rem;
@@ -596,7 +602,7 @@
     font-size: 1rem;
     margin-top: 1rem;
   }
-  .input-container {
+  .home-subscribe-container {
     margin-bottom: 1rem;
     border-radius: 0.75rem;
     box-shadow: 0 0.75rem 1rem -0.25rem rgba(0,0,0,0.1);
@@ -700,6 +706,7 @@
 }
 
 .how-subsection {
+  position: relative;
   padding: 0 0 0 0;
   grid-column-gap: 0;
   grid-template-columns: auto 1fr;
@@ -729,6 +736,22 @@
   }
 }
 
+.side-img-left {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transform: translate(-130%, 30%) rotate(-30deg);
+}
+
+.side-img-right {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(110%, -75%) rotate(-60deg);
+}
+
 .dotted-lines {
   margin-right: 5vw;
   width: 40%;
@@ -754,7 +777,7 @@
     text-align: left;
     justify-self: flex-end;
   }
-  .input-container {
+  .home-subscribe-container {
     width: 70vw;
     max-width: 35rem;
   }

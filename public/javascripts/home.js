@@ -9,7 +9,7 @@ let home = {
     subscribeBtn: document.querySelector('.home-subscribe-btn'),
     subscribeError: document.querySelector('.home-subscribe-error'),
     subscribeInput: document.querySelector('#home-subscribe'),
-    subscribeInputContainer: document.querySelector('.input-subsection').querySelector('.input-container'),
+    subscribeInputContainer: document.querySelector('.home-subscribe-container'),
   },
 
   event: {
@@ -19,6 +19,7 @@ let home = {
     subscribeInput: undefined,
   },
 
+  subscribeSubmit: undefined,
   swiper: undefined,
   slides: Array.prototype.slice.call(document.querySelectorAll('.swiper-slide'))
 }
@@ -61,6 +62,11 @@ home.init.swiper = () => {
       slideChangeTransitionStart: home.event.onSwipe,
       slideChangeTransitionEnd: home.event.afterSwipe,
     },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    speed: 1500,
   });
   setTimeout(() => {
     home.slides[0].classList.add('active')

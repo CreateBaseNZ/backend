@@ -98,7 +98,7 @@ nav.sticky {
     padding: 1rem 1.75rem;
     border-radius: 999px;
     color: $lightest;
-    background: $purple-logo;
+    background: $logo-mid;
     letter-spacing: 0.05em;
     font-weight: 600;
     margin: 1.5rem 0.5rem 0 -0.5rem;
@@ -175,7 +175,7 @@ footer {
     }
     &:hover,
     &:hover > i {
-      color: $purple-logo;
+      color: $logo-mid;
     }
   }
 }
@@ -186,7 +186,7 @@ footer {
 
 .brand-prop {
   font-weight: 700;
-  color: $purple-logo;
+  color: $logo-mid;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   margin-top: 0.75rem;
@@ -221,7 +221,7 @@ footer {
       }
     }
     &:focus {
-      border-color: $purple-logo;
+      border-color: $logo-mid;
       background: $lightest;
     }
   }
@@ -240,7 +240,7 @@ footer {
     transition: background-color 0.2s ease-out, padding-left 0.2s ease-out;
     &.active {
       pointer-events: auto;
-      background: $purple-logo;
+      background: $logo-mid;
       &:hover {
         padding-left: 0.5em;
       }
@@ -378,7 +378,7 @@ $hamburger-layer-spacing: 0.25rem;
   from, to {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    border-color: $purple-logo;
+    border-color: $logo-mid;
   }
 
   10%, 30%, 50%, 70%, 90% {
@@ -391,6 +391,144 @@ $hamburger-layer-spacing: 0.25rem;
     -webkit-transform: translate3d(6px, 0, 0);
     transform: translate3d(6px, 0, 0);
     border-color: $red;
+  }
+}
+
+.popup {
+  z-index: 50;
+  position: fixed;
+  bottom: 2rem;
+  right: 5vw;
+  width: 550px;
+  height: 201px;
+  border-radius: 1.5rem;
+  background: $lightest;
+  opacity: 0;
+  display: none;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-shadow: 0 0.25rem 0.75rem -0.25rem rgba(0,0,0,0.2);
+  animation: popup 1s ease-out 5s forwards;
+  img {
+    border-radius: 1.5rem 0 0 1.5rem;
+    height: 100%;
+    width: 25%;
+    object-fit: cover;
+  }
+  .popup-content {
+    width: 75%;
+    border-radius: 0 1.5rem 1.5rem 0;
+    padding: 2.5rem 2rem 2rem 2rem;
+    p {
+      margin-left: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+  i {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    background: $lightest;
+    color: $darker;
+    transform: translate(25%, -25%);
+    border-radius: 999px;
+    box-shadow: 0 0.25rem 0.25rem 0 rgba(0,0,0,0.1);
+    transition: color 0.1s ease-out, background-color 0.1s ease-out;
+    &:hover {
+      background: $lighter;
+      color: $darkest;
+    }
+  }
+}
+
+.popup-subscribe-container {
+  width: 100%;
+  position: relative;
+  border-radius: 0.5rem;
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  input {
+    border-radius: inherit;
+    font-size: 0.75rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    background: $lightest;
+    border: thin solid $lighter;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: inherit;
+    transition: border-color 0.1s ease-out;
+    &::placeholder {
+      color: $light;
+      font-weight: 400;
+      opacity: 0.75;
+      transition: opacity 0.1s ease-out;
+    }
+    &:hover {
+      &::placeholder {
+        opacity: 1;
+      }
+    }
+    &:focus {
+      border-color: $logo-light;
+    }
+  }
+  .popup-subscribe-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: $logo-light;
+    font-size: 0.75rem;
+    color: $lightest;
+    border-radius: 0 0 0 0.5rem;
+    padding: 0 1.5rem;
+    height: 100%;
+    letter-spacing: 0.05em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(50%);
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out, border-radius 0.2s ease-out, padding 0.2s ease-out;
+    &::after {
+      content: 'Subscribe';
+    }
+    &:hover {
+      border-radius: 0.5rem 0 0 0.5rem;
+      padding: 0 1.75rem;
+    }
+    &.active {
+      cursor: pointer;
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+.popup-subscribe-error {
+  padding-left: 0.5rem;
+  font-size: 0.625rem;
+  color: $red;
+  height: 1.5em;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -647,6 +785,7 @@ footer {
   grid-column-end: 2;
   padding-right: 8rem;
   width: 100%;
+  max-width: 600px;
 }
 
 .footer-container.quick-links,

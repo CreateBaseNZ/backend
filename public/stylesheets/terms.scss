@@ -84,7 +84,7 @@ html {
   }
   a {
     font-size: inherit;
-    color: $purple-logo;
+    color: $logo-mid;
     font-weight: 500;
   }
 }
@@ -149,12 +149,12 @@ html {
     transition: color 0.1s ease-out, font-weight 0.1s ease-out, letter-spacing 0.1s ease-out;
     letter-spacing: 0.02em;
     &:hover {
-      color: $purple-logo;
+      color: $logo-mid;
     }
   }
   .terms-selected {
     letter-spacing: 0;
-    color: $purple-logo;
+    color: $logo-mid;
     font-weight: 600;
   }
 }
