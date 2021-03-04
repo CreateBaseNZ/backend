@@ -395,12 +395,11 @@ $hamburger-layer-spacing: 0.25rem;
 }
 
 .popup {
-  z-index: 50;
-  position: fixed;
-  bottom: 2rem;
-  right: 5vw;
+  position: relative;
+  order: 1;
   width: 550px;
   height: 245px;
+  margin-top: 1rem;
   border-radius: 1.5rem;
   background: $lightest;
   opacity: 0;
@@ -409,7 +408,7 @@ $hamburger-layer-spacing: 0.25rem;
   justify-content: flex-start;
   align-items: flex-start;
   box-shadow: 0 0.25rem 0.75rem -0.25rem rgba(0,0,0,0.2);
-  animation: popup 1s ease-out 0s forwards;
+  animation: popup 1s ease-out 4s forwards;
   img {
     border-radius: 1.5rem 0 0 1.5rem;
     height: 100%;
@@ -595,6 +594,7 @@ $hamburger-layer-spacing: 0.25rem;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+  z-index: 99;
 }
 
 .notif-card {

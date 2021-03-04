@@ -18,8 +18,6 @@ let global = {
 global.init.init = () => {
   nav.init.init()
   if (document.querySelector('footer')) footer.init.init()
-  console.log(sessionStorage.getItem('popup'))
-
   // if (!sessionStorage.getItem('popup')) popup.init()
   popup.init()
 }
@@ -33,19 +31,10 @@ global.subscribe = (email) => {
     } catch (error) {
       data = { status: "error", content: error };
     }
-    if (data.status === "error") {
-      notification.generate('subscribe', 'error')
-      return reject();
-    } else if (data.status === "failed") {
-      notification.generate('subscribe', 'error')
-      return reject();
-    } else if (data.status === "succeeded") {
-      if (data.content === "already") {
-        notification.generate('subscribe', 'already')
-      } else {
-        notification.generate('subscribe', 'success')
-      }
-      return resolve();
+    if (data.status === "succeeded") {
+      return resolve(data.content);
+    } else {
+      return reject(data.status)
     }
   });
 }

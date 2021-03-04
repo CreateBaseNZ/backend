@@ -56,12 +56,10 @@ footer.subscribeSubmit = async () => {
   // VALIDATE
   const result = global.validateEmail(footer.elem.subscribeInput.value)
   if (result === 'empty') {
-    // notification.popup("Email is required", "failed");
     footer.elem.subscribeError.innerHTML = "An email is required"
     footer.elem.subscribeInput.style.animationName = 'footer-shake'
     return
   } else if (result === 'invalid') {
-    // notification.popup("Invalid email", "failed");
     footer.elem.subscribeError.innerHTML = "Please enter a valid email"
     footer.elem.subscribeBtn.classList.add('active')
     footer.elem.subscribeInput.style.animationName = 'footer-shake'
@@ -70,15 +68,31 @@ footer.subscribeSubmit = async () => {
 
   // SUBMIT
   try {
-    await global.subscribe(footer.elem.subscribeInput.value);
+    await global.subscribe(footer.elem.subscribeInput.value).then((data) => {
+      // Resolved
+      if (data === "already") {
+        // Already subscribed
+        notification.generate('subscribe', 'already')
+        footer.elem.subscribeBtn.classList.add('active')
+      } else {
+        // Success
+        notification.generate('subscribe', 'success')
+        footer.elem.subscribeInput.value = ""
+        footer.elem.subscribeError.innerHTML = ""
+      }
+    },
+    (data) => {
+      // Rejected
+      if (data === "error") {
+        notification.generate('subscribe', 'error')
+      } else if (data === "failed") {
+        notification.generate('subscribe', 'error')
+      }
+    })
   } catch (error) {
-    // TODO: Error message
     footer.elem.subscribeError.innerHTML = "An error occurred, please try again"
     footer.elem.subscribeBtn.classList.add('active')
     notification.generate('subscribe', 'error')
     return
   }
-  // SUCCESS HANDLER
-  footer.elem.subscribeInput.value = ""
-  footer.elem.subscribeError.innerHTML = ""
 }

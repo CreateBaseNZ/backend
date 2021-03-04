@@ -71,28 +71,29 @@ notification.event.close = function() {
 // ==================================================================
 
 popup.init = () => {
-  popup.generate()
-  popup.elem = {
-    subscribeBtn: document.querySelector('.popup-subscribe-btn'),
-    subscribeError: document.querySelector('.popup-subscribe-error'),
-    subscribeInput: document.querySelector('#popup-subscribe'),
-    subscribeInputContainer: document.querySelector('.popup-subscribe-container'),
-  },
-  // document.querySelector('.popup').style.display = 'flex'
-  sessionStorage.setItem('popup', true)
-  popup.elem.subscribeBtn.addEventListener('click', popup.subscribeSubmit)
-  popup.elem.subscribeInput.addEventListener('input', popup.subscribeInput)
-  popup.elem.subscribeInput.addEventListener('keypress', popup.subscribeEnter)
-  document.querySelector('.popup-close').addEventListener('click', popup.close)
+  if (document.querySelector('.popup')) {
+    popup.generate()
+    sessionStorage.setItem('popup', true)
+    popup.elem = {
+      main: document.querySelector('.popup'),
+      subscribeBtn: document.querySelector('.popup-subscribe-btn'),
+      subscribeError: document.querySelector('.popup-subscribe-error'),
+      subscribeInput: document.querySelector('#popup-subscribe'),
+      subscribeInputContainer: document.querySelector('.popup-subscribe-container'),
+    },
+    popup.elem.subscribeBtn.addEventListener('click', popup.subscribeSubmit)
+    popup.elem.subscribeInput.addEventListener('input', popup.subscribeInput)
+    popup.elem.subscribeInput.addEventListener('keypress', popup.subscribeEnter)
+    document.querySelector('.popup-close').addEventListener('click', popup.close)
+  }
 }
 
 popup.close = () => {
-  document.querySelector('.popup').style.display = 'none'
+  popup.elem.main.style.display = 'none'
 }
 
 popup.generate = () => {
-  var popup_el = document.createElement('div')
-  popup_el.className = 'popup'
+  popup_el = document.querySelector('.popup')
   popup_img = document.createElement('img')
   popup_img.src = '/public/images/popup.png'
   popup_el.appendChild(popup_img)
@@ -132,7 +133,6 @@ popup.generate = () => {
   popup_close = document.createElement('i')
   popup_close.innerHTML = 'close'
   popup_el.appendChild(popup_close).className = 'material-icons-round popup-close'
-  document.body.insertBefore(popup_el, notification.elem.wrapper)
 }
 
 popup.subscribeEnter = (e) => {
@@ -171,7 +171,26 @@ popup.subscribeSubmit = async () => {
 
   // SUBMIT
   try {
-    await global.subscribe(popup.elem.subscribeInput.value);
+    await global.subscribe(popup.elem.subscribeInput.value).then((data) => {
+      // Resolved
+      if (data === "already") {
+        // Already subscribed
+        notification.generate('subscribe', 'already')
+        popup.elem.subscribeBtn.classList.add('active')
+      } else {
+        // Success
+        notification.generate('subscribe', 'success')
+        popup.elem.main.style.display = 'none'
+      }
+    },
+    (data) => {
+      // Rejected
+      if (data === "error") {
+        notification.generate('subscribe', 'error')
+      } else if (data === "failed") {
+        notification.generate('subscribe', 'error')
+      }
+    })
   } catch (error) {
     popup.elem.subscribeError.innerHTML = "An error occurred, please try again"
     popup.elem.subscribeBtn.classList.add('active')
@@ -179,6 +198,4 @@ popup.subscribeSubmit = async () => {
     return
   }
   // SUCCESS HANDLER
-  popup.elem.subscribeInput.value = ""
-  popup.elem.subscribeError.innerHTML = ""
 }

@@ -66,7 +66,7 @@ home.init.swiper = () => {
       delay: 5000,
       disableOnInteraction: false,
     },
-    speed: 1500,
+    speed: window.innerWidth,
   });
   setTimeout(() => {
     home.slides[0].classList.add('active')
@@ -117,16 +117,33 @@ home.subscribeSubmit = async () => {
 
   // SUBMIT
   try {
-    await global.subscribe(home.elem.subscribeInput.value);
+    await global.subscribe(home.elem.subscribeInput.value).then((data) => {
+      // Resolved
+      if (data === "already") {
+        // Already subscribed
+        notification.generate('subscribe', 'already')
+        home.elem.subscribeBtn.classList.add('active')
+      } else {
+        // Success
+        notification.generate('subscribe', 'success')
+        home.elem.subscribeInput.value = ""
+        home.elem.subscribeError.innerHTML = ""
+      }
+    },
+    (data) => {
+      // Rejected
+      if (data === "error") {
+        notification.generate('subscribe', 'error')
+      } else if (data === "failed") {
+        notification.generate('subscribe', 'error')
+      }
+    })
   } catch (error) {
     home.elem.subscribeError.innerHTML = "An error occurred, please try again"
     home.elem.subscribeBtn.classList.add('active')
     notification.generate('subscribe', 'error')
     return
   }
-  // SUCCESS HANDLER
-  home.elem.subscribeInput.value = ""
-  home.elem.subscribeError.innerHTML = ""
 }
 
 // home.addImages = () => {
