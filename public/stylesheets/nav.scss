@@ -400,7 +400,7 @@ $hamburger-layer-spacing: 0.25rem;
   bottom: 2rem;
   right: 5vw;
   width: 550px;
-  height: 201px;
+  height: 245px;
   border-radius: 1.5rem;
   background: $lightest;
   opacity: 0;
@@ -409,7 +409,7 @@ $hamburger-layer-spacing: 0.25rem;
   justify-content: flex-start;
   align-items: flex-start;
   box-shadow: 0 0.25rem 0.75rem -0.25rem rgba(0,0,0,0.2);
-  animation: popup 1s ease-out 5s forwards;
+  animation: popup 1s ease-out 0s forwards;
   img {
     border-radius: 1.5rem 0 0 1.5rem;
     height: 100%;
@@ -419,13 +419,43 @@ $hamburger-layer-spacing: 0.25rem;
   .popup-content {
     width: 75%;
     border-radius: 0 1.5rem 1.5rem 0;
-    padding: 2.5rem 2rem 2rem 2rem;
-    p {
+    padding: 2.5rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    .popup-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-left: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .popup-message {
+      font-size: 0.75rem;
       margin-left: 0.5rem;
       margin-bottom: 1rem;
     }
+    .popup-privacy {
+      margin-top: 0.75rem;
+      margin-left: 1rem;
+      font-size: 0.625rem;
+      font-weight: 300;
+      color: $light;
+      & > * {
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+      }
+      i {
+        margin-right: 0.5em;
+      }
+      a {
+        margin-left: 0.25em;
+        color: $darker;
+        text-decoration: underline;
+        text-decoration-color: $light;
+      }
+    }
   }
-  i {
+  .popup-close {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -524,11 +554,16 @@ $hamburger-layer-spacing: 0.25rem;
 }
 
 @keyframes popup {
-  from {
+  0% {
     opacity: 0;
+    transform: translateX(2rem);
   }
-  to {
+  60% {
+    transform: translateX(0);
+  }
+  100% {
     opacity: 1;
+    transform: translateX(0);
   }
 }
 

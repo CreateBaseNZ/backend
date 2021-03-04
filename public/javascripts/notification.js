@@ -1,5 +1,3 @@
-// const { text } = require("body-parser")
-
 let notification = {
   generate: undefined,
 
@@ -93,33 +91,48 @@ popup.close = () => {
 }
 
 popup.generate = () => {
-  var el = document.createElement('div')
-  el.className = 'popup'
-  img = document.createElement('img')
-  img.src = '/public/images/popup.png'
-  el.appendChild(img)
-  content = document.createElement('div')
-  el.appendChild(content).className = 'popup-content'
-  p = document.createElement('p')
-  p.innerHTML = 'Sign up to be the first to receive exclusive discounts, rewards, and updates!'
-  content.appendChild(p)
-  inputContainer = document.createElement('div')
-  content.appendChild(inputContainer).className = 'popup-subscribe-container'
-  input = document.createElement('input')
-  input.type = 'email'
-  input.name = 'email'
-  input.id = 'popup-subscribe'
-  input.maxLength = '100'
-  input.placeholder = 'Enter your email address'
-  inputContainer.appendChild(input)
-  btn = document.createElement('div')
-  inputContainer.appendChild(btn).className = 'popup-subscribe-btn'
-  error = document.createElement('div')
-  content.appendChild(error).className = 'popup-subscribe-error'
-  i = document.createElement('i')
-  i.innerHTML = 'close'
-  el.appendChild(i).className = 'material-icons-round popup-close'
-  document.body.insertBefore(el, notification.elem.wrapper)
+  var popup_el = document.createElement('div')
+  popup_el.className = 'popup'
+  popup_img = document.createElement('img')
+  popup_img.src = '/public/images/popup.png'
+  popup_el.appendChild(popup_img)
+  popup_content = document.createElement('div')
+  popup_el.appendChild(popup_content).className = 'popup-content'
+  popup_title = document.createElement('div')
+  popup_title.innerHTML = 'The CreateBase Newsletter'
+  popup_content.appendChild(popup_title).className = 'popup-title'
+  popup_message = document.createElement('div')
+  popup_message.innerHTML = 'Be the first to receive exclusive discounts, rewards, and updates!'
+  popup_content.appendChild(popup_message).className = 'popup-message'
+  popup_input_container = document.createElement('div')
+  popup_content.appendChild(popup_input_container).className = 'popup-subscribe-container'
+  popup_input = document.createElement('input')
+  popup_input.type = 'email'
+  popup_input.name = 'email'
+  popup_input.id = 'popup-subscribe'
+  popup_input.maxLength = '100'
+  popup_input.placeholder = 'Enter your email address'
+  popup_input_container.appendChild(popup_input)
+  popup_btn = document.createElement('div')
+  popup_input_container.appendChild(popup_btn).className = 'popup-subscribe-btn'
+  popup_error = document.createElement('div')
+  popup_content.appendChild(popup_error).className = 'popup-subscribe-error'
+  popup_privacy = document.createElement('div') 
+  popup_content.appendChild(popup_privacy).className = 'popup-privacy'
+  popup_lock = document.createElement('i')
+  popup_lock.innerHTML = 'lock'
+  popup_privacy.appendChild(popup_lock).className = 'material-icons-round'
+  popup_span = document.createElement('span')
+  popup_span.innerHTML = 'Your email is safe with us, check out our'
+  popup_privacy.appendChild(popup_span)
+  popup_link = document.createElement('a')
+  popup_link.href = '/privacy'
+  popup_link.innerHTML = 'privacy policy'
+  popup_privacy.appendChild(popup_link)
+  popup_close = document.createElement('i')
+  popup_close.innerHTML = 'close'
+  popup_el.appendChild(popup_close).className = 'material-icons-round popup-close'
+  document.body.insertBefore(popup_el, notification.elem.wrapper)
 }
 
 popup.subscribeEnter = (e) => {
