@@ -1,39 +1,42 @@
-@import "global/all";
+@import "global";
 
-body{
-  background: $light-1;
-  max-width: 100%;
-  overflow-x: hidden;
-  font-family: $poppins;
-}
-
-.main-page {
-  min-height: 100vh;
+.page{
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding-top: $top-bar-height;
+  justify-content: center;
+  min-height: 90vh;
 }
 
-h1 {
-  display: none;
-}
-
-.temp-wrap{
-    #change-text{
-        height: 2.5em;
+.unsubscribed-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  color: $darker;
+  padding: 0 2em;
+  text-align: center;
+  h1{
+    font-size: 2em;
+    padding-bottom: 0.5em;
+  }
+  .resubscribe-container{
+    padding-bottom: 2em;
+    a{
+      color: $purple-logo;
+      transition: color ease 0.3s;
+      &:hover{
+        color: $magenta-dark;
+      }
     }
-}
-
-.temp-wrap{
-    .subscribe-container{
-        p {
-            margin-bottom: 4em;
-        }
+  }
+  .home-btn{
+    border-radius: 999px;
+    background-color: $blue-mid;
+    padding: 15px 35px;
+    color: $lightest;
+    transition: background-color ease 0.2s;
+    cursor: pointer;
+    &:hover{
+      background-color: $blue-dark;
     }
-} 
-
-.grad-btn{
-    padding: 1em 2em;
-    font-size: 0.9em;
+  }
 }
