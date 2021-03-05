@@ -15,13 +15,16 @@ let home = {
   event: {
     afterSwipe: undefined,
     onSwipe: undefined,
+    sectionTransitions: undefined,
     subscribeEnter: undefined,
     subscribeInput: undefined,
   },
 
+  sections: Array.prototype.slice.call(document.querySelectorAll('.how-subsection')),
+  sectionPos: [],
+  slides: Array.prototype.slice.call(document.querySelectorAll('.swiper-slide')),
   subscribeSubmit: undefined,
   swiper: undefined,
-  slides: Array.prototype.slice.call(document.querySelectorAll('.swiper-slide'))
 }
 
 // ==================================================================
@@ -34,6 +37,10 @@ home.init.init = () => {
 
   home.init.swiper()
   home.init.attachListeners()
+  
+  home.sections.forEach((section) => {
+    home.sectionPos.push(section.offsetTop)
+  })
 
   // promises = [global.initialise(), home.addImages()];
   // try {
@@ -50,6 +57,7 @@ home.init.attachListeners = () => {
   home.elem.subscribeBtn.addEventListener('click', home.subscribeSubmit)
   home.elem.subscribeInput.addEventListener('input', home.event.subscribeInput)
   home.elem.subscribeInput.addEventListener('keypress', home.event.subscribeEnter)
+  window.addEventListener('scroll', home.event.sectionTransitions)
 }
 
 home.init.swiper = () => {
@@ -79,6 +87,15 @@ home.event.afterSwipe = () => {
 
 home.event.onSwipe = () => {
   home.slides[home.swiper.realIndex].classList.add('active')
+}
+
+home.event.sectionTransitions = () => {
+  for (var i = 0; i < home.sectionPos.length; i++) {
+    if (window.scrollY + 50 < home.sectionPos[i]) {
+      home.sections[i].classList.add('transition-in')
+      return
+    }
+  }
 }
 
 home.event.subscribeEnter = (e) => {

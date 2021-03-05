@@ -541,9 +541,15 @@
     h3 {
       font-size: 2rem;
       margin-bottom: 0.75rem;
+      opacity: 0;
+      transform: translateX(-1vw);
+      transition: opacity 0.4s ease-out 0.2s, transform 0.4s ease-out 0.2s;
     }
     h4 {
       font-size: 1rem;
+      opacity: 0;
+      transform: translateX(-1vw);
+      transition: opacity 0.4s ease-out 0.4s, transform 0.4s ease-out 0.4s;
     }
   }
   .how-section-caption {
@@ -555,6 +561,9 @@
     grid-column-end: 2;
     align-self: flex-start;
     line-height: 1.75em;
+    opacity: 0;
+    transform: translateX(-1.5vw);
+    transition: opacity 0.6s ease-out 0.8s, transform 0.6s ease-out 0.8s;
   }
   .how-section-img {
     margin: 0;
@@ -565,6 +574,18 @@
     grid-column-end: 3;
     max-height: 350px;
     object-fit: contain;
+    opacity: 0;
+    transform: translateX(2vw);
+    transition: opacity 0.6s ease-out 0.6s, transform 0.6s ease-out 0.6s;
+  }
+  &.transition-in {
+    .how-section-title > h3,
+    .how-section-title > h4,
+    .how-section-caption,
+    .how-section-img {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
   &.program,
   &.apply {
