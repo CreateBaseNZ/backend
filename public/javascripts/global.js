@@ -18,8 +18,7 @@ let global = {
 global.init.init = () => {
   nav.init.init()
   if (document.querySelector('footer')) footer.init.init()
-  // if (!sessionStorage.getItem('popup')) popup.init()
-  popup.init()
+  if (!sessionStorage.getItem('popup')) popup.init()
 }
 
 global.subscribe = (email) => {

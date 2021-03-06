@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/public/stylesheets/contact.min.css">
   </head>
 
-<body onload="global.init.init();">
+<body onload="global.init.init(); contact.init.init();">
 
   <nav>
     <a href="/" class="nav-logo">
@@ -43,6 +43,24 @@
   </nav>
 
   <div class="page">
+    <h1>Let's touch base</h1>
+    <h2>Contact us directly or use the form below and we'll get in touch as soon as we can</h2>
+
+
+    <div class="form-container">
+      <!-- <div class="input-container"> -->
+        <input type="text" id="name" maxlength="100" placeholder="Name" />
+      <!-- </div> -->
+      <!-- <div class="input-container"> -->
+        <input type="email" id="email" maxlength="100" placeholder="Email address" />
+      <!-- </div> -->
+      <!-- <div class="input-container"> -->
+        <input type="text" id="subject" maxlength="200" placeholder="Subject" />
+      <!-- </div> -->
+      <!-- <div class="input-container"> -->
+        <textarea id="message" maxlength="1000" placeholder="Message"></textarea>
+      <!-- </div> -->
+    </div>
 
   </div>
 
