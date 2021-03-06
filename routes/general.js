@@ -56,7 +56,7 @@ router.get("/terms", (req, res) => res.sendFile("terms.html", viewsOption));
 // @route     GET /contact-us
 // @desc      
 // @access    PUBLIC
-router.get("/contact", (req, res) => res.sendFile("contact-us.html", viewsOption));
+router.get("/contact", (req, res) => res.sendFile("contact.html", viewsOption));
 
 // @route     GET /privacy
 // @desc

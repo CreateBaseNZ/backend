@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="google-site-verification" content="jCLW2oztBuZES0mxGJLZjEslZAPCwbbN47Gw09AYwWM" />
-  <link rel="icon" href="/public/images/icon-logo.png" />
-  <title>CreateBase</title>
-  <meta name="description"
-    content="Our vision is a world where everybody has the skills and the confidence to bring their own ideas to life, where everybody can actively contribute towards solving the world’s problems. &#169; 2020 CreateBase.">
-  <link rel="canonical" href="https://createbase.co.nz">
-  <!-- =========================CSS========================== -->
-  <!-- -----------------------SOURCED------------------------ -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <!-- ------------------------CUSTOM------------------------ -->
-  <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
-  <link rel="stylesheet" href="/public/stylesheets/unsubscribe.min.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="google-site-verification" content="jCLW2oztBuZES0mxGJLZjEslZAPCwbbN47Gw09AYwWM" />
+    <link rel="icon" href="/public/images/logo-icon.png" />
+    <title>CreateBase</title>
+    <meta name="description"
+      content="Our vision is a world where everybody has the skills and the confidence to bring their own ideas to life, where everybody can actively contribute towards solving the world’s problems. &#169; 2020 CreateBase.">
+    <link rel="canonical" href="https://createbase.co.nz">
+    <!-- =========================CSS========================== -->
+    <!-- -----------------------SOURCED------------------------ -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <!-- ------------------------CUSTOM------------------------ -->
+    <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/contact.min.css">
+  </head>
 
-<!-- <body onload="global.init.init(); unsubscribe.init.init();"> -->
 <body onload="global.init.init();">
 
   <nav>
     <a href="/" class="nav-logo">
       <img src="/public/images/logo_full_svg.svg" class="long" alt="CreateBase">
-      <img src="/public/images/icon-logo.png" class="small" alt="CreateBase">
+      <img src="/public/images/logo-icon.png" class="small" alt="CreateBase">
     </a>
     <div class="hamburger hamburger-spin" type="button">
       <span class="hamburger-box">
@@ -45,19 +43,7 @@
   </nav>
 
   <div class="page">
-    <div class="unsubscribed-wrap">
-      <div class="title-container">
-        <h1>You are now unsubscribed</h1>
-      </div>
-      <div class="resubscribe-container">
-        <p>Didn't mean to unsubscribe? <a href="#">Click here to resubscribe</a></p>
-      </div>
-      <a href="https://createbase.co.nz">
-        <button class="home-btn">
-          Back home
-        </button>
-      </a>
-    </div>
+
   </div>
 
   <footer>
@@ -101,7 +87,9 @@
     </div>
   </footer>
 
-  <div class="notif-wrapper"></div>
+  <div class="notif-wrapper">
+    <div class="popup"></div>
+  </div>
 
   <!-- ==========================JS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
@@ -112,6 +100,7 @@
   <script async src="/public/javascripts/footer.js"></script>
   <script async src="/public/javascripts/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
+  <script async src="/public/javascripts/contact.js"></script>
 </body>
 
 </html>
