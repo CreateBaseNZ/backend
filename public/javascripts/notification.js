@@ -54,6 +54,23 @@ notification.generate = (subject, status) => {
       title.innerHTML = 'Unexpected error'
       message.innerHTML = "Sorry, please try again"
     }
+  } else if (subject === 'contact') {
+    if (status === 'success') {
+      card.className += ' success'
+      symbol.innerHTML = 'check_circle'
+      title.innerHTML = 'Success!'
+      message.innerHTML = "We'll be in touch promptly"
+    } else if (status === 'error') {
+      card.className += ' error'
+      symbol.innerHTML = 'error'
+      title.innerHTML = 'Unexpected error'
+      message.innerHTML = "Sorry, please refresh the page and try again"
+    } else {
+      card.className += ' error'
+      symbol.innerHTML = 'error'
+      title.innerHTML = 'Failed to send inquiry'
+      message.innerHTML = "Sorry, please try again"
+    }
   }
 
   notification.elem.wrapper.appendChild(card)

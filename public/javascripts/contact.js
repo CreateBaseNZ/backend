@@ -1,7 +1,27 @@
 let contact = {
   init: {
     init: undefined,
+    addListeners: undefined,
   },
+
+  elem: {
+    email: document.querySelector('#email'),
+    message: document.querySelector('#message'),
+    name: document.querySelector('#name'),
+    sendBtn: document.querySelector('.send-btn'),
+    subject: document.querySelector('#subject'),
+  },
+
+  event: {
+    emailInput: undefined,
+    messageInput: undefined,
+    nameInput: undefined,
+    subjectInput: undefined,
+  },
+
+  checkAllInputs: undefined,
+  send: undefined,
+  validate: undefined,
 }
 
 // ==================================================================
@@ -9,56 +29,107 @@ let contact = {
 // ==================================================================
 
 contact.init.init = () => {
-
+  contact.init.addListeners()
 }
 
-// let contactUs = {
-//   // VARIABLES
-//   name: undefined,
-//   email: undefined,
-//   subject: undefined,
-//   message: undefined,
-//   submitButton: undefined,
-//   // FUNCTIONS
-//   initialise: undefined,
-//   declareVariables: undefined,
-//   populate: undefined,
-//   collect: undefined,
-//   validate: undefined,
-//   submit: undefined,
-//   errorHandler: undefined
-// }
+contact.init.addListeners = () => {
+  contact.elem.email.addEventListener('input', contact.event.emailInput)
+  contact.elem.message.addEventListener('input', contact.event.messageInput)
+  contact.elem.name.addEventListener('input', contact.event.nameInput)
+  contact.elem.subject.addEventListener('input', contact.event.subjectInput)
+  contact.elem.sendBtn.addEventListener('click', contact.send)
+}
 
-// /*=========================================================================================
-// FUNCTIONS
-// =========================================================================================*/
+contact.event.emailInput = function() {
+  contact.checkAllInputs()
+  document.querySelector('.email-error').innerHTML = ''
+}
 
-// // @func  contactUs.initialise
-// // @desc  
-// contactUs.initialise = async () => {
-//   /*// FETCH USER
-//   let data;
-//   try {
-//     data = (await axios.get("/fetch-account"))["data"];
-//   } catch (error) {
-//     data = { status: "error", content: error };
-//   }
-//   // ERROR HANDLER
-//   if (data.status === "error") return contactUs.errorHandler(data.content);*/
-//   // LOAD SYSTEM
-//   try {
-//     //await global.initialise(true, true, data.content.authenticated);
-//     await global.initialise();
-//   } catch (error) {
-//     return console.log(error);
-//   }
-//   // DECLARE VARIABLES
-//   contactUs.declareVariables();
-//   // POPULATE IF AUTHENTICATED
-//   //if (data.content.authenticated) contactUs.populate(data.content.user);
-//   // REMOVE STARTUP LOADER
-//   removeLoader();
-// }
+contact.event.messageInput = function() {
+  contact.checkAllInputs()
+  document.querySelector('.message-error').innerHTML = ''
+}
+
+contact.event.nameInput = function() {
+  contact.checkAllInputs()
+  document.querySelector('.name-error').innerHTML = ''
+}
+
+contact.event.subjectInput = function() {
+  contact.checkAllInputs()
+  document.querySelector('.subject-error').innerHTML = ''
+}
+
+contact.checkAllInputs = () => {
+  if (contact.elem.email.value && contact.elem.name.value && contact.elem.subject.value && contact.elem.message.value) {
+    contact.elem.sendBtn.classList.add('active')
+  } else {
+    contact.elem.sendBtn.classList.remove('active')
+  }
+}
+
+contact.send = async () => {
+  contact.elem.sendBtn.classList.remove('active')
+  const input = {
+    name: contact.elem.name.value,
+    email: contact.elem.email.value,
+    subject: contact.elem.subject.value,
+    message: contact.elem.message.value
+  }
+
+  const valid = contact.validate(input)
+
+  if (!valid) {
+    contact.elem.sendBtn.classList.add('active')
+    return
+  }
+
+  let data;
+  try {
+    data = (await axios.post("/contact-us/submit-inquiry", input))["data"]
+  } catch (error) {
+    data = { status: "error", content: error }
+  }
+
+  if (data.status === 'error') {
+    notification.generate('contact', 'error')
+    return
+  } else if (data.status === 'failed') {
+    contact.elem.sendBtn.classList.add('active')
+    notification.generate('contact', 'failed')
+    return
+  }
+
+  contact.elem.name.value = null
+  contact.elem.email.value = null
+  contact.elem.subject.value = null
+  contact.elem.message.value = null
+  notification.generate('contact', 'success')
+}
+
+contact.validate = (input) => {
+  let valid = true
+  let nameRE = /^[A-Za-z0-9_-\s]+$/
+  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  if (!nameRE.test(String(input.name).toLowerCase())) {
+    document.querySelector('.name-error').innerHTML = "Please use another name"
+    valid = false
+  }
+  if (!emailRE.test(String(input.email).toLowerCase())) {
+    document.querySelector('.email-error').innerHTML = "Please enter a valid email"
+    valid = false
+  }
+  if (input.subject.includes('"')) {
+    document.querySelector('.subject-error').innerHTML = "Please use single quotation marks"
+    valid = false
+  }
+  if (input.message.includes('"')) {
+    document.querySelector('.message-error').innerHTML = "Please use single quotation marks"
+    valid = false
+  }
+  return valid
+}
 
 // // @func  contactUs.declareVariables
 // // @desc  
@@ -68,13 +139,6 @@ contact.init.init = () => {
 //   contactUs.subject = document.querySelector("#form-subject");
 //   contactUs.message = document.querySelector("#form-msg");
 //   contactUs.submitButton = document.querySelector("#form-submit");
-// }
-
-// // @func  contactUs.populate
-// // @desc  
-// contactUs.populate = (account = {}) => {
-//   contactUs.name.value = account.name;
-//   contactUs.email.value = account.email;
 // }
 
 // // @func  contactUs.collect
@@ -188,7 +252,3 @@ contact.init.init = () => {
 //   notification.popup("Encountered an error, refresh the page and try again", "error"); // TEMPORARY
 //   return;
 // }
-
-// /*=========================================================================================
-// END
-// =========================================================================================*/

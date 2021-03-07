@@ -43,24 +43,41 @@
   </nav>
 
   <div class="page">
+
     <h1>Let's touch base</h1>
     <h2>Contact us directly or use the form below and we'll get in touch as soon as we can</h2>
 
-
     <div class="form-container">
-      <!-- <div class="input-container"> -->
-        <input type="text" id="name" maxlength="100" placeholder="Name" />
-      <!-- </div> -->
-      <!-- <div class="input-container"> -->
-        <input type="email" id="email" maxlength="100" placeholder="Email address" />
-      <!-- </div> -->
-      <!-- <div class="input-container"> -->
-        <input type="text" id="subject" maxlength="200" placeholder="Subject" />
-      <!-- </div> -->
-      <!-- <div class="input-container"> -->
-        <textarea id="message" maxlength="1000" placeholder="Message"></textarea>
-      <!-- </div> -->
+      <div class="bg-shape yellow">
+        <img src="/public/images/contact/yellow.svg" alt="Plane">
+      </div>
+      <div class="bg-shape teal">
+        <img src="/public/images/contact/teal.svg" alt="Plane">
+      </div>
+      <input type="text" id="name" maxlength="100" placeholder="Name*" />
+      <div class="error-message name-error"></div>
+      <input type="email" id="email" maxlength="100" placeholder="Email address*" />
+      <div class="error-message email-error"></div>
+      <input type="text" id="subject" maxlength="200" placeholder="Subject*" />
+      <div class="error-message subject-error"></div>
+      <textarea id="message" maxlength="1000" placeholder="Message*"></textarea>
+      <div class="error-message message-error"></div>
       <div class="send-btn">Send</div>
+    </div>
+
+    <div class="blue-container">
+      <img src="/public/images/contact/plane.svg" alt="Plane">
+      <div class="address-container">
+        <h3>CreateBase</h3>
+        <div>16 Dapple Place</div>
+        <div>Flat Bush</div>
+        <div>Auckland 2019</div>
+        <div>New Zealand</div>
+      </div>
+      <div class="connect-container">
+        <a href="tel:+64-211-543-805" target="_blank"><i class="material-icons-outlined">call</i>+64 211 543 805</a>
+        <a href="mailto:admin@createbase.co.nz" target="_blank"><i class="material-icons-outlined">email</i>admin@createbase.co.nz</a>
+      </div>
     </div>
 
   </div>
