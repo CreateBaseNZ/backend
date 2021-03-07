@@ -69,42 +69,49 @@ contact.checkAllInputs = () => {
 }
 
 contact.send = async () => {
-  contact.elem.sendBtn.classList.remove('active')
+  // Disable button
+  contact.elem.sendBtn.classList.remove('active');
+  // Clear errors
+  document.querySelector('.name-error').innerHTML = "";
+    document.querySelector('.email-error').innerHTML = "";
+    document.querySelector('.subject-error').innerHTML = "";
+    document.querySelector('.message-error').innerHTML = "";
+    // Collect inputs
   const input = {
     name: contact.elem.name.value,
     email: contact.elem.email.value,
     subject: contact.elem.subject.value,
     message: contact.elem.message.value
   }
-
-  const valid = contact.validate(input)
-
-  if (!valid) {
-    contact.elem.sendBtn.classList.add('active')
-    return
-  }
-
+  // Validate inputs
+  const valid = contact.validate(input);
+  if (!valid) return contact.elem.sendBtn.classList.add('active');
+  // Send request to the backend
   let data;
   try {
-    data = (await axios.post("/contact-us/submit-inquiry", input))["data"]
+    data = (await axios.post("/contact-us/submit-inquiry", input))["data"];
   } catch (error) {
-    data = { status: "error", content: error }
+    data = { status: "error", content: error };
   }
-
+  // Validate
   if (data.status === 'error') {
-    notification.generate('contact', 'error')
-    return
+    notification.generate('contact', 'error');
+    return;
   } else if (data.status === 'failed') {
-    contact.elem.sendBtn.classList.add('active')
-    notification.generate('contact', 'failed')
-    return
+    contact.elem.sendBtn.classList.add('active');
+    notification.generate('contact', 'failed');
+    return;
   }
-
-  contact.elem.name.value = null
-  contact.elem.email.value = null
-  contact.elem.subject.value = null
-  contact.elem.message.value = null
-  notification.generate('contact', 'success')
+  // Clear inputs
+  contact.elem.name.value = null;
+  contact.elem.email.value = null;
+  contact.elem.subject.value = null;
+  contact.elem.message.value = null;
+  // Re-activate the button
+  contact.elem.sendBtn.classList.add('active');
+  // Notify user of successful request
+  notification.generate('contact', 'success');
+  return;
 }
 
 contact.validate = (input) => {
@@ -113,19 +120,19 @@ contact.validate = (input) => {
   let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
   if (!nameRE.test(String(input.name).toLowerCase())) {
-    document.querySelector('.name-error').innerHTML = "Please use another name"
+    document.querySelector('.name-error').innerHTML = "Please use another name";
     valid = false
   }
   if (!emailRE.test(String(input.email).toLowerCase())) {
-    document.querySelector('.email-error').innerHTML = "Please enter a valid email"
+    document.querySelector('.email-error').innerHTML = "Please enter a valid email";
     valid = false
   }
   if (input.subject.includes('"')) {
-    document.querySelector('.subject-error').innerHTML = "Please use single quotation marks"
+    document.querySelector('.subject-error').innerHTML = "Please use single quotation marks";
     valid = false
   }
   if (input.message.includes('"')) {
-    document.querySelector('.message-error').innerHTML = "Please use single quotation marks"
+    document.querySelector('.message-error').innerHTML = "Please use single quotation marks";
     valid = false
   }
   return valid

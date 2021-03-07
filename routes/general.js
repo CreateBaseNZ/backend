@@ -53,7 +53,7 @@ router.get("/services/3d-printing", (req, res) => res.sendFile("printing.html", 
 // @access    PUBLIC
 router.get("/terms", (req, res) => res.sendFile("terms.html", viewsOption));
 
-// @route     GET /contact-us
+// @route     GET /contact
 // @desc      
 // @access    PUBLIC
 router.get("/contact", (req, res) => res.sendFile("contact.html", viewsOption));
