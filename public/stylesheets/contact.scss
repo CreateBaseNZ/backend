@@ -44,6 +44,10 @@ h2 {
   }
 }
 
+.bg-line {
+  display: none;
+}
+
 .form-container {
   padding: 1.5rem 10vw 7rem 10vw;
   width: 100%;
@@ -205,6 +209,30 @@ h2 {
   }
 }
 
+.bg-line {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  img {
+    width: 400px;
+    object-fit: cover;
+  }
+  &.left {
+    top: 0;
+    left: 40vw;
+    transform: translateX(-750px);
+  }
+  &.right {
+    bottom: 0;
+    right: 0;
+    width: 40vw;
+    img {
+      transform: translateX(350px);
+    }
+  }
+}
+
 .form-container {
   background: $lightest;
   border-radius: 2rem;
@@ -288,6 +316,21 @@ h2 {
     left: 50%;
     bottom: -12rem;
     transform: translateX(-120%);
+  }
+}
+
+.bg-line {
+  img {
+    width: 600px;
+  }
+  &.left {
+    top: -300px;
+    transform: translateX(-1200px);
+  }
+  &.right {
+    img {
+      transform: translate(650px, 500px);
+    }
   }
 }
 
