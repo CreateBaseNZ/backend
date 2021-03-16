@@ -76,7 +76,7 @@ router.get("/mailing-list/unsubscribe/:email", async (req, res) => {
   try {
     await Mail.demolish({ email });
   } catch (data) {
-    return res.status(404).sendFile("error404.html", viewsOption);
+    return res.status(404).sendFile("error-404.html", viewsOption);
   }
   return res.sendFile("unsubscribe.html", viewsOption);
 });
