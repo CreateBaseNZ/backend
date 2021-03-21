@@ -225,6 +225,7 @@
   .how-section-caption {
     margin: 0 5vw;
     font-size: 0.875rem;
+    color: $dark;
   }
   .how-section-img {
     width: 100%;
@@ -297,6 +298,31 @@
 .side-img-left,
 .side-img-right {
   display: none;
+}
+
+.ecosystem-section {
+  padding: 2.5rem 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #FDFDFD;
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    span {
+      color: $blue-dark;
+      font-size: inherit;
+      font-weight: 600;
+    }
+  }
+  .ecosystem-caption {
+    color: $dark;
+    font-size: 0.875rem;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
 }
 
 .subscribe-section {
@@ -610,6 +636,18 @@
   height: 15rem;
 }
 
+.ecosystem-section {
+  padding: 5rem 15vw;
+  h2 {
+    font-size: 1.75rem;
+    margin: 0.75rem 0;
+  }
+  .ecosystem-caption {
+    font-size: 1rem;
+    margin: 0.75rem 0;
+  }
+}
+
 .subscribe-section {
   padding: 5rem 15vw;
 }
@@ -746,7 +784,7 @@
   }
   .how-section-caption {
     justify-self: flex-end;
-    font-size: 1.125rem;
+    font-size: 1rem;
     width: 30vw;
     max-width: 25rem;
   }
@@ -762,7 +800,9 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  transform: translate(-130%, 30%) rotate(-30deg);
+  z-index: -1;
+  transform: translate(-165%, 20%) rotate(-30deg);
+  animation: bg-shape-left 60s linear infinite;
 }
 
 .side-img-right {
@@ -770,13 +810,27 @@
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(110%, -75%) rotate(-60deg);
+  z-index: -1;
+  transform: translate(110%, -20%) rotate(-60deg);
+  animation: bg-shape-right 45s linear infinite;
 }
 
 .dotted-lines {
   margin-right: 5vw;
   width: 40%;
   height: 20rem;
+}
+
+.ecosystem-section {
+  padding: 5rem 25vw;
+  h2 {
+    font-size: 2.25rem;
+    margin: 0.75rem 0;
+  }
+  .ecosystem-caption {
+    font-size: 1.25rem;
+    margin: 0.75rem 0;
+  }
 }
 
 .subscribe-section {
@@ -808,6 +862,48 @@
   }
   &.input-subsection {
     margin-left: 6vw;
+  }
+}
+
+@keyframes bg-shape-left {
+  0% {
+    transform: translate(-165%, 20%) rotate(-30deg);
+  }
+  11% {
+    transform: translate(-164%, 22%) rotate(-34deg);
+  }
+  31% {
+    transform: translate(-167%, 19%) rotate(-36deg);
+  }
+  57% {
+    transform: translate(-168%, 17%) rotate(-31deg);
+  }
+  72% {
+    transform: translate(-164%, 20%) rotate(-27deg);
+  }
+  85% {
+    transform: translate(-162%, 23%) rotate(-25deg);
+  }
+} 
+
+@keyframes bg-shape-right {
+  0% {
+    transform: translate(110%, -20%) rotate(-60deg);
+  }
+  13% {
+    transform: translate(112%, -22%) rotate(-62deg);
+  }
+  22% {
+    transform: translate(113%, -23%) rotate(-65deg);
+  }
+  43% {
+    transform: translate(111%, -21%) rotate(-63deg);
+  }
+  64% {
+    transform: translate(109%, -19%) rotate(-59deg);
+  }
+  82% {
+    transform: translate(107%, -17%) rotate(-57deg);
   }
 }
 
