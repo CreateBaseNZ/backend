@@ -556,7 +556,7 @@
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 30vw 50vw;
-  grid-column-gap: 10vw;
+  grid-column-gap: 5vw;
   .how-section-title {
     margin: 4rem 0 1.5rem 0;
     grid-row-start: 1;
@@ -613,8 +613,7 @@
       transform: translateX(0);
     }
   }
-  &.program,
-  &.apply {
+  &.create {
     padding: 0 10vw 0 0;
     grid-template-columns: 50vw 30vw;
     .how-section-title {
@@ -766,9 +765,8 @@
 
 .how-subsection {
   position: relative;
-  padding: 0 0 0 0;
-  grid-column-gap: 0;
-  grid-template-columns: auto 1fr;
+  padding: 0;
+  grid-template-columns: auto auto;
   .how-section-title {
     border-left: thick solid $blue-dark;
     padding-left: 1.25rem;
@@ -788,10 +786,13 @@
     width: 30vw;
     max-width: 25rem;
   }
-  &.program,
-  &.apply {
-    padding: 0 0 0 0;
-    grid-template-columns: 1fr auto;
+  .how-section-img {
+    width: 45vw;
+    max-height: 600px;
+  }
+  &.create {
+    padding: 0;
+    grid-template-columns: auto auto;
   }
 }
 
