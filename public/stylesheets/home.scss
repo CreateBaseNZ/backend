@@ -334,11 +334,40 @@
   justify-content: center;
   align-items: center;
   background: #FDFDFD;
-  img {
-    width: 90%;
-    object-fit: cover;
-    margin-bottom: 2rem;
-    border-radius: 1rem;
+  .img-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    .img-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30%;
+      img {
+        z-index: 2;
+        width: 100%;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: -2rem;
+        left: 50%;
+        height: 3rem;
+        width: 1px;
+        background: $magenta-light;
+        transform: translateX(-50%);
+      }
+    }
+    .ecosystem-main {
+      width: 90%;
+      object-fit: cover;
+      margin: 2rem auto;
+      border-radius: 1rem;
+    }
   }
   h2 {
     font-size: 1.25rem;
@@ -356,7 +385,7 @@
     letter-spacing: 0.01em;
     line-height: 1.75em;
     text-align: center;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 1.5rem 0;
   }
 }
 
@@ -590,7 +619,7 @@
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 30vw 50vw;
-  grid-column-gap: 0vw;
+  grid-column-gap: 5vw;
   .how-section-title {
     margin: 4rem 0 1.5rem 0;
     grid-row-start: 1;
@@ -671,13 +700,27 @@
 
 .ecosystem-section {
   padding: 5rem 15vw;
+  .img-wrapper {
+    justify-content: space-around;
+    .img-container {
+      max-width: 200px;
+      &::before {
+        height: 4rem;
+        bottom: -3rem;
+      }
+    }
+    .ecosystem-main {
+      border-radius: 1.5rem;
+      margin: 3rem auto;
+    }
+  }
   h2 {
     font-size: 1.75rem;
     margin: 0.75rem 0;
   }
   .ecosystem-caption {
     font-size: 1rem;
-    margin: 0.75rem 0;
+    margin: 0.75rem 0 1.5rem 0;
   }
 }
 
@@ -820,7 +863,7 @@
   }
   .how-section-img {
     width: 45vw;
-    max-height: 600px;
+    max-height: 450px;
   }
   &.create {
     padding: 0;
@@ -855,16 +898,60 @@
 }
 
 .ecosystem-section {
-  padding: 8rem 25vw;
-  img {
-    border-radius: 2rem;
-    margin-bottom: 4rem;
+  padding: 8rem 10vw;
+  .img-wrapper {
+    display: grid;
+    grid-template-areas: 
+    'learn learn learn'
+    'create main apply';
+    .img-container {
+      width: 100%;
+      justify-self: center;
+      overflow: visible;
+      width: 15vw;
+      max-width: 300px;
+      &.learn {
+        grid-area: learn;
+        &::before {
+          height: 8vw;
+          bottom: -6vw;
+        }
+      }
+      &.create {
+        grid-area: create;
+        &::before {
+          width: 8vw;
+          height: 1px;
+          top: 50%;
+          left: auto;
+          right: -6vw;
+          transform: translateY(-50%);
+        }
+      }
+      &.apply {
+        grid-area: apply;
+        &::before {
+          width: 8vw;
+          height: 1px;
+          top: 50%;
+          left: -6vw;
+          transform: translateY(-50%);
+        }
+      }
+    }
+    .ecosystem-main {
+      z-index: 2;
+      grid-area: main;
+      width: calc(100% - 6rem);
+      max-width: 800px;
+    }
   }
   h2 {
     font-size: 2.25rem;
     margin: 0.75rem 0;
   }
   .ecosystem-caption {
+    max-width: 750px;
     font-size: 1.25rem;
     margin: 0.75rem 0;
   }
