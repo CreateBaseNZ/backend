@@ -189,8 +189,9 @@ popup.subscribeSubmit = async () => {
   // SUBMIT
   try {
     await global.subscribe(popup.elem.subscribeInput.value).then((data) => {
+      console.log(data);
       // Resolved
-      if (data === "already") {
+      if (data === "You are already subscribed") {
         // Already subscribed
         notification.generate('subscribe', 'already')
         popup.elem.subscribeBtn.classList.add('active')

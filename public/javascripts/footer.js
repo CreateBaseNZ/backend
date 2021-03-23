@@ -70,7 +70,7 @@ footer.subscribeSubmit = async () => {
   try {
     await global.subscribe(footer.elem.subscribeInput.value).then((data) => {
       // Resolved
-      if (data === "already") {
+      if (data === "You are already subscribed") {
         // Already subscribed
         notification.generate('subscribe', 'already')
         footer.elem.subscribeBtn.classList.add('active')

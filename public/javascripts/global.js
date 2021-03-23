@@ -37,6 +37,8 @@ global.subscribe = (email) => {
     }
     if (data.status === "succeeded") {
       return resolve(data.content);
+    } else if (data.status === "failed") {
+      return resolve(data.content);
     } else {
       return reject(data.status)
     }

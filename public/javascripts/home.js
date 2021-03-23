@@ -136,7 +136,7 @@ home.subscribeSubmit = async () => {
   try {
     await global.subscribe(home.elem.subscribeInput.value).then((data) => {
       // Resolved
-      if (data === "already") {
+      if (data === "You are already subscribed") {
         // Already subscribed
         notification.generate('subscribe', 'already')
         home.elem.subscribeBtn.classList.add('active')
