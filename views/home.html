@@ -7,230 +7,321 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="google-site-verification" content="jCLW2oztBuZES0mxGJLZjEslZAPCwbbN47Gw09AYwWM" />
   <link rel="icon" href="/public/images/logo-icon.png" />
-  <title>Home • CreateBase</title>
+  <title>CreateBase</title>
   <meta name="description"
-    content="Our vision is a world where everybody has the skills and the confidence to bring their own ideas to life, where everybody can actively contribute towards solving the world’s problems. &#169; 2020 CreateBase.">
+    content="CreateBase is dedicated to providing the means to decouple STEAM field opportunities from an individual's social and economic background. We develop STEAM kits and contents that provide hands-on experiences that promotes active learning on your terms. &#169; 2020 CreateBase.">
   <link rel="canonical" href="https://createbase.co.nz">
   <!-- =========================CSS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/node_modules/swiper/css/swiper.min.css">
   <!-- ------------------------CUSTOM------------------------ -->
-  <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
   <link rel="stylesheet" href="/public/stylesheets/home.min.css">
-
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1149429065520266');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1149429065520266&ev=PageView&noscript=1"
-  /></noscript>
 </head>
 
-<body onload="global.init.init(); home.init.init();">
+<body onload="home.initialise();">
 
-  <nav>
-    <a href="/" class="nav-logo">
-      <img src="/public/images/logo_full_svg.svg" class="long" alt="CreateBase">
-      <img src="/public/images/logo-icon.png" class="small" alt="CreateBase">
-    </a>
-    <div class="hamburger hamburger-spin" type="button">
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
+  <nav class="hide">
+
+    <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
+
+    <div class="nav-top-bar">
+      <!-- <div class="nav-desktop-out">
+        <a href="/login" id="nav-user-login">LOG IN</a>
+        <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
+      </div> -->
+      <a class="nav-home-btn" href="/">
+        <img alt="CreateBase" class="nav-logo mobile" src="/public/images/logo-icon-large.svg"/>
+        <img alt="CreateBase" class="nav-logo desktop" src="/public/images/logo-dark.svg"/>
+      </a>
+      <button class="hamburger hamburger-spin" onclick="navigation.toggleRightMenu();" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <div class="nav-top-desktop">
+        <a class="nav-top-item" href="/story" id="nav-top-story">Our story</a>
+        <a class="nav-top-item" href="/team" id="nav-top-team">The team</a>
+        <!-- <a class="nav-top-item" href="/services/3d-printing" id="nav-top-3d-printing">3D printing</a> -->
+        <a class="nav-top-item" href="/products/kits" id="nav-top-kits">Steam kits</a>
+        <a class="nav-top-item" href="/contact" id="nav-top-contact">Contact us</a>
+        <a class="nav-top-item" href="/survey" id="nav-top-survey">Touch Base</a>
+      </div>
     </div>
-    <div class="nav-menu">
-      <!-- <a href="/kits" class="nav-item">Kits</a> -->
-      <!-- <a href="/story" class="nav-item">Our Story</a> -->
-      <!-- <a href="/team" class="nav-item">The Team</a> -->
-      <!-- <a href="/contact" class="nav-item">Contact Us</a> -->
-      <a href="/contact" class="special-btn">Contact Us</a>
+    <div class="nav-side-menu-wrapper">
+      <div class="nav-side-menu-container">
+        <div class="nav-side-menu-half left">
+          <p class="nav-side-header logged-out">WELCOME BACK</p>
+          <a class="nav-side-item logged-out" href="/login">LOG IN</a>
+          <p class="nav-side-header logged-out">FIRST TIME?</p>
+          <a class="nav-side-item logged-out" href="/signup">SIGN UP</a>
+          <p class="nav-side-header logged-in">Hello, Louis</p>
+          <a class="nav-side-item logged-in" href="/profile">DASHBOARD</a>
+          <a class="nav-side-item logged-in" href="/profile/projects">MY PROJECTS</a>
+          <a class="nav-side-item logged-in" href="/profile/orders">MY ORDERS</a>
+          <a class="nav-side-item logged-in" href="/profile/settings">SETTINGS</a>
+          <a class="nav-side-item logged-in" href="/logout" id="nav-signout">SIGN OUT</a>
+        </div>
+        <div class="nav-side-menu-half right">
+          <!-- <p class="nav-side-header">CREATEBASE</p>
+          <a class="nav-side-item" href="/make">MAKE</a>
+          <a class="nav-side-item" href="/products/kits">KITS</a>
+          <a class="nav-side-item" href="/services/marketplace">SHOP</a> -->
+          <p class="nav-side-header">INFO</p>
+          <!-- <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a> -->
+          <a class="nav-side-item" href="/products/kits">STEAM KITS</a>
+          <!-- <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a> -->
+          <!-- <a class="nav-side-item" href="/faq">FAQ</a> -->
+          <p class="nav-side-header">ABOUT</p>
+          <a class="nav-side-item" href="/story">OUR STORY</a>
+          <a class="nav-side-item" href="/team">THE TEAM</a>
+          <a class="nav-side-item" href="/contact">CONTACT US</a>
+          <a class="nav-side-item" href="/survey">Touch Base</a>
+          <div class="nav-socials">
+            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+            <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+            <a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <div class="page">
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide slide-1">
-          <h2>Unleash your inner creator</h2>
-          <div class="slide-caption">Learn the creation process from the initial idea to final outcome with engaging <span>Projects</span>, practical <span>Kit Sets</span> and cutting-edge <span>Simulations</span></div>
-          <img src="/public/images/home/slide-1-shape.svg" class="line" alt="">
-          <img src="/public/images/home/slide-1-desk.png" class="slide-img desk" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-arm.png" class="slide-img arm" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-motor.png" class="slide-img motor" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-arduino.png" class="slide-img arduino" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-wires.png" class="slide-img wires" alt="Robotic Arm">
-        </div>
-        <div class="swiper-slide slide-2">
-          <h2>Kickstarter coming soon!</h2>
-          <div class="slide-caption">Be the first to hear about our <span>Kickstarter launch</span> and snag exclusive early-bird deals</div>
-          <a href="/contact" class="slide-btn">Learn More</a>
-          <img src="/public/images/home/slide-2-shape-1.svg" class="line-1" alt="">
-          <img src="/public/images/home/slide-2-shape-2.svg" class="line-2" alt="">
-          <img src="/public/images/home/slide-2-cb.svg" class="slide-img cb" alt="CreateBase">
-          <img src="/public/images/home/slide-2-ks.svg" class="slide-img ks" alt="Kickstarter">
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
+  <div class="hide" id="mobile-notif-wrap">
+  </div>
 
-    <div class="how-section">
-      <h2>How it works</h2>
-      <div class="how-subsection learn">
-        <img src="/public/images/home/side-shape-1.svg" class="side-img-left" alt="">
-        <img src="/public/images/home/learn.png" alt="learn" class="how-section-img">
-        <div class="how-section-title">
-          <h3>Learn.</h3>
-          <h4>Projects</h4>
-        </div>
-        <div class="how-section-caption">Learn how to bring your ideas to life by completing Projects. You will be guided through the process of creating real-world, authentic solutions to problems using our 5-step Creation Process.</div>
+  <div class="hide" id="notification-wrap">
+    <div id="cookie-container" class="hide">
+      <div class="cookie-message-container">
+        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
+          our traffic.</p>
       </div>
-      <div class="dotted-lines odd">
-        <div class="upper-curve"></div>
-        <div class="lower-curve"></div>
-      </div>
-      <div class="how-subsection create">
-        <img src="/public/images/home/create.png" alt="create" class="how-section-img">
-        <div class="how-section-title">
-          <h3>Create.</h3>
-          <h4>Simulations</h4>
-        </div>
-        <div class="how-section-caption">Build, program, and explore realistic solutions within a simulated environment. See your Project solutions come to life and build robotic systems that you would never have access to in the real world.</div>
-      </div>
-      <div class="dotted-lines even">
-        <div class="upper-curve"></div>
-        <div class="lower-curve"></div>
-      </div>
-      <div class="how-subsection apply">
-        <img src="/public/images/home/side-shape-2.svg" class="side-img-right" alt="">
-        <img src="/public/images/home/apply.png" alt="apply" class="how-section-img">
-        <div class="how-section-title">
-          <h3>Apply.</h3>
-          <h4>Challenges</h4>
-        </div>
-        <div class="how-section-caption">Test your problem-solving abilities, apply the skills that you have learnt and compete with others by completing periodically-released Challenges.
-          <br>
-        Become your own creator: take all the skills, tools, and processes that you have learnt and apply them in your own life.
-        </div>
-      </div>
-    </div>
-
-    <div class="ecosystem-section">
-      <img src="/public/images/home/ecosystem-game.png" alt="Ecosystem">
-      <h2>One integrated <span>Ecosystem</span></h2>
-      <div class="ecosystem-caption">All of our offerings are delivered via one integrated experience. Story content and a virtual world makes it more fun than ever to learn how to create!</div>
-    </div>
-
-    <div class="subscribe-section">
-      <div class="subscribe-subsection">
-        <h2>Subscribe to our newsletter</h2>
-        <div class="subscribe-caption">Keep up with the latest projects, updates, and events from us!</div>
-      </div>
-      <div class="subscribe-subsection input-subsection">
-        <div class="home-subscribe-container">
-          <input type="email" name="email" id="home-subscribe" maxlength="100" placeholder="Enter your email address"/>
-          <div class="home-subscribe-btn"></div>
-        </div>
-        <div class="home-subscribe-error"></div>
-      </div>
-    </div>
-
-    <div class="people-section">
-      <h2>People we've worked with</h2>
-      <div class="people-container">
-        <a href="https://www.redbull.com/nz-en/Red-Bull-Basement-University-NZ" class="people-logo" target="_blank">
-          <img src="/public/images/home/redbull.png" alt="Red Bull Basement" />
-        </a>
-        <a href="https://www.hatch.nz/" target="_blank">
-          <img src="/public/images/home/hatch.png" alt="Hatch" />
-        </a>
-        <a href="https://www.velocity.auckland.ac.nz/" target="_blank">
-          <img src="/public/images/home/velocity.png" alt="Velocity" />
-        </a>
-        <a href="https://www.cie.auckland.ac.nz/unleash-space/" target="_blank">
-          <img src="/public/images/home/unleash.png" alt="Unleash Space" />
-        </a>
-        <a href="https://www.auckland.ac.nz/en/engineering.html" target="_blank">
-          <img src="/public/images/home/uoa.png" alt="The University of Auckland" />
-        </a>
-        <a href="https://www.yoobee.ac.nz/" target="_blank">
-          <img src="/public/images/home/yoobee.png" alt="Yoobee" />
-        </a>
-        <a href="https://www.gettinglost.co.nz/" target="_blank">
-          <img src="/public/images/home/getting-lost.png" alt="Getting Lost" />
-        </a>
-          
+      <div class="btn-group">
+        <button id="cancel" onclick="session.cancel();">DON'T ALLOW</button>
+        <button id="submit" class="grad-btn" onclick="session.allow();">ALLOW ALL</button>
       </div>
     </div>
   </div>
 
-  <footer>
-    <div class="footer-container prop">
-      <div class="value-prop">Gain the skills, tools, and confidence to unleash your innder creator.</div>
-      <div class="brand-prop">Create your awesome.</div>
-    </div>
-    <div class="footer-container subscribe">
-      <h5>Be the first to know</h5>
-      <div class="footer-subscribe">
-        <input id="footer-input" type="text" placeholder="Email" maxlength="100">
-        <i class="footer-btn material-icons-round">send</i>
+  <div class="full-page-loading"></div>
+
+  <div class="main-page hide">
+
+    <div class="landing-section">
+      <div class="landing-carousel">
+        <div class="landing-slide landing-slide-left" id="landing-1">
+          <a href="/products/kits" class="landing-slide-text">
+            <h2 class="landing-slide-title">UPSKILL AND UPGRADE</h2>
+            <div class="landing-slide-text-sep"></div>
+            <h3 class="landing-slide-sub" text-content="EXPLORE STEAM KITS">EXPLORE STEAM KITS</h3>
+            <div class="landing-slide-text-sep-2"></div>
+          </a>
+          <div class="landing-slide-btn"></div>
+        </div>
+
+        <div class="landing-slide landing-slide-middle" id="landing-2">
+          <a href="/team" class="landing-slide-text">
+            <h2 class="landing-slide-title">REVOLUTIONISING EDUCATION</h2>
+            <div class="landing-slide-text-sep"></div>
+            <h3 class="landing-slide-sub" text-content="MEET THE TEAM">MEET THE TEAM</h3>
+            <div class="landing-slide-text-sep-2"></div>
+          </a>
+          <div class="landing-slide-btn"></div>
+        </div>
+
+        <div class="landing-slide landing-slide-right" id="landing-3">
+          <a href="/services/3d-printing" class="landing-slide-text">
+            <h1 class="landing-slide-title">GIVE YOUR IDEAS SOME DIMENSIONS</h1>
+            <div class="landing-slide-text-sep"></div>
+            <h3 class="landing-slide-sub" text-content="EXPLORE 3D PRINTING">EXPLORE 3D PRINTING</h3>
+            <div class="landing-slide-text-sep-2"></div>
+          </a>
+          <div class="landing-slide-btn"></div>
+        </div>
       </div>
-      <div class="footer-error"></div>
-    </div>
-    <div class="footer-container quick-links">
-      <h5>Quick Links</h5>
-      <a href="/kits">Kits</a>
-      <a href="/story">Our Story</a>
-      <a href="/team">The Team</a>
-    </div>
-    <div class="footer-container policies">
-      <h5>Policies</h5>
-      <a href="/terms">Terms</a>
-      <a href="/privacy">Privacy</a>
-    </div>
-    <div class="footer-container contact">
-      <h5>We'd love to hear from you</h5>
-      <a href="tel:+64-211-543-805" target="_blank"><i class="material-icons-outlined">call</i>+64 211 543 805</a>
-      <a href="mailto:admin@createbase.co.nz" target="_blank"><i class="material-icons-outlined">email</i>admin@createbase.co.nz</a>
-      <a href="https://goo.gl/maps/d4GkA1aeSiZWztcVA" target="_blank"><i class="material-icons-outlined">map</i>14 York Street, AKL, NZ</a>
-      <div class="footer-socials">
-        <a href="/https://www.facebook.com/CreateBaseNZ" class="fab fa-facebook-square" target="_blank"></a>
-        <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
-        <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
-        <a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+      <div class="landing-slide-nav-container">
+        <div class="landing-slide-nav-btn" id="landing-btn-1">
+          <div class="landing-slide-nav-btn-box"></div>
+        </div>
+        <div class="landing-slide-nav-btn landing-slide-nav-btn-focus" id="landing-btn-2">
+          <div class="landing-slide-nav-btn-box"></div>
+        </div>
+        <div class="landing-slide-nav-btn" id="landing-btn-3">
+          <div class="landing-slide-nav-btn-box"></div>
+        </div>
       </div>
     </div>
-    <div class="copyright">
-      &#169; 2020 CreateBase. All rights reserved.
+
+
+    <div class="temp-wrap">
+      <span class="glitch" id="change-text" data-text="MARKETPLACE">MARKETPLACE</span>
+
+      <div class="subscribe-container">
+        <p class="subscribe-message">
+          Get the latest updates on release:
+        </p>
+        <div class="kit-fld input-decor" id="subscribe-field">
+          <input type="email" name="email" id="subscribe-email-input" maxlength="100" placeholder=" " required />
+          <label class="input-label" for="subscribe-email-input">Email</label>
+          <label class="input-error" for="subscribe-email-input" id="subscribe-email-error"></label>
+        </div>
+        <button class="market-btn reg-btn subscribe-btn" id="subscribe-main">SUBSCRIBE</button>
+        <div id="subscribe-confirm">Thanks for subscribing, we'll touch base soon.</div>
+        <button class="market-btn reg-btn subscribe-btn" id="subscribe-again" onclick="global.subscribeAgain();">ENTER ANOTHER EMAIL</button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="test-section">
+      <div class="test-header">
+        <p>PEOPLE WE'VE WORKED WITH</p>
+      </div>
+      <div class="test-logo-container">
+        <a href="https://www.redbull.com/nz-en/Red-Bull-Basement-University-NZ" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img decoding="async" src="/public/images/home/redbull.png" alt="Red Bull Basement" />
+        </a>
+        <a href="https://www.hatch.nz/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img decoding="async" src="/public/images/home/hatch.png" alt="Hatch" />
+        </a>
+        <a href="https://www.velocity.auckland.ac.nz/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img decoding="async" src="/public/images/home/velocity.png" alt="Velocity" />
+        </a>
+        <a href="https://www.cie.auckland.ac.nz/unleash-space/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img decoding="async" src="/public/images/home/unleash.png" alt="Unleash Space" />
+        </a>
+        <a href="https://www.momentum.ac.nz/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img decoding="async" src="/public/images/home/momentum.png" alt="Momentum" />
+        </a>
+        <a href="https://www.auckland.ac.nz/en/engineering.html" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img decoding="async" src="/public/images/home/uoa.png" alt="The University of Auckland" />
+        </a>
+        <a href="https://www.yoobee.ac.nz/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img decoding="async" src="/public/images/home/yoobee.png" alt="Yoobee" />
+        </a>
+        <a href="https://www.gettinglost.co.nz/" class="test-box" target="_blank">
+          <div class="test-corner top-left"></div>
+          <div class="test-corner top-right"></div>
+          <div class="test-corner bottom-left"></div>
+          <div class="test-corner bottom-right"></div>
+          <img decoding="async" src="/public/images/home/getting-lost.png" alt="Getting Lost" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-section hide">
+    <div class="footer-content">
+      <div class="footer-legal-section">
+        <h4>INFO</h4>
+        <div class="footer-legal-content">
+          <ul class="list-section-left">
+            <li><a href="/shipping-info">Shipping Info</a></li>
+            <li><a href="/shipping-info">Returns / Exchanges</a></li>
+          </ul>
+          <ul class="list-section-desktop">
+            <li><a href="/services/3d-printing">3D Printing</a></li>
+            <li><a href="/services/marketplace">Marketplace</a></li>
+            <li><a href="/products/kits">STEAM Kits</a></li>
+          </ul>
+
+          <div class="list-section-divider"></div>
+
+          <ul class="list-section-right">
+            <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-contact-section">
+        <h4>CONTACT</h4>
+        <div class="footer-contact-content">
+          <div class="contact-email"><a href="mailto:admin@createbase.co.nz">admin@createbase.co.nz</a></div>
+
+          <div class="btn-subscribe">
+            <button class="reg-btn" id="footer-subscribe">SUBSCRIBE TO NEWSLETTER</button>
+            <div class="kit-fld input-decor hide" id="footer-subscribe-field">
+              <input id="footer-subscribe-email-input" maxlength="100" name="email" placeholder=" " required="" type="text"/>
+              <label class="input-label" for="footer-subscribe-email-input">Email</label>
+              <label class="input-error" for="footer-subscribe-email-input" id="footer-subscribe-email-error"></label>
+              <i class="fas fa-level-down-alt" id="footer-subscribe-submit"></i>
+            </div>
+          </div>
+
+          <div class="contact-socials">
+            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+            <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+            <a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+          </div>
+          <div class="contact-legal">
+            <a href="/terms-and-conditions" id="tac">Terms &amp; Conditions</a>
+            <a href="/privacy-policy" id="privpol">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-sitemap-section">
+        <h4>EXPLORE</h4>
+        <div class="footer-sitemap-content">
+          <ul>
+            <li><a href="/make">3D Printing</a></li>
+            <li><a href="/services/marketplace">Marketplace</a></li>
+            <li><a href="/products/kits">STEAM Kits</a></li>
+            <li><a href="/story">Our Story</a></li>
+            <li><a href="/team">The Team</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-copyright-section">
+        <h3>&#169; 2020 CREATEBASE. ALL RIGHTS RESERVED</h3>
+      </div>
     </div>
   </footer>
 
-  <div class="notif-wrapper">
-    <div class="popup"></div>
-  </div>
-
   <!-- ==========================JS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
+  <script async src="/node_modules/swiper/js/swiper.min.js"></script>
   <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
-  <script async src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <!-- ------------------------CUSTOM------------------------ -->
-  <script async src="/public/javascripts/nav.js"></script>
-  <script async src="/public/javascripts/footer.js"></script>
-  <script async src="/public/javascripts/notification.js"></script>
-  <script async src="/public/javascripts/global.js"></script>
-  <script async src="/public/javascripts/home.js"></script>
+  <script async src="/public/javascripts/global/footer.min.js"></script>
+  <script async src="/public/javascripts/global/nav.min.js"></script>
+  <script async src="/public/javascripts/global/notification.min.js"></script>
+  <script async src="/public/javascripts/global.min.js"></script>
+  <script defer src="/public/javascripts/home.min.js"></script>
 </body>
 
 </html>

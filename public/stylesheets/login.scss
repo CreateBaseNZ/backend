@@ -1,0 +1,497 @@
+@import "global/all";
+
+$largest-font: calc(16px + 1vw);
+
+body {
+
+  nav {
+    .nav-top-bar {
+      background: transparent;
+  
+      .nav-in,
+      .nav-mobile-out,
+      .nav-desktop-out {
+        display: none !important;
+      }
+    }
+  }
+
+  .nav-darken-overlay-active ~ .nav-top-bar {
+    background: $light-1;
+  }
+
+  .main-login {
+    background: $light-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-family: $poppins;
+    line-height: 1.5;
+    height: 100vh;
+
+    .nav-global {
+      position: absolute;
+    }
+
+    // -----------------------------------
+    // Main Content
+    // -----------------------------------
+    .login-main-container {
+      background: $light-1;
+      overflow: hidden;
+
+      .login-form-container {
+        position: absolute;
+        top: 0;
+        height: 100%;
+      }
+
+      // -----------------------------------
+      // Hello window
+      // -----------------------------------
+      .hello-container {
+        display: none;
+      }
+
+      // -----------------------------------
+      // Login Window
+      // -----------------------------------
+      .login-container {
+        left: 0;
+        width: 100vw;
+        z-index: 1;
+        background: $light-1;
+        display: grid;
+        grid-template-rows: 75vh 5vh 20vh;
+        align-items: center;
+        justify-items: center;
+
+        #log-in-form {
+          display: grid;
+          grid-template-rows: 40vh 9vh 9vh 17vh;
+          align-items: center;
+          justify-items: center;
+          width: 100%;
+
+          #login-title {
+            margin-top: $top-bar-height;
+          }
+
+          #login-login {
+            align-self: flex-end;
+          }
+        }
+
+        #forgot-pass {
+          font-size: calc(8px + 0.2vmax);
+          color: $logo-2;
+          align-self: flex-end;
+        }
+
+        #login-back {
+          display: none;
+        }
+
+        #login-signup {
+          align-self: flex-end;
+          justify-self: center;
+          font-size: calc(8px + 0.2vmax);
+          margin-bottom: 2vh;
+
+          a {
+            color: $highlight;
+          }
+        }
+      }
+    }
+  }
+
+  // -----------------------------------
+  // Sliding window
+  // -----------------------------------
+  .login-overlay-container {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 850px) and (orientation: landscape) {
+
+  body {
+
+    .nav-container {
+      .nav-top-bar {
+        background: transparent !important;
+    
+        .nav-user-icon,
+        .nav-user-button {
+          display: none !important;
+        }
+      }
+    }
+  
+    .nav-darken-overlay-active ~ .nav-top-bar {
+      background: $light-1;
+    }
+  
+    .main-login {
+      background: $light-1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      font-family: $poppins;
+      line-height: 1.5;
+      height: 100vh;
+  
+      .nav-global {
+        position: absolute;
+      }
+  
+      // -----------------------------------
+      // Main Content
+      // -----------------------------------
+      .login-main-container {
+        background: $light-1;
+        overflow: hidden;
+        width: 50vw;
+  
+        .login-form-container {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          transition: transform 0.6s ease-in-out;
+        }
+  
+        // -----------------------------------
+        // Hello window
+        // -----------------------------------
+        .hello-container {
+          left: 0;
+          width: 50%;
+          z-index: 2;
+          background: $light-1;
+          display: grid;
+          grid-template-areas:
+            "hello hello"
+            "signup login";
+          grid-template-rows: 1fr 1fr;
+          grid-template-columns: 1fr 1fr;
+  
+          // Hello, _____.
+          #hello-creator {
+            grid-area: hello;
+            font-size: $largest-font;
+            font-family: $montserrat;
+            font-weight: 100;
+            align-self: flex-end;
+            margin-left: calc((50vw - 8 * #{$largest-font}) / 2);
+  
+            #change-text {
+              position: relative;
+              padding: 1px;
+            }
+          }
+  
+          // Signup button
+          #hello-signup {
+            align-self: flex-start;
+            justify-self: flex-end;
+            grid-area: signup;
+            margin-top: 5vh;
+            margin-right: 2vw;
+  
+            &:hover {
+              border: thin solid $light-1;
+            }
+          }
+          
+          // Login button
+          #hello-login {
+            align-self: flex-start;
+            justify-self: flex-start;
+            grid-area: login;
+            margin-top: 5vh;
+            margin-left: 2vw;
+            padding: 15px 40px;
+            transition: padding-left 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  
+            &:after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 25%;
+              border-bottom: thin solid $light-3;
+              transition: width 1s cubic-bezier(0.21, 0.65, 0.44, 0.99), border-color 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+            }
+
+            &:hover {
+              padding: 15px 50px;
+              transition: padding-left 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+
+              &::after {
+                width: 100%;
+                border-color: $highlight;
+                transition: width 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99), border-color 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+              }
+            }
+          }
+        }
+  
+        // -----------------------------------
+        // Login Window
+        // -----------------------------------
+        .login-container {
+          left: 0;
+          width: 50%;
+          visibility: hidden;
+          z-index: 1;
+          background: $light-1;
+          display: grid;
+          grid-template-rows: 73vh 8vh 6vh 13vh;
+          align-items: center;
+          justify-items: center;
+  
+          #log-in-form {
+            display: grid;
+            grid-template-rows: 41vh 10vh 10vh 14vh;
+            align-items: center;
+            justify-items: center;
+            width: 100%;
+  
+            #login-title {
+              margin-top: $top-bar-height;
+            }
+  
+            #login-login {
+              align-self: flex-end;
+            }
+          }
+
+          #forgot-pass {
+            align-self: center;
+            position: relative;
+            transition: color 0.1s ease-out;
+            &::after {
+              content: '';
+              position: absolute;
+              left: 0;
+              right: 0;
+              margin: 0 auto;
+              bottom: 0;
+              margin: auto;
+              background: $highlight;
+              height: 1px;
+              width: 0;
+              transition: width 0.1s ease-out;
+            }
+            
+            &:hover {
+              color: $highlight;
+              &::after {
+                width: 100%;
+              }
+            }
+          }
+  
+          #login-back {
+            display: block;
+            align-self: center;
+            justify-self: center;
+            transition: 1s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+  
+            &::before {
+              content: '';
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              height: 1px;
+              width: 0px;
+              background: $light-3;
+              transition: 0.6s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+            }
+  
+            &:hover {
+              padding-right: 10vw;
+              transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+            }
+  
+            &:hover:before {
+              left: calc(50% - 2vw);
+              width: 10vw;
+              background: $highlight;
+              transition: 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+            }
+          }
+  
+          #login-signup {
+            align-self: flex-end;
+            justify-self: center;
+            font-size: calc(8px + 0.2vmax);
+            margin-bottom: 2vh;
+  
+            a {
+              color: $highlight;
+            }
+          }
+        }
+      }
+    }
+  
+    .login-main-container.right-panel-active .hello-container {
+      transform: translateX(100%);
+    }
+    .login-main-container.right-panel-active .login-container {
+      transform: translateX(100%);
+      visibility: visible;
+      z-index: 5;
+      animation: show 0.6s;
+    }
+  
+    // -----------------------------------
+    // Sliding window
+    // -----------------------------------
+    .login-overlay-container {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100vh;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
+      z-index: 100;
+    }
+  
+    .login-main-container.right-panel-active .login-overlay-container {
+      transform: translateX(-100%);
+    }
+  
+    .login-overlay {
+      background: $light-1;
+      position: relative;
+      left: -100%;
+      height: 100%;
+      width: 200%;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+    }
+  
+    .login-main-container.right-panel-active .login-overlay {
+      transform: translateX(50%);
+    }
+  
+    .login-overlay-panel {
+      position: absolute;
+      display: flex;
+      justify-items: center;
+      flex-direction: column;
+      text-align: center;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+      overflow: hidden;
+  
+      img {
+        object-fit: cover;
+        overflow: hidden;
+        height: 100vh;
+      }
+    }
+  
+    .login-overlay-left {
+      transform: translateX(-40%);
+  
+      img {
+        align-self: flex-start;
+      }
+    }
+    .login-main-container.right-panel-active .login-overlay-left {
+      transform: translateX(0%);
+    }
+  
+    .login-overlay-right {
+      right: 0;
+      transform: translateX(0);
+  
+      img {
+        align-self: flex-end;
+      }
+    }
+    .login-main-container.right-panel-active .login-overlay-right {
+      transform: translateX(40%);
+    }
+  
+    @keyframes show {
+      0%,
+      49.99% {
+        visibility: hidden;
+        z-index: 1;
+      }
+  
+      50%,
+      100% {
+        visibility: visible;
+        z-index: 5;
+      }
+    }
+  
+    // -----------------------------------
+    // Glitch animation
+    // -----------------------------------
+    .glitch {
+      position: relative;
+      padding: 10px;
+    }
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 1px;
+      text-shadow: 1px 0 greenyellow;
+      background: $light-1;
+      overflow: hidden;
+      visibility: hidden;
+      animation: noise-anim 10s infinite linear alternate-reverse;
+    }
+    .glitch::before {
+      content: attr(data-text);
+      position: absolute;
+      left: -1px;
+      text-shadow: -1px 0 magenta;
+      background: $light-1;
+      overflow: hidden;
+      visibility: hidden;
+      animation: noise-anim-2 8s infinite linear alternate-reverse;
+    }
+  
+    @keyframes noise-anim {
+      $steps: 240;
+      @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+          $top: random(100);
+          $bottom: random(101 - $top);
+          clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+          padding: random(8)px - 8px;
+          visibility: visible;
+        }
+      }
+    }
+    @keyframes noise-anim-2 {
+      $steps: 150;
+      @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+          $top: random(100);
+          $bottom: random(101 - $top);
+          clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+          padding: random(10)px - 10px;
+          visibility: visible;
+        }
+      }
+    }
+  
+  }
+}
+

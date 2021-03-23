@@ -22,7 +22,7 @@ MODELS
 MIDDLEWARE
 =========================================================================================*/
 
-const upload = require("../configs/upload.js");
+const upload = require("../config/upload.js");
 
 /*=========================================================================================
 GRIDFS
@@ -149,17 +149,17 @@ router.get("/files/image/:filename", async (req, res) => {
   return readstream.pipe(res);
 });
 
-// @route     Get /public-image/:filename
+// @route     Get /file/display-picture/:fileId
 // @desc      Fetch image to be displayed
 // @access    Public
-router.get("/public-image/:filename", async (req, res) => {
+router.get("/file/display-picture/:fileId", async (req, res) => {
   // Declare Variables
-  const filename = req.params.filename;
+  const fileId = mongoose.Types.ObjectId(req.params.fileId);
   // Find the image
   let image = undefined;
   // If so, Send File to Front-End
   try {
-    image = await GridFS.files.findOne({ filename });
+    image = await GridFS.files.findOne({ _id: fileId });
   } catch (error) {
     return res.send({ status: "failed", content: error });
   }
@@ -167,6 +167,14 @@ router.get("/public-image/:filename", async (req, res) => {
     let readstream = GridFS.createReadStream(image.filename);
     return readstream.pipe(res);
   }
+  // Else, Return Temporary Profile Picture
+  try {
+    file = await GridFS.files.findOne({ filename: "default-profile.png" });
+  } catch (error) {
+    return res.send({ status: "failed", content: error });
+  }
+  let readstream = GridFS.createReadStream(file.filename);
+  return readstream.pipe(res);
 });
 
 /*=========================================================================================

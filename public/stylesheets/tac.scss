@@ -1,0 +1,255 @@
+@import "global/all";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: $light-1;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: $poppins;
+}
+
+.main-page {
+    width: inherit;
+    padding-top: $top-bar-height;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main-page-wrap{
+    display: flex;
+    flex-direction: row;
+    min-height: calc(100vh - #{$top-bar-height});
+    padding: 10vw;
+    width: 100%;
+    justify-content: center;
+    & > * {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.tac-menu-wrap {
+    display: none;
+}
+
+.tac-body-wrap {
+    width: 100%;
+    &::after {
+        pointer-events: none;
+        content: '';
+        position: absolute;
+        bottom: 10vw;
+        left: 0;
+        height: 10%;
+        width: calc(100% - 5px);
+        background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    }
+    .tac-body-container {
+        padding-right: 10px;
+        flex-basis: 0;
+        flex-grow: 1;
+        overflow-y: auto;
+        position: relative;
+    }
+}
+
+.title-wrap {
+    width: 100%;
+    .title-container {
+        h1 {
+            color: $dark-2;
+            font-size: calc(12px + 3vmin);
+            text-transform: uppercase;
+        }
+        .sub-title-container {
+            display: flex;
+            align-items: center;
+            .sub-title-line {
+                width: 5vw;
+                max-width: 3em;
+                height: 0.2em;
+                background-color: $logo-2;
+                margin-right: 1vw;
+            }
+            h4 {
+                color: $logo-2;
+            }
+        }
+    }
+}
+
+.content-wrap {
+    padding-bottom: 10vw;
+}
+
+.content-container {
+    padding: 1em 0 0 0;
+    line-height: 80%;
+}    
+
+h2 {
+    font-size: calc(10px + 0.8vmin);
+    color: $dark-1;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.content-paragraph {
+    margin: 0.5rem 0;
+    p {
+        font-size: calc(6px + 0.8vmin);
+        line-height: 160%;
+    }
+    ol {
+        margin-left: 1rem;
+        line-height: 100%;
+        li {
+            font-size: calc(6px + 0.8vmin);
+            padding-left: 0.8rem;
+            margin-top: 0.2rem;
+        }
+    }
+}
+
+h3 {
+    margin: 0;
+    font-size: calc(6px + 0.8vmin);
+    line-height: 120%;
+    font-weight: 600;
+}
+
+.attribution {
+    display: none;
+}
+
+@media only screen and (min-width: 850px){
+
+.main-page-wrap {
+    padding: 5vh calc(70px + 1vw);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tac-menu-wrap {
+    display: block;
+    width: 20%;
+    font-size: calc(8px + 0.5vmin);
+    min-height: 100%;
+    .tac-menu-container {
+        li {
+            cursor: pointer;
+            padding-left: 0.6vw;
+            padding-bottom: 0.4rem;
+            transition: color 0.1s ease-out;
+            color: $light-3;
+            &:hover {
+                color: $logo-2;
+            }
+        }
+        .tac-selected {
+            color: $logo-2;
+            font-weight: 600;
+            pointer-events: none;
+        }
+    }
+}
+
+#tac-img {
+    height: 10vh;
+    object-fit: contain;
+    margin-bottom: 2vh;
+    align-self: flex-start;
+}
+
+.tac-body-wrap {
+    position: relative;
+    width: 75%;
+    &::after {
+        bottom: 0;
+    }
+}
+
+.tac-body-container {
+    padding-right: 0;
+
+    &::-webkit-scrollbar {
+        height: 100%;
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $light-2;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $logo-2;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        filter: #231769;
+    }
+}
+
+.content-wrap {
+    padding: 2vh;
+    padding-bottom: 5%;
+}
+
+.content-container {
+    padding: 4vh 2vw 0 2vw;
+    line-height: 80%;
+}
+
+.content-paragraph {
+    margin: 0.5vh 0 0 0;
+    p {
+        font-size: calc(6px + 0.8vmin);
+        line-height: 180%;
+    }
+    ol {
+        margin-left: 2rem;
+        line-height: 140%;
+        li {
+            font-size: calc(6px + 0.8vmin);
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+h3 {
+    margin: 1vh 0;
+    font-size: calc(6px + 0.8vmin);
+    line-height: 120%;
+}
+
+h2 {
+    font-size: calc(10px + 0.8vmin);
+    letter-spacing: 1px;
+    margin-bottom: 1.5vh;
+    line-height: 120%;
+}
+
+.attribution {
+    display: block;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.6rem;
+    color: $light-3; 
+    font-weight: 300;
+    a {
+        font-weight: inherit;
+        color: inherit;
+        transition: color 0.1s ease-out;
+        &:hover {
+        color: $highlight;
+        }
+    }
+}
+
+}

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="/public/images/logo-icon.png" />
+  <title id="profile-title">Profile • CreateBase</title>
+  <meta name="description"
+    content="Welcome back, Creator. View, edit, and manage your current and past projects and makes. View your order history or make changes to current orders. Edit your settings. &#169; 2020 CreateBase.">
+  <!-- =========================CSS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <!-- ------------------------CUSTOM------------------------ -->
+  <link rel="stylesheet" href="/public/stylesheets/profile/profile.css" />
+  <link rel="stylesheet" href="/public/stylesheets/profile/settings.css" />
+</head>
+
+<body onload="profile.initialise();">
+
+  <nav class="hide">
+    <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
+    <div class="nav-top-bar">
+      <button class="hamburger hamburger-spin" onclick="navigation.toggleLeftMenu();" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <a class="nav-home-btn" href="/" id="nav-home-btn"></a>
+      <div class="nav-in" id="nav-in" onclick="navigation.toggleRightMenu();"></div>
+      <div class="nav-mobile-out" id="nav-mobile-out" onclick="navigation.toggleRightMenu();"></div>
+      <div class="nav-desktop-out">
+        <a href="/login" id="nav-user-login">LOG IN</a>
+        <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
+      </div>
+    </div>
+    <div class="nav-side-menus">
+      <div class="nav-left-menu-wrap">
+        <div class="nav-left-menu">
+          <div class="nav-side-menu-links">
+            <p class="nav-side-header">CREATEBASE</p>
+            <a class="nav-side-item" href="/make">MAKE</a>
+            <a class="nav-side-item" href="/products/kits">KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">SHOP</a>
+            <p class="nav-side-header">INFO</p>
+            <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a>
+            <a class="nav-side-item" href="/products/kits">ENGINEERING KITS</a>
+            <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a>
+            <a class="nav-side-item" href="/faq">FAQ</a>
+            <p class="nav-side-header">ABOUT</p>
+            <a class="nav-side-item" href="/story">OUR STORY</a>
+            <a class="nav-side-item" href="/team">OUR TEAM</a>
+            <a class="nav-side-item" href="/contact">CONTACT US</a>
+          </div>
+          <div class="nav-side-socials">
+            <a class="fab fa-facebook-square"
+              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"
+              target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+            <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+            <a class="fab fa-youtube"
+              href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber"
+              target="_blank"></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-right-menu-out">
+        <div class="nav-right-menu">
+          <p class="nav-side-header">WELCOME BACK</p>
+          <a class="nav-side-item" href="/login">LOG IN</a>
+          <p class="nav-side-header">FIRST TIME?</p>
+          <a class="nav-side-item" href="/signup">SIGN UP</a>
+        </div>
+      </div>
+      <div class="nav-right-menu-in">
+        <div class="nav-right-menu" id="nav-right-menu">
+          <p class="nav-side-header" id="nav-right-greeting"></p>
+          <a class="nav-side-item" onclick="profile.setPage(''); navigation.toggleRightMenu();">DASHBOARD</a>
+          <a class="nav-side-item" onclick="profile.setPage('projects'); navigation.toggleRightMenu();">MY PROJECTS</a>
+          <a class="nav-side-item" onclick="profile.setPage('orders'); navigation.toggleRightMenu();">MY ORDERS</a>
+          <a class="nav-side-item" onclick="profile.setPage('settings'); navigation.toggleRightMenu();">SETTINGS</a>
+          <a class="nav-side-signout" href="/logout">SIGN OUT</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hide" id="mobile-notif-wrap">
+  </div>
+
+  <div class="hide" id="notification-wrap">
+    <div id="cookie-container" class="hide">
+      <div class="cookie-message-container">
+        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
+          our traffic.</p>
+      </div>
+      <div class="btn-group">
+        <button id="cancel" onclick="session.cancel();">DON'T ALLOW</button>
+        <button id="submit" class="grad-btn" onclick="session.allow();">ALLOW ALL</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-page-loading"></div>
+
+  <div class="main-page hide" id="profile-page">
+
+    <div class="main-area" id="db-area">
+      <div id="db-grid-area">
+
+        <div id="db-header">
+          <h1>Dashboard</h1>
+        </div>
+
+        <div id="db-settings-wrapper">
+          <div id="db-settings-container">
+            <div class="db-settings-item" id="db-email">
+              <i class="fas fa-envelope"></i>
+              <p>Email</p>
+            </div>
+            <div class="db-settings-item" id="db-password">
+              <i class="fas fa-key"></i>
+              <p>Password</p>
+            </div>
+            <div class="db-settings-item" id="db-subscription">
+              <i class="fas fa-paper-plane"></i>
+              <p>Mailing</p>
+            </div>
+            <div class="db-settings-item" id="db-address">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>Settings</p>
+            </div>
+            <div class="db-settings-item" id="db-delete">
+              <i class="fas fa-user-slash"></i>
+              <p>Delete acc</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="db-profile-wrapper">
+          <div id="profile-today">Today is 31 Jul 2020</div>
+          <div class="db-profile-container">
+            <button class="fas fa-pen-square" id="profile-edit-btn-dsktp"></button>
+            <form id="profile-pic">
+              <label for="profile-upload"><i class="far fa-edit"></i></label>
+              <input type="file" name="picture" id="profile-upload" onchange="dashboard.previewImage(event);"
+                onclick="this.value=null;" accept="image/*"></input>
+              <img src="/profile/customer/fetch/picture" id="profile-preview" decoding="async"></img>
+            </form>
+            <p id="profile-name" data-placeholder="Display Name"></p>
+            <p id="profile-location" data-info="Your location can be modified in the Settings tab."></p>
+            <div class="sep"></div>
+            <div id="profile-bio" data-placeholder="Tell us a bit about yourself."></div>
+            <div id="profile-edit">
+              <button class="grad-btn" id="profile-edit-btn-mobile">Edit</button>
+              <div class="cancel-btn" id="profile-cancel-btn">Cancel</div>
+              <div class="grad-btn" id="profile-save-btn" onclick="dashboard.save();">Save</div>
+            </div>
+          </div>
+          <div id="profile-since">Creator since <span id="profile-account-creation-date">--- ----</span></div>
+        </div>
+
+        <div id="db-orders-wrapper">
+          <div id="db-order-container">
+            <div id="db-order-header">
+              <div id="db-order-recent">Recent orders</div>
+              <div id="db-order-view">View all <i class="fas fa-caret-right"></i></div>
+            </div>
+            <div class="db-order-item">
+              <i class="fas fa-caret-right db-order-go"></i>
+              <div class="db-order-number">Order #8014<div class="db-order-notif-circle">
+                  <div class="db-order-notif">1</div>
+                </div>
+              </div>
+              <div class="db-order-wrap">
+                <div class="db-order-details">
+                  <div class="db-order-delivery"><i class="fas fa-truck"></i><span>In transit</span></div>
+                  <div class="db-order-date"><i class="fas fa-credit-card"></i><span>April 20, 2020</span></div>
+                  <div class="db-order-address"><i class="fas fa-map-marker-alt"></i><span>Auckland, New Zealand</span>
+                  </div>
+                </div>
+                <div class="db-order-total">
+                  <p>Total</p>
+                  <div class="db-order-amount">$53.80</div>
+                </div>
+              </div>
+            </div>
+            <div class="db-order-item">
+              <i class="fas fa-caret-right db-order-go"></i>
+              <div class="db-order-number">Order #8014<div class="db-order-notif-circle">
+                  <div class="db-order-notif">1</div>
+                </div>
+              </div>
+              <div class="db-order-wrap">
+                <div class="db-order-details">
+                  <div class="db-order-delivery"><i class="fas fa-truck"></i><span>In transit</span></div>
+                  <div class="db-order-date"><i class="fas fa-credit-card"></i><span>April 20, 2020</span></div>
+                  <div class="db-order-address"><i class="fas fa-map-marker-alt"></i><span>Auckland, New Zealand</span>
+                  </div>
+                </div>
+                <div class="db-order-total">
+                  <p>Total</p>
+                  <div class="db-order-amount">$53.80</div>
+                </div>
+              </div>
+            </div>
+            <div class="db-order-item">
+              <i class="fas fa-caret-right db-order-go"></i>
+              <div class="db-order-number">Order #8014<div class="db-order-notif-circle">
+                  <div class="db-order-notif">1</div>
+                </div>
+              </div>
+              <div class="db-order-wrap">
+                <div class="db-order-details">
+                  <div class="db-order-delivery"><i class="fas fa-truck"></i><span>In transit</span></div>
+                  <div class="db-order-date"><i class="fas fa-credit-card"></i><span>April 20, 2020</span></div>
+                  <div class="db-order-address"><i class="fas fa-map-marker-alt"></i><span>Auckland, New Zealand</span>
+                  </div>
+                </div>
+                <div class="db-order-total">
+                  <p>Total</p>
+                  <div class="db-order-amount">$53.80</div>
+                </div>
+              </div>
+            </div>
+            <div class="db-none" id="db-order-none">No orders placed</div>
+          </div>
+        </div>
+
+        <div id="db-proj-wrapper">
+          <div id="db-proj-container">
+            <div id="db-proj-header">
+              <div id="db-proj-fav">Favourited projects</div>
+              <div id="db-proj-view">View all <i class="fas fa-caret-right"></i></div>
+            </div>
+            <div class="db-proj-item">
+              <img class="db-proj-img">
+              <div class="db-proj-content">
+                <div class="db-proj-name"></div>
+                <div class="db-proj-makes"></div>
+              </div>
+              <i class="fas fa-caret-right db-proj-go"></i>
+            </div>
+            <div class="db-proj-item">
+              <img class="db-proj-img">
+              <div class="db-proj-content">
+                <div class="db-proj-name"></div>
+                <div class="db-proj-makes"></div>
+              </div>
+              <i class="fas fa-caret-right db-proj-go"></i>
+            </div>
+            <div class="db-proj-item">
+              <img class="db-proj-img">
+              <div class="db-proj-content">
+                <div class="db-proj-name"></div>
+                <div class="db-proj-makes"></div>
+              </div>
+              <i class="fas fa-caret-right db-proj-go"></i>
+            </div>
+            <div class="db-none" id="db-proj-none">Create and favourite projects to see them here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-area" id="projects-area">
+      <div id="proj-header">
+        <h1>My Projects</h1>
+      </div>
+      <div id="proj-area-wrapper">
+        <div id="proj-card-wrapper">
+          <h2 id="proj-fav-header"></h2>
+          <div id="proj-fav-container">
+            <!-- <div class="proj-fav">
+              <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail" class="proj-fav-img">
+              <div class="proj-fav-overlay">
+              </div>
+              <div class="proj-fav-content">
+                <div class="proj-fav-name">My First Project My First Project</div>
+                <div class="proj-fav-makes">A Make, Untitled Make, Part C, Test Part, Another Part, A Make, Untitled
+                  Make, Part C, Test Part, Another Part</div>
+                <div class="proj-fav-notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur
+                  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
+                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                  commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+              </div>
+            </div> -->
+          </div>
+          <h2 id="proj-new-header"></h2>
+          <div id="proj-all-container">
+            <div class="proj-small" id="proj-add">
+              <div id="proj-add-text">
+                <p>NEW</p>
+              </div>
+            </div>
+            <!-- <div class="proj-small">
+              <i class="far fa-bookmark"></i>
+              <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail"
+                class="proj-small-img"></img>
+              <div class="proj-small-name">
+                <p>My First Project</p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <!-- <div class="proj-pop-wrapper">
+          <div class="proj-pop-back">
+            <p>Cancel</p>
+          </div>
+          <div class="proj-pop-container">
+            <div class="proj-pop-left">
+              <label for="profile-upload">Click to edit</label>
+              <form id="proj-img-form">
+                <input type="file" name="picture" onchange="loadFile(event)"></input>
+              </form>
+              <img src="/public/images/profile/project-thumbnail.jpeg" alt="Project Thumbnail"
+                class="proj-small-img"></img>
+              <div class="proj-pop-img-overlay"></div>
+              <div class="proj-pop-img-edit">Click to edit</div>
+            </div>
+            <div class="proj-pop-mid">
+              <i class="far fa-bookmark proj-pop-bookmark"></i>
+              <h3>Name</h3>
+              <input type="text" class="proj-pop-name" placeholder="Give your project a name">
+              <h3>Makes</h3>
+              <div class="proj-pop-blob-container">
+                <div class="proj-pop-blob">
+                  <p>Make A</p>
+                  <div class="proj-pop-blob-x"></div>
+                </div>
+              </div>
+              <h3>Notes</h3>
+              <textarea class="proj-pop-notes" placeholder="Add notes to your project" style="resize: none;"></textarea>
+              <div class="proj-pop-btn-container">
+                <i class="far fa-trash-alt proj-pop-delete"></i>
+                <button class="grad-btn proj-pop-save">Save</button>
+              </div>
+            </div>
+            <div class="proj-pop-right">
+              <h3>Add to your project</h3>
+              <div class="proj-pop-bar-wrapper">
+                <div class="proj-pop-bar-container">
+                </div>
+              </div>
+              <p>You can add Makes to this project later.</p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="main-area" id="orders-area">
+      <div class="my-orders-wrap">
+        <p class="my-orders-title">My Orders</p>
+        <div class="my-orders-container" id="my-orders-container">
+          <div id="order-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-area" id="settings-area">
+      <div id="settings-header">
+        <h1>Settings</h1>
+      </div>
+
+      <div id="settings-content-wrap">
+        <div id="settings-col-1">
+
+          <div id="settings-email-container" class="settings-section-container">
+
+            <h2>Email</h2>
+
+            <div id="settings-current-email">
+              <input type="text" id="settingEmail" name="settingEmail" placeholder="example@domain.com" disabled>
+              <div id="settings-edit-email" class="settings-edit-pen" onclick="settings.editEmail();"><button
+                  class="fas fa-pen-square"></button></div>
+            </div>
+
+            <div id="settings-email-item-wrap" class="settings-item-wrap">
+              <div id="email-new-container" class="settings-email-item settings-editable">
+                <label for="newEmail">
+                  <h3>New Email <span class="required-field">*</span></h3>
+                </label>
+                <input type="text" id="newEmail" name="newEmail" placeholder="New Email">
+              </div>
+              <div id="email-pass-container" class="settings-email-item settings-editable">
+                <label for="emailPassword">
+                  <h3>Enter password <span class="required-field">*</span></h3>
+                </label>
+                <input type="password" id="emailPassword" name="emailPassword" placeholder="Current password"
+                  autocomplete="new-password">
+              </div>
+            </div>
+
+            <div id="settings-email-error" class="settings-error-message"></div>
+
+            <div class="settings-btn-group" id="email-btn-group-email">
+              <button id="settings-email-submit" class="grad-btn" onclick="settings.changeEmail();">Save</button>
+              <button id="settings-email-cancel" class="cancel-btn" onclick="settings.editEmail();">Cancel</button>
+            </div>
+
+            <div class="divider"></div>
+          </div>
+
+          <div id="settings-address-container" class="settings-section-container">
+
+            <h2>Saved Address</h2>
+
+            <div id="settings-address-item-wrap" class="settings-item-wrap">
+              <div class="settings-address-item settings-editable" id="address-field-name">
+                <label for="addressName" id="address-label-name">
+                  <h3>Name/Company</h3>
+                </label>
+                <input type="text" id="addressName" name="addressName" placeholder="Name/Company Name" disabled>
+                <div id="settings-edit-address" class="settings-edit-pen" onclick="settings.editAddress();"><button
+                    class="fas fa-pen-square"></button></div>
+              </div>
+              <div class="settings-address-item settings-editable" id="address-field-street-number">
+                <label for="streetNum" id="address-label-street-number">
+                  <h3>Street Number<span class="required-field">*</span></h3>
+                </label>
+                <input type="text" id="streetNum" name="streetNum" placeholder="Street Number" disabled>
+              </div>
+              <div class="settings-address-item settings-editable" id="address-field-unit">
+                <label for="addressUnit" id="address-label-unit">
+                  <h3>Unit</h3>
+                </label>
+                <input type="text" id="addressUnit" name="addressUnit" placeholder="Unit" disabled>
+              </div>
+              <div class="settings-address-item settings-editable" id="address-field-street-name">
+                <label for="streetName" id="address-label-street-name">
+                  <h3>Street Name<span class="required-field">*</span></h3>
+                </label>
+                <input type="text" id="streetName" name="streetName" placeholder="Street Name" disabled>
+              </div>
+              <div class="settings-address-item settings-editable" id="address-field-suburb">
+                <label for="addressSuburb" id="address-label-suburb">
+                  <h3>Suburb<span class="required-field">*</span></h3>
+                </label>
+                <input type="text" id="addressSuburb" name="addressSuburb" placeholder="Suburb" disabled>
+              </div>
+              <div class="settings-address-item settings-editable" id="address-field-city">
+                <label for="addressCity" id="address-label-city">
+                  <h3>City<span class="required-field">*</span></h3>
+                </label>
+                <input type="text" id="addressCity" name="addressCity" placeholder="City" disabled>
+              </div>
+              <div class="settings-address-item settings-editable" id="address-field-postcode">
+                <label for="postCode" id="address-label-postcode">
+                  <h3>Postcode<span class="required-field">*</span></h3>
+                </label>
+                <input type="text" id="postCode" name="postCode" placeholder="Post code" disabled>
+              </div>
+              <div class="settings-address-item settings-editable" id="address-field-country">
+                <label for="addressCountry" id="address-label-country">
+                  <h3>Country<span class="required-field">*</span></h3>
+                </label>
+                <input type="text" id="addressCountry" name="addressCountry" placeholder="Country" disabled>
+              </div>
+            </div>
+
+            <div id="settings-address-error" class="settings-error-message"></div>
+
+            <div class="settings-btn-group" id="settings-btn-group-address">
+              <button id="settings-address-submit" class="grad-btn" onclick="settings.changeAddress();">Save</button>
+              <button id="settings-address-cancel" class="cancel-btn" onclick="settings.editAddress();">Cancel</button>
+            </div>
+
+            <div class="divider"></div>
+          </div>
+        </div>
+
+        <div id="settings-col-2">
+
+          <div id="settings-pass-container" class="settings-section-container">
+
+            <div id="settings-pass-header">
+              <h2>Change Password</h2>
+              <div id="settings-edit-pass" class="settings-edit-pen" onclick="settings.editPassword();"><button
+                  class="fas fa-pen-square"></button></div>
+            </div>
+
+            <div id="settings-pass-item-wrap" class="settings-item-wrap">
+              <div class="settings-pass-item settings-editable">
+                <label for="oldPassword">
+                  <h3>Old Password <span class="required-field">*</span></h3>
+                </label>
+                <input type="password" id="oldPassword" name="oldPassword" placeholder="Current password">
+              </div>
+              <div class="settings-pass-item settings-editable">
+                <label for="newPassword">
+                  <h3>New Password <span class="required-field">*</span></h3>
+                </label>
+                <input type="password" id="newPassword" name="newPassword" placeholder="New password">
+              </div>
+              <div class="settings-pass-item settings-editable">
+                <label for="confirmNewPassword">
+                  <h3>Confirm new password <span class="required-field">*</span></h3>
+                </label>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword"
+                  placeholder="Confirm new password">
+              </div>
+            </div>
+
+            <div id="settings-pass-error" class="settings-error-message"></div>
+
+            <div class="settings-btn-group" id="settings-btn-group-password">
+              <button id="settings-password-submit" class="grad-btn" onclick="settings.changePassword();">Save</button>
+              <button id="settings-password-cancel" class="cancel-btn"
+                onclick="settings.editPassword();">Cancel</button>
+            </div>
+
+            <div class="divider"></div>
+          </div>
+
+          <div id="settings-sub-container" class="settings-section-container">
+
+            <h2>Mailing List Subscription</h2>
+
+            <div class="settings-item-wrap" id="settings-sub-item-wrap">
+              <div id="settings-sub-checkbox">
+                <label for="c1" id="settings-sub-status"></label>
+                <div id="settings-edit-sub" class="settings-edit-pen">
+                  <input id="settings-subscription-input" class="settings-checkbox" type="checkbox"
+                    onchange="settings.changeSubscription('change');">
+                </div>
+              </div>
+            </div>
+
+            <div id="settings-sub-error" class="settings-error-message">Yes</div>
+
+            <div class="divider"></div>
+          </div>
+
+          <div id="settings-delete-container" class="settings-section-container">
+
+            <h2>Delete Account</h2>
+
+            <p id="settings-delete-disclaimer">All projects, makes and associated saved data will be permanently removed
+            </p>
+            <div id="settings-delete-checkbox-wrap">
+              <label id="settings-delete-message" for="c1">Yes, I want to delete my account</label>
+              <div class="settings-edit-pen">
+                <input id="settings-delete-checkbox" class="settings-checkbox" type="checkbox"
+                  onchange="settings.deleteAccountConfirmation();">
+              </div>
+            </div>
+
+            <div id="settings-delete-item-wrap" class="settings-item-wrap">
+              <div id="settings-delete-password-container" class="settings-edit-pen">
+                <input id="confirm-removal-password" type="password" placeholder="Enter password to proceed">
+              </div>
+            </div>
+
+            <div id="settings-delete-error" class="settings-error-message"></div>
+
+            <div class="settings-btn-group" id="settings-delete-btn-group">
+              <button id="settings-delete-submit" class="remove-btn" onclick="settings.deleteAccount();">Delete</button>
+              <button id="settings-delete-cancel" class="cancel-btn"
+                onclick="settings.deleteAccountCancel();">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modular-nav-container" id="mod-nav-container">
+      <div class="modular-nav" id="modular-nav">
+        <p class="modular-nav-header">My Base</p>
+        <a id="nav-item-profile" class="modular-nav-item-container" onclick="profile.setPage('');">
+          <div class="modular-nav-item">
+            <div class="nav-in icon-wrap" id="profile-nav-in"></div>
+            <div class="modular-nav-title">DASHBOARD</div>
+            <div id="notif-profile" class="modular-nav-notif-wrap"></div>
+          </div>
+        </a>
+        <a id="nav-item-projects" class="modular-nav-item-container" onclick="profile.setPage('projects');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap"><i class="fas fa-folder"></i></div>
+            <div class="modular-nav-title">MY PROJECTS</div>
+            <div id="notif-projects" class="modular-nav-notif-wrap"></div>
+          </div>
+        </a>
+        <a id="nav-item-orders" class="modular-nav-item-container" onclick="profile.setPage('orders');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap"><i class="fas fa-credit-card"></i></div>
+            <div class="modular-nav-title">MY ORDERS</div>
+            <div id="notif-orders" class="modular-nav-notif-wrap">
+              <!--<div class="mod-nav-notif">10</div>-->
+            </div>
+          </div>
+        </a>
+        <a id="nav-item-settings" class="modular-nav-item-container" onclick="profile.setPage('settings');">
+          <div class="modular-nav-item">
+            <div class="icon-wrap"><i class="fas fa-cog"></i></div>
+            <div class="modular-nav-title">SETTINGS</div>
+            <div id="notif-settings" class="modular-nav-notif-wrap"></div>
+          </div>
+        </a>
+        <a id="nav-item-signout" class="modular-nav-signout" href="/logout">SIGN OUT</a>
+      </div>
+    </div>
+  </div>
+  <!-- ==========================JS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <script async src="https://js.stripe.com/v3/"></script>
+  <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <script async src="/node_modules/particles.js/particles.js"></script>
+  <script async src="/node_modules/swiper/js/swiper.min.js"></script>
+  <script defer src="/node_modules/moment/min/moment.min.js"></script>
+  <script defer src="/public/javascripts/viewer/three.min.js"></script>
+  <script defer src="/public/javascripts/viewer/STLLoader.js"></script>
+  <!-- ------------------------CUSTOM------------------------ -->
+  <script async src="/public/javascripts/global/footer.min.js"></script>
+  <script async src="/public/javascripts/global/nav.min.js"></script>
+  <script async src="/public/javascripts/global/session.min.js"></script>
+  <script async src="/public/javascripts/global/notification.min.js"></script>
+  <script async src="/public/javascripts/global.min.js"></script>
+  <script defer src="/public/javascripts/profile/dashboard.min.js"></script>
+  <script defer src="/public/javascripts/profile/projects.min.js"></script>
+  <script defer src="/public/javascripts/profile/orders.min.js"></script>
+  <script defer src="/public/javascripts/profile/settings.min.js"></script>
+  <script defer src="/public/javascripts/profile.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="/public/images/logo-icon.png" />
+  <title>STEAM Kits • CreateBase</title>
+  <meta name="description"
+    content="CreateBase engineering kits are engaging educational tools designed to enhance learning experiences for all ages. &#169; 2020 CreateBase.">
+  <link rel="canonical" href="https://createbase.co.nz">
+  <!-- =========================CSS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <!-- ------------------------CUSTOM------------------------ -->
+  <link rel="stylesheet" href="/public/stylesheets/products/kits.min.css" />
+</head>
+
+<body onload="kits.initialise();">
+
+  <nav class="hide">
+
+    <div class="nav-darken-overlay" onclick="navigation.exitModal();"></div>
+
+    <div class="nav-top-bar">
+      <!-- <div class="nav-desktop-out">
+        <a href="/login" id="nav-user-login">LOG IN</a>
+        <a class="grad-btn" href="/signup" id="nav-user-signup">SIGN UP</a>
+      </div> -->
+      <a class="nav-home-btn" href="/">
+        <img alt="CreateBase" class="nav-logo mobile" src="/public/images/logo-icon-large.svg"/>
+        <img alt="CreateBase" class="nav-logo desktop" src="/public/images/logo-dark.svg"/>
+      </a>
+      <button class="hamburger hamburger-spin" onclick="navigation.toggleRightMenu();" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <div class="nav-top-desktop">
+        <a class="nav-top-item" href="/story" id="nav-top-story">Our story</a>
+        <a class="nav-top-item" href="/team" id="nav-top-team">The team</a>
+        <!-- <a class="nav-top-item" href="/services/3d-printing" id="nav-top-3d-printing">3D printing</a> -->
+        <a class="nav-top-item" href="/products/kits" id="nav-top-kits">Steam kits</a>
+        <a class="nav-top-item" href="/contact" id="nav-top-contact">Contact us</a>
+        <a class="nav-top-item" href="/survey" id="nav-top-survey">Touch Base</a>
+      </div>
+    </div>
+    <div class="nav-side-menu-wrapper">
+      <div class="nav-side-menu-container">
+        <div class="nav-side-menu-half left">
+          <p class="nav-side-header logged-out">WELCOME BACK</p>
+          <a class="nav-side-item logged-out" href="/login">LOG IN</a>
+          <p class="nav-side-header logged-out">FIRST TIME?</p>
+          <a class="nav-side-item logged-out" href="/signup">SIGN UP</a>
+          <p class="nav-side-header logged-in">Hello, Louis</p>
+          <a class="nav-side-item logged-in" href="/profile">DASHBOARD</a>
+          <a class="nav-side-item logged-in" href="/profile/projects">MY PROJECTS</a>
+          <a class="nav-side-item logged-in" href="/profile/orders">MY ORDERS</a>
+          <a class="nav-side-item logged-in" href="/profile/settings">SETTINGS</a>
+          <a class="nav-side-item logged-in" href="/logout" id="nav-signout">SIGN OUT</a>
+        </div>
+        <div class="nav-side-menu-half right">
+          <!-- <p class="nav-side-header">CREATEBASE</p>
+          <a class="nav-side-item" href="/make">MAKE</a>
+          <a class="nav-side-item" href="/products/kits">KITS</a>
+          <a class="nav-side-item" href="/services/marketplace">SHOP</a> -->
+          <p class="nav-side-header">INFO</p>
+          <!-- <a class="nav-side-item" href="/services/3d-printing">3D PRINTING</a> -->
+          <a class="nav-side-item" href="/products/kits">STEAM KITS</a>
+          <!-- <a class="nav-side-item" href="/services/marketplace">MARKETPLACE</a> -->
+          <!-- <a class="nav-side-item" href="/faq">FAQ</a> -->
+          <p class="nav-side-header">ABOUT</p>
+          <a class="nav-side-item" href="/story">OUR STORY</a>
+          <a class="nav-side-item" href="/team">THE TEAM</a>
+          <a class="nav-side-item" href="/contact">CONTACT US</a>
+          <a class="nav-side-item" href="/survey">Touch Base</a>
+          <div class="nav-socials">
+            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+            <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+            <a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hide" id="mobile-notif-wrap">
+  </div>
+
+  <div class="hide" id="notification-wrap">
+    <div id="cookie-container" class="hide">
+      <div class="cookie-message-container">
+        <p>We use cookies and similar technologies in order to offer you a personalised online experience and to analyse
+          our traffic.</p>
+      </div>
+      <div class="btn-group">
+        <button id="cancel" onclick="session.cancel();">DON'T ALLOW</button>
+        <button id="submit" class="grad-btn" onclick="session.allow();">ALLOW ALL</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-page-loading"></div>
+
+  <div class="main-page hide">
+    <h1>STEAM KITS</h1>
+    <div class="temp-wrap">
+      <span class="glitch" id="change-text" data-text="ENG KITS">ENG KITS</span>
+
+      <div class="subscribe-container">
+        <p class="subscribe-message">
+          Get the latest updates on release:
+        </p>
+        <div class="kit-fld input-decor" id="subscribe-field">
+          <input type="email" name="email" id="subscribe-email-input" maxlength="100" placeholder=" " required />
+          <label class="input-label" for="subscribe-email-input">Email</label>
+          <label class="input-error" for="subscribe-email-input" id="subscribe-email-error"></label>
+        </div>
+        <button class="market-btn reg-btn subscribe-btn" id="subscribe-main">SUBSCRIBE</button>
+        <div id="subscribe-confirm">Thanks for subscribing, we'll touch base soon.</div>
+        <button class="market-btn reg-btn subscribe-btn" id="subscribe-again" onclick="global.subscribeAgain();">ENTER ANOTHER EMAIL</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-section hide">
+    <div class="footer-content">
+      <div class="footer-legal-section">
+        <h4>INFO</h4>
+        <div class="footer-legal-content">
+          <ul class="list-section-left">
+            <li><a href="/shipping-info">Shipping Info</a></li>
+            <li><a href="/shipping-info">Returns / Exchanges</a></li>
+          </ul>
+          <ul class="list-section-desktop">
+            <li><a href="/services/3d-printing">3D Printing</a></li>
+            <li><a href="/services/marketplace">Marketplace</a></li>
+            <li><a href="/products/kits">STEAM Kits</a></li>
+          </ul>
+
+          <div class="list-section-divider"></div>
+
+          <ul class="list-section-right">
+            <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-contact-section">
+        <h4>CONTACT</h4>
+        <div class="footer-contact-content">
+          <div class="contact-email"><a href="mailto:admin@createbase.co.nz">admin@createbase.co.nz</a></div>
+
+          <div class="btn-subscribe">
+            <button class="reg-btn" id="footer-subscribe">SUBSCRIBE TO NEWSLETTER</button>
+            <div class="kit-fld input-decor hide" id="footer-subscribe-field">
+              <input id="footer-subscribe-email-input" maxlength="100" name="email" placeholder=" " required="" type="text"/>
+              <label class="input-label" for="footer-subscribe-email-input">Email</label>
+              <label class="input-error" for="footer-subscribe-email-input" id="footer-subscribe-email-error"></label>
+              <i class="fas fa-level-down-alt" id="footer-subscribe-submit"></i>
+            </div>
+          </div>
+
+          <div class="contact-socials">
+            <a class="fab fa-facebook-square" href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978" target="_blank"></a>
+            <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+            <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+            <a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+          </div>
+          <div class="contact-legal">
+            <a href="/terms-and-conditions" id="tac">Terms &amp; Conditions</a>
+            <a href="/privacy-policy" id="privpol">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-sitemap-section">
+        <h4>EXPLORE</h4>
+        <div class="footer-sitemap-content">
+          <ul>
+            <li><a href="/make">3D Printing</a></li>
+            <li><a href="/services/marketplace">Marketplace</a></li>
+            <li><a href="/products/kits">STEAM Kits</a></li>
+            <li><a href="/story">Our Story</a></li>
+            <li><a href="/team">The Team</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-copyright-section">
+        <h3>&#169; 2020 CREATEBASE. ALL RIGHTS RESERVED</h3>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================JS========================== -->
+  <!-- -----------------------SOURCED------------------------ -->
+  <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+  <!-- ------------------------CUSTOM------------------------ -->
+  <script async src="/public/javascripts/global/footer.min.js"></script>
+  <script async src="/public/javascripts/global/nav.min.js"></script>
+  <script async src="/public/javascripts/global/notification.min.js"></script>
+  <script async src="/public/javascripts/global.min.js"></script>
+  <script defer src="/public/javascripts/kits.min.js"></script>
+</body>
+
+</html>

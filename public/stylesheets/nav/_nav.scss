@@ -1,0 +1,249 @@
+nav {
+  position: sticky;
+  top: 0;
+  height: 0px;
+  z-index: 1000;
+  width: 100vw;
+}
+
+.nav-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: $light-1;
+  z-index: 1001;
+  height: #{$top-bar-height};
+  padding: 0 10vw;
+  position: relative;
+  transition: background-color 0.1s ease-out, height 0.1s ease-out;
+
+  .hamburger {
+    cursor: pointer;
+
+    &:hover {
+      .hamburger-inner,
+      .hamburger-inner::before,
+      .hamburger-inner::after {
+        background: $hamburger-active-layer-color;
+      }
+    }
+  }
+
+  .nav-home-btn {  
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: visible;
+    height: 40px;
+
+    .nav-logo {
+      height: 100%;
+      object-fit: cover;
+      overflow: visible;
+      margin-top: -50%;
+      opacity: 0;
+      animation: nav-logo 0.6s ease-out forwards;
+    }
+  }
+}
+
+#nav-top-min {
+  height: 60px;
+}
+
+#nav-side-survey {
+  color: $logo-2;
+}
+
+.nav-logo.desktop {
+  display: none;
+}
+.nav-top-desktop {
+  display: none;
+}
+
+@keyframes nav-logo {
+  0% { margin-top: -50%; opacity: 0;}
+  100% { margin-top: 0; opacity: 1; }
+}
+
+.nav-side-menu-wrapper {
+  pointer-events: none;
+  width: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: $top-bar-height;
+  background: $light-1;
+  transition: width 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+
+  &.active {
+    width: 100%;
+    pointer-events: auto;
+    .nav-side-menu-container {
+      right: 0;
+    }
+  }
+}
+
+.nav-side-menu-container {
+  position: absolute;
+  top: 0;
+  right: -5vw;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  transition: right 0.4s cubic-bezier(0.21, 0.65, 0.44, 0.99);
+
+  .nav-side-header:first-of-type,
+  .nav-side-header.logged-in,
+  .nav-side-header.logged-out {
+    margin-top: 2vh;
+  }
+
+  &.in > .logged-out {
+    display: none;
+  }
+  &.out > .logged-in {
+    display: none;
+  }
+}
+
+.nav-side-menu-half {
+  height: 100%;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: $top-bar-height 10vw 0 10vw;
+  // V1
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   top: 20vh;
+  //   left: 50%;
+  //   height: 60vh;
+  //   width: 1px;
+  //   background: $light-2;
+  // }
+  &.left {
+    // V1
+    display: none;
+    align-items: flex-end;
+  }
+  &.right {
+    // V1
+    align-items: center;
+    // align-items: flex-start;
+  }
+}
+
+.nav-side-header {
+  font-family: $poppins;
+  font-weight: 600;
+  font-size: 2vw;
+  letter-spacing: 0.5vw;
+  color: $light-3;
+  margin: 10vh 0 2vh 0;
+}
+
+.nav-side-item {
+  margin: 2vh 0;
+  color: $dark-3;
+  font-family: $poppins;
+  font-size: 2vmax;
+  font-weight: 600;
+  letter-spacing: 0.2vw;
+  transition: color 0.1s ease-out;
+  &:hover {
+    color: $highlight;
+  }
+}
+
+.nav-socials {
+  margin: 15vh 0 2vh 0;
+  // V1
+  // width: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  .fab {
+    transition: color 0.1s ease-out;
+    color: $dark-1;
+    &:hover {
+      color: $highlight;
+    }
+  }
+}
+
+#nav-signout {
+  margin: 10vh 0 2vh 0;
+  color: red;
+}
+
+.nav-darken-overlay {
+  display: none;
+}
+
+@media only screen and (min-width: 850px) and (orientation: landscape) {
+
+.nav-logo.mobile {
+  display: none;
+}
+.nav-logo.desktop {
+  display: block;
+}
+.hamburger {
+  display: none;
+}
+.nav-top-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .nav-top-item {
+    font-family: $poppins;
+    font-size: calc(5px + 0.4vw);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    margin-left: 0.8vw;
+    color: $dark-3;
+    padding: 5px;
+    transition: color 0.1s ease-out;
+    &:hover {
+      color: $highlight;
+    }
+    &.active {
+      color: $highlight;
+    }
+  }
+  #nav-top-survey {
+    color: $logo-2;
+    position: relative;
+    &::after {
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      width: 0;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-bottom: 2px solid $light-1;
+      transition: width 0.5s ease-out, border-color 0.1s ease-out 0.4s;
+    }
+    &:hover::after,
+    &.active::after {
+      width: 100%;
+      border-bottom: 2px solid $logo-2;
+      transition: width 0.2s ease-out;
+    }
+  }
+}
+
+}
