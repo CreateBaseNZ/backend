@@ -16,6 +16,7 @@ const email = require("../configs/email.js");
 MODELS
 =========================================================================================*/
 
+const Account = require("../model/Account.js");
 const Mail = require("../model/Mail.js");
 
 /*=========================================================================================
@@ -26,7 +27,20 @@ ROUTES
 // @desc      
 // @access    Public
 router.post("/notification/subscribe-email", async (req, res) => {
-  const object = { email: req.body.email };
+  const email = req.body.email;
+  // Check if the email is an existing account
+  let account;
+  try {
+    account = await Account.findOne({ email });
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
+  let object;
+  if (account) {
+    object = { email, owner: account._id };
+  } else {
+    object = { email };
+  }
   // CREATE MAIL
   let mail;
   try {
