@@ -48,20 +48,20 @@ router.get("/products/kits", (req, res) => res.sendFile("kits.html", viewsOption
 // @access    Public
 router.get("/services/3d-printing", (req, res) => res.sendFile("printing.html", viewsOption));
 
-// @route     GET /terms-and-conditions
+// @route     GET /terms
 // @desc
 // @access    PUBLIC
-router.get("/terms-and-conditions", (req, res) => res.sendFile("terms-and-conditions.html", viewsOption));
+router.get("/terms", (req, res) => res.sendFile("terms.html", viewsOption));
 
-// @route     GET /contact-us
+// @route     GET /contact
 // @desc      
 // @access    PUBLIC
-router.get("/contact", (req, res) => res.sendFile("contact-us.html", viewsOption));
+router.get("/contact", (req, res) => res.sendFile("contact.html", viewsOption));
 
-// @route     GET /privacy-policy
+// @route     GET /privacy
 // @desc
 // @access    PUBLIC
-router.get("/privacy-policy", (req, res) => res.sendFile("privacy-policy.html", viewsOption));
+router.get("/privacy", (req, res) => res.sendFile("privacy.html", viewsOption));
 
 // @route     GET /survey
 // @desc
@@ -71,27 +71,14 @@ router.get("/survey", (req, res) => res.sendFile("survey.html", viewsOption));
 // @route     GET /unsubscribe/:email
 // @desc
 // @access    PUBLIC
-router.get("/unsubscribe/:email", async (req, res) => {
+router.get("/mailing-list/unsubscribe/:email", async (req, res) => {
   const email = req.params.email;
-  // VALIDATE EMAIL
-  let valid = true;
-  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (email === "") {
-    valid = false;
-  } else if (!emailRE.test(String(email).toLowerCase())) {
-    valid = false;
+  try {
+    await Mail.demolish({ email });
+  } catch (data) {
+    return res.status(404).sendFile("error-404.html", viewsOption);
   }
-  // VALIDATE EMAIL
-  if (valid) {
-    try {
-      await Mail.demolish({ email });
-    } catch (data) {
-      return res.status(404).sendFile("error404.html", viewsOption);
-    }
-    return res.sendFile("unsubscribe.html", viewsOption);
-  } else {
-    return res.status(404).sendFile("error404.html", viewsOption);
-  }
+  return res.sendFile("unsubscribe.html", viewsOption);
 });
 
 // @route     GET /robots.txt

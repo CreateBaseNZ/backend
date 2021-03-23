@@ -1,103 +1,82 @@
-/* ========================================================================================
-VARIABLES
-======================================================================================== */
-
 let global = {
-  initialise: undefined,
-  passwordValidity: undefined,
-  priceFormatter: undefined,
+  init: {
+    init: undefined,
+  },
+
   compressImage: undefined,
   readImage: undefined,
-  nextWorkingDay: undefined,
-  calculateWorkingDay: undefined,
-  subscribeToMailingList: undefined,
-  temporarySubscribeToMailingList: undefined,
-  topBarHeight: 80
+  
+  subscribe: undefined,
+  textGlitch: undefined,
+  validateEmail: undefined
 }
 
-/* ========================================================================================
-FUNCTIONS
-======================================================================================== */
+// ==================================================================
+// FUNCTIONS
+// ==================================================================
 
-// @func  global.initialise
-// @desc  
-//global.initialise = (userMenu = true, footerPresent = true, login = undefined) => {
-global.initialise = (footerPresent = true) => {
+global.init.init = () => {
+  nav.init.init()
+  if (document.querySelector('footer')) footer.init.init()
+  console.log(sessionStorage.getItem('popup'))
+  if (!sessionStorage.getItem('popup')) {
+    popup.init()
+  } else if (document.querySelector('.popup')) {
+    document.querySelector('.popup').style.display = 'none'
+  }
+}
+
+global.subscribe = (email) => {
   return new Promise(async (resolve, reject) => {
-    /*if (login === undefined) {
-      // FETCH LOGIN STATUS
-      let data;
-      try {
-        data = (await axios.get("/login-status"))["data"];
-      } catch (error) {
-        reject(error);
-      }
-      login = data.status;
-    }*/
-    // NAVIGATION
+    // SUBMIT
+    let data;
     try {
-      //await navigation.initialise(login, userMenu);
-      await navigation.initialise();
+      data = (await axios.post("/notification/subscribe-email", { email }))["data"];
     } catch (error) {
-      reject(error);
+      data = { status: "error", content: error };
     }
-    // FOOTER
-    //if (footerPresent) footer.initialise(login);
-    if (footerPresent) footer.initialise();
-    // SUCCESS
-    resolve();
+    if (data.status === "succeeded") {
+      return resolve(data.content);
+    } else {
+      return reject(data.status)
+    }
   });
 }
 
-// @func  global.passwordValidity
-// @desc  
-global.passwordValidity = (password) => {
-  var score = 0;
-  // Award every unique letter until 5 repetitions
-  var letters = new Object();
-  for (var i = 0; i < password.length; i++) {
-    letters[password[i]] = (letters[password[i]] || 0) + 1;
-    score += 5.0 / letters[password[i]];
-  }
-  // Bonus points for mixing it up
-  var variations = {
-    digits: /\d/.test(password),
-    lower: /[a-z]/.test(password),
-    upper: /[A-Z]/.test(password),
-    nonWords: /\W/.test(password),
-  }
+global.textGlitch = (i, words, el) => {
+  // Cycle through words
+  el.innerHTML = words[i]
+  el.setAttribute('data-text', words[i])
+  setTimeout(function () {
+    el.classList.remove("glitch")
+    setTimeout(function () {
+      el.classList.add("glitch")
+      setTimeout(function () {
+        i += 1
+        if (i >= words.length) {
+          i = 0
+        }
+        textSequence(i, words, id);
+      }, (100 + Math.random() * 100))
+    }, (500 + Math.random() * 1500))
+  }, (50 + Math.random() * 50))
+}
 
-  variationCount = 0;
-  for (var check in variations) {
-    variationCount += (variations[check] == true) ? 1 : 0;
-  }
-  score += (variationCount - 1) * 10;
+global.validateEmail = (input) => {
+  const emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-  if (score > 40) {
-    return true
+  if (input === "") {
+    return 'empty'
+  } else if (!emailRE.test(String(input).toLowerCase())) {
+    return 'invalid'
   } else {
-    return false
+    return 'valid'
   }
 }
 
-// @func  global.priceFormatter
-// @desc  
-global.priceFormatter = value => {
-  const roundedValue = (Math.round(Number(value) * 100)) / 100;
-  const stringValue = String(roundedValue);
-  // Evaluate the number of decimal places
-  const pointIndex = stringValue.indexOf(".");
-  const stringLength = stringValue.length;
-  let formattedValue;
-  if (pointIndex === -1) {
-    formattedValue = stringValue + ".00";
-  } else if ((stringLength - pointIndex) === 2) {
-    formattedValue = stringValue + "0";
-  } else if ((stringLength - pointIndex) === 3) {
-    formattedValue = stringValue;
-  }
-  return formattedValue;
-}
+// ==================================================================
+// VERSION 1
+// ==================================================================
 
 // @func  global.compressImage
 // @desc  
@@ -179,91 +158,6 @@ global.readImage = async (file, compressSize) => {
   return canvas;
 }
 
-// @func  global.nextWorkingDay
-// @desc  
-global.nextWorkingDay = (startDateString = "") => {
-  const startDay = Number(moment(startDateString).format("E"));
-  let nextWorkingDay;
-  if (startDay > 4) {
-    nextWorkingDay = 8;
-  } else {
-    nextWorkingDay = startDay + 1;
-  }
-  const nextWorkingDateString = moment().weekday(nextWorkingDay);
-  return nextWorkingDateString;
-}
-
-// @func  global.calculateWorkingDay
-// @desc  
-global.calculateWorkingDay = (startDateString = "", additionalWorkingDay = 0) => {
-  const startDay = Number(moment(startDateString).format("E"));
-  let nextWorkingDay = startDay + additionalWorkingDay;
-  if (startDay > 5) nextWorkingDay += 2;
-  const nextWorkingDateString = moment().weekday(nextWorkingDay);
-  return nextWorkingDateString;
-}
-
-// @func  global.subscribeToMailingList
-// @desc  
-global.subscribeToMailingList = (email) => {
-  return new Promise(async (resolve, reject) => {
-    // SUBMIT
-    let data;
-    try {
-      data = (await axios.post("/notification/subscribe-email", { email }))["data"];
-    } catch (error) {
-      data = { status: "error", content: error };
-    }
-    if (data.status === "error") {
-      notification.popup("An error ocurred", "error");
-      return reject();
-    } else if (data.status === "failed") {
-      notification.popup(data.content, "failed");
-      return reject();
-    } else if (data.status === "succeeded") {
-      notification.popup(data.content, "succeeded");
-      return resolve();
-    }
-  });
-}
-
-// @func  global.temporarySubscribeToMailingList
-// @desc  
-global.temporarySubscribeToMailingList = async () => {
-  document.getElementById("subscribe-email-error").innerHTML = "";
-  // DISABLE
-  document.getElementById("subscribe-main").setAttribute("disabled", "");
-  // COLLECT
-  const email = document.getElementById("subscribe-email-input").value;
-  // VALIDATE
-  let emailRE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  if (email === "") {
-    document.getElementById("subscribe-email-error").innerHTML = "An email is required";
-    return document.getElementById("subscribe-main").removeAttribute("disabled"); // ENABLE
-  } else if (!emailRE.test(String(email).toLowerCase())) {
-    document.getElementById("subscribe-email-error").innerHTML = "Invalid email";
-    return document.getElementById("subscribe-main").removeAttribute("disabled"); // ENABLE
-  }
-  // SUBMIT
-  try {
-    await global.subscribeToMailingList(email);
-  } catch (error) {
-    return document.getElementById("subscribe-main").removeAttribute("disabled"); // ENABLE
-  }
-  document.querySelector('.subscribe-container').classList.add('completed')
-  document.getElementById('subscribe-email-input').value = ''
-  return document.getElementById("subscribe-main").removeAttribute("disabled"); // ENABLE
-}
-
-global.subscribeAgain = () => {
-  document.querySelector('.subscribe-container').classList.remove('completed')
-}
-
-/* ----------------------------------------------------------------------------------------
-ASYNCHRONOUS IMAGE LOADER
----------------------------------------------------------------------------------------- */
-
 const imageLoader = (objects) => {
   return new Promise(async (resolve, reject) => {
     // INITIALISE AND DECLARE VARIABLES
@@ -300,189 +194,9 @@ const imageLoader = (objects) => {
   })
 }
 
-const checkLoginStatus = () => {
-  return new Promise(async (resolve, reject) => {
-    let data;
-    try {
-      data = (await axios.get("/login-status"))["data"];
-    } catch (error) {
-      return reject(error);
-    }
-    return resolve(data.status);
-  })
-}
-
-/*=========================================================================================
-Global notifs
-=========================================================================================*/
-
-function subscribeNotif() {
-  // Create div to insert
-  let newDiv = document.createElement('div')
-  newDiv.className = 'subbed-notif'
-  let messageWrap = document.createElement('div')
-  newDiv.appendChild(messageWrap).className = 'msg-wrap'
-  messageWrap.appendChild(document.createElement('i')).className = 'fab fa-telegram-plane'
-  messageWrap.appendChild(document.createElement('p')).innerHTML = 'Success!'
-  // Find location to insert div
-  let notifDiv = document.getElementById('notification-wrap');
-  let mobileDiv = document.getElementById('mobile-notif-wrap');
-  // Add slide in animation
-  newDiv.classList.add("slide-in");
-  // Insert div
-  var mq = window.matchMedia("(min-width: 53em)");
-  if (mq.matches) {
-    notifDiv.appendChild(newDiv)
-  }
-  else {
-    mobileDiv.appendChild(newDiv)
-  }
-
-  // Fade out
-  setTimeout(() => {
-    newDiv.style.transition = 'all 2s'
-    newDiv.style.opacity = 0
-    // Hide
-    setTimeout(() => {
-      newDiv.style.display = 'none'
-    }, 1000)
-  }, 3000)
-}
-
-function projectNotif(callback, status) {
-  //Create div to insert
-  let newDiv = document.createElement('div')
-  newDiv.className = 'project-notif'
-  let messageWrap = document.createElement('div')
-  newDiv.appendChild(messageWrap).className = 'msg-wrap'
-  if (callback === 'succeeded') {
-    if (status === 'new') {
-      messageWrap.appendChild(document.createElement('i')).className = 'far fa-check-circle'
-      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your new project has been added.'
-    } else if (status === 'edit') {
-      messageWrap.appendChild(document.createElement('i')).className = 'far fa-edit'
-      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your changes have been saved.'
-    } else {
-      messageWrap.appendChild(document.createElement('i')).className = 'far fa-trash-alt'
-      messageWrap.appendChild(document.createElement('p')).innerHTML = 'Your project has been deleted.'
-    }
-  } else {
-    messageWrap.appendChild(document.createElement('i')).className = 'far fa-times-circle'
-    messageWrap.appendChild(document.createElement('p')).innerHTML = 'Oops! Something went wrong, please try again later.'
-    newDiv.style.color = 'red'
-  }
-
-  //Find location to insert div
-  let notifDiv = document.getElementById('notification-wrap')
-
-  //Add slide in animation
-  newDiv.classList.add("slide-in");
-
-  //Insert div
-  notifDiv.appendChild(newDiv)
-
-  setTimeout(() => {
-    // Fade out
-    setTimeout(() => {
-      newDiv.style.transition = 'all 2s'
-      newDiv.style.opacity = 0
-      // Hide
-      setTimeout(() => {
-        newDiv.style.display = 'none'
-      }, 1000)
-    }, 3000)
-  }, 1000)
-}
-
-function alreadysubscribedNotif() {
-  //Create div to insert
-  let newDiv = document.createElement('div')
-  newDiv.className = 'alreadysubbed-notif'
-  let messageWrap = document.createElement('div')
-  newDiv.appendChild(messageWrap).className = 'msg-wrap'
-  messageWrap.appendChild(document.createElement('i')).className = 'far fa-times-circle'
-  messageWrap.appendChild(document.createElement('p')).innerHTML = 'This email is already subscribed'
-
-  //Find location to insert div
-  let notifDiv = document.getElementById('notification-wrap')
-  let mobileDiv = document.getElementById('mobile-notif-wrap')
-
-  //Add slide in animation
-  newDiv.classList.add("slide-in");
-
-  //Insert div
-  var mq = window.matchMedia("(min-width: 53em)");
-  if (mq.matches) {
-    notifDiv.appendChild(newDiv)
-  }
-  else {
-    mobileDiv.insertAdjacentElement('afterbegin', newDiv)
-  }
-
-  // Fade out
-  setTimeout(() => {
-    newDiv.style.transition = 'all 2s';
-    newDiv.style.opacity = 0;
-    // Hide
-    setTimeout(() => {
-      newDiv.style.display = 'none';
-    }, 1000);
-  }, 3000);
-}
-
-const textSequence = (i, words, id) => {
-  // Cycle through words
-  document.getElementById(id).innerHTML = words[i]
-  document.getElementById(id).setAttribute('data-text', words[i])
-  setTimeout(function () {
-    document.getElementById(id).classList.remove("glitch")
-    setTimeout(function () {
-      document.getElementById(id).classList.add("glitch")
-      setTimeout(function () {
-        i += 1
-        if (i >= words.length) {
-          i = 0
-        }
-        textSequence(i, words, id);
-      }, (100 + Math.random() * 100))
-    }, (500 + Math.random() * 1500))
-  }, (50 + Math.random() * 50))
-}
-
-const removeLoader = (footer = true) => {
-  document.querySelector(".full-page-loading").classList.add("hide");
-  document.querySelector("nav").classList.remove("hide");
-  document.querySelector("#mobile-notif-wrap").classList.remove("hide");
-  document.querySelector("#notification-wrap").classList.remove("hide");
-  document.querySelector(".main-page").classList.remove("hide");
-  if (footer) document.querySelector(".footer-section").classList.remove("hide");
-  return;
-}
-
-const showLoader = (footer = true) => {
-  document.querySelector(".full-page-loading").classList.remove("hide");
-  document.querySelector("nav").classList.add("hide");
-  document.querySelector("#mobile-notif-wrap").classList.add("hide");
-  document.querySelector("#notification-wrap").classList.add("hide");
-  document.querySelector(".main-page").classList.add("hide");
-  if (footer) document.querySelector(".footer-section").classList.add("hide");
-  return;
-}
-
-const priceNormaliser = price => Math.round(price * 100) / 100;
-
-function passTab(el) {
-  var tab = el.getAttribute("data-tab");
-  localStorage.setItem("tab", tab);
-}
-
 const updateSessionPage = () => {
   const url = window.location.href.toString();
   const urlArray = url.split("/"); // split url
   const page = "/" + urlArray.slice(3).join("/");
   window.sessionStorage.page = page;
 }
-
-/*=========================================================================================
-END
-=========================================================================================*/

@@ -10,7 +10,7 @@ VARIABLES
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
-const email = require("../config/email.js");
+const email = require("../configs/email.js");
 
 /*=========================================================================================
 MODELS
@@ -30,7 +30,7 @@ router.post("/notification/subscribe-email", async (req, res) => {
   // CREATE MAIL
   let mail;
   try {
-    mail = await Mail.build(object);
+    mail = await Mail.subscribe(object);
   } catch (data) {
     return res.send(data);
   }

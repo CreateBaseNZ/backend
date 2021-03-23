@@ -1,217 +1,204 @@
-/* ========================================================================================
-VARIABLES
-======================================================================================== */
-
 let home = {
-  // VARIABLES
-  words: ['COMING SOON', 'MARKETPLACE', 'COMING SOON', 'ENG KITS'],
-  mediaQuery: undefined,
-  landscape: undefined,
-  // Elements
-  landingCarousel: undefined,
-  landing1: undefined,
-  landing2: undefined,
-  landing3: undefined,
-  landingBtn1: undefined,
-  landingBtn2: undefined,
-  landingBtn3: undefined,
-  // FUNCTIONS
-  initialise: undefined,
-  declareVariables: undefined,
-  addListener: undefined,
-  slideOne: undefined,
-  slideTwo: undefined,
-  slideThree: undefined,
-  addImages: undefined,
-  subscription: undefined,
-  subscribe: undefined
+  init: {
+    attachListeners: undefined,
+    init: undefined,
+    swiper: undefined,
+  },
+
+  elem: {
+    subscribeBtn: document.querySelector('.home-subscribe-btn'),
+    subscribeError: document.querySelector('.home-subscribe-error'),
+    subscribeInput: document.querySelector('#home-subscribe'),
+    subscribeInputContainer: document.querySelector('.home-subscribe-container'),
+  },
+
+  event: {
+    afterSwipe: undefined,
+    onSwipe: undefined,
+    sectionTransitions: undefined,
+    subscribeEnter: undefined,
+    subscribeInput: undefined,
+  },
+
+  sections: Array.prototype.slice.call(document.querySelectorAll('.how-subsection')),
+  sectionPos: [],
+  slides: Array.prototype.slice.call(document.querySelectorAll('.swiper-slide')),
+  subscribeSubmit: undefined,
+  swiper: undefined,
 }
 
-/* ========================================================================================
-FUNCTIONS
-======================================================================================== */
+// ==================================================================
+// FUNCTIONS
+// ==================================================================
 
 // @func  home.initialise
 // @desc  
-home.initialise = async () => {
-  console.log("THIS IS A TEST TO SEE IF THE PIPELINE BETWEEN GITHUB AND AWS IS ESTABLISHED");
-  //updateSessionPage();
-  history.scrollRestoration = "manual";
-  // DECLARE VARIABLES
-  home.declareVariables();
-  /*// GET LOGIN STATUS 
-  let data;
-  try {
-    data = (await axios.get("/login-status"))["data"];
-  } catch (error) {
-    return console.log(error);
-  }
-  const login = data.status;*/
-  // LOAD NAVIGATION AND ADD IMAGES
-  //promises = [global.initialise(true, true, login), home.addImages()];
-  promises = [global.initialise(), home.addImages()];
-  try {
-    await Promise.all(promises);
-  } catch (error) {
-    return console.log(error);
-  }
-  // REMOVE STARTUP LOADER
-  removeLoader();
-  // LOAD SESSION
-  //session.initialise();
+home.init.init = () => {
+
+  home.init.swiper()
+  home.init.attachListeners()
+  
+  home.sections.forEach((section) => {
+    home.sectionPos.push(section.offsetTop)
+  })
+
+  // promises = [global.initialise(), home.addImages()];
+  // try {
+  //   await Promise.all(promises);
+  // } catch (error) {
+  //   return console.log(error);
+  // }
+
   // PAGE CONFIGURATIONS
-  textSequence(0, home.words, "change-text");
-  home.addListener();
-  //home.subscription(login);
-  home.subscription();
+  // textSequence(0, home.words, "change-text");
 }
 
-// @func  home.declareVariables
-// @desc  
-home.declareVariables = () => {
-  home.mediaQuery = window.matchMedia("(min-width: 850px)");
-  home.landscape = window.innerWidth > window.innerHeight;
-  home.landingCarousel = document.querySelector('.landing-carousel');
-  home.landing1 = document.getElementById('landing-1');
-  home.landing2 = document.getElementById('landing-2');
-  home.landing3 = document.getElementById('landing-3');
-  home.landingBtn1 = document.getElementById('landing-btn-1');
-  home.landingBtn2 = document.getElementById('landing-btn-2');
-  home.landingBtn3 = document.getElementById('landing-btn-3');
+home.init.attachListeners = () => {
+  home.elem.subscribeBtn.addEventListener('click', home.subscribeSubmit)
+  home.elem.subscribeInput.addEventListener('input', home.event.subscribeInput)
+  home.elem.subscribeInput.addEventListener('keypress', home.event.subscribeEnter)
+  window.addEventListener('scroll', home.event.sectionTransitions)
 }
 
-// @func  home.addListener
-// @desc  
-home.addListener = () => {
-  if (home.mediaQuery.matches && home.landscape) {
-    home.landingBtn1.addEventListener("click", home.slideOne);
-    home.landingBtn2.addEventListener("click", home.slideTwo);
-    home.landingBtn3.addEventListener("click", home.slideThree);
-    home.landing1.addEventListener("click", home.slideOne);
-    home.landing2.addEventListener("click", home.slideTwo);
-    home.landing3.addEventListener("click", home.slideThree);
-    document.getElementById('subscribe-email-input').addEventListener('keypress', ({ key }) => {
-      if (key === "Enter") {
-        global.temporarySubscribeToMailingList(false)
+home.init.swiper = () => {
+  home.swiper = new Swiper('.swiper-container', {
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    on: {
+      slideChangeTransitionStart: home.event.onSwipe,
+      slideChangeTransitionEnd: home.event.afterSwipe,
+    },
+    autoplay: {
+      delay: 10000,
+      disableOnInteraction: false,
+    },
+    speed: window.innerWidth,
+  });
+  setTimeout(() => {
+    home.slides[0].classList.add('active')
+  }, 500)
+}
+
+home.event.afterSwipe = () => {
+  home.slides[home.swiper.previousIndex].classList.remove('active')
+}
+
+home.event.onSwipe = () => {
+  home.slides[home.swiper.realIndex].classList.add('active')
+}
+
+home.event.sectionTransitions = () => {
+  for (var i = 0; i < home.sectionPos.length; i++) {
+    if (window.scrollY + 50 < home.sectionPos[i]) {
+      home.sections[i].classList.add('transition-in')
+      return
+    }
+  }
+}
+
+home.event.subscribeEnter = (e) => {
+  if (e.key === 'Enter') {
+    home.subscribeSubmit()
+  }
+}
+
+home.event.subscribeInput = function() {
+  home.elem.subscribeError.innerHTML = ''
+  if (this.value) {
+    home.elem.subscribeBtn.classList.add('active')
+  } else {
+    home.elem.subscribeBtn.classList.remove('active')
+  }
+}
+
+home.subscribeSubmit = async () => {
+  // Disable
+  home.elem.subscribeBtn.classList.remove('active')
+  home.elem.subscribeInputContainer.style.animationName = ''
+  void home.elem.subscribeInputContainer.offsetWidth
+
+  // VALIDATE
+  const result = global.validateEmail(home.elem.subscribeInput.value)
+  if (result === 'empty') {
+    home.elem.subscribeError.innerHTML = "An email is required"
+    home.elem.subscribeInputContainer.style.animationName = 'home-shake'
+    return
+  } else if (result === 'invalid') {
+    home.elem.subscribeError.innerHTML = "Please enter a valid email"
+    home.elem.subscribeBtn.classList.add('active')
+    home.elem.subscribeInputContainer.style.animationName = 'home-shake'
+    return
+  }
+
+  // SUBMIT
+  try {
+    await global.subscribe(home.elem.subscribeInput.value).then((data) => {
+      // Resolved
+      if (data === "already") {
+        // Already subscribed
+        notification.generate('subscribe', 'already')
+        home.elem.subscribeBtn.classList.add('active')
+      } else {
+        // Success
+        notification.generate('subscribe', 'success')
+        home.elem.subscribeInput.value = ""
+        home.elem.subscribeError.innerHTML = ""
+      }
+    },
+    (data) => {
+      // Rejected
+      if (data === "error") {
+        notification.generate('subscribe', 'error')
+      } else if (data === "failed") {
+        notification.generate('subscribe', 'error')
       }
     })
+  } catch (error) {
+    home.elem.subscribeError.innerHTML = "An error occurred, please try again"
+    home.elem.subscribeBtn.classList.add('active')
+    notification.generate('subscribe', 'error')
+    return
   }
 }
 
-// @func  home.slideOne
-// @desc  
-home.slideOne = () => {
-  if (home.landingBtn2.classList.contains('landing-slide-nav-btn-focus')) {
-    home.landing1.classList.remove('landing-slide-left');
-    home.landing2.classList.remove('landing-slide-middle');
-    home.landing3.classList.remove('landing-slide-right');
-    home.landing1.classList.add('landing-slide-middle');
-    home.landing2.classList.add('landing-slide-right');
-    home.landingCarousel.style.marginLeft = "150vmax";
-    home.landingBtn2.classList.remove('landing-slide-nav-btn-focus');
-    home.landingBtn1.classList.add('landing-slide-nav-btn-focus');
-  } else if (home.landingBtn3.classList.contains('landing-slide-nav-btn-focus')) {
-    home.landing2.classList.remove('landing-slide-left');
-    home.landing3.classList.remove('landing-slide-middle');
-    home.landing1.classList.add('landing-slide-middle');
-    home.landing2.classList.add('landing-slide-right');
-    home.landingCarousel.style.marginLeft = "150vmax";
-    home.landingBtn3.classList.remove('landing-slide-nav-btn-focus');
-    home.landingBtn1.classList.add('landing-slide-nav-btn-focus');
-  }
-}
+// home.addImages = () => {
+//   return new Promise(async (resolve, reject) => {
+//     // IMAGES
+//     const image1 = {
+//       src: "/public/images/home/landing-3-1.jpg", id: "",
+//       alt: "Landing 1", classes: [], parentId: "landing-1"
+//     }
+//     const image2 = {
+//       src: "/public/images/home/landing-1-1.jpg", id: "",
+//       alt: "Landing 2", classes: [], parentId: "landing-2"
+//     }
+//     const image3 = {
+//       src: "/public/images/home/landing-2-1.jpg", id: "",
+//       alt: "Landing 3", classes: [], parentId: "landing-3"
+//     }
+//     // LOAD IMAGES
+//     const objects = [image1, image2, image3];
+//     try {
+//       await imageLoader(objects);
+//     } catch (error) {
+//       reject(error)
+//     }
+//     // SUCCESS RESPONSE
+//     // Add classes for animation
+//     document.querySelector("#landing-1").classList.add("landing-1");
+//     document.querySelector("#landing-2").classList.add("landing-2");
+//     document.querySelector("#landing-3").classList.add("landing-3");
+//     resolve();
+//   });
+// }
 
-// @func  home.slideTwo
-// @desc  
-home.slideTwo = () => {
-  if (home.landingBtn1.classList.contains('landing-slide-nav-btn-focus')) {
-    home.landing1.classList.remove('landing-slide-middle');
-    home.landing2.classList.remove('landing-slide-right');
-    home.landing1.classList.add('landing-slide-left');
-    home.landing2.classList.add('landing-slide-middle');
-    home.landing3.classList.add('landing-slide-right');
-    home.landingCarousel.style.marginLeft = "0vmax";
-    home.landingBtn1.classList.remove('landing-slide-nav-btn-focus');
-    home.landingBtn2.classList.add('landing-slide-nav-btn-focus');
-  } else if (home.landingBtn3.classList.contains('landing-slide-nav-btn-focus')) {
-    home.landing3.classList.remove('landing-slide-middle');
-    home.landing2.classList.remove('landing-slide-left');
-    home.landing1.classList.add('landing-slide-left');
-    home.landing2.classList.add('landing-slide-middle');
-    home.landing3.classList.add('landing-slide-right');
-    home.landingCarousel.style.marginLeft = "0vmax";
-    home.landingBtn3.classList.remove('landing-slide-nav-btn-focus');
-    home.landingBtn2.classList.add('landing-slide-nav-btn-focus');
-  }
-}
-
-// @func  home.slideThree
-// @desc  
-home.slideThree = () => {
-  if (home.landingBtn1.classList.contains('landing-slide-nav-btn-focus')) {
-    home.landing1.classList.remove('landing-slide-middle');
-    home.landing2.classList.remove('landing-slide-right');
-    home.landing2.classList.add('landing-slide-left');
-    home.landing3.classList.add('landing-slide-middle');
-    home.landingCarousel.style.marginLeft = "-150vmax";
-    home.landingBtn1.classList.remove('landing-slide-nav-btn-focus');
-    home.landingBtn3.classList.add('landing-slide-nav-btn-focus');
-  } else if (home.landingBtn2.classList.contains('landing-slide-nav-btn-focus')) {
-    home.landing1.classList.remove('landing-slide-left');
-    home.landing2.classList.remove('landing-slide-middle');
-    home.landing3.classList.remove('landing-slide-right');
-    home.landing2.classList.add('landing-slide-left');
-    home.landing3.classList.add('landing-slide-middle');
-    home.landingCarousel.style.marginLeft = "-150vmax";
-    home.landingBtn2.classList.remove('landing-slide-nav-btn-focus');
-    home.landingBtn3.classList.add('landing-slide-nav-btn-focus');
-  }
-}
-
-// @func  home.addImages
-// @desc  
-home.addImages = () => {
-  return new Promise(async (resolve, reject) => {
-    // IMAGES
-    const image1 = {
-      src: "/public/images/home/landing-3-1.jpg", id: "",
-      alt: "Landing 1", classes: [], parentId: "landing-1"
-    }
-    const image2 = {
-      src: "/public/images/home/landing-1-1.jpg", id: "",
-      alt: "Landing 2", classes: [], parentId: "landing-2"
-    }
-    const image3 = {
-      src: "/public/images/home/landing-2-1.jpg", id: "",
-      alt: "Landing 3", classes: [], parentId: "landing-3"
-    }
-    // LOAD IMAGES
-    const objects = [image1, image2, image3];
-    try {
-      await imageLoader(objects);
-    } catch (error) {
-      reject(error)
-    }
-    // SUCCESS RESPONSE
-    // Add classes for animation
-    document.querySelector("#landing-1").classList.add("landing-1");
-    document.querySelector("#landing-2").classList.add("landing-2");
-    document.querySelector("#landing-3").classList.add("landing-3");
-    resolve();
-  });
-}
-
-// @func  home.subscription
-// @desc  
-home.subscription = (login = false) => {
-  // INPUT FIELD DISPLAY
-  if (login) {
-    document.querySelector("#subscribe-field").classList.add("hide");
-  }
-  // BUTTON ATTRIBUTE
-  document.querySelector("#subscribe-main").setAttribute("onclick", `global.temporarySubscribeToMailingList();`);
-}
-
-/* ========================================================================================
-END
-======================================================================================== */
+// home.subscription = (login = false) => {
+//   // INPUT FIELD DISPLAY
+//   if (login) {
+//     document.querySelector("#subscribe-field").classList.add("hide");
+//   }
+//   // BUTTON ATTRIBUTE
+//   document.querySelector("#subscribe-main").setAttribute("onclick", `global.temporarySubscribeToMailingList();`);
+// }
