@@ -195,6 +195,8 @@ footer {
 .footer-subscribe {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
   #footer-input {
     font-size: inherit;
