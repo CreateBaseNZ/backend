@@ -16,12 +16,13 @@
   text-align: center;
   h1{
     font-size: 2em;
-    padding-bottom: 0.5em;
+    padding-bottom: 0.75em;
   }
   .resubscribe-container{
     padding-bottom: 2em;
     a{
-      color: $purple-logo;
+      color: $logo-mid;
+      font-weight: 500;
       transition: color ease 0.3s;
       &:hover{
         color: $magenta-dark;
