@@ -70,10 +70,10 @@ home.init.swiper = () => {
       slideChangeTransitionStart: home.event.onSwipe,
       slideChangeTransitionEnd: home.event.afterSwipe,
     },
-    // autoplay: {
-    //   delay: 5000,
-    //   disableOnInteraction: false,
-    // },
+    autoplay: {
+      delay: 10000,
+      disableOnInteraction: false,
+    },
     speed: window.innerWidth,
   });
   setTimeout(() => {

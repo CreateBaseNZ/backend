@@ -170,21 +170,21 @@
     object-fit: cover;
   }
   .cb {
-    transform: translate(-50%, 2rem);
+    transform: translate(-50%, 4rem);
     transition: transform 0.2s ease-out;
   }
   .ks {
-    transform: translate(-50%, 1rem);
+    transform: translate(-50%, 2rem);
     transition: transform 0.2s ease-out;
   }
   &.active {
     .cb {
       transform: translate(-50%, 0);
-      transition: transform 1.8s ease-out;
+      transition: transform 2.4s ease-out 0.4s;
     }
     .ks {
       transform: translate(-50%, 0);
-      transition: transform 1.4s ease-out;
+      transition: transform 1.8s ease-out 0.4s;
     }
   }
 }
@@ -828,7 +828,7 @@
   top: 0;
   bottom: 0;
   z-index: -1;
-  transform: translate(-165%, 20%) rotate(-30deg);
+  transform: translate(-110%, 20%) rotate(-30deg);
   animation: bg-shape-left 60s linear infinite;
 }
 
@@ -838,7 +838,7 @@
   top: 0;
   right: 0;
   z-index: -1;
-  transform: translate(110%, -20%) rotate(-60deg);
+  transform: translate(100%, -20%) rotate(-60deg);
   animation: bg-shape-right 45s linear infinite;
 }
 
@@ -849,7 +849,7 @@
 }
 
 .ecosystem-section {
-  padding: 5rem 25vw;
+  padding: 8rem 25vw;
   h2 {
     font-size: 2.25rem;
     margin: 0.75rem 0;
@@ -875,12 +875,12 @@
     font-size: 2.25rem;
   }
   .subscribe-caption {
-    font-size: 1.25rem;
+    font-size: 1rem;
     text-align: left;
     justify-self: flex-end;
   }
   .home-subscribe-container {
-    width: 70vw;
+    width: 50vw;
     max-width: 35rem;
   }
   .home-subscribe-error {
@@ -894,43 +894,43 @@
 
 @keyframes bg-shape-left {
   0% {
-    transform: translate(-165%, 20%) rotate(-30deg);
+    transform: translate(-110%, 40%) rotate(-30deg);
   }
   11% {
-    transform: translate(-164%, 22%) rotate(-34deg);
+    transform: translate(-114%, 42%) rotate(-34deg);
   }
   31% {
-    transform: translate(-167%, 19%) rotate(-36deg);
+    transform: translate(-117%, 39%) rotate(-36deg);
   }
   57% {
-    transform: translate(-168%, 17%) rotate(-31deg);
+    transform: translate(-118%, 37%) rotate(-31deg);
   }
   72% {
-    transform: translate(-164%, 20%) rotate(-27deg);
+    transform: translate(-114%, 40%) rotate(-27deg);
   }
   85% {
-    transform: translate(-162%, 23%) rotate(-25deg);
+    transform: translate(-112%, 43%) rotate(-25deg);
   }
 } 
 
 @keyframes bg-shape-right {
   0% {
-    transform: translate(110%, -20%) rotate(-60deg);
+    transform: translate(100%, -40%) rotate(-60deg);
   }
   13% {
-    transform: translate(112%, -22%) rotate(-62deg);
+    transform: translate(102%, -42%) rotate(-62deg);
   }
   22% {
-    transform: translate(113%, -23%) rotate(-65deg);
+    transform: translate(103%, -43%) rotate(-65deg);
   }
   43% {
-    transform: translate(111%, -21%) rotate(-63deg);
+    transform: translate(101%, -41%) rotate(-63deg);
   }
   64% {
-    transform: translate(109%, -19%) rotate(-59deg);
+    transform: translate(99%, -39%) rotate(-59deg);
   }
   82% {
-    transform: translate(107%, -17%) rotate(-57deg);
+    transform: translate(97%, -37%) rotate(-57deg);
   }
 }
 
