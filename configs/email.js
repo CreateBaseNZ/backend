@@ -200,7 +200,7 @@ email.templateInquiry = (object) => {
           <table border="0" cellpadding="20" cellspacing="0" width="100%" id="footerTable">
             <tr>
               <td align="center" valign="top">
-                <p class="footer-copyright">&#169; 2020 CreateBase. All rights reserved :)</p>
+                <p class="footer-copyright">&#169; 2021 CreateBase. All rights reserved :)</p>
               </td>
             </tr>
             <tr>
