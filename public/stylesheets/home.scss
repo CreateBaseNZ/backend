@@ -530,18 +530,29 @@
     margin-bottom: 2rem;
     a {
       margin: 1rem;
-      opacity: 0.9;
       transition: opacity 0.1s ease-out;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
       img {
         height: 3rem;
         width: 3rem;
         object-fit: contain;
       }
-      &:hover {
-        opacity: 1;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        height: 0;
+        width: 2rem;
+        background: $light;
+        transform: translateX(-50%);
+        transition: height 0.2s ease-out;
+      }
+      &:hover::after {
+        height: 2px;
       }
     }
   }
