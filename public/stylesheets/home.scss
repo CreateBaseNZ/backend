@@ -64,43 +64,70 @@
   }
   .slide-img {
     position: absolute;
-    bottom: 1vh;
-    left: 5vw;
-    min-height: 60vh;
-    min-width: 95vw;
-    object-fit: cover;
+    bottom: 4vh;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 50vh;
+    max-width: 95vw;
+    opacity: 0;
+    object-fit: contain;
     object-position: left bottom;
-    transition: transform 0.2s ease-out;
+  }
+  .desk {
+    opacity: 1;
   }
   .arm {
-    transform: translate(1.25rem, -0.75rem);
+    transform: translate(0.25rem, -0.25rem);
   }
   .wires {
-    transform: translate(0.75rem, -1.25rem);
+    transform: translateY(-0.5rem);
   }
   .arduino {
-    transform: translate(-0.75rem, -0.5rem);
+    transform: translateY(-0.5rem);
   }
   .motor {
-    transform: translate(-0.5rem, -0.5rem);
+    transform: translateY(-0.5rem);
   }
   &.active {
-    .wires {
-      transform: translate(0, 0);
-      transition: transform 1.2s ease-out;
+    .slide-img {
+      opacity: 1;
     }
     .arm {
       transform: translate(0, 0);
-      transition: transform 1.4s ease-out;
-    }
-    .arduino {
-      transform: translate(0, 0);
-      transition: transform 1.8s ease-out;
+      transition: transform 0.8s ease-out, opacity 0.4s ease-out;
     }
     .motor {
       transform: translate(0, 0);
-      transition: transform 1.6s ease-out;
+      transition: transform 1.2s ease-out 1.2s, opacity 0.8s ease-out 1.2s;
+      animation: slide-1-float 4s ease-in-out 2.4s alternate infinite;
     }
+    .arduino {
+      transform: translate(0, 0);
+      transition: transform 1.2s ease-out 2.2s, opacity 0.8s ease-out 2.2s;
+      animation: slide-1-float 4s ease-in-out 3.4s alternate infinite;
+    }
+    .wires {
+      transform: translate(0, 0);
+      transition: transform 1.2s ease-out 2.8s, opacity 0.8s ease-out 2.8s;
+      animation: slide-1-float 4s ease-in-out 4s alternate infinite;
+    }
+  }
+}
+
+@keyframes slide-1-float {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-1rem);
+  }
+  33%, 34%, 37%, 38%, 76%, 77%, 79%, 80% {
+    opacity: 1;
+  }
+  33.5%, 37.5%, 76.5%, 79.5% {
+    opacity: 0.75;
   }
 }
 
@@ -224,7 +251,7 @@
   }
   .how-section-caption {
     margin: 0 5vw;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     color: $dark;
   }
   .how-section-img {
@@ -320,6 +347,8 @@
   .ecosystem-caption {
     color: $dark;
     font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    line-height: 1.75em;
     text-align: center;
     margin: 0.5rem 0;
   }
@@ -500,7 +529,8 @@
 
 .slide-1 {
   h2 {
-    margin-top: 2rem;
+    margin-top: 6rem;
+    max-width: 45vw;
   }
   .slide-caption {
     width: 35%;
@@ -511,12 +541,10 @@
     height: 80%;
   }
   .slide-img {
-    min-height: 0;
-    min-width: 0;
-    width: 60%;
+    height: 55vh;
+    max-width: 50vw;
     left: auto;
-    right: 0;
-    object-fit: contain;
+    right: 10vw;
   }
 }
 
@@ -736,11 +764,9 @@
   }
   .slide-img {
     min-height: 0;
-    height: 100%;
-    width: 45%;
-    left: 55%;
-    right: auto;
-    object-fit: cover;
+    height: 95%;
+    width: 50%;
+    right: 0;
   }
 }
 
