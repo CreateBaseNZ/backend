@@ -24,7 +24,6 @@ ROUTES
 // @desc    
 // @access  PUBLIC
 router.post("/alpha/feedback/version-1/submit", async (req, res) => {
-  console.log("Hi");
   // Declare variables
   const title = "Alpha Testing Version 2";
   const items = req.body.items;
