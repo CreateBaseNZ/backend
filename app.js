@@ -60,10 +60,12 @@ const generalRouter = require("./routes/general.js");
 const fileRouter = require("./routes/file.js");
 const notificationRouter = require("./routes/notification.js");
 const contactUsRouter = require("./routes/contact-us.js");
+const alphaFeedbackRouter = require("./routes/alpha-feedback.js");
 app.use(generalRouter);
 app.use(fileRouter);
 app.use(notificationRouter);
 app.use(contactUsRouter);
+app.use(alphaFeedbackRouter);
 
 /*-----------------------------------------------------------------------------------------
 ERROR PAGE
