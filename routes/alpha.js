@@ -21,12 +21,12 @@ const Message = require("../model/Message.js");
 ROUTES
 =========================================================================================*/
 
-// @route   POST /alpha/feedback/version-1/submit
+// @route   POST /alpha/feedback/version-2/submit
 // @desc
 // @access  PUBLIC
-router.post("/alpha/feedback/version-1/submit", async (req, res) => {
+router.post("/alpha/feedback/version-2/submit", async (req, res) => {
   // Declare variables
-  const title = "Alpha Testing Version 2";
+  const title = "Testing Platform Version 2 Feedback Version 2";
   const items = req.body.items;
   const object = { title, items };
   // Build feedback
@@ -56,6 +56,25 @@ router.post("/alpha/message/submit", async (req, res) => {
   }
   // Success handler
   return res.send({ status: "succeeded", content: message });
+});
+
+// @route   POST /alpha/feedback/test/submit
+// @desc
+// @access  PUBLIC
+router.post("/alpha/feedback/test/submit", async (req, res) => {
+  // Declare variables
+  const title = "Test Feedback Submission";
+  const items = req.body.items;
+  const object = { title, items };
+  // Build feedback
+  let feedback;
+  try {
+    feedback = await Feedback.build(object);
+  } catch (data) {
+    return res.send(data);
+  }
+  // Success handler
+  return res.send({ status: "succeeded", content: feedback });
 });
 
 /*=========================================================================================
