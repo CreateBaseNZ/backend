@@ -82,7 +82,7 @@ router.post("/alpha/cookie-save", async (req, res) => {
   // Declare variables
   const id = req.body.id;
   const type = req.body.type;
-  const behaviours = req.body.user;
+  const behaviours = req.body.behaviours;
   // Fetch cookie
   let cookie;
   try {
