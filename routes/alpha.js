@@ -93,6 +93,11 @@ router.post("/alpha/cookie-save", async (req, res) => {
   // Check: If cookie exist, update
   if (cookie) {
     cookie.behaviours = behaviours;
+    try {
+      await cookie.save();
+    } catch (error) {
+      return res.send({ status: "error", content: error });
+    }
   }
   // Check: If cookie does not exist, create
   if (!cookie) {
