@@ -16,6 +16,7 @@ MODELS
 
 const Feedback = require("../model/Feedback.js");
 const Message = require("../model/Message.js");
+const Cookie = require("../model/Cookie.js");
 
 /*=========================================================================================
 ROUTES
@@ -75,6 +76,34 @@ router.post("/alpha/feedback/test/submit", async (req, res) => {
   }
   // Success handler
   return res.send({ status: "succeeded", content: feedback });
+});
+
+router.post("/alpha/cookie-save", async (req, res) => {
+  // Declare variables
+  const id = req.body.id;
+  const type = req.body.type;
+  const behaviours = req.body.user;
+  // Fetch cookie
+  let cookie;
+  try {
+    cookie = await Cookie.findOne({ id });
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
+  // Check: If cookie exist, update
+  if (cookie) {
+    cookie.behaviours = behaviours;
+  }
+  // Check: If cookie does not exist, create
+  if (!cookie) {
+    try {
+      cookie = await Cookie.build({ id, type, behaviours });
+    } catch (data) {
+      return res.send(data);
+    }
+  }
+  // Success handler
+  return res.send({ status: "succeeded", content: cookie });
 });
 
 /*=========================================================================================
