@@ -18,6 +18,7 @@ CREATE COOKIE ALPHA MODEL
 const CookieSchema = new Schema({
   id: { type: String, required: true },
   type: { type: String, required: true },
+  date: { type: String, required: true },
   behaviours: [Schema.Types.Mixed]
 });
 

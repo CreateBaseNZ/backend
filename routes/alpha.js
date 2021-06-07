@@ -82,6 +82,7 @@ router.post("/alpha/cookie-save", async (req, res) => {
   // Declare variables
   const id = req.body.id;
   const type = req.body.type;
+  const date = req.body.date;
   const behaviours = req.body.behaviours;
   // Fetch cookie
   let cookie;
@@ -102,7 +103,7 @@ router.post("/alpha/cookie-save", async (req, res) => {
   // Check: If cookie does not exist, create
   if (!cookie) {
     try {
-      cookie = await Cookie.build({ id, type, behaviours });
+      cookie = await Cookie.build({ id, type, date, behaviours });
     } catch (data) {
       return res.send(data);
     }
