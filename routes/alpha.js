@@ -31,16 +31,14 @@ router.post("/alpha/user-session/create", async (req, res) => {
   // Declare variables
   const object = req.body.object;
   // Create the session
+  let userSession;
   try {
-    await UserSession.build(object);
+    userSession = await UserSession.build(object);
   } catch (data) {
     return res.send(data);
   }
   // Success handler
-  return res.send({
-    status: "succeeded",
-    content: "A user session has been created successfully.",
-  });
+  return res.send({ status: "succeeded", content: userSession });
 });
 
 // @route   POST /alpha/behaviour/add
