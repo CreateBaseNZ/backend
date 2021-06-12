@@ -16,8 +16,8 @@ const Schema = mongoose.Schema;
  */
 const UserSessionSchema = new Schema({
   _id: { type: String, required: true },
-  page: { type: String, required: true },
-  userType: { type: String, required: true },
+  site: { type: String, required: true },
+  deployment: { type: String, required: true },
   accountId: { type: String, default: "" },
   behaviours: [String],
   saves: [Schema.Types.Mixed],
