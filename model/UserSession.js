@@ -2,6 +2,7 @@
  * Modules
  */
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 
 /**
  * Variables
@@ -14,14 +15,15 @@ const Schema = mongoose.Schema;
  * This schema contains the details of a user in a given browser session.
  */
 const UserSessionSchema = new Schema({
+  _id: { type: String, required: true },
+  page: { type: String, required: true },
   userType: { type: String, required: true },
-  sessionId: { type: String, required: true },
-  accountId: { type: Schema.Types.ObjectId },
-  behaviours: [Schema.Types.ObjectId],
+  accountId: { type: String, default: "" },
+  behaviours: [String],
   saves: [Schema.Types.Mixed],
   date: {
     created: { type: String, required: true },
-    modified: { type: String, required: true },
+    modified: { type: String, default: "" },
   },
 });
 
@@ -31,6 +33,7 @@ const UserSessionSchema = new Schema({
 
 UserSessionSchema.statics.build = function (object = {}, save = true) {
   return new Promise(async (resolve, reject) => {
+    object._id = uuidv4();
     // Validate the inputs
     try {
       await this.validate(object);

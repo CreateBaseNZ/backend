@@ -2,6 +2,7 @@
  * Modules
  */
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 
 /**
  * Variables
@@ -14,8 +15,11 @@ const Schema = mongoose.Schema;
  * This schema contains all the behaviours that we are tracking.
  */
 const BehaviourSchema = new Schema({
+  _id: { type: String, required: true },
   code: { type: Number, required: true },
   date: { type: String, required: true },
+  sessionId: { type: String, required: true },
+  accountId: { type: String, default: "" },
   properties: { type: Schema.Types.Mixed },
 });
 
@@ -31,6 +35,7 @@ const BehaviourSchema = new Schema({
  */
 BehaviourSchema.statics.build = function (object = {}, save = true) {
   return new Promise(async (resolve, reject) => {
+    object._id = uuidv4();
     // Validate the inputs
     try {
       await this.validate(object);
