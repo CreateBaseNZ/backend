@@ -28,6 +28,7 @@ ROUTES
 // @desc
 // @access  PUBLIC
 router.post("/alpha/user-session/create", async (req, res) => {
+  console.log("Create Session Request Received!");
   // Declare variables
   const object = req.body.object;
   // Create the session
@@ -63,7 +64,7 @@ router.post("/alpha/behaviour/add", async (req, res) => {
       return res.send(data);
     }
   }
-  object.sessionId = userSession.sessionId;
+  object.sessionId = userSession._id;
   // Create the behaviour instance
   let behaviour;
   try {
