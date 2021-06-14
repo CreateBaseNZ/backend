@@ -17,10 +17,77 @@ MODELS
 const Feedback = require("../model/Feedback.js");
 const Message = require("../model/Message.js");
 const Cookie = require("../model/Cookie.js");
+const UserSession = require("../model/UserSession.js");
+const Behaviour = require("../model/Behaviour.js");
 
 /*=========================================================================================
 ROUTES
 =========================================================================================*/
+
+// @route   POST /alpha/user-session/create
+// @desc
+// @access  PUBLIC
+router.post("/alpha/user-session/create", async (req, res) => {
+  console.log("Create Session Request Received!");
+  // Declare variables
+  const object = req.body.object;
+  // Create the session
+  let userSession;
+  try {
+    userSession = await UserSession.build(object);
+  } catch (data) {
+    return res.send(data);
+  }
+  // Success handler
+  return res.send({ status: "succeeded", content: userSession });
+});
+
+// @route   POST /alpha/behaviour/add
+// @desc
+// @access  PUBLIC
+router.post("/alpha/behaviour/add", async (req, res) => {
+  // Declare variables
+  const session = req.body.session;
+  let object = req.body.object;
+  // Fetch the user session
+  let userSession;
+  try {
+    userSession = await UserSession.findOne(session);
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
+  // Validate the user session
+  if (!userSession) {
+    try {
+      userSession = await UserSession.build(session);
+    } catch (data) {
+      return res.send(data);
+    }
+  }
+  object.sessionId = userSession._id;
+  // Create the behaviour instance
+  let behaviour;
+  try {
+    behaviour = await Behaviour.build(object);
+  } catch (data) {
+    return res.send(data);
+  }
+  // Add the behaviour to the user session
+  userSession.behaviours.push(behaviour._id);
+  // Save the updates session
+  try {
+    await userSession.save();
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
+  // Success handler
+  return res.send({ status: "succeeded", content: { userSession, behaviour } });
+});
+
+// @route   POST /alpha/user-session/update-saves
+// @desc
+// @access  PUBLIC
+router.post("/alpha/user-session/update-saves", async (req, res) => {});
 
 // @route   POST /alpha/feedback/version-2/submit
 // @desc
