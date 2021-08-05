@@ -830,6 +830,11 @@ nav{
 }
 
 .section8{
+    h2{
+        &::before{
+            content: 'Contact Us';
+        }
+    }
     .contact-info-container{
         padding:4rem 0;
         display: flex;
@@ -1844,6 +1849,9 @@ nav{
     }
 
     .section5{
+        h2{
+            font-size: 2.5rem;
+        }
         .target-container{
             padding: 4rem 0;
             margin: none;
@@ -1904,6 +1912,9 @@ nav{
     }
 
     .section7{
+        h2{
+            font-size: 2.5rem;
+        }
         .achievement-wrap{
             padding: 3rem 0;
             display: flex;
