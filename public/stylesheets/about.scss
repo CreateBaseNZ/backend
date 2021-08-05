@@ -261,10 +261,12 @@ nav{
         border-radius: 0.5rem;
         padding: 1.5rem 1.5rem;
         position: relative;
-        color: $lightest;
         text-align: center;
         // max-width: 30rem;
         margin: 0 auto;
+        p{
+            color: $lightest;
+        }
         &::before{
             content: '';
             position: absolute;
@@ -342,7 +344,7 @@ nav{
                 }
             }
             .stat-number-container{
-                left: 10rem;
+                left: 8rem;
                 top: 30%;
             }
         }
@@ -366,7 +368,7 @@ nav{
                 }
             }
             .stat-number-container{
-                right: 10rem;
+                right: 8rem;
                 top: 30%;
             }
         }
@@ -675,7 +677,7 @@ nav{
     }
 
     .feature-list-container{
-        padding-bottom: 3rem;
+        padding-bottom: 3.5rem;
         h4{
             font-weight: 600;
             padding-bottom: 1rem;
