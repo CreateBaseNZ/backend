@@ -43,6 +43,11 @@ router.get("/team", (req, res) => res.sendFile("team.html", viewsOption));
 // @access    Public
 router.get("/products/kits", (req, res) => res.sendFile("kits.html", viewsOption));
 
+// @route     Get /About
+// @desc      
+// @access    Public
+router.get("/about", (req, res) => res.sendFile("about.html", viewsOption));
+
 // @route     Get /latest
 // @desc      
 // @access    Public
