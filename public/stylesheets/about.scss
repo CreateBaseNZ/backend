@@ -1280,6 +1280,7 @@ nav{
             padding-top: 2rem;
             color: $lightest;
             font-size: 2rem;
+            line-height: 150%;
         }
     }    
 
@@ -1344,6 +1345,7 @@ nav{
 
         .stat-image-container{
             position: relative;
+            padding-bottom: 3rem;
             width: 100%;
             max-width: 1200px;
             img{
@@ -1364,17 +1366,17 @@ nav{
         }
 
         .highlight-block{
-            margin: 5rem auto;
+            margin: 4rem auto;
             p{
-                font-size: 1.5rem;
-                padding: 1rem 2rem;
+                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
                 color: $lightest;
             }
         }
 
         #large-caption-1{
             position: absolute;
-            right: 3vw;
+            right: 6vw;
             bottom: 13rem;
             width: 40%;
             font-size: 1.2rem;
@@ -1412,7 +1414,7 @@ nav{
         }
 
         .aus-image-container{
-            padding-top: 3rem;
+            padding: 3rem 0;
             display: flex;
             flex-wrap: nowrap;
             align-items: center;
@@ -1578,7 +1580,7 @@ nav{
         }
         .page-right-content{
             flex: 0 0 40%;
-            margin-left: 2rem;
+            margin-left: 4rem;
         }
         h2{
             &::before{
@@ -1613,7 +1615,7 @@ nav{
     
         .exploration-container{
             position: relative;
-            padding: 4rem 0;
+            padding: 2rem 0;
             h3{
                 font-size: 2rem;
             }
@@ -1811,7 +1813,7 @@ nav{
             }
             h4{
                 font-size: 1.5rem;
-                padding-bottom: 1rem;
+                padding: 3rem 0;
                 text-align: center;
             }
             .summary-container{
@@ -1902,6 +1904,7 @@ nav{
 
     .section7{
         .achievement-wrap{
+            padding: 3rem 0;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
