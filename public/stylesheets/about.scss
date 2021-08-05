@@ -1347,7 +1347,7 @@ nav{
             position: relative;
             padding-bottom: 3rem;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             img{
                 width: 100%;
                 padding-bottom: 2rem;
@@ -1376,7 +1376,7 @@ nav{
 
         #large-caption-1{
             position: absolute;
-            right: 6vw;
+            right: 14vw;
             bottom: 13rem;
             width: 40%;
             font-size: 1.2rem;
@@ -1447,7 +1447,7 @@ nav{
             position: relative;
             justify-content: flex-start;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             h3{
                 font-size: 3.5rem;
             }
@@ -1541,6 +1541,7 @@ nav{
                 .description-container{
                     padding: 2rem;
                     border-radius: 0.5rem;
+                    justify-content: center;
                     p{
                         font-weight: 500;
                         font-size: 0.9rem;
