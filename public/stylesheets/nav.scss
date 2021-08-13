@@ -139,9 +139,6 @@ nav.sticky {
 }
 
 footer {
-  // *{
-  //   border: thin solid blue;
-  // }
   margin-top: auto;
   display: flex;
   flex-direction: row;
@@ -223,6 +220,7 @@ footer {
     animation-duration: 0.4s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
+    width: 100%;
     &::placeholder {
       opacity: 50%;
       font-weight: 400;
@@ -884,13 +882,6 @@ footer {
 
 @media only screen and (min-width: 1200px) {
 
-// nav{
-//   left: 50%;
-//   transform: translateX(-50%);
-//   margin: 0 auto;
-//   border: thin solid blue;
-// }
-
 .nav-logo {
   .long {
     display: block;
@@ -933,4 +924,32 @@ footer {
   margin-top: 2rem;
 }
 
+}
+
+@media only screen and (min-width: 1920px) {
+  nav{
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    padding: 3rem 10rem 1.5rem 10rem;
+  }
+
+  body{
+    border: thin solid red;
+  }
+
+  // .page{
+  //   border: thin solid blue;
+  // }
+
+  .notif-wrapper {
+    right: 15vw;
+    bottom: 5vh;
+  }
+  
+  footer {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 15rem 15rem 15rem;
+  }
 }
