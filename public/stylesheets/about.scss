@@ -1,5 +1,9 @@
 @import "global";
 
+.page{
+    overflow-x: hidden;
+}
+
 nav{
     z-index: 9999;
 }
@@ -1932,6 +1936,10 @@ nav{
             padding-right: 4rem;
         }
     }
+}
 
-
+@media only screen and (min-width: 2000px) {
+    .fp-enabled body, html.fp-enabled {
+        margin: 0 auto !important;
+    }
 }

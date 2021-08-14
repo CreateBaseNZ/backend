@@ -926,7 +926,7 @@ footer {
 
 }
 
-@media only screen and (min-width: 1920px) {
+@media only screen and (min-width: 2000px) {
   nav{
     left: 50%;
     transform: translateX(-50%);
@@ -934,22 +934,12 @@ footer {
     padding: 3rem 10rem 1.5rem 10rem;
   }
 
-  body{
-    border: thin solid red;
-  }
-
-  // .page{
-  //   border: thin solid blue;
-  // }
-
   .notif-wrapper {
-    right: 15vw;
+    right: 13vw;
     bottom: 5vh;
   }
   
   footer {
-    display: grid;
-    grid-template-rows: auto auto;
     grid-template-columns: 1fr 15rem 15rem 15rem;
   }
 }
