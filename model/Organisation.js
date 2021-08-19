@@ -14,9 +14,9 @@ const OrganisationSchema = new Schema({
   trial: {
     status: { type: Boolean, default: false },
     key: { type: String, default: "" },
-    date: { type: String, default: "" }
+    date: { type: String, default: "" },
   },
-  date: { type: String, required: true }
+  date: { type: String, required: true },
 });
 
 // STATICS ==================================================
@@ -26,8 +26,8 @@ OrganisationSchema.statics.build = function (object = {}, save = true) {
     // Validate the inputs
     try {
       await this.validate(object);
-    } catch (error) {
-      return reject({ status: "error", content: error });
+    } catch (data) {
+      return reject(data);
     }
     // Create the organisation instance
     let organisation = new this(object);
@@ -42,26 +42,40 @@ OrganisationSchema.statics.build = function (object = {}, save = true) {
     // Success handler
     return resolve(organisation);
   });
-}
+};
 
 OrganisationSchema.statics.validate = function (object = {}) {
   return new Promise(async (resolve, reject) => {
     // Declare variables
     let valid = true;
     let errors = [];
+    // Check if organisation already exist
+    let organisation;
+    try {
+      organisation = await this.findOne({ name: object.name });
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    if (organisation) {
+      valid = false;
+      errors.push("This organisation already exist.");
+    }
     // Handler
     if (valid) {
       return resolve();
     } else {
-      return reject(errors);
+      return reject({ status: "failed", content: errors });
     }
   });
-}
+};
 
 // METHODS ==================================================
 
 // EXPORT ===================================================
 
-module.exports = Organisation = mongoose.model("organisations", OrganisationSchema);
+module.exports = Organisation = mongoose.model(
+  "organisations",
+  OrganisationSchema
+);
 
 // END ======================================================

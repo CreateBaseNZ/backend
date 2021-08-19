@@ -1,6 +1,7 @@
 // MODULES ==================================================
 
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 // VARIABLES ================================================
 
@@ -10,15 +11,27 @@ const Schema = mongoose.Schema;
 
 const LicenseSchema = new Schema({
   organisation: { type: Schema.Types.ObjectId },
-  username: { type: String, required: true},
+  username: { type: String, required: true },
   password: { type: String, required: true },
   statuses: [Schema.Types.Mixed],
   access: {
-    admin: { type: Boolean, default: false},
+    admin: { type: Boolean, default: false },
     educator: { type: Boolean, default: false },
-    learner: { type: Boolean, default: false }
+    learner: { type: Boolean, default: false },
   },
-  profile: { type: Schema.Types.ObjectId, required: true }
+  profile: { type: Schema.Types.ObjectId, required: true },
+});
+
+// MIDDLEWARE ===============================================
+
+LicenseSchema.pre("save", async function (next) {
+  // Check if password has been modified
+  if (this.isModified("password")) {
+    // Hash the new password and update password
+    this.password = await bcrypt.hash(this.password, 8);
+  }
+  // Exit the middleware
+  return next();
 });
 
 // STATICS ==================================================
@@ -44,23 +57,38 @@ LicenseSchema.statics.build = function (object = {}, save = true) {
     // Success handler
     return resolve(license);
   });
-}
+};
 
 LicenseSchema.statics.validate = function (object = {}) {
   return new Promise(async (resolve, reject) => {
     // Declare variables
     let valid = true;
     let errors = [];
+    // TO DO: Check if user exist within the organisation
+
     // Handler
     if (valid) {
       return resolve();
     } else {
-      return reject(errors);
+      return reject({ status: "failed", content: errors });
     }
   });
-}
+};
 
 // METHODS ==================================================
+
+LicenseSchema.methods.validatePassword = function (password = "") {
+  return new Promise(async (resolve, reject) => {
+    let match;
+    try {
+      match = await bcrypt.compare(password, this.password);
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    // Success handler
+    return resolve(match);
+  });
+};
 
 // EXPORT ===================================================
 
