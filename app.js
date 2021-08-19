@@ -68,11 +68,13 @@ const fileRouter = require("./routes/file.js");
 const notificationRouter = require("./routes/notification.js");
 const contactUsRouter = require("./routes/contact-us.js");
 const alphaRouter = require("./routes/alpha.js");
+const authenticationRouter = require("./routes/authentication.js");
 app.use(generalRouter);
 app.use(fileRouter);
 app.use(notificationRouter);
 app.use(contactUsRouter);
 app.use(alphaRouter);
+app.use(authenticationRouter);
 
 /*-----------------------------------------------------------------------------------------
 ERROR PAGE
