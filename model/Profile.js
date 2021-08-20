@@ -18,6 +18,7 @@ const ProfileSchema = new Schema({
   date: {
     lastModified: { type: String, default: "" },
     lastVisited: { type: String, default: "" },
+    firstCreated: { type: String, default: "" },
   },
 });
 
