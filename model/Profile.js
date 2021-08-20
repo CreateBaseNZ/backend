@@ -12,9 +12,13 @@ const ProfileSchema = new Schema({
   license: { type: Schema.Types.ObjectId },
   account: {
     local: { type: Schema.Types.ObjectId },
-    google: { type: Schema.Types.ObjectId }
+    google: { type: Schema.Types.ObjectId },
   },
-  saves: [Schema.Types.Mixed]
+  saves: { type: Schema.Types.Mixed },
+  date: {
+    lastModified: { type: String, default: "" },
+    lastVisited: { type: String, default: "" },
+  },
 });
 
 // STATICS ==================================================
@@ -40,7 +44,7 @@ ProfileSchema.statics.build = function (object = {}, save = true) {
     // Success handler
     return resolve(profile);
   });
-}
+};
 
 ProfileSchema.statics.validate = function (object = {}) {
   return new Promise(async (resolve, reject) => {
@@ -54,7 +58,7 @@ ProfileSchema.statics.validate = function (object = {}) {
       return reject(errors);
     }
   });
-}
+};
 
 // METHODS ==================================================
 
