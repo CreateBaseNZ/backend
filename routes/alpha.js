@@ -28,7 +28,6 @@ ROUTES
 // @desc
 // @access  PUBLIC
 router.post("/alpha/user-session/create", async (req, res) => {
-  console.log("Create Session Request Received!");
   // Declare variables
   const object = req.body.object;
   // Create the session

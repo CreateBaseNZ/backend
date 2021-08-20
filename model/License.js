@@ -41,8 +41,8 @@ LicenseSchema.statics.build = function (object = {}, save = true) {
     // Validate the inputs
     try {
       await this.validate(object);
-    } catch (error) {
-      return reject({ status: "error", content: error });
+    } catch (data) {
+      return reject(data);
     }
     // Create the license instance
     let license = new this(object);
@@ -64,8 +64,20 @@ LicenseSchema.statics.validate = function (object = {}) {
     // Declare variables
     let valid = true;
     let errors = [];
-    // TO DO: Check if user exist within the organisation
-
+    // Check if user exist within the organisation
+    let license;
+    try {
+      license = await this.findOne({
+        organisation: object.organisation,
+        username: object.username,
+      });
+    } catch (error) {
+      return reject({ status: "error", content: error });
+    }
+    if (license) {
+      valid = false;
+      errors.push("This username is already taken.");
+    }
     // Handler
     if (valid) {
       return resolve();
