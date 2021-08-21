@@ -168,7 +168,7 @@ router.post("/user-data/create", async (req, res) => {
     });
   }
   // Add the data
-  let saves = profile.saves;
+  let saves = profile.saves || {};
   for (const property in input) {
     if (!saves.hasOwnProperty(property)) {
       saves[property] = input[property];
