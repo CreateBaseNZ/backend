@@ -9,56 +9,56 @@ const Schema = mongoose.Schema;
 // MODEL ====================================================
 
 const ProfileSchema = new Schema({
-  license: { type: Schema.Types.ObjectId },
-  account: {
-    local: { type: Schema.Types.ObjectId },
-    google: { type: Schema.Types.ObjectId },
-  },
-  saves: { type: Schema.Types.Mixed },
-  date: {
-    lastModified: { type: String, default: "" },
-    lastVisited: { type: String, default: "" },
-    firstCreated: { type: String, default: "" },
-  },
+	license: { type: Schema.Types.ObjectId },
+	account: {
+		local: { type: Schema.Types.ObjectId },
+		google: { type: Schema.Types.ObjectId },
+	},
+	saves: { type: Schema.Types.Mixed },
+	date: {
+		lastModified: { type: String, default: "" },
+		lastVisited: { type: String, default: "" },
+		firstCreated: { type: String, default: "" },
+	},
 });
 
 // STATICS ==================================================
 
 ProfileSchema.statics.build = function (object = {}, save = true) {
-  return new Promise(async (resolve, reject) => {
-    // Validate the inputs
-    try {
-      await this.validate(object);
-    } catch (error) {
-      return reject({ status: "error", content: error });
-    }
-    // Create the profile instance
-    let profile = new this(object);
-    // Save the profile instance
-    if (save) {
-      try {
-        profile = await profile.save();
-      } catch (error) {
-        return reject({ status: "error", content: error });
-      }
-    }
-    // Success handler
-    return resolve(profile);
-  });
+	return new Promise(async (resolve, reject) => {
+		// Validate the inputs
+		try {
+			await this.validate(object);
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Create the profile instance
+		let profile = new this(object);
+		// Save the profile instance
+		if (save) {
+			try {
+				profile = await profile.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		// Success handler
+		return resolve(profile);
+	});
 };
 
 ProfileSchema.statics.validate = function (object = {}) {
-  return new Promise(async (resolve, reject) => {
-    // Declare variables
-    let valid = true;
-    let errors = [];
-    // Handler
-    if (valid) {
-      return resolve();
-    } else {
-      return reject(errors);
-    }
-  });
+	return new Promise(async (resolve, reject) => {
+		// Declare variables
+		let valid = true;
+		let errors = [];
+		// Handler
+		if (valid) {
+			return resolve();
+		} else {
+			return reject(errors);
+		}
+	});
 };
 
 // METHODS ==================================================
