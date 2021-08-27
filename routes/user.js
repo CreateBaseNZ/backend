@@ -532,6 +532,33 @@ router.post("/organisation/retrieve-data/admin", async (req, res) => {
 	return res.send({ status: "succeeded", content: contentOne });
 });
 
+router.post("/user-data/check-password", async (req, res) => {
+	const object = req.body;
+	// TO DO: Perform validation
+	let organisation;
+	try {
+		organisation = await Organisation.findOne({ name: object.organisation });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!organisation) {
+		return res.send({ status: "failed", content: "There's no organisation found." });
+	}
+	// Fetch the license
+	let license;
+	try {
+		license = await License.findOne({ _id: organisation.licenses, username: object.username });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Validate password
+	if (!license.validatePassword(object.password)) {
+		return res.send({status: "failed", content: "Invalid password."});
+	}
+	// Return handler
+	return res.send({status: "succeeded", content: "Password match."});
+});
+
 // EXPORT ===================================================
 
 module.exports = router;
