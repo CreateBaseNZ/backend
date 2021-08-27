@@ -9,3 +9,5 @@ dev/
 *.gitignore
 
 /push-guide.txt
+
+*.prettierrc.json
