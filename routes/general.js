@@ -24,37 +24,37 @@ ROUTES
 =========================================================================================*/
 
 // @route     Get /
-// @desc      
+// @desc
 // @access    Public
 router.get("/", (req, res) => res.sendFile("home.html", viewsOption));
 
 // @route     Get /story
-// @desc      
+// @desc
 // @access    Public
 router.get("/story", (req, res) => res.sendFile("story.html", viewsOption));
 
 // @route     Get /team
-// @desc      
+// @desc
 // @access    Public
 router.get("/team", (req, res) => res.sendFile("team.html", viewsOption));
 
 // @route     Get /products/kits
-// @desc      
+// @desc
 // @access    Public
 router.get("/products/kits", (req, res) => res.sendFile("kits.html", viewsOption));
 
 // @route     Get /About
-// @desc      
+// @desc
 // @access    Public
 router.get("/about", (req, res) => res.sendFile("about.html", viewsOption));
 
 // @route     Get /latest
-// @desc      
+// @desc
 // @access    Public
 router.get("/latest", (req, res) => res.sendFile("latest.html", viewsOption));
 
 // @route     Get /services/3d-printing
-// @desc      
+// @desc
 // @access    Public
 router.get("/services/3d-printing", (req, res) => res.sendFile("printing.html", viewsOption));
 
@@ -64,7 +64,7 @@ router.get("/services/3d-printing", (req, res) => res.sendFile("printing.html", 
 router.get("/terms", (req, res) => res.sendFile("terms.html", viewsOption));
 
 // @route     GET /contact
-// @desc      
+// @desc
 // @access    PUBLIC
 router.get("/contact", (req, res) => res.sendFile("contact.html", viewsOption));
 
@@ -82,13 +82,13 @@ router.get("/survey", (req, res) => res.sendFile("survey.html", viewsOption));
 // @desc
 // @access    PUBLIC
 router.get("/mailing-list/unsubscribe/:email", async (req, res) => {
-  const email = req.params.email;
-  try {
-    await Mail.demolish({ email });
-  } catch (data) {
-    return res.status(404).sendFile("error-404.html", viewsOption);
-  }
-  return res.sendFile("unsubscribe.html", viewsOption);
+	const email = req.params.email;
+	try {
+		await Mail.demolish({ email });
+	} catch (data) {
+		return res.status(404).sendFile("error-404.html", viewsOption);
+	}
+	return res.sendFile("unsubscribe.html", viewsOption);
 });
 
 // @route     GET /robots.txt

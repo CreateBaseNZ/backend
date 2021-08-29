@@ -16,8 +16,8 @@ CREATE FEEDBACK ALPHA MODEL
 =========================================================================================*/
 
 const FeedbackSchema = new Schema({
-  title: { type: String, required: true },
-  items: [Schema.Types.Mixed],
+	title: { type: String, required: true },
+	items: [Schema.Types.Mixed],
 });
 
 /*=========================================================================================
@@ -25,22 +25,22 @@ STATIC
 =========================================================================================*/
 
 FeedbackSchema.statics.build = function (object = {}, save = true) {
-  return new Promise(async (resolve, reject) => {
-    // Validate the inputs
-    // Create the feedback instance
-    let feedback = new this(object);
-    // Save the instance
-    if (save) {
-      try {
-        await feedback.save();
-      } catch (error) {
-        return reject({ status: "error", content: error });
-      }
-    }
-    // Resolve the promise
-    return resolve(feedback);
-  });
-}
+	return new Promise(async (resolve, reject) => {
+		// Validate the inputs
+		// Create the feedback instance
+		let feedback = new this(object);
+		// Save the instance
+		if (save) {
+			try {
+				await feedback.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		// Resolve the promise
+		return resolve(feedback);
+	});
+};
 
 /*=========================================================================================
 METHODS

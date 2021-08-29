@@ -7,6 +7,11 @@ const bcrypt = require("bcryptjs");
 
 const Schema = mongoose.Schema;
 
+// OTHER MODELS =============================================
+
+const Account = require("./Account.js");
+const Profile = require("./Profile.js");
+
 // MODEL ====================================================
 
 const LicenseSchema = new Schema({
@@ -17,9 +22,9 @@ const LicenseSchema = new Schema({
 	access: { type: String, required: true },
 	profile: { type: Schema.Types.ObjectId, required: true },
 	date: {
-		lastModified: { type: String, default: "" },
-		lastVisited: { type: String, default: "" },
-		firstCreated: { type: String, default: "" },
+		modified: { type: String, required: true },
+		visited: { type: String, required: true },
+		created: { type: String, required: true },
 	},
 });
 
@@ -46,11 +51,19 @@ LicenseSchema.statics.build = function (object = {}, save = true) {
 			return reject(data);
 		}
 		// Create the license instance
-		let license = new this(object);
+		let license = new this({
+			username: object.username,
+			password: object.password,
+			statuses: object.statuses,
+			access: object.access,
+			date: { modified: object.date, visited: object.date, created: object.date },
+		});
+		if (object.organisation) license.organisation = object.organisation;
+		if (object.profile) license.profile = object.profile;
 		// Save the license instance
 		if (save) {
 			try {
-				license = await license.save();
+				await license.save();
 			} catch (error) {
 				return reject({ status: "error", content: error });
 			}
@@ -64,20 +77,19 @@ LicenseSchema.statics.validate = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
 		// Declare variables
 		let valid = true;
-		let errors = [];
+		let errors = {
+			username: "",
+		};
 		// Check if user exist within the organisation
 		let license;
 		try {
-			license = await this.findOne({
-				organisation: object.organisation,
-				username: object.username,
-			});
+			license = await this.findOne({ username: object.username });
 		} catch (error) {
 			return reject({ status: "error", content: error });
 		}
 		if (license) {
 			valid = false;
-			errors.push("This username is already taken.");
+			errors.username = "This username is already taken.";
 		}
 		// Handler
 		if (valid) {
@@ -85,6 +97,55 @@ LicenseSchema.statics.validate = function (object = {}) {
 		} else {
 			return reject({ status: "failed", content: errors });
 		}
+	});
+};
+
+LicenseSchema.statics.login = function (object = {}) {
+	return new Promise(async (resolve, reject) => {
+		// TO DO: Pre validation
+
+		// Fetch the license
+		let session = new Object();
+		let license;
+		try {
+			license = await this.findOne({ username: object.username });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Post validation
+		if (!license) {
+			return reject({ status: "failed", content: { username: "Incorrect username.", password: "" } });
+		}
+		if (!license.validatePassword(object.password)) {
+			return reject({ status: "failed", content: { username: "", password: "Incorrect password." } });
+		}
+		session.license = license._id;
+		session.access = license.access;
+		session.status = "free";
+		// Fetch the organisation
+		if (license.organisation) {
+		}
+		// Fetch the profile
+		let profile;
+		try {
+			profile = await Profile.findOne({ _id: license.profile });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		session.profile = profile._id;
+		// Fetch the account
+		if (profile.account.local) {
+			let account;
+			try {
+				account = await Account.findOne({ _id: profile.account.local });
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+			session.account = account._id;
+			session.verified = account.verified.status;
+		}
+		// Success handler
+		return resolve(session);
 	});
 };
 
