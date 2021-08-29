@@ -116,7 +116,13 @@ LicenseSchema.statics.login = function (object = {}) {
 		if (!license) {
 			return reject({ status: "failed", content: { username: "Incorrect username.", password: "" } });
 		}
-		if (!license.validatePassword(object.password)) {
+		let match;
+		try {
+			match = await license.validatePassword(object.password);
+		} catch (data) {
+			return reject(data);
+		}
+		if (!match) {
 			return reject({ status: "failed", content: { username: "", password: "Incorrect password." } });
 		}
 		session.license = license._id;
