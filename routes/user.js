@@ -49,6 +49,44 @@ router.post("/signup", async (req, res) => {
 	return res.send({ status: "succeeded", content: "The signup was successful." });
 });
 
+router.post("/signup/educator", async (req, res) => {
+	const object = req.body;
+	// Create License
+	const licenseObject = {
+		username: object.username,
+		password: object.password,
+		access: "educator",
+		statuses: [{ type: "free", date: object.date }],
+		date: { lastModified: object.date, lastVisited: object.date, firstCreated: object.date },
+	};
+	// Create Profile
+	const profileObject = {
+		saves: object.saves,
+		date: { lastModified: object.date, lastVisited: object.date, firstCreated: object.date },
+	};
+	// Build Instances
+	const promises1 = [License.build(licenseObject, false), Profile.build(profileObject, false)];
+	let newLicense;
+	let newProfile;
+	try {
+		[newLicense, newProfile] = await Promise.all(promises1);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Create Links
+	newLicense.profile = newProfile._id;
+	newProfile.license = newLicense._id;
+	// Save the new instances
+	const promises2 = [newLicense.save(), newProfile.save()];
+	try {
+		await Promise.all(promises2);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "The signup was successful." });
+});
+
 router.post("/login", async (req, res) => {
 	const object = req.body;
 	// Fetch the license associated with the organisation
@@ -553,10 +591,10 @@ router.post("/user-data/check-password", async (req, res) => {
 	}
 	// Validate password
 	if (!license.validatePassword(object.password)) {
-		return res.send({status: "failed", content: "Invalid password."});
+		return res.send({ status: "failed", content: "Invalid password." });
 	}
 	// Return handler
-	return res.send({status: "succeeded", content: "Password match."});
+	return res.send({ status: "succeeded", content: "Password match." });
 });
 
 // EXPORT ===================================================

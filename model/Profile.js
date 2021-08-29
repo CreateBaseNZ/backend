@@ -14,11 +14,12 @@ const ProfileSchema = new Schema({
 		local: { type: Schema.Types.ObjectId },
 		google: { type: Schema.Types.ObjectId },
 	},
+	displayName: { type: String, default: "" },
 	saves: { type: Schema.Types.Mixed },
 	date: {
-		lastModified: { type: String, default: "" },
-		lastVisited: { type: String, default: "" },
-		firstCreated: { type: String, default: "" },
+		created: { type: String, required: true },
+		visited: { type: String, required: true },
+		modified: { type: String, required: true },
 	},
 });
 
@@ -26,18 +27,31 @@ const ProfileSchema = new Schema({
 
 ProfileSchema.statics.build = function (object = {}, save = true) {
 	return new Promise(async (resolve, reject) => {
-		// Validate the inputs
+		// Validate input data
 		try {
 			await this.validate(object);
-		} catch (error) {
-			return reject({ status: "error", content: error });
+		} catch (data) {
+			return reject(data);
 		}
 		// Create the profile instance
-		let profile = new this(object);
+		let profile = new this({ date: { created: object.date, visited: object.date, modified: object.date } });
+		if (object.license) profile.license = object.license;
+		if (object.account) {
+			profile.account.local = object.account.local;
+			profile.account.google = object.account.google;
+		} else {
+			profile.account = new Object();
+		}
+		if (object.displayName) profile.displayName = object.displayName;
+		if (object.saves) {
+			profile.saves = object.saves;
+		} else {
+			profile.saves = new Object();
+		}
 		// Save the profile instance
 		if (save) {
 			try {
-				profile = await profile.save();
+				await profile.save();
 			} catch (error) {
 				return reject({ status: "error", content: error });
 			}
@@ -51,12 +65,12 @@ ProfileSchema.statics.validate = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
 		// Declare variables
 		let valid = true;
-		let errors = [];
+		let errors = {};
 		// Handler
 		if (valid) {
 			return resolve();
 		} else {
-			return reject(errors);
+			return reject({ status: "failed", content: errors });
 		}
 	});
 };
