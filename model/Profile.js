@@ -10,6 +10,7 @@ const Schema = mongoose.Schema;
 
 const ProfileSchema = new Schema({
 	license: { type: Schema.Types.ObjectId },
+	licenses: [Schema.Types.ObjectId],
 	account: {
 		local: { type: Schema.Types.ObjectId },
 		google: { type: Schema.Types.ObjectId },

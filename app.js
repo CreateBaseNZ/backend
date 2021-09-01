@@ -62,10 +62,12 @@ const generalRouter = require("./routes/general.js");
 const notificationRouter = require("./routes/notification.js");
 const contactUsRouter = require("./routes/contact-us.js");
 const authRouter = require("./routes/auth.js");
+const organisationRouter = require("./routes/organisation.js");
 app.use(generalRouter);
 app.use(notificationRouter);
 app.use(contactUsRouter);
 app.use(authRouter);
+app.use(organisationRouter);
 
 /*-----------------------------------------------------------------------------------------
 ERROR PAGE
