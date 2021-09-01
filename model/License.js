@@ -128,9 +128,8 @@ LicenseSchema.statics.login = function (object = {}) {
 		session.license = license._id;
 		session.access = license.access;
 		session.status = "free";
-		// Fetch the organisation
-		if (license.organisation) {
-		}
+		// Set the organisation
+		if (license.organisation) session.organisation = license.organisation;
 		// Fetch the profile
 		let profile;
 		try {

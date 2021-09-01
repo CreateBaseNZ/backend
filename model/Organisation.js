@@ -1,6 +1,7 @@
 // MODULES ==================================================
 
 const mongoose = require("mongoose");
+const randomize = require("randomatic");
 
 // VARIABLES ================================================
 
@@ -11,12 +12,23 @@ const Schema = mongoose.Schema;
 const OrganisationSchema = new Schema({
 	name: { type: String, required: true },
 	licenses: [Schema.Types.ObjectId],
-	trial: {
-		status: { type: Boolean, default: false },
-		key: { type: String, default: "" },
+	type: { type: String, required: true },
+	lite: {
+		activated: { type: Boolean, required: true },
 		date: { type: String, default: "" },
 	},
-	date: { type: String, required: true },
+	location: {
+		city: { type: String, required: true },
+		country: { type: String, required: true },
+	},
+	date: {
+		created: { type: String, required: true },
+		modified: { type: String, required: true },
+	},
+	join: {
+		educator: { type: String, required: true },
+		learner: { type: String, required: true },
+	},
 	metadata: { type: Schema.Types.Mixed },
 });
 
@@ -30,12 +42,24 @@ OrganisationSchema.statics.build = function (object = {}, save = true) {
 		} catch (data) {
 			return reject(data);
 		}
+		// Generate the code
+		const codeEducator = randomize("aA0", 6);
+		const codeLearner = randomize("aA0", 6);
 		// Create the organisation instance
-		let organisation = new this(object);
+		let organisation = new this({
+			name: object.name,
+			licenses: [object.license],
+			type: object.type,
+			lite: object.lite,
+			country: object.country,
+			date: { created: object.date, modified: object.date },
+			join: { educator: codeEducator, learner: codeLearner },
+			metadata: object.metadata,
+		});
 		// Save the organisation instance
 		if (save) {
 			try {
-				organisation = await organisation.save();
+				await organisation.save();
 			} catch (error) {
 				return reject({ status: "error", content: error });
 			}
@@ -59,7 +83,7 @@ OrganisationSchema.statics.validate = function (object = {}) {
 		}
 		if (organisation) {
 			valid = false;
-			errors.push("This organisation already exist.");
+			errors.push("This organisation already exist");
 		}
 		// Handler
 		if (valid) {

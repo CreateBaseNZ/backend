@@ -21,7 +21,7 @@ const License = require("../model/License.js");
 router.post("/email-login", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key." });
+		return res.send({ status: "critical error", content: "Invalid API Key" });
 	}
 	// Account email login
 	let session;
@@ -38,10 +38,9 @@ router.post("/email-login", async (req, res) => {
 // @desc
 // @access    Backend
 router.post("/username-login", async (req, res) => {
-	console.log("Logging In");
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key." });
+		return res.send({ status: "critical error", content: "Invalid API Key" });
 	}
 	// Account username login
 	let session;
@@ -60,7 +59,7 @@ router.post("/username-login", async (req, res) => {
 router.post("/signup/educator", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key." });
+		return res.send({ status: "critical error", content: "Invalid API Key" });
 	}
 	// Create the account
 	const accountObject = {
@@ -104,7 +103,60 @@ router.post("/signup/educator", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "A new educator account has been registered." });
+	return res.send({ status: "succeeded", content: "A new educator account has been registered" });
+});
+
+// @route     POST /update-session
+// @desc
+// @access    Backend
+router.post("/update-session", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API Key" });
+	}
+	let session = new Object();
+	// Fetch License and Profile
+	let license;
+	let profile;
+	const promises1 = [License.findOne({ _id: req.body.input.license }), Profile.findOne({ _id: req.body.input.profile })];
+	try {
+		[license, profile, account] = await Promise.all(promises1);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license || !profile) {
+		return res.send({ status: "failed", content: "Failed to fetch a license or a profile" });
+	}
+	session = {
+		license: license._id,
+		profile: profile._id,
+		access: license.access,
+		status: "free", // TEMPORARY
+		verified: false,
+	};
+	if (license.organisation) session.organisation = license.organisation;
+	if (profile.account.local) {
+		let account;
+		try {
+			account = await Account.findOne({ _id: profile.account.local });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		session.account = account._id;
+		session.verified = account.verified.status;
+	}
+	// Update visits
+	const date = new Date().toString();
+	license.date.visited = date;
+	profile.date.visited = date;
+	const promises2 = [license.save(), profile.save()];
+	try {
+		await Promise.all(promises2);
+	} catch (error) {
+		return reject({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: session });
 });
 
 // EXPORT ===================================================
