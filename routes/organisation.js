@@ -196,6 +196,10 @@ router.post("/organisation/educator-join", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	// There is no organisation found with this name or id
+	if (!organisation) {
+		return res.send({ status: "failed", content: "Invalid organisation name or/and ID" });
+	}
 	// Validate code
 	if (req.body.input.code !== organisation.join.educator) {
 		return res.send({ status: "failed", content: "Invalid code" });
