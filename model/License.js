@@ -98,7 +98,7 @@ LicenseSchema.statics.validate = function (object = {}) {
 		}
 		if (license) {
 			valid = false;
-			errors.username = "This username is already taken.";
+			errors.username = "This username is already taken";
 		}
 		// Handler
 		if (valid) {
@@ -123,7 +123,7 @@ LicenseSchema.statics.login = function (object = {}) {
 		}
 		// Post validation
 		if (!license) {
-			return reject({ status: "failed", content: { username: "Incorrect username.", password: "" } });
+			return reject({ status: "failed", content: { username: "Incorrect username", password: "" } });
 		}
 		let match;
 		try {
@@ -132,7 +132,7 @@ LicenseSchema.statics.login = function (object = {}) {
 			return reject(data);
 		}
 		if (!match) {
-			return reject({ status: "failed", content: { username: "", password: "Incorrect password." } });
+			return reject({ status: "failed", content: { username: "", password: "Incorrect password" } });
 		}
 		session.license = license._id;
 		session.access = license.access;

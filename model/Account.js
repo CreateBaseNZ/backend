@@ -93,7 +93,7 @@ AccountSchema.statics.validate = function (object = {}) {
 		}
 		if (account) {
 			valid = false;
-			errors.email = "This email is already taken.";
+			errors.email = "This email is already taken";
 		}
 		// Handler
 		if (valid) {

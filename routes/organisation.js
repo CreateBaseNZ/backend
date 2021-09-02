@@ -296,7 +296,7 @@ router.post("/organisation/admin-create-learner", async (req, res) => {
 	// Create a profile
 	let profileObject = {
 		displayName: req.body.input.displayName,
-		date: { created: req.body.input.date, visited: req.body.input.date, modified: req.body.input.date },
+		date: req.body.input.date,
 	};
 	if (req.body.input.saves) profileObject.saves = req.body.input.saves;
 	let profile;
