@@ -94,6 +94,7 @@ router.post("/signup/educator", async (req, res) => {
 	account.profile = profile._id;
 	profile.account.local = account._id;
 	profile.license = license._id;
+	profile.licenses = [license._id];
 	license.profile = profile._id;
 	// Save these new instances
 	const promises2 = [account.save(), profile.save(), license.save()];

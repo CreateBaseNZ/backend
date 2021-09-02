@@ -91,10 +91,15 @@ router.post("/organisation/admin-read", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	let profileIds = [];
+	for (let i = 0; i < licenses.length; i++) {
+		const license = licenses[i];
+		profileIds.push(license.profile);
+	}
 	// Fetch all profiles
 	let profiles;
 	try {
-		profiles = await Profile.find({ license: organisation.licenses });
+		profiles = await Profile.find({ _id: profileIds });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -256,6 +261,65 @@ router.post("/organisation/educator-join", async (req, res) => {
 	};
 	// Success handler
 	return res.send({ status: "succeeded", content });
+});
+
+// @route     POST /organisation/admin-create-learner
+// @desc
+// @access    Backend
+router.post("/organisation/admin-create-learner", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API Key" });
+	}
+	// Fetch the organisation
+	let organisation;
+	try {
+		organisation = await Organisation.findOne({ _id: req.body.input.organisation });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Create a license
+	const licenseObject = {
+		username: req.body.input.username,
+		password: req.body.input.password,
+		statuses: [{ type: req.body.input.status, date: req.body.input.date }],
+		access: "learner",
+		date: req.body.input.date,
+		join: { approved: true, date: req.body.input.date },
+	};
+	let license;
+	try {
+		license = await License.build(licenseObject, false);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Create a profile
+	let profileObject = {
+		displayName: req.body.input.displayName,
+		date: { created: req.body.input.date, visited: req.body.input.date, modified: req.body.input.date },
+	};
+	if (req.body.input.saves) profileObject.saves = req.body.input.saves;
+	let profile;
+	try {
+		profile = await Profile.build(profileObject, false);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Establish links
+	organisation.licenses.push(license._id);
+	license.organisation = organisation._id;
+	license.profile = profile._id;
+	profile.license = license._id;
+	profile.licenses = [license._id];
+	// Save instances
+	const promises = [organisation.save(), license.save(), profile.save()];
+	try {
+		await Promise.all(promises);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "Successfully created a learner license" });
 });
 
 // EXPORT ===================================================

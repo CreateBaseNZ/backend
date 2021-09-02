@@ -26,6 +26,14 @@ const LicenseSchema = new Schema({
 		visited: { type: String, required: true },
 		created: { type: String, required: true },
 	},
+	join: {
+		approved: { type: Boolean, default: false },
+		date: { type: String, default: "" },
+	},
+	invite: {
+		approved: { type: Boolean, default: false },
+		date: { type: String, default: "" },
+	},
 });
 
 // MIDDLEWARE ===============================================
@@ -57,6 +65,7 @@ LicenseSchema.statics.build = function (object = {}, save = true) {
 			statuses: object.statuses,
 			access: object.access,
 			date: { modified: object.date, visited: object.date, created: object.date },
+			join: object.join,
 		});
 		if (object.organisation) license.organisation = object.organisation;
 		if (object.profile) license.profile = object.profile;

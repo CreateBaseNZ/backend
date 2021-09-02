@@ -36,7 +36,10 @@ ProfileSchema.statics.build = function (object = {}, save = true) {
 		}
 		// Create the profile instance
 		let profile = new this({ date: { created: object.date, visited: object.date, modified: object.date } });
-		if (object.license) profile.license = object.license;
+		if (object.license) {
+			profile.license = object.license;
+			profile.licenses = [object.license];
+		}
 		if (object.account) {
 			profile.account.local = object.account.local;
 			profile.account.google = object.account.google;
