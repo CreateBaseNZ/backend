@@ -355,9 +355,13 @@ email.templateAccountVerification = (object) => {
 		const subject = "Test Email";
 		// BUILD THE EMAIL BODY
 		const text = `
-    Hi Carl,
+    Hi ${object.displayName},
 
-    I am just testing the email functionality!
+
+    Your account verification code is: ${object.code}
+
+    Log into your CreateBase account and enter this code.
+
 
     Kind Regards,
     CreateBase Team`;

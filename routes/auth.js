@@ -104,6 +104,12 @@ router.post("/signup/educator", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	// Send the verification code
+	try {
+		await account.sendAccountVerificationEmail();
+	} catch (data) {
+		return res.send(data);
+	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "A new educator account has been registered" });
 });
@@ -328,7 +334,6 @@ router.post("/send-email-verification", async (req, res) => {
 	try {
 		account = await Account.findOne(query);
 	} catch (error) {
-		console.log(error);
 		return res.send({ status: "error", content: error });
 	}
 	if (!account) return res.send({ status: "failed", content: errorFetch });
@@ -340,7 +345,6 @@ router.post("/send-email-verification", async (req, res) => {
 	try {
 		await account.sendAccountVerificationEmail();
 	} catch (data) {
-		console.log(data);
 		return res.send(data);
 	}
 	// Success handler
@@ -355,6 +359,38 @@ router.post("/verify-account", async (req, res) => {
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
 		return res.send({ status: "critical error", content: "Invalid API Key" });
 	}
+	// Build the query object
+	let query = new Object();
+	let errorFetch = "";
+	if (req.body.input.email) {
+		query = { email: req.body.input.email };
+		errorFetch = "There is no account with this email";
+	} else if (req.body.input.account) {
+		query = { _id: req.body.input.account };
+		errorFetch = "There is no account with this ID";
+	} else {
+		return res.send({ status: "critical error", content: "No required information provided" });
+	}
+	// Fetch the account
+	let account;
+	try {
+		account = await Account.findOne(query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "failed", content: errorFetch });
+	// Check if the account is already verified
+	if (account.verified.status) {
+		return res.send({ status: "failed", content: "This account is already verified" });
+	}
+	// Verify the account
+	try {
+		await account.verify({ code: req.body.input.code });
+	} catch (data) {
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "The account has been verified" });
 });
 
 // EXPORT ===================================================

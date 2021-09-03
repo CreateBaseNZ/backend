@@ -102,8 +102,14 @@ AccountSchema.statics.validate = function (object = {}) {
 
 // METHODS ==================================================
 
-AccountSchema.methods.sendAccountVerificationEmail = function () {
+AccountSchema.methods.sendAccountVerificationEmail = function (object = {}, save = true) {
 	return new Promise(async (resolve, reject) => {
+		// Update verification code before all else
+		try {
+			await this.setVerificationCode(object, save);
+		} catch (data) {
+			return reject(data);
+		}
 		// Fetch the profile
 		let profile;
 		try {
@@ -115,10 +121,8 @@ AccountSchema.methods.sendAccountVerificationEmail = function () {
 		if (!profile) {
 			return res.send({ status: "failed", content: "There is not profile associated with this account" });
 		}
-		// Generate the code
-		const code = randomize("aA0", 6);
 		// Create the input object
-		const input = { email: this.email, displayName: profile.displayName };
+		const input = { email: this.email, displayName: profile.displayName, code: this.verified.code };
 		// Create the email object
 		let mail;
 		try {
@@ -126,11 +130,55 @@ AccountSchema.methods.sendAccountVerificationEmail = function () {
 		} catch (data) {
 			return reject(data);
 		}
+		// Send the verification email
 		try {
 			await email.send(mail);
 		} catch (data) {
 			return reject(data);
 		}
+		// Success handler
+		return resolve();
+	});
+};
+
+AccountSchema.methods.setVerificationCode = function (object = {}, save = true) {
+	return new Promise(async (resolve, reject) => {
+		// Generate the code
+		const code = randomize("aA0", 6);
+		// Set parametres of the verification object
+		this.verified.code = code;
+		this.verified.date.codeGenerated = new Date().toString();
+		// Save the account
+		if (save) {
+			try {
+				await this.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		// Success handler
+		return resolve();
+	});
+};
+
+AccountSchema.methods.verify = function (object = {}, save = true) {
+	return new Promise(async (resolve, reject) => {
+		// Check if the code matches
+		if (this.verified.code !== object.code) {
+			return reject({ status: "failed", content: "Incorrect code" });
+		}
+		// Update the verification status
+		this.verified.status = true;
+		this.verified.date.verified = new Date().toString();
+		// Save the account
+		if (save) {
+			try {
+				await this.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		// Success handler
 		return resolve();
 	});
 };
