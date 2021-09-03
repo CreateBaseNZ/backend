@@ -1,7 +1,6 @@
 // MODULES ==================================================
 
 const express = require("express");
-const { reset } = require("nodemon");
 
 // VARIABLES ================================================
 

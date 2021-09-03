@@ -11,6 +11,8 @@ const Schema = mongoose.Schema;
 
 // OTHER MODELS =============================================
 
+const Profile = require("./Profile.js");
+
 // MODEL ====================================================
 
 const AccountSchema = new Schema({
@@ -18,11 +20,11 @@ const AccountSchema = new Schema({
 	password: { type: String, required: true },
 	profile: { type: Schema.Types.ObjectId, required: true },
 	verified: {
-		status: { type: Boolean, required: true },
-		code: { type: String, required: true },
+		status: { type: Boolean, default: false },
+		code: { type: String, default: "" },
 		date: {
-			codeGenerated: { type: String, required: true },
-			verified: { type: String, required: true },
+			codeGenerated: { type: String, default: "" },
+			verified: { type: String, default: "" },
 		},
 	},
 	date: {
@@ -53,17 +55,10 @@ AccountSchema.statics.build = function (object = {}, save = true) {
 		} catch (data) {
 			return reject(data);
 		}
-		// Generate the code
-		const code = randomize("aA0", 6);
 		// Create the input object
 		let account = new this({
 			email: object.email,
 			password: object.password,
-			verified: {
-				status: false,
-				code: code,
-				date: { codeGenerated: object.date, verified: object.date },
-			},
 			date: { created: object.date, modified: object.date },
 		});
 		if (object.profile) account.profile = object.profile;
@@ -109,9 +104,25 @@ AccountSchema.statics.validate = function (object = {}) {
 
 AccountSchema.methods.sendAccountVerificationEmail = function () {
 	return new Promise(async (resolve, reject) => {
+		// Fetch the profile
+		let profile;
+		try {
+			profile = await Profile.findOne({ "account.local": this._id });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Validate if the profile has been fetched successfully
+		if (!profile) {
+			return res.send({ status: "failed", content: "There is not profile associated with this account" });
+		}
+		// Generate the code
+		const code = randomize("aA0", 6);
+		// Create the input object
+		const input = { email: this.email, displayName: profile.displayName };
+		// Create the email object
 		let mail;
 		try {
-			mail = await email.create({ email: this.email }, "account-verification");
+			mail = await email.create(input, "account-verification");
 		} catch (data) {
 			return reject(data);
 		}
