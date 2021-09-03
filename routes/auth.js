@@ -1,6 +1,7 @@
 // MODULES ==================================================
 
 const express = require("express");
+const { reset } = require("nodemon");
 
 // VARIABLES ================================================
 
@@ -301,6 +302,60 @@ router.post("/update-session", async (req, res) => {
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: session });
+});
+
+// @route     POST /send-email-verification
+// @desc
+// @access    Backend
+router.post("/send-email-verification", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API Key" });
+	}
+	// Build the query object
+	let query = new Object();
+	let errorFetch = "";
+	if (req.body.input.email) {
+		query = { email: req.body.input.email };
+		errorFetch = "There is no account with this email";
+	} else if (req.body.input.account) {
+		query = { _id: req.body.input.account };
+		errorFetch = "There is no account with this ID";
+	} else {
+		return res.send({ status: "critical error", content: "No required information provided" });
+	}
+	// Fetch the account
+	let account;
+	try {
+		account = await Account.findOne(query);
+	} catch (error) {
+		console.log(error);
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "failed", content: errorFetch });
+	// Check if the account is already verified
+	if (account.verified.status) {
+		return res.send({ status: "failed", content: "This account is already verified" });
+	}
+	// Send the verification code
+	try {
+		await account.sendAccountVerificationEmail();
+	} catch (data) {
+		console.log(data);
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "The verification email has been sent" });
+});
+
+// @route     POST /verify-account
+// @desc
+// @access    Backend
+router.post("/verify-account", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API Key" });
+	}
 });
 
 // EXPORT ===================================================

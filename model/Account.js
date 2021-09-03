@@ -6,6 +6,7 @@ const randomize = require("randomatic");
 
 // VARIABLES ================================================
 
+const email = require("../configs/email.js");
 const Schema = mongoose.Schema;
 
 // OTHER MODELS =============================================
@@ -105,6 +106,23 @@ AccountSchema.statics.validate = function (object = {}) {
 };
 
 // METHODS ==================================================
+
+AccountSchema.methods.sendAccountVerificationEmail = function () {
+	return new Promise(async (resolve, reject) => {
+		let mail;
+		try {
+			mail = await email.create({ email: this.email }, "account-verification");
+		} catch (data) {
+			return reject(data);
+		}
+		try {
+			await email.send(mail);
+		} catch (data) {
+			return reject(data);
+		}
+		return resolve();
+	});
+};
 
 // EXPORT ===================================================
 

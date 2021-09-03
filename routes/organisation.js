@@ -44,7 +44,8 @@ router.post("/organisation/create", async (req, res) => {
 		license: req.body.input.license,
 		type: req.body.input.type,
 		lite: { activated: false, date: "" },
-		location: { city: req.body.input.city, country: req.body.input.country },
+		city: req.body.input.city,
+		country: req.body.input.country,
 		date: req.body.input.date,
 		metadata: req.body.input.metadata,
 	};

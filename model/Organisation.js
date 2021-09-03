@@ -51,7 +51,7 @@ OrganisationSchema.statics.build = function (object = {}, save = true) {
 			licenses: [object.license],
 			type: object.type,
 			lite: object.lite,
-			country: object.country,
+			location: { city: object.city, country: object.country },
 			date: { created: object.date, modified: object.date },
 			join: { educator: codeEducator, learner: codeLearner },
 			metadata: object.metadata,

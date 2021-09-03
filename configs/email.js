@@ -11,12 +11,13 @@ VARIABLES
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 let email = {
-  build: undefined,
-  create: undefined,
-  send: undefined,
-  // TEMPLATES
-  templateOne: undefined
-}
+	build: undefined,
+	create: undefined,
+	send: undefined,
+	// TEMPLATES
+	templateInquiry: undefined,
+	templateAccountVerification: undefined,
+};
 
 /*=========================================================================================
 FUNCTIONS
@@ -27,86 +28,92 @@ FUNCTIONS
  * @param {Object} object
  */
 email.build = (object = {}) => {
-  // VALIDATE OBJECT
+	// VALIDATE OBJECT
 
-  // CONSTRUCT EMAIL
-  const mail = {
-    from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
-    to: `${object.email}`,
-    subject: object.subject,
-    text: object.text,
-    html: object.html
-  };
-  // SUCCESS HANDLER
-  return mail;
-}
+	// CONSTRUCT EMAIL
+	const mail = {
+		from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
+		to: `${object.email}`,
+		subject: object.subject,
+		text: object.text,
+		html: object.html,
+	};
+	// SUCCESS HANDLER
+	return mail;
+};
 
 email.create = (object = {}, template = "") => {
-  return new Promise(async (resolve, reject) => {
-    // VALIDATE OBJECT
+	return new Promise(async (resolve, reject) => {
+		// VALIDATE OBJECT
 
-    // BUILD CONTENTS
-    let promise;
-    switch (template) {
-      case "inquiry": promise = email.templateInquiry(object); break;
-      default: return reject({ status: "failed", content: "No template is provided" });
-    }
-    let contents;
-    try {
-      contents = await promise;
-    } catch (data) {
-      return reject(data);
-    }
-    // CONSTRUCT EMAIL
-    const mail = {
-      from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
-      to: `${object.email}`,
-      subject: contents.subject,
-      text: contents.text,
-      html: contents.html
-    };
-    // SUCCESS HANDLER
-    return resolve(mail);
-  });
-}
+		// BUILD CONTENTS
+		let promise;
+		switch (template) {
+			case "inquiry":
+				promise = email.templateInquiry(object);
+				break;
+			case "account-verification":
+				promise = email.templateAccountVerification(object);
+				break;
+			default:
+				return reject({ status: "failed", content: "No template is provided" });
+		}
+		let contents;
+		try {
+			contents = await promise;
+		} catch (data) {
+			return reject(data);
+		}
+		// CONSTRUCT EMAIL
+		const mail = {
+			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
+			to: `${object.email}`,
+			subject: contents.subject,
+			text: contents.text,
+			html: contents.html,
+		};
+		// SUCCESS HANDLER
+		return resolve(mail);
+	});
+};
 
 email.send = (object = {}) => {
-  return new Promise(async (resolve, reject) => {
-    // VALIDATE OBJECT
+	return new Promise(async (resolve, reject) => {
+		// VALIDATE OBJECT
 
-    // CONFIGURE TRANSPORT OPTIONS
-    const transportOptions = {
-      host: process.env.AWS_SMTP_HOST,
-      port: process.env.AWS_SMTP_PORT,
-      secure: true,
-      auth: {
-        user: process.env.AWS_SMTP_USERNAME,
-        pass: process.env.AWS_SMTP_PASSWORD
-      }
-    };
-    // CREATE TRANSPORT
-    const transporter = nodemailer.createTransport(transportOptions);
-    // SEND THE MAIL
-    try {
-      await transporter.sendMail(object);
-    } catch (error) {
-      return reject({ status: "error", content: error });
-    }
-    // SUCCESS HANDLER
-    return resolve();
-  });
-}
+		// CONFIGURE TRANSPORT OPTIONS
+		const transportOptions = {
+			host: process.env.AWS_SMTP_HOST,
+			port: process.env.AWS_SMTP_PORT,
+			secure: true,
+			auth: {
+				user: process.env.AWS_SMTP_USERNAME,
+				pass: process.env.AWS_SMTP_PASSWORD,
+			},
+		};
+		// CREATE TRANSPORT
+		const transporter = nodemailer.createTransport(transportOptions);
+		// SEND THE MAIL
+		try {
+			await transporter.sendMail(object);
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// SUCCESS HANDLER
+		return resolve();
+	});
+};
 
 /* ----------------------------------------------------------------------------------------
 TEMPLATES
 ---------------------------------------------------------------------------------------- */
 
 email.templateInquiry = (object) => {
-  return new Promise(async (resolve, reject) => {
-    // SET THE EMAIL SUBJECT
-    const subject = object.subject;
-    // BUILD THE EMAIL BODY
-    const text = `
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = object.subject;
+		// BUILD THE EMAIL BODY
+		const text = `
     Hi ${object.name},
 
     Thank you for the message, we will get back to you as soon as possible!
@@ -114,7 +121,7 @@ email.templateInquiry = (object) => {
     Kind Regards,
     CreateBase Team`;
 
-    const div = `
+		const div = `
     <div id="body">
       <div id="wrap">
         <div id="content-container">
@@ -213,8 +220,8 @@ email.templateInquiry = (object) => {
       </div>
     </div>
     `;
-    // SET THE CSS STYLING
-    const css = `
+		// SET THE CSS STYLING
+		const css = `
     <style>
       * {
         margin: 0;
@@ -327,19 +334,50 @@ email.templateInquiry = (object) => {
       }
     </style>
     `;
-    // Combine the HTML and CSS
-    const combined = div + css;
-    // Inline the CSS
-    const inlineCSSOptions = { url: "/" };
-    let html;
-    try {
-      html = await inlineCSS(combined, inlineCSSOptions);
-    } catch (error) {
-      return reject({ status: "error", content: error });
-    }
-    // Return the email object
-    return resolve({ subject, text, html });
-  });
+		// Combine the HTML and CSS
+		const combined = div + css;
+		// Inline the CSS
+		const inlineCSSOptions = { url: "/" };
+		let html;
+		try {
+			html = await inlineCSS(combined, inlineCSSOptions);
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Return the email object
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateAccountVerification = (object) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = "Test Email";
+		// BUILD THE EMAIL BODY
+		const text = `
+    Hi Carl,
+
+    I am just testing the email functionality!
+
+    Kind Regards,
+    CreateBase Team`;
+
+		const div = ``;
+		// SET THE CSS STYLING
+		const css = ``;
+		// Combine the HTML and CSS
+		const combined = div + css;
+		// Inline the CSS
+		const inlineCSSOptions = { url: "/" };
+		let html = "";
+		// try {
+		// 	html = await inlineCSS(combined, inlineCSSOptions);
+		// } catch (error) {
+		// 	return reject({ status: "error", content: error });
+		// }
+		// Return the email object
+		return resolve({ subject, text, html });
+	});
 };
 
 /*=========================================================================================
