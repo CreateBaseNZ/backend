@@ -186,6 +186,70 @@ router.post("/signup/educator-organisation", async (req, res) => {
 	return res.send({ status: "succeeded", content: "A new educator account has been registered and has joined an organisation" });
 });
 
+// @route     POST /signup/learner-organisation
+// @desc
+// @access    Backend
+router.post("/signup/learner-organisation", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API Key" });
+	}
+	// Fetch the organisation
+	let organisation;
+	try {
+		organisation = await Organisation.findOne(req.body.input.search);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Validate if the organisation exist
+	if (!organisation) return res.send({ status: "failed", content: "No organisation were found with these identification info" });
+	// Check if the join code is correct
+	if (organisation.join.learner !== req.body.input.code) {
+		return res.send({ status: "failed", content: "Invalid code" });
+	}
+	// Create the profile instance
+	const profileObject = {
+		displayName: req.body.input.displayName,
+		date: req.body.input.date,
+	};
+	let profile;
+	try {
+		profile = await Profile.build(profileObject, false);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Create the license instance
+	const licenseObject = {
+		username: req.body.input.username,
+		password: req.body.input.password,
+		statuses: [{ type: "free", date: req.body.input.date }],
+		access: "learner",
+		date: req.body.input.date,
+	};
+	let license;
+	try {
+		license = await License.build(licenseObject, false);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Create links
+	profile.license = license._id;
+	profile.licenses = [license._id];
+	license.profile = profile._id;
+	license.organisation = organisation._id;
+	organisation.licenses.push(license._id);
+	organisation.date.modified = req.body.input.date;
+	// Save instances
+	let promises = [profile.save(), license.save(), organisation.save()];
+	try {
+		await Promise.all(promises);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "A new learner account has been registered and has joined an organisation" });
+});
+
 // @route     POST /update-session
 // @desc
 // @access    Backend
