@@ -163,6 +163,120 @@ LicenseSchema.statics.login = function (object = {}) {
 	});
 };
 
+LicenseSchema.statics.reform = function (object = {}, save = true) {
+	return new Promise(async (resolve, reject) => {
+		// Fetch the license
+		let license;
+		try {
+			license = await this.findOne({ _id: object.license });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		if (!license) {
+			return reject({ status: "critical error", content: "There is no license found" });
+		}
+		// Update the properties
+		let valid = true;
+		let errors = new Object();
+		let account;
+		if (object.account) {
+			// Fetch the account
+			try {
+				account = await Account.findOne({ _id: object.account });
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		for (const property in object) {
+			errors[property] = "";
+			if (property === "username") {
+				let license2;
+				try {
+					license2 = await this.findOne({ username: object.username });
+				} catch (error) {
+					return reject({ status: "error", content: error });
+				}
+				if (license2) {
+					valid = false;
+					errors.username = "This username is already taken";
+				} else {
+					license.username = object.username;
+				}
+			} else if (property === "password") {
+				// Validate old password
+				let match;
+				try {
+					match = await license.validatePassword(object.oldPassword);
+				} catch (data) {
+					return reject(data);
+				}
+				if (match) {
+					// Update the license's password
+					license.password = object.password;
+					// Update the password of the user's account
+					if (account) {
+						// Update the password
+						account.password = object.password;
+					}
+				} else {
+					valid = false;
+					errors.password = "Incorrect password";
+				}
+			} else {
+				if (property !== "license" && property !== "date") {
+					valid = false;
+					errors[property] = "This property does not exist or it cannot be updated";
+				}
+			}
+		}
+		// Check if the update was successful
+		if (!valid) return reject({ status: "failed", content: errors });
+		license.date.modified = object.date;
+		// Save updates
+		if (save) {
+			try {
+				await license.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+			if (account) {
+				try {
+					await account.save();
+				} catch (error) {
+					return reject({ status: "error", content: error });
+				}
+			}
+		}
+		// Success handler
+		return resolve(license);
+	});
+};
+
+LicenseSchema.statics.retrieve = function (object = {}) {
+	return new Promise(async (resolve, reject) => {
+		// Fetch the license
+		let license;
+		try {
+			license = await this.findOne({ _id: object.license });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		if (!license) {
+			return reject({ status: "failed", content: "There is no license found" });
+		}
+		// Fetch requested data
+		let data = new Object();
+		for (let i = 0; i < object.properties.length; i++) {
+			const property = object.properties[i];
+			if (property === "username") {
+				data[property] = license[property];
+			}
+		}
+		// Return the requested data
+		return resolve(data);
+	});
+};
+
 // METHODS ==================================================
 
 LicenseSchema.methods.validatePassword = function (password = "") {

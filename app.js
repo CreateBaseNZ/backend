@@ -64,12 +64,14 @@ const contactUsRouter = require("./routes/contact-us.js");
 const authRouter = require("./routes/auth.js");
 const organisationRouter = require("./routes/organisation.js");
 const profileRouter = require("./routes/profile.js");
+const licenseRouter = require("./routes/license.js");
 app.use(generalRouter);
 app.use(notificationRouter);
 app.use(contactUsRouter);
 app.use(authRouter);
 app.use(organisationRouter);
 app.use(profileRouter);
+app.use(licenseRouter);
 
 /*-----------------------------------------------------------------------------------------
 ERROR PAGE

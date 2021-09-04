@@ -393,14 +393,14 @@ email.templateAccountVerification = (object) => {
 email.templatePasswordReset = (object) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
-		const subject = `Reset Your Password`;
+		const subject = `Reset Your Password: ${object.code}`;
 		// BUILD THE EMAIL BODY
 		const text = `
     Hi ${object.displayName},
 
     Click the link below to change your password.
 
-    https://app.createbase.co.nz/reset-password/${object.email}/${object.code}
+    https://app.createbase.co.nz/auth/reset-password/${object.email}/${object.code}
 
     Kind Regards,
     CreateBase Team`;

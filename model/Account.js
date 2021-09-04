@@ -12,7 +12,7 @@ const Schema = mongoose.Schema;
 // OTHER MODELS =============================================
 
 const Profile = require("./Profile.js");
-const License = require("./Profile.js");
+const License = require("./License.js");
 
 // MODEL ====================================================
 
@@ -260,6 +260,9 @@ AccountSchema.methods.setNewPassword = function (object = {}, save = true) {
 		} catch (error) {
 			return reject({ status: "error", content: error });
 		}
+		if (!profile) {
+			return reject({ status: "failed", content: "No profile found" });
+		}
 		// Fetch license
 		let license;
 		try {
@@ -267,12 +270,20 @@ AccountSchema.methods.setNewPassword = function (object = {}, save = true) {
 		} catch (error) {
 			return reject({ status: "error", content: error });
 		}
+		if (!license) {
+			return reject({ status: "failed", content: "No license found" });
+		}
 		// Change password of both account and license
 		this.password = object.password;
 		license.password = object.password;
+		// Generate the code
+		const code = randomize("aA0", 6);
+		// Set parametres of the verification object
+		this.resetPassword.code = code;
+		this.resetPassword.date = new Date().toString();
 		// Save new password
 		if (save) {
-			const promises = [this.saves(), license.saves()];
+			const promises = [this.save(), license.save()];
 			try {
 				await Promise.all(promises);
 			} catch (error) {
