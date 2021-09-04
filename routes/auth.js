@@ -458,11 +458,41 @@ router.post("/reset-password", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!account) return res.send({ status: "failed", content: "No account exist with this email" });
-	// Change the password
+	// Check if the code matches
+	if (account.resetPassword.code !== req.body.input.code) {
+		return res.send({ status: "failed", content: "Incorrect code" });
+	}
+	// Fetch the profile
+	let profile;
 	try {
-		await account.setNewPassword({ code: req.body.input.code, password: req.body.input.password });
-	} catch (data) {
-		return res.send(data);
+		profile = await Profile.findOne({ "account.local": account._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile) {
+		return res.send({ status: "failed", content: "No profile found" });
+	}
+	// Fetch license
+	let license;
+	try {
+		license = await License.findOne({ _id: profile.license });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license) {
+		return res.send({ status: "failed", content: "No license found" });
+	}
+	// Change password of both account and license
+	account.password = req.body.input.password;
+	account.date.modified = new Date().toString();
+	license.password = req.body.input.password;
+	license.date.modified = new Date().toString();
+	// Save the new passwords
+	const promises = [account.save(), license.save()];
+	try {
+		await Promise.all(promises);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "The password has been reset" });
