@@ -323,6 +323,63 @@ router.post("/organisation/admin-create-learner", async (req, res) => {
 	return res.send({ status: "succeeded", content: "Successfully created a learner license" });
 });
 
+// @route     POST /organisation/admin/update-learner-license
+// @desc
+// @access    Backend
+router.post("/organisation/admin/update-learner-license", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the license
+	const query = { organisation: req.body.input.organisation, username: req.body.input.username, access: "learner" };
+	let license;
+	try {
+		license = await License.findOne(query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Update the license
+	let valid = true;
+	errors = {};
+	for (const property in req.body.input.updates) {
+		const value = req.body.input.updates[property];
+		switch (property) {
+			case "username":
+				// TODO: validate the username input
+				try {
+					await License.validateUsername(value, false);
+				} catch (data) {
+					if (data.status === "error") {
+						return res.send(data);
+					} else if (data.status === "failed") {
+						valid = false;
+						errors[property] = data.content;
+					}
+				}
+			case "password":
+			// TODO: validate the password input
+			case "status":
+				// TODO: License status update logic
+				break;
+			default:
+				license[property] = value;
+				break;
+		}
+	}
+	// Check if the update was successful
+	if (!valid) return res.send({ status: "failed", content: errors });
+	// Save the updates
+	license.date.modified = req.body.input.date;
+	try {
+		await license.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "" });
+});
+
 // EXPORT ===================================================
 
 module.exports = router;

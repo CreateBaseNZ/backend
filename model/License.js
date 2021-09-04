@@ -278,6 +278,28 @@ LicenseSchema.statics.retrieve = function (object = {}) {
 	});
 };
 
+License.statics.validateUsername = function (username = "", isTaken = true) {
+	return new Promise(async (resolve, reject) => {
+		if (!username) return reject({ status: "failed", content: "There is no username input" });
+		// Check if the username is already taken
+		let license;
+		try {
+			license = await this.findOne({ username });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		if (isTaken === !license) {
+			if (isTaken) {
+				return reject({ status: "failed", content: "There is no license associated with this username" });
+			} else {
+				return reject({ status: "failed", content: "This username is already taken" });
+			}
+		}
+		// Success handler
+		return resolve();
+	});
+};
+
 // METHODS ==================================================
 
 LicenseSchema.methods.validatePassword = function (password = "") {
