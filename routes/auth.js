@@ -462,6 +462,10 @@ router.post("/reset-password", async (req, res) => {
 	if (account.resetPassword.code !== req.body.input.code) {
 		return res.send({ status: "failed", content: "Incorrect code" });
 	}
+	// Check if a password is provided
+	if (!req.body.input.password) {
+		return res.send({ status: "failed", content: "No password is provided" });
+	}
 	// Fetch the profile
 	let profile;
 	try {
