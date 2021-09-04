@@ -153,6 +153,7 @@ LicenseSchema.statics.login = function (object = {}) {
 			try {
 				account = await Account.findOne({ _id: profile.account.local });
 			} catch (error) {
+				console.log(error);
 				return reject({ status: "error", content: error });
 			}
 			session.account = account._id;
