@@ -86,19 +86,17 @@ LicenseSchema.statics.validate = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
 		// Declare variables
 		let valid = true;
-		let errors = {
-			username: "",
-		};
+		let errors = {};
 		// Check if user exist within the organisation
-		let license;
 		try {
-			license = await this.findOne({ username: object.username });
-		} catch (error) {
-			return reject({ status: "error", content: error });
-		}
-		if (license) {
-			valid = false;
-			errors.username = "This username is already taken";
+			await this.validateUsername(object.username, false);
+		} catch (data) {
+			if (data.status === "error") {
+				return reject(data);
+			} else if (data.status === "failed") {
+				valid = false;
+				errors.username = data.content;
+			}
 		}
 		// Handler
 		if (valid) {
@@ -278,7 +276,7 @@ LicenseSchema.statics.retrieve = function (object = {}) {
 	});
 };
 
-License.statics.validateUsername = function (username = "", isTaken = true) {
+LicenseSchema.statics.validateUsername = function (username = "", isTaken = true) {
 	return new Promise(async (resolve, reject) => {
 		if (!username) return reject({ status: "failed", content: "There is no username input" });
 		// Check if the username is already taken

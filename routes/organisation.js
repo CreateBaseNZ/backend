@@ -264,13 +264,13 @@ router.post("/organisation/educator-join", async (req, res) => {
 	return res.send({ status: "succeeded", content });
 });
 
-// @route     POST /organisation/admin-create-learner
+// @route     POST /organisation/admin/create-learner
 // @desc
 // @access    Backend
-router.post("/organisation/admin-create-learner", async (req, res) => {
+router.post("/organisation/admin/create-learner", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the organisation
 	let organisation;
@@ -279,7 +279,8 @@ router.post("/organisation/admin-create-learner", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	// Create a license
+	if (!organisation) return res.send({ status: "critical error", content: "" });
+	// Create a learner license
 	const licenseObject = {
 		username: req.body.input.username,
 		password: req.body.input.password,
@@ -294,11 +295,8 @@ router.post("/organisation/admin-create-learner", async (req, res) => {
 	} catch (data) {
 		return res.send(data);
 	}
-	// Create a profile
-	let profileObject = {
-		displayName: req.body.input.displayName,
-		date: req.body.input.date,
-	};
+	// Create the profile of the new learner
+	let profileObject = { displayName: req.body.input.displayName, date: req.body.input.date };
 	if (req.body.input.saves) profileObject.saves = req.body.input.saves;
 	let profile;
 	try {
@@ -313,6 +311,7 @@ router.post("/organisation/admin-create-learner", async (req, res) => {
 	profile.license = license._id;
 	profile.licenses = [license._id];
 	// Save instances
+	organisation.date.modified = req.body.input.date;
 	const promises = [organisation.save(), license.save(), profile.save()];
 	try {
 		await Promise.all(promises);
@@ -320,7 +319,7 @@ router.post("/organisation/admin-create-learner", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "Successfully created a learner license" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /organisation/admin/update-learner-license
@@ -339,6 +338,7 @@ router.post("/organisation/admin/update-learner-license", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	if (!license) return res.send({ status: "critical error", content: "" });
 	// Update the license
 	let valid = true;
 	errors = {};
