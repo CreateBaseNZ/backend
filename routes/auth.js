@@ -13,6 +13,7 @@ const Account = require("../model/Account.js");
 const License = require("../model/License.js");
 const Organisation = require("../model/Organisation.js");
 const Profile = require("../model/Profile.js");
+const email = require("../configs/email.js");
 
 // ROUTES ===================================================
 
@@ -256,6 +257,28 @@ router.post("/signup/learner-organisation", async (req, res) => {
 	return res.send({ status: "succeeded", content: "A new learner account has been registered and has joined an organisation" });
 });
 
+// @route     POST /validate-username
+// @desc
+// @access    Backend
+router.post("/validate-username", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API key" });
+	}
+	// Fetch the license
+	let license;
+	try {
+		license = await License.findOne({ username: req.body.input.username });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (license) {
+		return res.send({ status: "failed", content: "This username is already taken" });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "This username is available" });
+});
+
 // @route     POST /update-session
 // @desc
 // @access    Backend
@@ -391,6 +414,83 @@ router.post("/verify-account", async (req, res) => {
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "The account has been verified" });
+});
+
+// @route     POST /send-reset-password-email
+// @desc
+// @access    Backend
+router.post("/send-reset-password-email", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API Key" });
+	}
+	// Fetch the account
+	let account;
+	try {
+		account = await Account.findOne({ email: req.body.input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "failed", content: "No account exist with this email" });
+	// Send the verification code
+	try {
+		await account.sendPasswordResetEmail();
+	} catch (data) {
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "The reset password email has been sent" });
+});
+
+// @route     POST /reset-password
+// @desc
+// @access    Backend
+router.post("/reset-password", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API key" });
+	}
+	// Fetch the account
+	let account;
+	try {
+		account = await Account.findOne({ email: req.body.input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "failed", content: "No account exist with this email" });
+	// Change the password
+	try {
+		await account.setNewPassword({ code: req.body.input.code, password: req.body.input.password });
+	} catch (data) {
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "The password has been reset" });
+});
+
+// @route     POST /send-test-email
+// @desc
+// @access    Backend
+router.post("/send-test-email", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "Invalid API key" });
+	}
+	// Create the email object
+	let mail;
+	try {
+		mail = await email.create({ email: req.body.input.email }, "test");
+	} catch (data) {
+		return reject(data);
+	}
+	// Send the verification email
+	try {
+		await email.send(mail);
+	} catch (data) {
+		return reject(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: "The test email has been sent" });
 });
 
 // EXPORT ===================================================

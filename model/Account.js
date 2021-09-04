@@ -12,6 +12,7 @@ const Schema = mongoose.Schema;
 // OTHER MODELS =============================================
 
 const Profile = require("./Profile.js");
+const License = require("./Profile.js");
 
 // MODEL ====================================================
 
@@ -26,6 +27,10 @@ const AccountSchema = new Schema({
 			codeGenerated: { type: String, default: "" },
 			verified: { type: String, default: "" },
 		},
+	},
+	resetPassword: {
+		code: { type: String, default: "" },
+		date: { type: String, default: "" },
 	},
 	date: {
 		created: { type: String, required: true },
@@ -180,6 +185,102 @@ AccountSchema.methods.verify = function (object = {}, save = true) {
 		}
 		// Success handler
 		return resolve();
+	});
+};
+
+AccountSchema.methods.sendPasswordResetEmail = function (object = {}, save = true) {
+	return new Promise(async (resolve, reject) => {
+		// Update password reset code before all else
+		try {
+			await this.setPasswordResetCode(object, save);
+		} catch (data) {
+			return reject(data);
+		}
+		// Fetch the profile
+		let profile;
+		try {
+			profile = await Profile.findOne({ "account.local": this._id });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Validate if the profile has been fetched successfully
+		if (!profile) {
+			return res.send({ status: "failed", content: "There is not profile associated with this account" });
+		}
+		// Create the input object
+		const input = { email: this.email, displayName: profile.displayName, code: this.resetPassword.code };
+		// Create the email object
+		let mail;
+		try {
+			mail = await email.create(input, "password-reset");
+		} catch (data) {
+			return reject(data);
+		}
+		// Send the verification email
+		try {
+			await email.send(mail);
+		} catch (data) {
+			return reject(data);
+		}
+		// Success handler
+		return resolve();
+	});
+};
+
+AccountSchema.methods.setPasswordResetCode = function (object = {}, save = true) {
+	return new Promise(async (resolve, reject) => {
+		// Generate the code
+		const code = randomize("aA0", 6);
+		// Set parametres of the verification object
+		this.resetPassword.code = code;
+		this.resetPassword.date = new Date().toString();
+		// Save the account
+		if (save) {
+			try {
+				await this.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		// Success handler
+		return resolve();
+	});
+};
+
+AccountSchema.methods.setNewPassword = function (object = {}, save = true) {
+	return new Promise(async (resolve, reject) => {
+		// Check if the code matches
+		if (this.resetPassword.code !== object.code) {
+			return reject({ status: "failed", content: "Incorrect code" });
+		}
+		// Fetch the profile
+		let profile;
+		try {
+			profile = await Profile.findOne({ "account.local": this._id });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Fetch license
+		let license;
+		try {
+			license = await License.findOne({ _id: profile.license });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Change password of both account and license
+		this.password = object.password;
+		license.password = object.password;
+		// Save new password
+		if (save) {
+			const promises = [this.saves(), license.saves()];
+			try {
+				await Promise.all(promises);
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		// Success handler
+		return resolve(license);
 	});
 };
 

@@ -55,6 +55,12 @@ email.create = (object = {}, template = "") => {
 			case "account-verification":
 				promise = email.templateAccountVerification(object);
 				break;
+			case "password-reset":
+				promise = email.templatePasswordReset(object);
+				break;
+			case "test":
+				promise = email.templateTestEmail();
+				break;
 			default:
 				return reject({ status: "failed", content: "No template is provided" });
 		}
@@ -352,7 +358,7 @@ email.templateInquiry = (object) => {
 email.templateAccountVerification = (object) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
-		const subject = "Test Email";
+		const subject = `Verification Code: ${object.code}`;
 		// BUILD THE EMAIL BODY
 		const text = `
     Hi ${object.displayName},
@@ -361,6 +367,72 @@ email.templateAccountVerification = (object) => {
     Your account verification code is: ${object.code}
 
     Log into your CreateBase account and enter this code.
+
+
+    Kind Regards,
+    CreateBase Team`;
+
+		const div = ``;
+		// SET THE CSS STYLING
+		const css = ``;
+		// Combine the HTML and CSS
+		const combined = div + css;
+		// Inline the CSS
+		const inlineCSSOptions = { url: "/" };
+		let html = "";
+		// try {
+		// 	html = await inlineCSS(combined, inlineCSSOptions);
+		// } catch (error) {
+		// 	return reject({ status: "error", content: error });
+		// }
+		// Return the email object
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templatePasswordReset = (object) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `Reset Your Password`;
+		// BUILD THE EMAIL BODY
+		const text = `
+    Hi ${object.displayName},
+
+    Click the link below to change your password.
+
+    https://app.createbase.co.nz/reset-password/${object.email}/${object.code}
+
+    Kind Regards,
+    CreateBase Team`;
+
+		const div = ``;
+		// SET THE CSS STYLING
+		const css = ``;
+		// Combine the HTML and CSS
+		const combined = div + css;
+		// Inline the CSS
+		const inlineCSSOptions = { url: "/" };
+		let html = "";
+		// try {
+		// 	html = await inlineCSS(combined, inlineCSSOptions);
+		// } catch (error) {
+		// 	return reject({ status: "error", content: error });
+		// }
+		// Return the email object
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateTestEmail = () => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `Testing the automated email feature`;
+		// BUILD THE EMAIL BODY
+		const text = `
+    Good day Ma'am/Sir,
+
+
+    We are just testing to see if you received this email with no problem.
 
 
     Kind Regards,
