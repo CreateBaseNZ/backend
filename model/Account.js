@@ -246,41 +246,41 @@ AccountSchema.methods.setPasswordResetCode = function (object = {}, save = true)
 	});
 };
 
-AccountSchema.methods.setNewPassword = function (object = {}, save = true) {
-	return new Promise(async (resolve, reject) => {
-		// Check if the code matches
-		if (this.resetPassword.code !== object.code) {
-			return reject({ status: "failed", content: "Incorrect code" });
-		}
-		// Fetch the profile
-		let profile;
-		try {
-			profile = await Profile.findOne({ "account.local": this._id });
-		} catch (error) {
-			return reject({ status: "error", content: error });
-		}
-		if (!profile) {
-			return reject({ status: "failed", content: "No profile found" });
-		}
-		// Change password of both account
-		this.password = object.password;
-		// Generate the code
-		const code = randomize("aA0", 6);
-		// Set parametres of the verification object
-		this.resetPassword.code = code;
-		this.resetPassword.date = new Date().toString();
-		// Save new password
-		if (save) {
-			try {
-				await this.save();
-			} catch (error) {
-				return reject({ status: "error", content: error });
-			}
-		}
-		// Success handler
-		return resolve();
-	});
-};
+// AccountSchema.methods.setNewPassword = function (object = {}, save = true) {
+// 	return new Promise(async (resolve, reject) => {
+// 		// Check if the code matches
+// 		if (this.resetPassword.code !== object.code) {
+// 			return reject({ status: "failed", content: "Incorrect code" });
+// 		}
+// 		// Fetch the profile
+// 		let profile;
+// 		try {
+// 			profile = await Profile.findOne({ "account.local": this._id });
+// 		} catch (error) {
+// 			return reject({ status: "error", content: error });
+// 		}
+// 		if (!profile) {
+// 			return reject({ status: "failed", content: "No profile found" });
+// 		}
+// 		// Change password of both account
+// 		this.password = object.password;
+// 		// Generate the code
+// 		const code = randomize("aA0", 6);
+// 		// Set parametres of the verification object
+// 		this.resetPassword.code = code;
+// 		this.resetPassword.date = new Date().toString();
+// 		// Save new password
+// 		if (save) {
+// 			try {
+// 				await this.save();
+// 			} catch (error) {
+// 				return reject({ status: "error", content: error });
+// 			}
+// 		}
+// 		// Success handler
+// 		return resolve();
+// 	});
+// };
 
 // EXPORT ===================================================
 
