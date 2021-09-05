@@ -100,6 +100,8 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 		} else {
 			recipient = object.email;
 		}
+		// Test
+		if (process.env.NODE_ENV !== "production") contents.subject = "Test: " + contents.subject;
 		// CONSTRUCT EMAIL
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
