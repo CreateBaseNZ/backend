@@ -1,8 +1,8 @@
 {
-  "name": "application",
+  "name": "website",
   "version": "0.1.0",
   "private": true,
-  "description": "CreateBase's Application",
+  "description": "CreateBase's Website",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -21,7 +21,8 @@
     "fullpage.js": "^3.0.9",
     "gridfs-stream": "^1.1.1",
     "helmet": "^4.3.1",
-    "inline-css": "^1.0.4",
+    "inline-css": "^3.0.0",
+    "lodash": "^4.17.21",
     "moment": "^2.26.0",
     "moment-timezone": "^0.5.27",
     "mongoose": "^5.8.4",
