@@ -448,7 +448,7 @@ router.post("/send-reset-password-email", async (req, res) => {
 router.post("/reset-password", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the account
 	let account;
@@ -457,14 +457,16 @@ router.post("/reset-password", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!account) return res.send({ status: "failed", content: "No account exist with this email" });
+	if (!account) {
+		return res.send({ status: "failed", content: { email: "There is no account associated with this email" } });
+	}
 	// Check if the code matches
 	if (account.resetPassword.code !== req.body.input.code) {
-		return res.send({ status: "failed", content: "Incorrect code" });
+		return res.send({ status: "failed", content: { code: "Incorrect code" } });
 	}
 	// Check if a password is provided
 	if (!req.body.input.password) {
-		return res.send({ status: "failed", content: "No password is provided" });
+		return res.send({ status: "failed", content: { password: "There is no password provided" } });
 	}
 	// Fetch the profile
 	let profile;
@@ -474,7 +476,7 @@ router.post("/reset-password", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!profile) {
-		return res.send({ status: "failed", content: "No profile found" });
+		return res.send({ status: "error", content: "There is no profile associated with this account" });
 	}
 	// Fetch license
 	let license;
@@ -484,7 +486,7 @@ router.post("/reset-password", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!license) {
-		return res.send({ status: "failed", content: "No license found" });
+		return res.send({ status: "error", content: "There is no license associated with this profile" });
 	}
 	// Change password of both account and license
 	account.password = req.body.input.password;
@@ -499,7 +501,7 @@ router.post("/reset-password", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "The password has been reset" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /send-test-email
