@@ -138,28 +138,6 @@ MessageSchema.methods.sendInquiryEmailNotification = function () {
 		} catch (data) {
 			return reject(data);
 		}
-		// Process: Notify CreateBase of the new inquiry
-		// Build the email object
-		const emailObject2 = {
-			email: "carlvelasco96@gmail.com",
-			name: this.name,
-			userEmail: this.email,
-			subject: this.subject,
-			message: this.message,
-		};
-		// Create the email object
-		let mail2;
-		try {
-			mail2 = await email.create(emailObject2, "inq-notif");
-		} catch (data) {
-			return reject(data);
-		}
-		// Send the verification email
-		try {
-			await email.send(mail2);
-		} catch (data) {
-			return reject(data);
-		}
 		// SUCCESS HANDLER
 		return resolve();
 	});
