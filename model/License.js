@@ -222,7 +222,7 @@ LicenseSchema.statics.reform = function (object = {}, save = true) {
 					errors.password = "incorrect password";
 				}
 			} else {
-				if (property !== "license" && property !== "date") {
+				if (property !== "license" && property !== "date" && property !== "oldPassword") {
 					valid = false;
 					errors[property] = "does not exist or cannot be updated";
 				}

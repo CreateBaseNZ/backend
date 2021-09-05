@@ -6,6 +6,7 @@ const express = require("express");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
+const email = require("../configs/email.js");
 
 // MODELS ===================================================
 
@@ -56,6 +57,64 @@ router.post("/organisation/create", async (req, res) => {
 		await license.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
+	}
+	// Process: Send the admin user an email containing the necessary information
+	// Fetch the profile
+	let profile;
+	try {
+		profile = await Profile.findOne({ _id: license.profile });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile) return res.send({ status: "error", content: "no profile found" });
+	// Fetch the account
+	let account;
+	try {
+		account = await Account.findOne({ _id: profile.account.local });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "error", content: "no account found" });
+	// Build the email object
+	const emailObject = {
+		email: account.email,
+		displayName: profile.displayName,
+		orgName: organisation.name,
+		orgId: organisation.metadata.id,
+		eduCode: organisation.join.educator,
+		lerCode: organisation.join.learner,
+	};
+	// Create the email object
+	let mail;
+	try {
+		mail = await email.create(emailObject, "organisation-detail");
+	} catch (data) {
+		return reject(data);
+	}
+	// Send the verification email
+	try {
+		await email.send(mail);
+	} catch (data) {
+		return reject(data);
+	}
+	// Build the email object
+	const emailObject2 = {
+		email: "admin@createbase.co.nz",
+		displayName: profile.displayName,
+		orgName: organisation.name,
+	};
+	// Create the email object
+	let mail2;
+	try {
+		mail2 = await email.create(emailObject2, "new-org-notif");
+	} catch (data) {
+		return reject(data);
+	}
+	// Send the verification email
+	try {
+		await email.send(mail2);
+	} catch (data) {
+		return reject(data);
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "" });
@@ -117,10 +176,7 @@ router.post("/organisation/admin-read", async (req, res) => {
 			username: license.username,
 			status: "free", // Temporary
 			access: license.access,
-			profile: {
-				displayName: profile.displayName,
-				saves: profile.saves,
-			},
+			profile: { displayName: profile.displayName, saves: profile.saves },
 		});
 	}
 	contentOne.licenses = contentTwo;

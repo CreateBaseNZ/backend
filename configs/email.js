@@ -17,6 +17,11 @@ let email = {
 	// TEMPLATES
 	templateInquiry: undefined,
 	templateAccountVerification: undefined,
+	templatePasswordReset: undefined,
+	templateOrganisationDetail: undefined,
+	templateInqNotif: undefined,
+	templateNewOrgNotif: undefined,
+	templateTestEmail: undefined,
 };
 
 /*=========================================================================================
@@ -45,7 +50,6 @@ email.build = (object = {}) => {
 email.create = (object = {}, template = "") => {
 	return new Promise(async (resolve, reject) => {
 		// VALIDATE OBJECT
-
 		// BUILD CONTENTS
 		let promise;
 		switch (template) {
@@ -57,6 +61,15 @@ email.create = (object = {}, template = "") => {
 				break;
 			case "password-reset":
 				promise = email.templatePasswordReset(object);
+				break;
+			case "organisation-detail":
+				promise = email.templateOrganisationDetail(object);
+				break;
+			case "inq-notif":
+				promise = email.templateInqNotif(object);
+				break;
+			case "new-org-notif":
+				promise = email.templateNewOrgNotif(object);
 				break;
 			case "test":
 				promise = email.templateTestEmail();
@@ -85,6 +98,7 @@ email.create = (object = {}, template = "") => {
 
 email.send = (object = {}) => {
 	return new Promise(async (resolve, reject) => {
+		console.log("Sending email");
 		// VALIDATE OBJECT
 
 		// CONFIGURE TRANSPORT OPTIONS
@@ -120,12 +134,15 @@ email.templateInquiry = (object) => {
 		const subject = object.subject;
 		// BUILD THE EMAIL BODY
 		const text = `
-    Hi ${object.name},
+Hi ${object.name},
 
-    Thank you for the message, we will get back to you as soon as possible!
 
-    Kind Regards,
-    CreateBase Team`;
+Thank you for the message, we will get back to you as soon as possible!
+
+
+Kind Regards,
+
+CreateBase Team`;
 
 		const div = `
     <div id="body">
@@ -361,16 +378,17 @@ email.templateAccountVerification = (object) => {
 		const subject = `Verification Code: ${object.code}`;
 		// BUILD THE EMAIL BODY
 		const text = `
-    Hi ${object.displayName},
+Hi ${object.displayName},
 
 
-    Your account verification code is: ${object.code}
+Your account verification code is: ${object.code}
 
-    Log into your CreateBase account and enter this code.
+Log into your CreateBase account and enter this code.
 
 
-    Kind Regards,
-    CreateBase Team`;
+Kind Regards,
+
+CreateBase Team`;
 
 		const div = ``;
 		// SET THE CSS STYLING
@@ -396,14 +414,137 @@ email.templatePasswordReset = (object) => {
 		const subject = `Reset Your Password: ${object.code}`;
 		// BUILD THE EMAIL BODY
 		const text = `
-    Hi ${object.displayName},
+Hi ${object.displayName},
 
-    Click the link below to change your password.
 
-    https://app.createbase.co.nz/auth/reset-password/${object.email}/${object.code}
+Click the link below to change your password.
 
-    Kind Regards,
-    CreateBase Team`;
+https://app.createbase.co.nz/auth/reset-password/${object.email}/${object.code}
+
+
+Kind Regards,
+
+CreateBase Team`;
+
+		const div = ``;
+		// SET THE CSS STYLING
+		const css = ``;
+		// Combine the HTML and CSS
+		const combined = div + css;
+		// Inline the CSS
+		const inlineCSSOptions = { url: "/" };
+		let html = "";
+		// try {
+		// 	html = await inlineCSS(combined, inlineCSSOptions);
+		// } catch (error) {
+		// 	return reject({ status: "error", content: error });
+		// }
+		// Return the email object
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateOrganisationDetail = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `Thank you for registering ${object.orgName} on CreateBase`;
+		// BUILD THE EMAIL BODY
+		const text = `
+Hi ${object.displayName},
+
+
+Hooray! Your organisation, ${object.orgName}, is now registered on the CreateBase platform.
+
+You can now start inviting your colleagues and students. Here are the details they will need to sign up:
+  - Organisation ID: ${object.orgId}
+  - Organisation name: ${object.orgName}
+  - Educator code: ${object.eduCode}
+  - Learner code: ${object.lerCode}
+
+If you're having trouble inviting, here are some guides to help you:
+  - How to join an organisation as an educator (some link)
+  - How to join an organisation as a student (some link)
+
+We're excited to have you on board, see you on the platform!
+
+
+Best regards,
+
+The CreateBase Team`;
+
+		const div = ``;
+		// SET THE CSS STYLING
+		const css = ``;
+		// Combine the HTML and CSS
+		const combined = div + css;
+		// Inline the CSS
+		const inlineCSSOptions = { url: "/" };
+		let html = "";
+		// try {
+		// 	html = await inlineCSS(combined, inlineCSSOptions);
+		// } catch (error) {
+		// 	return reject({ status: "error", content: error });
+		// }
+		// Return the email object
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateInqNotif = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `New inquiry from ${object.name}`;
+		// BUILD THE EMAIL BODY
+		const text = `
+Hey team,
+
+
+We have a new inquiry from ${object.name} (${object.userEmail}).
+
+"${object.subject}
+
+${object.message}"
+
+
+Kind Regards,
+
+The CreateBase Team`;
+
+		const div = ``;
+		// SET THE CSS STYLING
+		const css = ``;
+		// Combine the HTML and CSS
+		const combined = div + css;
+		// Inline the CSS
+		const inlineCSSOptions = { url: "/" };
+		let html = "";
+		// try {
+		// 	html = await inlineCSS(combined, inlineCSSOptions);
+		// } catch (error) {
+		// 	return reject({ status: "error", content: error });
+		// }
+		// Return the email object
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateNewOrgNotif = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `${object.orgName} just joined CreateBase!`;
+		// BUILD THE EMAIL BODY
+		const text = `
+Hey team,
+
+
+${object.displayName} from ${object.orgName} just registered their organisation on our platform!
+
+Amazing job team! Looking forward to more amazing news!
+
+
+Kind Regards,
+
+The CreateBase Team`;
 
 		const div = ``;
 		// SET THE CSS STYLING

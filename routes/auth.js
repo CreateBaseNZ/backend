@@ -6,6 +6,7 @@ const express = require("express");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
+const email = require("../configs/email.js");
 
 // MODELS ===================================================
 
@@ -13,7 +14,6 @@ const Account = require("../model/Account.js");
 const License = require("../model/License.js");
 const Organisation = require("../model/Organisation.js");
 const Profile = require("../model/Profile.js");
-const email = require("../configs/email.js");
 
 // ROUTES ===================================================
 
