@@ -59,7 +59,7 @@ router.post("/license/read", async (req, res) => {
 router.post("/license/validate-password", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid Private API key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the license
 	let license;
@@ -77,10 +77,10 @@ router.post("/license/validate-password", async (req, res) => {
 	}
 	// Process validation
 	if (!match) {
-		return res.send({ status: "failed", content: "Invalid password" });
+		return res.send({ status: "failed", content: { password: "incorrect password" } });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "Correct password" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // EXPORT ===================================================

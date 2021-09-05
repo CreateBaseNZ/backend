@@ -172,7 +172,7 @@ LicenseSchema.statics.reform = function (object = {}, save = true) {
 			return reject({ status: "error", content: error });
 		}
 		if (!license) {
-			return reject({ status: "critical error", content: "There is no license found" });
+			return reject({ status: "error", content: "there is no license found" });
 		}
 		// Update the properties
 		let valid = true;
@@ -197,7 +197,7 @@ LicenseSchema.statics.reform = function (object = {}, save = true) {
 				}
 				if (license2) {
 					valid = false;
-					errors.username = "This username is already taken";
+					errors.username = "already taken";
 				} else {
 					license.username = object.username;
 				}
@@ -219,12 +219,12 @@ LicenseSchema.statics.reform = function (object = {}, save = true) {
 					}
 				} else {
 					valid = false;
-					errors.password = "Incorrect password";
+					errors.password = "incorrect password";
 				}
 			} else {
 				if (property !== "license" && property !== "date") {
 					valid = false;
-					errors[property] = "This property does not exist or it cannot be updated";
+					errors[property] = "does not exist or cannot be updated";
 				}
 			}
 		}
@@ -261,7 +261,7 @@ LicenseSchema.statics.retrieve = function (object = {}) {
 			return reject({ status: "error", content: error });
 		}
 		if (!license) {
-			return reject({ status: "failed", content: "There is no license found" });
+			return reject({ status: "error", content: "there is no license found" });
 		}
 		// Fetch requested data
 		let data = new Object();
