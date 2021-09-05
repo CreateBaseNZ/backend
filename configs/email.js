@@ -23,6 +23,16 @@ let email = {
 	templateNewOrgNotif: undefined,
 	templateTestEmail: undefined,
 };
+const members = [
+	"carlvelasco96@gmail.com",
+	"bo75salim@hotmail.com",
+	"bradyoung109@gmail.com",
+	"brydonburnett@gmail.com",
+	"craig.vaz1337@gmail.com",
+	"louiscflin@gmail.com",
+	"todd.lachlan.broadhurst@gmail.com",
+	"weiweiwu766@gmail.com",
+];
 
 /*=========================================================================================
 FUNCTIONS
@@ -47,7 +57,7 @@ email.build = (object = {}) => {
 	return mail;
 };
 
-email.create = (object = {}, template = "") => {
+email.create = (object = {}, template = "", teamNotif = false) => {
 	return new Promise(async (resolve, reject) => {
 		// VALIDATE OBJECT
 		// BUILD CONTENTS
@@ -83,10 +93,17 @@ email.create = (object = {}, template = "") => {
 		} catch (data) {
 			return reject(data);
 		}
+		// Recipient
+		let recipient;
+		if (teamNotif) {
+			recipient = members;
+		} else {
+			recipient = object.email;
+		}
 		// CONSTRUCT EMAIL
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
-			to: `${object.email}`,
+			to: `${recipient}`,
 			subject: contents.subject,
 			text: contents.text,
 			html: contents.html,
@@ -98,7 +115,6 @@ email.create = (object = {}, template = "") => {
 
 email.send = (object = {}) => {
 	return new Promise(async (resolve, reject) => {
-		console.log("Sending email");
 		// VALIDATE OBJECT
 
 		// CONFIGURE TRANSPORT OPTIONS

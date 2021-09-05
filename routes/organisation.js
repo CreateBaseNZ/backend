@@ -97,6 +97,24 @@ router.post("/organisation/create", async (req, res) => {
 	} catch (data) {
 		return reject(data);
 	}
+	// Build the email object
+	const emailObject2 = {
+		displayName: profile.displayName,
+		orgName: organisation.name,
+	};
+	// Create the email object
+	let mail2;
+	try {
+		mail2 = await email.create(emailObject2, "new-org-notif", true);
+	} catch (data) {
+		return reject(data);
+	}
+	// Send the verification email
+	try {
+		await email.send(mail2);
+	} catch (data) {
+		return reject(data);
+	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "" });
 });
