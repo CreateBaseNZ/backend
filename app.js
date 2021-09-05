@@ -19,17 +19,15 @@ const app = express();
 SETUP DATABASE
 =========================================================================================*/
 
-mongoose.connect(process.env.MONGODB_URL, {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useUnifiedTopology: true,
-});
+mongoose.connect(process.env.MONGODB_URL);
 
 /*=========================================================================================
 SETUP SERVER
 =========================================================================================*/
 
-app.listen(process.env.PORT, () => console.log(`Server is running at port ${process.env.PORT}`));
+app.listen(process.env.PORT, () =>
+  console.log(`Server is running at port ${process.env.PORT}`)
+);
 
 /*=========================================================================================
 GENERAL MIDDLEWARE
@@ -45,12 +43,15 @@ app.use(bodyParser.json());
 app.use(helmet({ contentSecurityPolicy: false }));
 // X-XSS Header
 app.use((req, res, next) => {
-	res.setHeader("X-XSS-Protection", "1; mode=block");
-	res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
-	res.setHeader("X-Content-Type-Options", "nosniff");
-	res.removeHeader("X-Powered-By");
-	res.removeHeader("Server");
-	next();
+  res.setHeader("X-XSS-Protection", "1; mode=block");
+  res.setHeader(
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains; preload"
+  );
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.removeHeader("X-Powered-By");
+  res.removeHeader("Server");
+  next();
 });
 app.use(cors());
 
