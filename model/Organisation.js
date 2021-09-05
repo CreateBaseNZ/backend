@@ -73,7 +73,7 @@ OrganisationSchema.statics.validate = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
 		// Declare variables
 		let valid = true;
-		let errors = [];
+		let errors = {};
 		// Check if organisation already exist
 		let organisation;
 		try {
@@ -83,7 +83,7 @@ OrganisationSchema.statics.validate = function (object = {}) {
 		}
 		if (organisation) {
 			valid = false;
-			errors.push("This organisation already exist");
+			errors.organisation = "already exist";
 		}
 		// Handler
 		if (valid) {

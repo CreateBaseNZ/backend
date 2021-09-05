@@ -121,7 +121,7 @@ LicenseSchema.statics.login = function (object = {}) {
 		}
 		// Post validation
 		if (!license) {
-			return reject({ status: "failed", content: { username: "Incorrect username", password: "" } });
+			return reject({ status: "failed", content: { username: "incorrect username" } });
 		}
 		let match;
 		try {
@@ -130,7 +130,7 @@ LicenseSchema.statics.login = function (object = {}) {
 			return reject(data);
 		}
 		if (!match) {
-			return reject({ status: "failed", content: { username: "", password: "Incorrect password" } });
+			return reject({ status: "failed", content: { password: "incorrect password" } });
 		}
 		session.license = license._id;
 		session.access = license.access;
@@ -278,7 +278,7 @@ LicenseSchema.statics.retrieve = function (object = {}) {
 
 LicenseSchema.statics.validateUsername = function (username = "", isTaken = true) {
 	return new Promise(async (resolve, reject) => {
-		if (!username) return reject({ status: "failed", content: "There is no username input" });
+		if (!username) return reject({ status: "failed", content: "no input" });
 		// Check if the username is already taken
 		let license;
 		try {
@@ -288,9 +288,9 @@ LicenseSchema.statics.validateUsername = function (username = "", isTaken = true
 		}
 		if (isTaken === !license) {
 			if (isTaken) {
-				return reject({ status: "failed", content: "There is no license associated with this username" });
+				return reject({ status: "failed", content: "invalid username" });
 			} else {
-				return reject({ status: "failed", content: "This username is already taken" });
+				return reject({ status: "failed", content: "already taken" });
 			}
 		}
 		// Success handler

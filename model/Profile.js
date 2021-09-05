@@ -120,7 +120,7 @@ ProfileSchema.statics.retrieve = function (object = {}) {
 		} catch (error) {
 			return reject({ status: "error", content: error });
 		}
-		if (!profile) return reject({ status: "failed", content: "There is no profile found" });
+		if (!profile) return reject({ status: "error", content: "there is no profile found" });
 		// Fetch data
 		let data = new Object();
 		if (object.properties) {

@@ -42,7 +42,7 @@ router.post("/email-login", async (req, res) => {
 router.post("/username-login", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Account username login
 	let session;
@@ -121,7 +121,7 @@ router.post("/signup/educator", async (req, res) => {
 router.post("/signup/educator-organisation", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the organisation
 	let organisation;
@@ -131,10 +131,10 @@ router.post("/signup/educator-organisation", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Validate if the organisation exist
-	if (!organisation) return res.send({ status: "failed", content: "No organisation were found with these identification info" });
+	if (!organisation) return res.send({ status: "failed", content: { organisation: "invalid organisation name or id" } });
 	// Check if the join code is correct
 	if (organisation.join.educator !== req.body.input.code) {
-		return res.send({ status: "failed", content: "Invalid code" });
+		return res.send({ status: "failed", content: { code: "incorrect code" } });
 	}
 	// Create the account instance
 	const accountObject = {
@@ -190,7 +190,7 @@ router.post("/signup/educator-organisation", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "A new educator account has been registered and has joined an organisation" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /signup/learner-organisation
@@ -199,7 +199,7 @@ router.post("/signup/educator-organisation", async (req, res) => {
 router.post("/signup/learner-organisation", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the organisation
 	let organisation;
@@ -209,10 +209,10 @@ router.post("/signup/learner-organisation", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Validate if the organisation exist
-	if (!organisation) return res.send({ status: "failed", content: "No organisation were found with these identification info" });
+	if (!organisation) return res.send({ status: "failed", content: { organisation: "invalid organisation name or id" } });
 	// Check if the join code is correct
 	if (organisation.join.learner !== req.body.input.code) {
-		return res.send({ status: "failed", content: "Invalid code" });
+		return res.send({ status: "failed", content: { code: "incorrect code" } });
 	}
 	// Create the profile instance
 	const profileObject = {
@@ -254,7 +254,7 @@ router.post("/signup/learner-organisation", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "A new learner account has been registered and has joined an organisation" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /validate-username
@@ -263,7 +263,7 @@ router.post("/signup/learner-organisation", async (req, res) => {
 router.post("/validate-username", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the license
 	let license;
@@ -273,10 +273,10 @@ router.post("/validate-username", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (license) {
-		return res.send({ status: "failed", content: "This username is already taken" });
+		return res.send({ status: "failed", content: { username: "already taken" } });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "This username is available" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /update-session
@@ -338,19 +338,19 @@ router.post("/update-session", async (req, res) => {
 router.post("/send-email-verification", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Build the query object
 	let query = new Object();
-	let errorFetch = "";
+	let errorFetch = new Object();
 	if (req.body.input.email) {
 		query = { email: req.body.input.email };
-		errorFetch = "There is no account with this email";
+		errorFetch = { status: "failed", content: { email: "invalid email" } };
 	} else if (req.body.input.account) {
 		query = { _id: req.body.input.account };
-		errorFetch = "There is no account with this ID";
+		errorFetch = { status: "critical error", content: "" };
 	} else {
-		return res.send({ status: "critical error", content: "No required information provided" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the account
 	let account;
@@ -359,10 +359,10 @@ router.post("/send-email-verification", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!account) return res.send({ status: "failed", content: errorFetch });
+	if (!account) return res.send(errorFetch);
 	// Check if the account is already verified
 	if (account.verified.status) {
-		return res.send({ status: "failed", content: "This account is already verified" });
+		return res.send({ status: "failed", content: { email: "already verified" } });
 	}
 	// Send the verification code
 	try {
@@ -371,7 +371,7 @@ router.post("/send-email-verification", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "The verification email has been sent" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /verify-account
@@ -380,19 +380,19 @@ router.post("/send-email-verification", async (req, res) => {
 router.post("/verify-account", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Build the query object
 	let query = new Object();
 	let errorFetch = "";
 	if (req.body.input.email) {
 		query = { email: req.body.input.email };
-		errorFetch = "There is no account with this email";
+		errorFetch = { status: "failed", content: { email: "invalid email" } };
 	} else if (req.body.input.account) {
 		query = { _id: req.body.input.account };
-		errorFetch = "There is no account with this ID";
+		errorFetch = { status: "critical error", content: "" };
 	} else {
-		return res.send({ status: "critical error", content: "No required information provided" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the account
 	let account;
@@ -401,10 +401,10 @@ router.post("/verify-account", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!account) return res.send({ status: "failed", content: errorFetch });
+	if (!account) return res.send(errorFetch);
 	// Check if the account is already verified
 	if (account.verified.status) {
-		return res.send({ status: "failed", content: "This account is already verified" });
+		return res.send({ status: "failed", content: { email: "already verified" } });
 	}
 	// Verify the account
 	try {
@@ -413,7 +413,7 @@ router.post("/verify-account", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "The account has been verified" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /send-reset-password-email
@@ -422,7 +422,7 @@ router.post("/verify-account", async (req, res) => {
 router.post("/send-reset-password-email", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the account
 	let account;
@@ -431,7 +431,7 @@ router.post("/send-reset-password-email", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!account) return res.send({ status: "failed", content: "No account exist with this email" });
+	if (!account) return res.send({ status: "failed", content: "invalid email" });
 	// Send the verification code
 	try {
 		await account.sendPasswordResetEmail();
@@ -439,7 +439,7 @@ router.post("/send-reset-password-email", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "The reset password email has been sent" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /reset-password
@@ -458,15 +458,15 @@ router.post("/reset-password", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!account) {
-		return res.send({ status: "failed", content: { email: "There is no account associated with this email" } });
+		return res.send({ status: "failed", content: { email: "invalid email" } });
 	}
 	// Check if the code matches
 	if (account.resetPassword.code !== req.body.input.code) {
-		return res.send({ status: "failed", content: { code: "Incorrect code" } });
+		return res.send({ status: "failed", content: { code: "incorrect code" } });
 	}
 	// Check if a password is provided
 	if (!req.body.input.password) {
-		return res.send({ status: "failed", content: { password: "There is no password provided" } });
+		return res.send({ status: "failed", content: { password: "no password" } });
 	}
 	// Fetch the profile
 	let profile;
@@ -476,7 +476,7 @@ router.post("/reset-password", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!profile) {
-		return res.send({ status: "error", content: "There is no profile associated with this account" });
+		return res.send({ status: "error", content: "there is no profile associated with this account" });
 	}
 	// Fetch license
 	let license;
@@ -486,7 +486,7 @@ router.post("/reset-password", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!license) {
-		return res.send({ status: "error", content: "There is no license associated with this profile" });
+		return res.send({ status: "error", content: "there is no license associated with this profile" });
 	}
 	// Change password of both account and license
 	account.password = req.body.input.password;

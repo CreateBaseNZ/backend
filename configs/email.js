@@ -62,7 +62,7 @@ email.create = (object = {}, template = "") => {
 				promise = email.templateTestEmail();
 				break;
 			default:
-				return reject({ status: "failed", content: "No template is provided" });
+				return reject({ status: "error", content: "no template is provided" });
 		}
 		let contents;
 		try {

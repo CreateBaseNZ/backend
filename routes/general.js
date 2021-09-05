@@ -28,22 +28,12 @@ ROUTES
 // @access    Public
 router.get("/", (req, res) => res.sendFile("home.html", viewsOption));
 
-// @route     Get /story
-// @desc
-// @access    Public
-router.get("/story", (req, res) => res.sendFile("story.html", viewsOption));
-
 // @route     Get /team
 // @desc
 // @access    Public
 router.get("/team", (req, res) => res.sendFile("team.html", viewsOption));
 
-// @route     Get /products/kits
-// @desc
-// @access    Public
-router.get("/products/kits", (req, res) => res.sendFile("kits.html", viewsOption));
-
-// @route     Get /About
+// @route     Get /about
 // @desc
 // @access    Public
 router.get("/about", (req, res) => res.sendFile("about.html", viewsOption));
@@ -52,11 +42,6 @@ router.get("/about", (req, res) => res.sendFile("about.html", viewsOption));
 // @desc
 // @access    Public
 router.get("/latest", (req, res) => res.sendFile("latest.html", viewsOption));
-
-// @route     Get /services/3d-printing
-// @desc
-// @access    Public
-router.get("/services/3d-printing", (req, res) => res.sendFile("printing.html", viewsOption));
 
 // @route     GET /terms
 // @desc
@@ -72,11 +57,6 @@ router.get("/contact", (req, res) => res.sendFile("contact.html", viewsOption));
 // @desc
 // @access    PUBLIC
 router.get("/privacy", (req, res) => res.sendFile("privacy.html", viewsOption));
-
-// @route     GET /survey
-// @desc
-// @access    PUBLIC
-router.get("/survey", (req, res) => res.sendFile("survey.html", viewsOption));
 
 // @route     GET /unsubscribe/:email
 // @desc

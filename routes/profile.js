@@ -22,7 +22,7 @@ const Profile = require("../model/Profile.js");
 router.post("/profile/update", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Update the profile
 	try {
@@ -31,7 +31,7 @@ router.post("/profile/update", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "The profile has been updated" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /profile/read
@@ -40,7 +40,7 @@ router.post("/profile/update", async (req, res) => {
 router.post("/profile/read", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Read data
 	let data;
@@ -59,7 +59,7 @@ router.post("/profile/read", async (req, res) => {
 router.post("/profile/delete-saves", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Delete data
 	try {
@@ -68,7 +68,7 @@ router.post("/profile/delete-saves", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "The data has been deleted" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // EXPORT ===================================================

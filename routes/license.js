@@ -22,7 +22,7 @@ const Profile = require("../model/Profile.js");
 router.post("/license/update", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid Private API key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Update the license
 	try {
@@ -31,7 +31,7 @@ router.post("/license/update", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "The license has been updated" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /license/read
@@ -40,7 +40,7 @@ router.post("/license/update", async (req, res) => {
 router.post("/license/read", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid Private API key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Retrieve the information
 	let data;

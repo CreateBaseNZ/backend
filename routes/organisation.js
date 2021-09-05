@@ -22,22 +22,16 @@ const Profile = require("../model/Profile.js");
 router.post("/organisation/create", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the license
-	const licenseObject = {
-		_id: req.body.input.license,
-		access: "educator",
-	};
 	let license;
 	try {
-		license = await License.findOne(licenseObject);
+		license = await License.findOne({ _id: req.body.input.license, access: "educator" });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!license) {
-		return res.send({ status: "critical error", content: "There is no license found" });
-	}
+	if (!license) return res.send({ status: "critical error", content: "" });
 	// Create the organisation and its instance
 	const organisationObject = {
 		name: req.body.input.name,
@@ -64,7 +58,7 @@ router.post("/organisation/create", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "A new organisation has been created" });
+	return res.send({ status: "succeeded", content: "" });
 });
 
 // @route     POST /organisation/admin-read
@@ -140,7 +134,7 @@ router.post("/organisation/admin-read", async (req, res) => {
 router.post("/organisation/account-read", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the organisation
 	let organisation;
@@ -149,9 +143,7 @@ router.post("/organisation/account-read", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!organisation) {
-		return res.send({ status: "failed", content: "There is no organisation found" });
-	}
+	if (!organisation) return res.send({ status: "error", content: "there is no organisation found" });
 	// Fetch all licenses
 	let licenses;
 	try {
@@ -189,13 +181,10 @@ router.post("/organisation/account-read", async (req, res) => {
 router.post("/organisation/educator-join", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
+		return res.send({ status: "critical error", content: "" });
 	}
 	// Fetch the organisation
-	const organisationObject = {
-		name: req.body.input.name,
-		"metadata.id": req.body.input.metadata.id,
-	};
+	const organisationObject = { name: req.body.input.name, "metadata.id": req.body.input.metadata.id };
 	let organisation;
 	try {
 		organisation = await Organisation.findOne(organisationObject);
@@ -203,13 +192,9 @@ router.post("/organisation/educator-join", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// There is no organisation found with this name or id
-	if (!organisation) {
-		return res.send({ status: "failed", content: "Invalid organisation name or/and ID" });
-	}
+	if (!organisation) return res.send({ status: "failed", content: { organisation: "invalid organisation name or id" } });
 	// Validate code
-	if (req.body.input.code !== organisation.join.educator) {
-		return res.send({ status: "failed", content: "Invalid code" });
-	}
+	if (req.body.input.code !== organisation.join.educator) return res.send({ status: "failed", content: { code: "incorrect code" } });
 	// Fetch the license
 	let license;
 	try {
@@ -218,9 +203,7 @@ router.post("/organisation/educator-join", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Check if the license is already attached to an organisation
-	if (license.organisation) {
-		return res.send({ status: "critical error", content: "This license is already in an organisation" });
-	}
+	if (license.organisation) return res.send({ status: "critical error", content: "" });
 	// Create the link
 	organisation.licenses.push(license._id);
 	organisation.date.modified = req.body.input.date;

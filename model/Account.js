@@ -83,7 +83,7 @@ AccountSchema.statics.validate = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
 		// Declare variables
 		let valid = true;
-		let errors = { email: "", username: "", displayName: "", password: "", date: "" };
+		let errors = {};
 		// Check if user exist within the organisation
 		let account;
 		try {
@@ -93,7 +93,7 @@ AccountSchema.statics.validate = function (object = {}) {
 		}
 		if (account) {
 			valid = false;
-			errors.email = "This email is already taken";
+			errors.email = "already taken";
 		}
 		// Handler
 		if (valid) {
@@ -122,9 +122,7 @@ AccountSchema.methods.sendAccountVerificationEmail = function (object = {}, save
 			return reject({ status: "error", content: error });
 		}
 		// Validate if the profile has been fetched successfully
-		if (!profile) {
-			return res.send({ status: "failed", content: "There is not profile associated with this account" });
-		}
+		if (!profile) return res.send({ status: "error", content: "there is no profile associated with this account" });
 		// Create the input object
 		const input = { email: this.email, displayName: profile.displayName, code: this.verified.code };
 		// Create the email object
@@ -169,7 +167,7 @@ AccountSchema.methods.verify = function (object = {}, save = true) {
 	return new Promise(async (resolve, reject) => {
 		// Check if the code matches
 		if (this.verified.code !== object.code) {
-			return reject({ status: "failed", content: "Incorrect code" });
+			return reject({ status: "failed", content: { code: "incorrect code" } });
 		}
 		// Update the verification status
 		this.verified.status = true;
@@ -203,9 +201,7 @@ AccountSchema.methods.sendPasswordResetEmail = function (object = {}, save = tru
 			return reject({ status: "error", content: error });
 		}
 		// Validate if the profile has been fetched successfully
-		if (!profile) {
-			return res.send({ status: "failed", content: "There is not profile associated with this account" });
-		}
+		if (!profile) return res.send({ status: "error", content: "there is no profile associated with this account" });
 		// Create the input object
 		const input = { email: this.email, displayName: profile.displayName, code: this.resetPassword.code };
 		// Create the email object
@@ -245,42 +241,6 @@ AccountSchema.methods.setPasswordResetCode = function (object = {}, save = true)
 		return resolve();
 	});
 };
-
-// AccountSchema.methods.setNewPassword = function (object = {}, save = true) {
-// 	return new Promise(async (resolve, reject) => {
-// 		// Check if the code matches
-// 		if (this.resetPassword.code !== object.code) {
-// 			return reject({ status: "failed", content: "Incorrect code" });
-// 		}
-// 		// Fetch the profile
-// 		let profile;
-// 		try {
-// 			profile = await Profile.findOne({ "account.local": this._id });
-// 		} catch (error) {
-// 			return reject({ status: "error", content: error });
-// 		}
-// 		if (!profile) {
-// 			return reject({ status: "failed", content: "No profile found" });
-// 		}
-// 		// Change password of both account
-// 		this.password = object.password;
-// 		// Generate the code
-// 		const code = randomize("aA0", 6);
-// 		// Set parametres of the verification object
-// 		this.resetPassword.code = code;
-// 		this.resetPassword.date = new Date().toString();
-// 		// Save new password
-// 		if (save) {
-// 			try {
-// 				await this.save();
-// 			} catch (error) {
-// 				return reject({ status: "error", content: error });
-// 			}
-// 		}
-// 		// Success handler
-// 		return resolve();
-// 	});
-// };
 
 // EXPORT ===================================================
 
