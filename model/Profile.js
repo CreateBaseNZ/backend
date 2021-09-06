@@ -130,6 +130,7 @@ ProfileSchema.statics.retrieve = function (object = {}) {
 			}
 		}
 		if (object.saves) {
+			if (!profile.saves) profile.saves = new Object();
 			let saves = new Object();
 			for (let i = 0; i < object.saves.length; i++) {
 				const property = object.saves[i];
