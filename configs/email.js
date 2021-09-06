@@ -42,13 +42,22 @@ FUNCTIONS
  * This function builds the email object
  * @param {Object} object
  */
-email.build = (object = {}) => {
+email.build = (object = {}, teamNotif = false) => {
 	// VALIDATE OBJECT
 
 	// CONSTRUCT EMAIL
+	// Recipient
+	let recipient;
+	if (teamNotif) {
+		recipient = members;
+	} else {
+		recipient = object.email;
+	}
+	// Test
+	if (process.env.NODE_ENV !== "production") object.subject = "Test: " + object.subject;
 	const mail = {
 		from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
-		to: `${object.email}`,
+		to: `${recipient}`,
 		subject: object.subject,
 		text: object.text,
 		html: object.html,
@@ -407,22 +416,8 @@ Log into your CreateBase account and enter this code.
 Kind Regards,
 
 CreateBase Team`;
-
-		const div = ``;
-		// SET THE CSS STYLING
-		const css = ``;
-		// Combine the HTML and CSS
-		const combined = div + css;
-		// Inline the CSS
-		const inlineCSSOptions = { url: "/" };
-		let html = "";
-		// try {
-		// 	html = await inlineCSS(combined, inlineCSSOptions);
-		// } catch (error) {
-		// 	return reject({ status: "error", content: error });
-		// }
 		// Return the email object
-		return resolve({ subject, text, html });
+		return resolve({ subject, text });
 	});
 };
 
@@ -443,22 +438,8 @@ https://app.createbase.co.nz/auth/forgot-password/${object.email}/${object.code}
 Kind Regards,
 
 CreateBase Team`;
-
-		const div = ``;
-		// SET THE CSS STYLING
-		const css = ``;
-		// Combine the HTML and CSS
-		const combined = div + css;
-		// Inline the CSS
-		const inlineCSSOptions = { url: "/" };
-		let html = "";
-		// try {
-		// 	html = await inlineCSS(combined, inlineCSSOptions);
-		// } catch (error) {
-		// 	return reject({ status: "error", content: error });
-		// }
 		// Return the email object
-		return resolve({ subject, text, html });
+		return resolve({ subject, text });
 	});
 };
 
@@ -489,22 +470,8 @@ We're excited to have you on board, see you on the platform!
 Best regards,
 
 The CreateBase Team`;
-
-		const div = ``;
-		// SET THE CSS STYLING
-		const css = ``;
-		// Combine the HTML and CSS
-		const combined = div + css;
-		// Inline the CSS
-		const inlineCSSOptions = { url: "/" };
-		let html = "";
-		// try {
-		// 	html = await inlineCSS(combined, inlineCSSOptions);
-		// } catch (error) {
-		// 	return reject({ status: "error", content: error });
-		// }
 		// Return the email object
-		return resolve({ subject, text, html });
+		return resolve({ subject, text });
 	});
 };
 
@@ -527,22 +494,8 @@ ${object.message}"
 Kind Regards,
 
 The CreateBase Team`;
-
-		const div = ``;
-		// SET THE CSS STYLING
-		const css = ``;
-		// Combine the HTML and CSS
-		const combined = div + css;
-		// Inline the CSS
-		const inlineCSSOptions = { url: "/" };
-		let html = "";
-		// try {
-		// 	html = await inlineCSS(combined, inlineCSSOptions);
-		// } catch (error) {
-		// 	return reject({ status: "error", content: error });
-		// }
-		// Return the email object
-		return resolve({ subject, text, html });
+		// Success handler
+		return resolve({ subject, text });
 	});
 };
 
@@ -563,22 +516,8 @@ Amazing job team! Looking forward to more amazing news!
 Kind Regards,
 
 The CreateBase Team`;
-
-		const div = ``;
-		// SET THE CSS STYLING
-		const css = ``;
-		// Combine the HTML and CSS
-		const combined = div + css;
-		// Inline the CSS
-		const inlineCSSOptions = { url: "/" };
-		let html = "";
-		// try {
-		// 	html = await inlineCSS(combined, inlineCSSOptions);
-		// } catch (error) {
-		// 	return reject({ status: "error", content: error });
-		// }
-		// Return the email object
-		return resolve({ subject, text, html });
+		// Success handler
+		return resolve({ subject, text });
 	});
 };
 
@@ -588,14 +527,14 @@ email.templateTestEmail = () => {
 		const subject = `Testing the automated email feature`;
 		// BUILD THE EMAIL BODY
 		const text = `
-    Good day Ma'am/Sir,
+Good day Ma'am/Sir,
 
 
-    We are just testing to see if you received this email with no problem.
+We are just testing to see if you received this email with no problem.
 
 
-    Kind Regards,
-    CreateBase Team`;
+Kind Regards,
+CreateBase Team`;
 
 		const div = ``;
 		// SET THE CSS STYLING
