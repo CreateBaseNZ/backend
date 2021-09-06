@@ -437,7 +437,7 @@ Hi ${object.displayName},
 
 Click the link below to change your password.
 
-https://app.createbase.co.nz/auth/reset-password/${object.email}/${object.code}
+https://app.createbase.co.nz/auth/forgot-password/${object.email}/${object.code}
 
 
 Kind Regards,
