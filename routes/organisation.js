@@ -160,7 +160,7 @@ router.post("/organisation/admin-read", async (req, res) => {
 	let contentOne = {
 		name: organisation.name,
 		type: organisation.type,
-		location: organisation.location,
+		location: organisation.location ? organisation.location : {},
 		join: organisation.join,
 		metadata: organisation.metadata,
 		licenses: [],
@@ -222,7 +222,7 @@ router.post("/organisation/account-read", async (req, res) => {
 	const content = {
 		name: organisation.name,
 		type: organisation.type,
-		location: organisation.location,
+		location: organisation.location ? organisation.location : {},
 		metadata: organisation.metadata,
 		numberOfLicenses: { admin: admins.length, educator: educators.length, learner: learners.length },
 	};
@@ -294,7 +294,7 @@ router.post("/organisation/educator-join", async (req, res) => {
 	const content = {
 		name: organisation.name,
 		type: organisation.type,
-		location: organisation.location,
+		location: organisation.location ? organisation.location : {},
 		metadata: organisation.metadata,
 		numberOfLicenses: { admin: admins.length, educator: educators.length, learner: learners.length },
 	};

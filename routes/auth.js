@@ -412,6 +412,29 @@ router.post("/verify-account", async (req, res) => {
 	} catch (data) {
 		return res.send(data);
 	}
+	// Fetch the profile of the user
+	let profile;
+	try {
+		profile = await Profile.findOne({ "account.local": account._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Send the welcome email
+	// Build the email object
+	const emailObject = { email: account.email, displayName: profile.displayName };
+	// Create the email object
+	let mail;
+	try {
+		mail = await email.create(emailObject, "welcome");
+	} catch (data) {
+		return reject(data);
+	}
+	// Send the welcome email
+	try {
+		await email.send(mail);
+	} catch (data) {
+		return reject(data);
+	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "" });
 });

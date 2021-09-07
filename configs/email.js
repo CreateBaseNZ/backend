@@ -17,6 +17,7 @@ let email = {
 	// TEMPLATES
 	templateInquiry: undefined,
 	templateAccountVerification: undefined,
+	templateWelcome: undefined,
 	templatePasswordReset: undefined,
 	templateOrganisationDetail: undefined,
 	templateInqNotif: undefined,
@@ -80,6 +81,9 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 				break;
 			case "password-reset":
 				promise = email.templatePasswordReset(object);
+				break;
+			case "welcome":
+				promise = email.templateWelcome(object);
 				break;
 			case "organisation-detail":
 				promise = email.templateOrganisationDetail(object);
@@ -402,7 +406,7 @@ CreateBase Team`;
 email.templateAccountVerification = (object) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
-		const subject = `Verification Code: ${object.code}`;
+		const subject = `Your Verification Code: ${object.code}`;
 		// BUILD THE EMAIL BODY
 		const text = `
 Hi ${object.displayName},
@@ -410,12 +414,48 @@ Hi ${object.displayName},
 
 Your account verification code is: ${object.code}
 
-Log into your CreateBase account and enter this code.
+Log into your CreateBase account and enter this code - ${process.env.APP_PREFIX}/auth/login
 
 
-Kind Regards,
+Best regards,
 
-CreateBase Team`;
+The CreateBase Team`;
+		// Return the email object
+		return resolve({ subject, text });
+	});
+};
+
+email.templateWelcome = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// Set the subject of the email
+		const subject = `Welcome to CreateBase ${object.displayName}!`;
+		// Set the email body
+		const text = `
+Hi ${object.displayName},
+
+
+Here is your first quest!
+
+School accounts are a key part of the CreateBase platform that we call Organisation accounts. To teach with the platform you are required to be associated with an organisation account.
+
+Create an or join an existing organisation - ${process.env.APP_PREFIX}/user/my-account
+
+To create an account you will need:
+	- The ID of your school
+	- The name of your school
+You can find these information here - https://www.educationcounts.govt.nz/directories/list-of-nz-schools
+
+If your school already exists on the CreateBase platform, you will need to join it using the code emailed to the teacher who registered your organisation on our platform.
+
+
+Best regards,
+
+The CreateBase Team
+
+
+Join our community and receive quick response and feedback to your questions
+
+ - Facebook Community - https://www.facebook.com/groups/createbaseteacherscommunity`;
 		// Return the email object
 		return resolve({ subject, text });
 	});
@@ -424,7 +464,7 @@ CreateBase Team`;
 email.templatePasswordReset = (object) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
-		const subject = `Reset Your Password: ${object.code}`;
+		const subject = `Your Password Reset Code: ${object.code}`;
 		// BUILD THE EMAIL BODY
 		const text = `
 Hi ${object.displayName},
@@ -432,12 +472,12 @@ Hi ${object.displayName},
 
 Click the link below to change your password.
 
-https://app.createbase.co.nz/auth/forgot-password/${object.email}/${object.code}
+${process.env.APP_PREFIX}/auth/forgot-password/${object.email}/${object.code}
 
 
-Kind Regards,
+Best regards,
 
-CreateBase Team`;
+The CreateBase Team`;
 		// Return the email object
 		return resolve({ subject, text });
 	});
@@ -446,30 +486,31 @@ CreateBase Team`;
 email.templateOrganisationDetail = (object = {}) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
-		const subject = `Thank you for registering ${object.orgName} on CreateBase`;
+		const subject = `Hooray! Your organisation, ${object.orgName}, is now registered on the CreateBase platform.`;
 		// BUILD THE EMAIL BODY
 		const text = `
 Hi ${object.displayName},
 
 
-Hooray! Your organisation, ${object.orgName}, is now registered on the CreateBase platform.
+Congratulations! Your organisation is now established on our platform. Each school only has one organisation account and you have all the codes. This is important info so make sure you note the organisation information below, as it's needed to add teachers and students to your organisation.
 
-You can now start inviting your colleagues and students. Here are the details they will need to sign up:
-  - Organisation ID: ${object.orgId}
-  - Organisation name: ${object.orgName}
-  - Educator code: ${object.eduCode}
-  - Learner code: ${object.lerCode}
+Organisation information:
+ - Organisation ID: ${object.orgId}
+ - Organisation Name: ${object.orgName}
+ - Code for Educators: ${object.eduCode}
+ - Code for Learners: ${object.lerCode}
 
-If you're having trouble inviting, here are some guides to help you:
-  - How to join an organisation as an educator (some link)
-  - How to join an organisation as a student (some link)
-
-We're excited to have you on board, see you on the platform!
+Invite our teachers using your educator code: ${object.eduCode}
 
 
 Best regards,
 
-The CreateBase Team`;
+The CreateBase Team
+
+
+Join our community and receive quick response and feedback to your questions
+
+ - Facebook Community - https://www.facebook.com/groups/createbaseteacherscommunity`;
 		// Return the email object
 		return resolve({ subject, text });
 	});
@@ -513,7 +554,7 @@ ${object.displayName} from ${object.orgName} just registered their organisation 
 Amazing job team! Looking forward to more amazing news!
 
 
-Kind Regards,
+Best regards,
 
 The CreateBase Team`;
 		// Success handler
