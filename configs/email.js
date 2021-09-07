@@ -453,7 +453,7 @@ Best regards,
 The CreateBase Team
 
 
-Join our community and receive quick response and feedback to your questions
+Join our community and receive quick responses and feedback to your questions
 
  - Facebook Community - https://www.facebook.com/groups/createbaseteacherscommunity`;
 		// Return the email object
@@ -500,7 +500,7 @@ Organisation information:
  - Code for Educators: ${object.eduCode}
  - Code for Learners: ${object.lerCode}
 
-Invite our teachers using your educator code: ${object.eduCode}
+Invite other teachers using your educator code: ${object.eduCode}
 
 
 Best regards,
@@ -508,7 +508,7 @@ Best regards,
 The CreateBase Team
 
 
-Join our community and receive quick response and feedback to your questions
+Join our community and receive quick responses and feedback to your questions
 
  - Facebook Community - https://www.facebook.com/groups/createbaseteacherscommunity`;
 		// Return the email object
