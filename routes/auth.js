@@ -349,7 +349,7 @@ router.post("/update-session", async (req, res) => {
 		try {
 			account = await Account.findOne({ _id: profile.account.local });
 		} catch (error) {
-			return reject({ status: "error", content: error });
+			return res.send({ status: "error", content: error });
 		}
 		session.account = account._id;
 		session.verified = account.verified.status;
@@ -362,7 +362,7 @@ router.post("/update-session", async (req, res) => {
 	try {
 		await Promise.all(promises2);
 	} catch (error) {
-		return reject({ status: "error", content: error });
+		return res.send({ status: "error", content: error });
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: session });
@@ -463,13 +463,13 @@ router.post("/verify-account", async (req, res) => {
 	try {
 		mail = await email.create(emailObject, "welcome");
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Send the welcome email
 	try {
 		await email.send(mail);
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "" });
@@ -576,13 +576,13 @@ router.post("/send-test-email", async (req, res) => {
 	try {
 		mail = await email.create({ email: req.body.input.email }, "test");
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Send the verification email
 	try {
 		await email.send(mail);
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "The test email has been sent" });

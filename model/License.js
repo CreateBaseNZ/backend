@@ -29,10 +29,12 @@ const LicenseSchema = new Schema({
 	join: {
 		approved: { type: Boolean, default: false },
 		date: { type: String, default: "" },
+		code: { type: String, required: true },
 	},
 	invite: {
 		approved: { type: Boolean, default: false },
 		date: { type: String, default: "" },
+		code: { type: String, required: true },
 	},
 });
 
