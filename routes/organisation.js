@@ -419,6 +419,179 @@ router.post("/organisation/invite-educator/join", async (req, res) => {
 	return res.send({ status: "succeeded", content: undefined });
 });
 
+// @route     POST /organisation/educator-join/request
+// @desc
+// @access    Backend
+router.post("/organisation/educator-join/request", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the organisation
+	const query = { name: req.body.input.orgName, "metadata.id": req.body.input.orgId };
+	let organisation;
+	try {
+		organisation = await Organisation.findOne(query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
+	// Fetch the account
+	let account1;
+	try {
+		account1 = await Account.findOne({ _id: req.body.input.account });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account1) return res.send({ status: "error", content: "no account found" });
+	// Fetch the profile
+	let profile1;
+	try {
+		profile1 = await Profile.findOne({ "account.local": account1._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile1) return res.send({ status: "error", content: "no profile found" });
+	// Fetch the license
+	let license1;
+	try {
+		license1 = await License.findOne({ profile: profile1._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license1) return res.send({ status: "error", content: "no license found" });
+	// Generate the join code
+	try {
+		await license1.generateJoinCode();
+	} catch (data) {
+		return res.send(data);
+	}
+	// Fetch the license of the admin
+	let license2;
+	try {
+		license2 = await License.findOne({ organisation: organisation._id, access: "admin" });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license2) return res.send({ status: "error", content: "no license found" });
+	// Fetch the profile of the admin
+	let profile2;
+	try {
+		profile2 = await Profile.findOne({ license: license2._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile2) return res.send({ status: "error", content: "no profile found" });
+	// Fetch the account of the admin
+	let account2;
+	try {
+		account2 = await Account.findOne({ profile: profile2._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account2) return res.send({ status: "error", content: "no account found" });
+	// Construct the url
+	const url = `${account1.email}-${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.educator}-${license1.join.code}`;
+	// Construct the email input
+	const input = { email: account2.email, sender: profile1.displayName, recipient: profile2.displayName, url, orgName: organisation.name };
+	let mail;
+	try {
+		mail = await email.create(input, "educator-join");
+	} catch (data) {
+		return res.send(data);
+	}
+	try {
+		await email.send(mail);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: undefined });
+});
+
+// @route     POST /organisation/educator-join/accept
+// @desc
+// @access    Backend
+router.post("/organisation/educator-join/accept", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the account
+	let account;
+	try {
+		account = await Account.findOne({ email: req.body.input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "error", content: "no account found" });
+	// Generate the organisation fetch query
+	const query = { name: req.body.input.orgName, "metadata.id": req.body.input.orgId };
+	// Fetch the organisation
+	let organisation;
+	try {
+		organisation = await Organisation.findOne(query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
+	// Validate the educator code
+	if (organisation.join.educator !== req.body.input.eduCode) {
+		return res.send({ status: "error", content: "incorrect educator code" });
+	}
+	// Fetch the profile
+	let profile;
+	try {
+		profile = await Profile.findOne({ "account.local": account._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile) return res.send({ status: "error", content: "no profile found" });
+	// Fetch the license
+	let license;
+	try {
+		license = await License.findOne({ profile: profile._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license) return res.send({ status: "error", content: "no license found" });
+	// Check if the license is already in an organisation
+	if (license.organisation) {
+		return res.send({ status: "failed", content: { account: "already in an organisation" } });
+	}
+	// Validate the invitation approval authorisation
+	if (license.join.code !== req.body.input.joinCode) {
+		return res.send({ status: "error", content: "not authorised" });
+	}
+	// Add the educator to the organisation
+	organisation.licenses.push(license._id);
+	license.organisation = organisation._id;
+	// Save the changes
+	organisation.date.modified = req.body.input.date;
+	license.date.modified = req.body.input.date;
+	const promises = [organisation.save(), license.save()];
+	try {
+		await Promise.all(promises);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Construct the email input
+	const input = { email: account.email, recipient: profile.displayName, orgName: organisation.name };
+	let mail;
+	try {
+		mail = await email.create(input, "educator-accept");
+	} catch (data) {
+		return res.send(data);
+	}
+	try {
+		await email.send(mail);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: undefined });
+});
+
 // ADMIN ----------------------------------------------------
 
 // @route     POST /organisation/admin/read

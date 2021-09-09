@@ -333,6 +333,26 @@ LicenseSchema.methods.generateInviteCode = function (save = true) {
 	});
 };
 
+LicenseSchema.methods.generateJoinCode = function (save = true) {
+	return new Promise(async (resolve, reject) => {
+		// Generate the code
+		const code = randomize("aA0", 6);
+		// Set parameters of the join object
+		this.join.code = code;
+		this.join.date = new Date().toString();
+		// Save the account
+		if (save) {
+			try {
+				await this.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		// Success handler
+		return resolve();
+	});
+};
+
 // EXPORT ===================================================
 
 module.exports = License = mongoose.model("licenses", LicenseSchema);
