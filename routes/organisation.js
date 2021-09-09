@@ -119,70 +119,6 @@ router.post("/organisation/create", async (req, res) => {
 	return res.send({ status: "succeeded", content: "" });
 });
 
-// @route     POST /organisation/admin-read
-// @desc
-// @access    Backend
-router.post("/organisation/admin-read", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "Invalid API Key" });
-	}
-	// Fetch the organisation
-	let organisation;
-	try {
-		organisation = await Organisation.findOne({ _id: req.body.input.organisation });
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	if (!organisation) {
-		return res.send({ status: "failed", content: "There is no organisation found" });
-	}
-	// Fetch all licenses
-	let licenses;
-	try {
-		licenses = await License.find({ organisation: organisation._id });
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	let profileIds = [];
-	for (let i = 0; i < licenses.length; i++) {
-		const license = licenses[i];
-		profileIds.push(license.profile);
-	}
-	// Fetch all profiles
-	let profiles;
-	try {
-		profiles = await Profile.find({ _id: profileIds });
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	// Build the return object
-	let contentOne = {
-		name: organisation.name,
-		type: organisation.type,
-		location: organisation.location ? organisation.location : {},
-		join: organisation.join,
-		metadata: organisation.metadata,
-		licenses: [],
-	};
-	let contentTwo = [];
-	for (let i = 0; i < licenses.length; i++) {
-		const license = licenses[i];
-		const profile = profiles.find((profile) => {
-			return profile._id.toString() === license.profile.toString();
-		});
-		contentTwo.push({
-			username: license.username,
-			status: "free", // Temporary
-			access: license.access,
-			profile: { displayName: profile.displayName, saves: profile.saves },
-		});
-	}
-	contentOne.licenses = contentTwo;
-	// Success handler
-	return res.send({ status: "succeeded", content: contentOne });
-});
-
 // @route     POST /organisation/account-read
 // @desc
 // @access    Backend
@@ -300,6 +236,70 @@ router.post("/organisation/educator-join", async (req, res) => {
 	};
 	// Success handler
 	return res.send({ status: "succeeded", content });
+});
+
+// ADMIN ----------------------------------------------------
+
+// @route     POST /organisation/admin/read
+// @desc
+// @access    Backend
+router.post("/organisation/admin/read", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the organisation
+	let organisation;
+	try {
+		organisation = await Organisation.findOne({ _id: req.body.input.organisation });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
+	// Fetch all licenses
+	let licenses;
+	try {
+		licenses = await License.find({ organisation: organisation._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	let profileIds = [];
+	for (let i = 0; i < licenses.length; i++) {
+		const license = licenses[i];
+		profileIds.push(license.profile);
+	}
+	// Fetch all profiles
+	let profiles;
+	try {
+		profiles = await Profile.find({ _id: profileIds });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Build the return object
+	let contentOne = {
+		name: organisation.name,
+		type: organisation.type,
+		location: organisation.location ? organisation.location : {},
+		join: organisation.join,
+		metadata: organisation.metadata,
+		licenses: [],
+	};
+	let contentTwo = [];
+	for (let i = 0; i < licenses.length; i++) {
+		const license = licenses[i];
+		const profile = profiles.find((profile) => {
+			return profile._id.toString() === license.profile.toString();
+		});
+		contentTwo.push({
+			username: license.username,
+			status: "free", // Temporary
+			access: license.access,
+			profile: { displayName: profile.displayName, saves: profile.saves },
+		});
+	}
+	contentOne.licenses = contentTwo;
+	// Success handler
+	return res.send({ status: "succeeded", content: contentOne });
 });
 
 // @route     POST /organisation/admin/create-learner
