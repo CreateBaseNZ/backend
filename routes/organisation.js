@@ -1,6 +1,7 @@
 // MODULES ==================================================
 
 const express = require("express");
+const reject = require("lodash.reject");
 
 // VARIABLES ================================================
 
@@ -236,6 +237,164 @@ router.post("/organisation/educator-join", async (req, res) => {
 	};
 	// Success handler
 	return res.send({ status: "succeeded", content });
+});
+
+// @route     POST /organisation/invite-educator/send
+// @desc
+// @access    Backend
+router.post("/organisation/invite-educator/send", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the organisation
+	let organisation;
+	try {
+		organisation = await Organisation.findOne({ _id: req.body.input.organisation });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
+	// Fetch the profile of the invitation sender
+	let profile1;
+	try {
+		profile1 = await Profile.findOne({ _id: req.body.input.profile });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile1) return res.send({ status: "error", content: "no profile found" });
+	const sender = profile1.displayName;
+	const orgName = organisation.name;
+	// Process each email
+	for (let i = 0; i < req.body.input.emails.length; i++) {
+		const emailAddress = req.body.input.emails[i];
+		// Fetch the account associated with the email
+		let account;
+		try {
+			account = await Account.findOne({ email: emailAddress });
+		} catch (error) {
+			return res.send({ status: "error", content: error });
+		}
+		// Generate the base elements of the email
+		let url = `${emailAddress}-${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.educator}`;
+		let recipient = "Ma'am/Sir";
+		if (account) {
+			/// Fetch the profile
+			let profile2;
+			try {
+				profile2 = await Profile.findOne({ "account.local": account._id });
+			} catch (error) {
+				return res.send({ status: "error", content: error });
+			}
+			if (!profile2) return res.send({ status: "error", content: "no profile found" });
+			// Fetch the license
+			let license;
+			try {
+				license = await License.findOne({ profile: profile2._id });
+			} catch (error) {
+				return res.send({ status: "error", content: error });
+			}
+			if (!license) return res.send({ status: "error", content: "no license found" });
+			// Generate invitation code
+			try {
+				await license.generateInviteCode();
+			} catch (data) {
+				return res.send(data);
+			}
+			url = url + `-${license.invite.code}`;
+			recipient = profile2.displayName;
+		}
+		// Send the email invitation
+		const input = { sender, orgName, url, email: emailAddress, recipient };
+		let mail;
+		try {
+			mail = await email.create(input, "invite-educator");
+		} catch (data) {
+			return res.send(data);
+		}
+		try {
+			await email.send(mail);
+		} catch (data) {
+			return res.send(data);
+		}
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: undefined });
+});
+
+// @route     POST /organisation/invite-educator/join
+// @desc
+// @access    Backend
+router.post("/organisation/invite-educator/join", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the account
+	let account;
+	try {
+		account = await Account.findOne({ email: req.body.input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "failed", content: { email: "no account found" } });
+	if (req.body.input.account) {
+		if (account._id.toString() !== req.body.input.account.toString()) {
+			return res.send({ status: "failed", content: { account: "incorrect logged in user" } });
+		}
+	}
+	// Generate the organisation fetch query
+	const query = { name: req.body.input.orgName, "metadata.id": req.body.input.orgId };
+	// Fetch the organisation
+	let organisation;
+	try {
+		organisation = await Organisation.findOne(query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
+	// Validate the educator code
+	if (organisation.join.educator !== req.body.input.eduCode) {
+		return res.send({ status: "error", content: "incorrect educator code" });
+	}
+	// Fetch the profile
+	let profile;
+	try {
+		profile = await Profile.findOne({ "account.local": account._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile) return res.send({ status: "error", content: "no profile found" });
+	// Fetch the license
+	let license;
+	try {
+		license = await License.findOne({ profile: profile._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license) return res.send({ status: "error", content: "no license found" });
+	// Check if the license is already in an organisation
+	if (license.organisation) {
+		return res.send({ status: "failed", content: { account: "already in an organisation" } });
+	}
+	// Validate the invitation approval authorisation
+	if (license.invite.code !== req.body.input.invCode) {
+		return res.send({ status: "error", content: "not authorised" });
+	}
+	// Add the educator to the organisation
+	organisation.licenses.push(license._id);
+	license.organisation = organisation._id;
+	// Save the changes
+	organisation.date.modified = req.body.input.date;
+	license.date.modified = req.body.input.date;
+	const promises = [organisation.save(), license.save()];
+	try {
+		await Promise.all(promises);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: undefined });
 });
 
 // ADMIN ----------------------------------------------------

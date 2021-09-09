@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const randomize = require("randomatic");
 
 // VARIABLES ================================================
 
@@ -27,14 +28,12 @@ const LicenseSchema = new Schema({
 		created: { type: String, required: true },
 	},
 	join: {
-		approved: { type: Boolean, default: false },
 		date: { type: String, default: "" },
-		code: { type: String, required: true },
+		code: { type: String, default: "" },
 	},
 	invite: {
-		approved: { type: Boolean, default: false },
 		date: { type: String, default: "" },
-		code: { type: String, required: true },
+		code: { type: String, default: "" },
 	},
 });
 
@@ -67,7 +66,6 @@ LicenseSchema.statics.build = function (object = {}, save = true) {
 			statuses: object.statuses,
 			access: object.access,
 			date: { modified: object.date, visited: object.date, created: object.date },
-			join: object.join,
 		});
 		if (object.organisation) license.organisation = object.organisation;
 		if (object.profile) license.profile = object.profile;
@@ -312,6 +310,26 @@ LicenseSchema.methods.validatePassword = function (password = "") {
 		}
 		// Success handler
 		return resolve(match);
+	});
+};
+
+LicenseSchema.methods.generateInviteCode = function (save = true) {
+	return new Promise(async (resolve, reject) => {
+		// Generate the code
+		const code = randomize("aA0", 6);
+		// Set parameters of the invite object
+		this.invite.code = code;
+		this.invite.date = new Date().toString();
+		// Save the account
+		if (save) {
+			try {
+				await this.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
+		// Success handler
+		return resolve();
 	});
 };
 

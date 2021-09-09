@@ -20,6 +20,7 @@ let email = {
 	templateWelcome: undefined,
 	templatePasswordReset: undefined,
 	templateOrganisationDetail: undefined,
+	templateInviteEducator: undefined,
 	templateInqNotif: undefined,
 	templateNewOrgNotif: undefined,
 	templateTestEmail: undefined,
@@ -87,6 +88,9 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 				break;
 			case "organisation-detail":
 				promise = email.templateOrganisationDetail(object);
+				break;
+			case "invite-educator":
+				promise = email.templateInviteEducator(object);
 				break;
 			case "inq-notif":
 				promise = email.templateInqNotif(object);
@@ -501,6 +505,35 @@ Organisation information:
  - Code for Learners: ${object.lerCode}
 
 Invite other teachers using your educator code: ${object.eduCode}
+
+
+Best regards,
+
+The CreateBase Team
+
+
+Join our community and receive quick responses and feedback to your questions
+
+ - Facebook Community - https://www.facebook.com/groups/createbaseteacherscommunity`;
+		// Return the email object
+		return resolve({ subject, text });
+	});
+};
+
+email.templateInviteEducator = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `${object.sender} invited you to join ${object.orgName} on the CreateBase platform!`;
+		// BUILD THE EMAIL BODY
+		const text = `
+Hi ${object.recipient},
+
+
+${object.sender} invited you to join ${object.orgName} on the CreateBase platform!
+
+Follow the link below to join!
+
+${process.env.APP_PREFIX}/organisation-educator-invite/${object.url}
 
 
 Best regards,
