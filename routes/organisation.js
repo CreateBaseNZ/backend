@@ -592,6 +592,28 @@ router.post("/organisation/educator-join/accept", async (req, res) => {
 	return res.send({ status: "succeeded", content: undefined });
 });
 
+// @route     POST /organisation/invite-learner/generate-link
+// @desc
+// @access    Backend
+router.post("/organisation/invite-learner/generate-link", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the organisation
+	let organisation;
+	try {
+		organisation = await Organisation.findOne({ _id: req.body.input.organisation });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
+	// Construct the url
+	const url = `${process.env.APP_PREFIX}/organisation-learner-invite/${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.learner}`;
+	// Success handler
+	return res.send({ status: "succeeded", content: url });
+});
+
 // ADMIN ----------------------------------------------------
 
 // @route     POST /organisation/admin/read
