@@ -12,6 +12,7 @@ const Schema = mongoose.Schema;
 const OrganisationSchema = new Schema({
 	name: { type: String, required: true },
 	licenses: [Schema.Types.ObjectId],
+	classes: { type: [Schema.Types.ObjectId], default: new Array() },
 	type: { type: String, required: true },
 	lite: {
 		activated: { type: Boolean, required: true },
