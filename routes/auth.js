@@ -357,6 +357,8 @@ router.post("/update-session", async (req, res) => {
 		}
 		session.account = account._id;
 		session.verified = account.verified.status;
+	} else if (session.access === "learner") {
+		session.verified = true;
 	}
 	// Update visits
 	const date = new Date().toString();
