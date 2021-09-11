@@ -156,6 +156,8 @@ LicenseSchema.statics.login = function (object = {}) {
 			}
 			session.account = account._id;
 			session.verified = account.verified.status;
+		} else if (session.access === "learner") {
+			session.verified = true;
 		}
 		// Success handler
 		return resolve(session);

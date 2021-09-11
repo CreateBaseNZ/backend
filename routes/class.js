@@ -9,6 +9,7 @@ const router = new express.Router();
 // MODELS ===================================================
 
 const Class = require("../model/Class.js");
+const License = require("../model/License.js");
 const ProjectConfig = require("../model/ProjectConfig.js");
 
 // ROUTES ===================================================
@@ -157,6 +158,21 @@ router.post("/class/member/add-learners", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
 		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the class
+	let classInstance;
+	try {
+		classInstance = await Class.findOne({ organisation: req.body.input.organisation, name: req.body.input.name });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!classInstance) return res.send({ status: "error", content: "no class found" });
+	// Fetch the licenses
+	let licenses;
+	try {
+		licenses = await License.find({ organisation: req.body.input.organisation, username: req.body.input.usernames });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: undefined });

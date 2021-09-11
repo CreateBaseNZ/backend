@@ -59,15 +59,19 @@ router.post("/email-login", async (req, res) => {
 	}
 	if (!license) return res.send({ status: "error", content: "no license found" });
 	// Create the session
-	const session = new Object({
+	let session = new Object({
 		organisation: license.organisation,
 		license: license._id,
 		profile: profile._id,
 		account: account._id,
 		access: license.access,
 		status: "free",
-		verified: account.verified.status,
 	});
+	if (session.access === "learner") {
+		session.verified = true;
+	} else {
+		session.verified = account.verified.status;
+	}
 	// Success handler
 	return res.send({ status: "succeeded", content: session });
 });
