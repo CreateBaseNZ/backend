@@ -167,10 +167,29 @@ router.post("/class/member/add-learners", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!classInstance) return res.send({ status: "error", content: "no class found" });
+	// Validate if the user can add learners
+	if (classInstance.educators.indexOf(req.body.input.license) === -1 && classInstance.admin !== req.body.input.license) {
+		return res.send({ status: "error", content: "invalid access" });
+	}
 	// Fetch the licenses
 	let licenses;
 	try {
 		licenses = await License.find({ organisation: req.body.input.organisation, username: req.body.input.usernames });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	let licenseIds = licenses.map((license) => license._id);
+	// Add the learner licenses onto the class
+	for (let i = 0; i < licenseIds.length; i++) {
+		const licenseId = licenseIds[i];
+		if (classInstance.learners.indexOf(licenseId) === -1) {
+			classInstance.learners.push(licenseId);
+		}
+	}
+	// Save changes
+	classInstance.date.modified = req.body.input.date;
+	try {
+		await classInstance.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
