@@ -319,7 +319,7 @@ ${object.sender} invited you to join ${object.orgName} on the CreateBase platfor
 
 Follow the link below to join!
 
-${process.env.APP_PREFIX}/organisation-educator-invite/${object.url}
+${process.env.APP_PREFIX}/invite/${object.url}
 
 
 Best regards,
@@ -348,7 +348,7 @@ ${object.sender} requested to join you and your team at ${object.orgName}!
 
 Follow the link below to accept their request to join!
 
-${process.env.APP_PREFIX}/organisation-educator-join/${object.url}
+${process.env.APP_PREFIX}/invite/${object.url}
 
 
 Best regards,

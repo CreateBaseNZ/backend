@@ -243,6 +243,40 @@ router.post("/class/project/add", async (req, res) => {
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
 		return res.send({ status: "critical error", content: "" });
 	}
+	// Fetch the class
+	let classInstance;
+	try {
+		classInstance = await Class.findOne({ organisation: req.body.input.organisation, name: req.body.input.name });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!classInstance) return res.send({ status: "error", content: "no class found" });
+	// Validate if the user can add a project
+	if (classInstance.educators.indexOf(req.body.input.license) === -1 && classInstance.admin !== req.body.input.license) {
+		return res.send({ status: "error", content: "invalid access" });
+	}
+	// Set the authors
+	let authors = classInstance.educators;
+	if (authors.indexOf(classInstance.admin) === -1) authors.push(classInstance.admin);
+	// Create the project config instance
+	const object = new Object({
+		authors,
+		name: req.body.input.project,
+	});
+	let projectConfig;
+	try {
+		projectConfig = await ProjectConfig.build(object);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Update the class
+	classInstance.projects.push(projectConfig._id);
+	classInstance.date.modified = req.body.input.date;
+	try {
+		await classInstance.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
 	// Success handler
 	return res.send({ status: "succeeded", content: undefined });
 });

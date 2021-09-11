@@ -256,7 +256,7 @@ router.post("/organisation/invite-educator/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	const url = `${process.env.APP_PREFIX}/organisation-educator-invite/${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.educator}`;
+	const url = `${process.env.APP_PREFIX}/invite/${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.educator}`;
 	// Success handler
 	return res.send({ status: "succeeded", content: url });
 });
@@ -609,7 +609,7 @@ router.post("/organisation/invite-learner/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	const url = `${process.env.APP_PREFIX}/organisation-learner-invite/${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.learner}`;
+	const url = `${process.env.APP_PREFIX}/invite/${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.learner}`;
 	// Success handler
 	return res.send({ status: "succeeded", content: url });
 });
