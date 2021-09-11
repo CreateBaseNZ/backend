@@ -256,13 +256,10 @@ router.post("/class/project/add", async (req, res) => {
 		return res.send({ status: "error", content: "invalid access" });
 	}
 	// Set the authors
-	let authors = classInstance.educators;
+	let authors = classInstance.educators ? classInstance.educators : [];
 	if (authors.indexOf(classInstance.admin) === -1) authors.push(classInstance.admin);
 	// Create the project config instance
-	const object = new Object({
-		authors,
-		name: req.body.input.project,
-	});
+	const object = new Object({ authors, project: req.body.input.project });
 	let projectConfig;
 	try {
 		projectConfig = await ProjectConfig.build(object);
