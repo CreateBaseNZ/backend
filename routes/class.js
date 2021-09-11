@@ -21,6 +21,19 @@ router.post("/class/create", async (req, res) => {
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
 		return res.send({ status: "critical error", content: "" });
 	}
+	// Create the instance object
+	const object = new Object({
+		organisation: req.body.input.organisation,
+		admin: req.body.input.admin,
+		name: req.body.input.name,
+		date: { created: req.body.input.date, modified: req.body.input.date },
+	});
+	// Create the instance
+	try {
+		await Class.build(object);
+	} catch (data) {
+		return res.send(data);
+	}
 	// Success handler
 	return res.send({ status: "succeeded", content: undefined });
 });
