@@ -25,7 +25,7 @@ let email = {
 	templateEducatorAccept: undefined,
 	templateInqNotif: undefined,
 	templateNewOrgNotif: undefined,
-	templateNewsletterRaw: undefined,
+	templateRaw: undefined,
 };
 const members = [
 	"carlvelasco96@gmail.com",
@@ -103,8 +103,8 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 			case "new-org-notif":
 				promise = email.templateNewOrgNotif(object);
 				break;
-			case "newsletter-raw":
-				promise = email.templateNewsletterRaw(object);
+			case "email-raw":
+				promise = email.templateRaw(object);
 				break;
 			default:
 				return reject({ status: "error", content: "no template is provided" });
@@ -428,7 +428,7 @@ The CreateBase Team`;
 	});
 };
 
-email.templateNewsletterRaw = (object = {}) => {
+email.templateRaw = (object = {}) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
 		const subject = object.subject;

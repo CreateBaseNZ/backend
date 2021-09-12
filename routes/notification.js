@@ -17,6 +17,9 @@ MODELS
 =========================================================================================*/
 
 const Mail = require("../model/Mail.js");
+const License = require("../model/License.js");
+const Profile = require("../model/Profile.js");
+const Account = require("../model/Account.js");
 
 /*=========================================================================================
 ROUTES
@@ -85,7 +88,7 @@ router.post("/mail/admin/send-newsletter", async (req, res) => {
 					const object = { email: mail.email, subject: req.body.input.subject, text: req.body.input.text, html: req.body.input.html };
 					let mailObject;
 					try {
-						mailObject = await email.create(object, "newsletter-raw");
+						mailObject = await email.create(object, "email-raw");
 					} catch (data) {
 						return reject(data);
 					}
@@ -103,10 +106,83 @@ router.post("/mail/admin/send-newsletter", async (req, res) => {
 					}
 					// Success handler
 					return resolve();
-				});
+				}, i * 15);
 			});
 			promises.push(promise);
 		}
+	}
+	// Wait for the emails to be sent
+	try {
+		await Promise.all(promises);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: undefined });
+});
+
+// @route     POST /mail/admin/email-educator
+// @desc
+// @access    Public
+router.post("/mail/admin/email-educator", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Validate if the ADMIN_API_KEY match
+	if (req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
+		return res.send({ status: "critical error", content: "" });
+	}
+	// Fetch the licenses
+	let licenses;
+	try {
+		licenses = await License.find();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Filter non admin or educator licenses
+	const filteredLicenses = licenses.filter((license) => license.access === "admin" || license === "educator");
+	const profileIds = filteredLicenses.map((license) => license.profile);
+	// Fetch the profiles
+	let profiles;
+	try {
+		profiles = await Profile.find({ _id: profileIds });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	const accountIds = profiles.map((profile) => profile.account.local);
+	// Fetch the accounts
+	let accounts;
+	try {
+		accounts = await Account.find({ _id: accountIds });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Send the email
+	let promises = [];
+	for (let i = 0; i < accounts.length; i++) {
+		const account = accounts[i];
+		// Process: Send the newsletter
+		const promise = new Promise((resolve, reject) => {
+			setTimeout(async function () {
+				// Send the email if it has been sent
+				const object = { email: account.email, subject: req.body.input.subject, text: req.body.input.text, html: req.body.input.html };
+				let mail;
+				try {
+					mail = await email.create(object, "email-raw");
+				} catch (data) {
+					return reject(data);
+				}
+				try {
+					await email.send(mail);
+				} catch (data) {
+					return reject(data);
+				}
+				// Success handler
+				return resolve();
+			}, i * 15);
+		});
+		promises.push(promise);
 	}
 	// Wait for the emails to be sent
 	try {
