@@ -25,7 +25,7 @@ let email = {
 	templateEducatorAccept: undefined,
 	templateInqNotif: undefined,
 	templateNewOrgNotif: undefined,
-	templateTestEmail: undefined,
+	templateNewsletterRaw: undefined,
 };
 const members = [
 	"carlvelasco96@gmail.com",
@@ -103,8 +103,8 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 			case "new-org-notif":
 				promise = email.templateNewOrgNotif(object);
 				break;
-			case "test":
-				promise = email.templateTestEmail();
+			case "newsletter-raw":
+				promise = email.templateNewsletterRaw(object);
 				break;
 			default:
 				return reject({ status: "error", content: "no template is provided" });
@@ -115,19 +115,12 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 		} catch (data) {
 			return reject(data);
 		}
-		// Recipient
-		let recipient;
-		if (teamNotif) {
-			recipient = members;
-		} else {
-			recipient = object.email;
-		}
 		// Test
 		if (process.env.NODE_ENV !== "production") contents.subject = "[TEST]: " + contents.subject;
 		// CONSTRUCT EMAIL
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
-			to: `${recipient}`,
+			to: `${teamNotif ? members : object.email}`,
 			subject: contents.subject,
 			text: contents.text,
 			html: contents.html,
@@ -319,7 +312,7 @@ ${object.sender} invited you to join ${object.orgName} on the CreateBase platfor
 
 Follow the link below to join!
 
-${process.env.APP_PREFIX}/invite/${object.url}
+${process.env.APP_PREFIX}/invite/educator/${object.url}
 
 
 Best regards,
@@ -348,7 +341,7 @@ ${object.sender} requested to join you and your team at ${object.orgName}!
 
 Follow the link below to accept their request to join!
 
-${process.env.APP_PREFIX}/invite/${object.url}
+${process.env.APP_PREFIX}/invite/educator/${object.url}
 
 
 Best regards,
@@ -435,34 +428,13 @@ The CreateBase Team`;
 	});
 };
 
-email.templateTestEmail = () => {
+email.templateNewsletterRaw = (object = {}) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
-		const subject = `Testing the automated email feature`;
+		const subject = object.subject;
 		// BUILD THE EMAIL BODY
-		const text = `
-Good day Ma'am/Sir,
-
-
-We are just testing to see if you received this email with no problem.
-
-
-Kind Regards,
-CreateBase Team`;
-
-		const div = ``;
-		// SET THE CSS STYLING
-		const css = ``;
-		// Combine the HTML and CSS
-		const combined = div + css;
-		// Inline the CSS
-		const inlineCSSOptions = { url: "/" };
-		let html = "";
-		// try {
-		// 	html = await inlineCSS(combined, inlineCSSOptions);
-		// } catch (error) {
-		// 	return reject({ status: "error", content: error });
-		// }
+		const text = object.text;
+		const html = object.html;
 		// Return the email object
 		return resolve({ subject, text, html });
 	});
