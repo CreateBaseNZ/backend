@@ -28,7 +28,16 @@ let email = {
 	templateNewOrgNotif: undefined,
 	templateRaw: undefined,
 };
-const members = ["carlvelasco96@gmail.com"];
+const members = [
+	"carlvelasco96@gmail.com",
+	"bo75salim@hotmail.com",
+	"bradyoung109@gmail.com",
+	"brydonburnett@gmail.com",
+	"craig.vaz1337@gmail.com",
+	"louiscflin@gmail.com",
+	"todd.lachlan.broadhurst@gmail.com",
+	"weiweiwu766@gmail.com",
+];
 
 /*=========================================================================================
 FUNCTIONS
@@ -214,8 +223,7 @@ email.templateWelcome = (object = {}) => {
 		// Set the subject of the email
 		const subject = `Welcome to CreateBase ${object.displayName}!`;
 		// Set the email body
-		const body = `
-Hi ${object.displayName},
+		const body = `Hi ${object.displayName},
 
 
 Here is your first quest!
@@ -338,8 +346,7 @@ email.templateEducatorAccept = (object = {}) => {
 		// SET THE EMAIL SUBJECT
 		const subject = `You are now a part of ${object.orgName}`;
 		// BUILD THE EMAIL BODY
-		const body = `
-Hi ${object.recipient},
+		const body = `Hi ${object.recipient},
 
 
 Amazing news! You are now a part of ${object.orgName}!
@@ -373,7 +380,9 @@ email.templateInqNotif = (object = {}) => {
 We have a new inquiry!
 
 From: ${object.name} (${object.userEmail})
+
 Subject: ${object.subject}
+
 Message: ${object.message}
 
 
