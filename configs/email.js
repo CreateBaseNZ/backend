@@ -370,10 +370,10 @@ email.templateInqNotif = (object = {}) => {
 		const body = `Hey team,
 
 
-We have a new inquiry from ${object.name} (${object.userEmail}).
+We have a new inquiry!
 
+From: ${object.name} (${object.userEmail})
 Subject: ${object.subject}
-
 Message: ${object.message}
 
 
