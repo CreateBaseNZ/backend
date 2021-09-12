@@ -73,46 +73,47 @@ router.post("/mail/admin/send-newsletter", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Process each emails
+	let promises = [];
 	for (let i = 0; i < mails.length; i++) {
 		let mail = mails[i];
 		// Check if the newsletter has already been sent
-
-		// Send the email if it has been sent
-
-		// Update the mail to add the newsletter to the list
+		if (mail.received.indexOf(req.body.input.group) === -1) {
+			// Process: Send the newsletter
+			const promise = new Promise((resolve, reject) => {
+				setTimeout(async function () {
+					// Send the email if it has been sent
+					const object = { email: mail.email, subject: req.body.input.subject, text: req.body.input.text, html: req.body.input.html };
+					let mailObject;
+					try {
+						mailObject = await email.create(object, "newsletter-raw");
+					} catch (data) {
+						return reject(data);
+					}
+					try {
+						await email.send(mailObject);
+					} catch (data) {
+						return reject(data);
+					}
+					// Update the mail to add the newsletter to the list
+					mail.received.push(req.body.input.group);
+					try {
+						await mail.save();
+					} catch (error) {
+						return reject({ status: "error", content: error });
+					}
+					// Success handler
+					return resolve();
+				});
+			});
+			promises.push(promise);
+		}
 	}
-	// Create the list of emails
-	const emails = mails.map((mail) => mail.email);
-	// Send the newsletter;
-	let promises1 = [];
-	for (let i = 0; i < emails.length; i++) {
-		const emailAddress = emails[i];
-		const object = { email: emailAddress, subject: req.body.input.subject, text: req.body.input.text, html: req.body.input.html };
-		const promise = new Promise((resolve, reject) => {
-			setTimeout(async function () {
-				let mail;
-				try {
-					mail = await email.create(object, "newsletter-raw");
-				} catch (data) {
-					return reject(data);
-				}
-				try {
-					await email.send(mail);
-				} catch (data) {
-					return reject(data);
-				}
-				return resolve();
-			}, 12.5 * i);
-		});
-		promises1.push(promise);
-	}
+	// Wait for the emails to be sent
 	try {
-		await Promise.all(promises1);
+		await Promise.all(promises);
 	} catch (data) {
 		return res.send(data);
 	}
-	// Update the status of each mail to add the group
-
 	// Success handler
 	return res.send({ status: "succeeded", content: undefined });
 });
