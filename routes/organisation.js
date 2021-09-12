@@ -299,7 +299,7 @@ router.post("/organisation/invite-educator/send", async (req, res) => {
 		}
 		// Generate the base elements of the email
 		let url = `${emailAddress}-${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.educator}`;
-		let recipient = "Ma'am/Sir";
+		let recipient = "there";
 		if (account) {
 			/// Fetch the profile
 			let profile2;
