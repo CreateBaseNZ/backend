@@ -85,7 +85,7 @@ router.post("/mail/admin/send-newsletter", async (req, res) => {
 			const promise = new Promise((resolve, reject) => {
 				setTimeout(async function () {
 					// Send the email if it has been sent
-					const object = { email: mail.email, subject: req.body.input.subject, text: req.body.input.text, html: req.body.input.html };
+					const object = { email: mail.email, subject: req.body.input.subject, body: req.body.input.body };
 					let mailObject;
 					try {
 						mailObject = await email.create(object, "email-raw");
@@ -166,7 +166,7 @@ router.post("/mail/admin/email-educator", async (req, res) => {
 		const promise = new Promise((resolve, reject) => {
 			setTimeout(async function () {
 				// Send the email if it has been sent
-				const object = { email: account.email, subject: req.body.input.subject, text: req.body.input.text, html: req.body.input.html };
+				const object = { email: account.email, subject: req.body.input.subject, body: req.body.input.body };
 				let mail;
 				try {
 					mail = await email.create(object, "email-raw");

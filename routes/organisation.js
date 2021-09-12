@@ -194,6 +194,7 @@ router.post("/organisation/educator-join", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	if (!license) return res.send({ status: "error", content: "no license found" });
 	// Check if the license is already attached to an organisation
 	if (license.organisation) return res.send({ status: "critical error", content: "" });
 	// Create the link
@@ -207,6 +208,42 @@ router.post("/organisation/educator-join", async (req, res) => {
 		await Promise.all(promises);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
+	}
+	// Fetch the profile
+	let profile;
+	try {
+		profile = await Profile.findOne({ _id: license.profile });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile) return res.send({ status: "error", content: "no profile found" });
+	// Fetch the account
+	let account;
+	try {
+		account = await Account.findOne({ _id: profile.account.local });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "error", content: "no account found" });
+	// Construct the email input
+	const input = {
+		email: account.email,
+		recipient: profile.displayName,
+		orgName: organisation.name,
+		orgId: organisation.metadata.id,
+		eduCode: organisation.join.educator,
+		lerCode: organisation.join.learner,
+	};
+	let mail;
+	try {
+		mail = await email.create(input, "educator-accept");
+	} catch (data) {
+		return res.send(data);
+	}
+	try {
+		await email.send(mail);
+	} catch (data) {
+		return res.send(data);
 	}
 	// Fetch all licenses
 	let licenses;
@@ -415,6 +452,26 @@ router.post("/organisation/invite-educator/join", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	// Construct the email input
+	const input = {
+		email: account.email,
+		recipient: profile.displayName,
+		orgName: organisation.name,
+		orgId: organisation.metadata.id,
+		eduCode: organisation.join.educator,
+		lerCode: organisation.join.learner,
+	};
+	let mail;
+	try {
+		mail = await email.create(input, "educator-accept");
+	} catch (data) {
+		return res.send(data);
+	}
+	try {
+		await email.send(mail);
+	} catch (data) {
+		return res.send(data);
+	}
 	// Success handler
 	return res.send({ status: "succeeded", content: undefined });
 });
@@ -576,7 +633,14 @@ router.post("/organisation/educator-join/accept", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Construct the email input
-	const input = { email: account.email, recipient: profile.displayName, orgName: organisation.name };
+	const input = {
+		email: account.email,
+		recipient: profile.displayName,
+		orgName: organisation.name,
+		orgId: organisation.metadata.id,
+		eduCode: organisation.join.educator,
+		lerCode: organisation.join.learner,
+	};
 	let mail;
 	try {
 		mail = await email.create(input, "educator-accept");
