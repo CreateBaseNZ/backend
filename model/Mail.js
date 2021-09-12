@@ -23,7 +23,7 @@ const MailSchema = new Schema({
 	received: { type: [Schema.Types.String], default: ["newSubscriber"] },
 	notification: {
 		newsletter: { type: Schema.Types.Boolean, default: false },
-		newsletter: { type: Schema.Types.Boolean, default: false },
+		onboarding: { type: Schema.Types.Boolean, default: false },
 	},
 });
 

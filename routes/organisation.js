@@ -256,7 +256,7 @@ router.post("/organisation/invite-educator/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	const url = `${process.env.APP_PREFIX}/invite/educator/${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.educator}`;
+	const url = `${process.env.APP_PREFIX}/invite/educator/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}`;
 	// Success handler
 	return res.send({ status: "succeeded", content: url });
 });
@@ -298,7 +298,7 @@ router.post("/organisation/invite-educator/send", async (req, res) => {
 			return res.send({ status: "error", content: error });
 		}
 		// Generate the base elements of the email
-		let url = `${emailAddress}-${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.educator}`;
+		let url = `${emailAddress}__${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}`;
 		let recipient = "there";
 		if (account) {
 			/// Fetch the profile
@@ -323,7 +323,7 @@ router.post("/organisation/invite-educator/send", async (req, res) => {
 			} catch (data) {
 				return res.send(data);
 			}
-			url = url + `-${license.invite.code}`;
+			url = url + `__${license.invite.code}`;
 			recipient = profile2.displayName;
 		}
 		// Send the email invitation
@@ -491,7 +491,7 @@ router.post("/organisation/educator-join/request", async (req, res) => {
 	}
 	if (!account2) return res.send({ status: "error", content: "no account found" });
 	// Construct the url
-	const url = `${account1.email}-${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.educator}-${license1.join.code}`;
+	const url = `${account1.email}__${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}__${license1.join.code}`;
 	// Construct the email input
 	const input = { email: account2.email, sender: profile1.displayName, recipient: profile2.displayName, url, orgName: organisation.name };
 	let mail;
@@ -609,7 +609,7 @@ router.post("/organisation/invite-learner/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	const url = `${process.env.APP_PREFIX}/invite/learner/${organisation.metadata.id}-${organisation.name.replaceAll(" ", "_")}-${organisation.join.learner}`;
+	const url = `${process.env.APP_PREFIX}/invite/learner/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.learner}`;
 	// Success handler
 	return res.send({ status: "succeeded", content: url });
 });
