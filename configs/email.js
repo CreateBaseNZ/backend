@@ -166,9 +166,9 @@ email.footer = `Best regards,
 The CreateBase Team
 
 
-<i>Visit our <b><a href='https://createbase.co.nz/'>website</a></b> and our <b><a href='https://app.createbase.co.nz/'>application</a></b>.
+<i>Visit our <b><a href='https://createbase.co.nz/'>website</a></b> and our <b><a href='${process.env.APP_PREFIX}/'>application</a></b>.
 
-Join our exclusive <b><a href='https://www.facebook.com/groups/createbaseteacherscommunity'>Facebook group</a></b> for teachers and receive quick responses to your questions. Check if we have answered your questions in our <b><a href='https://app.createbase.co.nz/faq'>FAQ page</a></b>.
+Join our exclusive <b><a href='https://www.facebook.com/groups/createbaseteacherscommunity'>Facebook group</a></b> for teachers and receive quick responses to your questions. Check if we have answered your questions in our <b><a href='${process.env.APP_PREFIX}/faq'>FAQ page</a></b>.
 
 Follow our social media and stay up-to-date with the latest news: <b><a href='https://www.facebook.com/CreateBaseNZ'>Facebook</a></b>, <b><a href='https://twitter.com/CreateBaseNZ'>Twitter</a></b>, <b><a href='https://www.instagram.com/createbasenz/'>Instagram</a></b> and <b><a href='https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g'>YouTube</a></b>.</i>
 
@@ -208,9 +208,9 @@ email.templateAccountVerification = (object) => {
 
 Thank you for registering an account with us! Here is your first task!
 
-Verify your account using this code: ${object.code}
+Verify your account using this code: <b>${object.code}</b>
 
-<b><a href='https://app.createbase.co.nz/auth/login'>Log into your CreateBase account</a></b> and enter this code!
+<b><a href='${process.env.APP_PREFIX}/auth/login'>Log into your CreateBase account</a></b> and enter this code!
 
 
 ${email.footer}`;
@@ -234,7 +234,7 @@ Welcome to CreateBase! Here is your second task!
 
 School accounts are a key part of the CreateBase platform that we call Organisation accounts. To teach with the platform you are required to be associated with an organisation account.
 
-<b><a href='https://app.createbase.co.nz/user/my-account/org'>Create or join</a></b> an organisation.
+<b><a href='${process.env.APP_PREFIX}/user/my-account/org'>Create or join</a></b> an organisation.
 
 
 <b>Create an Organisation</b>
