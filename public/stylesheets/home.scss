@@ -941,13 +941,14 @@ video{
     flex-direction: column;
     align-items: center;
     h3{
+      padding-top: 2rem;
       font-size: 2rem;
     }
     .lessplan-feature-wrap{
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      padding-top: 2rem;
+      padding-top: 4rem;
       width: 100%;
       // max-width: 80rem;
       .lessplan-feature{
