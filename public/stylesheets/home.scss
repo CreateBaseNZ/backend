@@ -90,6 +90,7 @@
   z-index: 1;
   &::after{
     content: 'COMING SOON';
+    text-align: center;
     color: $lightest;
     position: absolute;
     left: 50%;
@@ -1080,6 +1081,7 @@ video{
   
       .project-details{
         display: flex;
+        padding: 1rem 0;
         .sub-text-container{
           padding: 0 0.5rem 1rem 0;
           .sub-title{
@@ -1215,7 +1217,6 @@ video{
   
   .banner-btn {
     padding: 2rem 2.5rem;
-    border-radius: 999px;
     color: $lightest;
     background: $logo-mid;
     letter-spacing: 0.05em;

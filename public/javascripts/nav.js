@@ -10,6 +10,8 @@ let nav = {
   },
 
   checkTop: undefined,
+  checkPage: undefined,
+  lightNavItem: undefined,
 
   elem: {
     ham: document.querySelector('.hamburger'),
@@ -27,6 +29,7 @@ let nav = {
 nav.init.init = () => {
   nav.init.attachListeners()
   nav.checkTop()
+  nav.lightNavItem()
 }
 
 nav.init.attachListeners = () => {
@@ -37,6 +40,23 @@ nav.init.attachListeners = () => {
 nav.event.toggleNavMenu = (e) => {
   nav.elem.navMenu.classList.toggle('active');
   nav.elem.ham.classList.toggle('is-active');
+}
+
+nav.checkPage = function(){
+  var currentPage =  document.URL;
+  return currentPage
+}
+
+nav.lightNavItem = function(){
+  let currentPage = nav.checkPage()
+  let navItems = nav.elem.navItem;
+  // if (currentPage === 'https://createbase.co.nz/' || 'https://createbase.co.nz/about' || 'http://127.0.0.1:5501/views/home.html' || 'http://127.0.0.1:5501/views/about.html') {
+  //   for (let i = 0; i < navItems.length; i++) {
+  //     // navItems[i].style.color = '#1A1039';
+  //     console.log(navItems[i].classList);
+  //   }
+  //   // console.log('yep');
+  // }
 }
 
 nav.checkTop = function() {
