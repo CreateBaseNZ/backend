@@ -12,7 +12,7 @@
     height: 0.6rem;
     border-radius: 1rem;
     background-color: $blue-mid;
-    z-index: 500;
+    z-index: 20;
   }
 }
 .banner-video{
@@ -663,7 +663,7 @@ video{
       height: 0.9rem;
       border-radius: 1rem;
       background-color: $blue-mid;
-      z-index: 500;
+      z-index: 20;
     }
   }
 
@@ -941,13 +941,14 @@ video{
     flex-direction: column;
     align-items: center;
     h3{
+      padding-top: 2rem;
       font-size: 2rem;
     }
     .lessplan-feature-wrap{
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      padding-top: 2rem;
+      padding-top: 4rem;
       width: 100%;
       // max-width: 80rem;
       .lessplan-feature{
@@ -1016,6 +1017,7 @@ video{
             font-size: 1.7rem;
             color: $dark;
             font-weight: 500;
+            padding-bottom: 1rem;
           }
           p{
             font-size: 2.8rem;
@@ -1103,8 +1105,9 @@ video{
   }
 
   .pricing-section{
+    // padding-bottom: 2rem;
     .pricing-container{
-      padding-top: 5rem;
+      padding: 5rem 0 2.5rem 0;
       display: flex;
       justify-content: center;
       .pricing-card{
@@ -1125,7 +1128,7 @@ video{
         h4,h5,h6,p, span{
           color: $blue-mid;
         }
-        padding: 3rem 5rem;
+        padding: 3rem;
       }
       .pricing-title{
         display: flex;
@@ -1139,6 +1142,7 @@ video{
           text-align: center;
         }
         h4{
+          text-align: center;
           font-size: 2rem;
           font-weight: 500;
         }
@@ -1162,13 +1166,17 @@ video{
     .about-container{
       display: flex;
       flex-direction: column;
-      padding-top: 3rem;
+      align-items: flex-start;
+      padding-top: 5rem;
+      width: 80%;
+      margin: 0 auto;
       .about-content-container{
        display: flex;
       //  flex-direction: column;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
+      padding: 3rem 0;
       }
       h4{
         font-size: 2rem;
@@ -1186,7 +1194,7 @@ video{
       .list-container{
         display: flex;
         flex-direction: column;
-        padding-left: 2rem;
+        padding-left: 4rem;
         .list-item{
           display: flex;
           align-items: center;
@@ -1203,8 +1211,8 @@ video{
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 5rem;
-          height: 4rem;
+          width: 6rem;
+          height: 5rem;
           padding:0.5rem;
           img{
             width: 100%;

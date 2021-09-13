@@ -30,6 +30,7 @@ nav.init.init = () => {
   nav.init.attachListeners()
   nav.checkTop()
   nav.lightNavItem()
+  console.log(document.querySelector('.nav-logo'));
 }
 
 nav.init.attachListeners = () => {
@@ -44,42 +45,41 @@ nav.event.toggleNavMenu = (e) => {
 
 nav.checkPage = function(){
   var currentPage =  document.URL;
-  return currentPage
+  return currentPage;
 }
 
 nav.lightNavItem = function(){
   let currentPage = nav.checkPage()
   let navItems = nav.elem.navItem;
-  // if (currentPage === 'https://createbase.co.nz/' || 'https://createbase.co.nz/about' || 'http://127.0.0.1:5501/views/home.html' || 'http://127.0.0.1:5501/views/about.html') {
-  //   for (let i = 0; i < navItems.length; i++) {
-  //     // navItems[i].style.color = '#1A1039';
-  //     console.log(navItems[i].classList);
-  //   }
-  //   // console.log('yep');
-  // }
+  if (currentPage === 'https://createbase.co.nz/' || currentPage === 'https://createbase.co.nz/about' || currentPage === 'https://createbase.co.nz/about#first-section' || currentPage === 'http://127.0.0.1:5501/views/home.html' || currentPage === 'http://127.0.0.1:5501/views/about.html' || currentPage === 'http://localhost/' || currentPage === 'http://localhost/about'|| currentPage === 'http://localhost/about#first-section') {
+    for (let i = 0; i < navItems.length; i++) {
+      navItems[i].classList.add('light-menu-text');
+    }
+  }
+  else{
+    for (let i = 0; i < navItems.length; i++) {
+      navItems[i].classList.remove('light-menu-text');
+      navItems[i].classList.add('dark-menu-text');
+    }
+  }
 }
 
 nav.checkTop = function() {
   let navItems = nav.elem.navItem;
-  let currentPage =  document.URL;
   if (window.pageYOffset >= 24) {
     nav.elem.nav.classList.add('sticky')
-
-    // if (currentPage === 'https://createbase.co.nz/' || 'https://createbase.co.nz/about' || 'http://127.0.0.1:5501/views/home.html' || 'http://127.0.0.1:5501/views/about.html') {
-    //   for (let i = 0; i < navItems.length; i++) {
-    //     navItems[i].style.color = '#1A1039';
-    //   }
-    // }
-
+    for (let i = 0; i < navItems.length; i++) {
+      navItems[i].classList.remove('light-menu-text');
+      navItems[i].classList.add('dark-menu-text');
+    };
   } else {
     nav.elem.nav.classList.remove('sticky')
+    for (let i = 0; i < navItems.length; i++) {
+      console.log(navItems[i].classList);
 
-    // if (currentPage === 'https://createbase.co.nz/' || 'https://createbase.co.nz/about' || 'http://127.0.0.1:5501/views/home.html' || 'http://127.0.0.1:5501/views/about.html') {
-    //   for (let i = 0; i < navItems.length; i++) {
-    //     navItems[i].style.color = '#fff';
-    //   }
-    // }
-
+      navItems[i].classList.add('light-menu-text');
+      navItems[i].classList.remove('dark-menu-text');
+    }
   }
 }
 
