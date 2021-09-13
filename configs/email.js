@@ -14,15 +14,19 @@ let email = {
 	build: undefined,
 	create: undefined,
 	send: undefined,
+	footer: undefined,
 	// TEMPLATES
 	templateInquiry: undefined,
 	templateAccountVerification: undefined,
 	templateWelcome: undefined,
 	templatePasswordReset: undefined,
 	templateOrganisationDetail: undefined,
+	templateInviteEducator: undefined,
+	templateEducatorJoin: undefined,
+	templateEducatorAccept: undefined,
 	templateInqNotif: undefined,
 	templateNewOrgNotif: undefined,
-	templateTestEmail: undefined,
+	templateRaw: undefined,
 };
 const members = [
 	"carlvelasco96@gmail.com",
@@ -88,14 +92,23 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 			case "organisation-detail":
 				promise = email.templateOrganisationDetail(object);
 				break;
+			case "invite-educator":
+				promise = email.templateInviteEducator(object);
+				break;
+			case "educator-join":
+				promise = email.templateEducatorJoin(object);
+				break;
+			case "educator-accept":
+				promise = email.templateEducatorAccept(object);
+				break;
 			case "inq-notif":
 				promise = email.templateInqNotif(object);
 				break;
 			case "new-org-notif":
 				promise = email.templateNewOrgNotif(object);
 				break;
-			case "test":
-				promise = email.templateTestEmail();
+			case "email-raw":
+				promise = email.templateRaw(object);
 				break;
 			default:
 				return reject({ status: "error", content: "no template is provided" });
@@ -106,19 +119,12 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 		} catch (data) {
 			return reject(data);
 		}
-		// Recipient
-		let recipient;
-		if (teamNotif) {
-			recipient = members;
-		} else {
-			recipient = object.email;
-		}
 		// Test
 		if (process.env.NODE_ENV !== "production") contents.subject = "[TEST]: " + contents.subject;
 		// CONSTRUCT EMAIL
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
-			to: `${recipient}`,
+			to: `${teamNotif ? members : object.email}`,
 			subject: contents.subject,
 			text: contents.text,
 			html: contents.html,
@@ -155,6 +161,19 @@ email.send = (object = {}) => {
 	});
 };
 
+email.footer = `Best regards,
+
+The CreateBase Team
+
+
+<i>Visit our <b><a href='https://createbase.co.nz/'>website</a></b> and our <b><a href='${process.env.APP_PREFIX}/'>application</a></b>.
+
+Join our exclusive <b><a href='https://www.facebook.com/groups/createbaseteacherscommunity'>Facebook group</a></b> for teachers and receive quick responses to your questions. Check if we have answered your questions in our <b><a href='${process.env.APP_PREFIX}/faq'>FAQ page</a></b>.
+
+Follow our social media and stay up-to-date with the latest news: <b><a href='https://www.facebook.com/CreateBaseNZ'>Facebook</a></b>, <b><a href='https://twitter.com/CreateBaseNZ'>Twitter</a></b>, <b><a href='https://www.instagram.com/createbasenz/'>Instagram</a></b> and <b><a href='https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g'>YouTube</a></b>.</i>
+
+Did you encounter any bugs or errors? <b><a href='https://createbase.co.nz/contact'>Contact us here</a></b>!`;
+
 /* ----------------------------------------------------------------------------------------
 TEMPLATES
 ---------------------------------------------------------------------------------------- */
@@ -162,243 +181,19 @@ TEMPLATES
 email.templateInquiry = (object) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
-		const subject = object.subject;
+		const subject = `Thank you for your inquiry (#${object.number}).`;
 		// BUILD THE EMAIL BODY
-		const text = `
-Hi ${object.name},
+		const body = `Hi ${object.name},
 
 
 Thank you for the message, we will get back to you as soon as possible!
 
 
-Kind Regards,
-
-CreateBase Team`;
-
-		const div = `
-    <div id="body">
-      <div id="wrap">
-        <div id="content-container">
-          <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
-            <tr>
-              <td align="center" valign="top">
-                <table border="0" cellpadding="20" cellspacing="0" id="emailContainer">
-                  <tr>
-                    <td align="center" valign="top" id="header-td">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader">
-                        <tr>
-                          <td align="center" valign="top">
-                            <img src="https://createbase.co.nz/public/images/logo-dark.png" alt="CreateBase" id="logo">
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <table id="content-table">
-                    <tr>
-                      <td align="center" valign="center">
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailBody">
-                          <tr>
-                            <td align="center" valign="top" width="100%">
-                              <h1>Hi ${object.name}</h1>
-                              <p class="content-text">Thank you for the message, we will get
-                                back to you as soon as possible!</p>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td align="center" valign="top" width="100%" style="padding-top: 2em;">
-                              <h3>The CreateBase Team</h3>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                      <td align="center" valign="top" id="img1-td">
-                        <table border="0" cellpadding="10" cellspacing="0" width="100%" id="emailBody">
-                          <tr>
-                            <td align="center" valign="top">
-                              <img src="https://createbase.co.nz/public/images/email/family-arm.jpg"
-                                alt="createbase-img01" id="body-image1">
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                  <tr>
-                    <td align="center" valign="center" style="border-top: 3px solid #F0F0F0; padding: 1em 2em;">
-                      <table border="0" cellpadding="5" cellspacing="0" width="100%" id="emailFooter">
-                        <tr>
-                          <td align="left" valign="center">
-                            <!-- <img src="/public/images/logo-icon.png" alt="CreateBase" id="icon"> -->
-                            <p class="sub-content-text">Stay up to date</p>
-                          </td>
-                          <td align="right" valign="center">
-                            <a
-                              href="https://www.facebook.com/CreateBase-110365053954978/?view_public_for=110365053954978"><img
-                                src="https://createbase.co.nz/public/images/email/ico_facebook.jpg" alt="CreateBase-icon"
-                                class="social-icon"></a>
-                            <a href="https://www.instagram.com/createbasenz/"><img
-                                src="https://createbase.co.nz/public/images/email/ico_instagram.jpg" alt="CreateBase-icon"
-                                class="social-icon"></a>
-                            <a href="https://twitter.com/CreateBaseNZ"><img
-                                src="https://createbase.co.nz/public/images/email/ico_twitter.jpg" alt="CreateBase-icon"
-                                class="social-icon"></a>
-                            <a
-                              href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber"><img
-                                src="https://createbase.co.nz/public/images/email/ico_youtube.jpg" alt="CreateBase-icon"
-                                class="social-icon"></a>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="footer">
-          <table border="0" cellpadding="20" cellspacing="0" width="100%" id="footerTable">
-            <tr>
-              <td align="center" valign="top">
-                <p class="footer-copyright">&#169; 2021 CreateBase. All rights reserved :)</p>
-              </td>
-            </tr>
-            <tr>
-              <td align="center" valign="top" style="padding: 0 0 1em 0;">
-                <a href="https://createbase.co.nz/unsubscribe/${object.email}" class="unsub">Unsubscribe from emails</a>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    `;
-		// SET THE CSS STYLING
-		const css = `
-    <style>
-      * {
-        margin: 0;
-      }
-    
-      #body {
-        font-family: 'Poppins', sans-serif;
-        font-style: normal;
-        background-color: #F0F0F0;
-        width: 100%;
-        color: #322D41;
-      }
-    
-      #wrap {
-        min-width: 300px;
-        width: 100%;
-        max-width: 700px;
-        margin: auto;
-      }
-    
-      #content-container {
-        text-align: center;
-        background-color: #FFFFFF;
-      }
-    
-      #logo {
-        width: 30%;
-        min-width: 10em;
-      }
-    
-      h1 {
-        font-size: calc(16px + 6 * ((100vw - 320px) / 680));
-        color: #322D41;
-        padding-bottom: 1em;
-      }
-    
-      h2 {
-        font-size: calc(14px + 4 * ((100vw - 320px) / 680));
-        /* padding-top: 1.2em; */
-        font-weight: 400;
-        color: #322D41;
-      }
-    
-      h3 {
-        font-size: calc(10px + 2 * ((100vw - 320px) / 680));
-        /* padding-top: 1.5em; */
-        color: #322D41;
-      }
-    
-    
-      #divider {
-        font-size: calc(10px + 2 * ((100vw - 320px) / 680));
-        /* padding: 3em 0 1em 0; */
-        color: #322D41;
-      }
-    
-      #content-table {
-        padding: 1em 2em 2em 2em;
-      }
-    
-      .social-icon {
-        width: 2em;
-      }
-    
-      #header-td {
-        padding: 2em 0 0 0;
-      }
-    
-      .footer-copyright {
-        font-size: 0.8em;
-        color: #877da9;
-      }
-    
-      .unsub {
-        font-size: 0.7em;
-        color: #877da9;
-      }
-    
-      .content-text {
-        font-size: calc(12px + 2 * ((100vw - 320px) / 680));
-        color: #322D41;
-        padding: 0 2em;
-      }
-    
-      .sub-content-text {
-        font-size: calc(10px + 2 * ((100vw - 320px) / 680));
-        font-weight: 600;
-      }
-    
-      #body-image1 {
-        width: 100%;
-        min-width: 8em;
-      }
-    
-      @media only screen and (max-width: 375px) {
-        #img1-td {
-          display: none;
-        }
-      }
-    
-    
-      @media only screen and (min-width: 600px) {
-        .content-text {
-          font-size: 0.9em;
-        }
-    
-        .content-table {
-          padding: 1em;
-        }
-      }
-    </style>
-    `;
-		// Combine the HTML and CSS
-		const combined = div + css;
-		// Inline the CSS
-		const inlineCSSOptions = { url: "/" };
-		let html;
-		try {
-			html = await inlineCSS(combined, inlineCSSOptions);
-		} catch (error) {
-			return reject({ status: "error", content: error });
-		}
-		// Return the email object
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
 		return resolve({ subject, text, html });
 	});
 };
@@ -408,20 +203,22 @@ email.templateAccountVerification = (object) => {
 		// SET THE EMAIL SUBJECT
 		const subject = `Your Verification Code: ${object.code}`;
 		// BUILD THE EMAIL BODY
-		const text = `
-Hi ${object.displayName},
+		const body = `Hi ${object.displayName},
 
 
-Your account verification code is: ${object.code}
+Thank you for registering an account with us! Here is your first task!
 
-Log into your CreateBase account and enter this code - ${process.env.APP_PREFIX}/auth/login
+Verify your account using this code: <b>${object.code}</b>
+
+<b><a href='${process.env.APP_PREFIX}/auth/login'>Log into your CreateBase account</a></b> and enter this code!
 
 
-Best regards,
-
-The CreateBase Team`;
-		// Return the email object
-		return resolve({ subject, text });
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
 	});
 };
 
@@ -430,34 +227,46 @@ email.templateWelcome = (object = {}) => {
 		// Set the subject of the email
 		const subject = `Welcome to CreateBase ${object.displayName}!`;
 		// Set the email body
-		const text = `
-Hi ${object.displayName},
+		const body = `Hi ${object.displayName},
 
 
-Here is your first quest!
+Welcome to CreateBase! Here is your second task!
 
 School accounts are a key part of the CreateBase platform that we call Organisation accounts. To teach with the platform you are required to be associated with an organisation account.
 
-Create an or join an existing organisation - ${process.env.APP_PREFIX}/user/my-account
+<b><a href='${process.env.APP_PREFIX}/user/my-account/org'>Create or join</a></b> an organisation.
+
+
+<b>Create an Organisation</b>
 
 To create an account you will need:
-	- The ID of your school
-	- The name of your school
-You can find these information here - https://www.educationcounts.govt.nz/directories/list-of-nz-schools
+
+ - The ID of your school
+ - The name of your school
+
+You can find this information <b><a href='https://www.educationcounts.govt.nz/directories/list-of-nz-schools'>here</a></b>.
+
+<b><a href='https://youtu.be/6QTpDvfDZ9s'>Here is a video</a></b> on how to register your organisation.
+
+
+<b>Join an Organisation</b>
 
 If your school already exists on the CreateBase platform, you will need to join it using the code emailed to the teacher who registered your organisation on our platform.
 
+If your school already exists on the CreateBase platform, you will need to join instead. Here are the different ways you can join the organisation:
 
-Best regards,
+ - Get the invitation link from the teacher who registered your organisation to automatically join the organisation.
+ - Get the code for educators from the teacher who registered your organisation, and manually join the organisation.
 
-The CreateBase Team
+<b><a href='https://youtu.be/AQ6acGxQZwE'>Here is a video</a></b> on how to join an organisation.
 
 
-Join our community and receive quick responses and feedback to your questions
-
- - Facebook Community - https://www.facebook.com/groups/createbaseteacherscommunity`;
-		// Return the email object
-		return resolve({ subject, text });
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
 	});
 };
 
@@ -466,20 +275,18 @@ email.templatePasswordReset = (object) => {
 		// SET THE EMAIL SUBJECT
 		const subject = `Your Password Reset Code: ${object.code}`;
 		// BUILD THE EMAIL BODY
-		const text = `
-Hi ${object.displayName},
+		const body = `Hi ${object.displayName},
 
 
-Click the link below to change your password.
-
-${process.env.APP_PREFIX}/auth/forgot-password/${object.email}/${object.code}
+Click <b><a href='${process.env.APP_PREFIX}/auth/forgot-password/${object.email}/${object.code}'>this link</a></b> to change your password.
 
 
-Best regards,
-
-The CreateBase Team`;
-		// Return the email object
-		return resolve({ subject, text });
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
 	});
 };
 
@@ -488,31 +295,120 @@ email.templateOrganisationDetail = (object = {}) => {
 		// SET THE EMAIL SUBJECT
 		const subject = `Hooray! Your organisation, ${object.orgName}, is now registered on the CreateBase platform.`;
 		// BUILD THE EMAIL BODY
-		const text = `
-Hi ${object.displayName},
+		const body = `Hi ${object.displayName},
 
 
 Congratulations! Your organisation is now established on our platform. Each school only has one organisation account and you have all the codes. This is important info so make sure you note the organisation information below, as it's needed to add teachers and students to your organisation.
 
-Organisation information:
- - Organisation ID: ${object.orgId}
- - Organisation Name: ${object.orgName}
- - Code for Educators: ${object.eduCode}
- - Code for Learners: ${object.lerCode}
 
-Invite other teachers using your educator code: ${object.eduCode}
+<b>Organisation Information</b>
 
-
-Best regards,
-
-The CreateBase Team
+ - Organisation ID: <b>${object.orgId}</b>
+ - Organisation Name: <b>${object.orgName}</b>
+ - Code for Educators: <b>${object.eduCode}</b>
+ - Code for Learners: <b>${object.lerCode}</b>
 
 
-Join our community and receive quick responses and feedback to your questions
+<b>Invite Your Fellow Teachers and Your Students</b>
 
- - Facebook Community - https://www.facebook.com/groups/createbaseteacherscommunity`;
-		// Return the email object
-		return resolve({ subject, text });
+It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/GphwKgAv6kw'>Here is a video</a></b> on how to invite your fellow teachers and your students.
+
+Here are the invitation links that you can send to your fellow educators and your students.
+
+ - Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
+ - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
+
+
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateInviteEducator = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `${object.sender} invited you to join ${object.orgName} on the CreateBase platform!`;
+		// BUILD THE EMAIL BODY
+		const body = `Hi ${object.recipient},
+
+
+${object.sender} invited you to join ${object.orgName} on the CreateBase platform!
+
+Click <b><a href='${process.env.APP_PREFIX}/invite/educator/${object.url}'>this link</a></b> to join!
+
+
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateEducatorJoin = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `${object.sender} is requesting to join you at ${object.orgName}`;
+		// BUILD THE EMAIL BODY
+		const body = `Hi ${object.recipient},
+
+
+${object.sender} requested to join you and your team at ${object.orgName}!
+
+Click <b><a href='${process.env.APP_PREFIX}/invite/educator/${object.url}'>this link</a></b> to accept this request!
+
+
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateEducatorAccept = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = `You are now a part of ${object.orgName}`;
+		// BUILD THE EMAIL BODY
+		const body = `Hi ${object.recipient},
+
+
+Amazing news! You are now a part of ${object.orgName}!
+
+Each school only has one organisation account and you have all the codes. This is important info so make sure you note the organisation information below, as it's needed to add teachers and students to your organisation.
+		
+
+<b>Organisation Information</b>
+
+ - Organisation ID: <b>${object.orgId}</b>
+ - Organisation Name: <b>${object.orgName}</b>
+ - Code for Educators: <b>${object.eduCode}</b>
+ - Code for Learners: <b>${object.lerCode}</b>
+
+
+<b>Invite Your Fellow Teachers and Your Students</b>
+
+It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/GphwKgAv6kw'>Here is a video</a></b> on how to invite your fellow teachers and your students.
+
+Here are the invitation links that you can send to your fellow educators and your students.
+
+ - Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
+ - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
+
+
+ ${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
 	});
 };
 
@@ -521,22 +417,24 @@ email.templateInqNotif = (object = {}) => {
 		// SET THE EMAIL SUBJECT
 		const subject = `New inquiry from ${object.name}`;
 		// BUILD THE EMAIL BODY
-		const text = `
-Hey team,
+		const body = `Hey team,
 
 
-We have a new inquiry from ${object.name} (${object.userEmail}).
+We have a new inquiry!
 
-"${object.subject}
+From: ${object.name} (${object.userEmail})
 
-${object.message}"
+Subject: ${object.subject}
+
+Message: ${object.message}
 
 
-Kind Regards,
-
-The CreateBase Team`;
-		// Success handler
-		return resolve({ subject, text });
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
 	});
 };
 
@@ -545,8 +443,7 @@ email.templateNewOrgNotif = (object = {}) => {
 		// SET THE EMAIL SUBJECT
 		const subject = `${object.orgName} just joined CreateBase!`;
 		// BUILD THE EMAIL BODY
-		const text = `
-Hey team,
+		const body = `Hey team,
 
 
 ${object.displayName} from ${object.orgName} just registered their organisation on our platform!
@@ -554,43 +451,28 @@ ${object.displayName} from ${object.orgName} just registered their organisation 
 Amazing job team! Looking forward to more amazing news!
 
 
-Best regards,
-
-The CreateBase Team`;
-		// Success handler
-		return resolve({ subject, text });
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
 	});
 };
 
-email.templateTestEmail = () => {
+email.templateRaw = (object = {}) => {
 	return new Promise(async (resolve, reject) => {
 		// SET THE EMAIL SUBJECT
-		const subject = `Testing the automated email feature`;
-		// BUILD THE EMAIL BODY
-		const text = `
-Good day Ma'am/Sir,
-
-
-We are just testing to see if you received this email with no problem.
-
-
-Kind Regards,
-CreateBase Team`;
-
-		const div = ``;
-		// SET THE CSS STYLING
-		const css = ``;
-		// Combine the HTML and CSS
-		const combined = div + css;
-		// Inline the CSS
-		const inlineCSSOptions = { url: "/" };
-		let html = "";
-		// try {
-		// 	html = await inlineCSS(combined, inlineCSSOptions);
-		// } catch (error) {
-		// 	return reject({ status: "error", content: error });
-		// }
-		// Return the email object
+		const subject = object.subject;
+		// Set the email body
+		const body = `${object.body}
+		
+		
+${email.footer}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
 		return resolve({ subject, text, html });
 	});
 };

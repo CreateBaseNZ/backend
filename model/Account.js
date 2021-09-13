@@ -106,6 +106,20 @@ AccountSchema.statics.validate = function (object = {}) {
 
 // METHODS ==================================================
 
+AccountSchema.methods.validatePassword = function (password = "") {
+	return new Promise(async (resolve, reject) => {
+		// Process: Check if the password match
+		let match;
+		try {
+			match = await bcrypt.compare(password, this.password);
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Success handler
+		return resolve(match);
+	});
+};
+
 AccountSchema.methods.sendAccountVerificationEmail = function (object = {}, save = true) {
 	return new Promise(async (resolve, reject) => {
 		// Update verification code before all else

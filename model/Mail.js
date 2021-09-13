@@ -18,9 +18,13 @@ CREATE MAILING MODEL
 =========================================================================================*/
 
 const MailSchema = new Schema({
-	email: { type: String, required: true },
-	owner: { type: Schema.Types.ObjectId },
-	received: { type: [String], default: ["newSubscriber"] },
+	email: { type: Schema.Types.String, required: true },
+	account: { type: Schema.Types.ObjectId },
+	received: { type: [Schema.Types.String], default: ["newSubscriber"] },
+	notification: {
+		newsletter: { type: Schema.Types.Boolean, default: false },
+		onboarding: { type: Schema.Types.Boolean, default: false },
+	},
 });
 
 /*=========================================================================================

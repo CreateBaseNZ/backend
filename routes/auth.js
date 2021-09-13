@@ -25,12 +25,52 @@ router.post("/email-login", async (req, res) => {
 	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
 		return res.send({ status: "critical error", content: "Invalid API Key" });
 	}
-	// Account email login
-	let session;
+	// Process: Create the session
+	// Fetch the account
+	let account;
 	try {
-		session = await Account.login({ email: req.body.input.email, password: req.body.input.password });
+		account = await Account.findOne({ email: req.body.input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "failed", content: { email: "invalid email" } });
+	// Check if the password match
+	let match;
+	try {
+		match = await account.validatePassword(req.body.input.password);
 	} catch (data) {
 		return res.send(data);
+	}
+	if (!match) return res.send({ status: "failed", content: { password: "incorrect password" } });
+	// Fetch the profile
+	let profile;
+	try {
+		profile = await Profile.findOne({ "account.local": account._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!profile) return res.send({ status: "error", content: "no profile found" });
+	// Fetch the license
+	let license;
+	try {
+		license = await License.findOne({ profile: profile._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license) return res.send({ status: "error", content: "no license found" });
+	// Create the session
+	let session = new Object({
+		organisation: license.organisation,
+		license: license._id,
+		profile: profile._id,
+		account: account._id,
+		access: license.access,
+		status: "free",
+	});
+	if (session.access === "learner") {
+		session.verified = true;
+	} else {
+		session.verified = account.verified.status;
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: session });
@@ -313,10 +353,12 @@ router.post("/update-session", async (req, res) => {
 		try {
 			account = await Account.findOne({ _id: profile.account.local });
 		} catch (error) {
-			return reject({ status: "error", content: error });
+			return res.send({ status: "error", content: error });
 		}
 		session.account = account._id;
 		session.verified = account.verified.status;
+	} else if (session.access === "learner") {
+		session.verified = true;
 	}
 	// Update visits
 	const date = new Date().toString();
@@ -326,7 +368,7 @@ router.post("/update-session", async (req, res) => {
 	try {
 		await Promise.all(promises2);
 	} catch (error) {
-		return reject({ status: "error", content: error });
+		return res.send({ status: "error", content: error });
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: session });
@@ -427,13 +469,13 @@ router.post("/verify-account", async (req, res) => {
 	try {
 		mail = await email.create(emailObject, "welcome");
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Send the welcome email
 	try {
 		await email.send(mail);
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "" });
@@ -540,13 +582,13 @@ router.post("/send-test-email", async (req, res) => {
 	try {
 		mail = await email.create({ email: req.body.input.email }, "test");
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Send the verification email
 	try {
 		await email.send(mail);
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "The test email has been sent" });
