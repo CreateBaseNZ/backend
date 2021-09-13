@@ -241,8 +241,8 @@ School accounts are a key part of the CreateBase platform that we call Organisat
 
 To create an account you will need:
 
-	-	The ID of your school
-	-	The name of your school
+ - The ID of your school
+ - The name of your school
 
 You can find this information <b><a href='https://www.educationcounts.govt.nz/directories/list-of-nz-schools'>here</a></b>.
 
@@ -255,8 +255,8 @@ If your school already exists on the CreateBase platform, you will need to join 
 
 If your school already exists on the CreateBase platform, you will need to join instead. Here are the different ways you can join the organisation:
 
-	-	Get the invitation link from the teacher who registered your organisation to automatically join the organisation.
-	-	Get the code for educators from the teacher who registered your organisation, and manually join the organisation.
+ - Get the invitation link from the teacher who registered your organisation to automatically join the organisation.
+ - Get the code for educators from the teacher who registered your organisation, and manually join the organisation.
 
 <b><a href='https://youtu.be/AQ6acGxQZwE'>Here is a video</a></b> on how to join an organisation.
 
@@ -303,10 +303,10 @@ Congratulations! Your organisation is now established on our platform. Each scho
 
 <b>Organisation Information</b>
 
-	-	Organisation ID: ${object.orgId}
-	-	Organisation Name: ${object.orgName}
-	-	Code for Educators: ${object.eduCode}
-	-	Code for Learners: ${object.lerCode}
+ - Organisation ID: <b>${object.orgId}</b>
+ - Organisation Name: <b>${object.orgName}</b>
+ - Code for Educators: <b>${object.eduCode}</b>
+ - Code for Learners: <b>${object.lerCode}</b>
 
 
 <b>Invite Your Fellow Teachers and Your Students</b>
@@ -315,8 +315,8 @@ It is more fun when there are more people in your organisation! So, invite your 
 
 Here are the invitation links that you can send to your fellow educators and your students.
 
-	-	Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
-	-	Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
+ - Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
+ - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
 
 
 ${email.footer}`;
@@ -387,10 +387,10 @@ Each school only has one organisation account and you have all the codes. This i
 
 <b>Organisation Information</b>
 
-	-	Organisation ID: ${object.orgId}
-	-	Organisation Name: ${object.orgName}
-	-	Code for Educators: ${object.eduCode}
-	-	Code for Learners: ${object.lerCode}
+ - Organisation ID: <b>${object.orgId}</b>
+ - Organisation Name: <b>${object.orgName}</b>
+ - Code for Educators: <b>${object.eduCode}</b>
+ - Code for Learners: <b>${object.lerCode}</b>
 
 
 <b>Invite Your Fellow Teachers and Your Students</b>
@@ -399,8 +399,8 @@ It is more fun when there are more people in your organisation! So, invite your 
 
 Here are the invitation links that you can send to your fellow educators and your students.
 
-	-	Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
-	-	Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
+ - Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
+ - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
 
 
  ${email.footer}`;
