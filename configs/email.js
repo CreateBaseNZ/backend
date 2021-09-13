@@ -212,6 +212,8 @@ Verify your account using this code: <b>${object.code}</b>
 
 <b><a href='${process.env.APP_PREFIX}/auth/login'>Log into your CreateBase account</a></b> and enter this code!
 
+Already logged in? <a href='${process.env.APP_PREFIX}/user/my-account/verification'>Visit this page and enter your code here</a>.
+
 
 ${email.footer}`;
 		// Build the elements of the email
