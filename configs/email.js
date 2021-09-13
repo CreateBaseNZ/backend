@@ -311,7 +311,7 @@ Congratulations! Your organisation is now established on our platform. Each scho
 
 <b>Invite Your Fellow Teachers and Your Students</b>
 
-It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a>Here is a video</a></b> (TODO: how to invite educators and learners) on how to invite educators and learners.
+It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/GphwKgAv6kw'>Here is a video</a></b> on how to invite your fellow teachers and your students.
 
 Here are the invitation links that you can send to your fellow educators and your students.
 
@@ -395,7 +395,7 @@ Each school only has one organisation account and you have all the codes. This i
 
 <b>Invite Your Fellow Teachers and Your Students</b>
 
-It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a>Here is a video</a></b> (TODO: how to invite educators and learners) on how to invite educators and learners.
+It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/GphwKgAv6kw'>Here is a video</a></b> on how to invite your fellow teachers and your students.
 
 Here are the invitation links that you can send to your fellow educators and your students.
 
