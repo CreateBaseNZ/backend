@@ -321,6 +321,13 @@ $hamburger-layer-spacing: 0.25rem;
       background-color: $darker;
     }
   }
+  &.light-hamburger {
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: $lightest;
+    }
+  }
   .special-btn {
     font-size: 0.6rem;
     padding: 1rem 1.75rem;

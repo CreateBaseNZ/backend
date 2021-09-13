@@ -18,7 +18,8 @@ let nav = {
     nav: document.querySelector('nav'),
     navLogo: document.querySelector('.nav-logo'),
     navMenu: document.querySelector('.nav-menu'),
-    navItem: document.querySelectorAll('.nav-item')
+    navItem: document.querySelectorAll('.nav-item'),
+    navHamburger: document.querySelector('.hamburger-inner')
   }
 }
 
@@ -30,7 +31,6 @@ nav.init.init = () => {
   nav.init.attachListeners()
   nav.checkTop()
   nav.lightNavItem()
-  console.log(document.querySelector('.nav-logo'));
 }
 
 nav.init.attachListeners = () => {
@@ -44,7 +44,7 @@ nav.event.toggleNavMenu = (e) => {
 }
 
 nav.checkPage = function(){
-  var currentPage =  document.URL;
+  let currentPage =  document.URL;
   return currentPage;
 }
 
@@ -65,6 +65,7 @@ nav.lightNavItem = function(){
 }
 
 nav.checkTop = function() {
+  console.log(nav.elem.navHamburger.style);
   let navItems = nav.elem.navItem;
   if (window.pageYOffset >= 24) {
     nav.elem.nav.classList.add('sticky')
@@ -75,8 +76,6 @@ nav.checkTop = function() {
   } else {
     nav.elem.nav.classList.remove('sticky')
     for (let i = 0; i < navItems.length; i++) {
-      console.log(navItems[i].classList);
-
       navItems[i].classList.add('light-menu-text');
       navItems[i].classList.remove('dark-menu-text');
     }
