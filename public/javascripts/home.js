@@ -35,7 +35,7 @@ let home = {
 // @desc  
 home.init.init = () => {
 
-  home.init.swiper()
+  // home.init.swiper()
   home.init.attachListeners()
   
   home.sections.forEach((section) => {
@@ -54,49 +54,49 @@ home.init.init = () => {
 }
 
 home.init.attachListeners = () => {
-  home.elem.subscribeBtn.addEventListener('click', home.subscribeSubmit)
-  home.elem.subscribeInput.addEventListener('input', home.event.subscribeInput)
-  home.elem.subscribeInput.addEventListener('keypress', home.event.subscribeEnter)
+  // home.elem.subscribeBtn.addEventListener('click', home.subscribeSubmit)
+  // home.elem.subscribeInput.addEventListener('input', home.event.subscribeInput)
+  // home.elem.subscribeInput.addEventListener('keypress', home.event.subscribeEnter)
   window.addEventListener('scroll', home.event.sectionTransitions)
 }
 
-home.init.swiper = () => {
-  home.swiper = new Swiper('.swiper-container', {
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    on: {
-      slideChangeTransitionStart: home.event.onSwipe,
-      slideChangeTransitionEnd: home.event.afterSwipe,
-    },
-    autoplay: {
-      delay: 10000,
-      disableOnInteraction: false,
-    },
-    speed: window.innerWidth,
-  });
-  setTimeout(() => {
-    home.slides[0].classList.add('active')
-  }, 500)
-}
+// home.init.swiper = () => {
+//   home.swiper = new Swiper('.swiper-container', {
+//     pagination: {
+//       el: '.swiper-pagination',
+//       clickable: true,
+//     },
+//     on: {
+//       slideChangeTransitionStart: home.event.onSwipe,
+//       slideChangeTransitionEnd: home.event.afterSwipe,
+//     },
+//     autoplay: {
+//       delay: 10000,
+//       disableOnInteraction: false,
+//     },
+//     speed: window.innerWidth,
+//   });
+//   setTimeout(() => {
+//     home.slides[0].classList.add('active')
+//   }, 500)
+// }
 
-home.event.afterSwipe = () => {
-  home.slides[home.swiper.previousIndex].classList.remove('active')
-}
+// home.event.afterSwipe = () => {
+//   home.slides[home.swiper.previousIndex].classList.remove('active')
+// }
 
-home.event.onSwipe = () => {
-  home.slides[home.swiper.realIndex].classList.add('active')
-}
+// home.event.onSwipe = () => {
+//   home.slides[home.swiper.realIndex].classList.add('active')
+// }
 
-home.event.sectionTransitions = () => {
-  for (var i = 0; i < home.sectionPos.length; i++) {
-    if (window.scrollY + 50 < home.sectionPos[i]) {
-      home.sections[i].classList.add('transition-in')
-      return
-    }
-  }
-}
+// home.event.sectionTransitions = () => {
+//   for (var i = 0; i < home.sectionPos.length; i++) {
+//     if (window.scrollY + 50 < home.sectionPos[i]) {
+//       home.sections[i].classList.add('transition-in')
+//       return
+//     }
+//   }
+// }
 
 home.event.subscribeEnter = (e) => {
   if (e.key === 'Enter') {

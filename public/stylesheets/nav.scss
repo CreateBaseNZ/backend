@@ -76,9 +76,14 @@ nav.sticky {
     margin: 0.75rem 0.5rem 0.75rem -0.5rem;
     font-weight: 700;
     letter-spacing: 0.05em;
-    color: $darker;
     font-size: 0.75rem;
     opacity: 0;
+  }
+  .dark-menu-text{
+    color: $darker;
+  }
+  .light-menu-text{
+    color: $lightest;
   }
   .nav-item {
     position: relative;
@@ -312,7 +317,7 @@ $hamburger-layer-spacing: 0.25rem;
     .hamburger-inner,
     .hamburger-inner::before,
     .hamburger-inner::after {
-      background-color: $darker;
+      background-color: $lightest;
     }
   }
   .special-btn {
@@ -338,18 +343,20 @@ $hamburger-layer-spacing: 0.25rem;
   height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
   display: inline-block;
   position: relative;
+  
 }
 
 .hamburger-inner {
   display: block;
   top: 50%;
   margin-top: $hamburger-layer-height / -2;
+  color: $lightest;
   &,
   &::before,
   &::after {
     width: $hamburger-layer-width;
     height: $hamburger-layer-height;
-    background-color: $darker;
+    background-color: $lightest;
     position: absolute;
     border-radius: 99px;
     transition-property: transform;
@@ -887,6 +894,9 @@ footer {
     display: block;
   }
   .small {
+    display: none;
+  }
+  .hide{
     display: none;
   }
 }

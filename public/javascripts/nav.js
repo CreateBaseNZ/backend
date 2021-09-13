@@ -16,6 +16,7 @@ let nav = {
     nav: document.querySelector('nav'),
     navLogo: document.querySelector('.nav-logo'),
     navMenu: document.querySelector('.nav-menu'),
+    navItem: document.querySelectorAll('.nav-item')
   }
 }
 
@@ -39,10 +40,26 @@ nav.event.toggleNavMenu = (e) => {
 }
 
 nav.checkTop = function() {
+  let navItems = nav.elem.navItem;
+  let currentPage =  document.URL;
   if (window.pageYOffset >= 24) {
     nav.elem.nav.classList.add('sticky')
+
+    // if (currentPage === 'https://createbase.co.nz/' || 'https://createbase.co.nz/about' || 'http://127.0.0.1:5501/views/home.html' || 'http://127.0.0.1:5501/views/about.html') {
+    //   for (let i = 0; i < navItems.length; i++) {
+    //     navItems[i].style.color = '#1A1039';
+    //   }
+    // }
+
   } else {
     nav.elem.nav.classList.remove('sticky')
+
+    // if (currentPage === 'https://createbase.co.nz/' || 'https://createbase.co.nz/about' || 'http://127.0.0.1:5501/views/home.html' || 'http://127.0.0.1:5501/views/about.html') {
+    //   for (let i = 0; i < navItems.length; i++) {
+    //     navItems[i].style.color = '#fff';
+    //   }
+    // }
+
   }
 }
 
