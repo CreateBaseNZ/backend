@@ -69,7 +69,7 @@ nav.lightNavItem = function(){
 }
 
 nav.checkTop = function() {
-  console.log(nav.elem.navHamburger.style);
+  // console.log(nav.elem.navHamburger.style);
   let navItems = nav.elem.navItem;
   if (window.pageYOffset >= 24) {
     nav.elem.nav.classList.add('sticky')
