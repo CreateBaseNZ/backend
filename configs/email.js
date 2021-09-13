@@ -168,9 +168,11 @@ The CreateBase Team
 
 <i>Visit our <b><a href='https://createbase.co.nz/'>website</a></b> and our <b><a href='https://app.createbase.co.nz/'>application</a></b>.
 
-Join our exclusive <b><a href='https://www.facebook.com/groups/createbaseteacherscommunity'>Facebook group</a></b> for teachers and receive quick responses to your questions.
+Join our exclusive <b><a href='https://www.facebook.com/groups/createbaseteacherscommunity'>Facebook group</a></b> for teachers and receive quick responses to your questions. Check if we have answered your questions in our <b><a href='https://app.createbase.co.nz/faq'>FAQ page</a></b>.
 
-Follow our social media and stay up-to-date with the latest news: <b><a href='https://www.facebook.com/CreateBaseNZ'>Facebook</a></b>, <b><a href='https://twitter.com/CreateBaseNZ'>Twitter</a></b>, <b><a href='https://www.instagram.com/createbasenz/'>Instagram</a></b> and <b><a href='https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g'>YouTube</a></b>.</i>`;
+Follow our social media and stay up-to-date with the latest news: <b><a href='https://www.facebook.com/CreateBaseNZ'>Facebook</a></b>, <b><a href='https://twitter.com/CreateBaseNZ'>Twitter</a></b>, <b><a href='https://www.instagram.com/createbasenz/'>Instagram</a></b> and <b><a href='https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g'>YouTube</a></b>.</i>
+
+Did you encounter any bugs or errors? <b><a href='https://createbase.co.nz/contact'>Contact us here</a></b>!`;
 
 /* ----------------------------------------------------------------------------------------
 TEMPLATES
@@ -204,9 +206,11 @@ email.templateAccountVerification = (object) => {
 		const body = `Hi ${object.displayName},
 
 
-Your account verification code is: ${object.code}
+Thank you for registering an account with us! Here is your first task!
 
-<b><a href='${process.env.APP_PREFIX}/auth/login'>Log into your CreateBase account</a></b> and enter this code!
+Verify your account using this code: ${object.code}
+
+<b><a href='https://app.createbase.co.nz/auth/login'>Log into your CreateBase account</a></b> and enter this code!
 
 
 ${email.footer}`;
@@ -226,18 +230,35 @@ email.templateWelcome = (object = {}) => {
 		const body = `Hi ${object.displayName},
 
 
-Here is your first quest!
+Welcome to CreateBase! Here is your second task!
 
 School accounts are a key part of the CreateBase platform that we call Organisation accounts. To teach with the platform you are required to be associated with an organisation account.
 
-<b><a href='${process.env.APP_PREFIX}/user/my-account'>Create or join</a></b> an existing organisation.
+<b><a href='https://app.createbase.co.nz/user/my-account/org'>Create or join</a></b> an organisation.
+
+
+<b>Create an Organisation</b>
 
 To create an account you will need:
-	- The ID of your school
-	- The name of your school
-You can find these information <b><a href='https://www.educationcounts.govt.nz/directories/list-of-nz-schools'>here</a></b>.
+
+	-	The ID of your school
+	-	The name of your school
+
+You can find this information <b><a href='https://www.educationcounts.govt.nz/directories/list-of-nz-schools'>here</a></b>.
+
+<b><a href='https://youtu.be/6QTpDvfDZ9s'>Here is a video</a></b> on how to register your organisation.
+
+
+<b>Join an Organisation</b>
 
 If your school already exists on the CreateBase platform, you will need to join it using the code emailed to the teacher who registered your organisation on our platform.
+
+If your school already exists on the CreateBase platform, you will need to join instead. Here are the different ways you can join the organisation:
+
+	-	Get the invitation link from the teacher who registered your organisation to automatically join the organisation.
+	-	Get the code for educators from the teacher who registered your organisation, and manually join the organisation.
+
+<b><a href='https://youtu.be/AQ6acGxQZwE'>Here is a video</a></b> on how to join an organisation.
 
 
 ${email.footer}`;
@@ -279,13 +300,23 @@ email.templateOrganisationDetail = (object = {}) => {
 
 Congratulations! Your organisation is now established on our platform. Each school only has one organisation account and you have all the codes. This is important info so make sure you note the organisation information below, as it's needed to add teachers and students to your organisation.
 
-Organisation information:
- - Organisation ID: ${object.orgId}
- - Organisation Name: ${object.orgName}
- - Code for Educators: ${object.eduCode}
- - Code for Learners: ${object.lerCode}
 
-Invite other teachers using your educator code: ${object.eduCode}
+<b>Organisation Information</b>
+
+	-	Organisation ID: ${object.orgId}
+	-	Organisation Name: ${object.orgName}
+	-	Code for Educators: ${object.eduCode}
+	-	Code for Learners: ${object.lerCode}
+
+
+<b>Invite Your Fellow Teachers and Your Students</b>
+
+It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a>Here is a video</a></b> (TODO: how to invite educators and learners) on how to invite educators and learners.
+
+Here are the invitation links that you can send to your fellow educators and your students.
+
+	-	Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
+	-	Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
 
 
 ${email.footer}`;
@@ -352,12 +383,24 @@ email.templateEducatorAccept = (object = {}) => {
 Amazing news! You are now a part of ${object.orgName}!
 
 Each school only has one organisation account and you have all the codes. This is important info so make sure you note the organisation information below, as it's needed to add teachers and students to your organisation.
+		
 
-Organisation information:
- - Organisation ID: ${object.orgId}
- - Organisation Name: ${object.orgName}
- - Code for Educators: ${object.eduCode}
- - Code for Learners: ${object.lerCode}
+<b>Organisation Information</b>
+
+	-	Organisation ID: ${object.orgId}
+	-	Organisation Name: ${object.orgName}
+	-	Code for Educators: ${object.eduCode}
+	-	Code for Learners: ${object.lerCode}
+
+
+<b>Invite Your Fellow Teachers and Your Students</b>
+
+It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a>Here is a video</a></b> (TODO: how to invite educators and learners) on how to invite educators and learners.
+
+Here are the invitation links that you can send to your fellow educators and your students.
+
+	-	Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
+	-	Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
 
 
  ${email.footer}`;
