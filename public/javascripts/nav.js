@@ -75,26 +75,13 @@ nav.checkTop = function() {
   let currentPage =  nav.checkPage();
   if (window.pageYOffset >= 24) {
     nav.elem.nav.classList.add('sticky')
-
-    if (currentPage === 'https://createbase.co.nz/' || currentPage === 'https://createbase.co.nz/about' || currentPage === 'http://127.0.0.1:5501/views/home.html' || currentPage === 'http://127.0.0.1:5501/views/about.html') {
       for (let i = 0; i < navItems.length; i++) {
         // navItems[i].style.color = '#1A1039';
         console.log(navItems[i].classList);
 
         navItems[i].classList.remove('light-menu-text');
         navItems[i].classList.add('dark-menu-text');
-        // else if (navItems[i].classList.contains('dark-menu-text');) {
-          
-        // } else {
-          
-        // }
-        
-        // navItems[i].classList.remove('light-menu-text');
-        // navItems[i].classList.remove('dark-menu-text');
       }
-      // console.log('yep');
-    }
-
   } else {
     nav.elem.nav.classList.remove('sticky')
 
@@ -112,7 +99,13 @@ nav.checkTop = function() {
     //   navItems[i].classList.add('dark-menu-text');
     // }
     // console.log('remove sticky add dark');
+    for (let i = 0; i < navItems.length; i++) {
+      // navItems[i].style.color = '#1A1039';
+      console.log(navItems[i].classList);
 
+      navItems[i].classList.add('light-menu-text');
+      navItems[i].classList.remove('dark-menu-text');
+    }
 
   }
 }
