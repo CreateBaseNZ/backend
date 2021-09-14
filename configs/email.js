@@ -28,16 +28,7 @@ let email = {
 	templateNewOrgNotif: undefined,
 	templateRaw: undefined,
 };
-const members = [
-	"carlvelasco96@gmail.com",
-	"bo75salim@hotmail.com",
-	"bradyoung109@gmail.com",
-	"brydonburnett@gmail.com",
-	"craig.vaz1337@gmail.com",
-	"louiscflin@gmail.com",
-	"todd.lachlan.broadhurst@gmail.com",
-	"weiweiwu766@gmail.com",
-];
+const members = "carlvelasco96@gmail.com";
 
 /*=========================================================================================
 FUNCTIONS
@@ -59,7 +50,7 @@ email.build = (object = {}, teamNotif = false) => {
 		recipient = object.email;
 	}
 	// Test
-	if (process.env.NODE_ENV !== "production") object.subject = "[TEST]: " + object.subject;
+	if (process.env.NODE_ENV !== "production") object.subject = "[TEST] " + object.subject;
 	const mail = {
 		from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
 		to: `${recipient}`,
@@ -120,7 +111,7 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 			return reject(data);
 		}
 		// Test
-		if (process.env.NODE_ENV !== "production") contents.subject = "[TEST]: " + contents.subject;
+		if (process.env.NODE_ENV !== "production") contents.subject = "[TEST] " + contents.subject;
 		// CONSTRUCT EMAIL
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
