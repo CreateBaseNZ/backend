@@ -14,7 +14,8 @@ let email = {
 	build: undefined,
 	create: undefined,
 	send: undefined,
-	footer: undefined,
+	appFooter: undefined,
+	newsFooter: undefined,
 	// TEMPLATES
 	templateInquiry: undefined,
 	templateAccountVerification: undefined,
@@ -27,6 +28,7 @@ let email = {
 	templateInqNotif: undefined,
 	templateNewOrgNotif: undefined,
 	templateRaw: undefined,
+	templateNewsletter: undefined,
 };
 const members = [
 	"carlvelasco96@gmail.com",
@@ -110,6 +112,9 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 			case "email-raw":
 				promise = email.templateRaw(object);
 				break;
+			case "email-newsletter":
+				promise = email.templateNewsletter(object);
+				break;
 			default:
 				return reject({ status: "error", content: "no template is provided" });
 		}
@@ -161,18 +166,22 @@ email.send = (object = {}) => {
 	});
 };
 
-email.footer = `Best regards,
+email.appFooter = `Best regards,
 
 The CreateBase Team
 
 
-<i>Visit our <b><a href='https://createbase.co.nz/'>website</a></b> and our <b><a href='${process.env.APP_PREFIX}/'>application</a></b>.
+<i>Visit our <b><a href='${process.env.SITE_PREFIX}'>website</a></b> and our <b><a href='${process.env.APP_PREFIX}/'>application</a></b>.
 
 Join our exclusive <b><a href='https://www.facebook.com/groups/createbaseteacherscommunity'>Facebook group</a></b> for teachers and receive quick responses to your questions. Check if we have answered your questions in our <b><a href='${process.env.APP_PREFIX}/faq'>FAQ page</a></b>.
 
-Follow our social media and stay up-to-date with the latest news: <b><a href='https://www.facebook.com/CreateBaseNZ'>Facebook</a></b>, <b><a href='https://twitter.com/CreateBaseNZ'>Twitter</a></b>, <b><a href='https://www.instagram.com/createbasenz/'>Instagram</a></b> and <b><a href='https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g'>YouTube</a></b>.</i>
+Follow our social media and stay up-to-date with the latest news: <b><a href='https://www.facebook.com/CreateBaseNZ'>Facebook</a></b>, <b><a href='https://twitter.com/CreateBaseNZ'>Twitter</a></b>, <b><a href='https://www.instagram.com/createbasenz/'>Instagram</a></b> and <b><a href='https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g'>YouTube</a></b>.
 
-Did you encounter any bugs or errors? <b><a href='https://createbase.co.nz/contact'>Contact us here</a></b>!`;
+Did you encounter any bugs or errors? <b><a href='${process.env.SITE_PREFIX}contact'>Contact us here</a></b>!</i>`;
+
+email.newsFooter = function (email = "") {
+	return `<i>Not for you? <b><a href='${process.env.SITE_PREFIX}mailing-list/unsubscribe/${email}'>Unsubscribe from our mailing list</a></b>.</i>`;
+};
 
 /* ----------------------------------------------------------------------------------------
 TEMPLATES
@@ -189,7 +198,7 @@ email.templateInquiry = (object) => {
 Thank you for the message, we will get back to you as soon as possible!
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -215,7 +224,7 @@ Verify your account using this code: <b>${object.code}</b>
 Already logged in? <a href='${process.env.APP_PREFIX}/user/my-account/verification'>Visit this page and enter your code here</a>.
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -263,7 +272,7 @@ If your school already exists on the CreateBase platform, you will need to join 
 <b><a href='https://youtu.be/AQ6acGxQZwE'>Here is a video</a></b> on how to join an organisation.
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -283,7 +292,7 @@ email.templatePasswordReset = (object) => {
 Click <b><a href='${process.env.APP_PREFIX}/auth/forgot-password/${object.email}/${object.code}'>this link</a></b> to change your password.
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -330,7 +339,7 @@ Here are the invitation links that you can send to your fellow educators and you
  - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${orgName}__${object.lerCode}
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -352,7 +361,7 @@ ${object.sender} invited you to join ${object.orgName} on the CreateBase platfor
 Click <b><a href='${process.env.APP_PREFIX}/invite/educator/${object.url}'>this link</a></b> to join!
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -374,7 +383,7 @@ ${object.sender} requested to join you and your team at ${object.orgName}!
 Click <b><a href='${process.env.APP_PREFIX}/invite/educator/${object.url}'>this link</a></b> to accept this request!
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -423,7 +432,7 @@ Here are the invitation links that you can send to your fellow educators and you
  - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${orgName}__${object.lerCode}
 
 
- ${email.footer}`;
+ ${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -449,7 +458,7 @@ Subject: ${object.subject}
 Message: ${object.message}
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -471,7 +480,7 @@ ${object.displayName} from ${object.orgName} just registered their organisation 
 Amazing job team! Looking forward to more amazing news!
 
 
-${email.footer}`;
+${email.appFooter}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
@@ -488,7 +497,24 @@ email.templateRaw = (object = {}) => {
 		const body = `${object.body}
 		
 		
-${email.footer}`;
+${email.appFooter}`;
+		// Build the elements of the email
+		const text = body;
+		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Return the elements of the email
+		return resolve({ subject, text, html });
+	});
+};
+
+email.templateNewsletter = (object = {}) => {
+	return new Promise(async (resolve, reject) => {
+		// SET THE EMAIL SUBJECT
+		const subject = object.subject;
+		// Set the email body
+		const body = `${object.body}
+		
+		
+${email.appFooter} ${email.newsFooter(object.email)}`;
 		// Build the elements of the email
 		const text = body;
 		const html = body.replace(/(\r\n|\n|\r)/gm, "<br>");
