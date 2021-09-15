@@ -28,7 +28,16 @@ let email = {
 	templateNewOrgNotif: undefined,
 	templateRaw: undefined,
 };
-const members = "carlvelasco96@gmail.com";
+const members = [
+	"carlvelasco96@gmail.com",
+	"bo75salim@hotmail.com",
+	"bradyoung109@gmail.com",
+	"brydonburnett@gmail.com",
+	"craig.vaz1337@gmail.com",
+	"louiscflin@gmail.com",
+	"todd.lachlan.broadhurst@gmail.com",
+	"weiweiwu766@gmail.com",
+];
 
 /*=========================================================================================
 FUNCTIONS
