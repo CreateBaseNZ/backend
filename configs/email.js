@@ -297,6 +297,15 @@ email.templateOrganisationDetail = (object = {}) => {
 		// SET THE EMAIL SUBJECT
 		const subject = `Hooray! Your organisation, ${object.orgName}, is now registered on the CreateBase platform.`;
 		// BUILD THE EMAIL BODY
+		let orgName = "";
+		for (let i = 0; i < object.orgName.length; i++) {
+			const character = object.orgName[i];
+			if (character === " ") {
+				orgName = orgName + "-";
+			} else {
+				orgName = orgName + character;
+			}
+		}
 		const body = `Hi ${object.displayName},
 
 
@@ -317,8 +326,8 @@ It is more fun when there are more people in your organisation! So, invite your 
 
 Here are the invitation links that you can send to your fellow educators and your students.
 
- - Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
- - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
+ - Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${orgName}__${object.eduCode}
+ - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${orgName}__${object.lerCode}
 
 
 ${email.footer}`;
@@ -379,6 +388,15 @@ email.templateEducatorAccept = (object = {}) => {
 		// SET THE EMAIL SUBJECT
 		const subject = `You are now a part of ${object.orgName}`;
 		// BUILD THE EMAIL BODY
+		let orgName = "";
+		for (let i = 0; i < object.orgName.length; i++) {
+			const character = object.orgName[i];
+			if (character === " ") {
+				orgName = orgName + "-";
+			} else {
+				orgName = orgName + character;
+			}
+		}
 		const body = `Hi ${object.recipient},
 
 
@@ -401,8 +419,8 @@ It is more fun when there are more people in your organisation! So, invite your 
 
 Here are the invitation links that you can send to your fellow educators and your students.
 
- - Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.eduCode}
- - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${object.orgName.replaceAll(" ", "-")}__${object.lerCode}
+ - Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${orgName}__${object.eduCode}
+ - Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${orgName}__${object.lerCode}
 
 
  ${email.footer}`;
