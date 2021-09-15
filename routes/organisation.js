@@ -293,9 +293,9 @@ router.post("/organisation/invite-educator/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	//const url = `${process.env.APP_PREFIX}/invite/educator/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}`;
+	const url = `https://app.createbase.co.nz/invite/educator/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}`;
 	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
+	return res.send({ status: "succeeded", content: url });
 });
 
 // @route     POST /organisation/invite-educator/send
@@ -673,9 +673,9 @@ router.post("/organisation/invite-learner/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	//const url = `${process.env.APP_PREFIX}/invite/learner/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.learner}`;
+	const url = `https://app.createbase.co.nz/invite/learner/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.learner}`;
 	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
+	return res.send({ status: "succeeded", content: url });
 });
 
 // ADMIN ----------------------------------------------------
