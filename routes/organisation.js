@@ -293,8 +293,7 @@ router.post("/organisation/invite-educator/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	//const url = `https://app.createbase.co.nz/invite/educator/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}`;
-	const url = `https://app.createbase.co.nz/invite/educator/1000__CreateBase-School__651wed`;
+	const url = `https://app.createbase.co.nz/invite/educator/${organisation.metadata.id}__${organisation.name}__${organisation.join.educator}`;
 	// Success handler
 	return res.send({ status: "succeeded", content: url });
 });
@@ -674,8 +673,7 @@ router.post("/organisation/invite-learner/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	//const url = `https://app.createbase.co.nz/invite/learner/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.learner}`;
-	const url = `https://app.createbase.co.nz/invite/learner/1000__School-School__asd123`;
+	const url = `https://app.createbase.co.nz/invite/learner/${organisation.metadata.id}__${organisation.name}__${organisation.join.learner}`;
 	// Success handler
 	return res.send({ status: "succeeded", content: url });
 });
