@@ -69,8 +69,8 @@ nav.lightNavItem = function(){
 }
 
 nav.checkTop = function() {
-  // console.log(nav.elem.navHamburger.style);
   let navItems = nav.elem.navItem;
+  let currentPage = nav.checkPage()
   if (window.pageYOffset >= 24) {
     nav.elem.nav.classList.add('sticky')
     nav.elem.navLogoDark.classList.remove('hide');
@@ -83,9 +83,11 @@ nav.checkTop = function() {
     nav.elem.nav.classList.remove('sticky')
     nav.elem.navLogoLight.classList.remove('hide');
     nav.elem.navLogoDark.classList.add('hide');
-    for (let i = 0; i < navItems.length; i++) {
-      navItems[i].classList.add('light-menu-text');
-      navItems[i].classList.remove('dark-menu-text');
+    if (currentPage === 'https://createbase.co.nz/' || currentPage === 'https://createbase.co.nz/about' || currentPage === 'https://createbase.co.nz/about#first-section') {
+      for (let i = 0; i < navItems.length; i++) {
+        navItems[i].classList.add('light-menu-text');
+        navItems[i].classList.remove('dark-menu-text');
+      }
     }
   }
 }
