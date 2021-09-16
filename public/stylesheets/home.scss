@@ -1123,7 +1123,8 @@ video{
         }
       }
       .coming-card{
-        display: block;
+        display: flex;
+        justify-content: center;
         border: thin solid $blue-mid;
         h4,h5,h6,p, span{
           color: $blue-mid;
