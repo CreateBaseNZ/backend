@@ -88,7 +88,7 @@ router.post("/mail/admin/send-newsletter", async (req, res) => {
 					const object = { email: mail.email, subject: req.body.input.subject, body: req.body.input.body };
 					let mailObject;
 					try {
-						mailObject = await email.create(object, "email-raw");
+						mailObject = await email.create(object, "email-newsletter");
 					} catch (data) {
 						return reject(data);
 					}

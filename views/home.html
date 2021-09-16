@@ -20,39 +20,23 @@
   <link
     href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
   <!-- ------------------------CUSTOM------------------------ -->
   <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
   <link rel="stylesheet" href="/public/stylesheets/home.min.css">
 
-  <script>
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ?
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1149429065520266');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1149429065520266&ev=PageView&noscript=1" /></noscript>
 </head>
 
 <body onload="global.init.init(); home.init.init();">
 
   <nav>
     <a href="/" class="nav-logo">
-      <img src="/public/images/logo_full_svg.svg" class="long" alt="CreateBase">
+      <img src="/public/images/logo_full_svg.svg" class="long cb-logo-dark" alt="CreateBase">
+      <img src="/public/images/logo_full_white_text.svg" class="long cb-logo-light hide" alt="CreateBase">
       <img src="/public/images/logo-icon.png" class="small" alt="CreateBase">
     </a>
     <div class="hamburger hamburger-spin" type="button">
-      <a href="/contact" class="special-btn">Request a Demo</a>
+      <a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Free project</a>
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
@@ -63,117 +47,380 @@
       <a href="/about" class="nav-item">About</a>
       <a href="/latest" class="nav-item">Latest</a>
       <a href="/team" class="nav-item">The Team</a>
+      <a href="/contact" class="nav-item">Contact Us</a>
       <!-- <a href="/contact" class="nav-item">Contact Us</a> -->
-      <a href="/contact" class="special-btn" id="request-demo-btn">Request a Demo</a>
+      <a href="https://app.createbase.co.nz/" class="cta-btn special-btn" id="request-demo-btn">Try projects for free</a>
     </div>
   </nav>
 
   <div class="page">
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide slide-1">
-          <h2>Unleash your inner creator</h2>
-          <div class="slide-caption"><p>Utilise <span>lesson plans</span> for teachers that simplify the entire teaching process whilst using cutting edge <span>3D simulations</span>, all on <span>one platform</span>.</p>
-          <a href="/about" class="slide-btn">Learn More</a>
-          </div>
-          <img src="/public/images/home/slide-1-shape.svg" class="line" alt="">
-          <img src="/public/images/home/slide-1-desk.png" class="slide-img desk" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-arm.png" class="slide-img arm" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-motor.png" class="slide-img motor" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-arduino.png" class="slide-img arduino" alt="Robotic Arm">
-          <img src="/public/images/home/slide-1-wires.png" class="slide-img wires" alt="Robotic Arm">
-        </div>
-        <div class="swiper-slide slide-2">
-          <div class="slide-img-container">
-            <img src="/public/images/home/winner.png" alt="winner image">
-          </div>
-          <div class="slide-caption-container">
-            <h2>Winners of Red Bull Basement NZ</h2>
-            <div class="slide-caption">Thank you to everyone who supported us to win Red Bull Basement NZ!</div>
-            <a href="/business" class="slide-btn">Learn More</a>
-          </div>
-          <!-- <img src="/public/images/home/slide-2-shape-1.svg" class="line-1" alt="">
-          <img src="/public/images/home/slide-2-shape-2.svg" class="line-2" alt="">
-          <img src="/public/images/home/slide-2-cb.svg" class="slide-img cb" alt="CreateBase">
-          <img src="/public/images/home/slide-2-ks.svg" class="slide-img ks" alt="Kickstarter"> -->
+    <div class="banner-slide">
+      <div class="banner-video">
+        <video autoplay muted loop playsinline preload="metadata" poster="/public/images/home/banner-img.png">
+          <source src="/public/videos/banner-video-compressed.mp4" type="video/mp4">
+        </video>
+        <div class="banner-caption">
+          <h1>Enabling digital tech in every classroom</h1>
+          <div class="caption"><p><span>Save time</span> and <span>feel confident</span> teaching digital technologies in your classroom.</p></div>
+          <a href="https://app.createbase.co.nz/" class="cta-btn special-btn banner-btn">Claim your free project</a>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
+      <div class="swiper-nav"></div>
     </div>
 
-    <div class="how-section">
-      <h2>How it works</h2>
-      <div class="how-subsection learn">
-        <img src="/public/images/home/side-shape-1.svg" class="side-img-left" alt="">
-        <img src="/public/images/home/learn.svg" alt="learn" class="how-section-img">
-        <div class="how-section-title">
-          <h3>Learn with</h3>
-          <h4>Projects</h4>
-        </div>
-        <div class="how-section-caption">Projects guide <span>students</span> through the process of creating a fully realised, tested, and evaluated solution to a real-world problem by applying our 7-step creation process.</div>
+    <div class="lessplan-banner-section section">
+      <h2>We Create Project-based Lesson Plans for teachers.</h2>
+      <div class="less-plan-img-left">
+        <img src="/public/images/home/less-plan-left.png" alt="lesson-plan-1">
       </div>
-      <div class="dotted-lines odd">
-        <div class="upper-curve"></div>
-        <div class="lower-curve"></div>
-      </div>
-      <div class="how-subsection create">
-        <img src="/public/images/home/apply.png" alt="create" class="how-section-img">
-        <div class="how-section-title">
-          <h3>Teach with</h3>
-          <h4>Lesson plans</h4>
-        </div>
-        <div class="how-section-caption">Each Project comes with a fully detailed series of lesson plans, providing a complete framework for <span>teachers</span> of every experience level while ensuring full curriculum alignment.</div>
-      </div>
-      <div class="dotted-lines even">
-        <div class="upper-curve"></div>
-        <div class="lower-curve"></div>
-      </div>
-      <div class="how-subsection apply">
-        <img src="/public/images/home/side-shape-2.svg" class="side-img-right" alt="">
-        <img src="/public/images/home/create.png" alt="apply" class="how-section-img">
-        <div class="how-section-title">
-          <h3>Create with</h3>
-          <h4>Simulations</h4>
-        </div>
-        <div class="how-section-caption">Each Project lets <span>students</span> build, program and explore realistic solutions within a simulated environment. Students see their solutions come to life and, with flow-based programming, get to create robotic systems that they would never have access to in the real world.
-        </div>
+      <div class="less-plan-img-right">
+        <img src="/public/images/home/less-plan-right.png" alt="lesson-plan-2">
       </div>
     </div>
 
-    <div class="ecosystem-section">
-      <div class="img-wrapper">
-        <div class="img-container create">
-          <img src="/public/images/home/ecosystem-create.png" alt="Create">
+    <div class="lessplan-detail-section section">
+      <h3>Our lesson plans</h3>
+
+      <div class="lessplan-feature-wrap">
+        <div class="lessplan-feature time-feature">
+          <div class="icon-wrap">
+            <img src="/public/images/home/restore.svg" alt="time">
+          </div>
+          <div class="icon-text">
+            <h4>Save your Time</h4>
+            <p>Choose from our library of pre-made lesson plans and integrate them directly into your existing STEAM curriculum.</p>
+          </div>
         </div>
-        <div class="img-container learn">
-          <img src="/public/images/home/ecosystem-learn.png" alt="Learn">
+        <div class="lessplan-feature align-feature">
+          <div class="icon-wrap">
+            <img src="/public/images/home/align.svg" alt="align">
+          </div>
+          <div class="icon-text">
+            <h4>Align with the Curriculum</h4>
+            <p>Each lesson plan showcases its alignment with the NZ technology curriculum, helping you deliver the right content to your class.</p>
+          </div>
         </div>
-        <div class="img-container apply">
-          <img src="/public/images/home/ecosystem-apply.png" alt="Apply">
+        <div class="lessplan-feature exp-feature">
+          <div class="icon-wrap">
+            <img src="/public/images/home/3d.svg" alt="engaging">
+          </div>
+          <div class="icon-text">
+            <h4>Provide Engaging Experiences</h4>
+            <p>Each lesson plan includes fun and interactive content for students delivered through our online platform, including 3D simulations of robotic systems.</p>
+          </div>
         </div>
-        <img src="/public/images/home/ecosystem-game.png" class="ecosystem-main" alt="Ecosystem">
+
       </div>
-      <h2>One integrated <span>Ecosystem</span></h2>
-      <div id="subscribe-anchor" class="ecosystem-caption">All of our offerings are delivered via one integrated
-        experience. Story content and a virtual world makes it more fun than ever to learn how to create!</div>
+
     </div>
 
-    <div class="subscribe-section">
-      <div class="subscribe-subsection">
-        <h2>Subscribe to our newsletter</h2>
-        <div class="subscribe-caption">Keep up with the latest projects, updates, and events from us!</div>
-      </div>
-      <div class="subscribe-subsection input-subsection">
-        <div class="home-subscribe-container">
-          <input type="email" name="email" id="home-subscribe" maxlength="100" placeholder="Enter your email address" />
-          <div class="home-subscribe-btn"></div>
+    <div class="cta-section">
+      <a href="https://app.createbase.co.nz/">
+        <div class="claim-btn">
+          <p>Claim your free lesson plan</p><span class="material-icons-outlined">
+            launch
+          </span>
         </div>
-        <div class="home-subscribe-error"></div>
+      </a>
+    </div>
+
+    <div class="product-detail-section section">
+      <div class="product-wrap">
+        <div class="product-container">
+          <div class="title-text">
+            <h6>Lesson Plans</h6>
+            <p>Each lesson plan helps you deliver a Project to your students. </p>
+          </div>
+        </div>
+        <div class="product-container">
+          <div class="title-text">
+            <h6>Projects</h6>
+            <p>Projects walk students through the process of solving a real world problem.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-preview-section">
+      <h3>Check out some of our projects</h3>
+      <div class="project-wrap">
+        <div class="single-project-container send-it">
+          <div class="project-img-container"><img class="mobile-project-image" src="/public/images/home/send-it.jpg" alt="send-it"></div>
+          <div class="project-info-container">
+            <div class="project-title">
+              <h5>SEND IT</h5>
+            </div>
+            <div class="project-description">
+              <div class="project-summary">
+                <div class="subjects-container">
+                  <p class="subject ai">AI</p>
+                  <p class="subject autom">Automation</p>
+                  <p class="subject ethics">Ethics</p>
+                  <p class="subject tech">Technology</p>
+                  <p class="subject engin">Engineering</p>
+                  <p class="subject cs">Computer Science</p>
+                </div>
+                <p class="summary">Automate a jumping game by creating a simple artificial intelligence (AI)</p>
+              </div>
+              <div class="project-details">
+                <div class="sub-text-container">
+                  <p class="sub-title">Project Length</p>
+                  <p class="sub-text">6-8 lessons</p>
+                </div>
+                <div class="sub-text-container">
+                  <p class="sub-title">Curriculum Alignment</p>
+                  <p class="sub-text">Aligns with L1 to L4 of the NZ Curriculum</p>
+                  <p class="sub-text">PO4 of computational thinking for digital technologies</p>
+                  <p class="sub-text">PO3 of designing and developing digital technologies</p>
+                </div>
+                <div class="sub-text-container">
+                  <p class="sub-title">More details</p>
+                  <p class="sub-text">Unlimited student access</p>
+                  <p class="sub-text">Involves group activities</p>
+                </div>
+              </div>
+            </div>
+            <a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Get it for free</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-wrap">
+        <div class="single-project-container magnebot flex-reverse">
+          <div class="project-img-container"><img class="mobile-project-image" src="/public/images/home/magnebot.jpg" alt="send-it"></div>
+          <div class="project-info-container">
+            <div class="project-title">
+              <h5>Magnebot</h5>
+            </div>
+            <div class="project-description">
+              <div class="project-summary">
+                <div class="subjects-container">
+                  <p class="subject autom">Automation</p>
+                  <p class="subject maths">Maths</p>
+                  <p class="subject social-sci">Social Science</p>
+                  <p class="subject tech">Technology</p>
+                  <p class="subject engin">Engineering</p>
+                  <p class="subject cs">Computer Science</p>
+                </div>
+                <p class="summary">Control a robotic arm using flow-based programming to clean up items of rubbish </p>
+              </div>
+              <div class="project-details">
+                <div class="sub-text-container">
+                  <p class="sub-title">Project Length</p>
+                  <p class="sub-text">4-6 lessons</p>
+                </div>
+                <div class="sub-text-container">
+                  <p class="sub-title">Curriculum Alignment</p>
+                  <p class="sub-text">Aligns with L1 to L3 of the NZ Curriculum</p>
+                  <p class="sub-text">PO3 of computational thinking for digital technologies </p>
+                  <p class="sub-text">PO2 of designing and developing digital technologies</p>
+                </div>
+                <div class="sub-text-container">
+                  <p class="sub-title">More details</p>
+                  <p class="sub-text">Unlimited student access</p>
+                  <p class="sub-text">Involves group activities</p>
+                </div>
+              </div>
+            </div>
+            <a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Get it for free</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-wrap">
+        <div class="single-project-container line-following">
+          <div class="project-img-container">
+            <div class="mobile-project-image coming-soon-img">
+            <img class="mobile-project-image" src="/public/images/home/line-follow.jpg" alt="send-it">
+            </div>
+          </div>
+          <div class="project-info-container">
+            <div class="project-title">
+              <h5>Line following</h5>
+            </div>
+            <div class="project-description">
+              <div class="project-summary">
+                <div class="subjects-container">
+                  <p class="subject ai">AI</p>
+                  <p class="subject autom">Automation</p>
+                  <p class="subject tech">Technology</p>
+                  <p class="subject engin">Engineering</p>
+                  <p class="subject cs">Computer Science</p>
+                </div>
+                <p class="summary">Write an algorithm to control a line following robot in a warehouse; enabling it to find and put out fires</p>
+              </div>
+              <div class="project-details">
+                <div class="sub-text-container">
+                  <p class="sub-title">Project Length</p>
+                  <p class="sub-text">8-10 lessons</p>
+                </div>
+                <div class="sub-text-container">
+                  <p class="sub-title">Curriculum Alignment</p>
+                  <p class="sub-text">Aligns with L2 to L5 of the NZ Curriculum</p>
+                  <p class="sub-text">PO5 of computational thinking for digital technologies</p>
+                  <p class="sub-text">PO3 of designing and developing digital technologies</p>
+                </div>
+                <div class="sub-text-container">
+                  <p class="sub-title">More details</p>
+                  <p class="sub-text">Unlimited student access</p>
+                  <p class="sub-text">Involves group activities</p>
+                </div>
+              </div>
+            </div>
+            <a class="coming-soon-cta">Coming Soon</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-section section">
+      <div class="section-title">
+        <h3>Pricing</h3>
+        <img src="/public/images/home/title-img-yellow.svg" alt="yellow-shape">
+      </div>
+
+      <div class="pricing-container">
+        <div class="pricing-card coming-card">
+          <div class="pricing-title">
+            <h5>CreateBase Lite</h5>
+            <h4>Coming Soon</h4>
+          </div>
+          <div class="price-list">
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>???</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>???</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>???</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>???</p>
+            </div>
+          </div>
+          <a class="coming-soon-cta">Coming Soon</a>
+        </div>
+        <div class="pricing-card selected-card">
+          <div class="pricing-title">
+            <h5>Pre-release</h5>
+            <h4>FREE</h4>
+          </div>
+          <div class="price-list">
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>Free access to platform</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>Create Organisation  and Learner accounts</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>Unlimited users</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>2 Projects</p>
+            </div>
+          </div>
+          <a href="https://app.createbase.co.nz/" class="cta-btn inverse-btn">Claim free project</a>
+        </div>
+        <div class="pricing-card coming-card">
+          <div class="pricing-title">
+            <h5>CreateBase Pro</h5>
+            <h4>Coming Soon</h4>
+          </div>
+          <div class="price-list">
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>???</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>???</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>???</p>
+            </div>
+            <div class="list-item">
+              <span class="material-icons-outlined">
+                task_alt
+              </span>
+              <p>???</p>
+            </div>
+          </div>
+          <a class="coming-soon-cta">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-us-section section">
+      <div class="section-title">
+        <h3>About Us</h3>
+        <img src="/public/images/home/title-img-blue.svg" alt="blue-shape">
+      </div>
+
+      <div class="about-container">
+        <h4>At CreateBase, we want everyone to have the confidence to:</h4>
+        <div class="about-content-container">
+          <div class="about-img">
+            <img src="/public/images/home/about.jpg" alt="about">
+          </div>
+          <div class="list-container">
+            <div class="list-item">
+              <div class="icon dream">
+                <img src="/public/images/home/cloud.svg" alt="cloud">
+              </div>
+              <p>Dream of new ideas</p>
+            </div>
+            <div class="list-item">
+              <div class="icon learn">
+                <img src="/public/images/home/learn.svg" alt="learn">
+              </div>
+              <p>Learn how to create them</p>
+            </div>
+            <div class="list-item">
+              <div class="icon engage">
+                <img src="/public/images/home/wand.svg" alt="create">
+              </div>
+              <p>Bring them to life</p>
+            </div>
+          </div>
+        </div>
+        <h5>by utilising concepts and knowledge in STEAM subjects.</h5>
       </div>
     </div>
 
     <div class="people-section">
-      <h2>People we've worked with</h2>
+      <h2>Who we've worked with</h2>
       <div class="people-container">
         <a href="https://www.redbull.com/nz-en/Red-Bull-Basement-University-NZ" class="people-logo" target="_blank">
           <img src="/public/images/home/redbull.png" alt="Red Bull Basement" />
@@ -247,20 +494,21 @@
   </footer>
 
   <div class="notif-wrapper">
-    <div class="popup"></div>
+    <!-- <div class="popup"></div> -->
   </div>
 
   <!-- ==========================JS========================== -->
   <!-- -----------------------SOURCED------------------------ -->
   <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
-  <script async src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <!-- <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script> -->
+  <!-- <script async src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
   <!-- ------------------------CUSTOM------------------------ -->
   <script async src="/public/javascripts/nav.js"></script>
   <script async src="/public/javascripts/footer.js"></script>
   <script async src="/public/javascripts/notification.js"></script>
   <script async src="/public/javascripts/global.js"></script>
   <script async src="/public/javascripts/home.js"></script>
+  <!-- <script>history.scrollRestoration = "manual"</script> -->
 </body>
 
 </html>

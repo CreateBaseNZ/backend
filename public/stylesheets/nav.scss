@@ -16,7 +16,7 @@ nav {
   width: 100vw;
   padding: 3rem 10vw 1.5rem 10vw;
   transition: background-color 0.6s ease-out, padding-top 0.2s ease-out;
-  z-index: 20;
+  z-index: 99;
   max-width: 1920px;
 }
 
@@ -76,9 +76,14 @@ nav.sticky {
     margin: 0.75rem 0.5rem 0.75rem -0.5rem;
     font-weight: 700;
     letter-spacing: 0.05em;
-    color: $darker;
     font-size: 0.75rem;
     opacity: 0;
+  }
+  .dark-menu-text{
+    color: $darker;
+  }
+  .light-menu-text{
+    color: $lightest;
   }
   .nav-item {
     position: relative;
@@ -127,6 +132,7 @@ nav.sticky {
     margin-left: 0;
     margin-right: 0;
     transition: margin 0.2s ease-out, opacity 0.2s ease-out, color 0.1s ease-out;
+    color: $darker;
   }
   .nav-item:nth-child(1) { transition-delay: 0.2s; }
   .nav-item:nth-child(2) { transition-delay: 0.3s; }
@@ -315,6 +321,13 @@ $hamburger-layer-spacing: 0.25rem;
       background-color: $darker;
     }
   }
+  &.light-hamburger {
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: $lightest;
+    }
+  }
   .special-btn {
     font-size: 0.6rem;
     padding: 1rem 1.75rem;
@@ -338,12 +351,14 @@ $hamburger-layer-spacing: 0.25rem;
   height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
   display: inline-block;
   position: relative;
+  
 }
 
 .hamburger-inner {
   display: block;
   top: 50%;
   margin-top: $hamburger-layer-height / -2;
+  color: $lightest;
   &,
   &::before,
   &::after {
@@ -887,6 +902,9 @@ footer {
     display: block;
   }
   .small {
+    display: none;
+  }
+  .hide{
     display: none;
   }
 }

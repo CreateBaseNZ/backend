@@ -1,7 +1,6 @@
 // MODULES ==================================================
 
 const express = require("express");
-const reject = require("lodash.reject");
 
 // VARIABLES ================================================
 
@@ -90,13 +89,13 @@ router.post("/organisation/create", async (req, res) => {
 	try {
 		mail = await email.create(emailObject, "organisation-detail");
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Send the verification email
 	try {
 		await email.send(mail);
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Build the email object
 	const emailObject2 = {
@@ -108,13 +107,13 @@ router.post("/organisation/create", async (req, res) => {
 	try {
 		mail2 = await email.create(emailObject2, "new-org-notif", true);
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Send the verification email
 	try {
 		await email.send(mail2);
 	} catch (data) {
-		return reject(data);
+		return res.send(data);
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "" });
@@ -293,7 +292,16 @@ router.post("/organisation/invite-educator/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	const url = `${process.env.APP_PREFIX}/invite/educator/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}`;
+	let orgName = "";
+	for (let i = 0; i < organisation.name.length; i++) {
+		const character = organisation.name[i];
+		if (character === " ") {
+			orgName = orgName + "-";
+		} else {
+			orgName = orgName + character;
+		}
+	}
+	const url = `${process.env.APP_PREFIX}/invite/educator/${organisation.metadata.id}__${orgName}__${organisation.join.educator}`;
 	// Success handler
 	return res.send({ status: "succeeded", content: url });
 });
@@ -335,7 +343,16 @@ router.post("/organisation/invite-educator/send", async (req, res) => {
 			return res.send({ status: "error", content: error });
 		}
 		// Generate the base elements of the email
-		let url = `${emailAddress}__${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}`;
+		let orgName = "";
+		for (let i = 0; i < organisation.name.length; i++) {
+			const character = organisation.name[i];
+			if (character === " ") {
+				orgName = orgName + "-";
+			} else {
+				orgName = orgName + character;
+			}
+		}
+		let url = `${emailAddress}__${organisation.metadata.id}__${orgName}__${organisation.join.educator}`;
 		let recipient = "there";
 		if (account) {
 			/// Fetch the profile
@@ -548,7 +565,16 @@ router.post("/organisation/educator-join/request", async (req, res) => {
 	}
 	if (!account2) return res.send({ status: "error", content: "no account found" });
 	// Construct the url
-	const url = `${account1.email}__${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.educator}__${license1.join.code}`;
+	let orgName = "";
+	for (let i = 0; i < organisation.name.length; i++) {
+		const character = organisation.name[i];
+		if (character === " ") {
+			orgName = orgName + "-";
+		} else {
+			orgName = orgName + character;
+		}
+	}
+	const url = `${account1.email}__${organisation.metadata.id}__${orgName}__${organisation.join.educator}__${license1.join.code}`;
 	// Construct the email input
 	const input = { email: account2.email, sender: profile1.displayName, recipient: profile2.displayName, url, orgName: organisation.name };
 	let mail;
@@ -673,7 +699,16 @@ router.post("/organisation/invite-learner/generate-link", async (req, res) => {
 	}
 	if (!organisation) return res.send({ status: "error", content: "no organisation found" });
 	// Construct the url
-	const url = `${process.env.APP_PREFIX}/invite/learner/${organisation.metadata.id}__${organisation.name.replaceAll(" ", "-")}__${organisation.join.learner}`;
+	let orgName = "";
+	for (let i = 0; i < organisation.name.length; i++) {
+		const character = organisation.name[i];
+		if (character === " ") {
+			orgName = orgName + "-";
+		} else {
+			orgName = orgName + character;
+		}
+	}
+	const url = `${process.env.APP_PREFIX}/invite/learner/${organisation.metadata.id}__${orgName}__${organisation.join.learner}`;
 	// Success handler
 	return res.send({ status: "succeeded", content: url });
 });

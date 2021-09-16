@@ -19,32 +19,18 @@
     <!-- ------------------------CUSTOM------------------------ -->
     <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
     <link rel="stylesheet" href="/public/stylesheets/contact.min.css">
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1149429065520266');
-      fbq('track', 'PageView');
-      </script>
-      <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1149429065520266&ev=PageView&noscript=1"
-      /></noscript>
   </head>
 
 <body onload="global.init.init(); contact.init.init();">
 
   <nav>
     <a href="/" class="nav-logo">
-      <img src="/public/images/logo_full_svg.svg" class="long" alt="CreateBase">
+      <img src="/public/images/logo_full_svg.svg" class="long cb-logo-dark" alt="CreateBase">
+      <img src="/public/images/logo_full_white_text.svg" class="long cb-logo-light hide" alt="CreateBase">
       <img src="/public/images/logo-icon.png" class="small" alt="CreateBase">
     </a>
     <div class="hamburger hamburger-spin" type="button">
-      <a href="/contact" class="special-btn">Request a Demo</a>
+      <a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Free project</a>
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
@@ -55,8 +41,9 @@
       <a href="/about" class="nav-item">About</a>
       <a href="/latest" class="nav-item">Latest</a>
       <a href="/team" class="nav-item">The Team</a>
+      <a href="/contact" class="nav-item">Contact Us</a>
       <!-- <a href="/contact" class="nav-item">Contact Us</a> -->
-      <a href="/contact" class="special-btn" id="request-demo-btn">Request a Demo</a>
+      <a href="https://app.createbase.co.nz/" class="cta-btn special-btn" id="request-demo-btn">Try projects for free</a>
     </div>
   </nav>
 
@@ -154,7 +141,7 @@
   </footer>
 
   <div class="notif-wrapper">
-    <div class="popup"></div>
+    <!-- <div class="popup"></div> -->
   </div>
 
   <!-- ==========================JS========================== -->
