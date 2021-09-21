@@ -870,13 +870,16 @@ router.post("/organisation/admin/update-learner-license", async (req, res) => {
 						errors[property] = data.content;
 					}
 				}
+				license[property] = value;
+				break;
 			case "password":
-			// TODO: validate the password input
+				// TODO: validate the password input
+				license[property] = value;
+				break;
 			case "status":
 				// TODO: License status update logic
 				break;
 			default:
-				license[property] = value;
 				break;
 		}
 	}
@@ -890,7 +893,7 @@ router.post("/organisation/admin/update-learner-license", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "" });
+	return res.send({ status: "succeeded", content: undefined });
 });
 
 // EXPORT ===================================================

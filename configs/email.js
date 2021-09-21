@@ -219,9 +219,7 @@ Thank you for registering an account with us! Here is your first task!
 
 Verify your account using this code: <b>${object.code}</b>
 
-<b><a href='${process.env.APP_PREFIX}/auth/login'>Log into your CreateBase account</a></b> and enter this code!
-
-Already logged in? <a href='${process.env.APP_PREFIX}/user/my-account/verification'>Visit this page and enter your code here</a>.
+<b><a href='${process.env.APP_PREFIX}/verify/${object.email}__${object.code}'>Click this link</a></b> to verify your account!
 
 
 ${email.appFooter}`;

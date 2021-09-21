@@ -17,23 +17,24 @@ const Profile = require("./Profile.js");
 
 const LicenseSchema = new Schema({
 	organisation: { type: Schema.Types.ObjectId },
-	username: { type: String, required: true },
-	password: { type: String, required: true },
+	identification: { type: Schema.Types.String, default: "" },
+	username: { type: Schema.Types.String, required: true },
+	password: { type: Schema.Types.String, required: true },
 	statuses: [Schema.Types.Mixed],
-	access: { type: String, required: true },
+	access: { type: Schema.Types.String, required: true },
 	profile: { type: Schema.Types.ObjectId, required: true },
 	date: {
-		modified: { type: String, required: true },
-		visited: { type: String, required: true },
-		created: { type: String, required: true },
+		modified: { type: Schema.Types.String, required: true },
+		visited: { type: Schema.Types.String, required: true },
+		created: { type: Schema.Types.String, required: true },
 	},
 	join: {
-		date: { type: String, default: "" },
-		code: { type: String, default: "" },
+		date: { type: Schema.Types.String, default: "" },
+		code: { type: Schema.Types.String, default: "" },
 	},
 	invite: {
-		date: { type: String, default: "" },
-		code: { type: String, default: "" },
+		date: { type: Schema.Types.String, default: "" },
+		code: { type: Schema.Types.String, default: "" },
 	},
 });
 
