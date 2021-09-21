@@ -750,14 +750,28 @@ router.post("/organisation/admin/read", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	let accountIds = [];
+	for (let i = 0; i < profiles.length; i++) {
+		const profile = profiles[i];
+		if (profile.account) if (profile.account.local) accountIds.push(profile.account.local);
+	}
+	// Fetch all accounts
+	let accounts;
+	try {
+		accounts = await Account.find({ _id: accountIds });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
 	// Build the return object
 	let contentOne = {
 		name: organisation.name,
 		type: organisation.type,
 		location: organisation.location ? organisation.location : {},
 		join: organisation.join,
+		date: organisation.date,
 		metadata: organisation.metadata,
 		licenses: [],
+		classes: []
 	};
 	let contentTwo = [];
 	for (let i = 0; i < licenses.length; i++) {
@@ -765,11 +779,20 @@ router.post("/organisation/admin/read", async (req, res) => {
 		const profile = profiles.find((profile) => {
 			return profile._id.toString() === license.profile.toString();
 		});
+		const account = accounts.find((account) => {
+			if (profile.account) if (profile.account.local) return account._id.toString() === profile.account.local.toString();
+			return false;
+		});
+		let contentThree;
+		if (account) contentThree = { email: account.email, date: account.date, verified: account.verified.status };
 		contentTwo.push({
 			username: license.username,
+			identification: license.identification,
 			status: "free", // Temporary
 			access: license.access,
-			profile: { displayName: profile.displayName, saves: profile.saves },
+			date: license.date,
+			profile: { 
+				displayName: profile.displayName, account: contentThree, saves: profile.saves },
 		});
 	}
 	contentOne.licenses = contentTwo;
