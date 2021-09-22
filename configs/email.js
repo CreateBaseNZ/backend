@@ -61,7 +61,7 @@ email.build = (object = {}, teamNotif = false) => {
 		recipient = object.email;
 	}
 	// Test
-	if (process.env.NODE_ENV !== "production") object.subject = "[TEST] " + object.subject;
+	if (process.env.DEPLOYMENT !== "production") object.subject = "[TEST] " + object.subject;
 	const mail = {
 		from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
 		to: `${recipient}`,
@@ -125,7 +125,7 @@ email.create = (object = {}, template = "", teamNotif = false) => {
 			return reject(data);
 		}
 		// Test
-		if (process.env.NODE_ENV !== "production") contents.subject = "[TEST] " + contents.subject;
+		if (process.env.DEPLOYMENT !== "production") contents.subject = "[TEST] " + contents.subject;
 		// CONSTRUCT EMAIL
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
