@@ -315,7 +315,7 @@ Congratulations! Your organisation is now established on our platform. Each scho
 <ul><li>Organisation ID: <b>${object.orgId}</b></li><li>Organisation Name: <b>${object.orgName}</b></li><li>Code for Educators: <b>${object.eduCode}</b></li><li>Code for Learners: <b>${object.lerCode}</b></li></ul>
 <b>Invite Your Fellow Teachers and Your Students</b>
 
-It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/GphwKgAv6kw'>Here is a video</a></b> on how to invite your fellow teachers and your students.
+It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/nb0zARtCCK0'>Here is a video</a></b> on how to invite your fellow teachers and your students.
 
 Here are the invitation links that you can send to your fellow educators and your students.
 <ul><li>Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${orgName}__${object.eduCode}</li><li>Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${orgName}__${object.lerCode}</li></ul>
@@ -398,7 +398,7 @@ Each school only has one organisation account and you have all the codes. This i
 <ul><li>Organisation ID: <b>${object.orgId}</b></li><li>Organisation Name: <b>${object.orgName}</b></li><li>Code for Educators: <b>${object.eduCode}</b></li><li>Code for Learners: <b>${object.lerCode}</b></li></ul>
 <b>Invite Your Fellow Teachers and Your Students</b>
 
-It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/GphwKgAv6kw'>Here is a video</a></b> on how to invite your fellow teachers and your students.
+It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/nb0zARtCCK0'>Here is a video</a></b> on how to invite your fellow teachers and your students.
 
 Here are the invitation links that you can send to your fellow educators and your students.
 <ul><li>Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${orgName}__${object.eduCode}</li><li>Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${orgName}__${object.lerCode}</li></ul>
