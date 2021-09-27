@@ -141,7 +141,7 @@ router.post("/mail/admin/email-educator", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Filter non admin or educator licenses
-	const filteredLicenses = licenses.filter((license) => license.access === "admin" || license === "educator");
+	const filteredLicenses = licenses.filter((license) => license.access === "educator");
 	const profileIds = filteredLicenses.map((license) => license.profile);
 	// Fetch the profiles
 	let profiles;
@@ -158,9 +158,10 @@ router.post("/mail/admin/email-educator", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	console.log(accounts);
 	// Send the email
 	let promises = [];
-	let received = [];
+	let receivers = [];
 	for (let i = 0; i < accounts.length; i++) {
 		const account = accounts[i];
 		// Process: Send the newsletter
@@ -179,7 +180,7 @@ router.post("/mail/admin/email-educator", async (req, res) => {
 				} catch (data) {
 					return reject(data);
 				}
-				received = account.email;
+				receivers.push(account.email);
 				// Success handler
 				return resolve();
 			}, i * 25);
@@ -193,7 +194,7 @@ router.post("/mail/admin/email-educator", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: received });
+	return res.send({ status: "succeeded", content: receivers });
 });
 
 /*=========================================================================================
