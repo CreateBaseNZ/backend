@@ -106,7 +106,7 @@ router.post("/mail/admin/send-newsletter", async (req, res) => {
 					}
 					// Success handler
 					return resolve();
-				}, i * 15);
+				}, i * 25);
 			});
 			promises.push(promise);
 		}
@@ -160,6 +160,7 @@ router.post("/mail/admin/email-educator", async (req, res) => {
 	}
 	// Send the email
 	let promises = [];
+	let received = [];
 	for (let i = 0; i < accounts.length; i++) {
 		const account = accounts[i];
 		// Process: Send the newsletter
@@ -178,9 +179,10 @@ router.post("/mail/admin/email-educator", async (req, res) => {
 				} catch (data) {
 					return reject(data);
 				}
+				received = account.email;
 				// Success handler
 				return resolve();
-			}, i * 15);
+			}, i * 25);
 		});
 		promises.push(promise);
 	}
@@ -191,7 +193,7 @@ router.post("/mail/admin/email-educator", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
+	return res.send({ status: "succeeded", content: received });
 });
 
 /*=========================================================================================
