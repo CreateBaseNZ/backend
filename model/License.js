@@ -110,7 +110,7 @@ LicenseSchema.statics.validate = function (object = {}) {
 
 LicenseSchema.statics.login = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
-		// TO DO: Pre validation
+		// TODO: Pre validation
 
 		// Fetch the license
 		let session = new Object();
