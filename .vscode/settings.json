@@ -1,30 +1,30 @@
 {
-    "liveServer.settings.port": 5501,
-    "editor.hover.enabled": false,
-    "cSpell.words": [
-        "normaliser"
-    ],
+	"liveServer.settings.port": 5501,
+	"editor.hover.enabled": false,
+	"cSpell.words": ["normaliser"],
 
-    "liveSassCompile.settings.formats": [
-        {
-            "format": "compressed",
-            "extensionName": ".min.css",
-            "savePath": null
-        }
-    ],
+	"liveSassCompile.settings.formats": [
+		{
+			"format": "compressed",
+			"extensionName": ".min.css",
+			"savePath": null
+		}
+	],
 
-    "MinifyAll.minifyOnSaveToNewFile": true,
-    "MinifyAll.openMinifiedDocument": false,
-    "MinifyAll.PrefixOfNewMinifiedFiles": ".min",
-    "MinifyAll.disableHtml": true,
-    "MinifyAll.disableSass": true,
-    "MinifyAll.disableScss": true,
-    "MinifyAll.disableLess": true,
-    "MinifyAll.disableMessages": true,
-    "liveSassCompile.settings.autoprefix": [],
-    "liveSassCompile.settings.generateMap": false,
-    "files.exclude": {
-        "**/**.css": true,
-        "**/**.min.**": true
-    },
+	"MinifyAll.minifyOnSaveToNewFile": true,
+	"MinifyAll.openMinifiedDocument": false,
+	"MinifyAll.PrefixOfNewMinifiedFiles": ".min",
+	"MinifyAll.disableHtml": true,
+	"MinifyAll.disableSass": true,
+	"MinifyAll.disableScss": true,
+	"MinifyAll.disableLess": true,
+	"MinifyAll.disableMessages": true,
+	"liveSassCompile.settings.autoprefix": [],
+	"liveSassCompile.settings.generateMap": false,
+	"files.exclude": {
+		"**/**.css": true,
+		"**/**.min.**": true
+	},
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
 }

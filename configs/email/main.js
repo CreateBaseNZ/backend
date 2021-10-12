@@ -44,54 +44,29 @@ email.execute = function (object = {}) {
 
 email.construct = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
-		let greetingMessage;
-		try {
-			greetingMessage = await greeting.construct(object);
-		} catch (data) {
-			return reject(data);
-		}
-		let closingMessage;
-		try {
-			closingMessage = await closing.construct(object);
-		} catch (data) {
-			return reject(data);
-		}
-		let footerMessage;
-		try {
-			footerMessage = await footer.construct(object);
-		} catch (data) {
-			return reject(data);
-		}
+		const greetingMessage = greeting.construct(object);
+		const closingMessage = closing.construct(object);
+		const footerMessage = footer.construct(object);
 		let bodyMessage = object.body;
 		if (!bodyMessage) {
+			const tagArray = object.receive.split("-");
+			object.tag = tagArray[0];
+			for (let i = 1; i < tagArray.length; i++) {
+				const word = tagArray[i];
+				object.tag += word[0].toUpperCase() + word.substring(1);
+			}
 			switch (object.notification) {
 				case "newsletter":
-					try {
-						bodyMessage = await newsletter.construct(object);
-					} catch (data) {
-						return reject(data);
-					}
+					bodyMessage = await newsletter.construct(object);
 					break;
 				case "onboarding":
-					try {
-						bodyMessage = await onboarding.construct(object);
-					} catch (data) {
-						return reject(data);
-					}
+					bodyMessage = await onboarding.construct(object);
 					break;
 				case "product":
-					try {
-						bodyMessage = await product.construct(object);
-					} catch (data) {
-						return reject(data);
-					}
+					bodyMessage = await product.construct(object);
 					break;
 				case "cold":
-					try {
-						bodyMessage = await cold.construct(object);
-					} catch (data) {
-						return reject(data);
-					}
+					bodyMessage = await cold.construct(object);
 					break;
 				default:
 					return reject({ status: "failed", content: "invalid option" });
@@ -100,20 +75,18 @@ email.construct = function (object = {}) {
 		const message = `${greetingMessage}
     
     
-    ${bodyMessage}
+${bodyMessage}
     
+${closingMessage}
     
-    ${closingMessage}
-    
-    
-    ${footerMessage}`;
+${footerMessage}`;
 		const text = convert(message);
 		const html = message.replace(/(\r\n|\n|\r)/gm, "<br>");
 		// Create the mail object;
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
 			to: object.recipient,
-			subject: object.subject,
+			subject: process.env.DEPLOYMENT === "production" ? object.subject : `[TEST] ${object.subject}`,
 			text: text,
 			html: html,
 		};

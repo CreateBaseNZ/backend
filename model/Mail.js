@@ -1,22 +1,15 @@
-/*=========================================================================================
-REQUIRED MODULES
-=========================================================================================*/
+// MODULES ==================================================
 
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
 
-/*=========================================================================================
-VARIABLES
-=========================================================================================*/
+// VARIABLES ================================================
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const Schema = mongoose.Schema;
-const email = require("../configs/email.js");
-const reject = require("lodash.reject");
+const email = require("../configs/email/main.js");
 
-/*=========================================================================================
-CREATE MAILING MODEL
-=========================================================================================*/
+// MODEL ====================================================
 
 const MailSchema = new Schema({
 	email: { type: Schema.Types.String, required: true },
@@ -35,8 +28,15 @@ const MailSchema = new Schema({
 
 // METHODS ==================================================
 
-MailSchema.methods.sendEmail = function () {
+MailSchema.methods.sendEmail = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
+		object.name = this.metadata ? this.metadata.name : undefined;
+		try {
+			await email.execute(object);
+		} catch (data) {
+			return reject(data);
+		}
+		this.received.push(`${object.notification}-${object.receive}`);
 		return resolve();
 	});
 };

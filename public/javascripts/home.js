@@ -1,64 +1,63 @@
 let home = {
-  init: {
-    attachListeners: undefined,
-    init: undefined,
-    swiper: undefined,
-  },
+	init: {
+		attachListeners: undefined,
+		init: undefined,
+		swiper: undefined,
+	},
 
-  elem: {
-    subscribeBtn: document.querySelector('.home-subscribe-btn'),
-    subscribeError: document.querySelector('.home-subscribe-error'),
-    subscribeInput: document.querySelector('#home-subscribe'),
-    subscribeInputContainer: document.querySelector('.home-subscribe-container'),
-  },
+	elem: {
+		subscribeBtn: document.querySelector(".home-subscribe-btn"),
+		subscribeError: document.querySelector(".home-subscribe-error"),
+		subscribeInput: document.querySelector("#home-subscribe"),
+		subscribeInputContainer: document.querySelector(".home-subscribe-container"),
+	},
 
-  event: {
-    afterSwipe: undefined,
-    onSwipe: undefined,
-    sectionTransitions: undefined,
-    subscribeEnter: undefined,
-    subscribeInput: undefined,
-  },
+	event: {
+		afterSwipe: undefined,
+		onSwipe: undefined,
+		sectionTransitions: undefined,
+		subscribeEnter: undefined,
+		subscribeInput: undefined,
+	},
 
-  sections: Array.prototype.slice.call(document.querySelectorAll('.how-subsection')),
-  sectionPos: [],
-  slides: Array.prototype.slice.call(document.querySelectorAll('.swiper-slide')),
-  subscribeSubmit: undefined,
-  swiper: undefined,
-}
+	sections: Array.prototype.slice.call(document.querySelectorAll(".how-subsection")),
+	sectionPos: [],
+	slides: Array.prototype.slice.call(document.querySelectorAll(".swiper-slide")),
+	subscribeSubmit: undefined,
+	swiper: undefined,
+};
 
 // ==================================================================
 // FUNCTIONS
 // ==================================================================
 
 // @func  home.initialise
-// @desc  
+// @desc
 home.init.init = () => {
+	// home.init.swiper()
+	home.init.attachListeners();
 
-  // home.init.swiper()
-  home.init.attachListeners()
-  
-  home.sections.forEach((section) => {
-    home.sectionPos.push(section.offsetTop)
-  })
+	home.sections.forEach((section) => {
+		home.sectionPos.push(section.offsetTop);
+	});
 
-  // promises = [global.initialise(), home.addImages()];
-  // try {
-  //   await Promise.all(promises);
-  // } catch (error) {
-  //   return console.log(error);
-  // }
+	// promises = [global.initialise(), home.addImages()];
+	// try {
+	//   await Promise.all(promises);
+	// } catch (error) {
+	//   return console.log(error);
+	// }
 
-  // PAGE CONFIGURATIONS
-  // textSequence(0, home.words, "change-text");
-}
+	// PAGE CONFIGURATIONS
+	// textSequence(0, home.words, "change-text");
+};
 
 home.init.attachListeners = () => {
-  // home.elem.subscribeBtn.addEventListener('click', home.subscribeSubmit)
-  // home.elem.subscribeInput.addEventListener('input', home.event.subscribeInput)
-  // home.elem.subscribeInput.addEventListener('keypress', home.event.subscribeEnter)
-  window.addEventListener('scroll', home.event.sectionTransitions)
-}
+	// home.elem.subscribeBtn.addEventListener('click', home.subscribeSubmit)
+	// home.elem.subscribeInput.addEventListener('input', home.event.subscribeInput)
+	// home.elem.subscribeInput.addEventListener('keypress', home.event.subscribeEnter)
+	window.addEventListener("scroll", home.event.sectionTransitions);
+};
 
 // home.init.swiper = () => {
 //   home.swiper = new Swiper('.swiper-container', {
@@ -99,69 +98,64 @@ home.init.attachListeners = () => {
 // }
 
 home.event.subscribeEnter = (e) => {
-  if (e.key === 'Enter') {
-    home.subscribeSubmit()
-  }
-}
+	if (e.key === "Enter") {
+		home.subscribeSubmit();
+	}
+};
 
-home.event.subscribeInput = function() {
-  home.elem.subscribeError.innerHTML = ''
-  if (this.value) {
-    home.elem.subscribeBtn.classList.add('active')
-  } else {
-    home.elem.subscribeBtn.classList.remove('active')
-  }
-}
+home.event.subscribeInput = function () {
+	home.elem.subscribeError.innerHTML = "";
+	if (this.value) {
+		home.elem.subscribeBtn.classList.add("active");
+	} else {
+		home.elem.subscribeBtn.classList.remove("active");
+	}
+};
 
 home.subscribeSubmit = async () => {
-  // Disable
-  home.elem.subscribeBtn.classList.remove('active')
-  home.elem.subscribeInputContainer.style.animationName = ''
-  void home.elem.subscribeInputContainer.offsetWidth
+	// Disable
+	home.elem.subscribeBtn.classList.remove("active");
+	home.elem.subscribeInputContainer.style.animationName = "";
+	void home.elem.subscribeInputContainer.offsetWidth;
 
-  // VALIDATE
-  const result = global.validateEmail(home.elem.subscribeInput.value)
-  if (result === 'empty') {
-    home.elem.subscribeError.innerHTML = "An email is required"
-    home.elem.subscribeInputContainer.style.animationName = 'home-shake'
-    return
-  } else if (result === 'invalid') {
-    home.elem.subscribeError.innerHTML = "Please enter a valid email"
-    home.elem.subscribeBtn.classList.add('active')
-    home.elem.subscribeInputContainer.style.animationName = 'home-shake'
-    return
-  }
+	// VALIDATE
+	const result = global.validateEmail(home.elem.subscribeInput.value);
+	if (result === "empty") {
+		home.elem.subscribeError.innerHTML = "An email is required";
+		home.elem.subscribeInputContainer.style.animationName = "home-shake";
+		return;
+	} else if (result === "invalid") {
+		home.elem.subscribeError.innerHTML = "Please enter a valid email";
+		home.elem.subscribeBtn.classList.add("active");
+		home.elem.subscribeInputContainer.style.animationName = "home-shake";
+		return;
+	}
 
-  // SUBMIT
-  try {
-    await global.subscribe(home.elem.subscribeInput.value).then((data) => {
-      // Resolved
-      if (data === "You are already subscribed") {
-        // Already subscribed
-        notification.generate('subscribe', 'already')
-        home.elem.subscribeBtn.classList.add('active')
-      } else {
-        // Success
-        notification.generate('subscribe', 'success')
-        home.elem.subscribeInput.value = ""
-        home.elem.subscribeError.innerHTML = ""
-      }
-    },
-    (data) => {
-      // Rejected
-      if (data === "error") {
-        notification.generate('subscribe', 'error')
-      } else if (data === "failed") {
-        notification.generate('subscribe', 'error')
-      }
-    })
-  } catch (error) {
-    home.elem.subscribeError.innerHTML = "An error occurred, please try again"
-    home.elem.subscribeBtn.classList.add('active')
-    notification.generate('subscribe', 'error')
-    return
-  }
-}
+	// SUBMIT
+	let data;
+	try {
+		data = await global.subscribe(home.elem.subscribeInput.value);
+	} catch (error) {
+		// Rejected
+		if (error === "error") {
+			notification.generate("subscribe", "error");
+		} else if (error === "failed") {
+			notification.generate("subscribe", "error");
+		}
+		return;
+	}
+	// Resolved
+	if (data === "already subscribed") {
+		// Already subscribed
+		notification.generate("subscribe", "already");
+		home.elem.subscribeBtn.classList.add("active");
+	} else {
+		// Success
+		notification.generate("subscribe", "success");
+		home.elem.subscribeInput.value = "";
+		home.elem.subscribeError.innerHTML = "";
+	}
+};
 
 // home.addImages = () => {
 //   return new Promise(async (resolve, reject) => {
