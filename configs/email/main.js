@@ -22,13 +22,13 @@ let email = {
 	send: undefined,
 	members: [
 		"carlvelasco96@gmail.com",
-		// "bo75salim@hotmail.com",
-		// "bradyoung109@gmail.com",
-		// "brydonburnett@gmail.com",
-		// "craig.vaz1337@gmail.com",
-		// "louiscflin@gmail.com",
-		// "todd.lachlan.broadhurst@gmail.com",
-		// "weiweiwu766@gmail.com",
+		"bo75salim@hotmail.com",
+		"bradyoung109@gmail.com",
+		"brydonburnett@gmail.com",
+		"craig.vaz1337@gmail.com",
+		"louiscflin@gmail.com",
+		"todd.lachlan.broadhurst@gmail.com",
+		"weiweiwu766@gmail.com",
 	],
 };
 
