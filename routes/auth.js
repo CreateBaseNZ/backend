@@ -151,6 +151,7 @@ router.post("/signup/educator", async (req, res) => {
 	mail.account = account._id;
 	mail.notification.onboarding = true;
 	mail.notification.product = true;
+	mail.notification.cold = false;
 	mail.metadata === undefined ? (mail.metadata = { name: profile.displayName }) : (mail.metadata.name = profile.displayName);
 	// Save these new instances
 	const promises2 = [account.save(), profile.save(), license.save(), mail.save()];

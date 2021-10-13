@@ -39,6 +39,7 @@ router.post("/mail/subscribe-newsletter", async (req, res) => {
 		return res.send({ status: "failed", content: "already subscribed" });
 	}
 	mail.notification.newsletter = true;
+	mail.notification.cold = false;
 	// If the subscriber is completely brand new, send a welcome email
 	const options = {
 		recipient: req.body.input.email,
