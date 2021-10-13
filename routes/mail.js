@@ -42,7 +42,6 @@ router.post("/mail/subscribe-newsletter", async (req, res) => {
 	// If the subscriber is completely brand new, send a welcome email
 	const options = {
 		recipient: req.body.input.email,
-		subject: "Thank you for signing up for our newsletter!",
 		receive: "new-subscriber",
 		notification: "newsletter",
 		tone: "friendly",
@@ -51,8 +50,9 @@ router.post("/mail/subscribe-newsletter", async (req, res) => {
 		social: true,
 		unsubscribe: true,
 	};
+	let status;
 	try {
-		await mail.sendEmail(options);
+		status = await mail.sendEmail(options);
 	} catch (data) {
 		return res.send(data);
 	}

@@ -30,14 +30,24 @@ const MailSchema = new Schema({
 
 MailSchema.methods.sendEmail = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
-		object.name = this.metadata ? this.metadata.name : undefined;
+		if (this.notification[object.notification] === undefined) {
+			return reject({ status: "failed", content: "invalid option" });
+		}
+		if (this.notification[object.notification] === false) {
+			return resolve("not subscribed");
+		}
+		const receive = `${object.notification}-${object.receive}`;
+		if (this.received.indexOf(receive) !== -1) {
+			return resolve("already sent");
+		}
+		if (!object.name) object.name = this.metadata ? this.metadata.name : undefined;
 		try {
 			await email.execute(object);
 		} catch (data) {
 			return reject(data);
 		}
-		this.received.push(`${object.notification}-${object.receive}`);
-		return resolve();
+		this.received.push(receive);
+		return resolve("sent");
 	});
 };
 

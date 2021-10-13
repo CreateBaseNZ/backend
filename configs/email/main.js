@@ -10,6 +10,8 @@ const newsletter = require("./body/newsletter.js");
 const onboarding = require("./body/onboarding.js");
 const product = require("./body/product.js");
 const cold = require("./body/cold.js");
+const general = require("./body/general.js");
+const createbase = require("./body/createbase.js");
 
 // VARIABLES ================================================
 
@@ -18,6 +20,16 @@ let email = {
 	execute: undefined,
 	construct: undefined,
 	send: undefined,
+	members: [
+		"carlvelasco96@gmail.com",
+		// "bo75salim@hotmail.com",
+		// "bradyoung109@gmail.com",
+		// "brydonburnett@gmail.com",
+		// "craig.vaz1337@gmail.com",
+		// "louiscflin@gmail.com",
+		// "todd.lachlan.broadhurst@gmail.com",
+		// "weiweiwu766@gmail.com",
+	],
 };
 
 // FUNCTIONS ================================================
@@ -48,6 +60,7 @@ email.construct = function (object = {}) {
 		const closingMessage = closing.construct(object);
 		const footerMessage = footer.construct(object);
 		let bodyMessage = object.body;
+		let subjectMessage = object.subject;
 		if (!bodyMessage) {
 			const tagArray = object.receive.split("-");
 			object.tag = tagArray[0];
@@ -57,16 +70,22 @@ email.construct = function (object = {}) {
 			}
 			switch (object.notification) {
 				case "newsletter":
-					bodyMessage = await newsletter.construct(object);
+					[subjectMessage, bodyMessage] = newsletter.construct(object);
 					break;
 				case "onboarding":
-					bodyMessage = await onboarding.construct(object);
+					[subjectMessage, bodyMessage] = onboarding.construct(object);
 					break;
 				case "product":
-					bodyMessage = await product.construct(object);
+					[subjectMessage, bodyMessage] = product.construct(object);
 					break;
 				case "cold":
-					bodyMessage = await cold.construct(object);
+					[subjectMessage, bodyMessage] = cold.construct(object);
+					break;
+				case "general":
+					[subjectMessage, bodyMessage] = general.construct(object);
+					break;
+				case "createbase":
+					[subjectMessage, bodyMessage] = createbase.construct(object);
 					break;
 				default:
 					return reject({ status: "failed", content: "invalid option" });
@@ -78,15 +97,16 @@ email.construct = function (object = {}) {
 ${bodyMessage}
     
 ${closingMessage}
-    
 ${footerMessage}`;
 		const text = convert(message);
 		const html = message.replace(/(\r\n|\n|\r)/gm, "<br>");
+		// Check if the email is a notification for our members
+		const recipient = object.notification === "createbase" ? email.members : object.recipient;
 		// Create the mail object;
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
-			to: object.recipient,
-			subject: process.env.DEPLOYMENT === "production" ? object.subject : `[TEST] ${object.subject}`,
+			to: recipient,
+			subject: process.env.DEPLOYMENT === "production" ? subjectMessage : `[TEST] ${subjectMessage}`,
 			text: text,
 			html: html,
 		};

@@ -6,7 +6,7 @@ const express = require("express");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
-const email = require("../configs/email.js");
+const email = require("../configs/email/main.js");
 
 // MODELS ===================================================
 
@@ -14,6 +14,7 @@ const Account = require("../model/Account.js");
 const License = require("../model/License.js");
 const Organisation = require("../model/Organisation.js");
 const Profile = require("../model/Profile.js");
+const Mail = require("../model/Mail.js");
 
 // ROUTES ===================================================
 
@@ -138,8 +139,21 @@ router.post("/signup/educator", async (req, res) => {
 	profile.license = license._id;
 	profile.licenses = [license._id];
 	license.profile = profile._id;
+	// Check if the Mail instance already exist
+	let mail;
+	try {
+		mail = await Mail.findOne({ email: req.body.input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// If no Mail instance exist, create one
+	if (!mail) mail = new Mail({ email: req.body.input.email });
+	mail.account = account._id;
+	mail.notification.onboarding = true;
+	mail.notification.product = true;
+	mail.metadata === undefined ? (mail.metadata = { name: profile.displayName }) : (mail.metadata.name = profile.displayName);
 	// Save these new instances
-	const promises2 = [account.save(), profile.save(), license.save()];
+	const promises2 = [account.save(), profile.save(), license.save(), mail.save()];
 	try {
 		await Promise.all(promises2);
 	} catch (error) {
@@ -152,7 +166,7 @@ router.post("/signup/educator", async (req, res) => {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "A new educator account has been registered" });
+	return res.send({ status: "succeeded" });
 });
 
 // @route     POST /signup/educator-organisation
@@ -461,24 +475,37 @@ router.post("/verify-account", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	// Send the welcome email
-	// Build the email object
-	const emailObject = { email: account.email, displayName: profile.displayName };
-	// Create the email object
+	// Fetch the mail instance associated with the account
 	let mail;
 	try {
-		mail = await email.create(emailObject, "welcome");
-	} catch (data) {
-		return res.send(data);
+		mail = await Mail.findOne({ email: account.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
 	// Send the welcome email
+	const options = {
+		recipient: account.email,
+		name: profile.displayName,
+		receive: "welcome",
+		notification: "onboarding",
+		tone: "friendly",
+		help: true,
+		social: true,
+	};
+	let status;
 	try {
-		await email.send(mail);
+		status = await mail.sendEmail(options);
 	} catch (data) {
 		return res.send(data);
 	}
+	// Save the updates
+	try {
+		await mail.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "" });
+	return res.send({ status: "succeeded" });
 });
 
 // @route     POST /send-reset-password-email

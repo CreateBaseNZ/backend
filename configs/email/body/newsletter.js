@@ -13,7 +13,9 @@ newsletter.construct = function (object = {}) {
 };
 
 newsletter.newSubscriber = function () {
-	return `<b>Welcome to CreateBase</b>! We are excited to have you be a part of our journey! We will celebrate with you whenever we
+	return [
+		"Thank you for signing up for our newsletter!",
+		`<b>Welcome to CreateBase</b>! We are excited to have you be a part of our journey! We will celebrate with you whenever we
 <ul><li>release <b>new features</b>,</li><li>release <b>new projects</b>, and</li><li>achieve <b>new milestones</b>.</li></ul>We will also let you know when we are running <b>events</b> and <b>promotions</b>!
 
 
@@ -23,7 +25,8 @@ Are you a teacher? <b><a href='${process.env.APP_PREFIX}/auth/signup'>Sign up fo
 Want to know more about CreateBase? Head over to ${process.env.SITE_PREFIX} or check out any of our social media.
 
 
-We are aiming to inspire the next generation of creators, and we need your help! Share our story with schools, teachers and students, and together we will build the future of education!`;
+We are aiming to inspire the next generation of creators, and we need your help! Share our story with schools, teachers and students, and together we will build the future of education!`,
+	];
 };
 
 // EXPORT ===================================================
