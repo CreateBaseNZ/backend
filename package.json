@@ -24,6 +24,7 @@
 		"fullpage.js": "^3.0.9",
 		"gridfs-stream": "^1.1.1",
 		"helmet": "^4.3.1",
+		"html-to-text": "^8.0.0",
 		"inline-css": "^3.0.0",
 		"lodash": "^4.17.21",
 		"moment": "^2.26.0",

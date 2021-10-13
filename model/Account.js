@@ -6,8 +6,8 @@ const randomize = require("randomatic");
 
 // VARIABLES ================================================
 
-const email = require("../configs/email.js");
 const Schema = mongoose.Schema;
+const email = require("../configs/email/main.js");
 
 // OTHER MODELS =============================================
 
@@ -138,17 +138,18 @@ AccountSchema.methods.sendAccountVerificationEmail = function (object = {}, save
 		// Validate if the profile has been fetched successfully
 		if (!profile) return res.send({ status: "error", content: "there is no profile associated with this account" });
 		// Create the input object
-		const input = { email: this.email, displayName: profile.displayName, code: this.verified.code };
-		// Create the email object
-		let mail;
+		const options = {
+			recipient: this.email,
+			name: profile.displayName,
+			receive: "account-verification",
+			notification: "general",
+			tone: "friendly",
+			help: true,
+			social: true,
+			code: this.verified.code,
+		};
 		try {
-			mail = await email.create(input, "account-verification");
-		} catch (data) {
-			return reject(data);
-		}
-		// Send the verification email
-		try {
-			await email.send(mail);
+			await email.execute(options);
 		} catch (data) {
 			return reject(data);
 		}
@@ -217,17 +218,18 @@ AccountSchema.methods.sendPasswordResetEmail = function (object = {}, save = tru
 		// Validate if the profile has been fetched successfully
 		if (!profile) return res.send({ status: "error", content: "there is no profile associated with this account" });
 		// Create the input object
-		const input = { email: this.email, displayName: profile.displayName, code: this.resetPassword.code };
-		// Create the email object
-		let mail;
+		const options = {
+			recipient: this.email,
+			name: profile.displayName,
+			receive: "password-reset",
+			notification: "general",
+			tone: "friendly",
+			help: true,
+			social: true,
+			code: this.resetPassword.code,
+		};
 		try {
-			mail = await email.create(input, "password-reset");
-		} catch (data) {
-			return reject(data);
-		}
-		// Send the verification email
-		try {
-			await email.send(mail);
+			await email.execute(options);
 		} catch (data) {
 			return reject(data);
 		}

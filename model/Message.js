@@ -10,7 +10,7 @@ VARIABLES
 =========================================================================================*/
 
 const Schema = mongoose.Schema;
-const email = require("../configs/email.js");
+const email = require("../configs/email/main.js");
 
 /*=========================================================================================
 CREATE MODEL
@@ -122,31 +122,36 @@ METHODS
 // @DESC
 MessageSchema.methods.sendInquiryEmailNotification = function () {
 	return new Promise(async (resolve, reject) => {
-		let mail1;
-		try {
-			mail1 = await email.create({ email: this.email, number: this.number.inquiry, name: this.name }, "inquiry");
-		} catch (data) {
-			return reject(data);
-		}
-		// SEND EMAIL
-		try {
-			await email.send(mail1);
-		} catch (data) {
-			return reject(data);
-		}
-		// Process: Notify CreateBase of the new inquiry
-		// Build the email object
-		const emailObject = { name: this.name, userEmail: this.email, subject: this.subject, message: this.message };
 		// Create the email object
-		let mail2;
+		const options1 = {
+			recipient: this.email,
+			name: this.name,
+			receive: "inquiry",
+			notification: "general",
+			tone: "formal",
+			site: true,
+			help: true,
+			social: true,
+			number: this.number.inquiry,
+		};
 		try {
-			mail2 = await email.create(emailObject, "inq-notif", true);
+			await email.execute(options1);
 		} catch (data) {
 			return reject(data);
 		}
-		// Send the verification email
+		// Notify CreateBase of the new inquiry
+		const options2 = {
+			name: "team",
+			receive: "inq-notif",
+			notification: "createbase",
+			tone: "friendly",
+			userName: this.name,
+			userEmail: this.email,
+			subject: this.subject,
+			message: this.message,
+		};
 		try {
-			await email.send(mail2);
+			await email.execute(options2);
 		} catch (data) {
 			return reject(data);
 		}

@@ -6,7 +6,7 @@ const express = require("express");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
-const email = require("../configs/email.js");
+const email = require("../configs/email/main.js");
 
 // MODELS ===================================================
 
@@ -75,45 +75,53 @@ router.post("/organisation/create", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!account) return res.send({ status: "error", content: "no account found" });
-	// Build the email object
-	const emailObject = {
-		email: account.email,
-		displayName: profile.displayName,
+	// Fetch the mail instance associated with the account
+	let mail;
+	try {
+		mail = await Mail.findOne({ email: account.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Create the email object
+	const options1 = {
+		recipient: account.email,
+		name: profile.displayName,
+		receive: "organisation-detail",
+		notification: "onboarding",
+		tone: "friendly",
+		noSpace: true,
+		help: true,
+		social: true,
 		orgName: organisation.name,
 		orgId: organisation.metadata.id,
 		eduCode: organisation.join.educator,
 		lerCode: organisation.join.learner,
 	};
-	// Create the email object
-	let mail;
+	let status;
 	try {
-		mail = await email.create(emailObject, "organisation-detail");
+		status = await mail.sendEmail(options1);
 	} catch (data) {
 		return res.send(data);
 	}
-	// Send the verification email
+	// Save the updates
 	try {
-		await email.send(mail);
-	} catch (data) {
-		return res.send(data);
+		await mail.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
-	// Build the email object
-	const emailObject2 = {
-		displayName: profile.displayName,
+	// Notify the CreateBase team of the new organisation
+	const options2 = {
+		name: "team",
+		receive: "new-org-notif",
+		notification: "createbase",
+		tone: "friendly",
+		userName: profile.displayName,
 		orgName: organisation.name,
 	};
-	// Create the email object
-	let mail2;
 	try {
-		mail2 = await email.create(emailObject2, "new-org-notif", true);
+		await email.execute(options2);
 	} catch (data) {
-		return res.send(data);
-	}
-	// Send the verification email
-	try {
-		await email.send(mail2);
-	} catch (data) {
-		return res.send(data);
+		return reject(data);
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: "" });
@@ -224,25 +232,39 @@ router.post("/organisation/educator-join", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	if (!account) return res.send({ status: "error", content: "no account found" });
-	// Construct the email input
-	const input = {
-		email: account.email,
-		recipient: profile.displayName,
+	// Fetch the mail instance associated with the account
+	let mail;
+	try {
+		mail = await Mail.findOne({ email: account.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Create the email object
+	const options = {
+		recipient: account.email,
+		name: profile.displayName,
+		receive: "educator-accept",
+		notification: "onboarding",
+		tone: "friendly",
+		noSpace: true,
+		help: true,
+		social: true,
 		orgName: organisation.name,
 		orgId: organisation.metadata.id,
 		eduCode: organisation.join.educator,
 		lerCode: organisation.join.learner,
 	};
-	let mail;
+	let status;
 	try {
-		mail = await email.create(input, "educator-accept");
+		status = await mail.sendEmail(options);
 	} catch (data) {
 		return res.send(data);
 	}
+	// Save the updates
 	try {
-		await email.send(mail);
-	} catch (data) {
-		return res.send(data);
+		await mail.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
 	// Fetch all licenses
 	let licenses;
@@ -353,7 +375,7 @@ router.post("/organisation/invite-educator/send", async (req, res) => {
 			}
 		}
 		let url = `${emailAddress}__${organisation.metadata.id}__${orgName}__${organisation.join.educator}`;
-		let recipient = "there";
+		let recipient = undefined;
 		if (account) {
 			/// Fetch the profile
 			let profile2;
@@ -380,16 +402,22 @@ router.post("/organisation/invite-educator/send", async (req, res) => {
 			url = url + `__${license.invite.code}`;
 			recipient = profile2.displayName;
 		}
-		// Send the email invitation
-		const input = { sender, orgName, url, email: emailAddress, recipient };
-		let mail;
+		// Create the email object
+		const options = {
+			recipient: emailAddress,
+			name: recipient,
+			receive: "invite-educator",
+			notification: "general",
+			tone: "friendly",
+			site: true,
+			help: true,
+			social: true,
+			joiner: sender,
+			url,
+			orgName,
+		};
 		try {
-			mail = await email.create(input, "invite-educator");
-		} catch (data) {
-			return res.send(data);
-		}
-		try {
-			await email.send(mail);
+			await email.execute(options);
 		} catch (data) {
 			return res.send(data);
 		}
@@ -469,25 +497,39 @@ router.post("/organisation/invite-educator/join", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	// Construct the email input
-	const input = {
-		email: account.email,
-		recipient: profile.displayName,
+	// Fetch the mail instance associated with the account
+	let mail;
+	try {
+		mail = await Mail.findOne({ email: account.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Create the email object
+	const options = {
+		recipient: account.email,
+		name: profile.displayName,
+		receive: "educator-accept",
+		notification: "onboarding",
+		tone: "friendly",
+		noSpace: true,
+		help: true,
+		social: true,
 		orgName: organisation.name,
 		orgId: organisation.metadata.id,
 		eduCode: organisation.join.educator,
 		lerCode: organisation.join.learner,
 	};
-	let mail;
+	let status;
 	try {
-		mail = await email.create(input, "educator-accept");
+		status = await mail.sendEmail(options);
 	} catch (data) {
 		return res.send(data);
 	}
+	// Save the updates
 	try {
-		await email.send(mail);
-	} catch (data) {
-		return res.send(data);
+		await mail.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: undefined });
@@ -575,18 +617,37 @@ router.post("/organisation/educator-join/request", async (req, res) => {
 		}
 	}
 	const url = `${account1.email}__${organisation.metadata.id}__${orgName}__${organisation.join.educator}__${license1.join.code}`;
-	// Construct the email input
-	const input = { email: account2.email, sender: profile1.displayName, recipient: profile2.displayName, url, orgName: organisation.name };
+	// Fetch the mail instance associated with the account
 	let mail;
 	try {
-		mail = await email.create(input, "educator-join");
+		mail = await Mail.findOne({ email: account2.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Create the email object
+	const options = {
+		recipient: account2.email,
+		name: profile2.displayName,
+		receive: "educator-join",
+		notification: "general",
+		tone: "friendly",
+		help: true,
+		social: true,
+		inviter: profile1.displayName,
+		url,
+		orgName: organisation.name,
+	};
+	let status;
+	try {
+		status = await mail.sendEmail(options);
 	} catch (data) {
 		return res.send(data);
 	}
+	// Save the updates
 	try {
-		await email.send(mail);
-	} catch (data) {
-		return res.send(data);
+		await mail.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: undefined });
@@ -658,25 +719,39 @@ router.post("/organisation/educator-join/accept", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	// Construct the email input
-	const input = {
-		email: account.email,
-		recipient: profile.displayName,
+	// Fetch the mail instance associated with the account
+	let mail;
+	try {
+		mail = await Mail.findOne({ email: account.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Create the email object
+	const options = {
+		recipient: account.email,
+		name: profile.displayName,
+		receive: "educator-accept",
+		notification: "onboarding",
+		tone: "friendly",
+		noSpace: true,
+		help: true,
+		social: true,
 		orgName: organisation.name,
 		orgId: organisation.metadata.id,
 		eduCode: organisation.join.educator,
 		lerCode: organisation.join.learner,
 	};
-	let mail;
+	let status;
 	try {
-		mail = await email.create(input, "educator-accept");
+		status = await mail.sendEmail(options);
 	} catch (data) {
 		return res.send(data);
 	}
+	// Save the updates
 	try {
-		await email.send(mail);
-	} catch (data) {
-		return res.send(data);
+		await mail.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: undefined });
@@ -771,7 +846,7 @@ router.post("/organisation/admin/read", async (req, res) => {
 		date: organisation.date,
 		metadata: organisation.metadata,
 		licenses: [],
-		classes: []
+		classes: [],
 	};
 	let contentTwo = [];
 	for (let i = 0; i < licenses.length; i++) {
@@ -791,8 +866,11 @@ router.post("/organisation/admin/read", async (req, res) => {
 			status: "free", // Temporary
 			access: license.access,
 			date: license.date,
-			profile: { 
-				displayName: profile.displayName, account: contentThree, saves: profile.saves },
+			profile: {
+				displayName: profile.displayName,
+				account: contentThree,
+				saves: profile.saves,
+			},
 		});
 	}
 	contentOne.licenses = contentTwo;
