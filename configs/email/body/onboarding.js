@@ -17,14 +17,14 @@ onboarding.construct = function (object = {}) {
 onboarding.welcome = function (object = {}) {
 	return [
 		`Welcome to CreateBase, ${object.name}!`,
-		`Welcome to CreateBase! Here is your second task!
+		`We are excited to have you on board!
 
-School accounts are a key part of the CreateBase platform that we call Organisation accounts. To teach with the platform you are required to be associated with an organisation account.
+To fully utilise the CreateBase platform, we recommend that you associate your account with an organisation. You can either register a new organisation onto our platform or join an existing one.
 
-<b><a href='${process.env.APP_PREFIX}/user/my-account/org'>Create or join</a></b> an organisation.
+<b><a href='${process.env.APP_PREFIX}/user/my-account/org'>Register or join</a></b> an organisation.
 
 
-<b>Create an Organisation</b>
+<b>Register Your Organisation</b>
 
 To create an account you will need:
 <ul><li>The ID of your school</li><li>The name of your school</li></ul>You can find this information <b><a href='https://www.educationcounts.govt.nz/directories/list-of-nz-schools'>here</a></b>.
@@ -34,9 +34,7 @@ To create an account you will need:
 
 <b>Join an Organisation</b>
 
-If your school already exists on the CreateBase platform, you will need to join it using the code emailed to the teacher who registered your organisation on our platform.
-
-If your school already exists on the CreateBase platform, you will need to join instead. Here are the different ways you can join the organisation:
+If your organisation already exists on the CreateBase platform, you will need to join instead. Here are the different ways you can join the organisation:
 <ul><li>Get the invitation link from the teacher who registered your organisation to automatically join the organisation.</li><li>Get the code for educators from the teacher who registered your organisation, and manually join the organisation.</li></ul><b><a href='https://youtu.be/AQ6acGxQZwE'>Here is a video</a></b> on how to join an organisation.`,
 	];
 };

@@ -23,11 +23,11 @@ general.inquiry = function (object = {}) {
 general.accountVerification = function (object = {}) {
 	return [
 		`Your Verification Code: ${object.code}`,
-		`Thank you for registering an account with us! Here is your first task!
+		`Thank you for creating an account with us! Before we get started, please verify your account.
 
-Verify your account using this code: <b>${object.code}</b>
+<b><a href="${process.env.APP_PREFIX}/verify/${object.email}__${object.code}">Click this link</a></b> to verify your account.
 
-<b><a href='${process.env.APP_PREFIX}/verify/${object.email}__${object.code}'>Click this link</a></b> to verify your account!`,
+Or, you can enter your verification code <b><a href="${process.env.APP_PREFIX}/user/my-account/verification">here</a></b>.`,
 	];
 };
 
