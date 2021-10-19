@@ -7,6 +7,7 @@ const path = require("path");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
+const { google } = require("googleapis");
 const viewsOption = { root: path.join(__dirname, "../views") };
 
 // MODELS ===================================================
@@ -149,6 +150,56 @@ router.post("/mail/retrieve-options", async (req, res) => {
 	if (!mail) return res.send({ status: "failed", content: "mail instance does not exist" });
 	// Success handler
 	return res.send({ status: "succeeded", content: mail.notification });
+});
+
+// @route   POST /mail/admin/update-cold-emails
+// @desc
+// @access
+router.post("/mail/admin/update-cold-emails", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error" });
+	}
+	// Validate if the ADMIN_API_KEY match
+	if (req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
+		return res.send({ status: "critical error" });
+	}
+	// Set authentication
+	const auth = new google.auth.GoogleAuth({
+		keyFile: "credentials.json",
+		scopes: "https://www.googleapis.com/auth/spreadsheets",
+	});
+	// Create client instance for auth
+	const client = await auth.getClient();
+	// Create instance of Google Sheets API
+	const googleSheets = google.sheets({ version: "v4", auth: client });
+	// https://docs.google.com/spreadsheets/d/1rAkSeFlOyLNeLCr3GPwI7TG8sHc9AOpnF1VMD9Qt1vM/edit?usp=sharing
+	const spreadsheetId = "1rAkSeFlOyLNeLCr3GPwI7TG8sHc9AOpnF1VMD9Qt1vM";
+	// Read rows from spreadsheet
+	const nz = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: "New Zealand" });
+	nz.data.values.shift();
+	for (let i = 0; i < nz.data.values.length; i++) {
+		const name = nz.data.values[i][0];
+		const email = nz.data.values[i][1];
+		const school = nz.data.values[i][2];
+		const segment = nz.data.values[i][3];
+		// Check if a mail instance with this email exist
+		let mail;
+		try {
+			mail = await Mail.findOne({ email });
+		} catch (error) {
+			return res.send({ status: "error", content: error });
+		}
+		if (mail) continue;
+		mail = new Mail({ email, notification: { cold: true }, metadata: { name, school, segment, country: "nz" } });
+		try {
+			await mail.save();
+		} catch (error) {
+			return res.send({ status: "error", content: error });
+		}
+	}
+	// Success handler
+	return res.send({ status: "succeeded" });
 });
 
 // FUNCTIONS ================================================
