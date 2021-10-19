@@ -269,27 +269,40 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 		return res.send({ status: "error", content: error });
 	}
 	// Send emails
+	let promises = [];
 	for (let i = 0; i < mails.length; i++) {
-		let mail = mails[i];
-		const options = {
-			recipient: mail.email,
-			receive: `test-${mail.metadata.country}-${mail.metadata.segment}`,
-			notification: "cold",
-			tone: "formal",
-			school: mail.metadata.school,
-		};
-		let status;
-		try {
-			status = await mail.sendEmail(options);
-		} catch (data) {
-			return res.send(data);
-		}
-		// Save the updates
-		try {
-			await mail.save();
-		} catch (error) {
-			return res.send({ status: "error", content: error });
-		}
+		const promise = new Promise((resolve, reject) => {
+			setTimeout(async function () {
+				let mail = mails[i];
+				const options = {
+					recipient: mail.email,
+					receive: `test-${mail.metadata.country}-${mail.metadata.segment}`,
+					notification: "cold",
+					tone: "formal",
+					school: mail.metadata.school,
+				};
+				let status;
+				try {
+					status = await mail.sendEmail(options);
+				} catch (data) {
+					return reject(data);
+				}
+				// Save the updates
+				try {
+					await mail.save();
+				} catch (error) {
+					return reject({ status: "error", content: error });
+				}
+				return resolve();
+			}, i * 25);
+		});
+		promises.push(promise);
+	}
+	// Wait for the emails to be sent
+	try {
+		await Promise.all(promises);
+	} catch (data) {
+		return res.send(data);
 	}
 	// Success handler
 	return res.send({ status: "succeeded" });
