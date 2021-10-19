@@ -275,7 +275,8 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 			recipient: mail.email,
 			receive: `test-${mail.metadata.country}-${mail.metadata.segment}`,
 			notification: "cold",
-			tone: "friendly",
+			tone: "formal",
+			school: mail.metadata.school,
 		};
 		let status;
 		try {
