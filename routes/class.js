@@ -1,294 +1,280 @@
 // MODULES ==================================================
 
 const express = require("express");
+const retrieve = require("../algorithms/retrieve.js");
 
 // VARIABLES ================================================
 
 const router = new express.Router();
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
+
+// MIDDLEWARE ===============================================
+
+const checkAPIKeys = (public = false, private = false, admin = false) => {
+	return (req, res, next) => {
+		if (public && req.body.PUBLIC_API_KEY !== process.env.PUBLIC_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		if (private && req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		if (admin && req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		return next();
+	};
+};
 
 // MODELS ===================================================
 
+const Account = require("../model/Account.js");
 const Class = require("../model/Class.js");
+const Group = require("../model/Group.js");
 const License = require("../model/License.js");
-const ProjectConfig = require("../model/ProjectConfig.js");
+const Mail = require("../model/Mail.js");
+const Profile = require("../model/Profile.js");
 
 // ROUTES ===================================================
 
 // @route   POST /class/create
 // @desc
-// @access  PUBLIC
-router.post("/class/create", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Create the instance object
-	const object = new Object({
-		organisation: req.body.input.organisation,
-		admin: req.body.input.admin,
-		name: req.body.input.name,
-		date: { created: req.body.input.date, modified: req.body.input.date },
-	});
-	// Create the instance
+// @access
+router.post("/class/create", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { group: "", class: "" };
+	// Generate a unique join code, fetch the group of interest
+	// and check if class name is unique
+	let code;
+	let group;
+	let instance;
+	const promises1 = [Class.generateCode(), Group.findOne({ _id: input.group }), Class.findOne({ name: input.name })];
 	try {
-		await Class.build(object);
+		[code, group, instance] = await Promise.all(promises1);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!group) {
+		failed.group = "does not exist";
+		return res.send({ status: "failed", content: failed });
+	}
+	if (instance) {
+		failed.class = "taken";
+		return res.send({ status: "failed", content: failed });
+	}
+	// Create the class instance
+	instance = new Class({ name: input.name, subject: input.subject, code });
+	// Create links between instances
+	group.classes.push(instance._id);
+	instance.group = group._id;
+	// Save the updated instances
+	group.date.modified = input.date;
+	const promises2 = [group.save(), instance.save()];
+	try {
+		await Promise.all(promises2);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: { class: instance } });
+});
+
+// @route   POST /class/add-member
+// @desc
+// @access
+router.post("/class/add-member", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { class: "", license: "" };
+	// Fetch the class of interest and the license to be added
+	let instance;
+	let license;
+	const promises1 = [Class.findOne({ _id: input.class }), License.findOne({ _id: input.license })];
+	try {
+		[instance, license] = await Promise.all(promises1);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!instance) {
+		failed.class = "does not exist";
+		return res.send({ status: "failed", content: failed });
+	}
+	if (!license) {
+		failed.license = "does not exist";
+		return res.send({ status: "failed", content: failed });
+	}
+	// Create the link between instances
+	instance.licenses.push(license._id);
+	license.classes.push(instance._id);
+	// Save the instances
+	license.date.modified = input.date;
+	const promises2 = [instance.save(), license.save()];
+	try {
+		await Promise.all(promises2);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: { class: instance, license } });
+});
+
+// @route   POST /class/remove-member
+// @desc
+// @access
+router.post("/class/remove-member", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { class: "", license: "" };
+	// Fetch the class of interest and the license to be added
+	let instance;
+	let license;
+	const promises1 = [Class.findOne({ _id: input.class }), License.findOne({ _id: input.license })];
+	try {
+		[instance, license] = await Promise.all(promises1);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!instance) {
+		failed.class = "does not exist";
+		return res.send({ status: "failed", content: failed });
+	}
+	if (!license) {
+		failed.license = "does not exist";
+		return res.send({ status: "failed", content: failed });
+	}
+	// Remove the link between instances
+	instance.licenses = instance.licenses.filter((licenseId) => licenseId.toString() !== license._id.toString());
+	license.classes = license.classes.filter((classId) => classId.toString() !== instance._id.toString());
+	// Save the instances
+	license.date.modified = input.date;
+	const promises2 = [instance.save(), license.save()];
+	try {
+		await Promise.all(promises2);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: { class: instance, license } });
+});
+
+// @route   POST /class/retrieve
+// @desc
+// @access
+router.post("/class/retrieve", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Fetch the class instance
+	let classes;
+	try {
+		classes = await Class.find(input.query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!classes.length) return res.send({ status: "failed", content: { classes: "do not exist" } });
+	// Fetch the classes details
+	try {
+		classes = await retrieve.classes(classes, input.option);
 	} catch (data) {
 		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
+	return res.send({ status: "succeeded", content: classes });
 });
 
-// @route   POST /class/archive
+// @route		POST /class/update
 // @desc
-// @access  PUBLIC
-router.post("/class/archive", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
+// @access
+router.post("/class/update", checkAPIKeys(false, true), async (req, res) => {});
 
-// @route   POST /class/delete
+// @route		POST /class/metadata/update
 // @desc
-// @access  PUBLIC
-router.post("/class/delete", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// DATA -----------------------------------------------------
-
-// @route   POST /class/data/read
-// @desc
-// @access  PUBLIC
-router.post("/class/data/read", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// @route   POST /class/data/update
-// @desc
-// @access  PUBLIC
-router.post("/class/data/update", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// @route   POST /class/data/delete
-// @desc
-// @access  PUBLIC
-router.post("/class/data/delete", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// MEMBER ---------------------------------------------------
-
-// @route   POST /class/member/add-educators
-// @desc
-// @access  PUBLIC
-router.post("/class/member/add-educators", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// @route   POST /class/member/remove-educators
-// @desc
-// @access  PUBLIC
-router.post("/class/member/remove-educators", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// @route   POST /class/member/join-educator
-// @desc
-// @access  PUBLIC
-router.post("/class/member/join-educator", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// @route   POST /class/member/leave-educator
-// @desc
-// @access  PUBLIC
-router.post("/class/member/leave-educator", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// @route   POST /class/member/add-learners
-// @desc
-// @access  PUBLIC
-router.post("/class/member/add-learners", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Fetch the class
-	let classInstance;
+// @access
+router.post("/class/metadata/update", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { class: "" };
+	// Fetch the class of interest
+	let instance;
 	try {
-		classInstance = await Class.findOne({ organisation: req.body.input.organisation, name: req.body.input.name });
+		instance = await Class.findOne({ _id: input.class });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!classInstance) return res.send({ status: "error", content: "no class found" });
-	// Validate if the user can add learners
-	if (classInstance.educators.indexOf(req.body.input.license) === -1 && classInstance.admin !== req.body.input.license) {
-		return res.send({ status: "error", content: "invalid access" });
+	if (!instance) {
+		failed.class = "does not exist";
+		return res.send({ status: "failed", content: failed });
 	}
-	// Fetch the licenses
-	let licenses;
+	// Update metadata
+	Object.assign(instance.metadata, input.metadata);
+	// Save the updates
+	instance.date.modified = input.date;
+	instance.markModified("metadata");
 	try {
-		licenses = await License.find({ organisation: req.body.input.organisation, username: req.body.input.usernames });
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	let licenseIds = licenses.map((license) => license._id);
-	// Add the learner licenses onto the class
-	for (let i = 0; i < licenseIds.length; i++) {
-		const licenseId = licenseIds[i];
-		if (classInstance.learners.indexOf(licenseId) === -1) {
-			classInstance.learners.push(licenseId);
-		}
-	}
-	// Save changes
-	classInstance.date.modified = req.body.input.date;
-	try {
-		await classInstance.save();
+		instance.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
+	return res.send({ status: "succeeded", content: instance.metadata });
 });
 
-// @route   POST /class/member/remove-learners
+// @route		POST /class/metadata/read
 // @desc
-// @access  PUBLIC
-router.post("/class/member/remove-learners", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// @route   POST /class/member/join-learner
-// @desc
-// @access  PUBLIC
-router.post("/class/member/join-learner", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// @route   POST /class/member/leave-learner
-// @desc
-// @access  PUBLIC
-router.post("/class/member/leave-learner", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
-
-// PROJECT --------------------------------------------------
-
-// @route   POST /class/project/add
-// @desc
-// @access  PUBLIC
-router.post("/class/project/add", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Fetch the class
-	let classInstance;
+// @access
+router.post("/class/metadata/read", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { class: "" };
+	// Fetch the class of interest
+	let instance;
 	try {
-		classInstance = await Class.findOne({ organisation: req.body.input.organisation, name: req.body.input.name });
+		instance = await Class.findOne({ _id: input.class });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!classInstance) return res.send({ status: "error", content: "no class found" });
-	// Validate if the user can add a project
-	if (classInstance.educators.indexOf(req.body.input.license) === -1 && classInstance.admin !== req.body.input.license) {
-		return res.send({ status: "error", content: "invalid access" });
+	if (!instance) {
+		failed.class = "does not exist";
+		return res.send({ status: "failed", content: failed });
 	}
-	// Set the authors
-	let authors = classInstance.educators ? classInstance.educators : [];
-	if (authors.indexOf(classInstance.admin) === -1) authors.push(classInstance.admin);
-	// Create the project config instance
-	const object = new Object({ authors, project: req.body.input.project });
-	let projectConfig;
+	// Success handler
+	return res.send({ status: "succeeded", content: instance.metadata });
+});
+
+// @route		POST /class/metadata/delete
+// @desc
+// @access
+router.post("/class/metadata/delete", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { class: "" };
+	// Fetch the class of interest
+	let instance;
 	try {
-		projectConfig = await ProjectConfig.build(object);
-	} catch (data) {
-		return res.send(data);
+		instance = await Class.findOne({ _id: input.class });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
-	// Update the class
-	classInstance.projects.push(projectConfig._id);
-	classInstance.date.modified = req.body.input.date;
+	if (!instance) {
+		failed.class = "does not exist";
+		return res.send({ status: "failed", content: failed });
+	}
+	// Delete metadata
+	for (let i = 0; i < input.properties.length; i++) {
+		const property = input.properties[i];
+		delete instance.metadata[property];
+	}
+	// Save the updates
+	instance.date.modified = input.date;
+	instance.markModified("metadata");
 	try {
-		await classInstance.save();
+		instance.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
+	return res.send({ status: "succeeded", content: instance.metadata });
 });
 
-// @route   POST /class/project/remove
-// @desc
-// @access  PUBLIC
-router.post("/class/project/remove", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: undefined });
-});
+// FUNCTIONS ================================================
 
 // EXPORT ===================================================
 

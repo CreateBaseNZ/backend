@@ -12,7 +12,7 @@ const email = require("../configs/email/main.js");
 // MODEL ====================================================
 
 const MailSchema = new Schema({
-	email: { type: Schema.Types.String, required: true },
+	email: { type: Schema.Types.String, default: "" },
 	account: { type: Schema.Types.ObjectId },
 	received: { type: [Schema.Types.String], default: new Array() },
 	notification: {
