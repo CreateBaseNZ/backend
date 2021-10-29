@@ -56,7 +56,7 @@ router.post("/signup", checkAPIKeys(false, true), async (req, res) => {
 		date: { created: input.date, modified: input.date },
 	});
 	let profile = new Profile({
-		name: { first: input.first, last: input.last },
+		name: { first: input.name.first, last: input.name.last },
 		date: { created: input.date, modified: input.date, visited: input.date },
 	});
 	// Check if a mail instance exist with this email
