@@ -354,10 +354,10 @@ router.post("/account/reset-password/email", checkAPIKeys(false, true), async (r
 	return res.send({ status: "succeeded" });
 });
 
-// @route   POST /account/reset-password/set
+// @route   POST /account/reset-password/verify
 // @desc
 // @access
-router.post("/account/reset-password/set", checkAPIKeys(false, true), async (req, res) => {
+router.post("/account/reset-password/verify", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
 	// Initialise failed handler
 	let failed = { account: "", code: "" };
@@ -377,6 +377,28 @@ router.post("/account/reset-password/set", checkAPIKeys(false, true), async (req
 		account.matchCode(input.code, "resetPassword");
 	} catch (error) {
 		failed.code = error;
+		return res.send({ status: "failed", content: failed });
+	}
+	// Success handler
+	return res.send({ status: "succeeded" });
+});
+
+// @route   POST /account/reset-password/set
+// @desc
+// @access
+router.post("/account/reset-password/set", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { account: "" };
+	// Check if an account with this email exist
+	let account;
+	try {
+		account = await Account.findOne({ email: input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) {
+		failed.account = "does not exist";
 		return res.send({ status: "failed", content: failed });
 	}
 	// Set the password
