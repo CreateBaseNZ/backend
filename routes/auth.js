@@ -125,7 +125,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	// Initialise failed handler
 	let failed = { account: "", profile: "" };
 	// Initialise the session object
-	let session = { groups: [] };
+	let session = { groups: [], recentGroups: [] };
 	// Fetch the account instance
 	let account;
 	try {
@@ -187,7 +187,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 		} else if (group.type === "family") {
 			numOfUsers = { members: group.licenses.active.length };
 		}
-		session.groups.push({
+		const object = {
 			licenseId: licenses[i]._id,
 			id: group._id,
 			number: group.number,
@@ -195,9 +195,13 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 			role: licenses[i].role,
 			type: group.type,
 			numOfUsers,
-		});
+			verified: group.verified,
+		};
+		session.groups.push(object);
+		if (session.recentGroups.length < 3) session.recentGroups.push(object);
 	}
 	session.numOfGroups = session.groups.length;
+	session.isViewingGroup = session.numOfGroups < 2;
 	// Update profile's last visit
 	profile.date.visited = input.date;
 	try {
