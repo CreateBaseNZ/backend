@@ -124,7 +124,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	// Initialise failed handler
 	let failed = { account: "", profile: "" };
 	// Initialise the session object
-	let session = { groups: [] };
+	let session = { recentGroups: [] };
 	// Fetch the account instance
 	let account;
 	try {
@@ -136,8 +136,9 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 		failed.account = "does not exist";
 		return res.send({ status: "failed", content: failed });
 	}
-	session.account = account._id;
+	session.accountId = account._id;
 	session.verified = account.verified.status;
+	session.email = account.email;
 	// Fetch the profile instance
 	let profile;
 	try {
@@ -149,7 +150,9 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 		failed.profile = "does not exist";
 		return res.send({ status: "failed", content: failed });
 	}
-	session.profile = profile._id;
+	session.profileId = profile._id;
+	session.firstName = profile.name.first;
+	session.lastName = profile.name.last;
 	// Construct group details
 	for (let i = 0; i < profile.licenses.length; i++) {
 		// TODO: Construct group details

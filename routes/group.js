@@ -67,7 +67,7 @@ router.post("/group/school/register", checkAPIKeys(false, true), async (req, res
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: { group } });
+	return res.send({ status: "succeeded", content: group });
 });
 
 // @route   POST /group/add-member
