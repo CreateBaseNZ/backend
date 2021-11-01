@@ -68,7 +68,7 @@ router.post("/license/update", checkAPIKeys(false, true), async (req, res) => {
 	// Fetch the license instance
 	let license;
 	try {
-		license = await Profile.findOne(input.query);
+		license = await License.findOne(input.query);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -88,8 +88,6 @@ router.post("/license/update", checkAPIKeys(false, true), async (req, res) => {
 // @access
 router.post("/license/delete-metadata", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { license: "" };
 	// Fetch the license of interest
 	let license;
 	try {
@@ -97,18 +95,15 @@ router.post("/license/delete-metadata", checkAPIKeys(false, true), async (req, r
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!license) {
-		failed.license = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
+	if (!license) res.send({ status: "failed", content: { license: "does not exist" } });
 	// Delete metadata
 	for (let i = 0; i < input.properties.length; i++) {
 		const property = input.properties[i];
 		delete license.metadata[property];
 	}
+	license.markModified("metadata");
 	// Save the updates
 	license.date.modified = input.date;
-	license.markModified("metadata");
 	try {
 		await license.save();
 	} catch (error) {

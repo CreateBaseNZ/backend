@@ -2,6 +2,7 @@
 
 const express = require("express");
 const retrieve = require("../algorithms/retrieve.js");
+const classUpdate = require("../algorithms/class/update.js");
 
 // VARIABLES ================================================
 
@@ -183,47 +184,31 @@ router.post("/class/retrieve", checkAPIKeys(false, true), async (req, res) => {
 // @route		POST /class/update
 // @desc
 // @access
-router.post("/class/update", checkAPIKeys(false, true), async (req, res) => {});
-
-// @route		POST /class/metadata/update
-// @desc
-// @access
-router.post("/class/metadata/update", checkAPIKeys(false, true), async (req, res) => {
+router.post("/class/update", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { class: "" };
-	// Fetch the class of interest
+	// Fetch the class instance
 	let instance;
 	try {
-		instance = await Class.findOne({ _id: input.class });
+		instance = await Class.findOne(input.query);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!instance) {
-		failed.class = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
-	// Update metadata
-	Object.assign(instance.metadata, input.metadata);
-	// Save the updates
-	instance.date.modified = input.date;
-	instance.markModified("metadata");
+	if (!instance) return res.send({ status: "failed", content: { class: "does not exist" } });
+	// Update the class instance
 	try {
-		instance.save();
-	} catch (error) {
-		return res.send({ status: "error", content: error });
+		instance = await classUpdate.main(instance, input.updates, input.date);
+	} catch (data) {
+		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: instance.metadata });
+	return res.send({ status: "succeeded", content: instance });
 });
 
-// @route		POST /class/metadata/read
+// @route		POST /class/delete-metadata
 // @desc
 // @access
-router.post("/class/metadata/read", checkAPIKeys(false, true), async (req, res) => {
+router.post("/class/delete-metadata", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { class: "" };
 	// Fetch the class of interest
 	let instance;
 	try {
@@ -231,42 +216,17 @@ router.post("/class/metadata/read", checkAPIKeys(false, true), async (req, res) 
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!instance) {
-		failed.class = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: instance.metadata });
-});
-
-// @route		POST /class/metadata/delete
-// @desc
-// @access
-router.post("/class/metadata/delete", checkAPIKeys(false, true), async (req, res) => {
-	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { class: "" };
-	// Fetch the class of interest
-	let instance;
-	try {
-		instance = await Class.findOne({ _id: input.class });
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	if (!instance) {
-		failed.class = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
+	if (!instance) res.send({ status: "failed", content: { class: "does not exist" } });
 	// Delete metadata
 	for (let i = 0; i < input.properties.length; i++) {
 		const property = input.properties[i];
 		delete instance.metadata[property];
 	}
+	instance.markModified("metadata");
 	// Save the updates
 	instance.date.modified = input.date;
-	instance.markModified("metadata");
 	try {
-		instance.save();
+		await instance.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}

@@ -345,30 +345,23 @@ router.post("/account/reset-password/set", checkAPIKeys(false, true), async (req
 // @access
 router.post("/account/retrieve", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { account: "" };
 	// Fetch the account of interest
-	let account;
+	let accounts;
 	try {
-		account = await Account.findOne({ _id: input.account });
+		accounts = await Account.find(input.query);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!account) {
-		failed.account = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
+	if (!accounts.length) return res.send({ status: "failed", content: { accounts: "do not exist" } });
 	// Success handler
-	return res.send({ status: "succeeded", content: account });
+	return res.send({ status: "succeeded", content: accounts });
 });
 
-// @route		POST /account/metadata/update
+// @route		POST /account/update-metadata
 // @desc
 // @access
-router.post("/account/metadata/update", checkAPIKeys(false, true), async (req, res) => {
+router.post("/account/update-metadata", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { account: "" };
 	// Fetch the account of interest
 	let account;
 	try {
@@ -376,17 +369,14 @@ router.post("/account/metadata/update", checkAPIKeys(false, true), async (req, r
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!account) {
-		failed.account = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
+	if (!account) return res.send({ status: "failed", content: { account: "does not exist" } });
 	// Update metadata
 	Object.assign(account.metadata, input.metadata);
+	account.markModified("metadata");
 	// Save the updates
 	account.date.modified = input.date;
-	account.markModified("metadata");
 	try {
-		account.save();
+		await account.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -394,13 +384,11 @@ router.post("/account/metadata/update", checkAPIKeys(false, true), async (req, r
 	return res.send({ status: "succeeded", content: account.metadata });
 });
 
-// @route		POST /account/metadata/read
+// @route		POST /account/delete-metadata
 // @desc
 // @access
-router.post("/account/metadata/read", checkAPIKeys(false, true), async (req, res) => {
+router.post("/account/delete-metadata", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { account: "" };
 	// Fetch the account of interest
 	let account;
 	try {
@@ -408,42 +396,17 @@ router.post("/account/metadata/read", checkAPIKeys(false, true), async (req, res
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!account) {
-		failed.account = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: account.metadata });
-});
-
-// @route		POST /account/metadata/delete
-// @desc
-// @access
-router.post("/account/metadata/delete", checkAPIKeys(false, true), async (req, res) => {
-	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { account: "" };
-	// Fetch the account of interest
-	let account;
-	try {
-		account = await Account.findOne({ _id: input.account });
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	if (!account) {
-		failed.account = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
+	if (!account) return res.send({ status: "failed", content: { account: "does not exist" } });
 	// Delete metadata
 	for (let i = 0; i < input.properties.length; i++) {
 		const property = input.properties[i];
 		delete account.metadata[property];
 	}
+	account.markModified("metadata");
 	// Save the updates
 	account.date.modified = input.date;
-	account.markModified("metadata");
 	try {
-		account.save();
+		await account.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}

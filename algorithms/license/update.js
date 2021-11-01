@@ -3,7 +3,7 @@
 // VARIABLES ================================================
 
 let licenseUpdate = {
-	properties: ["role"],
+	types: ["role", "metadata"],
 	main: undefined,
 };
 
@@ -26,6 +26,7 @@ licenseUpdate.main = (license, updates, date, save = true) => {
 			if (licenseUpdate.types.indexOf(updates[i].type) === -1) failed[updates[i].type] = "invalid type";
 		}
 		if (Object.keys(failed).length) return reject({ status: "failed", content: failed });
+		// Update the properties
 		for (let j = 0; j < updates.length; j++) {
 			const type = updates[j].type;
 			const update = updates[j].update;

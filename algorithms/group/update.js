@@ -3,7 +3,7 @@
 // VARIABLES ================================================
 
 let groupUpdate = {
-	properties: ["name"],
+	types: ["name", "metadata"],
 	main: undefined,
 };
 
@@ -22,20 +22,34 @@ groupUpdate.main = (group, update, date) => {
 	return new Promise(async (resolve, reject) => {
 		// Check if all properties are valid
 		let failed = {};
-		for (const property in update) {
-			if (groupUpdate.properties.indexOf(property) === -1) failed[property] = "invalid property";
+		for (let i = 0; i < updates.length; i++) {
+			if (groupUpdate.types.indexOf(updates[i].type) === -1) failed[updates[i].type] = "invalid type";
 		}
 		if (Object.keys(failed).length) return reject({ status: "failed", content: failed });
 		// Update the properties
-		for (const property in update) {
-			switch (property) {
+		for (let j = 0; j < updates.length; j++) {
+			const type = updates[j].type;
+			const update = updates[j].update;
+			switch (type) {
+				case "metadata":
+					Object.assign(group.metadata, update);
+					group.markModified("metadata");
+					break;
 				default:
-					group[property] = update[property];
+					group[type] = update;
 					break;
 			}
 		}
 		// Update the date modified
 		group.date.modified = date;
+		// Save the changes
+		if (save) {
+			try {
+				await group.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+		}
 		// Success handler
 		return resolve(group);
 	});

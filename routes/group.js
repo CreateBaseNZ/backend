@@ -2,6 +2,7 @@
 
 const express = require("express");
 const retrieve = require("../algorithms/retrieve.js");
+const groupUpdate = require("../algorithms/group/update.js");
 
 // VARIABLES ================================================
 
@@ -211,6 +212,12 @@ router.post("/group/retrieve-by-code", checkAPIKeys(false, true), async (req, re
 		failed.group = "does not exist";
 		return res.send({ status: "failed", content: failed });
 	}
+	// Fetch the groups details
+	try {
+		group = (await retrieve.groups([group], input.option))[0];
+	} catch (data) {
+		return res.send(data);
+	}
 	// Success handler
 	return res.send({ status: "succeeded", content: group });
 });
@@ -241,47 +248,31 @@ router.post("/group/retrieve", checkAPIKeys(false, true), async (req, res) => {
 // @route		POST /group/update
 // @desc
 // @access
-router.post("/group/update", checkAPIKeys(false, true), async (req, res) => {});
-
-// @route		POST /group/metadata/update
-// @desc
-// @access
-router.post("/group/metadata/update", checkAPIKeys(false, true), async (req, res) => {
+router.post("/group/update", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { group: "" };
-	// Fetch the group of interest
+	// Fetch the group instance
 	let group;
 	try {
-		group = await Group.findOne({ _id: input.group });
+		group = await Group.findOne(input.query);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!group) {
-		failed.group = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
-	// Update metadata
-	Object.assign(group.metadata, input.metadata);
-	// Save the updates
-	group.date.modified = input.date;
-	group.markModified("metadata");
+	if (!group) return res.send({ status: "failed", content: { group: "does not exist" } });
+	// Update the group instance
 	try {
-		group.save();
-	} catch (error) {
-		return res.send({ status: "error", content: error });
+		group = await groupUpdate.main(group, input.updates, input.date);
+	} catch (data) {
+		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: group.metadata });
+	return res.send({ status: "succeeded", content: group });
 });
 
-// @route		POST /group/metadata/read
+// @route		POST /group/delete-metadata
 // @desc
 // @access
-router.post("/group/metadata/read", checkAPIKeys(false, true), async (req, res) => {
+router.post("/group/delete-metadata", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { group: "" };
 	// Fetch the group of interest
 	let group;
 	try {
@@ -289,42 +280,17 @@ router.post("/group/metadata/read", checkAPIKeys(false, true), async (req, res) 
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!group) {
-		failed.group = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: group.metadata });
-});
-
-// @route		POST /group/metadata/delete
-// @desc
-// @access
-router.post("/group/metadata/delete", checkAPIKeys(false, true), async (req, res) => {
-	const input = req.body.input;
-	// Initialise failed handler
-	let failed = { group: "" };
-	// Fetch the group of interest
-	let group;
-	try {
-		group = await Group.findOne({ _id: input.group });
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	if (!group) {
-		failed.group = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
+	if (!group) return res.send({ status: "failed", content: { group: "does not exist" } });
 	// Delete metadata
 	for (let i = 0; i < input.properties.length; i++) {
 		const property = input.properties[i];
 		delete group.metadata[property];
 	}
+	group.markModified("metadata");
 	// Save the updates
 	group.date.modified = input.date;
-	group.markModified("metadata");
 	try {
-		group.save();
+		await group.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}

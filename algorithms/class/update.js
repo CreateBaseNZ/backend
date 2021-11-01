@@ -3,7 +3,7 @@
 // VARIABLES ================================================
 
 let classUpdate = {
-	properties: [],
+	types: ["metadata"],
 	main: undefined,
 };
 
@@ -18,20 +18,36 @@ const Profile = require("../../model/Profile.js");
 
 // FUNCTIONS ================================================
 
-classUpdate.main = (instance, update, date) => {
+classUpdate.main = (instance, updates, date, save = true) => {
 	return new Promise(async (resolve, reject) => {
 		// Check if all properties are valid
 		let failed = {};
-		for (const property in update) {
-			if (classUpdate.properties.indexOf(property) === -1) failed[property] = "invalid property";
+		for (let i = 0; i < updates.length; i++) {
+			if (classUpdate.types.indexOf(updates[i].type) === -1) failed[updates[i].type] = "invalid type";
 		}
 		if (Object.keys(failed).length) return reject({ status: "failed", content: failed });
 		// Update the properties
-		for (const property in update) {
-			switch (property) {
-				default:
-					instance[property] = update[property];
+		for (let j = 0; j < updates.length; j++) {
+			const type = updates[j].type;
+			const update = updates[j].update;
+			switch (type) {
+				case "metadata":
+					Object.assign(instance.metadata, update);
+					instance.markModified("metadata");
 					break;
+				default:
+					instance[type] = update;
+					break;
+			}
+		}
+		// Update the date modified
+		instance.date.modified = date;
+		// Save the changes
+		if (save) {
+			try {
+				await instance.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
 			}
 		}
 		// Success handler
