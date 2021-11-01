@@ -1,6 +1,7 @@
 // MODULES ==================================================
 
 const express = require("express");
+const retrieve = require("../algorithms/retrieve.js");
 const mailer = require("../configs/email/main.js");
 
 // VARIABLES ================================================
@@ -124,7 +125,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	// Initialise failed handler
 	let failed = { account: "", profile: "" };
 	// Initialise the session object
-	let session = { recentGroups: [] };
+	let session = { groups: [] };
 	// Fetch the account instance
 	let account;
 	try {
@@ -153,9 +154,56 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	session.profileId = profile._id;
 	session.firstName = profile.name.first;
 	session.lastName = profile.name.last;
+	// Fetch the licenses
+	let licenses;
+	try {
+		licenses = await License.find({ _id: profile.licenses });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
 	// Construct group details
-	for (let i = 0; i < profile.licenses.length; i++) {
-		// TODO: Construct group details
+	for (let i = 0; i < licenses.length; i++) {
+		// Fetch the group associated with the license
+		let group;
+		try {
+			group = await Group.findOne({ _id: licenses[i].group });
+		} catch (error) {
+			return res.send({ status: "error", content: error });
+		}
+		// Create the group session object
+		let numOfUsers;
+		if (group.type === "school") {
+			// Fetch group details
+			try {
+				group = (await retrieve.groups([group], { license: [] }))[0];
+			} catch (data) {
+				return res.send(data);
+			}
+			numOfUsers = {
+				admins: group.licenses.active.filter((license) => license.role === "admin").length,
+				teachers: group.licenses.active.filter((license) => license.role === "teacher").length,
+				students: group.licenses.active.filter((license) => license.role === "student").length,
+			};
+		} else if (group.type === "family") {
+			numOfUsers = { members: group.licenses.active.length };
+		}
+		session.groups.push({
+			licenseId: licenses[i]._id,
+			id: group._id,
+			number: group.number,
+			name: group.name,
+			role: licenses[i].role,
+			type: group.type,
+			numOfUsers,
+		});
+	}
+	session.numOfGroups = session.groups.length;
+	// Update profile's last visit
+	profile.date.visited = input.date;
+	try {
+		await profile.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: session });
@@ -236,6 +284,7 @@ router.post("/account/verification/verify", checkAPIKeys(false, true), async (re
 	try {
 		account.matchCode(input.code);
 	} catch (error) {
+		console.log(error);
 		failed.code = error;
 		return res.send({ status: "failed", content: failed });
 	}

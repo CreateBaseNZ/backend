@@ -72,7 +72,7 @@ AccountSchema.methods.updateCode = function (property = "verified") {
 AccountSchema.methods.matchCode = function (code = "", property = "verified") {
 	// TODO: Check if the code expired
 	// Check if the code match
-	if (code !== this[property].code) throw new Error("incorrect");
+	if (code !== this[property].code) throw "incorrect";
 	return;
 };
 
