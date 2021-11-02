@@ -20,7 +20,7 @@ const ClassSchema = new Schema({
 
 // STATICS ==================================================
 
-ClassSchema.statics.generateCode = function () {
+ClassSchema.statics.generateCode = function (group) {
 	return new Promise(async (resolve, reject) => {
 		let code;
 		let unique = false;
@@ -31,7 +31,7 @@ ClassSchema.statics.generateCode = function () {
 			// Check if the join code is already taken
 			let instance;
 			try {
-				instance = await this.findOne({ code });
+				instance = await this.findOne({ group, code });
 			} catch (error) {
 				return reject({ status: "error", content: error });
 			}
