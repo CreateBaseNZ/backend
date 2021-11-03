@@ -201,7 +201,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 		if (session.recentGroups.length < 3) session.recentGroups.push(object);
 	}
 	session.numOfGroups = session.groups.length;
-	session.isViewingGroup = session.numOfGroups < 2;
+	session.isViewingGroup = session.numOfGroups > 0;
 	// Update profile's last visit
 	profile.date.visited = input.date;
 	try {
