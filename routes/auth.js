@@ -198,10 +198,9 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 			verified: group.verified,
 		};
 		session.groups.push(object);
-		if (session.recentGroups.length < 3) session.recentGroups.push(object);
 	}
+	if (profile.saves.recentGroups) session.recentGroups = profile.saves.recentGroups;
 	session.numOfGroups = session.groups.length;
-	session.isViewingGroup = session.numOfGroups > 0;
 	// Update profile's last visit
 	profile.date.visited = input.date;
 	try {
