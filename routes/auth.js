@@ -196,6 +196,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 			type: group.type,
 			numOfUsers,
 			verified: group.verified,
+			status: licenses[i].status,
 		};
 		session.groups.push(object);
 	}
