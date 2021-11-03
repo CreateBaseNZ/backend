@@ -91,7 +91,7 @@ router.post("/profile/delete-saves", checkAPIKeys(false, true), async (req, res)
 	// Fetch the profile of interest
 	let profile;
 	try {
-		profile = await Profile.findOne({ _id: input.profile });
+		profile = await Profile.findOne(input.query);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
