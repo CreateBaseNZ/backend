@@ -417,6 +417,33 @@ router.post("/account/reset-password/set", checkAPIKeys(false, true), async (req
 	return res.send({ status: "succeeded" });
 });
 
+// @route		POST /account/match-password
+// @desc
+// @access
+router.post("/account/match-password", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { account: "", password: "" };
+	// Fetch the account of interest
+	let account;
+	try {
+		account = await Account.findOne({ email: input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!account) return res.send({ status: "failed", content: { account: "does not exist" } });
+
+	// Check if the input password match with the account's password
+	let match;
+	try {
+		match = await account.matchPassword(input.password);
+	} catch (data) {
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: match });
+});
+
 // @route		POST /account/retrieve
 // @desc
 // @access
