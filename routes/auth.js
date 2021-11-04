@@ -125,7 +125,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	// Initialise failed handler
 	let failed = { account: "", profile: "" };
 	// Initialise the session object
-	let session = { groups: [], recentGroups: [] };
+	let session = { groups: [] };
 	// Fetch the account instance
 	let account;
 	try {
@@ -200,8 +200,11 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 		};
 		session.groups.push(object);
 	}
-	if (profile.saves.recentGroups) session.recentGroups = profile.saves.recentGroups;
 	session.numOfGroups = session.groups.length;
+	for (let i = 0; i < input.properties.length; i++) {
+		const property = input.properties[i];
+		session[property] = profile.saves[property];
+	}
 	// Update profile's last visit
 	profile.date.visited = input.date;
 	try {
