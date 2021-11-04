@@ -104,6 +104,8 @@ router.post("/group/add-member", checkAPIKeys(false, true), async (req, res) => 
 	if (license.status === "activated") {
 		group.licenses.active.push(license._id);
 	} else {
+		license.metadata.requestMessage = input.requestMessage;
+		license.metadata.inviteMessage = input.inviteMessage;
 		group.licenses.queue.push(license._id);
 	}
 	profile.licenses.push(license._id);
