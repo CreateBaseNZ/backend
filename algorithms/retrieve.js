@@ -76,35 +76,33 @@ retrieve.groups = (groups, option) => {
 				classIds = classIds.concat(groups[i].classes);
 			}
 			classIds = [...new Set(classIds)];
-			if (classIds.length) {
-				// Fetch the class instances associated with these groups
-				let classes;
-				try {
-					classes = await Class.find(classIds);
-				} catch (error) {
-					return reject({ status: "error", content: error });
-				}
-				// Fetch details of the class instances
-				try {
-					classes = await retrieve.classes(classes, option);
-				} catch (data) {
-					return reject(data);
-				}
-				// Filter class instances details
-				if (option.class.length) {
-					classes = classes.map((instance) => {
-						let object = {};
-						for (let j = 0; j < option.class.length; j++) {
-							object[option.class[j]] = instance[option.class[j]];
-						}
-						return object;
-					});
-				}
-				// Attach the class instances to their respective groups
-				for (let k = 0; k < groups.length; k++) {
-					for (let l = 0; l < groups[k].classes.length; l++) {
-						groups[k].classes[l] = classes.find((instance) => instance._id.toString() === groups[k].classes[l].toString());
+			// Fetch the class instances associated with these groups
+			let classes;
+			try {
+				classes = await Class.find({ _id: classIds });
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+			// Fetch details of the class instances
+			try {
+				classes = await retrieve.classes(classes, option);
+			} catch (data) {
+				return reject(data);
+			}
+			// Filter class instances details
+			if (option.class.length) {
+				classes = classes.map((instance) => {
+					let object = {};
+					for (let j = 0; j < option.class.length; j++) {
+						object[option.class[j]] = instance[option.class[j]];
 					}
+					return object;
+				});
+			}
+			// Attach the class instances to their respective groups
+			for (let k = 0; k < groups.length; k++) {
+				for (let l = 0; l < groups[k].classes.length; l++) {
+					groups[k].classes[l] = classes.find((instance) => instance._id.toString() === groups[k].classes[l].toString());
 				}
 			}
 		}

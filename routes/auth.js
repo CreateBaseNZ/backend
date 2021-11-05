@@ -291,7 +291,6 @@ router.post("/account/verification/verify", checkAPIKeys(false, true), async (re
 	try {
 		account.matchCode(input.code);
 	} catch (error) {
-		console.log(error);
 		failed.code = error;
 		return res.send({ status: "failed", content: failed });
 	}
