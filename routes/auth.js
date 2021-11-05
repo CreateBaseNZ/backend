@@ -201,9 +201,13 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 		session.groups.push(object);
 	}
 	session.numOfGroups = session.groups.length;
-	for (let i = 0; i < input.properties.length; i++) {
-		const property = input.properties[i];
+	for (let i = 0; i < input.properties.profile.length; i++) {
+		const property = input.properties.profile[i];
 		session[property] = profile.saves[property];
+	}
+	for (let i = 0; i < input.properties.license.length; i++) {
+		const property = input.properties.license[i];
+		session[property] = license.metadata[property];
 	}
 	// Update profile's last visit
 	profile.date.visited = input.date;

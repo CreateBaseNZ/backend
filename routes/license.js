@@ -34,6 +34,7 @@ const Group = require("../model/Group.js");
 const License = require("../model/License.js");
 const Mail = require("../model/Mail.js");
 const Profile = require("../model/Profile.js");
+const { query } = require("express");
 
 // ROUTES ===================================================
 
@@ -91,7 +92,7 @@ router.post("/license/delete-metadata", checkAPIKeys(false, true), async (req, r
 	// Fetch the license of interest
 	let license;
 	try {
-		license = await License.findOne({ _id: input.license });
+		license = await License.findOne(input.query);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
