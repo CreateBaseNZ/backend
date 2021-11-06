@@ -187,7 +187,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 		} else if (group.type === "family") {
 			numOfUsers = { members: group.licenses.active.length };
 		}
-		const object = {
+		let object = {
 			licenseId: licenses[i]._id,
 			id: group._id,
 			number: group.number,
@@ -198,16 +198,16 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 			verified: group.verified,
 			status: licenses[i].status,
 		};
+		for (let i = 0; i < input.properties.license.length; i++) {
+			const property = input.properties.license[i];
+			object[property] = licenses[i].metadata[property];
+		}
 		session.groups.push(object);
 	}
 	session.numOfGroups = session.groups.length;
 	for (let i = 0; i < input.properties.profile.length; i++) {
 		const property = input.properties.profile[i];
 		session[property] = profile.saves[property];
-	}
-	for (let i = 0; i < input.properties.license.length; i++) {
-		const property = input.properties.license[i];
-		session[property] = license.metadata[property];
 	}
 	// Update profile's last visit
 	profile.date.visited = input.date;
