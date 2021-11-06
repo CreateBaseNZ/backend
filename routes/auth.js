@@ -205,7 +205,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 		session.groups.push(object);
 	}
 	session.numOfGroups = session.groups.length;
-	for (let k = 0; k < input.properties.profile.length; i++) {
+	for (let k = 0; k < input.properties.profile.length; k++) {
 		const property = input.properties.profile[k];
 		session[property] = profile.saves[property];
 	}
