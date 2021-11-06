@@ -15,7 +15,7 @@ const ClassSchema = new Schema({
 	subject: { type: Schema.Types.String, default: "" },
 	licenses: { type: [Schema.Types.ObjectId], default: [] },
 	code: { type: Schema.Types.String, default: "" },
-	metadata: { type: Schema.Types.Mixed, default: new Object() },
+	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 });
 
 // STATICS ==================================================

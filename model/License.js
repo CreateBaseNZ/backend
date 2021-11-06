@@ -18,7 +18,7 @@ const LicenseSchema = new Schema({
 		deactivated: { type: Schema.Types.String, default: "" },
 	},
 	status: { type: Schema.Types.String, default: "" },
-	metadata: { type: Schema.Types.Mixed, default: new Object() },
+	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 	profile: { type: Schema.Types.ObjectId },
 });
 

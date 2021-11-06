@@ -19,7 +19,7 @@ const ProfileSchema = new Schema({
 		modified: { type: Schema.Types.String, default: "" },
 		visited: { type: Schema.Types.String, default: "" },
 	},
-	saves: { type: Schema.Types.Mixed, default: new Object() },
+	saves: { type: Schema.Types.Mixed, default: { init: "" } },
 	account: {
 		local: { type: Schema.Types.ObjectId },
 	},

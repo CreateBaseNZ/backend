@@ -21,7 +21,7 @@ const MailSchema = new Schema({
 		product: { type: Schema.Types.Boolean, default: false },
 		cold: { type: Schema.Types.Boolean, default: false },
 	},
-	metadata: { type: Schema.Types.Mixed, default: new Object() },
+	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 });
 
 // STATICS ==================================================

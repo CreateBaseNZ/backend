@@ -32,7 +32,7 @@ const GroupSchema = new Schema({
 	},
 	verified: { type: Schema.Types.Boolean, default: false },
 	payment: { type: [Schema.Types.ObjectId], default: [] },
-	metadata: { type: Schema.Types.Mixed, default: new Object() },
+	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 });
 
 // STATICS ==================================================

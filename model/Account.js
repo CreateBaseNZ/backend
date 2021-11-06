@@ -28,7 +28,7 @@ const AccountSchema = new Schema({
 		code: { type: Schema.Types.String, default: "" },
 		date: { type: Schema.Types.String, default: "" },
 	},
-	metadata: { type: Schema.Types.Mixed, default: new Object() },
+	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 });
 
 // MIDDLEWARE ===============================================
