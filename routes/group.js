@@ -70,6 +70,17 @@ router.post("/group/school/register", checkAPIKeys(false, true), async (req, res
 	return res.send({ status: "succeeded", content: group });
 });
 
+// @route   POST /group/school/verify
+// @desc
+// @access
+router.post("/group/school/verify", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = {};
+	// Success handler
+	return res.send({ status: "succeeded", content: {} });
+});
+
 // @route   POST /group/add-member
 // @desc
 // @access
@@ -103,6 +114,7 @@ router.post("/group/add-member", checkAPIKeys(false, true), async (req, res) => 
 	// Create the links between instances
 	if (license.status === "activated") {
 		group.licenses.active.push(license._id);
+		license.date.joined = input.date;
 	} else {
 		license.metadata.requestMessage = input.requestMessage;
 		license.metadata.inviteMessage = input.inviteMessage;
@@ -182,6 +194,17 @@ router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) 
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: { group, profile, license } });
+});
+
+// @route   POST /group/accept-member
+// @desc
+// @access
+router.post("/group/accept-member", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = {};
+	// Success handler
+	return res.send({ status: "succeeded", content: {} });
 });
 
 // @route   POST /group/retrieve-by-code
