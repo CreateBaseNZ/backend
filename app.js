@@ -45,6 +45,7 @@ app.use(cors());
 const authRouter = require("./routes/auth.js");
 const classRouter = require("./routes/class.js");
 const contactRouter = require("./routes/contact.js");
+const errorRouter = require("./routes/error.js");
 const generalRouter = require("./routes/general.js");
 const groupRouter = require("./routes/group.js");
 const licenseRouter = require("./routes/license.js");
@@ -53,13 +54,12 @@ const profileRouter = require("./routes/profile.js");
 app.use(authRouter);
 app.use(classRouter);
 app.use(contactRouter);
-app.use(errorRouter);
 app.use(generalRouter);
 app.use(groupRouter);
 app.use(licenseRouter);
 app.use(mailRouter);
 app.use(profileRouter);
 
-const errorRouter = require("./routes/error.js");
+app.use(errorRouter);
 
 // END ======================================================
