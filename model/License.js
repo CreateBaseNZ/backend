@@ -15,6 +15,7 @@ const LicenseSchema = new Schema({
 	date: {
 		created: { type: Schema.Types.String, default: "" },
 		modified: { type: Schema.Types.String, default: "" },
+		joined: { type: Schema.Types.String, default: "" },
 		deactivated: { type: Schema.Types.String, default: "" },
 	},
 	status: { type: Schema.Types.String, default: "" },

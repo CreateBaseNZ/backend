@@ -70,6 +70,33 @@ router.post("/group/school/register", checkAPIKeys(false, true), async (req, res
 	return res.send({ status: "succeeded", content: group });
 });
 
+// @route   POST /group/school/verify
+// @desc
+// @access
+router.post("/group/school/verify", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Fetch the group instance
+	let group;
+	try {
+		group = await Group.findOne(input.query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!group) return res.send({ status: "failed", content: { group: "does not exist" } });
+	// Update the verification status
+	group.verified = true;
+	group.date.verified = input.date;
+	// Save update
+	group.date.modified = input.date;
+	try {
+		await group.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: { group } });
+});
+
 // @route   POST /group/add-member
 // @desc
 // @access
@@ -103,6 +130,7 @@ router.post("/group/add-member", checkAPIKeys(false, true), async (req, res) => 
 	// Create the links between instances
 	if (license.status === "activated") {
 		group.licenses.active.push(license._id);
+		license.date.joined = input.date;
 	} else {
 		license.metadata.requestMessage = input.requestMessage;
 		license.metadata.inviteMessage = input.inviteMessage;
@@ -182,6 +210,45 @@ router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) 
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: { group, profile, license } });
+});
+
+// @route   POST /group/accept-member
+// @desc
+// @access
+router.post("/group/accept-member", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = {};
+	// Fetch the group and the license of the user
+	let group;
+	let license;
+	try {
+		[group, license] = await Promise.all([Group.findOne(input.query.group), License.findOne(input.query.license)]);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!group) return res.send({ status: "failed", content: { group: "does not exist" } });
+	if (!license) return res.send({ status: "failed", content: { license: "does not exist" } });
+	// Check if the user has already been accepted
+	if (group.licenses.active.find((licenseId) => licenseId.toString() === license._id.toString())) {
+		failed.license = "already a member";
+		return res.send({ status: "failed", content: failed });
+	}
+	// Remove the license from the queue
+	group.licenses.queue = group.licenses.queue.filter((licenseId) => licenseId.toString() !== license._id.toString());
+	group.licenses.active.push(license._id);
+	license.status = "activated";
+	license.date.joined = input.date;
+	// Update instances
+	group.date.modified = input.date;
+	license.date.modified = input.date;
+	try {
+		await Promise.all([group.save(), license.save()]);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: { group, license } });
 });
 
 // @route   POST /group/retrieve-by-code

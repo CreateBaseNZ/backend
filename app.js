@@ -54,11 +54,12 @@ const profileRouter = require("./routes/profile.js");
 app.use(authRouter);
 app.use(classRouter);
 app.use(contactRouter);
-app.use(errorRouter);
 app.use(generalRouter);
 app.use(groupRouter);
 app.use(licenseRouter);
 app.use(mailRouter);
 app.use(profileRouter);
+
+app.use(errorRouter);
 
 // END ======================================================

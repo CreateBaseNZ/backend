@@ -234,6 +234,45 @@ router.post("/class/delete-metadata", checkAPIKeys(false, true), async (req, res
 	return res.send({ status: "succeeded", content: instance.metadata });
 });
 
+// @route		POST /class/delete
+// @desc
+// @access
+router.post("/class/delete", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Fetch the class of interest
+	let instance;
+	try {
+		instance = await Class.findOne(input.query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Fetch the licenses attached to the class
+	let licenses;
+	try {
+		licenses = await License.find({ _id: instance.licenses });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Remove links between license and class
+	let promises = [];
+	for (let i = 0; i < licenses.length; i++) {
+		let license = licenses[i];
+		license.classes = license.classes.filter((classId) => classId.toString() !== instance._id.toString());
+		license.date.modified = input.date;
+		promises.push(license.save());
+	}
+	// Delete the class
+	promises.push(Class.deleteOne({ _id: instance._id }));
+	// Wait for the promises
+	try {
+		await Promise.all(promises);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded" });
+});
+
 // FUNCTIONS ================================================
 
 // EXPORT ===================================================
