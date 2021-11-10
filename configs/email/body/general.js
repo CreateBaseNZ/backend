@@ -25,7 +25,7 @@ general.accountVerification = function (object = {}) {
 		`Your Verification Code: ${object.code}`,
 		`Thank you for creating an account with us! Before we get started, please verify your account.
 
-<b><a href="${process.env.APP_PREFIX}/verify?email=${object.recipient}&code=${object.code}">Click this link</a></b> to verify your account.
+<b><a href="${process.env.APP_PREFIX}/auth/verify?email=${object.recipient}&code=${object.code}">Click this link</a></b> to verify your account.
 
 Or, you can enter your verification code <b><a href="${process.env.APP_PREFIX}/user/my-account/verification">here</a></b>.`,
 	];
