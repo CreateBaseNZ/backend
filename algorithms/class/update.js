@@ -3,7 +3,7 @@
 // VARIABLES ================================================
 
 let classUpdate = {
-	types: ["metadata"],
+	types: ["name", "metadata"],
 	main: undefined,
 };
 
@@ -31,6 +31,16 @@ classUpdate.main = (instance, updates, date, save = true) => {
 			const type = updates[j].type;
 			const update = updates[j].update;
 			switch (type) {
+				case "name":
+					let document;
+					try {
+						document = await Class.findOne({ name: update.name, group: update.group });
+					} catch (error) {
+						return reject({ status: "error", content: error });
+					}
+					if (document) return reject({ status: "failed", content: { class: "taken" } });
+					instance.name = update.name;
+					break;
 				case "metadata":
 					Object.assign(instance.metadata, update);
 					instance.markModified("metadata");
