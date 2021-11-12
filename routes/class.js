@@ -49,7 +49,7 @@ router.post("/class/create", checkAPIKeys(false, true), async (req, res) => {
 	let instance;
 	const promises1 = [Group.findOne({ _id: input.group }), Class.findOne({ name: input.name, group: input.group })];
 	try {
-		[code, group, instance] = await Promise.all(promises1);
+		[group, instance] = await Promise.all(promises1);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
