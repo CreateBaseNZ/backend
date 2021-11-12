@@ -44,12 +44,10 @@ router.post("/class/create", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
 	// Initialise failed handler
 	let failed = { group: "", class: "" };
-	// Generate a unique join code, fetch the group of interest
-	// and check if class name is unique
-	let code;
+	// Fetch the group of interest and check if class name is unique
 	let group;
 	let instance;
-	const promises1 = [Class.generateCode(input.group), Group.findOne({ _id: input.group }), Class.findOne({ name: input.name, group: input.group })];
+	const promises1 = [Group.findOne({ _id: input.group }), Class.findOne({ name: input.name, group: input.group })];
 	try {
 		[code, group, instance] = await Promise.all(promises1);
 	} catch (error) {
@@ -64,7 +62,7 @@ router.post("/class/create", checkAPIKeys(false, true), async (req, res) => {
 		return res.send({ status: "failed", content: failed });
 	}
 	// Create the class instance
-	instance = new Class({ name: input.name, subject: input.subject, code });
+	instance = new Class({ name: input.name, subject: input.subject });
 	// Create links between instances
 	group.classes.push(instance._id);
 	instance.group = group._id;
@@ -104,8 +102,25 @@ router.post("/class/add-member", checkAPIKeys(false, true), async (req, res) => 
 		failed.license = "does not exist";
 		return res.send({ status: "failed", content: failed });
 	}
+	// Check if the user is already in class
+	if (instance.licenses.active.find((licenseId) => licenseId.toString() === license._id.toString())) {
+		failed.license = "already activated";
+		return res.send({ status: "failed", content: failed });
+	} else if (instance.licenses.requested.find((licenseId) => licenseId.toString() === license._id.toString())) {
+		failed.license = "already requested";
+		return res.send({ status: "failed", content: failed });
+	} else if (instance.licenses.invited.find((licenseId) => licenseId.toString() === license._id.toString())) {
+		failed.license = "already invited";
+		return res.send({ status: "failed", content: failed });
+	}
 	// Create the link between instances
-	instance.licenses.push(license._id);
+	if (input.status === "activated") {
+		instance.licenses.active.push(license._id);
+	} else if (input.status === "requested") {
+		instance.licenses.requested.push(license._id);
+	} else if (input.status === "invited") {
+		instance.licenses.invited.push(license._id);
+	}
 	license.classes.push(instance._id);
 	// Save the instances
 	license.date.modified = input.date;
@@ -144,7 +159,13 @@ router.post("/class/remove-member", checkAPIKeys(false, true), async (req, res) 
 		return res.send({ status: "failed", content: failed });
 	}
 	// Remove the link between instances
-	instance.licenses = instance.licenses.filter((licenseId) => licenseId.toString() !== license._id.toString());
+	if (input.status === "activated") {
+		instance.licenses.active = instance.licenses.active.filter((licenseId) => licenseId.toString() !== license._id.toString());
+	} else if (input.status === "requested") {
+		instance.licenses.requested = instance.licenses.requested.filter((licenseId) => licenseId.toString() !== license._id.toString());
+	} else if (input.status === "invited") {
+		instance.licenses.invited = instance.licenses.invited.filter((licenseId) => licenseId.toString() !== license._id.toString());
+	}
 	license.classes = license.classes.filter((classId) => classId.toString() !== instance._id.toString());
 	// Save the instances
 	license.date.modified = input.date;
@@ -156,6 +177,38 @@ router.post("/class/remove-member", checkAPIKeys(false, true), async (req, res) 
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: { class: instance, license } });
+});
+
+// @route   POST /class/accept-member
+// @desc
+// @access
+router.post("/class/accept-member", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Initialise failed handler
+	let failed = { class: "" };
+	// Fetch the class of interest
+	let instance;
+	try {
+		instance = await Class.findOne({ _id: input.class });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!instance) {
+		failed.class = "does not exist";
+		return res.send({ status: "failed", content: failed });
+	}
+	// Accept requested or invited
+	instance.licenses.requested = instance.licenses.requested.filter((licenseId) => licenseId.toString() !== input.license.toString());
+	instance.licenses.invited = instance.licenses.invited.filter((licenseId) => licenseId.toString() !== input.license.toString());
+	instance.licenses.active.push(input.license);
+	// Save the class changes
+	try {
+		await instance.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: instance });
 });
 
 // @route   POST /class/retrieve
@@ -246,10 +299,24 @@ router.post("/class/delete", checkAPIKeys(false, true), async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	if (!instance) return res.send({ status: "failed", content: { class: "does not exist" } });
+	// Fetch the group
+	let group;
+	try {
+		group = await Group.findOne({ _id: instance.group });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!instance) return res.send({ status: "failed", content: { group: "does not exist" } });
+	// License Ids
+	let licenseIds = [];
+	licenseIds = licenseIds.concat(instance.licenses.active);
+	licenseIds = licenseIds.concat(instance.licenses.requested);
+	licenseIds = licenseIds.concat(instance.licenses.invited);
 	// Fetch the licenses attached to the class
 	let licenses;
 	try {
-		licenses = await License.find({ _id: instance.licenses });
+		licenses = await License.find({ _id: licenseIds });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -261,6 +328,8 @@ router.post("/class/delete", checkAPIKeys(false, true), async (req, res) => {
 		license.date.modified = input.date;
 		promises.push(license.save());
 	}
+	group.classes = group.classes.filter((classId) => classId.toString() !== instance._id.toString());
+	promises.push(group.save());
 	// Delete the class
 	promises.push(Class.deleteOne({ _id: instance._id }));
 	// Wait for the promises

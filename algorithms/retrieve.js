@@ -118,7 +118,9 @@ retrieve.classes = (classes, option) => {
 			let licenseIds = [];
 			for (let i = 0; i < classes.length; i++) {
 				classes[i] = convertToNormalObject(classes[i]);
-				licenseIds = licenseIds.concat(classes[i].licenses);
+				licenseIds = licenseIds.concat(classes[i].licenses.active);
+				licenseIds = licenseIds.concat(classes[i].licenses.requested);
+				licenseIds = licenseIds.concat(classes[i].licenses.invited);
 			}
 			licenseIds = [...new Set(licenseIds)];
 			// Fetch the license instances associated with these classes
@@ -146,8 +148,14 @@ retrieve.classes = (classes, option) => {
 			}
 			// Attach the license instances to their respective classes
 			for (let k = 0; k < classes.length; k++) {
-				for (let l = 0; l < classes[k].licenses.length; l++) {
-					classes[k].licenses[l] = licenses.find((license) => license._id.toString() === classes[k].licenses[l].toString());
+				for (let l = 0; l < classes[k].licenses.active.length; l++) {
+					classes[k].licenses.active[l] = licenses.find((license) => license._id.toString() === classes[k].licenses.active[l].toString());
+				}
+				for (let m = 0; m < classes[k].licenses.requested.length; m++) {
+					classes[k].licenses.requested[m] = licenses.find((license) => license._id.toString() === classes[k].licenses.requested[m].toString());
+				}
+				for (let n = 0; n < classes[k].licenses.invited.length; n++) {
+					classes[k].licenses.invited[n] = licenses.find((license) => license._id.toString() === classes[k].licenses.invited[n].toString());
 				}
 			}
 		}
