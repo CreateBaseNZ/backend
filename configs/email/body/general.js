@@ -25,14 +25,17 @@ general.accountVerification = function (object = {}) {
 		`Your Verification Code: ${object.code}`,
 		`Thank you for creating an account with us! Before we get started, please verify your account.
 
-<b><a href="${process.env.APP_PREFIX}/verify/${object.email}__${object.code}">Click this link</a></b> to verify your account.
+<b><a href="${process.env.APP_PREFIX}/auth/verify?email=${object.recipient}&code=${object.code}">Click this link</a></b> to verify your account.
 
 Or, you can enter your verification code <b><a href="${process.env.APP_PREFIX}/user/my-account/verification">here</a></b>.`,
 	];
 };
 
 general.passwordReset = function (object = {}) {
-	return [`Your Password Reset Code: ${object.code}`, `Click <b><a href='${process.env.APP_PREFIX}/auth/forgot-password/${object.email}/${object.code}'>this link</a></b> to change your password.`];
+	return [
+		`Your Password Reset Code: ${object.code}`,
+		`Click <b><a href='${process.env.APP_PREFIX}/auth/forgot-password?email=${object.recipient}&code=${object.code}'>this link</a></b> to change your password.`,
+	];
 };
 
 general.educatorJoin = function (object = {}) {

@@ -58,19 +58,6 @@ router.get("/contact", (req, res) => res.sendFile("contact.html", viewsOption));
 // @access    PUBLIC
 router.get("/privacy", (req, res) => res.sendFile("privacy.html", viewsOption));
 
-// @route     GET /unsubscribe/:email
-// @desc
-// @access    PUBLIC
-router.get("/mailing-list/unsubscribe/:email", async (req, res) => {
-	const email = req.params.email;
-	try {
-		await Mail.demolish({ email });
-	} catch (data) {
-		return res.status(404).sendFile("error-404.html", viewsOption);
-	}
-	return res.sendFile("unsubscribe.html", viewsOption);
-});
-
 // @route     GET /robots.txt
 // @desc
 // @access    PUBLIC

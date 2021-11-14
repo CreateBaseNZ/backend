@@ -15,6 +15,7 @@
 	"author": "CreateBase",
 	"license": "ISC",
 	"dependencies": {
+		"agenda": "^4.2.1",
 		"aws-sdk": "^2.696.0",
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",

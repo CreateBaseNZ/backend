@@ -7,34 +7,28 @@ const randomize = require("randomatic");
 // VARIABLES ================================================
 
 const Schema = mongoose.Schema;
-const email = require("../configs/email/main.js");
-
-// OTHER MODELS =============================================
-
-const Profile = require("./Profile.js");
 
 // MODEL ====================================================
 
 const AccountSchema = new Schema({
-	email: { type: String, required: true },
-	password: { type: String, required: true },
-	profile: { type: Schema.Types.ObjectId, required: true },
+	profile: { type: Schema.Types.ObjectId },
+	email: { type: Schema.Types.String, default: "" },
+	password: { type: Schema.Types.String, default: "" },
+	date: {
+		created: { type: Schema.Types.String, default: "" },
+		modified: { type: Schema.Types.String, default: "" },
+		verified: { type: Schema.Types.String, default: "" },
+	},
 	verified: {
-		status: { type: Boolean, default: false },
-		code: { type: String, default: "" },
-		date: {
-			codeGenerated: { type: String, default: "" },
-			verified: { type: String, default: "" },
-		},
+		status: { type: Schema.Types.Boolean, default: false },
+		code: { type: Schema.Types.String, default: "" },
+		date: { type: Schema.Types.String, default: "" },
 	},
 	resetPassword: {
-		code: { type: String, default: "" },
-		date: { type: String, default: "" },
+		code: { type: Schema.Types.String, default: "" },
+		date: { type: Schema.Types.String, default: "" },
 	},
-	date: {
-		created: { type: String, required: true },
-		modified: { type: String, required: true },
-	},
+	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 });
 
 // MIDDLEWARE ===============================================
@@ -51,64 +45,11 @@ AccountSchema.pre("save", async function (next) {
 
 // STATICS ==================================================
 
-AccountSchema.statics.build = function (object = {}, save = true) {
-	return new Promise(async (resolve, reject) => {
-		// Validate input data
-		try {
-			await this.validate(object);
-		} catch (data) {
-			return reject(data);
-		}
-		// Create the input object
-		let account = new this({
-			email: object.email,
-			password: object.password,
-			date: { created: object.date, modified: object.date },
-		});
-		if (object.profile) account.profile = object.profile;
-		// Save the the new account
-		if (save) {
-			try {
-				await account.save();
-			} catch (error) {
-				return reject({ status: "error", content: error });
-			}
-		}
-		// Return the account
-		return resolve(account);
-	});
-};
-
-AccountSchema.statics.validate = function (object = {}) {
-	return new Promise(async (resolve, reject) => {
-		// Declare variables
-		let valid = true;
-		let errors = {};
-		// Check if user exist within the organisation
-		let account;
-		try {
-			account = await this.findOne({ email: object.email });
-		} catch (error) {
-			return reject({ status: "error", content: error });
-		}
-		if (account) {
-			valid = false;
-			errors.email = "already taken";
-		}
-		// Handler
-		if (valid) {
-			return resolve();
-		} else {
-			return reject({ status: "failed", content: errors });
-		}
-	});
-};
-
 // METHODS ==================================================
 
-AccountSchema.methods.validatePassword = function (password = "") {
+AccountSchema.methods.matchPassword = function (password = "") {
 	return new Promise(async (resolve, reject) => {
-		// Process: Check if the password match
+		// Check if the password match
 		let match;
 		try {
 			match = await bcrypt.compare(password, this.password);
@@ -120,146 +61,23 @@ AccountSchema.methods.validatePassword = function (password = "") {
 	});
 };
 
-AccountSchema.methods.sendAccountVerificationEmail = function (object = {}, save = true) {
-	return new Promise(async (resolve, reject) => {
-		// Update verification code before all else
-		try {
-			await this.setVerificationCode(object, save);
-		} catch (data) {
-			return reject(data);
-		}
-		// Fetch the profile
-		let profile;
-		try {
-			profile = await Profile.findOne({ "account.local": this._id });
-		} catch (error) {
-			return reject({ status: "error", content: error });
-		}
-		// Validate if the profile has been fetched successfully
-		if (!profile) return res.send({ status: "error", content: "there is no profile associated with this account" });
-		// Create the input object
-		const options = {
-			recipient: this.email,
-			name: profile.displayName,
-			receive: "account-verification",
-			notification: "general",
-			tone: "friendly",
-			help: true,
-			social: true,
-			code: this.verified.code,
-		};
-		try {
-			await email.execute(options);
-		} catch (data) {
-			return reject(data);
-		}
-		// Success handler
-		return resolve();
-	});
+AccountSchema.methods.updateCode = function (property = "verified") {
+	// Generate the code
+	const code = randomize("aA0", 6);
+	const date = new Date().toString();
+	Object.assign(this[property], { code, date });
+	return;
 };
 
-AccountSchema.methods.setVerificationCode = function (object = {}, save = true) {
-	return new Promise(async (resolve, reject) => {
-		// Generate the code
-		const code = randomize("aA0", 6);
-		// Set parametres of the verification object
-		this.verified.code = code;
-		this.verified.date.codeGenerated = new Date().toString();
-		// Save the account
-		if (save) {
-			try {
-				await this.save();
-			} catch (error) {
-				return reject({ status: "error", content: error });
-			}
-		}
-		// Success handler
-		return resolve();
-	});
-};
-
-AccountSchema.methods.verify = function (object = {}, save = true) {
-	return new Promise(async (resolve, reject) => {
-		// Check if the code matches
-		if (this.verified.code !== object.code) {
-			return reject({ status: "failed", content: { code: "incorrect code" } });
-		}
-		// Update the verification status
-		this.verified.status = true;
-		this.verified.date.verified = new Date().toString();
-		// Save the account
-		if (save) {
-			try {
-				await this.save();
-			} catch (error) {
-				return reject({ status: "error", content: error });
-			}
-		}
-		// Success handler
-		return resolve();
-	});
-};
-
-AccountSchema.methods.sendPasswordResetEmail = function (object = {}, save = true) {
-	return new Promise(async (resolve, reject) => {
-		// Update password reset code before all else
-		try {
-			await this.setPasswordResetCode(object, save);
-		} catch (data) {
-			return reject(data);
-		}
-		// Fetch the profile
-		let profile;
-		try {
-			profile = await Profile.findOne({ "account.local": this._id });
-		} catch (error) {
-			return reject({ status: "error", content: error });
-		}
-		// Validate if the profile has been fetched successfully
-		if (!profile) return res.send({ status: "error", content: "there is no profile associated with this account" });
-		// Create the input object
-		const options = {
-			recipient: this.email,
-			name: profile.displayName,
-			receive: "password-reset",
-			notification: "general",
-			tone: "friendly",
-			help: true,
-			social: true,
-			code: this.resetPassword.code,
-		};
-		try {
-			await email.execute(options);
-		} catch (data) {
-			return reject(data);
-		}
-		// Success handler
-		return resolve();
-	});
-};
-
-AccountSchema.methods.setPasswordResetCode = function (object = {}, save = true) {
-	return new Promise(async (resolve, reject) => {
-		// Generate the code
-		const code = randomize("aA0", 6);
-		// Set parametres of the verification object
-		this.resetPassword.code = code;
-		this.resetPassword.date = new Date().toString();
-		// Save the account
-		if (save) {
-			try {
-				await this.save();
-			} catch (error) {
-				return reject({ status: "error", content: error });
-			}
-		}
-		// Success handler
-		return resolve();
-	});
+AccountSchema.methods.matchCode = function (code = "", property = "verified") {
+	// TODO: Check if the code expired
+	// Check if the code match
+	if (code !== this[property].code) throw "incorrect";
+	return;
 };
 
 // EXPORT ===================================================
 
-module.exports = Account = mongoose.model("accounts", AccountSchema);
+module.exports = Account = mongoose.model("account", AccountSchema);
 
 // END ======================================================

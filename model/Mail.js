@@ -12,7 +12,7 @@ const email = require("../configs/email/main.js");
 // MODEL ====================================================
 
 const MailSchema = new Schema({
-	email: { type: Schema.Types.String, required: true },
+	email: { type: Schema.Types.String, default: "" },
 	account: { type: Schema.Types.ObjectId },
 	received: { type: [Schema.Types.String], default: new Array() },
 	notification: {
@@ -21,7 +21,7 @@ const MailSchema = new Schema({
 		product: { type: Schema.Types.Boolean, default: false },
 		cold: { type: Schema.Types.Boolean, default: false },
 	},
-	metadata: { type: Schema.Types.Mixed, default: new Object() },
+	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 });
 
 // STATICS ==================================================

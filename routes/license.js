@@ -1,87 +1,120 @@
 // MODULES ==================================================
 
 const express = require("express");
+const retrieve = require("../algorithms/retrieve.js");
+const licenseUpdate = require("../algorithms/license/update.js");
 
 // VARIABLES ================================================
 
-if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
+
+// MIDDLEWARE ===============================================
+
+const checkAPIKeys = (public = false, private = false, admin = false) => {
+	return (req, res, next) => {
+		if (public && req.body.PUBLIC_API_KEY !== process.env.PUBLIC_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		if (private && req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		if (admin && req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		return next();
+	};
+};
 
 // MODELS ===================================================
 
 const Account = require("../model/Account.js");
+const Class = require("../model/Class.js");
+const Group = require("../model/Group.js");
 const License = require("../model/License.js");
-const Organisation = require("../model/Organisation.js");
+const Mail = require("../model/Mail.js");
 const Profile = require("../model/Profile.js");
+const { query } = require("express");
 
 // ROUTES ===================================================
 
-// @route     POST /license/update
+// @route		POST /license/retrieve
 // @desc
-// @access    Backend
-router.post("/license/update", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Update the license
+// @access
+router.post("/license/retrieve", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Fetch the license instances
+	let licenses;
 	try {
-		await License.reform(req.body.input);
-	} catch (data) {
-		return res.send(data);
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: "" });
-});
-
-// @route     POST /license/read
-// @desc
-// @access    Backend
-router.post("/license/read", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Retrieve the information
-	let data;
-	try {
-		data = await License.retrieve(req.body.input);
-	} catch (data) {
-		return res.send(data);
-	}
-	// Success handler
-	return res.send({ status: "succeeded", content: data });
-});
-
-// @route     POST /license/validate-password
-// @desc
-// @access    Backend
-router.post("/license/validate-password", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error", content: "" });
-	}
-	// Fetch the license
-	let license;
-	try {
-		license = await License.findOne({ _id: req.body.input.license });
+		licenses = await License.find(input.query);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	// Validate password
-	let match;
+	if (!licenses.length) return res.send({ status: "failed", content: { licenses: "do not exist" } });
+	// Fetch the licenses details
 	try {
-		match = await license.validatePassword(req.body.input.password);
+		licenses = await retrieve.licenses(licenses, input.option);
 	} catch (data) {
 		return res.send(data);
 	}
-	// Process validation
-	if (!match) {
-		return res.send({ status: "failed", content: { password: "incorrect password" } });
+	// Success handler
+	return res.send({ status: "succeeded", content: licenses });
+});
+
+// @route		POST /license/update
+// @desc
+// @access
+router.post("/license/update", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Fetch the license instance
+	let license;
+	try {
+		license = await License.findOne(input.query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license) return res.send({ status: "failed", content: { license: "does not exist" } });
+	// Update the license instance
+	try {
+		license = await licenseUpdate.main(license, input.updates, input.date);
+	} catch (data) {
+		return res.send(data);
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: "" });
+	return res.send({ status: "succeeded", content: license });
 });
+
+// @route		POST /license/delete-metadata
+// @desc
+// @access
+router.post("/license/delete-metadata", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Fetch the license of interest
+	let license;
+	try {
+		license = await License.findOne(input.query);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!license) res.send({ status: "failed", content: { license: "does not exist" } });
+	// Delete metadata
+	for (let i = 0; i < input.properties.length; i++) {
+		const property = input.properties[i];
+		delete license.metadata[property];
+	}
+	license.markModified("metadata");
+	// Save the updates
+	license.date.modified = input.date;
+	try {
+		await license.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: license.metadata });
+});
+
+// FUNCTIONS ================================================
 
 // EXPORT ===================================================
 
