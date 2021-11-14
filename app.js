@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
+const agenda = require("./configs/agenda.js");
 
 // VARIABLES ================================================
 
@@ -14,6 +15,16 @@ const app = express();
 // DATABASE =================================================
 
 mongoose.connect(process.env.MONGODB_URL);
+
+// AGENDA ===================================================
+
+// agenda.on("ready", () => {
+// 	const date = new Date();
+// 	console.log(`Current Date: ${date}`);
+// 	const jobDate = new Date(date.setMinutes(new Date().getMinutes() + 3));
+// 	console.log(`Job Date: ${jobDate}`);
+// 	agenda.schedule(date, "say hello");
+// });
 
 // SERVER ===================================================
 
