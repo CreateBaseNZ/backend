@@ -144,7 +144,7 @@ router.post("/class/remove-member", checkAPIKeys(false, true), async (req, res) 
 	// Fetch the class of interest and the license to be added
 	let instance;
 	let license;
-	const promises1 = [Class.findOne({ _id: input.class }), License.findOne({ _id: input.license })];
+	const promises1 = [Class.findOne(input.query.class), License.findOne(input.query.license)];
 	try {
 		[instance, license] = await Promise.all(promises1);
 	} catch (error) {
@@ -189,7 +189,7 @@ router.post("/class/accept-member", checkAPIKeys(false, true), async (req, res) 
 	// Fetch the class of interest
 	let instance;
 	try {
-		instance = await Class.findOne({ _id: input.class });
+		instance = await Class.findOne(input.query);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
