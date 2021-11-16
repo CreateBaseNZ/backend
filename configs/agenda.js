@@ -1,19 +1,24 @@
+// MODULES ==================================================
+
 const Agenda = require("agenda");
 
+// VARIABLES ================================================
+
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
-
-const connectionOpts = {
-	db: { address: process.env.MONGODB_URL, collection: "agendaJobs" },
-};
-
-const agenda = new Agenda(connectionOpts);
-
-agenda.define("say hello", (job) => {
-	const date = new Date();
-	console.log(`Execute Date: ${date}`);
-	console.log("Hello!");
+const agenda = new Agenda({
+  db: { address: process.env.MONGODB_URL, collection: "agendaJobs" },
 });
+
+// DEFINE ===================================================
+
+require("../jobs/main.js")(agenda);
+
+// START ====================================================
 
 agenda.start();
 
+// EXPORT ===================================================
+
 module.exports = agenda;
+
+// END ======================================================
