@@ -163,7 +163,7 @@ router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) 
 	// Fetch the group and the license
 	let group;
 	let license;
-	const promises1 = [Group.findOne({ _id: input.group }), License.findOne({ _id: input.license })];
+	const promises1 = [Group.findOne(input.query.group), License.findOne(input.query.license)];
 	try {
 		[group, license] = await Promise.all(promises1);
 	} catch (error) {
