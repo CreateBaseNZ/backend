@@ -50,8 +50,6 @@ classUpdate.main = (instance, updates, date, save = true) => {
 					break;
 			}
 		}
-		// Update the date modified
-		instance.date.modified = date;
 		// Save the changes
 		if (save) {
 			try {
