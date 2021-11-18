@@ -71,6 +71,25 @@ router.post("/profile/delete-saves", async (req, res) => {
 	return res.send({ status: "succeeded", content: "" });
 });
 
+// @route     POST /profile/retrieve
+// @desc
+// @access    Backend
+router.post("/profile/retrieve", async (req, res) => {
+	// Validate if the PRIVATE_API_KEY match
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		return res.send({ status: "critical error" });
+	}
+	// Read data
+	let data;
+	try {
+		data = await Profile.find({});
+	} catch (data) {
+		return res.send(data);
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: data });
+});
+
 // EXPORT ===================================================
 
 module.exports = router;
