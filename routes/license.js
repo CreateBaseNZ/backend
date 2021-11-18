@@ -34,7 +34,6 @@ const Group = require("../model/Group.js");
 const License = require("../model/License.js");
 const Mail = require("../model/Mail.js");
 const Profile = require("../model/Profile.js");
-const { query } = require("express");
 
 // ROUTES ===================================================
 
