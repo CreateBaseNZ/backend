@@ -159,7 +159,7 @@ router.post("/group/add-member", checkAPIKeys(false, true), async (req, res) => 
 router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
 	// Initialise failed handler
-	let failed = { group: "", license: "", profile: "" };
+	let failed = { group: "", license: "", profile: "", classes: "" };
 	// Fetch the group and the license
 	let group;
 	let license;
@@ -179,14 +179,30 @@ router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) 
 	}
 	// Fetch the profile
 	let profile;
+	let classes;
+	const promises2 = [Profile.findOne({ _id: license.profile }), Class.find({ _id: license.classes })];
 	try {
-		profile = await Profile.findOne({ _id: license.profile });
+		[profile, classes] = await Promise.all(promises2);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
 	if (!profile) {
 		failed.profile = "does not exist";
 		return res.send({ status: "failed", content: failed });
+	}
+	if (!classes.length) {
+		failed.classes.length = "do not exist";
+		return res.send({ status: "failed", content: failed });
+	}
+	// Remove license from all the classes
+	let promises3 = [];
+	for (let i = 0; i < classes.length; i++) {
+		let instance = classes[i];
+		instance.licenses.active = instance.licenses.active.filter((licenseId) => licenseId.toString() !== license._id.toString());
+		instance.licenses.requested = instance.licenses.requested.filter((licenseId) => licenseId.toString() !== license._id.toString());
+		instance.licenses.invited = instance.licenses.invited.filter((licenseId) => licenseId.toString() !== license._id.toString());
+		license.classes = license.classes.filter((classId) => classId.toString() !== instance._id.toString());
+		promises3.push(instance.save());
 	}
 	// Remove linkage
 	if (license.status === "activated") {
@@ -202,9 +218,9 @@ router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) 
 	group.date.modified = input.date;
 	license.date.modified = input.date;
 	profile.date.modified = input.date;
-	const promises2 = [group.save(), profile.save(), license.save()];
+	promises3.push(group.save(), profile.save(), license.save());
 	try {
-		await Promise.all(promises2);
+		await Promise.all(promises3);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
