@@ -13,7 +13,7 @@ const email = require("../configs/email/main.js");
 const MailSchema = new Schema({
 	email: { type: Schema.Types.String, default: "" },
 	account: { type: Schema.Types.ObjectId },
-	received: { type: [Schema.Types.String], default: new Array() },
+	received: { type: [Schema.Types.Mixed], default: new Array() },
 	notification: {
 		newsletter: { type: Schema.Types.Boolean, default: false },
 		onboarding: { type: Schema.Types.Boolean, default: false },
@@ -35,8 +35,11 @@ MailSchema.methods.sendEmail = function (object = {}) {
 		if (this.notification[object.notification] === false) {
 			return resolve("not subscribed");
 		}
-		const receive = `${object.notification}-${object.receive}`;
-		if (this.received.indexOf(receive) !== -1) {
+		const receive = {
+			name: `${object.notification}-${object.receive}`,
+			date: new Date().toString(),
+		};
+		if (this.received.map((element) => element.name).indexOf(receive.name) !== -1) {
 			return resolve("already sent");
 		}
 		if (!object.name) object.name = this.metadata ? this.metadata.name : undefined;
