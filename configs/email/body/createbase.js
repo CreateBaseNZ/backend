@@ -28,10 +28,10 @@ Message: ${object.message}`,
 
 createbase.newOrgNotif = function (object = {}) {
 	return [
-		`${object.orgName} just joined CreateBase!`,
-		`${object.userName} from ${object.orgName} just registered their organisation on our platform!
+		`${object.orgName} from ${object.orgLocation} just joined CreateBase!`,
+		`${object.userName} registered ${object.orgName} on our platform!
 
-	Amazing job team! Looking forward to more amazing news!`,
+Amazing job team! Looking forward to more amazing news!`,
 	];
 };
 

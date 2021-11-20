@@ -360,14 +360,15 @@ function coldEmail(mail, baseDate) {
 	for (let i = 0; i < emails.length; i++) {
 		const option = {
 			recipient: mail.email,
+			name: mail.metadata.name,
 			receive: `${mail.metadata.segment}-${mail.metadata.country}-${emails[i].suffix}`,
 			notification: "cold",
-			tone: "formal",
+			tone: "friendly",
 			school: mail.metadata.school,
 		};
 		baseDate = new Date(baseDate);
 		const scheduleDate = new Date(baseDate.setMinutes(baseDate.getMinutes() + emails[i].date.minutes));
-		agenda.schedule(scheduleDate, "cold-email", { option });
+		agenda.schedule(scheduleDate, "email", { option });
 	}
 	// Success handler
 	return;
