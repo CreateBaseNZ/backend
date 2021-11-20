@@ -13,7 +13,9 @@ const viewsOption = { root: path.join(__dirname, "../views") };
 
 // MODELS ===================================================
 
+const Account = require("../model/Account.js");
 const Mail = require("../model/Mail.js");
+const Profile = require("../model/Profile.js");
 
 // ROUTES ===================================================
 
@@ -296,64 +298,19 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 	return res.send({ status: "succeeded" });
 });
 
-// @route   POST /mail/admin/send-cold-emails
+// @route   POST /mail/send-email
 // @desc
 // @access
-router.post("/mail/admin/send-cold-emails", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error" });
-	}
-	// Validate if the ADMIN_API_KEY match
-	if (req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
-		return res.send({ status: "critical error" });
-	}
-	// Fetch mails
-	let mails;
-	try {
-		mails = await Mail.find({
-			"notification.cold": true,
-			"metadata.type": "customer-school",
-		});
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	// Send emails
-	let promises = [];
-	for (let i = 0; i < mails.length; i++) {
-		const promise = new Promise((resolve, reject) => {
-			setTimeout(async function () {
-				let mail = mails[i];
-				const options = {
-					recipient: mail.email,
-					receive: `${mail.metadata.segment}-${mail.metadata.group}-${mail.metadata.country}`,
-					notification: "cold",
-					tone: "formal",
-					school: mail.metadata.school,
-				};
-				let status;
-				try {
-					status = await mail.sendEmail(options);
-				} catch (data) {
-					return reject(data);
-				}
-				// Save the updates
-				try {
-					await mail.save();
-				} catch (error) {
-					return reject({ status: "error", content: error });
-				}
-				return resolve();
-			}, i * 25);
-		});
-		promises.push(promise);
-	}
-	// Wait for the emails to be sent
-	try {
-		await Promise.all(promises);
-	} catch (data) {
-		return res.send(data);
-	}
+router.post("/mail/send-email", async (req, res) => {
+	/**
+	 * recipient			-	email of the recipient
+	 * name						-	name of the recipient
+	 * receive				-	the tag for this email
+	 * notification		-	the type of this email	-	general | newsletter | onboarding | product | cold | createbase
+	 * tone						-	the tone of this email	-	formal | friendly | gratitude
+	 */
+	// Send the email
+	agenda.now("email", { option: req.body.input.option, accountId: req.body.input.accountId });
 	// Success handler
 	return res.send({ status: "succeeded" });
 });

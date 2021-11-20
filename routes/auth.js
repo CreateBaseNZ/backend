@@ -2,7 +2,7 @@
 
 const express = require("express");
 const retrieve = require("../algorithms/retrieve.js");
-const mailer = require("../configs/email/main.js");
+const agenda = require("../configs/agenda.js");
 
 // VARIABLES ================================================
 
@@ -242,34 +242,20 @@ router.post("/account/verification/email", checkAPIKeys(false, true), async (req
 	// Update the verification code
 	account.updateCode();
 	account.date.modified = input.date;
-	// Save account instance and fetch the profile associated with the account
-	let profile;
-	const promises = [Profile.findOne({ _id: account.profile }), account.save()];
 	try {
-		[profile] = await Promise.all(promises);
+		await account.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!profile) {
-		failed.profile = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
 	// Send the verification email
-	const options = {
+	const option = {
 		recipient: account.email,
-		name: profile.name.first,
 		receive: "account-verification",
 		notification: "general",
 		tone: "friendly",
-		help: true,
-		social: true,
 		code: account.verified.code,
 	};
-	try {
-		await mailer.execute(options);
-	} catch (data) {
-		return res.send(data);
-	}
+	agenda.now("email", { option, accountId: account._id });
 	// Success handler
 	return res.send({ status: "succeeded" });
 });
@@ -279,8 +265,9 @@ router.post("/account/verification/email", checkAPIKeys(false, true), async (req
 // @access
 router.post("/account/verification/verify", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
+	console.log(input);
 	// Initialise failed handler
-	let failed = { account: "", code: "" };
+	let failed = { account: "", code: "", profile: "" };
 	// Check if an account with this email exist
 	let account;
 	try {
@@ -309,7 +296,7 @@ router.post("/account/verification/verify", checkAPIKeys(false, true), async (re
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded" });
+	return res.send({ status: "succeeded", content: account });
 });
 
 // @route   POST /account/reset-password/email
@@ -333,34 +320,21 @@ router.post("/account/reset-password/email", checkAPIKeys(false, true), async (r
 	// Update the reset password code
 	account.updateCode("resetPassword");
 	account.date.modified = input.date;
-	// Save account instance and fetch the profile associated with the account
-	let profile;
-	const promises = [Profile.findOne({ _id: account.profile }), account.save()];
+	// Save account instance
 	try {
-		[profile] = await Promise.all(promises);
+		await account.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!profile) {
-		failed.profile = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
 	// Send the reset password email
-	const options = {
+	const option = {
 		recipient: account.email,
-		name: profile.name.first,
 		receive: "password-reset",
 		notification: "general",
 		tone: "friendly",
-		help: true,
-		social: true,
 		code: account.resetPassword.code,
 	};
-	try {
-		await mailer.execute(options);
-	} catch (data) {
-		return res.send(data);
-	}
+	agenda.now("email", { option, accountId: account._id });
 	// Success handler
 	return res.send({ status: "succeeded" });
 });

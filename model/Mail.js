@@ -7,6 +7,10 @@ const mongoose = require("mongoose");
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const Schema = mongoose.Schema;
 const email = require("../configs/email/main.js");
+const notification = {
+	personal: ["newsletter", "onboarding", "product", "cold"],
+	general: ["general", "createbase"],
+};
 
 // MODEL ====================================================
 
@@ -25,6 +29,34 @@ const MailSchema = new Schema({
 
 // STATICS ==================================================
 
+MailSchema.statics.sendEmail = function (object = {}) {
+	return new Promise(async (resolve, reject) => {
+		// Fetch the mail instance
+		let mail;
+		try {
+			mail = await this.findOne({ email: object.recipient });
+		} catch (error) {
+			return reject({ status: "error", content: error });
+		}
+		// Send the email
+		if (notification.personal.indexOf(object.notification) !== -1) {
+			try {
+				await mail.sendEmail(object);
+			} catch (data) {
+				return reject(data);
+			}
+		} else if (notification.general.indexOf(object.notification) !== -1) {
+			try {
+				await email.execute(object);
+			} catch (data) {
+				return reject(data);
+			}
+		}
+		// Success handler
+		return resolve();
+	});
+};
+
 // METHODS ==================================================
 
 MailSchema.methods.sendEmail = function (object = {}) {
@@ -36,10 +68,10 @@ MailSchema.methods.sendEmail = function (object = {}) {
 			return resolve("not subscribed");
 		}
 		const receive = {
-			name: `${object.notification}-${object.receive}`,
+			tag: `${object.notification}-${object.receive}`,
 			date: new Date().toString(),
 		};
-		if (this.received.map((element) => element.name).indexOf(receive.name) !== -1) {
+		if (this.received.map((element) => element.tag).indexOf(receive.tag) !== -1) {
 			return resolve("already sent");
 		}
 		if (!object.name) object.name = this.metadata ? this.metadata.name : undefined;

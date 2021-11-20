@@ -4,6 +4,8 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 let onboarding = {
 	construct: undefined,
 	welcome: undefined,
+	defaultOnboardingCompleted: undefined,
+	organisationCreated: undefined,
 	organisationDetail: undefined,
 	educatorAccept: undefined,
 };
@@ -14,28 +16,48 @@ onboarding.construct = function (object = {}) {
 	return onboarding[object.tag](object);
 };
 
-onboarding.welcome = function (object = {}) {
+onboarding.welcome = function () {
 	return [
-		`Welcome to CreateBase, ${object.name}!`,
-		`We are excited to have you on board!
+		`Next Steps`,
+		`Success! Your account has been verified.
 
-To fully utilise the CreateBase platform, we recommend that you associate your account with an organisation. You can either register a new organisation onto our platform or join an existing one.
+Your journey with CreateBase is just beginning, to get you started here are some next steps we recommend for you:
 
-<b><a href='${process.env.APP_PREFIX}/user/my-account/org'>Register or join</a></b> an organisation.
+<b>Complete Onboarding tasks</b>
+If you’re not sure what to do check the Onboarding tab for tasks that will help you use CreateBase like a pro.
+
+<b>Learn with Guest Access</b>
+Use Guest Access for hands on experience learning about how we solve your problems.
+
+<b>Discover a Project</b>
+Have a look at what your students complete on our platform.`,
+	];
+};
+
+onboarding.defaultOnboardingCompleted = function () {
+	return [
+		`Great Work!`,
+		`Congratulations! You completed our Guest Onboarding. 
 
 
-<b>Register Your Organisation</b>
+We’re stoked that you’ve taken some precious time to learn about our platform, and we hope we can be valuable to you.
 
-To create an account you will need:
-<ul><li>The ID of your school</li><li>The name of your school</li></ul>You can find this information <b><a href='https://www.educationcounts.govt.nz/directories/list-of-nz-schools'>here</a></b>.
+If you have any feedback we would love to hear from you. Simply reply to this email with anything you want to share.`,
+	];
+};
 
-<b><a href='https://youtu.be/6QTpDvfDZ9s'>Here is a video</a></b> on how to register your organisation.
+onboarding.organisationCreated = function (object) {
+	return [
+		`${object.group} x CreateBase`,
+		`Let me be the first to welcome you to the CreateBase platform ${object.group}. We’re looking forward to working for you. 
 
+Here are some next steps to help you get up and running as soon as possible.
 
-<b>Join an Organisation</b>
+<b>Projects Unlocked</b>
+Check out the projects you’ve unlocked by registering your school
 
-If your organisation already exists on the CreateBase platform, you will need to join instead. Here are the different ways you can join the organisation:
-<ul><li>Get the invitation link from the teacher who registered your organisation to automatically join the organisation.</li><li>Get the code for educators from the teacher who registered your organisation, and manually join the organisation.</li></ul><b><a href='https://youtu.be/AQ6acGxQZwE'>Here is a video</a></b> on how to join an organisation.`,
+<b>Spread the word</b>
+Lets make the platform feel less empty. Add some colleagues to your group.`,
 	];
 };
 
