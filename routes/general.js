@@ -80,7 +80,7 @@ router.post("/tracking", async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	return res.send({ status: "succeeded", content: data });
+	return res.send({ status: "succeeded", content: JSON.parse(data) });
 });
 
 /*=========================================================================================
