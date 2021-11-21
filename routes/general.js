@@ -5,7 +5,8 @@ REQUIRED MODULES
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const agenda = require("../configs/agenda.js");
+const axios = require("axios");
+const moment = require("moment");
 
 /*=========================================================================================
 VARIABLES
@@ -62,23 +63,22 @@ router.get("/privacy", (req, res) => res.sendFile("privacy.html", viewsOption));
 // @route     GET /robots.txt
 // @desc
 // @access    PUBLIC
-router.get("/robots.txt", (req, res) =>
-  res.sendFile("robots.txt", viewsOption)
-);
+router.get("/robots.txt", (req, res) => res.sendFile("robots.txt", viewsOption));
 
-// @route     POST /test
+// @route     POST /tracking
 // @desc
 // @access    Public
-router.post("/test", (req, res) => {
-  const date = new Date().setSeconds(new Date().getSeconds() + 5);
-  option = {
-    recipient: "carlvelasco96@gmail.com",
-    name: "Carl",
-    receive: "test",
-    notification: "general",
-    tone: "formal",
-  };
-  agenda.schedule(date, "email", option);
+router.post("/tracking", async (req, res) => {
+	const date = moment.utc().format("YYYY-MM-DD");
+	let data;
+	try {
+		data = await axios.get(`https://data.mixpanel.com/api/2.0/export?from_date=2021-01-01&to_date=${date}`, {
+			headers: { Authorization: "Basic Yzk3NmNkMjFmYWViOTdhNmI0NzE2YWFkZDI4ODBjNDM6", Accept: "text/plain" },
+		})["data"];
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	return res.send({ status: "succeeded", content: data });
 });
 
 /*=========================================================================================
