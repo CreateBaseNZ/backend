@@ -72,9 +72,11 @@ router.post("/tracking", async (req, res) => {
 	const date = moment.utc().format("YYYY-MM-DD");
 	let data;
 	try {
-		data = await axios.get(`https://data.mixpanel.com/api/2.0/export?from_date=2021-01-01&to_date=${date}`, {
-			headers: { Authorization: "Basic Yzk3NmNkMjFmYWViOTdhNmI0NzE2YWFkZDI4ODBjNDM6", Accept: "text/plain" },
-		})["data"];
+		data = (
+			await axios.get(`https://data.mixpanel.com/api/2.0/export?from_date=2021-01-01&to_date=${date}`, {
+				headers: { Authorization: "Basic Yzk3NmNkMjFmYWViOTdhNmI0NzE2YWFkZDI4ODBjNDM6", Accept: "text/plain" },
+			})
+		)["data"];
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
