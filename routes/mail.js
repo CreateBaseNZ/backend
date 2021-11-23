@@ -184,8 +184,7 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 	const client = await auth.getClient();
 	// Create instance of Google Sheets API
 	const googleSheets = google.sheets({ version: "v4", auth: client });
-	// https://docs.google.com/spreadsheets/d/1rAkSeFlOyLNeLCr3GPwI7TG8sHc9AOpnF1VMD9Qt1vM/edit?usp=sharing
-	const spreadsheetId = "1rAkSeFlOyLNeLCr3GPwI7TG8sHc9AOpnF1VMD9Qt1vM";
+	const spreadsheetId = process.env.COLD_EMAIL_SHEET;
 	// Read rows from spreadsheet
 	let date = {
 		nz: new Date(),
@@ -333,24 +332,26 @@ function validateEmail(input = "") {
 
 function coldEmail(mail, baseDate) {
 	const group = {
-		segment1: {
+		hod: {
 			nz: {
-				group1: [
-					{ suffix: "test1", date: { minutes: 0 } },
-					{ suffix: "test2", date: { minutes: 60 } },
-					{ suffix: "test3", date: { minutes: 24 * 60 } },
-				],
-				group2: [
-					{ suffix: "test4", date: { minutes: 0 } },
-					{ suffix: "test2", date: { minutes: 60 } },
-					{ suffix: "test3", date: { minutes: 24 * 60 } },
-				],
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
 			sg: {
-				group1: [],
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
 			uk: {
-				group1: [],
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
+		},
+		teacher: {
+			nz: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
+			sg: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
+			uk: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
 		},
 	};
