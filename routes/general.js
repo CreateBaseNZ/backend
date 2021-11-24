@@ -73,8 +73,8 @@ router.post("/tracking", async (req, res) => {
 	let data;
 	try {
 		data = (
-			await axios.get(`https://data.mixpanel.com/api/2.0/export?from_date=2021-01-01&to_date=${date}`, {
-				headers: { Authorization: "Basic Yzk3NmNkMjFmYWViOTdhNmI0NzE2YWFkZDI4ODBjNDM6", Accept: "text/plain" },
+			await axios.get(`https://data.mixpanel.com/api/2.0/export?from_date=${req.body.input.fromDate}&to_date=${req.body.input.toDate}`, {
+				headers: { Authorization: req.body.input.PROJECT_SECRET, Accept: "text/plain" },
 			})
 		)["data"];
 	} catch (error) {
