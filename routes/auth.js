@@ -45,14 +45,14 @@ router.post("/signup", checkAPIKeys(false, true), async (req, res) => {
 	// Check if the email is already taken by another account instance
 	let account;
 	try {
-		account = await Account.findOne({ email: input.email });
+		account = await Account.findOne({ email: input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
 	if (account) return res.send({ status: "failed", content: { email: "taken" } });
 	// Create the account and profile instances
 	account = new Account({
-		email: input.email,
+		email: input.email.toLowerCase(),
 		password: input.password,
 		date: { created: input.date, modified: input.date },
 	});
@@ -63,11 +63,11 @@ router.post("/signup", checkAPIKeys(false, true), async (req, res) => {
 	// Check if a mail instance exist with this email
 	let mail;
 	try {
-		mail = await Mail.findOne({ email: input.email });
+		mail = await Mail.findOne({ email: input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!mail) mail = new Mail({ email: input.email });
+	if (!mail) mail = new Mail({ email: input.email.toLowerCase() });
 	Object.assign(mail.notification, { onboarding: true, product: true, cold: false });
 	// Create the links between instances
 	account.profile = profile._id;
@@ -94,7 +94,7 @@ router.post("/login", checkAPIKeys(false, true), async (req, res) => {
 	// Check if an account with this email exist
 	let account;
 	try {
-		account = await Account.findOne({ email: input.email });
+		account = await Account.findOne({ email: input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -271,7 +271,7 @@ router.post("/account/verification/verify", checkAPIKeys(false, true), async (re
 	// Check if an account with this email exist
 	let account;
 	try {
-		account = await Account.findOne({ email: input.email });
+		account = await Account.findOne({ email: input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -309,7 +309,7 @@ router.post("/account/reset-password/email", checkAPIKeys(false, true), async (r
 	// Check if an account with this email exist
 	let account;
 	try {
-		account = await Account.findOne({ email: input.email });
+		account = await Account.findOne({ email: input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -349,7 +349,7 @@ router.post("/account/reset-password/verify", checkAPIKeys(false, true), async (
 	// Check if an account with this email exist
 	let account;
 	try {
-		account = await Account.findOne({ email: input.email });
+		account = await Account.findOne({ email: input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -378,7 +378,7 @@ router.post("/account/reset-password/set", checkAPIKeys(false, true), async (req
 	// Check if an account with this email exist
 	let account;
 	try {
-		account = await Account.findOne({ email: input.email });
+		account = await Account.findOne({ email: input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -409,7 +409,7 @@ router.post("/account/match-password", checkAPIKeys(false, true), async (req, re
 	// Fetch the account of interest
 	let account;
 	try {
-		account = await Account.findOne({ email: input.email });
+		account = await Account.findOne({ email: input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}

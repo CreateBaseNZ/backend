@@ -32,6 +32,12 @@ const GroupSchema = new Schema({
 	},
 	verified: { type: Schema.Types.Boolean, default: false },
 	payment: { type: [Schema.Types.ObjectId], default: [] },
+	lowerCase: {
+		name: { type: Schema.Types.String, default: "" },
+		location: {
+			country: { type: Schema.Types.String, default: "" },
+		},
+	},
 	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 });
 

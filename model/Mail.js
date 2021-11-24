@@ -34,7 +34,7 @@ MailSchema.statics.sendEmail = function (object = {}) {
 		// Fetch the mail instance
 		let mail;
 		try {
-			mail = await this.findOne({ email: object.recipient });
+			mail = await this.findOne({ email: object.recipient.toLowerCase() });
 		} catch (error) {
 			return reject({ status: "error", content: error });
 		}

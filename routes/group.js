@@ -59,6 +59,10 @@ router.post("/group/school/register", checkAPIKeys(false, true), async (req, res
 		location: input.location,
 		join,
 		date: { created: input.date, modified: input.date },
+		lowerCase: {
+			name: input.name.toLowerCase(),
+			location: { country: input.location.country.toLowerCase() },
+		},
 	});
 	// Save the group instance
 	try {

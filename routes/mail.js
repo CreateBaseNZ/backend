@@ -25,19 +25,19 @@ const Profile = require("../model/Profile.js");
 router.post("/mail/subscribe-newsletter", async (req, res) => {
 	// Check if email input is valid
 	try {
-		await validateEmail(req.body.input.email);
+		await validateEmail(req.body.input.email.toLowerCase());
 	} catch (data) {
 		return res.send(data);
 	}
 	// Check if the Mail instance already exist
 	let mail;
 	try {
-		mail = await Mail.findOne({ email: req.body.input.email });
+		mail = await Mail.findOne({ email: req.body.input.email.toLowerCase() });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
 	// If no Mail instance exist, create one
-	if (!mail) mail = new Mail({ email: req.body.input.email });
+	if (!mail) mail = new Mail({ email: req.body.input.email.toLowerCase() });
 	// If Mail instance is not subscribed to newsletters, turn the option on
 	if (mail.notification.newsletter) {
 		return res.send({ status: "failed", content: "already subscribed" });
@@ -46,7 +46,7 @@ router.post("/mail/subscribe-newsletter", async (req, res) => {
 	mail.notification.cold = false;
 	// If the subscriber is completely brand new, send a welcome email
 	const options = {
-		recipient: req.body.input.email,
+		recipient: req.body.input.email.toLowerCase(),
 		receive: "new-subscriber",
 		notification: "newsletter",
 		tone: "friendly",
@@ -84,7 +84,7 @@ router.get("/mail/unsubscribe-newsletter/:email", async (req, res) => {
 	// Check if the Mail instance exist
 	let mail;
 	try {
-		mail = await Mail.findOne({ email: req.params.email });
+		mail = await Mail.findOne({ email: req.params.email.toLowerCase() });
 	} catch (error) {
 		return res.status(404).sendFile("error-404.html", viewsOption);
 	}
@@ -116,7 +116,7 @@ router.post("/mail/manage-options", async (req, res) => {
 	// Fetch the mail instance
 	let mail;
 	try {
-		mail = await Mail.findOne(req.body.input.email);
+		mail = await Mail.findOne(req.body.input.email.toLowerCase());
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -150,7 +150,7 @@ router.post("/mail/retrieve-options", async (req, res) => {
 	// Fetch the mail instance
 	let mail;
 	try {
-		mail = await Mail.findOne(req.body.input.email);
+		mail = await Mail.findOne(req.body.input.email.toLowerCase());
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -207,13 +207,13 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		// Check if a mail instance with this email exist
 		let mail;
 		try {
-			mail = await Mail.findOne({ email });
+			mail = await Mail.findOne({ email: email.toLowerCase() });
 		} catch (error) {
 			return res.send({ status: "error", content: error });
 		}
 		if (mail) continue;
 		mail = new Mail({
-			email,
+			email: email.toLowerCase(),
 			notification: { cold: true },
 			metadata: { name, type: "customer-school", school, segment, country: "nz", group },
 		});
@@ -241,13 +241,13 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		// Check if a mail instance with this email exist
 		let mail;
 		try {
-			mail = await Mail.findOne({ email });
+			mail = await Mail.findOne({ email: email.toLowerCase() });
 		} catch (error) {
 			return res.send({ status: "error", content: error });
 		}
 		if (mail) continue;
 		mail = new Mail({
-			email,
+			email: email.toLowerCase(),
 			notification: { cold: true },
 			metadata: { name, type: "customer-school", school, segment, country: "sg", group },
 		});
@@ -275,13 +275,13 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		// Check if a mail instance with this email exist
 		let mail;
 		try {
-			mail = await Mail.findOne({ email });
+			mail = await Mail.findOne({ email: email.toLowerCase() });
 		} catch (error) {
 			return res.send({ status: "error", content: error });
 		}
 		if (mail) continue;
 		mail = new Mail({
-			email,
+			email: email.toLowerCase(),
 			notification: { cold: true },
 			metadata: { name, type: "customer-school", school, segment, country: "uk", group },
 		});
