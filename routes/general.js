@@ -7,6 +7,7 @@ const express = require("express");
 const path = require("path");
 const axios = require("axios");
 const moment = require("moment");
+const releaseNotes = require("../public/release-notes.json");
 
 /*=========================================================================================
 VARIABLES
@@ -82,6 +83,11 @@ router.post("/tracking", async (req, res) => {
 	}
 	return res.send({ status: "succeeded", content: data });
 });
+
+// @route     GET /fetch-release-notes
+// @desc
+// @access    Public
+router.get("/fetch-release-notes", async (req, res) => res.send(releaseNotes));
 
 /*=========================================================================================
 EXPORT ROUTE
