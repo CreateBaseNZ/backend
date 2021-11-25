@@ -31,19 +31,26 @@ const MailSchema = new Schema({
 
 MailSchema.statics.sendEmail = function (object = {}) {
 	return new Promise(async (resolve, reject) => {
-		// Fetch the mail instance
-		let mail;
-		try {
-			mail = await this.findOne({ email: object.recipient.toLowerCase() });
-		} catch (error) {
-			return reject({ status: "error", content: error });
-		}
 		// Send the email
 		if (notification.personal.indexOf(object.notification) !== -1) {
+			// Fetch the mail instance
+			let mail;
+			try {
+				mail = await this.findOne({ email: object.recipient.toLowerCase() });
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+			// Send the email
 			try {
 				await mail.sendEmail(object);
 			} catch (data) {
 				return reject(data);
+			}
+			// Save the mail instance
+			try {
+				await mail.save();
+			} catch (error) {
+				return reject({ status: "error", content: error });
 			}
 		} else if (notification.general.indexOf(object.notification) !== -1) {
 			try {

@@ -43,7 +43,6 @@ router.post("/mail/subscribe-newsletter", async (req, res) => {
 		return res.send({ status: "failed", content: "already subscribed" });
 	}
 	mail.notification.newsletter = true;
-	mail.notification.cold = false;
 	// If the subscriber is completely brand new, send a welcome email
 	const options = {
 		recipient: req.body.input.email.toLowerCase(),
@@ -184,7 +183,7 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 	const client = await auth.getClient();
 	// Create instance of Google Sheets API
 	const googleSheets = google.sheets({ version: "v4", auth: client });
-	const spreadsheetId = process.env.COLD_EMAIL_SHEET;
+	const spreadsheetId = process.env.GSHEET_COLD_EMAIL;
 	// Read rows from spreadsheet
 	let date = {
 		nz: new Date(),

@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 let newsletter = {
 	construct: undefined,
 	newSubscriber: undefined,
+	globalLaunch: undefined,
 };
 
 // FUNCTIONS ================================================
@@ -27,6 +28,10 @@ Want to know more about CreateBase? Head over to ${process.env.SITE_PREFIX} or c
 
 We are aiming to inspire the next generation of creators, and we need your help! Share our story with schools, teachers and students, and together we will build the future of education!`,
 	];
+};
+
+newsletter.globalLaunch = function () {
+	return ["We have launched!", "No contents yet!"];
 };
 
 // EXPORT ===================================================
