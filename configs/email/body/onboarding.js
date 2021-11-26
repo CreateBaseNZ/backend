@@ -46,21 +46,6 @@ If you have any feedback we would love to hear from you. Simply reply to this em
 	];
 };
 
-onboarding.organisationCreated = function (object) {
-	return [
-		`${object.group} x CreateBase`,
-		`Let me be the first to welcome you to the CreateBase platform ${object.group}. We’re looking forward to working for you. 
-
-Here are some next steps to help you get up and running as soon as possible.
-
-<b>Projects Unlocked</b>
-Check out the projects you’ve unlocked by registering your school
-
-<b>Spread the word</b>
-Lets make the platform feel less empty. Add some colleagues to your group.`,
-	];
-};
-
 onboarding.organisationDetail = function (object = {}) {
 	let orgName = "";
 	for (let i = 0; i < object.orgName.length; i++) {

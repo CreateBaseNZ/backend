@@ -6,6 +6,7 @@ let general = {
 	inquiry: undefined,
 	accountVerification: undefined,
 	passwordReset: undefined,
+	organisationCreated: undefined,
 	educatorJoin: undefined,
 	inviteEducator: undefined,
 	notifyUserBase: undefined,
@@ -37,6 +38,21 @@ general.passwordReset = function (object = {}) {
 	return [
 		`Your Password Reset Code: ${object.code}`,
 		`Click <b><a href='${process.env.APP_PREFIX}/auth/forgot-password?email=${object.recipient}&code=${object.code}'>this link</a></b> to change your password.`,
+	];
+};
+
+general.organisationCreated = function (object) {
+	return [
+		`${object.group} x CreateBase`,
+		`Let me be the first to welcome you to the CreateBase platform ${object.group}. We’re looking forward to working for you. 
+
+Here are some next steps to help you get up and running as soon as possible.
+
+<b>Projects Unlocked</b>
+Check out the projects you’ve unlocked by registering your school
+
+<b>Spread the word</b>
+Lets make the platform feel less empty. Add some colleagues to your group.`,
 	];
 };
 
