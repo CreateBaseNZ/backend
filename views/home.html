@@ -1,514 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="google-site-verification" content="jCLW2oztBuZES0mxGJLZjEslZAPCwbbN47Gw09AYwWM" />
+		<link rel="icon" href="/public/images/logo-icon.png" />
+		<title>Home • CreateBase</title>
+		<meta
+			name="description"
+			content="Our vision is a world where everybody has the skills and the confidence to bring their own ideas to life, where everybody can actively contribute towards solving the world’s problems. &#169; 2021 CreateBase."
+		/>
+		<link rel="canonical" href="https://createbase.co.nz" />
+		<!-- =========================CSS========================== -->
+		<!-- -----------------------SOURCED------------------------ -->
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet" />
+		<!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+		<!-- ------------------------CUSTOM------------------------ -->
+		<link rel="stylesheet" href="/public/stylesheets/nav.min.css" />
+		<link rel="stylesheet" href="/public/stylesheets/home.min.css" />
+	</head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="google-site-verification" content="jCLW2oztBuZES0mxGJLZjEslZAPCwbbN47Gw09AYwWM" />
-  <link rel="icon" href="/public/images/logo-icon.png" />
-  <title>Home • CreateBase</title>
-  <meta name="description"
-    content="Our vision is a world where everybody has the skills and the confidence to bring their own ideas to life, where everybody can actively contribute towards solving the world’s problems. &#169; 2021 CreateBase.">
-  <link rel="canonical" href="https://createbase.co.nz">
-  <!-- =========================CSS========================== -->
-  <!-- -----------------------SOURCED------------------------ -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-    rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-    rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
-  <!-- ------------------------CUSTOM------------------------ -->
-  <link rel="stylesheet" href="/public/stylesheets/nav.min.css">
-  <link rel="stylesheet" href="/public/stylesheets/home.min.css">
+	<body onload="global.init.init(); home.init.init();">
+		<nav>
+			<a href="/" class="nav-logo">
+				<img src="/public/images/logo_full_svg.svg" class="long cb-logo-dark" alt="CreateBase" />
+				<img src="/public/images/logo_full_white_text.svg" class="long cb-logo-light hide" alt="CreateBase" />
+				<img src="/public/images/logo-icon.png" class="small" alt="CreateBase" />
+			</a>
+			<div class="hamburger hamburger-spin" type="button">
+				<a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Free project</a>
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+			<div class="nav-menu">
+				<!-- <a href="/kits" class="nav-item">Kits</a> -->
+				<!-- <a href="/story" class="nav-item">Our Story</a> -->
+				<a href="/about" class="nav-item">About</a>
+				<a href="/latest" class="nav-item">Latest</a>
+				<a href="/team" class="nav-item">The Team</a>
+				<a href="/contact" class="nav-item">Contact Us</a>
+				<!-- <a href="/contact" class="nav-item">Contact Us</a> -->
+				<a href="https://app.createbase.co.nz/" class="cta-btn special-btn" id="request-demo-btn">Try projects for free</a>
+			</div>
+		</nav>
 
-</head>
+		<div class="page">
+			<div class="banner-slide">
+				<div class="banner-video">
+					<video autoplay muted loop playsinline preload="metadata" poster="/public/images/home/banner-img.png">
+						<source src="/public/videos/banner-video-compressed.mp4" type="video/mp4" />
+					</video>
+					<div class="banner-caption">
+						<h1>Enabling digital tech in every classroom</h1>
+						<div class="caption">
+							<p><span>Save time</span> and <span>feel confident</span> teaching digital technologies in your classroom.</p>
+						</div>
+						<a href="https://app.createbase.co.nz/" class="cta-btn special-btn banner-btn">Claim your free project</a>
+					</div>
+				</div>
+				<div class="swiper-nav"></div>
+			</div>
 
-<body onload="global.init.init(); home.init.init();">
+			<div class="lessplan-banner-section section">
+				<h2>We Create Project-based Lesson Plans for teachers.</h2>
+				<div class="less-plan-img-left">
+					<img src="/public/images/home/less-plan-left.png" alt="lesson-plan-1" />
+				</div>
+				<div class="less-plan-img-right">
+					<img src="/public/images/home/less-plan-right.png" alt="lesson-plan-2" />
+				</div>
+			</div>
 
-  <nav>
-    <a href="/" class="nav-logo">
-      <img src="/public/images/logo_full_svg.svg" class="long cb-logo-dark" alt="CreateBase">
-      <img src="/public/images/logo_full_white_text.svg" class="long cb-logo-light hide" alt="CreateBase">
-      <img src="/public/images/logo-icon.png" class="small" alt="CreateBase">
-    </a>
-    <div class="hamburger hamburger-spin" type="button">
-      <a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Free project</a>
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-    </div>
-    <div class="nav-menu">
-      <!-- <a href="/kits" class="nav-item">Kits</a> -->
-      <!-- <a href="/story" class="nav-item">Our Story</a> -->
-      <a href="/about" class="nav-item">About</a>
-      <a href="/latest" class="nav-item">Latest</a>
-      <a href="/team" class="nav-item">The Team</a>
-      <a href="/contact" class="nav-item">Contact Us</a>
-      <!-- <a href="/contact" class="nav-item">Contact Us</a> -->
-      <a href="https://app.createbase.co.nz/" class="cta-btn special-btn" id="request-demo-btn">Try projects for free</a>
-    </div>
-  </nav>
+			<div class="lessplan-detail-section section">
+				<h3>Our lesson plans</h3>
 
-  <div class="page">
-    <div class="banner-slide">
-      <div class="banner-video">
-        <video autoplay muted loop playsinline preload="metadata" poster="/public/images/home/banner-img.png">
-          <source src="/public/videos/banner-video-compressed.mp4" type="video/mp4">
-        </video>
-        <div class="banner-caption">
-          <h1>Enabling digital tech in every classroom</h1>
-          <div class="caption"><p><span>Save time</span> and <span>feel confident</span> teaching digital technologies in your classroom.</p></div>
-          <a href="https://app.createbase.co.nz/" class="cta-btn special-btn banner-btn">Claim your free project</a>
-        </div>
-      </div>
-      <div class="swiper-nav"></div>
-    </div>
+				<div class="lessplan-feature-wrap">
+					<div class="lessplan-feature time-feature">
+						<div class="icon-wrap">
+							<img src="/public/images/home/restore.svg" alt="time" />
+						</div>
+						<div class="icon-text">
+							<h4>Save your Time</h4>
+							<p>Choose from our library of pre-made lesson plans and integrate them directly into your existing STEAM curriculum.</p>
+						</div>
+					</div>
+					<div class="lessplan-feature align-feature">
+						<div class="icon-wrap">
+							<img src="/public/images/home/align.svg" alt="align" />
+						</div>
+						<div class="icon-text">
+							<h4>Align with the Curriculum</h4>
+							<p>Each lesson plan showcases its alignment with the NZ technology curriculum, helping you deliver the right content to your class.</p>
+						</div>
+					</div>
+					<div class="lessplan-feature exp-feature">
+						<div class="icon-wrap">
+							<img src="/public/images/home/3d.svg" alt="engaging" />
+						</div>
+						<div class="icon-text">
+							<h4>Provide Engaging Experiences</h4>
+							<p>Each lesson plan includes fun and interactive content for students delivered through our online platform, including 3D simulations of robotic systems.</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-    <div class="lessplan-banner-section section">
-      <h2>We Create Project-based Lesson Plans for teachers.</h2>
-      <div class="less-plan-img-left">
-        <img src="/public/images/home/less-plan-left.png" alt="lesson-plan-1">
-      </div>
-      <div class="less-plan-img-right">
-        <img src="/public/images/home/less-plan-right.png" alt="lesson-plan-2">
-      </div>
-    </div>
+			<div class="cta-section">
+				<a href="https://app.createbase.co.nz/">
+					<div class="claim-btn">
+						<p>Claim your free lesson plan</p>
+						<span class="material-icons-outlined"> launch </span>
+					</div>
+				</a>
+			</div>
 
-    <div class="lessplan-detail-section section">
-      <h3>Our lesson plans</h3>
+			<div class="product-detail-section section">
+				<div class="product-wrap">
+					<div class="product-container">
+						<div class="title-text">
+							<h6>Lesson Plans</h6>
+							<p>Each lesson plan helps you deliver a Project to your students.</p>
+						</div>
+					</div>
+					<div class="product-container">
+						<div class="title-text">
+							<h6>Projects</h6>
+							<p>Projects walk students through the process of solving a real world problem.</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <div class="lessplan-feature-wrap">
-        <div class="lessplan-feature time-feature">
-          <div class="icon-wrap">
-            <img src="/public/images/home/restore.svg" alt="time">
-          </div>
-          <div class="icon-text">
-            <h4>Save your Time</h4>
-            <p>Choose from our library of pre-made lesson plans and integrate them directly into your existing STEAM curriculum.</p>
-          </div>
-        </div>
-        <div class="lessplan-feature align-feature">
-          <div class="icon-wrap">
-            <img src="/public/images/home/align.svg" alt="align">
-          </div>
-          <div class="icon-text">
-            <h4>Align with the Curriculum</h4>
-            <p>Each lesson plan showcases its alignment with the NZ technology curriculum, helping you deliver the right content to your class.</p>
-          </div>
-        </div>
-        <div class="lessplan-feature exp-feature">
-          <div class="icon-wrap">
-            <img src="/public/images/home/3d.svg" alt="engaging">
-          </div>
-          <div class="icon-text">
-            <h4>Provide Engaging Experiences</h4>
-            <p>Each lesson plan includes fun and interactive content for students delivered through our online platform, including 3D simulations of robotic systems.</p>
-          </div>
-        </div>
+			<div class="project-preview-section">
+				<h3>Check out some of our projects</h3>
+				<div class="project-wrap">
+					<div class="single-project-container send-it">
+						<div class="project-img-container"><img class="mobile-project-image" src="/public/images/home/send-it.jpg" alt="send-it" /></div>
+						<div class="project-info-container">
+							<div class="project-title">
+								<h5>SEND IT</h5>
+							</div>
+							<div class="project-description">
+								<div class="project-summary">
+									<div class="subjects-container">
+										<p class="subject ai">AI</p>
+										<p class="subject autom">Automation</p>
+										<p class="subject ethics">Ethics</p>
+										<p class="subject tech">Technology</p>
+										<p class="subject engin">Engineering</p>
+										<p class="subject cs">Computer Science</p>
+									</div>
+									<p class="summary">Automate a jumping game by creating a simple artificial intelligence (AI)</p>
+								</div>
+								<div class="project-details">
+									<div class="sub-text-container">
+										<p class="sub-title">Project Length</p>
+										<p class="sub-text">6-8 lessons</p>
+									</div>
+									<div class="sub-text-container">
+										<p class="sub-title">Curriculum Alignment</p>
+										<p class="sub-text">Aligns with L1 to L4 of the NZ Curriculum</p>
+										<p class="sub-text">PO4 of computational thinking for digital technologies</p>
+										<p class="sub-text">PO3 of designing and developing digital technologies</p>
+									</div>
+									<div class="sub-text-container">
+										<p class="sub-title">More details</p>
+										<p class="sub-text">Unlimited student access</p>
+										<p class="sub-text">Involves group activities</p>
+									</div>
+								</div>
+							</div>
+							<a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Get it for free</a>
+						</div>
+					</div>
+				</div>
 
-      </div>
+				<div class="project-wrap">
+					<div class="single-project-container magnebot flex-reverse">
+						<div class="project-img-container"><img class="mobile-project-image" src="/public/images/home/magnebot.jpg" alt="send-it" /></div>
+						<div class="project-info-container">
+							<div class="project-title">
+								<h5>Magnebot</h5>
+							</div>
+							<div class="project-description">
+								<div class="project-summary">
+									<div class="subjects-container">
+										<p class="subject autom">Automation</p>
+										<p class="subject maths">Maths</p>
+										<p class="subject social-sci">Social Science</p>
+										<p class="subject tech">Technology</p>
+										<p class="subject engin">Engineering</p>
+										<p class="subject cs">Computer Science</p>
+									</div>
+									<p class="summary">Control a robotic arm using flow-based programming to clean up items of rubbish</p>
+								</div>
+								<div class="project-details">
+									<div class="sub-text-container">
+										<p class="sub-title">Project Length</p>
+										<p class="sub-text">4-6 lessons</p>
+									</div>
+									<div class="sub-text-container">
+										<p class="sub-title">Curriculum Alignment</p>
+										<p class="sub-text">Aligns with L1 to L3 of the NZ Curriculum</p>
+										<p class="sub-text">PO3 of computational thinking for digital technologies</p>
+										<p class="sub-text">PO2 of designing and developing digital technologies</p>
+									</div>
+									<div class="sub-text-container">
+										<p class="sub-title">More details</p>
+										<p class="sub-text">Unlimited student access</p>
+										<p class="sub-text">Involves group activities</p>
+									</div>
+								</div>
+							</div>
+							<a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Get it for free</a>
+						</div>
+					</div>
+				</div>
 
-    </div>
+				<div class="project-wrap">
+					<div class="single-project-container line-following">
+						<div class="project-img-container">
+							<div class="mobile-project-image coming-soon-img">
+								<img class="mobile-project-image" src="/public/images/home/line-follow.jpg" alt="send-it" />
+							</div>
+						</div>
+						<div class="project-info-container">
+							<div class="project-title">
+								<h5>Line following</h5>
+							</div>
+							<div class="project-description">
+								<div class="project-summary">
+									<div class="subjects-container">
+										<p class="subject ai">AI</p>
+										<p class="subject autom">Automation</p>
+										<p class="subject tech">Technology</p>
+										<p class="subject engin">Engineering</p>
+										<p class="subject cs">Computer Science</p>
+									</div>
+									<p class="summary">Write an algorithm to control a line following robot in a warehouse; enabling it to find and put out fires</p>
+								</div>
+								<div class="project-details">
+									<div class="sub-text-container">
+										<p class="sub-title">Project Length</p>
+										<p class="sub-text">8-10 lessons</p>
+									</div>
+									<div class="sub-text-container">
+										<p class="sub-title">Curriculum Alignment</p>
+										<p class="sub-text">Aligns with L2 to L5 of the NZ Curriculum</p>
+										<p class="sub-text">PO5 of computational thinking for digital technologies</p>
+										<p class="sub-text">PO3 of designing and developing digital technologies</p>
+									</div>
+									<div class="sub-text-container">
+										<p class="sub-title">More details</p>
+										<p class="sub-text">Unlimited student access</p>
+										<p class="sub-text">Involves group activities</p>
+									</div>
+								</div>
+							</div>
+							<a class="coming-soon-cta">Coming Soon</a>
+						</div>
+					</div>
+				</div>
+			</div>
 
-    <div class="cta-section">
-      <a href="https://app.createbase.co.nz/">
-        <div class="claim-btn">
-          <p>Claim your free lesson plan</p><span class="material-icons-outlined">
-            launch
-          </span>
-        </div>
-      </a>
-    </div>
+			<div class="pricing-section section">
+				<div class="section-title">
+					<h3>Pricing</h3>
+					<img src="/public/images/home/title-img-yellow.svg" alt="yellow-shape" />
+				</div>
 
-    <div class="product-detail-section section">
-      <div class="product-wrap">
-        <div class="product-container">
-          <div class="title-text">
-            <h6>Lesson Plans</h6>
-            <p>Each lesson plan helps you deliver a Project to your students. </p>
-          </div>
-        </div>
-        <div class="product-container">
-          <div class="title-text">
-            <h6>Projects</h6>
-            <p>Projects walk students through the process of solving a real world problem.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+				<div class="pricing-container">
+					<div class="pricing-card coming-card">
+						<div class="pricing-title">
+							<h5>CreateBase Lite</h5>
+							<h4>Coming Soon</h4>
+						</div>
+						<div class="price-list">
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>???</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>???</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>???</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>???</p>
+							</div>
+						</div>
+						<a class="coming-soon-cta">Coming Soon</a>
+					</div>
+					<div class="pricing-card selected-card">
+						<div class="pricing-title">
+							<h5>Pre-release</h5>
+							<h4>FREE</h4>
+						</div>
+						<div class="price-list">
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>Free access to platform</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>Create Organisation and Learner accounts</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>Unlimited users</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>2 Projects</p>
+							</div>
+						</div>
+						<a href="https://app.createbase.co.nz/" class="cta-btn inverse-btn">Claim free project</a>
+					</div>
+					<div class="pricing-card coming-card">
+						<div class="pricing-title">
+							<h5>CreateBase Pro</h5>
+							<h4>Coming Soon</h4>
+						</div>
+						<div class="price-list">
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>???</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>???</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>???</p>
+							</div>
+							<div class="list-item">
+								<span class="material-icons-outlined"> task_alt </span>
+								<p>???</p>
+							</div>
+						</div>
+						<a class="coming-soon-cta">Coming Soon</a>
+					</div>
+				</div>
+			</div>
 
-    <div class="project-preview-section">
-      <h3>Check out some of our projects</h3>
-      <div class="project-wrap">
-        <div class="single-project-container send-it">
-          <div class="project-img-container"><img class="mobile-project-image" src="/public/images/home/send-it.jpg" alt="send-it"></div>
-          <div class="project-info-container">
-            <div class="project-title">
-              <h5>SEND IT</h5>
-            </div>
-            <div class="project-description">
-              <div class="project-summary">
-                <div class="subjects-container">
-                  <p class="subject ai">AI</p>
-                  <p class="subject autom">Automation</p>
-                  <p class="subject ethics">Ethics</p>
-                  <p class="subject tech">Technology</p>
-                  <p class="subject engin">Engineering</p>
-                  <p class="subject cs">Computer Science</p>
-                </div>
-                <p class="summary">Automate a jumping game by creating a simple artificial intelligence (AI)</p>
-              </div>
-              <div class="project-details">
-                <div class="sub-text-container">
-                  <p class="sub-title">Project Length</p>
-                  <p class="sub-text">6-8 lessons</p>
-                </div>
-                <div class="sub-text-container">
-                  <p class="sub-title">Curriculum Alignment</p>
-                  <p class="sub-text">Aligns with L1 to L4 of the NZ Curriculum</p>
-                  <p class="sub-text">PO4 of computational thinking for digital technologies</p>
-                  <p class="sub-text">PO3 of designing and developing digital technologies</p>
-                </div>
-                <div class="sub-text-container">
-                  <p class="sub-title">More details</p>
-                  <p class="sub-text">Unlimited student access</p>
-                  <p class="sub-text">Involves group activities</p>
-                </div>
-              </div>
-            </div>
-            <a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Get it for free</a>
-          </div>
-        </div>
-      </div>
+			<div class="about-us-section section">
+				<div class="section-title">
+					<h3>About Us</h3>
+					<img src="/public/images/home/title-img-blue.svg" alt="blue-shape" />
+				</div>
 
-      <div class="project-wrap">
-        <div class="single-project-container magnebot flex-reverse">
-          <div class="project-img-container"><img class="mobile-project-image" src="/public/images/home/magnebot.jpg" alt="send-it"></div>
-          <div class="project-info-container">
-            <div class="project-title">
-              <h5>Magnebot</h5>
-            </div>
-            <div class="project-description">
-              <div class="project-summary">
-                <div class="subjects-container">
-                  <p class="subject autom">Automation</p>
-                  <p class="subject maths">Maths</p>
-                  <p class="subject social-sci">Social Science</p>
-                  <p class="subject tech">Technology</p>
-                  <p class="subject engin">Engineering</p>
-                  <p class="subject cs">Computer Science</p>
-                </div>
-                <p class="summary">Control a robotic arm using flow-based programming to clean up items of rubbish </p>
-              </div>
-              <div class="project-details">
-                <div class="sub-text-container">
-                  <p class="sub-title">Project Length</p>
-                  <p class="sub-text">4-6 lessons</p>
-                </div>
-                <div class="sub-text-container">
-                  <p class="sub-title">Curriculum Alignment</p>
-                  <p class="sub-text">Aligns with L1 to L3 of the NZ Curriculum</p>
-                  <p class="sub-text">PO3 of computational thinking for digital technologies </p>
-                  <p class="sub-text">PO2 of designing and developing digital technologies</p>
-                </div>
-                <div class="sub-text-container">
-                  <p class="sub-title">More details</p>
-                  <p class="sub-text">Unlimited student access</p>
-                  <p class="sub-text">Involves group activities</p>
-                </div>
-              </div>
-            </div>
-            <a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Get it for free</a>
-          </div>
-        </div>
-      </div>
+				<div class="about-container">
+					<h4>At CreateBase, we want everyone to have the confidence to:</h4>
+					<div class="about-content-container">
+						<div class="about-img">
+							<img src="/public/images/home/about.jpg" alt="about" />
+						</div>
+						<div class="list-container">
+							<div class="list-item">
+								<div class="icon dream">
+									<img src="/public/images/home/cloud.svg" alt="cloud" />
+								</div>
+								<p>Dream of new ideas</p>
+							</div>
+							<div class="list-item">
+								<div class="icon learn">
+									<img src="/public/images/home/learn.svg" alt="learn" />
+								</div>
+								<p>Learn how to create them</p>
+							</div>
+							<div class="list-item">
+								<div class="icon engage">
+									<img src="/public/images/home/wand.svg" alt="create" />
+								</div>
+								<p>Bring them to life</p>
+							</div>
+						</div>
+					</div>
+					<h5>by utilising concepts and knowledge in STEAM subjects.</h5>
+				</div>
+			</div>
 
-      <div class="project-wrap">
-        <div class="single-project-container line-following">
-          <div class="project-img-container">
-            <div class="mobile-project-image coming-soon-img">
-            <img class="mobile-project-image" src="/public/images/home/line-follow.jpg" alt="send-it">
-            </div>
-          </div>
-          <div class="project-info-container">
-            <div class="project-title">
-              <h5>Line following</h5>
-            </div>
-            <div class="project-description">
-              <div class="project-summary">
-                <div class="subjects-container">
-                  <p class="subject ai">AI</p>
-                  <p class="subject autom">Automation</p>
-                  <p class="subject tech">Technology</p>
-                  <p class="subject engin">Engineering</p>
-                  <p class="subject cs">Computer Science</p>
-                </div>
-                <p class="summary">Write an algorithm to control a line following robot in a warehouse; enabling it to find and put out fires</p>
-              </div>
-              <div class="project-details">
-                <div class="sub-text-container">
-                  <p class="sub-title">Project Length</p>
-                  <p class="sub-text">8-10 lessons</p>
-                </div>
-                <div class="sub-text-container">
-                  <p class="sub-title">Curriculum Alignment</p>
-                  <p class="sub-text">Aligns with L2 to L5 of the NZ Curriculum</p>
-                  <p class="sub-text">PO5 of computational thinking for digital technologies</p>
-                  <p class="sub-text">PO3 of designing and developing digital technologies</p>
-                </div>
-                <div class="sub-text-container">
-                  <p class="sub-title">More details</p>
-                  <p class="sub-text">Unlimited student access</p>
-                  <p class="sub-text">Involves group activities</p>
-                </div>
-              </div>
-            </div>
-            <a class="coming-soon-cta">Coming Soon</a>
-          </div>
-        </div>
-      </div>
-    </div>
+			<div class="people-section">
+				<h2>Who we've worked with</h2>
+				<div class="people-container">
+					<a href="https://www.redbull.com/nz-en/Red-Bull-Basement-University-NZ" class="people-logo" target="_blank">
+						<img src="/public/images/home/redbull.png" alt="Red Bull Basement" />
+					</a>
+					<a href="https://www.hatch.nz/" target="_blank">
+						<img src="/public/images/home/hatch.png" alt="Hatch" />
+					</a>
+					<a href="https://www.velocity.auckland.ac.nz/" target="_blank">
+						<img src="/public/images/home/velocity.png" alt="Velocity" />
+					</a>
+					<a href="https://www.cie.auckland.ac.nz/unleash-space/" target="_blank">
+						<img src="/public/images/home/unleash.png" alt="Unleash Space" />
+					</a>
+					<a href="https://www.auckland.ac.nz/en/engineering.html" target="_blank">
+						<img src="/public/images/home/uoa.png" alt="The University of Auckland" />
+					</a>
+					<a href="https://www.yoobee.ac.nz/" target="_blank">
+						<img src="/public/images/home/yoobee.png" alt="Yoobee" />
+					</a>
+					<a href="https://www.gettinglost.co.nz/" target="_blank">
+						<img src="/public/images/home/getting-lost.png" alt="Getting Lost" />
+					</a>
+				</div>
+			</div>
+		</div>
 
-    <div class="pricing-section section">
-      <div class="section-title">
-        <h3>Pricing</h3>
-        <img src="/public/images/home/title-img-yellow.svg" alt="yellow-shape">
-      </div>
+		<footer>
+			<div class="footer-container prop">
+				<div class="value-prop">Gain the skills, tools, and confidence to unleash your inner technology creator.</div>
+				<div class="brand-prop">Create your awesome.</div>
+			</div>
+			<div class="footer-container subscribe">
+				<h5>Be the first to know</h5>
+				<div class="footer-subscribe">
+					<input id="footer-input" type="text" placeholder="Email" maxlength="100" />
+					<i class="footer-btn material-icons-round">send</i>
+				</div>
+				<div class="footer-error"></div>
+			</div>
+			<div class="footer-container quick-links">
+				<h5>Quick Links</h5>
+				<!-- <a href="/kits">Kits</a> -->
+				<!-- <a href="/story">Our Story</a> -->
+				<a href="/team">The Team</a>
+			</div>
+			<div class="footer-container policies">
+				<h5>Policies</h5>
+				<a href="/terms">Terms</a>
+				<a href="/privacy">Privacy</a>
+			</div>
+			<div class="footer-container contact">
+				<h5>We'd love to hear from you</h5>
+				<a href="tel:+64-211-543-805" target="_blank"><i class="material-icons-outlined">call</i>+64 211 543 805</a>
+				<a href="mailto:admin@createbase.co.nz" target="_blank"><i class="material-icons-outlined">email</i>admin@createbase.co.nz</a>
+				<a href="https://goo.gl/maps/BCFTQTpLg4MXqg3aA" target="_blank"><i class="material-icons-outlined">map</i>24 York Street, AKL, NZ</a>
+				<div class="footer-socials">
+					<a href="https://www.facebook.com/CreateBaseNZ" class="fab fa-facebook-square" target="_blank"></a>
+					<a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+					<a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+					<a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
+				</div>
+			</div>
+			<div class="copyright">&#169; 2021 CreateBase. All rights reserved.</div>
+		</footer>
 
-      <div class="pricing-container">
-        <div class="pricing-card coming-card">
-          <div class="pricing-title">
-            <h5>CreateBase Lite</h5>
-            <h4>Coming Soon</h4>
-          </div>
-          <div class="price-list">
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>???</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>???</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>???</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>???</p>
-            </div>
-          </div>
-          <a class="coming-soon-cta">Coming Soon</a>
-        </div>
-        <div class="pricing-card selected-card">
-          <div class="pricing-title">
-            <h5>Pre-release</h5>
-            <h4>FREE</h4>
-          </div>
-          <div class="price-list">
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>Free access to platform</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>Create Organisation  and Learner accounts</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>Unlimited users</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>2 Projects</p>
-            </div>
-          </div>
-          <a href="https://app.createbase.co.nz/" class="cta-btn inverse-btn">Claim free project</a>
-        </div>
-        <div class="pricing-card coming-card">
-          <div class="pricing-title">
-            <h5>CreateBase Pro</h5>
-            <h4>Coming Soon</h4>
-          </div>
-          <div class="price-list">
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>???</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>???</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>???</p>
-            </div>
-            <div class="list-item">
-              <span class="material-icons-outlined">
-                task_alt
-              </span>
-              <p>???</p>
-            </div>
-          </div>
-          <a class="coming-soon-cta">Coming Soon</a>
-        </div>
-      </div>
-    </div>
+		<div class="notif-wrapper">
+			<!-- <div class="popup"></div> -->
+		</div>
 
-    <div class="about-us-section section">
-      <div class="section-title">
-        <h3>About Us</h3>
-        <img src="/public/images/home/title-img-blue.svg" alt="blue-shape">
-      </div>
-
-      <div class="about-container">
-        <h4>At CreateBase, we want everyone to have the confidence to:</h4>
-        <div class="about-content-container">
-          <div class="about-img">
-            <img src="/public/images/home/about.jpg" alt="about">
-          </div>
-          <div class="list-container">
-            <div class="list-item">
-              <div class="icon dream">
-                <img src="/public/images/home/cloud.svg" alt="cloud">
-              </div>
-              <p>Dream of new ideas</p>
-            </div>
-            <div class="list-item">
-              <div class="icon learn">
-                <img src="/public/images/home/learn.svg" alt="learn">
-              </div>
-              <p>Learn how to create them</p>
-            </div>
-            <div class="list-item">
-              <div class="icon engage">
-                <img src="/public/images/home/wand.svg" alt="create">
-              </div>
-              <p>Bring them to life</p>
-            </div>
-          </div>
-        </div>
-        <h5>by utilising concepts and knowledge in STEAM subjects.</h5>
-      </div>
-    </div>
-
-    <div class="people-section">
-      <h2>Who we've worked with</h2>
-      <div class="people-container">
-        <a href="https://www.redbull.com/nz-en/Red-Bull-Basement-University-NZ" class="people-logo" target="_blank">
-          <img src="/public/images/home/redbull.png" alt="Red Bull Basement" />
-        </a>
-        <a href="https://www.hatch.nz/" target="_blank">
-          <img src="/public/images/home/hatch.png" alt="Hatch" />
-        </a>
-        <a href="https://www.velocity.auckland.ac.nz/" target="_blank">
-          <img src="/public/images/home/velocity.png" alt="Velocity" />
-        </a>
-        <a href="https://www.cie.auckland.ac.nz/unleash-space/" target="_blank">
-          <img src="/public/images/home/unleash.png" alt="Unleash Space" />
-        </a>
-        <a href="https://www.auckland.ac.nz/en/engineering.html" target="_blank">
-          <img src="/public/images/home/uoa.png" alt="The University of Auckland" />
-        </a>
-        <a href="https://www.yoobee.ac.nz/" target="_blank">
-          <img src="/public/images/home/yoobee.png" alt="Yoobee" />
-        </a>
-        <a href="https://www.gettinglost.co.nz/" target="_blank">
-          <img src="/public/images/home/getting-lost.png" alt="Getting Lost" />
-        </a>
-
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-container prop">
-      <div class="value-prop">Gain the skills, tools, and confidence to unleash your inner technology creator.</div>
-      <div class="brand-prop">Create your awesome.</div>
-    </div>
-    <div class="footer-container subscribe">
-      <h5>Be the first to know</h5>
-      <div class="footer-subscribe">
-        <input id="footer-input" type="text" placeholder="Email" maxlength="100">
-        <i class="footer-btn material-icons-round">send</i>
-      </div>
-      <div class="footer-error"></div>
-    </div>
-    <div class="footer-container quick-links">
-      <h5>Quick Links</h5>
-      <!-- <a href="/kits">Kits</a> -->
-      <!-- <a href="/story">Our Story</a> -->
-      <a href="/team">The Team</a>
-    </div>
-    <div class="footer-container policies">
-      <h5>Policies</h5>
-      <a href="/terms">Terms</a>
-      <a href="/privacy">Privacy</a>
-    </div>
-    <div class="footer-container contact">
-      <h5>We'd love to hear from you</h5>
-      <a href="tel:+64-211-543-805" target="_blank"><i class="material-icons-outlined">call</i>+64 211 543 805</a>
-      <a href="mailto:admin@createbase.co.nz" target="_blank"><i
-          class="material-icons-outlined">email</i>admin@createbase.co.nz</a>
-      <a href="https://goo.gl/maps/BCFTQTpLg4MXqg3aA" target="_blank"><i class="material-icons-outlined">map</i>24 York
-        Street, AKL, NZ</a>
-      <div class="footer-socials">
-        <a href="https://www.facebook.com/CreateBaseNZ" class="fab fa-facebook-square" target="_blank"></a>
-        <a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
-        <a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
-        <a class="fab fa-youtube"
-          href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber"
-          target="_blank"></a>
-      </div>
-    </div>
-    <div class="copyright">
-      &#169; 2021 CreateBase. All rights reserved.
-    </div>
-  </footer>
-
-  <div class="notif-wrapper">
-    <!-- <div class="popup"></div> -->
-  </div>
-
-  <!-- ==========================JS========================== -->
-  <!-- -----------------------SOURCED------------------------ -->
-  <script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <!-- <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script> -->
-  <!-- <script async src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
-  <!-- ------------------------CUSTOM------------------------ -->
-  <script async src="/public/javascripts/nav.js"></script>
-  <script async src="/public/javascripts/footer.js"></script>
-  <script async src="/public/javascripts/notification.js"></script>
-  <script async src="/public/javascripts/global.js"></script>
-  <script async src="/public/javascripts/home.js"></script>
-  <!-- <script>history.scrollRestoration = "manual"</script> -->
-</body>
-
+		<!-- ==========================JS========================== -->
+		<!-- -----------------------SOURCED------------------------ -->
+		<script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<!-- <script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script> -->
+		<!-- <script async src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+		<!-- ------------------------CUSTOM------------------------ -->
+		<script async src="/public/javascripts/nav.js"></script>
+		<script async src="/public/javascripts/footer.js"></script>
+		<script async src="/public/javascripts/notification.js"></script>
+		<script async src="/public/javascripts/global.js"></script>
+		<script async src="/public/javascripts/home.js"></script>
+		<!-- <script>history.scrollRestoration = "manual"</script> -->
+	</body>
 </html>
