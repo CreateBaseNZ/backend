@@ -265,7 +265,6 @@ router.post("/account/verification/email", checkAPIKeys(false, true), async (req
 // @access
 router.post("/account/verification/verify", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
-	console.log(input);
 	// Initialise failed handler
 	let failed = { account: "", code: "", profile: "" };
 	// Check if an account with this email exist
