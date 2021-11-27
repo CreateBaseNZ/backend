@@ -3,6 +3,7 @@
 const express = require("express");
 const retrieve = require("../algorithms/retrieve.js");
 const groupUpdate = require("../algorithms/group/update.js");
+const agenda = require("../configs/agenda.js");
 
 // VARIABLES ================================================
 
@@ -96,6 +97,27 @@ router.post("/group/school/verify", checkAPIKeys(false, true), async (req, res) 
 		await group.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
+	}
+	// Fetch the details of the admin
+	try {
+		group = (await retrieve.groups([group], { license: [], profile: [], account: [] }))[0];
+	} catch (error) {
+		return res.send(error);
+	}
+	// Send the email
+	for (let i = 0; i < group.licenses.active.length; i++) {
+		const license = group.licenses.active[i];
+		if (license.role === "admin" || license.role === "teacher") {
+			const option = {
+				recipient: license.profile.account.email,
+				name: license.profile.name.first,
+				receive: "organisation-verified",
+				notification: "general",
+				tone: "friendly",
+				group: group.name,
+			};
+			agenda.now("email", { option });
+		}
 	}
 	// Success handler
 	return res.send({ status: "succeeded", content: { group } });

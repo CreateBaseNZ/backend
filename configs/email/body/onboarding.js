@@ -4,10 +4,8 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 let onboarding = {
 	construct: undefined,
 	welcome: undefined,
-	defaultOnboardingCompleted: undefined,
-	organisationCreated: undefined,
-	organisationDetail: undefined,
-	educatorAccept: undefined,
+	baseTasksCompleted: undefined,
+	allTasksCompleted: undefined,
 };
 
 // FUNCTIONS ================================================
@@ -18,85 +16,55 @@ onboarding.construct = function (object = {}) {
 
 onboarding.welcome = function () {
 	return [
-		`Next Steps`,
-		`Success! Your account has been verified.
+		`Welcome to the CreateBase Community!`,
+		`Your journey with CreateBase is just beginning! 
 
-Your journey with CreateBase is just beginning, to get you started here are some next steps we recommend for you:
+Here are some next steps we recommend for you.
+
 
 <b>Complete Onboarding tasks</b>
-If you’re not sure what to do check the Onboarding tab for tasks that will help you use CreateBase like a pro.
+
+Check the Onboarding tab for tasks that will help you use CreateBase like a pro.
+
+<u><b><a href="${process.env.APP_PREFIX}/onboarding">Get started ></a></b></u>
+
 
 <b>Learn with Guest Access</b>
-Use Guest Access for hands on experience learning about how we solve your problems.
+
+To access our Projects and other platform features, you need to register a new (or join an existing) school group.
+
+<u><b><a href="${process.env.APP_PREFIX}/my-groups">Manage your groups ></a></b></u>
+
 
 <b>Discover a Project</b>
-Have a look at what your students complete on our platform.`,
+
+Are you interested in your students experience on our platform, or are you a student who wants to jump into a project yourself? Simply choose a project and click continue.
+
+<u><b><a href="${process.env.APP_PREFIX}/browse">Find a project ></a></b></u>`,
 	];
 };
 
-onboarding.defaultOnboardingCompleted = function () {
+onboarding.baseTasksCompleted = function () {
 	return [
-		`Great Work!`,
-		`Congratulations! You completed our Guest Onboarding. 
+		`Great work!`,
+		`We’re stoked that you’ve taken some precious time to learn about our platform. We hope it wil be valuable to you!
 
-
-We’re stoked that you’ve taken some precious time to learn about our platform, and we hope we can be valuable to you.
-
-If you have any feedback we would love to hear from you. Simply reply to this email with anything you want to share.`,
+If you have any feedback we would love to hear from you. Send a message on social media or email us anytime.`,
 	];
 };
 
-onboarding.organisationDetail = function (object = {}) {
-	let orgName = "";
-	for (let i = 0; i < object.orgName.length; i++) {
-		const character = object.orgName[i];
-		if (character === " ") {
-			orgName = orgName + "-";
-		} else {
-			orgName = orgName + character;
-		}
-	}
+onboarding.allTasksCompleted = function () {
 	return [
-		`Hooray! ${object.orgName} is now registered on the CreateBase platform.`,
-		`Congratulations! Your organisation is now established on our platform. Each school only has one organisation account and you have all the codes. This is important info so make sure you note the organisation information below, as it's needed to add teachers and students to your organisation.
+		`ready... set... CREATE`,
+		`Now we can really celebrate!
 
 
-<b>Organisation Information</b>
-<ul><li>Organisation ID: <b>${object.orgId}</b></li><li>Organisation Name: <b>${object.orgName}</b></li><li>Code for Educators: <b>${object.eduCode}</b></li><li>Code for Learners: <b>${object.lerCode}</b></li></ul>
-<b>Invite Your Fellow Teachers and Your Students</b>
+You’re ready to teach on the CreateBase platform! 
 
-It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/nb0zARtCCK0'>Here is a video</a></b> on how to invite your fellow teachers and your students.
+If you need any help our Support tab has your back.
 
-Here are the invitation links that you can send to your fellow educators and your students.
-<ul><li>Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${orgName}__${object.eduCode}</li><li>Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${orgName}__${object.lerCode}</li></ul>`,
-	];
-};
 
-onboarding.educatorAccept = function (object = {}) {
-	let orgName = "";
-	for (let i = 0; i < object.orgName.length; i++) {
-		const character = object.orgName[i];
-		if (character === " ") {
-			orgName = orgName + "-";
-		} else {
-			orgName = orgName + character;
-		}
-	}
-	return [
-		`You are now a part of ${object.orgName}`,
-		`Amazing news! You are now a part of ${object.orgName}!
-
-Each school only has one organisation account and you have all the codes. This is important info so make sure you note the organisation information below, as it's needed to add teachers and students to your organisation.
-		
-
-<b>Organisation Information</b>
-<ul><li>Organisation ID: <b>${object.orgId}</b></li><li>Organisation Name: <b>${object.orgName}</b></li><li>Code for Educators: <b>${object.eduCode}</b></li><li>Code for Learners: <b>${object.lerCode}</b></li></ul>
-<b>Invite Your Fellow Teachers and Your Students</b>
-
-It is more fun when there are more people in your organisation! So, invite your fellow teachers and your students to the organisation. <b><a href='https://youtu.be/nb0zARtCCK0'>Here is a video</a></b> on how to invite your fellow teachers and your students.
-
-Here are the invitation links that you can send to your fellow educators and your students.
-<ul><li>Educator link - ${process.env.APP_PREFIX}/invite/educator/${object.orgId}__${orgName}__${object.eduCode}</li><li>Learner link - ${process.env.APP_PREFIX}/invite/learner/${object.orgId}__${orgName}__${object.lerCode}</li></ul>`,
+Time flies and the fun is just beginning. Flick us a message on social media to tell us all about it!  We love to to hear about how our platform is improving the experiences of both teachers and students!`,
 	];
 };
 

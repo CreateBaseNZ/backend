@@ -6,9 +6,7 @@ let general = {
 	inquiry: undefined,
 	accountVerification: undefined,
 	passwordReset: undefined,
-	organisationCreated: undefined,
-	educatorJoin: undefined,
-	inviteEducator: undefined,
+	organisationVerified: undefined,
 	notifyUserBase: undefined,
 	test: undefined,
 };
@@ -41,36 +39,29 @@ general.passwordReset = function (object = {}) {
 	];
 };
 
-general.organisationCreated = function (object) {
+general.organisationVerified = function (object) {
 	return [
-		`${object.group} x CreateBase`,
-		`Let me be the first to welcome you to the CreateBase platform ${object.group}. We’re looking forward to working for you. 
+		`${object.group} has been verified!`,
+		`Let me be the first to welcome ${object.group} to the CreateBase platform.
 
-Here are some next steps to help you get up and running as soon as possible.
+We’re looking forward to working with you!
+
+
+Here are some next steps to help you get up and running.
+
 
 <b>Projects Unlocked</b>
-Check out the projects you’ve unlocked by registering your school
+
+Check out the projects you’ve unlocked by registering your school.
+
+<u><b><a href="${process.env.APP_PREFIX}/browse">Browse Projects ></a></b></u>
+
 
 <b>Spread the word</b>
-Lets make the platform feel less empty. Add some colleagues to your group.`,
-	];
-};
 
-general.educatorJoin = function (object = {}) {
-	return [
-		`${object.inviter} is requesting to join you at ${object.orgName}`,
-		`${object.inviter} requested to join you and your team at ${object.orgName}!
+Lets make the platform feel less empty. Add some colleagues or students to your group.
 
-Click <b><a href='${process.env.APP_PREFIX}/invite/educator/${object.url}'>this link</a></b> to accept this request!`,
-	];
-};
-
-general.inviteEducator = function (object = {}) {
-	return [
-		`${object.joiner} invited you to join ${object.orgName} on the CreateBase platform!`,
-		`${object.joiner} invited you to join ${object.orgName} on the CreateBase platform!
-
-Click <b><a href='${process.env.APP_PREFIX}/invite/educator/${object.url}'>this link</a></b> to join!`,
+<u><b><a href="${process.env.APP_PREFIX}/manage-group/students">Manage Groups ></a></b></u>`,
 	];
 };
 
