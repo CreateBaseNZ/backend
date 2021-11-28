@@ -28,6 +28,9 @@
     top: 50%;
     width: 75vw;
     transform: translateY(-40%);
+    .caption{
+      width: 100%;
+    }
     h1{
       color: $lightest;
       font-size: 2rem;
@@ -37,8 +40,7 @@
       color: $lightest;
       font-size: 1.2rem;
       span{
-        // font-weight: 600;
-        color: $lightest;
+        color: $blue-light;
         font-size: 1.2rem;
       }
     }
@@ -49,12 +51,36 @@
   color: $lightest;
   background: $logo-mid;
   font-size: 1rem;
+  position: relative; 
+}
+
+.banner-btn{
+  &::after{
+    content: '*No credit card required';
+    font-weight: 400;
+    width: 100%;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: -1.8rem;
+    left: 0.1rem;
+  }
 }
 
 .inverse-btn{
   color: $logo-mid;
   background: $lightest;
   font-size: 0.8rem;
+  position: relative;
+  &::after{
+    content: '*No credit card required';
+    font-weight: 400;
+    color: $lightest;
+    width: 100%;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: -1.8rem;
+    left: 0.1rem;
+  }
 }
 
 .cta-btn {
@@ -158,17 +184,17 @@ video{
   }
 }
 
-.lessplan-banner-section{
+.banner-section{
   background-color: #F6F6F6;
   position: relative;
   overflow: hidden;
   height: 8rem;
   z-index: 1;
   h2{
-    width: 80vw;
+    width: 60vw;
     max-width: 50rem;
-    font-size: 1.2rem;
-    color: $darker;
+    font-size: 1rem;
+    color: $blue-light;
     text-align: center;
     position: absolute;
     top: 50%;
@@ -176,19 +202,19 @@ video{
     transform: translate(-50%, -50%);
     z-index: 10;
   }
-  .less-plan-img-left{
+  .banner-img-left{
     position: absolute;
-    left: -5rem;
-    top: 0;
+    left: -3rem;
+    top: 2rem;
     z-index: 0;
     img{
       width: 40vw;
     }
   }
-  .less-plan-img-right{
+  .banner-img-right{
     position: absolute;
-    right: -6rem;
-    top: 0;
+    right: -4rem;
+    bottom: -2rem;
     z-index: 5;
     img{
       width: 40vw;
@@ -197,6 +223,7 @@ video{
 }
 
 .lessplan-detail-section{
+  padding-top: 4rem;
   h3{
     text-align: center;
     // margin: 0 auto;
@@ -225,6 +252,7 @@ video{
       }
       .icon-text{
         width: 15rem;
+        text-align: center;
         h4{
           font-size: 1.1rem;
           padding: 1rem 0;
@@ -265,13 +293,13 @@ video{
 }
 
 .cta-section{
-  padding: 2rem 10vw 2rem 10vw;
+  // padding: 0 10vw 2rem 10vw;
   // width: 100%;
   .claim-btn{
     margin: 0 auto;
     font-size: 1.2rem;
     background-color: $blue-light;
-    border-radius: 1rem;
+    // border-radius: 1rem;
     padding: 2rem;
     display: flex;
     justify-content: center;
@@ -286,7 +314,7 @@ video{
     }
     span{
       padding-left: 1rem;
-      display: none;
+      // display: none;
       color: $lightest;
     }
   }
@@ -344,6 +372,9 @@ video{
           font-size: 2rem;
         }
       }
+      .project-description{
+        padding-bottom: 1rem;
+      }
       .project-summary{
         .subjects-container{
           display: flex;
@@ -351,12 +382,6 @@ video{
         }
       }
     }
-
-        // .send-it{
-    //   background-image: url('../images/home/send-it.jpg');
-    //   background-position: center;
-    //   background-size: cover;
-    // }
 
     .subject{
       padding: 0.3rem 0.8rem;
@@ -372,6 +397,9 @@ video{
       padding: 1rem 0;
     }
 
+    .cta-btn{
+      margin: 0 auto;
+    }
     .ai{
       border-color:#8dcbee;
       color: #8dcbee;
@@ -424,8 +452,6 @@ video{
         }
       }
     }
-
-
   }
 }
 
@@ -475,6 +501,26 @@ video{
         padding:0.6rem 0;
       }
     }
+  }
+}
+
+.testimonial-section{
+  .testimonial-cards{
+    padding-top: 3rem;
+      .card{
+          border-radius: 1rem;
+          padding: 1.5rem;
+      }
+      .card-text{
+          padding-bottom: 1rem;
+      }
+  }
+  .section-title{
+      margin: auto;
+      padding: 1rem 0;
+      h3{
+          font-size: 2rem;
+      }
   }
 }
 
@@ -667,14 +713,14 @@ video{
     }
   }
 
-  .lessplan-banner-section{
+  .banner-section{
     overflow: hidden;
     height: 10rem;
     h2{
-      width: 70vw;
+      width: 60vw;
       font-size: 1.5rem;
     }
-    .less-plan-img-left{
+    .banner-img-left{
       position: absolute;
       left: -5rem;
       top: 0;
@@ -684,10 +730,10 @@ video{
         max-width: 20rem;
       }
     }
-    .less-plan-img-right{
+    .banner-img-right{
       position: absolute;
       right: -6rem;
-      top: 0;
+      bottom: -1rem;
       z-index: 5;
       img{
         width: 40vw;
@@ -705,9 +751,9 @@ video{
       display: flex;
       flex-direction: row;
       justify-content: center;
-      padding-top: 2rem;
+      padding-top: 3rem;
       .lessplan-feature{
-        align-items: flex-start;
+        align-items: center;
         text-align: left;
         padding: 0 1rem 4rem 1rem;
         width: 33%;
@@ -724,8 +770,11 @@ video{
 
   .cta-section{
     .claim-btn{
-      border-radius: 1rem;
-      padding: 2rem;
+      // border-radius: 1rem;
+      // padding: 2rem;
+      max-width: none;
+      margin: 0;
+      flex: 0 0 100%;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -912,23 +961,23 @@ video{
     }
   }
 
-  .lessplan-banner-section{
+  .banner-section{
     height: 15rem;
     h2{
       width: 70vw;
-      font-size: 2.3rem;
+      font-size: 1.8rem;
     }
-    .less-plan-img-left{
-      left: -5rem;
-      top: -5rem;
+    .banner-img-left{
+      left: 4rem;
+      top: -2rem;
       img{
         width: 40vw;
         max-width: 35rem;
       }
     }
-    .less-plan-img-right{
-      right: -6rem;
-      top: -5rem;
+    .banner-img-right{
+      right: 3rem;
+      bottom: -5rem;
       img{
         width: 40vw;
         max-width: 35rem;
@@ -952,7 +1001,7 @@ video{
       width: 100%;
       // max-width: 80rem;
       .lessplan-feature{
-        align-items: flex-start;
+        // align-items: flex-start;
         text-align: left;
         padding: 0 3vw 4rem 3vw;
         width: 33.3333%;
@@ -966,6 +1015,7 @@ video{
           img{
             width: 3.5rem;
           }
+          margin-bottom: 1rem;
         }
         .icon-text{
           width: 100%;
@@ -980,7 +1030,7 @@ video{
   }
 
   .cta-section{
-    padding: 0;
+    padding: 2rem 0;
     .claim-btn{
       border-radius: 0;
       padding: 2.5rem;
@@ -1077,6 +1127,10 @@ video{
         }
       }
 
+      .cta-btn{
+        margin: 0;
+      }
+
       .summary{
         padding: 0.5rem 0;
       }
@@ -1163,6 +1217,32 @@ video{
     }
   }
 
+    
+  .testimonial-section{
+    .testimonial-cards{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .card{
+            padding: 1.5rem;
+            min-width: 15rem;
+            max-width: 25rem;
+            margin: 0 1rem;
+        }
+        .card-text{
+            padding-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+    }
+    .section-title{
+        text-align: center;
+        padding: 1rem 0;
+        h3{
+            font-size: 1.5rem;
+        }
+    }
+  }
+
   .about-us-section{
     .about-container{
       display: flex;
@@ -1225,7 +1305,7 @@ video{
   }
   
   .banner-btn {
-    padding: 2rem 2.5rem;
+    padding: 1.5rem 2.5rem;
     color: $lightest;
     background: $logo-mid;
     letter-spacing: 0.05em;
@@ -1234,6 +1314,11 @@ video{
     transition: filter 0.2s ease-out;
     &:hover {
       filter: brightness(0.9);
+    }
+    .banner-btn{
+      &::after{
+        left: 0rem;
+      }
     }
   }
 

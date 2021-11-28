@@ -1,0 +1,318 @@
+@import "global";
+
+.section{
+    padding: 2rem 10vw 2rem 10vw;
+}
+
+.landing-section{
+    display: flex;
+    flex-direction: column;
+    padding: calc(#{$nav-height} - 20px + 5vh) 0 5rem 0;
+    min-height: 650px;
+    // align-items: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 3rem;
+    h1{
+        font-size: 2rem;
+        padding-bottom: 1rem;
+    }
+    .hero-section{
+        flex: 0 0 50%;
+    }
+    .hero-caption{
+        padding: 2rem 10vw 2rem 10vw;
+    }
+    .hero-title{
+        h1{
+            font-size: 2rem;
+        }
+    }
+    .sub-title{
+        padding-bottom: 2rem;
+        h2{
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+        }
+        span{
+            color: $blue-light;
+        }
+    }
+}
+
+.landing-video{
+    width: 100%;
+    height: 20rem;
+}
+
+.special-btn{
+    color: $lightest;
+    background: $logo-mid;
+    font-size: 1rem;
+}
+
+.cta-btn {
+    padding: 1.3rem 1.8rem;
+    border-radius: 1rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    transition: filter 0.2s ease-out;
+    text-align: center;
+    &:hover {
+      filter: brightness(0.9);
+    }
+    min-width: 8rem;
+    max-width: 600px;
+}
+
+.cta-section{
+    padding: 0.5rem 0;
+    .cta-signup{
+        padding: 1.3rem 0;
+    }
+    .sub-text{
+        padding: 0.5rem 0;
+    }
+}
+
+.testimonial-section{
+    .testimonial-cards{
+        padding-top: 3rem;
+        .card{
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        .card-text{
+            padding-bottom: 1rem;
+        }
+    }
+    .section-title{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 5rem;
+        h3{
+          text-align: center;
+          font-size: 1.5rem;
+          // padding-bottom: 5rem;
+        }
+        img{
+          position: absolute;
+          width: 100%;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          max-width: 15rem;
+        }
+      }
+}
+
+
+
+.learnmore-section{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h3{
+        font-size: 2rem;
+        padding: 1rem;
+        text-align: center;
+    }
+    video{
+        width: 100%;
+        height: 25rem;
+        padding: 2rem 0;
+    }
+}
+
+.bg-shape{
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.bg-left-shape{
+    left: -5%;
+    width: 70%;
+}
+
+.bg-right-shape{
+    right: -5%;
+    top: 150%;
+    width: 70%;
+}
+
+@media only screen and (min-width: 768px) {
+    .landing-section {
+        padding-top: $nav-height + rem;
+        height: auto;
+        max-height: none;
+        min-height: 600px;
+    }
+    
+    .hero{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        h1{
+            font-size: 2.5rem;
+            padding-bottom: 1rem;
+        }
+        .hero-section{
+            flex: 0 0 50%;
+        }
+        .hero-caption{
+            padding: 2rem 3vw 2rem 10vw;
+        }
+        .hero-title{
+            h1{
+                font-size: 1.5rem;
+            }
+        }
+        .sub-title{
+            h2{
+                font-size: 1.2rem;
+                padding: 0.5rem 0;
+            }
+        }
+    }
+    
+    .landing-video{
+        width: 100%;
+        height: 26rem;
+        padding: 2rem 10vw 2rem 3vw;
+    }
+    
+    .special-btn{
+        color: $lightest;
+        background: $logo-mid;
+        font-size: 1rem;
+    }
+    
+    .cta-btn {
+        padding: 1.3rem 1.8rem;
+        border-radius: 1rem;
+        letter-spacing: 0.05em;
+        font-weight: 500;
+        transition: filter 0.2s ease-out;
+        text-align: center;
+        &:hover {
+          filter: brightness(0.9);
+        }
+        min-width: 8rem;
+        max-width: 600px;
+    }
+    
+    .cta-section{
+        padding: 0.5rem 0;
+        .cta-signup{
+            padding: 1.3rem 0;
+        }
+        .sub-text{
+            padding: 0.5rem 0;
+        }
+    }
+    
+    .testimonial-section{
+        .testimonial-cards{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            .card{
+                padding: 1.5rem;
+                min-width: 15rem;
+                max-width: 25rem;
+                margin: 0 1rem;
+            }
+            .card-text{
+                padding-bottom: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        .section-title{
+            margin: auto;
+            padding: 1rem 0;
+            h3{
+                font-size: 2rem;
+            }
+        }
+    }
+
+    .bg-left-shape{
+        left: -5%;
+        width: 35%;
+    }
+    
+    .bg-right-shape{
+        right: -5%;
+        top: 100%;
+        width: 35%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .landing-section {
+        min-height: 95vh;
+    }
+
+    .section{
+        padding: 2rem 15vw 2rem 15vw;
+    }
+    
+    .landing-section{
+        padding: calc(#{$nav-height} - 20px + 5vh) 0 5rem 0;
+        min-height: 650px;
+        width: 100%;
+    }
+    
+    .hero{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        h1{
+            font-size: 3rem;
+            padding-bottom: 1rem;
+        }
+        .hero-section{
+            flex: 0 0 50%;
+        }
+        .hero-caption{
+            padding: 2rem 3vw 2rem 15vw;
+        }
+        .hero-title{
+            h1{
+                font-size: 2rem;
+            }
+        }
+        .sub-title{
+            h2{
+                font-size: 1.5rem;
+                padding: 0.5rem 0;
+            }
+        }
+    }
+    
+    .landing-video{
+        padding: 2rem 15vw 2rem 3vw;
+    }
+    
+    .bg-left-shape{
+        left: -5rem;
+        width: 30rem;
+    }
+    
+    .bg-right-shape{
+        right: 0;
+        top: 50%;
+        width: 30rem;
+    }
+}
