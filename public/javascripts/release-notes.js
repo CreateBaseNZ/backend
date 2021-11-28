@@ -50,28 +50,32 @@ releaseNotes.populateData = (content) => {
 		versionNumber = document.createElement("h2");
 		NewReleaseNote.appendChild(versionNumber).className = "version-number";
 		versionNumber.innerHTML = "Version" + " " + contentArray["version"];
-		noteTitle = document.createElement("h3");
-		NewReleaseNote.appendChild(noteTitle).className = "note-title";
-		noteImg = document.createElement("img");
-		NewReleaseNote.appendChild(noteImg).className = "note-img";
-		noteText = document.createElement("p");
-		NewReleaseNote.appendChild(noteText).className = "note-text";
-		// List of bullet points
-		notePointList = document.createElement("ul");
-		notePoint = document.createElement("li");
-
+		let notePointList;
 		for (let i = 0; i < subcontentArray.length; i++) {
 			const element = subcontentArray[i];
+			if (i > 0) {
+				if (subcontentArray[i]["type"] === "point" && subcontentArray[i - 1]["type"] !== "point") {
+					// List of bullet points
+					notePointList = document.createElement("ul");
+					NewReleaseNote.appendChild(notePointList).className = "point-list";
+				}
+			}
 			if (element["type"] === "heading") {
+				const noteTitle = document.createElement("h3");
+				NewReleaseNote.appendChild(noteTitle).className = "note-title";
 				noteTitle.innerHTML = element["html"];
 			} else if (element["type"] === "image") {
+				const noteImg = document.createElement("img");
+				NewReleaseNote.appendChild(noteImg).className = "note-img";
 				noteImg.src = element["url"];
 			} else if (element["type"] === "text") {
+				const noteText = document.createElement("p");
 				noteText.innerHTML = element["html"];
+				NewReleaseNote.appendChild(noteText).className = "note-text";
 			} else if (element["type"] === "point") {
-				// TODO add forEach if point is array of points
+				const notePoint = document.createElement("li");
 				notePointList.appendChild(notePoint).className = "point";
-				NewReleaseNote.appendChild(notePointList).className = "point-list";
+				// TODO add forEach if point is array of points
 				notePoint.innerHTML = element["html"];
 			}
 		}
