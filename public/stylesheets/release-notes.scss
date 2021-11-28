@@ -1,0 +1,146 @@
+@import "global";
+
+.notes-section {
+	display: flex;
+	flex-direction: row;
+	padding: calc(#{$nav-height} - 40px + 10vh) 10vw 5rem 10vw;
+	min-height: 650px;
+	align-items: flex-start;
+	position: relative;
+	overflow: hidden;
+
+	.release-menu-container {
+		display: none;
+	}
+
+	.notes-container {
+		// border: thin solid blue;
+		flex: 0 0 100%;
+		// padding: 2rem 0;
+		h1 {
+			font-size: 2rem;
+			font-weight: 600;
+		}
+		.last-updated {
+			color: $light;
+			font-size: 0.9rem;
+			padding-top: 1rem;
+		}
+	}
+
+	.notes-content {
+		padding: 1rem 0;
+		.note {
+			padding: 1rem 0 2rem 0;
+		}
+		.version-number {
+			font-size: 1.5rem;
+			font-weight: 600;
+			padding-bottom: 1rem;
+		}
+		.note-title {
+			font-size: 1.3rem;
+			font-weight: 500;
+			padding-bottom: 1rem;
+		}
+		img {
+			width: 100%;
+			max-width: 600px;
+			border-radius: 1rem;
+		}
+		.note-text {
+			padding: 1rem 0;
+			font-weight: 400;
+			color: $dark;
+		}
+		.point-list {
+			list-style-position: inside;
+			.point {
+				color: $dark;
+				padding: 1rem 0;
+			}
+		}
+	}
+}
+
+.bg-shape {
+	position: absolute;
+	top: 0;
+	z-index: -1;
+}
+
+.bg-left-shape {
+	left: -5%;
+	width: 70%;
+}
+
+.bg-right-shape {
+	right: -5%;
+	top: 100%;
+	width: 70%;
+}
+
+@media only screen and (min-width: 768px) {
+	.notes-section {
+		padding: calc(#{$nav-height} - 40px + 12vh) 15vw 5rem 15vw;
+		height: auto;
+		max-height: none;
+		min-height: 600px;
+	}
+
+	.bg-left-shape {
+		left: -5%;
+		width: 35%;
+	}
+
+	.bg-right-shape {
+		right: -5%;
+		top: 50%;
+		width: 35%;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.notes-section {
+		min-height: 95vh;
+		.release-menu-container {
+			display: flex;
+			// border: thin solid red;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			flex: 1 0 10%;
+			margin-right: 7rem;
+			padding-top: 5rem;
+			.version-menu-item {
+				color: $dark;
+				margin-bottom: 1rem;
+				padding: 0.3rem;
+				width: 100%;
+				// border: thin solid blue;
+				font-weight: 500;
+				&:hover {
+					cursor: pointer;
+					color: $darker;
+					transition: color ease 0.3s;
+				}
+			}
+		}
+
+		.notes-container {
+			// border: thin solid blue;
+			flex: 0 0 70%;
+		}
+	}
+
+	.bg-left-shape {
+		left: 0;
+		width: 30rem;
+	}
+
+	.bg-right-shape {
+		right: 0;
+		top: 10%;
+		width: 30rem;
+	}
+}

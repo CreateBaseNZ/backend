@@ -76,6 +76,11 @@ router.get("/mailing-list/unsubscribe/:email", async (req, res) => {
 // @access    PUBLIC
 router.get("/robots.txt", (req, res) => res.sendFile("robots.txt", viewsOption));
 
+// @route     GET /fetch-release-notes
+// @desc
+// @access    Public
+router.get("/fetch-release-notes", async (req, res) => res.send(releaseNotes));
+
 /*=========================================================================================
 EXPORT ROUTE
 =========================================================================================*/
