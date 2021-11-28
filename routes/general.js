@@ -58,6 +58,11 @@ router.get("/contact", (req, res) => res.sendFile("contact.html", viewsOption));
 // @access    PUBLIC
 router.get("/privacy", (req, res) => res.sendFile("privacy.html", viewsOption));
 
+// @route     GET /release-notes
+// @desc
+// @access    PUBLIC
+router.get("/release-notes", (req, res) => res.sendFile("release-notes.html", viewsOption));
+
 // @route     GET /unsubscribe/:email
 // @desc
 // @access    PUBLIC
