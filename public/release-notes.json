@@ -1,29 +1,24 @@
 [
 	{
-		"version": "1.2",
-		"content": [
-			{ "type": "image", "url": "https://raw.githubusercontent.com/CreateBaseNZ/public/main/landing.png" },
-			{ "type": "heading", "html": "Hello World!" },
-			{ "type": "text", "html": "Hello World!" },
-			{ "type": "point", "html": "Hello World!" }
-		]
-	},
-	{
-		"version": "1.1",
-		"content": [
-			{ "type": "image", "url": "https://raw.githubusercontent.com/CreateBaseNZ/public/main/landing.png" },
-			{ "type": "heading", "html": "Hello World!" },
-			{ "type": "text", "html": "Hello World!" },
-			{ "type": "point", "html": "Hello World!" }
-		]
-	},
-	{
 		"version": "1.0",
 		"content": [
-			{ "type": "image", "url": "https://raw.githubusercontent.com/CreateBaseNZ/public/main/landing.png" },
-			{ "type": "heading", "html": "Hello World!" },
-			{ "type": "text", "html": "Hello World!" },
-			{ "type": "point", "html": "Hello World!" }
+			{ "type": "heading", "html": "New account system" },
+			{ "type": "text", "html": "Updated log-in and sign-up pages." },
+			{ "type": "point", "html": "All accounts require an email for verification and account recovery." },
+			{ "type": "text", "html": "Updated T+Cs." },
+			{ "type": "heading", "html": "Added My Groups page" },
+			{ "type": "text", "html": "The ability to create and join school groups has been added to the platform, with family groups coming soon." },
+			{ "type": "text", "html": "School groups contain admin, teacher and student roles." },
+			{ "type": "text", "html": "Register a school group." },
+			{ "type": "point", "html": "Register any school worldwide." },
+			{ "type": "point", "html": "The first teacher to register their school will become the admin." },
+			{ "type": "point", "html": "Each registration will be approved by CreateBase within 24 hours." },
+			{ "type": "text", "html": "Join a school group." },
+			{ "type": "point", "html": "Students can join school groups using a code supplied by an admin or teacher." },
+			{ "type": "point", "html": "Teachers can request to join school groups and must be accepted by an admin." },
+			{ "type": "heading", "html": "New Project: AimBot" },
+			{ "type": "text", "html": "Apply simple trigonometry to solve an authentic robotics problem." },
+			{ "type": "text", "html": "Learn how to use and track multiple variables as well as apply control systems theory." }
 		]
 	}
 ]
