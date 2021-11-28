@@ -66,7 +66,21 @@ Lets make the platform feel less empty. Add some colleagues or students to your 
 };
 
 general.notifyUserBase = function () {
-	return ["We have an important announcement!", `No contents yet!`];
+	return [
+		"We have a big announcement! Lots of new features to improve your class experience!",
+		`First off, I would like to thank you for being one of our early users! It means a lot for our team to see teachers and students get value from our solution.
+
+
+After months of iteratively getting feedback from teachers and improving our solution, we are ready to officially launch the CreateBase platform! Next week, on the 6th of December, our new and improved platform will be live on https://app.createbase.co.nz/! We have added new features such as:
+<ul><li>My Classes - Admins and teachers can create and add their students to multiple classes on our platform</li><li>Progress Tracking - Classes enable teachers to track the progress of their students throughout each Project</li><li>Global Support - You can now register and join schools on our platform from anywhere in the world</li></ul>
+and much more. See the complete list of features <u><b><a href="https://createbase.co.nz/release-notes">here</a></b></u>. We will also release a new project called AimBot, which brings together programming and trigonometry to solve a problem with disease-spreading mosquitos!
+
+
+We’ll be resetting our database on the day of launch, which will, unfortunately, delete any existing accounts on our platform. This means that you and your students will have to create new accounts to use our new platform once it has launched. You will also have to re-register your school on our platform. We apologise for this inconvenience but believe that the new and upcoming features enabled by this reset will be worth the trouble!
+
+
+We will let you know once we have launched the new platform! If you are not interested and do not wish to be notified, let us know by replying to this email.`,
+	];
 };
 
 general.test = function () {
