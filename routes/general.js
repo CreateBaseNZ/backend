@@ -5,7 +5,7 @@ REQUIRED MODULES
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const releaseNotes = require("../public/release-notes.json");
+const { google } = require("googleapis");
 
 /*=========================================================================================
 VARIABLES
@@ -85,7 +85,48 @@ router.get("/robots.txt", (req, res) => res.sendFile("robots.txt", viewsOption))
 // @route     GET /fetch-release-notes
 // @desc
 // @access    Public
-router.get("/fetch-release-notes", async (req, res) => res.send(releaseNotes));
+router.get("/fetch-release-notes", async (req, res) => {
+	// Set authentication
+	const auth = new google.auth.GoogleAuth({
+		keyFile: "credentials.json",
+		scopes: "https://www.googleapis.com/auth/spreadsheets",
+	});
+	// Create client instance for auth
+	const client = await auth.getClient();
+	// Create instance of Google Sheets API
+	const googleSheets = google.sheets({ version: "v4", auth: client });
+	const spreadsheetId = "1iopXot5OoZwc1KAsztCCxpiQILCK8tsvxCcHdBCv33Q";
+	let fetch = true;
+	let i = 0;
+	let releaseNotes = [];
+	while (fetch) {
+		let releaseNote = {
+			version: undefined,
+			content: [],
+		};
+		let result;
+		try {
+			result = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: i.toString() });
+		} catch (error) {
+			break;
+		}
+		values = result.data.values;
+		releaseNote.version = values[0][1];
+		values.shift();
+		values.shift();
+		for (let j = 0; j < values.length; j++) {
+			const value = values[j];
+			if (value[0] === "image") {
+				releaseNote.content.push({ type: value[0], url: value[1] });
+			} else {
+				releaseNote.content.push({ type: value[0], html: value[1] });
+			}
+		}
+		releaseNotes.push(releaseNote);
+		i++;
+	}
+	return res.send(releaseNotes);
+});
 
 /*=========================================================================================
 EXPORT ROUTE
