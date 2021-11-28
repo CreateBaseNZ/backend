@@ -50,6 +50,7 @@ router.post("/temp/notify-users", async (req, res) => {
 			receive: `notify-user-base`,
 			notification: "general",
 			tone: "friendly",
+			sender: "Carl and the CreateBase team",
 		};
 		const scheduleDate = new Date(baseDate.setSeconds(baseDate.getSeconds() + j));
 		agenda.schedule(scheduleDate, "email", { option });
