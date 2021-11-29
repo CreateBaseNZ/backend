@@ -101,6 +101,12 @@ ${footerMessage}`;
 		const html = message.replace(/(\r\n|\n|\r)/gm, "<br>");
 		// Check if the email is a notification for our members
 		const recipient = object.notification === "createbase" ? email.members : object.recipient;
+		// Examine
+		console.log(`-------------- START --------------`);
+		console.log(`Sending an email to: ${recipient}`);
+		console.log(`------------- MESSAGE -------------`);
+		console.log(message);
+		console.log(`--------------- END ---------------`);
 		// Create the mail object;
 		const mail = {
 			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,

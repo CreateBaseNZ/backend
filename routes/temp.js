@@ -8,6 +8,11 @@ const agenda = require("../configs/agenda.js");
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
 const { google } = require("googleapis");
+const delay = (seconds = 1) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => resolve(), 1000 * seconds);
+	});
+};
 
 // MODELS ===================================================
 
@@ -40,7 +45,6 @@ router.post("/temp/notify-users", async (req, res) => {
 		if (arrays[i][2] === "y" ? true : false) users.push({ email: arrays[i][0].toLowerCase(), name: arrays[i][3] });
 	}
 	// Notify existing user base
-	const baseDate = new Date();
 	for (let j = 0; j < users.length; j++) {
 		const user = users[j];
 		// Send the email
@@ -52,8 +56,8 @@ router.post("/temp/notify-users", async (req, res) => {
 			tone: "friendly",
 			sender: "Carl and the CreateBase team",
 		};
-		const scheduleDate = new Date(baseDate.setSeconds(baseDate.getSeconds() + j));
-		agenda.schedule(scheduleDate, "email", { option });
+		await agenda.now("email", { option });
+		await delay(1 / 20); // Maximum rate of 20 emails per second
 	}
 	// Success handler
 	return res.send({ status: "succeeded" });
@@ -125,8 +129,8 @@ router.post("/temp/subscribe-users", async (req, res) => {
 			tone: "friendly",
 			unsubscribe: true,
 		};
-		const scheduleDate = new Date(baseDate.setSeconds(baseDate.getSeconds() + j));
-		agenda.schedule(scheduleDate, "email", { option });
+		await agenda.now("email", { option });
+		await delay(1 / 20); // Maximum rate of 20 emails per second
 	}
 	// Success handler
 	return res.send({ status: "succeeded" });

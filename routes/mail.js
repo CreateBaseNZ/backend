@@ -10,6 +10,11 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const router = new express.Router();
 const { google } = require("googleapis");
 const viewsOption = { root: path.join(__dirname, "../views") };
+const delay = (seconds = 1) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => resolve(), 1000 * seconds);
+	});
+};
 
 // MODELS ===================================================
 
@@ -221,7 +226,7 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		} catch (error) {
 			return res.send({ status: "error", content: error });
 		}
-		coldEmail(mail, date.nz);
+		await coldEmail(mail, date.nz);
 		date.nz = new Date(date.nz.setSeconds(date.nz.getSeconds() + 1));
 	}
 	// Singapore
@@ -255,7 +260,7 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		} catch (error) {
 			return res.send({ status: "error", content: error });
 		}
-		coldEmail(mail, date.sg);
+		await coldEmail(mail, date.sg);
 		date.sg = new Date(date.sg.setSeconds(date.sg.getSeconds() + 1));
 	}
 	// United Kingdom
@@ -289,7 +294,7 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		} catch (error) {
 			return res.send({ status: "error", content: error });
 		}
-		coldEmail(mail, date.uk);
+		await coldEmail(mail, date.uk);
 		date.uk = new Date(date.uk.setSeconds(date.uk.getSeconds() + 1));
 	}
 	// Success handler
@@ -329,7 +334,7 @@ function validateEmail(input = "") {
 	});
 }
 
-function coldEmail(mail, baseDate) {
+async function coldEmail(mail, baseDate) {
 	const group = {
 		hod: {
 			nz: {
@@ -368,7 +373,8 @@ function coldEmail(mail, baseDate) {
 		};
 		baseDate = new Date(baseDate);
 		const scheduleDate = new Date(baseDate.setMinutes(baseDate.getMinutes() + emails[i].date.minutes));
-		agenda.schedule(scheduleDate, "email", { option });
+		await agenda.schedule(scheduleDate, "email", { option });
+		await delay(1 / 20); // 50 milliseconds delay to allow for processing
 	}
 	// Success handler
 	return;
