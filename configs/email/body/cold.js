@@ -294,7 +294,7 @@ And then, learn more about us and what other teachers are saying <u><b><a href='
 cold.adminNzEmail1 = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		"An engaging and affordable solution for your digital technologies classes! Try it for free!",
+		"An engaging and affordable solution for your in-person and remote digital technologies classes! Try it for free!",
 		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
 
 We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
@@ -332,7 +332,7 @@ And then, learn more about us and what other teachers are saying <u><b><a href='
 cold.adminSgEmail1 = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		"An engaging and affordable solution for your digital technologies classes! Try it for free!",
+		"An engaging and affordable solution for your in-person and remote digital technologies classes! Try it for free!",
 		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
 
 We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
@@ -370,7 +370,7 @@ And then, learn more about us and what other teachers are saying <u><b><a href='
 cold.adminUkEmail1 = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		"An engaging and affordable solution for your digital technologies classes! Try it for free!",
+		"An engaging and affordable solution for your in-person and remote digital technologies classes! Try it for free!",
 		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
 
 We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
@@ -408,7 +408,7 @@ And then, learn more about us and what other teachers are saying <u><b><a href='
 cold.adminAuEmail1 = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		"An engaging and affordable solution for your digital technologies classes! Try it for free!",
+		"An engaging and affordable solution for your in-person and remote digital technologies classes! Try it for free!",
 		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
 
 We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
