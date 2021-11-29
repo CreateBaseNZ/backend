@@ -54,7 +54,7 @@ And then, learn more about us and what other teachers are saying <u><b><a href='
 cold.hodNzEmail2 = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		`${school.upper} deserves more from digital technologies`,
+		`CreateBase has launched our new and improved platform! Try it now!`,
 		`We have launched the new and improved CreateBase platform! But, before you get started, let us first ask you a few questions to ensure that our platform is for you!
 
 
@@ -187,7 +187,7 @@ And then, learn more about us and what other teachers are saying <u><b><a href='
 cold.teacherNzEmail2 = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		"Experience physical robotics in our digital world!",
+		"CreateBase has launched our new and improved platform! Try it now!",
 		`We have launched the new and improved CreateBase platform! But, before you get started, let us first ask you a few questions to ensure that our platform is for you!
 
 
