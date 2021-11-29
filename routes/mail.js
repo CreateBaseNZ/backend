@@ -323,6 +323,7 @@ async function coldEmail(mail, baseDate) {
 		hod: {
 			nz: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+				group2: [{ suffix: "email2", date: { minutes: 0 } }],
 			},
 			sg: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
@@ -334,6 +335,7 @@ async function coldEmail(mail, baseDate) {
 		teacher: {
 			nz: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+				group2: [{ suffix: "email2", date: { minutes: 0 } }],
 			},
 			sg: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
