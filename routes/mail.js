@@ -192,6 +192,7 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 		}
 		let values = result.data.values;
 		const country = values[0][1];
+		if (!country) continue;
 		values.shift();
 		values.shift();
 		let date = new Date();
@@ -201,6 +202,7 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 			const school = values[j][2];
 			const segment = values[j][3];
 			const group = values[j][4];
+			if (!email || !segment || !group) continue;
 			// Check if a mail instance with this email exist
 			let mail;
 			try {
