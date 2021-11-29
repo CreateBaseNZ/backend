@@ -167,18 +167,14 @@ router.post("/mail/retrieve-options", async (req, res) => {
 	return res.send({ status: "succeeded", content: mail.notification });
 });
 
-// @route   POST /mail/admin/update-cold-emails
+// @route   POST /mail/admin/send-cold-emails
 // @desc
 // @access
-router.post("/mail/admin/update-cold-emails", async (req, res) => {
+router.post("/mail/admin/send-cold-emails", async (req, res) => {
 	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error" });
-	}
+	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) return res.send({ status: "critical error" });
 	// Validate if the ADMIN_API_KEY match
-	if (req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
-		return res.send({ status: "critical error" });
-	}
+	if (req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) return res.send({ status: "critical error" });
 	// Set authentication
 	const auth = new google.auth.GoogleAuth({ keyFile: "credentials.json", scopes: "https://www.googleapis.com/auth/spreadsheets" });
 	// Create client instance for auth
@@ -186,100 +182,48 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 	// Create instance of Google Sheets API
 	const googleSheets = google.sheets({ version: "v4", auth: client });
 	const spreadsheetId = process.env.GSHEET_COLD_EMAIL;
-	// Read rows from spreadsheet
-	let date = { nz: new Date(), sg: new Date(), uk: new Date() };
-	// New Zealand
-	const nz = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: "New Zealand" });
-	nz.data.values.shift();
-	for (let i = 0; i < nz.data.values.length; i++) {
-		const name = nz.data.values[i][0];
-		const email = nz.data.values[i][1];
-		const school = nz.data.values[i][2];
-		const segment = nz.data.values[i][3];
-		const group = nz.data.values[i][4];
-		// Check if a mail instance with this email exist
-		let mail;
+	let i = 0;
+	while (true) {
+		let result;
 		try {
-			mail = await Mail.findOne({ email: email.toLowerCase() });
+			result = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: i.toString() });
 		} catch (error) {
-			return res.send({ status: "error", content: error });
+			break;
 		}
-		if (mail) continue;
-		mail = new Mail({
-			email: email.toLowerCase(),
-			notification: { cold: true },
-			metadata: { name, type: "customer-school", school, segment, country: "nz", group },
-		});
-		try {
-			await mail.save();
-		} catch (error) {
-			return res.send({ status: "error", content: error });
+		let values = result.data.values;
+		const country = values[0][1];
+		values.shift();
+		values.shift();
+		let date = new Date();
+		for (let j = 0; j < values.length; j++) {
+			const name = values[j][0];
+			const email = values[j][1];
+			const school = values[j][2];
+			const segment = values[j][3];
+			const group = values[j][4];
+			// Check if a mail instance with this email exist
+			let mail;
+			try {
+				mail = await Mail.findOne({ email: email.toLowerCase() });
+			} catch (error) {
+				return res.send({ status: "error", content: error });
+			}
+			if (mail) continue;
+			mail = new Mail({
+				email: email.toLowerCase(),
+				notification: { cold: true },
+				metadata: { name, type: "customer-school", school, segment, country, group },
+			});
+			try {
+				await mail.save();
+			} catch (error) {
+				return res.send({ status: "error", content: error });
+			}
+			await coldEmail(mail, date);
+			date = new Date(date.setSeconds(date.getSeconds() + 1));
+			await delay(1 / 20); // 50 milliseconds delay to allow for processing
 		}
-		await coldEmail(mail, date.nz);
-		date.nz = new Date(date.nz.setSeconds(date.nz.getSeconds() + 1));
-		await delay(1 / 20); // 50 milliseconds delay to allow for processing
-	}
-	// Singapore
-	const sg = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: "Singapore" });
-	sg.data.values.shift();
-	for (let i = 0; i < sg.data.values.length; i++) {
-		const name = sg.data.values[i][0];
-		const email = sg.data.values[i][1];
-		const school = sg.data.values[i][2];
-		const segment = sg.data.values[i][3];
-		const group = sg.data.values[i][4];
-		// Check if a mail instance with this email exist
-		let mail;
-		try {
-			mail = await Mail.findOne({ email: email.toLowerCase() });
-		} catch (error) {
-			return res.send({ status: "error", content: error });
-		}
-		if (mail) continue;
-		mail = new Mail({
-			email: email.toLowerCase(),
-			notification: { cold: true },
-			metadata: { name, type: "customer-school", school, segment, country: "sg", group },
-		});
-		try {
-			await mail.save();
-		} catch (error) {
-			return res.send({ status: "error", content: error });
-		}
-		await coldEmail(mail, date.sg);
-		date.sg = new Date(date.sg.setSeconds(date.sg.getSeconds() + 1));
-		await delay(1 / 20); // 50 milliseconds delay to allow for processing
-	}
-	// United Kingdom
-	const uk = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: "United Kingdom" });
-	uk.data.values.shift();
-	for (let i = 0; i < uk.data.values.length; i++) {
-		const name = uk.data.values[i][0];
-		const email = uk.data.values[i][1];
-		const school = uk.data.values[i][2];
-		const segment = uk.data.values[i][3];
-		const group = uk.data.values[i][4];
-		// Check if a mail instance with this email exist
-		let mail;
-		try {
-			mail = await Mail.findOne({ email: email.toLowerCase() });
-		} catch (error) {
-			return res.send({ status: "error", content: error });
-		}
-		if (mail) continue;
-		mail = new Mail({
-			email: email.toLowerCase(),
-			notification: { cold: true },
-			metadata: { name, type: "customer-school", school, segment, country: "uk", group },
-		});
-		try {
-			await mail.save();
-		} catch (error) {
-			return res.send({ status: "error", content: error });
-		}
-		await coldEmail(mail, date.uk);
-		date.uk = new Date(date.uk.setSeconds(date.uk.getSeconds() + 1));
-		await delay(1 / 20); // 50 milliseconds delay to allow for processing
+		i++;
 	}
 	// Success handler
 	return res.send({ status: "succeeded" });
@@ -331,6 +275,9 @@ async function coldEmail(mail, baseDate) {
 			uk: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
+			au: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
 		},
 		teacher: {
 			nz: {
@@ -341,6 +288,9 @@ async function coldEmail(mail, baseDate) {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
 			uk: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
+			au: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
 		},
@@ -354,10 +304,20 @@ async function coldEmail(mail, baseDate) {
 			uk: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
+			au: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
 		},
 	};
 	// Fetch the emails to schedule
-	const emails = group[mail.metadata.segment][mail.metadata.country][mail.metadata.group];
+	let emails = [];
+	if (group[mail.metadata.segment]) {
+		if (group[mail.metadata.segment][mail.metadata.country]) {
+			if (group[mail.metadata.segment][mail.metadata.country][mail.metadata.group]) {
+				emails = group[mail.metadata.segment][mail.metadata.country][mail.metadata.group];
+			}
+		}
+	}
 	// Schedule the emails
 	for (let i = 0; i < emails.length; i++) {
 		const option = {

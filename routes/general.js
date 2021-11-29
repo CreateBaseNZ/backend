@@ -108,21 +108,17 @@ router.get("/fetch-release-notes", async (req, res) => {
 	// Create instance of Google Sheets API
 	const googleSheets = google.sheets({ version: "v4", auth: client });
 	const spreadsheetId = "1iopXot5OoZwc1KAsztCCxpiQILCK8tsvxCcHdBCv33Q";
-	let fetch = true;
 	let i = 0;
 	let releaseNotes = [];
-	while (fetch) {
-		let releaseNote = {
-			version: undefined,
-			content: [],
-		};
+	while (true) {
+		let releaseNote = { version: undefined, content: [] };
 		let result;
 		try {
 			result = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: i.toString() });
 		} catch (error) {
 			break;
 		}
-		values = result.data.values;
+		let values = result.data.values;
 		releaseNote.version = values[0][1];
 		values.shift();
 		values.shift();
