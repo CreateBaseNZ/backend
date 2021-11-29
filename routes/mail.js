@@ -180,27 +180,16 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		return res.send({ status: "critical error" });
 	}
 	// Set authentication
-	const auth = new google.auth.GoogleAuth({
-		keyFile: "credentials.json",
-		scopes: "https://www.googleapis.com/auth/spreadsheets",
-	});
+	const auth = new google.auth.GoogleAuth({ keyFile: "credentials.json", scopes: "https://www.googleapis.com/auth/spreadsheets" });
 	// Create client instance for auth
 	const client = await auth.getClient();
 	// Create instance of Google Sheets API
 	const googleSheets = google.sheets({ version: "v4", auth: client });
 	const spreadsheetId = process.env.GSHEET_COLD_EMAIL;
 	// Read rows from spreadsheet
-	let date = {
-		nz: new Date(),
-		sg: new Date(),
-		uk: new Date(),
-	};
+	let date = { nz: new Date(), sg: new Date(), uk: new Date() };
 	// New Zealand
-	const nz = await googleSheets.spreadsheets.values.get({
-		auth,
-		spreadsheetId,
-		range: "New Zealand",
-	});
+	const nz = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: "New Zealand" });
 	nz.data.values.shift();
 	for (let i = 0; i < nz.data.values.length; i++) {
 		const name = nz.data.values[i][0];
@@ -228,13 +217,10 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		}
 		await coldEmail(mail, date.nz);
 		date.nz = new Date(date.nz.setSeconds(date.nz.getSeconds() + 1));
+		await delay(1 / 20); // 50 milliseconds delay to allow for processing
 	}
 	// Singapore
-	const sg = await googleSheets.spreadsheets.values.get({
-		auth,
-		spreadsheetId,
-		range: "Singapore",
-	});
+	const sg = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: "Singapore" });
 	sg.data.values.shift();
 	for (let i = 0; i < sg.data.values.length; i++) {
 		const name = sg.data.values[i][0];
@@ -262,13 +248,10 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		}
 		await coldEmail(mail, date.sg);
 		date.sg = new Date(date.sg.setSeconds(date.sg.getSeconds() + 1));
+		await delay(1 / 20); // 50 milliseconds delay to allow for processing
 	}
 	// United Kingdom
-	const uk = await googleSheets.spreadsheets.values.get({
-		auth,
-		spreadsheetId,
-		range: "United Kingdom",
-	});
+	const uk = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: "United Kingdom" });
 	uk.data.values.shift();
 	for (let i = 0; i < uk.data.values.length; i++) {
 		const name = uk.data.values[i][0];
@@ -296,6 +279,7 @@ router.post("/mail/admin/update-cold-emails", async (req, res) => {
 		}
 		await coldEmail(mail, date.uk);
 		date.uk = new Date(date.uk.setSeconds(date.uk.getSeconds() + 1));
+		await delay(1 / 20); // 50 milliseconds delay to allow for processing
 	}
 	// Success handler
 	return res.send({ status: "succeeded" });
@@ -348,6 +332,17 @@ async function coldEmail(mail, baseDate) {
 			},
 		},
 		teacher: {
+			nz: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
+			sg: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
+			uk: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
+		},
+		admin: {
 			nz: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},

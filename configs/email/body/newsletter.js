@@ -21,7 +21,7 @@ newsletter.newSubscriber = function () {
 
 
 Are you a teacher? <b><a href='${process.env.APP_PREFIX}/auth/signup'>Sign up for a FREE account</a></b> and try out our platform! We have some fun projects for you and your students:
-<ul><li><b>MagneBot</b> - control a robotic arm using flow-based programming to clean up items of rubbish,</li><li><b>Send It</b> - automate a jumping game by creating a simple artificial intelligence (AI).</li><li><b>Line Following</b> (<i>coming soon</i>) - write an algorithm to control a line following robot in a warehouse; enabling it to find and put out fires.</li></ul>Even if you are not a teacher, you can still try our fun and challenging projects! Head over to ${process.env.APP_PREFIX}/ and continue as a guest.
+<ul><li><b>MagneBot</b> - control a robotic arm using flow-based programming to clean up items of rubbish,</li><li><b>Send It</b> - automate a jumping game by creating a simple artificial intelligence (AI).</li><li><b>Line Following</b> (<i>coming soon</i>) - write an algorithm to control a line following robot in a warehouse; enabling it to find and put out fires.</li></ul>Even if you are not a teacher, you can still try our fun and challenging projects! Head over to ${process.env.APP_PREFIX} and continue as a guest.
 
 Want to know more about CreateBase? Head over to ${process.env.SITE_PREFIX} or check out any of our social media.
 
