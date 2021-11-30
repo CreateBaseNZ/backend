@@ -29,7 +29,7 @@ Check the Onboarding tab for tasks that will help you use CreateBase like a pro.
 <u><b><a href="${process.env.APP_PREFIX}/onboarding">Get started ></a></b></u>
 
 
-<b>Learn with Guest Access</b>
+<b>Register or join a school</b>
 
 To access our Projects and other platform features, you need to register a new (or join an existing) school group.
 
