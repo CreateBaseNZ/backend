@@ -183,7 +183,9 @@ router.post("/group/add-member", checkAPIKeys(false, true), async (req, res) => 
 // @desc
 // @access
 router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) => {
+	console.log("Remove Member");
 	const input = req.body.input;
+	console.log(input);
 	// Initialise failed handler
 	let failed = { group: "", license: "", profile: "", classes: "" };
 	// Fetch the group and the license
@@ -216,19 +218,17 @@ router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) 
 		failed.profile = "does not exist";
 		return res.send({ status: "failed", content: failed });
 	}
-	if (!classes.length) {
-		failed.classes.length = "do not exist";
-		return res.send({ status: "failed", content: failed });
-	}
-	// Remove license from all the classes
 	let promises3 = [];
-	for (let i = 0; i < classes.length; i++) {
-		let instance = classes[i];
-		instance.licenses.active = instance.licenses.active.filter((licenseId) => licenseId.toString() !== license._id.toString());
-		instance.licenses.requested = instance.licenses.requested.filter((licenseId) => licenseId.toString() !== license._id.toString());
-		instance.licenses.invited = instance.licenses.invited.filter((licenseId) => licenseId.toString() !== license._id.toString());
-		license.classes = license.classes.filter((classId) => classId.toString() !== instance._id.toString());
-		promises3.push(instance.save());
+	// Remove license from all the classes
+	if (classes.length) {
+		for (let i = 0; i < classes.length; i++) {
+			let instance = classes[i];
+			instance.licenses.active = instance.licenses.active.filter((licenseId) => licenseId.toString() !== license._id.toString());
+			instance.licenses.requested = instance.licenses.requested.filter((licenseId) => licenseId.toString() !== license._id.toString());
+			instance.licenses.invited = instance.licenses.invited.filter((licenseId) => licenseId.toString() !== license._id.toString());
+			license.classes = license.classes.filter((classId) => classId.toString() !== instance._id.toString());
+			promises3.push(instance.save());
+		}
 	}
 	// Remove linkage
 	if (license.status === "activated") {
