@@ -47,7 +47,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -76,7 +76,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -102,7 +102,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -128,7 +128,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -154,7 +154,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -180,7 +180,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>.`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -209,7 +209,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>.`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -235,7 +235,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>.`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -261,7 +261,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>.`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -287,7 +287,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>.`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
 };
 
@@ -325,7 +325,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>."`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
 	];
 };
 
@@ -363,7 +363,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>."`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
 	];
 };
 
@@ -401,7 +401,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>."`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
 	];
 };
 
@@ -439,7 +439,7 @@ With <b>affordable subscriptions</b>, you and your students can access our growi
 
 If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here.</a></b></u>."`,
+And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
 	];
 };
 
