@@ -28,7 +28,7 @@ const checkAPIKeys = (public = false, private = false, admin = false) => {
 
 // MODELS ===================================================
 
-const Error = require("../model/Error.js");
+const ErrorSchema = require("../model/Error.js");
 
 // ROUTES ===================================================
 
@@ -37,7 +37,7 @@ router.get("*", (req, res) => res.status(404).sendFile("error-404.html", viewsOp
 router.post("/error/new", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
 	// Create the error
-	const newError = new Error({ email: input.email, profile: input.profile, route: input.route, type: input.type, date: input.date, metadata: input.metadata });
+	const newError = new ErrorSchema({ email: input.email, profile: input.profile, route: input.route, type: input.type, date: input.date, metadata: input.metadata });
 	// Save the new error
 	try {
 		await newError.save();
@@ -47,6 +47,8 @@ router.post("/error/new", checkAPIKeys(false, true), async (req, res) => {
 	// Notify the team
 	const option = { name: "team", receive: "error-notif", notification: "createbase", tone: "friendly", email: newError.email, type: newError.type, route: newError.route };
 	await agenda.now("email", { option });
+	// Success handler
+	return res.send({ status: "succeeded" });
 });
 
 // EXPORT ===================================================
