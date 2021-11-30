@@ -5,6 +5,7 @@ let createbase = {
 	construct: undefined,
 	inqNotif: undefined,
 	newOrgNotif: undefined,
+	errorNotif: undefined,
 };
 
 // FUNCTIONS ================================================
@@ -33,6 +34,10 @@ createbase.newOrgNotif = function (object = {}) {
 
 Amazing job team! Looking forward to more amazing news!`,
 	];
+};
+
+createbase.errorNotif = function (object = {}) {
+	return [`A user encountered an error!`, `Our user (${object.email}) encountered an ${object.type} error in the ${object.route} route.`];
 };
 
 // EXPORT ===================================================
