@@ -80,7 +80,6 @@ router.get("/robots.txt", (req, res) => res.sendFile("robots.txt", viewsOption))
 // @desc
 // @access    Public
 router.post("/tracking", async (req, res) => {
-	const date = moment.utc().format("YYYY-MM-DD");
 	let data;
 	try {
 		data = (
