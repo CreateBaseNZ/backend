@@ -37,7 +37,12 @@ Amazing job team! Looking forward to more amazing news!`,
 };
 
 createbase.errorNotif = function (object = {}) {
-	return [`A user encountered an error!`, `Our user (${object.email}) encountered an error of ${object.type} type in the ${object.route} route.`];
+	return [
+		`A user encountered an error!`,
+		`Our user (${object.email}) encountered an error of ${object.type} type in the ${object.route} route.
+	
+This is the error message: "${object.message}"`,
+	];
 };
 
 // EXPORT ===================================================

@@ -37,7 +37,15 @@ router.get("*", (req, res) => res.status(404).sendFile("error-404.html", viewsOp
 router.post("/error/new", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
 	// Create the error
-	const fault = new Fault({ email: input.email, profile: input.profile, route: input.route, type: input.type, date: input.date, metadata: input.metadata });
+	const fault = new Fault({
+		email: input.email,
+		profile: input.profile,
+		route: input.route,
+		type: input.type,
+		date: input.date,
+		message: input.message,
+		metadata: input.metadata,
+	});
 	// Save the new error
 	try {
 		await fault.save();
@@ -45,7 +53,16 @@ router.post("/error/new", checkAPIKeys(false, true), async (req, res) => {
 		return res.send(error);
 	}
 	// Notify the team
-	const option = { name: "team", receive: "error-notif", notification: "createbase", tone: "friendly", email: fault.email, type: fault.type, route: fault.route };
+	const option = {
+		name: "team",
+		receive: "error-notif",
+		notification: "createbase",
+		tone: "friendly",
+		email: fault.email,
+		type: fault.type,
+		route: fault.route,
+		message: fault.message,
+	};
 	await agenda.now("email", { option });
 	// Success handler
 	return res.send({ status: "succeeded" });

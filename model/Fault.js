@@ -14,6 +14,7 @@ const FaultSchema = new Schema({
 	route: { type: Schema.Types.String, default: "" },
 	type: { type: Schema.Types.String, default: "" },
 	date: { type: Schema.Types.String, default: "" },
+	message: { type: Schema.Types.String, default: "" },
 	metadata: { type: Schema.Types.Mixed, default: { init: "" } },
 });
 
