@@ -19,7 +19,7 @@ module.exports = function (agenda) {
 		let option = job.attrs.data.option;
 		const accountId = job.attrs.data.accountId;
 		// Check if an email is provided
-		if (!option.recipient) {
+		if (!option.recipient && option.notification !== "createbase") {
 			let account;
 			try {
 				account = await Account.findOne({ _id: accountId });
