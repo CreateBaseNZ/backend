@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 
 // MODEL ====================================================
 
-const ErrorSchema = new Schema({
+const FaultSchema = new Schema({
 	email: { type: Schema.Types.String, default: "" },
 	profile: { type: Schema.Types.ObjectId, default: "" },
 	route: { type: Schema.Types.String, default: "" },
@@ -23,6 +23,6 @@ const ErrorSchema = new Schema({
 
 // EXPORT ===================================================
 
-module.exports = Error = mongoose.model("error", ErrorSchema);
+module.exports = Fault = mongoose.model("fault", FaultSchema);
 
 // END ======================================================
