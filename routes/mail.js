@@ -3,6 +3,7 @@
 const express = require("express");
 const path = require("path");
 const agenda = require("../configs/agenda.js");
+const moment = require("moment-timezone");
 
 // VARIABLES ================================================
 
@@ -192,10 +193,28 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 		}
 		let values = result.data.values;
 		const country = values[0][1];
+		const timezone = values[0][2];
+		const hour = Number(values[0][3]);
+		const minute = Number(values[0][4]);
+		const currentDate = moment().tz(timezone);
+		const currentHour = currentDate.get("hour");
+		const currentMinute = currentDate.get("minute");
+		let setDateToday = true;
+		if (currentHour > hour) {
+			setDateToday = false;
+		} else if (currentHour === hour) {
+			if (currentMinute > minute) setDateToday = false;
+		}
+		const targetDate = moment().tz(timezone);
+		targetDate.set("hour", hour);
+		targetDate.set("minute", minute);
+		targetDate.set("second", 0);
+		targetDate.set("millisecond", 0);
+		if (!setDateToday) targetDate.add(1, "d");
 		if (!country) continue;
 		values.shift();
 		values.shift();
-		let date = new Date();
+		let date = new Date(targetDate.toDate());
 		for (let j = 0; j < values.length; j++) {
 			const name = values[j][0];
 			const email = values[j][1];
@@ -222,7 +241,7 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 				return res.send({ status: "error", content: error });
 			}
 			await coldEmail(mail, date);
-			date = new Date(date.setSeconds(date.getSeconds() + 1));
+			date = new Date(date.setMilliseconds(date.setMilliseconds() + 50));
 			await delay(1 / 20); // 50 milliseconds delay to allow for processing
 		}
 		i++;
