@@ -123,6 +123,52 @@ router.post("/group/school/verify", checkAPIKeys(false, true), async (req, res) 
 	return res.send({ status: "succeeded", content: { group } });
 });
 
+// @route   POST /group/check-privileges
+// @desc
+// @access
+router.post("/group/check-privileges", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Fetch the group of interest
+	let group;
+	try {
+		group = await Group.findOne(input.query.group);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!group) return res.send({ status: "failed", content: { group: "does not exist" } });
+	// Fetch all the licenses of interest
+	let licenses;
+	try {
+		licenses = await License.find(input.query.license);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Check privileges
+	let checks = [];
+	for (let i = 0; i < input.licenseIds.length; i++) {
+		const licenseId = input.licenseIds[i];
+		const license = licenses.find((element) => element._id.toString() === licenseId.toString());
+		let privilege = { member: { active: false, queue: false, inactive: false }, admin: false, teacher: false, student: false };
+		if (group.licenses.active.some((element) => element.toString() === license._id.toString())) {
+			privilege.member.active = true;
+		}
+		if (group.licenses.queue.some((element) => element.toString() === license._id.toString())) {
+			privilege.member.queue = true;
+		}
+		if (group.licenses.inactive.some((element) => element.toString() === license._id.toString())) {
+			privilege.member.inactive = true;
+		}
+		if (privilege.member.active || privilege.member.queue || privilege.member.inactive) {
+			if (license.role === "admin") privilege.admin = true;
+			if (license.role === "teacher") privilege.teacher = true;
+			if (license.role === "student") privilege.student = true;
+		}
+		checks.push({ licenseId, privilege });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: checks });
+});
+
 // @route   POST /group/add-member
 // @desc
 // @access

@@ -78,6 +78,51 @@ router.post("/class/create", checkAPIKeys(false, true), async (req, res) => {
 	return res.send({ status: "succeeded", content: { class: instance } });
 });
 
+// @route   POST /class/check-privileges
+// @desc
+// @access
+router.post("/class/check-privileges", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Fetch the class of interest
+	let instance;
+	try {
+		instance = await Class.findOne(input.query.class);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!instance) return res.send({ status: "failed", content: { class: "does not exist" } });
+	// Fetch all the licenses of interest
+	let licenses;
+	try {
+		licenses = await License.find(input.query.license);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Check privileges
+	let checks = [];
+	for (let i = 0; i < input.licenseIds.length; i++) {
+		const licenseId = input.licenseIds[i];
+		const license = licenses.find((element) => element._id.toString() === licenseId.toString());
+		let privilege = { member: { active: false, requested: false, invited: false }, teacher: false, student: false };
+		if (instance.licenses.active.some((element) => element.toString() === license._id.toString())) {
+			privilege.member.active = true;
+		}
+		if (instance.licenses.requested.some((element) => element.toString() === license._id.toString())) {
+			privilege.member.requested = true;
+		}
+		if (instance.licenses.invited.some((element) => element.toString() === license._id.toString())) {
+			privilege.member.invited = true;
+		}
+		if (privilege.member.active || privilege.member.requested || privilege.member.invited) {
+			if (license.role === "admin" || license.role === "teacher") privilege.teacher = true;
+			if (license.role === "student") privilege.student = true;
+		}
+		checks.push({ licenseId, privilege });
+	}
+	// Success handler
+	return res.send({ status: "succeeded", content: checks });
+});
+
 // @route   POST /class/add-member
 // @desc
 // @access
