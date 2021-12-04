@@ -198,6 +198,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 			verified: group.verified,
 			status: licenses[i].status,
 			studentCode: group.join.student,
+			inClass: licenses[i].classes.length ? true : false,
 		};
 		for (let j = 0; j < input.properties.license.length; j++) {
 			const property = input.properties.license[j];

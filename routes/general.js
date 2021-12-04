@@ -1,6 +1,4 @@
-/*=========================================================================================
-REQUIRED MODULES
-=========================================================================================*/
+// MODULES ==================================================
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const express = require("express");
@@ -9,22 +7,34 @@ const axios = require("axios");
 const moment = require("moment");
 const { google } = require("googleapis");
 
-/*=========================================================================================
-VARIABLES
-=========================================================================================*/
+// VARIABLES ================================================
 
 const router = new express.Router();
 const viewsOption = { root: path.join(__dirname, "../views") };
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
-/*=========================================================================================
-MODELS
-=========================================================================================*/
+// MIDDLEWARE ===============================================
+
+const checkAPIKeys = (public = false, private = false, admin = false) => {
+	return (req, res, next) => {
+		if (public && req.body.PUBLIC_API_KEY !== process.env.PUBLIC_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		if (private && req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		if (admin && req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		return next();
+	};
+};
+
+// MODELS ===================================================
 
 const Mail = require("../model/Mail.js");
 
-/*=========================================================================================
-ROUTES
-=========================================================================================*/
+// ROUTES ===================================================
 
 // @route     Get /
 // @desc
@@ -79,7 +89,7 @@ router.get("/robots.txt", (req, res) => res.sendFile("robots.txt", viewsOption))
 // @route     POST /tracking
 // @desc
 // @access    Public
-router.post("/tracking", async (req, res) => {
+router.post("/tracking", checkAPIKeys(false, true), async (req, res) => {
 	let data;
 	try {
 		data = (
@@ -135,12 +145,8 @@ router.get("/fetch-release-notes", async (req, res) => {
 	return res.send(releaseNotes);
 });
 
-/*=========================================================================================
-EXPORT ROUTE
-=========================================================================================*/
+// EXPORT ===================================================
 
 module.exports = router;
 
-/*=========================================================================================
-END
-=========================================================================================*/
+// END ======================================================
