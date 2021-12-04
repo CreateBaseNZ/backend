@@ -1,199 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<meta name="google-site-verification" content="jCLW2oztBuZES0mxGJLZjEslZAPCwbbN47Gw09AYwWM" />
-		<link rel="icon" href="/public/images/logo-icon.png" />
-		<title>About • CreateBase</title>
-		<meta name="description" content="Learn what we are about at CreateBase." />
-		<link rel="canonical" href="https://createbase.co.nz" />
-		<!-- =========================CSS========================== -->
-		<!-- -----------------------SOURCED------------------------ -->
-		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
-		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet" />
-		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-		<!-- ------------------------CUSTOM------------------------ -->
-		<link rel="stylesheet" href="/public/stylesheets/nav.min.css" />
-		<link rel="stylesheet" href="/public/stylesheets/about.min.css" />
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
-	</head>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<meta name="google-site-verification" content="jCLW2oztBuZES0mxGJLZjEslZAPCwbbN47Gw09AYwWM" />
+	<link rel="icon" href="/public/images/logo-icon.png" />
+	<title>About • CreateBase</title>
+	<meta name="description" content="Learn what we are about at CreateBase." />
+	<link rel="canonical" href="https://createbase.co.nz" />
+	<!-- =========================CSS========================== -->
+	<!-- -----------------------SOURCED------------------------ -->
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+		rel="stylesheet" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	<!-- ------------------------CUSTOM------------------------ -->
+	<link rel="stylesheet" href="/public/stylesheets/nav.min.css" />
+	<link rel="stylesheet" href="/public/stylesheets/about.min.css" />
 
-	<!-- <body onload="global.init.init(); home.init.init();"> -->
-	<body onload="global.init.init(); about.init.init();">
-		<nav>
-			<a href="/" class="nav-logo">
-				<img src="/public/images/logo_full_svg.svg" class="long cb-logo-dark" alt="CreateBase" />
-				<img src="/public/images/logo_full_white_text.svg" class="long cb-logo-light hide" alt="CreateBase" />
-				<img src="/public/images/logo-icon.png" class="small" alt="CreateBase" />
-			</a>
-			<div class="hamburger hamburger-spin" type="button">
-				<a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Free project</a>
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
+</head>
+
+<!-- <body onload="global.init.init(); home.init.init();"> -->
+
+<body onload="global.init.init(); about.init.init();">
+	<nav>
+		<a href="/" class="nav-logo">
+			<img src="/public/images/logo_full_svg.svg" class="long cb-logo-dark" alt="CreateBase" />
+			<img src="/public/images/logo_full_white_text.svg" class="long cb-logo-light hide" alt="CreateBase" />
+			<img src="/public/images/logo-icon.png" class="small" alt="CreateBase" />
+		</a>
+		<div class="hamburger hamburger-spin" type="button">
+			<a href="https://app.createbase.co.nz/" class="cta-btn special-btn">Free project</a>
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</div>
+		<div class="nav-menu">
+			<!-- <a href="/kits" class="nav-item">Kits</a> -->
+			<!-- <a href="/story" class="nav-item">Our Story</a> -->
+			<a href="/about" class="nav-item">About</a>
+			<a href="/latest" class="nav-item">Latest</a>
+			<a href="/release-notes" class="nav-item">Release Notes</a>
+			<a href="/team" class="nav-item">The Team</a>
+			<a href="/contact" class="nav-item">Contact Us</a>
+			<!-- <a href="/contact" class="nav-item">Contact Us</a> -->
+			<a href="https://app.createbase.co.nz/" class="cta-btn special-btn" id="request-demo-btn">Try projects for
+				free</a>
+		</div>
+	</nav>
+
+	<div class="page" id="fullpage">
+		<div class="section active section1" data-anchor="first-section">
+			<h2>All about</h2>
+			<h1>CreateBase</h1>
+			<p>
+				CreateBase is aiming to inspire the next generation of creators through visceral creating experiences
+				and learning through guided discovery.
+			</p>
+			<p>
+				At CreateBase, we have developed an online tool that merges the benefits of physical and digital
+				learning. Our solution enables you and your students to create authentic solutions to real world
+				problems by programming digital robots.
+			</p>
+		</div>
+
+		<div class="section fp-auto-height-responsive section2" data-anchor="second-section">
+			<div class="section-header">
+				<h2>The Problem?</h2>
 			</div>
-			<div class="nav-menu">
-				<!-- <a href="/kits" class="nav-item">Kits</a> -->
-				<!-- <a href="/story" class="nav-item">Our Story</a> -->
-				<a href="/about" class="nav-item">About</a>
-				<a href="/latest" class="nav-item">Latest</a>
-				<a href="/release-notes" class="nav-item">Release Notes</a>
-				<a href="/team" class="nav-item">The Team</a>
-				<a href="/contact" class="nav-item">Contact Us</a>
-				<!-- <a href="/contact" class="nav-item">Contact Us</a> -->
-				<a href="https://app.createbase.co.nz/" class="cta-btn special-btn" id="request-demo-btn">Try projects for free</a>
-			</div>
-		</nav>
 
-		<div class="page" id="fullpage">
-			<div class="section active section1" data-anchor="first-section">
-				<h2>All about</h2>
-				<h1>CreateBase</h1>
-				<p>
-					CreateBase is aiming to inspire the next generation of creators through visceral creating experiences and learning through guided discovery. We are developing an online educational platform
-					for educators and learners that significantly enhances the experience of both teaching and learning STEAM concepts.
-				</p>
-			</div>
-
-			<div class="section fp-auto-height-responsive section2" data-anchor="second-section">
-				<div class="section-header">
-					<h2>The Problem?</h2>
+			<!-- 			<div class="section-content">
+				<div class="problem-container">
+					<div class="problem-text">
+						<div class="number-title title-1">1</div>
+						<h3>Teachers are asked to create educational contents, deliver them and assess their students.
+						</h3>
+					</div>
+					<h4 class="number-sub-title">With limited time, teachers often have to sacrifice the depth of
+						content, resulting in subpar learning experiences for their students.</h4>
 				</div>
 
-				<div class="section-content">
-					<div class="problem-container">
-						<div class="problem-text">
-							<div class="number-title title-1">1</div>
-							<h3>Teachers are asked to create educational contents, deliver them and assess their students.</h3>
-						</div>
-						<h4 class="number-sub-title">With limited time, teachers often have to sacrifice the depth of content, resulting in subpar learning experiences for their students.</h4>
+				<div class="stat-image-container">
+					<div class="beg-caption">
+						<p id="small-caption-1" class="stat-caption caption-small">In 2019,</p>
+						<p id="percentage-p-1" class="stat-caption caption-large">51%</p>
+					</div>
+					<img src="/public/images/about/teacher.svg" alt="teacher" class="teacher-image" />
+					<img src="/public/images/about/nz.svg" alt="nz stats" class="nz-image" />
+					<p id="large-caption-1" class="stat-caption caption-text">of primary school teachers surveyed in New
+						Zealand (sample size of 3,917) reported working upwards of</p>
+				</div>
+
+				<div class="large-stat-container">
+					<div id="term-time" class="layered-stat-container">
+						<p class="stat-number">51 hours pers week</p>
+						<p class="highlight-text">during term time</p>
+					</div>
+					<div id="upwards-of" class="layered-stat-container">
+						<p class="highlight-text">13% working upwards of</p>
+						<p class="stat-number">61 hours per week</p>
+					</div>
+				</div>
+
+				<div class="highlight-block">
+					<p class="light-text">Teachers are working overtime to address time constraints</p>
+				</div>
+
+				<div class="stat-image-container aus-image-container">
+					<img src="/public/images/about/aus.svg" alt="aus stats" class="aus-image" />
+					<div class="aus-text">
+						<p class="highlight-text">of 2,444 teachers surveyed in Australia towards the end of 2019
+							indicated that they intended to <span class="emphasis-text">leave the profession.</span></p>
+						<p>For those participants, the <span class="emphasis-text">workload was cited by 62% (696
+								teachers)</span> as a reason that they would leave their teaching career before
+							retirement.</p>
+					</div>
+				</div>
+			</div>
+			<div class="full-width-text">
+				<p class="light-text">These teachers quickly fall into stressful and exhausting situations, leading to
+					negative health outcomes and many leaving their jobs.</p>
+			</div> -->
+
+			<div class="section-content">
+				<div class="problem-container">
+					<!-- 					<div class="problem-text">
+						<div class="number-title title-2">2</div>
+						<h3>Students are unable to keep up with the pace of science, technology and mathematics subjects
+							in school.</h3>
 					</div>
 
-					<div class="stat-image-container">
-						<div class="beg-caption">
-							<p id="small-caption-1" class="stat-caption caption-small">In 2019,</p>
-							<p id="percentage-p-1" class="stat-caption caption-large">51%</p>
+					<div class="graph-container">
+						<div class="graph-section-1">
+							<p class="small-title">As of 2017</p>
+							<h3>YEAR 4</h3>
+							<img src="/public/images/about/graph1.svg" alt="graph-1" />
+							<div class="stat-number-container">
+								<h4 id="percent-1">94%</h4>
+							</div>
+							<p class="graph-subject">Students performing at or above curriculum expectations in science
+								in New Zealand</p>
 						</div>
-						<img src="/public/images/about/teacher.svg" alt="teacher" class="teacher-image" />
-						<img src="/public/images/about/nz.svg" alt="nz stats" class="nz-image" />
-						<p id="large-caption-1" class="stat-caption caption-text">of primary school teachers surveyed in New Zealand (sample size of 3,917) reported working upwards of</p>
+						<div class="vs">
+							<img src="/public/images/about/VS.svg" alt="vs" />
+						</div>
+						<div class="graph-section-2">
+							<h3>YEAR 8</h3>
+							<img src="/public/images/about/graph2.svg" alt="graph-2" />
+							<div class="stat-number-container">
+								<h4 id="percent-2">20%</h4>
+							</div>
+						</div>
 					</div>
 
-					<div class="large-stat-container">
-						<div id="term-time" class="layered-stat-container">
-							<p class="stat-number">51 hours pers week</p>
-							<p class="highlight-text">during term time</p>
+					<div class="graph-container">
+						<div class="graph-section-1">
+							<p class="small-title">In Critical Thinking</p>
+							<h3>YEAR 4</h3>
+							<img src="/public/images/about/graph3.svg" alt="graph-1" />
+							<div class="stat-number-container">
+								<h4 id="percent-3">88%</h4>
+							</div>
+							<p class="graph-subject">Students performing at or above curriculum expectations in science
+								in New Zealand</p>
 						</div>
-						<div id="upwards-of" class="layered-stat-container">
-							<p class="highlight-text">13% working upwards of</p>
-							<p class="stat-number">61 hours per week</p>
+						<div class="vs">
+							<img src="/public/images/about/VS.svg" alt="vs" />
 						</div>
-					</div>
+						<div class="graph-section-2">
+							<h3>YEAR 8</h3>
+							<img src="/public/images/about/graph4.svg" alt="graph-2" />
+							<div class="stat-number-container">
+								<h4 id="percent-4">33%</h4>
+							</div>
+						</div>
+					</div> -->
 
-					<div class="highlight-block">
-						<p class="light-text">Teachers are working overtime to address time constraints</p>
-					</div>
+					<div class="contribut-factors-container">
+						<div class="highlight-block">
+							<p>STEAM Teaching Tools</p>
+						</div>
 
-					<div class="stat-image-container aus-image-container">
-						<img src="/public/images/about/aus.svg" alt="aus stats" class="aus-image" />
-						<div class="aus-text">
-							<p class="highlight-text">of 2,444 teachers surveyed in Australia towards the end of 2019 indicated that they intended to <span class="emphasis-text">leave the profession.</span></p>
-							<p>For those participants, the <span class="emphasis-text">workload was cited by 62% (696 teachers)</span> as a reason that they would leave their teaching career before retirement.</p>
+						<div class="content-container">
+							<div class="factor-container">
+								<div class="img-container">
+									<img src="/public/images/about/personal-learn.svg" alt="personal-learn" />
+								</div>
+								<div class="description-container blue-container">
+									<h5>Physical tools are cost-prohibitive</h5>
+									<p>Many schools struggle to find the budget for expensive physical products. Even if
+										they do, there is often not enough for every student. This problem is made even
+										worse when products inevitably break and need to be replaced. This invariably
+										places restrictions on how students interact with the tool.</p>
+								</div>
+							</div>
+							<div class="factor-container">
+								<div class="img-container">
+									<img src="/public/images/about/app-learning.svg" alt="app-learning" />
+
+								</div>
+								<div class="description-container orange-container">
+									<h5>Physical tools are incompatible with online learning</h5>
+									<p>In this tumultuous world that we live in, many students are forced or choose to
+										learn remotely. Trying to teach across these different environments with
+										physical tools is a struggle that is exacerbated by the price point of these
+										products.</p>
+								</div>
+							</div>
+							<div class="factor-container">
+								<div class="img-container">
+									<img src="/public/images/about/int-content.svg" alt="int-content" />
+								</div>
+								<div class="description-container green-container">
+									<h5>Digital tools lack authenticity</h5>
+									<p>
+										Most digital tools rely on step-by-step instructions to push students through
+										coursework, with no relatability and little room for critical thinking. This
+										often results in students lacking engagement, a purpose behind their learning,
+										and the ability to apply what they learn.
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="full-width-text">
-					<p class="light-text">These teachers quickly fall into stressful and exhausting situations, leading to negative health outcomes and many leaving their jobs.</p>
+			</div>
+		</div>
+
+		<div class="section section3" data-anchor="third-section">
+			<div class="section-header">
+				<h2>Our Goals</h2>
+			</div>
+
+			<div class="section-content">
+				<div class="section-content-wrap">
+					<div class="page-left-content">
+						<div class="goal-description">
+							<p>
+								At CreateBase, we envision a world where STEAM learning is driven not by standards and
+								assessments, but by students’ desire for exploration and discovery, both within
+								educational institutions and for the remainder of their lives.
+							</p>
+						</div>
+						<div class="note-container">
+							<img src="/public/images/about/bulb.svg" alt="bulb" />
+							<p><span>STEAM</span> is an abbreviation for Science, Technology, Engineering and
+								Mathematics that incorporates creative aspects found in Arts.</p>
+						</div>
+						<div class="exploration-container">
+							<h3>Exploration and Discovery</h3>
+							<img src="/public/images/about/tick.svg" alt="tick" />
+						</div>
+					</div>
+					<div class="page-right-content">
+						<div class="goal-list-container">
+							<p>We want everyone to have the confidence to</p>
+							<div class="list-container">
+								<div class="list-item">
+									<div class="list-img">
+										<img src="/public/images/about/cloud.svg" alt="cloud" />
+									</div>
+									<div class="list-text">Dream of new ideas</div>
+								</div>
+								<div class="list-item">
+									<div class="list-img">
+										<img src="/public/images/about/book.svg" alt="book" />
+									</div>
+									<div class="list-text">Learn how to create them</div>
+								</div>
+								<div class="list-item">
+									<div class="list-img">
+										<img src="/public/images/about/wand.svg" alt="wand" />
+									</div>
+									<div class="list-text">Bring them to life</div>
+								</div>
+								<p class="sub-text">by utilising concepts and knowledge in STEAM subjects.</p>
+							</div>
+						</div>
+					</div>
+					<div class="circle-graph-container">
+						<h4>Our mission is to provide educators and learners with quality tools to:</h4>
+						<img id="circle-graph-full" src="/public/images/about/circle-graph-full.svg" alt="full-graph" />
+						<div class="circle-graph-section circle-section-1">
+							<img src="/public/images/about/circle-graph-1.svg" class="circle-section" alt="1" />
+							<p>Reduce the amount of time that teachers spend researching, planning and creating STEAM
+								content so that they can focus on what they enjoy, teaching.</p>
+						</div>
+						<div class="hoz-line purple-line"></div>
+						<div class="circle-graph-section circle-section-2">
+							<img src="/public/images/about/circle-graph-2.svg" class="circle-section" alt="2" />
+							<p>Deliver innovative educational content designed for modern learning, where students can
+								learn STEAM subjects and the connections between them by solving real-world problems.
+							</p>
+						</div>
+						<div class="hoz-line orange-line"></div>
+						<div class="circle-graph-section circle-section-3">
+							<img src="/public/images/about/circle-graph-3.svg" class="circle-section" alt="3" />
+							<p>Make learning STEAM subjects more enjoyable, engaging and meaningful than existing
+								offerings, for anyone, anywhere.</p>
+						</div>
+						<div class="hoz-line green-line"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section section4" data-anchor="fourth-section">
+			<div class="section-header">
+				<h2>What we offer</h2>
+			</div>
+
+			<div class="section-content">
+				<div class="offering-container">
+					<div class="offering-title project-title">
+						<p>Projects</p>
+						<div class="title-underline"></div>
+					</div>
+					<div class="offering-content-container">
+						<div class="offering-img-container"><img src="/public/images/about/projects2.png"
+								alt="projects" /></div>
+						<div class="offering-text-container">
+							<p>We provide educators with a collection of Projects to give interactive, engaging and
+								educational STEAM experiences to students.</p>
+							<p>Each Project guides students through the process of creating, testing
+								and evaluating a solution to an authentic problem by applying our 5-step Creation
+								Process.
+							</p>
+							<p>
+								Students interact with and program 3D simulations of robotic systems that merge the
+								tangibility and engagement of physical robotics with the accessibility of a digital
+								tool.
+							</p>
+							<p>Projects integrate multiple STEAM disciplines and can be customised to suit the interests
+								of students.</p>
+						</div>
+					</div>
 				</div>
 
-				<div class="section-content">
-					<div class="problem-container">
-						<div class="problem-text">
-							<div class="number-title title-2">2</div>
-							<h3>Students are unable to keep up with the pace of science, technology and mathematics subjects in school.</h3>
-						</div>
+				<div class="projects-full-img-container">
+					<img src="/public/images/about/projects-full.svg" alt="projects" />
+				</div>
 
-						<div class="graph-container">
-							<div class="graph-section-1">
-								<p class="small-title">As of 2017</p>
-								<h3>YEAR 4</h3>
-								<img src="/public/images/about/graph1.svg" alt="graph-1" />
-								<div class="stat-number-container">
-									<h4 id="percent-1">94%</h4>
-								</div>
-								<p class="graph-subject">Students performing at or above curriculum expectations in science in New Zealand</p>
-							</div>
-							<div class="vs">
-								<img src="/public/images/about/VS.svg" alt="vs" />
-							</div>
-							<div class="graph-section-2">
-								<h3>YEAR 8</h3>
-								<img src="/public/images/about/graph2.svg" alt="graph-2" />
-								<div class="stat-number-container">
-									<h4 id="percent-2">20%</h4>
-								</div>
-							</div>
+				<div class="offering-container">
+					<div class="offering-sub-title curric-title">
+						<p>Curriculum-aligned Lesson Plans</p>
+						<div class="title-underline"></div>
+					</div>
+					<div class="offering-content-container">
+						<div class="offering-img-container">
+							<img src="/public/images/about/lesson-plan.png" alt="send-it" />
+							<p>Each Project comes with a fully detailed series of lesson plans for teachers that
+								simplify the entire teaching process.</p>
 						</div>
-
-						<div class="graph-container">
-							<div class="graph-section-1">
-								<p class="small-title">In Critical Thinking</p>
-								<h3>YEAR 4</h3>
-								<img src="/public/images/about/graph3.svg" alt="graph-1" />
-								<div class="stat-number-container">
-									<h4 id="percent-3">88%</h4>
-								</div>
-								<p class="graph-subject">Students performing at or above curriculum expectations in science in New Zealand</p>
-							</div>
-							<div class="vs">
-								<img src="/public/images/about/VS.svg" alt="vs" />
-							</div>
-							<div class="graph-section-2">
-								<h3>YEAR 8</h3>
-								<img src="/public/images/about/graph4.svg" alt="graph-2" />
-								<div class="stat-number-container">
-									<h4 id="percent-4">33%</h4>
+						<div class="offering-text-container">
+							<div class="feature-list-container">
+								<h4>Lesson Plans:</h4>
+								<div class="feature-list">
+									<div class="feature">
+										<img src="/public/images/about/framework.svg" alt="framework" />
+										<p>Provide a complete framework for every teacher.</p>
+									</div>
+									<div class="feature">
+										<img src="/public/images/about/curriculum.svg" alt="curriculum" />
+										<p>Ensure full curriculum alignment.</p>
+									</div>
+									<!-- 									<div class="feature">
+										<img src="/public/images/about/step-by-step.svg" alt="step-by-step" />
+										<p>Simplify the entire teaching process with step-by-step.</p>
+									</div> -->
+									<div class="feature">
+										<img src="/public/images/about/guide.svg" alt="guide" />
+										<p>Include guides, explanations, examples and prompts.</p>
+									</div>
+									<div class="feature">
+										<img src="/public/images/about/teaching.svg" alt="teaching" />
+										<p>Enable less admin, more teaching.</p>
+									</div>
+									<div class="feature">
+										<img src="/public/images/about/flexi.svg" alt="flexi" />
+										<p>Provide flexibility for teachers to make it their own.</p>
+									</div>
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
 
-						<div class="contribut-factors-container">
-							<div class="highlight-block">
-								<p>Contributing factors</p>
+				<div class="offering-container">
+					<div class="offering-sub-title interactive-title">
+						<p>Interactive 3D Simulations</p>
+						<div class="title-underline"></div>
+					</div>
+					<div class="offering-content-container">
+						<div class="offering-img-container"><img src="/public/images/about/robot.png" alt=simulation">
+							<p>Each Project involves using one or more robotic systems to solve an authentic
+								problem.</p>
+						</div>
+						<div class="offering-text-container">
+							<div class="feature-list-container">
+								<h4>Students use 3D simulations of robotic systems to:</h4>
+								<div class="feature-list">
+									<div class="feature">
+										<img src="/public/images/about/build.svg" alt="build" />
+										<p>Build and test solutions to authentic problems.</p>
+									</div>
+									<div class="feature">
+										<img src="/public/images/about/program.svg" alt="program" />
+										<p>Program robotic systems with flow-based visual programming.</p>
+									</div>
+									<div class="feature">
+										<img src="/public/images/about/learn.svg" alt="learn" />
+										<p>Learn generalisable programming concepts like logic and problem solving,
+											rather than arbitrary concepts like syntax.</p>
+									</div>
+									<div class="feature">
+										<img src="/public/images/about/3d.svg" alt="3d" />
+										<p>Interact with 3D environments using realistic physics and mechanisms.</p>
+									</div>
+									<div class="feature">
+										<img src="/public/images/about/discover.svg" alt="discover" />
+										<p>Learn through guided discovery rather than by following instructions.</p>
+									</div>
+								</div>
 							</div>
+						</div>
+					</div>
+				</div>
 
-							<div class="content-container">
-								<div class="factor-container">
-									<div class="img-container">
-										<img src="/public/images/about/app-learning.svg" alt="app-learning" />
+				<div class="offering-container">
+					<div class="offering-sub-title gamified-title">
+						<p>Personalised & Gamified Platform</p>
+						<div class="title-underline"></div>
+					</div>
+					<div class="offering-content-container">
+						<div class="offering-img-container"><img src="/public/images/about/platform2.png" alt=flow">
+							<p>Projects are delivered through our online platform that can be accessed through an
+								internet
+								browser.</p>
+						</div>
+						<div class="offering-text-container">
+							<div class="feature-list-container">
+								<h4>Teachers use our online platform to:</h4>
+								<div class="feature-list">
+									<div class="feature">
+										<img src="/public/images/about/class.svg" alt="class" />
+										<p>Create and manage classrooms.</p>
 									</div>
-									<div class="description-container blue-container">
-										<h5>Lack of application based learning</h5>
-										<p>Students are unable to see the purpose behind the theories they learn. This results in students being unmotivated to learn the concepts taught in class.</p>
+									<div class="feature">
+										<img src="/public/images/about/progress.svg" alt="progress" />
+										<p>Measure student progress and achievement.</p>
 									</div>
-								</div>
-								<div class="factor-container">
-									<div class="img-container">
-										<img src="/public/images/about/int-content.svg" alt="int-content" />
+									<div class="feature">
+										<img src="/public/images/about/collab.svg" alt="collab" />
+										<p>Teach both in-person and remotely.</p>
 									</div>
-									<div class="description-container orange-container">
-										<h5>Lack of interactive content</h5>
-										<p>Educational content is delivered in ways that bore and disengage students. This results in students not concentrating and retaining information.</p>
-									</div>
-								</div>
-								<div class="factor-container">
-									<div class="img-container">
-										<img src="/public/images/about/personal-learn.svg" alt="personal-learn" />
-									</div>
-									<div class="description-container green-container">
-										<h5>Lack of personalisation in students’ learning</h5>
-										<p>
-											Students who are excelling are forced to slow down, while students who are lagging behind are forced to learn concepts beyond their capabilities. This results in students giving
-											up due to boredom and/or frustration.
+									<div class="feature">
+										<img src="/public/images/about/guess.svg" alt="guess" />
+										<p>Let students own their learning with learning journals and self-reflection.
 										</p>
 									</div>
 								</div>
@@ -203,408 +473,212 @@
 				</div>
 			</div>
 
-			<div class="section section3" data-anchor="third-section">
-				<div class="section-header">
-					<h2>Our Goals</h2>
-				</div>
-
-				<div class="section-content">
-					<div class="section-content-wrap">
-						<div class="page-left-content">
-							<div class="goal-description">
-								<p>
-									At CreateBase, we envision a world where STEAM learning is driven not by standards and assessments, but by students’ desire for exploration and discovery, both within educational
-									institutions and for the remainder of their lives.
-								</p>
-							</div>
-							<div class="note-container">
-								<img src="/public/images/about/bulb.svg" alt="bulb" />
-								<p><span>STEAM</span> is an abbreviation for Science, Technology, Engineering and Mathematics that incorporates creative aspects found in Arts.</p>
-							</div>
-							<div class="exploration-container">
-								<h3>Exploration and Discovery</h3>
-								<img src="/public/images/about/tick.svg" alt="tick" />
-							</div>
-						</div>
-						<div class="page-right-content">
-							<div class="goal-list-container">
-								<p>We want everyone to have the confidence to</p>
-								<div class="list-container">
-									<div class="list-item">
-										<div class="list-img">
-											<img src="/public/images/about/cloud.svg" alt="cloud" />
-										</div>
-										<div class="list-text">Dream of new ideas</div>
-									</div>
-									<div class="list-item">
-										<div class="list-img">
-											<img src="/public/images/about/book.svg" alt="book" />
-										</div>
-										<div class="list-text">Learn how to create them</div>
-									</div>
-									<div class="list-item">
-										<div class="list-img">
-											<img src="/public/images/about/wand.svg" alt="wand" />
-										</div>
-										<div class="list-text">Bring them to life</div>
-									</div>
-									<p class="sub-text">by utilising concepts and knowledge in STEAM subjects.</p>
-								</div>
-							</div>
-						</div>
-						<div class="circle-graph-container">
-							<h4>Our mission is to provide educators and learners with quality tools to:</h4>
-							<img id="circle-graph-full" src="/public/images/about/circle-graph-full.svg" alt="full-graph" />
-							<div class="circle-graph-section circle-section-1">
-								<img src="/public/images/about/circle-graph-1.svg" class="circle-section" alt="1" />
-								<p>Reduce the amount of time that teachers spend researching, planning and creating STEAM content so that they can focus on what they enjoy, teaching.</p>
-							</div>
-							<div class="hoz-line purple-line"></div>
-							<div class="circle-graph-section circle-section-2">
-								<img src="/public/images/about/circle-graph-2.svg" class="circle-section" alt="2" />
-								<p>Deliver innovative educational content designed for modern learning, where students can learn STEAM subjects and the connections between them by solving real-world problems.</p>
-							</div>
-							<div class="hoz-line orange-line"></div>
-							<div class="circle-graph-section circle-section-3">
-								<img src="/public/images/about/circle-graph-3.svg" class="circle-section" alt="3" />
-								<p>Make learning STEAM subjects more enjoyable, engaging and meaningful than existing offerings, for anyone, anywhere.</p>
-							</div>
-							<div class="hoz-line green-line"></div>
+			<div class="project-summary">
+				<h4>Projects Provide</h4>
+				<div class="summary-container-wrap">
+					<div class="summary-container lesson-summary-container">
+						<div class="summary-content-container">
+							<img src="/public/images/about/clock-3d.svg" alt="clock" />
+							<h6>Lesson Plans</h6>
+							<p>Save teachers’ time creating educational STEAM content.</p>
 						</div>
 					</div>
-				</div>
-			</div>
-
-			<div class="section section4" data-anchor="fourth-section">
-				<div class="section-header">
-					<h2>What we offer</h2>
-				</div>
-
-				<div class="section-content">
-					<div class="offering-container">
-						<div class="offering-title project-title">
-							<p>Projects</p>
-							<div class="title-underline"></div>
-						</div>
-						<div class="offering-content-container">
-							<div class="offering-img-container"><img src="/public/images/about/projects.png" alt="projects" /></div>
-							<div class="offering-text-container">
-								<p>We provide educators with a collection of Projects to give interactive, engaging and educational STEAM experiences to students.</p>
-								<p>Each Project will guide students through the process of creating a fully realised, tested and evaluated solution to a real-world problem by applying our 7-step creation process.</p>
-								<p>Projects integrate multiple STEAM disciplines and can be customised to suit the interests of students.</p>
-							</div>
+					<div class="summary-container sim-summary-container">
+						<div class="summary-content-container">
+							<img src="/public/images/about/3d-3d.svg" alt="3D" />
+							<h6>3D Simulations</h6>
+							<p>Provide a fun and engaging learning experience for students.</p>
 						</div>
 					</div>
-
-					<div class="projects-full-img-container">
-						<img src="/public/images/about/projects-full.svg" alt="projects" />
-					</div>
-
-					<div class="offering-container">
-						<div class="offering-sub-title curric-title">
-							<p>Curriculum-aligned Lesson Plans</p>
-							<div class="title-underline"></div>
-						</div>
-						<div class="offering-content-container">
-							<div class="offering-img-container">
-								<img src="/public/images/about/lesson-plan.png" alt="send-it" />
-								<p>Each Project comes with a fully detailed series of lesson plans for teachers that simplify the entire teaching process.</p>
-							</div>
-							<div class="offering-text-container">
-								<div class="feature-list-container">
-									<h4>Lesson Plans:</h4>
-									<div class="feature-list">
-										<div class="feature">
-											<img src="/public/images/about/framework.svg" alt="framework" />
-											<p>Provide a complete framework for every teacher.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/curriculum.svg" alt="curriculum" />
-											<p>Ensure full curriculum alignment.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/step-by-step.svg" alt="step-by-step" />
-											<p>Simplify the entire teaching process with step-by-step.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/guide.svg" alt="guide" />
-											<p>Include guides, explanations, examples and prompts.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/teaching.svg" alt="teaching" />
-											<p>Enable less admin, more teaching.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/flexi.svg" alt="flexi" />
-											<p>Provide flexibility for teachers to make it their own.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="offering-container">
-						<div class="offering-sub-title interactive-title">
-							<p>Interactive 3D Simulations</p>
-							<div class="title-underline"></div>
-						</div>
-						<div class="offering-content-container">
-							<div class="offering-img-container"><img src="/public/images/about/arm.png" alt=simulation"></div>
-							<div class="offering-text-container">
-								<div class="feature-list-container">
-									<h4>Students can use digital 3D simulations to:</h4>
-									<div class="feature-list">
-										<div class="feature">
-											<img src="/public/images/about/build.svg" alt="build" />
-											<p>Build and test solutions to real-life problems.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/program.svg" alt="program" />
-											<p>Program robotic systems with flow-based visual programming.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/learn.svg" alt="learn" />
-											<p>Learn generalisable programming concepts like logic and problem solving, rather than arbitrary concepts like syntax.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/3d.svg" alt="3d" />
-											<p>Interact with 3D environments using realistic physics and mechanisms.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/discover.svg" alt="discover" />
-											<p>Learn through discovery.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="offering-container">
-						<div class="offering-sub-title gamified-title">
-							<p>Personalised & Gamified Platform</p>
-							<div class="title-underline"></div>
-						</div>
-						<div class="offering-content-container">
-							<div class="offering-img-container"><img src="/public/images/about/platform.png" alt=flow"></div>
-							<div class="offering-text-container">
-								<div class="feature-list-container">
-									<h4>Teachers use our online platform to:</h4>
-									<div class="feature-list">
-										<div class="feature">
-											<img src="/public/images/about/class.svg" alt="class" />
-											<p>Create and manage classrooms.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/progress.svg" alt="progress" />
-											<p>Measure student progress and achievement.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/collab.svg" alt="collab" />
-											<p>Foster competitive and collaborative learning.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/guess.svg" alt="guess" />
-											<p>Take the guessing out of assessment.</p>
-										</div>
-										<div class="feature">
-											<img src="/public/images/about/progress.svg" alt="progress" />
-											<p>Let students own their learning with self-reflections and progress tracking.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="project-summary">
-						<h4>Projects Provide</h4>
-						<div class="summary-container-wrap">
-							<div class="summary-container lesson-summary-container">
-								<div class="summary-content-container">
-									<img src="/public/images/about/clock-3d.svg" alt="clock" />
-									<h6>Lesson Plans</h6>
-									<p>Save teachers’ time creating educational STEAM content.</p>
-								</div>
-							</div>
-							<div class="summary-container sim-summary-container">
-								<div class="summary-content-container">
-									<img src="/public/images/about/3d-3d.svg" alt="3D" />
-									<h6>3D Simulations</h6>
-									<p>Provide a fun and engaging learning experience for students.</p>
-								</div>
-							</div>
-							<div class="summary-container platform-summary-container">
-								<div class="summary-content-container">
-									<img src="/public/images/about/platform-3d.svg" alt="clock" />
-									<h6>One Platform</h6>
-									<p>Means that everything for everyone is in one place!</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="section section5 fp-auto-height" data-anchor="fifth-section">
-				<div class="section-header">
-					<h2>Who is this for?</h2>
-				</div>
-
-				<div class="section-content">
-					<div class="target-container">
-						<div class="who-img-container">
-							<img src="/public/images/about/audience.svg" alt="audience" />
-						</div>
-
-						<div class="text-container">
-							<p>Teachers with students around the ages of 8 to 14. We accommodate teachers of all levels of expertise, from no knowledge of STEAM to experts in the field.</p>
-							<p>In the near future, we will open our platform to parents who want to supplement or become a part of their child’s school education.</p>
-
-							<img src="/public/images/about/timeline.svg" alt="timeline" />
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="section section6 fp-auto-height" data-anchor="sixth-section">
-				<div class="section-header">
-					<h2>The Team</h2>
-				</div>
-
-				<div class="section-content">
-					<div class="team-wrap">
-						<div class="img-container">
-							<img src="/public/images/about/team.png" alt="team" />
-						</div>
-						<div class="text-container">
-							<h3>For creators by creators</h3>
-							<p>
-								CreateBase was formed in 2020, intending to make high-quality STEAM education accessible. Our team of University of Auckland graduates uphold this, utilising our knowledge of
-								engineering, business, design, and science to create the future of education.
-							</p>
-							<p>Together, we will continue to dream, innovate, and create.</p>
-							<a href="/team" class="link-btn">Learn More</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="section section7" data-anchor="seventh-section">
-				<div class="section-header">
-					<h2>Our Achievements</h2>
-				</div>
-
-				<div class="section-content">
-					<div class="achievement-wrap">
-						<div class="achievement-container rbb-container">
-							<h4>National winner of Red Bull Basement</h4>
-							<img src="/public/images/about/rbb.png" alt="rbb" />
-							<p>CreateBase was the national winner of Red Bull Basement New Zealand 2020, and one of 38 finalists in the global Red Bull Basement program 2020.</p>
-							<p>
-								Worldwide, more than 3800 student teams from all areas of study applied for the 2020 program by submitting a video explaining their idea. A public vote narrowed the field to six top
-								ideas from students at The University of Auckland, The University of Waikato, The University of Otago, AUT, Victoria University. After careful consideration, a panel of judges chose
-								the CreateBase as the best to represent the nation.
-							</p>
-							<a href="/latest" class="link-btn">Read More</a>
-						</div>
-
-						<div class="achievement-container velocity-container">
-							<h4>Finalist in Velocity $100k Challenge</h4>
-							<img src="/public/images/about/velocity.png" alt="velocity" />
-							<p>CreateBase was chosen as one of the 15 finalists in the Velocity $100k Challenge for 2020.</p>
-							<p>
-								Across The University of Auckland, more than 80 teams from all areas of study applied for the 2020 Velocity $100k Challenge by submitting a report explaining their idea. A panel of
-								judges selected the top 15 ideas, including CreateBase, to make through to the finals where we spent ten weeks developing our business strategy.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="section section8 fp-auto-height" data-anchor="eigth-section">
-				<div class="section-header">
-					<h2>Contact Us</h2>
-				</div>
-
-				<div class="section-content">
-					<div class="contact-info-container">
-						<h4>For enquiries, email us at <a href="mailto:admin@createbase.co.nz" target="_blank">admin@createbase.co.nz</a> or send us a message</h4>
-
-						<a href="/contact" class="link-btn">Get in touch</a>
-
-						<h4>For more information and to keep up to date with our latest developments, check out:</h4>
-
-						<div class="links-container">
-							<div class="socials">
-								<a href="https://www.facebook.com/CreateBaseNZ" class="fab fa-facebook-square" target="_blank"></a>
-								<a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
-								<a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
-								<a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
-							</div>
+					<div class="summary-container platform-summary-container">
+						<div class="summary-content-container">
+							<img src="/public/images/about/platform-3d.svg" alt="clock" />
+							<h6>One Platform</h6>
+							<p>Means that everything for everyone is in one place!</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<footer>
-			<div class="footer-container prop">
-				<div class="value-prop">Gain the skills, tools, and confidence to unleash your inner technology creator.</div>
-				<div class="brand-prop">Create your awesome.</div>
-			</div>
-			<div class="footer-container subscribe">
-				<h5>Be the first to know</h5>
-				<div class="footer-subscribe">
-					<input id="footer-input" type="text" placeholder="Email" maxlength="100" />
-					<i class="footer-btn material-icons-round">send</i>
-				</div>
-				<div class="footer-error"></div>
-			</div>
-			<div class="footer-container quick-links">
-				<h5>Quick Links</h5>
-				<a href="/kits">Kits</a>
-				<a href="/story">Our Story</a>
-				<a href="/team">The Team</a>
-			</div>
-			<div class="footer-container policies">
-				<h5>Policies</h5>
-				<a href="/terms">Terms</a>
-				<a href="/privacy">Privacy</a>
-			</div>
-			<div class="footer-container contact">
-				<h5>We'd love to hear from you</h5>
-				<a href="tel:+64-211-543-805" target="_blank"><i class="material-icons-outlined">call</i>+64 211 543 805</a>
-				<a href="mailto:admin@createbase.co.nz" target="_blank"><i class="material-icons-outlined">email</i>admin@createbase.co.nz</a>
-				<a href="https://goo.gl/maps/BCFTQTpLg4MXqg3aA" target="_blank"><i class="material-icons-outlined">map</i>24 York Street, AKL, NZ</a>
-				<div class="footer-socials">
-					<a href="https://www.facebook.com/CreateBaseNZ" class="fab fa-facebook-square" target="_blank"></a>
-					<a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
-					<a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
-					<a class="fab fa-youtube" href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber" target="_blank"></a>
-				</div>
-			</div>
-			<div class="copyright">&#169; 2021 CreateBase. All rights reserved.</div>
-		</footer>
-
-		<div class="notif-wrapper">
-			<!-- <div class="popup"></div> -->
+	<div class="section section5 fp-auto-height" data-anchor="fifth-section">
+		<div class="section-header">
+			<h2>Who is this for?</h2>
 		</div>
 
-		<!-- ==========================JS========================== -->
-		<!-- -----------------------SOURCED------------------------ -->
-		<script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
-		<script async src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-		<!-- ------------------------CUSTOM------------------------ -->
-		<script async src="/public/javascripts/nav.js"></script>
-		<script async src="/public/javascripts/footer.js"></script>
-		<script async src="/public/javascripts/notification.js"></script>
-		<script async src="/public/javascripts/global.js"></script>
-		<script async src="/public/javascripts/home.js"></script>
+		<div class="section-content">
+			<div class="target-container">
+				<div class="who-img-container">
+					<img src="/public/images/about/audience.svg" alt="audience" />
+				</div>
 
-		<script async src="/public/javascripts/about.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
-	</body>
+				<div class="text-container">
+					<p>Teachers with students between the ages of 8 to 18. We accommodate teachers of all levels of
+						expertise, from no knowledge of STEAM to experts in the field.</p>
+					<p>In the near future, we will open our platform to parents who want to supplement or become a
+						part of their child’s school education.</p>
+
+					<img src="/public/images/about/timeline_new.svg" alt="timeline" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section section6 fp-auto-height" data-anchor="sixth-section">
+		<div class="section-header">
+			<h2>The Team</h2>
+		</div>
+
+		<div class="section-content">
+			<div class="team-wrap">
+				<div class="img-container">
+					<img src="/public/images/about/team.png" alt="team" />
+				</div>
+				<div class="text-container">
+					<h3>For creators by creators</h3>
+					<p>
+						CreateBase was formed in 2020, intending to make high-quality STEAM education accessible.
+						Our team of University of Auckland graduates uphold this, utilising our knowledge of
+						engineering, business, design, and science to create the future of education.
+					</p>
+					<p>Together, we will continue to dream, innovate, and create.</p>
+					<a href="/team" class="link-btn">Learn More</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section section7" data-anchor="seventh-section">
+		<div class="section-header">
+			<h2>Our Achievements</h2>
+		</div>
+
+		<div class="section-content">
+			<div class="achievement-wrap">
+				<div class="achievement-container rbb-container">
+					<h4>National winner of Red Bull Basement</h4>
+					<img src="/public/images/about/rbb.png" alt="rbb" />
+					<p>CreateBase was the national winner of Red Bull Basement New Zealand 2020, and one of 38
+						finalists in the global Red Bull Basement program 2020.</p>
+					<p>
+						Worldwide, more than 3800 student teams from all areas of study applied for the 2020 program
+						by submitting a video explaining their idea. A public vote narrowed the field to six top
+						ideas from students at The University of Auckland, The University of Waikato, The University
+						of Otago, AUT, Victoria University. After careful consideration, a panel of judges chose
+						the CreateBase as the best to represent the nation.
+					</p>
+					<a href="/latest" class="link-btn">Read More</a>
+				</div>
+
+				<div class="achievement-container velocity-container">
+					<h4>Finalist in Velocity $100k Challenge</h4>
+					<img src="/public/images/about/velocity.png" alt="velocity" />
+					<p>CreateBase was chosen as one of the 15 finalists in the Velocity $100k Challenge for 2020.
+					</p>
+					<p>
+						Across The University of Auckland, more than 80 teams from all areas of study applied for
+						the 2020 Velocity $100k Challenge by submitting a report explaining their idea. A panel of
+						judges selected the top 15 ideas, including CreateBase, to make through to the finals where
+						we spent ten weeks developing our business strategy.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section section8 fp-auto-height" data-anchor="eigth-section">
+		<div class="section-header">
+			<h2>Contact Us</h2>
+		</div>
+
+		<div class="section-content">
+			<div class="contact-info-container">
+				<h4>For enquiries, email us at <a href="mailto:admin@createbase.co.nz"
+						target="_blank">admin@createbase.co.nz</a> or send us a message</h4>
+
+				<a href="/contact" class="link-btn">Get in touch</a>
+
+				<h4>For more information and to keep up to date with our latest developments, check out:</h4>
+
+				<div class="links-container">
+					<div class="socials">
+						<a href="https://www.facebook.com/CreateBaseNZ" class="fab fa-facebook-square"
+							target="_blank"></a>
+						<a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+						<a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+						<a class="fab fa-youtube"
+							href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber"
+							target="_blank"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<footer>
+		<div class="footer-container prop">
+			<div class="value-prop">Gain the skills, tools, and confidence to unleash your inner technology creator.
+			</div>
+			<div class="brand-prop">Create your awesome.</div>
+		</div>
+		<div class="footer-container subscribe">
+			<h5>Be the first to know</h5>
+			<div class="footer-subscribe">
+				<input id="footer-input" type="text" placeholder="Email" maxlength="100" />
+				<i class="footer-btn material-icons-round">send</i>
+			</div>
+			<div class="footer-error"></div>
+		</div>
+		<div class="footer-container quick-links">
+			<h5>Quick Links</h5>
+			<a href="/kits">Kits</a>
+			<a href="/story">Our Story</a>
+			<a href="/team">The Team</a>
+		</div>
+		<div class="footer-container policies">
+			<h5>Policies</h5>
+			<a href="/terms">Terms</a>
+			<a href="/privacy">Privacy</a>
+		</div>
+		<div class="footer-container contact">
+			<h5>We'd love to hear from you</h5>
+			<a href="tel:+64-211-543-805" target="_blank"><i class="material-icons-outlined">call</i>+64 211 543 805</a>
+			<a href="mailto:admin@createbase.co.nz" target="_blank"><i
+					class="material-icons-outlined">email</i>admin@createbase.co.nz</a>
+			<a href="https://goo.gl/maps/BCFTQTpLg4MXqg3aA" target="_blank"><i class="material-icons-outlined">map</i>24
+				York Street, AKL, NZ</a>
+			<div class="footer-socials">
+				<a href="https://www.facebook.com/CreateBaseNZ" class="fab fa-facebook-square" target="_blank"></a>
+				<a class="fab fa-instagram" href="https://www.instagram.com/createbasenz/" target="_blank"></a>
+				<a class="fab fa-twitter" href="https://twitter.com/CreateBaseNZ" target="_blank"></a>
+				<a class="fab fa-youtube"
+					href="https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g/featured?view_as=subscriber"
+					target="_blank"></a>
+			</div>
+		</div>
+		<div class="copyright">&#169; 2021 CreateBase. All rights reserved.</div>
+	</footer>
+
+	<div class="notif-wrapper">
+		<!-- <div class="popup"></div> -->
+	</div>
+
+	<!-- ==========================JS========================== -->
+	<!-- -----------------------SOURCED------------------------ -->
+	<script async src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script async src="https://kit.fontawesome.com/b382730141.js" crossorigin="anonymous"></script>
+	<script async src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<!-- ------------------------CUSTOM------------------------ -->
+	<script async src="/public/javascripts/nav.js"></script>
+	<script async src="/public/javascripts/footer.js"></script>
+	<script async src="/public/javascripts/notification.js"></script>
+	<script async src="/public/javascripts/global.js"></script>
+	<script async src="/public/javascripts/home.js"></script>
+
+	<script async src="/public/javascripts/about.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+</body>
+
 </html>
