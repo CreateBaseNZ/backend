@@ -15,10 +15,11 @@ require("../jobs/main.js")(agenda);
 
 // START ====================================================
 
-agenda.start();
-agenda.on("ready", function () {
-	agenda.every("1 minute", "update-data");
-});
+(async function () {
+	await agenda.start();
+
+	await agenda.every("2 minutes", "update-data");
+})();
 
 // EXPORT ===================================================
 

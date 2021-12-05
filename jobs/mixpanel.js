@@ -21,17 +21,19 @@ const Profile = require("../model/Profile.js");
 // EXPORT ===================================================
 
 module.exports = function (agenda) {
-	agenda.define("update-data", async () => {
+	agenda.define("update-data", async (job, done) => {
 		// Fetch the data document
 		let data;
 		try {
 			data = (await Data.find())[0];
 		} catch (error) {
+			console.log(error);
 			return;
 		}
 		if (!data) {
 			data = new Data({ project: process.env.MIXPANEL_PROJECT });
 		}
+		console.log(data);
 		// Fetch the data from Mixpanel
 		let rawData;
 		try {
@@ -41,16 +43,20 @@ module.exports = function (agenda) {
 				})
 			)["data"];
 		} catch (error) {
+			console.log(error);
 			return;
 		}
 		// Update content
 		data.content = rawData;
 		data.date = new Date().toString();
+		console.log(data);
 		try {
 			await data.save();
 		} catch (error) {
 			return;
 		}
+		// Success handler
+		return done();
 	});
 };
 
