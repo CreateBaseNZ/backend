@@ -241,7 +241,7 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 				return res.send({ status: "error", content: error });
 			}
 			await coldEmail(mail, date);
-			date = new Date(date.setMilliseconds(date.setMilliseconds() + 50));
+			date = new Date(date.setMilliseconds(date.setMilliseconds() + 100));
 			await delay(1 / 20); // 50 milliseconds delay to allow for processing
 		}
 		i++;
