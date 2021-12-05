@@ -45,6 +45,7 @@ module.exports = function (agenda) {
 		}
 		// Update content
 		data.content = rawData;
+		data.date = new Date().toString();
 		try {
 			await data.save();
 		} catch (error) {
