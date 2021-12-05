@@ -40,8 +40,18 @@
       color: $lightest;
       font-size: 1.2rem;
       span{
-        color: $blue-light;
+        color: $lightest;
         font-size: 1.2rem;
+        font-weight: 600;
+      }
+      .red{
+        color: $red;
+      }
+      .blue{
+          color: $blue-light;
+      }
+      .green{
+          color: $green;
       }
     }
   }
@@ -702,7 +712,7 @@ video{
       p{
         font-size: 1.5rem;
         span{
-          font-size: 1.5rem;
+          font-size: 2rem;
         }
       }
     }
@@ -955,7 +965,7 @@ video{
       p{
         font-size: 1.8rem;
         span{
-          font-size: 1.8rem;
+          font-size: 2.4rem;
         }
       }
     }
