@@ -41,7 +41,7 @@ module.exports = function (agenda) {
 				})
 			)["data"];
 		} catch (error) {
-			data.dateFailed = new Date().toString();
+			data.date.failed = new Date().toString();
 			try {
 				await data.save();
 			} catch (error) {
@@ -51,7 +51,7 @@ module.exports = function (agenda) {
 		}
 		// Update content
 		data.content = rawData;
-		data.date = new Date().toString();
+		data.date.succeeded = new Date().toString();
 		try {
 			await data.save();
 		} catch (error) {

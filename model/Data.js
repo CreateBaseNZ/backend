@@ -11,8 +11,10 @@ const Schema = mongoose.Schema;
 const DataSchema = new Schema({
 	content: { type: Schema.Types.String, default: "" },
 	project: { type: Schema.Types.String, default: "" },
-	date: { type: Schema.Types.String, default: "" },
-	dateFailed: { type: Schema.Types.String, default: "" },
+	date: {
+		failed: { type: Schema.Types.String, default: "" },
+		succeeded: { type: Schema.Types.String, default: "" },
+	},
 });
 
 // STATICS ==================================================
