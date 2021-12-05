@@ -41,6 +41,12 @@ module.exports = function (agenda) {
 				})
 			)["data"];
 		} catch (error) {
+			data.dateFailed = new Date().toString();
+			try {
+				await data.save();
+			} catch (error) {
+				return done();
+			}
 			return done();
 		}
 		// Update content
