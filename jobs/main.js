@@ -15,7 +15,8 @@ const Profile = require("../model/Profile.js");
 // EXPORT ===================================================
 
 module.exports = function (agenda) {
-  require("./emails.js")(agenda);
+	require("./emails.js")(agenda);
+	require("./mixpanel.js")(agenda);
 };
 
 // FUNCTIONS ================================================

@@ -33,6 +33,7 @@ const checkAPIKeys = (public = false, private = false, admin = false) => {
 // MODELS ===================================================
 
 const Mail = require("../model/Mail.js");
+const Data = require("../model/Data.js");
 
 // ROUTES ===================================================
 
@@ -92,11 +93,7 @@ router.get("/robots.txt", (req, res) => res.sendFile("robots.txt", viewsOption))
 router.post("/tracking", checkAPIKeys(false, true), async (req, res) => {
 	let data;
 	try {
-		data = (
-			await axios.get(`https://data.mixpanel.com/api/2.0/export?from_date=${req.body.input.fromDate}&to_date=${req.body.input.toDate}`, {
-				headers: { Authorization: req.body.input.PROJECT_SECRET, Accept: "text/plain" },
-			})
-		)["data"];
+		data = (await Data.find())[0];
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
