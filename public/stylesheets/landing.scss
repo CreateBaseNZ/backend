@@ -4,6 +4,27 @@
     padding: 2rem 10vw 2rem 10vw;
 }
 
+.section-title{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    h3{
+      text-align: center;
+      font-size: 2rem;
+      // padding-bottom: 5rem;
+    }
+    img{
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 15rem;
+    }
+  }
+
 .landing-section{
     display: flex;
     flex-direction: column;
@@ -83,36 +104,32 @@
 
 .testimonial-section{
     .testimonial-cards{
-        padding-top: 3rem;
+      padding-top: 3rem;
         .card{
             border-radius: 1rem;
             padding: 1.5rem;
         }
         .card-text{
             padding-bottom: 1rem;
+            line-height: 180%;
+            span{
+              font-size: 1.5rem;
+              font-weight: 600;
+              padding: 0 0.5rem;
+            }
+        }
+        .card-name{
+          font-weight: 600;
         }
     }
     .section-title{
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 5rem;
+        margin: auto;
+        padding: 1rem 0;
         h3{
-          text-align: center;
-          font-size: 1.5rem;
-          // padding-bottom: 5rem;
+            font-size: 2rem;
         }
-        img{
-          position: absolute;
-          width: 100%;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          max-width: 15rem;
-        }
-      }
-}
+    }
+  }
 
 
 

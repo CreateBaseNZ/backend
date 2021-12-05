@@ -513,6 +513,15 @@ video{
       }
       .card-text{
           padding-bottom: 1rem;
+          line-height: 180%;
+          span{
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 0 0.5rem;
+          }
+      }
+      .card-name{
+        font-weight: 600;
       }
   }
   .section-title{
