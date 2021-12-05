@@ -97,7 +97,7 @@ router.post("/tracking", checkAPIKeys(false, true), async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	return res.send({ status: "succeeded", content: data });
+	return res.send({ status: "succeeded", content: data.content });
 });
 
 // @route     GET /fetch-release-notes
