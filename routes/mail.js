@@ -202,8 +202,8 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 		let setDateToday = true;
 		if (currentHour > hour) {
 			setDateToday = false;
-		} else if (currentHour === hour) {
-			if (currentMinute > minute) setDateToday = false;
+		} else if (currentHour === hour && currentMinute > minute) {
+			setDateToday = false;
 		}
 		const targetDate = moment().tz(timezone);
 		targetDate.set("hour", hour);
@@ -241,8 +241,8 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 				return res.send({ status: "error", content: error });
 			}
 			await coldEmail(mail, date);
-			date = new Date(date.setMilliseconds(date.setMilliseconds() + 100));
-			await delay(1 / 20); // 50 milliseconds delay to allow for processing
+			date = new Date(date.setMilliseconds(date.getMilliseconds() + 100));
+			await delay(1 / 10); // 100 milliseconds delay to allow for processing
 		}
 		i++;
 	}
@@ -351,8 +351,9 @@ async function coldEmail(mail, baseDate) {
 		};
 		baseDate = new Date(baseDate);
 		const scheduleDate = new Date(baseDate.setMinutes(baseDate.getMinutes() + emails[i].date.minutes));
+		console.log(scheduleDate);
 		await agenda.schedule(scheduleDate, "email", { option });
-		await delay(1 / 20); // 50 milliseconds delay to allow for processing
+		await delay(1 / 100); // 100 milliseconds delay to allow for processing
 	}
 	// Success handler
 	return;
