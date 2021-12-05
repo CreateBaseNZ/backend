@@ -45,7 +45,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -74,7 +74,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -100,7 +100,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -126,7 +126,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -152,7 +152,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -178,7 +178,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -207,7 +207,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -233,7 +233,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -259,7 +259,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -285,7 +285,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
 	];
@@ -323,7 +323,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
 	];
@@ -361,7 +361,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
 	];
@@ -399,7 +399,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
 	];
@@ -437,7 +437,7 @@ Our solution enables you and your students to <b>create authentic solutions</b> 
 With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
 
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://youtu.be/0y_RbuoMMno'>this video</a></b>.
+If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
 
 And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
 	];
