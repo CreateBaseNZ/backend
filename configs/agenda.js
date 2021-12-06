@@ -19,8 +19,6 @@ require("../jobs/main.js")(agenda);
 	await agenda.start();
 
 	await agenda.every("1 minute", "update-data");
-
-	await agenda.now("delete-us");
 })();
 
 // EXPORT ===================================================

@@ -49,16 +49,6 @@ module.exports = function (agenda) {
 		// Terminate
 		return;
 	});
-	agenda.define("delete-us", async (job, done) => {
-		// Delete all mail
-		try {
-			await Mail.deleteMany({ "metadata.country": "us", "notification.cold": true });
-		} catch (error) {
-			return done();
-		}
-		// Success handler
-		return done();
-	});
 };
 
 // FUNCTIONS ================================================
