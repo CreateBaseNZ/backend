@@ -30,6 +30,7 @@ const checkAPIKeys = (public = false, private = false, admin = false) => {
 
 const Account = require("../model/Account.js");
 const Class = require("../model/Class.js");
+const GoogleAccount = require("../model/GoogleAccount.js");
 const Group = require("../model/Group.js");
 const License = require("../model/License.js");
 const Mail = require("../model/Mail.js");
@@ -114,7 +115,62 @@ router.post("/login", checkAPIKeys(false, true), async (req, res) => {
 		return res.send({ status: "failed", content: failed });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: account._id });
+	return res.send({ status: "succeeded", content: { email: account.email } });
+});
+
+// @route   POST /login/google-auth
+// @desc
+// @access
+router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) => {
+	const input = req.body.input;
+	// Check if there is a Google Account created
+	let googleAccount;
+	try {
+		googleAccount = await GoogleAccount.findOne({ googleId: input.id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (googleAccount) return res.send({ status: "succeeded" });
+	// Create a google account
+	googleAccount = new GoogleAccount({ googleId: input.id, email: input.email, date: new Date().toString() });
+	try {
+		await googleAccount.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// If there is no Google Account check if an account with this email already exists
+	let localAccount;
+	try {
+		localAccount = await account.findOne({ email: input.email });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	let profile;
+	if (localAccount) {
+		// Fetch the profile associated with the local account
+		try {
+			profile = await Profile.findOne({ "account.local": localAccount.profile });
+		} catch (error) {
+			return res.send({ status: "error", content: error });
+		}
+	} else {
+		// Create a new profile
+		profile = new Profile({
+			name: input.name,
+			date: { created: new Date().toString(), modified: new Date().toString(), visited: new Date().toString() },
+		});
+	}
+	// Link the Google Account and the profile together
+	profile.account.google = googleAccount._id;
+	googleAccount.profile = profile._id;
+	// Save the instances
+	try {
+		await Promise.all([profile.save(), googleAccount.save()]);
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Success handler
+	return res.send({ status: "succeeded" });
 });
 
 // @route   POST /session
@@ -129,7 +185,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	// Fetch the account instance
 	let account;
 	try {
-		account = await Account.findOne({ _id: input.account });
+		account = await Account.findOne({ email: input.email });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
