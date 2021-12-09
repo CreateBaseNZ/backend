@@ -299,6 +299,9 @@ async function coldEmail(mail, baseDate) {
 			au: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
+			us: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
 		},
 		teacher: {
 			nz: {
@@ -314,6 +317,9 @@ async function coldEmail(mail, baseDate) {
 			au: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
+			us: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
 		},
 		admin: {
 			nz: {
@@ -326,6 +332,9 @@ async function coldEmail(mail, baseDate) {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
 			au: {
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+			},
+			us: {
 				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 			},
 		},
