@@ -115,7 +115,7 @@ router.post("/login", checkAPIKeys(false, true), async (req, res) => {
 		return res.send({ status: "failed", content: failed });
 	}
 	// Success handler
-	return res.send({ status: "succeeded", content: { email: account.email } });
+	return res.send({ status: "succeeded", content: { id: account._id } });
 });
 
 // @route   POST /login/google-auth
@@ -183,18 +183,24 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	// Initialise the session object
 	let session = { groups: [] };
 	// Fetch the account instance
+	let promise;
+	if (input.provider === "credentials") {
+		promise = Account.findOne({ _id: input.accoundId });
+	} else if (input.provider === "credentials") {
+		promise = GoogleAccount.findOne({ googleId: input.accoundId });
+	} else {
+		return res.send({ status: "error", content: { provider: "invalid" } });
+	}
 	let account;
 	try {
-		account = await Account.findOne({ email: input.email });
+		account = await promise;
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!account) {
-		failed.account = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
-	session.accountId = account._id;
-	session.verified = account.verified.status;
+	if (!account) return res.send({ status: "failed", content: { account: "does not exist" } });
+	session.accountId = input.accountId;
+	session.provider = input.provider;
+	session.verified = input.provider === "credentials" ? account.verified.status : true;
 	session.email = account.email;
 	// Fetch the profile instance
 	let profile;
@@ -203,10 +209,7 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (!profile) {
-		failed.profile = "does not exist";
-		return res.send({ status: "failed", content: failed });
-	}
+	if (!profile) return res.send({ status: "failed", content: { profile: "does not exist" } });
 	session.profileId = profile._id;
 	session.firstName = profile.name.first;
 	session.lastName = profile.name.last;
