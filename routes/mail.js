@@ -360,7 +360,6 @@ async function coldEmail(mail, baseDate) {
 		};
 		baseDate = new Date(baseDate);
 		const scheduleDate = new Date(baseDate.setMinutes(baseDate.getMinutes() + emails[i].date.minutes));
-		console.log(scheduleDate);
 		await agenda.schedule(scheduleDate, "email", { option });
 		await delay(1 / 100); // 100 milliseconds delay to allow for processing
 	}

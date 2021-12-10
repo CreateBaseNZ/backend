@@ -229,9 +229,7 @@ router.post("/group/add-member", checkAPIKeys(false, true), async (req, res) => 
 // @desc
 // @access
 router.post("/group/remove-member", checkAPIKeys(false, true), async (req, res) => {
-	console.log("Remove Member");
 	const input = req.body.input;
-	console.log(input);
 	// Initialise failed handler
 	let failed = { group: "", license: "", profile: "", classes: "" };
 	// Fetch the group and the license

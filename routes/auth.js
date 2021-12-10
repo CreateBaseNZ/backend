@@ -57,10 +57,26 @@ router.post("/signup", checkAPIKeys(false, true), async (req, res) => {
 		password: input.password,
 		date: { created: input.date, modified: input.date },
 	});
-	let profile = new Profile({
-		name: { first: input.name.first, last: input.name.last },
-		date: { created: input.date, modified: input.date, visited: input.date },
-	});
+	// Check if there is a Google Account that exist
+	let googleAccount;
+	try {
+		googleAccount = await GoogleAccount.findOne({ email: input.email.toLowerCase() });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	let profile;
+	if (googleAccount) {
+		try {
+			profile = await Profile.findOne({ _id: googleAccount.profile });
+		} catch (error) {
+			return res.send({ status: "error", content: error });
+		}
+	} else {
+		profile = new Profile({
+			name: { first: input.name.first, last: input.name.last },
+			date: { created: input.date, modified: input.date, visited: input.date },
+		});
+	}
 	// Check if a mail instance exist with this email
 	let mail;
 	try {
@@ -132,16 +148,26 @@ router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) =>
 	}
 	if (googleAccount) return res.send({ status: "succeeded" });
 	// Create a google account
-	googleAccount = new GoogleAccount({ googleId: input.id, email: input.email, date: new Date().toString() });
+	googleAccount = new GoogleAccount({ googleId: input.id, email: input.email.toLowerCase(), date: new Date().toString() });
 	try {
 		await googleAccount.save();
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
+	// Check if a mail instance exist with this email
+	let mail;
+	try {
+		mail = await Mail.findOne({ email: input.email.toLowerCase() });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (!mail) {
+		mail = new Mail({ email: input.email.toLowerCase() });
+	}
 	// If there is no Google Account check if an account with this email already exists
 	let localAccount;
 	try {
-		localAccount = await account.findOne({ email: input.email });
+		localAccount = await Account.findOne({ email: input.email });
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -149,7 +175,7 @@ router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) =>
 	if (localAccount) {
 		// Fetch the profile associated with the local account
 		try {
-			profile = await Profile.findOne({ "account.local": localAccount.profile });
+			profile = await Profile.findOne({ _id: localAccount.profile });
 		} catch (error) {
 			return res.send({ status: "error", content: error });
 		}
@@ -159,13 +185,15 @@ router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) =>
 			name: input.name,
 			date: { created: new Date().toString(), modified: new Date().toString(), visited: new Date().toString() },
 		});
+		Object.assign(mail.notification, { onboarding: true, product: true, cold: false });
 	}
+	if (!profile) return res.send({ status: "error", content: { profile: "does not exist" } });
 	// Link the Google Account and the profile together
 	profile.account.google = googleAccount._id;
 	googleAccount.profile = profile._id;
 	// Save the instances
 	try {
-		await Promise.all([profile.save(), googleAccount.save()]);
+		await Promise.all([profile.save(), googleAccount.save(), mail.save()]);
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
@@ -185,9 +213,9 @@ router.post("/session", checkAPIKeys(false, true), async (req, res) => {
 	// Fetch the account instance
 	let promise;
 	if (input.provider === "credentials") {
-		promise = Account.findOne({ _id: input.accoundId });
-	} else if (input.provider === "credentials") {
-		promise = GoogleAccount.findOne({ googleId: input.accoundId });
+		promise = Account.findOne({ _id: input.accountId });
+	} else if (input.provider === "google") {
+		promise = GoogleAccount.findOne({ googleId: input.accountId });
 	} else {
 		return res.send({ status: "error", content: { provider: "invalid" } });
 	}
