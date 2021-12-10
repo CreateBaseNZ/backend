@@ -262,7 +262,7 @@ router.post("/mail/send-email", async (req, res) => {
 	 * tone						-	the tone of this email	-	formal | friendly | gratitude
 	 */
 	// Send the email
-	agenda.now("email", { option: req.body.input.option, accountId: req.body.input.accountId });
+	agenda.now("email", { option: req.body.input.option, user: req.body.input.user });
 	// Success handler
 	return res.send({ status: "succeeded" });
 });

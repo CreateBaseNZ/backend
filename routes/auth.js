@@ -146,7 +146,7 @@ router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) =>
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}
-	if (googleAccount) return res.send({ status: "succeeded" });
+	if (googleAccount) return res.send({ status: "succeeded", content: "old" });
 	// Create a google account
 	googleAccount = new GoogleAccount({ googleId: input.id, email: input.email.toLowerCase(), date: new Date().toString() });
 	try {
@@ -172,6 +172,7 @@ router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) =>
 		return res.send({ status: "error", content: error });
 	}
 	let profile;
+	let content;
 	if (localAccount) {
 		// Fetch the profile associated with the local account
 		try {
@@ -179,6 +180,7 @@ router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) =>
 		} catch (error) {
 			return res.send({ status: "error", content: error });
 		}
+		content = "old";
 	} else {
 		// Create a new profile
 		profile = new Profile({
@@ -186,10 +188,11 @@ router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) =>
 			date: { created: new Date().toString(), modified: new Date().toString(), visited: new Date().toString() },
 		});
 		Object.assign(mail.notification, { onboarding: true, product: true, cold: false });
+		content = "new";
 	}
 	if (!profile) return res.send({ status: "error", content: { profile: "does not exist" } });
 	// Link the Google Account and the profile together
-	profile.account.google = googleAccount._id;
+	profile.account.google = googleAccount.googleId;
 	googleAccount.profile = profile._id;
 	// Save the instances
 	try {
@@ -198,7 +201,7 @@ router.post("/login/google-auth", checkAPIKeys(false, true), async (req, res) =>
 		return res.send({ status: "error", content: error });
 	}
 	// Success handler
-	return res.send({ status: "succeeded" });
+	return res.send({ status: "succeeded", content });
 });
 
 // @route   POST /session
@@ -343,7 +346,7 @@ router.post("/account/verification/email", checkAPIKeys(false, true), async (req
 		tone: "friendly",
 		code: account.verified.code,
 	};
-	agenda.now("email", { option, accountId: account._id });
+	agenda.now("email", { option, user: { accountId: account._id, provider: "credentials" } });
 	// Success handler
 	return res.send({ status: "succeeded" });
 });
@@ -518,10 +521,17 @@ router.post("/account/match-password", checkAPIKeys(false, true), async (req, re
 // @access
 router.post("/account/retrieve", checkAPIKeys(false, true), async (req, res) => {
 	const input = req.body.input;
+	// Fetch account based on the provider
+	let promise;
+	if (input.provider === "credentials") {
+		promise = Account.find(input.query);
+	} else if (input.provider === "google") {
+		promise = GoogleAccount.find(input.query);
+	}
 	// Fetch the account of interest
 	let accounts;
 	try {
-		accounts = await Account.find(input.query);
+		accounts = await promise;
 	} catch (error) {
 		return res.send({ status: "error", content: error });
 	}

@@ -22,7 +22,7 @@ const ProfileSchema = new Schema({
 	saves: { type: Schema.Types.Mixed, default: { init: "" } },
 	account: {
 		local: { type: Schema.Types.ObjectId },
-		google: { type: Schema.Types.ObjectId },
+		google: { type: Schema.Types.String, default: "" },
 	},
 });
 
