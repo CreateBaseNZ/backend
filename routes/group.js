@@ -109,7 +109,7 @@ router.post("/group/school/verify", checkAPIKeys(false, true), async (req, res) 
 		const license = group.licenses.active[i];
 		if (license.role === "admin" || license.role === "teacher") {
 			const option = {
-				recipient: license.profile.account.email,
+				recipient: license.profile.account.local ? license.profile.account.local.email : license.profile.account.google.email,
 				name: license.profile.name.first,
 				receive: "organisation-verified",
 				notification: "general",
@@ -117,6 +117,26 @@ router.post("/group/school/verify", checkAPIKeys(false, true), async (req, res) 
 				group: group.name,
 			};
 			agenda.now("email", { option });
+		}
+		// TEMPORARY: Update recent groups
+		if (license.role === "admin") {
+			let profile;
+			try {
+				profile = await Profile.findOne({ _id: license.profile._id });
+			} catch (error) {
+				return res.send({ status: "error", content: error });
+			}
+			if (profile.saves.recentGroups) {
+				if (!profile.saves.recentGroups.length) profile.saves.recentGroups.push(profile.licenses.indexOf(license._id));
+			} else {
+				profile.saves.recentGroups = [profile.licenses.indexOf(license._id)];
+			}
+			profile.date.modified = input.date;
+			try {
+				await profile.save();
+			} catch (error) {
+				return res.send({ status: "error", content: error });
+			}
 		}
 	}
 	// Success handler
@@ -325,6 +345,24 @@ router.post("/group/accept-member", checkAPIKeys(false, true), async (req, res) 
 	group.licenses.active.push(license._id);
 	license.status = "activated";
 	license.date.joined = input.date;
+	// TEMPORARY: Update recent groups
+	let profile;
+	try {
+		profile = await Profile.findOne({ _id: license.profile._id });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	if (profile.saves.recentGroups) {
+		if (!profile.saves.recentGroups.length) profile.saves.recentGroups.push(profile.licenses.indexOf(license._id));
+	} else {
+		profile.saves.recentGroups = [profile.licenses.indexOf(license._id)];
+	}
+	profile.date.modified = input.date;
+	try {
+		await profile.save();
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
 	// Update instances
 	group.date.modified = input.date;
 	license.date.modified = input.date;

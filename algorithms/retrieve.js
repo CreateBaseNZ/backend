@@ -14,6 +14,7 @@ let retrieve = {
 const Account = require("../model/Account.js");
 const Class = require("../model/Class.js");
 const Group = require("../model/Group.js");
+const GoogleAccount = require("../model/GoogleAccount.js");
 const License = require("../model/License.js");
 const Mail = require("../model/Mail.js");
 const Profile = require("../model/Profile.js");
@@ -211,21 +212,29 @@ retrieve.profiles = (profiles, option) => {
 	return new Promise(async (resolve, reject) => {
 		if (option.account) {
 			// Convert profile instances into a normal object and create an array of account IDs
-			let accountIds = [];
+			let localAccountIds = [];
+			let googleAccountIds = [];
 			for (let i = 0; i < profiles.length; i++) {
 				profiles[i] = convertToNormalObject(profiles[i]);
-				accountIds.push(profiles[i].account.local);
+				localAccountIds.push(profiles[i].account.local);
+				googleAccountIds.push(profiles[i].account.google);
 			}
 			// Fetch the account instances associated with these profiles
-			let accounts;
+			let localAccounts;
 			try {
-				accounts = await Account.find({ _id: accountIds });
+				localAccounts = await Account.find({ _id: localAccountIds });
+			} catch (error) {
+				return reject({ status: "error", content: error });
+			}
+			let googleAccounts;
+			try {
+				googleAccounts = await GoogleAccount.find({ googleId: googleAccountIds });
 			} catch (error) {
 				return reject({ status: "error", content: error });
 			}
 			// Filter account instances details
 			if (option.account.length) {
-				accounts = accounts.map((account) => {
+				localAccounts = localAccounts.map((account) => {
 					let object = {};
 					for (let j = 0; j < option.account.length; j++) {
 						object[option.account[j]] = account[option.account[j]];
@@ -236,7 +245,8 @@ retrieve.profiles = (profiles, option) => {
 			// Attach the account instances to their respective profiles
 			for (let k = 0; k < profiles.length; k++) {
 				// Fetch the account associated with this profile
-				profiles[k].account = accounts.find((account) => account._id.toString() === profiles[k].account.local.toString());
+				profiles[k].account.local = localAccounts.find((account) => account._id.toString() === profiles[k].account.local.toString());
+				profiles[k].account.google = googleAccounts.find((account) => account.googleId.toString() === profiles[k].account.google.toString());
 			}
 		}
 		// Success handler
