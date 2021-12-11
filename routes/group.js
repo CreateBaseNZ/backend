@@ -131,6 +131,7 @@ router.post("/group/school/verify", checkAPIKeys(false, true), async (req, res) 
 			} else {
 				profile.saves.recentGroups = [profile.licenses.indexOf(license._id)];
 			}
+			profile.markModified("saves");
 			profile.date.modified = input.date;
 			try {
 				await profile.save();
@@ -357,6 +358,7 @@ router.post("/group/accept-member", checkAPIKeys(false, true), async (req, res) 
 	} else {
 		profile.saves.recentGroups = [profile.licenses.indexOf(license._id)];
 	}
+	profile.markModified("saves");
 	profile.date.modified = input.date;
 	try {
 		await profile.save();
