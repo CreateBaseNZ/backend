@@ -37,6 +37,7 @@ html {
     .note {
       padding: 2rem 0;
       scroll-margin-top: $nav-height;
+      border-bottom: thin solid $lighter;
     }
     .version-number {
       font-size: 1.5rem;
@@ -52,6 +53,7 @@ html {
       width: 100%;
       max-width: 600px;
       border-radius: 1rem;
+      margin: 1rem 0;
     }
     .note-text {
       padding: 0.5rem 0;
