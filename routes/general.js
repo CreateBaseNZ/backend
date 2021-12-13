@@ -111,13 +111,34 @@ router.get("/fetch-release-notes", async (req, res) => {
   // Set authentication
   const auth = new google.auth.GoogleAuth({
     keyFile: "credentials.json",
-    scopes: "https://www.googleapis.com/auth/spreadsheets",
+    scopes: [
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/drive.metadata",
+    ],
   });
   // Create client instance for auth
   const client = await auth.getClient();
+
+  const spreadsheetId = "1iopXot5OoZwc1KAsztCCxpiQILCK8tsvxCcHdBCv33Q";
+
+  const googleDrive = google.drive({ version: "v3", auth: client });
+
+  let driveResult;
+  try {
+    driveResult = (
+      await googleDrive.files.get({
+        fileId: spreadsheetId,
+        fields: "modifiedTime",
+      })
+    )["data"];
+  } catch (error) {
+    console.log(error);
+  }
+
+  const date = Date.parse(driveResult.modifiedTime);
+
   // Create instance of Google Sheets API
   const googleSheets = google.sheets({ version: "v4", auth: client });
-  const spreadsheetId = "1iopXot5OoZwc1KAsztCCxpiQILCK8tsvxCcHdBCv33Q";
   let i = 0;
   let releaseNotes = [];
   while (true) {
@@ -147,7 +168,7 @@ router.get("/fetch-release-notes", async (req, res) => {
     releaseNotes.push(releaseNote);
     i++;
   }
-  return res.send(releaseNotes);
+  return res.send({ releaseNotes, date });
 });
 
 // EXPORT ===================================================

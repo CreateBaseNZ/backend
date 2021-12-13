@@ -7,6 +7,7 @@ let releaseNotes = {
   elem: {
     releaseNoteSection: document.querySelector(".notes-content"),
     versionListContainer: document.querySelector(".release-menu-container"),
+    lastUpdated: document.querySelector(".last-updated"),
   },
 };
 
@@ -20,9 +21,15 @@ releaseNotes.init = async function () {
   } catch (error) {
     window.alert("Encountered an error!");
   }
-  console.log(content);
+  releaseNotes.populateData(content.releaseNotes);
+  releaseNotes.updateTime(content.date);
+};
 
-  releaseNotes.populateData(content);
+releaseNotes.updateTime = (date) => {
+  console.log(new Date(date).toDateString());
+  releaseNotes.elem.lastUpdated.innerHTML = `Last updated: ${new Date(
+    date
+  ).toString()}`;
 };
 
 releaseNotes.populateData = (content) => {
