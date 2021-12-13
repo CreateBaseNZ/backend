@@ -16,18 +16,18 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 // MIDDLEWARE ===============================================
 
 const checkAPIKeys = (public = false, private = false, admin = false) => {
-	return (req, res, next) => {
-		if (public && req.body.PUBLIC_API_KEY !== process.env.PUBLIC_API_KEY) {
-			return res.send({ status: "critical error" });
-		}
-		if (private && req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-			return res.send({ status: "critical error" });
-		}
-		if (admin && req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
-			return res.send({ status: "critical error" });
-		}
-		return next();
-	};
+  return (req, res, next) => {
+    if (public && req.body.PUBLIC_API_KEY !== process.env.PUBLIC_API_KEY) {
+      return res.send({ status: "critical error" });
+    }
+    if (private && req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+      return res.send({ status: "critical error" });
+    }
+    if (admin && req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
+      return res.send({ status: "critical error" });
+    }
+    return next();
+  };
 };
 
 // MODELS ===================================================
@@ -80,66 +80,74 @@ router.get("/landing", (req, res) => res.sendFile("landing.html", viewsOption));
 // @route     GET /release-notes
 // @desc
 // @access    PUBLIC
-router.get("/release-notes", (req, res) => res.sendFile("release-notes.html", viewsOption));
+router.get("/release-notes", (req, res) =>
+  res.sendFile("release-notes.html", viewsOption)
+);
 
 // @route     GET /robots.txt
 // @desc
 // @access    PUBLIC
-router.get("/robots.txt", (req, res) => res.sendFile("robots.txt", viewsOption));
+router.get("/robots.txt", (req, res) =>
+  res.sendFile("robots.txt", viewsOption)
+);
 
 // @route     POST /tracking
 // @desc
 // @access    Public
 router.post("/tracking", checkAPIKeys(false, true), async (req, res) => {
-	let data;
-	try {
-		data = (await Data.find())[0];
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	return res.send({ status: "succeeded", content: data.content });
+  let data;
+  try {
+    data = (await Data.find())[0];
+  } catch (error) {
+    return res.send({ status: "error", content: error });
+  }
+  return res.send({ status: "succeeded", content: data.content });
 });
 
 // @route     GET /fetch-release-notes
 // @desc
 // @access    Public
 router.get("/fetch-release-notes", async (req, res) => {
-	// Set authentication
-	const auth = new google.auth.GoogleAuth({
-		keyFile: "credentials.json",
-		scopes: "https://www.googleapis.com/auth/spreadsheets",
-	});
-	// Create client instance for auth
-	const client = await auth.getClient();
-	// Create instance of Google Sheets API
-	const googleSheets = google.sheets({ version: "v4", auth: client });
-	const spreadsheetId = "1iopXot5OoZwc1KAsztCCxpiQILCK8tsvxCcHdBCv33Q";
-	let i = 0;
-	let releaseNotes = [];
-	while (true) {
-		let releaseNote = { version: undefined, content: [] };
-		let result;
-		try {
-			result = await googleSheets.spreadsheets.values.get({ auth, spreadsheetId, range: i.toString() });
-		} catch (error) {
-			break;
-		}
-		let values = result.data.values;
-		releaseNote.version = values[0][1];
-		values.shift();
-		values.shift();
-		for (let j = 0; j < values.length; j++) {
-			const value = values[j];
-			if (value[0] === "image") {
-				releaseNote.content.push({ type: value[0], url: value[1] });
-			} else {
-				releaseNote.content.push({ type: value[0], html: value[1] });
-			}
-		}
-		releaseNotes.push(releaseNote);
-		i++;
-	}
-	return res.send(releaseNotes);
+  // Set authentication
+  const auth = new google.auth.GoogleAuth({
+    keyFile: "credentials.json",
+    scopes: "https://www.googleapis.com/auth/spreadsheets",
+  });
+  // Create client instance for auth
+  const client = await auth.getClient();
+  // Create instance of Google Sheets API
+  const googleSheets = google.sheets({ version: "v4", auth: client });
+  const spreadsheetId = "1iopXot5OoZwc1KAsztCCxpiQILCK8tsvxCcHdBCv33Q";
+  let i = 0;
+  let releaseNotes = [];
+  while (true) {
+    let releaseNote = { version: undefined, content: [] };
+    let result;
+    try {
+      result = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: i.toString(),
+      });
+    } catch (error) {
+      break;
+    }
+    let values = result.data.values;
+    releaseNote.version = values[0][1];
+    values.shift();
+    values.shift();
+    for (let j = 0; j < values.length; j++) {
+      const value = values[j];
+      if (value[0] === "image") {
+        releaseNote.content.push({ type: value[0], url: value[1] });
+      } else {
+        releaseNote.content.push({ type: value[0], html: value[1] });
+      }
+    }
+    releaseNotes.push(releaseNote);
+    i++;
+  }
+  return res.send(releaseNotes);
 });
 
 // EXPORT ===================================================

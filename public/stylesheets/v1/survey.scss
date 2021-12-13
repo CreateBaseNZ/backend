@@ -1,174 +1,173 @@
-@import "global/all";
+// @import "global/all";
 
-body{
-  background: $light-1;
-  max-width: 100%;
-  overflow-x: hidden;
-  font-family: $poppins;
-}
+// body{
+//   background: $light-1;
+//   max-width: 100%;
+//   overflow-x: hidden;
+//   font-family: $poppins;
+// }
 
-.main-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: $top-bar-height;
-}
+// .main-page {
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding-top: $top-bar-height;
+// }
 
-h1 {
-  font-size: calc(24px + 1.4vmax);
-  color: $dark-3;
-}
+// h1 {
+//   font-size: calc(24px + 1.4vmax);
+//   color: $dark-3;
+// }
 
-h2 {
-  font-weight: 600;
-  color: $logo-2;
-  font-size: calc(10px + 0.4vmax);
-}
+// h2 {
+//   font-weight: 600;
+//   color: $logo-2;
+//   font-size: calc(10px + 0.4vmax);
+// }
 
-h3 {
-  width: 100%;
-  text-align: center;
-  font-weight: 600;
-  font-size: calc(10px + 0.6vw);
-  margin-bottom: 2em;
-  color: $dark-3;
-}
+// h3 {
+//   width: 100%;
+//   text-align: center;
+//   font-weight: 600;
+//   font-size: calc(10px + 0.6vw);
+//   margin-bottom: 2em;
+//   color: $dark-3;
+// }
 
-.survey-section {
-  height: calc(100vh - #{$top-bar-height});
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  .survey-title {
-    margin-left: 10vw;
-    margin-top: 4vh;
-  }
-  .survey-options {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: auto 0;
-    padding-bottom: 6vh;
-    .survey-item {
-      img {
-        display: none;
-      }
-      button {
-        margin: 2vh 0;
-        font-size: 1em;
-        padding: 0.8em 1.8em;
-        width: 40vw;
-      }
-    }
-    &.hide {
-      padding: 0;
-    }
-  }
-}
+// .survey-section {
+//   height: calc(100vh - #{$top-bar-height});
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   position: relative;
+//   .survey-title {
+//     margin-left: 10vw;
+//     margin-top: 4vh;
+//   }
+//   .survey-options {
+//     width: 100%;
+//     display: flex;
+//     align-items: center;
+//     flex-direction: column;
+//     justify-content: center;
+//     flex-wrap: wrap;
+//     margin: auto 0;
+//     padding-bottom: 6vh;
+//     .survey-item {
+//       img {
+//         display: none;
+//       }
+//       button {
+//         margin: 2vh 0;
+//         font-size: 1em;
+//         padding: 0.8em 1.8em;
+//         width: 40vw;
+//       }
+//     }
+//     &.hide {
+//       padding: 0;
+//     }
+//   }
+// }
 
-.iframe-container {
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  width: 80%;
-  margin: 4vh auto 0 auto;
-}
+// .iframe-container {
+//   overflow-y: scroll;
+//   -webkit-overflow-scrolling: touch;
+//   width: 80%;
+//   margin: 4vh auto 0 auto;
+// }
 
-iframe {
-  height: 75vh;
-  width: 100%;
-  border: none;
-  display: block;
-  overflow: visible;
-}
+// iframe {
+//   height: 75vh;
+//   width: 100%;
+//   border: none;
+//   display: block;
+//   overflow: visible;
+// }
 
-.temp-wrap {
-  position: relative;
-  min-height: 75vh;
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 20vw;
-    width: 60vw;
-    height: 1px;
-    background: $light-2;
-  }
-}
+// .temp-wrap {
+//   position: relative;
+//   min-height: 75vh;
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 20vw;
+//     width: 60vw;
+//     height: 1px;
+//     background: $light-2;
+//   }
+// }
 
-.attribution {
-  display: none;
-}
+// .attribution {
+//   display: none;
+// }
 
-@media only screen and (min-width: 850px) {
+// @media only screen and (min-width: 850px) {
 
-.survey-section {
-  padding: 0 20vw;
-  .survey-title {
-    margin-left: 0;
-  }
-  .survey-options {
-    flex-direction: row;
-    padding-bottom: 5vh;
-    .survey-item {
-      flex: 1 1 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0 2vw;
-      img {
-        display: block;
-        height: 25%;
-        width: 100%;
-        object-fit: contain;
-        margin-bottom: 2vh;
-      }
-      button {
-        margin: 0;
-        font-size: 1.2em;
-        width: auto;
-        padding: 0.6em 1.8em;
-      }
-    }
-  }
-}
+// .survey-section {
+//   padding: 0 20vw;
+//   .survey-title {
+//     margin-left: 0;
+//   }
+//   .survey-options {
+//     flex-direction: row;
+//     padding-bottom: 5vh;
+//     .survey-item {
+//       flex: 1 1 0;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       justify-content: center;
+//       margin: 0 2vw;
+//       img {
+//         display: block;
+//         height: 25%;
+//         width: 100%;
+//         object-fit: contain;
+//         margin-bottom: 2vh;
+//       }
+//       button {
+//         margin: 0;
+//         font-size: 1.2em;
+//         width: auto;
+//         padding: 0.6em 1.8em;
+//       }
+//     }
+//   }
+// }
 
+// iframe {
+//   flex: 1 1 0;
+//   margin: 4vh auto 6vh auto;
+//   width: 100%;
+//   border: none;
+//   display: block;
+//   overflow: visible;
+//   overflow-y: auto;
+//   -webkit-overflow-scrolling: touch;
+// }
 
-iframe {
-  flex: 1 1 0;
-  margin: 4vh auto 6vh auto;
-  width: 100%;
-  border: none;
-  display: block;
-  overflow: visible;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
+// .attribution {
+//   display: block;
+//   position: absolute;
+//   bottom: 0;
+//   left: 5px;
+//   font-size: 0.8rem;
+//   color: $light-3;
+//   transform: rotate(-90deg);
+//   transform-origin: 0% 0%;
+//   font-weight: 300;
+//   a {
+//     font-weight: inherit;
+//     color: inherit;
+//     transition: color 0.1s ease-out;
+//     &:hover {
+//       color: $highlight;
+//     }
+//   }
+// }
 
-.attribution {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 5px;
-  font-size: 0.8rem;
-  color: $light-3; 
-  transform: rotate(-90deg);
-  transform-origin: 0% 0%;
-  font-weight: 300;
-  a {
-    font-weight: inherit;
-    color: inherit;
-    transition: color 0.1s ease-out;
-    &:hover {
-      color: $highlight;
-    }
-  }
-}
-
-}
+// }
