@@ -3,14 +3,14 @@
 let closing = {
 	construct: undefined,
 	signatures: {
-		carl: `Carl Velasco
-CEO
+		carl: `<a href="https://www.linkedin.com/in/carl-velasco">Carl Velasco</a>
+Chief Executive Officer
 CreateBase Limited`,
-		brydon: `Brydon Burnett
-General Manager
+		brydon: `<a href="https://www.linkedin.com/in/brydon-burnett-3368861b6">Brydon Burnett</a>
+General Manager Product
 CreateBase Limited`,
-		todd: `Todd Broadhurst
-General Manager
+		todd: `<a href="https://www.linkedin.com/in/todd-broadhurst-4314a5149">Todd Broadhurst</a>
+General Manager People
 CreateBase Limited`,
 	},
 };
