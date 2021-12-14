@@ -216,11 +216,14 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 		values.shift();
 		let date = new Date(targetDate.toDate());
 		for (let j = 0; j < values.length; j++) {
-			const name = values[j][0];
-			const email = values[j][1];
-			const school = values[j][2];
-			const segment = values[j][3];
-			const group = values[j][4];
+			const name = values[j][0].trim();
+			const email = values[j][1].trim();
+			const school = values[j][2].trim();
+			const segment = values[j][3].trim();
+			const group = values[j][4].trim();
+			const alias = values[j][5].trim();
+			const messages = values[j][6] ? values[j][6].split(";").map((message) => message.trim()) : "";
+			const attachments = values[j][7] ? values[j][7].split(";").map((attachment) => attachment.trim()) : "";
 			if (!email || !segment || !group) continue;
 			// Check if a mail instance with this email exist
 			let mail;
@@ -233,7 +236,7 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 			mail = new Mail({
 				email: email.toLowerCase(),
 				notification: { cold: true },
-				metadata: { name, type: "customer-school", school, segment, country, group },
+				metadata: { name, type: "customer-school", school, segment, country, group, alias, messages, attachments },
 			});
 			try {
 				await mail.save();
@@ -348,6 +351,7 @@ async function coldEmail(mail, baseDate) {
 			}
 		}
 	}
+	//
 	// Schedule the emails
 	for (let i = 0; i < emails.length; i++) {
 		const option = {
@@ -357,6 +361,9 @@ async function coldEmail(mail, baseDate) {
 			notification: "cold",
 			tone: "friendly",
 			school: mail.metadata.school,
+			alias: mail.metadata.alias,
+			messages: mail.metadata.messages,
+			attachments: mail.metadata.attachments,
 		};
 		baseDate = new Date(baseDate);
 		const scheduleDate = new Date(baseDate.setMinutes(baseDate.getMinutes() + emails[i].date.minutes));

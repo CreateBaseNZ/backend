@@ -20,15 +20,16 @@ let email = {
 	execute: undefined,
 	construct: undefined,
 	send: undefined,
-	members: [
-		"carlvelasco96@gmail.com",
-		"bradyoung109@gmail.com",
-		"brydonburnett@gmail.com",
-		"craig.vaz1337@gmail.com",
-		"louiscflin@gmail.com",
-		"todd.lachlan.broadhurst@gmail.com",
-		"weiweiwu766@gmail.com",
-	],
+	alias: {
+		carl: '"Carl Velasco" <carl@createbase.co.nz>',
+		brad: '"Bradley Young" <brad@createbase.co.nz>',
+		brydon: `"Brydon Burnett" <brydon@createbase.co.nz>`,
+		craig: `"Craig Vaz" <craig@createbase.co.nz>`,
+		louis: `"Louis Lin" <louis@createbase.co.nz>`,
+		todd: `"Todd Broadhurst" <todd@createbase.co.nz>`,
+		weiwei: `"Weiwei Wu" <weiwei@createbase.co.nz>`,
+		admin: `"CreateBase Limited" <admin@createbase.co.nz>`,
+	},
 };
 
 // FUNCTIONS ================================================
@@ -97,24 +98,22 @@ ${bodyMessage}
     
 ${closingMessage}
 ${footerMessage}`;
-		const text = convert(message);
-		const html = message.replace(/(\r\n|\n|\r)/gm, "<br>");
-		// Check if the email is a notification for our members
-		const recipient = object.notification === "createbase" ? email.members : object.recipient;
-		// Examine
-		// console.log(`-------------- START --------------`);
-		// console.log(`Sending an email to: ${recipient}`);
-		// console.log(`------------- MESSAGE -------------`);
-		// console.log(message);
-		// console.log(`--------------- END ---------------`);
 		// Create the mail object;
 		const mail = {
-			from: `"CreateBase" <${process.env.EMAIL_ADDRESS}>`,
-			to: recipient,
+			from: object.alias ? (email.alias[object.alias.toLowerCase()] ? email.alias[object.alias.toLowerCase()] : email.alias["admin"]) : email.alias["admin"],
+			to: object.notification === "createbase" ? "internal@createbase.co.nz" : object.recipient,
 			subject: process.env.DEPLOYMENT === "production" ? subjectMessage : `[TEST] ${subjectMessage}`,
-			text: text,
-			html: html,
+			text: convert(message),
+			html: message.replace(/(\r\n|\n|\r)/gm, "<br>"),
+			attachments: object.attachments.map((attachment) => {
+				[filename, path] = attachment.split("+").map((element) => element.trim());
+				return { filename, path };
+			}),
 		};
+		// Examine
+		// console.log(`-------------- START --------------`);
+		// console.log(mail);
+		// console.log(`--------------- END ---------------`);
 		// Success handler
 		return resolve(mail);
 	});
