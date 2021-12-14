@@ -101,14 +101,16 @@ ${footerMessage}`;
 		// Create the mail object;
 		const mail = {
 			from: object.alias ? (email.alias[object.alias.toLowerCase()] ? email.alias[object.alias.toLowerCase()] : email.alias["admin"]) : email.alias["admin"],
-			to: object.notification === "createbase" ? "carlvelasco96@gmail.com" : object.recipient,
+			to: object.notification === "createbase" ? "internal@createbase.co.nz" : object.recipient,
 			subject: process.env.DEPLOYMENT === "production" ? subjectMessage : `[TEST] ${subjectMessage}`,
 			text: convert(message),
 			html: message.replace(/(\r\n|\n|\r)/gm, "<br>"),
-			attachments: object.attachments.map((attachment) => {
-				[filename, path] = attachment.split("+").map((element) => element.trim());
-				return { filename, path };
-			}),
+			attachments: object.attachments
+				? object.attachments.map((attachment) => {
+						[filename, path] = attachment.split("+").map((element) => element.trim());
+						return { filename, path };
+				  })
+				: undefined,
 		};
 		// Examine
 		// console.log(`-------------- START --------------`);
