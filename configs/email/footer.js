@@ -18,7 +18,10 @@ Join our exclusive <b><a href='https://www.facebook.com/groups/createbaseteacher
 Follow our social media and stay up-to-date with the latest news: <b><a href='https://www.facebook.com/CreateBaseNZ'>Facebook</a></b>, <b><a href='https://twitter.com/CreateBaseNZ'>Twitter</a></b>, <b><a href='https://www.instagram.com/createbasenz/'>Instagram</a></b> and <b><a href='https://www.youtube.com/channel/UClLBwFvHpGrRpxyRg1IOB0g'>YouTube</a></b>.`;
 	const unsubscribe = `
 	
-Click <b><a href='${process.env.SITE_PREFIX}/mail/unsubscribe-newsletter/${object.recipient}'>here</a></b> to unsubscribe to our newsletters.`;
+Click <b><a href='${process.env.SITE_PREFIX}/mail/unsubscribe-newsletter/${object.recipient}'>here</a></b> to unsubscribe from our newsletters.`;
+	const unsubscribeCold = `
+	
+Click <b><a href='${process.env.SITE_PREFIX}/mail/unsubscribe-cold/${object.recipient}'>here</a></b> to unsubscribe from our mailing list.`;
 	let message = "";
 	if (object.site) {
 		message += site;
@@ -31,6 +34,9 @@ Click <b><a href='${process.env.SITE_PREFIX}/mail/unsubscribe-newsletter/${objec
 	}
 	if (object.unsubscribe) {
 		message += unsubscribe;
+	}
+	if (object.unsubscribeCold) {
+		message += unsubscribeCold;
 	}
 	return `<i>${message}</i>`;
 };

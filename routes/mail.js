@@ -110,6 +110,40 @@ router.get("/mail/unsubscribe-newsletter/:email", async (req, res) => {
 	return res.sendFile("unsubscribe.html", viewsOption);
 });
 
+// @route   GET /mail/unsubscribe-cold/:email
+// @desc
+// @access  PUBLIC
+router.get("/mail/unsubscribe-cold/:email", async (req, res) => {
+	// Check if email input is valid
+	try {
+		await validateEmail(req.params.email);
+	} catch (data) {
+		return res.status(404).sendFile("error-404.html", viewsOption);
+	}
+	// Check if the Mail instance exist
+	let mail;
+	try {
+		mail = await Mail.findOne({ email: req.params.email.toLowerCase() });
+	} catch (error) {
+		return res.status(404).sendFile("error-404.html", viewsOption);
+	}
+	// If no Mail instance exist, create one
+	if (!mail) return res.sendFile("unsubscribe.html", viewsOption);
+	// Check if the Mail instance is already unsubscribed
+	if (!mail.notification.cold) {
+		return res.sendFile("unsubscribe.html", viewsOption);
+	}
+	mail.notification.cold = false;
+	// Save the updates
+	try {
+		await mail.save();
+	} catch (error) {
+		return res.status(404).sendFile("error-404.html", viewsOption);
+	}
+	// Success handler
+	return res.sendFile("unsubscribe.html", viewsOption);
+});
+
 // @route   POST /mail/manage-options
 // @desc
 // @access
@@ -290,7 +324,10 @@ async function coldEmail(mail, baseDate) {
 	const group = {
 		hod: {
 			nz: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+				group1: [
+					{ suffix: "email1", date: { minutes: 0 } },
+					{ suffix: "email2", date: { minutes: 5 } },
+				],
 				group2: [{ suffix: "email2", date: { minutes: 0 } }],
 			},
 			sg: {
@@ -308,7 +345,10 @@ async function coldEmail(mail, baseDate) {
 		},
 		teacher: {
 			nz: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+				group1: [
+					{ suffix: "email1", date: { minutes: 0 } },
+					{ suffix: "email2", date: { minutes: 5 } },
+				],
 				group2: [{ suffix: "email2", date: { minutes: 0 } }],
 			},
 			sg: {
@@ -360,6 +400,7 @@ async function coldEmail(mail, baseDate) {
 			receive: `${mail.metadata.segment}-${mail.metadata.country}-${emails[i].suffix}`,
 			notification: "cold",
 			tone: "friendly",
+			unsubscribeCold: true,
 			school: mail.metadata.school,
 			alias: mail.metadata.alias,
 			messages: mail.metadata.messages,
