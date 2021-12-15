@@ -266,18 +266,19 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 			} catch (error) {
 				return res.send({ status: "error", content: error });
 			}
-			if (mail) continue;
-			mail = new Mail({
-				email: email.toLowerCase(),
-				notification: { cold: true },
-				metadata: { name, type: "customer-school", school, segment, country, group, alias, messages, attachments },
-			});
-			try {
-				await mail.save();
-			} catch (error) {
-				return res.send({ status: "error", content: error });
+			if (!mail) {
+				mail = new Mail({
+					email: email.toLowerCase(),
+					notification: { cold: true },
+					metadata: { name, type: "customer-school", school, segment, country, group, alias, messages, attachments },
+				});
+				try {
+					await mail.save();
+				} catch (error) {
+					return res.send({ status: "error", content: error });
+				}
 			}
-			await coldEmail(mail, date);
+			await coldEmail(mail, date, j);
 			date = new Date(date.setMilliseconds(date.getMilliseconds() + 200));
 			await delay(1 / 10); // 100 milliseconds delay to allow for processing
 		}
@@ -320,14 +321,11 @@ function validateEmail(input = "") {
 	});
 }
 
-async function coldEmail(mail, baseDate) {
+async function coldEmail(mail, baseDate, iteration) {
 	const group = {
 		hod: {
 			nz: {
-				group1: [
-					{ suffix: "email1", date: { minutes: 0 } },
-					{ suffix: "email2", date: { minutes: 5 } },
-				],
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 				group2: [{ suffix: "email2", date: { minutes: 0 } }],
 			},
 			sg: {
@@ -345,10 +343,7 @@ async function coldEmail(mail, baseDate) {
 		},
 		teacher: {
 			nz: {
-				group1: [
-					{ suffix: "email1", date: { minutes: 0 } },
-					{ suffix: "email2", date: { minutes: 5 } },
-				],
+				group1: [{ suffix: "email1", date: { minutes: 0 } }],
 				group2: [{ suffix: "email2", date: { minutes: 0 } }],
 			},
 			sg: {
@@ -394,6 +389,18 @@ async function coldEmail(mail, baseDate) {
 	//
 	// Schedule the emails
 	for (let i = 0; i < emails.length; i++) {
+		// Skip this email has already been sent
+		if (mail.scheduled) {
+			if (mail.scheduled.indexOf(`cold-${mail.metadata.segment}-${mail.metadata.country}-${emails[i].suffix}`) !== -1) {
+				continue;
+			} else {
+				mail.scheduled.push(`cold-${mail.metadata.segment}-${mail.metadata.country}-${emails[i].suffix}`);
+				await mail.save();
+			}
+		} else {
+			mail.scheduled = [`cold-${mail.metadata.segment}-${mail.metadata.country}-${emails[i].suffix}`];
+			await mail.save();
+		}
 		const option = {
 			recipient: mail.email,
 			name: mail.metadata.name,
@@ -406,8 +413,29 @@ async function coldEmail(mail, baseDate) {
 			messages: mail.metadata.messages,
 			attachments: mail.metadata.attachments,
 		};
-		baseDate = new Date(baseDate);
-		const scheduleDate = new Date(baseDate.setMinutes(baseDate.getMinutes() + emails[i].date.minutes));
+		let scheduleDate;
+		if (emails[i].date.hasOwnProperty("minutes")) {
+			scheduleDate = new Date(baseDate.setMinutes(baseDate.getMinutes() + emails[i].date.minutes));
+		} else if (
+			emails[i].date.hasOwnProperty("month") &&
+			emails[i].date.hasOwnProperty("date") &&
+			emails[i].date.hasOwnProperty("year") &&
+			emails[i].date.hasOwnProperty("timezone") &&
+			emails[i].date.hasOwnProperty("hour") &&
+			emails[i].date.hasOwnProperty("minute")
+		) {
+			const targetDate = moment().tz(emails[i].date.timezone);
+			targetDate.set("month", emails[i].date.month);
+			targetDate.set("date", emails[i].date.date);
+			targetDate.set("year", emails[i].date.year);
+			targetDate.set("hour", emails[i].date.hour);
+			targetDate.set("minute", emails[i].date.minute);
+			targetDate.set("second", 0);
+			scheduleDate = new Date(targetDate.toDate());
+			scheduleDate = new Date(scheduleDate.setMilliseconds(scheduleDate.getMilliseconds() + iteration * 200));
+		} else {
+			continue;
+		}
 		await agenda.schedule(scheduleDate, "email", { option });
 		await delay(1 / 100); // 100 milliseconds delay to allow for processing
 	}
