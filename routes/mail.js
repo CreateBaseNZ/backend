@@ -17,9 +17,27 @@ const delay = (seconds = 1) => {
 	});
 };
 
+// MIDDLEWARE ===============================================
+
+const checkAPIKeys = (public = false, private = false, admin = false) => {
+	return (req, res, next) => {
+		if (public && req.body.PUBLIC_API_KEY !== process.env.PUBLIC_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		if (private && req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		if (admin && req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
+			return res.send({ status: "critical error" });
+		}
+		return next();
+	};
+};
+
 // MODELS ===================================================
 
 const Account = require("../model/Account.js");
+const GoogleAccount = require("../model/GoogleAccount.js");
 const Mail = require("../model/Mail.js");
 const Profile = require("../model/Profile.js");
 
@@ -181,11 +199,7 @@ router.post("/mail/manage-options", async (req, res) => {
 // @route   POST /mail/retrieve-options
 // @desc
 // @access
-router.post("/mail/retrieve-options", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
-		return res.send({ status: "critical error" });
-	}
+router.post("/mail/retrieve-options", checkAPIKeys(false, true), async (req, res) => {
 	// Fetch the mail instance
 	let mail;
 	try {
@@ -205,11 +219,7 @@ router.post("/mail/retrieve-options", async (req, res) => {
 // @route   POST /mail/admin/send-cold-emails
 // @desc
 // @access
-router.post("/mail/admin/send-cold-emails", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) return res.send({ status: "critical error" });
-	// Validate if the ADMIN_API_KEY match
-	if (req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) return res.send({ status: "critical error" });
+router.post("/mail/admin/send-cold-emails", checkAPIKeys(false, true, true), async (req, res) => {
 	// Set authentication
 	const auth = new google.auth.GoogleAuth({ keyFile: "credentials.json", scopes: "https://www.googleapis.com/auth/spreadsheets" });
 	// Create client instance for auth
@@ -286,6 +296,37 @@ router.post("/mail/admin/send-cold-emails", async (req, res) => {
 	}
 	// Success handler
 	return res.send({ status: "succeeded" });
+});
+
+// @route   POST /mail/admin/send-product-email
+// @desc
+// @access
+router.post("/mail/admin/send-product-email", checkAPIKeys(false, true, true), async (req, res) => {
+	// Fetch all the mail instances
+	let mails;
+	try {
+		mails = await Mail.find({ "notification.product": true });
+	} catch (error) {
+		return res.send({ status: "error", content: error });
+	}
+	// Send users an email
+	for (let i = 0; i < mails.length; i++) {
+		const mail = mails[i];
+		let account;
+		try {
+			account = await Account.findOne({ email: mail.email });
+		} catch (error) {
+			return res.send({ status: "error", content: error });
+		}
+		if (!account) {
+			try {
+				account = await GoogleAccount.find({ email: mail.email });
+			} catch (error) {
+				return res.send({ status: "error", content: error });
+			}
+		}
+		if (!account) continue;
+	}
 });
 
 // @route   POST /mail/send-email
