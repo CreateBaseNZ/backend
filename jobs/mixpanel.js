@@ -22,6 +22,7 @@ const Profile = require("../model/Profile.js");
 
 module.exports = function (agenda) {
 	agenda.define("update-data", async (job, done) => {
+		if (process.env.NODE_ENV === "development") return done();
 		// Fetch the data document
 		let data;
 		try {
@@ -50,6 +51,7 @@ module.exports = function (agenda) {
 			return done();
 		}
 		// Update content
+
 		data.content = rawData;
 		data.date.succeeded = new Date().toString();
 		try {
