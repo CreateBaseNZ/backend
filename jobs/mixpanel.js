@@ -21,47 +21,55 @@ const Profile = require("../model/Profile.js");
 // EXPORT ===================================================
 
 module.exports = function (agenda) {
-	agenda.define("update-data", async (job, done) => {
-		if (process.env.NODE_ENV === "development") return done();
-		// Fetch the data document
-		let data;
-		try {
-			data = (await Data.find())[0];
-		} catch (error) {
-			return done();
-		}
-		if (!data) {
-			data = new Data({ project: process.env.MIXPANEL_PROJECT });
-		}
-		// Fetch the data from Mixpanel
-		let rawData;
-		try {
-			rawData = (
-				await axios.get(`https://data.mixpanel.com/api/2.0/export?from_date=2021-01-01&to_date=${moment().tz("Pacific/Auckland").format("YYYY-MM-DD")}`, {
-					headers: { Authorization: process.env.MIXPANEL_PROJECT_SECRET, Accept: "text/plain" },
-				})
-			)["data"];
-		} catch (error) {
-			data.date.failed = new Date().toString();
-			try {
-				await data.save();
-			} catch (error) {
-				return done();
-			}
-			return done();
-		}
-		// Update content
+  agenda.define("update-data", async (job, done) => {
+    if (process.env.NODE_ENV === "development") return done();
+    // Fetch the data document
+    let data;
+    try {
+      data = (await Data.find())[0];
+    } catch (error) {
+      return done();
+    }
+    if (!data) {
+      data = new Data({ project: process.env.MIXPANEL_PROJECT });
+    }
+    // Fetch the data from Mixpanel
+    let rawData;
+    try {
+      rawData = (
+        await axios.get(
+          `https://data.mixpanel.com/api/2.0/export?from_date=2022-01-13&to_date=${moment()
+            .tz("Pacific/Auckland")
+            .format("YYYY-MM-DD")}`,
+          {
+            headers: {
+              Authorization: process.env.MIXPANEL_PROJECT_SECRET,
+              Accept: "text/plain",
+            },
+          }
+        )
+      )["data"];
+    } catch (error) {
+      data.date.failed = new Date().toString();
+      try {
+        await data.save();
+      } catch (error) {
+        return done();
+      }
+      return done();
+    }
+    // Update content
 
-		data.content = rawData;
-		data.date.succeeded = new Date().toString();
-		try {
-			await data.save();
-		} catch (error) {
-			return done();
-		}
-		// Success handler
-		return done();
-	});
+    data.content = rawData;
+    data.date.succeeded = new Date().toString();
+    try {
+      await data.save();
+    } catch (error) {
+      return done();
+    }
+    // Success handler
+    return done();
+  });
 };
 
 // FUNCTIONS ================================================
