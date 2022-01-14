@@ -57,6 +57,7 @@ module.exports = function (agenda) {
 		try {
 			await Mail.sendEmail(option);
 		} catch (data) {
+			console.log(data);
 			return;
 		}
 		// Terminate

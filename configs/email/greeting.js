@@ -7,10 +7,14 @@ let greeting = {
 // FUNCTIONS ================================================
 
 greeting.construct = function (object = {}) {
-	const selectionWithName = ["Hi", "Hello"];
-	const selectionWithoutName = ["Hi there,", "Hello,"];
-	const index = getRandomInt(2);
-	return object.name ? `${selectionWithName[index]} ${object.name},` : selectionWithoutName[index];
+	if (object.greeting) {
+		return object.name ? `${object.greeting} ${object.name},` : `${object.greeting},`;
+	} else {
+		const selectionWithName = ["Hi", "Hello"];
+		const selectionWithoutName = ["Hi there,", "Hello,"];
+		const index = getRandomInt(2);
+		return object.name ? `${selectionWithName[index]} ${object.name},` : selectionWithoutName[index];
+	}
 };
 
 // HELPERS ==================================================

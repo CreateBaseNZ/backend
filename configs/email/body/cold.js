@@ -3,23 +3,9 @@
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 let cold = {
 	construct: undefined,
-	hodNzEmail1: undefined,
-	hodNzEmail2: undefined,
-	hodSgEmail1: undefined,
-	hodUkEmail1: undefined,
-	hodAuEmail1: undefined,
-	hodUsEmail1: undefined,
-	teacherNzEmail1: undefined,
-	teacherNzEmail2: undefined,
-	teacherSgEmail1: undefined,
-	teacherUkEmail1: undefined,
-	teacherAuEmail1: undefined,
-	teacherUsEmail1: undefined,
-	adminNzEmail1: undefined,
-	adminSgEmail1: undefined,
-	adminUkEmail1: undefined,
-	adminAuEmail1: undefined,
-	adminUsEmail1: undefined,
+	hodNzIntro: undefined,
+	teacherNzIntro: undefined,
+	adminNzIntro: undefined,
 };
 
 // FUNCTIONS ================================================
@@ -28,511 +14,72 @@ cold.construct = function (object = {}) {
 	return cold[object.tag](object);
 };
 
-cold.hodNzEmail1 = function (object = {}) {
+cold.hodNzIntro = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		`${school.upper} deserves more from digital technologies`,
-		`Have you ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> for ${school.lower} but couldn’t because they were <b>outside your budget</b>?
+		`Keep all your students engaged with digital robots, anytime, anywhere!`,
+		`Have you ever <b>considered buying Lego Mindstorms, Makeblocks, Spheros or other educational robots</b> for ${school.lower} but couldn’t because they were <b>outside your budget</b>? But even if you did, have you run into problems where
+<ul><li>there are <b>not enough robots for every student</b>,</li><li>they <b>break easily</b>,</li><li>they <b>go out-of-date</b>,</li><li>they are a <b>hassle and costly to maintain</b>, and</li><li>you <b>can’t use them for remote learning situations</b>.</li></ul>Are you perhaps using <b>digital education tools</b>, but have noticed that these tools <b>don’t have the same authentic and engaging experiences</b> that you find in physical education tools?
 
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
+If you have any of these problems, we have a solution - <u><b><a href="https://youtu.be/boq1q0Pxu5I">the CreateBase platform</a></b></u>! The CreateBase platform was <u>created by Kiwis who want to propel Aotearoa’s STEAM and digital technologies education</u>.
 
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
+At CreateBase, teachers and students complete <b>projects, building authentic solutions to real-world problems by programming digital robots</b>. We assist teachers by providing them with our <b>curriculum-aligned lesson plans</b>. Each project follows our <b>design thinking process, developing our learners’ creative, critical and computational thinking skills</b>.
 
-If any of these resonate with you, we have a solution!
+Our solution is suitable for your <b>year 7 to 10 STEAM and Digital Technologies classes</b>.
 
+With an <b>affordable annual subscription</b> of <u>$7.99 per user</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
 
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
+If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school to start your <u><b>FREE trial</b></u>!`,
 	];
 };
 
-cold.hodNzEmail2 = function (object = {}) {
+cold.teacherNzIntro = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		`CreateBase has launched our new and improved platform! Try it now!`,
-		`We have launched the new and improved CreateBase platform! But, before you get started, let us first ask you a few questions to ensure that our platform is for you!
+		`Keep all your students engaged with digital robots, anytime, anywhere!`,
+		`Have you ever <b>considered buying Lego Mindstorms, Makeblocks, Spheros or other educational robots</b> for ${school.lower} but couldn’t because they were <b>outside your budget</b>? But even if you did, have you run into problems where
+<ul><li>there are <b>not enough robots for every student</b>,</li><li>they <b>break easily</b>,</li><li>they <b>go out-of-date</b>,</li><li>they are a <b>hassle and costly to maintain</b>, and</li><li>you <b>can’t use them for remote learning situations</b>.</li></ul>Are you perhaps using <b>digital education tools</b>, but have noticed that these tools <b>don’t have the same authentic and engaging experiences</b> that you find in physical education tools?
 
+If you have any of these problems, we have a solution - <u><b><a href="https://youtu.be/boq1q0Pxu5I">the CreateBase platform</a></b></u>! The CreateBase platform was <u>created by Kiwis who want to propel Aotearoa’s STEAM and digital technologies education</u>.
 
-Have you ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> for ${school.lower} but couldn’t because they were <b>outside your budget</b>?
+At CreateBase, teachers and students complete <b>projects, building authentic solutions to real-world problems by programming digital robots</b>. We assist teachers by providing them with our <b>curriculum-aligned lesson plans</b>. Each project follows our <b>design thinking process, developing our learners’ creative, critical and computational thinking skills</b>.
 
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
+Our solution is suitable for your <b>year 7 to 10 STEAM and Digital Technologies classes</b>.
 
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
+With an <b>affordable annual subscription</b> of <u>$7.99 per user</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
 
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
+If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school to start your <u><b>FREE trial</b></u>!`,
 	];
 };
 
-cold.hodSgEmail1 = function (object = {}) {
+cold.adminNzIntro = function (object = {}) {
 	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
 	return [
-		`${school.upper} deserves more from digital technologies`,
-		`Have you ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> for ${school.lower} but couldn’t because they were <b>outside your budget</b>?
+		`Keep all your students engaged with digital robots, anytime, anywhere!`,
+		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your <b>STEAM or Digital Technologies teachers</b>.
 
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
+We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers struggled to keep students engaged.
 
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
+We have created a <u>solution that works well in both remote and in-person learning situations</u>! See the details below!
 
-If any of these resonate with you, we have a solution!
+If you think your STEAM or Digital technologies Teachers might benefit from our solution, we would appreciate it if you could <b>forward this email to them</b>! Thank you!
 
 
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
+"Kia ora,
 
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
 
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
+Have you ever <b>considered buying Lego Mindstorms, Makeblocks, Spheros or other educational robots</b> for ${school.lower} but couldn’t because they were <b>outside your budget</b>? But even if you did, have you run into problems where
+<ul><li>there are <b>not enough robots for every student</b>,</li><li>they <b>break easily</b>,</li><li>they <b>go out-of-date</b>,</li><li>they are a <b>hassle and costly to maintain</b>, and</li><li>you <b>can’t use them for remote learning situations</b>.</li></ul>Are you perhaps using <b>digital education tools</b>, but have noticed that these tools <b>don’t have the same authentic and engaging experiences</b> that you find in physical education tools?
 
+If you have any of these problems, we have a solution - <u><b><a href="https://youtu.be/boq1q0Pxu5I">the CreateBase platform</a></b></u>! The CreateBase platform was <u>created by Kiwis who want to propel Aotearoa’s STEAM and digital technologies education</u>.
 
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
+At CreateBase, teachers and students complete <b>projects, building authentic solutions to real-world problems by programming digital robots</b>. We assist teachers by providing them with our <b>curriculum-aligned lesson plans</b>. Each project follows our <b>design thinking process, developing our learners’ creative, critical and computational thinking skills</b>.
 
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
+Our solution is suitable for your <b>year 7 to 10 STEAM and Digital Technologies classes</b>.
 
-cold.hodUkEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		`${school.upper} deserves more from digital technologies`,
-		`Have you ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> for ${school.lower} but couldn’t because they were <b>outside your budget</b>?
+With an <b>affordable annual subscription</b> of <u>$7.99 per user</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
 
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.hodAuEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		`${school.upper} deserves more from digital technologies`,
-		`Have you ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> for ${school.lower} but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.hodUsEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		`${school.upper} deserves more from digital technologies`,
-		`Have you ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> for ${school.lower} but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.teacherNzEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"Experience physical robotics in our digital world!",
-		`Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.teacherNzEmail2 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"CreateBase has launched our new and improved platform! Try it now!",
-		`We have launched the new and improved CreateBase platform! But, before you get started, let us first ask you a few questions to ensure that our platform is for you!
-
-
-Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.teacherSgEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"Experience physical robotics in our digital world!",
-		`Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.teacherUkEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"Experience physical robotics in our digital world!",
-		`Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.teacherAuEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"Experience physical robotics in our digital world!",
-		`Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.teacherUsEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"Experience physical robotics in our digital world!",
-		`Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>.`,
-	];
-};
-
-cold.adminNzEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"An engaging solution for your in-person & remote digital tech classes! Try it for FREE!",
-		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
-
-We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
-
-We have created <u>a solution that works well in both remote and in-person learning situations</u>! And, if ${school.lower} <b>registers on our platform before 1 January 2022</b>, you will have access to our platform for <b>FREE until 1 June 2022</b>!
-
-If you think your STEM or digital technologies teachers might benefit from our solution, we would appreciate it if you could forward this email to them! Thank you!
-
-
-"Hi there,
-
-
-Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
-	];
-};
-
-cold.adminSgEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"An engaging solution for your in-person & remote digital tech classes! Try it for FREE!",
-		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
-
-We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
-
-We have created <u>a solution that works well in both remote and in-person learning situations</u>! And, if ${school.lower} <b>registers on our platform before 1 January 2022</b>, you will have access to our platform for <b>FREE until 1 June 2022</b>!
-
-If you think your STEM or digital technologies teachers might benefit from our solution, we would appreciate it if you could forward this email to them! Thank you!
-
-
-"Hi there,
-
-
-Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
-	];
-};
-
-cold.adminUkEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"An engaging solution for your in-person & remote digital tech classes! Try it for FREE!",
-		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
-
-We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
-
-We have created <u>a solution that works well in both remote and in-person learning situations</u>! And, if ${school.lower} <b>registers on our platform before 1 January 2022</b>, you will have access to our platform for <b>FREE until 1 June 2022</b>!
-
-If you think your STEM or digital technologies teachers might benefit from our solution, we would appreciate it if you could forward this email to them! Thank you!
-
-
-"Hi there,
-
-
-Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
-	];
-};
-
-cold.adminAuEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"An engaging solution for your in-person & remote digital tech classes! Try it for FREE!",
-		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
-
-We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
-
-We have created <u>a solution that works well in both remote and in-person learning situations</u>! And, if ${school.lower} <b>registers on our platform before 1 January 2022</b>, you will have access to our platform for <b>FREE until 1 June 2022</b>!
-
-If you think your STEM or digital technologies teachers might benefit from our solution, we would appreciate it if you could forward this email to them! Thank you!
-
-
-"Hi there,
-
-
-Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
-	];
-};
-
-cold.adminUsEmail1 = function (object = {}) {
-	const school = { upper: object.school ? object.school : "Your school", lower: object.school ? object.school : "your school" };
-	return [
-		"An engaging solution for your in-person & remote digital tech classes! Try it for FREE!",
-		`We know you’re swamped, so we’ll be brief! We are trying to get in touch with your STEM or digital technologies teachers. 
-
-We understand the <b>challenges caused by remote learning situations</b>! We have heard stories where teachers are having <b>difficulties keeping students engaged</b>.
-
-We have created <u>a solution that works well in both remote and in-person learning situations</u>! And, if ${school.lower} <b>registers on our platform before 1 January 2022</b>, you will have access to our platform for <b>FREE until 1 June 2022</b>!
-
-If you think your STEM or digital technologies teachers might benefit from our solution, we would appreciate it if you could forward this email to them! Thank you!
-
-
-"Hi there,
-
-
-Has ${school.lower} ever considered buying <u>Lego Mindstorms, Makeblocks, Spheros or other educational robots</u> but couldn’t because they were <b>outside your budget</b>?
-
-Even if you did, have you run into problems due to the fact that you <b>do not have enough robots for your students</b>?
-
-Are you perhaps using <u>digital education tools</u>, but have noticed these tools <b>don’t have the same authentic and real experience</b> that you find in physical education tools?
-
-If any of these resonate with you, we have a solution!
-
-
-At CreateBase, we have developed <u>a solution that merges the benefits of physical and digital learning tools</u>.
-
-Our solution enables you and your students to <b>create authentic solutions</b> to <b>real world problems</b> by programming <b>digital robots</b>.
-
-With <b>affordable subscriptions</b>, you and your students can access our growing collection of robots and projects <b>anywhere at anytime</b>!
-
-
-If you are interested in how we do it and how it can improve your students learning experience, check out <b><a href='https://www.youtube.com/embed/boq1q0Pxu5I'>this video</a></b>.
-
-And then, learn more about us and what other teachers are saying <u><b><a href='${process.env.SITE_PREFIX}/landing'>here</a></b></u>."`,
+If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school to start your <u><b>FREE trial</b></u>!"`,
 	];
 };
 
