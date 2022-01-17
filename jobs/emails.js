@@ -18,7 +18,7 @@ const Profile = require("../model/Profile.js");
 module.exports = function (agenda) {
 	agenda.define("email", async (job) => {
 		let option = job.attrs.data.option;
-		const user = job.attrs.data.user;
+		const user = job.attrs.data.user ? job.attrs.data.user : {};
 		// Check if an email is provided
 		if (!option.recipient && option.notification !== "createbase") {
 			let promise;
