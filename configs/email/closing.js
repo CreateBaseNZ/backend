@@ -25,11 +25,13 @@ closing.construct = function (object = {}) {
 		const alias = object.alias.toLowerCase();
 		sender = closing.signatures[alias] ? closing.signatures[alias] : closing.signatures.admin;
 	}
-	let message = `<br>${selection[tone][index]}
+	let closingMessage = selection[tone][index];
+	if (object.closing) closingMessage = object.closing;
+	let message = `<br>${closingMessage}
 	
 ${sender}`;
 	if (object.noSpace) {
-		message = `${selection[tone][index]}
+		message = `${closingMessage}
 	
 ${sender}`;
 	}

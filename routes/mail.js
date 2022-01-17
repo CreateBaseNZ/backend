@@ -267,7 +267,6 @@ router.post("/mail/admin/send-cold-emails", checkAPIKeys(false, true, true), asy
 			const group = values[j][4].trim();
 			const alias = values[j][5].trim();
 			const messages = values[j][6] ? values[j][6].split(";").map((message) => message.trim()) : "";
-			const attachments = values[j][7] ? values[j][7].split(";").map((attachment) => attachment.trim()) : "";
 			if (!email || !segment || !group) continue;
 			// Check if a mail instance with this email exist
 			let mail;
@@ -280,13 +279,20 @@ router.post("/mail/admin/send-cold-emails", checkAPIKeys(false, true, true), asy
 				mail = new Mail({
 					email: email.toLowerCase(),
 					notification: { cold: true },
-					metadata: { name, type: "customer-school", school, segment, country, group, alias, messages, attachments },
+					metadata: { name, type: "customer-school", school, segment, country, group, alias, messages },
 				});
-				try {
-					await mail.save();
-				} catch (error) {
-					return res.send({ status: "error", content: error });
+			} else {
+				if (mail.notification.cold) {
+					Object.assign(mail.metadata, { name, type: "customer-school", school, segment, country, group, alias, messages });
+					mail.markModified("metadata");
+				} else {
+					continue;
 				}
+			}
+			try {
+				await mail.save();
+			} catch (error) {
+				return res.send({ status: "error", content: error });
 			}
 			await coldEmail(mail, date, j);
 			date = new Date(date.setMilliseconds(date.getMilliseconds() + 200));
@@ -366,55 +372,39 @@ async function coldEmail(mail, baseDate, iteration) {
 	const group = {
 		hod: {
 			nz: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-				group2: [{ suffix: "email2", date: { minutes: 0 } }],
-			},
-			sg: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			uk: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			au: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			us: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+				group1: [
+					{
+						suffix: "intro",
+						date: { minutes: 0 },
+						attachments: [
+							`curriculum-alignment-example-magnebot.pdf+${process.env.FILE_URL}/cold-email/curriculum-alignment-example-magnebot.pdf`,
+							`lesson-plan-example-magnebot.pdf+${process.env.FILE_URL}/cold-email/lesson-plan-example-magnebot.pdf`,
+						],
+						greeting: "Kia ora",
+						closing: "Nga mihi nui,",
+					},
+				],
 			},
 		},
 		teacher: {
 			nz: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-				group2: [{ suffix: "email2", date: { minutes: 0 } }],
-			},
-			sg: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			uk: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			au: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			us: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+				group1: [
+					{
+						suffix: "intro",
+						date: { minutes: 0 },
+						attachments: [
+							`curriculum-alignment-example-magnebot.pdf+${process.env.FILE_URL}/cold-email/curriculum-alignment-example-magnebot.pdf`,
+							`lesson-plan-example-magnebot.pdf+${process.env.FILE_URL}/cold-email/lesson-plan-example-magnebot.pdf`,
+						],
+						greeting: "Kia ora",
+						closing: "Nga mihi nui,",
+					},
+				],
 			},
 		},
 		admin: {
 			nz: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			sg: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			uk: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			au: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
-			},
-			us: {
-				group1: [{ suffix: "email1", date: { minutes: 0 } }],
+				group1: [{ suffix: "intro", date: { minutes: 0 }, greeting: "Kia ora", closing: "Nga mihi nui," }],
 			},
 		},
 	};
@@ -427,7 +417,6 @@ async function coldEmail(mail, baseDate, iteration) {
 			}
 		}
 	}
-	//
 	// Schedule the emails
 	for (let i = 0; i < emails.length; i++) {
 		// Skip this email has already been sent
@@ -447,12 +436,13 @@ async function coldEmail(mail, baseDate, iteration) {
 			name: mail.metadata.name,
 			receive: `${mail.metadata.segment}-${mail.metadata.country}-${emails[i].suffix}`,
 			notification: "cold",
-			tone: "friendly",
+			greeting: emails[i].greeting,
+			closing: emails[i].closing,
 			unsubscribeCold: true,
 			school: mail.metadata.school,
 			alias: mail.metadata.alias,
 			messages: mail.metadata.messages,
-			attachments: mail.metadata.attachments,
+			attachments: emails[i].attachments,
 		};
 		let scheduleDate;
 		if (emails[i].date.hasOwnProperty("minutes")) {
