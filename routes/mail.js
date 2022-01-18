@@ -332,7 +332,23 @@ router.post("/mail/admin/send-product-email", checkAPIKeys(false, true, true), a
 			}
 		}
 		if (!account) continue;
+		// Fetch the profile associated with the account
+		let profile;
+		try {
+			profile = await Profile.findOne({ _id: account.profile });
+		} catch (error) {
+			return res.send({ status: "error", content: error });
+		}
+		const option = {
+			recipient: account.email,
+			name: profile.name.first,
+			receive: req.body.input.receive,
+			notification: "product",
+			tone: "friendly",
+		};
+		await agenda.now("email", { option });
 	}
+	return res.send({ status: "succeeded" });
 });
 
 // @route   POST /mail/send-email
