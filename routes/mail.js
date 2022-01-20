@@ -326,7 +326,7 @@ router.post("/mail/admin/send-product-email", checkAPIKeys(false, true, true), a
 		}
 		if (!account) {
 			try {
-				account = await GoogleAccount.find({ email: mail.email });
+				account = await GoogleAccount.findOne({ email: mail.email });
 			} catch (error) {
 				return res.send({ status: "error", content: error });
 			}
