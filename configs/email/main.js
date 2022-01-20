@@ -28,7 +28,7 @@ let email = {
 		louis: `"Louis Lin" <louis@createbase.co.nz>`,
 		todd: `"Todd Broadhurst" <todd@createbase.co.nz>`,
 		weiwei: `"Weiwei Wu" <weiwei@createbase.co.nz>`,
-		admin: `"CreateBase Limited" <admin@createbase.co.nz>`,
+		admin: `"CreateBase" <admin@createbase.co.nz>`,
 	},
 };
 
