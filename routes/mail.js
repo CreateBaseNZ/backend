@@ -400,18 +400,6 @@ async function coldEmail(mail, baseDate, iteration) {
 						closing: "Nga mihi nui,",
 					},
 				],
-				group2: [
-					{
-						suffix: "intro",
-						date: { minutes: 0 },
-						attachments: [
-							`curriculum-alignment-example-magnebot.pdf+${process.env.FILE_URL}/cold-email/curriculum-alignment-example-magnebot.pdf`,
-							`lesson-plan-example-magnebot.pdf+${process.env.FILE_URL}/cold-email/lesson-plan-example-magnebot.pdf`,
-						],
-						greeting: "Kia ora",
-						closing: "Nga mihi nui,",
-					},
-				],
 			},
 		},
 		teacher: {
@@ -428,7 +416,11 @@ async function coldEmail(mail, baseDate, iteration) {
 						closing: "Nga mihi nui,",
 					},
 				],
-				group2: [
+			},
+		},
+		admin: {
+			nz: {
+				group1: [
 					{
 						suffix: "intro",
 						date: { minutes: 0 },
@@ -440,11 +432,6 @@ async function coldEmail(mail, baseDate, iteration) {
 						closing: "Nga mihi nui,",
 					},
 				],
-			},
-		},
-		admin: {
-			nz: {
-				group1: [{ suffix: "intro", date: { minutes: 0 }, greeting: "Kia ora", closing: "Nga mihi nui," }],
 			},
 		},
 	};
