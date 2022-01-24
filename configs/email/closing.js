@@ -7,6 +7,7 @@ let closing = {
 		carl: undefined,
 		brydon: undefined,
 		todd: undefined,
+		weiwei: undefined,
 	},
 };
 
