@@ -4,7 +4,9 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 let cold = {
 	construct: undefined,
 	hodNzIntro: undefined,
+	hodNzBack: undefined,
 	teacherNzIntro: undefined,
+	teacherNzBack: undefined,
 	adminNzIntro: undefined,
 };
 
@@ -27,9 +29,19 @@ At CreateBase, teachers and students complete <b>projects, building authentic so
 
 Our solution is suitable for your <b>year 7 to 10 STEAM and Digital Technologies classes</b>.
 
-With an <b>affordable annual subscription</b> of <u>$7.99 per user</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
+With an <b>affordable subscription</b> of <u>$7.99 per user per full-year</u> or <u>$4.49 per user per half-year</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
 
-If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school to start your <u><b>FREE trial</b></u>!`,
+If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school now to get <u><b>FREE access until June 2022</b></u>!`,
+	];
+};
+
+cold.hodNzBack = function () {
+	return [
+		`Start your students’ year right by solving authentic problems with digital robotics!`,
+		`How’s the start of your school year?! Hopefully, you, your family, and your school are staying safe during this Omicron disturbance. Let us help you navigate this turbulent time!
+
+As outlined in my previous email, we have developed <b>resources to supercharge your year 7 to 10 STEAM and Digital Technologies classes</b>. These resources were developed in collaboration with teachers to ensure
+<ul><li><b>fitness for remote AND in-person use</b>,</li><li><b>alignment with the NZ Technology Curriculum</b>, and</li><li><b>focus on design thinking and authentic learning</b>.</li></ul>I won’t bore you with the details, but if you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school now to get <u><b>FREE access until June 2022</b></u>!`,
 	];
 };
 
@@ -46,9 +58,19 @@ At CreateBase, teachers and students complete <b>projects, building authentic so
 
 Our solution is suitable for your <b>year 7 to 10 STEAM and Digital Technologies classes</b>.
 
-With an <b>affordable annual subscription</b> of <u>$7.99 per user</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
+With an <b>affordable subscription</b> of <u>$7.99 per user per full-year</u> or <u>$4.49 per user per half-year</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
 
-If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school to start your <u><b>FREE trial</b></u>!`,
+If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school now to get <u><b>FREE access until June 2022</b></u>!`,
+	];
+};
+
+cold.teacherNzBack = function () {
+	return [
+		`Start your students’ year right by solving authentic problems with digital robotics!`,
+		`How’s the start of your school year?! Hopefully, you, your family, and your school are staying safe during this Omicron disturbance. Let us help you navigate this turbulent time!
+
+As outlined in my previous email, we have developed <b>resources to supercharge your year 7 to 10 STEAM and Digital Technologies classes</b>. These resources were developed in collaboration with teachers to ensure
+<ul><li><b>fitness for remote AND in-person use</b>,</li><li><b>alignment with the NZ Technology Curriculum</b>, and</li><li><b>focus on design thinking and authentic learning</b>.</li></ul>I won’t bore you with the details, but if you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school now to get <u><b>FREE access until June 2022</b></u>!`,
 	];
 };
 
@@ -77,9 +99,9 @@ At CreateBase, teachers and students complete <b>projects, building authentic so
 
 Our solution is suitable for your <b>year 7 to 10 STEAM and Digital Technologies classes</b>.
 
-With an <b>affordable annual subscription</b> of <u>$7.99 per user</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
+With an <b>affordable subscription</b> of <u>$7.99 per user per full-year</u> or <u>$4.49 per user per half-year</u>, you, your fellow teachers and your students can <b>access our growing collection of projects and robots anytime anywhere</b>.
 
-If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school to start your <u><b>FREE trial</b></u>!"`,
+If you are interested, <u><b><a href="https://createbase.co.nz/landing">learn more about us and what other teachers are saying here</a></b></u>. Signup for an account and register your school now to get <u><b>FREE access until June 2022</b></u>!"`,
 	];
 };
 
