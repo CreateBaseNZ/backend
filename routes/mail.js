@@ -401,7 +401,7 @@ async function coldEmail(mail, baseDate, iteration) {
 					},
 					{
 						suffix: "back",
-						date: { month: 0, date: 27, year: 2022, timezone: "Pacific/Auckland", hour: 8, minute: 0 },
+						date: { month: 1, date: 8, year: 2022, timezone: "Pacific/Auckland", hour: 9, minute: 0 },
 						attachments: [],
 						greeting: "Kia ora",
 						closing: "Nga mihi nui,",
@@ -424,7 +424,7 @@ async function coldEmail(mail, baseDate, iteration) {
 					},
 					{
 						suffix: "back",
-						date: { month: 0, date: 27, year: 2022, timezone: "Pacific/Auckland", hour: 8, minute: 0 },
+						date: { month: 1, date: 8, year: 2022, timezone: "Pacific/Auckland", hour: 9, minute: 0 },
 						attachments: [],
 						greeting: "Kia ora",
 						closing: "Nga mihi nui,",
