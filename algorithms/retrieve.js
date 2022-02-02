@@ -245,8 +245,12 @@ retrieve.profiles = (profiles, option) => {
 			// Attach the account instances to their respective profiles
 			for (let k = 0; k < profiles.length; k++) {
 				// Fetch the account associated with this profile
-				profiles[k].account.local = localAccounts.find((account) => account._id.toString() === profiles[k].account.local.toString());
-				profiles[k].account.google = googleAccounts.find((account) => account.googleId.toString() === profiles[k].account.google.toString());
+				if (profiles[k].account.local) {
+					profiles[k].account.local = localAccounts.find((account) => account._id.toString() === profiles[k].account.local.toString());
+				}
+				if (profiles[k].account.google) {
+					profiles[k].account.google = googleAccounts.find((account) => account.googleId.toString() === profiles[k].account.google.toString());
+				}
 			}
 		}
 		// Success handler
