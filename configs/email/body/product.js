@@ -37,7 +37,7 @@ product.versionRelease1_2 = function () {
 		`New Release: Complete Projects with Text Coding! 🎉`,
 		`We are constantly working hard to provide teachers and students with better teaching and learning experiences!
 
-<u><b><a href="https://youtu.be/mnpfHKO-CSc">What’s new in CreateBase?</a></b></u>
+<b>What’s new in CreateBase?</b>
 
 <b>Text-based Coding Tool 🧑‍💻</b>
 You can now complete our projects with text coding! We currently only support JavaScript but Python will be coming soon!
@@ -48,7 +48,7 @@ We updated our lesson plans and project contents to support text coding! You won
 <b>Console Tab Indicator 🚦</b>
 Your console tab will now blink when you encounter errors (red), warnings (yellow) and logs/messages (grey).
 
-Check out the full release notes <u><b><a href="${process.env.SITE_PREFIX}/release-notes">here</a></b></u>.`,
+Watch our <u><b><a href="https://youtu.be/mnpfHKO-CSc">What's New video</a></b></u> or check out the <u><b><a href="${process.env.SITE_PREFIX}/release-notes">release notes</a></b></u>!`,
 	];
 };
 
