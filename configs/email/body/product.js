@@ -48,7 +48,7 @@ We updated our lesson plans and project contents to support text coding! You won
 <b>Console Tab Indicator 🚦</b>
 Your console tab will now blink when you encounter errors (red), warnings (yellow) and logs/messages (grey).
 
-Watch our <u><b><a href="https://youtu.be/mnpfHKO-CSc">What's New video</a></b></u> or check out our <u><b><a href="${process.env.SITE_PREFIX}/release-notes">release notes</a></b></u>!`,
+For more info, watch our <u><b><a href="https://youtu.be/mnpfHKO-CSc">What's New video</a></b></u> or check out our <u><b><a href="${process.env.SITE_PREFIX}/release-notes">release notes</a></b></u>!`,
 	];
 };
 
