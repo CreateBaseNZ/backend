@@ -18,7 +18,7 @@ require("../jobs/main.js")(agenda);
 (async function () {
 	await agenda.start();
 
-	await agenda.every("1 minute", "update-data");
+	await agenda.every("5 minutes", "update-data");
 })();
 
 // EXPORT ===================================================
