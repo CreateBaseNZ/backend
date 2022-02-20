@@ -345,6 +345,7 @@ router.post("/mail/admin/send-product-email", checkAPIKeys(false, true, true), a
 			receive: req.body.input.receive,
 			notification: "product",
 			tone: "friendly",
+			alias: "brydon",
 		};
 		await agenda.now("email", { option });
 	}
