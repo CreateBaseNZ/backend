@@ -348,6 +348,7 @@ router.post("/mail/admin/send-product-email", checkAPIKeys(false, true, true), a
 			alias: "brydon",
 		};
 		await agenda.now("email", { option });
+		await delay(1 / 10);
 	}
 	return res.send({ status: "succeeded" });
 });
