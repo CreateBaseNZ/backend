@@ -37,7 +37,7 @@ product.versionRelease1_2 = function () {
 		`New Release: Complete Projects with Text Coding! 🎉`,
 		`We are constantly working hard to provide teachers and students with better teaching and learning experiences!
 
-<u><b><a href="https://youtu.be/boq1q0Pxu5I">What’s new in CreateBase?</a></b></u>
+<u><b><a href="https://youtu.be/mnpfHKO-CSc">What’s new in CreateBase?</a></b></u>
 
 <b>Text-based Coding Tool 🧑‍💻</b>
 You can now complete our projects with text coding! We currently only support JavaScript but Python will be coming soon!
