@@ -91,50 +91,50 @@ router.get("/robots.txt", (req, res) => res.sendFile("robots.txt", viewsOption))
 // @desc
 // @access    Public
 router.post("/tracking", checkAPIKeys(false, true), async (req, res) => {
-	let data;
-	try {
-		data = (await Data.find())[0];
-	} catch (error) {
-		return res.send({ status: "error", content: error });
-	}
-	// Process the data
-	let rawData = data.content.split("\n");
-	console.log(JSON.parse(rawData[0]));
-	rawData.pop();
+	// let data;
+	// try {
+	// 	data = (await Data.find())[0];
+	// } catch (error) {
+	// 	return res.send({ status: "error", content: error });
+	// }
+	// // Process the data
+	// let rawData = data.content.split("\n");
+	// console.log(JSON.parse(rawData[0]));
+	// rawData.pop();
 	let outputs = [];
-	for (let i = 0; i < rawData.length; i++) {
-		rawData[i] = JSON.parse(rawData[i]);
-		// Check if there's any filter provided
-		let add = false;
-		if (req.body.input.filters.length) {
-			// Check if the rawData[i] has a filter with the said event name
-			const filter = req.body.input.filters.find((el) => el.event === rawData[i].event);
-			if (!filter) continue;
-			// Filter the data based on the property combination
-			if (filter.properties) {
-				for (let j = 0; j < filter.properties.length; j++) {
-					const el = filter.properties[j];
-					let valid = true;
-					for (const key in el) {
-						if (Array.isArray(rawData[i].properties[key])) {
-							if (!rawData[i].properties[key].includes(el[key])) valid = false;
-						} else {
-							if (rawData[i].properties[key] !== el[key]) valid = false;
-						}
-					}
-					if (valid) {
-						add = true;
-						break;
-					}
-				}
-			} else {
-				add = true;
-			}
-		} else {
-			add = true;
-		}
-		if (add) outputs.push(rawData[i]);
-	}
+	// for (let i = 0; i < rawData.length; i++) {
+	// 	rawData[i] = JSON.parse(rawData[i]);
+	// 	// Check if there's any filter provided
+	// 	let add = false;
+	// 	if (req.body.input.filters.length) {
+	// 		// Check if the rawData[i] has a filter with the said event name
+	// 		const filter = req.body.input.filters.find((el) => el.event === rawData[i].event);
+	// 		if (!filter) continue;
+	// 		// Filter the data based on the property combination
+	// 		if (filter.properties) {
+	// 			for (let j = 0; j < filter.properties.length; j++) {
+	// 				const el = filter.properties[j];
+	// 				let valid = true;
+	// 				for (const key in el) {
+	// 					if (Array.isArray(rawData[i].properties[key])) {
+	// 						if (!rawData[i].properties[key].includes(el[key])) valid = false;
+	// 					} else {
+	// 						if (rawData[i].properties[key] !== el[key]) valid = false;
+	// 					}
+	// 				}
+	// 				if (valid) {
+	// 					add = true;
+	// 					break;
+	// 				}
+	// 			}
+	// 		} else {
+	// 			add = true;
+	// 		}
+	// 	} else {
+	// 		add = true;
+	// 	}
+	// 	if (add) outputs.push(rawData[i]);
+	// }
 	return res.send({ status: "succeeded", content: outputs });
 });
 
