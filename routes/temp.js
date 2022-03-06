@@ -26,10 +26,10 @@ const Profile = require("../model/Profile.js");
 // @desc
 // @access  PUBLIC
 router.post("/temp/notify-users", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) return res.send({ status: "critical error" });
-	// Validate if the ADMIN_API_KEY match
-	if (req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) return res.send({ status: "critical error" });
+	// Validate if the API_KEY_PRIVATE match
+	if (req.body.API_KEY_PRIVATE !== process.env.API_KEY_PRIVATE) return res.send({ status: "critical error" });
+	// Validate if the API_KEY_ADMIN match
+	if (req.body.API_KEY_ADMIN !== process.env.API_KEY_ADMIN) return res.send({ status: "critical error" });
 	// Set authentication
 	const auth = new google.auth.GoogleAuth({ keyFile: "credentials.json", scopes: "https://www.googleapis.com/auth/spreadsheets" });
 	// Create client instance for auth
@@ -67,10 +67,10 @@ router.post("/temp/notify-users", async (req, res) => {
 // @desc
 // @access  PUBLIC
 router.post("/temp/subscribe-users", async (req, res) => {
-	// Validate if the PRIVATE_API_KEY match
-	if (req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) return res.send({ status: "critical error" });
-	// Validate if the ADMIN_API_KEY match
-	if (req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) return res.send({ status: "critical error" });
+	// Validate if the API_KEY_PRIVATE match
+	if (req.body.API_KEY_PRIVATE !== process.env.API_KEY_PRIVATE) return res.send({ status: "critical error" });
+	// Validate if the API_KEY_ADMIN match
+	if (req.body.API_KEY_ADMIN !== process.env.API_KEY_ADMIN) return res.send({ status: "critical error" });
 	// Set authentication
 	const auth = new google.auth.GoogleAuth({ keyFile: "credentials.json", scopes: "https://www.googleapis.com/auth/spreadsheets" });
 	// Create client instance for auth

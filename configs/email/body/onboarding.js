@@ -26,21 +26,21 @@ Here are some next steps we recommend for you.
 
 Check the Onboarding tab for tasks that will help you use CreateBase like a pro.
 
-<u><b><a href="${process.env.APP_PREFIX}/onboarding">Get started ></a></b></u>
+<u><b><a href="${process.env.PREFIX_APP}/onboarding">Get started ></a></b></u>
 
 
 <b>Register or join a school</b>
 
 To access our Projects and other platform features, you need to register a new (or join an existing) school group.
 
-<u><b><a href="${process.env.APP_PREFIX}/my-groups">Manage your groups ></a></b></u>
+<u><b><a href="${process.env.PREFIX_APP}/my-groups">Manage your groups ></a></b></u>
 
 
 <b>Discover a Project</b>
 
 Are you interested in your students experience on our platform, or are you a student who wants to jump into a project yourself? Simply choose a project and click continue.
 
-<u><b><a href="${process.env.APP_PREFIX}/browse">Find a project ></a></b></u>`,
+<u><b><a href="${process.env.PREFIX_APP}/browse">Find a project ></a></b></u>`,
 	];
 };
 

@@ -16,10 +16,10 @@ const checkAPIKeys = (public = false, private = false, admin = false) => {
 		if (public && req.body.PUBLIC_API_KEY !== process.env.PUBLIC_API_KEY) {
 			return res.send({ status: "critical error" });
 		}
-		if (private && req.body.PRIVATE_API_KEY !== process.env.PRIVATE_API_KEY) {
+		if (private && req.body.API_KEY_PRIVATE !== process.env.API_KEY_PRIVATE) {
 			return res.send({ status: "critical error" });
 		}
-		if (admin && req.body.ADMIN_API_KEY !== process.env.ADMIN_API_KEY) {
+		if (admin && req.body.API_KEY_ADMIN !== process.env.API_KEY_ADMIN) {
 			return res.send({ status: "critical error" });
 		}
 		return next();
