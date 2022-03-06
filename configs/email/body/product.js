@@ -28,7 +28,7 @@ Teachers and students can now sign up and log in on our platform with their Goog
 
 Saving your flow code is now specific to the task that you are currently working on. Go back to your previous tasks and load your answers to review your solutions!
 
-Check out the full release notes <u><b><a href="${process.env.SITE_PREFIX}/release-notes">here</a></b></u>.`,
+Check out the full release notes <u><b><a href="${process.env.BACKEND_PREFIX}/release-notes">here</a></b></u>.`,
 	];
 };
 
@@ -48,7 +48,7 @@ We updated our lesson plans and project contents to support text coding! You won
 <b>Console Tab Indicator 🚦</b>
 Your console tab will now blink when you encounter errors (red), warnings (yellow) and logs/messages (grey).
 
-For more info, watch our <u><b><a href="https://youtu.be/mnpfHKO-CSc">What's New video</a></b></u> or check out our <u><b><a href="${process.env.SITE_PREFIX}/release-notes">release notes</a></b></u>!`,
+For more info, watch our <u><b><a href="https://youtu.be/mnpfHKO-CSc">What's New video</a></b></u> or check out our <u><b><a href="${process.env.BACKEND_PREFIX}/release-notes">release notes</a></b></u>!`,
 	];
 };
 
