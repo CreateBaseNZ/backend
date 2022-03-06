@@ -1,9 +1,9 @@
 {
 	"name": "website",
-	"version": "2.0.0",
+	"version": "1.0.0",
 	"private": true,
 	"engines": {
-		"node": "14.16.0"
+		"node": "16.0.0"
 	},
 	"description": "CreateBase's Website",
 	"main": "app.js",
