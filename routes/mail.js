@@ -346,7 +346,7 @@ router.post("/mail/admin/send-product-email", checkAPIKeys(false, true, true), a
 			attachments: req.body.input.attachments,
 			notification: "product",
 			tone: "friendly",
-			alias: "brydon",
+			alias: req.body.input.alias ? req.body.input.alias : "brydon",
 		};
 		await agenda.now("email", { option });
 		await delay(1 / 10);
