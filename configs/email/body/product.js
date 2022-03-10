@@ -5,6 +5,7 @@ let product = {
 	construct: undefined,
 	versionRelease1_1: undefined,
 	versionRelease1_2: undefined,
+	customerSuccessStory1: undefined,
 };
 
 // FUNCTIONS ================================================
@@ -49,6 +50,22 @@ We updated our lesson plans and project contents to support text coding! You won
 Your console tab will now blink when you encounter errors (red), warnings (yellow) and logs/messages (grey).
 
 For more info, watch our <u><b><a href="https://youtu.be/mnpfHKO-CSc">What's New video</a></b></u> or check out our <u><b><a href="${process.env.PREFIX_BACKEND}/release-notes">release notes</a></b></u>!`,
+	];
+};
+
+product.customerSuccessStory1 = function () {
+	return [
+		`Cool things that teachers and students are building! 😯`,
+		`<b>Chris from John McGlashan College (Dunedin, New Zealand) Stacked 6 Items in the MagneBot Improve-step!</b> 🎉
+	
+	Mr Shoebridge from John McGlashan College gave his students the very difficult task of stacking 6 items in the MagneBot Improve-step.
+	
+	<img src="${process.env.FILE_URL}/customer-success/20220302-Chris-John_McGlashan_College.png" alt="20220302-Chris-John_McGlashan_College.png">
+	
+	His students didn’t shy away from this challenge! And, one of the first students to accomplish this challenge was Chris! 👏 Congrats to Chris, now, Mr Shoebridge owes him a canteen voucher! 😏
+	
+	
+	Do you have something cool to share with our community? Email us! 😊`,
 	];
 };
 

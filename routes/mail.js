@@ -21,7 +21,7 @@ const delay = (seconds = 1) => {
 
 const checkAPIKeys = (public = false, private = false, admin = false) => {
 	return (req, res, next) => {
-		if (public && req.body.PUBLIC_API_KEY !== process.env.PUBLIC_API_KEY) {
+		if (public && req.body.API_KEY_PUBLIC !== process.env.API_KEY_PUBLIC) {
 			return res.send({ status: "critical error" });
 		}
 		if (private && req.body.API_KEY_PRIVATE !== process.env.API_KEY_PRIVATE) {
