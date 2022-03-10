@@ -60,7 +60,7 @@ product.customerSuccessStory1 = function () {
 	
 	Mr Shoebridge from John McGlashan College gave his students the very difficult task of stacking 6 items in the MagneBot Improve-step.
 	
-	<img src="${process.env.FILE_URL}/customer-success/20220302-Chris-John_McGlashan_College.png" alt="20220302-Chris-John_McGlashan_College.png">
+	<img src="${process.env.FILE_URL}/customer-success/20220302-Chris-John_McGlashan_College.png" alt="20220302-Chris-John_McGlashan_College.png" width="500" height="230">
 	
 	His students didn’t shy away from this challenge! And, one of the first students to accomplish this challenge was Chris! 👏 Congrats to Chris, now, Mr Shoebridge owes him a canteen voucher! 😏
 	

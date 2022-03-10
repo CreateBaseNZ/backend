@@ -343,6 +343,7 @@ router.post("/mail/admin/send-product-email", checkAPIKeys(false, true, true), a
 			recipient: account.email,
 			name: profile.name.first,
 			receive: req.body.input.receive,
+			attachments: req.body.input.attachments,
 			notification: "product",
 			tone: "friendly",
 			alias: "brydon",
