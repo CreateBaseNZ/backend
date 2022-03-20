@@ -6,6 +6,7 @@ let product = {
 	versionRelease1_1: undefined,
 	versionRelease1_2: undefined,
 	customerSuccessStory1: undefined,
+	versionRelease1_3: undefined,
 };
 
 // FUNCTIONS ================================================
@@ -66,6 +67,21 @@ product.customerSuccessStory1 = function () {
 	
 	
 	Do you have something cool to share with our community? Email us! 😊`,
+	];
+};
+
+product.versionRelease1_3 = function () {
+	return [
+		`New Release: A New Intro Project! Easier Access to Learning Journals!`,
+		`We are constantly working hard to provide teachers and students with better teaching and learning experiences! 🙌
+
+To check out the contents of our latest update, watch the <u><b><a href="https://www.youtube.com/watch?v=O8LZEkwa5r4">What’s new in CreateBase video</a></b></u>. Core features include:
+
+<i>New Project:</i> <u><b><a href="https://www.youtube.com/watch?v=QuBgQqHQzns">Intro to Programming</a></b></u> 👩‍💻
+Introduce students to the fundamentals of code using an intuitive programming language. This Project serves as an excellent first step for students on the CreateBase platform!
+
+<i>New Feature:</i> <b>Easier Access to Learning Journals</b> 📖
+Your students can now save their learning journal links in the Define step. Doing so will enable teachers to access them without having to leave the platform via the Class > Progress page.`,
 	];
 };
 
