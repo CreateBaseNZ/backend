@@ -23,7 +23,7 @@
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
 		"express-session": "^1.17.1",
-		"fullpage.js": "^3.0.9",
+		"fullpage.js": "^4.0.5",
 		"googleapis": "^89.0.0",
 		"gridfs-stream": "^1.1.1",
 		"helmet": "^4.3.1",
