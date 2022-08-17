@@ -2,23 +2,24 @@
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 let product = {
-	construct: undefined,
-	versionRelease1_1: undefined,
-	versionRelease1_2: undefined,
-	customerSuccessStory1: undefined,
-	versionRelease1_3: undefined,
+  construct: undefined,
+  versionRelease1_1: undefined,
+  versionRelease1_2: undefined,
+  customerSuccessStory1: undefined,
+  versionRelease1_3: undefined,
+  shutdown: undefined,
 };
 
 // FUNCTIONS ================================================
 
 product.construct = function (object = {}) {
-	return product[object.tag](object);
+  return product[object.tag](object);
 };
 
 product.versionRelease1_1 = function () {
-	return [
-		`New Exciting Features! Version 1.1 Release!`,
-		`Our team is constantly working hard to provide teachers and students with better teaching and learning experiences!
+  return [
+    `New Exciting Features! Version 1.1 Release!`,
+    `Our team is constantly working hard to provide teachers and students with better teaching and learning experiences!
 
 What’s new with the CreateBase platform?
 
@@ -31,13 +32,13 @@ Teachers and students can now sign up and log in on our platform with their Goog
 Saving your flow code is now specific to the task that you are currently working on. Go back to your previous tasks and load your answers to review your solutions!
 
 Check out the full release notes <u><b><a href="${process.env.PREFIX_BACKEND}/release-notes">here</a></b></u>.`,
-	];
+  ];
 };
 
 product.versionRelease1_2 = function () {
-	return [
-		`New Release: Complete Projects with Text Coding! 🎉`,
-		`We are constantly working hard to provide teachers and students with better teaching and learning experiences!
+  return [
+    `New Release: Complete Projects with Text Coding! 🎉`,
+    `We are constantly working hard to provide teachers and students with better teaching and learning experiences!
 
 <b>What’s new in CreateBase?</b>
 
@@ -51,13 +52,13 @@ We updated our lesson plans and project contents to support text coding! You won
 Your console tab will now blink when you encounter errors (red), warnings (yellow) and logs/messages (grey).
 
 For more info, watch our <u><b><a href="https://youtu.be/mnpfHKO-CSc">What's New video</a></b></u> or check out our <u><b><a href="${process.env.PREFIX_BACKEND}/release-notes">release notes</a></b></u>!`,
-	];
+  ];
 };
 
 product.customerSuccessStory1 = function () {
-	return [
-		`Cool things that teachers and students are building! 😯`,
-		`<b>Chris from John McGlashan College (Dunedin, New Zealand) Stacked 6 Items in the MagneBot Improve-step!</b> 🎉
+  return [
+    `Cool things that teachers and students are building! 😯`,
+    `<b>Chris from John McGlashan College (Dunedin, New Zealand) Stacked 6 Items in the MagneBot Improve-step!</b> 🎉
 	
 	Mr Shoebridge from John McGlashan College gave his students the very difficult task of stacking 6 items in the MagneBot Improve-step.
 	
@@ -67,13 +68,13 @@ product.customerSuccessStory1 = function () {
 	
 	
 	Do you have something cool to share with our community? Email us! 😊`,
-	];
+  ];
 };
 
 product.versionRelease1_3 = function () {
-	return [
-		`New Release: A New Intro Project! Easier Access to Learning Journals!`,
-		`We are constantly working hard to provide teachers and students with better teaching and learning experiences! 🙌
+  return [
+    `New Release: A New Intro Project! Easier Access to Learning Journals!`,
+    `We are constantly working hard to provide teachers and students with better teaching and learning experiences! 🙌
 
 To check out the contents of our latest update, watch the <u><b><a href="https://www.youtube.com/watch?v=O8LZEkwa5r4">What’s new in CreateBase video</a></b></u>. Core features include:
 
@@ -82,7 +83,20 @@ Introduce students to the fundamentals of code using an intuitive programming la
 
 <i>New Feature:</i> <b>Easier Access to Learning Journals</b> 📖
 Your students can now save their learning journal links in the Define step. Doing so will enable teachers to access them without having to leave the platform via the Class > Progress page.`,
-	];
+  ];
+};
+
+product.shutdown = function () {
+  return [
+    "A Thank You from CreateBase",
+    `We had a very honest conversation with ourselves and ultimately came to the conclusion that our current solution would not have the impact that we had hoped for.
+
+After looking at our solution and the addressable market, CreateBase is simply not a financially sustainable business.
+
+So we made the tough call of dissolving the company.
+
+We want to thank you for your support in helping us shape CreateBase. The platform will remain online and completely free until the end of 2022.`,
+  ];
 };
 
 // EXPORT ===================================================
