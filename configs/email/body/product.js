@@ -8,6 +8,7 @@ let product = {
   customerSuccessStory1: undefined,
   versionRelease1_3: undefined,
   shutdown: undefined,
+  hacked: undefined,
 };
 
 // FUNCTIONS ================================================
@@ -96,6 +97,17 @@ After looking at our solution and the addressable market, CreateBase is simply n
 So we made the tough call of dissolving the company.
 
 We want to thank you for your support in helping us shape CreateBase. The platform will remain online and completely free until the end of 2022.`,
+  ];
+};
+
+product.hacked = function () {
+  return [
+    "We were hacked! Not a drill!",
+    `Unfortunately, our gmail account has been hacked. We are currently working to get it back. Your passwords are secure with us.
+    
+For the meantime, please do not reply to any email from us requesting any sensitive information.
+
+We apologise for the inconvenience! Stay safe.`,
   ];
 };
 
